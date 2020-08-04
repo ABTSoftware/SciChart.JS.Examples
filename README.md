@@ -1,1 +1,1 @@
-# SciChart.JS.Examples
+# SciChartExamples
