@@ -33,9 +33,8 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: "src/static/", to: "" },
-                // { from: "node_modules/scichart/_wasm/", to: "" },
-                { from: "../wasm-build/scichart2d.data", to: "" },
-                { from: "../wasm-build/scichart2d.wasm", to: "" }
+                { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
+                { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" }
             ]
         }),
         new webpack.IgnorePlugin(/(fs)/)

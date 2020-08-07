@@ -17,7 +17,6 @@ const port = "3000";
 const targetDir = defaultConfig.buildConfig.targetDir;
 
 function handleRender(req: Request, res: Response) {
-    console.log(3333, req.url);
     const sheets = new ServerStyleSheets();
     const context = {};
 
