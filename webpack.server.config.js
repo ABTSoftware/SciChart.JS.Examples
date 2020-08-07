@@ -1,12 +1,13 @@
 const path = require("path");
 const config = require("./config/default");
-const NodemonPlugin = require("nodemon-webpack-plugin");
-const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
+    mode: "production",
     name: "server",
     target: "node",
-    externals: [nodeExternals()],
+    externals: {
+        express: "commonjs2 express"
+    },
     entry: "./src/server/server.tsx",
     output: {
         filename: "server.js",
@@ -29,6 +30,5 @@ module.exports = {
     },
     resolve: {
         extensions: [".tsx", ".ts", ".js"]
-    },
-    plugins: [new NodemonPlugin()]
+    }
 };

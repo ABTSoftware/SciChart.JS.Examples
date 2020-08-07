@@ -1,12 +1,11 @@
 import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 import { useLocation } from "react-router-dom";
 import Navigation from "./Navigation/Navigation";
 import AppRouter from "./AppRouter/AppRouter";
 import Search from "./Search/Search";
 import sciChartLogoImg from "../images/scichart-logo-making-impossible-projects-possible@2x.png";
-import { PAGES } from "./AppRouter/pages";
 import { EXAMPLES_PAGES } from "./AppRouter/examples";
 import Title from "./Title/Title";
 import { HOME_PAGE_TITLE } from "./PageHome";
@@ -14,50 +13,53 @@ import Description from "./Description/Description";
 import GettingStarted from "./GettingStarted/GettingStarted";
 import SourceCode from "./SourceCode/SourceCode";
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        marginTop: theme.spacing(2),
-        marginLeft: theme.spacing(2),
-        marginRight: theme.spacing(2)
-    },
-    header: {
-        display: "flex"
-    },
-    headerLeft: {
-        flexBasis: 500,
-        flexGrow: 1,
-        flexShrink: 0
-    },
-    headerRight: {
-        flexBasis: 209,
-        flexGrow: 0,
-        flexShrink: 0,
-        paddingLeft: theme.spacing(2)
-    },
-    body: {
-        display: "flex"
-    },
-    colNav: {
-        flexBasis: 240,
-        flexShrink: 0,
-        flexGrow: 0
-    },
-    colMain: {
-        flexBasis: 240,
-        flexShrink: 0,
-        flexGrow: 1,
-        marginLeft: theme.spacing(2)
-    },
-    colDescription: {
-        flexBasis: 360,
-        flexGrow: 0,
-        flexShrink: 0,
-        paddingLeft: theme.spacing(2)
-    },
-    description: {
-        marginBottom: theme.spacing(2)
-    }
-}));
+const useStyles = makeStyles(
+    theme => ({
+        root: {
+            marginTop: theme.spacing(2),
+            marginLeft: theme.spacing(2),
+            marginRight: theme.spacing(2)
+        },
+        header: {
+            display: "flex"
+        },
+        headerLeft: {
+            flexBasis: 500,
+            flexGrow: 1,
+            flexShrink: 0
+        },
+        headerRight: {
+            flexBasis: 209,
+            flexGrow: 0,
+            flexShrink: 0,
+            paddingLeft: theme.spacing(2)
+        },
+        body: {
+            display: "flex"
+        },
+        colNav: {
+            flexBasis: 240,
+            flexShrink: 0,
+            flexGrow: 0
+        },
+        colMain: {
+            flexBasis: 240,
+            flexShrink: 0,
+            flexGrow: 1,
+            marginLeft: theme.spacing(2)
+        },
+        colDescription: {
+            flexBasis: 360,
+            flexGrow: 0,
+            flexShrink: 0,
+            paddingLeft: theme.spacing(2)
+        },
+        description: {
+            marginBottom: theme.spacing(2)
+        }
+    }),
+    { index: 1 }
+);
 
 export default function App() {
     const classes = useStyles();

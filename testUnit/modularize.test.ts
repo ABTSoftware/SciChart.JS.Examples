@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { sciChartInit2DTest } from "../../src";
+import { sciChartInit2DTest } from "../../src/sciChartInit2DTest";
 
 describe("Sample Test", () => {
     it("One", done => {

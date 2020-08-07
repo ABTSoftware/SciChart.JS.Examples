@@ -4,12 +4,12 @@
   "description": "",
   "private": true,
   "scripts": {
-    "buildClient": "webpack --mode=production",
-    "buildServer": "webpack --config webpack.server.config.js --mode=production",
+    "buildServer": "webpack --config webpack.server.config.js",
+    "buildClient": "webpack --config webpack.client.config.js",
     "startBuild": "node ./build/server.js",
-    "startServer": "webpack --config webpack.server.config.js --mode=development --watch",
-    "startClient": "webpack-dev-server",
-    "startClientTsc": "webpack --mode=development --watch",
+    "startServer": "webpack --config webpack.server.dev.config.js",
+    "startClient": "webpack-dev-server --config webpack.client.dev.config.js",
+    "startClientTsc": "webpack --config webpack.client.dev.config.js",
     "prettier": "prettier --write",
     "testUnit": "mocha --require ts-node/register \"testUnit/**/*.test.ts\"",
     "updateGeneratedSrc": "node ./update-examples-code.js"
@@ -20,7 +20,6 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
-    "@types/react-router-dom": "^5.1.5",
     "express": "^4.17.1",
     "express-basic-auth": "^1.2.0",
     "prismjs": "^1.20.0",
@@ -38,6 +37,7 @@
     "@types/prismjs": "^1.16.1",
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
     "@types/request": "^2.48.5",
     "chai": "^4.2.0",
     "copy-webpack-plugin": "^6.0.3",
@@ -51,8 +51,10 @@
     "typescript": "^3.9.7",
     "url-loader": "^4.1.0",
     "webpack": "^4.44.0",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.1",
     "webpack-node-externals": "^2.5.0"
   }
 }
