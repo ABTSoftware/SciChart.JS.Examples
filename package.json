@@ -4,6 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
+    "start": "webpack-dev-server --config webpack.client.no_server.config.js",
     "buildServer": "webpack --config webpack.server.config.js",
     "buildClient": "webpack --config webpack.client.config.js",
     "startBuild": "node ./build/server.js",

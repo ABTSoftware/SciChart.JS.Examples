@@ -32,7 +32,7 @@ module.exports = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: "src/static/", to: "" },
+                { from: "src/static/favicon.ico", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" }
             ]
