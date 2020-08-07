@@ -1,13 +1,13 @@
 import * as React from "react";
-import { MouseWheelZoomModifier } from "../../../../../../../src/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "../../../../../../../src/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "../../../../../../../src/Charting/ChartModifiers/ZoomPanModifier";
-import { XyyDataSeries } from "../../../../../../../src/Charting/Model/XyyDataSeries";
-import { NumericAxis } from "../../../../../../../src/Charting/Visuals/Axis/NumericAxis";
-import { FastBandRenderableSeries } from "../../../../../../../src/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
-import { SciChartSurface } from "../../../../../../../src/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "../../../../../../../src/Core/NumberRange";
-import { EAxisAlignment } from "../../../../../../../src/types/AxisAlignment";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
+import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
 
 const divElementId = "chart";
 

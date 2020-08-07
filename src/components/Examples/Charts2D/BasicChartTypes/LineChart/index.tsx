@@ -1,15 +1,15 @@
 import * as React from "react";
-import { MouseWheelZoomModifier } from "../../../../../../../src/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "../../../../../../../src/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "../../../../../../../src/Charting/ChartModifiers/ZoomPanModifier";
-import { PaletteFactory } from "../../../../../../../src/Charting/Model/PaletteFactory";
-import { XyDataSeries } from "../../../../../../../src/Charting/Model/XyDataSeries";
-import { NumericAxis } from "../../../../../../../src/Charting/Visuals/Axis/NumericAxis";
-import { FastLineRenderableSeries } from "../../../../../../../src/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { SciChartSurface } from "../../../../../../../src/Charting/Visuals/SciChartSurface";
-import { GradientParams } from "../../../../../../../src/Core/GradientParams";
-import { NumberRange } from "../../../../../../../src/Core/NumberRange";
-import { Point } from "../../../../../../../src/Core/Point";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { PaletteFactory } from "scichart/Charting/Model/PaletteFactory";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { GradientParams } from "scichart/Core/GradientParams";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { Point } from "scichart/Core/Point";
 
 const divElementId = "chart";
 
