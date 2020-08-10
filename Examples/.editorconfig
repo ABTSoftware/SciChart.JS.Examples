@@ -1,0 +1,21 @@
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+trim_trailing_whitespace = true
+max_line_length = 120
+indent_size = 4
+
+# JavaScript
+[*.{jsx,js}]
+indent_style = space
+indent_size = 4
+
+# CSS
+[*.css]
+indent_style = space
+indent_size = 4
+
+[package.json]
+indent_style = space
+indent_size = 2
