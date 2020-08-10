@@ -1,4 +1,4 @@
-# SciChart.js Tutorial 4 - Adding Tooltips
+# SciChart.js Tutorial 3 - Add Zoom and Pan Behavior
 
 To view the full text of this tutorial online, visit www.scichart.com/javascript-chart-documentation 
 
