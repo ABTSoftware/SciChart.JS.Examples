@@ -2,9 +2,6 @@ import {SciChartSurface} from "scichart/charting/Visuals/SciChartSurface";
 import {NumericAxis} from "scichart/charting/Visuals/Axis/NumericAxis";
 import {XyDataSeries} from "scichart/charting/model/XyDataSeries";
 import {FastLineRenderableSeries} from "scichart/charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {MouseWheelZoomModifier} from "scichart/charting/ChartModifiers/MouseWheelZoomModifier";
-import {ZoomPanModifier} from "scichart/charting/ChartModifiers/ZoomPanModifier";
-import {ZoomExtentsModifier} from "scichart/charting/ChartModifiers/ZoomExtentsModifier";
 
 async function initSciChart() {
     // Create the SciChartSurface in the div 'scichart-root'
@@ -39,12 +36,6 @@ async function initSciChart() {
         });
         sciChartSurface.renderableSeries.add(lineSeries);
     }
-
-    // Add zoom, pan behaviours to the chart. Mousewheel zoom, panning and double-click to 
-    // zoom to fit
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(wasmContext))
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier(wasmContext))
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(wasmContext))
 }
 
 initSciChart();
