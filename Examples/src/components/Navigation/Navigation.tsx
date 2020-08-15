@@ -33,11 +33,11 @@ export default function Navigation() {
                 </Typography>
             }
         >
+            <ListItem button onClick={() => history.push("/")} selected={location.pathname === "/"}>
+                <ListItemText primary="Homepage" />
+            </ListItem>
             {MENU_ITEMS.map(el => (
                 <React.Fragment key={el.item.id}>
-                    <ListItem button onClick={() => history.push("/")} selected={location.pathname === "/"}>
-                        <ListItemText primary="Homepage" />
-                    </ListItem>
                     <ListItem button onClick={handleExpandClick(el.item.id)}>
                         <ListItemText primary={el.item.name} />
                         {isOpened[el.item.id] ? <ExpandLess /> : <ExpandMore />}
