@@ -38,6 +38,7 @@ async function initSciChart() {
             stroke: `rgba(176,196,222,${opacity})`,
             strokeThickness:2
         });
+        
         sciChartSurface.renderableSeries.add(lineSeries);
     }
 
@@ -78,7 +79,7 @@ async function initSciChart() {
     inputEnableMouseWheel.addEventListener("input", (event) => {
         mouseWheelZoomModifier.isEnabled = inputEnableMouseWheel.checked;
         console.log("Enabling Mousewheel zoom");
-    })
+    });
 }
 
 initSciChart();
