@@ -44,10 +44,10 @@ async function initSciChart() {
 
     // Add zoom, pan behaviours to the chart. Mousewheel zoom, panning and double-click to 
     // zoom to fit
-    const mouseWheelZoomModifier = new MouseWheelZoomModifier(wasmContext);
-    const zoomPanModifier = new ZoomPanModifier(wasmContext);
-    const rubberBandZoomModifier = new RubberBandXyZoomModifier(wasmContext);
-    const zoomExtentsModifier = new ZoomExtentsModifier(wasmContext);    
+    const mouseWheelZoomModifier = new MouseWheelZoomModifier();
+    const zoomPanModifier = new ZoomPanModifier();    
+    const rubberBandZoomModifier = new RubberBandXyZoomModifier();
+    const zoomExtentsModifier = new ZoomExtentsModifier();    
     sciChartSurface.chartModifiers.add(zoomExtentsModifier);
     sciChartSurface.chartModifiers.add(zoomPanModifier);
     sciChartSurface.chartModifiers.add(rubberBandZoomModifier);
