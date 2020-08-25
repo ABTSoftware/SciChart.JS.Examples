@@ -7,6 +7,7 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import { makeStyles } from "@material-ui/core/styles";
 import { TMenuItem } from "../AppRouter/examples";
+import {useLocation} from "react-router-dom";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -28,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 const ListItemsBlock: React.FC<TProps> = (props) => {
     const classes = useStyles();
+    const location = useLocation();
+
     const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId } = props;
 
     return (

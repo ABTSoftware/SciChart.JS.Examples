@@ -13,7 +13,7 @@
     "startClientTsc": "webpack --config webpack.client.dev.config.js",
     "prettier": "prettier --write",
     "testUnit": "mocha --require ts-node/register \"testUnit/**/*.test.ts\"",
-    "updateGeneratedSrc": "node ./update-examples-code.js"
+    "generateExamplesSrc": "node ./update-examples-code.js"
   },
   "author": "",
   "license": "ISC",

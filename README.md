@@ -17,7 +17,7 @@ export const scatter3DChartExampleInfo: TExampleInfo = {
     code
 };
 ```
-* **Generate GENERATED_SRC.ts file** - run `npm run updateGeneratedSrc` to generate `GENERATED_SRC.ts`. Note if you modify any of index.tsx in the examples folder, you also need to run the script.
+* **Generate GENERATED_SRC.ts file** - run `npm run generateExamplesSrc` to generate `GENERATED_SRC.ts`. Note if you modify any of index.tsx in the examples folder, you also need to run the script.
 
 * **Add example to menu** - edit `Examples/src/components/AppRouter/examples.ts` file to add new example
 ```ts

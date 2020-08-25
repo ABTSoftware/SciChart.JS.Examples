@@ -6,7 +6,7 @@ import Navigation from "./Navigation/Navigation";
 import AppRouter from "./AppRouter/AppRouter";
 import Search from "./Search/Search";
 import sciChartLogoImg from "../images/scichart-logo-making-impossible-projects-possible@2x.png";
-import { DEFAULT_EXPENDED_MENU_ITEMS, EXAMPLES_PAGES, getParentMenuIds } from "./AppRouter/examples";
+import { EXAMPLES_PAGES, getParentMenuIds } from "./AppRouter/examples";
 import Title from "./Title/Title";
 import { HOME_PAGE_TITLE } from "./PageHome";
 import Description from "./Description/Description";
@@ -65,7 +65,7 @@ export default function App() {
     const classes = useStyles();
     const location = useLocation();
 
-    const [openedMenuItems, setOpenedMenuItems] = React.useState<Record<string, boolean>>(DEFAULT_EXPENDED_MENU_ITEMS);
+    const [openedMenuItems, setOpenedMenuItems] = React.useState<Record<string, boolean>>({});
 
     const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === location.pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];

@@ -1,8 +1,11 @@
 import { TPage } from "./pages";
-import { lineChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/LineChart/exampleInfo";
-import LineChart from "../Examples/Charts2D/BasicChartTypes/LineChart";
 import { bandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/exampleInfo";
 import BandSeriesChart from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart";
+import { bubbleChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BubbleChart/exampleInfo";
+import BubbleChart from "../Examples/Charts2D/BasicChartTypes/BubbleChart";
+import { lineChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/LineChart/exampleInfo";
+import LineChart from "../Examples/Charts2D/BasicChartTypes/LineChart";
+
 import { scatter3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Scatter3DChart/exampleInfo";
 import Scatter3DChart from "../Examples/Charts3D/Basic3DChartTypes/Scatter3DChart";
 
@@ -25,15 +28,20 @@ export type TMenuItem = {
 };
 
 export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
-    chart2D_basicCharts_LineChart: {
-        id: "chart2D_basicCharts_LineChart",
-        Component: LineChart,
-        ...lineChartExampleInfo,
-    },
     chart2D_basicCharts_BandSeriesChart: {
         id: "chart2D_basicCharts_BandSeriesChart",
         Component: BandSeriesChart,
         ...bandSeriesChartExampleInfo,
+    },
+    chart2D_basicCharts_BubbleChart: {
+        id: "chart2D_basicCharts_BubbleChart",
+        Component: BubbleChart,
+        ...bubbleChartExampleInfo,
+    },
+    chart2D_basicCharts_LineChart: {
+        id: "chart2D_basicCharts_LineChart",
+        Component: LineChart,
+        ...lineChartExampleInfo,
     },
     chart3D_Basic3DChartTypes_Scatter: {
         id: "chart3D_Basic3DChartTypes_Scatter",
@@ -42,21 +50,19 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
     },
 };
 
-export const DEFAULT_EXPENDED_MENU_ITEMS = {
-    chart2D_basicCharts: false,
-};
-
 export const MENU_ITEMS_2D_ID = "MENU_ITEMS_2D_ID";
-export const MENU_ITEMS_3D_ID = "MENU_ITEMS_3D_ID";
-export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
-
 export const MENU_ITEMS_2D: TMenuItem[] = [
     {
         item: { id: "chart2D_basicCharts", name: "Basic Chart Types" },
-        submenu: [EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart, EXAMPLES_PAGES.chart2D_basicCharts_LineChart],
+        submenu: [
+            EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_LineChart,
+        ],
     },
 ];
 
+export const MENU_ITEMS_3D_ID = "MENU_ITEMS_3D_ID";
 export const MENU_ITEMS_3D: TMenuItem[] = [
     {
         item: { id: "chart3D_Basic3DChartTypes", name: "Basic 3D Chart Types" },
@@ -64,6 +70,7 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
     },
 ];
 
+export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
 export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [];
 
 export const getParentMenuIds = (exampleId: string): string[] => {
