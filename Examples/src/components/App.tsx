@@ -6,7 +6,7 @@ import Navigation from "./Navigation/Navigation";
 import AppRouter from "./AppRouter/AppRouter";
 import Search from "./Search/Search";
 import sciChartLogoImg from "../images/scichart-logo-making-impossible-projects-possible@2x.png";
-import { EXAMPLES_PAGES } from "./AppRouter/examples";
+import { DEFAULT_EXPENDED_MENU_ITEMS, EXAMPLES_PAGES, getParentMenuIds } from "./AppRouter/examples";
 import Title from "./Title/Title";
 import { HOME_PAGE_TITLE } from "./PageHome";
 import Description from "./Description/Description";
@@ -14,49 +14,49 @@ import GettingStarted from "./GettingStarted/GettingStarted";
 import SourceCode from "./SourceCode/SourceCode";
 
 const useStyles = makeStyles(
-    theme => ({
+    (theme) => ({
         root: {
             marginTop: theme.spacing(2),
             marginLeft: theme.spacing(2),
-            marginRight: theme.spacing(2)
+            marginRight: theme.spacing(2),
         },
         header: {
-            display: "flex"
+            display: "flex",
         },
         headerLeft: {
             flexBasis: 500,
             flexGrow: 1,
-            flexShrink: 0
+            flexShrink: 0,
         },
         headerRight: {
             flexBasis: 209,
             flexGrow: 0,
             flexShrink: 0,
-            paddingLeft: theme.spacing(2)
+            paddingLeft: theme.spacing(2),
         },
         body: {
-            display: "flex"
+            display: "flex",
         },
         colNav: {
             flexBasis: 240,
             flexShrink: 0,
-            flexGrow: 0
+            flexGrow: 0,
         },
         colMain: {
             flexBasis: 240,
             flexShrink: 0,
             flexGrow: 1,
-            marginLeft: theme.spacing(2)
+            marginLeft: theme.spacing(2),
         },
         colDescription: {
             flexBasis: 360,
             flexGrow: 0,
             flexShrink: 0,
-            paddingLeft: theme.spacing(2)
+            paddingLeft: theme.spacing(2),
         },
         description: {
-            marginBottom: theme.spacing(2)
-        }
+            marginBottom: theme.spacing(2),
+        },
     }),
     { index: 1 }
 );
@@ -65,12 +65,33 @@ export default function App() {
     const classes = useStyles();
     const location = useLocation();
 
-    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === location.pathname);
+    const [openedMenuItems, setOpenedMenuItems] = React.useState<Record<string, boolean>>(DEFAULT_EXPENDED_MENU_ITEMS);
+
+    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === location.pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     const titleText = currentExample ? currentExample.title : HOME_PAGE_TITLE;
     const subtitleText = currentExample ? currentExample.subtitle : "";
     const descriptionText = currentExample ? currentExample.description : "";
     const codeStr = currentExample ? currentExample.code : "";
+
+    const setOpenedMenuItem = (id: string, value: boolean = true) => {
+        setOpenedMenuItems({ ...openedMenuItems, [id]: value });
+    };
+
+    const toggleOpenedMenuItem = (id: string) => setOpenedMenuItem(id, !openedMenuItems[id]);
+
+    React.useEffect(() => {
+        if (currentExample) {
+            const parentMenuIds = getParentMenuIds(currentExample.id);
+            const updatedOpenedItems: Record<string, boolean> = {};
+            parentMenuIds.forEach((elId) => {
+                updatedOpenedItems[elId] = true;
+            });
+            setOpenedMenuItems(updatedOpenedItems);
+        }
+    }, []);
+
+    const checkIsOpened = (id: string): boolean => !!openedMenuItems[id];
 
     return (
         <div className={classes.root}>
@@ -85,7 +106,11 @@ export default function App() {
             <Search />
             <div className={classes.body}>
                 <div className={classes.colNav}>
-                    <Navigation />
+                    <Navigation
+                        checkIsOpened={checkIsOpened}
+                        onExpandClick={toggleOpenedMenuItem}
+                        currentExampleId={currentExample?.id}
+                    />
                 </div>
                 <div className={classes.colMain}>
                     <Title title={titleText} subtitle={subtitleText} />
