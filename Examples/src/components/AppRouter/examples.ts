@@ -16,7 +16,7 @@ export type TExampleInfo = {
 
 export type TExamplePage = TPage & TExampleInfo & { Component: () => JSX.Element };
 
-type TMenuItem = {
+export type TMenuItem = {
     item: {
         id: string;
         name: string;
@@ -53,7 +53,7 @@ export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
 export const MENU_ITEMS_2D: TMenuItem[] = [
     {
         item: { id: "chart2D_basicCharts", name: "Basic Chart Types" },
-        submenu: [EXAMPLES_PAGES.chart2D_basicCharts_LineChart, EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart],
+        submenu: [EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart, EXAMPLES_PAGES.chart2D_basicCharts_LineChart],
     },
 ];
 

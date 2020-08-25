@@ -109,7 +109,6 @@ export default function App() {
                     <Navigation
                         checkIsOpened={checkIsOpened}
                         onExpandClick={toggleOpenedMenuItem}
-                        currentExampleId={currentExample?.id}
                     />
                 </div>
                 <div className={classes.colMain}>
