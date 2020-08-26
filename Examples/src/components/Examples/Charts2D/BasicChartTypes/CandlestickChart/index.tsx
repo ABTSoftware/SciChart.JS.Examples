@@ -57,7 +57,6 @@ export default function CandlestickChart() {
     }, []);
 
     const handleAddPoints = () => {
-        console.log("add points");
         const nextIndex = dataSeries.count();
         const nextDataIndex = nextIndex % 30;
         const nextTimestemp = 915408000 + nextIndex * 86400;
@@ -76,7 +75,6 @@ export default function CandlestickChart() {
     };
 
     const handleRemovePoints = () => {
-        console.log("remove points", dataSeries.count());
         if (dataSeries.count() > 10) {
             dataSeries.removeRange(dataSeries.count() - 10, 10);
             sciChartSurface.zoomExtents(200);

@@ -20,7 +20,11 @@ export const searchItems: TSearchItem[] = [
     },
     {
         title: EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart.title,
-        link: EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart.path
+        link: EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.title,
+        link: EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.path,
     },
     {
         title: EXAMPLES_PAGES.chart3D_Basic3DChartTypes_Scatter.title,
