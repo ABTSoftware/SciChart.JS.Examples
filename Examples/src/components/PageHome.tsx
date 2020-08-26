@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import * as React from "react";
 
 const divElementId = "chart";
-export const HOME_PAGE_TITLE = "Homepage super-duper"
+export const HOME_PAGE_TITLE = "HOMEPAGE"
 
 export default function PageHome() {
     React.useEffect(() => {

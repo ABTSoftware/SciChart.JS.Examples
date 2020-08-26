@@ -67,13 +67,16 @@ function getGaussianRandom(mean: number, stdDev: number): number {
 }
 
 // REACT COMPONENT
-export default function NativeDemo3D() {
+export default function Scatter3DChart() {
     React.useEffect(() => {
         drawExample();
     }, []);
 
     return (
-        <div id={divElementId} style={{ maxWidth: 900 }} />
+        <div>
+            <h1>TTTT</h1>
+            <div id={divElementId} style={{ maxWidth: 900 }} />
+        </div>
     );
 }
 

@@ -21,9 +21,10 @@ export default function Search() {
             <Autocomplete
                 id="someElement1"
                 freeSolo
-                options={searchItems.map(option => option)}
-                getOptionLabel={option => option.title}
-                renderInput={params => (
+                options={searchItems.map((option) => option)}
+                getOptionLabel={(option) => option.title}
+                onChange={handleChange}
+                renderInput={(params) => (
                     <TextField
                         {...params}
                         label="Search"
@@ -36,13 +37,13 @@ export default function Search() {
                             type: "search",
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    &nbsp;<SearchIcon />
+                                    &nbsp;
+                                    <SearchIcon />
                                 </InputAdornment>
-                            )
+                            ),
                         }}
                     />
                 )}
-                onChange={handleChange}
             />
         </div>
     );
