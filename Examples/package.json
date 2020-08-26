@@ -13,7 +13,7 @@
     "startClientTsc": "webpack --config webpack.client.dev.config.js",
     "prettier": "prettier --write",
     "testUnit": "mocha --require ts-node/register \"testUnit/**/*.test.ts\"",
-    "generateExamplesSrc": "node ./update-examples-code.js"
+    "generateExampleSrc": "node ./update-examples-code.js"
   },
   "author": "",
   "license": "ISC",
@@ -28,8 +28,8 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "request": "^2.88.2",
-    "scichart": "0.1.9",
-    "scichart3d": "0.1.9"
+    "scichart": "0.1.10",
+    "scichart3d": "0.1.10"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",

@@ -1,13 +1,15 @@
 import { TPage } from "./pages";
-import { bandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/exampleInfo";
 import BandSeriesChart from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart";
-import { bubbleChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BubbleChart/exampleInfo";
+import { bandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/exampleInfo";
 import BubbleChart from "../Examples/Charts2D/BasicChartTypes/BubbleChart";
-import { lineChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/LineChart/exampleInfo";
+import { bubbleChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BubbleChart/exampleInfo";
+import CandlestickChart from "../Examples/Charts2D/BasicChartTypes/CandlestickChart";
+import { candlestickChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/CandlestickChart/exampleInfo";
 import LineChart from "../Examples/Charts2D/BasicChartTypes/LineChart";
+import { lineChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/LineChart/exampleInfo";
 
-import { scatter3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Scatter3DChart/exampleInfo";
 import Scatter3DChart from "../Examples/Charts3D/Basic3DChartTypes/Scatter3DChart";
+import { scatter3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Scatter3DChart/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -43,6 +45,11 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: LineChart,
         ...lineChartExampleInfo,
     },
+    chart2D_basicCharts_CandlestickChart: {
+        id: "chart2D_basicCharts_CandlestickChart",
+        Component: CandlestickChart,
+        ...candlestickChartExampleInfo,
+    },
     chart3D_Basic3DChartTypes_Scatter: {
         id: "chart3D_Basic3DChartTypes_Scatter",
         Component: Scatter3DChart,
@@ -57,6 +64,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart,
             EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
             EXAMPLES_PAGES.chart2D_basicCharts_LineChart,
         ],
     },
