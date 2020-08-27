@@ -246,12 +246,6 @@ export default function RealtimeTickingStockCharts() {
     return (
         <div>
             <div id={divElementId} style={{ maxWidth: 900 }} />
-            <FormControl style={{ marginTop: 20, display: showControls ? "flex" : "none" }}>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button id="startAnimation">Start</Button>
-                    <Button id="stopAnimation">Stop</Button>
-                </ButtonGroup>
-            </FormControl>
             <div style={{ marginTop: 20, display: showControls ? "flex" : "none" }}>
                 <FormControl variant="filled" style={{ width: 200 }}>
                     <InputLabel id="stroke-thickness-label">Stroke Thickness</InputLabel>
@@ -283,6 +277,12 @@ export default function RealtimeTickingStockCharts() {
                     </Select>
                 </FormControl>
             </div>
+            <FormControl style={{ marginTop: 20, display: showControls ? "flex" : "none" }}>
+                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                    <Button id="startAnimation">Start</Button>
+                    <Button id="stopAnimation">Stop</Button>
+                </ButtonGroup>
+            </FormControl>
         </div>
     );
 }

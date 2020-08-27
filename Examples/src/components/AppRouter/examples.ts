@@ -19,11 +19,21 @@ import { scatterChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/Sc
 import AnnotationsAreEasy from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy";
 import { annotationsAreEasyExampleInfo } from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/exampleInfo";
 
+import DonutChart from "../Examples/Charts2D/CreateGaugeCharts/DonutChart";
+import { donutChartExampleInfo } from "../Examples/Charts2D/CreateGaugeCharts/DonutChart/exampleInfo";
+import PieChart from "../Examples/Charts2D/CreateGaugeCharts/PieChart";
+import { pieChartExampleInfo } from "../Examples/Charts2D/CreateGaugeCharts/PieChart/exampleInfo";
+
 import RealtimeGhostedTraces from "../Examples/Charts2D/CreateRealtimeCharts/RealtimeGhostedTraces";
 import { realtimeGhostedTracesExampleInfo } from "../Examples/Charts2D/CreateRealtimeCharts/RealtimeGhostedTraces/exampleInfo";
 
+import MultiPaneStockCharts from "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts";
+import { multiPaneStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/exampleInfo";
 import RealtimeTickingStockCharts from "../Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts";
 import { realtimeTickingStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts/exampleInfo";
+
+import ChartLegendsAPI from "../Examples/Charts2D/Legends/ChartLegendsAPI";
+import { chartLegendsAPIExampleInfo } from "../Examples/Charts2D/Legends/ChartLegendsAPI/exampleInfo";
 
 import Bubble3DChart from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart";
 import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo";
@@ -95,18 +105,38 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: AnnotationsAreEasy,
         ...annotationsAreEasyExampleInfo,
     },
+    chart2D_createGaugeCharts_DonutChart: {
+        id: "chart2D_createGaugeCharts_DonutChart",
+        Component: DonutChart,
+        ...donutChartExampleInfo,
+    },
+    chart2D_createGaugeCharts_PieChart: {
+        id: "chart2D_createGaugeCharts_PieChart",
+        Component: PieChart,
+        ...pieChartExampleInfo,
+    },
     chart2D_createRealtimeCharts_RealtimeGhostedTraces: {
         id: "chart2D_createRealtimeCharts_RealtimeGhostedTraces",
         Component: RealtimeGhostedTraces,
         ...realtimeGhostedTracesExampleInfo,
+    },
+    chart2D_createStockCharts_MultiPaneStockCharts: {
+        id: "chart2D_createStockCharts_MultiPaneStockCharts",
+        Component: MultiPaneStockCharts,
+        ...multiPaneStockChartsExampleInfo,
     },
     chart2D_createStockCharts_RealtimeTickingStockCharts: {
         id: "chart2D_createStockCharts_RealtimeTickingStockCharts",
         Component: RealtimeTickingStockCharts,
         ...realtimeTickingStockChartsExampleInfo,
     },
-    chart3D_Basic3DChartTypes_Bubble3DChart: {
-        id: "chart3D_Basic3DChartTypes_Bubble3DChart",
+    chart2D_legends_ChartLegendsAPI: {
+        id: "chart2D_legends_ChartLegendsAPI",
+        Component: ChartLegendsAPI,
+        ...chartLegendsAPIExampleInfo,
+    },
+    chart3D_basic3DChartTypes_Bubble3DChart: {
+        id: "chart3D_basic3DChartTypes_Bubble3DChart",
         Component: Bubble3DChart,
         ...bubble3DChartExampleInfo,
     },
@@ -142,7 +172,21 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
     },
     {
         item: { id: "chart2D_createStockCharts", name: "Create Stock Charts" },
-        submenu: [EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts],
+        submenu: [
+            EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
+            EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts,
+        ],
+    },
+    {
+        item: { id: "chart2D_createGaugeCharts", name: "Create a Gauge Charts" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_createGaugeCharts_DonutChart,
+            EXAMPLES_PAGES.chart2D_createGaugeCharts_PieChart,
+        ],
+    },
+    {
+        item: { id: "chart2D_legends", name: "Legends" },
+        submenu: [EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI],
     },
 ];
 
@@ -150,7 +194,7 @@ export const MENU_ITEMS_3D_ID = "MENU_ITEMS_3D_ID";
 export const MENU_ITEMS_3D: TMenuItem[] = [
     {
         item: { id: "chart3D_Basic3DChartTypes", name: "Basic 3D Chart Types" },
-        submenu: [EXAMPLES_PAGES.chart3D_Basic3DChartTypes_Bubble3DChart],
+        submenu: [EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart],
     },
 ];
 

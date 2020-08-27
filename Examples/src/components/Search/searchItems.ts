@@ -43,16 +43,32 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_createGaugeCharts_DonutChart.title,
+        link: EXAMPLES_PAGES.chart2D_createGaugeCharts_DonutChart.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_createGaugeCharts_PieChart.title,
+        link: EXAMPLES_PAGES.chart2D_createGaugeCharts_PieChart.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_createRealtimeCharts_RealtimeGhostedTraces.title,
         link: EXAMPLES_PAGES.chart2D_createRealtimeCharts_RealtimeGhostedTraces.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.title,
+        link: EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.path,
     },
     {
         title: EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts.title,
         link: EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts.path,
     },
     {
-        title: EXAMPLES_PAGES.chart3D_Basic3DChartTypes_Bubble3DChart.title,
-        link: EXAMPLES_PAGES.chart3D_Basic3DChartTypes_Bubble3DChart.path,
+        title: EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.title,
+        link: EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.title,
+        link: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.path,
     },
     {
         title: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.title,
