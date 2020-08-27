@@ -10,10 +10,10 @@ import { SciChartSurface } from "scichart";
 import {
     EStrokePaletteMode,
     IFillPaletteProvider,
-    IStrokePaletteProvider
+    IStrokePaletteProvider,
 } from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 
 const divElementId = "chart";
 
@@ -27,13 +27,13 @@ const drawExample = async () => {
         stroke: "rgba(176, 196, 222, 0.7)",
         strokeThickness: 2,
         dataPointWidth: 0.5,
-        paletteProvider: new MyPaletteProvider()
+        paletteProvider: new MyPaletteProvider(),
     });
     sciChartSurface.renderableSeries.add(columnSeries);
 
     const dataSeries = new XyDataSeries(wasmContext);
     for (let i = 0; i <= 100; i++) {
-        dataSeries.append(i, Math.sin(i * Math.PI * 0.1 / 10 ));
+        dataSeries.append(i, Math.sin((i * Math.PI * 0.1) / 10));
     }
     columnSeries.dataSeries = dataSeries;
 

@@ -11,14 +11,14 @@ import { ScatterRenderableSeries3D } from "scichart3d/Charting3D/Visuals/Rendera
 import { SciChart3DSurface } from "scichart3d/Charting3D/Visuals/SciChart3DSurface";
 import { TSciChart3D } from "scichart3d/types/TSciChart3D";
 
-const divElementId = "chart1";
+const divElementId = "chart";
 
 // SCICHART CODE
 const drawExample = async () => {
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId);
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(300, 300, 300),
-        target: new Vector3(0, 50, 0)
+        target: new Vector3(0, 50, 0),
     });
 
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
@@ -67,17 +67,12 @@ function getGaussianRandom(mean: number, stdDev: number): number {
 }
 
 // REACT COMPONENT
-export default function Scatter3DChart() {
+export default function Bubble3DChart() {
     React.useEffect(() => {
         drawExample();
     }, []);
 
-    return (
-        <div>
-            <h1>TTTT</h1>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-        </div>
-    );
+    return <div id={divElementId} style={{ maxWidth: 900 }} />;
 }
 
 `;

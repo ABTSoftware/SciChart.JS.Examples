@@ -69,6 +69,7 @@ export default function App() {
 
     const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === location.pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
+    const currentExampleId = currentExample?.id;
     const titleText = currentExample ? currentExample.title : HOME_PAGE_TITLE;
     const subtitleText = currentExample ? currentExample.subtitle : "";
     const descriptionText = currentExample ? currentExample.description : "";
@@ -83,13 +84,13 @@ export default function App() {
     React.useEffect(() => {
         if (currentExample) {
             const parentMenuIds = getParentMenuIds(currentExample.id);
-            const updatedOpenedItems: Record<string, boolean> = {};
+            const updatedOpenedItems: Record<string, boolean> = {...openedMenuItems};
             parentMenuIds.forEach((elId) => {
                 updatedOpenedItems[elId] = true;
             });
             setOpenedMenuItems(updatedOpenedItems);
         }
-    }, []);
+    }, [currentExampleId]);
 
     const checkIsOpened = (id: string): boolean => !!openedMenuItems[id];
 
@@ -106,10 +107,7 @@ export default function App() {
             <Search />
             <div className={classes.body}>
                 <div className={classes.colNav}>
-                    <Navigation
-                        checkIsOpened={checkIsOpened}
-                        onExpandClick={toggleOpenedMenuItem}
-                    />
+                    <Navigation checkIsOpened={checkIsOpened} onExpandClick={toggleOpenedMenuItem} />
                 </div>
                 <div className={classes.colMain}>
                     <Title title={titleText} subtitle={subtitleText} />

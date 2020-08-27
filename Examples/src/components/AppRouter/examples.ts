@@ -11,9 +11,22 @@ import HeatmapChart from "../Examples/Charts2D/BasicChartTypes/HeatmapChart";
 import { heatmapChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/HeatmapChart/exampleInfo";
 import LineChart from "../Examples/Charts2D/BasicChartTypes/LineChart";
 import { lineChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/LineChart/exampleInfo";
+import MountainChart from "../Examples/Charts2D/BasicChartTypes/MountainChart";
+import { mountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/MountainChart/exampleInfo";
+import ScatterChart from "../Examples/Charts2D/BasicChartTypes/ScatterChart";
+import { scatterChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ScatterChart/exampleInfo";
 
-import Scatter3DChart from "../Examples/Charts3D/Basic3DChartTypes/Scatter3DChart";
-import { scatter3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Scatter3DChart/exampleInfo";
+import AnnotationsAreEasy from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy";
+import { annotationsAreEasyExampleInfo } from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/exampleInfo";
+
+import RealtimeGhostedTraces from "../Examples/Charts2D/CreateRealtimeCharts/RealtimeGhostedTraces";
+import { realtimeGhostedTracesExampleInfo } from "../Examples/Charts2D/CreateRealtimeCharts/RealtimeGhostedTraces/exampleInfo";
+
+import RealtimeTickingStockCharts from "../Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts";
+import { realtimeTickingStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts/exampleInfo";
+
+import Bubble3DChart from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart";
+import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -44,11 +57,6 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: BubbleChart,
         ...bubbleChartExampleInfo,
     },
-    chart2D_basicCharts_LineChart: {
-        id: "chart2D_basicCharts_LineChart",
-        Component: LineChart,
-        ...lineChartExampleInfo,
-    },
     chart2D_basicCharts_CandlestickChart: {
         id: "chart2D_basicCharts_CandlestickChart",
         Component: CandlestickChart,
@@ -62,12 +70,42 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
     chart2D_basicCharts_HeatmapChart: {
         id: "chart2D_basicCharts_HeatmapChart",
         Component: HeatmapChart,
-        ...heatmapChartExampleInfo
+        ...heatmapChartExampleInfo,
     },
-    chart3D_Basic3DChartTypes_Scatter: {
-        id: "chart3D_Basic3DChartTypes_Scatter",
-        Component: Scatter3DChart,
-        ...scatter3DChartExampleInfo,
+    chart2D_basicCharts_LineChart: {
+        id: "chart2D_basicCharts_LineChart",
+        Component: LineChart,
+        ...lineChartExampleInfo,
+    },
+    chart2D_basicCharts_MountainChart: {
+        id: "chart2D_basicCharts_MountainChart",
+        Component: MountainChart,
+        ...mountainChartExampleInfo,
+    },
+    chart2D_basicCharts_ScatterChart: {
+        id: "chart2D_basicCharts_ScatterChart",
+        Component: ScatterChart,
+        ...scatterChartExampleInfo,
+    },
+    chart2D_chartAnnotations_AnnotationsAreEasy: {
+        id: "chart2D_chartAnnotations_AnnotationsAreEasy",
+        Component: AnnotationsAreEasy,
+        ...annotationsAreEasyExampleInfo,
+    },
+    chart2D_createRealtimeCharts_RealtimeGhostedTraces: {
+        id: "chart2D_createRealtimeCharts_RealtimeGhostedTraces",
+        Component: RealtimeGhostedTraces,
+        ...realtimeGhostedTracesExampleInfo,
+    },
+    chart2D_createStockCharts_RealtimeTickingStockCharts: {
+        id: "chart2D_createStockCharts_RealtimeTickingStockCharts",
+        Component: RealtimeTickingStockCharts,
+        ...realtimeTickingStockChartsExampleInfo,
+    },
+    chart3D_Basic3DChartTypes_Bubble3DChart: {
+        id: "chart3D_Basic3DChartTypes_Bubble3DChart",
+        Component: Bubble3DChart,
+        ...bubble3DChartExampleInfo,
     },
 };
 
@@ -82,7 +120,21 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart,
             EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_LineChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_MountainChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart,
         ],
+    },
+    {
+        item: { id: "chart2D_chartAnnotations", name: "Chart Annotations" },
+        submenu: [EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy],
+    },
+    {
+        item: { id: "chart2D_createRealtimeCharts", name: "Create Realtime Charts" },
+        submenu: [EXAMPLES_PAGES.chart2D_createRealtimeCharts_RealtimeGhostedTraces],
+    },
+    {
+        item: { id: "chart2D_createStockCharts", name: "Create Stock Charts" },
+        submenu: [EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts],
     },
 ];
 
@@ -90,7 +142,7 @@ export const MENU_ITEMS_3D_ID = "MENU_ITEMS_3D_ID";
 export const MENU_ITEMS_3D: TMenuItem[] = [
     {
         item: { id: "chart3D_Basic3DChartTypes", name: "Basic 3D Chart Types" },
-        submenu: [EXAMPLES_PAGES.chart3D_Basic3DChartTypes_Scatter],
+        submenu: [EXAMPLES_PAGES.chart3D_Basic3DChartTypes_Bubble3DChart],
     },
 ];
 

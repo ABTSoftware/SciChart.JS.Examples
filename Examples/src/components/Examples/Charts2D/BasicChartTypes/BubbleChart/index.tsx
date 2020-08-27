@@ -13,7 +13,7 @@ import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
 
 const divElementId = "chart";
 
-export const drawExample = async () => {
+const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
