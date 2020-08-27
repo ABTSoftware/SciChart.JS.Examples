@@ -28,6 +28,9 @@ import { realtimeTickingStockChartsExampleInfo } from "../Examples/Charts2D/Crea
 import Bubble3DChart from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart";
 import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo";
 
+import VitalSignsMonitorDemo from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo";
+import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/exampleInfo";
+
 export type TExampleInfo = {
     title: string;
     path: string;
@@ -107,6 +110,11 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: Bubble3DChart,
         ...bubble3DChartExampleInfo,
     },
+    featuredApps_medicalCharts_VitalSignsMonitorDemo: {
+        id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
+        Component: VitalSignsMonitorDemo,
+        ...vitalSignsMonitorDemoExampleInfo,
+    },
 };
 
 export const MENU_ITEMS_2D_ID = "MENU_ITEMS_2D_ID";
@@ -147,7 +155,12 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
 ];
 
 export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
-export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [];
+export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
+    {
+        item: { id: "featuredApps_medicalCharts", name: "Medical Charts" },
+        submenu: [EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo],
+    },
+];
 
 export const getParentMenuIds = (exampleId: string): string[] => {
     const getSubmenuLevelIds = (menuItemsArr: TMenuItem[], id: string): string[] => {

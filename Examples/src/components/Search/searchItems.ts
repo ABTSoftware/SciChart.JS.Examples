@@ -54,4 +54,8 @@ export const searchItems: TSearchItem[] = [
         title: EXAMPLES_PAGES.chart3D_Basic3DChartTypes_Bubble3DChart.title,
         link: EXAMPLES_PAGES.chart3D_Basic3DChartTypes_Bubble3DChart.path,
     },
+    {
+        title: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.title,
+        link: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.path,
+    },
 ];
