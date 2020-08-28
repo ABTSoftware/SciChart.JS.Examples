@@ -49,6 +49,16 @@ import { stackedColumnSideBySideExampleInfo } from "../Examples/Charts2D/MultiCh
 import StackedMountainChart from "../Examples/Charts2D/MultiChart/StackedMountainChart";
 import { stackedMountainChartExampleInfo } from "../Examples/Charts2D/MultiChart/StackedMountainChart/exampleInfo";
 
+import UsePointMarkers from "../Examples/Charts2D/StylingAndTheming/UsePointMarkers";
+import { usePointMarkersExampleInfo } from "../Examples/Charts2D/StylingAndTheming/UsePointMarkers/exampleInfo";
+import UsingThemeManager from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager";
+import { usingThemeManagerExampleInfo } from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager/exampleInfo";
+
+import HitTestAPI from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI";
+import { hitTestApiExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI/exampleInfo";
+import UsingRolloverModifierTooltips from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips";
+import { usingRolloverModifierTooltipsExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/exampleInfo";
+
 import Bubble3DChart from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart";
 import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo";
 
@@ -179,6 +189,26 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: StackedMountainChart,
         ...stackedMountainChartExampleInfo,
     },
+    chart2D_stylingAndTheming_UsePointMarkers: {
+        id: "chart2D_stylingAndTheming_UsePointMarkers",
+        Component: UsePointMarkers,
+        ...usePointMarkersExampleInfo,
+    },
+    chart2D_stylingAndTheming_UsingThemeManager: {
+        id: "chart2D_stylingAndTheming_UsingThemeManager",
+        Component: UsingThemeManager,
+        ...usingThemeManagerExampleInfo,
+    },
+    chart2D_tooltipsAndHittest_HitTestApi: {
+        id: "chart2D_tooltipsAndHittest_HitTestApi",
+        Component: HitTestAPI,
+        ...hitTestApiExampleInfo,
+    },
+    chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips: {
+        id: "chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips",
+        Component: UsingRolloverModifierTooltips,
+        ...usingRolloverModifierTooltipsExampleInfo,
+    },
     chart3D_basic3DChartTypes_Bubble3DChart: {
         id: "chart3D_basic3DChartTypes_Bubble3DChart",
         Component: Bubble3DChart,
@@ -246,6 +276,20 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_multiChart_StackedColumnChart,
             EXAMPLES_PAGES.chart2D_multiChart_StackedColumnSideBySide,
             EXAMPLES_PAGES.chart2D_multiChart_StackedMountainChart,
+        ],
+    },
+    {
+        item: { id: "chart2D_stylingAndTheming", name: "Styling and Theming" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager,
+        ],
+    },
+    {
+        item: { id: "chart2D_tooltipsAndHittest", name: "Tooltips and Hit-Test" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips,
         ],
     },
 ];

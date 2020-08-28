@@ -91,6 +91,22 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_multiChart_StackedMountainChart.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.title,
+        link: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.title,
+        link: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.title,
+        link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.title,
+        link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.title,
         link: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.path,
     },
