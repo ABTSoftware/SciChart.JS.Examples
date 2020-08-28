@@ -67,6 +67,30 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes.title,
+        link: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes.title,
+        link: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.title,
+        link: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_multiChart_StackedColumnChart.title,
+        link: EXAMPLES_PAGES.chart2D_multiChart_StackedColumnChart.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_multiChart_StackedColumnSideBySide.title,
+        link: EXAMPLES_PAGES.chart2D_multiChart_StackedColumnSideBySide.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_multiChart_StackedMountainChart.title,
+        link: EXAMPLES_PAGES.chart2D_multiChart_StackedMountainChart.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.title,
         link: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.path,
     },

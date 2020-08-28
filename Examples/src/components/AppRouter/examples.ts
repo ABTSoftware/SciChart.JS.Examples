@@ -35,6 +35,20 @@ import { realtimeTickingStockChartsExampleInfo } from "../Examples/Charts2D/Crea
 import ChartLegendsAPI from "../Examples/Charts2D/Legends/ChartLegendsAPI";
 import { chartLegendsAPIExampleInfo } from "../Examples/Charts2D/Legends/ChartLegendsAPI/exampleInfo";
 
+import MultipleXAxes from "../Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes";
+import { multipleXAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes/exampleInfo";
+import SecondaryYAxes from "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes";
+import { secondaryYAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/exampleInfo";
+import VerticalCharts from "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts";
+import { verticalChartsExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/exampleInfo";
+
+import StackedColumnChart from "../Examples/Charts2D/MultiChart/StackedColumnChart";
+import { stackedColumnChartExampleInfo } from "../Examples/Charts2D/MultiChart/StackedColumnChart/exampleInfo";
+import StackedColumnSideBySide from "../Examples/Charts2D/MultiChart/StackedColumnSideBySide";
+import { stackedColumnSideBySideExampleInfo } from "../Examples/Charts2D/MultiChart/StackedColumnSideBySide/exampleInfo";
+import StackedMountainChart from "../Examples/Charts2D/MultiChart/StackedMountainChart";
+import { stackedMountainChartExampleInfo } from "../Examples/Charts2D/MultiChart/StackedMountainChart/exampleInfo";
+
 import Bubble3DChart from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart";
 import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo";
 
@@ -135,6 +149,36 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: ChartLegendsAPI,
         ...chartLegendsAPIExampleInfo,
     },
+    chart2D_modifyAxisBehavior_MultipleXAxes: {
+        id: "chart2D_modifyAxisBehavior_MultipleXAxes",
+        Component: MultipleXAxes,
+        ...multipleXAxesExampleInfo,
+    },
+    chart2D_modifyAxisBehavior_SecondaryYAxes: {
+        id: "chart2D_modifyAxisBehavior_SecondaryYAxes",
+        Component: SecondaryYAxes,
+        ...secondaryYAxesExampleInfo,
+    },
+    chart2D_modifyAxisBehavior_VerticalCharts: {
+        id: "chart2D_modifyAxisBehavior_VerticalCharts",
+        Component: VerticalCharts,
+        ...verticalChartsExampleInfo,
+    },
+    chart2D_multiChart_StackedColumnChart: {
+        id: "chart2D_multiChart_StackedColumnChart",
+        Component: StackedColumnChart,
+        ...stackedColumnChartExampleInfo,
+    },
+    chart2D_multiChart_StackedColumnSideBySide: {
+        id: "chart2D_multiChart_StackedColumnSideBySide",
+        Component: StackedColumnSideBySide,
+        ...stackedColumnSideBySideExampleInfo,
+    },
+    chart2D_multiChart_StackedMountainChart: {
+        id: "chart2D_multiChart_StackedMountainChart",
+        Component: StackedMountainChart,
+        ...stackedMountainChartExampleInfo,
+    },
     chart3D_basic3DChartTypes_Bubble3DChart: {
         id: "chart3D_basic3DChartTypes_Bubble3DChart",
         Component: Bubble3DChart,
@@ -187,6 +231,22 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
     {
         item: { id: "chart2D_legends", name: "Legends" },
         submenu: [EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI],
+    },
+    {
+        item: { id: "chart2D_modifyAxisBehavior", name: "Modify Axis Behavior" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
+        ],
+    },
+    {
+        item: { id: "chart2D_multiChart", name: "Multi Chart" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_multiChart_StackedColumnChart,
+            EXAMPLES_PAGES.chart2D_multiChart_StackedColumnSideBySide,
+            EXAMPLES_PAGES.chart2D_multiChart_StackedMountainChart,
+        ],
     },
 ];
 
