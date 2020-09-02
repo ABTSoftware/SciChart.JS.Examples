@@ -28,8 +28,8 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "request": "^2.88.2",
-    "scichart": "0.1.11",
-    "scichart3d": "0.1.11"
+    "scichart": "0.1.12",
+    "scichart3d": "0.1.12"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",

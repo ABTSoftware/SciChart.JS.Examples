@@ -19,14 +19,14 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             axisAlignment: EAxisAlignment.Top,
-            axisTitle: "SciChart.JS - The World's Fastest Javascript Charts",
+            axisTitle: "X-Axis",
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisAlignment: EAxisAlignment.Left,
             growBy: new NumberRange(0.05, 0.05),
-            axisTitle: "Powered by Visual Xccelerator Engine",
+            axisTitle: "Y-Axis",
             labelFormat: ENumericFormat.Decimal_2,
         })
     );

@@ -26,7 +26,6 @@ import { multiPaneData } from "./data/multiPaneData";
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
 const divElementId3 = "cc_chart_3_3";
-const divElementId4 = "cc_chart_3_4";
 
 const drawExample = async () => {
     const verticalGroup = new SciChartVerticalGroup();
@@ -36,7 +35,6 @@ const drawExample = async () => {
     let chart1XAxis: CategoryAxis;
     let chart2XAxis: CategoryAxis;
     let chart3XAxis: CategoryAxis;
-    let chart4XAxis: CategoryAxis;
     const axisAlignment = EAxisAlignment.Right;
 
     // CHART 1
@@ -50,12 +48,13 @@ const drawExample = async () => {
         const yAxis = new NumericAxis(wasmContext, {
             maxAutoTicks: 5,
             autoRange: EAutoRange.Always,
-            growBy: new NumberRange(0.11, 0.11),
+            growBy: new NumberRange(0.3, 0.11),
             axisAlignment,
         });
         yAxis.labelProvider.formatLabel = (dataValue: number) => "$" + dataValue.toFixed(4);
         sciChartSurface.yAxes.add(yAxis);
 
+        // OHLC DATA SERIES
         const usdDataSeries = new OhlcDataSeries(wasmContext, {
             dataSeriesName: "OHLC Close",
             xValues,
@@ -70,6 +69,7 @@ const drawExample = async () => {
             })
         );
 
+        // MA1 SERIES
         const maLowDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "MA 50 Low" });
         for (let i = 0; i < xValues.length; i++) {
             const xValue = xValues[i];
@@ -83,6 +83,7 @@ const drawExample = async () => {
         maLowRenderableSeries.stroke = "#ff0000";
         maLowRenderableSeries.strokeThickness = 2;
 
+        // MA2 SERIES
         const maHighDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "MA 200 High" });
         for (let i = 0; i < xValues.length; i++) {
             const xValue = xValues[i];
@@ -96,6 +97,23 @@ const drawExample = async () => {
         maHighRenderableSeries.stroke = "#228B22";
         maHighRenderableSeries.strokeThickness = 2;
 
+        // VOLUME SERIES
+        const yAxis2 = new NumericAxis(wasmContext, {
+            id: "yAxis2",
+            isVisible: false,
+            autoRange: EAutoRange.Always,
+            growBy: new NumberRange(0, 3)
+        });
+        sciChartSurface.yAxes.add(yAxis2);
+
+        const volumeRenderableSeries = new FastColumnRenderableSeries(wasmContext, {
+            yAxisId: "yAxis2",
+            dataSeries: new XyDataSeries(wasmContext, { dataSeriesName: "Volume", xValues, yValues: volumeValues }),
+            dataPointWidth: 0.5
+        });
+        sciChartSurface.renderableSeries.add(volumeRenderableSeries);
+
+        // MODIFIERS
         sciChartSurface.chartModifiers.add(new ZoomPanModifier());
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
@@ -118,8 +136,8 @@ const drawExample = async () => {
 
         const yAxis = new NumericAxis(wasmContext, {
             maxAutoTicks: 4,
-            autoRange: EAutoRange.Never,
-            visibleRange: new NumberRange(-0.06, 0.06),
+            autoRange: EAutoRange.Always,
+            growBy: new NumberRange(0.1, 0.1),
             axisAlignment,
         });
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_2;
@@ -182,10 +200,9 @@ const drawExample = async () => {
 
         const yAxis = new NumericAxis(wasmContext, {
             maxAutoTicks: 4,
-            autoRange: EAutoRange.Never,
-            visibleRange: new NumberRange(0, 100),
+            autoRange: EAutoRange.Always,
+            growBy: new NumberRange(0.1, 0.1),
             axisAlignment,
-            // growBy: new NumberRange(0.1, 0.1)
         });
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_1;
         sciChartSurface.yAxes.add(yAxis);
@@ -225,67 +242,23 @@ const drawExample = async () => {
         verticalGroup.addSurfaceToGroup(sciChartSurface);
     };
 
-    // CHART 4
-    const drawChart4 = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId4, 900, 150);
-        sciChartSurface.applyTheme(darkTheme);
-
-        chart4XAxis = new CategoryAxis(wasmContext, {
-            drawLabels: false,
-            drawMajorTickLines: false,
-            drawMinorTickLines: false,
-        });
-        sciChartSurface.xAxes.add(chart4XAxis);
-
-        const yAxis = new NumericAxis(wasmContext, {
-            maxAutoTicks: 4,
-            autoRange: EAutoRange.Always,
-            axisAlignment,
-        });
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
-        sciChartSurface.yAxes.add(yAxis);
-
-        const volumeRenderableSeries = new FastColumnRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { dataSeriesName: "Volume", xValues, yValues: volumeValues }),
-            dataPointWidth: 0.5,
-        });
-        sciChartSurface.renderableSeries.add(volumeRenderableSeries);
-
-        sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
-        // XDirection for ZoomExtendsModifier does not work
-        sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "first" }));
-
-        verticalGroup.addSurfaceToGroup(sciChartSurface);
-    };
-
     // DRAW CHARTS
     await drawChart1();
     await drawChart2();
     await drawChart3();
-    await drawChart4();
 
     // SYNCHRONIZE VISIBLE RANGES
     chart1XAxis.visibleRangeChanged.subscribe((data1) => {
         chart2XAxis.visibleRange = data1.visibleRange;
         chart3XAxis.visibleRange = data1.visibleRange;
-        chart4XAxis.visibleRange = data1.visibleRange;
     });
     chart2XAxis.visibleRangeChanged.subscribe((data1) => {
         chart1XAxis.visibleRange = data1.visibleRange;
         chart3XAxis.visibleRange = data1.visibleRange;
-        chart4XAxis.visibleRange = data1.visibleRange;
     });
     chart3XAxis.visibleRangeChanged.subscribe((data1) => {
         chart1XAxis.visibleRange = data1.visibleRange;
         chart2XAxis.visibleRange = data1.visibleRange;
-        chart4XAxis.visibleRange = data1.visibleRange;
-    });
-    chart4XAxis.visibleRangeChanged.subscribe((data1) => {
-        chart1XAxis.visibleRange = data1.visibleRange;
-        chart2XAxis.visibleRange = data1.visibleRange;
-        chart3XAxis.visibleRange = data1.visibleRange;
     });
 };
 
@@ -301,7 +274,6 @@ export default function MultiPaneStockCharts() {
             <div id={divElementId1} />
             <div id={divElementId2} />
             <div id={divElementId3} />
-            <div id={divElementId4} />
         </div>
     );
 }

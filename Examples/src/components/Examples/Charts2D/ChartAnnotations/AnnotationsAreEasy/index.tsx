@@ -8,7 +8,7 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
 import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import { SvgAnnotation } from "scichart/Charting/Visuals/Annotations/SvgAnnotation";
+import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 
 const divElementId = "chart";
 
@@ -56,7 +56,7 @@ const drawExample = async () => {
             y1: 5.0,
             y2: 9.0,
         }),
-        new SvgAnnotation({
+        new CustomAnnotation({
             x1: 1,
             y1: 2.5,
             svgString:

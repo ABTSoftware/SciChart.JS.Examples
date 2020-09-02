@@ -15,9 +15,9 @@ import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/Ellip
 import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
 import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
 import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
-import { SvgAnnotation } from "scichart/Charting/Visuals/Annotations/SvgAnnotation";
 import { Point } from "scichart/Core/Point";
 import { ENearestPointLogic } from "scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider";
+import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 
 const divElementId = "chart";
 
@@ -124,7 +124,7 @@ export default function HitTestAPI() {
     React.useEffect(() => {
         drawExample().then((webAssemblyChart) => {
             const { sciChartSurface } = webAssemblyChart;
-            const svgAnnotation = new SvgAnnotation({
+            const svgAnnotation = new CustomAnnotation({
                 svgString: '<svg width="8" height="8"><circle cx="50%" cy="50%" r="4" fill="#368BC1"/></svg>',
                 isHidden: true,
                 xCoordShift: -4,
