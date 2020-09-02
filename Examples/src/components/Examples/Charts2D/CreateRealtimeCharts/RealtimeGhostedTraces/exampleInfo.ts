@@ -1,5 +1,6 @@
 import { TExampleInfo } from "../../../../AppRouter/examples";
 import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     title: "Realtime Ghosted Traces",
@@ -7,4 +8,5 @@ export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     subtitle: "Realtime Ghosted Traces subtitle",
     description: "Realtime Ghosted Traces description",
     code,
+    githubUrl,
 };

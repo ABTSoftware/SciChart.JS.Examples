@@ -71,6 +71,7 @@ export type TExampleInfo = {
     subtitle: string;
     description: string;
     code: string;
+    githubUrl: string;
 };
 
 export type TExamplePage = TPage & TExampleInfo & { Component: () => JSX.Element };

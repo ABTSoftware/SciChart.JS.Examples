@@ -1,5 +1,6 @@
 import { TExampleInfo } from "../../../../AppRouter/examples";
 import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 export const mountainChartExampleInfo: TExampleInfo = {
     title: "Mountain Chart",
@@ -7,4 +8,5 @@ export const mountainChartExampleInfo: TExampleInfo = {
     subtitle: "Mountain Chart subtitle",
     description: "Mountain Chart description",
     code,
+    githubUrl,
 };

@@ -1,5 +1,6 @@
 import { TExampleInfo } from "../../../../AppRouter/examples";
 import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     title: "Using Rollover Modifier Tooltips",
@@ -7,4 +8,5 @@ export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     subtitle: "Using Rollover Modifier Tooltips subtitle",
     description: "Using Rollover Modifier Tooltips description",
     code,
+    githubUrl,
 };

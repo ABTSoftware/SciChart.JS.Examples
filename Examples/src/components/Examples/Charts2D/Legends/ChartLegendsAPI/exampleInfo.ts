@@ -1,5 +1,6 @@
 import { TExampleInfo } from "../../../../AppRouter/examples";
 import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 export const chartLegendsAPIExampleInfo: TExampleInfo = {
     title: "Chart Legends API",
@@ -7,4 +8,5 @@ export const chartLegendsAPIExampleInfo: TExampleInfo = {
     subtitle: "Chart Legends API subtitle",
     description: "Chart Legends API description",
     code,
+    githubUrl
 };

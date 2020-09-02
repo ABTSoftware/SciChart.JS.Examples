@@ -1,5 +1,6 @@
 import { TExampleInfo } from "../../../../AppRouter/examples";
 import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 export const hitTestApiExampleInfo: TExampleInfo = {
     title: "Hit-Test API",
@@ -9,4 +10,5 @@ export const hitTestApiExampleInfo: TExampleInfo = {
                     lines and enable selection, of showing of context menus. Click on the data-point and see hit test
                     info on the right.`,
     code,
+    githubUrl,
 };

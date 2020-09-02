@@ -1,5 +1,6 @@
 import { TExampleInfo } from "../../../../AppRouter/examples";
 import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 export const pieChartExampleInfo: TExampleInfo = {
     title: "Pie Chart",
@@ -7,4 +8,5 @@ export const pieChartExampleInfo: TExampleInfo = {
     subtitle: "Pie Chart subtitle",
     description: "Pie Chart description",
     code,
+    githubUrl,
 };

@@ -1,0 +1,1 @@
+export const githubUrl = "/components/Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/index.tsx";

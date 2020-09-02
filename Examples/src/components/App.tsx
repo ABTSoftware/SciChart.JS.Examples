@@ -74,6 +74,7 @@ export default function App() {
     const subtitleText = currentExample ? currentExample.subtitle : "";
     const descriptionText = currentExample ? currentExample.description : "";
     const codeStr = currentExample ? currentExample.code : "";
+    const githubUrl = currentExample ? currentExample.githubUrl : "";
 
     const setOpenedMenuItem = (id: string, value: boolean = true) => {
         setOpenedMenuItems({ ...openedMenuItems, [id]: value });
@@ -112,7 +113,7 @@ export default function App() {
                 <div className={classes.colMain}>
                     <Title title={titleText} subtitle={subtitleText} />
                     <AppRouter />
-                    {currentExample && <SourceCode code={codeStr} />}
+                    {currentExample && <SourceCode code={codeStr} githubUrl={githubUrl} />}
                 </div>
                 <div className={classes.colDescription}>
                     {descriptionText && (

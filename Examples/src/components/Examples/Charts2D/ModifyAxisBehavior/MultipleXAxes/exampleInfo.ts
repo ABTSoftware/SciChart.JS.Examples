@@ -1,5 +1,6 @@
 import { TExampleInfo } from "../../../../AppRouter/examples";
 import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 export const multipleXAxesExampleInfo: TExampleInfo = {
     title: "Multiple X Axes",
@@ -7,4 +8,5 @@ export const multipleXAxesExampleInfo: TExampleInfo = {
     subtitle: "Multiple X Axes subtitle",
     description: "Multiple X Axes description",
     code,
+    githubUrl,
 };

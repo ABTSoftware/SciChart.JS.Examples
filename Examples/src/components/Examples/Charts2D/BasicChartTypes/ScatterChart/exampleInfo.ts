@@ -1,5 +1,6 @@
 import { TExampleInfo } from "../../../../AppRouter/examples";
 import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 export const scatterChartExampleInfo: TExampleInfo = {
     title: "Scatter Chart",
@@ -7,4 +8,5 @@ export const scatterChartExampleInfo: TExampleInfo = {
     subtitle: "Scatter Chart subtitle",
     description: "Scatter Chart description",
     code,
+    githubUrl,
 };

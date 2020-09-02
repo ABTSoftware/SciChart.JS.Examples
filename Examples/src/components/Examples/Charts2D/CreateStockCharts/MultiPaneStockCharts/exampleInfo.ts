@@ -1,5 +1,6 @@
 import { TExampleInfo } from "../../../../AppRouter/examples";
 import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     title: "Multi-Pane Stock Charts",
@@ -7,4 +8,5 @@ export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     subtitle: "Multi-Pane Stock Charts subtitle",
     description: "Multi-Pane Stock Charts description",
     code,
+    githubUrl,
 };

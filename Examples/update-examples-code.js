@@ -6,15 +6,15 @@ async function getFiles(pathUrl) {
 
     // Get files within the current directory and add a path key to the file objects
     const files = entries
-        .filter(file => !file.isDirectory())
-        .map(file => ({
+        .filter((file) => !file.isDirectory())
+        .map((file) => ({
             fileName: file.name,
             fileDir: pathUrl,
-            filePath: path.join(pathUrl, file.name)
+            filePath: path.join(pathUrl, file.name),
         }));
 
     // Get folders within the current directory
-    const folders = entries.filter(folder => folder.isDirectory());
+    const folders = entries.filter((folder) => folder.isDirectory());
 
     // Add the found files within the subdirectory to the files array
     for (const folder of folders) files.push(...(await getFiles(path.join(pathUrl, folder.name))));
@@ -22,23 +22,28 @@ async function getFiles(pathUrl) {
     return files;
 }
 
-function updateExample(targetFilePath, srcText) {
+function updateExample(targetFileDir, srcText) {
+    const targetFileSrc = path.join(targetFileDir, "GENERATED_SRC.ts");
     fs.writeFileSync(
-        targetFilePath,
+        targetFileSrc,
         `export const code = \`
 ${srcText}
 \`;
 `
     );
+
+    const targetFileGithubUrl = path.join(targetFileDir, "GENERATED_GITHUB_URL.ts");
+    const position = targetFileDir.search("/components/Examples");
+    const githubUrl = targetFileDir.substring(position) + "/index.tsx";
+    fs.writeFileSync(targetFileGithubUrl, `export const githubUrl = "${githubUrl}";`);
 }
 
-(async function() {
+(async function () {
     const examplesPath = path.join(__dirname, "src", "components", "Examples");
     const files = await getFiles(examplesPath);
-    const srcFiles = files.filter(f => f.fileName === "index.tsx");
-    srcFiles.forEach(f => {
+    const srcFiles = files.filter((f) => f.fileName === "index.tsx");
+    srcFiles.forEach((f) => {
         const srcText = fs.readFileSync(f.filePath, "utf-8");
-        const targetFile = path.join(f.fileDir, "GENERATED_SRC.ts");
-        updateExample(targetFile, srcText);
+        updateExample(f.fileDir, srcText);
     });
 })();
