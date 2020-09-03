@@ -38,6 +38,14 @@ const Navigation: React.FC<TProps> = (props) => {
                 onExpandClick={onExpandClick}
                 checkIsOpened={checkIsOpened}
                 historyPushPath={historyPushPath}
+                title="Featured Apps"
+                menuItems={MENU_ITEMS_FEATURED_APPS}
+                menuItemsId={MENU_ITEMS_FEATURED_APPS_ID}
+            />
+            <ListItemsBlock
+                onExpandClick={onExpandClick}
+                checkIsOpened={checkIsOpened}
+                historyPushPath={historyPushPath}
                 title="2D Charts"
                 menuItems={MENU_ITEMS_2D}
                 menuItemsId={MENU_ITEMS_2D_ID}
@@ -49,14 +57,6 @@ const Navigation: React.FC<TProps> = (props) => {
                 title="3D Charts"
                 menuItems={MENU_ITEMS_3D}
                 menuItemsId={MENU_ITEMS_3D_ID}
-            />
-            <ListItemsBlock
-                onExpandClick={onExpandClick}
-                checkIsOpened={checkIsOpened}
-                historyPushPath={historyPushPath}
-                title="Featured Apps"
-                menuItems={MENU_ITEMS_FEATURED_APPS}
-                menuItemsId={MENU_ITEMS_FEATURED_APPS_ID}
             />
         </List>
     );
