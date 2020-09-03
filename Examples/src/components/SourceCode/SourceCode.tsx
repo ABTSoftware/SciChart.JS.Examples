@@ -9,7 +9,7 @@ type TProps = {
 };
 
 const SourceCode: React.FC<TProps> = (props) => {
-    const {githubUrl} = props;
+    const { githubUrl } = props;
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const fullGithubUrl = baseGithubPath + githubUrl;
     return (
@@ -17,11 +17,13 @@ const SourceCode: React.FC<TProps> = (props) => {
             <Typography variant="h4" variantMapping={{ h4: "p" }} gutterBottom>
                 Source Code
             </Typography>
-            <a href={fullGithubUrl} target="_blank"><img src={viewOnGithubImg} height={23}/></a>
+            <a href={fullGithubUrl} target="_blank">
+                <img src={viewOnGithubImg} height={23} />
+            </a>
             <div style={{ maxWidth: 900 }}>
-                <pre style={{ fontSize: "0.8em" }}>
+                <pre className="language-javascript" style={{ backgroundColor: "#272822" }}>
                     <code
-                        className="language-javascript"
+                        style={{ fontFamily: "monospace" }}
                         dangerouslySetInnerHTML={{
                             __html: Prism.highlight(props.code, Prism.languages.javascript, "javascript"),
                         }}
