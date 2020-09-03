@@ -21,9 +21,9 @@ const SourceCode: React.FC<TProps> = (props) => {
                 <img src={viewOnGithubImg} height={23} />
             </a>
             <div style={{ maxWidth: 900 }}>
-                <pre className="language-javascript" style={{ backgroundColor: "#272822" }}>
+                <pre className="language-javascript" style={{ backgroundColor: "#272822", fontSize: "0.8em" }}>
                     <code
-                        style={{ fontFamily: "monospace" }}
+                        style={{ fontFamily: "Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace" }}
                         dangerouslySetInnerHTML={{
                             __html: Prism.highlight(props.code, Prism.languages.javascript, "javascript"),
                         }}
