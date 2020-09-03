@@ -1,7 +1,9 @@
 import * as React from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { useLocation } from "react-router-dom";
+import Drawer from "@material-ui/core/Drawer";
+import Divider from "@material-ui/core/Divider";
 import Navigation from "./Navigation/Navigation";
 import AppRouter from "./AppRouter/AppRouter";
 import Search from "./Search/Search";
@@ -13,12 +15,28 @@ import Description from "./Description/Description";
 import GettingStarted from "./GettingStarted/GettingStarted";
 import SourceCode from "./SourceCode/SourceCode";
 
+const drawerWidth = 240;
+
 const useStyles = makeStyles(
     (theme) => ({
         root: {
-            marginTop: theme.spacing(2),
-            marginLeft: theme.spacing(2),
-            marginRight: theme.spacing(2),
+            display: "flex",
+        },
+        drawer: {
+            width: drawerWidth,
+            flexShrink: 0,
+        },
+        drawerPaper: {
+            width: drawerWidth,
+        },
+        toolbar: {
+            ...theme.mixins.toolbar,
+            paddingLeft: theme.spacing(2),
+            marginTop: theme.spacing(1),
+        },
+        content: {
+            flexGrow: 1,
+            padding: theme.spacing(3),
         },
         header: {
             display: "flex",
@@ -37,22 +55,17 @@ const useStyles = makeStyles(
         body: {
             display: "flex",
         },
-        colNav: {
-            flexBasis: 240,
-            flexShrink: 0,
-            flexGrow: 0,
-        },
         colMain: {
             flexBasis: 240,
             flexShrink: 0,
             flexGrow: 1,
-            marginLeft: theme.spacing(2),
+            maxWidth: 900,
         },
         colDescription: {
             flexBasis: 360,
             flexGrow: 0,
             flexShrink: 0,
-            paddingLeft: theme.spacing(2),
+            paddingLeft: theme.spacing(3),
         },
         description: {
             marginBottom: theme.spacing(2),
@@ -64,6 +77,7 @@ const useStyles = makeStyles(
 export default function App() {
     const classes = useStyles();
     const location = useLocation();
+    const history = useHistory();
 
     const [openedMenuItems, setOpenedMenuItems] = React.useState<Record<string, boolean>>({});
 
@@ -85,7 +99,7 @@ export default function App() {
     React.useEffect(() => {
         if (currentExample) {
             const parentMenuIds = getParentMenuIds(currentExample.id);
-            const updatedOpenedItems: Record<string, boolean> = {...openedMenuItems};
+            const updatedOpenedItems: Record<string, boolean> = { ...openedMenuItems };
             parentMenuIds.forEach((elId) => {
                 updatedOpenedItems[elId] = true;
             });
@@ -97,35 +111,57 @@ export default function App() {
 
     return (
         <div className={classes.root}>
-            <div className={classes.header}>
-                <Typography className={classes.headerLeft} variant="h4" variantMapping={{ h4: "h1" }} gutterBottom>
-                    SciChart.js - High Performance Realtime Javascript Charts Examples Suite
-                </Typography>
-                <div className={classes.headerRight}>
-                    <img src={sciChartLogoImg} width={209} height={42} />
+            <Drawer
+                className={classes.drawer}
+                variant="permanent"
+                classes={{
+                    paper: classes.drawerPaper,
+                }}
+                anchor="left"
+            >
+                <div className={classes.toolbar}>
+                    <Typography
+                        variant="h6"
+                        style={{ color: "rgba(0, 0, 0, 0.54)", cursor: "pointer" }}
+                        onClick={() => history.push("/")}
+                    >
+                        SciChart.js
+                    </Typography>
+                    <Typography variant="caption" style={{ color: "rgba(0, 0, 0, 0.54)" }}>
+                        v0.1.13
+                    </Typography>
                 </div>
-            </div>
-            <Search />
-            <div className={classes.body}>
-                <div className={classes.colNav}>
-                    <Navigation checkIsOpened={checkIsOpened} onExpandClick={toggleOpenedMenuItem} />
+                <Divider />
+                <Navigation checkIsOpened={checkIsOpened} onExpandClick={toggleOpenedMenuItem} />
+            </Drawer>
+            <main className={classes.content}>
+                <div className={classes.header}>
+                    <Typography className={classes.headerLeft} variant="h4" variantMapping={{ h4: "h1" }} gutterBottom>
+                        SciChart.js - High Performance Realtime Javascript Charts Examples Suite
+                    </Typography>
+                    <div className={classes.headerRight}>
+                        <img src={sciChartLogoImg} width={209} height={42} />
+                    </div>
                 </div>
-                <div className={classes.colMain}>
-                    <Title title={titleText} subtitle={subtitleText} />
-                    <AppRouter />
-                    {currentExample && <SourceCode code={codeStr} githubUrl={githubUrl} />}
+                <Search />
+                <div className={classes.body}>
+                    <div className={classes.colMain}>
+                        <Title title={titleText} subtitle={subtitleText} />
+                        <AppRouter />
+                        {currentExample && <SourceCode code={codeStr} githubUrl={githubUrl} />}
+                    </div>
+                    <div className={classes.colDescription}>
+                        {descriptionText && (
+                            <div className={classes.description}>
+                                <Description>
+                                    <div>{descriptionText}</div>
+                                </Description>
+                            </div>
+                        )}
+                        <GettingStarted />
+                    </div>
                 </div>
-                <div className={classes.colDescription}>
-                    {descriptionText && (
-                        <div className={classes.description}>
-                            <Description>
-                                <div>{descriptionText}</div>
-                            </Description>
-                        </div>
-                    )}
-                    <GettingStarted />
-                </div>
-            </div>
+            </main>
         </div>
     );
 }

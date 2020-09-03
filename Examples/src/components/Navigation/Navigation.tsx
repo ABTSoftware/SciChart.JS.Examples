@@ -12,6 +12,7 @@ import {
     MENU_ITEMS_FEATURED_APPS_ID,
 } from "../AppRouter/examples";
 import ListItemsBlock from "./ListItemsBlock";
+import MenuListItemText from "../shared/MenuListItemText/MenuListItemText";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -31,7 +32,7 @@ const Navigation: React.FC<TProps> = (props) => {
     return (
         <List component="nav" aria-labelledby="nested-list-subheader">
             <ListItem button onClick={() => history.push("/")} selected={location.pathname === "/"}>
-                <ListItemText primary="Homepage" />
+                <ListItemText primaryTypographyProps={{ variant: "body2" }}>Homepage</ListItemText>
             </ListItem>
             <ListItemsBlock
                 onExpandClick={onExpandClick}

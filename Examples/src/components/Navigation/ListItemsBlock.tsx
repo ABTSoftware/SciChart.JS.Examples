@@ -7,7 +7,8 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import { makeStyles } from "@material-ui/core/styles";
 import { TMenuItem } from "../AppRouter/examples";
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import MenuListItemText from "../shared/MenuListItemText/MenuListItemText";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -36,7 +37,7 @@ const ListItemsBlock: React.FC<TProps> = (props) => {
     return (
         <React.Fragment>
             <ListItem button onClick={() => onExpandClick(menuItemsId)}>
-                <ListItemText primary={title} />
+                <MenuListItemText text={title} />
                 {/*{isOpened[MENU_ITEMS_2D_ID] ? <ExpandLess /> : <ExpandMore />}*/}
             </ListItem>
             <Collapse in={checkIsOpened(menuItemsId)} timeout="auto" unmountOnExit>
@@ -44,7 +45,9 @@ const ListItemsBlock: React.FC<TProps> = (props) => {
                     {menuItems.map((el) => (
                         <React.Fragment key={el.item.id}>
                             <ListItem button onClick={() => onExpandClick(el.item.id)}>
-                                <ListItemText className={classes.listItemText} primary={el.item.name} />
+                                <div className={classes.listItemText}>
+                                    <MenuListItemText text={el.item.name} />
+                                </div>
                                 {/*{isOpened[el.item.id] ? <ExpandLess /> : <ExpandMore />}*/}
                             </ListItem>
                             <Collapse in={checkIsOpened(el.item.id)} timeout="auto" unmountOnExit>
