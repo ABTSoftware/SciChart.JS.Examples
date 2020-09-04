@@ -53,12 +53,13 @@ import UsePointMarkers from "../Examples/Charts2D/StylingAndTheming/UsePointMark
 import { usePointMarkersExampleInfo } from "../Examples/Charts2D/StylingAndTheming/UsePointMarkers/exampleInfo";
 import UsingThemeManager from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager";
 import { usingThemeManagerExampleInfo } from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager/exampleInfo";
+import StylingInCode from "../Examples/Charts2D/StylingAndTheming/StylingInCode";
+import { stylingInCodeExampleInfo } from "../Examples/Charts2D/StylingAndTheming/StylingInCode/exampleInfo";
 
 import HitTestAPI from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI";
 import { hitTestApiExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI/exampleInfo";
 import UsingRolloverModifierTooltips from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips";
 import { usingRolloverModifierTooltipsExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/exampleInfo";
-
 import Bubble3DChart from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart";
 import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo";
 
@@ -200,6 +201,11 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: UsingThemeManager,
         ...usingThemeManagerExampleInfo,
     },
+    chart2D_stylingAndTheming_StylingInCode: {
+        id: "chart2D_stylingAndTheming_StylingInCode",
+        Component: StylingInCode,
+        ...stylingInCodeExampleInfo,
+    },
     chart2D_tooltipsAndHittest_HitTestApi: {
         id: "chart2D_tooltipsAndHittest_HitTestApi",
         Component: HitTestAPI,
@@ -284,6 +290,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode,
         ],
     },
     {

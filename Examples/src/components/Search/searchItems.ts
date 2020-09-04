@@ -99,6 +99,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode.title,
+        link: EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.title,
         link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.path,
     },
