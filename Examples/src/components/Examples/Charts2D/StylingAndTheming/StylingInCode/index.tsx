@@ -1,11 +1,8 @@
 import * as React from "react";
 import {SciChartSurface} from "scichart";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import {TGridLineStyle} from "scichart/Charting/Visuals/Axis/AxisCore";
 import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 
 const divElementId = "chart";
