@@ -55,12 +55,12 @@ class MyPaletteProvider implements IFillPaletteProvider, IStrokePaletteProvider 
         // Nothing to do
     }
 
-    public overrideFillAbgr(xValue: number, yValue: number, index: number): number {
+    public overrideFillArgb(xValue: number, yValue: number, index: number): number {
         const color = this.getColor(yValue);
         return parseColorToUIntArgb(color);
     }
 
-    public overrideStrokeAbgr(xValue: number, yValue: number, index: number): number {
+    public overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
         const color = this.getColor(yValue);
         return parseColorToUIntArgb(color);
     }
