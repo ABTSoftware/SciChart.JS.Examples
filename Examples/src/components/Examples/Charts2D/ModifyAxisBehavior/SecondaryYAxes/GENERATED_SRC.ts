@@ -35,7 +35,7 @@ const drawExample = async () => {
     const setYAxis1 = () => {
         const yAxis = new NumericAxis(wasmContext);
         yAxis.axisAlignment = EAxisAlignment.Left;
-        yAxis.axisTitleRenderer.text = "Left Axis";
+        yAxis.axisTitle = "Left Axis";
         yAxis.titleStyle = titleStyle1;
         yAxis.labelStyle = labelStyle1;
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
@@ -76,7 +76,7 @@ const drawExample = async () => {
         yAxis.titleStyle = titleStyle2;
         yAxis.labelStyle = labelStyle2;
         yAxis.axisAlignment = EAxisAlignment.Right;
-        yAxis.axisTitleRenderer.text = "Right Axis";
+        yAxis.axisTitle = "Right Axis";
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_2;
         sciChartSurface.yAxes.add(yAxis);
     };

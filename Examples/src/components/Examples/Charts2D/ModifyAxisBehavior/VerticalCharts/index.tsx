@@ -36,14 +36,14 @@ const drawChart2 = async () => {
     const xAxis = new NumericAxis(wasmContext);
     xAxis.visibleRange = X_VISIBLE_RANGE;
     xAxis.axisAlignment = EAxisAlignment.Left;
-    xAxis.axisTitleRenderer.text = X_TITLE;
+    xAxis.axisTitle = X_TITLE;
     xAxis.growBy = new NumberRange(0.1, 0.1);
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis = new NumericAxis(wasmContext);
     yAxis.visibleRange = Y_VISIBLE_RANGE;
     yAxis.axisAlignment = EAxisAlignment.Top;
-    yAxis.axisTitleRenderer.text = Y_TITLE;
+    yAxis.axisTitle = Y_TITLE;
     yAxis.growBy = new NumberRange(0.1, 0.1);
     sciChartSurface.yAxes.add(yAxis);
 

@@ -27,8 +27,8 @@ const drawExample = async () => {
     const setXAxis1 = () => {
         const xAxis = new NumericAxis(wasmContext);
         xAxis.axisAlignment = EAxisAlignment.Bottom;
-        xAxis.axisTitleRenderer.text = "X1 Axis";
-        xAxis.titleStyle = titleStyle1;
+        xAxis.axisTitle = "X1 Axis";
+        xAxis.axisTitleStyle = titleStyle1;
         xAxis.labelStyle = labelStyle1;
         xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
         sciChartSurface.xAxes.add(xAxis);
@@ -38,8 +38,8 @@ const drawExample = async () => {
     const setYAxis1 = () => {
         const yAxis = new NumericAxis(wasmContext);
         yAxis.axisAlignment = EAxisAlignment.Left;
-        yAxis.axisTitleRenderer.text = "Y1 Axis";
-        yAxis.titleStyle = titleStyle1;
+        yAxis.axisTitle = "Y1 Axis";
+        yAxis.axisTitleStyle = titleStyle1;
         yAxis.labelStyle = labelStyle1;
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
         sciChartSurface.yAxes.add(yAxis);
@@ -75,10 +75,10 @@ const drawExample = async () => {
     const setXAxis2 = () => {
         const xAxis = new NumericAxis(wasmContext);
         xAxis.id = ID_X_AXIS_2;
-        xAxis.titleStyle = titleStyle2;
+        xAxis.axisTitleStyle = titleStyle2;
         xAxis.labelStyle = labelStyle2;
         xAxis.axisAlignment = EAxisAlignment.Top;
-        xAxis.axisTitleRenderer.text = "X2 Axis";
+        xAxis.axisTitle = "X2 Axis";
         sciChartSurface.xAxes.add(xAxis);
     };
     setXAxis2();
@@ -86,10 +86,10 @@ const drawExample = async () => {
     const setYAxis2 = () => {
         const yAxis = new NumericAxis(wasmContext);
         yAxis.id = ID_Y_AXIS_2;
-        yAxis.titleStyle = titleStyle2;
+        yAxis.axisTitleStyle = titleStyle2;
         yAxis.labelStyle = labelStyle2;
         yAxis.axisAlignment = EAxisAlignment.Right;
-        yAxis.axisTitleRenderer.text = "Y2 Axis";
+        yAxis.axisTitle = "Y2 Axis";
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_2;
         sciChartSurface.yAxes.add(yAxis);
     };
