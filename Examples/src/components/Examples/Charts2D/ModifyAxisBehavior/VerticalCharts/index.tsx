@@ -16,37 +16,40 @@ const drawExample = async (): Promise<void> => {
     await drawChart2();
 };
 
-const X_VISIBLE_RANGE = new NumberRange(-1, 3);
-const Y_VISIBLE_RANGE = new NumberRange(-1, 5);
-const X_TITLE = "x axis";
-const Y_TITLE = "y = x^2";
+const X_TITLE = "X Axis";
+const Y_TITLE = "Y Axis";
 
-// Chart for y = x^2, x in [-2, 2], step 0.1, 40 steps
+// Chart data for y=sin(x*0.1)
 const xValues: number[] = [];
 const yValues: number[] = [];
-for (let i = 0; i <= 20; i++) {
+for (let i = 0; i <= 100; i++) {
     const x = 0.1 * i;
     xValues.push(x);
-    yValues.push(x ** 2);
+    yValues.push(Math.sin(x));
 }
 
 const drawChart2 = async () => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId2);
 
+    // Setting an XAxis on the Left or Right
+    // and YAxis on the Top or Bottom
+    // causes the chart and series to be rotated vertically
     const xAxis = new NumericAxis(wasmContext);
-    xAxis.visibleRange = X_VISIBLE_RANGE;
     xAxis.axisAlignment = EAxisAlignment.Left;
     xAxis.axisTitle = X_TITLE;
     xAxis.growBy = new NumberRange(0.1, 0.1);
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis = new NumericAxis(wasmContext);
-    yAxis.visibleRange = Y_VISIBLE_RANGE;
     yAxis.axisAlignment = EAxisAlignment.Top;
     yAxis.axisTitle = Y_TITLE;
     yAxis.growBy = new NumberRange(0.1, 0.1);
     sciChartSurface.yAxes.add(yAxis);
 
+    // An axis may be optionally flipped using flippedCoordinates property
+    xAxis.flippedCoordinates = true;
+
+    // Add a series with sinewave. This will be drawn vertically.
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
@@ -54,6 +57,7 @@ const drawChart2 = async () => {
         })
     );
 
+    // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
