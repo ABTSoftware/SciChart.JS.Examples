@@ -10,22 +10,37 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Point } from "scichart/Core/Point";
+import {ELineDrawMode} from "scichart/Charting/Drawing/WebGlRenderContext2D";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
+    // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+
+    // Create the X,Y Axis
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) });
     sciChartSurface.yAxes.add(yAxis);
 
-    const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke: "#ff6600" });
-    lineSeries.strokeThickness = 5;
-    sciChartSurface.renderableSeries.add(lineSeries);
-    lineSeries.stroke = "white";
+    // Create an XyDataSeries as data source
+    const xyDataSeries = new XyDataSeries(wasmContext);
+    for (let i = 0; i < 100; i++) {
+        xyDataSeries.append(i, Math.sin(i * 0.1));
+    }
 
+    // Create and add a line series to the chart
+    const lineSeries = new FastLineRenderableSeries(wasmContext, {
+        stroke: "#ff6600",
+        strokeThickness: 5,
+        dataSeries: xyDataSeries
+    });
+    sciChartSurface.renderableSeries.add(lineSeries);
+
+    // OPTIONAL: PaletteProvider APIs allow you to add per-point colouring based on a rule, or a gradient
     lineSeries.paletteProvider = PaletteFactory.createGradient(
         wasmContext,
         new GradientParams(new Point(0, 0), new Point(1, 1), [
@@ -37,12 +52,7 @@ const drawExample = async () => {
         ])
     );
 
-    const dataSeries = new XyDataSeries(wasmContext);
-    for (let i = 0; i < 100; i++) {
-        dataSeries.append(i, Math.sin(i * 0.1));
-    }
-    lineSeries.dataSeries = dataSeries;
-
+    // OPTIONAL: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
