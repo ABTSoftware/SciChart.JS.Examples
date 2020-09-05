@@ -17,9 +17,11 @@ const drawExample = async () => {
         drawMajorBands: true,
         axisBandsFill: "#FF665555",
         axisTitleStyle: {
-            fontSize: 14,
+            fontSize: 16,
             fontFamily: "Arial",
-            color: "#4682b4"
+            color: "#4682b4",
+            fontWeight: "bold",
+            fontStyle: "italic"
         },
         majorGridLineStyle: {
             strokeThickness: 1,
@@ -42,7 +44,9 @@ const drawExample = async () => {
             tickSize: 4,
         },
         labelStyle: {
-            fontSize: 12,
+            fontSize: 16,
+            fontWeight: "bold",
+            fontStyle: "Italic",
             color: "#4682b4",
             fontFamily: "Arial"
         },
@@ -54,9 +58,10 @@ const drawExample = async () => {
         axisBandsFill: "#FF665555",
         axisTitle: "Left Y Axis",
         axisTitleStyle: {
-            fontSize: 15,
+            fontSize: 25,
             fontFamily: "Montserrat",
-            color: "#DC143C"
+            fontWeight: "bold",
+            color: "#DC143C",
         },
         majorGridLineStyle: {
             strokeThickness: 1,
@@ -79,7 +84,7 @@ const drawExample = async () => {
             tickSize: 4,
         },
         labelStyle: {
-            fontSize: 12,
+            fontSize: 15,
             color: "#DC143C",
             fontFamily: "Arial"
         },
@@ -89,9 +94,9 @@ const drawExample = async () => {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
         axisTitle: "Right Y Axis",
         axisTitleStyle: {
-            fontSize: 15,
-            fontFamily: "Montserrat",
-            color: "#ADFF2F"
+            fontSize: 18,
+            fontFamily: "Arial",
+            color: "#ADFF2F",
         },
         axisAlignment: EAxisAlignment.Right,
         majorTickLineStyle: {
@@ -105,7 +110,7 @@ const drawExample = async () => {
             tickSize: 4,
         },
         labelStyle: {
-            fontSize: 12,
+            fontSize: 14,
             color: "#ADFF2F",
             fontFamily: "Arial"
         },
