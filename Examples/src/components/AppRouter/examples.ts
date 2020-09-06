@@ -55,6 +55,8 @@ import UsingThemeManager from "../Examples/Charts2D/StylingAndTheming/UsingTheme
 import { usingThemeManagerExampleInfo } from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager/exampleInfo";
 import StylingInCode from "../Examples/Charts2D/StylingAndTheming/StylingInCode";
 import { stylingInCodeExampleInfo } from "../Examples/Charts2D/StylingAndTheming/StylingInCode/exampleInfo";
+import PerPointColoring from "../Examples/Charts2D/StylingAndTheming/PerPointColoring";
+import { perPointColoringExampleInfo } from "../Examples/Charts2D/StylingAndTheming/PerPointColoring/exampleInfo";
 
 import HitTestAPI from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI";
 import { hitTestApiExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI/exampleInfo";
@@ -206,6 +208,11 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: StylingInCode,
         ...stylingInCodeExampleInfo,
     },
+    chart2D_stylingAndTheming_PerPointColoring: {
+        id: "chart2D_stylingAndTheming_PerPointColoring",
+        Component: PerPointColoring,
+        ...perPointColoringExampleInfo,
+    },
     chart2D_tooltipsAndHittest_HitTestApi: {
         id: "chart2D_tooltipsAndHittest_HitTestApi",
         Component: HitTestAPI,
@@ -291,6 +298,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
         ],
     },
     {
