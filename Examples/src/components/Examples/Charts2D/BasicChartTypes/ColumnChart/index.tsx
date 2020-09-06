@@ -14,6 +14,7 @@ import {
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import {ExampleDataProvider} from "../../../ExampleDataProvider";
 
 const divElementId = "chart";
 
@@ -31,10 +32,9 @@ const drawExample = async () => {
     });
     sciChartSurface.renderableSeries.add(columnSeries);
 
+    const {xValues, yValues} = ExampleDataProvider.getDampedSinewave(0, 10, 5, 0.05, 100, 10);
     const dataSeries = new XyDataSeries(wasmContext);
-    for (let i = 0; i <= 100; i++) {
-        dataSeries.append(i, Math.sin((i * Math.PI * 0.1) / 10));
-    }
+    dataSeries.appendRange(xValues, yValues);
     columnSeries.dataSeries = dataSeries;
 
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
