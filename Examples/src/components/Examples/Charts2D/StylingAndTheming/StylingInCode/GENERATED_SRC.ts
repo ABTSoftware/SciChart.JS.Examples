@@ -1,142 +1,139 @@
 export const code = `
 import * as React from "react";
-import { TSciChart } from "scichart/types/TSciChart";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { SquarePointMarker } from "scichart/Charting/Visuals/PointMarkers/SquarePointMarker";
-import { TrianglePointMarker } from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
-import { CrossPointMarker } from "scichart/Charting/Visuals/PointMarkers/CrossPointMarker";
-import { createImageAsync } from "scichart/utils/imageUtil";
-import customPointImage from "./img/CustomMarkerImage.png";
-import { SpritePointMarker } from "scichart/Charting/Visuals/PointMarkers/SpritePointMarker";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 
 const divElementId = "chart";
 
-function createData(
-    wasmContext: TSciChart
-) {
-    // Create some dataseries
-    const dataSeries1 = new XyDataSeries(wasmContext, { dataSeriesName: "Ellipse Marker" });
-    const dataSeries2 = new XyDataSeries(wasmContext, { dataSeriesName: "Square Marker" });
-    const dataSeries3 = new XyDataSeries(wasmContext, { dataSeriesName: "Triangle Marker" });
-    const dataSeries4 = new XyDataSeries(wasmContext, { dataSeriesName: "Cross Marker" });
-    const dataSeries5 = new XyDataSeries(wasmContext, { dataSeriesName: "Custom Marker" });
-
-    // Append values
-    const dataSize = 30;
-    for (let i = 0; i < dataSize; i++) {
-        dataSeries1.append(i, Math.random());
-        dataSeries2.append(i, Math.random() + 1);
-        dataSeries3.append(i, Math.random() + 1.8);
-        dataSeries4.append(i, Math.random() + 2.5);
-        dataSeries5.append(i, Math.random() + 3.6);
-    }
-
-    // Insert a break into th eline = we do this to test double.NaN for the point marker types
-    dataSeries1.update(15, NaN);
-    dataSeries2.update(15, NaN);
-    dataSeries3.update(15, NaN);
-    dataSeries4.update(15, NaN);
-    dataSeries5.update(15, NaN);
-
-    return [dataSeries1, dataSeries2, dataSeries3, dataSeries4, dataSeries5];
-}
-
 const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    sciChartSurface.background = "#FFCA75";
 
-    const dataSeriesArr = createData(wasmContext);
+    // Create and style xAxis
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        axisTitle: "X Axis",
+        drawMajorBands: true,
+        axisBandsFill: "#FF665555",
+        axisTitleStyle: {
+            fontSize: 16,
+            fontFamily: "Arial",
+            color: "#4682b4",
+            fontWeight: "bold",
+            fontStyle: "italic"
+        },
+        majorGridLineStyle: {
+            strokeThickness: 1,
+            color: "#ADFF2F",
+            strokeDasharray: [10, 5]
+        },
+        minorGridLineStyle: {
+            strokeThickness: 1,
+            color: "#EE82EE",
+            strokeDasharray: [2, 2]
+        },
+        majorTickLineStyle: {
+            strokeThickness: 1,
+            color: "#ADFF2F",
+            tickSize: 8,
+        },
+        minorTickLineStyle: {
+            strokeThickness: 1,
+            color: "#EE82EE",
+            tickSize: 4,
+        },
+        labelStyle: {
+            fontSize: 16,
+            fontWeight: "bold",
+            fontStyle: "Italic",
+            color: "#4682b4",
+            fontFamily: "Arial"
+        },
+    }));
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
+    // Create and style left YAxis
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        axisAlignment: EAxisAlignment.Left,
+        axisBandsFill: "#FF665555",
+        axisTitle: "Left Y Axis",
+        axisTitleStyle: {
+            fontSize: 25,
+            fontFamily: "Montserrat",
+            fontWeight: "bold",
+            color: "#DC143C",
+        },
+        majorGridLineStyle: {
+            strokeThickness: 1,
+            color: "#ADFF2F",
+            strokeDasharray: [10, 5]
+        },
+        minorGridLineStyle: {
+            strokeThickness: 1,
+            color: "#EE82EE",
+            strokeDasharray: [2, 2]
+        },
+        majorTickLineStyle: {
+            strokeThickness: 1,
+            color: "#ADFF2F",
+            tickSize: 8,
+        },
+        minorTickLineStyle: {
+            strokeThickness: 1,
+            color: "#EE82EE",
+            tickSize: 4,
+        },
+        labelStyle: {
+            fontSize: 15,
+            color: "#DC143C",
+            fontFamily: "Arial"
+        },
+    }));
 
-    // Add a line series with EllipsePointMarker
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "LightSteelBlue",
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 9,
-                height: 9,
-                strokeThickness: 2,
-                fill: "#0077FF99",
-                stroke: "LightSteelBlue",
-            }),
-            dataSeries: dataSeriesArr[0]
-        })
-    );
+    // Create and style right YAxis
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        axisTitle: "Right Y Axis",
+        axisTitleStyle: {
+            fontSize: 18,
+            fontFamily: "Arial",
+            color: "#ADFF2F",
+        },
+        axisAlignment: EAxisAlignment.Right,
+        majorGridLineStyle: {
+            strokeThickness: 1,
+            color: "#ADFF2F",
+            strokeDasharray: [10, 5]
+        },
+        minorGridLineStyle: {
+            strokeThickness: 1,
+            color: "#EE82EE",
+            strokeDasharray: [2, 2]
+        },
+        majorTickLineStyle: {
+            strokeThickness: 1,
+            color: "#ADFF2F",
+            tickSize: 8,
+        },
+        minorTickLineStyle: {
+            strokeThickness: 1,
+            color: "#EE82EE",
+            tickSize: 4,
+        },
+        labelStyle: {
+            fontSize: 14,
+            color: "#ADFF2F",
+            fontFamily: "Arial"
+        },
+    }));
 
-    // Add a scatter series with SquarePointMarker
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "Red",
-            pointMarker: new SquarePointMarker(wasmContext, {
-                width: 9,
-                height: 9,
-                strokeThickness: 2,
-                fill: "#FF000099",
-                stroke: "Red",
-            }),
-            dataSeries: dataSeriesArr[1]
-        })
-    );
-
-    // Add a scatter series with TrianglePointMarker
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "#FF6600",
-            pointMarker: new TrianglePointMarker(wasmContext, {
-                width: 9,
-                height: 9,
-                strokeThickness: 2,
-                fill: "#FFDD00",
-                stroke: "#FF6600",
-            }),
-            dataSeries: dataSeriesArr[2]
-        })
-    );
-
-    // Add a scatter series with CrossPointMarker
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "#FF00FF",
-            pointMarker: new CrossPointMarker(wasmContext, {
-                width: 9,
-                height: 9,
-                strokeThickness: 2,
-                stroke: "#FF00FF",
-            }),
-            dataSeries: dataSeriesArr[3]
-        })
-    );
-
-    // Add a scatter series with Custom Image using SpritePointMarker
-    const imageBitmap = await createImageAsync(customPointImage);
-
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "#F5DEB3",
-            pointMarker: new SpritePointMarker(wasmContext, {
-                image: imageBitmap,
-            }),
-            dataSeries: dataSeriesArr[4]
-        })
-    );
-
+    // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+
     sciChartSurface.zoomExtents();
 };
-export default function UsePointMarkers() {
+export default function StylingInCode() {
     React.useEffect(() => {
         drawExample();
     }, []);
