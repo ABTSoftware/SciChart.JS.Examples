@@ -1,3 +1,4 @@
+// tslint:disable:max-line-length
 import { TPage } from "./pages";
 import BandSeriesChart from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart";
 import { bandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/exampleInfo";
@@ -65,6 +66,8 @@ import { usingRolloverModifierTooltipsExampleInfo } from "../Examples/Charts2D/T
 import Bubble3DChart from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart";
 import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo";
 
+import Load500By500 from "../Examples/FeaturedApps/PerformanceDemos/Load500By500";
+import { load500By500ExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/Load500By500/exampleInfo";
 import VitalSignsMonitorDemo from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo";
 import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/exampleInfo";
 
@@ -228,6 +231,11 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: Bubble3DChart,
         ...bubble3DChartExampleInfo,
     },
+    featuredApps_performanceDemos_Load500By500: {
+        id: "featuredApps_performanceDemos_Load500By500",
+        Component: Load500By500,
+        ...load500By500ExampleInfo,
+    },
     featuredApps_medicalCharts_VitalSignsMonitorDemo: {
         id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
         Component: VitalSignsMonitorDemo,
@@ -320,6 +328,10 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
 
 export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
 export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
+    {
+        item: { id: "featuredApps_medicalCharts", name: "Performance Demos" },
+        submenu: [EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500],
+    },
     {
         item: { id: "featuredApps_medicalCharts", name: "Medical Charts" },
         submenu: [EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo],
