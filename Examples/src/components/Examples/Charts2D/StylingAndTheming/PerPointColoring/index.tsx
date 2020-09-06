@@ -9,13 +9,17 @@ import {TSciChart} from "scichart/types/TSciChart";
 import {
     EStrokePaletteMode,
     IFillPaletteProvider,
-    IStrokePaletteProvider
+    IStrokeFillPaletteProvider,
+    IStrokePaletteProvider,
+    TStrokeFillArgb
 } from "scichart/Charting/Model/IPaletteProvider";
 import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import {parseColorToUIntArgb} from "scichart/utils/parseColor";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 
 // tslint:disable:no-empty
 // tslint:disable:max-classes-per-file
@@ -34,6 +38,14 @@ const createMountainData = (wasmContext: TSciChart) => {
     const xyDataSeries = new XyDataSeries(wasmContext);
     for (let i = 0; i < 100; i++) {
         xyDataSeries.append(i, Math.sin(i* 0.1) * Math.sin((i+50)*0.002));
+    }
+    return xyDataSeries;
+}
+
+const createScatterData = (wasmContext: TSciChart) => {
+    const xyDataSeries = new XyDataSeries(wasmContext);
+    for (let i = 0; i < 50; i++) {
+        xyDataSeries.append(i*2, Math.sin((i+50)*0.05));
     }
     return xyDataSeries;
 }
@@ -69,6 +81,19 @@ const drawExample = async () => {
         dataSeries: createMountainData(wasmContext),
         paletteProvider: new MountainPaletteProvider()
     }));
+
+    // Create a Scatter series with PaletteProvider. See implementation of ScatterPaletteProvider below
+    sciChartSurface.renderableSeries.add(new XyScatterRenderableSeries(wasmContext, {
+        dataSeries: createScatterData(wasmContext),
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 7,
+            height: 7,
+            strokeThickness: 1,
+            fill: "#FF6600",
+            stroke: "white",
+        }),
+        paletteProvider: new ScatterPaletteProvider()
+    }))
 
     // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
@@ -160,5 +185,23 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
     overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
         return yValue > 0 ? parseColorToUIntArgb("Red") : undefined;
     }
+}
 
+class ScatterPaletteProvider implements IStrokeFillPaletteProvider {
+    readonly strokePaletteMode: EStrokePaletteMode;
+    onAttached(parentSeries: IRenderableSeries): void {
+    }
+
+    onDetached(): void {
+    }
+
+    overrideStrokeFillArgb(xValue: number, yValue: number, index: number): TStrokeFillArgb {
+        if (index > 25) {
+            return {
+                fill: parseColorToUIntArgb("Red"),
+                stroke: parseColorToUIntArgb("Blue")
+            }
+        }
+        return undefined;
+    }
 }

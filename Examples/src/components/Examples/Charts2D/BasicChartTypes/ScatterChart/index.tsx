@@ -18,9 +18,9 @@ const drawExample = async () => {
 
     const scatterSeries = new XyScatterRenderableSeries(wasmContext, {
         pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 9,
-            height: 9,
-            strokeThickness: 2,
+            width: 7,
+            height: 7,
+            strokeThickness: 1,
             fill: "steelblue",
             stroke: "LightSteelBlue",
         }),
