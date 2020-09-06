@@ -15,6 +15,7 @@ import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRen
 import {parseColorToUIntArgb} from "scichart/utils/parseColor";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 
 // tslint:disable:no-empty
 // tslint:disable:max-classes-per-file
@@ -72,6 +73,7 @@ const drawExample = async () => {
     // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
 
     sciChartSurface.zoomExtents();
 };
@@ -122,7 +124,8 @@ class LinePaletteProvider implements IStrokePaletteProvider {
 
 /**
  * An example PaletteProvider which implements IStrokePaletteProvider and IFillPaletteProvider
- * This can be attached to line, mountain, column or candlestick series to change the stroke or fill of the series conditionally
+ * This can be attached to line, mountain, column or candlestick series to change the stroke or fill
+ * of the series conditionally
  */
 class MountainPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
     /**
