@@ -28,15 +28,15 @@ const drawExample = async () => {
             color: "#ADFF2F",
             strokeDasharray: [10, 5]
         },
-        majorTickLineStyle: {
-            strokeThickness: 1,
-            color: "#ADFF2F",
-            tickSize: 8,
-        },
         minorGridLineStyle: {
             strokeThickness: 1,
             color: "#EE82EE",
             strokeDasharray: [2, 2]
+        },
+        majorTickLineStyle: {
+            strokeThickness: 1,
+            color: "#ADFF2F",
+            tickSize: 8,
         },
         minorTickLineStyle: {
             strokeThickness: 1,
@@ -68,15 +68,15 @@ const drawExample = async () => {
             color: "#ADFF2F",
             strokeDasharray: [10, 5]
         },
-        majorTickLineStyle: {
-            strokeThickness: 1,
-            color: "#ADFF2F",
-            tickSize: 8,
-        },
         minorGridLineStyle: {
             strokeThickness: 1,
             color: "#EE82EE",
             strokeDasharray: [2, 2]
+        },
+        majorTickLineStyle: {
+            strokeThickness: 1,
+            color: "#ADFF2F",
+            tickSize: 8,
         },
         minorTickLineStyle: {
             strokeThickness: 1,
@@ -99,6 +99,16 @@ const drawExample = async () => {
             color: "#ADFF2F",
         },
         axisAlignment: EAxisAlignment.Right,
+        majorGridLineStyle: {
+            strokeThickness: 1,
+            color: "#ADFF2F",
+            strokeDasharray: [10, 5]
+        },
+        minorGridLineStyle: {
+            strokeThickness: 1,
+            color: "#EE82EE",
+            strokeDasharray: [2, 2]
+        },
         majorTickLineStyle: {
             strokeThickness: 1,
             color: "#ADFF2F",
