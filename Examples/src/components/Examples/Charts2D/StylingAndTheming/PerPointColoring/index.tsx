@@ -64,7 +64,9 @@ export default function StylingInCode() {
  * This can be attached to line, mountain, column or candlestick series to change the stroke of the series conditionally
  */
 class LinePaletteProvider implements IStrokePaletteProvider {
-    // This property chooses how colors are blended when they change
+    /**
+     * This property chooses how colors are blended when they change
+     */
     readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
 
     onAttached(parentSeries: IRenderableSeries): void {
@@ -75,9 +77,25 @@ class LinePaletteProvider implements IStrokePaletteProvider {
         // Called when the PaletteProvider is detached from a renderableseries
     }
 
+    /**
+     * Called by SciChart and may be used to override the color of a line segment or
+     * stroke outline in various chart types.
+     * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
+     * @param renderSeries
+     * @param xValue the current XValue
+     * @param yValue the current YValue
+     * @param index the current index to the data
+     * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
+     */
     overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
         // Conditional logic for coloring here. Returning 'undefined' means 'use default renderableSeries.stroke'
         // else, we can return a color of choice.
+        //
+        // Note that colors returned are Argb format as number. There are helper functions which can convert from Html
+        // color codes to Argb format.
+        //
+        // Performance considerations: overrideStrokeArgb is called per-point on the series when drawing.
+        // Caching color values and doing minimal logic in this function will help performance
         return yValue > 0 ? parseColorToUIntArgb("Red") : undefined;
     }
 }
