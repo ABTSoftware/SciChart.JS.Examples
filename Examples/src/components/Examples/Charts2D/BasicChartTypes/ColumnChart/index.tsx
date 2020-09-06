@@ -26,19 +26,21 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { autoRange: EAutoRange.Always }));
 
-    // Generate some x,y values (these are type number[] and we use ExampleDataProvider for convenience)
-    const {xValues, yValues} = ExampleDataProvider.getDampedSinewave(0, 10, 5, 0.05, 100, 10);
+    const yValues: number[] = [0.1, 0.2, 0.4, 0.8, 1.1, 1.5, 2.4, 4.6, 8.1, 11.7, 14.4,
+        16.0, 13.7, 10.1, 6.4, 3.5, 2.5, 1.4, 0.4, 0.1];
 
     // Append them to a dataSeries
     const dataSeries = new XyDataSeries(wasmContext);
-    dataSeries.appendRange(xValues, yValues);
+    for(let i = 0; i < yValues.length; i++){
+        dataSeries.append(i, yValues[i]);
+    }
 
     // Create an add a column series
     const columnSeries = new FastColumnRenderableSeries(wasmContext, {
-        fill: "rgba(176, 196, 222, 0.7)",
-        stroke: "rgba(176, 196, 222, 0.7)",
+        fill: "rgba(176, 196, 222, 0.5)",
+        stroke: "rgba(176, 196, 222, 1)",
         strokeThickness: 2,
-        dataPointWidth: 0.5,
+        dataPointWidth: 0.7,
         dataSeries
     });
     sciChartSurface.renderableSeries.add(columnSeries);
