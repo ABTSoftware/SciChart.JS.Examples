@@ -19,28 +19,35 @@ import {ExampleDataProvider} from "../../../ExampleDataProvider";
 const divElementId = "chart";
 
 const drawExample = async () => {
+    // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+
+    // Add an X, Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { autoRange: EAutoRange.Always }));
 
+    // Generate some x,y values (these are type number[] and we use ExampleDataProvider for convenience)
+    const {xValues, yValues} = ExampleDataProvider.getDampedSinewave(0, 10, 5, 0.05, 100, 10);
+
+    // Append them to a dataSeries
+    const dataSeries = new XyDataSeries(wasmContext);
+    dataSeries.appendRange(xValues, yValues);
+
+    // Create an add a column series
     const columnSeries = new FastColumnRenderableSeries(wasmContext, {
         fill: "rgba(176, 196, 222, 0.7)",
         stroke: "rgba(176, 196, 222, 0.7)",
         strokeThickness: 2,
         dataPointWidth: 0.5,
-        paletteProvider: new MyPaletteProvider(),
+        dataSeries
     });
     sciChartSurface.renderableSeries.add(columnSeries);
 
-    const {xValues, yValues} = ExampleDataProvider.getDampedSinewave(0, 10, 5, 0.05, 100, 10);
-    const dataSeries = new XyDataSeries(wasmContext);
-    dataSeries.appendRange(xValues, yValues);
-    columnSeries.dataSeries = dataSeries;
-
+    // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+
     sciChartSurface.zoomExtents();
 };
 
