@@ -6,6 +6,8 @@ import BubbleChart from "../Examples/Charts2D/BasicChartTypes/BubbleChart";
 import { bubbleChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BubbleChart/exampleInfo";
 import CandlestickChart from "../Examples/Charts2D/BasicChartTypes/CandlestickChart";
 import { candlestickChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/CandlestickChart/exampleInfo";
+import OhlcChart from "../Examples/Charts2D/BasicChartTypes/OhlcChart";
+import { ohlcChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/OhlcChart/exampleInfo";
 import ColumnChart from "../Examples/Charts2D/BasicChartTypes/ColumnChart";
 import { columnChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ColumnChart/exampleInfo";
 import HeatmapChart from "../Examples/Charts2D/BasicChartTypes/HeatmapChart";
@@ -105,6 +107,11 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         id: "chart2D_basicCharts_CandlestickChart",
         Component: CandlestickChart,
         ...candlestickChartExampleInfo,
+    },
+    chart2D_basicCharts_OhlcChart: {
+        id: "chart2D_basicCharts_OhlcChart",
+        Component: OhlcChart,
+        ...ohlcChartExampleInfo,
     },
     chart2D_basicCharts_ColumnChart: {
         id: "chart2D_basicCharts_ColumnChart",
@@ -251,6 +258,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart,
             EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart,
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart,
             EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_LineChart,
