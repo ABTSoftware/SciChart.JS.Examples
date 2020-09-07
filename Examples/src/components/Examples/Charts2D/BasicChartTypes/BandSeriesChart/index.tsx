@@ -31,6 +31,7 @@ const drawExample = async () => {
     const STEP = (3 * Math.PI) / POINTS;
     for (let i = 0; i <= 1000; i++) {
         const k = 1 - i / 2000;
+        dataSeries.append(i, 0, Math.sin(i * STEP) * k * 0.7);
     }
 
     // Create the band series and add to the chart
