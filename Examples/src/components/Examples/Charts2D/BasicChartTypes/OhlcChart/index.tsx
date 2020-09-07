@@ -42,6 +42,8 @@ const drawExample = async () => {
         strokeThickness: 2,
         dataSeries,
         dataPointWidth: 0.5,
+        strokeUp: "#77ff77",
+        strokeDown: "#ff7777",
     });
     sciChartSurface.renderableSeries.add(ohlcSeries);
 
@@ -103,3 +105,4 @@ export default function OhlcChart() {
         </div>
     );
 }
+

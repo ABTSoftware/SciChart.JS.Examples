@@ -13,33 +13,42 @@ const divElementId = "chart";
 
 // SCICHART EXAMPLE
 const drawExample = async () => {
+    // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+
+    // Add an XAxis of type CategoryAxis - which collapses gaps in stock market data
     const xAxis = new CategoryAxis(wasmContext);
     xAxis.growBy = new NumberRange(0.05, 0.05);
     sciChartSurface.xAxes.add(xAxis);
 
+    // Create a NumericAxis on the YAxis
     const yAxis = new NumericAxis(wasmContext);
     yAxis.visibleRange = new NumberRange(1.1, 1.2);
     yAxis.growBy = new NumberRange(0.1, 0.1);
     yAxis.labelProvider.formatLabel = (dataValue: number) => dataValue.toFixed(3);
     sciChartSurface.yAxes.add(yAxis);
 
+    // Create a OhlcDataSeries with open, high, low, close values
     const dataSeries = new OhlcDataSeries(wasmContext, {
-        xValues: dateValues,
-        openValues,
+        xValues: dateValues, // XValues is number[] array of unix timestamps
+        openValues, // Assuming open, high, low, close values are number[] arrays
         highValues,
         lowValues,
         closeValues,
     });
-    const lineSeries = new FastCandlestickRenderableSeries(wasmContext, {
+
+    // Create and add the Candlestick series
+    const candlestickSeries = new FastCandlestickRenderableSeries(wasmContext, {
         strokeThickness: 2,
         dataSeries,
         dataPointWidth: 0.5,
+        brushUp: "#33ff33",
+        brushDown: "#ff3333",
+        strokeUp: "#77ff77",
+        strokeDown: "#ff7777",
     });
-    sciChartSurface.renderableSeries.add(lineSeries);
+    sciChartSurface.renderableSeries.add(candlestickSeries);
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
 
     sciChartSurface.zoomExtents();
     return { dataSeries, sciChartSurface };
