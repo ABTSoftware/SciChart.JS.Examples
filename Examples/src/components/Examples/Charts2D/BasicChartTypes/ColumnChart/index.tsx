@@ -1,21 +1,11 @@
 import * as React from "react";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAutoRange } from "scichart/types/AutoRange";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { SciChartSurface } from "scichart";
-import {
-    EStrokePaletteMode,
-    IFillPaletteProvider,
-    IStrokePaletteProvider,
-} from "scichart/Charting/Model/IPaletteProvider";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import {ExampleDataProvider} from "../../../ExampleDataProvider";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {NumberRange} from "scichart/Core/NumberRange";
 
 const divElementId = "chart";
