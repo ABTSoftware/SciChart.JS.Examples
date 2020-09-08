@@ -39,11 +39,11 @@ const drawExample = async () => {
     });
     // Create the Ohlc series and add to the chart
     const ohlcSeries = new FastOhlcRenderableSeries(wasmContext, {
-        strokeThickness: 2,
+        strokeThickness: 1,
         dataSeries,
-        dataPointWidth: 0.5,
-        strokeUp: "#77ff77",
-        strokeDown: "#ff7777",
+        dataPointWidth: 0.7,
+        strokeUp: "#50ff50",
+        strokeDown: "#ff5050",
     });
     sciChartSurface.renderableSeries.add(ohlcSeries);
 

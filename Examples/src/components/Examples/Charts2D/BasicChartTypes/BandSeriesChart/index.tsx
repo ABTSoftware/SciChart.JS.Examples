@@ -42,8 +42,6 @@ const drawExample = async () => {
     rendSeries.stroke = "#FF1919FF";
     rendSeries.strokeY1 = "#279B27FF";
 
-
-
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 

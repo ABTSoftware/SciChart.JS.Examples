@@ -8,6 +8,7 @@ import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/Rende
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { closeValues, dateValues, highValues, lowValues, openValues } from "./data/data";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 
 const divElementId = "chart";
 
@@ -39,16 +40,18 @@ const drawExample = async () => {
 
     // Create and add the Candlestick series
     const candlestickSeries = new FastCandlestickRenderableSeries(wasmContext, {
-        strokeThickness: 2,
+        strokeThickness: 1,
         dataSeries,
         dataPointWidth: 0.5,
-        brushUp: "#33ff33",
-        brushDown: "#ff3333",
-        strokeUp: "#77ff77",
-        strokeDown: "#ff7777",
+        brushUp: "#50ff50B2",
+        brushDown: "#ff5050B2",
+        strokeUp: "#50ff50",
+        strokeDown: "#ff5050",
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
 
+    // Optional: Add some interactivity modifiers
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
     return { dataSeries, sciChartSurface };

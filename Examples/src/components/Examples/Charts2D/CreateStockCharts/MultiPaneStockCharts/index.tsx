@@ -1,27 +1,37 @@
 import * as React from "react";
-import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
-import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { SciChartSurface } from "scichart";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
-import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { calcAverageForArray, calcAverageForDoubleVector } from "scichart/utils/calcAverage";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
-import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
-import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { EXyDirection } from "scichart/types/XyDirection";
-import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
-import { multiPaneData } from "./data/multiPaneData";
+import {SciChartVerticalGroup} from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
+import {CategoryAxis} from "scichart/Charting/Visuals/Axis/CategoryAxis";
+import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import {SciChartSurface} from "scichart";
+import {EAutoRange} from "scichart/types/AutoRange";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
+import {FastCandlestickRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {calcAverageForArray, calcAverageForDoubleVector} from "scichart/utils/calcAverage";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {RolloverModifier} from "scichart/Charting/ChartModifiers/RolloverModifier";
+import {ENumericFormat} from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
+import {FastBandRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
+import {XyyDataSeries} from "scichart/Charting/Model/XyyDataSeries";
+import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import {EXyDirection} from "scichart/types/XyDirection";
+import {SciChartJSDarkTheme} from "scichart/Charting/Themes/SciChartJSDarkTheme";
+import {multiPaneData} from "./data/multiPaneData";
+import {
+    EStrokePaletteMode,
+    IFillPaletteProvider,
+    IStrokePaletteProvider
+} from "scichart/Charting/Model/IPaletteProvider";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+
+// tslint:disable:no-empty
+// tslint:disable:max-classes-per-file
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
@@ -109,7 +119,9 @@ const drawExample = async () => {
         const volumeRenderableSeries = new FastColumnRenderableSeries(wasmContext, {
             yAxisId: "yAxis2",
             dataSeries: new XyDataSeries(wasmContext, { dataSeriesName: "Volume", xValues, yValues: volumeValues }),
-            dataPointWidth: 0.5
+            dataPointWidth: 0.5,
+            strokeThickness: 1,
+            paletteProvider: new VolumePaletteProvider(usdDataSeries, "#50FF50B2", "#FF5050B2")
         });
         sciChartSurface.renderableSeries.add(volumeRenderableSeries);
 
@@ -173,6 +185,7 @@ const drawExample = async () => {
                 xValues,
                 yValues: divergenceArray,
             }),
+            paletteProvider: new MacdHistogramPaletteProvider("#50FF50B2", "#FF5050B2"),
             dataPointWidth: 0.5,
         });
         sciChartSurface.renderableSeries.add(columnSeries);
@@ -262,6 +275,62 @@ const drawExample = async () => {
     });
 };
 
+/**
+ * An example PaletteProvider applied to the volume column series. It will return green / red
+ * fills and strokes when the main price data bar is up or down
+ */
+class VolumePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
+    readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
+    private priceData: OhlcDataSeries;
+    private volumeUpArgb: number;
+    private volumnDownArgb: number;
+
+    constructor(priceData: OhlcDataSeries, volumeUpColor: string, volumeDownColor: string) {
+        this.priceData = priceData;
+        this.volumeUpArgb = parseColorToUIntArgb(volumeUpColor);
+        this.volumnDownArgb = parseColorToUIntArgb(volumeDownColor);
+    }
+
+    onAttached(parentSeries: IRenderableSeries): void {}
+
+    onDetached(): void {}
+
+    overrideFillArgb(xValue: number, yValue: number, index: number): number {
+        const open = this.priceData.getNativeOpenValues().get(index);
+        const close = this.priceData.getNativeCloseValues().get(index);
+
+        return close >= open ? this.volumeUpArgb : this.volumnDownArgb;
+    }
+
+    overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
+        return this.overrideFillArgb(xValue, yValue, index);
+    }
+}
+
+class MacdHistogramPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
+    readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
+    private aboveZeroArgb: number;
+    private belowZeroArgb: number;
+
+    constructor(aboveZeroColor: string, belowZeroColor: string) {
+        this.aboveZeroArgb = parseColorToUIntArgb(aboveZeroColor);
+        this.belowZeroArgb = parseColorToUIntArgb(belowZeroColor);
+    }
+
+    onAttached(parentSeries: IRenderableSeries): void {}
+
+    onDetached(): void {}
+
+    overrideFillArgb(xValue: number, yValue: number, index: number): number {
+
+        return yValue >= 0 ? this.aboveZeroArgb : this.belowZeroArgb;
+    }
+
+    overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
+        return this.overrideFillArgb(xValue, yValue, index);
+    }
+}
+
 export default function MultiPaneStockCharts() {
     const [showCharts, setShowCharts] = React.useState(false);
 
@@ -277,3 +346,5 @@ export default function MultiPaneStockCharts() {
         </div>
     );
 }
+
+
