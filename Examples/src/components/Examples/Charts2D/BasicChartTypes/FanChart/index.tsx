@@ -23,6 +23,16 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Date_DDMMYYYY}));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
+    // Generates some data for the example as an array of TVarPoint: {
+    //     date: number;
+    //     actual: number;
+    //     varMax: number;
+    //     var4: number;
+    //     var3: number;
+    //     var2: number;
+    //     var1: number;
+    //     varMin: number;
+    // }
     const varianceData = getVarianceData();
 
     // To render the fan chart, we use a Line Chart with XyDataSeries
@@ -46,18 +56,21 @@ const drawExample = async () => {
     // Add band series with progressively higher opacity for the fan variance data
     sciChartSurface.renderableSeries.add(new FastBandRenderableSeries(wasmContext, {
         dataSeries: variance3DataSeries,
-        opacity: 0.2,
-        fill: "Red"
+        opacity: 0.15,
+        fill: "Red",
+        strokeY1: "#00000000"
     }));
     sciChartSurface.renderableSeries.add(new FastBandRenderableSeries(wasmContext, {
         dataSeries: variance2DataSeries,
-        opacity: 0.4,
-        fill: "Red"
+        opacity: 0.33,
+        fill: "Red",
+        strokeY1: "#00000000"
     }));
     sciChartSurface.renderableSeries.add(new FastBandRenderableSeries(wasmContext, {
         dataSeries: variance1DataSeries,
-        opacity: 0.6,
-        fill: "Red"
+        opacity: 0.5,
+        fill: "Red",
+        strokeY1: "#00000000"
     }));
 
     // Optional: Add some interactivity modifiers
