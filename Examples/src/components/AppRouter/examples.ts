@@ -2,6 +2,8 @@
 import { TPage } from "./pages";
 import BandSeriesChart from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart";
 import { bandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/exampleInfo";
+import FanChart from "../Examples/Charts2D/BasicChartTypes/FanChart";
+import { fanChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/FanChart/exampleInfo";
 import BubbleChart from "../Examples/Charts2D/BasicChartTypes/BubbleChart";
 import { bubbleChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BubbleChart/exampleInfo";
 import CandlestickChart from "../Examples/Charts2D/BasicChartTypes/CandlestickChart";
@@ -97,6 +99,11 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         id: "chart2D_basicCharts_BandSeriesChart",
         Component: BandSeriesChart,
         ...bandSeriesChartExampleInfo,
+    },
+    chart2D_basicCharts_FanChart: {
+        id: "chart2D_basicCharts_FanChart",
+        Component: FanChart,
+        ...fanChartExampleInfo,
     },
     chart2D_basicCharts_BubbleChart: {
         id: "chart2D_basicCharts_BubbleChart",
@@ -255,14 +262,15 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
     {
         item: { id: "chart2D_basicCharts", name: "Basic Chart Types" },
         submenu: [
+            EXAMPLES_PAGES.chart2D_basicCharts_LineChart,
             EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart,
             EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart,
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_FanChart,
             EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_LineChart,
             EXAMPLES_PAGES.chart2D_basicCharts_MountainChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart,
         ],
     },

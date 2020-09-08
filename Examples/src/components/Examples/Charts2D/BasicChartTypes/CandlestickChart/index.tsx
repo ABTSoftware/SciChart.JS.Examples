@@ -9,6 +9,14 @@ import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifie
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { closeValues, dateValues, highValues, lowValues, openValues } from "./data/data";
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import {
+    EStrokePaletteMode,
+    IFillPaletteProvider,
+    IPaletteProvider,
+    IStrokePaletteProvider
+} from "scichart/Charting/Model/IPaletteProvider";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 
 const divElementId = "chart";
 
@@ -47,6 +55,7 @@ const drawExample = async () => {
         brushDown: "#ff5050B2",
         strokeUp: "#50ff50",
         strokeDown: "#ff5050",
+        paletteProvider: new CandlestickPaletteProvider()
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
 
@@ -56,6 +65,75 @@ const drawExample = async () => {
     sciChartSurface.zoomExtents();
     return { dataSeries, sciChartSurface };
 };
+
+/**
+ * An example PaletteProvider which implements IStrokePaletteProvider and IFillPaletteProvider
+ * This can be attached to line, mountain, column or candlestick series to change the stroke or fill
+ * of the series conditionally
+ */
+class CandlestickPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider, IPaletteProvider {
+    /**
+     * This property chooses how stroke colors are blended when they change
+     */
+    readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
+    private parentSeries: IRenderableSeries;
+    private dataSeries: OhlcDataSeries;
+    private readonly highlightColor: number = parseColorToUIntArgb("#FEFEFE");
+
+    onAttached(parentSeries: IRenderableSeries): void {
+        this.parentSeries = parentSeries;
+        this.dataSeries = undefined;
+    }
+    onDetached(): void {
+        this.parentSeries = undefined;
+        this.dataSeries = undefined;
+    }
+    /**
+     * Called by SciChart and may be used to override the color of filled polygon in various chart types.
+     * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
+     * @param renderSeries
+     * @param xValue the current XValue
+     * @param yValue the current YValue
+     * @param index the current index to the data
+     * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
+     */
+    overrideFillArgb(xValue: number, yValue: number, index: number): number {
+        // const ohlcDataSeries = this.getDataSeries();
+        // // Get the open, close values
+        // const close = ohlcDataSeries.getNativeCloseValues().get(index);
+        // const open = ohlcDataSeries.getNativeOpenValues().get(index);
+        //
+        // // If more than 1% change, return 'highlightColor' otherwise return undefined for default color
+        // if (Math.abs(1 - (open / close)) > 0.01) {
+        //     return this.highlightColor;
+        // }
+        // return undefined;
+        return parseColorToUIntArgb("Violet");
+    }
+    /**
+     * Called by SciChart and may be used to override the color of a line segment or
+     * stroke outline in various chart types.
+     * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
+     * @param renderSeries
+     * @param xValue the current XValue
+     * @param yValue the current YValue
+     * @param index the current index to the data
+     * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
+     */
+    overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
+        return parseColorToUIntArgb("Orange");
+    }
+
+    private getDataSeries(): OhlcDataSeries {
+        if (this.dataSeries) {
+            return this.dataSeries;
+        }
+
+        this.dataSeries = this.parentSeries.dataSeries as OhlcDataSeries;
+        return this.dataSeries;
+    }
+}
+
 
 // REACT COMPONENT
 export default function CandlestickChart() {

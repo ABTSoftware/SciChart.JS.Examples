@@ -8,9 +8,6 @@ import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {IStrokePaletteProvider} from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 
 const divElementId = "chart";
 
@@ -31,7 +28,7 @@ const drawExample = async () => {
     const STEP = (3 * Math.PI) / POINTS;
     for (let i = 0; i <= 1000; i++) {
         const k = 1 - i / 2000;
-        dataSeries.append(i, Math.sin(i * STEP) * k * 0.7, Math.cos(i * STEP) * k);
+        dataSeries.append(i, 0, Math.sin(i * STEP) * k * 0.7);
     }
 
     // Create the band series and add to the chart
@@ -49,7 +46,7 @@ const drawExample = async () => {
     return { wasmContext, sciChartSurface };
 };
 
-export default function BandSeriesChart() {
+export default function FanChart() {
     React.useEffect(() => {
         drawExample();
     }, []);
