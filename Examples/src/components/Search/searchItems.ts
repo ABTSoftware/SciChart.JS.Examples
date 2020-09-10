@@ -127,6 +127,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.path,
     },
     {
+        title: EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.title,
+        link: EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.path,
+    },
+    {
         title: EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500.title,
         link: EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500.path,
     },

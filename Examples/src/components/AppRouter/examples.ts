@@ -74,6 +74,8 @@ import Load500By500 from "../Examples/FeaturedApps/PerformanceDemos/Load500By500
 import { load500By500ExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/Load500By500/exampleInfo";
 import VitalSignsMonitorDemo from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo";
 import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/exampleInfo";
+import {surfaceMesh3DChartExampleInfo} from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/exampleInfo";
+import SurfaceMesh3DChart from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart";
 
 export type TExampleInfo = {
     title: string;
@@ -245,6 +247,11 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: Bubble3DChart,
         ...bubble3DChartExampleInfo,
     },
+    chart3D_basic3DChartTypes_SurfaceMesh3DChart: {
+        id: "chart3D_basic3DChartTypes_SurfaceMesh3DChart",
+        Component: SurfaceMesh3DChart,
+        ...surfaceMesh3DChartExampleInfo,
+    },
     featuredApps_performanceDemos_Load500By500: {
         id: "featuredApps_performanceDemos_Load500By500",
         Component: Load500By500,
@@ -338,7 +345,10 @@ export const MENU_ITEMS_3D_ID = "MENU_ITEMS_3D_ID";
 export const MENU_ITEMS_3D: TMenuItem[] = [
     {
         item: { id: "chart3D_Basic3DChartTypes", name: "Basic 3D Chart Types" },
-        submenu: [EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart],
+        submenu: [
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart,
+        ]
     },
 ];
 
