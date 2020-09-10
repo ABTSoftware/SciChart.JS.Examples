@@ -8,6 +8,15 @@ import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {
+    EStrokePaletteMode,
+    IPointMarkerPaletteProvider,
+    TPointMarkerArgb
+} from "scichart/Charting/Model/IPaletteProvider";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+
+// tslint:disable:no-empty
 
 const divElementId = "chart";
 
@@ -24,6 +33,7 @@ const drawExample = async () => {
             fill: "steelblue",
             stroke: "LightSteelBlue",
         }),
+        paletteProvider: new ScatterPaletteProvider()
     });
     sciChartSurface.renderableSeries.add(scatterSeries);
 
@@ -39,6 +49,27 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     sciChartSurface.zoomExtents();
 };
+
+class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
+    readonly strokePaletteMode: EStrokePaletteMode;
+    onAttached(parentSeries: IRenderableSeries): void {
+    }
+
+    onDetached(): void {
+    }
+
+    overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
+        // Every tenth point colour the scatter points Blue fill & red stroke
+        // to demonstrate the PaletteProvider feature
+        if (index % 10 === 0) {
+            return {
+                stroke: parseColorToUIntArgb("Red"),
+                fill: parseColorToUIntArgb("White")
+            }
+        }
+        return undefined;
+    }
+}
 
 export default function ScatterChart() {
     React.useEffect(() => {
