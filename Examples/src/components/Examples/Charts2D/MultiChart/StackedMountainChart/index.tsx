@@ -16,16 +16,19 @@ import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/
 const divElementId = "chart";
 
 const drawExample = async () => {
+    // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
-    const xAxis = new NumericAxis(wasmContext);
-    sciChartSurface.xAxes.add(xAxis);
-    const yAxis = new NumericAxis(wasmContext);
-    yAxis.growBy = new NumberRange(0, 0.1);
-    sciChartSurface.yAxes.add(yAxis);
 
+    // Create an xAxis, yAxis
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0, 0.1)}));
+
+    // Create 3 DataSeries for our 3 stacked mountains
     const dataSeries1 = new XyDataSeries(wasmContext, { xValues, yValues: y1Values });
     const dataSeries2 = new XyDataSeries(wasmContext, { xValues, yValues: y2Values });
     const dataSeries3 = new XyDataSeries(wasmContext, { xValues, yValues: y3Values });
+
+    // Create the three Stacked Mountain series
     const rendSeries1 = new StackedMountainRenderableSeries(wasmContext);
     rendSeries1.dataSeries = dataSeries1;
     rendSeries1.fill = "#939899";
@@ -45,11 +48,15 @@ const drawExample = async () => {
     rendSeries3.rolloverModifierProps.tooltipColor = "rgba(54,139,193,0.7)";
     rendSeries3.rolloverModifierProps.tooltipTextColor = "#000";
 
-    const verticallyStackedMountainCollection = new StackedMountainCollection(wasmContext);
-    verticallyStackedMountainCollection.add(rendSeries1, rendSeries2, rendSeries3);
+    // Group these StackedMountain series together in a StackedMountainCollection
+    const stackedMountainCollection = new StackedMountainCollection(wasmContext);
+    stackedMountainCollection.isOneHundredPercent = true;
+    stackedMountainCollection.add(rendSeries1, rendSeries2, rendSeries3);
 
-    sciChartSurface.renderableSeries.add(verticallyStackedMountainCollection);
+    // Add the StackedMountainCollection to the chart
+    sciChartSurface.renderableSeries.add(stackedMountainCollection);
 
+    // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
