@@ -9,10 +9,8 @@ import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {TSciChart} from "scichart/types/TSciChart";
 import {
     EStrokePaletteMode,
-    IFillPaletteProvider,
-    IStrokeFillPaletteProvider,
-    IStrokePaletteProvider,
-    TStrokeFillArgb
+    IFillPaletteProvider, IPointMarkerPaletteProvider,
+    IStrokePaletteProvider, TPointMarkerArgb,
 } from "scichart/Charting/Model/IPaletteProvider";
 import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import {parseColorToUIntArgb} from "scichart/utils/parseColor";
@@ -188,7 +186,7 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
     }
 }
 
-class ScatterPaletteProvider implements IStrokeFillPaletteProvider {
+class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
     readonly strokePaletteMode: EStrokePaletteMode;
     onAttached(parentSeries: IRenderableSeries): void {
     }
@@ -196,7 +194,7 @@ class ScatterPaletteProvider implements IStrokeFillPaletteProvider {
     onDetached(): void {
     }
 
-    overrideStrokeFillArgb(xValue: number, yValue: number, index: number): TStrokeFillArgb {
+    overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
         if (index > 25) {
             return {
                 fill: parseColorToUIntArgb("Red"),

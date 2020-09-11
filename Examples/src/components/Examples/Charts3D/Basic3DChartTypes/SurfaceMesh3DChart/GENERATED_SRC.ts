@@ -6,68 +6,108 @@ import { OrbitModifier3D } from "scichart3d/Charting3D/ChartModifiers/OrbitModif
 import { XyzDataSeries3D } from "scichart3d/Charting3D/Model/DataSeries/XyzDataSeries3D";
 import { Vector3 } from "scichart3d/Charting3D/Vector3";
 import { NumericAxis3D } from "scichart3d/Charting3D/Visuals/Axis/NumericAxis3D";
-import { SpherePointMarker3D } from "scichart3d/Charting3D/Visuals/PointMarkers/DefaultPointMarkers";
-import { ScatterRenderableSeries3D } from "scichart3d/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
 import { SciChart3DSurface } from "scichart3d/Charting3D/Visuals/SciChart3DSurface";
 import { TSciChart3D } from "scichart3d/types/TSciChart3D";
+import {
+    EDrawMeshAs,
+    SurfaceMeshRenderableSeries3D
+} from "scichart3d/Charting3D/Visuals/RenderableSeries/SurfaceMesh/SurfaceMeshRenderableSeries3D";
+import {GradientColorPalette} from "scichart3d/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
+import {UniformGridDataSeries3D} from "scichart3d/Charting3D/Model/DataSeries/UniformGridDataSeries3D";
+import {NumberRange} from "scichart3d/Core/NumberRange";
+import {zeroArray2D} from "scichart3d/utils/zeroArray2D";
 
 const divElementId = "chart";
 
 // SCICHART CODE
 const drawExample = async () => {
+    // Create a SciChart3DSurface
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId);
+
+    // Create and position the camera in the 3D world
     sciChart3DSurface.camera = new CameraController(wasmContext, {
-        position: new Vector3(300, 300, 300),
-        target: new Vector3(0, 50, 0),
+        position: new Vector3(-200, 200, -200),
+        target: new Vector3(0, 50, 0)
     });
+    // Set the worlddimensions, which defines the Axis cube size
+    sciChart3DSurface.worldDimensions = new Vector3(200, 100, 200);
 
-    sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
-    sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
-
+    // Add an X,Y and Z Axis
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis" });
-    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, { axisTitle: "Y Axis" });
+    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
+        axisTitle: "Y Axis",
+        visibleRange: new NumberRange(0, 0.3)
+    });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Axis" });
 
-    const defaultPointMarker = new SpherePointMarker3D(wasmContext, { size: 10, fill: "#00FF00" });
-    const series = new ScatterRenderableSeries3D(wasmContext, { pointMarker: defaultPointMarker });
+    // Create a 2D array using the helper function zeroArray2D
+    // and fill this with data
+    const zSize = 25;
+    const xSize = 25;
+    const heightmapArray = zeroArray2D([zSize, xSize]);
+    for (let z = 0; z < zSize; z++) {
+        for (let x = 0; x < xSize; x++) {
+            const xVal = (x / xSize) * 25.0;
+            const zVal = (z / zSize) * 25.0;
+            const y = Math.sin(xVal * 0.2) / ((zVal + 1) * 2);
+            heightmapArray[z][x] = y;
+        }
+    }
 
-    series.dataSeries = getData(wasmContext);
+    // Create a UniformGridDataSeries3D
+    const dataSeries = new UniformGridDataSeries3D(wasmContext, {
+        yValues: heightmapArray,
+        xStep: 1,
+        zStep: 1,
+        dataSeriesName: "Uniform Surface Mesh"
+    });
+
+    // Create the color map
+    const colorMap = new GradientColorPalette(wasmContext, {
+        gradientStops: [
+            { offset: 1, color: "#8B0000" },
+            { offset: 0.9, color: "#FF0000" },
+            { offset: 0.7, color: "#FF0000" },
+            { offset: 0.5, color: "#ADFF2F" },
+            { offset: 0.3, color: "#00FFFF" },
+            { offset: 0.1, color: "#0000FF" },
+            { offset: 0, color: "#1D2C6B" }
+        ]
+    });
+
+    // Finally, create a SurfaceMeshRenderableSeries3D and add to the chart
+    const series = new SurfaceMeshRenderableSeries3D(wasmContext, {
+        dataSeries,
+        minimum: 0,
+        maximum: 0.5,
+        opacity: 0.9,
+        cellHardnessFactor: 1.0,
+        shininess: 0,
+        lightingFactor: 0.8,
+        highlight: 1.0,
+        stroke: "rgba(24,139,34,0.5)",
+        strokeThickness: 2.0,
+        contourStroke: "rgba(24,139,34,0.5)",
+        contourInterval: 2,
+        contourOffset: 0,
+        contourStrokeThickness: 2,
+        drawSkirt: false,
+        drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME,
+        meshColorPalette: colorMap,
+        isVisible: true
+    });
+
     sciChart3DSurface.renderableSeries.add(series);
+
+    // Optional: Add some interactivity modifiers
+    sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
+    sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
 
     return { sciChart3DSurface, wasmContext };
 };
 
-// HELPER FUNCTIONS FOR DATA GENERATION
-function getData(wasmContext: TSciChart3D) {
-    const xyzDataSeries = new XyzDataSeries3D(wasmContext);
-    const count = 250;
-    for (let i = 0; i < count; i++) {
-        const x = getGaussianRandom(150, 40);
-        const y = getGaussianRandom(100, 20);
-        const z = getGaussianRandom(150, 40);
-
-        const scale = (Math.random() + 0.5) * 0.5;
-        const randomColor = Math.floor(Math.random() * 16777215);
-
-        // To declare scale and colour, add an optional PointMetadata3D type as the w (fourth) parameter.
-        // The PointMetadata3D type also has other properties defining the behaviour of the XYZ point
-        xyzDataSeries.append(x, y, z, { vertexColorAbgr: randomColor, pointScale: scale });
-    }
-
-    return xyzDataSeries;
-}
-
-function getGaussianRandom(mean: number, stdDev: number): number {
-    const u1 = Math.random(); // these are uniform(0,1) random doubles
-    const u2 = Math.random();
-    // random normal(0,1)
-    const randStdNormal = Math.sqrt(-2 * Math.log(u1)) * Math.sin(2 * Math.PI * u2);
-    // random normal(mean, stddev^2)
-    return mean + stdDev * randStdNormal;
-}
-
 // REACT COMPONENT
-export default function Bubble3DChart() {
+export default function SurfaceMesh3DChart() {
     React.useEffect(() => {
         drawExample();
     }, []);

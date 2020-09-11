@@ -11,6 +11,13 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
+import {
+    EStrokePaletteMode,
+    IFillPaletteProvider,
+    IPointMarkerPaletteProvider, TPointMarkerArgb
+} from "scichart/Charting/Model/IPaletteProvider";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {IDataSeries} from "scichart/Charting/Model/IDataSeries";
 
 const divElementId = "chart";
 
@@ -20,20 +27,20 @@ const drawExample = async () => {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
 
     // Line Series
-    const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke: "#ff6600" });
-    lineSeries.strokeThickness = 2;
+    const lineSeries = new FastLineRenderableSeries(wasmContext, {
+        stroke: "#FFFFFF",
+        strokeThickness: 2 });
     sciChartSurface.renderableSeries.add(lineSeries);
-    lineSeries.stroke = "white";
 
     // Bubble Series
     const bubbleSeries = new FastBubbleRenderableSeries(wasmContext, {
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 64,
             height: 64,
-            strokeThickness: 2,
-            fill: "steelblue",
-            stroke: "LightSteelBlue",
+            strokeThickness: 0,
+            fill: "#4682b477"
         }),
+        paletteProvider: new BubblePaletteProvider()
     });
     sciChartSurface.renderableSeries.add(bubbleSeries);
 
@@ -61,6 +68,37 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     sciChartSurface.zoomExtents();
 };
+
+class BubblePaletteProvider implements IPointMarkerPaletteProvider {
+    private parentSeries: IRenderableSeries;
+    private dataSeries: XyzDataSeries;
+    onAttached(parentSeries: IRenderableSeries): void {
+        this.parentSeries = parentSeries;
+        this.dataSeries = this.getDataSeries();
+    }
+
+    onDetached(): void {
+        this.parentSeries = undefined;
+        this.dataSeries = undefined;
+    }
+
+    readonly strokePaletteMode: EStrokePaletteMode;
+
+    overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
+        return {
+            fill: 0xFFFFFFFF,
+            stroke: 0xFFFFFFFF,
+        };
+    }
+    private getDataSeries(): XyzDataSeries{
+        if (this.dataSeries) {
+            return this.dataSeries;
+        }
+        this.dataSeries = this.parentSeries?.dataSeries as XyzDataSeries;
+        return this.dataSeries;
+    }
+
+}
 
 export default function BubbleChart() {
     React.useEffect(() => {

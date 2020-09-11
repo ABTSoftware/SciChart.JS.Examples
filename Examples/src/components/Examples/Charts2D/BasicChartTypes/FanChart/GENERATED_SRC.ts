@@ -1,45 +1,87 @@
 export const code = `
 import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {XyyDataSeries} from "scichart/Charting/Model/XyyDataSeries";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import {getVarianceData} from "./data";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {ENumericFormat} from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
+import {FastBandRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
+
+// tslint:disable:max-line-length
 
 const divElementId = "chart";
 
 const drawExample = async () => {
+    // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Top }));
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Left, growBy: new NumberRange(0.4, 0.4) })
-    );
 
-    const dataSeries = new XyyDataSeries(wasmContext);
-    const POINTS = 1000;
-    const STEP = (3 * Math.PI) / POINTS;
-    for (let i = 0; i <= 1000; i++) {
-        const k = 1 - i / 2000;
-        dataSeries.append(i, Math.sin(i * STEP) * k * 0.7, Math.cos(i * STEP) * k);
-    }
-    const rendSeries = new FastBandRenderableSeries(wasmContext, { dataSeries, strokeThickness: 2 });
-    sciChartSurface.renderableSeries.add(rendSeries);
-    rendSeries.fill = "#279B2733";
-    rendSeries.fillY1 = "#FF191933";
-    rendSeries.stroke = "#FF1919FF";
-    rendSeries.strokeY1 = "#279B27FF";
+    // Add an XAxis, YAxis
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Date_DDMMYYYY}));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+    // Generates some data for the example as an array of TVarPoint: {
+    //     date: number;
+    //     actual: number;
+    //     varMax: number;
+    //     var4: number;
+    //     var3: number;
+    //     var2: number;
+    //     var1: number;
+    //     varMin: number;
+    // }
+    const varianceData = getVarianceData();
+
+    // To render the fan chart, we use a Line Chart with XyDataSeries
+    // and three Band charts with XyyDataSeries
+    const actualDataSeries = new XyDataSeries(wasmContext);
+    const variance3DataSeries = new XyyDataSeries(wasmContext);
+    const variance2DataSeries = new XyyDataSeries(wasmContext);
+    const variance1DataSeries = new XyyDataSeries(wasmContext);
+
+    actualDataSeries.appendRange(varianceData.map(v => v.date), varianceData.map(v => v.actual));
+    variance3DataSeries.appendRange(varianceData.map(v => v.date), varianceData.map(v => v.varMin), varianceData.map(v => v.varMax));
+    variance2DataSeries.appendRange(varianceData.map(v => v.date), varianceData.map(v => v.var1), varianceData.map(v => v.var4));
+    variance1DataSeries.appendRange(varianceData.map(v => v.date), varianceData.map(v => v.var2), varianceData.map(v => v.var3));
+
+    // Add a line series with the Xy data (the actual data)
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries: actualDataSeries,
+        stroke: "Red",
+    }));
+
+    // Add band series with progressively higher opacity for the fan variance data
+    sciChartSurface.renderableSeries.add(new FastBandRenderableSeries(wasmContext, {
+        dataSeries: variance3DataSeries,
+        opacity: 0.15,
+        fill: "Red",
+        strokeY1: "#00000000"
+    }));
+    sciChartSurface.renderableSeries.add(new FastBandRenderableSeries(wasmContext, {
+        dataSeries: variance2DataSeries,
+        opacity: 0.33,
+        fill: "Red",
+        strokeY1: "#00000000"
+    }));
+    sciChartSurface.renderableSeries.add(new FastBandRenderableSeries(wasmContext, {
+        dataSeries: variance1DataSeries,
+        opacity: 0.5,
+        fill: "Red",
+        strokeY1: "#00000000"
+    }));
+
+    // Optional: Add some interactivity modifiers
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier(), new ZoomExtentsModifier());
 
     sciChartSurface.zoomExtents();
     return { wasmContext, sciChartSurface };
 };
 
-export default function BandSeriesChart() {
+export default function FanChart() {
     React.useEffect(() => {
         drawExample();
     }, []);

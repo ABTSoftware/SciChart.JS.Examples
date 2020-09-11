@@ -9,14 +9,28 @@ import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {
+    EStrokePaletteMode,
+    IPointMarkerPaletteProvider,
+    TPointMarkerArgb
+} from "scichart/Charting/Model/IPaletteProvider";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+
+// tslint:disable:no-empty
 
 const divElementId = "chart";
 
 const drawExample = async () => {
+    // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+
+    // Create X,Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
 
+    // Create a Scatter Series with EllipsePointMarker
+    // Multiple point-marker types are available including Square, Triangle, Cross and Sprite (custom)
     const scatterSeries = new XyScatterRenderableSeries(wasmContext, {
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 7,
@@ -25,21 +39,52 @@ const drawExample = async () => {
             fill: "steelblue",
             stroke: "LightSteelBlue",
         }),
+        // Optional: PaletteProvider feature allows coloring per-point based on a rule
+        paletteProvider: new ScatterPaletteProvider()
     });
     sciChartSurface.renderableSeries.add(scatterSeries);
 
+    // Create some Xy data and assign to the Scatter Series
     const dataSeries = new XyDataSeries(wasmContext);
     for (let i = 0; i < 100; i++) {
         dataSeries.append(i, Math.sin(i * 0.1));
     }
     scatterSeries.dataSeries = dataSeries;
 
+    // Optional: Add Interactivity Modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+
     sciChartSurface.zoomExtents();
 };
+
+/**
+ * Optional: Implement a IPointMarkerPaletteProvider which colors every tenth scatter point
+ * to demonstrate the PaletteProvider feature
+ */
+class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
+    readonly strokePaletteMode: EStrokePaletteMode;
+    private overrideStroke: number = parseColorToUIntArgb("Red");
+    private overrideFill: number = parseColorToUIntArgb("Green");
+    onAttached(parentSeries: IRenderableSeries): void {
+    }
+
+    onDetached(): void {
+    }
+
+    overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
+        // Every 10th point return an object with stroke/fill for the overriden scatter point color
+        if (index % 10 === 0) {
+            return {
+                stroke: this.overrideStroke,
+                fill: this.overrideFill
+            }
+        }
+        // Undefined means use default colors
+        return undefined;
+    }
+}
 
 export default function ScatterChart() {
     React.useEffect(() => {
