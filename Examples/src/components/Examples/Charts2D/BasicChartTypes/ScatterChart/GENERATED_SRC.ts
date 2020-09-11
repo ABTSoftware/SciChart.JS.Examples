@@ -66,7 +66,7 @@ const drawExample = async () => {
 class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
     readonly strokePaletteMode: EStrokePaletteMode;
     private overrideStroke: number = parseColorToUIntArgb("Red");
-    private overrideFill: number = parseColorToUIntArgb("Green");
+    private overrideFill: number = parseColorToUIntArgb("DarkRed");
     onAttached(parentSeries: IRenderableSeries): void {
     }
 
@@ -74,8 +74,8 @@ class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
     }
 
     overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
-        // Every 10th point return an object with stroke/fill for the overriden scatter point color
-        if (index % 10 === 0) {
+        // Y-values which are outside the range +0.5, -0.5 are colored red, while all other values are left default.
+        if (yValue >= 0.5 || yValue <= -0.5) {
             return {
                 stroke: this.overrideStroke,
                 fill: this.overrideFill
