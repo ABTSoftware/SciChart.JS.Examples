@@ -8,9 +8,12 @@ import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeri
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {TSciChart} from "scichart/types/TSciChart";
 import {
+    EFillPaletteMode,
     EStrokePaletteMode,
-    IFillPaletteProvider, IPointMarkerPaletteProvider,
-    IStrokePaletteProvider, TPointMarkerArgb,
+    IFillPaletteProvider,
+    IPointMarkerPaletteProvider,
+    IStrokePaletteProvider,
+    TPointMarkerArgb,
 } from "scichart/Charting/Model/IPaletteProvider";
 import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import {parseColorToUIntArgb} from "scichart/utils/parseColor";
@@ -155,7 +158,11 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
     /**
      * This property chooses how stroke colors are blended when they change
      */
-    readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
+    public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
+    /**
+     * This property chooses how fills are blended when they change
+     */
+    public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.GRADIENT;
 
     onAttached(parentSeries: IRenderableSeries): void { }
     onDetached(): void { }
@@ -163,9 +170,6 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
      * Called by SciChart and may be used to override the color of filled polygon in various chart types.
      * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
      * @param renderSeries
-     * @param xValue the current XValue
-     * @param yValue the current YValue
-     * @param index the current index to the data
      * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
      */
     overrideFillArgb(xValue: number, yValue: number, index: number): number {
@@ -175,10 +179,6 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
      * Called by SciChart and may be used to override the color of a line segment or
      * stroke outline in various chart types.
      * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
-     * @param renderSeries
-     * @param xValue the current XValue
-     * @param yValue the current YValue
-     * @param index the current index to the data
      * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
      */
     overrideStrokeArgb(xValue: number, yValue: number, index: number): number {

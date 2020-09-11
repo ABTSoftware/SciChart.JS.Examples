@@ -77,6 +77,9 @@ class CandlestickPaletteProvider implements IStrokePaletteProvider, IFillPalette
      * This property chooses how stroke colors are blended when they change
      */
     readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
+    /**
+     * This property chooses how fills are blended when they change
+     */
     readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
     private parentSeries: IRenderableSeries;
     private dataSeries: OhlcDataSeries;

@@ -14,6 +14,8 @@ import { HOME_PAGE_TITLE } from "./PageHome";
 import Description from "./Description/Description";
 import GettingStarted from "./GettingStarted/GettingStarted";
 import SourceCode from "./SourceCode/SourceCode";
+// tslint:disable-next-line:no-var-requires
+const APP_VERSION = require('../../package.json').dependencies.scichart;
 
 const drawerWidth = 240;
 
@@ -128,7 +130,7 @@ export default function App() {
                         SciChart.js
                     </Typography>
                     <Typography variant="caption" style={{ color: "rgba(0, 0, 0, 0.54)" }}>
-                        v0.1.13
+                        {`v${APP_VERSION}`}
                     </Typography>
                 </div>
                 <Divider />

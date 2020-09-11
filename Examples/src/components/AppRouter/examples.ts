@@ -355,7 +355,7 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
 export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
 export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     {
-        item: { id: "featuredApps_medicalCharts", name: "Performance Demos" },
+        item: { id: "featuredApps_performanceDemos", name: "Performance Demos" },
         submenu: [EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500],
     },
     {

@@ -9,8 +9,10 @@ import {TSciChart} from "scichart/types/TSciChart";
 import {
     EFillPaletteMode,
     EStrokePaletteMode,
-    IFillPaletteProvider, IPointMarkerPaletteProvider,
-    IStrokePaletteProvider, TPointMarkerArgb,
+    IFillPaletteProvider,
+    IPointMarkerPaletteProvider,
+    IStrokePaletteProvider,
+    TPointMarkerArgb,
 } from "scichart/Charting/Model/IPaletteProvider";
 import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import {parseColorToUIntArgb} from "scichart/utils/parseColor";

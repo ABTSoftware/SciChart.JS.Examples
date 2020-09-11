@@ -12,6 +12,7 @@ import { closeValues, dateValues, highValues, lowValues, openValues } from "./da
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {parseColorToUIntArgb} from "scichart/utils/parseColor";
 import {
+    EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider,
     IPaletteProvider,
@@ -77,6 +78,10 @@ class CandlestickPaletteProvider implements IStrokePaletteProvider, IFillPalette
      * This property chooses how stroke colors are blended when they change
      */
     readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
+    /**
+     * This property chooses how fills are blended when they change
+     */
+    readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
     private parentSeries: IRenderableSeries;
     private dataSeries: OhlcDataSeries;
     private readonly highlightColor: number = parseColorToUIntArgb("#FEFEFE");

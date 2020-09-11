@@ -14,11 +14,11 @@ import {
     EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider,
-    IStrokePaletteProvider
+    IStrokePaletteProvider,
 } from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 
 const divElementId = "chart";
 
@@ -53,7 +53,7 @@ const drawExample = async () => {
             { color: "rgba(70,130,180,0.2)", offset: 1 },
         ]),
         // Optional: Allows per-point colouring of mountain fill and stroke
-        paletteProvider: new MountainPaletteProvider()
+        paletteProvider: new MountainPaletteProvider(),
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 
@@ -94,8 +94,8 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
     private fillColor: number = parseColorToUIntArgb("FF0000");
     private strokeColor: number = parseColorToUIntArgb("FF000077");
 
-    onAttached(parentSeries: IRenderableSeries): void { }
-    onDetached(): void { }
+    onAttached(parentSeries: IRenderableSeries): void {}
+    onDetached(): void {}
     /**
      * Called by SciChart and may be used to override the color of filled polygon in various chart types.
      * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
