@@ -1,22 +1,25 @@
 import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
+import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {XyzDataSeries} from "scichart/Charting/Model/XyzDataSeries";
 import {
     EStrokePaletteMode,
-    IFillPaletteProvider,
-    IPointMarkerPaletteProvider, TPointMarkerArgb
+    IPointMarkerPaletteProvider,
+    TPointMarkerArgb
 } from "scichart/Charting/Model/IPaletteProvider";
 import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {IDataSeries} from "scichart/Charting/Model/IDataSeries";
+import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
+import {easing} from "scichart/Core/Animations/EasingFunctions";
+import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
+import {EDragMode} from "scichart/types/DragMode";
+import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";
 
 const divElementId = "chart";
 
@@ -61,8 +64,23 @@ const drawExample = async () => {
     lineSeries.dataSeries = lineDataSeries;
     bubbleSeries.dataSeries = bubbleDataSeries;
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+    // sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    const rubberBandXyZoomModifier = new RubberBandXyZoomModifier({
+        isAnimated: true,
+        animationDuration: 400,
+        easingFunction: easing.outExpo,
+        fill: "#FFFFFF11",
+        stroke: "#FFFFFF55",
+        strokeThickness: 1,
+    });
+    // sciChartSurface.chartModifiers.add(rubberBandXyZoomModifier);
+    // sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+    sciChartSurface.chartModifiers.add(new YAxisDragModifier({
+        dragMode: EDragMode.Scaling,
+    }));
+    sciChartSurface.chartModifiers.add(new XAxisDragModifier({
+        dragMode: EDragMode.Panning,
+    }));
 
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     sciChartSurface.zoomExtents();

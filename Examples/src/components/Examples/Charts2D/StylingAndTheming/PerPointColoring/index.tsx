@@ -7,6 +7,7 @@ import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeri
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {TSciChart} from "scichart/types/TSciChart";
 import {
+    EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider, IPointMarkerPaletteProvider,
     IStrokePaletteProvider, TPointMarkerArgb,
@@ -154,7 +155,11 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
     /**
      * This property chooses how stroke colors are blended when they change
      */
-    readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
+    public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
+    /**
+     * This property chooses how fills are blended when they change
+     */
+    public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.GRADIENT;
 
     onAttached(parentSeries: IRenderableSeries): void { }
     onDetached(): void { }

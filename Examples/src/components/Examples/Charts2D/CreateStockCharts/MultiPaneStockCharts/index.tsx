@@ -23,6 +23,7 @@ import {EXyDirection} from "scichart/types/XyDirection";
 import {SciChartJSDarkTheme} from "scichart/Charting/Themes/SciChartJSDarkTheme";
 import {multiPaneData} from "./data/multiPaneData";
 import {
+    EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider,
     IStrokePaletteProvider
@@ -280,7 +281,8 @@ const drawExample = async () => {
  * fills and strokes when the main price data bar is up or down
  */
 class VolumePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
-    readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
+    public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
+    public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
     private priceData: OhlcDataSeries;
     private volumeUpArgb: number;
     private volumnDownArgb: number;
@@ -308,7 +310,8 @@ class VolumePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvi
 }
 
 class MacdHistogramPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
-    readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
+    public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
+    public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
     private aboveZeroArgb: number;
     private belowZeroArgb: number;
 
