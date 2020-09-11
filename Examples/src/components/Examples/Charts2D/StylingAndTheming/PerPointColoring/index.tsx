@@ -167,9 +167,6 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
      * Called by SciChart and may be used to override the color of filled polygon in various chart types.
      * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
      * @param renderSeries
-     * @param xValue the current XValue
-     * @param yValue the current YValue
-     * @param index the current index to the data
      * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
      */
     overrideFillArgb(xValue: number, yValue: number, index: number): number {
@@ -179,10 +176,6 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
      * Called by SciChart and may be used to override the color of a line segment or
      * stroke outline in various chart types.
      * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
-     * @param renderSeries
-     * @param xValue the current XValue
-     * @param yValue the current YValue
-     * @param index the current index to the data
      * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
      */
     overrideStrokeArgb(xValue: number, yValue: number, index: number): number {

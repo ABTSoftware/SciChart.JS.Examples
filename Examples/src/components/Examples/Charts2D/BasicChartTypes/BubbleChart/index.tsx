@@ -20,6 +20,7 @@ import {easing} from "scichart/Core/Animations/EasingFunctions";
 import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
 import {EDragMode} from "scichart/types/DragMode";
 import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 
 const divElementId = "chart";
 
@@ -64,25 +65,10 @@ const drawExample = async () => {
     lineSeries.dataSeries = lineDataSeries;
     bubbleSeries.dataSeries = bubbleDataSeries;
 
-    // sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    const rubberBandXyZoomModifier = new RubberBandXyZoomModifier({
-        isAnimated: true,
-        animationDuration: 400,
-        easingFunction: easing.outExpo,
-        fill: "#FFFFFF11",
-        stroke: "#FFFFFF55",
-        strokeThickness: 1,
-    });
-    // sciChartSurface.chartModifiers.add(rubberBandXyZoomModifier);
-    // sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new YAxisDragModifier({
-        dragMode: EDragMode.Scaling,
-    }));
-    sciChartSurface.chartModifiers.add(new XAxisDragModifier({
-        dragMode: EDragMode.Panning,
-    }));
-
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+
     sciChartSurface.zoomExtents();
 };
 
