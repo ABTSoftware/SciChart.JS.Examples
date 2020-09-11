@@ -87,11 +87,14 @@ export default function UsingThemeManager() {
     const [showChart, setShowChart] = React.useState(false);
 
     React.useEffect(() => {
-        drawExample().then((res) => {
+        (async () => {
+            const res = await drawExample();
             setSciChartSurface(res.sciChartSurface);
             setWasmContext(res.wasmContext);
             setShowChart(true);
-        });
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     const handleChangeTheme = (event: React.ChangeEvent<{ value: unknown }>) => {

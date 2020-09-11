@@ -78,9 +78,10 @@ export default function ChartLegendsAPI() {
     const [showSeriesMarkersValue, setShowSeriesMarkersValue] = React.useState(true);
 
     React.useEffect(() => {
-        drawExample().then((res) => {
-            setWasmContext(res.wasmContext);
+        (async () => {
+            const res = await drawExample();
             setSciChartSurface(res.sciChartSurface);
+            setWasmContext(res.wasmContext);
             const lm = new LegendModifier({
                 placement: placementValue,
                 orientation: orientationValue,
@@ -91,7 +92,9 @@ export default function ChartLegendsAPI() {
             res.sciChartSurface.chartModifiers.add(lm);
             setSciChartLegend(lm.sciChartLegend);
             setChartReady(true);
-        });
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     const handleChangePlacement = (event: React.ChangeEvent<{ value: unknown }>) => {

@@ -137,10 +137,13 @@ export default function CandlestickChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
     React.useEffect(() => {
-        drawExample().then((res) => {
+        (async () => {
+            const res = await drawExample();
             setSciChartSurface(res.sciChartSurface);
-            setDataSeries(res.dataSeries);
-        });
+            setDataSeries(res.dataSeries)
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     const handleAddPoints = () => {

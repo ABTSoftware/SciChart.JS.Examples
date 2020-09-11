@@ -121,8 +121,15 @@ const drawExample = async () => {
 };
 
 export default function MultipleXAxes() {
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+
     React.useEffect(() => {
-        drawExample();
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;

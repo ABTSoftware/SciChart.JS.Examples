@@ -7,16 +7,16 @@ import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { closeValues, dateValues, highValues, lowValues, openValues } from "./data/data";
-import {FastOhlcRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastOhlcRenderableSeries";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { FastOhlcRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastOhlcRenderableSeries";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {
     EStrokePaletteMode,
     IFillPaletteProvider,
     IPaletteProvider,
-    IStrokePaletteProvider
+    IStrokePaletteProvider,
 } from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 
 const divElementId = "chart";
 
@@ -52,7 +52,7 @@ const drawExample = async () => {
         dataPointWidth: 0.7,
         strokeUp: "#50ff50",
         strokeDown: "#ff5050",
-        paletteProvider: new OhlcPaletteProvider()
+        paletteProvider: new OhlcPaletteProvider(),
     });
     sciChartSurface.renderableSeries.add(ohlcSeries);
 
@@ -62,7 +62,7 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
 
     sciChartSurface.zoomExtents();
-    return { dataSeries, sciChartSurface };
+    return { sciChartSurface, wasmContext, dataSeries };
 };
 
 /**
@@ -100,7 +100,7 @@ class OhlcPaletteProvider implements IStrokePaletteProvider {
         const open = ohlcDataSeries.getNativeOpenValues().get(index);
 
         // If more than 1% change, return 'highlightColor' otherwise return undefined for default color
-        if (Math.abs(1 - (open / close)) > 0.01) {
+        if (Math.abs(1 - open / close) > 0.01) {
             return this.highlightColor;
         }
         return undefined;
@@ -122,10 +122,13 @@ export default function OhlcChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
     React.useEffect(() => {
-        drawExample().then((res) => {
+        (async () => {
+            const res = await drawExample();
             setSciChartSurface(res.sciChartSurface);
             setDataSeries(res.dataSeries);
-        });
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     const handleAddPoints = () => {
@@ -165,4 +168,3 @@ export default function OhlcChart() {
         </div>
     );
 }
-

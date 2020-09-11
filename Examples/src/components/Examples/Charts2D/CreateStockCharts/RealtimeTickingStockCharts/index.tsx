@@ -156,7 +156,6 @@ export const drawExample = async (): Promise<TWebAssemblyChart> => {
 
     // Buttons for chart
     const startAnimation = () => {
-        console.log("start animation");
         if (!timerId) {
             updateChart();
         }
@@ -164,7 +163,6 @@ export const drawExample = async (): Promise<TWebAssemblyChart> => {
     document.getElementById("startAnimation").addEventListener("click", startAnimation);
 
     const stopAnimation = () => {
-        console.log("stop animation");
         clearTimeout(timerId);
         timerId = undefined;
     };
@@ -180,11 +178,14 @@ export default function RealtimeTickingStockCharts() {
     const [seriesType, setSeriesType] = React.useState(ESeriesType.FastOhlcRenderableSeries);
 
     React.useEffect(() => {
-        drawExample().then((webAssemblyChart) => {
-            setSciChartSurface(webAssemblyChart.sciChartSurface);
-            setWasmContext(webAssemblyChart.wasmContext);
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+            setWasmContext(res.wasmContext);
             setShowControls(true);
-        });
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     const handleChangeStrokeThickness = (event: React.ChangeEvent<{ value: unknown }>) => {

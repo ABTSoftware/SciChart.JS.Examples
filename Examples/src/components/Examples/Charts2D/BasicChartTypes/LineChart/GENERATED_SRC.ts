@@ -35,7 +35,7 @@ const drawExample = async () => {
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#ff6600",
         strokeThickness: 5,
-        dataSeries: xyDataSeries
+        dataSeries: xyDataSeries,
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -47,7 +47,7 @@ const drawExample = async () => {
             { color: "pink", offset: 0.2 },
             { color: "yellow", offset: 0.5 },
             { color: "purple", offset: 0.7 },
-            { color: "green", offset: 1 }
+            { color: "green", offset: 1 },
         ])
     );
 
@@ -61,8 +61,14 @@ const drawExample = async () => {
 };
 
 export default function LineChart() {
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     React.useEffect(() => {
-        drawExample();
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+        })();
+        // Deleting sciChartSurface to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;

@@ -19,9 +19,7 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 
 const divElementId = "chart";
 
-function createData(
-    wasmContext: TSciChart
-) {
+function createData(wasmContext: TSciChart) {
     // Create some dataseries
     const dataSeries1 = new XyDataSeries(wasmContext, { dataSeriesName: "Ellipse Marker" });
     const dataSeries2 = new XyDataSeries(wasmContext, { dataSeriesName: "Square Marker" });
@@ -68,7 +66,7 @@ const drawExample = async () => {
                 fill: "#0077FF99",
                 stroke: "LightSteelBlue",
             }),
-            dataSeries: dataSeriesArr[0]
+            dataSeries: dataSeriesArr[0],
         })
     );
 
@@ -83,7 +81,7 @@ const drawExample = async () => {
                 fill: "#FF000099",
                 stroke: "Red",
             }),
-            dataSeries: dataSeriesArr[1]
+            dataSeries: dataSeriesArr[1],
         })
     );
 
@@ -98,7 +96,7 @@ const drawExample = async () => {
                 fill: "#FFDD00",
                 stroke: "#FF6600",
             }),
-            dataSeries: dataSeriesArr[2]
+            dataSeries: dataSeriesArr[2],
         })
     );
 
@@ -112,7 +110,7 @@ const drawExample = async () => {
                 strokeThickness: 2,
                 stroke: "#FF00FF",
             }),
-            dataSeries: dataSeriesArr[3]
+            dataSeries: dataSeriesArr[3],
         })
     );
 
@@ -125,7 +123,7 @@ const drawExample = async () => {
             pointMarker: new SpritePointMarker(wasmContext, {
                 image: imageBitmap,
             }),
-            dataSeries: dataSeriesArr[4]
+            dataSeries: dataSeriesArr[4],
         })
     );
 
@@ -134,10 +132,19 @@ const drawExample = async () => {
 
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     sciChartSurface.zoomExtents();
+
+    return { sciChartSurface, wasmContext };
 };
 export default function UsePointMarkers() {
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+
     React.useEffect(() => {
-        drawExample();
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;

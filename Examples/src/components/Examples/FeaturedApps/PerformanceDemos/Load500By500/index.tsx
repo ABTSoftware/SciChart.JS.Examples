@@ -7,12 +7,12 @@ import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
-import {EAutoRange} from "scichart/types/AutoRange";
-import {ENumericFormat} from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
-import {convertRgbToHexColor} from "scichart/utils/convertColor";
-import {AlertTitle} from "@material-ui/lab";
-import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
-import {Button, ButtonGroup, FormControl} from "@material-ui/core";
+import { EAutoRange } from "scichart/types/AutoRange";
+import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
+import { convertRgbToHexColor } from "scichart/utils/convertColor";
+import { AlertTitle } from "@material-ui/lab";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { Button, ButtonGroup, FormControl } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
 const divElementId = "chart";
@@ -29,21 +29,21 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         formControl: {
             margin: theme.spacing(1),
-            minWidth: 142
+            minWidth: 142,
         },
         notificationsBlock: {
             flexBasis: 320,
             flexGrow: 0,
             flexShrink: 0,
-            marginLeft: 24
+            marginLeft: 24,
         },
         notification: {
-            marginBottom: 16
+            marginBottom: 16,
         },
         description: {
             width: 800,
-            marginBottom: 20
-        }
+            marginBottom: 20,
+        },
     })
 );
 
@@ -51,13 +51,13 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, 3, 2);
     const xAxis = new NumericAxis(wasmContext, {
         visibleRange: new NumberRange(0, POINTS),
-        autoRange: EAutoRange.Never
+        autoRange: EAutoRange.Never,
     });
     xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
     sciChartSurface.xAxes.add(xAxis);
     const yAxis = new NumericAxis(wasmContext, {
         visibleRange: new NumberRange(-5000, 5000),
-        autoRange: EAutoRange.Never
+        autoRange: EAutoRange.Never,
     });
     yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
     sciChartSurface.yAxes.add(yAxis);
@@ -68,7 +68,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         const dataSeries: XyDataSeries = new XyDataSeries(wasmContext);
         const rendSeries: FastLineRenderableSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries,
-            strokeThickness: 2
+            strokeThickness: 2,
         });
 
         dataSeriesArray[i] = dataSeries;
@@ -118,7 +118,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         // Add the first time span: Generating 1M data points
         newTimeSpans.push({
             title: "Generate 500x500 Data Points",
-            durationMs: Date.now() - generateTimestamp
+            durationMs: Date.now() - generateTimestamp,
         });
 
         // Start counting batch append time
@@ -131,7 +131,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         // Add the second time span: Generation of data point
         newTimeSpans.push({
             title: "Append 500x500 Data Points",
-            durationMs: Date.now() - appendTimestamp
+            durationMs: Date.now() - appendTimestamp,
         });
 
         // Subscribe to sciChartSurface.rendered event,
@@ -145,7 +145,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
                 // Add the third time span: Render the first frame
                 newTimeSpans.push({
                     title: "Render the frame",
-                    durationMs: Date.now() - firstFrameTimestamp
+                    durationMs: Date.now() - firstFrameTimestamp,
                 });
                 nextFramesTimestamp = Date.now();
             } else {
@@ -171,36 +171,45 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
 export default function Load500By500() {
     const classes = useStyles();
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+
     React.useEffect(() => {
-        drawExample((newTimeSpans: TTimeSpan[]) => {
-            setTimeSpans([...newTimeSpans]);
-        });
+        (async () => {
+            const res = await drawExample((newTimeSpans: TTimeSpan[]) => {
+                setTimeSpans([...newTimeSpans]);
+            });
+            setSciChartSurface(res.sciChartSurface);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
-    return <div>
-        <div style={{ display: "flex", maxWidth: 1200 }}>
-            <div id={divElementId} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }} />
-            <div className={classes.notificationsBlock}>
-                {timeSpans.length > 0 && (
-                    <Alert key="0" severity="info" className={classes.notification}>
-                        {timeSpans.map((ts, index) => (
-                            <div key={index}>
-                                <AlertTitle>{ts.title}</AlertTitle>
-                                Time: {ts.durationMs.toFixed(0)} ms
-                            </div>
-                        ))}
-                    </Alert>
-                )}
-            </div>
-        </div>
+    return (
         <div>
+            <div style={{ display: "flex", maxWidth: 1200 }}>
+                <div id={divElementId} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }} />
+                <div className={classes.notificationsBlock}>
+                    {timeSpans.length > 0 && (
+                        <Alert key="0" severity="info" className={classes.notification}>
+                            {timeSpans.map((ts, index) => (
+                                <div key={index}>
+                                    <AlertTitle>{ts.title}</AlertTitle>
+                                    Time: {ts.durationMs.toFixed(0)} ms
+                                </div>
+                            ))}
+                        </Alert>
+                    )}
+                </div>
+            </div>
             <div>
-                <FormControl className={classes.formControl}>
-                    <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                        <Button id="loadPoints">Load</Button>
-                    </ButtonGroup>
-                </FormControl>
+                <div>
+                    <FormControl className={classes.formControl}>
+                        <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                            <Button id="loadPoints">Load</Button>
+                        </ButtonGroup>
+                    </FormControl>
+                </div>
             </div>
         </div>
-    </div>;
+    );
 }

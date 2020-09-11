@@ -87,9 +87,16 @@ const drawExample = async () => {
 
 export default function RealtimeGhostedTraces() {
     const [showButtons, setShowButtons] = React.useState(false);
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
     React.useEffect(() => {
-        drawExample().then(() => setShowButtons(true));
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+            setShowButtons(true);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     return (

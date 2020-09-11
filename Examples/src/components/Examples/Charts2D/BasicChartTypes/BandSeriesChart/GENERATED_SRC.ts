@@ -9,9 +9,9 @@ import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {IStrokePaletteProvider} from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
+import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 
 const divElementId = "chart";
 
@@ -51,8 +51,14 @@ const drawExample = async () => {
 };
 
 export default function BandSeriesChart() {
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     React.useEffect(() => {
-        drawExample();
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;

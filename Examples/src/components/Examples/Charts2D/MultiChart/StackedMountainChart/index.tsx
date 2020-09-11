@@ -21,7 +21,7 @@ const drawExample = async () => {
 
     // Create an xAxis, yAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0, 0.1)}));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0, 0.1) }));
 
     // Create 3 DataSeries for our 3 stacked mountains
     const dataSeries1 = new XyDataSeries(wasmContext, { xValues, yValues: y1Values });
@@ -75,8 +75,15 @@ const drawExample = async () => {
 };
 
 export default function StackedMountainChart() {
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+
     React.useEffect(() => {
-        drawExample();
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;

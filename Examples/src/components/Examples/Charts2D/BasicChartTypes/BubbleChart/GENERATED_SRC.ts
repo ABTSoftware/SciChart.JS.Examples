@@ -1,27 +1,27 @@
 export const code = `
 import * as React from "react";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {XyzDataSeries} from "scichart/Charting/Model/XyzDataSeries";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
+import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
 import {
     EStrokePaletteMode,
     IPointMarkerPaletteProvider,
-    TPointMarkerArgb
+    TPointMarkerArgb,
 } from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import {easing} from "scichart/Core/Animations/EasingFunctions";
-import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
-import {EDragMode} from "scichart/types/DragMode";
-import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
+import { easing } from "scichart/Core/Animations/EasingFunctions";
+import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
+import { EDragMode } from "scichart/types/DragMode";
+import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 
 const divElementId = "chart";
 
@@ -33,7 +33,8 @@ const drawExample = async () => {
     // Line Series
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#FFFFFF",
-        strokeThickness: 2 });
+        strokeThickness: 2,
+    });
     sciChartSurface.renderableSeries.add(lineSeries);
 
     // Bubble Series
@@ -42,9 +43,9 @@ const drawExample = async () => {
             width: 64,
             height: 64,
             strokeThickness: 0,
-            fill: "#4682b477"
+            fill: "#4682b477",
         }),
-        paletteProvider: new BubblePaletteProvider()
+        paletteProvider: new BubblePaletteProvider(),
     });
     sciChartSurface.renderableSeries.add(bubbleSeries);
 
@@ -71,6 +72,7 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
+    return { sciChartSurface, wasmContext };
 };
 
 class BubblePaletteProvider implements IPointMarkerPaletteProvider {
@@ -90,23 +92,28 @@ class BubblePaletteProvider implements IPointMarkerPaletteProvider {
 
     overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
         return {
-            fill: 0xFFFFFFFF,
-            stroke: 0xFFFFFFFF,
+            fill: 0xffffffff,
+            stroke: 0xffffffff,
         };
     }
-    private getDataSeries(): XyzDataSeries{
+    private getDataSeries(): XyzDataSeries {
         if (this.dataSeries) {
             return this.dataSeries;
         }
         this.dataSeries = this.parentSeries?.dataSeries as XyzDataSeries;
         return this.dataSeries;
     }
-
 }
 
 export default function BubbleChart() {
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     React.useEffect(() => {
-        drawExample();
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;

@@ -17,7 +17,6 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { TSciChart } from "scichart/types/TSciChart";
 import { IXyDataSeriesOptions, XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { SciChartSurface } from "scichart";
-import { EColor } from "scichart/types/Color";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 const divElementId = "chart";
@@ -94,11 +93,14 @@ export default function UsingRolloverModifierTooltips() {
     const [lastSeriesTooltipColor, setLastSeriesTooltipColor] = React.useState<string>("");
 
     React.useEffect(() => {
-        drawExample().then((webAssemblyChart) => {
-            setSciChartSurface(webAssemblyChart.sciChartSurface);
-            setWasmContext(webAssemblyChart.wasmContext);
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+            setWasmContext(res.wasmContext);
             setShowButtons(true);
-        });
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     const handleAddSeries = () => {
@@ -146,7 +148,7 @@ export default function UsingRolloverModifierTooltips() {
     return (
         <div>
             <div id={divElementId} style={{ maxWidth: 900 }} />
-            <FormControl variant="filled" style={{ marginTop: 20, display: showButtons ? "flex" : "none",  width: 200 }}>
+            <FormControl variant="filled" style={{ marginTop: 20, display: showButtons ? "flex" : "none", width: 200 }}>
                 <InputLabel id="stroke-thickness-label">Tooltip Color</InputLabel>
                 <Select
                     labelId="stroke-thickness-label"

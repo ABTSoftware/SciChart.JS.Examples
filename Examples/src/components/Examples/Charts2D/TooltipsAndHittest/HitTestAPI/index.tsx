@@ -119,21 +119,23 @@ export default function HitTestAPI() {
     const classes = useStyles();
 
     const [showButtons, setShowButtons] = React.useState(false);
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [hitTestsList, setHitTestsList] = React.useState<HitTestInfo[]>([]);
 
     React.useEffect(() => {
-        drawExample().then((webAssemblyChart) => {
-            const { sciChartSurface } = webAssemblyChart;
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
             const svgAnnotation = new CustomAnnotation({
                 svgString: '<svg width="8" height="8"><circle cx="50%" cy="50%" r="4" fill="#368BC1"/></svg>',
                 isHidden: true,
                 xCoordShift: -4,
                 yCoordShift: -4,
             });
-            sciChartSurface.annotations.add(svgAnnotation);
-            sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent: MouseEvent) => {
+            res.sciChartSurface.annotations.add(svgAnnotation);
+            res.sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent: MouseEvent) => {
                 const newHitTestsList: HitTestInfo[] = [];
-                sciChartSurface.renderableSeries.asArray().forEach((rs) => {
+                res.sciChartSurface.renderableSeries.asArray().forEach((rs) => {
                     // TODO: add hitTestProvider to all series
                     if (rs.hitTestProvider) {
                         const hitTestInfo = rs.hitTestProvider.hitTest(
@@ -153,7 +155,9 @@ export default function HitTestAPI() {
                 setHitTestsList(newHitTestsList);
             });
             setShowButtons(true);
-        });
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     return (

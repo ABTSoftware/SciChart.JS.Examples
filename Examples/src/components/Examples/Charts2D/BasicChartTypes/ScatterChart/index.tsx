@@ -11,10 +11,10 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import {
     EStrokePaletteMode,
     IPointMarkerPaletteProvider,
-    TPointMarkerArgb
+    TPointMarkerArgb,
 } from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 
 // tslint:disable:no-empty
 
@@ -39,7 +39,7 @@ const drawExample = async () => {
             stroke: "LightSteelBlue",
         }),
         // Optional: PaletteProvider feature allows coloring per-point based on a rule
-        paletteProvider: new ScatterPaletteProvider()
+        paletteProvider: new ScatterPaletteProvider(),
     });
     sciChartSurface.renderableSeries.add(scatterSeries);
 
@@ -56,6 +56,8 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
+
+    return { sciChartSurface, wasmContext };
 };
 
 /**
@@ -66,19 +68,17 @@ class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
     readonly strokePaletteMode: EStrokePaletteMode;
     private overrideStroke: number = parseColorToUIntArgb("Red");
     private overrideFill: number = parseColorToUIntArgb("DarkRed");
-    onAttached(parentSeries: IRenderableSeries): void {
-    }
+    onAttached(parentSeries: IRenderableSeries): void {}
 
-    onDetached(): void {
-    }
+    onDetached(): void {}
 
     overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
         // Y-values which are outside the range +0.5, -0.5 are colored red, while all other values are left default.
         if (yValue >= 0.5 || yValue <= -0.5) {
             return {
                 stroke: this.overrideStroke,
-                fill: this.overrideFill
-            }
+                fill: this.overrideFill,
+            };
         }
         // Undefined means use default colors
         return undefined;
@@ -86,8 +86,14 @@ class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
 }
 
 export default function ScatterChart() {
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     React.useEffect(() => {
-        drawExample();
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;

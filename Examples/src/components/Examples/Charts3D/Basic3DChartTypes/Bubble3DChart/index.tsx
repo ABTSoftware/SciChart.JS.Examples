@@ -9,6 +9,7 @@ import { SpherePointMarker3D } from "scichart3d/Charting3D/Visuals/PointMarkers/
 import { ScatterRenderableSeries3D } from "scichart3d/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
 import { SciChart3DSurface } from "scichart3d/Charting3D/Visuals/SciChart3DSurface";
 import { TSciChart3D } from "scichart3d/types/TSciChart3D";
+import { SciChartSurface } from "scichart";
 
 const divElementId = "chart";
 
@@ -67,8 +68,15 @@ function getGaussianRandom(mean: number, stdDev: number): number {
 
 // REACT COMPONENT
 export default function Bubble3DChart() {
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChart3DSurface>();
+
     React.useEffect(() => {
-        drawExample();
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChart3DSurface);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;

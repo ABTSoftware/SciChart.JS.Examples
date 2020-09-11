@@ -62,11 +62,20 @@ const drawExample = async () => {
                 '<svg width="300" height="100"><g><rect x="0" y="0" width="100%" height="100%" stroke="red" stroke-width="10" fill="orange"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="26" fill="blue">SVG ANNOTATION</text></g></svg>',
         })
     );
+
+    return { sciChartSurface, wasmContext };
 };
 
 export default function AnnotationsAreEasy() {
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+
     React.useEffect(() => {
-        drawExample();
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;

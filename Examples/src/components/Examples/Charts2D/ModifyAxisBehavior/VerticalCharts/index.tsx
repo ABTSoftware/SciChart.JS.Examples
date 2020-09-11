@@ -12,10 +12,6 @@ import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModif
 
 const divElementId2 = "chart2";
 
-const drawExample = async (): Promise<void> => {
-    await drawChart2();
-};
-
 const X_TITLE = "X Axis";
 const Y_TITLE = "Y Axis";
 
@@ -28,7 +24,7 @@ for (let i = 0; i <= 100; i++) {
     yValues.push(Math.sin(x));
 }
 
-const drawChart2 = async () => {
+const drawExample = async () => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId2);
 
     // Setting an XAxis on the Left or Right
@@ -64,11 +60,20 @@ const drawChart2 = async () => {
     sciChartSurface.chartModifiers.add(new RolloverModifier({ isHorizontal: true }));
 
     sciChartSurface.zoomExtents();
+
+    return { wasmContext, sciChartSurface };
 };
 
 export default function VerticalCharts() {
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+
     React.useEffect(() => {
-        drawExample();
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     return <div id={divElementId2} style={{ maxWidth: 900 }} />;

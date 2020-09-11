@@ -50,7 +50,7 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
-    return heatmapDataSeries;
+    return { sciChartSurface, wasmContext, heatmapDataSeries };
 };
 
 // This function generates data for the heatmap series example
@@ -85,9 +85,16 @@ let updateIndex: number = 0;
 
 export default function HeatmapChart() {
     const [heatmapDataSeries, setHeatmapDataSeries] = React.useState<UniformHeatmapDataSeries>();
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
     React.useEffect(() => {
-        drawExample().then((res) => setHeatmapDataSeries(res));
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+            setHeatmapDataSeries(res.heatmapDataSeries);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     const updateChart = () => {

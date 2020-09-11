@@ -1,12 +1,12 @@
 export const code = `
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {TSciChart} from "scichart/types/TSciChart";
+import { SciChartSurface } from "scichart";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { TSciChart } from "scichart/types/TSciChart";
 import {
     EFillPaletteMode,
     EStrokePaletteMode,
@@ -15,13 +15,13 @@ import {
     IStrokePaletteProvider,
     TPointMarkerArgb,
 } from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 
 // tslint:disable:no-empty
 // tslint:disable:max-classes-per-file
@@ -31,71 +31,81 @@ const divElementId = "chart";
 const createLineData = (wasmContext: TSciChart) => {
     const xyDataSeries = new XyDataSeries(wasmContext);
     for (let i = 0; i < 100; i++) {
-        xyDataSeries.append(i, Math.sin(i* 0.1));
+        xyDataSeries.append(i, Math.sin(i * 0.1));
     }
     return xyDataSeries;
-}
+};
 
 const createMountainData = (wasmContext: TSciChart) => {
     const xyDataSeries = new XyDataSeries(wasmContext);
     for (let i = 0; i < 100; i++) {
-        xyDataSeries.append(i, Math.sin(i* 0.1) * Math.sin((i+50)*0.002));
+        xyDataSeries.append(i, Math.sin(i * 0.1) * Math.sin((i + 50) * 0.002));
     }
     return xyDataSeries;
-}
+};
 
 const createScatterData = (wasmContext: TSciChart) => {
     const xyDataSeries = new XyDataSeries(wasmContext);
     for (let i = 0; i < 50; i++) {
-        xyDataSeries.append(i*2, Math.sin((i+50)*0.05));
+        xyDataSeries.append(i * 2, Math.sin((i + 50) * 0.05));
     }
     return xyDataSeries;
-}
+};
 
 const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
     // Create XAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        axisTitle: "X Axis",
-        growBy: new NumberRange(0.1, 0.1),
-    }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            axisTitle: "X Axis",
+            growBy: new NumberRange(0.1, 0.1),
+        })
+    );
 
     // Create YAxis
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        axisTitle: "Right Y Axis",
-        growBy: new NumberRange(0.1, 0.1),
-    }));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            axisTitle: "Right Y Axis",
+            growBy: new NumberRange(0.1, 0.1),
+        })
+    );
 
     // Create a line series with a PaletteProvider. See implementation of LinePaletteProvider below
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        stroke: "White",
-        strokeThickness: 5,
-        dataSeries: createLineData(wasmContext),
-        paletteProvider: new LinePaletteProvider()
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            stroke: "White",
+            strokeThickness: 5,
+            dataSeries: createLineData(wasmContext),
+            paletteProvider: new LinePaletteProvider(),
+        })
+    );
 
     // Create a mountain series with PaletteProvider. See implementation of MountainPaletteProvider below
-    sciChartSurface.renderableSeries.add(new FastMountainRenderableSeries(wasmContext, {
-        stroke: "#B0C4DE",
-        fill: "#B0C4DE55",
-        strokeThickness: 5,
-        dataSeries: createMountainData(wasmContext),
-        paletteProvider: new MountainPaletteProvider()
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastMountainRenderableSeries(wasmContext, {
+            stroke: "#B0C4DE",
+            fill: "#B0C4DE55",
+            strokeThickness: 5,
+            dataSeries: createMountainData(wasmContext),
+            paletteProvider: new MountainPaletteProvider(),
+        })
+    );
 
     // Create a Scatter series with PaletteProvider. See implementation of ScatterPaletteProvider below
-    sciChartSurface.renderableSeries.add(new XyScatterRenderableSeries(wasmContext, {
-        dataSeries: createScatterData(wasmContext),
-        pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 7,
-            height: 7,
-            strokeThickness: 1,
-            fill: "#FF6600",
-            stroke: "white",
-        }),
-        paletteProvider: new ScatterPaletteProvider()
-    }))
+    sciChartSurface.renderableSeries.add(
+        new XyScatterRenderableSeries(wasmContext, {
+            dataSeries: createScatterData(wasmContext),
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 7,
+                height: 7,
+                strokeThickness: 1,
+                fill: "#FF6600",
+                stroke: "white",
+            }),
+            paletteProvider: new ScatterPaletteProvider(),
+        })
+    );
 
     // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
@@ -103,15 +113,9 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
 
     sciChartSurface.zoomExtents();
+
+    return { sciChartSurface, wasmContext };
 };
-
-export default function StylingInCode() {
-    React.useEffect(() => {
-        drawExample();
-    }, []);
-
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
-}
 
 /**
  * An example PaletteProvider which implements IStrokePaletteProvider.
@@ -123,8 +127,8 @@ class LinePaletteProvider implements IStrokePaletteProvider {
      */
     readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
 
-    onAttached(parentSeries: IRenderableSeries): void { }
-    onDetached(): void { }
+    onAttached(parentSeries: IRenderableSeries): void {}
+    onDetached(): void {}
 
     /**
      * Called by SciChart and may be used to override the color of a line segment or
@@ -164,8 +168,8 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
      */
     public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.GRADIENT;
 
-    onAttached(parentSeries: IRenderableSeries): void { }
-    onDetached(): void { }
+    onAttached(parentSeries: IRenderableSeries): void {}
+    onDetached(): void {}
     /**
      * Called by SciChart and may be used to override the color of filled polygon in various chart types.
      * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
@@ -188,21 +192,34 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
 
 class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
     readonly strokePaletteMode: EStrokePaletteMode;
-    onAttached(parentSeries: IRenderableSeries): void {
-    }
+    onAttached(parentSeries: IRenderableSeries): void {}
 
-    onDetached(): void {
-    }
+    onDetached(): void {}
 
     overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
         if (index > 25) {
             return {
                 fill: parseColorToUIntArgb("Red"),
-                stroke: parseColorToUIntArgb("Blue")
-            }
+                stroke: parseColorToUIntArgb("Blue"),
+            };
         }
         return undefined;
     }
+}
+
+export default function StylingInCode() {
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+
+    React.useEffect(() => {
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
+    }, []);
+
+    return <div id={divElementId} style={{ maxWidth: 900 }} />;
 }
 
 `;

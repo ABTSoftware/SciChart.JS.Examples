@@ -242,17 +242,21 @@ export default function VitalSignsMonitorDemo() {
     const [infoBloodPressure2, setInfoBloodPressure2] = React.useState<number>(0);
     const [infoBloodVolume, setInfoBloodVolume] = React.useState<number>(0);
     const [infoBloodOxygenation, setInfoBloodOxygenation] = React.useState<number>(0);
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
     React.useEffect(() => {
-        drawExample().then((webAssemblyChart) => {
-            const { sciChartSurface } = webAssemblyChart;
-            setDataSeries1(sciChartSurface.renderableSeries.get(0).dataSeries as XyDataSeries);
-            setDataSeries2(sciChartSurface.renderableSeries.get(1).dataSeries as XyDataSeries);
-            setDataSeries3(sciChartSurface.renderableSeries.get(2).dataSeries as XyDataSeries);
-            setDataSeries4(sciChartSurface.renderableSeries.get(3).dataSeries as XyDataSeries);
-            setLeadingDotDataSeries(sciChartSurface.renderableSeries.get(4).dataSeries as XyDataSeries);
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+            setDataSeries1(res.sciChartSurface.renderableSeries.get(0).dataSeries as XyDataSeries);
+            setDataSeries2(res.sciChartSurface.renderableSeries.get(1).dataSeries as XyDataSeries);
+            setDataSeries3(res.sciChartSurface.renderableSeries.get(2).dataSeries as XyDataSeries);
+            setDataSeries4(res.sciChartSurface.renderableSeries.get(3).dataSeries as XyDataSeries);
+            setLeadingDotDataSeries(res.sciChartSurface.renderableSeries.get(4).dataSeries as XyDataSeries);
             setShowButtons(true);
-        });
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
     }, []);
 
     const runUpdateDataOnTimeout = () => {
