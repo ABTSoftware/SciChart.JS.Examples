@@ -72,6 +72,9 @@ import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes
 
 import Load500By500 from "../Examples/FeaturedApps/PerformanceDemos/Load500By500";
 import { load500By500ExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/Load500By500/exampleInfo";
+import RealtimePerformanceDemo from "../Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo";
+import { realtimePerformanceDemoExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo/exampleInfo";
+
 import VitalSignsMonitorDemo from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo";
 import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/exampleInfo";
 import {surfaceMesh3DChartExampleInfo} from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/exampleInfo";
@@ -257,6 +260,11 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: Load500By500,
         ...load500By500ExampleInfo,
     },
+    featuredApps_performanceDemos_RealtimePerformanceDemo: {
+        id: "featuredApps_performanceDemos_RealtimePerformanceDemo",
+        Component: RealtimePerformanceDemo,
+        ...realtimePerformanceDemoExampleInfo,
+    },
     featuredApps_medicalCharts_VitalSignsMonitorDemo: {
         id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
         Component: VitalSignsMonitorDemo,
@@ -356,7 +364,10 @@ export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
 export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     {
         item: { id: "featuredApps_performanceDemos", name: "Performance Demos" },
-        submenu: [EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500],
+        submenu: [
+            EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500,
+            EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo
+        ],
     },
     {
         item: { id: "featuredApps_medicalCharts", name: "Medical Charts" },

@@ -2,10 +2,11 @@ import {IXyValues} from "./ExampleDataProvider";
 
 export class RandomWalkGenerator {
     private readonly bias: number;
-    private last: number = 0;
-    private i: number = 0;
+    private last: number;
+    private i: number;
     constructor(bias: number = 0.01) {
         this.bias = bias;
+        this.reset();
     }
 
     public reset(){
@@ -20,6 +21,7 @@ export class RandomWalkGenerator {
             const next: number = this.last + (Math.random() - 0.5 + this.bias);
             xValues.push(this.i++);
             yValues.push(next);
+            this.last = next;
         }
 
         return {xValues, yValues};

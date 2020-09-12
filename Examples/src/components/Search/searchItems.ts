@@ -135,6 +135,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500.path,
     },
     {
+        title: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.title,
+        link: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.path,
+    },
+    {
         title: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.title,
         link: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.path,
     },
