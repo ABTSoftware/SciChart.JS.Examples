@@ -1,217 +1,142 @@
 export const code = `
 import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
-import { convertRgbToHexColor } from "scichart/utils/convertColor";
-import { AlertTitle } from "@material-ui/lab";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { Button, ButtonGroup, FormControl } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {EAutoRange} from "scichart/types/AutoRange";
+import {RandomWalkGenerator} from "../../../RandomWalkGenerator";
+import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";
+import {EDragMode} from "scichart/types/DragMode";
+import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+
+const AMPLITUDE = 200;
 
 const divElementId = "chart";
 
-type TTimeSpan = {
-    title: string;
-    durationMs: number;
-};
+const drawExample = async () => {
+    // Define some constants
+    const numberOfPointsPerTimerTick = 1000; // 1,000 points every timer tick
+    const timerInterval = 10; // timer tick every 10 milliseconds
+    const maxPoints = 1E6; // max points for a single series before the demo stops
 
-const SERIES = 500;
-const POINTS = 500;
+    // Create a SciChartSurface
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 142,
-        },
-        notificationsBlock: {
-            flexBasis: 320,
-            flexGrow: 0,
-            flexShrink: 0,
-            marginLeft: 24,
-        },
-        notification: {
-            marginBottom: 16,
-        },
-        description: {
-            width: 800,
-            marginBottom: 20,
-        },
-    })
-);
-
-const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, 3, 2);
-    const xAxis = new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(0, POINTS),
-        autoRange: EAutoRange.Never,
-    });
-    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    // Create an XAxis and YAxis
+    const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always});
     sciChartSurface.xAxes.add(xAxis);
-    const yAxis = new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(-5000, 5000),
-        autoRange: EAutoRange.Never,
-    });
-    yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    const yAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always});
     sciChartSurface.yAxes.add(yAxis);
 
-    const dataSeriesArray: XyDataSeries[] = new Array<XyDataSeries>(SERIES);
-    const rendSeriesArray: FastLineRenderableSeries[] = new Array<FastLineRenderableSeries>(SERIES);
-    for (let i = 0; i < SERIES; i++) {
-        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext);
-        const rendSeries: FastLineRenderableSeries = new FastLineRenderableSeries(wasmContext, {
-            dataSeries,
+    // Create some DataSeries
+    const dataSeries: XyDataSeries[] = [
+        new XyDataSeries(wasmContext),
+        new XyDataSeries(wasmContext),
+        new XyDataSeries(wasmContext),
+    ];
+
+    const seriesColors = [
+        "#4083B7",
+        "#FFA500",
+        "#E13219"
+    ]
+
+    // Create some FastLineRenderableSeries bound to each dataSeries and add to the chart
+    dataSeries.map((ds, index) => {
+        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+            dataSeries: ds,
             strokeThickness: 2,
-        });
+            stroke: seriesColors[index],
+        }));
+    });
 
-        dataSeriesArray[i] = dataSeries;
-        rendSeriesArray[i] = rendSeries;
+    // Add some interactivity modifiers. These are only operational when the demo is paused
+    // as interactivity conflicts with AutoRange.Always
+    sciChartSurface.chartModifiers.add(new RubberBandXyZoomModifier(),
+        new MouseWheelZoomModifier(),
+        new XAxisDragModifier({ dragMode: EDragMode.Panning }),
+        new YAxisDragModifier({ dragMode: EDragMode.Panning }),
+        new ZoomExtentsModifier());
 
-        sciChartSurface.renderableSeries.add(rendSeries);
-    }
+    // This class generates some data for our example
+    // It generates a random walk, which is a line which increases or decreases by a random value
+    // each data-point
+    const randomWalkGenerators = [1,2,3].map(_ => { return new RandomWalkGenerator(0);} );
 
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+    let timerId: NodeJS.Timeout;
 
-    // Buttons for chart
-    const loadPoints = () => {
-        const newTimeSpans: TTimeSpan[] = [];
-
-        // Start counting Points generation time
-        const generateTimestamp = Date.now();
-
-        const xValuesArray: number[][] = new Array<number[]>(SERIES);
-        const yValuesArray: number[][] = new Array<number[]>(SERIES);
-        const strokeArray: string[] = new Array<string>(SERIES);
-        for (let i = 0; i < SERIES; i++) {
-            // Allocate data arrays
-            xValuesArray[i] = new Array<number>(POINTS);
-            yValuesArray[i] = new Array<number>(POINTS);
-
-            // Clear data, if any
-            dataSeriesArray[i].clear();
-
-            // Generate stroke
-            const r = Math.random();
-            const g = Math.random();
-            const b = Math.random();
-            strokeArray[i] = convertRgbToHexColor(r, g, b);
-
-            // Generate points
-            let prevYValue = 0;
-            for (let j = 0; j < POINTS; j++) {
-                const curYValue = Math.random() * 10 - 5;
-
-                xValuesArray[i][j] = j;
-                yValuesArray[i][j] = prevYValue + curYValue;
-
-                prevYValue += curYValue;
-            }
-        }
-
-        // Add the first time span: Generating 1M data points
-        newTimeSpans.push({
-            title: "Generate 500x500 Data Points",
-            durationMs: Date.now() - generateTimestamp,
-        });
-
-        // Start counting batch append time
-        const appendTimestamp = Date.now();
-        for (let i = 0; i < SERIES; i++) {
-            dataSeriesArray[i].appendRange(xValuesArray[i], yValuesArray[i]);
-            rendSeriesArray[i].stroke = strokeArray[i];
-        }
-
-        // Add the second time span: Generation of data point
-        newTimeSpans.push({
-            title: "Append 500x500 Data Points",
-            durationMs: Date.now() - appendTimestamp,
-        });
-
-        // Subscribe to sciChartSurface.rendered event,
-        // and calculate time duration between the append and
-        // the first frame after it
-        const firstFrameTimestamp = Date.now();
-        let frameIndex: number = 0;
-        let nextFramesTimestamp: number;
-        const handler = () => {
-            if (frameIndex === 0) {
-                // Add the third time span: Render the first frame
-                newTimeSpans.push({
-                    title: "Render the frame",
-                    durationMs: Date.now() - firstFrameTimestamp,
-                });
-                nextFramesTimestamp = Date.now();
-            } else {
-                // Unsubscribe from sciChartSurface.rendered
-                updateTimeSpans(newTimeSpans);
-                sciChartSurface.rendered.unsubscribe(handler);
-
-                // Zoom extents at the end of performance measurement
-                sciChartSurface.zoomExtents();
-            }
-            setTimeout(sciChartSurface.invalidateElement, 0);
-            // Increment frame index
-            frameIndex++;
-        };
-        sciChartSurface.rendered.subscribe(handler);
+    // Function called when the user clicks stopDemo button
+    const stopDemo = () => {
+        clearTimeout(timerId);
+        timerId = undefined;
+        randomWalkGenerators.forEach(rw => rw.reset());
+        // Disable autoranging on X when the demo is paused. This allows zooming and panning
+        xAxis.autoRange = EAutoRange.Once;
     };
+    document.getElementById("stopDemo").addEventListener("click", stopDemo);
 
-    document.getElementById("loadPoints").addEventListener("click", loadPoints);
+    // Function called when the user clicks startDemo button
+    const startDemo = () => {
+        // // tslint:disable-next-line:no-debugger
+        // debugger;
+        if (!timerId) {
+            const updateFunc = () => {
+                if (dataSeries[0].count() >= maxPoints) {
+                    stopDemo();
+                    return;
+                }
+
+                randomWalkGenerators.forEach((randomWalk, index) => {
+                    // Get the next N random walk x,y values
+                    const {xValues, yValues} = randomWalk.getRandomWalkSeries(numberOfPointsPerTimerTick);
+
+                    // Append these to the dataSeries. This will cause the chart to redraw
+                    dataSeries[index].appendRange(xValues, yValues);
+                });
+
+                timerId = setTimeout(updateFunc, timerInterval);
+            };
+
+            // Enable autoranging on X when running the demo
+            xAxis.autoRange = EAutoRange.Always;
+
+            timerId = setTimeout(updateFunc, timerInterval);
+        }
+    };
+    document.getElementById("startDemo").addEventListener("click", startDemo);
+
 
     return { wasmContext, sciChartSurface };
 };
 
-export default function Load500By500() {
-    const classes = useStyles();
-    const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
+export default function RealtimePerformanceDemo() {
+    const [showButtons, setShowButtons] = React.useState(false);
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
     React.useEffect(() => {
         (async () => {
-            const res = await drawExample((newTimeSpans: TTimeSpan[]) => {
-                setTimeSpans([...newTimeSpans]);
-            });
+            const res = await drawExample();
             setSciChartSurface(res.sciChartSurface);
+            setShowButtons(true);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => sciChartSurface?.delete();
     }, []);
 
     return (
-        <div>
-            <div style={{ display: "flex", maxWidth: 1200 }}>
-                <div id={divElementId} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }} />
-                <div className={classes.notificationsBlock}>
-                    {timeSpans.length > 0 && (
-                        <Alert key="0" severity="info" className={classes.notification}>
-                            {timeSpans.map((ts, index) => (
-                                <div key={index}>
-                                    <AlertTitle>{ts.title}</AlertTitle>
-                                    Time: {ts.durationMs.toFixed(0)} ms
-                                </div>
-                            ))}
-                        </Alert>
-                    )}
-                </div>
+        <React.Fragment>
+            <div id={divElementId} style={{ maxWidth: 900 }} />
+            <div style={{ marginTop: 20, display: showButtons ? "block" : "none" }}>
+                <button id="startDemo">Start</button>
+                <button id="stopDemo" style={{ marginLeft: 10 }}>
+                    Stop
+                </button>
             </div>
-            <div>
-                <div>
-                    <FormControl className={classes.formControl}>
-                        <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                            <Button id="loadPoints">Load</Button>
-                        </ButtonGroup>
-                    </FormControl>
-                </div>
-            </div>
-        </div>
+        </React.Fragment>
     );
 }
 

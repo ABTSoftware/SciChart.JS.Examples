@@ -54,10 +54,11 @@ const drawExample = async () => {
     });
 
     // Add some interactivity modifiers. These are only operational when the demo is paused
+    // as interactivity conflicts with AutoRange.Always
     sciChartSurface.chartModifiers.add(new RubberBandXyZoomModifier(),
         new MouseWheelZoomModifier(),
-        new XAxisDragModifier({ dragMode: EDragMode.Panning}),
-        new YAxisDragModifier({dragMode: EDragMode.Panning}),
+        new XAxisDragModifier({ dragMode: EDragMode.Panning }),
+        new YAxisDragModifier({ dragMode: EDragMode.Panning }),
         new ZoomExtentsModifier());
 
     // This class generates some data for our example
@@ -72,6 +73,7 @@ const drawExample = async () => {
         clearTimeout(timerId);
         timerId = undefined;
         randomWalkGenerators.forEach(rw => rw.reset());
+        // Disable autoranging on X when the demo is paused. This allows zooming and panning
         xAxis.autoRange = EAutoRange.Once;
     };
     document.getElementById("stopDemo").addEventListener("click", stopDemo);
@@ -98,6 +100,7 @@ const drawExample = async () => {
                 timerId = setTimeout(updateFunc, timerInterval);
             };
 
+            // Enable autoranging on X when running the demo
             xAxis.autoRange = EAutoRange.Always;
 
             timerId = setTimeout(updateFunc, timerInterval);
