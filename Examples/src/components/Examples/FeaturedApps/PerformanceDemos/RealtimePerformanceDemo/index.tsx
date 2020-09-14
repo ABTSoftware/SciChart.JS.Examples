@@ -103,6 +103,8 @@ const drawExample = async () => {
             // Enable autoranging on X when running the demo
             xAxis.autoRange = EAutoRange.Always;
 
+            dataSeries.forEach(ds => ds.clear());
+
             timerId = setTimeout(updateFunc, timerInterval);
         }
     };
