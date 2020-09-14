@@ -84,7 +84,7 @@ export type TExampleInfo = {
     title: string;
     path: string;
     subtitle: string;
-    description: string;
+    description: (() => JSX.Element);
     code: string;
     githubUrl: string;
 };

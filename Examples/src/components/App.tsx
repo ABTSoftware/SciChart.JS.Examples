@@ -15,7 +15,7 @@ import Description from "./Description/Description";
 import GettingStarted from "./GettingStarted/GettingStarted";
 import SourceCode from "./SourceCode/SourceCode";
 // tslint:disable-next-line:no-var-requires
-const APP_VERSION = require('../../package.json').dependencies.scichart;
+const APP_VERSION = require("../../package.json").dependencies.scichart;
 
 const drawerWidth = 240;
 
@@ -88,7 +88,7 @@ export default function App() {
     const currentExampleId = currentExample?.id;
     const titleText = currentExample ? currentExample.title : HOME_PAGE_TITLE;
     const subtitleText = currentExample ? currentExample.subtitle : "";
-    const descriptionText = currentExample ? currentExample.description : "";
+    const DescComponent: () => JSX.Element = currentExample?.description;
     const codeStr = currentExample ? currentExample.code : "";
     const githubUrl = currentExample ? currentExample.githubUrl : "";
 
@@ -153,10 +153,10 @@ export default function App() {
                         {currentExample && <SourceCode code={codeStr} githubUrl={githubUrl} />}
                     </div>
                     <div className={classes.colDescription}>
-                        {descriptionText && (
+                        {DescComponent && (
                             <div className={classes.description}>
                                 <Description>
-                                    <div>{descriptionText}</div>
+                                    <DescComponent />
                                 </Description>
                             </div>
                         )}
