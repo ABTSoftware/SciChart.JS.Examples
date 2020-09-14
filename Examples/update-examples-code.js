@@ -22,7 +22,11 @@ async function getFiles(pathUrl) {
     return files;
 }
 
-function updateExample(targetFileDir, srcText) {
+function updateExample(targetFileDir, srcText, platform) {
+    if (!["win32", "darwin"].includes(platform)) {
+        throw Error(`Platform ${platform} is not supported. Please run this script on Windows or macOS`);
+    }
+    const isWindows = platform === "win32";
     const targetFileSrc = path.join(targetFileDir, "GENERATED_SRC.ts");
     fs.writeFileSync(
         targetFileSrc,
@@ -33,8 +37,12 @@ ${srcText}
     );
 
     const targetFileGithubUrl = path.join(targetFileDir, "GENERATED_GITHUB_URL.ts");
-    const position = targetFileDir.search("/components/Examples");
-    const githubUrl = targetFileDir.substring(position) + "/index.tsx";
+    const targetFileDirUnix = isWindows ? targetFileDir.replace(/\\/g, "/") : targetFileDir;
+    if (isWindows) {
+        const targetFileDirUnix = targetFileDir.replace(/\\/g, "/");
+    }
+    const position = targetFileDirUnix.search("/components/Examples");
+    const githubUrl = targetFileDirUnix.substring(position) + "/index.tsx";
     fs.writeFileSync(targetFileGithubUrl, `export const githubUrl = "${githubUrl}";`);
 }
 
@@ -42,8 +50,9 @@ ${srcText}
     const examplesPath = path.join(__dirname, "src", "components", "Examples");
     const files = await getFiles(examplesPath);
     const srcFiles = files.filter((f) => f.fileName === "index.tsx");
+    const platform = process.platform;
     srcFiles.forEach((f) => {
         const srcText = fs.readFileSync(f.filePath, "utf-8");
-        updateExample(f.fileDir, srcText);
+        updateExample(f.fileDir, srcText, platform);
     });
 })();

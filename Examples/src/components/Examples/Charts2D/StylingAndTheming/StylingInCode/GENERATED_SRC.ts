@@ -37,12 +37,12 @@ const drawExample = async () => {
             },
             majorTickLineStyle: {
                 strokeThickness: 1,
-                color: "#ADFF2F",
+                color: "Blue",
                 tickSize: 8,
             },
             minorTickLineStyle: {
                 strokeThickness: 1,
-                color: "#EE82EE",
+                color: "Red",
                 tickSize: 4,
             },
             labelStyle: {
