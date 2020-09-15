@@ -9,10 +9,10 @@ import {FastCandlestickRenderableSeries} from "scichart/Charting/Visuals/Rendera
 import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
 import {CategoryAxis} from "scichart/Charting/Visuals/Axis/CategoryAxis";
 import {NumberRange} from "scichart/Core/NumberRange";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 import {ENumericFormat} from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import {CustomAnnotation} from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 
 const divElementId = "chart";
 
@@ -37,11 +37,17 @@ const drawExample = async () => {
 
     // Add some trades to the chart using the Annotations API
     for (let i = 0; i < dateValues.length; i++) {
+        // Every 10th bar, add a buy annotation
         if (i % 10 === 0) {
             sciChartSurface.annotations.add(buyMarkerAnnotation(i, lowValues[i]));
         }
+        // Every 10th bar between buys, add a sell annotation
         if ((i + 5) % 10 === 0) {
             sciChartSurface.annotations.add(sellMarkerAnnotation(i, highValues[i]));
+        }
+        // Every 25th bar, add a news bullet
+        if (i % 25 === 0) {
+            sciChartSurface.annotations.add(newsBulletAnnotation(i));
         }
     }
 
@@ -54,6 +60,7 @@ const drawExample = async () => {
 };
 
 // Returns a CustomAnnotation that represents a buy marker arrow
+// The CustomAnnotation supports SVG as content. Using Inkscape or similar you can create SVG content for annotations
 const buyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
     return new CustomAnnotation({
         x1,
@@ -74,6 +81,7 @@ const buyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
 };
 
 // Returns a CustomAnnotation that represents a sell marker arrow
+// The CustomAnnotation supports SVG as content. Using Inkscape or similar you can create SVG content for annotations
 const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
     return new CustomAnnotation({
         x1,
@@ -91,6 +99,28 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
             '</svg>' +
             '</svg>'
     });
+};
+
+const newsBulletAnnotation = (x1: number): CustomAnnotation => {
+    return new CustomAnnotation(
+        {
+            x1,
+            y1: 0.99, // using YCoordinateMode.Relative and 0.99, places the annotation at the bottom of the viewport
+            yCoordinateMode: ECoordinateMode.Relative,
+            verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            svgString:
+                '<svg>' +
+                '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
+                '<g transform="translate(-54.616083,-75.548914)">' +
+                '<path style="fill:#b22020;fill-opacity:0.34117648;stroke:#990000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
+                'd="m 55.47431,87.025547 c 7.158904,7.408333 7.158904,7.408333 7.158904,7.408333 L 69.79212,87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"' +
+                '/>' +
+                '</g>' +
+                '</svg>' +
+                '</svg>'
+        }
+    )
 };
 
 export default function TradeMarkers() {
