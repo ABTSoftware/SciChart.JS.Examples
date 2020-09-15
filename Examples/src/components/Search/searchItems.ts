@@ -142,4 +142,8 @@ export const searchItems: TSearchItem[] = [
         title: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.title,
         link: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.path,
     },
+    {
+        title: EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.title,
+        link: EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.path,
+    },
 ];

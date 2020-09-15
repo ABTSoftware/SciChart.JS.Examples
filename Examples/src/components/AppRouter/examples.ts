@@ -80,6 +80,10 @@ import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/Medic
 import {surfaceMesh3DChartExampleInfo} from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/exampleInfo";
 import SurfaceMesh3DChart from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart";
 
+import LiDAR3DPointCloudDemo from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo";
+import {lidar3DPointCloudExampleInfo }  from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/exampleInfo";
+
+
 export type TExampleInfo = {
     title: string;
     path: string;
@@ -270,6 +274,11 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: VitalSignsMonitorDemo,
         ...vitalSignsMonitorDemoExampleInfo,
     },
+    featuredApps_scientificCharts_Lidar3DPointCloudDemo: {
+        id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",
+        Component: LiDAR3DPointCloudDemo,
+        ...lidar3DPointCloudExampleInfo,
+    },
 };
 
 export const MENU_ITEMS_2D_ID = "MENU_ITEMS_2D_ID";
@@ -368,6 +377,10 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500,
             EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo
         ],
+    },
+    {
+        item: { id: "featuredApps_scientificCharts", name: "Scientific Charts" },
+        submenu: [EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo],
     },
     {
         item: { id: "featuredApps_medicalCharts", name: "Medical Charts" },
