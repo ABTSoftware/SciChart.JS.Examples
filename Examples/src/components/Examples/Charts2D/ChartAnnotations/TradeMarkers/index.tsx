@@ -12,8 +12,12 @@ import {NumberRange} from "scichart/Core/NumberRange";
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 import {ENumericFormat} from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
+import {CustomAnnotation} from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 
 const divElementId = "chart";
+
+// tslint:disable:no-empty
+// tslint:disable:max-line-length
 
 const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
@@ -31,26 +35,13 @@ const drawExample = async () => {
         })
     }));
 
-    // Add some trades to the chart
-    // We randomly generate these
+    // Add some trades to the chart using the Annotations API
     for (let i = 0; i < dateValues.length; i++) {
         if (i % 10 === 0) {
-            sciChartSurface.annotations.add(new TextAnnotation({
-                text: "BUY",
-                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-                verticalAnchorPoint: EVerticalAnchorPoint.Top,
-                x1: i,
-                y1: lowValues[i],
-            }))
+            sciChartSurface.annotations.add(buyMarkerAnnotation(i, lowValues[i]));
         }
         if ((i + 5) % 10 === 0) {
-            sciChartSurface.annotations.add(new TextAnnotation({
-                text: "SELL",
-                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-                verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
-                x1: i,
-                y1: highValues[i],
-            }))
+            sciChartSurface.annotations.add(sellMarkerAnnotation(i, highValues[i]));
         }
     }
 
@@ -60,6 +51,46 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     return { sciChartSurface, wasmContext };
+};
+
+// Returns a CustomAnnotation that represents a buy marker arrow
+const buyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
+    return new CustomAnnotation({
+        x1,
+        y1,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        svgString:
+            '<svg>' +
+            '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
+            '<g transform="translate(-53.867218,-75.091687)">' +
+            '<path style="fill:#1cb61c;fill-opacity:0.34117647;stroke:#00b400;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
+            'd="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,-7.408333 7.158904,-7.408333 l 7.158906,7.408333 H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"' +
+            '/>' +
+            '</g>' +
+            '</svg>' +
+            '</svg>'
+    });
+};
+
+// Returns a CustomAnnotation that represents a sell marker arrow
+const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
+    return new CustomAnnotation({
+        x1,
+        y1,
+        verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        svgString:
+            '<svg>' +
+            '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
+            '<g transform="translate(-54.616083,-75.548914)">' +
+            '<path style="fill:#b22020;fill-opacity:0.34117648;stroke:#990000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
+            'd="m 55.47431,87.025547 c 7.158904,7.408333 7.158904,7.408333 7.158904,7.408333 L 69.79212,87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"' +
+            '/>' +
+            '</g>' +
+            '</svg>' +
+            '</svg>'
+    });
 };
 
 export default function TradeMarkers() {
