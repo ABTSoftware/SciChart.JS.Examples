@@ -1,13 +1,16 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
-import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {LineAnnotation} from "scichart/Charting/Visuals/Annotations/LineAnnotation";
+import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
+import {CustomAnnotation} from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 
 const divElementId = "chart";
 
@@ -60,6 +63,15 @@ const drawExample = async () => {
             y1: 2.5,
             svgString:
                 '<svg width="300" height="100"><g><rect x="0" y="0" width="100%" height="100%" stroke="red" stroke-width="10" fill="orange"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="26" fill="blue">SVG ANNOTATION</text></g></svg>',
+        }),
+        new TextAnnotation({
+            x1: 0.5,
+            y1: 0.5,
+            xCoordinateMode: ECoordinateMode.DataValue,
+            yCoordinateMode: ECoordinateMode.DataValue,
+            text: "Hello!",
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center
         })
     );
 
