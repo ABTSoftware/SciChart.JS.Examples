@@ -4,7 +4,7 @@ import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {EAutoRange} from "scichart/types/AutoRange";
-import {RandomWalkGenerator} from "../../../RandomWalkGenerator";
+import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
 import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";

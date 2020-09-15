@@ -1,6 +1,17 @@
+import {multiPaneData} from "./multiPaneData";
+
 export interface IXyValues {
     xValues: number[];
     yValues: number[];
+}
+
+export interface IOhlcvValues {
+    dateValues: number[];
+    openValues: number[];
+    highValues: number[];
+    lowValues: number[];
+    closeValues: number[];
+    volumeValues: number[];
 }
 
 /**
@@ -61,5 +72,22 @@ export class ExampleDataProvider {
         }
 
         return { xValues, yValues };
+    }
+
+    public static getTradingData(maxPoints?: number): IOhlcvValues {
+        const {dateValues, openValues, highValues, lowValues, closeValues, volumeValues} = multiPaneData;
+
+        if (maxPoints !== undefined) {
+            return {
+                dateValues: dateValues.slice(0, maxPoints),
+                openValues: openValues.slice(0, maxPoints),
+                highValues: highValues.slice(0, maxPoints),
+                lowValues: lowValues.slice(0, maxPoints),
+                closeValues: closeValues.slice(0, maxPoints),
+                volumeValues: volumeValues.slice(0, maxPoints),
+            };
+        }
+
+        return {dateValues, openValues, highValues, lowValues, closeValues, volumeValues};
     }
 }

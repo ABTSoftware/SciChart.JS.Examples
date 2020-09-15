@@ -1,4 +1,4 @@
-import {RandomWalkGenerator} from "../../../RandomWalkGenerator";
+import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
 
 export type TVarPoint = {
     date: number;

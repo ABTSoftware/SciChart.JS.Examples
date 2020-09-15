@@ -21,7 +21,7 @@ import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { EXyDirection } from "scichart/types/XyDirection";
 import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
-import { multiPaneData } from "./data/multiPaneData";
+import { multiPaneData } from "../../../ExampleData/multiPaneData";
 import {
     EFillPaletteMode,
     EStrokePaletteMode,
@@ -31,9 +31,11 @@ import {
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
+import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
 
 // tslint:disable:no-empty
 // tslint:disable:max-classes-per-file
+// tslint:disable:max-line-length
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
@@ -41,7 +43,8 @@ const divElementId3 = "cc_chart_3_3";
 
 const drawExample = async () => {
     const verticalGroup = new SciChartVerticalGroup();
-    const { dateValues: xValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
+    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } =
+        ExampleDataProvider.getTradingData();
     const darkTheme = new SciChartJSDarkTheme();
 
     let chart1XAxis: CategoryAxis;
@@ -69,7 +72,7 @@ const drawExample = async () => {
         // OHLC DATA SERIES
         const usdDataSeries = new OhlcDataSeries(wasmContext, {
             dataSeriesName: "OHLC Close",
-            xValues,
+            xValues: dateValues,
             openValues,
             highValues,
             lowValues,
@@ -83,8 +86,8 @@ const drawExample = async () => {
 
         // MA1 SERIES
         const maLowDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "MA 50 Low" });
-        for (let i = 0; i < xValues.length; i++) {
-            const xValue = xValues[i];
+        for (let i = 0; i < dateValues.length; i++) {
+            const xValue = dateValues[i];
             const avr50 = calcAverageForDoubleVector(usdDataSeries.getNativeLowValues(), 50, i);
             maLowDataSeries.append(xValue, avr50);
         }
@@ -97,8 +100,8 @@ const drawExample = async () => {
 
         // MA2 SERIES
         const maHighDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "MA 200 High" });
-        for (let i = 0; i < xValues.length; i++) {
-            const xValue = xValues[i];
+        for (let i = 0; i < dateValues.length; i++) {
+            const xValue = dateValues[i];
             const avr200 = calcAverageForDoubleVector(usdDataSeries.getNativeHighValues(), 200, i);
             maHighDataSeries.append(xValue, avr200);
         }
@@ -120,7 +123,7 @@ const drawExample = async () => {
 
         const volumeRenderableSeries = new FastColumnRenderableSeries(wasmContext, {
             yAxisId: "yAxis2",
-            dataSeries: new XyDataSeries(wasmContext, { dataSeriesName: "Volume", xValues, yValues: volumeValues }),
+            dataSeries: new XyDataSeries(wasmContext, { dataSeriesName: "Volume", xValues: dateValues, yValues: volumeValues }),
             dataPointWidth: 0.5,
             strokeThickness: 1,
             paletteProvider: new VolumePaletteProvider(usdDataSeries, "#50FF50B2", "#FF5050B2"),
@@ -162,7 +165,7 @@ const drawExample = async () => {
         const macdArray: number[] = [];
         const signalArray: number[] = [];
         const divergenceArray: number[] = [];
-        for (let i = 0; i < xValues.length; i++) {
+        for (let i = 0; i < dateValues.length; i++) {
             const maSlow = calcAverageForArray(closeValues, 12, i);
             const maFast = calcAverageForArray(closeValues, 25, i);
             const macd = maSlow - maFast;
@@ -176,7 +179,7 @@ const drawExample = async () => {
         const bandSeries = new FastBandRenderableSeries(wasmContext, {
             dataSeries: new XyyDataSeries(wasmContext, {
                 dataSeriesName: "MACD",
-                xValues,
+                xValues: dateValues,
                 yValues: signalArray,
                 y1Values: macdArray,
             }),
@@ -186,7 +189,7 @@ const drawExample = async () => {
         const columnSeries = new FastColumnRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 dataSeriesName: "Divergence",
-                xValues,
+                xValues: dateValues,
                 yValues: divergenceArray,
             }),
             paletteProvider: new MacdHistogramPaletteProvider("#50FF50B2", "#FF5050B2"),
@@ -233,7 +236,7 @@ const drawExample = async () => {
         rsiArray.push(NaN);
         gainArray.push(NaN);
         lossArray.push(NaN);
-        for (let i = 1; i < xValues.length; i++) {
+        for (let i = 1; i < dateValues.length; i++) {
             const previousClose = closeValues[i - 1];
             const currentClose = closeValues[i];
             const gain = currentClose > previousClose ? currentClose - previousClose : 0;
@@ -246,7 +249,7 @@ const drawExample = async () => {
             rsiArray.push(rsi);
         }
         const macdRenderableSeries = new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { dataSeriesName: "RSI", xValues, yValues: rsiArray }),
+            dataSeries: new XyDataSeries(wasmContext, { dataSeriesName: "RSI", xValues: dateValues, yValues: rsiArray }),
         });
         sciChartSurface.renderableSeries.add(macdRenderableSeries);
         macdRenderableSeries.stroke = "#c3e4fe";

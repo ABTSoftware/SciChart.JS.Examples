@@ -23,6 +23,8 @@ import { scatterChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/Sc
 
 import AnnotationsAreEasy from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy";
 import { annotationsAreEasyExampleInfo } from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/exampleInfo";
+import TradeMarkers from "../Examples/Charts2D/ChartAnnotations/TradeMarkers";
+import { tradeMarkerAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/TradeMarkers/exampleInfo";
 
 import DonutChart from "../Examples/Charts2D/CreateGaugeCharts/DonutChart";
 import { donutChartExampleInfo } from "../Examples/Charts2D/CreateGaugeCharts/DonutChart/exampleInfo";
@@ -158,6 +160,11 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         id: "chart2D_chartAnnotations_AnnotationsAreEasy",
         Component: AnnotationsAreEasy,
         ...annotationsAreEasyExampleInfo,
+    },
+    chart2D_chartAnnotations_TradeMarkers: {
+        id: "chart2D_chartAnnotations_TradeMarkers",
+        Component: TradeMarkers,
+        ...tradeMarkerAnnotationsExampleInfo,
     },
     chart2D_createGaugeCharts_DonutChart: {
         id: "chart2D_createGaugeCharts_DonutChart",
@@ -300,7 +307,10 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
     },
     {
         item: { id: "chart2D_chartAnnotations", name: "Chart Annotations" },
-        submenu: [EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy],
+        submenu: [
+            EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers
+        ],
     },
     {
         item: { id: "chart2D_createRealtimeCharts", name: "Create Realtime Charts" },

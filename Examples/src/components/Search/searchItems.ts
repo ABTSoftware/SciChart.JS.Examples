@@ -51,6 +51,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.title,
+        link: EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_createGaugeCharts_DonutChart.title,
         link: EXAMPLES_PAGES.chart2D_createGaugeCharts_DonutChart.path,
     },
