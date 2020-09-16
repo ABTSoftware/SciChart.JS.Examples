@@ -36,8 +36,8 @@ import { annotationsAreEasyExampleInfo } from "../Examples/Charts2D/ChartAnnotat
 import TradeMarkers from "../Examples/Charts2D/ChartAnnotations/TradeMarkers";
 import { tradeMarkerAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/TradeMarkers/exampleInfo";
 
-import RealtimeGhostedTraces from "../Examples/Charts2D/CreateRealtimeCharts/RealtimeGhostedTraces";
-import { realtimeGhostedTracesExampleInfo } from "../Examples/Charts2D/CreateRealtimeCharts/RealtimeGhostedTraces/exampleInfo";
+import RealtimeGhostedTraces from "../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces";
+import { realtimeGhostedTracesExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces/exampleInfo";
 
 import MultiPaneStockCharts from "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts";
 import { multiPaneStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/exampleInfo";
@@ -174,8 +174,8 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: TradeMarkers,
         ...tradeMarkerAnnotationsExampleInfo,
     },
-    chart2D_createRealtimeCharts_RealtimeGhostedTraces: {
-        id: "chart2D_createRealtimeCharts_RealtimeGhostedTraces",
+    featuredApps_performanceDemos_RealtimeGhostedTraces: {
+        id: "featuredApps_performanceDemos_RealtimeGhostedTraces",
         Component: RealtimeGhostedTraces,
         ...realtimeGhostedTracesExampleInfo,
     },
@@ -316,10 +316,6 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "chart2D_createRealtimeCharts", name: "Create Realtime Charts" },
-        submenu: [EXAMPLES_PAGES.chart2D_createRealtimeCharts_RealtimeGhostedTraces],
-    },
-    {
         item: { id: "chart2D_createStockCharts", name: "Create Stock Charts" },
         submenu: [
             EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
@@ -373,7 +369,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
         item: { id: "featuredApps_performanceDemos", name: "Performance Demos" },
         submenu: [
             EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500,
-            EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo
+            EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo,
+            EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces
         ],
     },
     {

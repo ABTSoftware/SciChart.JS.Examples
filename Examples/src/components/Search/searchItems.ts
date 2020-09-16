@@ -75,10 +75,6 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.path,
     },
     {
-        title: EXAMPLES_PAGES.chart2D_createRealtimeCharts_RealtimeGhostedTraces.title,
-        link: EXAMPLES_PAGES.chart2D_createRealtimeCharts_RealtimeGhostedTraces.path,
-    },
-    {
         title: EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.title,
         link: EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.path,
     },
@@ -149,5 +145,9 @@ export const searchItems: TSearchItem[] = [
     {
         title: EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.title,
         link: EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.path,
+    },
+    {
+        title: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.title,
+        link: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path,
     },
 ];
