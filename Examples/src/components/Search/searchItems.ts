@@ -47,6 +47,18 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.title,
+        link: EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide.title,
+        link: EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart.title,
+        link: EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_basicCharts_DonutChart.title,
         link: EXAMPLES_PAGES.chart2D_basicCharts_DonutChart.path,
     },
@@ -89,18 +101,6 @@ export const searchItems: TSearchItem[] = [
     {
         title: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.title,
         link: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.path,
-    },
-    {
-        title: EXAMPLES_PAGES.chart2D_multiChart_StackedColumnChart.title,
-        link: EXAMPLES_PAGES.chart2D_multiChart_StackedColumnChart.path,
-    },
-    {
-        title: EXAMPLES_PAGES.chart2D_multiChart_StackedColumnSideBySide.title,
-        link: EXAMPLES_PAGES.chart2D_multiChart_StackedColumnSideBySide.path,
-    },
-    {
-        title: EXAMPLES_PAGES.chart2D_multiChart_StackedMountainChart.title,
-        link: EXAMPLES_PAGES.chart2D_multiChart_StackedMountainChart.path,
     },
     {
         title: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.title,

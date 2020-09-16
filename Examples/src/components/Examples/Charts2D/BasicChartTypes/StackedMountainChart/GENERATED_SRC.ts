@@ -4,7 +4,7 @@ import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { xValues, y1Values, y2Values, y3Values } from "./data/stackedMountainChartData";
+import { xValues, y1Values, y2Values, y3Values } from "./stackedMountainChartData";
 import { StackedMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainRenderableSeries";
 import { StackedMountainCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainCollection";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";

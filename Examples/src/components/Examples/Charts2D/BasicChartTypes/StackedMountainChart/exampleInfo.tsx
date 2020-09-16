@@ -4,11 +4,13 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 const Description = () => <div>Stacked mountain chart description</div>;
-const Subtitle = () => <div>Subtitle</div>;
+const Subtitle = () => (<p>Demonstrates how create a <strong>JavaScript Stacked Mountain Chart</strong>{' '}
+    using SciChart.js, High Performance{' '}
+    <a href="https://www.scichart.com/javascript-chart-features" target="_blank">JavaScript Charts</a></p>);
 
 export const stackedMountainChartExampleInfo: TExampleInfo = {
-    title: "Stacked Mountain Chart",
-    path: "/chart2D_multiChart_StackedMountainChart",
+    title: "JavaScript Stacked Mountain Chart",
+    path: "/javascript-stacked-mountain-chart",
     subtitle: Subtitle,
     description: Description,
     code,

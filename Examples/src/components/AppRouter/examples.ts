@@ -20,16 +20,21 @@ import MountainChart from "../Examples/Charts2D/BasicChartTypes/MountainChart";
 import { mountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/MountainChart/exampleInfo";
 import ScatterChart from "../Examples/Charts2D/BasicChartTypes/ScatterChart";
 import { scatterChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ScatterChart/exampleInfo";
+import StackedColumnChart from "../Examples/Charts2D/BasicChartTypes/StackedColumnChart";
+import { stackedColumnChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedColumnChart/exampleInfo";
+import StackedColumnSideBySide from "../Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide";
+import { stackedColumnSideBySideExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide/exampleInfo";
+import StackedMountainChart from "../Examples/Charts2D/BasicChartTypes/StackedMountainChart";
+import { stackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedMountainChart/exampleInfo";
+import DonutChart from "../Examples/Charts2D/BasicChartTypes/DonutChart";
+import { donutChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DonutChart/exampleInfo";
+import PieChart from "../Examples/Charts2D/BasicChartTypes/PieChart";
+import { pieChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/PieChart/exampleInfo";
 
 import AnnotationsAreEasy from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy";
 import { annotationsAreEasyExampleInfo } from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/exampleInfo";
 import TradeMarkers from "../Examples/Charts2D/ChartAnnotations/TradeMarkers";
 import { tradeMarkerAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/TradeMarkers/exampleInfo";
-
-import DonutChart from "../Examples/Charts2D/BasicChartTypes/DonutChart";
-import { donutChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DonutChart/exampleInfo";
-import PieChart from "../Examples/Charts2D/BasicChartTypes/PieChart";
-import { pieChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/PieChart/exampleInfo";
 
 import RealtimeGhostedTraces from "../Examples/Charts2D/CreateRealtimeCharts/RealtimeGhostedTraces";
 import { realtimeGhostedTracesExampleInfo } from "../Examples/Charts2D/CreateRealtimeCharts/RealtimeGhostedTraces/exampleInfo";
@@ -48,13 +53,6 @@ import SecondaryYAxes from "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAx
 import { secondaryYAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/exampleInfo";
 import VerticalCharts from "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts";
 import { verticalChartsExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/exampleInfo";
-
-import StackedColumnChart from "../Examples/Charts2D/MultiChart/StackedColumnChart";
-import { stackedColumnChartExampleInfo } from "../Examples/Charts2D/MultiChart/StackedColumnChart/exampleInfo";
-import StackedColumnSideBySide from "../Examples/Charts2D/MultiChart/StackedColumnSideBySide";
-import { stackedColumnSideBySideExampleInfo } from "../Examples/Charts2D/MultiChart/StackedColumnSideBySide/exampleInfo";
-import StackedMountainChart from "../Examples/Charts2D/MultiChart/StackedMountainChart";
-import { stackedMountainChartExampleInfo } from "../Examples/Charts2D/MultiChart/StackedMountainChart/exampleInfo";
 
 import UsePointMarkers from "../Examples/Charts2D/StylingAndTheming/UsePointMarkers";
 import { usePointMarkersExampleInfo } from "../Examples/Charts2D/StylingAndTheming/UsePointMarkers/exampleInfo";
@@ -211,18 +209,18 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: VerticalCharts,
         ...verticalChartsExampleInfo,
     },
-    chart2D_multiChart_StackedColumnChart: {
-        id: "chart2D_multiChart_StackedColumnChart",
+    chart2D_basicCharts_StackedColumnChart: {
+        id: "chart2D_basicCharts_StackedColumnChart",
         Component: StackedColumnChart,
         ...stackedColumnChartExampleInfo,
     },
-    chart2D_multiChart_StackedColumnSideBySide: {
-        id: "chart2D_multiChart_StackedColumnSideBySide",
+    chart2D_basicCharts_StackedColumnSideBySide: {
+        id: "chart2D_basicCharts_StackedColumnSideBySide",
         Component: StackedColumnSideBySide,
         ...stackedColumnSideBySideExampleInfo,
     },
-    chart2D_multiChart_StackedMountainChart: {
-        id: "chart2D_multiChart_StackedMountainChart",
+    chart2D_basicCharts_StackedMountainChart: {
+        id: "chart2D_basicCharts_StackedMountainChart",
         Component: StackedMountainChart,
         ...stackedMountainChartExampleInfo,
     },
@@ -303,6 +301,9 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_MountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide,
+            EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_PieChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DonutChart,
         ],
@@ -335,14 +336,6 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
-        ],
-    },
-    {
-        item: { id: "chart2D_multiChart", name: "Multi Chart" },
-        submenu: [
-            EXAMPLES_PAGES.chart2D_multiChart_StackedColumnChart,
-            EXAMPLES_PAGES.chart2D_multiChart_StackedColumnSideBySide,
-            EXAMPLES_PAGES.chart2D_multiChart_StackedMountainChart,
         ],
     },
     {
