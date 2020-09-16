@@ -2,6 +2,7 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examples";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
+import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => <div>Realtime ticking stock charts description</div>;
 const Subtitle = () => (<p>Demonstrates how create a <strong>JavaScript Stock Chart</strong>{' '}
@@ -9,8 +10,8 @@ const Subtitle = () => (<p>Demonstrates how create a <strong>JavaScript Stock Ch
     <a href="https://www.scichart.com/javascript-chart-features" target="_blank">JavaScript Charts</a></p>);
 
 export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
-    title: "JavaScript Realtime Ticking Stock Charts",
-    path: "/javascript-realtime-ticking-stock-charts",
+    title: ExampleStrings.titleRealtimeTickingStockCharts,
+    path: ExampleStrings.urlRealtimeTickingStockCharts,
     subtitle: Subtitle,
     description: Description,
     code,

@@ -289,7 +289,7 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
 export const MENU_ITEMS_2D_ID = "MENU_ITEMS_2D_ID";
 export const MENU_ITEMS_2D: TMenuItem[] = [
     {
-        item: { id: "chart2D_basicCharts", name: "Basic Chart Types" },
+        item: { id: "chart2D_basicCharts", name: "JavaScript Chart Types" },
         submenu: [
             EXAMPLES_PAGES.chart2D_basicCharts_LineChart,
             EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart,
@@ -323,11 +323,11 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ],
     },
     {
-        item: { id: "chart2D_legends", name: "Legends" },
+        item: { id: "chart2D_legends", name: "Chart Legends" },
         submenu: [EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI],
     },
     {
-        item: { id: "chart2D_modifyAxisBehavior", name: "Modify Axis Behavior" },
+        item: { id: "chart2D_modifyAxisBehavior", name: "Chart Axis APIs" },
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
@@ -355,7 +355,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
 export const MENU_ITEMS_3D_ID = "MENU_ITEMS_3D_ID";
 export const MENU_ITEMS_3D: TMenuItem[] = [
     {
-        item: { id: "chart3D_Basic3DChartTypes", name: "Basic 3D Chart Types" },
+        item: { id: "chart3D_Basic3DChartTypes", name: "JavaScript 3D Chart Types" },
         submenu: [
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart,

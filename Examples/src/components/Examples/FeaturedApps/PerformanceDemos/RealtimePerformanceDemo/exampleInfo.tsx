@@ -8,7 +8,8 @@ const Description = () => (
         Performance demo showing SciChart.js loading 3 series and updating dynamically to millions of points description
     </div>
 );
-const Subtitle = () => <div>Subtitle</div>;
+const Subtitle = () => (<p>Click <strong>Start</strong> to see SciChart.js append 1,000 points to 3 series{' '}
+    every 10 milliseconds, for a total of 3 million points!</p>);
 
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     title: "Realtime JavaScript Chart Performance Demo",
