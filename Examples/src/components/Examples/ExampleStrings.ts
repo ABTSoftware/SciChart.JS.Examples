@@ -4,25 +4,31 @@ export const ExampleStrings = {
 
     // Scatter chart
     urlScatterChart: "/javascript-scatter-chart",
-    urlTitleScatterChart: "The JavaScript Scatter chart example shows how to create a similar series without scaling",
+    urlTitleScatterChart: "This specific page in the JavaScript Scatter Chart documentation will help you to get started",
 
     // Band chart
     urlBandChart: "/javascript-band-chart",
     titleBandChart: "JavaScript Band Chart",
     urlBandChartDocumentation: "#",
-    urlTitleBandChartDocumentation: "The specific page for the JavaScript Band Chart will help you to get started",
+    urlTitleBandChartDocumentation: "This specific page in the JavaScript Band Chart documentation will help you to get started",
 
     // Bubble Chart
     urlBubbleChart: "/javascript-bubble-chart",
     titleBubbleChart: "JavaScript Bubble Chart",
     urlBubbleChartDocumentation: "#",
-    urlTitleBubbleChartDocumentation: "The specific page for the JavaScript Bubble Chart documentation will help you to get started",
+    urlTitleBubbleChartDocumentation: "This specific page in the JavaScript Bubble Chart documentation will help you to get started",
 
     // Column Chart
     urlColumnChart: "/javascript-column-chart",
     titleColumnChart: "JavaScript Column Chart",
     urlColumnChartDocumentation: "#",
-    urlTitleColumnChartDocumentation: "The specific page for the JavaScript Column Chart documentation will help you to get started",
+    urlTitleColumnChartDocumentation: "This specific page in the JavaScript Column Chart documentation will help you to get started",
+
+    // Mountain Chart
+    urlMountainChartDocumentation: "#",
+    urlTitleMountainChartDocumentation: "This specific page in the JavaScript Mountain Chart documentation will help you to get started",
+    urlMountainChart: "/javascript-mountain-chart",
+    titleMountainChart: "JavaScript Mountain Chart",
 
     // Candlestick Chart
     urlCandlestickChart: "/javascript-candlestick-chart",
@@ -54,6 +60,11 @@ export const ExampleStrings = {
     titleGroupedColumnChart: "JavaScript Stacked Column Side by Side",
     urlTitleGroupedColumnChart: "",
 
+    // Stacked Mountain Chart
+    urlStackedMountainChart: "/javascript-stacked-mountain-chart",
+    urlTitleStackedMountainChart: "The Stacked Mountain Chart and 100% Stacked Mountain Chart example in SciChart.js",
+    titleStackedMountainChart: "JavaScript Stacked Mountain Chart",
+
     // Use Pointmarkers
     urlPointMarkers: "/chart2D_stylingAndTheming_UsePointMarkers",
     titlePointMarkers: "The JavaScript Point-Markers example shows how to create different types of point-marker on Bubble and Scatter Series",
@@ -77,6 +88,4 @@ export const ExampleStrings = {
     urlTitleRenderSeriesProperties: "Learn about common RenderableSeries properties in SciChart.js",
 
     urlJavascriptChartFeatures: "https://www.scichart.com/javascript-chart-features",
-
-
 }
