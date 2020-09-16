@@ -10,10 +10,13 @@ const Description = () => (
     </div>
 );
 
+const Subtitle = () => <div>Subtitle</div>;
+
+
 export const hitTestApiExampleInfo: TExampleInfo = {
     title: "Hit-Test API",
     path: "/chart2D_tooltipsAndHittest_HitTestApi",
-    subtitle: "Hit-Test API subtitle",
+    subtitle: Subtitle,
     description: Description,
     code,
     githubUrl,

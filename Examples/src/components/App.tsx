@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useLocation, useHistory } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
@@ -14,6 +14,7 @@ import { HOME_PAGE_TITLE } from "./PageHome";
 import Description from "./Description/Description";
 import GettingStarted from "./GettingStarted/GettingStarted";
 import SourceCode from "./SourceCode/SourceCode";
+
 // tslint:disable-next-line:no-var-requires
 const APP_VERSION = require("../../package.json").dependencies.scichart;
 
@@ -56,6 +57,7 @@ const useStyles = makeStyles(
         },
         body: {
             display: "flex",
+            fontFamily: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol",
         },
         colMain: {
             flexBasis: 240,
@@ -72,6 +74,9 @@ const useStyles = makeStyles(
         description: {
             marginBottom: theme.spacing(2),
         },
+        test: {
+            marginBottom: 20.
+        }
     }),
     { index: 1 }
 );
@@ -87,7 +92,7 @@ export default function App() {
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     const currentExampleId = currentExample?.id;
     const titleText = currentExample ? currentExample.title : HOME_PAGE_TITLE;
-    const subtitleText = currentExample ? currentExample.subtitle : "";
+    const subtitleText = currentExample ? currentExample.subtitle() : undefined;
     const DescComponent: () => JSX.Element = currentExample?.description;
     const codeStr = currentExample ? currentExample.code : "";
     const githubUrl = currentExample ? currentExample.githubUrl : "";
@@ -148,7 +153,10 @@ export default function App() {
                 <Search />
                 <div className={classes.body}>
                     <div className={classes.colMain}>
-                        <Title title={titleText} subtitle={subtitleText} />
+                        <div className="title">
+                            <Title title={titleText}></Title>
+                            <div className={classes.test}>{subtitleText}</div>
+                        </div>
                         <AppRouter />
                         {currentExample && <SourceCode code={codeStr} githubUrl={githubUrl} />}
                     </div>

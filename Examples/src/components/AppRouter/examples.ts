@@ -89,7 +89,7 @@ import {lidar3DPointCloudExampleInfo }  from "../Examples/FeaturedApps/Scientifi
 export type TExampleInfo = {
     title: string;
     path: string;
-    subtitle: string;
+    subtitle: (() => JSX.Element);
     description: (() => JSX.Element);
     code: string;
     githubUrl: string;

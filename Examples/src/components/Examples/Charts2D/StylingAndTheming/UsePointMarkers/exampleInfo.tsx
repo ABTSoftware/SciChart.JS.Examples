@@ -5,10 +5,12 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 const Description = () => <div>Use point markers description</div>;
 
+const Subtitle = () => <div>Subtitle</div>;
+
 export const usePointMarkersExampleInfo: TExampleInfo = {
     title: "Use Point Markers",
     path: "/chart2D_stylingAndTheming_UsePointMarkers",
-    subtitle: "Use Point Markers subtitle",
+    subtitle: Subtitle,
     description: Description,
     code,
     githubUrl,

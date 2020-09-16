@@ -4,11 +4,12 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 const Description = () => <div>Coloring per point description</div>;
+const Subtitle = () => <div>Subtitle</div>;
 
 export const perPointColoringExampleInfo: TExampleInfo = {
     title: "Coloring Series per-point using the PaletteProvider",
     path: "/chart2D_stylingAndTheming_ColoringPerPointPaletteProvider",
-    subtitle: "Demonstrates how to color various series per-point using the PaletteProvider API",
+    subtitle: Subtitle,
     description: Description,
     code,
     githubUrl,

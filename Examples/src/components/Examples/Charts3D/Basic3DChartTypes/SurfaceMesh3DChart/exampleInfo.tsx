@@ -5,10 +5,12 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 const Description = () => <div>Surface mesh 3D chart description</div>;
 
+const Subtitle = () => <div>Subtitle</div>;
+
 export const surfaceMesh3DChartExampleInfo: TExampleInfo = {
     title: "Surface Mesh 3D Chart",
     path: "/chart3D_basicCharts_SurfaceMesh3DChart",
-    subtitle: "Surface Mesh 3D Chart subtitle",
+    subtitle: Subtitle,
     description: Description,
     code,
     githubUrl,

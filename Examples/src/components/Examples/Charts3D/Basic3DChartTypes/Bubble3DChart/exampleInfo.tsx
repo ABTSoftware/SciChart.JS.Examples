@@ -5,10 +5,12 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 const Description = () => <div>Bubble 3D chart description</div>;
 
+const Subtitle = () => <div>Subtitle</div>;
+
 export const bubble3DChartExampleInfo: TExampleInfo = {
     title: "Bubble 3D Chart",
     path: "/chart3D_basicCharts_Bubble3DChart",
-    subtitle: "Bubble 3D Chart subtitle",
+    subtitle: Subtitle,
     description: Description,
     code,
     githubUrl,

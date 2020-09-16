@@ -4,11 +4,12 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 const Description = () => <div>Fan chart description</div>;
+const Subtitle = () => <div>Subtitle</div>;
 
 export const fanChartExampleInfo: TExampleInfo = {
     title: "Fan Chart",
     path: "/chart2D_basicCharts_FanChart",
-    subtitle: "Generates a simple Fan chart in code.",
+    subtitle: Subtitle,
     description: Description,
     code,
     githubUrl,

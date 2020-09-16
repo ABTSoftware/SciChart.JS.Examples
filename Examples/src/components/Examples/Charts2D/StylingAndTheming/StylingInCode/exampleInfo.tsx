@@ -22,10 +22,13 @@ const Description = () => (
     </div>
 );
 
+const Subtitle = () => <div>Subtitle</div>;
+
+
 export const stylingInCodeExampleInfo: TExampleInfo = {
     title: "Styling a JavaScript Chart in Code",
     path: "/chart2D_stylingAndTheming_StylingInCode",
-    subtitle: "Demonstrates how to style and color the chart parts in SciChart.js in JavaScript code.",
+    subtitle: Subtitle,
     description: Description,
     code,
     githubUrl,

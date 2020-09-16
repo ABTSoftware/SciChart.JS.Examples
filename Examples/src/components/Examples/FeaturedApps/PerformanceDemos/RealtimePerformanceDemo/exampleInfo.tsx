@@ -8,11 +8,12 @@ const Description = () => (
         Performance demo showing SciChart.js loading 3 series and updating dynamically to millions of points description
     </div>
 );
+const Subtitle = () => <div>Subtitle</div>;
 
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     title: "Realtime JavaScript Chart Performance Demo",
     path: "/featuredApps_performanceDemos_RealtimePerformanceDemo",
-    subtitle: "Performance demo showing SciChart.js loading 3 series and updating dynamically to millions of points",
+    subtitle: Subtitle,
     description: Description,
     code,
     githubUrl,

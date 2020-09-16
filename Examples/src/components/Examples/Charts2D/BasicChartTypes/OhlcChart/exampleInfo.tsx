@@ -4,11 +4,12 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 const Description = () => <div>Ohlc chart description</div>;
+const Subtitle = () => <div>Subtitle</div>;
 
 export const ohlcChartExampleInfo: TExampleInfo = {
     title: "Ohlc Chart",
     path: "/chart2D_basicCharts_OhlcChart",
-    subtitle: "Ohlc Chart subtitle",
+    subtitle: Subtitle,
     description: Description,
     code,
     githubUrl

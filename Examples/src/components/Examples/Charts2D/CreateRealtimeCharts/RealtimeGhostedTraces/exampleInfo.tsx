@@ -4,11 +4,12 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 const Description = () => <div>Realtime ghosted traces description</div>;
+const Subtitle = () => <div>Subtitle</div>;
 
 export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     title: "Realtime Ghosted Traces",
     path: "/chart2D_createRealtimeCharts_RealtimeGhostedTraces",
-    subtitle: "Realtime Ghosted Traces subtitle",
+    subtitle: Subtitle,
     description: Description,
     code,
     githubUrl,
