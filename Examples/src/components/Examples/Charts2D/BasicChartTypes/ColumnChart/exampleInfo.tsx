@@ -4,11 +4,13 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 const Description = () => <div>Column chart description</div>;
-const Subtitle = () => <div>Subtitle</div>;
+const Subtitle = () => (<p>Demonstrates how to create a <strong>JavaScript Column Chart</strong>{' '}
+    using SciChart.js, High Performance{' '}
+    <a href="https://www.scichart.com/javascript-chart-features" target="_blank">JavaScript Charts</a></p>);
 
 export const columnChartExampleInfo: TExampleInfo = {
-    title: "Column Chart",
-    path: "/chart2D_basicCharts_ColumnChart",
+    title: "JavaScript Column Chart",
+    path: "/javascript-column-chart",
     subtitle: Subtitle,
     description: Description,
     code,

@@ -26,10 +26,10 @@ import { annotationsAreEasyExampleInfo } from "../Examples/Charts2D/ChartAnnotat
 import TradeMarkers from "../Examples/Charts2D/ChartAnnotations/TradeMarkers";
 import { tradeMarkerAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/TradeMarkers/exampleInfo";
 
-import DonutChart from "../Examples/Charts2D/CreateGaugeCharts/DonutChart";
-import { donutChartExampleInfo } from "../Examples/Charts2D/CreateGaugeCharts/DonutChart/exampleInfo";
-import PieChart from "../Examples/Charts2D/CreateGaugeCharts/PieChart";
-import { pieChartExampleInfo } from "../Examples/Charts2D/CreateGaugeCharts/PieChart/exampleInfo";
+import DonutChart from "../Examples/Charts2D/BasicChartTypes/DonutChart";
+import { donutChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DonutChart/exampleInfo";
+import PieChart from "../Examples/Charts2D/BasicChartTypes/PieChart";
+import { pieChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/PieChart/exampleInfo";
 
 import RealtimeGhostedTraces from "../Examples/Charts2D/CreateRealtimeCharts/RealtimeGhostedTraces";
 import { realtimeGhostedTracesExampleInfo } from "../Examples/Charts2D/CreateRealtimeCharts/RealtimeGhostedTraces/exampleInfo";
@@ -156,6 +156,16 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: ScatterChart,
         ...scatterChartExampleInfo,
     },
+    chart2D_basicCharts_DonutChart: {
+        id: "chart2D_basicCharts_DonutChart",
+        Component: DonutChart,
+        ...donutChartExampleInfo,
+    },
+    chart2D_basicCharts_PieChart: {
+        id: "chart2D_basicCharts_PieChart",
+        Component: PieChart,
+        ...pieChartExampleInfo,
+    },
     chart2D_chartAnnotations_AnnotationsAreEasy: {
         id: "chart2D_chartAnnotations_AnnotationsAreEasy",
         Component: AnnotationsAreEasy,
@@ -165,16 +175,6 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         id: "chart2D_chartAnnotations_TradeMarkers",
         Component: TradeMarkers,
         ...tradeMarkerAnnotationsExampleInfo,
-    },
-    chart2D_createGaugeCharts_DonutChart: {
-        id: "chart2D_createGaugeCharts_DonutChart",
-        Component: DonutChart,
-        ...donutChartExampleInfo,
-    },
-    chart2D_createGaugeCharts_PieChart: {
-        id: "chart2D_createGaugeCharts_PieChart",
-        Component: PieChart,
-        ...pieChartExampleInfo,
     },
     chart2D_createRealtimeCharts_RealtimeGhostedTraces: {
         id: "chart2D_createRealtimeCharts_RealtimeGhostedTraces",
@@ -303,6 +303,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_MountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_PieChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_DonutChart,
         ],
     },
     {
@@ -321,13 +323,6 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
             EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts,
-        ],
-    },
-    {
-        item: { id: "chart2D_createGaugeCharts", name: "Create a Gauge Charts" },
-        submenu: [
-            EXAMPLES_PAGES.chart2D_createGaugeCharts_DonutChart,
-            EXAMPLES_PAGES.chart2D_createGaugeCharts_PieChart,
         ],
     },
     {

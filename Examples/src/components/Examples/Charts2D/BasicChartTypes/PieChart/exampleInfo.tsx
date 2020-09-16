@@ -4,11 +4,13 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 const Description = () => <div>Pie chart description</div>;
-const Subtitle = () => <div>Subtitle</div>;
+const Subtitle = () => (<p>Demonstrates how create a <strong>JavaScript Pie Chart</strong>{' '}
+    using SciChart.js, High Performance{' '}
+    <a href="https://www.scichart.com/javascript-chart-features" target="_blank">JavaScript Charts</a></p>);
 
 export const pieChartExampleInfo: TExampleInfo = {
-    title: "Pie Chart",
-    path: "/chart2D_createGaugeCharts_PieChart",
+    title: "JavaScript Pie Chart",
+    path: "/javascript-pie-chart",
     subtitle: Subtitle,
     description: Description,
     code,

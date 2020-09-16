@@ -4,11 +4,14 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 
 const Description = () => <div>Ohlc chart description</div>;
-const Subtitle = () => <div>Subtitle</div>;
+
+const Subtitle = () => (<p>Demonstrates how to create a <strong>JavaScript Ohlc Chart</strong> or Stock Chart{' '}
+    using SciChart.js, High Performance{' '}
+    <a href="https://www.scichart.com/javascript-chart-features" target="_blank">JavaScript Charts</a></p>);
 
 export const ohlcChartExampleInfo: TExampleInfo = {
-    title: "Ohlc Chart",
-    path: "/chart2D_basicCharts_OhlcChart",
+    title: "JavaScript Ohlc Chart",
+    path: "/javascript-ohlc-chart",
     subtitle: Subtitle,
     description: Description,
     code,
