@@ -359,10 +359,6 @@ export default function MultiPaneStockCharts() {
         return () => charts.forEach((el) => el?.sciChartSurface?.delete());
     }, []);
 
-    React.useEffect(() => {
-        drawExample().then(() => setShowCharts(true));
-    }, []);
-
     return (
         <div style={{ display: showCharts ? "block" : "none", maxWidth: 900 }}>
             <div id={divElementId1} />
