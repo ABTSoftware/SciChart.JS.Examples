@@ -30,6 +30,8 @@ const Description = () => (<div>
         <li><a href={ExampleStrings.urlMultiPaneStockChart}
                title={ExampleStrings.urlTitleMultiPaneStockChart}>The Multi-Pane
             Stock Chart Example</a></li>
+        <li><a href={ExampleStrings.urlFanChart}
+               title={ExampleStrings.urlTitleFanChart}>The JavaScript Fan Chart Example</a></li>
     </ul>
 </div>);
 const Subtitle = () => (<p>Demonstrates how to create a <strong>JavaScript Band Chart</strong> or High-Low Fill{' '}

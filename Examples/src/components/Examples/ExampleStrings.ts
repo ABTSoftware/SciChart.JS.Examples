@@ -4,10 +4,14 @@ export const ExampleStrings = {
 
     // Scatter chart
     urlScatterChart: "/javascript-scatter-chart",
+    titleScatterChart: "JavaScript Scatter Chart",
     urlTitleScatterChart: "This specific page in the JavaScript Scatter Chart documentation will help you to get started",
+    urlScatterChartDocumentation: "#",
+    urlTitleScatterChartDocumentation: "This specific page in the JavaScript Scatter Chart documentation will help you to get started",
 
     // Band chart
     urlBandChart: "/javascript-band-chart",
+    urlTitleBandChart: "JavaScript Band Chart example",
     titleBandChart: "JavaScript Band Chart",
     urlBandChartDocumentation: "#",
     urlTitleBandChartDocumentation: "This specific page in the JavaScript Band Chart documentation will help you to get started",
@@ -23,21 +27,41 @@ export const ExampleStrings = {
     titleColumnChart: "JavaScript Column Chart",
     urlColumnChartDocumentation: "#",
     urlTitleColumnChartDocumentation: "This specific page in the JavaScript Column Chart documentation will help you to get started",
+    urlTitleColumnChart: "The JavaScript Column Chart example demonstrates how to create a Column Chart with SciChart.js",
 
     // Mountain Chart
     urlMountainChartDocumentation: "#",
     urlTitleMountainChartDocumentation: "This specific page in the JavaScript Mountain Chart documentation will help you to get started",
     urlMountainChart: "/javascript-mountain-chart",
     titleMountainChart: "JavaScript Mountain Chart",
+    urlTitleMountainChart: "The JavaScript Mountain Chart example demonstrates how to create a Mountain Chart with SciChart.js",
 
     // Candlestick Chart
     urlCandlestickChart: "/javascript-candlestick-chart",
     titleCandlestickChart: "JavaScript Candlestick Chart",
+    urlTitleCandlestickChart: "The JavaScript Candlestick Chart example demonstrates how to create a Candlestick Chart with SciChart.js",
+    urlTitleCandlestickChartDocumentation: "This specific page in the JavaScript Candlestick Chart documentation will help you to get started",
+    urlCandlestickChartDocumentation: "#",
 
     // Ohlc Chart
     urlOhlcChart: "/javascript-ohlc-chart",
     urlTitleOhlcChart: "The Ohlc Chart example shows how to create a JavaScript Ohlc Chart rendering financial stock data with SciChart.js",
     titleOhlcChart: "JavaScript Ohlc Chart",
+    urlTitleOhlcChartDocumentation: "This specific page in the JavaScript Ohlc Chart documentation will help you to get started",
+    urlOhlcChartDocumentation: "#",
+
+    // Fan Chart
+    urlFanChart: "/javascript-fan-chart",
+    urlTitleFanChart: "The JavaScript Fan Chart example",
+    titleFanChart: "JavaScript Fan Chart",
+    urlFanChartDocumentation: "#",
+    urlTitleFanChartDocumentation: "The specific page for the JavaScript Fan Chart documentation will help you to get started",
+
+    // Line Chart
+    urlLineChart: "/javascript-line-chart",
+    titleLineChart: "JavaScript Line Chart",
+    urlLineChartDocumentation: "#",
+    urlTitleLineChartDocumentation: "The specific page for the JavaScript Line Chart documentation will help you to get started",
 
     // Pie Chart
     urlPieChart: "/javascript-pie-chart",
@@ -53,7 +77,9 @@ export const ExampleStrings = {
     // Stacked Column Chart
     urlStackedColumnChart: "/javascript-stacked-column-chart",
     titleStackedColumnChart: "JavaScript Stacked Column Chart",
-    urlTitleStackedColumnChart: "",
+    urlTitleStackedColumnChart: "The JavaScript Stacked Column Chart example demonstrates how to create a Stacked Column Chart with SciChart.js",
+    urlStackedColumnChartDocumentation: "#",
+    urlTitleStackedColumnChartDocumentation: "The specific page for the JavaScript Stacked Column Chart documentation will help you to get started",
 
     // Stacked (Grouped) Column Chart
     urlGroupedColumnChart: "/javascript-stacked-grouped-column-chart-side-by-side",
@@ -64,6 +90,14 @@ export const ExampleStrings = {
     urlStackedMountainChart: "/javascript-stacked-mountain-chart",
     urlTitleStackedMountainChart: "The Stacked Mountain Chart and 100% Stacked Mountain Chart example in SciChart.js",
     titleStackedMountainChart: "JavaScript Stacked Mountain Chart",
+    urlStackedMountainChartDocumentation: "#",
+    urlTitleStackedMountainChartDocumentation: "The specific page for the JavaScript Stacked Mountain Chart documentation will help you to get started",
+
+    // Heatmap Chart
+    urlHeatmapChart: "/javascript-heatmap-chart",
+    titleHeatmapChart: "JavaScript Heatmap Chart",
+    urlHeatmapChartDocumentation: "#",
+    urlTitleHeatmapChartDocumentation: "The specific page for the JavaScript Heatmap Chart documentation will help you to get started",
 
     // Use Pointmarkers
     urlPointMarkers: "/chart2D_stylingAndTheming_UsePointMarkers",
@@ -88,4 +122,8 @@ export const ExampleStrings = {
     urlTitleRenderSeriesProperties: "Learn about common RenderableSeries properties in SciChart.js",
 
     urlJavascriptChartFeatures: "https://www.scichart.com/javascript-chart-features",
+    titleStackedColumnSideBySide: "",
+    urlStackedColumnSideBySide: ""
+
+
 }

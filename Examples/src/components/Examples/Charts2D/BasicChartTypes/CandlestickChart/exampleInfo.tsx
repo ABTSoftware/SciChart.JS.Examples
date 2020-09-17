@@ -18,8 +18,8 @@ const Description = () => (<div>
             SciChart.js Documentation Home</a></li>
         <li><a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
             SciChart.js Tutorials</a></li>
-        <li><a href={ExampleStrings.urlBubbleChartDocumentation} target="_blank"
-               title={ExampleStrings.urlTitleBubbleChartDocumentation}>JavaScript Candlestick
+        <li><a href={ExampleStrings.urlCandlestickChartDocumentation} target="_blank"
+               title={ExampleStrings.urlTitleCandlestickChartDocumentation}>JavaScript Candlestick
             Chart Documentation</a></li>
         <li><a href={ExampleStrings.urlRenderSeriesPropertiesDocumentation}
                title={ExampleStrings.urlTitleRenderSeriesProperties} target="_blank">
