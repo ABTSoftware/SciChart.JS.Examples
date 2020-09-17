@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/index.tsx";
+export const githubUrl = "/components/Examples/Charts2D/ChartAnnotations/TradeMarkers/index.tsx";

@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/CreateGaugeCharts/PieChart/index.tsx";
+export const githubUrl = "/components/Examples/Charts2D/BasicChartTypes/PieChart/index.tsx";

@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/CreateRealtimeCharts/RealtimeGhostedTraces/index.tsx";
+export const githubUrl = "/components/Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces/index.tsx";

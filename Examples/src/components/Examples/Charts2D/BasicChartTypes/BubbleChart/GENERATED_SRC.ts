@@ -12,15 +12,9 @@ import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
 import {
     EStrokePaletteMode,
-    IPointMarkerPaletteProvider,
-    TPointMarkerArgb,
+    IStrokePaletteProvider,
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import { easing } from "scichart/Core/Animations/EasingFunctions";
-import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
-import { EDragMode } from "scichart/types/DragMode";
-import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragModifier";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 
 const divElementId = "chart";
@@ -45,6 +39,7 @@ const drawExample = async () => {
             strokeThickness: 0,
             fill: "#4682b477",
         }),
+        // Optional: Allows per-point colouring of bubble stroke
         paletteProvider: new BubblePaletteProvider(),
     });
     sciChartSurface.renderableSeries.add(bubbleSeries);
@@ -75,33 +70,31 @@ const drawExample = async () => {
     return { sciChartSurface, wasmContext };
 };
 
-class BubblePaletteProvider implements IPointMarkerPaletteProvider {
-    private parentSeries: IRenderableSeries;
-    private dataSeries: XyzDataSeries;
-    onAttached(parentSeries: IRenderableSeries): void {
-        this.parentSeries = parentSeries;
-        this.dataSeries = this.getDataSeries();
-    }
+/**
+ * An example PaletteProvider which implements IStrokePaletteProvider and IFillPaletteProvider
+ * This can be attached to line, mountain, column or candlestick series to change the stroke or fill
+ * of the series conditionally
+ */
+class BubblePaletteProvider implements IStrokePaletteProvider {
+    /**
+     * This property chooses how stroke colors are blended when they change.
+     * Bubble Series, however, supports solid color interpolation only.
+     */
+    public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
 
-    onDetached(): void {
-        this.parentSeries = undefined;
-        this.dataSeries = undefined;
-    }
-
-    readonly strokePaletteMode: EStrokePaletteMode;
-
-    overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
-        return {
-            fill: 0xffffffff,
-            stroke: 0xffffffff,
-        };
-    }
-    private getDataSeries(): XyzDataSeries {
-        if (this.dataSeries) {
-            return this.dataSeries;
+    public onAttached(parentSeries: IRenderableSeries): void {}
+    public onDetached(): void {}
+    /**
+     * Called by SciChart and may be used to override the color of filled polygon in various chart types.
+     * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
+     * @param renderSeries
+     * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
+     */
+    public overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
+        if (xValue >= 10 && xValue <= 12) {
+            return 0xffff82b4;
         }
-        this.dataSeries = this.parentSeries?.dataSeries as XyzDataSeries;
-        return this.dataSeries;
+        return undefined;
     }
 }
 

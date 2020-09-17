@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/MultiChart/StackedColumnChart/index.tsx";
+export const githubUrl = "/components/Examples/Charts2D/BasicChartTypes/StackedColumnChart/index.tsx";

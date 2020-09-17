@@ -30,24 +30,24 @@ const divElementId = "chart";
 
 const createLineData = (wasmContext: TSciChart) => {
     const xyDataSeries = new XyDataSeries(wasmContext);
-    for (let i = 0; i < 100; i++) {
-        xyDataSeries.append(i, Math.sin(i * 0.1));
+    for (let i = 0; i < 250; i++) {
+        xyDataSeries.append(i, Math.sin(i * 0.05));
     }
     return xyDataSeries;
 };
 
 const createMountainData = (wasmContext: TSciChart) => {
     const xyDataSeries = new XyDataSeries(wasmContext);
-    for (let i = 0; i < 100; i++) {
-        xyDataSeries.append(i, Math.sin(i * 0.1) * Math.sin((i + 50) * 0.002));
+    for (let i = 0; i < 250; i++) {
+        xyDataSeries.append(i, Math.sin(i * 0.05) * Math.sin((i + 50) * 0.002));
     }
     return xyDataSeries;
 };
 
 const createScatterData = (wasmContext: TSciChart) => {
     const xyDataSeries = new XyDataSeries(wasmContext);
-    for (let i = 0; i < 50; i++) {
-        xyDataSeries.append(i * 2, Math.sin((i + 50) * 0.05));
+    for (let i = 0; i < 100; i++) {
+        xyDataSeries.append(i * 2.5, Math.sin((i + 50) * 0.05));
     }
     return xyDataSeries;
 };
@@ -74,10 +74,11 @@ const drawExample = async () => {
     // Create a line series with a PaletteProvider. See implementation of LinePaletteProvider below
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
-            stroke: "White",
+            stroke: "SteelBlue",
             strokeThickness: 5,
             dataSeries: createLineData(wasmContext),
-            paletteProvider: new LinePaletteProvider(),
+            // The LinePaletteProvider (declared below) implements per-point coloring for line series
+            paletteProvider: new LinePaletteProvider("#55FF55", yValue => yValue > 0.5),
         })
     );
 
@@ -88,7 +89,8 @@ const drawExample = async () => {
             fill: "#B0C4DE55",
             strokeThickness: 5,
             dataSeries: createMountainData(wasmContext),
-            paletteProvider: new MountainPaletteProvider(),
+            // The MountainPaletteProvider (declared below) implements per-point coloring for mountain series
+            paletteProvider: new MountainPaletteProvider("#FF555533", "#FF5555", yValue => yValue > 0.1),
         })
     );
 
@@ -103,7 +105,8 @@ const drawExample = async () => {
                 fill: "#FF6600",
                 stroke: "white",
             }),
-            paletteProvider: new ScatterPaletteProvider(),
+            // The ScatterPaletteProvider (declared below) implements per-point coloring for scatter series
+            paletteProvider: new ScatterPaletteProvider("#FF6600", "white", yValue => yValue < -0.8),
         })
     );
 
@@ -126,6 +129,13 @@ class LinePaletteProvider implements IStrokePaletteProvider {
      * This property chooses how colors are blended when they change
      */
     readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
+    private stroke: number;
+    private rule: (yValue: number) => boolean;
+
+    constructor(stroke: string, rule: (yValue: number) => boolean) {
+        this.rule = rule;
+        this.stroke = parseColorToUIntArgb(stroke);
+    }
 
     onAttached(parentSeries: IRenderableSeries): void {}
     onDetached(): void {}
@@ -149,7 +159,7 @@ class LinePaletteProvider implements IStrokePaletteProvider {
         //
         // Performance considerations: overrideStrokeArgb is called per-point on the series when drawing.
         // Caching color values and doing minimal logic in this function will help performance
-        return yValue > 0 ? parseColorToUIntArgb("Red") : undefined;
+        return this.rule(yValue) ? this.stroke : undefined;
     }
 }
 
@@ -167,6 +177,15 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
      * This property chooses how fills are blended when they change
      */
     public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.GRADIENT;
+    private readonly stroke: number;
+    private readonly fill: number;
+    private readonly rule: (yValue: number) => boolean;
+
+    constructor(fill: string, stroke: string, rule: (yValue: number) => boolean) {
+        this.rule = rule;
+        this.fill = parseColorToUIntArgb(fill);
+        this.stroke = parseColorToUIntArgb(stroke);
+    }
 
     onAttached(parentSeries: IRenderableSeries): void {}
     onDetached(): void {}
@@ -177,7 +196,7 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
      * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
      */
     overrideFillArgb(xValue: number, yValue: number, index: number): number {
-        return yValue > 0 ? parseColorToUIntArgb("#FF000077") : undefined;
+        return this.rule(yValue) ? this.fill : undefined;
     }
     /**
      * Called by SciChart and may be used to override the color of a line segment or
@@ -186,21 +205,36 @@ class MountainPaletteProvider implements IStrokePaletteProvider, IFillPalettePro
      * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
      */
     overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
-        return yValue > 0 ? parseColorToUIntArgb("Red") : undefined;
+        return this.rule(yValue) ? this.stroke : undefined;
     }
 }
 
+/**
+ * An example PaletteProvider which implements IPointMarkerPaletteProvider
+ * This can be attached to scatter series to change the stroke or fill
+ * of the series conditionally
+ */
 class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
     readonly strokePaletteMode: EStrokePaletteMode;
+    private readonly stroke: number;
+    private readonly fill: number;
+    private readonly rule: (yValue: number) => boolean;
+
+    constructor(stroke: string, fill: string, rule: (yValue: number) => boolean) {
+        this.rule = rule;
+        this.stroke = parseColorToUIntArgb(stroke);
+        this.fill = parseColorToUIntArgb(fill);
+    }
+
     onAttached(parentSeries: IRenderableSeries): void {}
 
     onDetached(): void {}
 
     overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
-        if (index > 25) {
+        if (this.rule(yValue)) {
             return {
-                fill: parseColorToUIntArgb("Red"),
-                stroke: parseColorToUIntArgb("Blue"),
+                fill: this.fill,
+                stroke: this.stroke,
             };
         }
         return undefined;
