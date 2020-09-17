@@ -6,8 +6,7 @@ import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => (<div>
     <p>Demonstrates how to create a JavaScript Heatmap Chart. The FastUniformHeatmapRenderableSeries accepts a 2D array
-        of data
-        and has user-defined color map which can be used to color points by value.</p>
+        of data and has user-defined color map which can be used to color points by value.</p>
     <h4>Tips!</h4>
     <p>Click <strong>Start</strong> to see the incredible performance of the Heatmap Chart in a real-time context!</p>
     <h4>Documentation Links</h4>

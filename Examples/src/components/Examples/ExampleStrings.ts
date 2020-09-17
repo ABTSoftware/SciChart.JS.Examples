@@ -84,7 +84,7 @@ export const ExampleStrings = {
     // Stacked (Grouped) Column Chart
     urlGroupedColumnChart: "/javascript-stacked-grouped-column-chart-side-by-side",
     titleGroupedColumnChart: "JavaScript Stacked Column Side by Side",
-    urlTitleGroupedColumnChart: "",
+    urlTitleGroupedColumnChart: "The JavaScript Stacked Column Chart side-by-side example demonstrates how to create a Grouped Column Chart with SciChart.js",
 
     // Stacked Mountain Chart
     urlStackedMountainChart: "/javascript-stacked-mountain-chart",
@@ -99,6 +99,17 @@ export const ExampleStrings = {
     urlHeatmapChartDocumentation: "#",
     urlTitleHeatmapChartDocumentation: "The specific page for the JavaScript Heatmap Chart documentation will help you to get started",
 
+    // Annotations are easy
+    urlAnnotationsAreEasy: "/javascript-chart-annotations",
+    titleAnnotationsAreEasy: "JavaScript Chart Annotations",
+    urlAnnotationsDocumentation: "#",
+    urlTitleAnnotationsDocumentation: "The specific page for the SciChart.js Annotations documentation will help you to get started",
+
+    // Trademarkers
+    urlTradeMarkers: "/javascript-stock-chart-buy-sell-markers",
+    titleTradeMarkers: "Trading Buy Sell Marker Annotations",
+    urlTitleTradeMarkers: "",
+
     // Use Pointmarkers
     urlPointMarkers: "/chart2D_stylingAndTheming_UsePointMarkers",
     titlePointMarkers: "The JavaScript Point-Markers example shows how to create different types of point-marker on Bubble and Scatter Series",
@@ -106,6 +117,7 @@ export const ExampleStrings = {
     // Multi Pane Stock Charts
     urlMultiPaneStockChart: "/javascript-multi-pane-stock-charts",
     urlTitleMultiPaneStockChart: "The Multi-Pane stock chart example demonstrates multiple-series types in a realistic stock chart application",
+    titleMultiPaneStockChart: "JavaScript Multi-Pane Stock Charts",
 
     // Realtime Ticking Stock Charts
     urlRealtimeTickingStockCharts: "/javascript-realtime-ticking-stock-charts",
@@ -122,8 +134,6 @@ export const ExampleStrings = {
     urlTitleRenderSeriesProperties: "Learn about common RenderableSeries properties in SciChart.js",
 
     urlJavascriptChartFeatures: "https://www.scichart.com/javascript-chart-features",
-    titleStackedColumnSideBySide: "",
-    urlStackedColumnSideBySide: ""
 
 
 }

@@ -5,7 +5,8 @@ import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => (<div>
-    <p>Demonstrates how to create a JavaScript Stacked Column Chart with side-by-side grouping. This mode of Stacked Column Charts groups the columns
+    <p>Demonstrates how to create a JavaScript Stacked Column Chart with side-by-side grouping. This mode of Stacked
+        Column Charts groups the columns
         next to each other, allowing for easy comparison of several datasets..</p>
     <h4>Tips!</h4>
     <p>Did you know SciChart.js supports 100% Stacked Column Charts as well as several other options? See
@@ -37,13 +38,14 @@ const Description = () => (<div>
         </li>
     </ul>
 </div>);
-const Subtitle = () => (<p>Demonstrates how to create a <strong>JavaScript Stacked Column Chart Side-by-side</strong>{' '}
-    using SciChart.js, High Performance{' '}
-    <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a></p>);
+const Subtitle = () => (
+    <p>Demonstrates how to create a <strong>JavaScript Stacked Column Chart Side-by-side</strong>{' '}
+        using SciChart.js, High Performance{' '}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a></p>);
 
 export const stackedColumnSideBySideExampleInfo: TExampleInfo = {
-    title: ExampleStrings.titleStackedColumnSideBySide,
-    path: ExampleStrings.urlStackedColumnSideBySide,
+    title: ExampleStrings.titleGroupedColumnChart,
+    path: ExampleStrings.urlGroupedColumnChart,
     subtitle: Subtitle,
     description: Description,
     code,

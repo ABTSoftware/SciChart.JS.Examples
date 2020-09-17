@@ -26,7 +26,7 @@ const Description = () => (<div>
 </div>);
 const Subtitle = () => (<p>Demonstrates how create a <strong>JavaScript Pie Chart</strong>{' '}
     using SciChart.js, High Performance{' '}
-    <a href="https://www.scichart.com/javascript-chart-features" target="_blank">JavaScript Charts</a></p>);
+    <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a></p>);
 
 export const pieChartExampleInfo: TExampleInfo = {
     title: "JavaScript Pie Chart",
