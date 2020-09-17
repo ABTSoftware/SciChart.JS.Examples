@@ -117,6 +117,7 @@ const drawExample = async () => {
     };
     setSeries2();
 
+    // Optional: Add some interactivity modifiers to enable zooming and panning
     sciChartSurface.chartModifiers.add(
         new YAxisDragModifier(),
         new XAxisDragModifier(),

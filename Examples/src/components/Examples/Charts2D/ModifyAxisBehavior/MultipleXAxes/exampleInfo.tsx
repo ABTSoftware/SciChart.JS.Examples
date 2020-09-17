@@ -17,6 +17,13 @@ const Description = () => (<div>
         <li><a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
             SciChart.js Tutorials</a></li>
     </ul>
+    <h4>See Also</h4>
+    <ul>
+        <li><a href={ExampleStrings.urlSecondaryYAxis}
+               title={ExampleStrings.urlTitleSecondaryYAxis}>Secondary Y-Axis Example</a></li>
+        <li><a href={ExampleStrings.urlVerticalCharts}
+               title={ExampleStrings.urlTitleVerticalCharts}>Vertical Chart Axis Example</a></li>
+    </ul>
 </div>);
 const Subtitle = () => (<p>Demonstrates how to create a <strong>JavaScript Chart with multiple X,Y axis</strong>{' '}
     using SciChart.js, High Performance{' '}

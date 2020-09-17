@@ -7,6 +7,9 @@ import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
+import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 
 const divElementId = "chart1";
 
@@ -99,7 +102,13 @@ const drawExample = async () => {
     };
     setSeries2();
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());
+    // Optional: Add some interactivity modifiers to enable zooming and panning
+    sciChartSurface.chartModifiers.add(
+        new YAxisDragModifier(),
+        new XAxisDragModifier(),
+        new ZoomPanModifier(),
+        new MouseWheelZoomModifier(),
+        new ZoomExtentsModifier());
 
     return { sciChartSurface, wasmContext };
 };

@@ -143,4 +143,18 @@ export const ExampleStrings = {
     // Multiple XAxis
     urlMultipleXAxis: "/javascript-chart-with-multiple-x-axis",
     titleMultipleXAxis: "Multiple X Axes",
+    urlTitleMultipleXAxis: "The Multiple XAxes example shows how to add series with several X and Y axis to a JavaScript Chart.",
+
+    // Secondary YAxis
+    urlSecondaryYAxis: "/javascript-chart-with-secondary-y-axis",
+    urlTitleSecondaryYAxis: "The Secondary YAxis example shows how to add series with multiple Y axis to a JavaScript Chart.",
+
+    // Vertical charts
+    titleVerticalCharts: "Vertical Charts",
+    urlVerticalCharts: "/javascript-vertical-charts",
+    urlVerticalChartsDocumentation: "#",
+    urlTitleVerticalChartsDocumentation: "The specific page for the SciChart.js API documentation for Vertical Charts will help you to get started",
+    urlTitleVerticalCharts: "The Vertical Charts example shows how to use Axis Alignment to rotate a JavaScript Chart.",
+
+
 }
