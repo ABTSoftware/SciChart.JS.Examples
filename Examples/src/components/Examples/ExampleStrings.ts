@@ -156,5 +156,21 @@ export const ExampleStrings = {
     urlTitleVerticalChartsDocumentation: "The specific page for the SciChart.js API documentation for Vertical Charts will help you to get started",
     urlTitleVerticalCharts: "The Vertical Charts example shows how to use Axis Alignment to rotate a JavaScript Chart.",
 
+    // PaletteProvider
+    titlePaletteProvider: "Coloring Series per-point using the PaletteProvider",
+    urlPaletteProvider: "/javascript-chart-color-points-individually-with-paletteprovider",
 
+    // Styling in code
+    urlStylingInCode: "/javascript-chart-styling-theming-in-code",
+    titleStylingInCode: "Styling a JavaScript Chart in Code",
+    urlTitleStylingInCode: "The Styling in Code example shows how to use style chart parts such as Axis, Gridlines, Background.",
+    urlAxisStylingDocumentation: "#",
+    urlTitleAxisStylingDocumentation: "The specific page for the SciChart.js API documentation for Styling Axis and Gridlines will help you to get started",
+
+    // ThemeManager
+    urlThemeManager: "/javascript-chart-themes",
+    titleThemeManager: "Using Theme Manager",
+    urlTitleThemeManager: "The Theme Manager example shows how to use switch theme from light to dark in SciChart.js",
+    urlThemeManagerDocumentation: "",
+    urlTitleThemeManagerDocumentation: "The specific page for the SciChart.js API documentation for Styling Axis and Gridlines will help you to get started",
 }
