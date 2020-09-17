@@ -1,4 +1,14 @@
 export const ExampleStrings = {
+    // Documentation links and link tooltips
+    //
+    urlDocumentationHome: "#",
+    titleDocumentationHome: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
+    urlTutorialsHome: "#",
+    titleTutorialsHome: "Start here with the SciChart.js Tutorials if you haven't already",
+    urlRenderSeriesPropertiesDocumentation: "#",
+    urlTitleRenderSeriesProperties: "Learn about common RenderableSeries properties in SciChart.js",
+    urlJavascriptChartFeatures: "https://www.scichart.com/javascript-chart-features",
+
     // Urls, example titles
     //
 
@@ -124,16 +134,13 @@ export const ExampleStrings = {
     titleRealtimeTickingStockCharts: "JavaScript Realtime Ticking Stock Charts",
     urlTitleRealtimeTickingStockCharts: "The Realtime Ticking Stock Chart example shows how to pipe realtime financial data into SciChart.js Candlestick and Ohlc Chart types",
 
-    // Documentation links and link tooltips
-    urlDocumentationHome: "#",
-    titleDocumentationHome: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
-    urlTutorialsHome: "#",
-    titleTutorialsHome: "Start here with the SciChart.js Tutorials if you haven't already",
+    // Chart Legends
+    urlChartLegends: "/javascript-chart-legends",
+    titleChartLegends: "Chart Legends API",
+    urlLegendDocumentation: "#",
+    urlTitleLegendDocumentation: "The specific page for the SciChart.js Legends documentation will help you to get started",
 
-    urlRenderSeriesPropertiesDocumentation: "#",
-    urlTitleRenderSeriesProperties: "Learn about common RenderableSeries properties in SciChart.js",
-
-    urlJavascriptChartFeatures: "https://www.scichart.com/javascript-chart-features",
-
-
+    // Multiple XAxis
+    urlMultipleXAxis: "/javascript-chart-with-multiple-x-axis",
+    titleMultipleXAxis: "Multiple X Axes",
 }
