@@ -15,7 +15,7 @@ export const ExampleStrings = {
     // Scatter chart
     urlScatterChart: "/javascript-scatter-chart",
     titleScatterChart: "JavaScript Scatter Chart",
-    urlTitleScatterChart: "This specific page in the JavaScript Scatter Chart documentation will help you to get started",
+    urlTitleScatterChart: "The JavaScript Scatter Chart example demonstrates how to create a Scatter Chart with SciChart.js",
     urlScatterChartDocumentation: "#",
     urlTitleScatterChartDocumentation: "This specific page in the JavaScript Scatter Chart documentation will help you to get started",
 
@@ -31,6 +31,7 @@ export const ExampleStrings = {
     titleBubbleChart: "JavaScript Bubble Chart",
     urlBubbleChartDocumentation: "#",
     urlTitleBubbleChartDocumentation: "This specific page in the JavaScript Bubble Chart documentation will help you to get started",
+    urlTitleBubbleChart: "The JavaScript Bubble Chart example demonstrates how to create a Bubble Chart with SciChart.js",
 
     // Column Chart
     urlColumnChart: "/javascript-column-chart",
@@ -173,4 +174,24 @@ export const ExampleStrings = {
     urlTitleThemeManager: "The Theme Manager example shows how to use switch theme from light to dark in SciChart.js",
     urlThemeManagerDocumentation: "",
     urlTitleThemeManagerDocumentation: "The specific page for the SciChart.js API documentation for Styling Axis and Gridlines will help you to get started",
+
+    // Use pointmarkers
+    titleUsePointMarkers: "Use Point Markers",
+    urlUsePointMarkers: "/javascript-chart-custom-pointmarkers",
+    urlPointMarkersDocumentation: "#",
+    urlTitlePointMarkersDocumentation: "The specific page for the SciChart.js API documentation for creating custom point-markers to help you to get started",
+
+    // Hit-Test API
+    titleHitTestApi: "Hit-Test API",
+    urlHitTestApi: "/javascript-chart-hit-test-on-click",
+    urlHitTestDocumentation: "#",
+    urlTitleHitTestDocumentation: "The specific page for the SciChart.js documentation for the Hit-Test API help you to get started",
+
+    // RolloverModifier
+    urlRolloverModifierDocumentation: "#",
+    urlTitleRolloverModifierDocumentation:  "The specific page for the SciChart.js API documentation for the RolloverModifier to help you to get started",
+    titleRolloverModifier: "Using Rollover Modifier Tooltips",
+    urlRolloverModifier: "/javascript-chart-rollovermodifier-tooltips"
+
+
 }
