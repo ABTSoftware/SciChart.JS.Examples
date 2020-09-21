@@ -8,7 +8,8 @@ export function renderIndexHtml(html: string, css: string) {
             <title>SciChart Web Demo</title>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-okaidia.min.css" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
             <style id="jss-server-side">${css}</style>
             <script async type="text/javascript" src="bundle.js"></script>
 
@@ -36,6 +37,13 @@ export function renderIndexHtml(html: string, css: string) {
 
             <!-- App -->
             <div id="react-root">${html}</div>
+
+            <script>
+                window.Prism = window.Prism || {};
+                Prism.manual = true;
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
 
             <!-- Activecampaign -->
             <script type="text/javascript">
