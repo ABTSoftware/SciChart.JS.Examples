@@ -25,12 +25,9 @@ const SourceCode: React.FC<TProps> = (props) => {
                     className="language-javascript line-numbers"
                     style={{ backgroundColor: "#272822", fontSize: "0.8em" }}
                 >
-                    <code
-                        style={{ fontFamily: "Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace" }}
-                        dangerouslySetInnerHTML={{
-                            __html: props.code,
-                        }}
-                    />
+                    <code style={{ fontFamily: "Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace" }}>
+                        {props.code}
+                    </code>
                 </pre>
             </div>
         </div>
