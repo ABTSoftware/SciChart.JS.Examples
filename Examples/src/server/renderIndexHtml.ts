@@ -3,8 +3,9 @@ export function renderIndexHtml(html: string, css: string) {
     <!DOCTYPE html>
     <html lang="en-us">
         <head>
-            <meta charset="utf-8" />
-            <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+            <meta charset="utf-8">
+            <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <title>SciChart Web Demo</title>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -24,7 +25,7 @@ export function renderIndexHtml(html: string, css: string) {
               })(window, document, 'script', 'dataLayer', 'GTM-TB68F34');</script>
             <!-- End Google Tag Manager -->
         </head>
-        <body>
+        <body style="margin: 0;">
             <!-- Display a message if JS has been disabled on the browser. -->
             <noscript>If you're seeing this message, that means
                 <strong>JavaScript has been disabled on your browser</strong>, please
