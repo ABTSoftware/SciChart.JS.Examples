@@ -3,20 +3,20 @@ import { Switch, Route } from "react-router-dom";
 import PageHome from "../PageHome";
 import { PAGES } from "./pages";
 import { EXAMPLES_PAGES } from "./examples";
+import ExamplesRoot from "../Examples/ExamplesRoot";
 
 const examplePagesKeys = Object.keys(EXAMPLES_PAGES);
 
 export default function AppRouter() {
     return (
         <Switch>
-            {examplePagesKeys.map(key => {
+            {examplePagesKeys.map((key) => {
                 const exPage = EXAMPLES_PAGES[key];
-                const Component = exPage.Component;
                 return (
-                    <Route key={key} path={exPage.path} component={Component}/>
+                    <Route key={key} path={exPage.path} render={() => <ExamplesRoot example={exPage.Component} />} />
                 );
             })}
-            <Route path={PAGES.homapage.path} component={PageHome}/>
+            <Route path={PAGES.homapage.path} component={PageHome} />
         </Switch>
     );
 }
