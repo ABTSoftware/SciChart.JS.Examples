@@ -5,8 +5,12 @@ export const ExampleStrings = {
     titleDocumentationHome: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
     urlTutorialsHome: "#",
     titleTutorialsHome: "Start here with the SciChart.js Tutorials if you haven't already",
+    urlTutorials3DHome: "#",
+    titleTutorials3DHome: "Start here with the SciChart3D.js Tutorials if you haven't already",
     urlRenderSeriesPropertiesDocumentation: "#",
     urlTitleRenderSeriesProperties: "Learn about common RenderableSeries properties in SciChart.js",
+    urlPerformanceTipsDocumentation: "#",
+    urlTitlePerformanceTipsDocumentation: "Go to the Performance Tips and Tricks page in the SciChart.js Documentation",
     urlJavascriptChartFeatures: "https://www.scichart.com/javascript-chart-features",
 
     // Urls, example titles
@@ -202,14 +206,35 @@ export const ExampleStrings = {
     // 3D Surface Mesh
     urlSurfaceMesh3DChartDocumentation: "#",
     urlTitleSurfaceMesh3DChartDocumentation: "The specific page for the SciChart.js documentation for the 3D Surface Mesh Chart to help you to get started",
-    titleSurfaceMesh3D: "Surface Mesh 3D Chart",
+    titleSurfaceMesh3D: "JavaScript Surface Mesh 3D Chart",
     urlSurfaceMesh3D: "/javascript-3d-surface-mesh-chart",
     urlTitleSurfaceMesh3D: "The Surface Mesh 3D Chart example shows how to create this 3D Chart type in SciChart.js",
 
     // Featured Apps Lidar Example
     urlLidarFeaturedApp: "/javascript-3d-lidar-visualization",
     urlTitleLidarFeaturedApp: "LiDAR 3D Point Cloud of Geospatial Data",
+    titleLidarFeaturedApp: "LiDAR 3D Point Cloud of Geospatial Data",
 
+    // Featured Apps Load 500x500
+    titleLoad500By500: "Load 500 Series x 500 Points Performance Demo",
+    urlLoad500By500: "/javascript-chart-load-500-series-by-500-points",
+    urlTitleLoad500By500: "This example demonstrates the performance of loading 500 series with 500 points on a JavaScript Chart",
+
+    // Featured Apps Performance Demo
+    urlRealtimeJavaScriptChartDemo: "/javascript-chart-realtime-performance-demo",
+    urlTitleRealtimeJavaScriptChartDemo: "JavaScript Chart Realtime Performance Demo",
+    titleRealtimeJavaScriptChartDemo: "Realtime JavaScript Chart Performance Demo",
+
+    // Featured Apps Ghosted Traces
+    urlRealtimeGhostedTracesDemo: "",
+    urlTitleRealtimeGhostedTracesDemo: "",
+    titleRealtimeGhostedTraces: "Realtime Ghosted Traces",
+    urlRealtimeGhostedTraces: "/javascript-realtime-ghosted-traces-chart",
+    urlTitleRealtimeGhostedTraces: "This example demonstrates the performance of SciChart.js with Oscilloscope-style ghosted traces",
+
+    // Featured Apps Vital Signs
+    titleVitalSigns: "JavaScript Vital Signs ECG/EKG Medical Demo",
+    urlVitalSigns: "/javascript-vital-signs-ecg-medical-chart-example",
 
 
 }
