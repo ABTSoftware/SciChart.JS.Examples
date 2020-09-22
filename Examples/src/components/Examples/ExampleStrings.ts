@@ -185,13 +185,31 @@ export const ExampleStrings = {
     titleHitTestApi: "Hit-Test API",
     urlHitTestApi: "/javascript-chart-hit-test-on-click",
     urlHitTestDocumentation: "#",
-    urlTitleHitTestDocumentation: "The specific page for the SciChart.js documentation for the Hit-Test API help you to get started",
+    urlTitleHitTestDocumentation: "The specific page for the SciChart.js documentation for the Hit-Test API to help you to get started",
 
     // RolloverModifier
     urlRolloverModifierDocumentation: "#",
     urlTitleRolloverModifierDocumentation:  "The specific page for the SciChart.js API documentation for the RolloverModifier to help you to get started",
     titleRolloverModifier: "Using Rollover Modifier Tooltips",
-    urlRolloverModifier: "/javascript-chart-rollovermodifier-tooltips"
+    urlRolloverModifier: "/javascript-chart-rollovermodifier-tooltips",
+
+    // 3D Bubble Chart
+    urlBubble3DChart: "/javascript-3d-bubble-chart",
+    titleBubble3DChart: "JavaScript 3D Bubble Chart",
+    urlBubble3DChartDocumentation: "#",
+    urlTitleBubble3DChartDocumentation: "The specific page for the SciChart.js documentation for the 3D Bubble Chart to help you to get started",
+
+    // 3D Surface Mesh
+    urlSurfaceMesh3DChartDocumentation: "#",
+    urlTitleSurfaceMesh3DChartDocumentation: "The specific page for the SciChart.js documentation for the 3D Surface Mesh Chart to help you to get started",
+    titleSurfaceMesh3D: "Surface Mesh 3D Chart",
+    urlSurfaceMesh3D: "/javascript-3d-surface-mesh-chart",
+    urlTitleSurfaceMesh3D: "The Surface Mesh 3D Chart example shows how to create this 3D Chart type in SciChart.js",
+
+    // Featured Apps Lidar Example
+    urlLidarFeaturedApp: "/javascript-3d-lidar-visualization",
+    urlTitleLidarFeaturedApp: "LiDAR 3D Point Cloud of Geospatial Data",
+
 
 
 }
