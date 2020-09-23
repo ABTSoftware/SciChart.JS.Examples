@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { EPieType, SciChartPieSurface } from "scichart/Charting/Visuals/SciChartPieSurface/SciChartPieSurface";
 import { PieSegment } from "scichart/Charting/Visuals/SciChartPieSurface/PieSegment/PieSegment";
 import { GradientParams } from "scichart/Core/GradientParams";
@@ -63,5 +62,4 @@ export default function PieChart() {
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;
 }
-
 `;

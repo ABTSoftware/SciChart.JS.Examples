@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
@@ -131,5 +130,4 @@ export default function MountainChart() {
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;
 }
-
 `;

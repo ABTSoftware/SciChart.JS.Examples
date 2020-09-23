@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
@@ -122,5 +121,4 @@ export default function FanChart() {
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;
 }
-
 `;

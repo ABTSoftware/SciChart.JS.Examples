@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -206,5 +205,4 @@ export default function ChartLegendsAPI() {
         </div>
     );
 }
-
 `;

@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { SciChartSurface } from "scichart";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
 import { NumberRange } from "scichart/Core/NumberRange";
@@ -183,5 +182,4 @@ export default function CandlestickChart() {
         </div>
     );
 }
-
 `;

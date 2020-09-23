@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
@@ -8,6 +7,9 @@ import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
+import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragModifier";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 
 const divElementId = "chart1";
 
@@ -20,10 +22,10 @@ const drawExample = async () => {
     const titleStyle1 = {
         color: "#228B22",
         fontSize: 30,
-        fontFamily: "Courier New",
+        fontFamily: "Courier New"
     };
     const labelStyle1 = {
-        color: "#228B22",
+        color: "#228B22"
     };
     const setXAxis1 = () => {
         const xAxis = new NumericAxis(wasmContext);
@@ -58,7 +60,7 @@ const drawExample = async () => {
         const lineSeries = new FastLineRenderableSeries(wasmContext, {
             stroke: "#228B22",
             strokeThickness: 3,
-            dataSeries: lineData,
+            dataSeries: lineData
         });
         sciChartSurface.renderableSeries.add(lineSeries);
     };
@@ -68,10 +70,10 @@ const drawExample = async () => {
     const titleStyle2 = {
         color: "#368BC1",
         fontSize: 30,
-        fontFamily: "Courier New",
+        fontFamily: "Courier New"
     };
     const labelStyle2 = {
-        color: "#368BC1",
+        color: "#368BC1"
     };
     const setXAxis2 = () => {
         const xAxis = new NumericAxis(wasmContext);
@@ -109,13 +111,20 @@ const drawExample = async () => {
             xAxisId: ID_X_AXIS_2,
             yAxisId: ID_Y_AXIS_2,
             strokeThickness: 3,
-            dataSeries: lineData,
+            dataSeries: lineData
         });
         sciChartSurface.renderableSeries.add(lineSeries);
     };
     setSeries2();
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier());
+    // Optional: Add some interactivity modifiers to enable zooming and panning
+    sciChartSurface.chartModifiers.add(
+        new YAxisDragModifier(),
+        new XAxisDragModifier(),
+        new ZoomPanModifier(),
+        new MouseWheelZoomModifier(),
+        new ZoomExtentsModifier()
+    );
 
     return { sciChartSurface, wasmContext };
 };
@@ -134,5 +143,4 @@ export default function MultipleXAxes() {
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;
 }
-
 `;

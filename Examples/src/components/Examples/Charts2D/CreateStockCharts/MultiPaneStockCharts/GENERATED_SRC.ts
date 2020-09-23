@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
@@ -360,10 +359,6 @@ export default function MultiPaneStockCharts() {
         return () => charts.forEach((el) => el?.sciChartSurface?.delete());
     }, []);
 
-    React.useEffect(() => {
-        drawExample().then(() => setShowCharts(true));
-    }, []);
-
     return (
         <div style={{ display: showCharts ? "block" : "none", maxWidth: 900 }}>
             <div id={divElementId1} />
@@ -372,5 +367,4 @@ export default function MultiPaneStockCharts() {
         </div>
     );
 }
-
 `;

@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
@@ -255,5 +254,4 @@ export default function StylingInCode() {
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;
 }
-
 `;

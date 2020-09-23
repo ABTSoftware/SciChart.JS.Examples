@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
@@ -81,5 +80,4 @@ export default function ColumnChart() {
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;
 }
-
 `;

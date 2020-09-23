@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { CameraController } from "scichart3d/Charting3D/CameraController";
 import { MouseWheelZoomModifier3D } from "scichart3d/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
 import { OrbitModifier3D } from "scichart3d/Charting3D/ChartModifiers/OrbitModifier3D";
@@ -82,5 +81,4 @@ export default function Bubble3DChart() {
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;
 }
-
 `;

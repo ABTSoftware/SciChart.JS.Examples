@@ -30,10 +30,7 @@ function updateExample(targetFileDir, srcText, platform) {
     const targetFileSrc = path.join(targetFileDir, "GENERATED_SRC.ts");
     fs.writeFileSync(
         targetFileSrc,
-        `export const code = \`
-${srcText}
-\`;
-`
+        `export const code = \`${srcText}\`;`
     );
 
     const targetFileGithubUrl = path.join(targetFileDir, "GENERATED_GITHUB_URL.ts");

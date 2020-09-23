@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { SciChartSurface } from "scichart";
 import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
@@ -147,5 +146,4 @@ export default function HeatmapChart() {
         </div>
     );
 }
-
 `;

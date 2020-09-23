@@ -1,19 +1,18 @@
-export const code = `
-import * as React from "react";
-import {SciChart3DSurface} from "scichart3d/Charting3D/Visuals/SciChart3DSurface";
-import {NumericAxis3D} from "scichart3d/Charting3D/Visuals/Axis/NumericAxis3D";
-import {CameraController} from "scichart3d/Charting3D/CameraController";
-import {Vector3} from "scichart3d/Charting3D/Vector3";
-import {MouseWheelZoomModifier3D} from "scichart3d/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
-import {OrbitModifier3D} from "scichart3d/Charting3D/ChartModifiers/OrbitModifier3D";
-import {PixelPointMarker3D} from "scichart3d/Charting3D/Visuals/PointMarkers/DefaultPointMarkers";
-import {ScatterRenderableSeries3D} from "scichart3d/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
-import {TSciChart3D} from "scichart3d/types/TSciChart3D";
-import {EColorMapMode, TLinearColorMap} from "scichart3d/types/TLinearColorMap";
-import {EColor} from "scichart3d/types/Color";
-import {XyzDataSeries3D} from "scichart3d/Charting3D/Model/DataSeries/XyzDataSeries3D";
-import {AscData, AscReader} from "./AscReader";
-import {linearColorMapLerp} from "scichart3d/utils/colorUtil";
+export const code = `import * as React from "react";
+import { SciChart3DSurface } from "scichart3d/Charting3D/Visuals/SciChart3DSurface";
+import { NumericAxis3D } from "scichart3d/Charting3D/Visuals/Axis/NumericAxis3D";
+import { CameraController } from "scichart3d/Charting3D/CameraController";
+import { Vector3 } from "scichart3d/Charting3D/Vector3";
+import { MouseWheelZoomModifier3D } from "scichart3d/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
+import { OrbitModifier3D } from "scichart3d/Charting3D/ChartModifiers/OrbitModifier3D";
+import { PixelPointMarker3D } from "scichart3d/Charting3D/Visuals/PointMarkers/DefaultPointMarkers";
+import { ScatterRenderableSeries3D } from "scichart3d/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
+import { TSciChart3D } from "scichart3d/types/TSciChart3D";
+import { EColorMapMode, TLinearColorMap } from "scichart3d/types/TLinearColorMap";
+import { EColor } from "scichart3d/types/Color";
+import { XyzDataSeries3D } from "scichart3d/Charting3D/Model/DataSeries/XyzDataSeries3D";
+import { AscData, AscReader } from "./AscReader";
+import { linearColorMapLerp } from "scichart3d/utils/colorUtil";
 
 const divElementId = "chart";
 
@@ -41,7 +40,7 @@ const drawExample = async () => {
     // The dataseries is type XyzDataSeries3D which is created and returned from getData function
     const series = new ScatterRenderableSeries3D(wasmContext, {
         pointMarker: new PixelPointMarker3D(wasmContext, { fill: "#00FF00" }),
-        dataSeries: getData(wasmContext),
+        dataSeries: getData(wasmContext)
     });
     sciChart3DSurface.renderableSeries.add(series);
 
@@ -107,5 +106,4 @@ export default function LiDAR3DPointCloudDemo() {
         </React.Fragment>
     );
 }
-
 `;

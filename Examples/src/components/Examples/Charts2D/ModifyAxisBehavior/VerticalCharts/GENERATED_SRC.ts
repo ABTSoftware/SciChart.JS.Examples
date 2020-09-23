@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
@@ -58,7 +57,7 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    sciChartSurface.chartModifiers.add(new RolloverModifier({ isHorizontal: true }));
+    sciChartSurface.chartModifiers.add(new RolloverModifier({ isVerticalChart: true }));
 
     sciChartSurface.zoomExtents();
 
@@ -79,5 +78,4 @@ export default function VerticalCharts() {
 
     return <div id={divElementId2} style={{ maxWidth: 900 }} />;
 }
-
 `;

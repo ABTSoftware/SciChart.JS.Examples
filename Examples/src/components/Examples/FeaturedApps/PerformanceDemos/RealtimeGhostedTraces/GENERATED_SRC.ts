@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { NumberRange } from "scichart/Core/NumberRange";
@@ -112,5 +111,4 @@ export default function RealtimeGhostedTraces() {
         </React.Fragment>
     );
 }
-
 `;

@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { TSciChart } from "scichart/types/TSciChart";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { SciChartSurface } from "scichart";
@@ -149,5 +148,4 @@ export default function UsePointMarkers() {
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;
 }
-
 `;
