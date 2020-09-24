@@ -29,21 +29,16 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         formControl: {
             margin: theme.spacing(1),
-            minWidth: 142,
+            minWidth: 142
         },
-        notificationsBlock: {
-            flexBasis: 320,
-            flexGrow: 0,
-            flexShrink: 0,
-            marginLeft: 24,
-        },
+        notificationsBlock: {},
         notification: {
-            marginBottom: 16,
+            marginBottom: 16
         },
         description: {
             width: 800,
-            marginBottom: 20,
-        },
+            marginBottom: 20
+        }
     })
 );
 
@@ -51,13 +46,13 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, 3, 2);
     const xAxis = new NumericAxis(wasmContext, {
         visibleRange: new NumberRange(0, POINTS),
-        autoRange: EAutoRange.Never,
+        autoRange: EAutoRange.Never
     });
     xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
     sciChartSurface.xAxes.add(xAxis);
     const yAxis = new NumericAxis(wasmContext, {
         visibleRange: new NumberRange(-5000, 5000),
-        autoRange: EAutoRange.Never,
+        autoRange: EAutoRange.Never
     });
     yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
     sciChartSurface.yAxes.add(yAxis);
@@ -68,7 +63,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         const dataSeries: XyDataSeries = new XyDataSeries(wasmContext);
         const rendSeries: FastLineRenderableSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries,
-            strokeThickness: 2,
+            strokeThickness: 2
         });
 
         dataSeriesArray[i] = dataSeries;
@@ -118,7 +113,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         // Add the first time span: Generating 1M data points
         newTimeSpans.push({
             title: "Generate 500x500 Data Points",
-            durationMs: Date.now() - generateTimestamp,
+            durationMs: Date.now() - generateTimestamp
         });
 
         // Start counting batch append time
@@ -131,7 +126,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         // Add the second time span: Generation of data point
         newTimeSpans.push({
             title: "Append 500x500 Data Points",
-            durationMs: Date.now() - appendTimestamp,
+            durationMs: Date.now() - appendTimestamp
         });
 
         // Subscribe to sciChartSurface.rendered event,
@@ -145,7 +140,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
                 // Add the third time span: Render the first frame
                 newTimeSpans.push({
                     title: "Render the frame",
-                    durationMs: Date.now() - firstFrameTimestamp,
+                    durationMs: Date.now() - firstFrameTimestamp
                 });
                 nextFramesTimestamp = Date.now();
             } else {
@@ -186,29 +181,25 @@ export default function Load500By500() {
 
     return (
         <div>
-            <div style={{ display: "flex", maxWidth: 1200 }}>
-                <div id={divElementId} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }} />
-                <div className={classes.notificationsBlock}>
-                    {timeSpans.length > 0 && (
-                        <Alert key="0" severity="info" className={classes.notification}>
-                            {timeSpans.map((ts, index) => (
-                                <div key={index}>
-                                    <AlertTitle>{ts.title}</AlertTitle>
-                                    Time: {ts.durationMs.toFixed(0)} ms
-                                </div>
-                            ))}
-                        </Alert>
-                    )}
-                </div>
-            </div>
+            <div id={divElementId} style={{ maxWidth: 900 }} />
             <div>
-                <div>
-                    <FormControl className={classes.formControl}>
-                        <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                            <Button id="loadPoints">Load</Button>
-                        </ButtonGroup>
-                    </FormControl>
-                </div>
+                <FormControl className={classes.formControl}>
+                    <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                        <Button id="loadPoints">Load</Button>
+                    </ButtonGroup>
+                </FormControl>
+            </div>
+            <div className={classes.notificationsBlock}>
+                {timeSpans.length > 0 && (
+                    <Alert key="0" className={classes.notification}>
+                        <AlertTitle>Performance Results</AlertTitle>
+                        {timeSpans.map((ts, index) => (
+                            <div key={index}>
+                                {ts.title}: {ts.durationMs.toFixed(0)} ms
+                            </div>
+                        ))}
+                    </Alert>
+                )}
             </div>
         </div>
     );

@@ -1,17 +1,10 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
 import { makeStyles, Theme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Drawer from "@material-ui/core/Drawer";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppRouter from "./AppRouter/AppRouter";
-import sciChartLogoImg from "../images/scichart-logo-making-impossible-projects-possible@2x.png";
 import { EXAMPLES_PAGES, getParentMenuIds } from "./AppRouter/examples";
-import Title from "./Title/Title";
-import { HOME_PAGE_TITLE } from "./PageHome";
-import Description from "./Description/Description";
-import GettingStarted from "./GettingStarted/GettingStarted";
-import SourceCode from "./SourceCode/SourceCode";
 import AppBarTop from "./AppTopBar/AppBarTop";
 import DrawerContent from "./DrawerContent/DrawerContent";
 

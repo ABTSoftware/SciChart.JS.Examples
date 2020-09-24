@@ -16,8 +16,7 @@ type TProps = {
 
 const useStyles = makeStyles(
     theme => ({
-        root: {},
-        mainContent: {
+        root: {
             margin: theme.spacing(2)
         },
         sciChartLogo: {
@@ -86,7 +85,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
     }, []);
 
     return (
-        <div className={classes.mainContent}>
+        <div className={classes.root}>
             <div className={classes.body}>
                 <div className={classes.colMain}>
                     <div className={classes.colMainContent}>

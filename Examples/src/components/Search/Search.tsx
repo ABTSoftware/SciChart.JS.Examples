@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     mySearchField: {
+        marginTop: 8,
         "& .MuiInputBase-root": {
             backgroundColor: "#67bb6a",
             "&:hover": {
@@ -51,7 +52,7 @@ export default function Search() {
                         {...params}
                         margin="normal"
                         variant="outlined"
-                        placeholder="Search for example names, chart types, source-code types or classes"
+                        placeholder="Search for example names and chart types"
                         className={classes.mySearchField}
                         InputProps={{
                             ...params.InputProps,
