@@ -14,7 +14,7 @@ const Description = () => (<div>
     <h4>Documentation Links</h4>
     <ul>
         <li><a href={ExampleStrings.urlDocumentationHome} title={ExampleStrings.titleDocumentationHome} target="_blank">
-            SciChart.js Documentation Home</a></li>∏¬
+            SciChart.js Documentation Home</a></li>
         <li><a href={ExampleStrings.urlTutorials3DHome} title={ExampleStrings.titleTutorials3DHome} target="_blank">
             SciChart3D.js Tutorials</a></li>
         <li><a href={ExampleStrings.urlBubble3DChartDocumentation} target="_blank"
