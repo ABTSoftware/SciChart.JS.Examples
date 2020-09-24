@@ -3,7 +3,6 @@ import {TExampleInfo} from "../../../../AppRouter/examples";
 import {code} from "./GENERATED_SRC";
 import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
-import {IThemeProvider} from "scichart/Charting/Themes/IThemeProvider";
 
 const Description = () => (<div>
     <p>SciChart.js ships with a light and a dark theme, which you can switch by calling the SciChartSurface.applyTheme()
