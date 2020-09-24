@@ -179,6 +179,12 @@ export const ExampleStrings = {
     urlThemeManagerDocumentation: "",
     urlTitleThemeManagerDocumentation: "The specific page for the SciChart.js API documentation for Styling Axis and Gridlines will help you to get started",
 
+    // Create Custom Theme
+    titleCustomTheme: "Create a Custom Theme",
+    urlCustomTheme: "/javascript-chart-custom-themes",
+    urlCustomThemeDocumentation: "#",
+    urlTitleCustomThemeDocumentation: "The specific page for the SciChart.js API documentation for Custom Themes will help you to get started",
+
     // Use pointmarkers
     titleUsePointMarkers: "Use Point Markers",
     urlUsePointMarkers: "/javascript-chart-custom-pointmarkers",
@@ -235,6 +241,7 @@ export const ExampleStrings = {
     // Featured Apps Vital Signs
     titleVitalSigns: "JavaScript Vital Signs ECG/EKG Medical Demo",
     urlVitalSigns: "/javascript-vital-signs-ecg-medical-chart-example",
+
 
 
 }

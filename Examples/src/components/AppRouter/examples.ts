@@ -58,6 +58,8 @@ import UsePointMarkers from "../Examples/Charts2D/StylingAndTheming/UsePointMark
 import { usePointMarkersExampleInfo } from "../Examples/Charts2D/StylingAndTheming/UsePointMarkers/exampleInfo";
 import UsingThemeManager from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager";
 import { usingThemeManagerExampleInfo } from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager/exampleInfo";
+import CustomTheme from "../Examples/Charts2D/StylingAndTheming/CreateACustomTheme/";
+import {createACustomThemeExampleInfo} from "../Examples/Charts2D/StylingAndTheming/CreateACustomTheme/exampleInfo";
 import StylingInCode from "../Examples/Charts2D/StylingAndTheming/StylingInCode";
 import { stylingInCodeExampleInfo } from "../Examples/Charts2D/StylingAndTheming/StylingInCode/exampleInfo";
 import PerPointColoring from "../Examples/Charts2D/StylingAndTheming/PerPointColoring";
@@ -234,6 +236,11 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
         Component: UsingThemeManager,
         ...usingThemeManagerExampleInfo,
     },
+    chart2D_stylingAndTheming_CustomTheme: {
+        id: "chart2D_stylingAndTheming_CustomTheme",
+        Component: CustomTheme,
+        ...createACustomThemeExampleInfo,
+    },
     chart2D_stylingAndTheming_StylingInCode: {
         id: "chart2D_stylingAndTheming_StylingInCode",
         Component: StylingInCode,
@@ -337,10 +344,11 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
     {
         item: { id: "chart2D_stylingAndTheming", name: "Styling and Theming" },
         submenu: [
-            EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTheme,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
         ],
     },
     {
