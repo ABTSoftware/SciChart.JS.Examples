@@ -100,7 +100,7 @@ const drawExample = async () => {
             pointMarker: new EllipsePointMarker(wasmContext, {
                 width: 7,
                 height: 7,
-                strokeThickness: 1,
+                strokeThickness: 2,
                 fill: "#FF6600",
                 stroke: "white",
             }),
