@@ -1,19 +1,28 @@
 import * as React from "react";
 import { Switch, Route } from "react-router-dom";
-import PageHome from "../PageHome";
+import PageHome from "../PageHome/PageHome";
 import { PAGES } from "./pages";
-import { EXAMPLES_PAGES } from "./examples";
+import { EXAMPLES_PAGES, TExamplePage } from "./examples";
 import ExamplesRoot from "../Examples/ExamplesRoot";
+
+type TProps = {
+    currentExample: TExamplePage;
+};
 
 const examplePagesKeys = Object.keys(EXAMPLES_PAGES);
 
-export default function AppRouter() {
+export default function AppRouter(props: TProps) {
+    const { currentExample } = props;
     return (
         <Switch>
-            {examplePagesKeys.map((key) => {
+            {examplePagesKeys.map(key => {
                 const exPage = EXAMPLES_PAGES[key];
                 return (
-                    <Route key={key} path={exPage.path} render={() => <ExamplesRoot example={exPage.Component} />} />
+                    <Route
+                        key={key}
+                        path={exPage.path}
+                        render={() => <ExamplesRoot example={exPage.Component} currentExample={currentExample} />}
+                    />
                 );
             })}
             <Route path={PAGES.homapage.path} component={PageHome} />

@@ -45,8 +45,8 @@ const drawExample = async () => {
             openValues,
             highValues,
             lowValues,
-            closeValues,
-        }),
+            closeValues
+        })
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
 
@@ -61,13 +61,13 @@ const drawExample = async () => {
                 height: 24,
                 fill: "white",
                 strokeThickness: 2,
-                stroke: "#368BC1",
+                stroke: "#368BC1"
             }),
             dataSeries: new XyzDataSeries(wasmContext, {
                 xValues: xBubbleValues,
                 yValues: yBubbleValues,
-                zValues: zBubbleValues,
-            }),
+                zValues: zBubbleValues
+            })
         })
     );
 
@@ -77,7 +77,7 @@ const drawExample = async () => {
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#368BC1",
         strokeThickness: 3,
-        dataSeries: new XyDataSeries(wasmContext, { xValues: xLineValues, yValues: yLineValues }),
+        dataSeries: new XyDataSeries(wasmContext, { xValues: xLineValues, yValues: yLineValues })
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -89,8 +89,8 @@ const drawExample = async () => {
         dataPointWidth: 0.5,
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: xColumnValues,
-            yValues: yColumnValues,
-        }),
+            yValues: yColumnValues
+        })
     });
     sciChartSurface.renderableSeries.add(columnSeries);
 
@@ -99,20 +99,17 @@ const drawExample = async () => {
 
 const HIT_TEST_RADIUS = 10;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     notificationsBlock: {
-        marginLeft: 24,
-        flexBasis: 320,
-        flexGrow: 0,
-        flexShrink: 0,
+        marginTop: 20
     },
     notification: {
-        marginBottom: 16,
+        marginBottom: 16
     },
     description: {
         width: 800,
-        marginBottom: 20,
-    },
+        marginBottom: 20
+    }
 }));
 
 export default function HitTestAPI() {
@@ -130,12 +127,12 @@ export default function HitTestAPI() {
                 svgString: '<svg width="8" height="8"><circle cx="50%" cy="50%" r="4" fill="#368BC1"/></svg>',
                 isHidden: true,
                 xCoordShift: -4,
-                yCoordShift: -4,
+                yCoordShift: -4
             });
             res.sciChartSurface.annotations.add(svgAnnotation);
             res.sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent: MouseEvent) => {
                 const newHitTestsList: HitTestInfo[] = [];
-                res.sciChartSurface.renderableSeries.asArray().forEach((rs) => {
+                res.sciChartSurface.renderableSeries.asArray().forEach(rs => {
                     // TODO: add hitTestProvider to all series
                     if (rs.hitTestProvider) {
                         const hitTestInfo = rs.hitTestProvider.hitTest(
@@ -162,20 +159,17 @@ export default function HitTestAPI() {
 
     return (
         <div>
-            <div style={{ display: showButtons ? "flex" : "none" }}>
-                <div id={divElementId} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 0 }} />
+            <div style={{ display: showButtons ? "block" : "none" }}>
+                <div id={divElementId} style={{ maxWidth: 900 }} />
                 <div className={classes.notificationsBlock}>
                     {hitTestsList.map((ht, index) => (
-                        <Alert key={index} severity="info" className={classes.notification}>
+                        <Alert key={index} className={classes.notification}>
                             <AlertTitle>{ht.dataSeriesName}</AlertTitle>
-                            Mouse Coord: {ht.hitTestPoint.x.toFixed(2)}, {ht.hitTestPoint.y.toFixed(2)}
-                            <br />
-                            Is Hit: {ht.isHit && <span style={{ color: "red" }}>true</span>}
-                            {!ht.isHit ? "false" : ""}, Index: {ht.dataSeriesIndex}, Radius: {ht.hitTestRadius}
-                            <br />
-                            Nearest Data Coord: {ht.xCoord.toFixed(2)}, {ht.yCoord.toFixed(2)}
-                            <br />
-                            Nearest Data Value: {ht.xValue.toFixed(2)}, {ht.yValue.toFixed(2)}
+                            Mouse Coord: {ht.hitTestPoint.x.toFixed(2)}, {ht.hitTestPoint.y.toFixed(2)}; Is Hit:{" "}
+                            {ht.isHit && <span style={{ color: "red" }}>true</span>}
+                            {!ht.isHit ? "false" : ""}, Index: {ht.dataSeriesIndex}, Radius: {ht.hitTestRadius}; Nearest
+                            Data Coord: {ht.xCoord.toFixed(2)}, {ht.yCoord.toFixed(2)}; Nearest Data Value:{" "}
+                            {ht.xValue.toFixed(2)}, {ht.yValue.toFixed(2)}
                         </Alert>
                     ))}
                 </div>
