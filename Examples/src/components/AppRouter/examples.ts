@@ -79,18 +79,17 @@ import { realtimePerformanceDemoExampleInfo } from "../Examples/FeaturedApps/Per
 
 import VitalSignsMonitorDemo from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo";
 import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/exampleInfo";
-import {surfaceMesh3DChartExampleInfo} from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/exampleInfo";
+import { surfaceMesh3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/exampleInfo";
 import SurfaceMesh3DChart from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart";
 
 import LiDAR3DPointCloudDemo from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo";
-import {lidar3DPointCloudExampleInfo }  from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/exampleInfo";
-
+import { lidar3DPointCloudExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
     path: string;
-    subtitle: (() => JSX.Element);
-    description: (() => JSX.Element);
+    subtitle: () => JSX.Element;
+    description: () => JSX.Element;
     code: string;
     githubUrl: string;
 };
@@ -105,136 +104,140 @@ export type TMenuItem = {
     submenu: TExamplePage[];
 };
 
-export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
+function asRecord<T extends Record<string, TExamplePage>>(arg: T): T & Record<string, TExamplePage> {
+    return arg;
+}
+
+export const EXAMPLES_PAGES = asRecord({
     chart2D_basicCharts_BandSeriesChart: {
         id: "chart2D_basicCharts_BandSeriesChart",
         Component: BandSeriesChart,
-        ...bandSeriesChartExampleInfo,
+        ...bandSeriesChartExampleInfo
     },
     chart2D_basicCharts_FanChart: {
         id: "chart2D_basicCharts_FanChart",
         Component: FanChart,
-        ...fanChartExampleInfo,
+        ...fanChartExampleInfo
     },
     chart2D_basicCharts_BubbleChart: {
         id: "chart2D_basicCharts_BubbleChart",
         Component: BubbleChart,
-        ...bubbleChartExampleInfo,
+        ...bubbleChartExampleInfo
     },
     chart2D_basicCharts_CandlestickChart: {
         id: "chart2D_basicCharts_CandlestickChart",
         Component: CandlestickChart,
-        ...candlestickChartExampleInfo,
+        ...candlestickChartExampleInfo
     },
     chart2D_basicCharts_OhlcChart: {
         id: "chart2D_basicCharts_OhlcChart",
         Component: OhlcChart,
-        ...ohlcChartExampleInfo,
+        ...ohlcChartExampleInfo
     },
     chart2D_basicCharts_ColumnChart: {
         id: "chart2D_basicCharts_ColumnChart",
         Component: ColumnChart,
-        ...columnChartExampleInfo,
+        ...columnChartExampleInfo
     },
     chart2D_basicCharts_HeatmapChart: {
         id: "chart2D_basicCharts_HeatmapChart",
         Component: HeatmapChart,
-        ...heatmapChartExampleInfo,
+        ...heatmapChartExampleInfo
     },
     chart2D_basicCharts_LineChart: {
         id: "chart2D_basicCharts_LineChart",
         Component: LineChart,
-        ...lineChartExampleInfo,
+        ...lineChartExampleInfo
     },
     chart2D_basicCharts_MountainChart: {
         id: "chart2D_basicCharts_MountainChart",
         Component: MountainChart,
-        ...mountainChartExampleInfo,
+        ...mountainChartExampleInfo
     },
     chart2D_basicCharts_ScatterChart: {
         id: "chart2D_basicCharts_ScatterChart",
         Component: ScatterChart,
-        ...scatterChartExampleInfo,
+        ...scatterChartExampleInfo
     },
     chart2D_basicCharts_DonutChart: {
         id: "chart2D_basicCharts_DonutChart",
         Component: DonutChart,
-        ...donutChartExampleInfo,
+        ...donutChartExampleInfo
     },
     chart2D_basicCharts_PieChart: {
         id: "chart2D_basicCharts_PieChart",
         Component: PieChart,
-        ...pieChartExampleInfo,
+        ...pieChartExampleInfo
     },
     chart2D_chartAnnotations_AnnotationsAreEasy: {
         id: "chart2D_chartAnnotations_AnnotationsAreEasy",
         Component: AnnotationsAreEasy,
-        ...annotationsAreEasyExampleInfo,
+        ...annotationsAreEasyExampleInfo
     },
     chart2D_chartAnnotations_TradeMarkers: {
         id: "chart2D_chartAnnotations_TradeMarkers",
         Component: TradeMarkers,
-        ...tradeMarkerAnnotationsExampleInfo,
+        ...tradeMarkerAnnotationsExampleInfo
     },
     featuredApps_performanceDemos_RealtimeGhostedTraces: {
         id: "featuredApps_performanceDemos_RealtimeGhostedTraces",
         Component: RealtimeGhostedTraces,
-        ...realtimeGhostedTracesExampleInfo,
+        ...realtimeGhostedTracesExampleInfo
     },
     chart2D_createStockCharts_MultiPaneStockCharts: {
         id: "chart2D_createStockCharts_MultiPaneStockCharts",
         Component: MultiPaneStockCharts,
-        ...multiPaneStockChartsExampleInfo,
+        ...multiPaneStockChartsExampleInfo
     },
     chart2D_createStockCharts_RealtimeTickingStockCharts: {
         id: "chart2D_createStockCharts_RealtimeTickingStockCharts",
         Component: RealtimeTickingStockCharts,
-        ...realtimeTickingStockChartsExampleInfo,
+        ...realtimeTickingStockChartsExampleInfo
     },
     chart2D_legends_ChartLegendsAPI: {
         id: "chart2D_legends_ChartLegendsAPI",
         Component: ChartLegendsAPI,
-        ...chartLegendsAPIExampleInfo,
+        ...chartLegendsAPIExampleInfo
     },
     chart2D_modifyAxisBehavior_MultipleXAxes: {
         id: "chart2D_modifyAxisBehavior_MultipleXAxes",
         Component: MultipleXAxes,
-        ...multipleXAxesExampleInfo,
+        ...multipleXAxesExampleInfo
     },
     chart2D_modifyAxisBehavior_SecondaryYAxes: {
         id: "chart2D_modifyAxisBehavior_SecondaryYAxes",
         Component: SecondaryYAxes,
-        ...secondaryYAxesExampleInfo,
+        ...secondaryYAxesExampleInfo
     },
     chart2D_modifyAxisBehavior_VerticalCharts: {
         id: "chart2D_modifyAxisBehavior_VerticalCharts",
         Component: VerticalCharts,
-        ...verticalChartsExampleInfo,
+        ...verticalChartsExampleInfo
     },
     chart2D_basicCharts_StackedColumnChart: {
         id: "chart2D_basicCharts_StackedColumnChart",
         Component: StackedColumnChart,
-        ...stackedColumnChartExampleInfo,
+        ...stackedColumnChartExampleInfo
     },
     chart2D_basicCharts_StackedColumnSideBySide: {
         id: "chart2D_basicCharts_StackedColumnSideBySide",
         Component: StackedColumnSideBySide,
-        ...stackedColumnSideBySideExampleInfo,
+        ...stackedColumnSideBySideExampleInfo
     },
     chart2D_basicCharts_StackedMountainChart: {
         id: "chart2D_basicCharts_StackedMountainChart",
         Component: StackedMountainChart,
-        ...stackedMountainChartExampleInfo,
+        ...stackedMountainChartExampleInfo
     },
     chart2D_stylingAndTheming_UsePointMarkers: {
         id: "chart2D_stylingAndTheming_UsePointMarkers",
         Component: UsePointMarkers,
-        ...usePointMarkersExampleInfo,
+        ...usePointMarkersExampleInfo
     },
     chart2D_stylingAndTheming_UsingThemeManager: {
         id: "chart2D_stylingAndTheming_UsingThemeManager",
         Component: UsingThemeManager,
-        ...usingThemeManagerExampleInfo,
+        ...usingThemeManagerExampleInfo
     },
     chart2D_stylingAndTheming_CustomTheme: {
         id: "chart2D_stylingAndTheming_CustomTheme",
@@ -244,54 +247,54 @@ export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
     chart2D_stylingAndTheming_StylingInCode: {
         id: "chart2D_stylingAndTheming_StylingInCode",
         Component: StylingInCode,
-        ...stylingInCodeExampleInfo,
+        ...stylingInCodeExampleInfo
     },
     chart2D_stylingAndTheming_PerPointColoring: {
         id: "chart2D_stylingAndTheming_PerPointColoring",
         Component: PerPointColoring,
-        ...perPointColoringExampleInfo,
+        ...perPointColoringExampleInfo
     },
     chart2D_tooltipsAndHittest_HitTestApi: {
         id: "chart2D_tooltipsAndHittest_HitTestApi",
         Component: HitTestAPI,
-        ...hitTestApiExampleInfo,
+        ...hitTestApiExampleInfo
     },
     chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips: {
         id: "chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips",
         Component: UsingRolloverModifierTooltips,
-        ...usingRolloverModifierTooltipsExampleInfo,
+        ...usingRolloverModifierTooltipsExampleInfo
     },
     chart3D_basic3DChartTypes_Bubble3DChart: {
         id: "chart3D_basic3DChartTypes_Bubble3DChart",
         Component: Bubble3DChart,
-        ...bubble3DChartExampleInfo,
+        ...bubble3DChartExampleInfo
     },
     chart3D_basic3DChartTypes_SurfaceMesh3DChart: {
         id: "chart3D_basic3DChartTypes_SurfaceMesh3DChart",
         Component: SurfaceMesh3DChart,
-        ...surfaceMesh3DChartExampleInfo,
+        ...surfaceMesh3DChartExampleInfo
     },
     featuredApps_performanceDemos_Load500By500: {
         id: "featuredApps_performanceDemos_Load500By500",
         Component: Load500By500,
-        ...load500By500ExampleInfo,
+        ...load500By500ExampleInfo
     },
     featuredApps_performanceDemos_RealtimePerformanceDemo: {
         id: "featuredApps_performanceDemos_RealtimePerformanceDemo",
         Component: RealtimePerformanceDemo,
-        ...realtimePerformanceDemoExampleInfo,
+        ...realtimePerformanceDemoExampleInfo
     },
     featuredApps_medicalCharts_VitalSignsMonitorDemo: {
         id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
         Component: VitalSignsMonitorDemo,
-        ...vitalSignsMonitorDemoExampleInfo,
+        ...vitalSignsMonitorDemoExampleInfo
     },
     featuredApps_scientificCharts_Lidar3DPointCloudDemo: {
         id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",
         Component: LiDAR3DPointCloudDemo,
-        ...lidar3DPointCloudExampleInfo,
-    },
-};
+        ...lidar3DPointCloudExampleInfo
+    }
+});
 
 export const MENU_ITEMS_2D_ID = "MENU_ITEMS_2D_ID";
 export const MENU_ITEMS_2D: TMenuItem[] = [
@@ -312,34 +315,34 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide,
             EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_PieChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_DonutChart,
-        ],
+            EXAMPLES_PAGES.chart2D_basicCharts_DonutChart
+        ]
     },
     {
         item: { id: "chart2D_chartAnnotations", name: "Chart Annotations" },
         submenu: [
             EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy,
             EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers
-        ],
+        ]
     },
     {
         item: { id: "chart2D_createStockCharts", name: "Create Stock Charts" },
         submenu: [
             EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
-            EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts,
-        ],
+            EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts
+        ]
     },
     {
         item: { id: "chart2D_legends", name: "Chart Legends" },
-        submenu: [EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI],
+        submenu: [EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI]
     },
     {
         item: { id: "chart2D_modifyAxisBehavior", name: "Chart Axis APIs" },
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
-        ],
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts
+        ]
     },
     {
         item: { id: "chart2D_stylingAndTheming", name: "Styling and Theming" },
@@ -355,9 +358,9 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         item: { id: "chart2D_tooltipsAndHittest", name: "Tooltips and Hit-Test" },
         submenu: [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi,
-            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips,
-        ],
-    },
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips
+        ]
+    }
 ];
 
 export const MENU_ITEMS_3D_ID = "MENU_ITEMS_3D_ID";
@@ -366,9 +369,9 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
         item: { id: "chart3D_Basic3DChartTypes", name: "JavaScript 3D Chart Types" },
         submenu: [
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart,
-            EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart
         ]
-    },
+    }
 ];
 
 export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
@@ -379,23 +382,23 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500,
             EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo,
             EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces
-        ],
+        ]
     },
     {
         item: { id: "featuredApps_scientificCharts", name: "Scientific Charts" },
-        submenu: [EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo],
+        submenu: [EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo]
     },
     {
         item: { id: "featuredApps_medicalCharts", name: "Medical Charts" },
-        submenu: [EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo],
-    },
+        submenu: [EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo]
+    }
 ];
 
 export const getParentMenuIds = (exampleId: string): string[] => {
     const getSubmenuLevelIds = (menuItemsArr: TMenuItem[], id: string): string[] => {
         const res: string[] = [];
-        menuItemsArr.forEach((item) => {
-            item.submenu.forEach((subItem) => {
+        menuItemsArr.forEach(item => {
+            item.submenu.forEach(subItem => {
                 if (subItem.id === id) {
                     res.push(item.item.id);
                 }

@@ -7,7 +7,7 @@ import GettingStarted from "../GettingStarted/GettingStarted";
 import Description from "../Description/Description";
 import { makeStyles } from "@material-ui/core/styles";
 import { TExamplePage } from "../AppRouter/examples";
-import { HOME_PAGE_TITLE } from "../PageHome";
+import { HOME_PAGE_TITLE } from "../PageHome/PageHome";
 
 type TProps = {
     example: () => JSX.Element;
@@ -81,6 +81,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const githubUrl = currentExample ? currentExample.githubUrl : "";
 
     React.useEffect(() => {
+        window.scrollTo(0, 0);
         window.Prism.highlightAll();
     }, []);
 

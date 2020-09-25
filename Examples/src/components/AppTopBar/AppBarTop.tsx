@@ -13,9 +13,6 @@ type TProps = {
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
-            flexGrow: 1
-        },
         menuButton: {
             marginRight: theme.spacing(2),
             [theme.breakpoints.up("lg")]: {
@@ -34,26 +31,24 @@ const AppBarTop: React.FC<TProps> = props => {
     };
 
     return (
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton
-                        onClick={toggleDrawer}
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="menu"
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Search />
-                    <div style={{ flexGrow: 1 }} />
-                    <IconButton onClick={openGithub} aria-label="github" color="inherit">
-                        <GitHubIcon />
-                    </IconButton>
-                </Toolbar>
-            </AppBar>
-        </div>
+        <AppBar position="sticky">
+            <Toolbar>
+                <IconButton
+                    onClick={toggleDrawer}
+                    edge="start"
+                    className={classes.menuButton}
+                    color="inherit"
+                    aria-label="menu"
+                >
+                    <MenuIcon />
+                </IconButton>
+                <Search />
+                <div style={{ flexGrow: 1 }} />
+                <IconButton onClick={openGithub} aria-label="github" color="inherit">
+                    <GitHubIcon />
+                </IconButton>
+            </Toolbar>
+        </AppBar>
     );
 };
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Switch, Route } from "react-router-dom";
-import PageHome from "../PageHome";
+import PageHome from "../PageHome/PageHome";
 import { PAGES } from "./pages";
 import { EXAMPLES_PAGES, TExamplePage } from "./examples";
 import ExamplesRoot from "../Examples/ExamplesRoot";

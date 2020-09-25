@@ -37,7 +37,7 @@ const Navigation: React.FC<TProps> = props => {
     };
 
     return (
-        <List component="nav" aria-labelledby="nested-list-subheader">
+        <List style={{ marginBottom: 60 }} component="nav" aria-labelledby="nested-list-subheader">
             <ListItem button onClick={historyPushHomepage} selected={location.pathname === "/"}>
                 <ListItemText primaryTypographyProps={{ variant: "body2" }}>Homepage</ListItemText>
             </ListItem>
