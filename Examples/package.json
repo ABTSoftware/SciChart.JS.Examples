@@ -43,6 +43,7 @@
     "@types/request": "^2.48.5",
     "chai": "^4.2.0",
     "copy-webpack-plugin": "^6.0.3",
+    "file-loader": "^6.1.0",
     "mocha": "^8.0.1",
     "nodemon": "^2.0.4",
     "nodemon-webpack-plugin": "^4.3.2",
