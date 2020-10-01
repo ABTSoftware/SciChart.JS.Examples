@@ -53,7 +53,7 @@ const drawExample = async () => {
             { color: "rgba(70,130,180,0.2)", offset: 1 },
         ]),
         // Optional: Allows per-point colouring of mountain fill and stroke
-        paletteProvider: new MountainPaletteProvider(),
+        // paletteProvider: new MountainPaletteProvider(),
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 
