@@ -61,6 +61,9 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
             stroke: colorsArr[1],
         }),
     });
+    renderableSeries2.rolloverModifierProps.tooltipTitle = "Series 2";
+    renderableSeries2.rolloverModifierProps.tooltipLabelX = "X";
+    renderableSeries2.rolloverModifierProps.tooltipLabelY = "Y";
     renderableSeries2.rolloverModifierProps.tooltipTextColor = "black";
     renderableSeries2.rolloverModifierProps.showRollover = true;
     sciChartSurface.renderableSeries.add(renderableSeries2);
