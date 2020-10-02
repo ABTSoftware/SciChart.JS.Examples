@@ -43,7 +43,6 @@ const useStyles = makeStyles(
         },
         colMainContent: {
             maxWidth: 900,
-            margin: "auto"
         },
         colDescription: {
             flexBasis: 360,
