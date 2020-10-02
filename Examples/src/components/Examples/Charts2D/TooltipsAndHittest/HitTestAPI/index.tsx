@@ -21,7 +21,7 @@ import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAn
 
 const divElementId = "chart";
 
-const drawExample = async () => {
+const drawExample = async (setHitTestsList: (hitTestsList: HitTestInfo[]) => void) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
     const xAxis = new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Top });
     xAxis.visibleRange = new NumberRange(-0.5, 8.5);
@@ -94,6 +94,35 @@ const drawExample = async () => {
     });
     sciChartSurface.renderableSeries.add(columnSeries);
 
+    const svgAnnotation = new CustomAnnotation({
+        svgString: '<svg width="8" height="8"><circle cx="50%" cy="50%" r="4" fill="#368BC1"/></svg>',
+        isHidden: true,
+        xCoordShift: -4,
+        yCoordShift: -4
+    });
+    sciChartSurface.annotations.add(svgAnnotation);
+    sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent: MouseEvent) => {
+        const newHitTestsList: HitTestInfo[] = [];
+        sciChartSurface.renderableSeries.asArray().forEach(rs => {
+            // TODO: add hitTestProvider to all series
+            if (rs.hitTestProvider) {
+                const hitTestInfo = rs.hitTestProvider.hitTest(
+                    new Point(mouseEvent.offsetX, mouseEvent.offsetY),
+                    ENearestPointLogic.NearestHorizontalPoint,
+                    HIT_TEST_RADIUS,
+                    false
+                );
+                svgAnnotation.isHidden = false;
+                svgAnnotation.x1 = hitTestInfo.hitTestPointValues.x;
+                svgAnnotation.y1 = hitTestInfo.hitTestPointValues.y;
+                if (!hitTestInfo.isEmpty) {
+                    newHitTestsList.push(hitTestInfo);
+                }
+            }
+        });
+        setHitTestsList(newHitTestsList);
+    });
+
     return { wasmContext, sciChartSurface };
 };
 
@@ -112,45 +141,18 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+let sciChartSurface: SciChartSurface;
+
 export default function HitTestAPI() {
     const classes = useStyles();
 
     const [showButtons, setShowButtons] = React.useState(false);
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [hitTestsList, setHitTestsList] = React.useState<HitTestInfo[]>([]);
 
     React.useEffect(() => {
         (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-            const svgAnnotation = new CustomAnnotation({
-                svgString: '<svg width="8" height="8"><circle cx="50%" cy="50%" r="4" fill="#368BC1"/></svg>',
-                isHidden: true,
-                xCoordShift: -4,
-                yCoordShift: -4
-            });
-            res.sciChartSurface.annotations.add(svgAnnotation);
-            res.sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent: MouseEvent) => {
-                const newHitTestsList: HitTestInfo[] = [];
-                res.sciChartSurface.renderableSeries.asArray().forEach(rs => {
-                    // TODO: add hitTestProvider to all series
-                    if (rs.hitTestProvider) {
-                        const hitTestInfo = rs.hitTestProvider.hitTest(
-                            new Point(mouseEvent.offsetX, mouseEvent.offsetY),
-                            ENearestPointLogic.NearestHorizontalPoint,
-                            HIT_TEST_RADIUS,
-                            false
-                        );
-                        svgAnnotation.isHidden = false;
-                        svgAnnotation.x1 = hitTestInfo.hitTestPointValues.x;
-                        svgAnnotation.y1 = hitTestInfo.hitTestPointValues.y;
-                        if (!hitTestInfo.isEmpty) {
-                            newHitTestsList.push(hitTestInfo);
-                        }
-                    }
-                });
-                setHitTestsList(newHitTestsList);
-            });
+            const res = await drawExample(setHitTestsList);
+            sciChartSurface = res.sciChartSurface;
             setShowButtons(true);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
