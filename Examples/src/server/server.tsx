@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import * as request from "request";
 import * as path from "path";
 import * as fs from "fs";
+import * as chalk from "chalk";
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server";
 import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";
@@ -63,4 +64,8 @@ app.get("*", (req: Request, res: Response) => {
     handleRender(req, res);
 });
 
-app.listen(port, () => console.log(`Serving at http://localhost:${port}`));
+app.listen(port, () => {
+    console.log(
+        `Serving at http://localhost:${port} ${chalk.green("✓")}. ${chalk.red("To run in dev mode: npm run dev")}`
+    );
+});

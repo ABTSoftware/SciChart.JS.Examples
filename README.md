@@ -1,5 +1,14 @@
 # SciChartExamples
 
+## Run application in dev mode
+
+* `npm run dev`
+
+## Run application in production mode
+
+* `npm run build"
+* `npm start`
+
 ## How to add examples to Examples App
 
 * **Create folder** for your example, (e.g. `Examples/src/components/Examples/Charts3D/Basic3DChartTypes/Scatter3DChart/`)
