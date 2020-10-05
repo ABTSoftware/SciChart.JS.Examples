@@ -17,29 +17,24 @@ import {EAxisAlignment} from "scichart/types/AxisAlignment";
 
 const divElementId = "chart";
 
-const drawExample = async (): Promise<TWebAssemblyChart> => {
-    const createDataSeries = (wasmContext2: TSciChart, index: number, options?: IXyDataSeriesOptions) => {
-        const sigma = Math.pow(0.6, index);
-        const dataSeries = new XyDataSeries(wasmContext2, options);
-        for (let i = 0; i < 100; i++) {
-            const grow = 1 + i / 99;
-            dataSeries.append(i, Math.sin((Math.PI * i) / 15) * grow * sigma);
-        }
-        return dataSeries;
-    };
+const createDataSeries = (wasmContext2: TSciChart, index: number, options?: IXyDataSeriesOptions) => {
+    const sigma = Math.pow(0.6, index);
+    const dataSeries = new XyDataSeries(wasmContext2, options);
+    for (let i = 0; i < 100; i++) {
+        const grow = 1 + i / 99;
+        dataSeries.append(i, Math.sin((Math.PI * i) / 15) * grow * sigma);
+    }
+    return dataSeries;
+};
 
+const drawExample = async (): Promise<TWebAssemblyChart> => {
     const colorsArr = [EColor.Green, EColor.LightGrey];
 
+    // Create a SciChartSurface with X,Y Axis
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     const xAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) });
     xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
     sciChartSurface.xAxes.add(xAxis);
-
-    const xAxis2 = new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Top,
-        id: "Xid2"
-    });
-    sciChartSurface.xAxes.add(xAxis2);
 
     const yAxis = new NumericAxis(wasmContext, {
         growBy: new NumberRange(0.1, 0.1),
@@ -48,16 +43,11 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
     yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_2;
     sciChartSurface.yAxes.add(yAxis);
 
-    const yAxis2 = new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Right,
-        id: "Yid2"
-    });
-    sciChartSurface.yAxes.add(yAxis2);
-
+    // Create some data
     const firstSeriesData = createDataSeries(wasmContext, 0, { dataSeriesName: "Sinewave Green" });
     const secondSeriesData = createDataSeries(wasmContext, 1);
 
-    // Series 1
+    // Create some line series and add to the chart
     const renderableSeries1 = new FastLineRenderableSeries(wasmContext, {
         stroke: colorsArr[0],
         strokeThickness: 3,
@@ -72,7 +62,6 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
     });
     sciChartSurface.renderableSeries.add(renderableSeries1);
 
-    // Series 2
     const renderableSeries2 = new FastLineRenderableSeries(wasmContext, {
         stroke: colorsArr[1],
         strokeThickness: 3,
@@ -87,16 +76,20 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
     });
     sciChartSurface.renderableSeries.add(renderableSeries2);
 
+    // Here is where we add cursor behaviour
+    //
     sciChartSurface.chartModifiers.add(
+        // Add the CursorModifier (crosshairs) behaviour
         new CursorModifier({
-            crosshairStroke: "#ff6600",
+            crosshairStroke: "red",
             crosshairStrokeThickness: 1,
             tooltipContainerBackground: "#000",
-            tooltipTextStroke: "#ff6600",
+            tooltipTextStroke: "Blue",
             showTooltip: true,
-            axisLabelsFill: "#b36200",
-            axisLabelsStroke: "#fff"
+            axisLabelsFill: "orange",
+            axisLabelsStroke: "green"
         }),
+        // Add further zooming and panning behaviours
         new ZoomPanModifier(),
         new ZoomExtentsModifier(),
         new MouseWheelZoomModifier()
