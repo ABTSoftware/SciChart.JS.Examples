@@ -10,15 +10,17 @@ import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/Ellip
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
 import {
-    EStrokePaletteMode,
-    IStrokePaletteProvider,
+    EStrokePaletteMode, IPointMarkerPaletteProvider,
+    TPointMarkerArgb,
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
+    // Create a SciChartSurface with X,Y Axis
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
@@ -58,9 +60,11 @@ const drawExample = async () => {
         prevYValue += curYValue;
     }
 
+    // Assign dataSeries to renderableSeries
     lineSeries.dataSeries = lineDataSeries;
     bubbleSeries.dataSeries = bubbleDataSeries;
 
+    // Add some zooming and panning behaviour
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
@@ -70,11 +74,14 @@ const drawExample = async () => {
 };
 
 /**
- * An example PaletteProvider which implements IStrokePaletteProvider and IFillPaletteProvider
- * This can be attached to line, mountain, column or candlestick series to change the stroke or fill
- * of the series conditionally
+ * Optional: An example PaletteProvider which implements IPointMarkerPaletteProvider
+ * This can be attached to Scatter or Bubble series to change the stroke or fill
+ * of the series point-markers conditionally
  */
-class BubblePaletteProvider implements IStrokePaletteProvider {
+class BubblePaletteProvider implements IPointMarkerPaletteProvider {
+    private fill: number = parseColorToUIntArgb("red");
+    private stroke: number = parseColorToUIntArgb("Green");
+
     /**
      * This property chooses how stroke colors are blended when they change.
      * Bubble Series, however, supports solid color interpolation only.
@@ -83,15 +90,13 @@ class BubblePaletteProvider implements IStrokePaletteProvider {
 
     public onAttached(parentSeries: IRenderableSeries): void {}
     public onDetached(): void {}
-    /**
-     * Called by SciChart and may be used to override the color of filled polygon in various chart types.
-     * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
-     * @param renderSeries
-     * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
-     */
-    public overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
+
+    overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
         if (xValue >= 10 && xValue <= 12) {
-            return 0xffff82b4;
+            return {
+                fill: this.fill,
+                stroke: this.stroke,
+            };
         }
         return undefined;
     }
