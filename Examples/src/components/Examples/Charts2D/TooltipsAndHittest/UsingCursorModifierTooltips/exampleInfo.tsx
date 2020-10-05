@@ -5,9 +5,9 @@ import * as React from "react";
 import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => (<div>
-    <p>Demonstrates using the RolloverModifier, part of the ChartModifier API, to add mouse-over feedback of data-points
-        on time-series to the user.</p>
-    <p>This can be used to add Tooltips to a JavaScript chart as well as create Active legends which update
+    <p>Demonstrates using the CursorModifier, part of the ChartModifier API, to add a cursor and tooltips which tracks
+        the mouse.</p>
+    <p>This can be used to add Tooltips to a JavaScript chart as well as draw cursors (crosshairs) and axis labels
         values as the user moves the mouse.
     </p>
     <h4>Documentation Links</h4>
@@ -16,20 +16,20 @@ const Description = () => (<div>
             SciChart.js Documentation Home</a></li>
         <li><a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
             SciChart.js Tutorials</a></li>
-        <li><a href={ExampleStrings.urlRolloverModifierDocumentation}
-               title={ExampleStrings.urlTitleRolloverModifierDocumentation} target="_blank">RolloverModifier
+        <li><a href={ExampleStrings.urlCursorModifierDocumentation}
+               title={ExampleStrings.urlTitleCursorModifierDocumentation} target="_blank">CursorModifier
             documentation</a></li>
     </ul>
 </div>);
 const Subtitle = () => (
-    <p>Demonstrates how to create <strong>tooltips on mouse-over</strong>{' '}
+    <p>Demonstrates how to create <strong>crosshairs on mouseover</strong>{' '}
         using SciChart.js, High Performance{' '}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a></p>);
 
 
-export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
-    title: ExampleStrings.titleRolloverModifier,
-    path: ExampleStrings.urlRolloverModifier,
+export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
+    title: ExampleStrings.titleCursorModifier,
+    path: ExampleStrings.urlCursorModifier,
     subtitle: Subtitle,
     description: Description,
     code,

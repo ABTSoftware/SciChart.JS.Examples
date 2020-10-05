@@ -127,6 +127,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips.title,
+        link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.title,
         link: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.path,
     },

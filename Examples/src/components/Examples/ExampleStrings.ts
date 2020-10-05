@@ -203,6 +203,12 @@ export const ExampleStrings = {
     titleRolloverModifier: "Using Rollover Modifier Tooltips",
     urlRolloverModifier: "/javascript-chart-rollovermodifier-tooltips",
 
+    // CursorModifier
+    urlCursorModifier: "/javascript-chart-cursormodifier-crosshairs",
+    titleCursorModifier: "Using CursorModifier Crosshairs",
+    urlTitleCursorModifierDocumentation: "The specific page for the SciChart.js API documentation for the CursorModifier to help you to get started",
+    urlCursorModifierDocumentation: "#",
+
     // 3D Bubble Chart
     urlBubble3DChart: "/javascript-3d-bubble-chart",
     titleBubble3DChart: "JavaScript 3D Bubble Chart",
@@ -241,7 +247,5 @@ export const ExampleStrings = {
     // Featured Apps Vital Signs
     titleVitalSigns: "JavaScript Vital Signs ECG/EKG Medical Demo",
     urlVitalSigns: "/javascript-vital-signs-ecg-medical-chart-example",
-
-
 
 }

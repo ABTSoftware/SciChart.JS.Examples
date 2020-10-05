@@ -69,6 +69,8 @@ import HitTestAPI from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI";
 import { hitTestApiExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI/exampleInfo";
 import UsingRolloverModifierTooltips from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips";
 import { usingRolloverModifierTooltipsExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/exampleInfo";
+import UsingCursorModifierTooltips from "../Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips";
+import { usingCursorModifierTooltipsExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips/exampleInfo";
 import Bubble3DChart from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart";
 import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo";
 
@@ -264,6 +266,11 @@ export const EXAMPLES_PAGES = asRecord({
         Component: UsingRolloverModifierTooltips,
         ...usingRolloverModifierTooltipsExampleInfo
     },
+    chart2D_tooltipsAndHittest_UsingCursorModifierTooltips: {
+        id: "chart2D_tooltipsAndHittest_UsingCursorModifierTooltips",
+        Component: UsingCursorModifierTooltips,
+        ...usingCursorModifierTooltipsExampleInfo
+    },
     chart3D_basic3DChartTypes_Bubble3DChart: {
         id: "chart3D_basic3DChartTypes_Bubble3DChart",
         Component: Bubble3DChart,
@@ -358,7 +365,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         item: { id: "chart2D_tooltipsAndHittest", name: "Tooltips and Hit-Test" },
         submenu: [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi,
-            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips
         ]
     }
 ];
