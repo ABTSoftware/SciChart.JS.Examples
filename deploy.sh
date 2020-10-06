@@ -106,15 +106,19 @@ selectNodeVersion
 # 2. Install npm packages
 if [ -e "$DEPLOYMENT_SOURCE/Examples/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE/Examples"
-  echo "Running $NPM_CMD install"
-  eval $NPM_CMD install --no-progress --only=prod
+  echo "Running npm install --only=prod"
+  eval $NPM_CMD install --only=prod
 # Force npm to install dev dependencies. Necessary because setting NODE_ENV
 # to production will make npm skip dev dependencies on install.
-  eval $NPM_CMD install --no-progress --only=dev
-  exitWithMessageOnError "npm failed"
-  echo "Running $NPM_CMD build"
-  eval $NPM_CMD build
-  exitWithMessageOnError "npm failed"
+  echo "Running npm install --only=dev"
+  eval $NPM_CMD install --only=dev
+  exitWithMessageOnError "npm install failed"
+  echo "Running npm buildServer"
+  eval $NPM_CMD buildServer
+  exitWithMessageOnError "npm buildServer failed"
+  echo "Running npm buildClient"
+  eval $NPM_CMD buildClient
+  exitWithMessageOnError "npm buildClient failed"
   cd - > /dev/null
 fi
 
