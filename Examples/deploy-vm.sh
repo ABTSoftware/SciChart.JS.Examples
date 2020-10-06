@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Start production deploy"
-server=webjsdemoadmin@40.71.93.205
+server=$1
 appRoot=/home/webjsdemoadmin/apps/SciChart.JS.Examples/Examples
 ssh $server ". ~/.nvm/nvm.sh; pm2 stop examples; pm2 delete examples"
 ssh $server "cd ${appRoot} && git pull"
