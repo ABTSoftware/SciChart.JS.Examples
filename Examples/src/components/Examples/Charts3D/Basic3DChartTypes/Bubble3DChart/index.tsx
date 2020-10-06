@@ -1,14 +1,14 @@
 import * as React from "react";
-import { CameraController } from "scichart3d/Charting3D/CameraController";
-import { MouseWheelZoomModifier3D } from "scichart3d/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
-import { OrbitModifier3D } from "scichart3d/Charting3D/ChartModifiers/OrbitModifier3D";
-import { XyzDataSeries3D } from "scichart3d/Charting3D/Model/DataSeries/XyzDataSeries3D";
-import { Vector3 } from "scichart3d/Charting3D/Vector3";
-import { NumericAxis3D } from "scichart3d/Charting3D/Visuals/Axis/NumericAxis3D";
-import { SpherePointMarker3D } from "scichart3d/Charting3D/Visuals/PointMarkers/DefaultPointMarkers";
-import { ScatterRenderableSeries3D } from "scichart3d/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
-import { SciChart3DSurface } from "scichart3d/Charting3D/Visuals/SciChart3DSurface";
-import { TSciChart3D } from "scichart3d/types/TSciChart3D";
+import { CameraController } from "scichart/Charting3D/CameraController";
+import { MouseWheelZoomModifier3D } from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
+import { OrbitModifier3D } from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
+import { XyzDataSeries3D } from "scichart/Charting3D/Model/DataSeries/XyzDataSeries3D";
+import { Vector3 } from "scichart/Charting3D/Vector3";
+import { NumericAxis3D } from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
+import { SpherePointMarker3D } from "scichart/Charting3D/Visuals/PointMarkers/DefaultPointMarkers";
+import { ScatterRenderableSeries3D } from "scichart/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
+import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
+import { TSciChart3D } from "scichart/types/TSciChart3D";
 import { SciChartSurface } from "scichart";
 
 const divElementId = "chart";

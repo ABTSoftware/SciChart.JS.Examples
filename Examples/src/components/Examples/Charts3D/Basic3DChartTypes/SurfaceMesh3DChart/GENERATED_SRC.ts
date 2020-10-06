@@ -1,18 +1,18 @@
 export const code = `import * as React from "react";
-import { CameraController } from "scichart3d/Charting3D/CameraController";
-import { MouseWheelZoomModifier3D } from "scichart3d/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
-import { OrbitModifier3D } from "scichart3d/Charting3D/ChartModifiers/OrbitModifier3D";
-import { Vector3 } from "scichart3d/Charting3D/Vector3";
-import { NumericAxis3D } from "scichart3d/Charting3D/Visuals/Axis/NumericAxis3D";
-import { SciChart3DSurface } from "scichart3d/Charting3D/Visuals/SciChart3DSurface";
+import { CameraController } from "scichart/Charting3D/CameraController";
+import { MouseWheelZoomModifier3D } from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
+import { OrbitModifier3D } from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
+import { Vector3 } from "scichart/Charting3D/Vector3";
+import { NumericAxis3D } from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
+import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
 import {
     EDrawMeshAs,
     SurfaceMeshRenderableSeries3D,
-} from "scichart3d/Charting3D/Visuals/RenderableSeries/SurfaceMesh/SurfaceMeshRenderableSeries3D";
-import { GradientColorPalette } from "scichart3d/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
-import { UniformGridDataSeries3D } from "scichart3d/Charting3D/Model/DataSeries/UniformGridDataSeries3D";
-import { NumberRange } from "scichart3d/Core/NumberRange";
-import { zeroArray2D } from "scichart3d/utils/zeroArray2D";
+} from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/SurfaceMeshRenderableSeries3D";
+import { GradientColorPalette } from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
+import { UniformGridDataSeries3D } from "scichart/Charting3D/Model/DataSeries/UniformGridDataSeries3D";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { zeroArray2D } from "scichart/utils/zeroArray2D";
 
 const divElementId = "chart";
 
