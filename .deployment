@@ -1,2 +1,2 @@
 [config]
-project = Examples
+command = bash deploy.sh
