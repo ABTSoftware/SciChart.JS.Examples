@@ -123,7 +123,7 @@ if [ -e "$DEPLOYMENT_SOURCE/Examples/package.json" ]; then
 fi
 
 # 4. Copy build output to site root
-  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/Examples/build" -t "$DEPLOYMENT_TARGET" -x true 
+  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/Examples/build" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -x true
   exitWithMessageOnError "Kudu Sync failed"
 
 ##################################################################################################################################
