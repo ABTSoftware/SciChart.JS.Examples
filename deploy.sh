@@ -102,7 +102,7 @@ echo Handling node.js deployment.
 
 # 1. KuduSync
 if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
-  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/Examples" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
+  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/Examples" -t "$DEPLOYMENT_TEMP" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i "deploy-vm.sh"
   exitWithMessageOnError "Kudu Sync failed"
 fi
 
@@ -110,15 +110,20 @@ fi
 selectNodeVersion
 
 # 3. Install npm packages
-if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
-  cd "$DEPLOYMENT_TARGET"
-  echo "Running $NPM_CMD install --production"
-  eval $NPM_CMD install --production
+if [ -e "$DEPLOYMENT_TEMP/package.json" ]; then
+  cd "$DEPLOYMENT_TEMP"
+  echo "Running $NPM_CMD install"
+  eval $NPM_CMD install
+  exitWithMessageOnError "npm failed"
   echo "Running $NPM_CMD build"
   eval $NPM_CMD build
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
+
+# 4. Copy build output to site root
+  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_TEMP/Examples/build" -t "$DEPLOYMENT_TARGET" -x true 
+  exitWithMessageOnError "Kudu Sync failed"
 
 ##################################################################################################################################
 echo "Finished successfully."
