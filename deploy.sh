@@ -113,12 +113,12 @@ if [ -e "$DEPLOYMENT_SOURCE/Examples/package.json" ]; then
   echo "Running npm install --only=dev"
   eval $NPM_CMD install --only=dev
   exitWithMessageOnError "npm install failed"
-  echo "Running npm buildServer"
-  eval $NPM_CMD buildServer
-  exitWithMessageOnError "npm buildServer failed"
-  echo "Running npm buildClient"
-  eval $NPM_CMD buildClient
-  exitWithMessageOnError "npm buildClient failed"
+  echo "Running npm run buildServer"
+  eval $NPM_CMD run buildServer
+  exitWithMessageOnError "npm run buildServer failed"
+  echo "Running npm run buildClient"
+  eval $NPM_CMD run buildClient
+  exitWithMessageOnError "npm run buildClient failed"
   cd - > /dev/null
 fi
 
