@@ -100,20 +100,17 @@ selectNodeVersion () {
 
 echo Handling node.js deployment.
 
-# 1. KuduSync
-if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
-  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/Examples" -t "$DEPLOYMENT_TEMP" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i "deploy-vm.sh"
-  exitWithMessageOnError "Kudu Sync failed"
-fi
-
-# 2. Select node version
+# 1. Select node version
 selectNodeVersion
 
-# 3. Install npm packages
-if [ -e "$DEPLOYMENT_TEMP/package.json" ]; then
-  cd "$DEPLOYMENT_TEMP"
+# 2. Install npm packages
+if [ -e "$DEPLOYMENT_SOURCE/Examples/package.json" ]; then
+  cd "$DEPLOYMENT_SOURCE/Examples"
   echo "Running $NPM_CMD install"
-  eval $NPM_CMD install
+  eval $NPM_CMD install --no-progress --only=prod
+# Force npm to install dev dependencies. Necessary because setting NODE_ENV
+# to production will make npm skip dev dependencies on install.
+  eval $NPM_CMD install --no-progress --only=dev
   exitWithMessageOnError "npm failed"
   echo "Running $NPM_CMD build"
   eval $NPM_CMD build
@@ -122,7 +119,7 @@ if [ -e "$DEPLOYMENT_TEMP/package.json" ]; then
 fi
 
 # 4. Copy build output to site root
-  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_TEMP/Examples/build" -t "$DEPLOYMENT_TARGET" -x true 
+  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/Examples/build" -t "$DEPLOYMENT_TARGET" -x true 
   exitWithMessageOnError "Kudu Sync failed"
 
 ##################################################################################################################################
