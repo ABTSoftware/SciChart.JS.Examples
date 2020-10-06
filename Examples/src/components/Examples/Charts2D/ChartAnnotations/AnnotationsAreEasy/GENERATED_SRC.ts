@@ -96,7 +96,7 @@ const drawExample = async () => {
             y1: 4.5,
             y2: 5.5
         }),
-        new BoxAnnotation({ fill: "#1964FF", stroke: "#1964FF", strokeThickness: 1, x1: 4.5, x2: 6, y1: 5, y2: 6 }),
+        new BoxAnnotation({ fill: "#1964FF55", stroke: "#1964FF", strokeThickness: 1, x1: 4.5, x2: 6, y1: 5, y2: 6 }),
 
         // Custom shapes
         new TextAnnotation({ fontSize: 12, text: "Or custom shapes using SVG", x1: 7, y1: 6.3 }),

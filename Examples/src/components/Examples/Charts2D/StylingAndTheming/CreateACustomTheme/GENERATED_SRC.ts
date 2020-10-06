@@ -20,17 +20,70 @@ import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTh
 const divElementId = "chart";
 
 const drawExample = async () => {
+    // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    sciChartSurface.applyTheme(new SciChartJSDarkTheme());
+
+    // Create and apply your custom theme
+    sciChartSurface.applyTheme({
+        annotationsGripsBackroundBrush: "white",
+        annotationsGripsBorderBrush: "white",
+        axis3DBandsFill: "#1F3D6833",
+        axisBandsFill: "#1F3D6833",
+        axisPlaneBackgroundFill: "Transparent",
+        columnFillBrush: "white",
+        columnLineColor: "white",
+        cursorLineBrush: "#6495ED99",
+        defaultColorMapBrush: [
+            { offset: 0, color: "DarkBlue" },
+            { offset: 0.5, color: "CornflowerBlue" },
+            { offset: 1, color: "#FF22AA" }
+        ],
+        downBandSeriesFillColor: "#52CC5490",
+        downBandSeriesLineColor: "#E26565FF",
+        downBodyBrush: "white",
+        downWickColor: "white",
+        gridBackgroundBrush: "white",
+        gridBorderBrush: "white",
+        labelBackgroundBrush: "#6495EDAA",
+        labelBorderBrush: "#6495ED",
+        labelForegroundBrush: "#EEEEEE",
+        legendBackgroundBrush: "#1D2C35",
+        lineSeriesColor: "white",
+        majorGridLineBrush: "#1F3D68",
+        minorGridLineBrush: "#102A47",
+        mountainAreaBrush: "white",
+        mountainLineColor: "white",
+        overviewFillBrush: "white",
+        planeBorderColor: "white",
+        rolloverLineBrush: "#FD9F2533",
+        rubberBandFillBrush: "#99999933",
+        rubberBandStrokeBrush: "#99999977",
+        sciChartBackground: "#0D213A",
+        scrollbarBackgroundBrush: "white",
+        scrollbarBorderBrush: "white",
+        scrollbarGripsBackgroundBrush: "white",
+        scrollbarViewportBackgroundBrush: "white",
+        scrollbarViewportBorderBrush: "white",
+        shadowEffectColor: "white",
+        textAnnotationBackground: "#6495EDAA",
+        textAnnotationForeground: "#EEEEEE",
+        tickTextBrush: "#6495ED",
+        upBandSeriesFillColor: "white",
+        upBandSeriesLineColor: "white",
+        upBodyBrush: "#6495EDA0",
+        upWickColor: "#6495ED"
+    });
+
+    // Create the XAxis, YAxis
     const xAxis = new NumericAxis(wasmContext);
     xAxis.visibleRange = new NumberRange(0, 31);
     sciChartSurface.xAxes.add(xAxis);
-
     const yAxis = new NumericAxis(wasmContext);
     yAxis.visibleRange = new NumberRange(1, 1.2);
     yAxis.labelProvider.formatLabel = (dataValue: number) => dataValue.toFixed(3);
     sciChartSurface.yAxes.add(yAxis);
 
+    // Create some series with data
     const series1 = new FastLineRenderableSeries(wasmContext);
     series1.strokeThickness = 3;
     sciChartSurface.renderableSeries.add(series1);
@@ -66,22 +119,13 @@ const drawExample = async () => {
     }
     series3.dataSeries = dataSeries;
 
+    // Create tootip behaviour
     sciChartSurface.chartModifiers.add(new RolloverModifier());
     return { sciChartSurface, wasmContext };
 };
 
-enum ETheme {
-    SciChartDark,
-    SciChartLight,
-}
 
-const themeSelect = [
-    { value: ETheme.SciChartDark, text: "SciChartDark" },
-    { value: ETheme.SciChartLight, text: "SciChartLight" },
-];
-
-export default function UsingThemeManager() {
-    const [themeToDisplay, setThemeToDisplay] = React.useState<ETheme>(ETheme.SciChartDark);
+export default function CustomTheme() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [wasmContext, setWasmContext] = React.useState<TSciChart>();
     const [showChart, setShowChart] = React.useState(false);
@@ -97,38 +141,10 @@ export default function UsingThemeManager() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    const handleChangeTheme = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const newValue = event.target.value as ETheme;
-        setThemeToDisplay(newValue);
-        switch (newValue) {
-            case ETheme.SciChartDark:
-                sciChartSurface.applyTheme(new SciChartJSDarkTheme());
-                break;
-            case ETheme.SciChartLight:
-                sciChartSurface.applyTheme(new SciChartJSLightTheme());
-        }
-    };
 
     return (
         <div>
             <div id={divElementId} style={{ maxWidth: 900 }} />
-            <div style={{ marginTop: 20, display: showChart ? "block" : "none" }}>
-                <FormControl variant="filled" style={{ width: 200 }}>
-                    <InputLabel id="sciChartTheme-label">Select Theme</InputLabel>
-                    <Select
-                        labelId="sciChartTheme-label"
-                        id="sciChartTheme"
-                        value={themeToDisplay}
-                        onChange={handleChangeTheme}
-                    >
-                        {themeSelect.map((el) => (
-                            <MenuItem key={el.value} value={el.value}>
-                                {el.text}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-            </div>
         </div>
     );
 }
