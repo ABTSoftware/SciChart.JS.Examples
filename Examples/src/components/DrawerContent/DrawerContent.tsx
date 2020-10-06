@@ -35,7 +35,7 @@ const DrawerContent: React.FC<TProps> = props => {
                     style={{ color: "rgba(0, 0, 0, 0.54)", cursor: "pointer", marginTop: 6 }}
                     onClick={() => history.push("/")}
                 >
-                    SciChart.js!
+                    SciChart.js
                 </Typography>
                 <Typography variant="caption" style={{ color: "rgba(0, 0, 0, 0.54)" }}>
                     {`v${APP_VERSION}`}
