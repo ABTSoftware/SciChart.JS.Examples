@@ -14,9 +14,11 @@ import { customTheme } from "../theme";
 import { renderIndexHtml } from "./renderIndexHtml";
 
 // const basicAuth = require("express-basic-auth");
-const port = process.env.PORT || 3000;
+const port = parseInt(process.env.PORT || '3000', 10);
 const host = process.env.HOST || "localhost";
 const targetDir = defaultConfig.buildConfig.targetDir;
+
+console.log("Environment port: " + process.env.PORT);
 
 function handleRender(req: Request, res: Response) {
     const sheets = new ServerStyleSheets();
