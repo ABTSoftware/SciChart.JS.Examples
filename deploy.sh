@@ -123,10 +123,11 @@ if [ -e "$DEPLOYMENT_SOURCE/Examples/package.json" ]; then
 fi
 
 # 4. Copy build output to site root
-  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/Examples/build" -t "$DEPLOYMENT_TARGET/build" -n "$NEXT_MANIFEST_PATH" -x true
+  "$KUDU_SYNC_CMD" -v 50 -f "$DEPLOYMENT_SOURCE/Examples" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -x true -i "config;node_modules;coverage;src;deploy-vm.sh"
   exitWithMessageOnError "Kudu Sync failed"
 
 # 5. Create symlink to node_modules
+  echo "Creating link to node_modules."
   cd "$DEPLOYMENT_TARGET"
   ln -s /home/site/repository/Examples/node_modules /home/site/wwwroot/node_modules
 
