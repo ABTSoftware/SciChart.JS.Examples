@@ -10,12 +10,15 @@ import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/Ellip
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
 import {
-    EStrokePaletteMode, IPointMarkerPaletteProvider,
-    TPointMarkerArgb,
+    EFillPaletteMode,
+    EStrokePaletteMode,
+    IFillPaletteProvider,
+    IPointMarkerPaletteProvider,
+    TPointMarkerArgb
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 
 const divElementId = "chart";
 
@@ -28,7 +31,7 @@ const drawExample = async () => {
     // Line Series
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#FFFFFF",
-        strokeThickness: 2,
+        strokeThickness: 2
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -38,10 +41,10 @@ const drawExample = async () => {
             width: 64,
             height: 64,
             strokeThickness: 0,
-            fill: "#4682b477",
+            fill: "#4682b477"
         }),
         // Optional: Allows per-point colouring of bubble stroke
-        paletteProvider: new BubblePaletteProvider(),
+        paletteProvider: new BubblePaletteProvider()
     });
     sciChartSurface.renderableSeries.add(bubbleSeries);
 
@@ -78,27 +81,19 @@ const drawExample = async () => {
  * This can be attached to Scatter or Bubble series to change the stroke or fill
  * of the series point-markers conditionally
  */
-class BubblePaletteProvider implements IPointMarkerPaletteProvider {
-    private fill: number = parseColorToUIntArgb("red");
-    private stroke: number = parseColorToUIntArgb("Green");
-
+class BubblePaletteProvider implements IFillPaletteProvider {
     /**
-     * This property chooses how stroke colors are blended when they change.
+     * This property chooses how fill colors are blended when they change.
      * Bubble Series, however, supports solid color interpolation only.
      */
-    public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
+    public readonly fillPaletteMode = EFillPaletteMode.SOLID;
+    private fill: number = parseColorToUIntArgb("red");
 
     public onAttached(parentSeries: IRenderableSeries): void {}
     public onDetached(): void {}
 
-    overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
-        if (xValue >= 10 && xValue <= 12) {
-            return {
-                fill: this.fill,
-                stroke: this.stroke,
-            };
-        }
-        return undefined;
+    public overrideFillArgb(xValue: number, yValue: number, index: number): number {
+        return xValue >= 10 && xValue <= 12 ? this.fill : undefined;
     }
 }
 

@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/index.tsx";
+export const githubUrl = "/components/Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips/index.tsx";
