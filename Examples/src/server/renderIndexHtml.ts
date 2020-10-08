@@ -3,6 +3,17 @@ export function renderIndexHtml(html: string, css: string) {
     <!DOCTYPE html>
     <html lang="en-us">
         <head>
+            <!-- Google Tag Manager -->
+            <script>(function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                  'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                  j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+              })(window, document, 'script', 'dataLayer', 'GTM-TB68F34');</script>
+            <!-- End Google Tag Manager -->
+
             <meta charset="utf-8">
             <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,16 +25,6 @@ export function renderIndexHtml(html: string, css: string) {
             <style id="jss-server-side">${css}</style>
             <script async type="text/javascript" src="bundle.js"></script>
 
-            <!-- Google Tag Manager -->
-            <script>(function (w, d, s, l, i) {
-                w[l] = w[l] || []; w[l].push({
-                  'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-                }); var f = d.getElementsByTagName(s)[0],
-                  j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-              })(window, document, 'script', 'dataLayer', 'GTM-TB68F34');</script>
-            <!-- End Google Tag Manager -->
         </head>
         <body style="margin: 0;">
             <!-- Display a message if JS has been disabled on the browser. -->
