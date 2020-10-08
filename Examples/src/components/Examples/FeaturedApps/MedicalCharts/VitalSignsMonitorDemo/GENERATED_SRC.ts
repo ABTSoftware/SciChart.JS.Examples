@@ -36,7 +36,7 @@ const {
     ecgHeartRateValues,
     bloodPressureValues,
     bloodVolumeValues,
-    bloodOxygenationValues,
+    bloodOxygenationValues
 } = vitalSignsEcgData;
 const prepareData = () => {
     const delta1 = (ecgHeartRateValues[DATA_LENGTH - 1] - ecgHeartRateValues[0]) / (DATA_LENGTH - 1);
@@ -77,20 +77,20 @@ const getValuesFromData = (xIndex: number) => {
         ecgHeartRateArr,
         bloodPressureArr,
         bloodVolumeArr,
-        bloodOxygenationArr,
+        bloodOxygenationArr
     };
 };
 
 // SCICHART
 const drawExample = async (): Promise<TWebAssemblyChart> => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, 700, 600);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, 600, 600);
     const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Once, isVisible: false });
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis = new NumericAxis(wasmContext, {
         autoRange: EAutoRange.Never,
         visibleRange: new NumberRange(0, 4),
-        isVisible: false,
+        isVisible: false
     });
     yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_2;
     sciChartSurface.yAxes.add(yAxis);
@@ -111,7 +111,7 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
         range: 0,
         intensity: 1,
         color: "#333333",
-        offset: new Point(10, 10),
+        offset: new Point(10, 10)
     });
 
     sciChartSurface.renderableSeries.add(
@@ -119,7 +119,7 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
             strokeThickness: STROKE_THICKNESS,
             stroke: COLOR_GREEN,
             dataSeries: dataSeries1,
-            effect,
+            effect
         })
     );
 
@@ -128,7 +128,7 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
             strokeThickness: STROKE_THICKNESS,
             stroke: COLOR_YELLOW,
             dataSeries: dataSeries2,
-            effect,
+            effect
         })
     );
 
@@ -137,7 +137,7 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
             strokeThickness: STROKE_THICKNESS,
             stroke: COLOR_GREY,
             dataSeries: dataSeries3,
-            effect,
+            effect
         })
     );
 
@@ -146,7 +146,7 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
             strokeThickness: STROKE_THICKNESS,
             stroke: COLOR_BLUE,
             dataSeries: dataSeries4,
-            effect,
+            effect
         })
     );
 
@@ -158,29 +158,33 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
                 height: 5,
                 strokeThickness: 2,
                 fill: "white",
-                stroke: "white",
+                stroke: "white"
             }),
             dataSeries: new XyDataSeries(wasmContext),
-            effect,
+            effect
         })
     );
     return { sciChartSurface, wasmContext };
 };
 
 // STYLES
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     chartContainer: {
         display: "flex",
         backgroundColor: "black",
         paddingTop: 6,
-        width: 900,
+        width: 800,
         fontFamily:
             '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";',
+        position: "relative"
     },
     infoBoxContainer: {
+        flexBasis: 200,
+        flexGrow: 0,
+        flexShrink: 0,
         "&>div:not(:first-child)": {
-            borderTop: "1px solid darkgrey",
-        },
+            borderTop: "1px solid darkgrey"
+        }
     },
     infoBox: {
         display: "flex",
@@ -190,23 +194,23 @@ const useStyles = makeStyles((theme) => ({
         padding: 6,
         height: 150,
         width: 200,
-        backgroundColor: "black",
+        backgroundColor: "black"
     },
     ibRow1: {
         flexGrow: 1,
-        display: "flex",
+        display: "flex"
     },
     ibRow1Col1: {
         flexGrow: 1,
-        fontSize: 32,
+        fontSize: 32
     },
     ibRow1Col2: {
         textAlign: "right",
         marginTop: 4,
-        fontSize: 12,
+        fontSize: 12
     },
     ibRow2: {
-        display: "flex",
+        display: "flex"
     },
     ibRow2Col1: {
         flexGrow: 1,
@@ -215,14 +219,14 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: 6,
         fontSize: 14,
         "& img": {
-            width: 45,
-        },
+            width: 45
+        }
     },
     ibRow2Col2: {
         display: "flex",
         flexDirection: "column",
-        fontSize: 44,
-    },
+        fontSize: 44
+    }
 }));
 
 let currentPoint = 0;
@@ -266,7 +270,7 @@ export default function VitalSignsMonitorDemo() {
             ecgHeartRateArr,
             bloodPressureArr,
             bloodVolumeArr,
-            bloodOxygenationArr,
+            bloodOxygenationArr
         } = getValuesFromData(currentPoint);
         currentPoint += STEP;
         if (leadingDotDataSeries.count() > 0) {
@@ -313,9 +317,9 @@ export default function VitalSignsMonitorDemo() {
     };
 
     return (
-        <div style={{ display: showButtons ? "block" : "none" }}>
+        <div style={{ display: showButtons ? "block" : "none", overflowX: "auto" }}>
             <div className={classes.chartContainer}>
-                <div id={divElementId} style={{ width: 700, height: 600 }} />
+                <div id={divElementId} style={{ width: 600 }} />
                 <div className={classes.infoBoxContainer}>
                     <div className={classes.infoBox} style={{ color: COLOR_GREEN }}>
                         <div className={classes.ibRow1}>
@@ -404,8 +408,15 @@ export default function VitalSignsMonitorDemo() {
                     </div>
                 </div>
             </div>
-            <br />
-            <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+            <div style={{ marginTop: 20 }}>
+                If viewed from a mobile device use horizontal scroll
+            </div>
+            <ButtonGroup
+                style={{ marginTop: 20 }}
+                size="medium"
+                color="primary"
+                aria-label="small outlined button group"
+            >
                 <Button id="startAnimation" onClick={handleStart}>
                     Start
                 </Button>

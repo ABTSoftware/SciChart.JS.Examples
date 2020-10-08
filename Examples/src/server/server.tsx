@@ -14,8 +14,11 @@ import { customTheme } from "../theme";
 import { renderIndexHtml } from "./renderIndexHtml";
 
 // const basicAuth = require("express-basic-auth");
-const port = "3000";
+const port = parseInt(process.env.PORT || '3000', 10);
+const host = process.env.HOST || "localhost";
 const targetDir = defaultConfig.buildConfig.targetDir;
+
+console.log("Environment port: " + process.env.PORT);
 
 function handleRender(req: Request, res: Response) {
     const sheets = new ServerStyleSheets();
@@ -66,6 +69,6 @@ app.get("*", (req: Request, res: Response) => {
 
 app.listen(port, () => {
     console.log(
-        `Serving at http://localhost:${port} ${chalk.green("✓")}. ${chalk.red("To run in dev mode: npm run dev")}`
+        `Serving at http://${host}:${port} ${chalk.green("✓")}. ${chalk.red("To run in dev mode: npm run dev")}`
     );
 });

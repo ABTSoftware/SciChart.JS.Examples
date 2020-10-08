@@ -1,7 +1,7 @@
-import {SciChart3DSurface} from "scichart3d/charting3d/Visuals/SciChart3DSurface";
-import {NumericAxis3D} from "scichart3d/charting3d/Visuals/Axis/NumericAxis3D";
-import { CameraController } from "scichart3d/charting3d/CameraController";
-import { Vector3 } from "scichart3d/charting3d/Vector3";
+import {SciChart3DSurface} from "scichart/charting3d/Visuals/SciChart3DSurface";
+import {NumericAxis3D} from "scichart/charting3d/Visuals/Axis/NumericAxis3D";
+import { CameraController } from "scichart/charting3d/CameraController";
+import { Vector3 } from "scichart/charting3d/Vector3";
 
 async function initSciChart() {
     // Create the SciChart3DSurface in the div 'scichart-root'
