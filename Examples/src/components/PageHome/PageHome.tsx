@@ -5,6 +5,7 @@ import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import sciChartLogoImg from "../../images/scichart_logo_2.png";
 import Gallery from "./Gallery";
+import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 
 export const HOME_PAGE_TITLE = "HOMEPAGE";
 
@@ -62,7 +63,7 @@ export default function PageHome() {
     const classes = useStyles();
 
     React.useEffect(() => {
-        // drawExample();
+        updateGoogleTagManagerPage();
     }, []);
 
     return (

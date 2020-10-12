@@ -8,6 +8,7 @@ import Description from "../Description/Description";
 import { makeStyles } from "@material-ui/core/styles";
 import { TExamplePage } from "../AppRouter/examples";
 import { HOME_PAGE_TITLE } from "../PageHome/PageHome";
+import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 
 type TProps = {
     example: () => JSX.Element;
@@ -42,7 +43,7 @@ const useStyles = makeStyles(
             marginBottom: theme.spacing(3)
         },
         colMainContent: {
-            maxWidth: 900,
+            maxWidth: 900
         },
         colDescription: {
             flexBasis: 360,
@@ -80,6 +81,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const githubUrl = currentExample ? currentExample.githubUrl : "";
 
     React.useEffect(() => {
+        updateGoogleTagManagerPage();
         window.scrollTo(0, 0);
         window.Prism.highlightAll();
     }, []);
