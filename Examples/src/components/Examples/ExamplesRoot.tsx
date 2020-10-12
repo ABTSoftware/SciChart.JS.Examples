@@ -96,9 +96,9 @@ const ExamplesRoot: React.FC<TProps> = props => {
             <div className={classes.body}>
                 <div className={classes.colMain}>
                     <div className={classes.colMainContent}>
-                        <Typography variant="h5" variantMapping={{ h4: "h1" }} gutterBottom>
+                        <p >
                             SciChart.js - High Performance Realtime Javascript Charts Examples Suite
-                        </Typography>
+                        </p>
                         <div className={classes.title}>
                             <Title title={titleText} />
                             <div className={classes.subtitle}>{subtitleText}</div>
