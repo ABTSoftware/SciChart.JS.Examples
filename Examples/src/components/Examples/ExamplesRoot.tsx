@@ -5,6 +5,7 @@ import SourceCode from "../SourceCode/SourceCode";
 import sciChartLogoImg from "../../images/scichart-logo-making-impossible-projects-possible@2x.png";
 import GettingStarted from "../GettingStarted/GettingStarted";
 import Description from "../Description/Description";
+import SeoTags from "../SeoTags/SeoTags";
 import { makeStyles } from "@material-ui/core/styles";
 import { TExamplePage } from "../AppRouter/examples";
 import { HOME_PAGE_TITLE } from "../PageHome/PageHome";
@@ -86,8 +87,12 @@ const ExamplesRoot: React.FC<TProps> = props => {
         window.Prism.highlightAll();
     }, []);
 
+    const todoKeywords = titleText;
+    const todoDescription = titleText;
+
     return (
         <div className={classes.root}>
+            <SeoTags title={titleText} keywords={todoKeywords} description={todoDescription} />
             <div className={classes.body}>
                 <div className={classes.colMain}>
                     <div className={classes.colMainContent}>

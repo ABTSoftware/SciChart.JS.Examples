@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import sciChartLogoImg from "../../images/scichart_logo_2.png";
 import Gallery from "./Gallery";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
+import SeoTags from "../SeoTags/SeoTags";
 
 export const HOME_PAGE_TITLE = "HOMEPAGE";
 
@@ -68,6 +69,11 @@ export default function PageHome() {
 
     return (
         <div className={classes.root}>
+            <SeoTags
+                title="SciChart Web Demo"
+                keywords="SciChart Web Demo"
+                description="SciChart Web Demo"
+            />
             <div className={classes.content}>
                 <div className={classes.header}>
                     <div className={classes.headerLogo}>

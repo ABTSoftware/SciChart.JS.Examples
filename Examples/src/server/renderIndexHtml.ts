@@ -1,7 +1,9 @@
-export function renderIndexHtml(html: string, css: string) {
+import { HelmetData } from "react-helmet";
+
+export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
     return `
     <!DOCTYPE html>
-    <html lang="en-us">
+    <html lang="en-us" ${helmet.htmlAttributes.toString()}>
         <head>
             <!-- Google Tag Manager -->
             <script>(function (w, d, s, l, i) {
@@ -13,10 +15,11 @@ export function renderIndexHtml(html: string, css: string) {
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
               })(window, document, 'script', 'dataLayer', 'GTM-TB68F34');</script>
             <!-- End Google Tag Manager -->
-
             <meta charset="utf-8">
             <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            ${helmet.title.toString()}
+            ${helmet.meta.toString()}
             <title>SciChart Web Demo</title>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -26,7 +29,7 @@ export function renderIndexHtml(html: string, css: string) {
             <script async type="text/javascript" src="bundle.js"></script>
 
         </head>
-        <body style="margin: 0;">
+        <body ${helmet.bodyAttributes.toString()} style="margin: 0;">
             <!-- Display a message if JS has been disabled on the browser. -->
             <noscript>If you're seeing this message, that means
                 <strong>JavaScript has been disabled on your browser</strong>, please

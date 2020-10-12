@@ -5,6 +5,7 @@ import * as path from "path";
 import * as fs from "fs";
 import * as chalk from "chalk";
 import * as React from "react";
+import { Helmet } from "react-helmet";
 import * as ReactDOMServer from "react-dom/server";
 import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";
 import { StaticRouter } from "react-router-dom";
@@ -35,11 +36,14 @@ function handleRender(req: Request, res: Response) {
         )
     );
 
+    // SEO tags
+    const helmet = Helmet.renderStatic();
+
     // Grab the CSS from the sheets.
     const css = sheets.toString();
 
     // Send the rendered page back to the client.
-    res.send(renderIndexHtml(html, css));
+    res.send(renderIndexHtml(html, css, helmet));
 }
 
 const app = express();
