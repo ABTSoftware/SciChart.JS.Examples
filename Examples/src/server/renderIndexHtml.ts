@@ -18,16 +18,16 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <meta charset="utf-8">
             <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta property="og:type" content="website">
             <meta property="og:title" content="SciChart.js JavaScript Chart Examples">
             <meta property="og:description" content="Demos our Ultra High Performance JavaScript Chart library in an online examples app.">
-            <meta property="og:image" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-javascript-chart-collage-1485.jpg">
+<!--            <meta property="og:image" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-javascript-chart-collage-1485.jpg">-->
             <meta property="og:url" content="https://demo.scichart.com">
-            <meta property="og:type" content="website">
             <meta name="twitter:card" content="summary_large_image">
             <meta name="twitter:site" content="@scichart">
             <meta name="twitter:title" content="SciChart.js JavaScript Chart Examples">
-            <meta name="twitter:image" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-javascript-chart-collage-1485.jpg">
-            <meta name="twitter:image:alt" content="SciChart.js JavaScript Chart Examples Suite">
+<!--            <meta name="twitter:image" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-javascript-chart-collage-1485.jpg">-->
+<!--            <meta name="twitter:image:alt" content="SciChart.js JavaScript Chart Examples Suite">-->
             <meta property="og:video" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-meta-og-video.mp4" />
             <meta property="og:video:type" content="video/mp4" />
             <meta property="og:video:width" content="900" />
