@@ -28,6 +28,10 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <meta name="twitter:title" content="SciChart.js JavaScript Chart Examples">
             <meta name="twitter:image" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-javascript-chart-collage-1485.jpg">
             <meta name="twitter:image:alt" content="SciChart.js JavaScript Chart Examples Suite">
+            <meta property="og:video" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-meta-og-video.mp4" />
+            <meta property="og:video:type" content="video/mp4" />
+            <meta property="og:video:width" content="900" />
+            <meta property="og:video:height" content="600" />
             ${helmet.title.toString()}
             ${helmet.meta.toString()}
             <title>JavaScript Chart Examples home | Fast, High Performance JavaScript Chart Examples - SciChart.js</title>
