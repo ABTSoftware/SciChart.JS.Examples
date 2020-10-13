@@ -8,6 +8,7 @@ import { EXAMPLES_PAGES, getParentMenuIds } from "./AppRouter/examples";
 import AppBarTop from "./AppTopBar/AppBarTop";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { setLicenseDebug } from "scichart/Charting/Visuals/licenseManager2D";
 
 const drawerWidth = 240;
 
@@ -54,7 +55,7 @@ export default function App() {
 
     const toggleOpenedMenuItem = (id: string) => setOpenedMenuItem(id, !openedMenuItems[id]);
     const toggleDrawer = () => setIsDrawerOpened(!isDrawerOpened);
-    SciChartSurface.setRuntimeLicenseKey("W9sg5k3SYADvsWnOzsgqvl6L5xyq3+V9F/L+DUUkX1uLfHF5wclegUL8FasY2ywkoAvAU3V2tKqxsqyK9+OBDt6lQ2kbCd25nzei7QtjExEK6/EiHvxAMSUL/qu5fb0JzGPLRBpTqNT2ylndyYiyjciUmnYaeOzSINo5/ybyuMf4RHn7chGUoUNUy2P4nkclt9oO14izrm8zDd3obnTkoj1a9q2TAOLW8I5qxCTZppasnTW8lS2jVRFwuJloNqEy79wjhPyeEf3FiSt7xXa0HkPejNic9rX7eq2FKH8Feay5WVLD/63IbKUlzrEJC2l+b7VHGQGW6w4zwP9Jr1aJJ+3ZbqB7e3yUpFz7zkJ7pj3hmJe9S/SNQYnE0MlaTBUx+kpw59iTxyTNzt9E3GtnC5UDRcDX7IkJ/f1aKpROPHZGSrMf4d78KRfqhVDHfOWjJcBstMs/rgWDT60uHmyeBnpBiOJLoNxoXF1JgWP7RtPiGGPs+uRhi885zQ9ap3lrCMnqvm4lGSFXx45ieMwoLajpVMxebw0nUwAizn/GOEHB/Pk4CYs82Wd4ts4na0T62X6vdlp01ryDV3SkFatZaxfK5m23hw0OZ0NNMltAZ8m4BhJ0+sOXtAhvmhYFhzvKhUNaIk9n9NV5DsKc9dbyPn4QC8Vs+HSzNOE=");
+    SciChartSurface.setRuntimeLicenseKey("Hk9YxKmb39TbYgZnw5y8CFv55dT7j7SQhJfgpDWokfBuG3B56CDn39Ms1RMyv1Qd0eirY6Idg5im+QeYis+2+LAh6LJ79u0r6tmjXAXK70xEryahZM2hJ6FyWemnoweRB48FwX0RALe3ekWrMczS2Hz6E6MRdAcjewKaKZSCV7+jz7RjOqHc+4pMzcfbjKJrAPf31xNuEutikQdoznh8vUU/P/pV4TGgJcLCIkW95t7WXXdggJPZhhM//A4ebZV5LNLZ/000cRIDh8zd3yE/sLer9TAn6urva9qhYJD7uUAaoguxMq0aPLCSf/MPjRBHYTaZ7IBsxnkM56eNyy7BSGsOir9yR9VWcK7RpobGc1jkW2nigG1o9YDvX6Xf/1vsmCeGwiGMWP3fDWyLbeBwAuaWMgw6zfoVai6QIaP4MiNQEv4RY8fovF4Pdz9Dlky1yGXVDLs7Ip/RbLrAsX83W67W9ESsTYueKo9+s586twswBUPEc6w3lLivQLKjCgWPuKLaEOxOTbMqhw3ThfEenUx4mxy+Ndyezaebo83yHv3aFgOpV27UtMM/n6gZzuo1Iji+YUEved9EQ5VatBV+Xm4cQ8A9HzzOCawP5uIVhBXRh0Uqc7Ar56bfKdm0HZ1a/7CuL0FVZ2K9vvYx9ddQKaGXOUSntbkzD3nZMV7wr3s3Q/mFDWMIyYJSjQgn2WJNlPRuN72jrXhdGk9ap2aO229gm5yzDUu2svrArm+WB7DdeTSCdimy57Uz1V+mRCHHNWNWjCK0VT1gFQ==");
 
     React.useEffect(() => {
                 if (currentExample) {
