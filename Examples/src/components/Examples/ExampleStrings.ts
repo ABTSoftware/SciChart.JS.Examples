@@ -198,7 +198,7 @@ export const ExampleStrings = {
     urlTitleHitTestDocumentation: "The specific page for the SciChart.js documentation for the Hit-Test API to help you to get started",
 
     // RolloverModifier
-    urlRolloverModifierDocumentation: "#",
+    urlRolloverModifierDocumentation: "https://www.scichart.com/documentation/js/current/webframe.html#RolloverModifier.html",
     urlTitleRolloverModifierDocumentation:  "The specific page for the SciChart.js API documentation for the RolloverModifier to help you to get started",
     titleRolloverModifier: "Using Rollover Modifier Tooltips",
     urlRolloverModifier: "/javascript-chart-rollovermodifier-tooltips",
