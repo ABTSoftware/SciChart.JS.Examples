@@ -1,5 +1,5 @@
 import * as React from "react";
-import {TExampleInfo} from "../../../../AppRouter/examples";
+import {TExampleInfo} from "../../../../AppRouter/examplePages";
 import {code} from "./GENERATED_SRC";
 import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";

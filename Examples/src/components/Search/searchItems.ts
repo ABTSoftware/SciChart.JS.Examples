@@ -1,4 +1,4 @@
-import { EXAMPLES_PAGES } from "../AppRouter/examples";
+import { EXAMPLES_PAGES } from "../AppRouter/examplePages";
 
 export type TSearchItem = {
     title: string;

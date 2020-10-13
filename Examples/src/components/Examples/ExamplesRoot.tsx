@@ -7,13 +7,14 @@ import GettingStarted from "../GettingStarted/GettingStarted";
 import Description from "../Description/Description";
 import SeoTags from "../SeoTags/SeoTags";
 import { makeStyles } from "@material-ui/core/styles";
-import { TExamplePage } from "../AppRouter/examples";
+import { TExamplePage } from "../AppRouter/examplePages";
 import { HOME_PAGE_TITLE } from "../PageHome/PageHome";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
+import {getExampleComponent} from "../AppRouter/examples";
 
 type TProps = {
-    example: () => JSX.Element;
-    currentExample: TExamplePage;
+    // example: () => JSX.Element;
+    examplePage: TExamplePage;
 };
 
 const useStyles = makeStyles(
@@ -71,15 +72,15 @@ const useStyles = makeStyles(
 
 const ExamplesRoot: React.FC<TProps> = props => {
     const classes = useStyles();
-    const { currentExample } = props;
+    const { examplePage } = props;
 
-    const ExampleComponent = props.example;
+    const ExampleComponent = getExampleComponent(examplePage.id);
 
-    const titleText = currentExample ? currentExample.title : HOME_PAGE_TITLE;
-    const subtitleText = currentExample ? currentExample.subtitle() : undefined;
-    const DescComponent: () => JSX.Element = currentExample?.description;
-    const codeStr = currentExample ? currentExample.code : "";
-    const githubUrl = currentExample ? currentExample.githubUrl : "";
+    const titleText = examplePage ? examplePage.title : HOME_PAGE_TITLE;
+    const subtitleText = examplePage ? examplePage.subtitle() : undefined;
+    const DescComponent: () => JSX.Element = examplePage?.description;
+    const codeStr = examplePage ? examplePage.code : "";
+    const githubUrl = examplePage ? examplePage.githubUrl : "";
 
     React.useEffect(() => {
         updateGoogleTagManagerPage();
@@ -96,15 +97,13 @@ const ExamplesRoot: React.FC<TProps> = props => {
             <div className={classes.body}>
                 <div className={classes.colMain}>
                     <div className={classes.colMainContent}>
-                        <p >
-                            SciChart.js - High Performance Realtime Javascript Charts Examples Suite
-                        </p>
+                        <p>SciChart.js - High Performance Realtime Javascript Charts Examples Suite</p>
                         <div className={classes.title}>
                             <Title title={titleText} />
                             <div className={classes.subtitle}>{subtitleText}</div>
                         </div>
                         <ExampleComponent />
-                        {currentExample && <SourceCode code={codeStr} githubUrl={githubUrl} />}
+                        {examplePage && <SourceCode code={codeStr} githubUrl={githubUrl} />}
                     </div>
                 </div>
                 <div className={classes.colDescription}>

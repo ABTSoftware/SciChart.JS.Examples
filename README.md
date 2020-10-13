@@ -67,51 +67,85 @@ To start the application in production mode, run the following scripts. Note in 
 
 To add an example to the SciChart.js Examples Suite, use the following steps:
 
-* **Create folder** for your example, (e.g. `Examples/src/components/Examples/Charts3D/Basic3DChartTypes/Scatter3DChart/`)
+* **Create folder** for your example, (e.g. `Examples/src/components/Examples/Charts2D/BasicChartTypes/BandSeriesChart/`)
 * **Place example code**. In the example folder create `index.tsx` file and put code for your example into it.
 * **Add metadata**. In the example folder create metadata file `exampleInfo.ts` 
 ```ts
-import { TExampleInfo } from "../../../../AppRouter/examples";
-import { code } from "./GENERATED_SRC";
+import * as React from "react";
+import {TExampleInfo} from "../../../../AppRouter/examplePages";
+import {code} from "./GENERATED_SRC";
+import {githubUrl} from "./GENERATED_GITHUB_URL";
+import {ExampleStrings} from "../../../ExampleStrings";
 
-export const scatter3DChartExampleInfo: TExampleInfo = {
-    title: "Bubble 3D Chart",
-    path: "/chart3D_Basic3DChartTypes_Bubble",
-    subtitle: "Bubble 3D Chart subtitle",
-    description: "Bubble 3D Chart description",
-    code
+...
+
+export const bandSeriesChartExampleInfo: TExampleInfo = {
+    title: ExampleStrings.titleBandChart,
+    path: ExampleStrings.urlBandChart,
+    subtitle: Subtitle,
+    description: Description,
+    code,
+    githubUrl,
 };
 ```
-* **Generate GENERATED_SRC.ts file** - run `npm run generateExampleSrc` to generate `GENERATED_SRC.ts`. Note if you modify any of index.tsx in the examples folder, you also need to run the script.
+* **Generate GENERATED_SRC.ts, GENERATED_GITHUB_URL.ts files** - run `npm run generateExampleSrc` to generate `GENERATED_SRC.ts`. Note if you modify any of index.tsx in the examples folder, you also need to run the script.
 
-* **Add example to menu** - edit `Examples/src/components/AppRouter/examples.ts` file to add new example
+* **Add example to menu**
+
+Edit `Examples/src/components/AppRouter/examplePages.ts` to add new example
+
 ```ts
-import { scatter3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Scatter3DChart/exampleInfo";
-import Scatter3DChart from "../Examples/Charts3D/Basic3DChartTypes/Scatter3DChart";
+import { bandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/exampleInfo";
 ...
-export const EXAMPLES_PAGES: Record<string, TExamplePage> = {
-    ...
-    chart3D_Basic3DChartTypes_Scatter: {
-        id: "chart3D_Basic3DChartTypes_Scatter",
-        Component: Scatter3DChart,
-        ...scatter3DChartExampleInfo
-    }
-};
 
-export const MENU_ITEMS: TMenuItem[] = [
+export const EXAMPLES_PAGES = asRecord({
     ...
-    {
-        item: { id: "chart3D_Basic3DChartTypes", name: "Basic 3D Chart Types" },
-        submenu: [EXAMPLES_PAGES.chart3D_Basic3DChartTypes_Scatter]
+    chart2D_basicCharts_BandSeriesChart: {
+        id: "chart2D_basicCharts_BandSeriesChart",
+        ...bandSeriesChartExampleInfo
     }
-];
+    ...
+})
+```
+
+And this file `Examples/src/components/AppRouter/examples.ts`
+```ts
+import BandSeriesChart from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart";
+
+...
+
+export const MENU_ITEMS_2D: TMenuItem[] = [
+    {
+        item: { id: "chart2D_basicCharts", name: "JavaScript Chart Types" },
+        submenu: [
+            ...
+            EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart,
+            ...
+        ]
+    }
+]
+
+...
+
+export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
+    switch (exampleId) {
+        ...
+        case EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.id:
+            return BandSeriesChart;
+        ...
+}
+
 ```
 * **Add example to search** - edit `Examples/src/components/Search/searchItems.ts`
 ```ts
 ...
 export const searchItems: TSearchItem[] = [
     ...
-    { title: EXAMPLES_PAGES.chart3D_Basic3DChartTypes_Scatter.title, link: EXAMPLES_PAGES.chart3D_Basic3DChartTypes_Scatter.path }
+    { title: EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.title, link: EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.path }
 ];
 
+...
 ```
+
+* **Update sitemap**
+`npm run generateSitemap`

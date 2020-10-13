@@ -2,7 +2,7 @@ import * as React from "react";
 import { Switch, Route } from "react-router-dom";
 import PageHome from "../PageHome/PageHome";
 import { PAGES } from "./pages";
-import { EXAMPLES_PAGES, TExamplePage } from "./examples";
+import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import ExamplesRoot from "../Examples/ExamplesRoot";
 
 type TProps = {
@@ -21,7 +21,7 @@ export default function AppRouter(props: TProps) {
                     <Route
                         key={key}
                         path={exPage.path}
-                        render={() => <ExamplesRoot example={exPage.Component} currentExample={currentExample} />}
+                        render={() => <ExamplesRoot examplePage={currentExample} />}
                     />
                 );
             })}

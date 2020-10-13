@@ -2,7 +2,7 @@ import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ChartGroupTitle from "./ChartGroupTitle";
 import Grid from "@material-ui/core/Grid";
-import { EXAMPLES_PAGES } from "../AppRouter/examples";
+import { EXAMPLES_PAGES } from "../AppRouter/examplePages";
 import GalleryCard from "./GalleryCard";
 import load500Img from "../../images/examples/s/performance/javascript-chart-load-500-series-by-500-points.jpg";
 import realtimePerformanceImg from "../../images/examples/s/performance/javascript-chart-realtime-performance-demo.jpg";

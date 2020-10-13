@@ -1,7 +1,7 @@
 import * as React from "react";
 import {code} from "./GENERATED_SRC";
 import {githubUrl} from "./GENERATED_GITHUB_URL";
-import {TExampleInfo} from "../../../../AppRouter/examples";
+import {TExampleInfo} from "../../../../AppRouter/examplePages";
 import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => (<div>
