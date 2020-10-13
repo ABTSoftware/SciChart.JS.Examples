@@ -61,7 +61,7 @@ const drawExample = async () => {
 
     sciChartSurface.zoomExtents();
 
-    sciChartSurface.chartModifiers.add(new RolloverModifier({ stroke: "#228B22" }));
+    sciChartSurface.chartModifiers.add(new RolloverModifier({ rolloverLineStroke: "#228B22" }));
     sciChartSurface.chartModifiers.add(
         new LegendModifier({
             placement: ELegendPlacement.TopLeft,
