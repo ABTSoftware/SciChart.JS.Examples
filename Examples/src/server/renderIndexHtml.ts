@@ -23,7 +23,7 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <meta property="og:description" content="SciChart.js: Ultra High Performance JavaScript Chart library. Featuring 2D &amp; 3D JavaScript Chart types, performance demos, JavaScript stock charts, Heatmaps, Bubble charts and many more.">
             <meta property="og:image" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-javascript-chart-collage-1485.jpg">
             <meta property="og:url" content="https://demo.scichart.com">
-            <meta property="og:video" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-meta-og-video.mp4?v=0" />
+            <meta property="og:video" content="https://www.youtube.com/v/7SPxPjsmENE" />
             <meta property="og:video:url" content="https://www.youtube.com/v/7SPxPjsmENE" />
             <meta property="og:video:secure_url" content="https://www.youtube.com/v/7SPxPjsmENE" />
             <meta property="og:video:type" content="application/x-shockwave-flash" />
@@ -32,7 +32,7 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <meta name="twitter:card" content="summary_large_image">
             <meta name="twitter:site" content="@scichart">
             <meta name="twitter:title" content="SciChart.js - Realtime JavaScript Chart Examples">
-            <meta name="twitter:player" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-meta-og-video.mp4?v=0">
+            <meta name="twitter:player" content="https://www.youtube.com/v/7SPxPjsmENE">
             <meta name="twitter:image" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-javascript-chart-collage-1485.jpg">
             <meta name="twitter:image:alt" content="SciChart.js JavaScript Chart Examples Suite">
             ${helmet.title.toString()}
