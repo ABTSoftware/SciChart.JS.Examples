@@ -44,7 +44,7 @@ SciChart.js also includes 3D Charts, and has a [JavaScript UAV LiDAR 3D Point-Cl
 
 We've taken the time to create hundreds of documentation pages for our JavaScript Charts, which you can find over at https://www.scichart.com/javascript-chart-documentation. Take a look here for tutorials, getting-started guides, API Docs (TypeDoc) and more.
 
-[![JavaScript Chart Documentation](Sandbox/scichart-js-javascript-chart-documentation.png)](https://www.scichart.com/javascript-chart-documentation).
+[![JavaScript Chart Documentation](Sandbox/scichart-js-javascript-chart-documentation.PNG)](https://www.scichart.com/javascript-chart-documentation).
 
 ## Developer Quick-Start
 
