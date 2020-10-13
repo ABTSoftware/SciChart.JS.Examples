@@ -24,11 +24,11 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <meta property="og:image" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-javascript-chart-collage-1485.jpg">
             <meta property="og:url" content="https://demo.scichart.com">
             <meta property="og:video" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-meta-og-video.mp4?v=0" />
-            <meta property="og:video:url" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-meta-og-video.mp4?v=0" />
-            <meta property="og:video:secure_url" content="https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-meta-og-video.mp4?v=0" />
-            <meta property="og:video:type" content="video/mp4" />
-            <meta property="og:video:width" content="900" />
-            <meta property="og:video:height" content="600" />
+            <meta property="og:video:url" content="https://www.youtube.com/v/7SPxPjsmENE" />
+            <meta property="og:video:secure_url" content="https://www.youtube.com/v/7SPxPjsmENE" />
+            <meta property="og:video:type" content="application/x-shockwave-flash" />
+            <meta property="og:video:width" content="560" />
+            <meta property="og:video:height" content="315" />
             <meta name="twitter:card" content="summary_large_image">
             <meta name="twitter:site" content="@scichart">
             <meta name="twitter:title" content="SciChart.js - Realtime JavaScript Chart Examples">
