@@ -175,7 +175,7 @@ export default function RealtimeTickingStockCharts() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [wasmContext, setWasmContext] = React.useState<TSciChart>();
     const [strokeThickness, setStrokeThickness] = React.useState(2);
-    const [seriesType, setSeriesType] = React.useState(ESeriesType.OhlcSeries);
+    const [seriesType, setSeriesType] = React.useState(ESeriesType.FastOhlcRenderableSeries);
 
     React.useEffect(() => {
         (async () => {
@@ -203,7 +203,7 @@ export default function RealtimeTickingStockCharts() {
         const priceDataSeries = sciChartSurface.renderableSeries.get(3).dataSeries;
         sciChartSurface.renderableSeries.removeAt(3);
         switch (newSeriesType) {
-            case ESeriesType.LineSeries:
+            case ESeriesType.FastLineRenderableSeries:
                 sciChartSurface.renderableSeries.add(
                     new FastLineRenderableSeries(wasmContext, {
                         stroke: EColor.Green,
@@ -212,7 +212,7 @@ export default function RealtimeTickingStockCharts() {
                     })
                 );
                 break;
-            case ESeriesType.OhlcSeries:
+            case ESeriesType.FastOhlcRenderableSeries:
                 sciChartSurface.renderableSeries.add(
                     new FastOhlcRenderableSeries(wasmContext, {
                         strokeThickness,
@@ -221,7 +221,7 @@ export default function RealtimeTickingStockCharts() {
                     })
                 );
                 break;
-            case ESeriesType.CandlestickSeries:
+            case ESeriesType.FastCandlestickRenderableSeries:
                 sciChartSurface.renderableSeries.add(
                     new FastCandlestickRenderableSeries(wasmContext, {
                         strokeThickness,
@@ -230,7 +230,7 @@ export default function RealtimeTickingStockCharts() {
                     })
                 );
                 break;
-            case ESeriesType.MountainSeries:
+            case ESeriesType.FastMountainRenderableSeries:
                 sciChartSurface.renderableSeries.add(
                     new FastMountainRenderableSeries(wasmContext, {
                         fill: "rgba(176, 196, 222, 0.7)",
@@ -270,10 +270,10 @@ export default function RealtimeTickingStockCharts() {
                         value={seriesType}
                         onChange={handleChangeSeriesType}
                     >
-                        <MenuItem value={ESeriesType.OhlcSeries}>OHLC</MenuItem>
-                        <MenuItem value={ESeriesType.CandlestickSeries}>Candlestick</MenuItem>
-                        <MenuItem value={ESeriesType.LineSeries}>Line</MenuItem>
-                        <MenuItem value={ESeriesType.MountainSeries}>Mountain</MenuItem>
+                        <MenuItem value={ESeriesType.FastOhlcRenderableSeries}>OHLC</MenuItem>
+                        <MenuItem value={ESeriesType.FastCandlestickRenderableSeries}>Candlestick</MenuItem>
+                        <MenuItem value={ESeriesType.FastLineRenderableSeries}>Line</MenuItem>
+                        <MenuItem value={ESeriesType.FastMountainRenderableSeries}>Mountain</MenuItem>
                     </Select>
                 </FormControl>
             </div>
