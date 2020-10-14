@@ -34,9 +34,11 @@ Found an issue or want to make a suggestion? We're inviting feedback via the [Gi
 
 We've prepared a few tutorials to get you started. There are three right now and we will be adding more shortly. 
 
-1. Creating an Application with SciChart [Code](https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Tutorials/2D%20Chart%20Tutorials%20(JavaScript)/Tutorial%201%20-%20Setting%20up%20a%20project%20with%20SciChart) [Video](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2001%20-%20Setting%20up%20a%20Project%20with%20SciChart.js.html)
-2. Adding Data and Series [Code](https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Tutorials/2D%20Chart%20Tutorials%20(JavaScript)/Tutorial%202%20-%20Adding%20Series%20and%20Data) [Video](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2002%20-%20Adding%20Series%20and%20Data.html)
-3. Adding Zooming and Panning [Code](https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Tutorials/2D%20Chart%20Tutorials%20(JavaScript)/Tutorial%203%20-%20Add%20Zoom%20and%20Pan%20Behavior) [Video](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2003%20-%20Adding%20Zooming,%20Panning%20Behavior.html)
+1. Tutorial 01 - [Creating an Application with SciChart](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2001%20-%20Setting%20up%20a%20Project%20with%20SciChart.js.html)
+2. Tutorial 02 - [Adding Data and Series](https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Tutorials/2D%20Chart%20Tutorials%20(JavaScript)/Tutorial%202%20-%20Adding%20Series%20and%20Data) / [Video](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2002%20-%20Adding%20Series%20and%20Data.html)
+3. Tutorial 03 - [Adding Zooming and Panning](https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Tutorials/2D%20Chart%20Tutorials%20(JavaScript)/Tutorial%203%20-%20Add%20Zoom%20and%20Pan%20Behavior) / [Video](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2003%20-%20Adding%20Zooming,%20Panning%20Behavior.html)
+
+_Further tutorials are in development_
 
 ### Exploring our API
 
