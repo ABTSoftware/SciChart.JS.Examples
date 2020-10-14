@@ -19,8 +19,6 @@ const port = parseInt(process.env.PORT || '3000', 10);
 const host = process.env.HOST || "localhost";
 const targetDir = defaultConfig.buildConfig.targetDir;
 
-console.log("Environment port: " + process.env.PORT);
-
 function handleRender(req: Request, res: Response) {
     const sheets = new ServerStyleSheets();
     const context = {};
@@ -57,8 +55,10 @@ const app = express();
 // Server static assets
 app.use(express.static(targetDir));
 
-app.get("/api/test", (req: Request, res: Response) => {
-    res.send("Hello World");
+app.get("/api/license", (req, res) => {
+    const domainLicense = process.env.SCLICENSE
+    console.log("returning license: " + domainLicense);
+    res.send(domainLicense);
 });
 
 app.use("/api/thevirustracker", (req: Request, res: Response) => {
