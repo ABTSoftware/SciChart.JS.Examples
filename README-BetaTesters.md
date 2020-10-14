@@ -9,9 +9,9 @@ full release.
 
 ### Bug reporting / suggestions in the BETA 
 
-Found an issue or want to make a suggestion? We're inviting feedback via the [Github Issues in scichart.js.examples](https://github.com/ABTSoftware/SciChart.JS.Examples/issues) directly.
+Found an issue or want to make a suggestion? We're inviting feedback via our [Support desk](https://support.scichart.com/) directly.
 
-**For bug reports or improvements, please report here: https://github.com/ABTSoftware/SciChart.JS.Examples/issues**
+**For bug reports or improvements, please report here: https://support.scichart.com/**
 
 ### Running the SciChart.Js.Examples locally 
 
@@ -24,7 +24,7 @@ Found an issue or want to make a suggestion? We're inviting feedback via the [Gi
 // To license the examples app locally for beta, uncomment the line below
 SciChartSurface.setRuntimeLicenseKey("WcnXtRLwGVtfNA59XwvDQA11wSpykEA1NEpARELTB+Aq6kf2nJSK9GgWOKvCJA6P+jNg2xcVLw3oM7EdIIi0MJtvorAARa9au01LV/xLJ1jdOeDeMXpw/eT5ajSpukKcJXHe97tzsBzfB6wRziW6LgNjuB3ykFIk+tGvOmJyhRewYjF+FCSb/0q8Bq8em4lNmOfONzJz5spVWvvfHdn5iIYfvv00hhduow4bFzxXnRucLtHl2Bm1yFvrVYe0UOQcFpJ9DZ4S96GLhSw9SIkUSAy/C5r3FvdCkX8d40ehAg+n78w92QXwh4B41xF0f+9OHpeV3byaZDNr5L1afdS3qCahoyeYEnmt4hYdmGH3uS+KtC29bAcVXUqNA9P3pESndALjlEimVNfr6RrfKEY3jroWtPXEx2Oo9XcD3ZLUJiRrjDL0lTf/3a6+KN1xsl2K2eymqyo9Wggy7Mf3WymmvURil7SaxE3xBP5LWWGPMEXvf9m7vXGz6fkEtsZhdEC3HQprBwEGyV1zPdLxDqtWO9ltEBEBlS2FrzJ3984/zSp9sbc=");
 ```
-	This license key expires in 30 days - or 14th November 2020
+> Note: This BETA license key expires in 30 days - or 14th November 2020
 
 ### Creating your own SciChart.js App
 
