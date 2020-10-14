@@ -9,7 +9,6 @@ import { EXAMPLES_PAGES } from "./AppRouter/examplePages";
 import AppBarTop from "./AppTopBar/AppBarTop";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { setLicenseDebug } from "scichart/Charting/Visuals/licenseManager2D";
 
 const drawerWidth = 240;
 
@@ -56,8 +55,18 @@ export default function App() {
 
     const toggleOpenedMenuItem = (id: string) => setOpenedMenuItem(id, !openedMenuItems[id]);
     const toggleDrawer = () => setIsDrawerOpened(!isDrawerOpened);
-    SciChartSurface.setRuntimeLicenseKey("Hk9YxKmb39TbYgZnw5y8CFv55dT7j7SQhJfgpDWokfBuG3B56CDn39Ms1RMyv1Qd0eirY6Idg5im+QeYis+2+LAh6LJ79u0r6tmjXAXK70xEryahZM2hJ6FyWemnoweRB48FwX0RALe3ekWrMczS2Hz6E6MRdAcjewKaKZSCV7+jz7RjOqHc+4pMzcfbjKJrAPf31xNuEutikQdoznh8vUU/P/pV4TGgJcLCIkW95t7WXXdggJPZhhM//A4ebZV5LNLZ/000cRIDh8zd3yE/sLer9TAn6urva9qhYJD7uUAaoguxMq0aPLCSf/MPjRBHYTaZ7IBsxnkM56eNyy7BSGsOir9yR9VWcK7RpobGc1jkW2nigG1o9YDvX6Xf/1vsmCeGwiGMWP3fDWyLbeBwAuaWMgw6zfoVai6QIaP4MiNQEv4RY8fovF4Pdz9Dlky1yGXVDLs7Ip/RbLrAsX83W67W9ESsTYueKo9+s586twswBUPEc6w3lLivQLKjCgWPuKLaEOxOTbMqhw3ThfEenUx4mxy+Ndyezaebo83yHv3aFgOpV27UtMM/n6gZzuo1Iji+YUEved9EQ5VatBV+Xm4cQ8A9HzzOCawP5uIVhBXRh0Uqc7Ar56bfKdm0HZ1a/7CuL0FVZ2K9vvYx9ddQKaGXOUSntbkzD3nZMV7wr3s3Q/mFDWMIyYJSjQgn2WJNlPRuN72jrXhdGk9ap2aO229gm5yzDUu2svrArm+WB7DdeTSCdimy57Uz1V+mRCHHNWNWjCK0VT1gFQ==");
 
+    // LICENSING
+    // To license the examples app locally for beta, uncomment the line below
+    // SciChartSurface.setRuntimeLicenseKey("WcnXtRLwGVtfNA59XwvDQA11wSpykEA1NEpARELTB+Aq6kf2nJSK9GgWOKvCJA6P+jNg2xcVLw3oM7EdIIi0MJtvorAARa9au01LV/xLJ1jdOeDeMXpw/eT5ajSpukKcJXHe97tzsBzfB6wRziW6LgNjuB3ykFIk+tGvOmJyhRewYjF+FCSb/0q8Bq8em4lNmOfONzJz5spVWvvfHdn5iIYfvv00hhduow4bFzxXnRucLtHl2Bm1yFvrVYe0UOQcFpJ9DZ4S96GLhSw9SIkUSAy/C5r3FvdCkX8d40ehAg+n78w92QXwh4B41xF0f+9OHpeV3byaZDNr5L1afdS3qCahoyeYEnmt4hYdmGH3uS+KtC29bAcVXUqNA9P3pESndALjlEimVNfr6RrfKEY3jroWtPXEx2Oo9XcD3ZLUJiRrjDL0lTf/3a6+KN1xsl2K2eymqyo9Wggy7Mf3WymmvURil7SaxE3xBP5LWWGPMEXvf9m7vXGz6fkEtsZhdEC3HQprBwEGyV1zPdLxDqtWO9ltEBEBlS2FrzJ3984/zSp9sbc=");
+
+    // For deployment to demo.scichart.com we are getting the license from the server where it is set by enviroment variable.
+    // When you npm run dev, the beta trial key is served by the webpack dev server (webpack.client.no_server.config)
+    SciChartSurface.setFetchLicenseCallback(() => fetch("/api/license").then(r => {
+        if (r.ok) { return r.text(); }
+        return "";
+    }));
+    
     React.useEffect(() => {
                 if (currentExample) {
             const parentMenuIds = getParentMenuIds(currentExample.id);
