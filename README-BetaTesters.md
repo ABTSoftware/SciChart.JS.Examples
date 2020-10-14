@@ -1,10 +1,10 @@
 # BETA Testing SciChart.js 
 
-The SciChart.js JavaSCript Charts Beta was released on 14th Oct 2020!   
+The SciChart.js JavaScript Charts Beta was released on 14th Oct 2020!   
 
-**[See the release note here](https://www.scichart.com/scichart-js-ultra-high-performance-javascript-charts-beta/).**
+> **[See the SciChart.js Beta release note here](https://www.scichart.com/scichart-js-ultra-high-performance-javascript-charts-beta/).**
 
-We are now gathering feedback and would love to hear from our userbase about what needs to be improved before 
+We are now gathering feedback and would love to hear from our user base about what needs to be improved before 
 full release. 
 
 ### Bug reporting / suggestions in the BETA 
