@@ -1,9 +1,7 @@
-import {SciChartSurface} from "scichart/charting/Visuals/SciChartSurface";
-import {NumericAxis} from "scichart/charting/Visuals/Axis/NumericAxis";
-import {setLicenseDebug} from "scichart/Charting/Visuals/licenseManager2D";
+import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 
 async function initSciChart() {
-    setLicenseDebug(true);
     // Below find a trial / BETA key for SciChart.js.
     // This Expires in 30 days - or 14th November 2020
     // Set this license key once in your app before calling SciChartSurface.create, e.g.

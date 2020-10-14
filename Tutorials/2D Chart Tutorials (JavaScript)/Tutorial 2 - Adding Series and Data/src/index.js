@@ -1,7 +1,7 @@
-import {SciChartSurface} from "scichart/charting/Visuals/SciChartSurface";
-import {NumericAxis} from "scichart/charting/Visuals/Axis/NumericAxis";
-import {XyDataSeries} from "scichart/charting/model/XyDataSeries";
-import {FastLineRenderableSeries} from "scichart/charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 
 async function initSciChart() {
     // Below find a trial / BETA key for SciChart.js.
