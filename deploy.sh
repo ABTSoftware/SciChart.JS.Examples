@@ -129,6 +129,7 @@ fi
 # 5. Create symlink to node_modules
   echo "Creating link to node_modules."
   cd "$DEPLOYMENT_TARGET"
+  rm /home/site/wwwroot/node_modules
   ln -s /home/site/repository/Examples/node_modules /home/site/wwwroot/node_modules
 
 ##################################################################################################################################
