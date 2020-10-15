@@ -110,7 +110,6 @@ const ExamplesRoot: React.FC<TProps> = props => {
                     <div className={classes.sciChartLogo}>
                         <img src={sciChartLogoImg} width={209} height={42} />
                     </div>
-                    <GettingStarted />
                     {DescComponent && (
                         <div className={classes.description}>
                             <Description>
