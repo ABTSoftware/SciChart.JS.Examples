@@ -18,7 +18,7 @@ Found an issue or want to make a suggestion? We're inviting feedback via the [Gi
 1. Start by cloning and running the Examples app at https://github.com/ABTSoftware/SciChart.JS.Examples
 2. Now ```cd Examples``` run ```npm install```, and ```npm run dev``` to start the examples app. 
 
-3. To run in production more you will need to set a license key in App.tsx.  Look for the lines below and uncomment so it looks like this
+3. To run in production mode you will need to set a license key before you use SciChartSurface. The license key should be set once!
 ``` 
 // LICENSING
 // To license the examples app locally for beta, uncomment the line below
@@ -33,6 +33,11 @@ We've prepared a few tutorials to get you started. There are three right now and
 1. Tutorial 01 - [Creating an Application with SciChart](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2001%20-%20Setting%20up%20a%20Project%20with%20SciChart.js.html)
 2. Tutorial 02 - [Adding Data and Series](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2002%20-%20Adding%20Series%20and%20Data.html)
 3. Tutorial 03 - [Adding Zooming and Panning](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2003%20-%20Adding%20Zooming,%20Panning%20Behavior.html)
+
+To run a tutorial: 
+* navigate to the tutorial folder
+* run `npm install`
+* run `npm start`
 
 _Further tutorials are in development_
 
