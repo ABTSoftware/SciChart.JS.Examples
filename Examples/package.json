@@ -14,10 +14,9 @@
     "startClientTsc": "webpack --config webpack.client.dev.config.js",
     "prettier": "prettier --write",
     "testUnit": "mocha --require ts-node/register \"testUnit/**/*.test.ts\"",
-    "generateAll": "npm run generateExampleSrc && npm run generateSitemap && npm run generateFooterLinks",
+    "generateAll": "npm run generateExampleSrc && npm run generateSitemap",
     "generateExampleSrc": "node generate-example-src.js",
-    "generateSitemap": "ts-node generate-sitemap.ts",
-    "generateFooterLinks": "ts-node generate-footer-links.ts"
+    "generateSitemap": "ts-node generate-sitemap.ts"
   },
   "author": "",
   "license": "ISC",

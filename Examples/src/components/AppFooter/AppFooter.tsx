@@ -1,6 +1,5 @@
 import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { FOOTER_LINKS } from "./GENERATED_FOOTER_LINKS";
 
 export type TFooterlink = {
     link: string;
@@ -11,34 +10,12 @@ const useStyles = makeStyles(theme => ({
     root: {
         padding: theme.spacing(2),
         overflow: "hidden",
-        backgroundColor: "#4caf50EE"
+        backgroundColor: "#4caf50EE",
+        color: "white"
     },
-    linksBlock: {
-        width: "100%",
-        overflow: "hidden"
+    link1: {
+        color: "white",
     },
-    link: {
-        marginLeft: theme.spacing(2),
-        marginRight: theme.spacing(2),
-        float: "left",
-        "& a": {
-            color: "white",
-            textDecoration: "none",
-            fontSize: 14,
-            "&:hover": {
-                textDecoration: "underline"
-            }
-        }
-    },
-    sitemap: {
-        marginTop: theme.spacing(1),
-        marginLeft: theme.spacing(2),
-        marginRight: theme.spacing(2),
-        "& a": {
-            color: "grey",
-            textDecoration: "none",
-        }
-    }
 }));
 
 export default function AppFooter() {
@@ -46,16 +23,14 @@ export default function AppFooter() {
 
     return (
         <div className={classes.root}>
-            <div className={classes.linksBlock}>
-                {FOOTER_LINKS.map(el => (
-                    <div key={el.link} className={classes.link}>
-                        <a href={el.link}>{el.text}</a>
-                    </div>
-                ))}
-            </div>
-            <div className={classes.sitemap}>
-                <a href="/sitemap.xml">Sitemap</a>
-            </div>
+            SciChart: Fast, Realtime, High Performance{" "}
+            <a className={classes.link1} href="https://www.scichart.com/javascript-chart-features">
+                JavaScript Charts
+            </a>{" "}
+            Examples Suite.{" "}
+            <a className={classes.link1} href="/sitemap.xml">
+                Sitemap
+            </a>
         </div>
     );
 }

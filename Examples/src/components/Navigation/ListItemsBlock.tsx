@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TMenuItem } from "../AppRouter/examples";
 import { useLocation } from "react-router-dom";
 import MenuListItemText from "../shared/MenuListItemText/MenuListItemText";
+import Typography from "@material-ui/core/Typography";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -19,16 +20,23 @@ type TProps = {
     menuItemsId: string;
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     listItemText: {
-        marginLeft: theme.spacing(1),
+        marginLeft: theme.spacing(1)
     },
     listItemText2: {
         marginLeft: theme.spacing(2),
-    },
+        fontSize: "0.875rem",
+        "& a": {
+            textDecoration: "none",
+            color: "rgba(0, 0, 0, 0.87)",
+            pointerEvents: "none",
+            cursor: "default"
+        }
+    }
 }));
 
-const ListItemsBlock: React.FC<TProps> = (props) => {
+const ListItemsBlock: React.FC<TProps> = props => {
     const classes = useStyles();
     const location = useLocation();
 
@@ -42,7 +50,7 @@ const ListItemsBlock: React.FC<TProps> = (props) => {
             </ListItem>
             <Collapse in={checkIsOpened(menuItemsId)} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    {menuItems.map((el) => (
+                    {menuItems.map(el => (
                         <React.Fragment key={el.item.id}>
                             <ListItem button onClick={() => onExpandClick(el.item.id)}>
                                 <div className={classes.listItemText}>
@@ -52,18 +60,21 @@ const ListItemsBlock: React.FC<TProps> = (props) => {
                             </ListItem>
                             <Collapse in={checkIsOpened(el.item.id)} timeout="auto" unmountOnExit>
                                 <List component="div" disablePadding>
-                                    {el.submenu.map((subEl) => (
+                                    {el.submenu.map(subEl => (
                                         <ListItem
                                             key={subEl.id}
                                             selected={location.pathname === subEl.path}
                                             button
                                             onClick={() => historyPushPath(subEl.path)}
                                         >
-                                            <ListItemText
-                                                className={classes.listItemText2}
-                                                primary={subEl.title}
-                                                primaryTypographyProps={{ variant: "body2" }}
-                                            />
+                                            <Typography className={classes.listItemText2} variant="body1" gutterBottom>
+                                                <a href={subEl.path}>{subEl.title}</a>
+                                            </Typography>
+                                            {/*<ListItemText*/}
+                                            {/*    className={classes.listItemText2}*/}
+                                            {/*    primary={subEl.title}*/}
+                                            {/*    primaryTypographyProps={{ variant: "body2" }}*/}
+                                            {/*/>*/}
                                         </ListItem>
                                     ))}
                                 </List>

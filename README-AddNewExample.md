@@ -86,6 +86,3 @@ export const searchItems: TSearchItem[] = [
 
 * **Update sitemap**
 `npm run generateSitemap`
-
-* **Update footer links**
-`npm run generateFooterLinks`
