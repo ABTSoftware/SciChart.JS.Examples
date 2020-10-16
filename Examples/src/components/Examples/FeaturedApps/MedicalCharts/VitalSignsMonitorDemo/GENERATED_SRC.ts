@@ -30,6 +30,8 @@ const POINTS_LOOP = 5200;
 const GAP_POINTS = 200;
 const DATA_LENGTH = vitalSignsEcgData.xValues.length;
 
+let timerId: NodeJS.Timeout;
+
 // PREPARE DATA
 const {
     xValues,
@@ -82,7 +84,13 @@ const getValuesFromData = (xIndex: number) => {
 };
 
 // SCICHART
-const drawExample = async (): Promise<TWebAssemblyChart> => {
+const drawExample = async (
+    setInfoEcg: React.Dispatch<React.SetStateAction<number>>,
+    setInfoBloodPressure1: React.Dispatch<React.SetStateAction<number>>,
+    setInfoBloodPressure2: React.Dispatch<React.SetStateAction<number>>,
+    setInfoBloodVolume: React.Dispatch<React.SetStateAction<number>>,
+    setInfoBloodOxygenation: React.Dispatch<React.SetStateAction<number>>
+) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, 600, 600);
     const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Once, isVisible: false });
     sciChartSurface.xAxes.add(xAxis);
@@ -151,6 +159,7 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
     );
 
     // Display leading dot
+    const leadingDotDataSeries = new XyDataSeries(wasmContext);
     sciChartSurface.renderableSeries.add(
         new XyScatterRenderableSeries(wasmContext, {
             pointMarker: new EllipsePointMarker(wasmContext, {
@@ -160,11 +169,66 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
                 fill: "white",
                 stroke: "white"
             }),
-            dataSeries: new XyDataSeries(wasmContext),
+            dataSeries: leadingDotDataSeries,
             effect
         })
     );
-    return { sciChartSurface, wasmContext };
+
+    const runUpdateDataOnTimeout = () => {
+        const {
+            xArr,
+            xPlusGapArr,
+            ecgHeartRateArr,
+            bloodPressureArr,
+            bloodVolumeArr,
+            bloodOxygenationArr
+        } = getValuesFromData(currentPoint);
+        currentPoint += STEP;
+        if (leadingDotDataSeries.count() > 0) {
+            leadingDotDataSeries.removeRange(0, leadingDotDataSeries.count() - 1);
+        }
+        leadingDotDataSeries.append(xArr[STEP - 1], ecgHeartRateArr[STEP - 1]);
+        leadingDotDataSeries.append(xArr[STEP - 1], bloodPressureArr[STEP - 1]);
+        leadingDotDataSeries.append(xArr[STEP - 1], bloodVolumeArr[STEP - 1]);
+        leadingDotDataSeries.append(xArr[STEP - 1], bloodOxygenationArr[STEP - 1]);
+        for (let i = 0; i < STEP; i++) {
+            dataSeries1.update(xArr[i], ecgHeartRateArr[i]);
+            dataSeries1.update(xPlusGapArr[i], NaN);
+            dataSeries2.update(xArr[i], bloodPressureArr[i]);
+            dataSeries2.update(xPlusGapArr[i], NaN);
+            dataSeries3.update(xArr[i], bloodVolumeArr[i]);
+            dataSeries3.update(xPlusGapArr[i], NaN);
+            dataSeries4.update(xArr[i], bloodOxygenationArr[i]);
+            dataSeries4.update(xPlusGapArr[i], NaN);
+        }
+        // Update Info panel
+        if (currentPoint % 1000 === 0) {
+            const ecg = ecgHeartRateArr[STEP - 1];
+            setInfoEcg(Math.floor(ecg * 20));
+            const bloodPressure = bloodPressureArr[STEP - 1];
+            setInfoBloodPressure1(Math.floor(bloodPressure * 46));
+            setInfoBloodPressure2(Math.floor(bloodPressure * 31));
+            const bloodVolume = bloodVolumeArr[STEP - 1] + 3;
+            setInfoBloodVolume(bloodVolume + 8.6);
+            const bloodOxygenation = bloodOxygenationArr[STEP - 1];
+            setInfoBloodOxygenation(Math.floor(bloodOxygenation * 10 + 93));
+        }
+        timerId = setTimeout(runUpdateDataOnTimeout, TIMER_TIMEOUT_MS);
+    };
+
+    const handleStop = () => {
+        clearTimeout(timerId);
+        timerId = undefined;
+    };
+
+    const handleStart = () => {
+        if (timerId) {
+            handleStop();
+        }
+        runUpdateDataOnTimeout();
+    };
+
+    return { sciChartSurface, wasmContext, controls: { handleStart, handleStop } };
 };
 
 // STYLES
@@ -230,91 +294,42 @@ const useStyles = makeStyles(theme => ({
 }));
 
 let currentPoint = 0;
-let timerId: NodeJS.Timeout;
+let scs: SciChartSurface;
+let autoStartTimerId: NodeJS.Timeout;
 
 // REACT COMPONENT
 export default function VitalSignsMonitorDemo() {
     const classes = useStyles();
     const [showButtons, setShowButtons] = React.useState(false);
-    const [dataSeries1, setDataSeries1] = React.useState<XyDataSeries>();
-    const [dataSeries2, setDataSeries2] = React.useState<XyDataSeries>();
-    const [dataSeries3, setDataSeries3] = React.useState<XyDataSeries>();
-    const [dataSeries4, setDataSeries4] = React.useState<XyDataSeries>();
-    const [leadingDotDataSeries, setLeadingDotDataSeries] = React.useState<XyDataSeries>();
     const [infoEcg, setInfoEcg] = React.useState<number>(0);
     const [infoBloodPressure1, setInfoBloodPressure1] = React.useState<number>(0);
     const [infoBloodPressure2, setInfoBloodPressure2] = React.useState<number>(0);
     const [infoBloodVolume, setInfoBloodVolume] = React.useState<number>(0);
     const [infoBloodOxygenation, setInfoBloodOxygenation] = React.useState<number>(0);
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const [controls, setControls] = React.useState({ handleStart: () => {}, handleStop: () => {} });
 
     React.useEffect(() => {
         (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-            setDataSeries1(res.sciChartSurface.renderableSeries.get(0).dataSeries as XyDataSeries);
-            setDataSeries2(res.sciChartSurface.renderableSeries.get(1).dataSeries as XyDataSeries);
-            setDataSeries3(res.sciChartSurface.renderableSeries.get(2).dataSeries as XyDataSeries);
-            setDataSeries4(res.sciChartSurface.renderableSeries.get(3).dataSeries as XyDataSeries);
-            setLeadingDotDataSeries(res.sciChartSurface.renderableSeries.get(4).dataSeries as XyDataSeries);
+            const res = await drawExample(
+                setInfoEcg,
+                setInfoBloodPressure1,
+                setInfoBloodPressure2,
+                setInfoBloodVolume,
+                setInfoBloodOxygenation
+            );
+            scs = res.sciChartSurface;
             setShowButtons(true);
+            setControls(res.controls);
+            autoStartTimerId = setTimeout(res.controls.handleStart, 3000);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => {
+            controls.handleStop();
+            clearTimeout(timerId);
+            clearTimeout(autoStartTimerId);
+            scs?.delete();
+        };
     }, []);
-
-    const runUpdateDataOnTimeout = () => {
-        const {
-            xArr,
-            xPlusGapArr,
-            ecgHeartRateArr,
-            bloodPressureArr,
-            bloodVolumeArr,
-            bloodOxygenationArr
-        } = getValuesFromData(currentPoint);
-        currentPoint += STEP;
-        if (leadingDotDataSeries.count() > 0) {
-            leadingDotDataSeries.removeRange(0, leadingDotDataSeries.count() - 1);
-        }
-        leadingDotDataSeries.append(xArr[STEP - 1], ecgHeartRateArr[STEP - 1]);
-        leadingDotDataSeries.append(xArr[STEP - 1], bloodPressureArr[STEP - 1]);
-        leadingDotDataSeries.append(xArr[STEP - 1], bloodVolumeArr[STEP - 1]);
-        leadingDotDataSeries.append(xArr[STEP - 1], bloodOxygenationArr[STEP - 1]);
-        for (let i = 0; i < STEP; i++) {
-            dataSeries1.update(xArr[i], ecgHeartRateArr[i]);
-            dataSeries1.update(xPlusGapArr[i], NaN);
-            dataSeries2.update(xArr[i], bloodPressureArr[i]);
-            dataSeries2.update(xPlusGapArr[i], NaN);
-            dataSeries3.update(xArr[i], bloodVolumeArr[i]);
-            dataSeries3.update(xPlusGapArr[i], NaN);
-            dataSeries4.update(xArr[i], bloodOxygenationArr[i]);
-            dataSeries4.update(xPlusGapArr[i], NaN);
-        }
-        // Update Info panel
-        if (currentPoint % 1000 === 0) {
-            const ecg = ecgHeartRateArr[STEP - 1];
-            setInfoEcg(Math.floor(ecg * 20));
-            const bloodPressure = bloodPressureArr[STEP - 1];
-            setInfoBloodPressure1(Math.floor(bloodPressure * 46));
-            setInfoBloodPressure2(Math.floor(bloodPressure * 31));
-            const bloodVolume = bloodVolumeArr[STEP - 1] + 3;
-            setInfoBloodVolume(bloodVolume + 8.6);
-            const bloodOxygenation = bloodOxygenationArr[STEP - 1];
-            setInfoBloodOxygenation(Math.floor(bloodOxygenation * 10 + 93));
-        }
-        timerId = setTimeout(runUpdateDataOnTimeout, TIMER_TIMEOUT_MS);
-    };
-
-    const handleStart = () => {
-        if (!timerId) {
-            runUpdateDataOnTimeout();
-        }
-    };
-
-    const handleStop = () => {
-        clearTimeout(timerId);
-        timerId = undefined;
-    };
 
     return (
         <div style={{ display: showButtons ? "block" : "none", overflowX: "auto" }}>
@@ -408,19 +423,17 @@ export default function VitalSignsMonitorDemo() {
                     </div>
                 </div>
             </div>
-            <div style={{ marginTop: 20 }}>
-                If viewed from a mobile device use horizontal scroll
-            </div>
+            <div style={{ marginTop: 20 }}>If viewed from a mobile device use horizontal scroll</div>
             <ButtonGroup
                 style={{ marginTop: 20 }}
                 size="medium"
                 color="primary"
                 aria-label="small outlined button group"
             >
-                <Button id="startAnimation" onClick={handleStart}>
+                <Button id="startAnimation" onClick={controls.handleStart}>
                     Start
                 </Button>
-                <Button id="stopAnimation" onClick={handleStop}>
+                <Button id="stopAnimation" onClick={controls.handleStop}>
                     Stop
                 </Button>
             </ButtonGroup>

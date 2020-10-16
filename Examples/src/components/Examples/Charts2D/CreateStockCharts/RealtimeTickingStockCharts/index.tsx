@@ -43,7 +43,9 @@ const MOVING_AVR_50 = 50;
 
 const STROKE_THICKNESS = 2;
 
-export const drawExample = async (): Promise<TWebAssemblyChart> => {
+let timerId: NodeJS.Timeout;
+
+export const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     const xAxis = new CategoryAxis(wasmContext);
     xAxis.labelProvider.numericFormat = ENumericFormat.Date_HHMM;
@@ -134,7 +136,6 @@ export const drawExample = async (): Promise<TWebAssemblyChart> => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
     sciChartSurface.zoomExtents();
 
-    let timerId: NodeJS.Timeout;
     let tick = 0;
     const updateChart = () => {
         const requestUpdate: boolean = !(tick % UPDATE_TICKS === 0);
@@ -154,44 +155,54 @@ export const drawExample = async (): Promise<TWebAssemblyChart> => {
         timerId = setTimeout(updateChart, 20);
     };
 
-    // Buttons for chart
-    const startAnimation = () => {
-        if (!timerId) {
-            updateChart();
-        }
-    };
-    document.getElementById("startAnimation").addEventListener("click", startAnimation);
-
     const stopAnimation = () => {
         clearTimeout(timerId);
         timerId = undefined;
     };
-    document.getElementById("stopAnimation").addEventListener("click", stopAnimation);
-    return { sciChartSurface, wasmContext };
+
+    const startAnimation = () => {
+        if (timerId) {
+            stopAnimation();
+        }
+        updateChart();
+    };
+
+    return { sciChartSurface, wasmContext, controls: { startAnimation, stopAnimation} };
 };
+
+let scs: SciChartSurface;
+let autoStartTimerId: NodeJS.Timeout;
 
 export default function RealtimeTickingStockCharts() {
     const [showControls, setShowControls] = React.useState(false);
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [wasmContext, setWasmContext] = React.useState<TSciChart>();
     const [strokeThickness, setStrokeThickness] = React.useState(2);
     const [seriesType, setSeriesType] = React.useState(ESeriesType.OhlcSeries);
+    const [controls, setControls] = React.useState({ startAnimation: () => {}, stopAnimation: () => {} });
+
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
+            scs = res.sciChartSurface;
             setWasmContext(res.wasmContext);
             setShowControls(true);
+            setControls(res.controls);
+            autoStartTimerId = setTimeout(res.controls.startAnimation, 3000);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => {
+            controls.stopAnimation();
+            clearTimeout(timerId);
+            clearTimeout(autoStartTimerId);
+            scs?.delete();
+        }
     }, []);
 
     const handleChangeStrokeThickness = (event: React.ChangeEvent<{ value: unknown }>) => {
         const newStrokeThickness = event.target.value as number;
         setStrokeThickness(newStrokeThickness);
-        sciChartSurface.renderableSeries.asArray().forEach((rs) => {
+        scs.renderableSeries.asArray().forEach((rs) => {
             rs.strokeThickness = newStrokeThickness;
         });
     };
@@ -200,11 +211,11 @@ export default function RealtimeTickingStockCharts() {
         const newSeriesType = event.target.value as ESeriesType;
         setSeriesType(newSeriesType);
         // We know that priceDataSeries it the last one with index 3
-        const priceDataSeries = sciChartSurface.renderableSeries.get(3).dataSeries;
-        sciChartSurface.renderableSeries.removeAt(3);
+        const priceDataSeries = scs.renderableSeries.get(3).dataSeries;
+        scs.renderableSeries.removeAt(3);
         switch (newSeriesType) {
             case ESeriesType.LineSeries:
-                sciChartSurface.renderableSeries.add(
+                scs.renderableSeries.add(
                     new FastLineRenderableSeries(wasmContext, {
                         stroke: EColor.Green,
                         strokeThickness,
@@ -213,7 +224,7 @@ export default function RealtimeTickingStockCharts() {
                 );
                 break;
             case ESeriesType.OhlcSeries:
-                sciChartSurface.renderableSeries.add(
+                scs.renderableSeries.add(
                     new FastOhlcRenderableSeries(wasmContext, {
                         strokeThickness,
                         dataSeries: priceDataSeries as OhlcDataSeries,
@@ -222,7 +233,7 @@ export default function RealtimeTickingStockCharts() {
                 );
                 break;
             case ESeriesType.CandlestickSeries:
-                sciChartSurface.renderableSeries.add(
+                scs.renderableSeries.add(
                     new FastCandlestickRenderableSeries(wasmContext, {
                         strokeThickness,
                         dataSeries: priceDataSeries as OhlcDataSeries,
@@ -231,7 +242,7 @@ export default function RealtimeTickingStockCharts() {
                 );
                 break;
             case ESeriesType.MountainSeries:
-                sciChartSurface.renderableSeries.add(
+                scs.renderableSeries.add(
                     new FastMountainRenderableSeries(wasmContext, {
                         fill: "rgba(176, 196, 222, 0.7)",
                         stroke: "#4682b4",
@@ -279,8 +290,8 @@ export default function RealtimeTickingStockCharts() {
             </div>
             <FormControl style={{ marginTop: 20, display: showControls ? "flex" : "none" }}>
                 <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button id="startAnimation">Start</Button>
-                    <Button id="stopAnimation">Stop</Button>
+                    <Button onClick={controls.startAnimation}>Start</Button>
+                    <Button onClick={controls.stopAnimation}>Stop</Button>
                 </ButtonGroup>
             </FormControl>
         </div>

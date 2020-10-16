@@ -12,6 +12,8 @@ const AMPLITUDE = 200;
 
 const divElementId = "chart";
 
+let timerId: NodeJS.Timeout;
+
 const drawExample = async () => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
     const xAxis = new NumericAxis(wasmContext);
@@ -28,7 +30,7 @@ const drawExample = async () => {
             range: 0,
             intensity: 0.5,
             color: "#FF0000",
-            offset: new Point(10, 10),
+            offset: new Point(10, 10)
         });
         const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke, effect });
         lineSeries.strokeThickness = 3;
@@ -49,7 +51,6 @@ const drawExample = async () => {
     const series9 = addSeries("rgba(192, 192, 192, 0.2)");
     const series10 = addSeries("rgba(192, 192, 192, 0.1)");
 
-    let timerId: NodeJS.Timeout;
     const reassignRenderableSeries = () => {
         series10.dataSeries = series9.dataSeries;
         series9.dataSeries = series8.dataSeries;
@@ -69,34 +70,47 @@ const drawExample = async () => {
         timerId = setTimeout(reassignRenderableSeries, 20);
     };
 
-    // Buttons for chart
-    const startAnimation = () => {
-        if (!timerId) {
-            reassignRenderableSeries();
-        }
-    };
-    document.getElementById("startAnimation").addEventListener("click", startAnimation);
-
     const stopAnimation = () => {
         clearTimeout(timerId);
         timerId = undefined;
     };
     document.getElementById("stopAnimation").addEventListener("click", stopAnimation);
-    return { wasmContext, sciChartSurface };
+
+    // Buttons for chart
+    const startAnimation = () => {
+        if (timerId) {
+            stopAnimation();
+        }
+        reassignRenderableSeries();
+    };
+    document.getElementById("startAnimation").addEventListener("click", startAnimation);
+
+    return { wasmContext, sciChartSurface, controls: { startAnimation, stopAnimation} };
 };
+
+let scs: SciChartSurface;
+let autoStartTimerId: NodeJS.Timeout;
 
 export default function RealtimeGhostedTraces() {
     const [showButtons, setShowButtons] = React.useState(false);
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const [controls, setControls] = React.useState({ startAnimation: () => {}, stopAnimation: () => {} });
+
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
+            scs = res.sciChartSurface;
             setShowButtons(true);
+            setControls(res.controls);
+            autoStartTimerId = setTimeout(res.controls.startAnimation, 3000);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => {
+            controls.stopAnimation();
+            clearTimeout(timerId);
+            clearTimeout(autoStartTimerId);
+            scs?.delete();
+        }
     }, []);
 
     return (
