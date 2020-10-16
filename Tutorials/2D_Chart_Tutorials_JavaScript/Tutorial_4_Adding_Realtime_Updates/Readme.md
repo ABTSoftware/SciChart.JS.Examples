@@ -1,4 +1,4 @@
-# SciChart.js Tutorial 5 - Adding Realtime Updates
+# SciChart.js Tutorial 4 - Adding Realtime Updates
 
 To view the full text of this tutorial online, visit www.scichart.com/javascript-chart-documentation 
 
