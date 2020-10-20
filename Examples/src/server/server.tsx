@@ -1,8 +1,7 @@
 import * as express from "express";
+import * as compression from "compression";
 import { Request, Response, NextFunction } from "express";
 import * as request from "request";
-import * as path from "path";
-import * as fs from "fs";
 import * as chalk from "chalk";
 import * as React from "react";
 import { Helmet } from "react-helmet";
@@ -14,8 +13,7 @@ import App from "../components/App";
 import { customTheme } from "../theme";
 import { renderIndexHtml } from "./renderIndexHtml";
 
-// const basicAuth = require("express-basic-auth");
-const port = parseInt(process.env.PORT || '3000', 10);
+const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
 const targetDir = defaultConfig.buildConfig.targetDir;
 
@@ -45,18 +43,23 @@ function handleRender(req: Request, res: Response) {
 }
 
 const app = express();
-// app.use(
-//     basicAuth({
-//         challenge: true,
-//         users: { scichart: "31415926" }
-//     })
-// );
+app.use(compression({ filter: shouldCompress }));
+
+function shouldCompress (req: Request, res: Response) {
+    if (req.headers['x-no-compression']) {
+        // don't compress responses with this request header
+        return false
+    }
+
+    // fallback to standard filter function
+    return compression.filter(req, res)
+}
 
 // Server static assets
 app.use(express.static(targetDir));
 
 app.get("/api/license", (req, res) => {
-    const domainLicense = process.env.SCLICENSE
+    const domainLicense = process.env.SCLICENSE;
     console.log("returning license: " + domainLicense);
     res.send(domainLicense);
 });
