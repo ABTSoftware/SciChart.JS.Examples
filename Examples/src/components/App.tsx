@@ -5,9 +5,10 @@ import Drawer from "@material-ui/core/Drawer";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppRouter from "./AppRouter/AppRouter";
 import { getParentMenuIds } from "./AppRouter/examples";
-import { EXAMPLES_PAGES } from "./AppRouter/examplePages";
 import AppBarTop from "./AppTopBar/AppBarTop";
 import DrawerContent from "./DrawerContent/DrawerContent";
+import AppFooter from "./AppFooter/AppFooter";
+import { EXAMPLES_PAGES } from "./AppRouter/examplePages";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 
 const drawerWidth = 240;
@@ -62,13 +63,17 @@ export default function App() {
 
     // For deployment to demo.scichart.com we are getting the license from the server where it is set by enviroment variable.
     // When you npm run dev, the beta trial key is served by the webpack dev server (webpack.client.no_server.config)
-    SciChartSurface.setFetchLicenseCallback(() => fetch("/api/license").then(r => {
-        if (r.ok) { return r.text(); }
-        return "";
-    }));
-    
+    SciChartSurface.setFetchLicenseCallback(() =>
+        fetch("/api/license").then(r => {
+            if (r.ok) {
+                return r.text();
+            }
+            return "";
+        })
+    );
+
     React.useEffect(() => {
-                if (currentExample) {
+        if (currentExample) {
             const parentMenuIds = getParentMenuIds(currentExample.id);
             const updatedOpenedItems: Record<string, boolean> = { ...openedMenuItems };
             parentMenuIds.forEach(elId => {
@@ -99,6 +104,7 @@ export default function App() {
             <div className={classes.main}>
                 <AppBarTop toggleDrawer={toggleDrawer} />
                 <AppRouter currentExample={currentExample} />
+                <AppFooter />
             </div>
         </div>
     );

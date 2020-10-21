@@ -108,11 +108,12 @@ if [ -e "$DEPLOYMENT_SOURCE/Examples/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE/Examples"
   echo "Running npm install --only=prod"
   eval $NPM_CMD install --only=prod
+  exitWithMessageOnError "npm install prod failed"
 # Force npm to install dev dependencies. Necessary because setting NODE_ENV
 # to production will make npm skip dev dependencies on install.
   echo "Running npm install --only=dev"
   eval $NPM_CMD install --only=dev
-  exitWithMessageOnError "npm install failed"
+  exitWithMessageOnError "npm install dev failed"
   echo "Running npm run buildServer"
   eval $NPM_CMD run buildServer
   exitWithMessageOnError "npm run buildServer failed"

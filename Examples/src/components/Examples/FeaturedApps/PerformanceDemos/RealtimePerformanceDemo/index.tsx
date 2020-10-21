@@ -15,6 +15,7 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 const AMPLITUDE = 200;
 
 const divElementId = "chart";
+let timerId: NodeJS.Timeout;
 
 const drawExample = async () => {
     // Define some constants
@@ -68,8 +69,6 @@ const drawExample = async () => {
         return new RandomWalkGenerator(0);
     });
 
-    let timerId: NodeJS.Timeout;
-
     // Function called when the user clicks stopDemo button
     const stopDemo = () => {
         clearTimeout(timerId);
@@ -78,63 +77,73 @@ const drawExample = async () => {
         // Disable autoranging on X when the demo is paused. This allows zooming and panning
         xAxis.autoRange = EAutoRange.Once;
     };
-    document.getElementById("stopDemo").addEventListener("click", stopDemo);
 
     // Function called when the user clicks startDemo button
     const startDemo = () => {
         // // tslint:disable-next-line:no-debugger
         // debugger;
-        if (!timerId) {
-            const updateFunc = () => {
-                if (dataSeries[0].count() >= maxPoints) {
-                    stopDemo();
-                    return;
-                }
+        if (timerId) {
+            stopDemo();
+        }
+        const updateFunc = () => {
+            if (dataSeries[0].count() >= maxPoints) {
+                stopDemo();
+                return;
+            }
 
-                randomWalkGenerators.forEach((randomWalk, index) => {
-                    // Get the next N random walk x,y values
-                    const { xValues, yValues } = randomWalk.getRandomWalkSeries(numberOfPointsPerTimerTick);
+            randomWalkGenerators.forEach((randomWalk, index) => {
+                // Get the next N random walk x,y values
+                const { xValues, yValues } = randomWalk.getRandomWalkSeries(numberOfPointsPerTimerTick);
 
-                    // Append these to the dataSeries. This will cause the chart to redraw
-                    dataSeries[index].appendRange(xValues, yValues);
-                });
-
-                timerId = setTimeout(updateFunc, timerInterval);
-            };
-
-            // Enable autoranging on X when running the demo
-            xAxis.autoRange = EAutoRange.Always;
-
-            dataSeries.forEach(ds => ds.clear());
+                // Append these to the dataSeries. This will cause the chart to redraw
+                dataSeries[index].appendRange(xValues, yValues);
+            });
 
             timerId = setTimeout(updateFunc, timerInterval);
-        }
-    };
-    document.getElementById("startDemo").addEventListener("click", startDemo);
+        };
 
-    return { wasmContext, sciChartSurface };
+        // Enable autoranging on X when running the demo
+        xAxis.autoRange = EAutoRange.Always;
+
+        dataSeries.forEach(ds => ds.clear());
+
+        timerId = setTimeout(updateFunc, timerInterval);
+    };
+
+    return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo} };
 };
+
+let scs: SciChartSurface;
+let autoStartTimerId: NodeJS.Timeout;
 
 export default function RealtimePerformanceDemo() {
     const [showButtons, setShowButtons] = React.useState(false);
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const [controls, setControls] = React.useState({ startDemo: () => {}, stopDemo: () => {} });
+
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
+            scs = res.sciChartSurface;
             setShowButtons(true);
+            setControls(res.controls);
+            autoStartTimerId = setTimeout(res.controls.startDemo, 3000);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => {
+            controls.stopDemo();
+            clearTimeout(timerId);
+            clearTimeout(autoStartTimerId);
+            scs?.delete();
+        }
     }, []);
 
     return (
         <React.Fragment>
             <div id={divElementId} style={{ maxWidth: 900 }} />
             <div style={{ marginTop: 20, display: showButtons ? "block" : "none" }}>
-                <button id="startDemo">Start</button>
-                <button id="stopDemo" style={{ marginLeft: 10 }}>
+                <button onClick={controls.startDemo}>Start</button>
+                <button onClick={controls.stopDemo} style={{ marginLeft: 10 }}>
                     Stop
                 </button>
             </div>
