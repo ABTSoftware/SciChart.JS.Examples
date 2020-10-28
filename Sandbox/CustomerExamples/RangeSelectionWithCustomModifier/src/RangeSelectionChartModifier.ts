@@ -10,6 +10,7 @@ export class RangeSelectionChartModifier extends ChartModifierBase2D {
     private startPoint: Point;
     private endPoint: Point;
     private readonly selectionAnnotation: BoxAnnotation;
+    private isSelecting: boolean;
 
     constructor() {
         super();
@@ -22,33 +23,39 @@ export class RangeSelectionChartModifier extends ChartModifierBase2D {
             y1: 0,
             y2: 1,
             xCoordinateMode: ECoordinateMode.Pixel,
+            fill: "#ffffff33",
+            stroke: "#333333ff",
         });
     }
 
     // Called when mouse-down on the chart
     public modifierMouseDown(args: ModifierMouseArgs): void{
-        console.log("Mouse down!");
         super.modifierMouseDown(args);
         this.startPoint = args.mousePoint;
         this.endPoint = args.mousePoint;
 
         this.selectionAnnotation.x1 = this.startPoint.x;
         this.selectionAnnotation.x2 = this.endPoint.x;
+        this.isSelecting = true;
 
         this.parentSurface.annotations.add(this.selectionAnnotation);
     }
 
     // Called when mouse-move on the chart
     public modifierMouseMove(args: ModifierMouseArgs): void {
-        console.log("Mouse Move!");
         super.modifierMouseMove(args);
 
-        this.selectionAnnotation.x2 = this.endPoint.x;
+        if (this.isSelecting) {
+            this.endPoint = args.mousePoint;
+            this.selectionAnnotation.x2 = this.endPoint.x;
+        }
     }
 
     // Called when mouse-up on the chart
     public modifierMouseUp(args: ModifierMouseArgs) {
-        console.log("Mouse up!");
         super.modifierMouseUp(args);
+
+        this.isSelecting = false;
+        this.parentSurface.annotations.remove(this.selectionAnnotation);
     }
 }
