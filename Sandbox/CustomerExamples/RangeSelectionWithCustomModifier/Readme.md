@@ -11,6 +11,11 @@ To run the tutorial, open this folder in VSCode, and run the following commands:
 
 Then visit https://localhost:8080 in your web browser! 
 
+## What it does
+
+This example adds range-selection behaviour to the chart, by creating a custom ChartModifier
+
+![Range selection in SciChart.js](https://www.scichart.com/wp-content/uploads/2020/10/2020-10-28-19.32.53.gif)
 
 ## How it works
 
