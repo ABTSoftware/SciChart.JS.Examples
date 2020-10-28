@@ -24,7 +24,7 @@ export class RangeSelectionChartModifier extends ChartModifierBase2D {
             y2: 1,
             xCoordinateMode: ECoordinateMode.Pixel,
             fill: "#ffffff33",
-            stroke: "#333333ff",
+            strokeThickness: 0
         });
     }
 
