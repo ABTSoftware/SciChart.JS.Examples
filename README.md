@@ -60,7 +60,7 @@ At the moment SciChart.js is in BETA, and a temporary license key can be found i
 
 To start the application locally you will need to npm-install and npm run dev. This will run a development server locally and you should be able to view the examples in browser at http://localhost:8080
 
-> `cd Examples` 
+> `cd Examples`   
 > `npm install`   
 > `npm run dev`
 
@@ -68,7 +68,7 @@ To start the application locally you will need to npm-install and npm run dev. T
 
 To start the application in production mode, run the following scripts. Note in production mode google analytics will be enabled.
 
-> `cd Examples`
+> `cd Examples`  
 > `npm run build`  
 > `npm start`
 
