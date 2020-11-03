@@ -267,9 +267,7 @@ const drawExample = async () => {
     };
 
     // DRAW CHARTS
-    const chart1 = await drawChart1();
-    const chart2 = await drawChart2();
-    const chart3 = await drawChart3();
+    const res = await Promise.all([drawChart1(), drawChart2(), drawChart3()]);
 
     // SYNCHRONIZE VISIBLE RANGES
     chart1XAxis.visibleRangeChanged.subscribe((data1) => {
@@ -285,7 +283,7 @@ const drawExample = async () => {
         chart2XAxis.visibleRange = data1.visibleRange;
     });
 
-    return [chart1, chart2, chart3];
+    return res;
 };
 
 /**
@@ -345,22 +343,21 @@ class MacdHistogramPaletteProvider implements IStrokePaletteProvider, IFillPalet
     }
 }
 
-export default function MultiPaneStockCharts() {
-    const [showCharts, setShowCharts] = React.useState(false);
-    const [charts, setCharts] = React.useState<TWebAssemblyChart[]>([]);
+let charts: TWebAssemblyChart[];
 
+export default function MultiPaneStockCharts() {
     React.useEffect(() => {
         (async () => {
-            const res = await drawExample();
-            setCharts(res);
-            setShowCharts(true);
+            charts = await drawExample();
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => charts.forEach((el) => el?.sciChartSurface?.delete());
+        return () => {
+            charts.forEach((el) => el?.sciChartSurface?.delete());
+        }
     }, []);
 
     return (
-        <div style={{ display: showCharts ? "block" : "none", maxWidth: 900 }}>
+        <div style={{ maxWidth: 900 }}>
             <div id={divElementId1} />
             <div id={divElementId2} />
             <div id={divElementId3} />
