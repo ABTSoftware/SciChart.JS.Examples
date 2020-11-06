@@ -110,7 +110,7 @@ export default function PageHome() {
                             color="primary"
                             aria-label="small outlined button group"
                         >
-                            <Button>Get Started</Button>
+                            <Button href="https://www.scichart.com/downloads/" target="_blank">DOWNLOAD TRIAL</Button>
                         </ButtonGroup>
                     </div>
                 </div>

@@ -56,7 +56,10 @@ function shouldCompress (req: Request, res: Response) {
 }
 
 // Server static assets
-app.use(express.static(targetDir));
+app.use(express.static(targetDir, {
+    etag: true,
+    maxAge: 0
+}));
 
 app.get("/api/license", (req, res) => {
     const domainLicense = process.env.SCLICENSE;

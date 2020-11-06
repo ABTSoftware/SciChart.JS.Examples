@@ -300,7 +300,6 @@ let autoStartTimerId: NodeJS.Timeout;
 // REACT COMPONENT
 export default function VitalSignsMonitorDemo() {
     const classes = useStyles();
-    const [showButtons, setShowButtons] = React.useState(false);
     const [infoEcg, setInfoEcg] = React.useState<number>(0);
     const [infoBloodPressure1, setInfoBloodPressure1] = React.useState<number>(0);
     const [infoBloodPressure2, setInfoBloodPressure2] = React.useState<number>(0);
@@ -318,7 +317,6 @@ export default function VitalSignsMonitorDemo() {
                 setInfoBloodOxygenation
             );
             scs = res.sciChartSurface;
-            setShowButtons(true);
             setControls(res.controls);
             autoStartTimerId = setTimeout(res.controls.handleStart, 3000);
         })();
@@ -332,7 +330,7 @@ export default function VitalSignsMonitorDemo() {
     }, []);
 
     return (
-        <div style={{ display: showButtons ? "block" : "none", overflowX: "auto" }}>
+        <div style={{ overflowX: "auto" }}>
             <div className={classes.chartContainer}>
                 <div id={divElementId} style={{ width: 600 }} />
                 <div className={classes.infoBoxContainer}>

@@ -141,40 +141,36 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-let sciChartSurface: SciChartSurface;
+let scs: SciChartSurface;
 
 export default function HitTestAPI() {
     const classes = useStyles();
 
-    const [showButtons, setShowButtons] = React.useState(false);
     const [hitTestsList, setHitTestsList] = React.useState<HitTestInfo[]>([]);
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample(setHitTestsList);
-            sciChartSurface = res.sciChartSurface;
-            setShowButtons(true);
+            scs = res.sciChartSurface;
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => scs?.delete();
     }, []);
 
     return (
         <div>
-            <div style={{ display: showButtons ? "block" : "none" }}>
-                <div id={divElementId} style={{ maxWidth: 900 }} />
-                <div className={classes.notificationsBlock}>
-                    {hitTestsList.map((ht, index) => (
-                        <Alert key={index} className={classes.notification}>
-                            <AlertTitle>{ht.dataSeriesName}</AlertTitle>
-                            Mouse Coord: {ht.hitTestPoint.x.toFixed(2)}, {ht.hitTestPoint.y.toFixed(2)}; Is Hit:{" "}
-                            {ht.isHit && <span style={{ color: "red" }}>true</span>}
-                            {!ht.isHit ? "false" : ""}, Index: {ht.dataSeriesIndex}, Radius: {ht.hitTestRadius}; Nearest
-                            Data Coord: {ht.xCoord.toFixed(2)}, {ht.yCoord.toFixed(2)}; Nearest Data Value:{" "}
-                            {ht.xValue.toFixed(2)}, {ht.yValue.toFixed(2)}
-                        </Alert>
-                    ))}
-                </div>
+            <div id={divElementId} style={{ maxWidth: 900 }} />
+            <div className={classes.notificationsBlock}>
+                {hitTestsList.map((ht, index) => (
+                    <Alert key={index} className={classes.notification}>
+                        <AlertTitle>{ht.dataSeriesName}</AlertTitle>
+                        Mouse Coord: {ht.hitTestPoint.x.toFixed(2)}, {ht.hitTestPoint.y.toFixed(2)}; Is Hit:{" "}
+                        {ht.isHit && <span style={{ color: "red" }}>true</span>}
+                        {!ht.isHit ? "false" : ""}, Index: {ht.dataSeriesIndex}, Radius: {ht.hitTestRadius}; Nearest
+                        Data Coord: {ht.xCoord.toFixed(2)}, {ht.yCoord.toFixed(2)}; Nearest Data Value:{" "}
+                        {ht.xValue.toFixed(2)}, {ht.yValue.toFixed(2)}
+                    </Alert>
+                ))}
             </div>
         </div>
     );
