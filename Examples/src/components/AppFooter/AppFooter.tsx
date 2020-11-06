@@ -11,7 +11,9 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2),
         overflow: "hidden",
         backgroundColor: "#4caf50EE",
-        color: "white"
+        color: "white",
+        fontFamily:
+            "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol",
     },
     link1: {
         color: "white",
@@ -23,11 +25,13 @@ export default function AppFooter() {
 
     return (
         <div className={classes.root}>
-            SciChart: Fast, Realtime, High Performance{" "}
+            SciChart.js: Fast, Realtime, High Performance{" "}
             <a className={classes.link1} href="https://www.scichart.com/javascript-chart-features">
                 JavaScript Charts
-            </a>{" "}
-            Examples Suite.{" "}
+            </a> |{" "}
+            <a className={classes.link1} href="/">
+                JavaScript Chart Examples
+            </a> |{" "}
             <a className={classes.link1} href="/sitemap.xml">
                 Sitemap
             </a>
