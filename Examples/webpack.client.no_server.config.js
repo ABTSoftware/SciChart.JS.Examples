@@ -3,7 +3,21 @@ const webpackClientConfig = require("./webpack.client.config.js");
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 
-const betaTrialKey = "WcnXtRLwGVtfNA59XwvDQA11wSpykEA1NEpARELTB+Aq6kf2nJSK9GgWOKvCJA6P+jNg2xcVLw3oM7EdIIi0MJtvorAARa9au01LV/xLJ1jdOeDeMXpw/eT5ajSpukKcJXHe97tzsBzfB6wRziW6LgNjuB3ykFIk+tGvOmJyhRewYjF+FCSb/0q8Bq8em4lNmOfONzJz5spVWvvfHdn5iIYfvv00hhduow4bFzxXnRucLtHl2Bm1yFvrVYe0UOQcFpJ9DZ4S96GLhSw9SIkUSAy/C5r3FvdCkX8d40ehAg+n78w92QXwh4B41xF0f+9OHpeV3byaZDNr5L1afdS3qCahoyeYEnmt4hYdmGH3uS+KtC29bAcVXUqNA9P3pESndALjlEimVNfr6RrfKEY3jroWtPXEx2Oo9XcD3ZLUJiRrjDL0lTf/3a6+KN1xsl2K2eymqyo9Wggy7Mf3WymmvURil7SaxE3xBP5LWWGPMEXvf9m7vXGz6fkEtsZhdEC3HQprBwEGyV1zPdLxDqtWO9ltEBEBlS2FrzJ3984/zSp9sbc=";
+// LICENSING //
+// Set your license code here to license the SciChart.js Examples app
+// You can get a trial license key from https://www.scichart.com/licensing-scichart-js/
+// Purchased license keys can be viewed at https://www.scichart.com/profile
+//
+// e.g.
+//
+// const betaTrialKey = "YOUR_RUNTIME_KEY";
+//
+// Also, once activated (trial or paid license) having the licensing wizard open on your machine
+// will mean any or all applications you run locally will be fully licensed.
+
+// Set your runtime key here
+const betaTrialKey = "";
+
 module.exports = merge(webpackClientConfig, {
     mode: "development",
     devtool: "inline-source-map",
@@ -31,5 +45,5 @@ module.exports = merge(webpackClientConfig, {
                 res.send(betaTrialKey);
             });
         }
-    }    
+    }
 });
