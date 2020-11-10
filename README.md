@@ -1,12 +1,9 @@
 # SciChart.js JavaScript Chart Examples Suite
 
-> **Getting Started**  
+> **Getting Started / Licensing and Trials**  
 > With the [full release of SciChart.js](https://www.scichart.com/scichart-js-javascript-charts-official-v1-0-released/) we've created a getting-started guide which shows you how to start a trial and compile the examples, tutorials, where to find documentation and more. Find out more below:
 > 
-> [Getting Started SciChart.js](https://www.scichart.com/getting-started-scichart-js/)
-> 
-> **Licensing and Trials**   
-> For customers looking to start a trial, activate developer or domain licenses, head over to [Licensing SciChart.js](https://www.scichart.com/licensing-scichart-js/) for instructions.
+> [Getting Started SciChart.js](https://www.scichart.com/getting-started-scichart-js/) | [Licensing SciChart.js](https://www.scichart.com/licensing-scichart-js/)
 
 Examples, showcase applications and tutorials for **SciChart.js: Ultra High Performance Realtime [JavaScript Chart Library](https://www.scichart.com/javascript-chart-features/)**.
 
