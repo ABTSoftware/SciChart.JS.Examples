@@ -155,6 +155,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.path,
     },
     {
+        title: EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.title,
+        link: EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.path,
+    },
+    {
         title: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.title,
         link: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path,
     },

@@ -15,16 +15,25 @@ Found an issue or want to make a suggestion? We're inviting feedback via our [Su
 
 ### Running the SciChart.Js.Examples locally 
 
-1. Start by cloning and running the Examples app at https://github.com/ABTSoftware/SciChart.JS.Examples
-2. Now ```cd Examples``` run ```npm install```, and ```npm run dev``` to start the examples app. 
+1. Get a trial license key from https://www.scichart.com/licensing-scichart-js/ and install **licensing wizard**. Purchased license keys can be viewed at https://www.scichart.com/profile
+2. Clone the Examples app at https://github.com/ABTSoftware/SciChart.JS.Examples
+3. Having the **licensing wizard** running ```cd Examples``` run ```npm install```, and ```npm run dev``` to start the Examples app. 
 
-3. To run in production mode you will need to set a license key before you use SciChartSurface. The license key should be set once!
+4. To run in production mode you will need to set a license key before you use SciChartSurface. The license key should be set once! 
+    * for the Examples app set license key here `Examples/webpack.client.no_server.config.js`
+    * for any of tutorials set it in `src/index.js`
 ``` 
-// LICENSING
-// To license the examples app locally for beta, uncomment the line below
-SciChartSurface.setRuntimeLicenseKey("WcnXtRLwGVtfNA59XwvDQA11wSpykEA1NEpARELTB+Aq6kf2nJSK9GgWOKvCJA6P+jNg2xcVLw3oM7EdIIi0MJtvorAARa9au01LV/xLJ1jdOeDeMXpw/eT5ajSpukKcJXHe97tzsBzfB6wRziW6LgNjuB3ykFIk+tGvOmJyhRewYjF+FCSb/0q8Bq8em4lNmOfONzJz5spVWvvfHdn5iIYfvv00hhduow4bFzxXnRucLtHl2Bm1yFvrVYe0UOQcFpJ9DZ4S96GLhSw9SIkUSAy/C5r3FvdCkX8d40ehAg+n78w92QXwh4B41xF0f+9OHpeV3byaZDNr5L1afdS3qCahoyeYEnmt4hYdmGH3uS+KtC29bAcVXUqNA9P3pESndALjlEimVNfr6RrfKEY3jroWtPXEx2Oo9XcD3ZLUJiRrjDL0lTf/3a6+KN1xsl2K2eymqyo9Wggy7Mf3WymmvURil7SaxE3xBP5LWWGPMEXvf9m7vXGz6fkEtsZhdEC3HQprBwEGyV1zPdLxDqtWO9ltEBEBlS2FrzJ3984/zSp9sbc=");
+    // Set your license code here
+    // You can get a trial license key from https://www.scichart.com/licensing-scichart-js/
+    // Purchased license keys can be viewed at https://www.scichart.com/profile
+    //
+    // e.g.
+    //
+    // SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
+    //
+    // Also, once activated (trial or paid license) having the licensing wizard open on your machine
+    // will mean any or all applications you run locally will be fully licensed.
 ```
-> Note: This BETA license key expires in 30 days - or 14th November 2020
 
 ### Creating your own SciChart.js App
 
@@ -41,11 +50,11 @@ To run a tutorial:
 
 _Further tutorials are in development_
 
-The beta license key is already set in the tutorials.  If you are developing your own app you need to set this license key once in your app before calling SciChartSurface.create
+If you are developing your own app you need to set this license key once in your app before calling SciChartSurface.create
 ```
 import {SciChartSurface} from "scichart/charting/Visuals/SciChartSurface";
 
-SciChartSurface.setRuntimeLicenseKey("WcnXtRLwGVtfNA59XwvDQA11wSpykEA1NEpARELTB+Aq6kf2nJSK9GgWOKvCJA6P+jNg2xcVLw3oM7EdIIi0MJtvorAARa9au01LV/xLJ1jdOeDeMXpw/eT5ajSpukKcJXHe97tzsBzfB6wRziW6LgNjuB3ykFIk+tGvOmJyhRewYjF+FCSb/0q8Bq8em4lNmOfONzJz5spVWvvfHdn5iIYfvv00hhduow4bFzxXnRucLtHl2Bm1yFvrVYe0UOQcFpJ9DZ4S96GLhSw9SIkUSAy/C5r3FvdCkX8d40ehAg+n78w92QXwh4B41xF0f+9OHpeV3byaZDNr5L1afdS3qCahoyeYEnmt4hYdmGH3uS+KtC29bAcVXUqNA9P3pESndALjlEimVNfr6RrfKEY3jroWtPXEx2Oo9XcD3ZLUJiRrjDL0lTf/3a6+KN1xsl2K2eymqyo9Wggy7Mf3WymmvURil7SaxE3xBP5LWWGPMEXvf9m7vXGz6fkEtsZhdEC3HQprBwEGyV1zPdLxDqtWO9ltEBEBlS2FrzJ3984/zSp9sbc=");
+SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
 ```
 ### Exploring our API
 

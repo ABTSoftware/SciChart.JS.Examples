@@ -36,6 +36,7 @@ import { load500By500ExampleInfo } from "../Examples/FeaturedApps/PerformanceDem
 import { realtimePerformanceDemoExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo/exampleInfo";
 import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/exampleInfo";
 import { lidar3DPointCloudExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/exampleInfo";
+import { audioAnalyzerExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/exampleInfo";
 import { TPage } from "./pages";
 
 export type TExampleInfo = {
@@ -205,5 +206,9 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_scientificCharts_Lidar3DPointCloudDemo: {
         id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",
         ...lidar3DPointCloudExampleInfo
+    },
+    featuredApps_scientificCharts_AudioAnalyzerDemo: {
+        id: "featuredApps_scientificCharts_AudioAnalyzerDemo",
+        ...audioAnalyzerExampleInfo
     }
 });

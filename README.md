@@ -54,11 +54,26 @@ We've taken the time to create hundreds of documentation pages for our JavaScrip
 
 ### Licensing the application 
 
-At the moment SciChart.js is in BETA, and a temporary license key can be found in [Readme-BetaTesters.md](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README-BetaTesters.md)
+1. Get a trial license key from https://www.scichart.com/licensing-scichart-js/ and install **licensing wizard**.
+2. Purchased license keys can be viewed at https://www.scichart.com/profile
+
+**Licensing a domain for production**
+
+In order to deploy an app to some domain
+* Set the domain for you license on the website https://www.scichart.com/
+* Copy runtime key from the **licensing wizard**
+* Set the runtime key in your app before calling SciChartSurface.create. The runtime key should be set once! 
+```
+import {SciChartSurface} from "scichart/charting/Visuals/SciChartSurface";
+
+SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
+```
 
 ### Run application in dev mode
 
-To start the application locally you will need to npm-install and npm run dev. This will run a development server locally and you should be able to view the examples in browser at http://localhost:8080
+To start the application locally you will need to `npm install` and `npm run dev` and also to have the licensing wizard running. This will run a development server locally and you should be able to view the examples in browser at http://localhost:8080
+
+> Note: Make sure the licensing wizard is running!
 
 > `cd Examples`   
 > `npm install`   

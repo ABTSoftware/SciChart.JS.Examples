@@ -7,10 +7,17 @@ import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/Ellipse
 import { NumberRange } from "scichart/Core/NumberRange";
 
 async function initSciChart() {
-    // Below find a trial / BETA key for SciChart.js.
-    // This Expires in 30 days - or 14th November 2020
-    // Set this license key once in your app before calling SciChartSurface.create, e.g.
-    SciChartSurface.setRuntimeLicenseKey("WcnXtRLwGVtfNA59XwvDQA11wSpykEA1NEpARELTB+Aq6kf2nJSK9GgWOKvCJA6P+jNg2xcVLw3oM7EdIIi0MJtvorAARa9au01LV/xLJ1jdOeDeMXpw/eT5ajSpukKcJXHe97tzsBzfB6wRziW6LgNjuB3ykFIk+tGvOmJyhRewYjF+FCSb/0q8Bq8em4lNmOfONzJz5spVWvvfHdn5iIYfvv00hhduow4bFzxXnRucLtHl2Bm1yFvrVYe0UOQcFpJ9DZ4S96GLhSw9SIkUSAy/C5r3FvdCkX8d40ehAg+n78w92QXwh4B41xF0f+9OHpeV3byaZDNr5L1afdS3qCahoyeYEnmt4hYdmGH3uS+KtC29bAcVXUqNA9P3pESndALjlEimVNfr6RrfKEY3jroWtPXEx2Oo9XcD3ZLUJiRrjDL0lTf/3a6+KN1xsl2K2eymqyo9Wggy7Mf3WymmvURil7SaxE3xBP5LWWGPMEXvf9m7vXGz6fkEtsZhdEC3HQprBwEGyV1zPdLxDqtWO9ltEBEBlS2FrzJ3984/zSp9sbc=");
+    // LICENSING //
+    // Set your license code here
+    // You can get a trial license key from https://www.scichart.com/licensing-scichart-js/
+    // Purchased license keys can be viewed at https://www.scichart.com/profile
+    //
+    // e.g.
+    //
+    // SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
+    //
+    // Also, once activated (trial or paid license) having the licensing wizard open on your machine
+    // will mean any or all applications you run locally will be fully licensed.
 
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext

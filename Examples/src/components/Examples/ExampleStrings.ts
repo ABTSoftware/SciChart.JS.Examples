@@ -110,6 +110,7 @@ export const ExampleStrings = {
 
     // Heatmap Chart
     urlHeatmapChart: "/javascript-heatmap-chart",
+    urlTitleHeatmapChart: "The Heatmap Chart example in SciChart.js",
     titleHeatmapChart: "JavaScript Heatmap Chart",
     urlHeatmapChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Uniform%20Heatmap%20Series%20Type.html",
     urlTitleHeatmapChartDocumentation: "The specific page for the JavaScript Heatmap Chart documentation will help you to get started",
@@ -247,5 +248,10 @@ export const ExampleStrings = {
     // Featured Apps Vital Signs
     titleVitalSigns: "JavaScript Vital Signs ECG/EKG Medical Demo",
     urlVitalSigns: "/javascript-vital-signs-ecg-medical-chart-example",
+
+    // Featured Apps Audio Analyzer
+    titleAudioAnalyzerFeaturedApp: "Audio Analyzer Demo",
+    urlAudioAnalyzerFeaturedApp: "/javascript-audio-analyzer-fft-example"
+
 
 }

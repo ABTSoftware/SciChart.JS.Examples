@@ -48,6 +48,7 @@ import SurfaceMesh3DChart from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMe
 import LiDAR3DPointCloudDemo from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo";
 
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
+import AudioAnalyzer from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer";
 
 export type TMenuItem = {
     item: {
@@ -148,7 +149,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     },
     {
         item: { id: "featuredApps_scientificCharts", name: "Scientific Charts" },
-        submenu: [EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo]
+        submenu: [EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo]
     },
     {
         item: { id: "featuredApps_medicalCharts", name: "Medical Charts" },
@@ -267,6 +269,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return VitalSignsMonitorDemo;
         case EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.id:
             return LiDAR3DPointCloudDemo;
+        case EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.id:
+            return AudioAnalyzer;
         default:
             return () => undefined;
     }
