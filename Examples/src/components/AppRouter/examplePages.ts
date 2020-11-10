@@ -38,6 +38,7 @@ import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/Medic
 import { lidar3DPointCloudExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/exampleInfo";
 import { audioAnalyzerExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/exampleInfo";
 import { TPage } from "./pages";
+import {tenorCurvesExampleInfo} from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -210,5 +211,9 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_scientificCharts_AudioAnalyzerDemo: {
         id: "featuredApps_scientificCharts_AudioAnalyzerDemo",
         ...audioAnalyzerExampleInfo
+    },
+    featuredApps_scientificCharts_TenorCurvesDemo: {
+        id: "featuredApps_scientificCharts_TenorCurvesDemo",
+        ...tenorCurvesExampleInfo
     }
 });

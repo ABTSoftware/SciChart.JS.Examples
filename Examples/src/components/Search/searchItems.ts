@@ -162,4 +162,8 @@ export const searchItems: TSearchItem[] = [
         title: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.title,
         link: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path,
     },
+    {
+        title: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.title,
+        link: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.path,
+    },
 ];

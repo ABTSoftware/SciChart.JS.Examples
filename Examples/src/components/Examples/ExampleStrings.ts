@@ -251,7 +251,11 @@ export const ExampleStrings = {
 
     // Featured Apps Audio Analyzer
     titleAudioAnalyzerFeaturedApp: "Audio Analyzer Demo",
-    urlAudioAnalyzerFeaturedApp: "/javascript-audio-analyzer-fft-example"
+    urlAudioAnalyzerFeaturedApp: "/javascript-audio-analyzer-fft-example",
+
+    // Featured Apps Tenor Curves
+    titleTenorCurvesFeaturedApp: "Tenor Curves Demo",
+    urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example"
 
 
 }

@@ -49,6 +49,7 @@ import LiDAR3DPointCloudDemo from "../Examples/FeaturedApps/ScientificCharts/LiD
 
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import AudioAnalyzer from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer";
+import TenorCurves3DChart from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D";
 
 export type TMenuItem = {
     item: {
@@ -150,7 +151,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     {
         item: { id: "featuredApps_scientificCharts", name: "Scientific Charts" },
         submenu: [EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
-            EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo]
+            EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo]
     },
     {
         item: { id: "featuredApps_medicalCharts", name: "Medical Charts" },
@@ -271,6 +273,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return LiDAR3DPointCloudDemo;
         case EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.id:
             return AudioAnalyzer;
+        case EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.id:
+            return TenorCurves3DChart;
         default:
             return () => undefined;
     }

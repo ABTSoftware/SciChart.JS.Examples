@@ -1,5 +1,4 @@
-export const code = `import Typography from "@material-ui/core/Typography";
-import * as React from "react";
+export const code = `import * as React from "react";
 import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
@@ -267,16 +266,14 @@ export const requestCleanup = async () => {
 
 
 export default function AudioAnalyzer() {
+
     React.useEffect(() => {
         drawExample();
         return requestCleanup;
     }, []);
 
     return (
-        <div>
-            <Typography variant="h4" gutterBottom>
-                Audio Analyzer
-            </Typography>
+        <React.Fragment>
             <div>
                 <div id={divElementIdAudioChart} style={{ width: TOP_CHART_WIDTH, height: TOP_CHART_HEIGHT }} />
                 <div style={{ display: "flex" }}>
@@ -285,7 +282,7 @@ export default function AudioAnalyzer() {
                     <div id={divElementIdChart3} style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT }} />
                 </div>
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 `;
