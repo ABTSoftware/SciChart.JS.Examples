@@ -1,8 +1,12 @@
 # SciChart.js JavaScript Chart Examples Suite
 
-> **BETA TESTERS**  
-> Head over to [Readme-BetaTesters.md](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README-BetaTesters.md) to find out how to get started in the Beta period
->
+> **Licensing and Trials**
+> With the [full release of SciChart.js](https://www.scichart.com/scichart-js-javascript-charts-official-v1-0-released/) we've created a getting-started guide which shows you how to start a trial and compile the examples, tutorials, where to find documentation and more. Find out more below:
+> 
+> [Getting Started SciChart.js](https://www.scichart.com/getting-started-scichart-js/)
+> 
+> For customers looking to activate developer or domain licenses, head over to [Licensing SciChart.js](https://www.scichart.com/licensing-scichart-js/)
+
 Examples, showcase applications and tutorials for **SciChart.js: Ultra High Performance Realtime [JavaScript Chart Library](https://www.scichart.com/javascript-chart-features/)**.
 
 [![SciChart.js Ultra High Performance Realtime JavaScript Chart library](Sandbox/scichart-js-javascript-chart-collage-1485.jpg)](https://www.scichart.com/javascript-chart-features)
