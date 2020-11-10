@@ -1,9 +1,12 @@
 # SciChart.js JavaScript Chart Examples Suite
 
-> **BETA TESTERS**  
-> Head over to [Readme-BetaTesters.md](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README-BetaTesters.md) to find out how to get started in the Beta period
->
-Examples, showcase applications and tutorials for **SciChart.js: Ultra High Performance Realtime [JavaScript Chart Library](https://www.scichart.com/javascript-chart-features/)**.
+> **Getting Started / Licensing and Trials**  
+> With the [full release of SciChart.js](https://www.scichart.com/scichart-js-javascript-charts-official-v1-0-released/) we've created a [getting-started guide](https://www.scichart.com/getting-started-scichart-js/) which shows you how to start a trial and compile the examples, tutorials, where to find documentation and more. Find out more below:
+> 
+> * **[Getting Started SciChart.js](https://www.scichart.com/getting-started-scichart-js/)** 
+> * **[Licensing SciChart.js](https://www.scichart.com/licensing-scichart-js/)**
+
+### Examples, showcase applications and tutorials for **SciChart.js: Ultra High Performance Realtime [JavaScript Chart Library](https://www.scichart.com/javascript-chart-features/)**.
 
 [![SciChart.js Ultra High Performance Realtime JavaScript Chart library](Sandbox/scichart-js-javascript-chart-collage-1485.jpg)](https://www.scichart.com/javascript-chart-features)
 
@@ -52,15 +55,19 @@ We've taken the time to create hundreds of documentation pages for our JavaScrip
 
 ## Developer Quick-Start
 
+### Getting Started Guide
+
+We've prepared a Getting-Started guide at [www.scichart.com/getting-started-scichart-js](https://www.scichart.com/getting-started-scichart-js]). Start here if you wish to know how to get started with our JavaScript Chart Library.
+
 ### Licensing the application 
 
-1. Get a trial license key from https://www.scichart.com/licensing-scichart-js/ and install **licensing wizard**.
-2. Purchased license keys can be viewed at https://www.scichart.com/profile
+1. Get a trial license key from [www.scichart.com/licensing-scichart-js/](https://www.scichart.com/licensing-scichart-js/) by installing and running the **[licensing wizard](https://www.scichart.com/licensing-scichart-js/)**.
+2. Purchased license keys can be viewed at [www.scichart.com/profile](https://www.scichart.com/profile) and activated by following the steps at [licensing scichart JS](https://www.scichart.com/licensing-scichart-js/) 
 
 **Licensing a domain for production**
 
 In order to deploy an app to some domain
-* Set the domain for you license on the website https://www.scichart.com/
+* Set the domain for you license on the website [www.scichart.com/profile](https://www.scichart.com/profile)
 * Copy runtime key from the **licensing wizard**
 * Set the runtime key in your app before calling SciChartSurface.create. The runtime key should be set once! 
 ```
