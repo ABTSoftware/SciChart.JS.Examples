@@ -51,6 +51,7 @@ import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import AudioAnalyzer from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer";
 import TenorCurves3DChart from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D";
 import Load1MillionPointsChart from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints";
+import DragAxisToScale from "../Examples/Charts2D/ModifyAxisBehavior/DragAxisToScale";
 
 export type TMenuItem = {
     item: {
@@ -105,7 +106,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DragAxisToScale,
         ]
     },
     {
@@ -239,6 +241,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return SecondaryYAxes;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.id:
             return VerticalCharts;
+        case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DragAxisToScale.id:
+            return DragAxisToScale;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.id:
             return StackedColumnChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide.id:

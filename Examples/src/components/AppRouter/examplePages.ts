@@ -40,6 +40,7 @@ import { audioAnalyzerExampleInfo } from "../Examples/FeaturedApps/ScientificCha
 import { TPage } from "./pages";
 import {tenorCurvesExampleInfo} from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/exampleInfo";
 import {loadOneMillionPointsExampleInfo} from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/exampleInfo";
+import {dragAxisToScaleExampleInfo} from "../Examples/Charts2D/ModifyAxisBehavior/DragAxisToScale/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -146,6 +147,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_modifyAxisBehavior_VerticalCharts: {
         id: "chart2D_modifyAxisBehavior_VerticalCharts",
         ...verticalChartsExampleInfo
+    },
+    chart2D_modifyAxisBehavior_DragAxisToScale: {
+        id: "chart2D_modifyAxisBehavior_DragAxisToScale",
+        ...dragAxisToScaleExampleInfo
     },
     chart2D_basicCharts_StackedColumnChart: {
         id: "chart2D_basicCharts_StackedColumnChart",
