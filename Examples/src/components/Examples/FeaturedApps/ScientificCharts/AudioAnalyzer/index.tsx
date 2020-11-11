@@ -1,26 +1,27 @@
 import * as React from "react";
-import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
-import { UniformHeatmapRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { AudioDataProvider } from "./AudioDataProvider";
-import { Radix2FFT } from "./Radix2FFT";
+import {UniformHeatmapDataSeries} from "scichart/Charting/Model/UniformHeatmapDataSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {HeatmapColorMap} from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
+import {UniformHeatmapRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
+import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {EAutoRange} from "scichart/types/AutoRange";
+import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import {AudioDataProvider} from "./AudioDataProvider";
+import {Radix2FFT} from "./Radix2FFT";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";
 export const divElementIdChart3 = "sciChart3";
 
 export const TOP_CHART_WIDTH = 600;
-export const TOP_CHART_HEIGHT = 420;
+export const TOP_CHART_HEIGHT = 430;
 export const BOTTOM_CHART_WIDTH = 300;
 export const BOTTOM_CHART_HEIGHT = 200;
+export const CHART_MARGIN = 14;
 
 const AUDIO_STREAM_BUFFER_SIZE = 2048;
 
@@ -71,7 +72,6 @@ export const drawExample = async () => {
         const fftData = fft.run(audioData.yData);
 
         // Update FFT Chart
-        // TODO: fftDS.updateRangeYAt(0, fftData);
         fftDS.clear();
         fftDS.appendRange(fftXValues, fftData);
 
@@ -93,9 +93,6 @@ export const drawExample = async () => {
             drawLabels: false,
             drawMinorTickLines: false,
             drawMajorTickLines: false
-            // TODO: drawMajorBands: false
-            // TODO: drawMinorGridLines: false
-            // TODO: drawMajorGridLines: false
         });
         sciChartSurface.xAxes.add(xAxis);
 
@@ -105,9 +102,6 @@ export const drawExample = async () => {
             drawLabels: false,
             drawMinorTickLines: false,
             drawMajorTickLines: false
-            // TODO: drawMajorBands: false
-            // TODO: drawMinorGridLines: false
-            // TODO: drawMajorGridLines: false
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -137,22 +131,17 @@ export const drawExample = async () => {
         const xAxis = new NumericAxis(wasmContext, {
             drawMajorTickLines: false,
             maxAutoTicks: 5,
-            axisTitle: "Hz"
-            // TODO: axisTitlePlacement: Right
-            // TODO: axisTitleOrientation: Horizontal
+            axisAlignment: EAxisAlignment.Top,
         });
         sciChartSurface.xAxes.add(xAxis);
 
         const yAxis = new NumericAxis(wasmContext, {
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Right,
             visibleRange: new NumberRange(-30, 70),
             growBy: new NumberRange(0.1, 0.1),
             drawMinorTickLines: false,
-            // TODO: drawMinorGridLines: false,
             drawMajorTickLines: false,
-            axisTitle: "dB"
-            // TODO: axisTitlePlacement: Top
-            // TODO: axisTitleOrientation: Horizontal
+            maxAutoTicks: 5,
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -274,11 +263,11 @@ export default function AudioAnalyzer() {
 
     return (
         <React.Fragment>
-            <div>
+            <div style={{ display: "flex" }}>
                 <div id={divElementIdAudioChart} style={{ width: TOP_CHART_WIDTH, height: TOP_CHART_HEIGHT }} />
-                <div style={{ display: "flex" }}>
-                    <div id={divElementIdFttChart} style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT }} />
-                    <br />
+                <div style={{ marginLeft: 20 }}>
+                    <div id={divElementIdFttChart} style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT,
+                        marginBottom: CHART_MARGIN }} />
                     <div id={divElementIdChart3} style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT }} />
                 </div>
             </div>
