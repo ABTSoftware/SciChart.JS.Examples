@@ -25,12 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
             margin: theme.spacing(1),
             minWidth: 142
         },
-        notificationsBlock: {
-            flexBasis: 320,
-            flexGrow: 0,
-            flexShrink: 0,
-            marginLeft: 24
-        },
+        notificationsBlock: {},
         notification: {
             marginBottom: 16
         },
@@ -160,32 +155,25 @@ export default function Load1MillionPointsChart() {
 
     return (
         <div>
-            <div style={{ marginBottom: 20 }}>
-                <Typography variant="body1" style={{ color: "red" }}></Typography>
-            </div>
-            <div style={{ display: "flex", maxWidth: 1200 }}>
-                <div id={divElementId} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }} />
-                <div className={classes.notificationsBlock}>
-                    {timeSpans.length > 0 && (
-                        <Alert key="0" severity="info" className={classes.notification}>
-                            {timeSpans.map((ts, index) => (
-                                <div key={index}>
-                                    <AlertTitle>{ts.title}</AlertTitle>
-                                    Time: {ts.durationMs.toFixed(0)} ms
-                                </div>
-                            ))}
-                        </Alert>
-                    )}
-                </div>
-            </div>
+            <div id={divElementId} style={{ maxWidth: 900 }} />
             <div>
-                <div>
-                    <FormControl className={classes.formControl}>
-                        <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                            <Button id="loadPoints">Load</Button>
-                        </ButtonGroup>
-                    </FormControl>
-                </div>
+                <FormControl className={classes.formControl}>
+                    <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                        <Button id="loadPoints">Load</Button>
+                    </ButtonGroup>
+                </FormControl>
+            </div>
+            <div className={classes.notificationsBlock}>
+                {timeSpans.length > 0 && (
+                    <Alert key="0" severity="info" className={classes.notification}>
+                        {timeSpans.map((ts, index) => (
+                            <div key={index}>
+                                <AlertTitle>{ts.title}</AlertTitle>
+                                Time: {ts.durationMs.toFixed(0)} ms
+                            </div>
+                        ))}
+                    </Alert>
+                )}
             </div>
         </div>
     );
