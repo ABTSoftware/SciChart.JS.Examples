@@ -99,10 +99,6 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.path,
     },
     {
-        title: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DragAxisToScale.title,
-        link: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DragAxisToScale.path,
-    },
-    {
         title: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.title,
         link: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path,
     },
@@ -133,6 +129,10 @@ export const searchItems: TSearchItem[] = [
     {
         title: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips.title,
         link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.title,
+        link: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.path,
     },
     {
         title: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.title,

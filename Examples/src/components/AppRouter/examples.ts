@@ -51,7 +51,7 @@ import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import AudioAnalyzer from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer";
 import TenorCurves3DChart from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D";
 import Load1MillionPointsChart from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints";
-import DragAxisToScale from "../Examples/Charts2D/ModifyAxisBehavior/DragAxisToScale";
+import DragAxisToScale from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale";
 
 export type TMenuItem = {
     item: {
@@ -107,7 +107,6 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DragAxisToScale,
         ]
     },
     {
@@ -126,6 +125,12 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips
+        ]
+    },
+    {
+        item: { id: "chart2D_zoomingAndPanning", name: "Zoom and Pan a Chart" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale,
         ]
     }
 ];
@@ -241,8 +246,6 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return SecondaryYAxes;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.id:
             return VerticalCharts;
-        case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DragAxisToScale.id:
-            return DragAxisToScale;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.id:
             return StackedColumnChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide.id:
@@ -265,6 +268,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return UsingRolloverModifierTooltips;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips.id:
             return UsingCursorModifierTooltips;
+        case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.id:
+            return DragAxisToScale;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.id:
             return Bubble3DChart;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.id:
