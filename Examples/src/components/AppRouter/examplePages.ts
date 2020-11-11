@@ -41,6 +41,7 @@ import { TPage } from "./pages";
 import {tenorCurvesExampleInfo} from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/exampleInfo";
 import {loadOneMillionPointsExampleInfo} from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/exampleInfo";
 import {dragAxisToScaleExampleInfo} from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/exampleInfo";
+import {realtimeZoomPanExampleInfo} from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -195,6 +196,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_zoomAndPanAChart_DragAxisToScale: {
         id: "chart2D_zoomAndPanAChart_DragAxisToScale",
         ...dragAxisToScaleExampleInfo
+    },
+    chart2D_zoomAndPanAChart_RealtimeZoomPan: {
+        id: "chart2D_zoomAndPanAChart_RealtimeZoomPan",
+        ...realtimeZoomPanExampleInfo
     },
     chart3D_basic3DChartTypes_Bubble3DChart: {
         id: "chart3D_basic3DChartTypes_Bubble3DChart",

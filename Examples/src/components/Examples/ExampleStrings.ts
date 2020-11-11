@@ -166,6 +166,10 @@ export const ExampleStrings = {
     titleDragAxisToScale: "Drag Axis to Scale or Pan",
     urlDragAxisToScale: "/javascript-chart-drag-axis-to-scale-pan",
 
+    // Realtime Zoom Pan
+    titleRealtimeZoomPan: "Zoom and Pan a Realtime JavaScript Chart",
+    urlRealtimeZoomPan: "/zoom-pan-realtime-javascript-chart",
+
     // PaletteProvider
     titlePaletteProvider: "Coloring Series per-point using the PaletteProvider",
     urlPaletteProvider: "/javascript-chart-color-points-individually-with-paletteprovider",
@@ -264,4 +268,6 @@ export const ExampleStrings = {
     // Featured Apps Tenor Curves
     titleTenorCurvesFeaturedApp: "Tenor Curves Demo",
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
+
+
 }
