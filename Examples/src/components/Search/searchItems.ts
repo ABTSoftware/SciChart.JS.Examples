@@ -147,6 +147,14 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.path,
     },
     {
+        title: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.title,
+        link: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path,
+    },
+    {
+        title: EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints.title,
+        link: EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints.path,
+    },
+    {
         title: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.title,
         link: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.path,
     },
@@ -157,10 +165,6 @@ export const searchItems: TSearchItem[] = [
     {
         title: EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.title,
         link: EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.path,
-    },
-    {
-        title: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.title,
-        link: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path,
     },
     {
         title: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.title,

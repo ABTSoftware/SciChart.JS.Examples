@@ -39,6 +39,7 @@ import { lidar3DPointCloudExampleInfo } from "../Examples/FeaturedApps/Scientifi
 import { audioAnalyzerExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/exampleInfo";
 import { TPage } from "./pages";
 import {tenorCurvesExampleInfo} from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/exampleInfo";
+import {loadOneMillionPointsExampleInfo} from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -115,6 +116,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_performanceDemos_RealtimeGhostedTraces: {
         id: "featuredApps_performanceDemos_RealtimeGhostedTraces",
         ...realtimeGhostedTracesExampleInfo
+    },
+    featuredApps_performanceDemos_LoadOneMillionPoints: {
+        id: "featuredApps_performanceDemos_LoadOneMillionPoints",
+        ...loadOneMillionPointsExampleInfo
     },
     chart2D_createStockCharts_MultiPaneStockCharts: {
         id: "chart2D_createStockCharts_MultiPaneStockCharts",

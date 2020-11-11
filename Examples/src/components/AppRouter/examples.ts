@@ -50,6 +50,7 @@ import LiDAR3DPointCloudDemo from "../Examples/FeaturedApps/ScientificCharts/LiD
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import AudioAnalyzer from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer";
 import TenorCurves3DChart from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D";
+import Load1MillionPointsChart from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints";
 
 export type TMenuItem = {
     item: {
@@ -144,6 +145,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
         item: { id: "featuredApps_performanceDemos", name: "Performance Demos" },
         submenu: [
             EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500,
+            EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints,
             EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo,
             EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces
         ]
@@ -267,6 +269,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return Load500By500;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.id:
             return RealtimePerformanceDemo;
+        case EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints.id:
+            return Load1MillionPointsChart;
         case EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.id:
             return VitalSignsMonitorDemo;
         case EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.id:

@@ -233,6 +233,10 @@ export const ExampleStrings = {
     urlLoad500By500: "/javascript-chart-load-500-series-by-500-points",
     urlTitleLoad500By500: "This example demonstrates the performance of loading 500 series with 500 points on a JavaScript Chart",
 
+    // Featured Apps Load 1 Million Points
+    titleLoadOneMillionPoints: "Load 1 Million Points Performance Demo",
+    urlLoadOneMillionPoints: "/javascript-chart-performance-load-one-million-points",
+
     // Featured Apps Performance Demo
     urlRealtimeJavaScriptChartDemo: "/javascript-chart-realtime-performance-demo",
     urlTitleRealtimeJavaScriptChartDemo: "JavaScript Chart Realtime Performance Demo",
@@ -255,7 +259,7 @@ export const ExampleStrings = {
 
     // Featured Apps Tenor Curves
     titleTenorCurvesFeaturedApp: "Tenor Curves Demo",
-    urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example"
+    urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
 
 
 }
