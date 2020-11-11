@@ -5,15 +5,11 @@ import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => (<div>
-    <p>In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time
-        ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood
-        oxygen, volumetric flow and more.</p>
-    <p>SciChart.js will help you short-cut your development by providing rich, real-time high performance and reliable
-        charts for JavaScript medical and healthcare applications.</p>
+    <p>This demo showcases the loading or startup time of SciChart.js with a million points.{' '}
+        Click 'Load' to run the example and see SciChart load 1-million points instantly!</p>
     <h4>Tips!</h4>
-    <p>This example uses the GlowShaderEffect - an effect that can be tagged onto BaseRenderableSeries in SciChart to
-        add oscilloscope/VDU style glow effects. A single point-marker is added to render the latest point which also
-        has the glow applied. Try it out!</p>
+    <p>For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded appendRange
+        functions on dataseries.</p>
     <h4>Documentation Links</h4>
     <ul>
         <li><a href={ExampleStrings.urlDocumentationHome} title={ExampleStrings.titleDocumentationHome} target="_blank">
@@ -26,6 +22,8 @@ const Description = () => (<div>
     </ul>
     <h4>See Also</h4>
     <ul>
+        <li><a href={ExampleStrings.urlRealtimeJavaScriptChartDemo}
+               title={ExampleStrings.urlTitleRealtimeJavaScriptChartDemo}>Realtime JavaScript Chart Example</a></li>
         <li><a href={ExampleStrings.urlLoad500By500}
                title={ExampleStrings.urlTitleLoad500By500}>Performance Demo: Load 500 series x 500 points</a></li>
         <li><a href={ExampleStrings.urlRealtimeGhostedTraces}
@@ -33,9 +31,9 @@ const Description = () => (<div>
     </ul>
 </div>);
 const Subtitle = () => (
-    <p>Showcases how SciChart.js can be used in a <strong>Medical context</strong>, drawing ECGs with our High
-        Performance{' '}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a></p>);
+    <p>Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds, making our{' '}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a>{' '}
+        the fastest in the world!</p>);
 
 export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLoadOneMillionPoints,

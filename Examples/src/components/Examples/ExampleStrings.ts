@@ -162,6 +162,10 @@ export const ExampleStrings = {
     urlTitleVerticalChartsDocumentation: "The specific page for the SciChart.js API documentation for Vertical Charts will help you to get started",
     urlTitleVerticalCharts: "The Vertical Charts example shows how to use Axis Alignment to rotate a JavaScript Chart.",
 
+    // Drag Axis to Scale
+    titleDragAxisToScale: "Drag Axis to Scale or Pan",
+    urlDragAxisToScale: "/javascript-chart-drag-axis-to-scale-pan",
+
     // PaletteProvider
     titlePaletteProvider: "Coloring Series per-point using the PaletteProvider",
     urlPaletteProvider: "/javascript-chart-color-points-individually-with-paletteprovider",
@@ -260,6 +264,4 @@ export const ExampleStrings = {
     // Featured Apps Tenor Curves
     titleTenorCurvesFeaturedApp: "Tenor Curves Demo",
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
-
-
 }
