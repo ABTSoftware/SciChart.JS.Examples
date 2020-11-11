@@ -13,8 +13,6 @@ import {EColor} from "scichart/types/Color";
 
 export const divElementId = "chart";
 
-const dragMode: EDragMode = EDragMode.Scaling;
-
 export const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
@@ -24,7 +22,7 @@ export const drawExample = async () => {
     const setXAxis1 = () => {
         const xAxis = new NumericAxis(wasmContext);
         xAxis.axisAlignment = EAxisAlignment.Top;
-        xAxis.axisTitle = "Red Series X-Axis";
+        xAxis.axisTitle = "Drag the X-Axis to Pan";
         xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
         sciChartSurface.xAxes.add(xAxis);
     };
@@ -33,7 +31,7 @@ export const drawExample = async () => {
         const xAxis = new NumericAxis(wasmContext);
         xAxis.id = ID_X_AXIS_2;
         xAxis.axisAlignment = EAxisAlignment.Bottom;
-        xAxis.axisTitle = "Purple Series X-Axis";
+        xAxis.axisTitle = "Drag the X-Axis to Pan";
         xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
         sciChartSurface.xAxes.add(xAxis);
     };
@@ -41,7 +39,7 @@ export const drawExample = async () => {
     const setYAxis1 = () => {
         const yAxis = new NumericAxis(wasmContext);
         yAxis.axisAlignment = EAxisAlignment.Left;
-        yAxis.axisTitle = "Red Series Y-Axis";
+        yAxis.axisTitle = "Drag the Y-Axis to Scale";
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
         sciChartSurface.yAxes.add(yAxis);
     };
@@ -50,7 +48,7 @@ export const drawExample = async () => {
         const yAxis = new NumericAxis(wasmContext);
         yAxis.id = ID_Y_AXIS_2;
         yAxis.axisAlignment = EAxisAlignment.Right;
-        yAxis.axisTitle = "Purple Series Y-Axis";
+        yAxis.axisTitle = "Drag the Y-Axis to Scale";
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
         sciChartSurface.yAxes.add(yAxis);
     };
@@ -99,8 +97,10 @@ export const drawExample = async () => {
     setSeries1();
     setSeries2();
 
-    // Add modifiers to enable YAxis and XAxis drag
-    sciChartSurface.chartModifiers.add(new XAxisDragModifier({ dragMode }), new YAxisDragModifier({ dragMode }));
+    // Add modifiers to enable YAxis and XAxis drag with dragMode as scale or pan
+    sciChartSurface.chartModifiers.add(
+        new XAxisDragModifier({ dragMode: EDragMode.Panning }),
+        new YAxisDragModifier({ dragMode: EDragMode.Scaling }));
 
     // Add a modifier to zoom to fit on double-click
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
