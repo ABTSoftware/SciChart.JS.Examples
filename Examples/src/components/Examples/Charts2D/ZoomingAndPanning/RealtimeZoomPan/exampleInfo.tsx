@@ -14,7 +14,8 @@ const Description = () => (
         demonstrates how to use the ZoomState property to determine when to zoom to fit,{' '}
         or when to allow user zooming.</p>
         <h4>Tips!</h4>
-        <p>Try dragging an axis to zoom or pan the axis. Double clicking the chart resets the zoom!</p>
+        <p>Check in the source-code for how we use the SciChartSurface.ZoomState property to determine when to{' '}
+        scroll and when to allow user-zooming.</p>
         <h4>Documentation Links</h4>
         <ul>
             <li>
