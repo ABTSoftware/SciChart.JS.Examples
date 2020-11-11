@@ -36,4 +36,8 @@ export const secondaryYAxesExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `Demonstrates how to assign line series to different Y Axis in a JavaScript Chart. SciChart
+        supports multiple top or bottom X-Axes and multiple left and right Y-Axes. This example shows in a simple way
+        how to register a line series on each axis.`,
+    seoKeywords: "secondary, axis, chart, javascript, webgl, canvas"
 };

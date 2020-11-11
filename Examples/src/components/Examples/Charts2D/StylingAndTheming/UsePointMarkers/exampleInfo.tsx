@@ -46,4 +46,7 @@ export const usePointMarkersExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `Demonstrates how to use the FastLineRenderableSeries and the Data-Point Markers API to apply fast WebGL-rendered
+        data point markers to a line series.`,
+    seoKeywords: "data, point, marker, chart, javascript, webgl, canvas"
 };

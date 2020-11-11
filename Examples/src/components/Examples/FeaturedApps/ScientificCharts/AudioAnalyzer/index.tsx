@@ -1,17 +1,17 @@
 import * as React from "react";
-import {UniformHeatmapDataSeries} from "scichart/Charting/Model/UniformHeatmapDataSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {HeatmapColorMap} from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
-import {UniformHeatmapRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {EAutoRange} from "scichart/types/AutoRange";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {AudioDataProvider} from "./AudioDataProvider";
-import {Radix2FFT} from "./Radix2FFT";
+import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
+import { UniformHeatmapRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
+import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { EAutoRange } from "scichart/types/AutoRange";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import { AudioDataProvider } from "./AudioDataProvider";
+import { Radix2FFT } from "./Radix2FFT";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";
@@ -92,7 +92,7 @@ export const drawExample = async () => {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
+            drawMajorTickLines: false,
         });
         sciChartSurface.xAxes.add(xAxis);
 
@@ -101,7 +101,7 @@ export const drawExample = async () => {
             visibleRange: new NumberRange(-32768, 32767), // [short.MIN. short.MAX]
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
+            drawMajorTickLines: false,
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -115,7 +115,7 @@ export const drawExample = async () => {
         const rs = new FastLineRenderableSeries(wasmContext, {
             stroke: "#808080",
             strokeThickness: 1,
-            dataSeries: audioDS
+            dataSeries: audioDS,
         });
 
         sciChartSurface.renderableSeries.add(rs);
@@ -155,7 +155,7 @@ export const drawExample = async () => {
             stroke: "#E6E6FA",
             dataSeries: fftDS,
             // TODO: paletteProvider = new FFTPaletteProvider(),
-            zeroLineY: -30
+            zeroLineY: -30,
         });
         sciChartSurface.renderableSeries.add(rs);
     };
@@ -180,7 +180,7 @@ export const drawExample = async () => {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
+            drawMajorTickLines: false,
             // TODO: drawMajorBands: false,
             // TODO: drawMinorGridLines: false,
             // TODO: drawMajorGridLines: false,
@@ -193,7 +193,7 @@ export const drawExample = async () => {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
+            drawMajorTickLines: false,
             // TODO: drawMajorBands: false,
             // TODO: drawMinorGridLines: false,
             // TODO: drawMajorGridLines: false,
@@ -215,9 +215,9 @@ export const drawExample = async () => {
                     { offset: 0.25, color: "#800080" },
                     { offset: 0.5, color: "#FF0000" },
                     { offset: 0.75, color: "#FFFF00" },
-                    { offset: 1, color: "#FFFFFF" }
-                ]
-            })
+                    { offset: 1, color: "#FFFFFF" },
+                ],
+            }),
         });
         sciChartSurface.renderableSeries.add(rs);
     };
@@ -253,9 +253,7 @@ export const requestCleanup = async () => {
     cleanupRequested = true;
 };
 
-
 export default function AudioAnalyzer() {
-
     React.useEffect(() => {
         drawExample();
         return requestCleanup;
@@ -266,8 +264,10 @@ export default function AudioAnalyzer() {
             <div style={{ display: "flex" }}>
                 <div id={divElementIdAudioChart} style={{ width: TOP_CHART_WIDTH, height: TOP_CHART_HEIGHT }} />
                 <div style={{ marginLeft: 20 }}>
-                    <div id={divElementIdFttChart} style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT,
-                        marginBottom: CHART_MARGIN }} />
+                    <div
+                        id={divElementIdFttChart}
+                        style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT, marginBottom: CHART_MARGIN }}
+                    />
                     <div id={divElementIdChart3} style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT }} />
                 </div>
             </div>

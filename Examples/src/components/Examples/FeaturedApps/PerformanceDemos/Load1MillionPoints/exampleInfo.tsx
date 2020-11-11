@@ -5,9 +5,7 @@ import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => (<div>
-    <p>In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time
-        ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood
-        oxygen, volumetric flow and more.</p>
+    <p>This demo showcases the loading of 1 million points and measures the time.</p>
     <p>SciChart.js will help you short-cut your development by providing rich, real-time high performance and reliable
         charts for JavaScript medical and healthcare applications.</p>
     <h4>Tips!</h4>
@@ -44,4 +42,6 @@ export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `This demo showcases the loading of 1 million points and measures the time.`,
+    seoKeywords: "performance, loading, million, points, chart, javascript, webgl, canvas"
 };

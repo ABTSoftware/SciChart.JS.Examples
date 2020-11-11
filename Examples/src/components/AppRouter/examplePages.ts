@@ -48,6 +48,8 @@ export type TExampleInfo = {
     description: () => JSX.Element;
     code: string;
     githubUrl: string;
+    seoDescription: string;
+    seoKeywords: string;
 };
 
 export type TExamplePage = TPage & TExampleInfo;

@@ -42,4 +42,7 @@ export const load500By500ExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `This demo showcases the loading or startup time of SciChart with many series by appending 500 series to a chart,
+        each with 500 points and rendering instantly!`,
+    seoKeywords: "performance, demo, chart, javascript, webgl, canvas"
 };

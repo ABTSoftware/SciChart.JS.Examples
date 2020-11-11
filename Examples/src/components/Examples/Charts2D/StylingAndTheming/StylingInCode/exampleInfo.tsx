@@ -43,4 +43,7 @@ export const stylingInCodeExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `Almost any element in SciChart is stylable in code and most parts of the chart are exposed. You can easily set
+        background, grid-line, axis label, viewport background and chart series colors in JavaScript.`,
+    seoKeywords: "styling, in, code, chart, javascript, webgl, canvas"
 };
