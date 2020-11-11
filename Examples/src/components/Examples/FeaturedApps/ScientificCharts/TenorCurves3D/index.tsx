@@ -37,7 +37,7 @@ export const drawChart1 = async () => {
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.createSingle(divElementId1);
 
     sciChart3DSurface.camera = new CameraController(wasmContext, {
-        position: new Vector3(-300, 300, -300),
+        position: new Vector3(-200, 200, -200),
         target: new Vector3(0, 50, 0)
     });
     sciChart3DSurface.worldDimensions = new Vector3(200, 100, 200);
