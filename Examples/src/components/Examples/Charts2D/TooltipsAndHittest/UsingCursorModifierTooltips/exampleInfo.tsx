@@ -34,4 +34,7 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `Demonstrates using the CursorModifier, part of the ChartModifier API, to add a cursor and tooltips which tracks
+        the mouse.`,
+    seoKeywords: "cursor, modifier, chart, javascript, webgl, canvas"
 };

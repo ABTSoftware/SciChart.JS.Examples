@@ -8,7 +8,7 @@ const Description = () => (<div>
     <p>Demonstrating the capability of SciChart.js to create JavaScript 3D Point Cloud charts and visualize LiDAR data
         from the UK Defra Survey.</p>
     <h4>Tips!</h4>
-    <p>This example uses a ScatterRenderableSeries3D with PixelPointMarker to render create a high performance LiDAR
+    <p>This example uses a ScatterRenderableSeries3D with PixelPointMarker to render a high performance LiDAR
         visualization of a 500x500 (250k points) ASC format dataset.</p>
     <p>You can also overlay contours if you use the SurfaceMeshRenderableSeries3D and enable contours by setting the
         DrawMeshAs property.</p>
@@ -43,4 +43,7 @@ export const lidar3DPointCloudExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `Demonstrating the capability of SciChart.js to create JavaScript 3D Point Cloud charts and visualize LiDAR data
+        from the UK Defra Survey.`,
+    seoKeywords: "lidar, 3d, point, cloud, chart, javascript, webgl, canvas"
 };

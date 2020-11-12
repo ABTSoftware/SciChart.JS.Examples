@@ -37,4 +37,7 @@ export const hitTestApiExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `Demonstrates the Hit Test API, which can be used to get feedback about clicks on data-points or lines and enable
+        selection, of showing of context menus. Click on the data-point and see hit test info on the right.`,
+    seoKeywords: "hit, test, api, chart, javascript, webgl, canvas"
 };

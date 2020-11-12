@@ -37,7 +37,6 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <meta name="twitter:image:alt" content="SciChart.js JavaScript Chart Examples Suite">
             ${helmet.title.toString()}
             ${helmet.meta.toString()}
-            <title>JavaScript Chart Examples home | Fast, High Performance JavaScript Chart Examples - SciChart.js</title>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-okaidia.min.css" />

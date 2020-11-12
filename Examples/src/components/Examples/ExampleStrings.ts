@@ -162,6 +162,14 @@ export const ExampleStrings = {
     urlTitleVerticalChartsDocumentation: "The specific page for the SciChart.js API documentation for Vertical Charts will help you to get started",
     urlTitleVerticalCharts: "The Vertical Charts example shows how to use Axis Alignment to rotate a JavaScript Chart.",
 
+    // Drag Axis to Scale
+    titleDragAxisToScale: "Drag Axis to Scale or Pan",
+    urlDragAxisToScale: "/javascript-chart-drag-axis-to-scale-pan",
+
+    // Realtime Zoom Pan
+    titleRealtimeZoomPan: "Zoom and Pan a Realtime JavaScript Chart",
+    urlRealtimeZoomPan: "/zoom-pan-realtime-javascript-chart",
+
     // PaletteProvider
     titlePaletteProvider: "Coloring Series per-point using the PaletteProvider",
     urlPaletteProvider: "/javascript-chart-color-points-individually-with-paletteprovider",
@@ -233,6 +241,10 @@ export const ExampleStrings = {
     urlLoad500By500: "/javascript-chart-load-500-series-by-500-points",
     urlTitleLoad500By500: "This example demonstrates the performance of loading 500 series with 500 points on a JavaScript Chart",
 
+    // Featured Apps Load 1 Million Points
+    titleLoadOneMillionPoints: "Load 1 Million Points Performance Demo",
+    urlLoadOneMillionPoints: "/javascript-chart-performance-load-one-million-points",
+
     // Featured Apps Performance Demo
     urlRealtimeJavaScriptChartDemo: "/javascript-chart-realtime-performance-demo",
     urlTitleRealtimeJavaScriptChartDemo: "JavaScript Chart Realtime Performance Demo",
@@ -251,7 +263,11 @@ export const ExampleStrings = {
 
     // Featured Apps Audio Analyzer
     titleAudioAnalyzerFeaturedApp: "Audio Analyzer Demo",
-    urlAudioAnalyzerFeaturedApp: "/javascript-audio-analyzer-fft-example"
+    urlAudioAnalyzerFeaturedApp: "/javascript-audio-analyzer-fft-example",
+
+    // Featured Apps Tenor Curves
+    titleTenorCurvesFeaturedApp: "Tenor Curves Demo",
+    urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
 
 
 }

@@ -38,4 +38,7 @@ export const fanChartExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `Demonstrates how to create a JavaScript Fan Chart. This chart type can be used for visualizing forecasting or
+        estimation figures and can be achieved in SciChart.js using several Band Series overlaid with varying opacity.`,
+    seoKeywords: "fan, chart, javascript, webgl, canvas"
 };

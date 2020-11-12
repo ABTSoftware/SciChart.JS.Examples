@@ -41,4 +41,7 @@ export const createACustomThemeExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `With our ThemeManager API you can create a custom theme. To do this, create a type that implements all the
+        properties of the IThemeProvider interface and pass to sciChartSurface.applyTheme.`,
+    seoKeywords: "theming, chart, javascript, webgl, canvas"
 };

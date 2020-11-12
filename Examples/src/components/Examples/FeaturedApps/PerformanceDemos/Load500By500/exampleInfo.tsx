@@ -5,7 +5,7 @@ import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => (<div>
-    <p>This demo showcases the loading or startup time of SciChart with many series by appending 500 series to a chart,
+    <p>This demo showcases the loading or startup time of SciChart.js with many series by appending 500 series to a chart,
         each with 500 points and rendering instantly!</p>
     <p>This kind of plot can be used in statistical analysis such as rendering the output of Monte Carlo simulations.
         Anywhere you need hundreds (or even thousands) of line series on a chart, SciChart.js can help!</p>
@@ -42,4 +42,7 @@ export const load500By500ExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `This demo showcases the loading or startup time of SciChart with many series by appending 500 series to a chart,
+        each with 500 points and rendering instantly!`,
+    seoKeywords: "performance, demo, chart, javascript, webgl, canvas"
 };

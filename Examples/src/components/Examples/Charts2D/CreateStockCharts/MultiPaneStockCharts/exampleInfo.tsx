@@ -54,4 +54,8 @@ export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `An example which demonstrates creating static multi-pane stock charts in JavaScript with Price data as
+        Candlesticks, Volume bars behind the chart, Moving averages, plus how to link several charts together to draw
+        Macd and RSI indicators.`,
+    seoKeywords: "multi-pane, stock, chart, javascript, webgl, canvas"
 };

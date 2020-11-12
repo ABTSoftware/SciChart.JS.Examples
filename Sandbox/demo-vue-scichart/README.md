@@ -1,5 +1,7 @@
 # vue-scichart-demo
 
+Vue 3.0 project with TypeScript
+
 ## Project setup
 ```
 npm install

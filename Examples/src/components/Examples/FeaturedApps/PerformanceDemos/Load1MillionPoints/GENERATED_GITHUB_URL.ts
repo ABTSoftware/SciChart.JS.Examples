@@ -1,0 +1,1 @@
+export const githubUrl = "/components/Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/index.tsx";

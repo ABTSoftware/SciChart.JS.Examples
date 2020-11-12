@@ -1,4 +1,3 @@
-import Typography from "@material-ui/core/Typography";
 import * as React from "react";
 import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
@@ -19,9 +18,10 @@ export const divElementIdFttChart = "sciChart2";
 export const divElementIdChart3 = "sciChart3";
 
 export const TOP_CHART_WIDTH = 600;
-export const TOP_CHART_HEIGHT = 420;
-export const BOTTOM_CHART_WIDTH = 300;
-export const BOTTOM_CHART_HEIGHT = 200;
+export const TOP_CHART_HEIGHT = 600;
+export const BOTTOM_CHART_WIDTH = 288;
+export const BOTTOM_CHART_HEIGHT = 289;
+export const CHART_MARGIN = 14;
 
 const AUDIO_STREAM_BUFFER_SIZE = 2048;
 
@@ -72,7 +72,6 @@ export const drawExample = async () => {
         const fftData = fft.run(audioData.yData);
 
         // Update FFT Chart
-        // TODO: fftDS.updateRangeYAt(0, fftData);
         fftDS.clear();
         fftDS.appendRange(fftXValues, fftData);
 
@@ -93,10 +92,7 @@ export const drawExample = async () => {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
-            // TODO: drawMajorBands: false
-            // TODO: drawMinorGridLines: false
-            // TODO: drawMajorGridLines: false
+            drawMajorTickLines: false,
         });
         sciChartSurface.xAxes.add(xAxis);
 
@@ -105,10 +101,7 @@ export const drawExample = async () => {
             visibleRange: new NumberRange(-32768, 32767), // [short.MIN. short.MAX]
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
-            // TODO: drawMajorBands: false
-            // TODO: drawMinorGridLines: false
-            // TODO: drawMajorGridLines: false
+            drawMajorTickLines: false,
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -122,7 +115,7 @@ export const drawExample = async () => {
         const rs = new FastLineRenderableSeries(wasmContext, {
             stroke: "#808080",
             strokeThickness: 1,
-            dataSeries: audioDS
+            dataSeries: audioDS,
         });
 
         sciChartSurface.renderableSeries.add(rs);
@@ -138,22 +131,17 @@ export const drawExample = async () => {
         const xAxis = new NumericAxis(wasmContext, {
             drawMajorTickLines: false,
             maxAutoTicks: 5,
-            axisTitle: "Hz"
-            // TODO: axisTitlePlacement: Right
-            // TODO: axisTitleOrientation: Horizontal
+            axisAlignment: EAxisAlignment.Top,
         });
         sciChartSurface.xAxes.add(xAxis);
 
         const yAxis = new NumericAxis(wasmContext, {
-            axisAlignment: EAxisAlignment.Left,
+            axisAlignment: EAxisAlignment.Right,
             visibleRange: new NumberRange(-30, 70),
             growBy: new NumberRange(0.1, 0.1),
             drawMinorTickLines: false,
-            // TODO: drawMinorGridLines: false,
             drawMajorTickLines: false,
-            axisTitle: "dB"
-            // TODO: axisTitlePlacement: Top
-            // TODO: axisTitleOrientation: Horizontal
+            maxAutoTicks: 5,
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -167,7 +155,7 @@ export const drawExample = async () => {
             stroke: "#E6E6FA",
             dataSeries: fftDS,
             // TODO: paletteProvider = new FFTPaletteProvider(),
-            zeroLineY: -30
+            zeroLineY: -30,
         });
         sciChartSurface.renderableSeries.add(rs);
     };
@@ -192,7 +180,7 @@ export const drawExample = async () => {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
+            drawMajorTickLines: false,
             // TODO: drawMajorBands: false,
             // TODO: drawMinorGridLines: false,
             // TODO: drawMajorGridLines: false,
@@ -205,7 +193,7 @@ export const drawExample = async () => {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
+            drawMajorTickLines: false,
             // TODO: drawMajorBands: false,
             // TODO: drawMinorGridLines: false,
             // TODO: drawMajorGridLines: false,
@@ -227,9 +215,9 @@ export const drawExample = async () => {
                     { offset: 0.25, color: "#800080" },
                     { offset: 0.5, color: "#FF0000" },
                     { offset: 0.75, color: "#FFFF00" },
-                    { offset: 1, color: "#FFFFFF" }
-                ]
-            })
+                    { offset: 1, color: "#FFFFFF" },
+                ],
+            }),
         });
         sciChartSurface.renderableSeries.add(rs);
     };
@@ -265,7 +253,6 @@ export const requestCleanup = async () => {
     cleanupRequested = true;
 };
 
-
 export default function AudioAnalyzer() {
     React.useEffect(() => {
         drawExample();
@@ -273,18 +260,17 @@ export default function AudioAnalyzer() {
     }, []);
 
     return (
-        <div>
-            <Typography variant="h4" gutterBottom>
-                Audio Analyzer
-            </Typography>
-            <div>
+        <React.Fragment>
+            <div style={{ display: "flex" }}>
                 <div id={divElementIdAudioChart} style={{ width: TOP_CHART_WIDTH, height: TOP_CHART_HEIGHT }} />
-                <div style={{ display: "flex" }}>
-                    <div id={divElementIdFttChart} style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT }} />
-                    <br />
+                <div style={{ marginLeft: 20 }}>
+                    <div
+                        id={divElementIdFttChart}
+                        style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT, marginBottom: CHART_MARGIN }}
+                    />
                     <div id={divElementIdChart3} style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT }} />
                 </div>
             </div>
-        </div>
+        </React.Fragment>
     );
 }

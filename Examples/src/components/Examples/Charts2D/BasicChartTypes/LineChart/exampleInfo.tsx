@@ -46,4 +46,7 @@ export const lineChartExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `Demonstrates how to create a JavaScript Line Chart. The FastLineRenderableSeries can be used to render an
+        XyDataSeries, XyyDataSeries (uses Y1 only) or OhlcDataSeries (renders Close).`,
+    seoKeywords: "line, chart, javascript, webgl, canvas"
 };

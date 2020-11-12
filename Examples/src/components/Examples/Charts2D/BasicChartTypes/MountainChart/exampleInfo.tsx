@@ -42,4 +42,7 @@ export const mountainChartExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `Demonstrates how to create a JavaScript Mountain Chart. An area or polygon is rendered from the Y-value to the
+        zeroLineY, a configurable property which defaults to zero.`,
+    seoKeywords: "mountain, chart, javascript, webgl, canvas"
 };

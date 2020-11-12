@@ -7,14 +7,14 @@ type TProps = {
     description: string;
 };
 
-const PERMANENT_TITLE = "| Fast, High Performance JavaScript Chart Examples - SciChart.js";
+// const PERMANENT_TITLE = "| Fast, High Performance JavaScript Chart Examples - SciChart.js";
 
 const SeoTags: React.FC<TProps> = props => {
     const { title, keywords, description } = props;
     return (
         <Helmet>
             <title>
-                {`${title} ${PERMANENT_TITLE}`}
+                {`${title}`}
             </title>
             <meta name="keywords" content={keywords} />
             <meta name="description" content={description} />

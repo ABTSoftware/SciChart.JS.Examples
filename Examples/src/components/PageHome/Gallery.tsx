@@ -4,11 +4,13 @@ import ChartGroupTitle from "./ChartGroupTitle";
 import Grid from "@material-ui/core/Grid";
 import { EXAMPLES_PAGES } from "../AppRouter/examplePages";
 import GalleryCard from "./GalleryCard";
+// Featured Apps
 import load500Img from "../../images/examples/s/performance/javascript-chart-load-500-series-by-500-points.jpg";
 import realtimePerformanceImg from "../../images/examples/s/performance/javascript-chart-realtime-performance-demo.jpg";
 import ghostedTracesImg from "../../images/examples/s/performance/javascript-realtime-ghosted-traces-chart.jpg";
 import lidarImg from "../../images/examples/s/scientificAndMedical/javascript-3d-lidar-visualization.jpg";
 import ecgImg from "../../images/examples/s/scientificAndMedical/javascript-vital-signs-ecg-medical-chart-example.jpg";
+import audioAnalyzerImage from "../../images/examples/s/scientificAndMedical/javascript-realtime-audio-analyzer.jpg";
 // 2D Chart Types
 import lineChartImg from "../../images/examples/s/chartTypes2D/javascript-line-chart.jpg";
 import bandChartImg from "../../images/examples/s/chartTypes2D/javascript-band-chart.jpg";
@@ -102,6 +104,14 @@ const Gallery: React.FC<TProps> = props => {
                         title="ECG/EKG Medical Demo"
                         seoTitle="JavaScript Vital Signs ECG/EKG Medical Demo"
                         examplePath={EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.path}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <GalleryCard
+                        imgPath={audioAnalyzerImage}
+                        title="Audio Analyzer Demo"
+                        seoTitle="JavaScript Realtime Audio Analyzer Demo"
+                        examplePath={EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.path}
                     />
                 </Grid>
             </Grid>

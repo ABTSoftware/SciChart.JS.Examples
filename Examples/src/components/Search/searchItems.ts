@@ -131,6 +131,14 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.title,
+        link: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.title,
+        link: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.title,
         link: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.path,
     },
@@ -147,6 +155,14 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.path,
     },
     {
+        title: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.title,
+        link: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path,
+    },
+    {
+        title: EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints.title,
+        link: EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints.path,
+    },
+    {
         title: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.title,
         link: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.path,
     },
@@ -159,7 +175,7 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.path,
     },
     {
-        title: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.title,
-        link: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path,
+        title: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.title,
+        link: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.path,
     },
 ];

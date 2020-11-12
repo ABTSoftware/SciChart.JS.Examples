@@ -51,4 +51,7 @@ export const stackedColumnChartExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `Demonstrates how to create a JavaScript Stacked Column Chart. An column or rectangle is rendered from the Y-value
+        of each stacked column series to the Y-value of the next.`,
+    seoKeywords: "stacked, column, chart, javascript, webgl, canvas"
 };

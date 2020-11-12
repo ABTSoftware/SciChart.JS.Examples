@@ -7,7 +7,7 @@ import {ExampleStrings} from "../../../ExampleStrings";
 const Description = () => (<div>
     <p>Demonstrates how to create a JavaScript Stacked Column Chart with side-by-side grouping. This mode of Stacked
         Column Charts groups the columns
-        next to each other, allowing for easy comparison of several datasets..</p>
+        next to each other, allowing for easy comparison of several datasets.</p>
     <h4>Tips!</h4>
     <p>Did you know SciChart.js supports 100% Stacked Column Charts as well as several other options? See
         the <a
@@ -50,4 +50,7 @@ export const stackedColumnSideBySideExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
+    seoDescription: `Demonstrates how to create a JavaScript Stacked Column Chart with side-by-side grouping. This mode of Stacked
+        Column Charts groups the columns next to each other, allowing for easy comparison of several datasets.`,
+    seoKeywords: "stacked, column, side-by-side, chart, javascript, webgl, canvas"
 };

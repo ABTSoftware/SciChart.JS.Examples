@@ -20,34 +20,34 @@ type TProps = {
 };
 
 const useStyles = makeStyles(
-    theme => ({
+    (theme) => ({
         root: {
-            margin: theme.spacing(2)
+            margin: theme.spacing(2),
         },
         sciChartLogo: {
             textAlign: "right",
             marginBottom: theme.spacing(2),
             [theme.breakpoints.down("sm")]: {
-                display: "none"
-            }
+                display: "none",
+            },
         },
         body: {
             display: "flex",
             fontFamily:
                 "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol",
             [theme.breakpoints.down("sm")]: {
-                display: "block"
-            }
+                display: "block",
+            },
         },
         colMain: {
             flexBasis: 240,
             flexShrink: 0,
             flexGrow: 1,
             overflowX: "auto",
-            marginBottom: theme.spacing(3)
+            marginBottom: theme.spacing(3),
         },
         colMainContent: {
-            maxWidth: 900
+            maxWidth: 900,
         },
         colDescription: {
             flexBasis: 360,
@@ -55,27 +55,27 @@ const useStyles = makeStyles(
             flexShrink: 0,
             paddingLeft: theme.spacing(3),
             [theme.breakpoints.down("sm")]: {
-                paddingLeft: 0
+                paddingLeft: 0,
             },
-            marginBottom: theme.spacing(3)
+            marginBottom: theme.spacing(3),
         },
         description: {
-            marginBottom: theme.spacing(3)
+            marginBottom: theme.spacing(3),
         },
         title: {
-            marginTop: theme.spacing(3)
+            marginTop: theme.spacing(3),
         },
         subtitle: {
-            marginBottom: 20
+            marginBottom: 20,
         },
         textGreen: {
-            color: "#5CB85C"
-        }
+            color: "#5CB85C",
+        },
     }),
     { index: 1 }
 );
 
-const ExamplesRoot: React.FC<TProps> = props => {
+const ExamplesRoot: React.FC<TProps> = (props) => {
     const classes = useStyles();
     const { examplePage } = props;
 
@@ -86,6 +86,8 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const DescComponent: () => JSX.Element = examplePage?.description;
     const codeStr = examplePage ? examplePage.code : "";
     const githubUrl = examplePage ? examplePage.githubUrl : "";
+    const seoDescription = examplePage ? examplePage.seoDescription : "";
+    const seoKeywords = examplePage ? examplePage.seoKeywords : "";
 
     React.useEffect(() => {
         updateGoogleTagManagerPage();
@@ -93,12 +95,9 @@ const ExamplesRoot: React.FC<TProps> = props => {
         window.Prism.highlightAll();
     }, []);
 
-    const todoKeywords = titleText;
-    const todoDescription = titleText;
-
     return (
         <div className={classes.root}>
-            <SeoTags title={titleText} keywords={todoKeywords} description={todoDescription} />
+            <SeoTags title={titleText} keywords={seoKeywords} description={seoDescription} />
             <div className={classes.body}>
                 <div className={classes.colMain}>
                     <div className={classes.colMainContent}>
