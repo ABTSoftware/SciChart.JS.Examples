@@ -25,10 +25,11 @@ export const divElementId1 = "sciChart1";
 export const divElementId2 = "sciChart2";
 export const divElementId3 = "sciChart3";
 
-export const X_2D_CHART_SIZE = 300;
-export const Y_2D_CHART_SIZE = 200;
+export const X_2D_CHART_SIZE = 288;
+export const Y_2D_CHART_SIZE = 289;
 export const X_3D_CHART_SIZE = 600;
-export const Y_3D_CHART_SIZE = 420;
+export const Y_3D_CHART_SIZE = 600;
+export const CHART_MARGIN = 22;
 
 const X_DATA_SIZE = 25;
 const Z_DATA_SIZE = 25;
@@ -37,9 +38,12 @@ export const drawChart1 = async () => {
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.createSingle(divElementId1);
 
     sciChart3DSurface.camera = new CameraController(wasmContext, {
-        position: new Vector3(-200, 200, -200),
-        target: new Vector3(0, 50, 0)
+        position: new Vector3(-280, 250, -280),
+        target: new Vector3(0, 50, 0),
     });
+    sciChart3DSurface.camera.aspectRatio = 1.333;
+    sciChart3DSurface.camera.fieldOfView = 45;
+
     sciChart3DSurface.worldDimensions = new Vector3(200, 100, 200);
 
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
@@ -188,8 +192,8 @@ export default function TenorCurves3DChart() {
             <div style={{ display: "flex" }}>
                 <div id={divElementId1} style={{ width: X_3D_CHART_SIZE, height: Y_3D_CHART_SIZE }} />
                 <div style={{ marginLeft: 20 }}>
-                    <div id={divElementId2} style={{ width: X_2D_CHART_SIZE, height: Y_2D_CHART_SIZE }} />
-                    <br />
+                    <div id={divElementId2} style={{ width: X_2D_CHART_SIZE, height: Y_2D_CHART_SIZE,
+                        marginBottom: CHART_MARGIN }} />
                     <div id={divElementId3} style={{ width: X_2D_CHART_SIZE, height: Y_2D_CHART_SIZE }} />
                 </div>
             </div>
