@@ -37,18 +37,17 @@ export class AudioDataProvider {
     }
 
     public initAudio() {
-        if (!navigator.getUserMedia) {
-            // @ts-ignore
-            navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-        }
-
-        navigator.getUserMedia(
-            {
-                audio: true,
-                video: false
-            },
-            (stream: MediaStream) => {
-                this.audioContext = new AudioContext();
+        const getUserMedia = async () => {
+            try {
+                const constraints = { audio: true, video: false };
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                // @ts-ignore
+                const AudioContextClass: any = window.AudioContext || window.webkitAudioContext || false;
+                if (AudioContextClass) {
+                    this.audioContext = new AudioContextClass();
+                } else {
+                    throw Error("AudioContextClass is not defined");
+                }
 
                 this.inputPoint = this.audioContext.createGain();
 
@@ -68,16 +67,11 @@ export class AudioDataProvider {
                 this.freqByteData = new Uint8Array(this.analyserNode.frequencyBinCount);
 
                 this.initializedProperty = true;
-            },
-            (error: MediaStreamError) => {
-                console.log("Error getting audio");
-                console.log(error);
-
-                return false;
+            } catch (error) {
+                console.error("Error getting audio", error);
             }
-        );
-
-        return true;
+        };
+        getUserMedia();
     }
 
     public closeAudio() {
