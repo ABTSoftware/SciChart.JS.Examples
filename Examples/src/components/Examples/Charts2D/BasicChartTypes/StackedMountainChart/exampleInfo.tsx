@@ -52,5 +52,6 @@ export const stackedMountainChartExampleInfo: TExampleInfo = {
     githubUrl,
     seoDescription: `Demonstrates how to create a JavaScript Stacked Mountain Chart. An area or polygon is rendered from the Y-value
         of each stacked mountain series to the Y-value of the next.`,
-    seoKeywords: "stacked, mountain, chart, javascript, webgl, canvas"
+    seoKeywords: "stacked, mountain, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-stacked-mountain-chart.jpg"
 };

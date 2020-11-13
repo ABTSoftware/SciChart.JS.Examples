@@ -35,5 +35,6 @@ export const heatmapChartExampleInfo: TExampleInfo = {
     githubUrl,
     seoDescription: `Demonstrates how to create a JavaScript Heatmap Chart. The FastUniformHeatmapRenderableSeries accepts a 2D array
         of data and has user-defined color map which can be used to color points by value.`,
-    seoKeywords: "heatmap, chart, javascript, webgl, canvas"
+    seoKeywords: "heatmap, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-heatmap-chart.jpg"
 };

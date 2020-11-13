@@ -37,5 +37,6 @@ export const pieChartExampleInfo: TExampleInfo = {
     githubUrl,
     seoDescription: `Demonstrates how to create a JavaScript Pie Chart. This is a circular chart type with a hole in the center
         consisting of sectors which are proportional to the quantity it represents.`,
-    seoKeywords: "pie, chart, javascript, canvas"
+    seoKeywords: "pie, chart, javascript, canvas",
+    thumbnailImage: "javascript-pie-chart.jpg"
 };

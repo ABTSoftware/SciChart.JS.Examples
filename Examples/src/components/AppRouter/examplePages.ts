@@ -52,6 +52,7 @@ export type TExampleInfo = {
     githubUrl: string;
     seoDescription: string;
     seoKeywords: string;
+    thumbnailImage?: string;
 };
 
 export type TExamplePage = TPage & TExampleInfo;

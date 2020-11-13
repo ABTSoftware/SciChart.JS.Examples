@@ -44,5 +44,6 @@ export const bubble3DChartExampleInfo: TExampleInfo = {
     seoDescription: `Demonstrates how to create a JavaScript 3D Bubble Chart. This is a chart type which draws a 3D point-marker
         (Sphere, Cylinder, Cube) or a 2D flat billboarded pointmarker (Ellipse, Quad, Pixel) at X,Y,Z locations
         in 3D Space.`,
-    seoKeywords: "3d, bubble, chart, javascript, webgl, canvas"
+    seoKeywords: "3d, bubble, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-3d-bubble-chart.jpg"
 };

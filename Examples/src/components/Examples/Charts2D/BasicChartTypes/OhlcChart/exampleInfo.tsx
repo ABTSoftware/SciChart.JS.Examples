@@ -51,5 +51,6 @@ export const ohlcChartExampleInfo: TExampleInfo = {
     githubUrl,
     seoDescription: `Demonstrates how to create a JavaScript Ohlc Chart. This is a chart type used in financial, stock trading
         applications which renders Date, Open, High, Low, Close data.`,
-    seoKeywords: "ohlc, stock, trading, chart, javascript, webgl, canvas"
+    seoKeywords: "ohlc, stock, trading, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-ohlc-chart.jpg"
 };

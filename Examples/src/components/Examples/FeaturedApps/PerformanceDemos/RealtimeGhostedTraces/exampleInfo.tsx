@@ -42,5 +42,6 @@ export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     githubUrl,
     seoDescription: `This real-time performance demo shows persistence of old traces giving a ‘ghosted’ effect. As new series are
         drawn older series are made increasingly transparent until they become invisible.`,
-    seoKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas"
+    seoKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-realtime-ghosted-traces-chart.jpg"
 };

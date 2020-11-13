@@ -49,5 +49,6 @@ export const  audioAnalyzerExampleInfo: TExampleInfo = {
     githubUrl,
     seoDescription: `Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and{' '}
         visualize the Fourier-Transform of an audio waveform.`,
-    seoKeywords: "audio, analyzer, demo, chart, javascript, webgl, canvas"
+    seoKeywords: "audio, analyzer, demo, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-realtime-audio-analyzer.jpg"
 };

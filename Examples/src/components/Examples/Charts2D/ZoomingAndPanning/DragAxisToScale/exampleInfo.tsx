@@ -63,5 +63,6 @@ export const dragAxisToScaleExampleInfo: TExampleInfo = {
     githubUrl,
     seoDescription: `Demonstrates how to add behaviour to scale, zoom or pan a chart by dragging the X or Y Axis on the chart.
             Try it out below! Drag an axis to watch the chart re-scale.`,
-    seoKeywords: "drag, axis, scale, javascript, webgl, canvas"
+    seoKeywords: "drag, axis, scale, javascript, webgl, canvas",
+    thumbnailImage: "drag-axis-on-javascript-charts-to-scale-or-pan.jpg"
 };

@@ -44,5 +44,6 @@ export const tenorCurvesExampleInfo: TExampleInfo = {
     seoDescription: `Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application.
         An example like this could be used to visualize Tenor curves in a financial setting,
         or other 2D/3D data combined on a single screen.`,
-    seoKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas"
+    seoKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-3d-surface-mesh-tenor-curve-example.jpg"
 };

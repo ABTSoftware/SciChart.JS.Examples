@@ -48,5 +48,6 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
     seoDescription: `Demonstrates how to create a JavaScript Band Chart. This is a chart type which draws an area (polygon or fill)
         between two lines. The FastBandRenderableSeries requires an XyyDataSeries, which contains one X-point and two
         Y-points`,
-    seoKeywords: "band, chart, javascript, webgl, canvas"
+    seoKeywords: "band, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-band-chart.jpg"
 };

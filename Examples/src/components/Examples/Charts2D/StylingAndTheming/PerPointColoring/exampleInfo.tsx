@@ -42,5 +42,6 @@ export const perPointColoringExampleInfo: TExampleInfo = {
     seoDescription: `Demonstrates how to use the PaletteProvider API to color lines, points and fills individually based on a rule.
         Using this API you can color individual data-points of the following chart series: Line, Column, Candlestick,
         Ohlc, Mountain, Scatter, Bubble and Band.`,
-    seoKeywords: "palette, provider, api, chart, javascript, webgl, canvas"
+    seoKeywords: "palette, provider, api, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-chart-color-points-individually-with-paletteprovider.jpg"
 };

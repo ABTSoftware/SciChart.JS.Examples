@@ -63,5 +63,6 @@ export const realtimeZoomPanExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription: `This examples shows how to add zooming and panning behaviour to a realtime JavaScript Chart.`,
-    seoKeywords: "drag, axis, scale, javascript, webgl, canvas"
+    seoKeywords: "drag, axis, scale, javascript, webgl, canvas",
+    thumbnailImage: "zoom-and-pan-a-realtime-javascript-chart.jpg"
 };

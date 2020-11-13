@@ -42,5 +42,6 @@ export const usingThemeManagerExampleInfo: TExampleInfo = {
     githubUrl,
     seoDescription: `SciChart.js ships with a light and a dark theme, which you can switch by calling the SciChartSurface.applyTheme()
         function.`,
-    seoKeywords: "theme, provider, chart, javascript, webgl, canvas"
+    seoKeywords: "theme, provider, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-chart-themes.png"
 };

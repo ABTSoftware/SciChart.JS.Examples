@@ -65,5 +65,6 @@ export const multipleXAxesExampleInfo: TExampleInfo = {
     seoDescription: `Demonstrates a line chart with four series and multiple top / bottom X-Axis and left / right Y-Axis.
             SciChart supports multiple top or bottom X-Axes and multiple left and right Y-Axes. This example shows in a
             simple way how to register a line series on each axis.`,
-    seoKeywords: "multiple, axis, chart, javascript, webgl, canvas"
+    seoKeywords: "multiple, axis, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-chart-with-multiple-x-axis.jpg"
 };

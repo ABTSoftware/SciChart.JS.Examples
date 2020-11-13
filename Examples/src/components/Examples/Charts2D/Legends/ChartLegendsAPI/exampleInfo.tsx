@@ -35,5 +35,6 @@ export const chartLegendsAPIExampleInfo: TExampleInfo = {
     githubUrl,
     seoDescription: `Demonstrates how to add a Legend to a JavaScript Line Chart using SciChart.js. The legend is created when you add
         a LegendModifier type to the sciChartSurface.chartModifiers collection.`,
-    seoKeywords: "legend, api, chart, javascript, webgl, canvas"
+    seoKeywords: "legend, api, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-chart-legends.jpg"
 };
