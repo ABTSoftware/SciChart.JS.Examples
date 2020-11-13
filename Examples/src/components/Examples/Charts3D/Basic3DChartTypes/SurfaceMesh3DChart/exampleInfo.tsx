@@ -41,9 +41,7 @@ export const surfaceMesh3DChartExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
-    seoDescription: `Demonstrates how to create a JavaScript 3D Surface Mesh Chart. This is a chart type which draws a 3D point-marker
-        (Sphere, Cylinder, Cube) or a 2D flat billboarded pointmarker (Ellipse, Quad, Pixel) at X,Y,Z locations
-        in 3D Space.`,
+    seoDescription: "Demonstrates how to create a JavaScript 3D Surface Mesh Plot. This 3D Chart type can be used in scientific or financial applications to view data in many dimensions",
     seoKeywords: "3d, surface, mesh, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-3d-surface-mesh-chart.jpg"
 };

@@ -34,8 +34,7 @@ export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
-    seoDescription: `Demonstrates using the RolloverModifier, part of the ChartModifier API, to add mouse-over feedback of data-points
-        on time-series to the user.`,
+    seoDescription: "Demonstrates adding Tooltips on mouse-move to a JavaScript Chart with SciChart.js RolloverModifier",
     seoKeywords: "rollover, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-rollovermodifier-tooltips.jpg"
 };

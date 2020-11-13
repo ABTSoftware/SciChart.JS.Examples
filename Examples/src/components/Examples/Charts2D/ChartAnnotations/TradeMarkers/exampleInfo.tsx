@@ -40,8 +40,7 @@ export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
-    seoDescription: `The Trade Markers demo uses the Annotations API to place CustomAnnotations rendering buy and sell or news bullet
-        markers over a simulated price chart.`,
+    seoDescription: "Demonstrates how to place Buy/Sell arrow markers on a JavaScript Stock Chart using SciChart.js - Annotations API",
     seoKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-stock-chart-buy-sell-markers.jpg"
 };

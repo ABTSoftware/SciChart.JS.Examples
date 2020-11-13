@@ -46,8 +46,7 @@ export const usePointMarkersExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
-    seoDescription: `Demonstrates how to use the FastLineRenderableSeries and the Data-Point Markers API to apply fast WebGL-rendered
-        data point markers to a line series.`,
+    seoDescription: "Demonstrates the different point-marker types for JavaScript Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
     seoKeywords: "data, point, marker, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-custom-poinmarkers.jpg"
 };
