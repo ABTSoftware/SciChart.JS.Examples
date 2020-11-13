@@ -17,9 +17,9 @@ const SeoTags: React.FC<TProps> = props => {
             </title>
             <meta name="keywords" content={keywords} />
             <meta name="description" content={description} />
-            <meta name="og:image" content={image} />
-            <meta name="og:title" content={title}/>
-            <meta name="og:description" content={description} />
+            <meta property="og:image" content={image} />
+            <meta property="og:title" content={title}/>
+            <meta property="og:description" content={description} />
             <meta name="twitter:title" content={title} />
             <meta name="twitter:image" content={image} />
             <meta name="twitter:image:alt" content={title} />
