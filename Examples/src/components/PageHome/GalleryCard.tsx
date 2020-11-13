@@ -33,7 +33,7 @@ const GalleryCard: React.FC<TProps> = props => {
     };
     return (
         <Paper className={classes.paper} onClick={handleClick(examplePath)}>
-            <a href={examplePath}>
+            <a href={examplePath} title={seoTitle}>
                 <img style={{ maxWidth: "100%", display: "block" }} src={imgPath} title={seoTitle} alt={seoTitle} />
             </a>
             <Typography variant="h5" gutterBottom style={{ textAlign: "center", marginBottom: 0 }}>

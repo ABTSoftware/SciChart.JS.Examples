@@ -49,10 +49,8 @@ export const drawExample = async () => {
     let spectrogramDS: UniformHeatmapDataSeries;
 
     // INIT AUDIO
-    const initAudio = async () => {
-        if (dataProvider.initAudio() === false) {
-            throw new Error("Can't initialize audio!");
-        }
+    const initAudio = () => {
+        return dataProvider.initAudio()
     };
 
     function updateAnalysers(frame: number): void {

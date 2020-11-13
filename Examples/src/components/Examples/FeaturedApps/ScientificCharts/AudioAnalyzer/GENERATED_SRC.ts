@@ -18,9 +18,9 @@ export const divElementIdFttChart = "sciChart2";
 export const divElementIdChart3 = "sciChart3";
 
 export const TOP_CHART_WIDTH = 600;
-export const TOP_CHART_HEIGHT = 430;
-export const BOTTOM_CHART_WIDTH = 300;
-export const BOTTOM_CHART_HEIGHT = 200;
+export const TOP_CHART_HEIGHT = 600;
+export const BOTTOM_CHART_WIDTH = 288;
+export const BOTTOM_CHART_HEIGHT = 289;
 export const CHART_MARGIN = 14;
 
 const AUDIO_STREAM_BUFFER_SIZE = 2048;
@@ -49,10 +49,8 @@ export const drawExample = async () => {
     let spectrogramDS: UniformHeatmapDataSeries;
 
     // INIT AUDIO
-    const initAudio = async () => {
-        if (dataProvider.initAudio() === false) {
-            throw new Error("Can't initialize audio!");
-        }
+    const initAudio = () => {
+        return dataProvider.initAudio()
     };
 
     function updateAnalysers(frame: number): void {
