@@ -90,7 +90,8 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
     const githubUrl = examplePage ? examplePage.githubUrl : "";
     const seoDescription = examplePage ? examplePage.seoDescription : "";
     const seoKeywords = examplePage ? examplePage.seoKeywords : "";
-    const exampleImage = examplePage ? "images/" + examplePage.thumbnailImage : undefined;
+    const basePath = process.env.PUBLIC_URL ?? "https://demo.scichart.com";
+    const exampleImage = examplePage ? `${basePath}/images/${examplePage.thumbnailImage}` : undefined;
 
     React.useEffect(() => {
         updateGoogleTagManagerPage();
