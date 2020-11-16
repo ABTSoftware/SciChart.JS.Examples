@@ -1,11 +1,10 @@
-# SciChart.js Tutorial 3 - Add Zoom and Pan Behavior
+# SciChart.js Tutorial 7 - Adding Tooltips and Legends
 
 To view the full text of this tutorial online, visit www.scichart.com/javascript-chart-documentation 
 
 To run the tutorial, open this folder in VSCode, and run the following commands:
 
-> npm install
-> npm run build 
-> npm start 
+* `npm install`
+* `npm start`
 
 Then visit https://localhost:8080 in your web browser! 
