@@ -75,6 +75,7 @@ export default function PageHome() {
                 keywords={ExampleStrings.siteKeywords}
                 description={ExampleStrings.siteHomeDescription}
                 image={ExampleStrings.siteHomeMetaImage}
+                url=""
             />
             <div className={classes.content}>
                 <div className={classes.header}>

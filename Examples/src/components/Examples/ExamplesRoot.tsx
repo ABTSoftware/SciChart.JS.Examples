@@ -92,6 +92,7 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
     const seoKeywords = examplePage ? examplePage.seoKeywords : "";
     const basePath = process.env.PUBLIC_URL ?? "https://demo.scichart.com";
     const exampleImage = examplePage ? `${basePath}/images/${examplePage.thumbnailImage}` : undefined;
+    const exampleUrl = examplePage ? examplePage.path : "";
 
     React.useEffect(() => {
         updateGoogleTagManagerPage();
@@ -101,7 +102,8 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
 
     return (
         <div className={classes.root}>
-            <SeoTags title={titleText} keywords={seoKeywords} description={seoDescription} image={exampleImage} />
+            <SeoTags title={titleText} keywords={seoKeywords} description={seoDescription} image={exampleImage}
+                url={exampleUrl}/>
             <div className={classes.body}>
                 <div className={classes.colMain}>
                     <div className={classes.colMainContent}>
