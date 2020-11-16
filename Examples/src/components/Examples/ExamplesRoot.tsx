@@ -13,6 +13,7 @@ import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { getExampleComponent } from "../AppRouter/examples";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
+import {ExampleStrings} from "./ExampleStrings";
 
 type TProps = {
     // example: () => JSX.Element;
@@ -81,13 +82,16 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
 
     const ExampleComponent = getExampleComponent(examplePage.id);
 
-    const titleText = examplePage ? examplePage.title : HOME_PAGE_TITLE;
+    const titleText = examplePage ? examplePage.title + ExampleStrings.exampleTitleSuffix :
+        ExampleStrings.siteHomeTitle;
     const subtitleText = examplePage ? examplePage.subtitle() : undefined;
     const DescComponent: () => JSX.Element = examplePage?.description;
     const codeStr = examplePage ? examplePage.code : "";
     const githubUrl = examplePage ? examplePage.githubUrl : "";
     const seoDescription = examplePage ? examplePage.seoDescription : "";
     const seoKeywords = examplePage ? examplePage.seoKeywords : "";
+    const basePath = process.env.PUBLIC_URL ?? "https://demo.scichart.com";
+    const exampleImage = examplePage ? `${basePath}/images/${examplePage.thumbnailImage}` : undefined;
 
     React.useEffect(() => {
         updateGoogleTagManagerPage();
@@ -97,7 +101,7 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
 
     return (
         <div className={classes.root}>
-            <SeoTags title={titleText} keywords={seoKeywords} description={seoDescription} />
+            <SeoTags title={titleText} keywords={seoKeywords} description={seoDescription} image={exampleImage} />
             <div className={classes.body}>
                 <div className={classes.colMain}>
                     <div className={classes.colMainContent}>

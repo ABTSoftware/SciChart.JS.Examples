@@ -41,7 +41,8 @@ export const columnChartExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
-    seoDescription: `Demonstrates how to create a JavaScript Column Chart. Columns are rendered with a stroke and fill, and support
-        gradient fill and paletteproviders for more custom coloring options.`,
-    seoKeywords: "column, chart, javascript, webgl, canvas"
+    seoDescription: "Demonstrates how to create a JavaScript Column Chart. Columns are rendered with a stroke and fill, and support " +
+        "gradient fill and paletteproviders for more custom coloring options.",
+    seoKeywords: "column, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-column-chart.jpg"
 };

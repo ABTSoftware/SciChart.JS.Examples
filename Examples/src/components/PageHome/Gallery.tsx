@@ -5,63 +5,63 @@ import Grid from "@material-ui/core/Grid";
 import { EXAMPLES_PAGES } from "../AppRouter/examplePages";
 import GalleryCard from "./GalleryCard";
 // Featured Apps
-import load500Img from "../../images/examples/s/performance/javascript-chart-load-500-series-by-500-points.jpg";
-import realtimePerformanceImg from "../../images/examples/s/performance/javascript-chart-realtime-performance-demo.jpg";
-import ghostedTracesImg from "../../images/examples/s/performance/javascript-realtime-ghosted-traces-chart.jpg";
-import millionPointsDemoImg from "../../images/examples/s/performance/javascript-chart-performance-one-million-points.jpg";
-import lidarImg from "../../images/examples/s/scientificAndMedical/javascript-3d-lidar-visualization.jpg";
-import ecgImg from "../../images/examples/s/scientificAndMedical/javascript-vital-signs-ecg-medical-chart-example.jpg";
-import audioAnalyzerImage from "../../images/examples/s/scientificAndMedical/javascript-realtime-audio-analyzer.jpg";
-import tenorCurvesImage from "../../images/examples/s/scientificAndMedical/javascript-3d-surface-mesh-tenor-curve-example.jpg";
+import load500Img from "../Examples/FeaturedApps/PerformanceDemos/Load500By500/javascript-chart-load-500-series-by-500-points.jpg";
+import realtimePerformanceImg from "../Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo/javascript-chart-realtime-performance-demo.jpg";
+import ghostedTracesImg from "../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces/javascript-realtime-ghosted-traces-chart.jpg";
+import millionPointsDemoImg from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/javascript-chart-performance-one-million-points.jpg";
+import lidarImg from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/javascript-3d-lidar-visualization.jpg";
+import ecgImg from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/javascript-vital-signs-ecg-medical-chart-example.jpg";
+import audioAnalyzerImage from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/javascript-realtime-audio-analyzer.jpg";
+import tenorCurvesImage from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/javascript-3d-surface-mesh-tenor-curve-example.jpg";
 // 2D Chart Types
-import lineChartImg from "../../images/examples/s/chartTypes2D/javascript-line-chart.jpg";
-import bandChartImg from "../../images/examples/s/chartTypes2D/javascript-band-chart.jpg";
-import bubbleChartImg from "../../images/examples/s/chartTypes2D/javascript-bubble-chart.jpg";
-import candlestickImg from "../../images/examples/s/chartTypes2D/javascript-candlestick-chart.jpg";
-import columnChartImg from "../../images/examples/s/chartTypes2D/javascript-column-chart.jpg";
-import fanChartImg from "../../images/examples/s/chartTypes2D/javascript-fan-chart.jpg";
-import heatmapImg from "../../images/examples/s/chartTypes2D/javascript-heatmap-chart.jpg";
-import mountainImg from "../../images/examples/s/chartTypes2D/javascript-mountain-chart.jpg";
-import ohlcImg from "../../images/examples/s/chartTypes2D/javascript-ohlc-chart.jpg";
-import scatterImg from "../../images/examples/s/chartTypes2D/javascript-scatter-chart.jpg";
-import stackedColumnImg from "../../images/examples/s/chartTypes2D/javascript-stacked-column-chart.png";
-import stackedColumnSideBySideImg from "../../images/examples/s/chartTypes2D/javascript-stacked-grouped-column-chart-side-by-side.png";
-import stackedMountainImg from "../../images/examples/s/chartTypes2D/javascript-stacked-mountain-chart.jpg";
-import pieImg from "../../images/examples/s/chartTypes2D/javascript-pie-chart.jpg";
-import donutImg from "../../images/examples/s/chartTypes2D/javascript-donut-chart.jpg";
+import lineChartImg from "../Examples/Charts2D/BasicChartTypes/LineChart/javascript-line-chart.jpg";
+import bandChartImg from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/javascript-band-chart.jpg";
+import bubbleChartImg from "../Examples/Charts2D/BasicChartTypes/BubbleChart/javascript-bubble-chart.jpg";
+import candlestickImg from "../Examples/Charts2D/BasicChartTypes/CandlestickChart/javascript-candlestick-chart.jpg";
+import columnChartImg from "../Examples/Charts2D/BasicChartTypes/ColumnChart/javascript-column-chart.jpg";
+import fanChartImg from "../Examples/Charts2D/BasicChartTypes/FanChart/javascript-fan-chart.jpg";
+import heatmapImg from "../Examples/Charts2D/BasicChartTypes/HeatmapChart/javascript-heatmap-chart.jpg";
+import mountainImg from "../Examples/Charts2D/BasicChartTypes/MountainChart/javascript-mountain-chart.jpg";
+import ohlcImg from "../Examples/Charts2D/BasicChartTypes/OhlcChart/javascript-ohlc-chart.jpg";
+import scatterImg from "../Examples/Charts2D/BasicChartTypes/ScatterChart/javascript-scatter-chart.jpg";
+import stackedColumnImg from "../Examples/Charts2D/BasicChartTypes/StackedColumnChart/javascript-stacked-column-chart.png";
+import stackedColumnSideBySideImg from "../Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide/javascript-stacked-grouped-column-chart-side-by-side.png";
+import stackedMountainImg from "../Examples/Charts2D/BasicChartTypes/StackedMountainChart/javascript-stacked-mountain-chart.jpg";
+import pieImg from "../Examples/Charts2D/BasicChartTypes/PieChart/javascript-pie-chart.jpg";
+import donutImg from "../Examples/Charts2D/BasicChartTypes/DonutChart/javascript-donut-chart.jpg";
 // Annotations and Legands
-import annotationsImg from "../../images/examples/s/annotationsAndLegend/javascript-chart-annotations.jpg";
-import tradeMarkersImg from "../../images/examples/s/annotationsAndLegend/javascript-stock-chart-buy-sell-markers.jpg";
-import legendImg from "../../images/examples/s/annotationsAndLegend/javascript-chart-legends.jpg";
+import annotationsImg from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/javascript-chart-annotations.jpg";
+import tradeMarkersImg from "../Examples/Charts2D/ChartAnnotations/TradeMarkers/javascript-stock-chart-buy-sell-markers.jpg";
+import legendImg from "../Examples/Charts2D/Legends/ChartLegendsAPI/javascript-chart-legends.jpg";
 // Stock Charts
-import multiPaneStockImg from "../../images/examples/s/stockCharts/javascript-multi-pane-stock-charts.jpg";
-import realtimeStockImg from "../../images/examples/s/stockCharts/javascript-realtime-ticking-stock-charts.jpg";
+import multiPaneStockImg from "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
+import realtimeStockImg from "../Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts/javascript-realtime-ticking-stock-charts.jpg";
 // Chart Axis API
-import multipleXAxesImg from "../../images/examples/s/chartAxisApi/javascript-chart-with-multiple-x-axis.jpg";
-import secondaryYAxesImg from "../../images/examples/s/chartAxisApi/javascript-chart-with-secondary-y-axis.jpg";
-import verticalChartImg from "../../images/examples/s/chartAxisApi/javascript-vertical-charts.jpg";
+import multipleXAxesImg from "../Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes/javascript-chart-with-multiple-x-axis.jpg";
+import secondaryYAxesImg from "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/javascript-chart-with-secondary-y-axis.jpg";
+import verticalChartImg from "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/javascript-vertical-charts.jpg";
 // Styling and Theming
-import pointMarkersImg from "../../images/examples/s/styling/javascript-chart-custom-poinmarkers.jpg";
-import themeManagerImg from "../../images/examples/s/styling/javascript-chart-themes.png";
-import stylingInCodeImg from "../../images/examples/s/styling/javascript-chart-styling-theming-in-code.png";
-import paletteProviderImg from "../../images/examples/s/styling/javascript-chart-color-points-individually-with-paletteprovider.jpg";
+import pointMarkersImg from "../Examples/Charts2D/StylingAndTheming/UsePointMarkers/javascript-chart-custom-poinmarkers.jpg";
+import themeManagerImg from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager/javascript-chart-themes.png";
+import stylingInCodeImg from "../Examples/Charts2D/StylingAndTheming/StylingInCode/javascript-chart-styling-theming-in-code.png";
+import paletteProviderImg from "../Examples/Charts2D/StylingAndTheming/PerPointColoring/javascript-chart-color-points-individually-with-paletteprovider.jpg";
 // Tooltips and Hit-Test
-import hitTestApiImg from "../../images/examples/s/tooltipsAndHittest/javascript-chart-hit-test-on-click.png";
-import rolloverImg from "../../images/examples/s/tooltipsAndHittest/javascript-chart-rollovermodifier-tooltips.jpg";
+import hitTestApiImg from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI/javascript-chart-hit-test-on-click.png";
+import rolloverImg from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/javascript-chart-rollovermodifier-tooltips.jpg";
 // Zoom and Pan Charts
-import realtimeZoomPanImg from "../../images/examples/s/zoomAndPanCharts/zoom-and-pan-a-realtime-javascript-chart.jpg";
-import dragAxisToScaleImg from "../../images/examples/s/zoomAndPanCharts/drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
+import realtimeZoomPanImg from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/zoom-and-pan-a-realtime-javascript-chart.jpg";
+import dragAxisToScaleImg from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
 // 3D Chart Types
-import bubble3dImg from "../../images/examples/s/chartTypes3D/javascript-3d-bubble-chart.jpg";
-import mesh3dImg from "../../images/examples/s/chartTypes3D/javascript-3d-surface-mesh-chart.jpg";
+import bubble3dImg from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/javascript-3d-bubble-chart.jpg";
+import mesh3dImg from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
 
 type TProps = {};
 
-const useStyles = makeStyles(theme => ({
-    root: {}
+const useStyles = makeStyles((theme) => ({
+    root: {},
 }));
 
-const Gallery: React.FC<TProps> = props => {
+const Gallery: React.FC<TProps> = (props) => {
     const classes = useStyles();
 
     return (

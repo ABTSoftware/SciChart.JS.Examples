@@ -7,6 +7,7 @@ import sciChartLogoImg from "../../images/scichart_logo_2.png";
 import Gallery from "./Gallery";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import SeoTags from "../SeoTags/SeoTags";
+import {ExampleStrings} from "../Examples/ExampleStrings";
 
 export const HOME_PAGE_TITLE = "HOMEPAGE";
 
@@ -70,9 +71,10 @@ export default function PageHome() {
     return (
         <div className={classes.root}>
             <SeoTags
-                title="SciChart Web Demo"
-                keywords="SciChart Web Demo"
-                description="SciChart Web Demo"
+                title={ExampleStrings.siteHomeTitle}
+                keywords={ExampleStrings.siteKeywords}
+                description={ExampleStrings.siteHomeDescription}
+                image={ExampleStrings.siteHomeMetaImage}
             />
             <div className={classes.content}>
                 <div className={classes.header}>

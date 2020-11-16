@@ -11,30 +11,38 @@ type TProps = {
     examplePath: string;
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(1),
         textAlign: "center",
         color: theme.palette.text.secondary,
         "&:hover": {
-            cursor: "pointer"
-        }
-    }
+            cursor: "pointer",
+        },
+    },
 }));
 
-const GalleryCard: React.FC<TProps> = props => {
+const GalleryCard: React.FC<TProps> = (props) => {
     const classes = useStyles();
     const history = useHistory();
 
     const { imgPath, title, seoTitle, examplePath } = props;
 
-    const handleClick = (path: string) => () => {
+    const handleClick = (path: string) => (e: any) => {
+        e.preventDefault();
+        e.stopPropagation();
         history.push(path);
     };
     return (
-        <Paper className={classes.paper} onClick={handleClick(examplePath)}>
+        <Paper className={classes.paper}>
             <a href={examplePath} title={seoTitle}>
-                <img style={{ maxWidth: "100%", display: "block" }} src={imgPath} title={seoTitle} alt={seoTitle} />
+                <img
+                    style={{ maxWidth: "100%", display: "block" }}
+                    src={imgPath}
+                    title={seoTitle}
+                    alt={seoTitle}
+                    onClick={handleClick(examplePath)}
+                />
             </a>
             <Typography variant="h5" gutterBottom style={{ textAlign: "center", marginBottom: 0 }}>
                 {title}

@@ -45,7 +45,8 @@ export const scatterChartExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
-    seoDescription: `Demonstrates how to create a JavaScript Scatter Chart. The XyScatterRenderableSeries can be used to render an
-        XyDataSeries, XyyDataSeries (uses Y1 only) or OhlcDataSeries (renders Close).`,
-    seoKeywords: "scatter, chart, javascript, webgl, canvas"
+    seoDescription: "Demonstrates how to create a JavaScript Scatter Chart. The Scatter Chart supports different markers (Triangle, Circle, Square) " +
+        "and can be colored per-point using our PaletteProvider API.",
+    seoKeywords: "scatter, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-scatter-chart.jpg"
 };

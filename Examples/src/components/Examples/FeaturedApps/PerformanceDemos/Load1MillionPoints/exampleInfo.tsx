@@ -42,6 +42,7 @@ export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
-    seoDescription: `This demo showcases the loading or startup time of SciChart.js with a million points.`,
-    seoKeywords: "performance, loading, million, points, chart, javascript, webgl, canvas"
+    seoDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.`,
+    seoKeywords: "performance, loading, million, points, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-chart-performance-one-million-points.jpg"
 };

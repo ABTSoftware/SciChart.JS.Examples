@@ -41,8 +41,7 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
-    seoDescription: `Demonstrates the speed and power of SciChart.js in a real-time example. Creates a timer and pushes 1,000 points
-        every 10ms to 3 line series on the chart (300k points per second). The point count quickly rises into the
-        millions, and SciChart is still rendering!`,
-    seoKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas"
+    seoDescription: "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
+    seoKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-chart-realtime-performance-demo.jpg"
 };

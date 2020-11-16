@@ -43,7 +43,8 @@ export const lidar3DPointCloudExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
-    seoDescription: `Demonstrating the capability of SciChart.js to create JavaScript 3D Point Cloud charts and visualize LiDAR data
-        from the UK Defra Survey.`,
-    seoKeywords: "lidar, 3d, point, cloud, chart, javascript, webgl, canvas"
+    seoDescription: "Demonstrating the capability of SciChart.js to create JavaScript 3D Point Cloud charts and visualize LiDAR data " +
+        "from the UK Defra Survey.",
+    seoKeywords: "lidar, 3d, point, cloud, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-3d-lidar-visualization.jpg"
 };
