@@ -1,8 +1,8 @@
-import {SciChartSurface} from "scichart/charting/Visuals/SciChartSurface";
-import {NumericAxis} from "scichart/charting/Visuals/Axis/NumericAxis";
-import {XyDataSeries} from "scichart/charting/model/XyDataSeries";
-import {FastLineRenderableSeries} from "scichart/charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {RolloverModifier} from "scichart/charting/ChartModifiers/RolloverModifier";
+import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {XyDataSeries} from "scichart/Charting/model/XyDataSeries";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {RolloverModifier} from "scichart/Charting/ChartModifiers/RolloverModifier";
 import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
 import {CursorModifier} from "scichart/Charting/ChartModifiers/CursorModifier";
 
@@ -68,8 +68,11 @@ async function initSciChart() {
         console.log("Enabling Tooltip");
     });
 
-    // Add axis labels using CursorModifier
-    sciChartSurface.chartModifiers.add(new CursorModifier());
+    // Add axis label tooltips using CursorModifier
+    const cursorModifier = new CursorModifier();
+    cursorModifier.axisLabelsFill = "#FFFFFF";
+    cursorModifier.axisLabelsStroke = "#00FF00";
+    sciChartSurface.chartModifiers.add(cursorModifier);
 }
 
 initSciChart();
