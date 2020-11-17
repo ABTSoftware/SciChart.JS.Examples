@@ -4,6 +4,8 @@ import {EAxisAlignment} from "scichart/types/AxisAlignment";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {LineAnnotation} from "scichart/Charting/Visuals/Annotations/LineAnnotation";
+import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
+import {EDragMode} from "scichart/types/DragMode";
 
 async function initSciChart() {
     // LICENSING //
@@ -77,6 +79,8 @@ async function initSciChart() {
         })
     );
 
+    // Add a drag modifier for Y Axis
+    sciChartSurface.chartModifiers.add(new YAxisDragModifier({ dragMode: EDragMode.Scaling }));
     sciChartSurface.zoomExtents();
 }
 
