@@ -33,9 +33,13 @@ const GalleryCard: React.FC<TProps> = (props) => {
         e.stopPropagation();
         history.push(path);
     };
+
+    const handleClickLink = (e: any) => {
+        e.preventDefault();
+    };
     return (
         <Paper className={classes.paper}>
-            <a href={examplePath} title={seoTitle}>
+            <a href={examplePath} title={seoTitle} onClick={handleClickLink}>
                 <img
                     style={{ maxWidth: "100%", display: "block" }}
                     src={imgPath}
