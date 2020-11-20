@@ -82,8 +82,8 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
 
     const ExampleComponent = getExampleComponent(examplePage.id);
 
-    const titleText = examplePage ? examplePage.title + ExampleStrings.exampleTitleSuffix :
-        ExampleStrings.siteHomeTitle;
+    const titleText = examplePage ? examplePage.title : ExampleStrings.siteHomeTitle;
+    const seoTitleText = titleText + ExampleStrings.exampleTitleSuffix;
     const subtitleText = examplePage ? examplePage.subtitle() : undefined;
     const DescComponent: () => JSX.Element = examplePage?.description;
     const codeStr = examplePage ? examplePage.code : "";
@@ -102,7 +102,7 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
 
     return (
         <div className={classes.root}>
-            <SeoTags title={titleText} keywords={seoKeywords} description={seoDescription} image={exampleImage}
+            <SeoTags title={seoTitleText} keywords={seoKeywords} description={seoDescription} image={exampleImage}
                 url={exampleUrl}/>
             <div className={classes.body}>
                 <div className={classes.colMain}>
