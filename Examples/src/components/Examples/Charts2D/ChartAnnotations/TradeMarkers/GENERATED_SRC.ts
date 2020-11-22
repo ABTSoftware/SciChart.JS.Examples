@@ -10,9 +10,9 @@ import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 const divElementId = "chart";
 

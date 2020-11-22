@@ -3,12 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { vitalSignsEcgData } from "./data/vitalSignsEcgData";
-import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { EAutoRange } from "scichart/types/AutoRange";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { GlowEffect } from "scichart/Charting/Visuals/RenderableSeries/GlowEffect";
 import { Point } from "scichart/Core/Point";
@@ -17,6 +15,7 @@ import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableS
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import greyImg from "./img/greyImg.png";
 import yellowImg from "./img/yellowImg.png";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 const divElementId = "chart";
 const COLOR_GREEN = "#00FF00";

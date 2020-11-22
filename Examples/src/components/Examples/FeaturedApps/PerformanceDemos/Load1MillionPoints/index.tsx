@@ -2,22 +2,21 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import FormControl from "@material-ui/core/FormControl";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {ENumericFormat} from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {SciChartJSDarkTheme} from "scichart/Charting/Themes/SciChartJSDarkTheme";
-import {EAutoRange} from "scichart/types/AutoRange";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {SciChartSurface} from "scichart";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
+import { EAutoRange } from "scichart/types/AutoRange";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { SciChartSurface } from "scichart";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
