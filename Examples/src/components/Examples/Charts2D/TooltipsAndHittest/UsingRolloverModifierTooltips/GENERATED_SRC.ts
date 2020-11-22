@@ -7,7 +7,6 @@ import Select from "@material-ui/core/Select";
 import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
@@ -18,6 +17,7 @@ import { TSciChart } from "scichart/types/TSciChart";
 import { IXyDataSeriesOptions, XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { SciChartSurface } from "scichart";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 const divElementId = "chart";
 

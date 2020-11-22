@@ -23,9 +23,6 @@ async function initSciChart() {
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
     // instance must be passed to other types that exist on the same surface.
 
-    // Create the SciChartSurface in the div 'scichart-root'
-    // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
-    // instance must be passed to other types that exist on the same surface.
     const {sciChartSurface, wasmContext} = await SciChartSurface.create("scichart-root");
 
     // Create an X,Y Axis and add to the chart

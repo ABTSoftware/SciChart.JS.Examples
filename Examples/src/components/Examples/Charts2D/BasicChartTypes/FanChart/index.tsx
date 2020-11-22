@@ -8,8 +8,8 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { getVarianceData } from "./data";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 // tslint:disable:max-line-length
 

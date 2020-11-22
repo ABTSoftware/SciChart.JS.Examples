@@ -2,7 +2,6 @@ import * as React from "react";
 import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
@@ -11,9 +10,10 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { TSciChart } from "scichart/types/TSciChart";
 import { IXyDataSeriesOptions, XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { SciChartSurface } from "scichart";
-import {CursorModifier} from "scichart/Charting/ChartModifiers/CursorModifier";
-import {EColor} from "scichart/types/Color";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import { CursorModifier } from "scichart/Charting/ChartModifiers/CursorModifier";
+import { EColor } from "scichart/types/Color";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 const divElementId = "chart";
 
