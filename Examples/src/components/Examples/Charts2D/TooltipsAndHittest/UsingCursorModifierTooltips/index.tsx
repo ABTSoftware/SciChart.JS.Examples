@@ -83,11 +83,11 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
         new CursorModifier({
             crosshairStroke: "red",
             crosshairStrokeThickness: 1,
-            tooltipContainerBackground: "#000",
-            tooltipTextStroke: "Blue",
+            tooltipContainerBackground: "green",
+            tooltipTextStroke: "white",
             showTooltip: true,
-            axisLabelsFill: "orange",
-            axisLabelsStroke: "green"
+            axisLabelsFill: "green",
+            axisLabelsStroke: "white"
         }),
         // Add further zooming and panning behaviours
         new ZoomPanModifier(),
