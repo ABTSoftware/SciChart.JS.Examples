@@ -9,38 +9,35 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
 
-const X_VISIBLE_RANGE = new NumberRange(-1, 3);
-const Y_VISIBLE_RANGE = new NumberRange(-1, 5);
-const X_TITLE = "X Axis";
-const Y_TITLE = "Y Axis";
-
-// Chart for y = x^2, x in [-2, 2], step 0.1, 40 steps
-const xValues = [];
-const yValues = [];
-for (let i = 0; i <= 100; i++) {
-  const x = 0.1 * i;
-  xValues.push(x);
-  yValues.push(Math.sin(x));
-}
-
 async function initSciChart() {
   const { wasmContext, sciChartSurface } = await SciChartSurface.create(
     "scichart-root-1"
   );
 
+  // Generate a data set for y = x^2, x in [-2, 2], step 0.1, 40 steps
+  const xValues = [];
+  const yValues = [];
+  for (let i = 0; i <= 100; i++) {
+    const x = 0.1 * i;
+    xValues.push(x);
+    yValues.push(Math.sin(x));
+  }
+
   const xAxis = new NumericAxis(wasmContext);
-  xAxis.visibleRange = X_VISIBLE_RANGE;
+  // Make the chart vertical by setting X Axis Alignment to Left or Right
   xAxis.axisAlignment = EAxisAlignment.Left;
-  xAxis.axisTitleRenderer.text = X_TITLE;
+  xAxis.axisTitleRenderer.text = "X Axis";
   xAxis.growBy = new NumberRange(0.1, 0.1);
+  // Use this property to flip the axis orientation
   xAxis.flippedCoordinates = false;
   sciChartSurface.xAxes.add(xAxis);
 
   const yAxis = new NumericAxis(wasmContext);
-  yAxis.visibleRange = Y_VISIBLE_RANGE;
+  // Make the chart vertical by setting Y Axis Alignment to Top or Bottom
   yAxis.axisAlignment = EAxisAlignment.Top;
-  yAxis.axisTitleRenderer.text = Y_TITLE;
+  yAxis.axisTitleRenderer.text = "Y Axis";
   yAxis.growBy = new NumberRange(0.1, 0.1);
+  // Use this property to flip the axis orientation
   yAxis.flippedCoordinates = true;
   sciChartSurface.yAxes.add(yAxis);
 
@@ -55,6 +52,7 @@ async function initSciChart() {
   sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
   sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
   sciChartSurface.chartModifiers.add(
+    // For RolloverModifier to work correctly with Vertical Chart isVerticalChart flag needs to be set True
     new RolloverModifier({ isVerticalChart: true })
   );
 
