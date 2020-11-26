@@ -4,7 +4,6 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
@@ -42,7 +41,7 @@ async function initSciChart() {
   yAxis.axisAlignment = EAxisAlignment.Top;
   yAxis.axisTitleRenderer.text = Y_TITLE;
   yAxis.growBy = new NumberRange(0.1, 0.1);
-  yAxis.flippedCoordinates = false;
+  yAxis.flippedCoordinates = true;
   sciChartSurface.yAxes.add(yAxis);
 
   sciChartSurface.renderableSeries.add(
