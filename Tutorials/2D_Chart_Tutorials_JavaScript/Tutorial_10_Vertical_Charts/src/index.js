@@ -14,7 +14,7 @@ async function initSciChart() {
     "scichart-root-1"
   );
 
-  // Generate a data set for y = x^2, x in [-2, 2], step 0.1, 40 steps
+  // Generate a data set for sine wave
   const xValues = [];
   const yValues = [];
   for (let i = 0; i <= 100; i++) {
