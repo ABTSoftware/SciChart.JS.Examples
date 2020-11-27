@@ -138,8 +138,11 @@ export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) =
 
     document.getElementById("loadPoints").addEventListener("click", loadPoints);
 
-    return { wasmContext, sciChartSurface };
+    return { wasmContext, sciChartSurface, loadPoints };
 };
+
+let scs: SciChartSurface;
+let autoStartTimerId: NodeJS.Timeout;
 
 export default function Load1MillionPointsChart() {
     const classes = useStyles();
@@ -147,9 +150,18 @@ export default function Load1MillionPointsChart() {
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
 
     React.useEffect(() => {
-        drawExample((newTimeSpans: TTimeSpan[]) => {
-            setTimeSpans([...newTimeSpans]);
-        });
+        (async () => {
+            const res = await drawExample((newTimeSpans: TTimeSpan[]) => {
+                setTimeSpans([...newTimeSpans]);
+            });
+            scs = res.sciChartSurface;
+            autoStartTimerId = setTimeout(res.loadPoints, 3000);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => {
+            clearTimeout(autoStartTimerId);
+            scs?.delete();
+        };
     }, []);
 
     return (
