@@ -1,17 +1,19 @@
 import Typography from "@material-ui/core/Typography";
 import * as React from "react";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {EZoomState} from "scichart/types/ZoomState";
-import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {SciChartSurface} from "scichart";
-import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { EZoomState } from "scichart/types/ZoomState";
+import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { SciChartSurface } from "scichart";
+import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 
 export const divElementId = "chart";
+
+let timerId: NodeJS.Timeout;
 
 export const drawExample = async () => {
     // Create the SciChartSurface in the div 'scichart-root'
@@ -70,7 +72,7 @@ export const drawExample = async () => {
         }
 
         // Repeat at 60Hz
-        setTimeout(updateDataFunc, 1 / 60);
+        timerId = setTimeout(updateDataFunc, 1 / 60);
 
         // Warning, this will repeat forever, it's not best practice!
     };
@@ -79,14 +81,18 @@ export const drawExample = async () => {
     return sciChartSurface;
 };
 
+let scs: SciChartSurface;
 
 export default function RealtimeZoomPan() {
     React.useEffect(() => {
-        let sciChartSurface: SciChartSurface;
         (async () => {
-            sciChartSurface = await drawExample();
+            scs = await drawExample();
         })();
-        return () => sciChartSurface?.delete();
+        // IMPORTANT to cancel all subscriptions on component unmount!
+        return () => {
+            clearTimeout(timerId);
+            scs?.delete();
+        };
     }, []);
 
     return (
