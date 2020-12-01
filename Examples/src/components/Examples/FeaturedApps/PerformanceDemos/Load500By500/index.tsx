@@ -8,12 +8,12 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAutoRange } from "scichart/types/AutoRange";
-import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import { convertRgbToHexColor } from "scichart/utils/convertColor";
 import { AlertTitle } from "@material-ui/lab";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Button, ButtonGroup, FormControl } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 const divElementId = "chart";
 

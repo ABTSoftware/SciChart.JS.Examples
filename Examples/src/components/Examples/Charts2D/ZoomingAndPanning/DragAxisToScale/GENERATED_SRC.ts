@@ -1,15 +1,15 @@
 export const code = `import * as React from "react";
-import {EDragMode} from "scichart/types/DragMode";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {ENumericFormat} from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
-import {SciChartSurface} from "scichart";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {EColor} from "scichart/types/Color";
+import { EDragMode } from "scichart/types/DragMode";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import { SciChartSurface } from "scichart";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragModifier";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { EColor } from "scichart/types/Color";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 export const divElementId = "chart";
 
@@ -100,7 +100,8 @@ export const drawExample = async () => {
     // Add modifiers to enable YAxis and XAxis drag with dragMode as scale or pan
     sciChartSurface.chartModifiers.add(
         new XAxisDragModifier({ dragMode: EDragMode.Panning }),
-        new YAxisDragModifier({ dragMode: EDragMode.Scaling }));
+        new YAxisDragModifier({ dragMode: EDragMode.Scaling })
+    );
 
     // Add a modifier to zoom to fit on double-click
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { StackedColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnRenderableSeries";
@@ -12,6 +11,7 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 const xValues = [1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003];
 const tomatoesData = [7, 30, 27, 24, 21, 15, 17, 26, 22, 28, 21, 22];

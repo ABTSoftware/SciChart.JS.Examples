@@ -7,7 +7,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
@@ -17,6 +16,7 @@ import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/
 import { TSciChart } from "scichart/types/TSciChart";
 import { SciChartLegend } from "scichart/Charting/Visuals/Legend/SciChartLegend";
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 const divElementId = "chart";
 

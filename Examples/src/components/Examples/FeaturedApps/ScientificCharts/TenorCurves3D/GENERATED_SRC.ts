@@ -1,26 +1,26 @@
 export const code = `import * as React from "react";
-import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {SciChartSurface} from "scichart";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { SciChartSurface } from "scichart";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {
     EDrawMeshAs,
     SurfaceMeshRenderableSeries3D
 } from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/SurfaceMeshRenderableSeries3D";
-import {zeroArray2D} from "scichart/utils/zeroArray2D";
-import {UniformGridDataSeries3D} from "scichart/Charting3D/Model/DataSeries/UniformGridDataSeries3D";
-import {GradientColorPalette} from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
-import {OrbitModifier3D} from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
-import {NumericAxis3D} from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
-import {MouseWheelZoomModifier3D} from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
-import {CameraController} from "scichart/Charting3D/CameraController";
-import {Vector3} from "scichart/Charting3D/Vector3";
-import {SciChart3DSurface} from "scichart/Charting3D/Visuals/SciChart3DSurface";
-import {EColor} from "scichart/types/Color";
-import {getTenorCurveData} from "./TenorCurveData";
-import {IDeletable} from "scichart/Core/IDeletable";
+import { zeroArray2D } from "scichart/utils/zeroArray2D";
+import { UniformGridDataSeries3D } from "scichart/Charting3D/Model/DataSeries/UniformGridDataSeries3D";
+import { GradientColorPalette } from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
+import { OrbitModifier3D } from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
+import { NumericAxis3D } from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
+import { MouseWheelZoomModifier3D } from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
+import { CameraController } from "scichart/Charting3D/CameraController";
+import { Vector3 } from "scichart/Charting3D/Vector3";
+import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
+import { EColor } from "scichart/types/Color";
+import { getTenorCurveData } from "./TenorCurveData";
+import { IDeletable } from "scichart/Core/IDeletable";
 export const divElementId1 = "sciChart1";
 export const divElementId2 = "sciChart2";
 export const divElementId3 = "sciChart3";
@@ -35,11 +35,11 @@ const X_DATA_SIZE = 25;
 const Z_DATA_SIZE = 25;
 
 export const drawChart1 = async () => {
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.createSingle(divElementId1);
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId1);
 
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(-280, 250, -280),
-        target: new Vector3(0, 50, 0),
+        target: new Vector3(0, 50, 0)
     });
     sciChart3DSurface.camera.aspectRatio = 1.333;
     sciChart3DSurface.camera.fieldOfView = 45;
@@ -172,15 +172,13 @@ export const drawChart3 = async () => {
     return sciChartSurface;
 };
 
+let surfaces: IDeletable[] = [];
+
 export default function TenorCurves3DChart() {
     // const [sciChart3DSurface, setSciChart3DSurface] = React.useState<SciChart3DSurface>();
     React.useEffect(() => {
-        let surfaces: IDeletable[];
         (async () => {
-            const surface1 = await drawChart1();
-            const surface2 = await drawChart2();
-            const surface3 = await drawChart3();
-            surfaces = [surface1, surface2, surface3];
+            surfaces = await Promise.all([drawChart1(), drawChart2(), drawChart3()]);
         })();
 
         // Delete sciChartSurface on unmount component to prevent memory leak
@@ -192,8 +190,10 @@ export default function TenorCurves3DChart() {
             <div style={{ display: "flex" }}>
                 <div id={divElementId1} style={{ width: X_3D_CHART_SIZE, height: Y_3D_CHART_SIZE }} />
                 <div style={{ marginLeft: 20 }}>
-                    <div id={divElementId2} style={{ width: X_2D_CHART_SIZE, height: Y_2D_CHART_SIZE,
-                        marginBottom: CHART_MARGIN }} />
+                    <div
+                        id={divElementId2}
+                        style={{ width: X_2D_CHART_SIZE, height: Y_2D_CHART_SIZE, marginBottom: CHART_MARGIN }}
+                    />
                     <div id={divElementId3} style={{ width: X_2D_CHART_SIZE, height: Y_2D_CHART_SIZE }} />
                 </div>
             </div>

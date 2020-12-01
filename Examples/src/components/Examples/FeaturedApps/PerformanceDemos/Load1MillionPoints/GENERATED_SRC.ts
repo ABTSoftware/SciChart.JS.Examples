@@ -2,22 +2,21 @@ export const code = `import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import FormControl from "@material-ui/core/FormControl";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {ENumericFormat} from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {SciChartJSDarkTheme} from "scichart/Charting/Themes/SciChartJSDarkTheme";
-import {EAutoRange} from "scichart/types/AutoRange";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {SciChartSurface} from "scichart";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
+import { EAutoRange } from "scichart/types/AutoRange";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { SciChartSurface } from "scichart";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -139,8 +138,11 @@ export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) =
 
     document.getElementById("loadPoints").addEventListener("click", loadPoints);
 
-    return { wasmContext, sciChartSurface };
+    return { wasmContext, sciChartSurface, loadPoints };
 };
+
+let scs: SciChartSurface;
+let autoStartTimerId: NodeJS.Timeout;
 
 export default function Load1MillionPointsChart() {
     const classes = useStyles();
@@ -148,9 +150,18 @@ export default function Load1MillionPointsChart() {
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
 
     React.useEffect(() => {
-        drawExample((newTimeSpans: TTimeSpan[]) => {
-            setTimeSpans([...newTimeSpans]);
-        });
+        (async () => {
+            const res = await drawExample((newTimeSpans: TTimeSpan[]) => {
+                setTimeSpans([...newTimeSpans]);
+            });
+            scs = res.sciChartSurface;
+            autoStartTimerId = setTimeout(res.loadPoints, 3000);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => {
+            clearTimeout(autoStartTimerId);
+            scs?.delete();
+        };
     }, []);
 
     return (

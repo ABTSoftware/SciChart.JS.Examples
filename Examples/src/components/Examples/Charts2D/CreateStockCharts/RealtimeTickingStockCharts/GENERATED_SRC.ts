@@ -5,10 +5,8 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 import { SciChartSurface } from "scichart";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAutoRange } from "scichart/types/AutoRange";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
@@ -30,6 +28,7 @@ import { ESeriesType } from "scichart/types/SeriesType";
 import { EColor } from "scichart/types/Color";
 import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
 import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 export const divElementId = "chart";
 // Step = 5 minutes

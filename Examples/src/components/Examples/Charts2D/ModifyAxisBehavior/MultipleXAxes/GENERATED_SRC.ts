@@ -5,11 +5,11 @@ import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ENumericFormat } from "scichart/Charting/Visuals/Axis/LabelProvider/NumericLabelProvider";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
 import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 
 const divElementId = "chart1";
 
