@@ -32,7 +32,7 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
     "request": "^2.88.2",
-    "scichart": "^1.0.1310"
+    "scichart": "^1.0.1318"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",
