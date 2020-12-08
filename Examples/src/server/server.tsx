@@ -3,6 +3,7 @@ import * as compression from "compression";
 import { Request, Response, NextFunction } from "express";
 import * as request from "request";
 import * as chalk from "chalk";
+import * as cors from "cors";
 import * as React from "react";
 import { Helmet } from "react-helmet";
 import * as ReactDOMServer from "react-dom/server";
@@ -12,6 +13,8 @@ import * as defaultConfig from "../../config/default";
 import App from "../components/App";
 import { customTheme } from "../theme";
 import { renderIndexHtml } from "./renderIndexHtml";
+import * as http from "http";
+import {createSocketServer } from "./websockets";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
@@ -43,7 +46,10 @@ function handleRender(req: Request, res: Response) {
 }
 
 const app = express();
+app.use(cors());
 app.use(compression({ filter: shouldCompress }));
+const server = http.createServer(app);
+const io = createSocketServer(server);
 
 function shouldCompress (req: Request, res: Response) {
     if (req.headers['x-no-compression']) {
@@ -77,7 +83,7 @@ app.get("*", (req: Request, res: Response) => {
     handleRender(req, res);
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(
         `Serving at http://${host}:${port} ${chalk.green("✓")}. ${chalk.red("To run in dev mode: npm run dev")}`
     );

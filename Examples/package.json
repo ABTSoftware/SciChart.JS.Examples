@@ -26,13 +26,15 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "chalk": "^4.1.0",
     "compression": "^1.7.4",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
     "request": "^2.88.2",
-    "scichart": "^1.0.1318"
+    "scichart": "^1.0.1318",
+    "socket.io": "^3.0.4"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",
