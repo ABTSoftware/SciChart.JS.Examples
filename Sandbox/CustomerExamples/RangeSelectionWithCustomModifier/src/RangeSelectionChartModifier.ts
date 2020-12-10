@@ -22,7 +22,7 @@ export class RangeSelectionChartModifier extends ChartModifierBase2D {
             yCoordinateMode: ECoordinateMode.Relative,
             y1: 0,
             y2: 1,
-            xCoordinateMode: ECoordinateMode.Pixel,
+            xCoordinateMode: ECoordinateMode.Pixel, // either, use pixel, or use datavalue + coordinate calculator (Axis dependent)
             fill: "#ffffff33",
             strokeThickness: 0
         });
@@ -57,5 +57,15 @@ export class RangeSelectionChartModifier extends ChartModifierBase2D {
 
         this.isSelecting = false;
         this.parentSurface.annotations.remove(this.selectionAnnotation);
+
+        // TODO HERE:
+        // Determine which points are inside the rectangle
+        // if data is sorted in X
+        // rectangle.x1 -> convert with getCurrentCoordCalc() to data-value
+        // rectangle.x2 -> convert with getCurrentCoordCalc() to data-value
+        // you know now the x-range that is selected
+
+        // yrange -> getCurrentCoordCalc compute the top,left,bottom,right in data-space
+        // then loop over values and find what matches
     }
 }

@@ -1,0 +1,40 @@
+
+import { app, BrowserWindow } from "electron";
+import * as path from "path";
+import * as url from "url";
+
+let isDev = require("electron-is-dev");
+
+let mainWindow = null;
+
+app.allowRendererProcessReuse = false;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  });
+
+  if (isDev) {
+    mainWindow.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
+  } else {
+    mainWindow.loadURL(
+        url.format({
+          pathname: path.join(__dirname, "index.html"),
+          protocol: "file:",
+          slashes: true
+        })
+    );
+  }
+
+  mainWindow.webContents.openDevTools();
+
+  mainWindow.on("closed", () => {
+    mainWindow = null;
+  });
+}
+
+app.on("ready", createWindow);
