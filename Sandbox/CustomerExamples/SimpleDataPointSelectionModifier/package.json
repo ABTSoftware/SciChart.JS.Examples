@@ -1,0 +1,23 @@
+{
+  "name": "simple-data-point-selection-modifier",
+  "version": "1.0.0",
+  "description": "Simple data-point selection modifier",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "scichart": "^1.0.1331",
+    "typescript": "^4.0.5"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.0.3",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "ts-loader": "^6.2.1"
+  }
+}

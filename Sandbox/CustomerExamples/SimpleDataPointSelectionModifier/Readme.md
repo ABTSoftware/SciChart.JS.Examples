@@ -1,9 +1,29 @@
-import {ChartModifierBase2D} from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
-import {ModifierMouseArgs} from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
-import {Point} from "scichart/Core/Point";
-import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+# SciChart.js Example - Range Selection on mouse move
 
+This example showcases how to use the ChartModifierBase API in SciChart.js to listen to mouse events. 
+
+## Running the Example
+
+To run the tutorial, open this folder in VSCode, and run the following commands:
+
+> npm install
+> npm start 
+
+Then visit https://localhost:8080 in your web browser! 
+
+## What it does
+
+This example adds range-selection behaviour to the chart, by creating a custom ChartModifier
+
+![Range selection in SciChart.js](https://www.scichart.com/wp-content/uploads/2020/10/2020-10-28-19.32.53.gif)
+
+## How it works
+
+The ChartModifier requires that we use TypeScript (JavaScript ES6 may also work) as we need to extend a class: ChartModifierBase2D. 
+
+We extend the class like this:
+
+```typescript
 // Create a TypeScript class which inherits ChartModifierbase2D to insert into SciChartSurface.chartModifiers collection
 export class RangeSelectionChartModifier extends ChartModifierBase2D {
 
@@ -22,7 +42,7 @@ export class RangeSelectionChartModifier extends ChartModifierBase2D {
             yCoordinateMode: ECoordinateMode.Relative,
             y1: 0,
             y2: 1,
-            xCoordinateMode: ECoordinateMode.Pixel, // either, use pixel, or use datavalue + coordinate calculator (Axis dependent)
+            xCoordinateMode: ECoordinateMode.Pixel,
             fill: "#ffffff33",
             strokeThickness: 0
         });
@@ -57,15 +77,21 @@ export class RangeSelectionChartModifier extends ChartModifierBase2D {
 
         this.isSelecting = false;
         this.parentSurface.annotations.remove(this.selectionAnnotation);
-
-        // TODO HERE:
-        // Determine which points are inside the rectangle
-        // if data is sorted in X
-        // rectangle.x1 -> convert with getCurrentCoordCalc() to data-value
-        // rectangle.x2 -> convert with getCurrentCoordCalc() to data-value
-        // you know now the x-range that is selected
-
-        // yrange -> getCurrentCoordCalc compute the top,left,bottom,right in data-space
-        // then loop over values and find what matches
     }
 }
+```
+
+This ChartModifierBase2D derived class has functions modifierMouseDown, modifierMouseMove, modifierMouseUp, which are called when the user mouse down/move/up on the chart. 
+
+We add an Annotation (a BoxAnnotation) onto the parent SciChartSurface on mousedown, and position it as the user moves the mouse
+
+This lets us display a selection rectangle on the chart with mouse move. 
+
+TODO: 
+
+ - You can modify this sample to perform some action on selection
+ - Perhaps you want to keep the BoxAnnotation on the chart? In which case do not remove it in modifierMouseUp
+ - Perhaps you want to report on the data-values selected? You can use the Coordinate Calculator API in SciChart to convert from pixel to data-coordinates
+ 
+Give us your feedback about what else you want to do with the selection-range example.
+

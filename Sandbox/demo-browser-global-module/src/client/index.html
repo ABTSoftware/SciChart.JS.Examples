@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Include SciChart.js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/scichart@1.0.1331/_wasm/scichart.browser.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Hello, SciChart.js world!</title>
+  </head>
+  <body>
+    <h1>Hello, SciChart.js world!</h1>
+    <p>Note, this is a work in progress! Debugging the scichart.js bundle</p>
+
+    <div id="scichart-root" style="width: 800px; height: 600px;"></div>
+
+    <script>
+      async function initSciChart() {
+        const {
+          sciChartSurface,
+          wasmContext
+        } = await SciChart.SciChartSurface.create("scichart-root");
+        const xAxis = new SciChart.NumericAxis(wasmContext);
+        sciChartSurface.xAxes.add(xAxis);
+
+        const yAxis = new SciChart.NumericAxis(wasmContext, {
+          growBy: new SciChart.NumberRange(0.05, 0.05)
+        });
+        sciChartSurface.yAxes.add(yAxis);
+      }
+
+      initSciChart();
+    </script>
+  </body>
+</html>
