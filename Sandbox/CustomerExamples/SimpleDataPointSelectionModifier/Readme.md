@@ -1,21 +1,21 @@
-# SciChart.js Example - Range Selection on mouse move
+# SciChart.js Example - Simple Data Point Selection
 
-This example showcases how to use the ChartModifierBase API in SciChart.js to listen to mouse events. 
+This example showcases how to use the ChartModifierBase API in SciChart.js to select point on the chart.
 
 ## Running the Example
 
 To run the tutorial, open this folder in VSCode, and run the following commands:
 
-> npm install
-> npm start 
+* `npm install`
+* `npm start` 
 
 Then visit https://localhost:8080 in your web browser! 
 
 ## What it does
 
-This example adds range-selection behaviour to the chart, by creating a custom ChartModifier
+This example adds area-selection behaviour to the chart, by creating a custom ChartModifier
 
-![Range selection in SciChart.js](https://www.scichart.com/wp-content/uploads/2020/10/2020-10-28-19.32.53.gif)
+![Area selection in SciChart.js](img/area_selection.png)
 
 ## How it works
 
@@ -24,13 +24,12 @@ The ChartModifier requires that we use TypeScript (JavaScript ES6 may also work)
 We extend the class like this:
 
 ```typescript
-// Create a TypeScript class which inherits ChartModifierbase2D to insert into SciChartSurface.chartModifiers collection
-export class RangeSelectionChartModifier extends ChartModifierBase2D {
-
+export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
     private startPoint: Point;
     private endPoint: Point;
     private readonly selectionAnnotation: BoxAnnotation;
     private isSelecting: boolean;
+    private selectedPoints: TDataPoint[][] = [];
 
     constructor() {
         super();
@@ -39,9 +38,7 @@ export class RangeSelectionChartModifier extends ChartModifierBase2D {
         // This stretches the annotation to fit the viewport in the Y-direction
         // Below in modifierMouseMove we will be updating the annotation X-values as the mouse is moved.
         this.selectionAnnotation = new BoxAnnotation({
-            yCoordinateMode: ECoordinateMode.Relative,
-            y1: 0,
-            y2: 1,
+            yCoordinateMode: ECoordinateMode.Pixel,
             xCoordinateMode: ECoordinateMode.Pixel,
             fill: "#ffffff33",
             strokeThickness: 0
@@ -49,34 +46,60 @@ export class RangeSelectionChartModifier extends ChartModifierBase2D {
     }
 
     // Called when mouse-down on the chart
-    public modifierMouseDown(args: ModifierMouseArgs): void{
+    public modifierMouseDown(args: ModifierMouseArgs): void {
         super.modifierMouseDown(args);
-        this.startPoint = args.mousePoint;
-        this.endPoint = args.mousePoint;
+        // Point coordinates relative to series view rectangle.
+        const translatedPoint = translateFromCanvasToSeriesViewRect(
+            args.mousePoint,
+            this.parentSurface.seriesViewRect
+        );
+        if (translatedPoint) {
+            this.startPoint = translatedPoint;
+            this.endPoint = translatedPoint;
 
-        this.selectionAnnotation.x1 = this.startPoint.x;
-        this.selectionAnnotation.x2 = this.endPoint.x;
-        this.isSelecting = true;
+            this.selectionAnnotation.x1 = translatedPoint.x;
+            this.selectionAnnotation.x2 = translatedPoint.x;
+            this.selectionAnnotation.y1 = translatedPoint.y;
+            this.selectionAnnotation.y2 = translatedPoint.y;
+            this.isSelecting = true;
 
-        this.parentSurface.annotations.add(this.selectionAnnotation);
+            this.parentSurface.annotations.remove(this.selectionAnnotation);
+            this.parentSurface.annotations.add(this.selectionAnnotation);
+        }
     }
 
     // Called when mouse-move on the chart
     public modifierMouseMove(args: ModifierMouseArgs): void {
         super.modifierMouseMove(args);
+        const translatedPoint = translateFromCanvasToSeriesViewRect(
+            args.mousePoint,
+            this.parentSurface.seriesViewRect
+        );
 
-        if (this.isSelecting) {
+        if (translatedPoint && this.isSelecting) {
             this.endPoint = args.mousePoint;
-            this.selectionAnnotation.x2 = this.endPoint.x;
+            this.selectionAnnotation.x2 = translatedPoint.x;
+            this.selectionAnnotation.y2 = translatedPoint.y;
         }
     }
 
     // Called when mouse-up on the chart
     public modifierMouseUp(args: ModifierMouseArgs) {
         super.modifierMouseUp(args);
-
         this.isSelecting = false;
-        this.parentSurface.annotations.remove(this.selectionAnnotation);
+        this.performSelection();
+        console.log("selectedPoints", this.selectedPoints);
+        document.getElementById("result").innerText = JSON.stringify(
+            this.selectedPoints,
+            null,
+            4
+        );
+        this.startPoint = undefined;
+        this.endPoint = undefined;
+    }
+
+    private performSelection() {
+        ...
     }
 }
 ```
@@ -87,11 +110,4 @@ We add an Annotation (a BoxAnnotation) onto the parent SciChartSurface on moused
 
 This lets us display a selection rectangle on the chart with mouse move. 
 
-TODO: 
-
- - You can modify this sample to perform some action on selection
- - Perhaps you want to keep the BoxAnnotation on the chart? In which case do not remove it in modifierMouseUp
- - Perhaps you want to report on the data-values selected? You can use the Coordinate Calculator API in SciChart to convert from pixel to data-coordinates
- 
-Give us your feedback about what else you want to do with the selection-range example.
-
+On mouse up we perform data points selection iterating over all RenderableSeries of the SciChartSurface.
