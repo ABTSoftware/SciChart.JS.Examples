@@ -21,6 +21,7 @@ import candlestickImg from "../Examples/Charts2D/BasicChartTypes/CandlestickChar
 import columnChartImg from "../Examples/Charts2D/BasicChartTypes/ColumnChart/javascript-column-chart.jpg";
 import fanChartImg from "../Examples/Charts2D/BasicChartTypes/FanChart/javascript-fan-chart.jpg";
 import heatmapImg from "../Examples/Charts2D/BasicChartTypes/HeatmapChart/javascript-heatmap-chart.jpg";
+import contourImg from "../Examples/Charts2D/BasicChartTypes/ContoursChart/javascript-contours-chart.jpg";
 import mountainImg from "../Examples/Charts2D/BasicChartTypes/MountainChart/javascript-mountain-chart.jpg";
 import ohlcImg from "../Examples/Charts2D/BasicChartTypes/OhlcChart/javascript-ohlc-chart.jpg";
 import scatterImg from "../Examples/Charts2D/BasicChartTypes/ScatterChart/javascript-scatter-chart.jpg";
@@ -192,6 +193,14 @@ const Gallery: React.FC<TProps> = (props) => {
                         title="Heatmap Chart"
                         seoTitle="JavaScript Heatmap Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart.path}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <GalleryCard
+                        imgPath={contourImg}
+                        title="Contours Chart"
+                        seoTitle="JavaScript Contours Chart Example"
+                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_ContourChart.path}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>

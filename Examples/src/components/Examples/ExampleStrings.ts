@@ -123,6 +123,12 @@ export const ExampleStrings = {
     urlHeatmapChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Uniform%20Heatmap%20Series%20Type.html",
     urlTitleHeatmapChartDocumentation: "The specific page for the JavaScript Heatmap Chart documentation will help you to get started",
 
+    // Contours chart
+    urlTitleContourChartDocumentation: "The specific page for the JavaScript Contours Chart documentation will help you to get started",
+    urlContourChartDocumentation: "#",
+    titleContourChart: "JavaScript Contours chart",
+    urlContourChart: "/javascript-heatmap-chart-with-contours",
+
     // Annotations are easy
     urlAnnotationsAreEasy: "/javascript-chart-annotations",
     titleAnnotationsAreEasy: "JavaScript Chart Annotations",
@@ -276,6 +282,5 @@ export const ExampleStrings = {
     // Featured Apps Tenor Curves
     titleTenorCurvesFeaturedApp: "Tenor Curves Demo",
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
-
 
 }
