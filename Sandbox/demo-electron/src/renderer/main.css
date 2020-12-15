@@ -2,3 +2,8 @@
 body {
     margin: 0;
 }
+
+/* Ensures the main <div> is 100% of viewport height */
+.mainDiv {
+    height: 100vh;
+}
