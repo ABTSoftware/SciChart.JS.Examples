@@ -1,6 +1,14 @@
 /* Css styles which are included at the root page level */
+
+/* background-color: transparent as browserWindow background is set to #222 to avoid resize flicker */
+/* https://github.com/electron/electron/issues/10801 */
+html {
+    background-color: transparent;
+}
+
 body {
     margin: 0;
+    background-color: transparent;
 }
 
 /* Ensures the main <div> is 100% of viewport height */
