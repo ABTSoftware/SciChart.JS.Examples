@@ -2,7 +2,7 @@
   "name": "react-scichart-demo",
   "version": "1.0.0",
   "description": "First Tutorial with SciChart.js",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "compile": "electron-webpack",
     "start": "electron-webpack dev",
