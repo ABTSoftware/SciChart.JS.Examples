@@ -3,8 +3,10 @@ import ReactDom from 'react-dom';
 import FullScreenChart from './components/fullScreenChart';
 import { SciChartSurface } from 'scichart/Charting/Visuals/SciChartSurface';
 import "./main.css"
+import { ipcRenderer } from 'electron';
 
-SciChartSurface.setRuntimeLicenseKey('YOUR_SCICHART_LICENSE_KEY_HERE');
+// Don't store the test of the license key in the renderer.  Fetch it from main instead.
+SciChartSurface.setRuntimeLicenseKey(ipcRenderer.sendSync("getLicense"));
 
 // <div class="mainDiv"> is placed at the root of the app. See main.css where it is given 100vh size
 const mainElement = document.createElement('div');

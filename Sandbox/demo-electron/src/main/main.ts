@@ -1,5 +1,5 @@
 
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import * as url from "url";
 
@@ -17,6 +17,10 @@ function createWindow() {
       nodeIntegration: true
     },
     backgroundColor: "#222222" /* Prevents white flicker on resize https://github.com/electron/electron/issues/10801 */
+  });
+
+  ipcMain.on('getLicense', (event: any, arg: any) => {
+    event.returnValue = "RUNTIME LICENSE KEY HERE";
   });
 
   if (isDev) {
