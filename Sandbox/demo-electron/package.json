@@ -1,7 +1,8 @@
 {
-  "name": "react-scichart-demo",
+  "name": "electron-scichart-demo",
+  "appId": "com.scichart.electron-demo",
   "version": "1.0.0",
-  "description": "First Tutorial with SciChart.js",
+  "description": "First Tutorial with SciChart.js and Electron",
   "main": "main.js",
   "scripts": {
     "compile": "electron-webpack",

@@ -19,6 +19,7 @@ function createWindow() {
     backgroundColor: "#222222" /* Prevents white flicker on resize https://github.com/electron/electron/issues/10801 */
   });
 
+  // Store the license key which is fetched in Index.tsx. Update this part below to include your runtime license key
   ipcMain.on('getLicense', (event: any, arg: any) => {
     event.returnValue = "RUNTIME LICENSE KEY HERE";
   });

@@ -5,7 +5,8 @@ import { SciChartSurface } from 'scichart/Charting/Visuals/SciChartSurface';
 import "./main.css"
 import { ipcRenderer } from 'electron';
 
-// Don't store the test of the license key in the renderer.  Fetch it from main instead.
+// Don't store the test of the license key in the renderer. Fetch it from main instead.
+// An example can be found below.
 SciChartSurface.setRuntimeLicenseKey(ipcRenderer.sendSync("getLicense"));
 
 // <div class="mainDiv"> is placed at the root of the app. See main.css where it is given 100vh size
