@@ -9,7 +9,7 @@ interface BasicChartProps {
 
 }
 
-export default function BasicChart (props: BasicChartProps) {
+export default function FullScreenChart (props: BasicChartProps) {
     console.log('Render');
 
     let [chartId] = React.useState('scichart-root');

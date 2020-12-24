@@ -1,17 +1,16 @@
 {
-  "name": "tutorial1",
+  "name": "simple-data-point-selection-modifier",
   "version": "1.0.0",
-  "description": "First Tutorial with SciChart.js",
+  "description": "Simple data-point selection modifier",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start": "webpack-dev-server"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "scichart": "^1.0.1344",
+    "scichart": "^1.1.1359",
     "typescript": "^4.0.5"
   },
   "devDependencies": {
