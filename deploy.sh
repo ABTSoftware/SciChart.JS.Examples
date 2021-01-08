@@ -67,6 +67,10 @@ fi
 # Node Helpers
 # ------------
 
+NPM_CMD=npm
+NODE_EXE=node
+
+# This doesn't seem to work any more
 selectNodeVersion () {
   if [[ -n "$KUDU_SELECT_NODE_VERSION_CMD" ]]; then
     SELECT_NODE_VERSION="$KUDU_SELECT_NODE_VERSION_CMD \"$DEPLOYMENT_SOURCE/Examples\" \"$DEPLOYMENT_TARGET\" \"$DEPLOYMENT_TEMP\""
@@ -101,7 +105,7 @@ selectNodeVersion () {
 echo Handling node.js deployment.
 
 # 1. Select node version
-selectNodeVersion
+# selectNodeVersion
 
 # 2. Install npm packages
 if [ -e "$DEPLOYMENT_SOURCE/Examples/package.json" ]; then
