@@ -35,7 +35,7 @@
     "electron-is-dev": "^1.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "scichart": "^1.0.1331"
+    "scichart": "^1.1.1368"
   },
   "electronWebpack": {
     "renderer": {
