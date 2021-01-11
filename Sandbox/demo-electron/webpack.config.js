@@ -10,8 +10,8 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: "node_modules/scichart/_wasm/scichart2d.data", to: "scichart2d.data" },
-        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "node_modules/scichart/_wasm/" }
+        { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
+        { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" }
       ],
     })
   ],
