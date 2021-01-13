@@ -15,6 +15,7 @@ import { customTheme } from "../theme";
 import { renderIndexHtml } from "./renderIndexHtml";
 import * as http from "http";
 import {createSocketServer } from "./websockets";
+import { tq3080_DSM_2M } from "./Data/tq3080_DSM_2M";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
@@ -71,6 +72,11 @@ app.get("/api/license", (req, res) => {
     const domainLicense = process.env.SCLICENSE;
     console.log("returning license: " + domainLicense);
     res.send(domainLicense);
+});
+
+app.get("/api/lidarData", (req, res) => {
+    console.log("returning lidar data");
+    res.send(tq3080_DSM_2M);
 });
 
 app.use("/api/thevirustracker", (req: Request, res: Response) => {

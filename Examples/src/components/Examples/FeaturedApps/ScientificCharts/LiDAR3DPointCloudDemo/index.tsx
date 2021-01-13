@@ -38,9 +38,11 @@ const drawExample = async () => {
 
     // Create a 3D Scatter series uing pixel point marker, a high performance single pixel applied per x,y,z data-point
     // The dataseries is type XyzDataSeries3D which is created and returned from getData function
+    const dataSeries = await getData(wasmContext);
+
     const series = new ScatterRenderableSeries3D(wasmContext, {
         pointMarker: new PixelPointMarker3D(wasmContext, { fill: "#00FF00" }),
-        dataSeries: getData(wasmContext)
+        dataSeries: dataSeries
     });
     sciChart3DSurface.renderableSeries.add(series);
 
@@ -51,7 +53,7 @@ const drawExample = async () => {
     return { wasmContext, sciChart3DSurface };
 };
 
-function getData(wasmContext: TSciChart3D) {
+async function getData(wasmContext: TSciChart3D) {
     // The LinearColorMap type in SciChart allows you to generate a colour map based on a
     // minimum and maximum value, e.g. min=0, max=50 means the gradient brush below is mapped into that range
     //
@@ -74,7 +76,10 @@ function getData(wasmContext: TSciChart3D) {
         // This will be injected into the SciChart XyzDataSeries3D to colour points in the point-cloud
         return linearColorMapLerp(colorMap, height);
     });
-    const ascData: AscData = reader.readFileToAscData("TODO");
+
+    console.log("fetching data");
+    const rawData = await fetch("/api/lidardata");
+    const ascData: AscData = reader.parse(await rawData.text());
 
     // Prepare metadata
     const meta: TMetadata[] = ascData.ColorValues.map(c => ({

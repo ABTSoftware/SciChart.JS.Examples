@@ -11,7 +11,17 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "build": {
-    "publish": null
+    "publish": null,
+    "mac": {
+      "category": "public.app-category.utilities",
+      "hardenedRuntime": true,
+      "entitlements": "entitlements.mac.inherit.plist",
+      "target": [
+          "dmg",
+          "zip"
+      ],
+      "gatekeeperAssess": false
+  }
   },
   "author": "",
   "license": "MIT",

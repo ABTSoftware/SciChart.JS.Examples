@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --config webpack.client.no_server.config.js",
-    "build": "rm -rf ./build && npm run buildServer && npm run buildClient",
+    "build": "rimraf ./build && npm run buildServer && npm run buildClient",
     "start": "node ./build/server.js",
     "buildServer": "webpack --config webpack.server.config.js",
     "buildClient": "webpack --config webpack.client.config.js",
