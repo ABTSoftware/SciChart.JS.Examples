@@ -2,6 +2,7 @@ const { merge } = require("webpack-merge");
 const webpackClientConfig = require("./webpack.client.config.js");
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
+const tq3080_DSM_2M = require("./src/server/Data/tq3080_DSM_2M");
 
 // LICENSING //
 // Set your license code here to license the SciChart.js Examples app
@@ -43,6 +44,9 @@ module.exports = merge(webpackClientConfig, {
         before: function(app, server, compiler) {
             app.get("/api/license", function(req, res) {
                 res.send(betaTrialKey);
+            });
+            app.get("/api/lidarData", function(req, res) {
+                res.send(tq3080_DSM_2M.tq3080_DSM_2M);
             });
         }
     }

@@ -41,6 +41,7 @@ module.exports = {
                 { from: "sitemap.xml", to: "" }
             ]
         }),
-        new webpack.IgnorePlugin(/(fs)/)
+        new webpack.IgnorePlugin(/(fs)/),
+        // new BundleAnalyzerPlugin()
     ]
 };

@@ -22,6 +22,9 @@ type TMetadata = {
 };
 
 const drawExample = async () => {
+    // Load data from the server
+    const dataFromServer = await getDataFromServer();
+
     // Create a SciChart3DSurface
     const { wasmContext, sciChart3DSurface } = await SciChart3DSurface.create(divElementId);
 
@@ -37,12 +40,17 @@ const drawExample = async () => {
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Axis" });
 
     // Create a 3D Scatter series uing pixel point marker, a high performance single pixel applied per x,y,z data-point
-    // The dataseries is type XyzDataSeries3D which is created and returned from getData function
-    const dataSeries = await getData(wasmContext);
+    const xyzDataSeries = new XyzDataSeries3D(wasmContext);
+    xyzDataSeries.appendRange(
+        dataFromServer.ascData.XValues,
+        dataFromServer.ascData.YValues,
+        dataFromServer.ascData.ZValues,
+        dataFromServer.meta
+    );
 
     const series = new ScatterRenderableSeries3D(wasmContext, {
         pointMarker: new PixelPointMarker3D(wasmContext, { fill: "#00FF00" }),
-        dataSeries: dataSeries
+        dataSeries: xyzDataSeries
     });
     sciChart3DSurface.renderableSeries.add(series);
 
@@ -53,7 +61,7 @@ const drawExample = async () => {
     return { wasmContext, sciChart3DSurface };
 };
 
-async function getData(wasmContext: TSciChart3D) {
+async function getDataFromServer() {
     // The LinearColorMap type in SciChart allows you to generate a colour map based on a
     // minimum and maximum value, e.g. min=0, max=50 means the gradient brush below is mapped into that range
     //
@@ -80,6 +88,7 @@ async function getData(wasmContext: TSciChart3D) {
     console.log("fetching data");
     const rawData = await fetch("/api/lidardata");
     const ascData: AscData = reader.parse(await rawData.text());
+    console.log("ascData", ascData);
 
     // Prepare metadata
     const meta: TMetadata[] = ascData.ColorValues.map(c => ({
@@ -87,10 +96,10 @@ async function getData(wasmContext: TSciChart3D) {
         pointScale: 0
     }));
 
-    const xyzDataSeries = new XyzDataSeries3D(wasmContext);
-    xyzDataSeries.appendRange(ascData.XValues, ascData.YValues, ascData.ZValues, meta);
-
-    return xyzDataSeries;
+    return {
+        ascData,
+        meta
+    };
 }
 
 export default function LiDAR3DPointCloudDemo() {
