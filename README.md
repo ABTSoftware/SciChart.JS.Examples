@@ -64,10 +64,10 @@ We've prepared a Getting-Started guide at [www.scichart.com/getting-started-scic
 1. Get a trial license key from [www.scichart.com/licensing-scichart-js/](https://www.scichart.com/licensing-scichart-js/) by installing and running the **[licensing wizard](https://www.scichart.com/licensing-scichart-js/)**.
 2. Purchased license keys can be viewed at [www.scichart.com/profile](https://www.scichart.com/profile) and activated by following the steps at [licensing scichart JS](https://www.scichart.com/licensing-scichart-js/) 
 
-**Licensing a domain for production**
+**Licensing a host for production**
 
-In order to deploy an app to some domain
-* Set the domain for you license on the website [www.scichart.com/profile](https://www.scichart.com/profile)
+In order to deploy an app to a public host
+* Set the full hostname for you license on the website [www.scichart.com/profile](https://www.scichart.com/profile)
 * Copy runtime key from the **licensing wizard**
 * Set the runtime key in your app before calling SciChartSurface.create. The runtime key should be set once! 
 ```
