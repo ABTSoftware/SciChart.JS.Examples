@@ -10,6 +10,19 @@
     "dist": "npm run compile && electron-builder",
     "postinstall": "electron-builder install-app-deps"
   },
+  "build": {
+    "publish": null,
+    "mac": {
+      "category": "public.app-category.utilities",
+      "hardenedRuntime": true,
+      "entitlements": "entitlements.mac.inherit.plist",
+      "target": [
+          "dmg",
+          "zip"
+      ],
+      "gatekeeperAssess": false
+  }
+  },
   "author": "",
   "license": "MIT",
   "devDependencies": {
@@ -35,7 +48,8 @@
     "electron-is-dev": "^1.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "scichart": "^1.1.1368"
+    "scichart": "^1.1.1368",
+    "source-map-support": "^0.5.19"
   },
   "electronWebpack": {
     "renderer": {

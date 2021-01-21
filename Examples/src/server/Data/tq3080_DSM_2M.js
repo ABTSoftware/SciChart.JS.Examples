@@ -1,4 +1,4 @@
-export const tq3080_DSM_2M: string =
+exports.tq3080_DSM_2M =
     "ncols 500\n" +
     "nrows 500\n" +
     "xllcorner    530000\n" +

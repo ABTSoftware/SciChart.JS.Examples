@@ -1,5 +1,3 @@
-import { tq3080_DSM_2M } from "./Data/tq3080_DSM_2M";
-
 export type AscData = {
     XValues: number[];
     YValues: number[];
@@ -29,38 +27,7 @@ export class AscReader {
         this.reportProgress = reportProgress;
     }
 
-    public readFileToAscData(filename: string): AscData {
-        /*   const retval: AscData = new AscData() /!*
-        {
-            XValues = new List<number>(),
-                YValues = new List<number>(),
-                ZValues = new List<number>(),
-                ColorValues = new List<number>(),
-        }*!/;*/
-        /*    const reader = new FileReader();
-        // tslint:disable-next-line:only-arrow-functions
-        reader.onloadend = (ev: ProgressEvent<FileReader>) => {
-            const contents: string = ev.target.result as string;
-            parseAsc(contents, retval);
-        };
-        await reader.readAsText(file);*/
-        /*    const rawFile = new XMLHttpRequest();
-        rawFile.open("GET", filename, false);
-        rawFile.onreadystatechange = () => {
-            console.log("rawFile.onreadystatechange");
-            if (rawFile.readyState === 4) {
-                if (rawFile.status === 200 || rawFile.status == 0) {
-                    const allText = rawFile.responseText;
-                    alert(allText);
-                }
-            }
-        };
-        rawFile.send(null);*/
-
-        return this.parse(tq3080_DSM_2M);
-    }
-
-    private parse(data: string): AscData {
+    public parse(data: string): AscData {
         // Prepare date
         this.dataLines = data.split("\n");
         this.curParseIndex = 0;
