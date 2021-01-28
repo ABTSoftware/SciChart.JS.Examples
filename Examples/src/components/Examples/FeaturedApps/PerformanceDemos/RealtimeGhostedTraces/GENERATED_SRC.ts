@@ -85,22 +85,19 @@ const drawExample = async () => {
     };
     document.getElementById("startAnimation").addEventListener("click", startAnimation);
 
-    return { wasmContext, sciChartSurface, controls: { startAnimation, stopAnimation} };
+    return { wasmContext, sciChartSurface, controls: { startAnimation, stopAnimation } };
 };
 
 let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
 export default function RealtimeGhostedTraces() {
-    const [showButtons, setShowButtons] = React.useState(false);
     const [controls, setControls] = React.useState({ startAnimation: () => {}, stopAnimation: () => {} });
-
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
             scs = res.sciChartSurface;
-            setShowButtons(true);
             setControls(res.controls);
             autoStartTimerId = setTimeout(res.controls.startAnimation, 3000);
         })();
@@ -110,13 +107,13 @@ export default function RealtimeGhostedTraces() {
             clearTimeout(timerId);
             clearTimeout(autoStartTimerId);
             scs?.delete();
-        }
+        };
     }, []);
 
     return (
         <React.Fragment>
             <div id={divElementId} style={{ maxWidth: 900 }} />
-            <div style={{ marginTop: 20, display: showButtons ? "block" : "none" }}>
+            <div style={{ marginTop: 20, display: "block" }}>
                 <button id="startAnimation">Start</button>
                 <button id="stopAnimation" style={{ marginLeft: 10 }}>
                     Stop

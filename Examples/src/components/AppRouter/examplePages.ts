@@ -1,4 +1,5 @@
 import { bandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/exampleInfo";
+import { digitalBandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart/exampleInfo";
 import { fanChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/FanChart/exampleInfo";
 import { bubbleChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BubbleChart/exampleInfo";
 import { candlestickChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/CandlestickChart/exampleInfo";
@@ -7,7 +8,9 @@ import { columnChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/Col
 import { heatmapChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/HeatmapChart/exampleInfo";
 import { contourChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ContoursChart/exampleInfo";
 import { lineChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/LineChart/exampleInfo";
+import { digitalLineChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DigitalLineChart/exampleInfo";
 import { mountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/MountainChart/exampleInfo";
+import { digitalMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DigitalMountainChart/exampleInfo";
 import { scatterChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ScatterChart/exampleInfo";
 import { donutChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DonutChart/exampleInfo";
 import { pieChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/PieChart/exampleInfo";
@@ -67,6 +70,10 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart2D_basicCharts_BandSeriesChart",
         ...bandSeriesChartExampleInfo
     },
+    chart2D_basicCharts_DigitalBandSeriesChart: {
+        id: "chart2D_basicCharts_DigitalBandSeriesChart",
+        ...digitalBandSeriesChartExampleInfo
+    },
     chart2D_basicCharts_FanChart: {
         id: "chart2D_basicCharts_FanChart",
         ...fanChartExampleInfo
@@ -99,9 +106,17 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart2D_basicCharts_LineChart",
         ...lineChartExampleInfo
     },
+    chart2D_basicCharts_DigitalLineChart: {
+        id: "chart2D_basicCharts_DigitalLineChart",
+        ...digitalLineChartExampleInfo
+    },
     chart2D_basicCharts_MountainChart: {
         id: "chart2D_basicCharts_MountainChart",
         ...mountainChartExampleInfo
+    },
+    chart2D_basicCharts_DigitalMountainChart: {
+        id: "chart2D_basicCharts_DigitalMountainChart",
+        ...digitalMountainChartExampleInfo
     },
     chart2D_basicCharts_ScatterChart: {
         id: "chart2D_basicCharts_ScatterChart",

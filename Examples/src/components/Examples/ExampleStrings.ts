@@ -38,6 +38,13 @@ export const ExampleStrings = {
     urlBandChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Band%20Series%20type.html",
     urlTitleBandChartDocumentation: "This specific page in the JavaScript Band Chart documentation will help you to get started",
 
+    // Digital Band chart
+    urlDigitalBandChart: "/javascript-digital-band-chart",
+    urlTitleDigitalBandChart: "JavaScript Digital Band Chart example",
+    titleDigitalBandChart: "JavaScript Digital Band Chart",
+    urlDigitalBandChartDocumentation: "#",
+    urlTitleDigitalBandChartDocumentation: "This specific page in the JavaScript Digital Band Chart documentation will help you to get started",
+
     // Bubble Chart
     urlBubbleChart: "/javascript-bubble-chart",
     titleBubbleChart: "JavaScript Bubble Chart",
@@ -58,6 +65,13 @@ export const ExampleStrings = {
     urlMountainChart: "/javascript-mountain-chart",
     titleMountainChart: "JavaScript Mountain Chart",
     urlTitleMountainChart: "The JavaScript Mountain Chart example demonstrates how to create a Mountain Chart with SciChart.js",
+
+    // Digital Mountain Chart
+    urlDigitalMountainChartDocumentation: "#",
+    urlTitleDigitalMountainChartDocumentation: "This specific page in the JavaScript Digital Mountain Chart documentation will help you to get started",
+    urlDigitalMountainChart: "/javascript-digital-mountain-chart",
+    titleDigitalMountainChart: "JavaScript Digital Mountain Chart",
+    urlTitleDigitalMountainChart: "The JavaScript Digital Mountain Chart example demonstrates how to create a Digital Mountain Chart with SciChart.js",
 
     // Candlestick Chart
     urlCandlestickChart: "/javascript-candlestick-chart",
@@ -85,6 +99,12 @@ export const ExampleStrings = {
     titleLineChart: "JavaScript Line Chart",
     urlLineChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Fan%20Charts%20Type.html",
     urlTitleLineChartDocumentation: "The specific page for the JavaScript Line Chart documentation will help you to get started",
+
+    // Digital Line Chart
+    urlDigitalLineChart: "/javascript-digital-line-chart",
+    titleDigitalLineChart: "JavaScript Digital Line Chart",
+    urlDigitalLineChartDocumentation: "#",
+    urlTitleDigitalLineChartDocumentation: "The specific page for the JavaScript Digital Line Chart documentation will help you to get started",
 
     // Pie Chart
     urlPieChart: "/javascript-pie-chart",

@@ -1,4 +1,5 @@
 import BandSeriesChart from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart";
+import DigitalBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart";
 import FanChart from "../Examples/Charts2D/BasicChartTypes/FanChart";
 import BubbleChart from "../Examples/Charts2D/BasicChartTypes/BubbleChart";
 import CandlestickChart from "../Examples/Charts2D/BasicChartTypes/CandlestickChart";
@@ -7,7 +8,9 @@ import ColumnChart from "../Examples/Charts2D/BasicChartTypes/ColumnChart";
 import HeatmapChart from "../Examples/Charts2D/BasicChartTypes/HeatmapChart";
 import ContourChart from "../Examples/Charts2D/BasicChartTypes/ContoursChart";
 import LineChart from "../Examples/Charts2D/BasicChartTypes/LineChart";
+import DigitalLineChart from "../Examples/Charts2D/BasicChartTypes/DigitalLineChart";
 import MountainChart from "../Examples/Charts2D/BasicChartTypes/MountainChart";
+import DigitalMountainChart from "../Examples/Charts2D/BasicChartTypes/DigitalMountainChart";
 import ScatterChart from "../Examples/Charts2D/BasicChartTypes/ScatterChart";
 import StackedColumnChart from "../Examples/Charts2D/BasicChartTypes/StackedColumnChart";
 import StackedColumnSideBySide from "../Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide";
@@ -69,7 +72,9 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         item: { id: "chart2D_basicCharts", name: "JavaScript Chart Types" },
         submenu: [
             EXAMPLES_PAGES.chart2D_basicCharts_LineChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart,
             EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_DigitalBandSeriesChart,
             EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart,
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart,
@@ -77,6 +82,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ContourChart,
             EXAMPLES_PAGES.chart2D_basicCharts_MountainChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart,
             EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart,
@@ -210,6 +216,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
     switch (exampleId) {
         case EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.id:
             return BandSeriesChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_DigitalBandSeriesChart.id:
+            return DigitalBandSeriesChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_FanChart.id:
             return FanChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart.id:
@@ -226,8 +234,12 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return ContourChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_LineChart.id:
             return LineChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart.id:
+            return DigitalLineChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_MountainChart.id:
             return MountainChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart.id:
+            return DigitalMountainChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart.id:
             return ScatterChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_DonutChart.id:

@@ -96,7 +96,7 @@ function createSeries(index: number, heatmapWidth: number, heatmapHeight: number
     return zValues;
 }
 
-export default function HeatmapChart() {
+export default function ContourChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
     React.useEffect(() => {

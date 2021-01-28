@@ -15,7 +15,9 @@ import audioAnalyzerImage from "../Examples/FeaturedApps/ScientificCharts/AudioA
 import tenorCurvesImage from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/javascript-3d-surface-mesh-tenor-curve-example.jpg";
 // 2D Chart Types
 import lineChartImg from "../Examples/Charts2D/BasicChartTypes/LineChart/javascript-line-chart.jpg";
+import digitalLineChartImg from "../Examples/Charts2D/BasicChartTypes/DigitalLineChart/javascript-digital-line-chart.jpg";
 import bandChartImg from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart/javascript-band-chart.jpg";
+import digitalBandChartImg from "../Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart/javascript-digital-band-chart.jpg";
 import bubbleChartImg from "../Examples/Charts2D/BasicChartTypes/BubbleChart/javascript-bubble-chart.jpg";
 import candlestickImg from "../Examples/Charts2D/BasicChartTypes/CandlestickChart/javascript-candlestick-chart.jpg";
 import columnChartImg from "../Examples/Charts2D/BasicChartTypes/ColumnChart/javascript-column-chart.jpg";
@@ -23,6 +25,7 @@ import fanChartImg from "../Examples/Charts2D/BasicChartTypes/FanChart/javascrip
 import heatmapImg from "../Examples/Charts2D/BasicChartTypes/HeatmapChart/javascript-heatmap-chart.jpg";
 import contourImg from "../Examples/Charts2D/BasicChartTypes/ContoursChart/javascript-contours-chart.jpg";
 import mountainImg from "../Examples/Charts2D/BasicChartTypes/MountainChart/javascript-mountain-chart.jpg";
+import digitalMountainImg from "../Examples/Charts2D/BasicChartTypes/DigitalMountainChart/javascript-digital-mountain-chart.jpg";
 import ohlcImg from "../Examples/Charts2D/BasicChartTypes/OhlcChart/javascript-ohlc-chart.jpg";
 import scatterImg from "../Examples/Charts2D/BasicChartTypes/ScatterChart/javascript-scatter-chart.jpg";
 import stackedColumnImg from "../Examples/Charts2D/BasicChartTypes/StackedColumnChart/javascript-stacked-column-chart.png";
@@ -157,6 +160,38 @@ const Gallery: React.FC<TProps> = (props) => {
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
                     <GalleryCard
+                        imgPath={mountainImg}
+                        title="Mountain Chart"
+                        seoTitle="JavaScript Mountain Chart Example"
+                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_MountainChart.path}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <GalleryCard
+                        imgPath={digitalLineChartImg}
+                        title="Digital Line Chart"
+                        seoTitle="JavaScript Digital Line Chart Example"
+                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart.path}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <GalleryCard
+                        imgPath={digitalBandChartImg}
+                        title="Digital Band Chart"
+                        seoTitle="JavaScript Digital Band Chart Example"
+                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_DigitalBandSeriesChart.path}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <GalleryCard
+                        imgPath={digitalMountainImg}
+                        title="Digital Mountain Chart"
+                        seoTitle="JavaScript Digital Mountain Chart Example"
+                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart.path}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <GalleryCard
                         imgPath={bubbleChartImg}
                         title="Bubble Chart"
                         seoTitle="JavaScript Bubble Chart Example"
@@ -201,14 +236,6 @@ const Gallery: React.FC<TProps> = (props) => {
                         title="Contours Chart"
                         seoTitle="JavaScript Contours Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_ContourChart.path}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <GalleryCard
-                        imgPath={mountainImg}
-                        title="Mountain Chart"
-                        seoTitle="JavaScript Mountain Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_MountainChart.path}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
