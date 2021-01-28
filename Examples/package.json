@@ -33,7 +33,7 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
     "request": "^2.88.2",
-    "scichart": "^1.1.1385",
+    "scichart": "^1.1.1394",
     "socket.io": "^3.0.4"
   },
   "devDependencies": {
