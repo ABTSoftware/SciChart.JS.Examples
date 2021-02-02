@@ -42,7 +42,7 @@ export const ExampleStrings = {
     urlDigitalBandChart: "/javascript-digital-band-chart",
     urlTitleDigitalBandChart: "JavaScript Digital Band Chart example",
     titleDigitalBandChart: "JavaScript Digital Band Chart",
-    urlDigitalBandChartDocumentation: "#",
+    urlDigitalBandChartDocumentation: "https://www.scichart.com/documentation/js/current/DigitalBandSeriesType.html",
     urlTitleDigitalBandChartDocumentation: "This specific page in the JavaScript Digital Band Chart documentation will help you to get started",
 
     // Bubble Chart
@@ -67,7 +67,7 @@ export const ExampleStrings = {
     urlTitleMountainChart: "The JavaScript Mountain Chart example demonstrates how to create a Mountain Chart with SciChart.js",
 
     // Digital Mountain Chart
-    urlDigitalMountainChartDocumentation: "#",
+    urlDigitalMountainChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Digital%20(Step)%20Mountain%20Series%20Type.html",
     urlTitleDigitalMountainChartDocumentation: "This specific page in the JavaScript Digital Mountain Chart documentation will help you to get started",
     urlDigitalMountainChart: "/javascript-digital-mountain-chart",
     titleDigitalMountainChart: "JavaScript Digital Mountain Chart",
@@ -103,7 +103,7 @@ export const ExampleStrings = {
     // Digital Line Chart
     urlDigitalLineChart: "/javascript-digital-line-chart",
     titleDigitalLineChart: "JavaScript Digital Line Chart",
-    urlDigitalLineChartDocumentation: "#",
+    urlDigitalLineChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Digital%20(Step)%20Line%20Series.html",
     urlTitleDigitalLineChartDocumentation: "The specific page for the JavaScript Digital Line Chart documentation will help you to get started",
 
     // Pie Chart
