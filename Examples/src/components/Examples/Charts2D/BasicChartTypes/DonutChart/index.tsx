@@ -8,7 +8,7 @@ import { PieSegment } from "scichart/Charting/Visuals/SciChartPieSurface/PieSegm
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
-import { SciChartJSLightTheme } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSLightTheme";
+import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
 
 export const divElementId = "chart";
 
