@@ -8,9 +8,6 @@ import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 
 const divElementId = "chart";
 
@@ -36,11 +33,11 @@ const drawExample = async () => {
 
     // Create the band series and add to the chart
     const rendSeries = new FastBandRenderableSeries(wasmContext, { dataSeries, strokeThickness: 2 });
-    sciChartSurface.renderableSeries.add(rendSeries);
     rendSeries.fill = "#279B2733";
     rendSeries.fillY1 = "#FF191933";
     rendSeries.stroke = "#FF1919FF";
     rendSeries.strokeY1 = "#279B27FF";
+    sciChartSurface.renderableSeries.add(rendSeries);
 
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());

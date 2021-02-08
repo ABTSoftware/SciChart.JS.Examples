@@ -20,7 +20,6 @@ import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { EXyDirection } from "scichart/types/XyDirection";
 import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
-import { multiPaneData } from "../../../ExampleData/multiPaneData";
 import {
     EFillPaletteMode,
     EStrokePaletteMode,
@@ -84,11 +83,10 @@ const drawExample = async () => {
             lowValues,
             closeValues
         });
-        sciChartSurface.renderableSeries.add(
-            new FastCandlestickRenderableSeries(wasmContext, {
-                dataSeries: usdDataSeries
-            })
-        );
+        const fcRendSeries = new FastCandlestickRenderableSeries(wasmContext, {
+            dataSeries: usdDataSeries
+        });
+        sciChartSurface.renderableSeries.add(fcRendSeries);
 
         // MA1 SERIES
         const maLowDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "MA 50 Low" });
@@ -101,6 +99,8 @@ const drawExample = async () => {
             dataSeries: maLowDataSeries
         });
         sciChartSurface.renderableSeries.add(maLowRenderableSeries);
+        maLowRenderableSeries.rolloverModifierProps.tooltipColor = "red";
+        maLowRenderableSeries.rolloverModifierProps.markerColor = "red";
         maLowRenderableSeries.stroke = "#ff0000";
         maLowRenderableSeries.strokeThickness = 2;
 

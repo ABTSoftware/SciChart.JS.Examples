@@ -43,9 +43,11 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
             height: 5,
             strokeThickness: 2,
             fill: "white",
-            stroke: colorsArr[0],
-        }),
+            stroke: colorsArr[0]
+        })
     });
+    renderableSeries1.rolloverModifierProps.markerColor = colorsArr[0];
+    renderableSeries1.rolloverModifierProps.tooltipColor = colorsArr[0];
     sciChartSurface.renderableSeries.add(renderableSeries1);
 
     // Series 2
@@ -58,12 +60,14 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
             height: 5,
             strokeThickness: 2,
             fill: "white",
-            stroke: colorsArr[1],
-        }),
+            stroke: colorsArr[1]
+        })
     });
     renderableSeries2.rolloverModifierProps.tooltipTitle = "Series 2";
     renderableSeries2.rolloverModifierProps.tooltipLabelX = "X";
     renderableSeries2.rolloverModifierProps.tooltipLabelY = "Y";
+    renderableSeries2.rolloverModifierProps.tooltipColor = colorsArr[1];
+    renderableSeries2.rolloverModifierProps.markerColor = colorsArr[1];
     renderableSeries2.rolloverModifierProps.tooltipTextColor = "black";
     renderableSeries2.rolloverModifierProps.showRollover = true;
     sciChartSurface.renderableSeries.add(renderableSeries2);
@@ -123,9 +127,11 @@ export default function UsingRolloverModifierTooltips() {
                 height: 5,
                 strokeThickness: 2,
                 fill: "white",
-                stroke: color,
-            }),
+                stroke: color
+            })
         });
+        newRenderableSeries.rolloverModifierProps.markerColor = color;
+        newRenderableSeries.rolloverModifierProps.tooltipColor = color;
         sciChartSurface.renderableSeries.add(newRenderableSeries);
     };
 

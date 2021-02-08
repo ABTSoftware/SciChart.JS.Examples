@@ -9,7 +9,6 @@ import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
 import { closeValues, dateValues, highValues, lowValues, openValues } from "./data/themeing2dData";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { TSciChart } from "scichart/types/TSciChart";
 
 const divElementId = "chart";
 
