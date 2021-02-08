@@ -59,10 +59,7 @@ export default function DigitalBandSeriesChart() {
             scs = res.sciChartSurface;
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            console.log(111, scs);
-            scs?.delete();
-        }
+        return () => scs?.delete();
     }, []);
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;

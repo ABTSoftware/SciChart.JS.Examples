@@ -1,10 +1,5 @@
 export const code = `import * as React from "react";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
 import { SciChartSurface } from "scichart";
-import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
@@ -15,7 +10,6 @@ import { closeValues, dateValues, highValues, lowValues, openValues } from "./da
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
 import { TSciChart } from "scichart/types/TSciChart";
-import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
 
 const divElementId = "chart";
 
@@ -71,12 +65,14 @@ const drawExample = async () => {
         upBandSeriesFillColor: "white",
         upBandSeriesLineColor: "white",
         upBodyBrush: "#6495EDA0",
-        upWickColor: "#6495ED"
+        upWickColor: "#6495ED",
+        axisTitleColor: "#EEEEEE"
     });
 
     // Create the XAxis, YAxis
     const xAxis = new NumericAxis(wasmContext);
     xAxis.visibleRange = new NumberRange(0, 31);
+    xAxis.axisTitle = "X Axis";
     sciChartSurface.xAxes.add(xAxis);
     const yAxis = new NumericAxis(wasmContext);
     yAxis.visibleRange = new NumberRange(1, 1.2);
@@ -90,7 +86,7 @@ const drawExample = async () => {
 
     series1.dataSeries = new XyDataSeries(wasmContext, {
         xValues: [1, 15, 30],
-        yValues: [1.12, 1.11, 1.1],
+        yValues: [1.12, 1.11, 1.1]
     });
 
     const series2 = new FastCandlestickRenderableSeries(wasmContext, {
@@ -100,9 +96,9 @@ const drawExample = async () => {
             openValues,
             highValues,
             lowValues,
-            closeValues,
+            closeValues
         }),
-        dataPointWidth: 0.5,
+        dataPointWidth: 0.5
     });
     sciChartSurface.renderableSeries.add(series2);
 
@@ -110,7 +106,7 @@ const drawExample = async () => {
         fill: "rgba(176, 196, 222, 0.7)",
         stroke: "#4682b4",
         strokeThickness: 2,
-        dataPointWidth: 0.5,
+        dataPointWidth: 0.5
     });
     sciChartSurface.renderableSeries.add(series3);
     const dataSeries = new XyDataSeries(wasmContext);
@@ -124,23 +120,17 @@ const drawExample = async () => {
     return { sciChartSurface, wasmContext };
 };
 
+let scs: SciChartSurface;
 
 export default function CustomTheme() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
-    const [wasmContext, setWasmContext] = React.useState<TSciChart>();
-    const [showChart, setShowChart] = React.useState(false);
-
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-            setWasmContext(res.wasmContext);
-            setShowChart(true);
+            scs = res.sciChartSurface;
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => scs?.delete();
     }, []);
-
 
     return (
         <div>

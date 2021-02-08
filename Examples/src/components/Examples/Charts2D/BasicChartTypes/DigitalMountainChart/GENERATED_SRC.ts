@@ -9,6 +9,8 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import { GradientParams } from "scichart/Core/GradientParams";
+import { Point } from "scichart/Core/Point";
 
 const divElementId = "chart";
 
@@ -20,7 +22,7 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             axisAlignment: EAxisAlignment.Top,
-            axisTitle: "X-Axis",
+            axisTitle: "X-Axis"
         })
     );
     sciChartSurface.yAxes.add(
@@ -28,16 +30,21 @@ const drawExample = async () => {
             axisAlignment: EAxisAlignment.Left,
             growBy: new NumberRange(0.05, 0.05),
             axisTitle: "Y-Axis",
-            labelFormat: ENumericFormat.Decimal_2,
+            labelFormat: ENumericFormat.Decimal_2
         })
     );
 
     // Create a Mountain Series and add to the chart
     const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
         stroke: "#4682b4",
-        strokeThickness: 5,
+        strokeThickness: 2,
         zeroLineY: 0.0,
-        fill: "rgba(176, 196, 222, 0.7)",
+        fill: "rgba(176, 196, 222, 0.7)", // when a solid color is required, use fill
+        // when a gradient is required, use fillLinearGradient
+        fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+            { color: "rgba(70,130,180,1)", offset: 0 },
+            { color: "rgba(70,130,180,0.2)", offset: 1 }
+        ]),
         isDigitalLine: true
     });
     sciChartSurface.renderableSeries.add(mountainSeries);

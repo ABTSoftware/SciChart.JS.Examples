@@ -9,8 +9,8 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {Point} from "scichart/Core/Point";
+import { GradientParams } from "scichart/Core/GradientParams";
+import { Point } from "scichart/Core/Point";
 
 const divElementId = "chart";
 
@@ -22,7 +22,7 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             axisAlignment: EAxisAlignment.Top,
-            axisTitle: "X-Axis",
+            axisTitle: "X-Axis"
         })
     );
     sciChartSurface.yAxes.add(
@@ -30,7 +30,7 @@ const drawExample = async () => {
             axisAlignment: EAxisAlignment.Left,
             growBy: new NumberRange(0.05, 0.05),
             axisTitle: "Y-Axis",
-            labelFormat: ENumericFormat.Decimal_2,
+            labelFormat: ENumericFormat.Decimal_2
         })
     );
 
@@ -43,9 +43,9 @@ const drawExample = async () => {
         // when a gradient is required, use fillLinearGradient
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "rgba(70,130,180,1)", offset: 0 },
-            { color: "rgba(70,130,180,0.2)", offset: 1 },
+            { color: "rgba(70,130,180,0.2)", offset: 1 }
         ]),
-        isDigitalLine: true,
+        isDigitalLine: true
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 
