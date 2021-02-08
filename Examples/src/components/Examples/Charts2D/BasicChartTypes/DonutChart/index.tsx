@@ -8,11 +8,13 @@ import { PieSegment } from "scichart/Charting/Visuals/SciChartPieSurface/PieSegm
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
+import { SciChartJSLightTheme } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSLightTheme";
 
 export const divElementId = "chart";
 
 export const drawExample = async () => {
     const sciChartPieSurface = await SciChartPieSurface.create(divElementId);
+    sciChartPieSurface.applyTheme(new SciChartJSLightTheme());
     sciChartPieSurface.pieType = EPieType.Donut;
     sciChartPieSurface.holeRadius = 0.6;
     sciChartPieSurface.animate = true;
@@ -25,16 +27,16 @@ export const drawExample = async () => {
         text: "Green",
         colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "#1D976C", offset: 0 },
-            { color: "#93F9B9", offset: 1 },
-        ]),
+            { color: "#93F9B9", offset: 1 }
+        ])
     });
     const pieSegment2 = new PieSegment({
         value: 10,
         text: "Red",
         colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "#DD5E89", offset: 0 },
-            { color: "#F7BB97", offset: 1 },
-        ]),
+            { color: "#F7BB97", offset: 1 }
+        ])
     });
     const pieSegment3 = new PieSegment({
         value: 20,
@@ -42,16 +44,16 @@ export const drawExample = async () => {
         colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "#1FA2FF", offset: 0 },
             { color: "#12D8FA", offset: 0.5 },
-            { color: "#A6FFCB", offset: 1 },
-        ]),
+            { color: "#A6FFCB", offset: 1 }
+        ])
     });
     const pieSegment4 = new PieSegment({
         value: 15,
         text: "Yellow",
         colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "#F09819", offset: 0 },
-            { color: "#EDDE5D", offset: 1 },
-        ]),
+            { color: "#EDDE5D", offset: 1 }
+        ])
     });
     sciChartPieSurface.pieSegments.add(pieSegment1, pieSegment2, pieSegment3, pieSegment4);
     return sciChartPieSurface;
@@ -61,12 +63,12 @@ const placementSelect = [
     { value: ELegendPlacement.TopLeft, text: "Top-Left" },
     { value: ELegendPlacement.TopRight, text: "Top-Right" },
     { value: ELegendPlacement.BottomLeft, text: "Bottom-Left" },
-    { value: ELegendPlacement.BottomRight, text: "Bottom-Right" },
+    { value: ELegendPlacement.BottomRight, text: "Bottom-Right" }
 ];
 
 const orientationSelect = [
     { value: ELegendOrientation.Vertical, text: "Vertical" },
-    { value: ELegendOrientation.Horizontal, text: "Horizontal" },
+    { value: ELegendOrientation.Horizontal, text: "Horizontal" }
 ];
 
 export default function DonutChart() {
@@ -76,7 +78,7 @@ export default function DonutChart() {
     const [orientationValue, setOrientationValue] = React.useState<ELegendOrientation>(ELegendOrientation.Vertical);
 
     React.useEffect(() => {
-        drawExample().then((scps) => {
+        drawExample().then(scps => {
             setSciChartPieSurface(scps);
             scps.legend.placement = placementValue;
             setShowControls(true);
@@ -107,7 +109,7 @@ export default function DonutChart() {
                         value={placementValue}
                         onChange={handleChangePlacement}
                     >
-                        {placementSelect.map((el) => (
+                        {placementSelect.map(el => (
                             <MenuItem key={el.value} value={el.value}>
                                 {el.text}
                             </MenuItem>
@@ -122,7 +124,7 @@ export default function DonutChart() {
                         value={orientationValue}
                         onChange={handleChangeOrientation}
                     >
-                        {orientationSelect.map((el) => (
+                        {orientationSelect.map(el => (
                             <MenuItem key={el.value} value={el.value}>
                                 {el.text}
                             </MenuItem>
