@@ -155,6 +155,11 @@ export const ExampleStrings = {
     urlAnnotationsDocumentation: "https://www.scichart.com/documentation/js/current/The%20Annotations%20API%20Overview.html",
     urlTitleAnnotationsDocumentation: "The specific page for the SciChart.js Annotations documentation will help you to get started",
 
+    // Editable annotations
+    urlEditableAnnotations: "/editable-annotations",
+    titleEditableAnnotations: "JavaScript Chart Editable Annotations",
+    urlTitleEditableAnnotations: "The specific page for the SciChart.js Annotations documentation will help you to get started",
+
     // Trademarkers
     urlTradeMarkers: "/javascript-stock-chart-buy-sell-markers",
     titleTradeMarkers: "Trading Buy Sell Marker Annotations",

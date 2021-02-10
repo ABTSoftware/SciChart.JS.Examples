@@ -35,6 +35,7 @@ import pieImg from "../Examples/Charts2D/BasicChartTypes/PieChart/javascript-pie
 import donutImg from "../Examples/Charts2D/BasicChartTypes/DonutChart/javascript-donut-chart.jpg";
 // Annotations and Legands
 import annotationsImg from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/javascript-chart-annotations.jpg";
+import editableAnnotationsImg from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/javascript-chart-editable-annotations.jpg";
 import tradeMarkersImg from "../Examples/Charts2D/ChartAnnotations/TradeMarkers/javascript-stock-chart-buy-sell-markers.jpg";
 import legendImg from "../Examples/Charts2D/Legends/ChartLegendsAPI/javascript-chart-legends.jpg";
 // Stock Charts
@@ -61,11 +62,11 @@ import mesh3dImg from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart
 
 type TProps = {};
 
-const useStyles = makeStyles((theme) => ({
-    root: {},
+const useStyles = makeStyles(theme => ({
+    root: {}
 }));
 
-const Gallery: React.FC<TProps> = (props) => {
+const Gallery: React.FC<TProps> = props => {
     const classes = useStyles();
 
     return (
@@ -303,6 +304,14 @@ const Gallery: React.FC<TProps> = (props) => {
                         title="Chart Annotations"
                         seoTitle="JavaScript Chart Annotations Example"
                         examplePath={EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy.path}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <GalleryCard
+                        imgPath={editableAnnotationsImg}
+                        title="Chart Editable Annotations"
+                        seoTitle="JavaScript Chart Editable Annotations Example"
+                        examplePath={EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations.path}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>

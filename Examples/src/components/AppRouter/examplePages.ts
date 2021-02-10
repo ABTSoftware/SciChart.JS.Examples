@@ -42,10 +42,11 @@ import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/Medic
 import { lidar3DPointCloudExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/exampleInfo";
 import { audioAnalyzerExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/exampleInfo";
 import { TPage } from "./pages";
-import {tenorCurvesExampleInfo} from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/exampleInfo";
-import {loadOneMillionPointsExampleInfo} from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/exampleInfo";
-import {dragAxisToScaleExampleInfo} from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/exampleInfo";
-import {realtimeZoomPanExampleInfo} from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/exampleInfo";
+import { tenorCurvesExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/exampleInfo";
+import { loadOneMillionPointsExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/exampleInfo";
+import { dragAxisToScaleExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/exampleInfo";
+import { realtimeZoomPanExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/exampleInfo";
+import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -133,6 +134,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_chartAnnotations_AnnotationsAreEasy: {
         id: "chart2D_chartAnnotations_AnnotationsAreEasy",
         ...annotationsAreEasyExampleInfo
+    },
+    chart2D_chartAnnotations_EditableAnntations: {
+        id: "chart2D_chartAnnotations_EditableAnntations",
+        ...editableAnnotationsExampleInfo
     },
     chart2D_chartAnnotations_TradeMarkers: {
         id: "chart2D_chartAnnotations_TradeMarkers",

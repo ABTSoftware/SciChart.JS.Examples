@@ -19,6 +19,7 @@ import DonutChart from "../Examples/Charts2D/BasicChartTypes/DonutChart";
 import PieChart from "../Examples/Charts2D/BasicChartTypes/PieChart";
 
 import AnnotationsAreEasy from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy";
+import EditableAnnotaions from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations";
 import TradeMarkers from "../Examples/Charts2D/ChartAnnotations/TradeMarkers";
 
 import RealtimeGhostedTraces from "../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces";
@@ -96,6 +97,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         item: { id: "chart2D_chartAnnotations", name: "Chart Annotations" },
         submenu: [
             EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations,
             EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers
         ]
     },
@@ -115,7 +117,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts
         ]
     },
     {
@@ -140,7 +142,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         item: { id: "chart2D_zoomingAndPanning", name: "Zoom and Pan a Chart" },
         submenu: [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale,
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan
         ]
     }
 ];
@@ -169,9 +171,11 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     },
     {
         item: { id: "featuredApps_scientificCharts", name: "Scientific Charts" },
-        submenu: [EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
+        submenu: [
+            EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
-            EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo]
+            EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo
+        ]
     },
     {
         item: { id: "featuredApps_medicalCharts", name: "Medical Charts" },
@@ -248,6 +252,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return PieChart;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy.id:
             return AnnotationsAreEasy;
+        case EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations.id:
+            return EditableAnnotaions;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.id:
             return TradeMarkers;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.id:
