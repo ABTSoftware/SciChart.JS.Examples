@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/BasicChartTypes/RealtimeMountainChart/index.tsx";
+export const githubUrl = "/components/Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/index.tsx";
