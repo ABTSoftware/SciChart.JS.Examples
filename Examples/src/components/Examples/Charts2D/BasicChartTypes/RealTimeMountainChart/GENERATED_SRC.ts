@@ -106,7 +106,7 @@ let scs: SciChartSurface;
 export default function RealtimeMountainChart() {
     React.useEffect(() => {
         (async () => {
-            const scs = await drawExample();
+            scs = await drawExample();
         })();
 
         // Delete sciChartSurface on unmount component to prevent memory leak
