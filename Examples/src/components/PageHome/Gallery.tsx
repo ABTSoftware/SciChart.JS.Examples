@@ -26,7 +26,7 @@ import heatmapImg from "../Examples/Charts2D/BasicChartTypes/HeatmapChart/javasc
 import contourImg from "../Examples/Charts2D/BasicChartTypes/ContoursChart/javascript-contours-chart.jpg";
 import mountainImg from "../Examples/Charts2D/BasicChartTypes/MountainChart/javascript-mountain-chart.jpg";
 import digitalMountainImg from "../Examples/Charts2D/BasicChartTypes/DigitalMountainChart/javascript-digital-mountain-chart.jpg";
-import realtimeMountainImg from "../Examples/Charts2D/BasicChartTypes/RealtimeMountainChart/javascript-animated-mountain-chart.jpg";
+import realtimeMountainImg from "../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/javascript-animated-mountain-chart.jpg";
 import ohlcImg from "../Examples/Charts2D/BasicChartTypes/OhlcChart/javascript-ohlc-chart.jpg";
 import scatterImg from "../Examples/Charts2D/BasicChartTypes/ScatterChart/javascript-scatter-chart.jpg";
 import stackedColumnImg from "../Examples/Charts2D/BasicChartTypes/StackedColumnChart/javascript-stacked-column-chart.png";
