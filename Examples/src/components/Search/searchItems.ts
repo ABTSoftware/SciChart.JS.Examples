@@ -59,6 +59,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_basicCharts_RealtimeMountainChart.title,
+        link: EXAMPLES_PAGES.chart2D_basicCharts_RealtimeMountainChart.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart.title,
         link: EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart.path,
     },
