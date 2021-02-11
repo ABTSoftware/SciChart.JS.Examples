@@ -48,6 +48,7 @@ export const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     const xAxis = new CategoryAxis(wasmContext);
     xAxis.labelProvider.numericFormat = ENumericFormat.Date_HHMM;
+    xAxis.visibleRangeLimit = new NumberRange(1, 10000);
     xAxis.growBy = new NumberRange(0.0, 0.05);
     xAxis.autoRange = EAutoRange.Never;
     sciChartSurface.xAxes.add(xAxis);
