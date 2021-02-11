@@ -14,7 +14,7 @@ import { digitalMountainChartExampleInfo } from "../Examples/Charts2D/BasicChart
 import { scatterChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ScatterChart/exampleInfo";
 import { donutChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DonutChart/exampleInfo";
 import { pieChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/PieChart/exampleInfo";
-import { realTimeMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/RealtimeMountainChart/exampleInfo";
+import { realTimeMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/exampleInfo";
 import { annotationsAreEasyExampleInfo } from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/exampleInfo";
 import { tradeMarkerAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/TradeMarkers/exampleInfo";
 import { realtimeGhostedTracesExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces/exampleInfo";

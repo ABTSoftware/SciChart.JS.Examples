@@ -17,7 +17,7 @@ import StackedColumnSideBySide from "../Examples/Charts2D/BasicChartTypes/Stacke
 import StackedMountainChart from "../Examples/Charts2D/BasicChartTypes/StackedMountainChart";
 import DonutChart from "../Examples/Charts2D/BasicChartTypes/DonutChart";
 import PieChart from "../Examples/Charts2D/BasicChartTypes/PieChart";
-import RealtimeMountainChart from "../Examples/Charts2D/BasicChartTypes/RealtimeMountainChart";
+import RealtimeMountainChart from "../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart";
 
 import AnnotationsAreEasy from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy";
 import EditableAnnotaions from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations";
