@@ -26,6 +26,7 @@ import heatmapImg from "../Examples/Charts2D/BasicChartTypes/HeatmapChart/javasc
 import contourImg from "../Examples/Charts2D/BasicChartTypes/ContoursChart/javascript-contours-chart.jpg";
 import mountainImg from "../Examples/Charts2D/BasicChartTypes/MountainChart/javascript-mountain-chart.jpg";
 import digitalMountainImg from "../Examples/Charts2D/BasicChartTypes/DigitalMountainChart/javascript-digital-mountain-chart.jpg";
+import realtimeMountainImg from "../Examples/Charts2D/BasicChartTypes/RealtimeMountainChart/javascript-animated-mountain-chart.jpg";
 import ohlcImg from "../Examples/Charts2D/BasicChartTypes/OhlcChart/javascript-ohlc-chart.jpg";
 import scatterImg from "../Examples/Charts2D/BasicChartTypes/ScatterChart/javascript-scatter-chart.jpg";
 import stackedColumnImg from "../Examples/Charts2D/BasicChartTypes/StackedColumnChart/javascript-stacked-column-chart.png";
@@ -189,6 +190,14 @@ const Gallery: React.FC<TProps> = props => {
                         title="Digital Mountain Chart"
                         seoTitle="JavaScript Digital Mountain Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart.path}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <GalleryCard
+                        imgPath={realtimeMountainImg}
+                        title="Realtime Mountain Chart"
+                        seoTitle="JavaScript Realtime Mountain Chart Example"
+                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_RealtimeMountainChart.path}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>

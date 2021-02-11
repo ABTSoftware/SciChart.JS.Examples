@@ -17,6 +17,7 @@ import StackedColumnSideBySide from "../Examples/Charts2D/BasicChartTypes/Stacke
 import StackedMountainChart from "../Examples/Charts2D/BasicChartTypes/StackedMountainChart";
 import DonutChart from "../Examples/Charts2D/BasicChartTypes/DonutChart";
 import PieChart from "../Examples/Charts2D/BasicChartTypes/PieChart";
+import RealtimeMountainChart from "../Examples/Charts2D/BasicChartTypes/RealtimeMountainChart";
 
 import AnnotationsAreEasy from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy";
 import EditableAnnotaions from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations";
@@ -84,6 +85,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_ContourChart,
             EXAMPLES_PAGES.chart2D_basicCharts_MountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_RealtimeMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart,
             EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart,
@@ -244,6 +246,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return MountainChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart.id:
             return DigitalMountainChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_RealtimeMountainChart.id:
+            return RealtimeMountainChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart.id:
             return ScatterChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_DonutChart.id:

@@ -1,4 +1,4 @@
-import * as React from "react";
+export const code = `import * as React from "react";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
@@ -105,3 +105,4 @@ export default function RealtimeMountainChart() {
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;
 }
+`;
