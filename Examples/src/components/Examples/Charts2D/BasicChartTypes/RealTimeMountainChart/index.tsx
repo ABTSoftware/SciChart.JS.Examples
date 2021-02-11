@@ -9,6 +9,7 @@ import { DoubleAnimator } from "scichart/Core/Animations/DoubleAnimator";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
 import { easing, TEasing } from "scichart/Core/Animations/EasingFunctions";
+import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
 import { RandomWalkGenerator } from "../../../../../../../Sandbox/CustomerExamples/AnimateXyValuesOnSeries/src/RandomWalkGenerator";
 
 export const divElementId = "chart";
@@ -45,11 +46,13 @@ export const drawExample = async () => {
     const pulsingDotAnnotation = new CustomAnnotation({
         x1: initialValues.xValues[ initialValues.xValues.length - 1 ],
         y1: initialValues.yValues[ initialValues.yValues.length - 1 ],
-        xCoordShift: -20,
-        yCoordShift: -20,
+        xCoordShift: 0,
+        yCoordShift: 0,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
         svgString:
-            '<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" fill="steelblue" r="1" stroke="steelblue"><animate attributeName="r" from="0" to="20" dur="1s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" from="1" to="0" dur="1s" begin="0s" repeatCount="indefinite"/></circle><circle cx="20" cy="20" fill="steelblue" r="5"/></svg>'
-    });
+            '<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="100%" height="100%" fill="transparent"/><circle cx="20" cy="20" fill="steelblue" r="1" stroke="steelblue"><animate attributeName="r" from="0" to="20" dur="1s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" from="1" to="0" dur="1s" begin="0s" repeatCount="indefinite"/></circle><circle cx="20" cy="20" fill="steelblue" r="5"/></svg>',
+        });
 
     sciChartSurface.annotations.add( pulsingDotAnnotation );
 
@@ -98,9 +101,16 @@ export const drawExample = async () => {
     return sciChartSurface;
 };
 
+let scs: SciChartSurface;
+
 export default function RealtimeMountainChart() {
     React.useEffect(() => {
-        drawExample();
+        (async () => {
+            const scs = await drawExample();
+        })();
+
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => scs?.delete();
     }, []);
 
     return <div id={divElementId} style={{ maxWidth: 900 }} />;
