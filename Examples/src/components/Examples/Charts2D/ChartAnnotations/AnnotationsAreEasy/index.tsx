@@ -1,16 +1,20 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
-import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { EAnnotationLayer } from "scichart/Charting/Visuals/Annotations/IAnnotation";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {LineAnnotation} from "scichart/Charting/Visuals/Annotations/LineAnnotation";
+import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
+import {CustomAnnotation} from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
+import {HorizontalLineAnnotation} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
+import {ELabelPlacement} from "scichart/types/LabelPlacement";
+import {VerticalLineAnnotation} from "scichart/Charting/Visuals/Annotations/VerticalLineAnnotation";
+import {AxisMarkerAnnotation} from "scichart/Charting/Visuals/Annotations/AxisMarkerAnnotation";
 
 const divElementId = "chart";
 
@@ -98,7 +102,63 @@ const drawExample = async () => {
         }),
         new BoxAnnotation({ fill: "#1964FF55", stroke: "#1964FF", strokeThickness: 1, x1: 4.5, x2: 6, y1: 5, y2: 6 }),
 
+        // Horizontal Lines
+        //
+
+        // Horizontal line not fully stretched: set X1 property
+        new HorizontalLineAnnotation({
+            labelPlacement: ELabelPlacement.TopLeft,
+            labelValue: "Right aligned, with text on left",
+            showLabel: true,
+            stroke: "Orange",
+            strokeThickness: 2,
+            x1: 5,  // Omitting X will make the annotation stretch to fit
+            y1: 3.2 // The Y-value of the HorizontalLineAnnotation
+        }),
+
+        // Horizontal line stretched horizontally
+        new HorizontalLineAnnotation({
+            labelPlacement: ELabelPlacement.Axis,
+            showLabel: true,
+            stroke: "Orange",
+            strokeThickness: 2,
+            y1: 2.8 // The Y-value of the HorizontalLineAnnotation
+        }),
+
+        // Vertical lines
+        //
+
+        // Horizontal line not fully stretched: set X1 property
+        new VerticalLineAnnotation({
+            labelPlacement: ELabelPlacement.Axis,
+            showLabel: true,
+            stroke: "Brown",
+            strokeThickness: 2,
+            x1: 9,
+            axisLabelsFill: "Brown"
+        }),
+
+        // Horizontal line stretched horizontally
+        new VerticalLineAnnotation({
+            labelPlacement: ELabelPlacement.TopRight,
+            labelValue: "Top aligned",
+            showLabel: true,
+            stroke: "Brown",
+            strokeThickness: 2,
+            x1: 9.5,
+            axisLabelsFill: "Brown"
+        }),
+
+        // Axis Markers
+        //
+        new AxisMarkerAnnotation({
+            y1: 5.2,
+            fontSize: 12,
+            fontStyle: "Bold",
+        }),
+
         // Custom shapes
+        //
         new TextAnnotation({ fontSize: 12, text: "Or custom shapes using SVG", x1: 7, y1: 6.3 }),
         getBuyMarkerAnnotation(8, 5.5),
         getSellMarkerAnnotation(7.5, 5),
