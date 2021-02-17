@@ -4,7 +4,7 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppRouter from "./AppRouter/AppRouter";
-import { getParentMenuIds } from "./AppRouter/examples";
+import { getParentMenuIds, MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "./AppRouter/examples";
 import AppBarTop from "./AppTopBar/AppBarTop";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import AppFooter from "./AppFooter/AppFooter";
@@ -23,7 +23,18 @@ const useStyles = makeStyles(
         },
         drawer: {
             width: drawerWidth,
-            flexShrink: 0
+            flexShrink: 0,
+            [theme.breakpoints.down("md")]: {
+                display: "none"
+            }
+        },
+        drawer1: {
+            width: drawerWidth,
+            flexShrink: 0,
+            display: "none",
+            [theme.breakpoints.down("md")]: {
+                display: "block"
+            }
         },
         drawerPaper: {
             width: drawerWidth
@@ -39,12 +50,22 @@ const useStyles = makeStyles(
 export default function App() {
     const classes = useStyles();
     const location = useLocation();
-    const isLarge = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
 
-    const [openedMenuItems, setOpenedMenuItems] = React.useState<Record<string, boolean>>({});
+    let initialOpenedMenuItems = { MENU_ITEMS_FEATURED_APPS_ID: true, MENU_ITEMS_3D_ID: true, MENU_ITEMS_2D_ID: true };
+
+    MENU_ITEMS_FEATURED_APPS.forEach(item => {
+        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
+    });
+    MENU_ITEMS_3D.forEach(item => {
+        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
+    });
+    MENU_ITEMS_2D.forEach(item => {
+        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
+    });
+
+    const [openedMenuItems, setOpenedMenuItems] = React.useState<Record<string, boolean>>(initialOpenedMenuItems);
+
     const [isDrawerOpened, setIsDrawerOpened] = React.useState(false);
-
-    const drawerVariant = isLarge ? "permanent" : "temporary";
 
     const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === location.pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
@@ -85,10 +106,25 @@ export default function App() {
         <div className={classes.root}>
             <Drawer
                 className={classes.drawer}
-                variant={drawerVariant}
+                variant="permanent"
                 classes={{ paper: classes.drawerPaper }}
                 anchor="left"
-                open={isLarge ? true : isDrawerOpened}
+                open={true}
+                onClose={toggleDrawer}
+            >
+                <DrawerContent
+                    testIsOpened={testIsOpened}
+                    toggleOpenedMenuItem={toggleOpenedMenuItem}
+                    toggleDrawer={toggleDrawer}
+                />
+            </Drawer>
+
+            <Drawer
+                className={classes.drawer1}
+                variant="temporary"
+                classes={{ paper: classes.drawerPaper }}
+                anchor="left"
+                open={isDrawerOpened}
                 onClose={toggleDrawer}
             >
                 <DrawerContent
