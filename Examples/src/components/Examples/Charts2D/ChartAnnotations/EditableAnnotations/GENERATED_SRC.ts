@@ -100,8 +100,8 @@ export const drawExample = async () => {
             isEditable: true
         }),
         new TextAnnotation({
-            x1: 4,
-            y1: 2,
+            x1: 1,
+            y1: 3,
             xCoordinateMode: ECoordinateMode.DataValue,
             yCoordinateMode: ECoordinateMode.DataValue,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
