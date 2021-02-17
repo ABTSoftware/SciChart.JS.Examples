@@ -15,6 +15,7 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
               })(window, document, 'script', 'dataLayer', 'GTM-TB68F34');</script>
             <!-- End Google Tag Manager -->
+            <base href="/">
             <meta charset="utf-8">
             <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

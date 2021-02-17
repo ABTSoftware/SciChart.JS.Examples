@@ -277,7 +277,7 @@ export const ExampleStrings = {
 
     // Featured Apps Load 500x500
     titleLoad500By500: "Load 500 Series x 500 Points Performance Demo",
-    urlLoad500By500: "/javascript-chart-load-500-series-by-500-points",
+    urlLoad500By500: "/performance/javascript-chart-load-500-series-by-500-points",
     urlTitleLoad500By500: "This example demonstrates the performance of loading 500 series with 500 points on a JavaScript Chart",
 
     // Featured Apps Load 1 Million Points
