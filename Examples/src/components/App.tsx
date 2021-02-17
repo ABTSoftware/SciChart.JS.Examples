@@ -21,14 +21,14 @@ const useStyles = makeStyles(
                 display: "block"
             }
         },
-        drawer: {
+        drawerDesktop: {
             width: drawerWidth,
             flexShrink: 0,
             [theme.breakpoints.down("md")]: {
                 display: "none"
             }
         },
-        drawer1: {
+        drawerMobile: {
             width: drawerWidth,
             flexShrink: 0,
             display: "none",
@@ -105,7 +105,7 @@ export default function App() {
     return (
         <div className={classes.root}>
             <Drawer
-                className={classes.drawer}
+                className={classes.drawerDesktop}
                 variant="permanent"
                 classes={{ paper: classes.drawerPaper }}
                 anchor="left"
@@ -120,7 +120,7 @@ export default function App() {
             </Drawer>
 
             <Drawer
-                className={classes.drawer1}
+                className={classes.drawerMobile}
                 variant="temporary"
                 classes={{ paper: classes.drawerPaper }}
                 anchor="left"
