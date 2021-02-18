@@ -51,6 +51,8 @@ export default function App() {
     const classes = useStyles();
     const location = useLocation();
 
+    const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
+
     let initialOpenedMenuItems = { MENU_ITEMS_FEATURED_APPS_ID: true, MENU_ITEMS_3D_ID: true, MENU_ITEMS_2D_ID: true };
 
     MENU_ITEMS_FEATURED_APPS.forEach(item => {
@@ -110,12 +112,11 @@ export default function App() {
                 classes={{ paper: classes.drawerPaper }}
                 anchor="left"
                 open={true}
-                onClose={toggleDrawer}
             >
                 <DrawerContent
                     testIsOpened={testIsOpened}
                     toggleOpenedMenuItem={toggleOpenedMenuItem}
-                    toggleDrawer={toggleDrawer}
+                    toggleDrawer={() => {}}
                 />
             </Drawer>
 
@@ -124,7 +125,7 @@ export default function App() {
                 variant="temporary"
                 classes={{ paper: classes.drawerPaper }}
                 anchor="left"
-                open={isDrawerOpened}
+                open={isMedium && isDrawerOpened}
                 onClose={toggleDrawer}
             >
                 <DrawerContent
