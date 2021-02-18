@@ -68,7 +68,9 @@ const ListItemsBlock: React.FC<TProps> = props => {
                                             onClick={() => historyPushPath(subEl.path)}
                                         >
                                             <Typography className={classes.listItemText2} variant="body1" gutterBottom>
-                                                <a href={subEl.path}>{subEl.title}</a>
+                                                <a href={subEl.path} title={subEl.title}>
+                                                    {subEl.title}
+                                                </a>
                                             </Typography>
                                             {/*<ListItemText*/}
                                             {/*    className={classes.listItemText2}*/}
