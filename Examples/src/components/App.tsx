@@ -110,12 +110,11 @@ export default function App() {
                 classes={{ paper: classes.drawerPaper }}
                 anchor="left"
                 open={true}
-                onClose={toggleDrawer}
             >
                 <DrawerContent
                     testIsOpened={testIsOpened}
                     toggleOpenedMenuItem={toggleOpenedMenuItem}
-                    toggleDrawer={toggleDrawer}
+                    toggleDrawer={() => {}}
                 />
             </Drawer>
 
