@@ -21,13 +21,11 @@ const useStyles = makeStyles(theme => ({
     listItemText2: {
         marginLeft: theme.spacing(2),
         fontSize: "0.875rem",
-
-        color: "#BAC0C6",
         cursor: "pointer",
+
         "& a": {
-            textDecoration: "none",
-            pointerEvents: "none",
-            cursor: "default"
+            color: "#BAC0C6",
+            textDecoration: "none"
         }
     },
     listItems: {
@@ -75,15 +73,16 @@ const FooterGrid: React.FC<TProps> = props => {
                             <Box mb={1}>
                                 <List component="div" disablePadding>
                                     {el.submenu.map(subEl => (
-                                        <Link
+                                        <Typography
+                                            className={classes.listItemText2}
                                             key={subEl.id}
-                                            onClick={() => historyPushPath(subEl.path)}
-                                            title={subEl.title}
+                                            variant="body1"
+                                            gutterBottom
                                         >
-                                            <Typography variant="body1" className={classes.listItemText2} gutterBottom>
+                                            <Link onClick={() => historyPushPath(subEl.path)} title={subEl.title}>
                                                 {subEl.title}
-                                            </Typography>
-                                        </Link>
+                                            </Link>
+                                        </Typography>
                                     ))}
                                 </List>
                             </Box>
