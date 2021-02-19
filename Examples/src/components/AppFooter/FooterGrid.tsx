@@ -79,9 +79,9 @@ const FooterGrid: React.FC<TProps> = props => {
                                             variant="body1"
                                             gutterBottom
                                         >
-                                            <Link onClick={() => historyPushPath(subEl.path)} title={subEl.title}>
+                                            <a href={subEl.path} title={subEl.title}>
                                                 {subEl.title}
-                                            </Link>
+                                            </a>
                                         </Typography>
                                     ))}
                                 </List>
