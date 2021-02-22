@@ -59,14 +59,7 @@ export default function App() {
 
     // For deployment to demo.scichart.com we are getting the license from the server where it is set by enviroment variable.
     // When you npm run dev, the beta trial key is served by the webpack dev server (webpack.client.no_server.config)
-    SciChartSurface.setFetchLicenseCallback(() =>
-        fetch("/api/license").then(r => {
-            if (r.ok) {
-                return r.text();
-            }
-            return "";
-        })
-    );
+    fetch("/api/license").then(r => r.text()).then(key => SciChartSurface.setRuntimeLicenseKey(key));
 
     React.useEffect(() => {
         if (currentExample) {
