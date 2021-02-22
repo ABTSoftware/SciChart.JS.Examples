@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow:
+Sitemap: https://demo.scichart.com/sitemap.xml
