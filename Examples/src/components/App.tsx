@@ -103,42 +103,41 @@ export default function App() {
     }, [currentExampleId]);
 
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
-
     return (
-        <div className={classes.root}>
-            <Drawer
-                className={classes.drawerDesktop}
-                variant="permanent"
-                classes={{ paper: classes.drawerPaper }}
-                anchor="left"
-                open={true}
-            >
-                <DrawerContent
-                    testIsOpened={testIsOpened}
-                    toggleOpenedMenuItem={toggleOpenedMenuItem}
-                    toggleDrawer={() => {}}
-                />
-            </Drawer>
+            <div className={classes.root}>
+                <Drawer
+                    className={classes.drawerDesktop}
+                    variant="permanent"
+                    classes={{ paper: classes.drawerPaper }}
+                    anchor="left"
+                    open={true}
+                >
+                    <DrawerContent
+                        testIsOpened={testIsOpened}
+                        toggleOpenedMenuItem={toggleOpenedMenuItem}
+                        toggleDrawer={() => {}}
+                    />
+                </Drawer>
 
-            <Drawer
-                className={classes.drawerMobile}
-                variant="temporary"
-                classes={{ paper: classes.drawerPaper }}
-                anchor="left"
-                open={isMedium && isDrawerOpened}
-                onClose={toggleDrawer}
-            >
-                <DrawerContent
-                    testIsOpened={testIsOpened}
-                    toggleOpenedMenuItem={toggleOpenedMenuItem}
-                    toggleDrawer={toggleDrawer}
-                />
-            </Drawer>
-            <div className={classes.main}>
-                <AppBarTop toggleDrawer={toggleDrawer} />
-                <AppRouter currentExample={currentExample} />
-                <AppFooter />
+                <Drawer
+                    className={classes.drawerMobile}
+                    variant="temporary"
+                    classes={{ paper: classes.drawerPaper }}
+                    anchor="left"
+                    open={isMedium && isDrawerOpened}
+                    onClose={toggleDrawer}
+                >
+                    <DrawerContent
+                        testIsOpened={testIsOpened}
+                        toggleOpenedMenuItem={toggleOpenedMenuItem}
+                        toggleDrawer={toggleDrawer}
+                    />
+                </Drawer>
+                <div className={classes.main}>
+                    <AppBarTop toggleDrawer={toggleDrawer} />
+                    <AppRouter currentExample={currentExample} />
+                    <AppFooter />
+                </div>
             </div>
-        </div>
     );
 }
