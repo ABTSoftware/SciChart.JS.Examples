@@ -80,18 +80,11 @@ export default function App() {
     const toggleOpenedMenuItem = (id: string) => setOpenedMenuItem(id, !openedMenuItems[id]);
     const toggleDrawer = () => setIsDrawerOpened(!isDrawerOpened);
 
-    // For deployment to demo.scichart.com we are getting the license from the server where it is set by enviroment variable.
-    // When you npm run dev, the beta trial key is served by the webpack dev server (webpack.client.no_server.config)
-    SciChartSurface.setFetchLicenseCallback(() =>
-        fetch("/api/license").then(r => {
-            if (r.ok) {
-                return r.text();
-            }
-            return "";
-        })
-    );
-
     React.useEffect(() => {
+        // For deployment to demo.scichart.com we are getting the license from the server where it is set by enviroment variable.
+        // When you npm run dev, the beta trial key is served by the webpack dev server (webpack.client.no_server.config)
+        fetch("/api/license").then(r => r.text()).then(key => SciChartSurface.setRuntimeLicenseKey(key));
+        
         if (currentExample) {
             const parentMenuIds = getParentMenuIds(currentExample.id);
             const updatedOpenedItems: Record<string, boolean> = { ...openedMenuItems };

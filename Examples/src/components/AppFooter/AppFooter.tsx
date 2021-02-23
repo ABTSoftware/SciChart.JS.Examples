@@ -48,26 +48,6 @@ export default function AppFooter() {
     return (
         <>
             <div className={classes.root}>
-                <Box mb={3}>
-                    <Typography variant="h4">SciChart.js: Fast, Realtime, High Performance </Typography>
-                    <Box mt={1} className={classes.siteLinks}>
-                        <Link
-                            className={classes.link1}
-                            title="JavaScript Charts"
-                            href="https://www.scichart.com/javascript-chart-features"
-                        >
-                            <Typography>JavaScript Charts</Typography>
-                        </Link>
-
-                        <Link className={classes.link1} title="JavaScript Chart Examples" href="/">
-                            <Typography> JavaScript Chart Examples</Typography>
-                        </Link>
-
-                        <Link className={classes.link1} title="Sitemap" href="/sitemap.xml">
-                            <Typography> Sitemap</Typography>
-                        </Link>
-                    </Box>
-                </Box>
                 <Box mb={4}>
                     <Typography variant="h4">All JavaScript Chart Examples</Typography>
                 </Box>
@@ -89,6 +69,26 @@ export default function AppFooter() {
                     menuItems={MENU_ITEMS_3D}
                     menuItemsId={MENU_ITEMS_3D_ID}
                 />
+                <Box mb={3}>
+                    <Typography variant="h4">SciChart.js: Fast, Realtime, High Performance </Typography>
+                    <Box mt={1} className={classes.siteLinks}>
+                        <Link
+                            className={classes.link1}
+                            title="JavaScript Charts"
+                            href="https://www.scichart.com/javascript-chart-features"
+                        >
+                            <Typography>JavaScript Charts</Typography>
+                        </Link>
+
+                        <Link className={classes.link1} title="JavaScript Chart Examples" href="/">
+                            <Typography> JavaScript Chart Examples</Typography>
+                        </Link>
+
+                        <Link className={classes.link1} title="Sitemap" href="/sitemap.xml">
+                            <Typography> Sitemap</Typography>
+                        </Link>
+                    </Box>
+                </Box>
             </div>
         </>
     );
