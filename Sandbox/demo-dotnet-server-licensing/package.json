@@ -6,7 +6,7 @@
     "build": "webpack"
   },
   "dependencies": {
-    "scichart": "^1.0.1331"
+    "scichart": "^1.2.1440"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.0.3",
