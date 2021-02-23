@@ -28,7 +28,10 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData) {
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism-okaidia.min.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
+            <link rel="stylesheet" href="style.css" />
+            <link rel="stylesheet" href="style123.css" />
             <style id="jss-server-side">${css}</style>
+
             <script async type="text/javascript" src="bundle.js"></script>
 
         </head>
