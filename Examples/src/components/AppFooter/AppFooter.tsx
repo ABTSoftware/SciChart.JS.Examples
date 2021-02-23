@@ -12,7 +12,7 @@ import FooterGrid from "./FooterGrid";
 import { useHistory } from "react-router-dom";
 import { Box, Link, Typography } from "@material-ui/core";
 // import "./AppFooter.scss";
-// import sas from "./AppFooter.module.scss";
+import sas from "./AppFooter.module.scss";
 
 export type TFooterlink = {
     link: string;
@@ -49,8 +49,8 @@ export default function AppFooter() {
 
     return (
         <>
-            <div className="Some">
-            {/* <div className={sas.Card}> */}
+            {/* <div className="Some"> */}
+            <div className={sas.Card}>
                 <Box mb={4}>
                     <Typography variant="h4">All JavaScript Chart Examples</Typography>
                 </Box>

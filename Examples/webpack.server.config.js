@@ -16,16 +16,34 @@ module.exports = {
     },
     module: {
         rules: [
-            // {
-            //     test: /\.css?$/,
-            //     loader: [MiniCssExtractPlugin.loader, "css-loader"],
-            //     exclude: /node_modules/
-            // },
+            {
+                test: /\.css?$/,
+                loader: [MiniCssExtractPlugin.loader, "css-loader"],
+                exclude: /node_modules/
+            },
             // {
             //     test: /\.scss?$/,
             //     loader: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
             //     exclude: /node_modules/
             // },
+
+            {
+                test: /\.scss$/,
+                use: [
+                    { loader: MiniCssExtractPlugin.loader },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: {
+                                localIdentName: "[name]__[local]--[hash:base64:5]"
+                            }
+                        }
+                    },
+                    { loader: "sass-loader" }
+                ],
+                exclude: /node_modules/
+            },
+
             {
                 test: /\.tsx?$/,
                 use: "ts-loader",
@@ -43,9 +61,9 @@ module.exports = {
     resolve: {
         extensions: [".tsx", ".ts", ".js"]
     },
-    // plugins: [
-    //     new MiniCssExtractPlugin({
-    //         filename: "style.css"
-    //     })
-    // ]
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "style.css"
+        })
+    ]
 };

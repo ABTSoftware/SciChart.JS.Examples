@@ -112,10 +112,7 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
                             <Title title={titleText} />
                             <div className={classes.subtitle}>{subtitleText}</div>
                         </div>
-
-        <React.Suspense fallback={<h2>HIHIHI</h2>}>
                         <ExampleComponent />
-                        </React.Suspense>
                         {examplePage && <SourceCode code={codeStr} githubUrl={githubUrl} />}
                     </div>
                 </div>
