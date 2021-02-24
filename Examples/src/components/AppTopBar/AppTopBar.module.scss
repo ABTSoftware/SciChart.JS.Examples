@@ -1,0 +1,8 @@
+@import '../../assets/main.scss';
+
+.MenuButton {
+    margin-right: 8px;
+    @include lg{
+        display: "none"
+    }
+}

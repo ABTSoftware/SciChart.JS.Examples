@@ -3,7 +3,8 @@ import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
 import { TMenuItem } from "../AppRouter/examples";
 import Typography from "@material-ui/core/Typography";
-import { Box, Grid, Link } from "@material-ui/core";
+import {Box, Grid, Link } from "@material-ui/core";
+// import Box from "../shared/Helpers/Box/Box";
 
 type TProps = {
     historyPushPath: (path: string) => void;
@@ -54,8 +55,9 @@ const FooterGrid: React.FC<TProps> = props => {
     const { historyPushPath, title, menuItems } = props;
 
     return (
-        <Box mb={3}>
-            <Box mb={2}>
+        
+        <Box mb={24}>
+            <Box mb={16}>
                 <Typography variant="h5">{title}</Typography>
                 <div className={classes.divider}>
                     <div className={classes.dividerBox}></div>
@@ -70,7 +72,7 @@ const FooterGrid: React.FC<TProps> = props => {
                                 <Typography variant="h6">{el.item.name}</Typography>
                             </div>
 
-                            <Box mb={1}>
+                            <Box mb={8}>
                                 <List component="div" disablePadding>
                                     {el.submenu.map(subEl => (
                                         <Typography

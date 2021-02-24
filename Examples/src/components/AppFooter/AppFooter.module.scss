@@ -1,7 +1,19 @@
-.Card {
+@import "../../assets//main.scss";
+
+.AppFooter {
     padding: 16px;
     overflow: hidden;
     background: #1e252b !important;
     color: white;
     font-family: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol";
+
+    h4,
+    h5,
+    h6 {
+        color: #bac0c6;
+    }
+
+    .SiteLinks {
+        display: flex;
+    }
 }
