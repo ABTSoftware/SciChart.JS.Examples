@@ -132,7 +132,7 @@ const drawExample = async () => {
             stroke: "Brown",
             strokeThickness: 2,
             x1: 9,
-            axisLabelsFill: "Brown"
+            axisLabelFill: "Brown"
         }),
 
         // Horizontal line stretched horizontally
@@ -143,11 +143,11 @@ const drawExample = async () => {
             stroke: "Brown",
             strokeThickness: 2,
             x1: 9.5,
-            axisLabelsFill: "Brown"
+            axisLabelFill: "Brown"
         }),
 
         // Axis Markers
-        
+
         new AxisMarkerAnnotation({
             y1: 5.2,
             fontSize: 12,
