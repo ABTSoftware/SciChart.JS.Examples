@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <JsLibRoot>JsLib\</JsLibRoot>        
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Remove="$(JsLibRoot)**" />
+        <None Remove="$(JsLibRoot)**" />
+        <None Include="$(JsLibRoot)**" Exclude="$(JsLibRoot)node_modules" />
+        <Content Remove="wwwroot\sciChartBlazor.js" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.1" PrivateAssets="all" />
+        <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="JsLib\src\demo.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>    
+    
+    <Target Name="PublishRunWebpack" AfterTargets="Build">
+        <Exec WorkingDirectory="$(JsLibRoot)" Command="npm install" />
+        <Exec WorkingDirectory="$(JsLibRoot)" Command="npm run build" />
+    </Target>
+
+</Project>
