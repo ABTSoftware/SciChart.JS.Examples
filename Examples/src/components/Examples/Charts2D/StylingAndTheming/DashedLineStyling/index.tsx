@@ -11,6 +11,9 @@ import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsM
 import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
 import {ENumericFormat} from "scichart/types/NumericFormat";
 import {TrianglePointMarker} from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
+import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import {GradientParams} from "scichart/Core/GradientParams";
+import {Point} from "scichart/Core/Point";
 
 // tslint:disable:no-empty
 // tslint:disable:max-classes-per-file
@@ -32,14 +35,18 @@ const drawExample = async () => {
         })
     );
 
-    // Create a line series no dash
+    // Create a line series dotted line
     sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
+        new FastMountainRenderableSeries(wasmContext, {
             stroke: "SteelBlue",
-            strokeThickness: 2,
-            dataSeries: createLineData(wasmContext, 0),
-            // Strokedash array defines the stroke dash. [2,2] means draw for 2pt, gap for 2pt
-            strokeDashArray: [2, 2]
+            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                { color: "rgba(70,130,180,0.4)", offset: 0 },
+                { color: "rgba(70,130,180,0.0)", offset: 0.5 }
+            ]),
+            strokeThickness: 3,
+            dataSeries: createLineData(wasmContext, 2),
+            // Strokedash array defines the stroke dash. [10,5] means draw for 10pts, gap for 5pts
+            strokeDashArray: [10, 5]
         })
     );
 
@@ -54,14 +61,14 @@ const drawExample = async () => {
         })
     );
 
-    // Create a line series dotted line
+    // Create a line series no dash
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             stroke: "SteelBlue",
             strokeThickness: 2,
-            dataSeries: createLineData(wasmContext, 2),
-            // Strokedash array defines the stroke dash. [10,5] means draw for 10pts, gap for 5pts
-            strokeDashArray: [10, 5]
+            dataSeries: createLineData(wasmContext, 0),
+            // Strokedash array defines the stroke dash. [2,2] means draw for 2pt, gap for 2pt
+            strokeDashArray: [2, 2]
         })
     );
 
