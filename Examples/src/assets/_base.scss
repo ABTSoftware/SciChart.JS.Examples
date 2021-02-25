@@ -9,7 +9,7 @@ $color-font-dark: #323640;
 
 $color-font-red: #ff576c;
 
-$color-font-green: #3acf78;
+$color-font-green: #117d31;
 
 $color-main-orange: #ff8f1d;
 
@@ -36,6 +36,9 @@ html {
         font-family: "-apple-system", "BlinkMacSystemFont", '"Segoe UI"', "Roboto", '"Helvetica Neue"', "Arial",
             "sans-serif", '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"';
     }
+    h1 {
+        line-height: 1.167;
+    }
     h4 {
         font-size: 2.125rem;
         font-weight: 400;
@@ -49,5 +52,3 @@ html {
     // padding: 0 2.4rem;
     // position: relative;
 }
-
-

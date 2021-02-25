@@ -1,0 +1,83 @@
+@import "../../assets/main.scss";
+
+.PageHomeTitle {
+    color: $color-font-green;
+    font-size: 6rem;
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 0;
+    line-height: 1.167;
+
+    @include sm {
+        font-size: 4rem;
+    }
+}
+.PageHomeSubTitle {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.6;
+
+    margin-bottom: 0.35em;
+}
+
+.PageHomeHeaderText {
+    margin-left: 48px;
+
+    @include sm {
+        margin-left: 0;
+        margin-top: 48px;
+        text-align: center;
+    }
+}
+.PageHomeAboutText {
+    color: $color-font-green;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.334;
+}
+.ButtonWrapper {
+    display: flex;
+    margin-top: 30px;
+    a {
+        padding: 7px 21px;
+        align-items: center;
+        color: #4caf50;
+        border: 1px solid rgba(76, 175, 80, 0.5);
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        font-size: 15px;
+        font-weight: 500;
+        justify-content: center;
+        line-height: 26.25px;
+        text-decoration-thickness: auto;
+        text-transform: uppercase;
+        user-select: none;
+    }
+    @include sm {
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.PageHomeWrapper {
+    margin: 16px;
+}
+.PageHomeHeader {
+    padding-top: 128px;
+    padding-bottom: 96px;
+    max-width: 960px;
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+    @include sm {
+        display: block;
+        padding-top: 64px;
+        padding-bottom: 32px;
+    }
+}
+.PageHomeContent {
+    max-width: 1280;
+    margin: auto;
+}
