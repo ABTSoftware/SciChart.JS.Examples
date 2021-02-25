@@ -5,8 +5,8 @@ import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => (<div>
-    <p>Demonstrates the FastLineRenderableSeries StrokeDashArray and StrokeThickness
-        properties which can be used to style a dashed line, dotted line or solid line.</p>
+    <p>Demonstrates the Line series, Mountain series and Band series StrokeDashArray
+        property which can be used to style a dashed line, dotted line or solid line.</p>
     <p>The StrokeDashArray property accepts a number array e.g. [2,3] which defines the length of the dash
         and the length of the gap.</p>
     <h4>Documentation Links</h4>

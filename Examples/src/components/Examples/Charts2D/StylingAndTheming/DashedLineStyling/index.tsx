@@ -14,6 +14,8 @@ import {TrianglePointMarker} from "scichart/Charting/Visuals/PointMarkers/Triang
 import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import {GradientParams} from "scichart/Core/GradientParams";
 import {Point} from "scichart/Core/Point";
+import {XyyDataSeries} from "scichart/Charting/Model/XyyDataSeries";
+import {FastBandRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
 
 // tslint:disable:no-empty
 // tslint:disable:max-classes-per-file
@@ -35,7 +37,7 @@ const drawExample = async () => {
         })
     );
 
-    // Create a line series dotted line
+    // Create a Mountain series with a dashed line
     sciChartSurface.renderableSeries.add(
         new FastMountainRenderableSeries(wasmContext, {
             stroke: "SteelBlue",
@@ -50,7 +52,7 @@ const drawExample = async () => {
         })
     );
 
-    // Create a line series dotted line
+    // Create a line series with a dotted line
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             stroke: "SteelBlue",
@@ -61,7 +63,7 @@ const drawExample = async () => {
         })
     );
 
-    // Create a line series no dash
+    // Create a line series a dotted line
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             stroke: "SteelBlue",
@@ -71,6 +73,18 @@ const drawExample = async () => {
             strokeDashArray: [2, 2]
         })
     );
+
+    // Create a band series with dashed lines and add to the chart
+    sciChartSurface.renderableSeries.add(new FastBandRenderableSeries(wasmContext, {
+        dataSeries: createBandData(wasmContext),
+        strokeThickness: 2,
+        fill: "rgba(70,130,180,0.2)",
+        fillY1: "rgba(70,130,180,0.2)",
+        stroke: "SteelBlue",
+        strokeY1: "SteelBlue",
+        strokeDashArray: [10, 10],
+        strokeY1DashArray: [3, 3]
+    }));
 
     // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
@@ -92,6 +106,18 @@ const createLineData = (wasmContext: TSciChart, whichSeries: number) => {
         data.yValues.map(y => whichSeries === 0 ? y : whichSeries === 1 ? y * 1.1 : y * 1.5));
     return xyDataSeries;
 };
+
+const createBandData = (wasmContext: TSciChart) => {
+
+    const data0 = ExampleDataProvider.getFourierSeriesZoomed(0.6, 0.13, 5.0, 5.15);
+    const data1 = ExampleDataProvider.getFourierSeriesZoomed(0.5, 0.12, 5.0, 5.15);
+    const xyyDataSeries = new XyyDataSeries(wasmContext);
+    xyyDataSeries.appendRange(
+        data0.xValues,
+        data0.yValues,
+        data1.yValues);
+    return xyyDataSeries;
+}
 
 export default function DashedLineStyling() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
