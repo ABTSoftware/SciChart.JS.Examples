@@ -74,6 +74,48 @@ export class ExampleDataProvider {
         return { xValues, yValues };
     }
 
+    public static getFourierSeriesZoomed(amplitude: number, phaseShift: number,
+                                         xStart: number, xEnd: number, count: number = 5000): IXyValues {
+        const fourierData = this.getFourierSeries(amplitude, phaseShift, count);
+
+        let index0 = 0;
+        let index1 = 0;
+        for (let i = 0; i < count; i++) {
+            if (fourierData.xValues[i] > xStart && index0 === 0)
+                index0 = i;
+            if (fourierData.xValues[i] > xEnd && index1 === 0){
+                index1 = i;
+                break;
+            }
+        }
+
+        const xValues: number[] = fourierData.xValues.filter((_, i) => i >= index0 && i < index1);
+        const yValues: number[] = fourierData.yValues.filter((_, i) => i >= index0 && i < index1);
+        console.log("Length: " + xValues.length);
+        return { xValues, yValues };
+    }
+
+    public static getFourierSeries(amplitude: number, phaseShift: number, count: number = 5000): IXyValues {
+        const xValues: number[] = [];
+        const yValues: number[] = [];
+
+        for (let i = 0; i < count; i++) {
+            const time = 10 * i / count;
+            const wn = 2 * Math.PI / (count / 10);
+
+            xValues.push(time);
+            yValues.push(Math.PI * amplitude *
+                (Math.sin(i * wn + phaseShift) +
+                 0.33 * Math.sin(i * 3 * wn + phaseShift) +
+                 0.20 * Math.sin(i * 5 * wn + phaseShift) +
+                 0.14 * Math.sin(i * 7 * wn + phaseShift) +
+                 0.11 * Math.sin(i * 9 * wn + phaseShift) +
+                 0.09 * Math.sin(i * 11 * wn + phaseShift)));
+        }
+
+        return {xValues, yValues};
+    }
+
     public static getTradingData(maxPoints?: number): IOhlcvValues {
         const {dateValues, openValues, highValues, lowValues, closeValues, volumeValues} = multiPaneData;
 
@@ -90,4 +132,6 @@ export class ExampleDataProvider {
 
         return {dateValues, openValues, highValues, lowValues, closeValues, volumeValues};
     }
+
+
 }
