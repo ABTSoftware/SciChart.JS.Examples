@@ -1,30 +1,16 @@
 import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
+import classes from "./Gallery.module.scss";
 
 type TProps = {
     title: string;
 };
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        marginTop: theme.spacing(4),
-        paddingLeft: theme.spacing(1)
-    }
-}));
-
 const ChartGroupTitle: React.FC<TProps> = props => {
-    const classes = useStyles();
-    const history = useHistory();
-
     const { title } = props;
 
-    return (
-        <Typography className={classes.root} variant="h4" gutterBottom>
-            {title}
-        </Typography>
-    );
+    return <div className={classes.ChartGroupTitle}>{title}</div>;
 };
 
 export default ChartGroupTitle;

@@ -2,7 +2,7 @@ import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import { useHistory } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
+import classes from "./Gallery.module.scss";
 
 type TProps = {
     imgPath: string;
@@ -11,19 +11,19 @@ type TProps = {
     examplePath: string;
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     paper: {
         padding: theme.spacing(1),
         textAlign: "center",
         color: theme.palette.text.secondary,
         "&:hover": {
-            cursor: "pointer",
-        },
-    },
+            cursor: "pointer"
+        }
+    }
 }));
 
-const GalleryCard: React.FC<TProps> = (props) => {
-    const classes = useStyles();
+const GalleryCard: React.FC<TProps> = props => {
+    const classes1 = useStyles();
     const history = useHistory();
 
     const { imgPath, title, seoTitle, examplePath } = props;
@@ -38,7 +38,7 @@ const GalleryCard: React.FC<TProps> = (props) => {
         e.preventDefault();
     };
     return (
-        <Paper className={classes.paper}>
+        <div className={classes.GalleryItemCard}>
             <a href={examplePath} title={seoTitle} onClick={handleClickLink}>
                 <img
                     style={{ maxWidth: "100%", display: "block" }}
@@ -48,10 +48,8 @@ const GalleryCard: React.FC<TProps> = (props) => {
                     onClick={handleClick(examplePath)}
                 />
             </a>
-            <Typography variant="h5" gutterBottom style={{ textAlign: "center", marginBottom: 0 }}>
-                {title}
-            </Typography>
-        </Paper>
+            <h5 className={classes.GalleryItemTitle}>{title}</h5>
+        </div>
     );
 };
 

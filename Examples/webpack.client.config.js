@@ -2,6 +2,7 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const config = require("./config/default");
+const autoprefixer = require("autoprefixer");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -28,6 +29,9 @@ module.exports = {
                                 localIdentName: "[name]__[local]--[hash:base64:5]"
                             }
                         }
+                    },
+                    {
+                        loader: "postcss-loader"
                     },
                     { loader: "sass-loader" }
                 ],
@@ -70,6 +74,7 @@ module.exports = {
         // new BundleAnalyzerPlugin()
         new MiniCssExtractPlugin({
             filename: filename("styles.css")
-        })
+        }),
+        require("autoprefixer")
     ]
 };

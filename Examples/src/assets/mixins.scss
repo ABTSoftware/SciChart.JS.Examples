@@ -5,19 +5,19 @@
 }
 
 @mixin lg {
-    @media (min-width: $bp-lg) and (max-width: $bp-xl) {
+    @media (max-width: $bp-xl) {
         @content;
     }
 }
 
 @mixin md {
-    @media (min-width: $bp-md) and (max-width: $bp-lg) {
+    @media (max-width: $bp-lg) {
         @content;
     }
 }
 
 @mixin sm {
-    @media (min-width: $bp-sm) and (max-width: $bp-md) {
+    @media (max-width: $bp-md) {
         @content;
     }
 }
