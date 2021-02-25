@@ -43,7 +43,7 @@ async function initSciChart() {
         }
 
         // Add and create a line series with this data to the chart
-        // Create a line series        
+        // Create a line series
         const lineSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries: xyDataSeries,
             stroke: `rgba(176,196,222,${opacity})`,
@@ -67,7 +67,7 @@ async function initSciChart() {
 
     // Add axis label tooltips using CursorModifier
     const cursorModifier = new CursorModifier();
-    cursorModifier.axisLabelsFill = "#FFFFFF";
+    cursorModifier.axisLabelFill = "#FFFFFF";
     cursorModifier.axisLabelsStroke = "#00FF00";
     sciChartSurface.chartModifiers.add(cursorModifier);
 }

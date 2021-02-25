@@ -86,8 +86,8 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
             tooltipContainerBackground: "green",
             tooltipTextStroke: "white",
             showTooltip: true,
-            axisLabelsFill: "green",
-            axisLabelsStroke: "white"
+            axisLabelFill: "green",
+            axisLabelStroke: "white"
         }),
         // Add further zooming and panning behaviours
         new ZoomPanModifier(),
