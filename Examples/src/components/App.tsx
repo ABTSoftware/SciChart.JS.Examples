@@ -11,6 +11,7 @@ import AppFooter from "./AppFooter/AppFooter";
 import { EXAMPLES_PAGES } from "./AppRouter/examplePages";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 
+import './index.scss';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(

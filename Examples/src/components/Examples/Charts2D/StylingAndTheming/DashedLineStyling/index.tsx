@@ -1,21 +1,21 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {TSciChart} from "scichart/types/TSciChart";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
-import {ENumericFormat} from "scichart/types/NumericFormat";
-import {TrianglePointMarker} from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
-import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {Point} from "scichart/Core/Point";
-import {XyyDataSeries} from "scichart/Charting/Model/XyyDataSeries";
-import {FastBandRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
+import { SciChartSurface } from "scichart";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { TSciChart } from "scichart/types/TSciChart";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
+import { ENumericFormat } from "scichart/types/NumericFormat";
+import { TrianglePointMarker } from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
+import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import { GradientParams } from "scichart/Core/GradientParams";
+import { Point } from "scichart/Core/Point";
+import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
+import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
 
 // tslint:disable:no-empty
 // tslint:disable:max-classes-per-file
@@ -26,14 +26,12 @@ const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
     // Create XAxis
-    sciChartSurface.xAxes.add(
-        new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Decimal_2 })
-    );
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Decimal_2 }));
 
     // Create YAxis
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            growBy: new NumberRange(0.1, 0.1),
+            growBy: new NumberRange(0.1, 0.1)
         })
     );
 
@@ -59,7 +57,7 @@ const drawExample = async () => {
             strokeThickness: 2,
             dataSeries: createLineData(wasmContext, 1),
             // Strokedash array defines the stroke dash. [3,3] means draw for 3pts, gap for 3pts
-            strokeDashArray: [3, 3],
+            strokeDashArray: [3, 3]
         })
     );
 
@@ -75,16 +73,18 @@ const drawExample = async () => {
     );
 
     // Create a band series with dashed lines and add to the chart
-    sciChartSurface.renderableSeries.add(new FastBandRenderableSeries(wasmContext, {
-        dataSeries: createBandData(wasmContext),
-        strokeThickness: 2,
-        fill: "rgba(70,130,180,0.2)",
-        fillY1: "rgba(70,130,180,0.2)",
-        stroke: "SteelBlue",
-        strokeY1: "SteelBlue",
-        strokeDashArray: [10, 10],
-        strokeY1DashArray: [3, 3]
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastBandRenderableSeries(wasmContext, {
+            dataSeries: createBandData(wasmContext),
+            strokeThickness: 2,
+            fill: "rgba(70,130,180,0.2)",
+            fillY1: "rgba(70,130,180,0.2)",
+            stroke: "SteelBlue",
+            strokeY1: "SteelBlue"
+            // strokeDashArray: [10, 10],
+            // strokeY1DashArray: [3, 3]
+        })
+    );
 
     // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
@@ -103,21 +103,18 @@ const createLineData = (wasmContext: TSciChart, whichSeries: number) => {
 
     xyDataSeries.appendRange(
         data.xValues,
-        data.yValues.map(y => whichSeries === 0 ? y : whichSeries === 1 ? y * 1.1 : y * 1.5));
+        data.yValues.map(y => (whichSeries === 0 ? y : whichSeries === 1 ? y * 1.1 : y * 1.5))
+    );
     return xyDataSeries;
 };
 
 const createBandData = (wasmContext: TSciChart) => {
-
     const data0 = ExampleDataProvider.getFourierSeriesZoomed(0.6, 0.13, 5.0, 5.15);
     const data1 = ExampleDataProvider.getFourierSeriesZoomed(0.5, 0.12, 5.0, 5.15);
     const xyyDataSeries = new XyyDataSeries(wasmContext);
-    xyyDataSeries.appendRange(
-        data0.xValues,
-        data0.yValues,
-        data1.yValues);
+    xyyDataSeries.appendRange(data0.xValues, data0.yValues, data1.yValues);
     return xyyDataSeries;
-}
+};
 
 export default function DashedLineStyling() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();

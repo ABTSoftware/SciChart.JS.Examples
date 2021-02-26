@@ -67,7 +67,7 @@ type TProps = {};
 
 const Gallery: React.FC<TProps> = props => {
     return (
-        <div>
+        <div >
             <ChartGroupTitle title="Performance Demos" />
             <ul className={classes.Gallery}>
                 <li className={classes.GalleryItem}>

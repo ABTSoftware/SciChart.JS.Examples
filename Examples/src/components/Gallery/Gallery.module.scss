@@ -12,7 +12,7 @@
         grid-template-columns: repeat(1, 1fr);
     }
     .GalleryItem {
-        padding: 12px;
+        padding: $default-spacing * 1.5;
 
         @include xs {
             padding: 12px 0px;
@@ -25,7 +25,7 @@
         .GalleryItemCard {
             box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, 0.2);
             color: rgba(0, 0, 0, 0.54);
-            padding: 8px;
+            padding: $default-spacing;
             text-align: center;
             &:hover {
                 cursor: pointer;
@@ -37,6 +37,6 @@
     font-size: 2.125rem;
     font-weight: 500;
     line-height: 1.235;
-    margin-top: 32px;
-    padding-left: 8px;
+    margin-top: $default-spacing * 4;
+    padding-left: $default-spacing;
 }
