@@ -51,6 +51,7 @@ import pointMarkersImg from "../Examples/Charts2D/StylingAndTheming/UsePointMark
 import themeManagerImg from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager/javascript-chart-themes.png";
 import stylingInCodeImg from "../Examples/Charts2D/StylingAndTheming/StylingInCode/javascript-chart-styling-theming-in-code.png";
 import paletteProviderImg from "../Examples/Charts2D/StylingAndTheming/PerPointColoring/javascript-chart-color-points-individually-with-paletteprovider.jpg";
+import dashedLineImg from "../Examples/Charts2D/StylingAndTheming/DashedLineStyling/javascript-chart-dashed-dotted-lines.jpg";
 // Tooltips and Hit-Test
 import hitTestApiImg from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI/javascript-chart-hit-test-on-click.png";
 import rolloverImg from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/javascript-chart-rollovermodifier-tooltips.jpg";
@@ -414,6 +415,14 @@ const Gallery: React.FC<TProps> = props => {
                         title="Coloring Series per-point"
                         seoTitle="Coloring JavaScript Chart Series per-point using the PaletteProvider"
                         examplePath={EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring.path}
+                    />
+                </div>
+                <div className={classes.GalleryItem}>
+                    <GalleryCard
+                        imgPath={dashedLineImg}
+                        title="Dashed Line Styling"
+                        seoTitle="JavaScript Dashed and Dotted Line Chart Example"
+                        examplePath={EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling.path}
                     />
                 </div>
             </div>

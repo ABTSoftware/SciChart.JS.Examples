@@ -1,0 +1,34 @@
+@page "/"
+@inject IJSRuntime JsRuntime
+@implements IAsyncDisposable
+
+<h2>Test</h2>
+
+<div id="scichart-root" style="width:800px; height: 600px" @ref="_chart"></div>
+
+<button @onclick="LoadChart">Load</button>
+<button @onclick="AppendSeries">Append</button>
+
+@code
+{
+    ElementReference _chart;
+
+    private async Task LoadChart()
+    {
+        await JsRuntime.InvokeVoidAsync("demo.initSciChart", _chart);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+    }
+
+    private async Task AppendSeries()
+    {
+        await JsRuntime.InvokeVoidAsync("demo.appendRenderableSeries", _chart);
+    }
+
+    public ValueTask DisposeAsync()
+    {
+        return JsRuntime.InvokeVoidAsync("demo.unregisterChart", _chart);
+    }
+}
