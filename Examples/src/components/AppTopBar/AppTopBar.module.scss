@@ -1,8 +1,8 @@
 @import '../../assets/main.scss';
 
 .MenuButton {
-    margin-right: 8px;
+    margin-right: $default-spacing * 2;
     @include lg{
-        display: "none"
+        display: none;
     }
 }
