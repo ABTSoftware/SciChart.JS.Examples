@@ -1,0 +1,34 @@
+@page "/WrapperTest"
+<h3>WrapperTest</h3>
+
+<SciChart @ref="_chart"/>
+
+@code
+{
+    private SciChart _chart;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await _chart.Init();
+
+            var dataSeries = new List<DataPoint>();
+            
+            for (int i = 0; i < 100; i++)
+            {
+                dataSeries.Add(new DataPoint(i,Math.Sin(i*0.1)));
+            }
+            
+            var xyDataSeries = new FastLineRenderableSeries
+            {
+                Stroke = "#20f9bc",
+                StrokeThickness = 5,
+                DataSeries = dataSeries
+            };
+
+            await _chart.AddRenderableSeries(xyDataSeries);
+        }
+    }
+
+}

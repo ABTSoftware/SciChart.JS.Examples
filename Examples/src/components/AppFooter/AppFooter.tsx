@@ -10,7 +10,6 @@ import {
 import FooterGrid from "./FooterGrid";
 import { useHistory } from "react-router-dom";
 import { Link, Typography } from "@material-ui/core";
-// import "./AppFooter.scss";
 import classes from "./AppFooter.module.scss";
 import Box from "../shared/Helpers/Box/Box";
 

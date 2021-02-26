@@ -213,6 +213,10 @@ export const ExampleStrings = {
     titlePaletteProvider: "Coloring Series per-point using the PaletteProvider",
     urlPaletteProvider: "/javascript-chart-color-points-individually-with-paletteprovider",
 
+    // Dashed line styling
+    titleDashedLineStyling: "Dashed Line Styling",
+    urlDashedLineStyling: "/javascript-dashed-line-chart",
+
     // Styling in code
     urlStylingInCode: "/javascript-chart-styling-theming-in-code",
     titleStylingInCode: "Styling a JavaScript Chart in Code",
@@ -307,5 +311,7 @@ export const ExampleStrings = {
     // Featured Apps Tenor Curves
     titleTenorCurvesFeaturedApp: "Tenor Curves Demo",
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
+
+
 
 }

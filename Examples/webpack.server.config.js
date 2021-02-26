@@ -18,7 +18,7 @@ module.exports = {
         rules: [
             {
                 test: /\.css?$/,
-                loader: [MiniCssExtractPlugin.loader, "css-loader"],
+                loader: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
                 exclude: /node_modules/
             },
             {
@@ -33,7 +33,13 @@ module.exports = {
                             }
                         }
                     },
-                    { loader: "sass-loader" }
+                    {
+                        loader: "postcss-loader"
+                    },
+                    // "postcss-loader",
+                    {
+                        loader: "sass-loader"
+                    }
                 ],
                 exclude: /node_modules/
             },
@@ -58,6 +64,7 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: "style.css"
-        })
+        }),
+        require("autoprefixer")
     ]
 };

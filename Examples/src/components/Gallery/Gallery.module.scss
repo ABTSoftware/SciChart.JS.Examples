@@ -1,0 +1,42 @@
+@import "../../assets//main.scss";
+
+.Gallery {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    @include sm {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include xs {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .GalleryItem {
+        padding: 12px;
+
+        @include xs {
+            padding: 12px 0px;
+        }
+        .GalleryItemTitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            line-height: 1.334;
+        }
+        .GalleryItemCard {
+            box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, 0.2);
+            color: rgba(0, 0, 0, 0.54);
+            padding: 8px;
+            text-align: center;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+.ChartGroupTitle {
+    font-size: 2.125rem;
+    font-weight: 500;
+    line-height: 1.235;
+    margin-top: 32px;
+    padding-left: 8px;
+}

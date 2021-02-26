@@ -1,10 +1,9 @@
 import * as React from "react";
 import List from "@material-ui/core/List";
 import { TMenuItem } from "../AppRouter/examples";
-import { Box, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+import Box from "../shared/Helpers/Box/Box";
 import classes from "./FooterGrid.module.scss";
-
-// import Box from "../shared/Helpers/Box/Box";
 
 type TProps = {
     historyPushPath: (path: string) => void;
