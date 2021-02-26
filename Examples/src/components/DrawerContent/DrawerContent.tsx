@@ -1,9 +1,8 @@
 import * as React from "react";
-import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Navigation from "../Navigation/Navigation";
-import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
+import classes from "./DrawerContent.module.scss";
 
 // tslint:disable-next-line:no-var-requires
 const APP_VERSION = require("../../../package.json").dependencies.scichart;
@@ -14,15 +13,7 @@ type TProps = {
     toggleDrawer: () => void;
 };
 
-const useStyles = makeStyles(theme => ({
-    toolbar: {
-        ...theme.mixins.toolbar,
-        paddingLeft: theme.spacing(2)
-    }
-}));
-
 const DrawerContent: React.FC<TProps> = props => {
-    const classes = useStyles();
     const history = useHistory();
 
     const { testIsOpened, toggleOpenedMenuItem, toggleDrawer } = props;
@@ -30,16 +21,15 @@ const DrawerContent: React.FC<TProps> = props => {
     return (
         <>
             <div className={classes.toolbar}>
-                <Typography
-                    variant="h6"
-                    style={{ color: "rgba(0, 0, 0, 0.54)", cursor: "pointer", marginTop: 6 }}
+                <h6
+                    className={classes.homepageLink}
                     onClick={() => history.push("/")}
                 >
                     SciChart.js
-                </Typography>
-                <Typography variant="caption" style={{ color: "rgba(0, 0, 0, 0.54)" }}>
+                </h6>
+                <span className={classes.versionCaption}>
                     {`v${APP_VERSION}`}
-                </Typography>
+                </span>
             </div>
             <Divider />
             <Navigation testIsOpened={testIsOpened} onExpandClick={toggleOpenedMenuItem} toggleDrawer={toggleDrawer} />
