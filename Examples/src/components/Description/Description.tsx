@@ -1,5 +1,5 @@
-import Typography from "@material-ui/core/Typography";
 import * as React from "react";
+import classes from "./Description.module.scss";
 
 type TProps = {
     children: React.ReactNode;
@@ -8,9 +8,9 @@ type TProps = {
 const Description: React.FC<TProps> = props => {
     return (
         <React.Fragment>
-            <Typography variant="h5" variantMapping={{ h5: "p" }} gutterBottom>
+            <p className={classes.description}>
                 Description
-            </Typography>
+            </p>
             {props.children}
         </React.Fragment>
     );

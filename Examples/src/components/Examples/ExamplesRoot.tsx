@@ -121,9 +121,9 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
                         <img src={sciChartLogoImg} width={209} height={42} />
                     </div>
                     <div className={classes.description}>
-                        <Typography variant="h5" variantMapping={{ h5: "p" }} gutterBottom>
+                        <p>
                             <span className={classes.textGreen}>// </span>JavaScript Chart Examples
-                        </Typography>
+                        </p>
                         <p>
                             <em>
                                 SciChart.js ships with ~40{" "}

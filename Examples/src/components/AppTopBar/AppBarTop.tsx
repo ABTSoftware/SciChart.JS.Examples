@@ -6,24 +6,13 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import Search from "../Search/Search";
+import classes from './AppTopBar.module.scss';
 
 type TProps = {
     toggleDrawer: () => void;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        menuButton: {
-            marginRight: theme.spacing(2),
-            [theme.breakpoints.up("lg")]: {
-                display: "none"
-            }
-        }
-    })
-);
-
 const AppBarTop: React.FC<TProps> = props => {
-    const classes = useStyles();
     const { toggleDrawer } = props;
 
     const openGithub = () => {
