@@ -1,26 +1,24 @@
 @import "../../assets//main.scss";
 
-.listItemText {
-    margin-left: $default-spacing;
-    color: $color-primary-grey;
-}
-
-.listItemText2 {
-    margin-left: $default-spacing * 2;
-    font-size: 0.875rem;
-    cursor: pointer;
-
-    a {
-        color: $color-primary-grey;
-        text-decoration: none;
-    }
-}
-
-.listItems {
+.FooterGridList {
     width: 33.3%;
 
     @include xs {
         width: 100%;
+    }
+
+    h6 {
+        margin-left: $default-spacing;
+        color: $color-primary-grey;
+    }
+
+    a {
+        display: block;
+        color: $color-primary-grey;
+        text-decoration: none;
+        margin-left: $default-spacing * 2;
+        font-size: 0.875rem;
+        cursor: pointer;
     }
 }
 

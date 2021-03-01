@@ -9,7 +9,6 @@ import {
 } from "../AppRouter/examples";
 import FooterGrid from "./FooterGrid";
 import { useHistory } from "react-router-dom";
-import { Link, Typography } from "@material-ui/core";
 import classes from "./AppFooter.module.scss";
 import Box from "../shared/Helpers/Box/Box";
 
@@ -54,21 +53,20 @@ export default function AppFooter() {
                 <Box mb={32}>
                     <h4>SciChart.js: Fast, Realtime, High Performance </h4>
                     <Box mt={8} className={classes.SiteLinks}>
-                        <Link
-                            className={classes.Link}
+                        <a
                             title="JavaScript Charts"
                             href="https://www.scichart.com/javascript-chart-features"
                         >
-                            <p>JavaScript Charts</p>
-                        </Link>
+                            JavaScript Charts
+                        </a>
 
-                        <Link className={classes.Link} title="JavaScript Chart Examples" href="/">
-                            <Typography> JavaScript Chart Examples</Typography>
-                        </Link>
+                        <a title="JavaScript Chart Examples" href="/">
+                            JavaScript Chart Examples
+                        </a>
 
-                        <Link className={classes.Link} title="Sitemap" href="/sitemap.xml">
-                            <Typography> Sitemap</Typography>
-                        </Link>
+                        <a title="Sitemap" href="/sitemap.xml">
+                            Sitemap
+                        </a>
                     </Box>
                 </Box>
             </div>
