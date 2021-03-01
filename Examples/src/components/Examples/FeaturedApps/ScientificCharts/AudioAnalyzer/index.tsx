@@ -248,7 +248,7 @@ export const drawExample = async () => {
     updateChart();
 };
 
-export const requestCleanup = async () => {
+export const requestCleanup = () => {
     cleanupRequested = true;
 };
 
