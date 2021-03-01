@@ -13,7 +13,7 @@ type TProps = {
 };
 
 const FooterGrid: React.FC<TProps> = props => {
-    const { historyPushPath, title, menuItems } = props;
+    const { title, menuItems } = props;
 
     return (
         <Box mb={24}>
@@ -26,24 +26,18 @@ const FooterGrid: React.FC<TProps> = props => {
 
             <Grid container direction="row" alignItems="flex-start">
                 {menuItems.map(el => (
-                    <div className={classes.listItems} key={el.item.id}>
-                        <div>
-                            <div className={classes.listItemText}>
-                                <h6>{el.item.name}</h6>
-                            </div>
+                    <div className={classes.FooterGridList} key={el.item.id}>
+                        <h6>{el.item.name}</h6>
 
-                            <Box mb={8}>
-                                <List component="div" disablePadding>
-                                    {el.submenu.map(subEl => (
-                                        <p className={classes.listItemText2} key={subEl.id}>
-                                            <a href={subEl.path} title={subEl.title}>
-                                                {subEl.title}
-                                            </a>
-                                        </p>
-                                    ))}
-                                </List>
-                            </Box>
-                        </div>
+                        <Box mb={8}>
+                            <List component="div" disablePadding>
+                                {el.submenu.map(subEl => (
+                                    <a href={subEl.path} title={subEl.title} key={subEl.id}>
+                                        {subEl.title}
+                                    </a>
+                                ))}
+                            </List>
+                        </Box>
                     </div>
                 ))}
             </Grid>

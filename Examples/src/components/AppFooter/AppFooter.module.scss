@@ -15,5 +15,15 @@
 
     .SiteLinks {
         display: flex;
+
+        a {
+            color: $color-primary-grey;
+            margin-right: 10px;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 }
