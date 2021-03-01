@@ -10,6 +10,7 @@ import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragMod
 import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart1";
 
@@ -126,5 +127,5 @@ export default function SecondaryYAxes() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

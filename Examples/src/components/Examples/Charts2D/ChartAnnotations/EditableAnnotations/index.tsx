@@ -14,6 +14,7 @@ import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/Anc
 import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import { ELabelPlacement } from "scichart/types/LabelPlacement";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -142,5 +143,5 @@ export default function EditableAnnotaions() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

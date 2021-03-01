@@ -7,6 +7,7 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { SciChartSurface } from "scichart";
 import { NumberRange } from "scichart/Core/NumberRange";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -38,7 +39,7 @@ const drawExample = async () => {
         2.5,
         1.4,
         0.4,
-        0.1,
+        0.1
     ];
 
     // Append them to a dataSeries
@@ -53,7 +54,7 @@ const drawExample = async () => {
         stroke: "rgba(176, 196, 222, 1)",
         strokeThickness: 2,
         dataPointWidth: 0.7,
-        dataSeries,
+        dataSeries
     });
     sciChartSurface.renderableSeries.add(columnSeries);
 
@@ -78,5 +79,5 @@ export default function ColumnChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

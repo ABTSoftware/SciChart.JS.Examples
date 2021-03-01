@@ -12,3 +12,77 @@
         min-height: 200px;
     }
 }
+
+.FormControl {
+    margin: $default-spacing;
+    min-width: 142;
+}
+
+.Notification {
+    margin-bottom: $default-spacing * 2;
+}
+
+/////*****VitalSignsMonitorDemo*****/////
+
+.ChartContainer {
+    display: flex;
+    background-color: black;
+    padding-top: 6;
+    width: 800;
+    font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";';
+    position: relative;
+}
+
+.InfoBoxContainer {
+    flex-basis: 200;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    div {
+        &:not(:first-child) {
+            border-top: 1px solid darkgrey;
+        }
+    }
+}
+
+.InfoBox {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-left: 1px solid darkgrey;
+    padding: 6;
+    height: 150px;
+    width: 200px;
+    background-color: black;
+}
+.IbRow1 {
+    flex-grow: 1;
+    display: flex;
+}
+.IbRow1Col1 {
+    flex-grow: 1;
+    font-size: 32;
+}
+.IbRow1Col2 {
+    text-align: right;
+    margin-top: 4;
+    font-size: 12;
+}
+.IbRow2 {
+    display: flex;
+}
+.IbRow2Col1 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 6;
+    font-size: 14;
+    img {
+        width: 45;
+    }
+}
+.IbRow2Col2 {
+    display: flex;
+    flex-direction: column;
+    font-size: 44;
+}

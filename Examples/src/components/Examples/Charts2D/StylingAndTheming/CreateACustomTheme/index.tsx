@@ -9,6 +9,7 @@ import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
 import { closeValues, dateValues, highValues, lowValues, openValues } from "./data/themeing2dData";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -131,9 +132,5 @@ export default function CustomTheme() {
         return () => scs?.delete();
     }, []);
 
-    return (
-        <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-        </div>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

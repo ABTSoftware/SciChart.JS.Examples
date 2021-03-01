@@ -14,6 +14,7 @@ import { CursorModifier } from "scichart/Charting/ChartModifiers/CursorModifier"
 import { EColor } from "scichart/types/Color";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -111,9 +112,5 @@ export default function UsingCursorModifierTooltips() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return (
-        <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-        </div>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

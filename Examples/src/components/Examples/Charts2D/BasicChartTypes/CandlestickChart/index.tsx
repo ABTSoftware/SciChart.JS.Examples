@@ -8,8 +8,8 @@ import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/Rende
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { closeValues, dateValues, highValues, lowValues, openValues } from "./data/data";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import {
     EFillPaletteMode,
     EStrokePaletteMode,
@@ -17,7 +17,10 @@ import {
     IPaletteProvider,
     IStrokePaletteProvider
 } from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { Button, ButtonGroup } from "@material-ui/core";
+import Box from "../../../../shared/Helpers/Box/Box";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -44,7 +47,7 @@ const drawExample = async () => {
         openValues, // Assuming open, high, low, close values are number[] arrays
         highValues,
         lowValues,
-        closeValues,
+        closeValues
     });
 
     // Create and add the Candlestick series
@@ -105,7 +108,7 @@ class CandlestickPaletteProvider implements IStrokePaletteProvider, IFillPalette
         const open = ohlcDataSeries.getNativeOpenValues().get(index);
 
         // If more than 1% change, return 'highlightColor' otherwise return undefined for default color
-        if (Math.abs(1 - (open / close)) > 0.01) {
+        if (Math.abs(1 - open / close) > 0.01) {
             return this.highlightColor;
         }
         return undefined;
@@ -129,7 +132,6 @@ class CandlestickPaletteProvider implements IStrokePaletteProvider, IFillPalette
     }
 }
 
-
 // REACT COMPONENT
 export default function CandlestickChart() {
     const [dataSeries, setDataSeries] = React.useState<OhlcDataSeries>();
@@ -139,7 +141,7 @@ export default function CandlestickChart() {
         (async () => {
             const res = await drawExample();
             setSciChartSurface(res.sciChartSurface);
-            setDataSeries(res.dataSeries)
+            setDataSeries(res.dataSeries);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => sciChartSurface?.delete();
@@ -172,13 +174,18 @@ export default function CandlestickChart() {
 
     return (
         <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-            <div style={{ marginTop: 20 }}>
-                <button onClick={handleAddPoints}>Add 10 Points</button>
-                <button onClick={handleRemovePoints} style={{ marginLeft: 10 }}>
-                    Remove 10 Points
-                </button>
-            </div>
+            <div id={divElementId} className={classes.ChartWrapper} />
+
+            <Box mt={20}>
+                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                    <Button onClick={handleAddPoints}>Add 10 Points</Button>
+                </ButtonGroup>
+                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                    <Button onClick={handleRemovePoints} style={{ marginLeft: 10 }}>
+                        Remove 10 Points
+                    </Button>
+                </ButtonGroup>
+            </Box>
         </div>
     );
 }

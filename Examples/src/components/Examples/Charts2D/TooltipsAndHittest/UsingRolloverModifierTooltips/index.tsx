@@ -18,6 +18,7 @@ import { IXyDataSeriesOptions, XyDataSeries } from "scichart/Charting/Model/XyDa
 import { SciChartSurface } from "scichart";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -156,26 +157,42 @@ export default function UsingRolloverModifierTooltips() {
 
     return (
         <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-            <FormControl variant="filled" style={{ marginTop: 20, display: showButtons ? "flex" : "none", width: 200 }}>
+            <div id={divElementId} className={classes.ChartWrapper} />
+            <FormControl variant="filled" style={{ marginTop: 20, display: "flex", width: 200 }}>
                 <InputLabel id="stroke-thickness-label">Tooltip Color</InputLabel>
                 <Select
                     labelId="stroke-thickness-label"
                     id="stroke-thickness"
                     value={lastSeriesTooltipColor}
-                    onChange={handleChangeTooltipColor}
+                    onChange={() => {
+                        if (showButtons) handleChangeTooltipColor;
+                    }}
                 >
                     <MenuItem value="#ff0000">Red</MenuItem>
                     <MenuItem value="#228B22">Green</MenuItem>
                     <MenuItem value="#368BC1">Blue</MenuItem>
                 </Select>
             </FormControl>
-            <FormControl style={{ marginTop: 20, display: showButtons ? "flex" : "none" }}>
+            <FormControl style={{ marginTop: 20, display: "flex" }}>
                 <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button onClick={handleAddSeries} size="medium" color="primary" variant="outlined">
+                    <Button
+                        onClick={() => {
+                            if (showButtons) handleAddSeries;
+                        }}
+                        size="medium"
+                        color="primary"
+                        variant="outlined"
+                    >
                         Add Series
                     </Button>
-                    <Button onClick={handleRemoveSeries} size="medium" color="primary" variant="outlined">
+                    <Button
+                        onClick={() => {
+                            if (showButtons) handleRemoveSeries;
+                        }}
+                        size="medium"
+                        color="primary"
+                        variant="outlined"
+                    >
                         Remove Series
                     </Button>
                 </ButtonGroup>

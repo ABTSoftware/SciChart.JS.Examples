@@ -115,9 +115,5 @@ export default function LiDAR3DPointCloudDemo() {
         return () => sciChart3DSurface?.delete();
     }, []);
 
-    return (
-        <React.Fragment>
-            <div id={divElementId} className={classes.ChartWrapper} />
-        </React.Fragment>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

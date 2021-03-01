@@ -16,6 +16,7 @@ import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
 import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
 import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
+import classes from "../../../../Examples/Examples.module.scss";
 
 // tslint:disable:no-empty
 // tslint:disable:max-classes-per-file
@@ -128,5 +129,5 @@ export default function DashedLineStyling() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

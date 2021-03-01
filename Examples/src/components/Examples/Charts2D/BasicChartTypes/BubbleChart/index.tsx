@@ -9,16 +9,11 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
-import {
-    EFillPaletteMode,
-    EStrokePaletteMode,
-    IFillPaletteProvider,
-    IPointMarkerPaletteProvider,
-    TPointMarkerArgb
-} from "scichart/Charting/Model/IPaletteProvider";
+import { EFillPaletteMode, IFillPaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -108,5 +103,5 @@ export default function BubbleChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

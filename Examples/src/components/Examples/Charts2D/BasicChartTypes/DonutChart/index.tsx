@@ -8,13 +8,14 @@ import { PieSegment } from "scichart/Charting/Visuals/SciChartPieSurface/PieSegm
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
-import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
+import classes from "../../../../Examples/Examples.module.scss";
+import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
 
 export const divElementId = "chart";
 
 export const drawExample = async () => {
     const sciChartPieSurface = await SciChartPieSurface.create(divElementId);
-    sciChartPieSurface.applyTheme(new SciChartJSLightTheme());
+    sciChartPieSurface.applyTheme(new SciChartJSDarkTheme());
     sciChartPieSurface.pieType = EPieType.Donut;
     sciChartPieSurface.holeRadius = 0.6;
     sciChartPieSurface.animate = true;
@@ -72,7 +73,6 @@ const orientationSelect = [
 ];
 
 export default function DonutChart() {
-    const [showControls, setShowControls] = React.useState(false);
     const [sciChartPieSurface, setSciChartPieSurface] = React.useState<SciChartPieSurface>();
     const [placementValue, setPlacementValue] = React.useState<ELegendPlacement>(ELegendPlacement.TopRight);
     const [orientationValue, setOrientationValue] = React.useState<ELegendOrientation>(ELegendOrientation.Vertical);
@@ -81,7 +81,6 @@ export default function DonutChart() {
         drawExample().then(scps => {
             setSciChartPieSurface(scps);
             scps.legend.placement = placementValue;
-            setShowControls(true);
         });
     }, []);
 
@@ -99,8 +98,8 @@ export default function DonutChart() {
 
     return (
         <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-            <div style={{ marginTop: 20, display: showControls ? "flex" : "none" }}>
+            <div id={divElementId} className={classes.ChartWrapper} />
+            <div style={{ marginTop: 20, display: "flex" }}>
                 <FormControl variant="filled" style={{ width: 200 }}>
                     <InputLabel id="sciChartPlacement-label">Legend Placement</InputLabel>
                     <Select

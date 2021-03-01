@@ -13,6 +13,7 @@ import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/Anc
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -156,5 +157,5 @@ export default function TradeMarkers() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

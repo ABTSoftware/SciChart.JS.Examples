@@ -9,6 +9,7 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { zeroArray2D } from "scichart/utils/zeroArray2D";
 import { UniformContoursRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformContoursRenderableSeries";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -109,9 +110,5 @@ export default function ContourChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return (
-        <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-        </div>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

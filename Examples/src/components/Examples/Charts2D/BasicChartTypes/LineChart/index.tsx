@@ -10,6 +10,7 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Point } from "scichart/Core/Point";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -70,5 +71,5 @@ export default function LineChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId}  className={classes.ChartWrapper} />;
 }

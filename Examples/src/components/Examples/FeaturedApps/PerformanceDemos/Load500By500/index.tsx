@@ -190,15 +190,15 @@ export default function Load500By500() {
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
             <div>
-                <FormControl className={classes1.formControl}>
+                <div className={classes.FormControl}>
                     <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                         <Button id="loadPoints">Load</Button>
                     </ButtonGroup>
-                </FormControl>
+                </div>
             </div>
-            <div className={classes1.notificationsBlock}>
+            <div>
                 {timeSpans.length > 0 && (
-                    <Alert key="0" className={classes1.notification}>
+                    <Alert key="0" className={classes.Notification}>
                         <AlertTitle>Performance Results</AlertTitle>
                         {timeSpans.map((ts, index) => (
                             <div key={index}>
