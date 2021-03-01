@@ -14,6 +14,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Button, ButtonGroup, FormControl } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -167,7 +168,7 @@ let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
 export default function Load500By500() {
-    const classes = useStyles();
+    const classes1 = useStyles();
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
 
     React.useEffect(() => {
@@ -182,22 +183,22 @@ export default function Load500By500() {
         return () => {
             clearTimeout(autoStartTimerId);
             scs?.delete();
-        }
+        };
     }, []);
 
     return (
         <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
+            <div id={divElementId} className={classes.ChartWrapper} />
             <div>
-                <FormControl className={classes.formControl}>
+                <FormControl className={classes1.formControl}>
                     <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                         <Button id="loadPoints">Load</Button>
                     </ButtonGroup>
                 </FormControl>
             </div>
-            <div className={classes.notificationsBlock}>
+            <div className={classes1.notificationsBlock}>
                 {timeSpans.length > 0 && (
-                    <Alert key="0" className={classes.notification}>
+                    <Alert key="0" className={classes1.notification}>
                         <AlertTitle>Performance Results</AlertTitle>
                         {timeSpans.map((ts, index) => (
                             <div key={index}>

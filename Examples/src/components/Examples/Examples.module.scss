@@ -1,0 +1,14 @@
+@import "../../assets/main";
+.ChartWrapper {
+    max-width: 900px;
+    min-height: 500px;
+    height: 600px;
+    @include md {
+        min-height: 400px;
+
+        height: auto;
+    }
+    @include sm {
+        min-height: 200px;
+    }
+}

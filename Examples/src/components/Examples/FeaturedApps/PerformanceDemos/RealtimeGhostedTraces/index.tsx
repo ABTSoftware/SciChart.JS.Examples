@@ -8,6 +8,8 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { fillNoisySinewave, getNoisySinewave } from "scichart/utils/math";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 
+import classes from "../../../../Examples/Examples.module.scss";
+
 const AMPLITUDE = 200;
 
 const divElementId = "chart";
@@ -112,7 +114,7 @@ export default function RealtimeGhostedTraces() {
 
     return (
         <React.Fragment>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
+            <div id={divElementId} className={classes.ChartWrapper} />
             <div style={{ marginTop: 20, display: "block" }}>
                 <button id="startAnimation">Start</button>
                 <button id="stopAnimation" style={{ marginLeft: 10 }}>

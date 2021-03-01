@@ -13,7 +13,7 @@ import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { getExampleComponent } from "../AppRouter/examples";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
-import {ExampleStrings} from "./ExampleStrings";
+import { ExampleStrings } from "./ExampleStrings";
 
 type TProps = {
     // example: () => JSX.Element;
@@ -21,34 +21,34 @@ type TProps = {
 };
 
 const useStyles = makeStyles(
-    (theme) => ({
+    theme => ({
         root: {
-            margin: theme.spacing(2),
+            margin: theme.spacing(2)
         },
         sciChartLogo: {
             textAlign: "right",
             marginBottom: theme.spacing(2),
             [theme.breakpoints.down("sm")]: {
-                display: "none",
-            },
+                display: "none"
+            }
         },
         body: {
             display: "flex",
             fontFamily:
                 "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol",
             [theme.breakpoints.down("sm")]: {
-                display: "block",
-            },
+                display: "block"
+            }
         },
         colMain: {
             flexBasis: 240,
             flexShrink: 0,
             flexGrow: 1,
             overflowX: "auto",
-            marginBottom: theme.spacing(3),
+            marginBottom: theme.spacing(3)
         },
         colMainContent: {
-            maxWidth: 900,
+            maxWidth: 900
         },
         colDescription: {
             flexBasis: 360,
@@ -56,27 +56,27 @@ const useStyles = makeStyles(
             flexShrink: 0,
             paddingLeft: theme.spacing(3),
             [theme.breakpoints.down("sm")]: {
-                paddingLeft: 0,
+                paddingLeft: 0
             },
-            marginBottom: theme.spacing(3),
+            marginBottom: theme.spacing(3)
         },
         description: {
-            marginBottom: theme.spacing(3),
+            marginBottom: theme.spacing(3)
         },
         title: {
-            marginTop: theme.spacing(3),
+            marginTop: theme.spacing(3)
         },
         subtitle: {
-            marginBottom: 20,
+            marginBottom: 20
         },
         textGreen: {
-            color: "#5CB85C",
-        },
+            color: "#5CB85C"
+        }
     }),
     { index: 1 }
 );
 
-const ExamplesRoot: React.FC<TProps> = (props) => {
+const ExamplesRoot: React.FC<TProps> = props => {
     const classes = useStyles();
     const { examplePage } = props;
 
@@ -99,11 +99,16 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
         window.scrollTo(0, 0);
         window.Prism.highlightAll();
     }, []);
-
+    console.log(ExampleComponent);
     return (
         <div className={classes.root}>
-            <SeoTags title={seoTitleText} keywords={seoKeywords} description={seoDescription} image={exampleImage}
-                url={exampleUrl}/>
+            <SeoTags
+                title={seoTitleText}
+                keywords={seoKeywords}
+                description={seoDescription}
+                image={exampleImage}
+                url={exampleUrl}
+            />
             <div className={classes.body}>
                 <div className={classes.colMain}>
                     <div className={classes.colMainContent}>
@@ -112,7 +117,9 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
                             <Title title={titleText} />
                             <div className={classes.subtitle}>{subtitleText}</div>
                         </div>
+
                         <ExampleComponent />
+
                         {examplePage && <SourceCode code={codeStr} githubUrl={githubUrl} />}
                     </div>
                 </div>

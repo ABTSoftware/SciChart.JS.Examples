@@ -8,13 +8,13 @@ import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifie
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { zeroArray2D } from "scichart/utils/zeroArray2D";
-import {UniformContoursRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/UniformContoursRenderableSeries";
+import { UniformContoursRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformContoursRenderableSeries";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface with X,Y Axis
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
@@ -25,7 +25,7 @@ const drawExample = async () => {
     const colorPaletteMax = 200;
 
     // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
-    const initialZValues: number[][] = createSeries( 3, heatmapWidth, heatmapHeight, colorPaletteMax);
+    const initialZValues: number[][] = createSeries(3, heatmapWidth, heatmapHeight, colorPaletteMax);
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, 0, 1, 0, 1, initialZValues);
 
     // Create a Contours RenderableSeries with the same data
@@ -35,7 +35,7 @@ const drawExample = async () => {
         zMax: colorPaletteMax,
         zStep: 20,
         strokeThickness: 1,
-        stroke: "#C6E6FF",
+        stroke: "#C6E6FF"
     });
 
     // Add the contours to the chart
@@ -50,12 +50,12 @@ const drawExample = async () => {
             minimum: colorPaletteMin,
             maximum: colorPaletteMax,
             gradientStops: [
-                {offset: 0, color: "#00008B"},
-                {offset: 0.2, color: "#6495ED"},
-                {offset: 0.4, color: "#006400"},
-                {offset: 0.6, color: "#7FFF00"},
-                {offset: 0.8, color: "#FFFF00"},
-                {offset: 1.0, color: "#FF0000"}
+                { offset: 0, color: "#00008B" },
+                { offset: 0.2, color: "#6495ED" },
+                { offset: 0.4, color: "#006400" },
+                { offset: 0.6, color: "#7FFF00" },
+                { offset: 0.8, color: "#FFFF00" },
+                { offset: 1.0, color: "#FF0000" }
             ]
         })
     });
@@ -75,18 +75,19 @@ const drawExample = async () => {
 function createSeries(index: number, heatmapWidth: number, heatmapHeight: number, colorPaletteMax: number) {
     const zValues = zeroArray2D([heatmapHeight, heatmapWidth]);
 
-    const angle = Math.PI * 2 * index / 30;
+    const angle = (Math.PI * 2 * index) / 30;
     let smallValue = 0;
     for (let x = 0; x < heatmapWidth; x++) {
         for (let y = 0; y < heatmapHeight; y++) {
-            const v = (1 + Math.sin(x * 0.04 + angle)) * 50 +
+            const v =
+                (1 + Math.sin(x * 0.04 + angle)) * 50 +
                 (1 + Math.sin(y * 0.1 + angle)) * 50 * (1 + Math.sin(angle * 2));
             const cx = heatmapWidth / 2;
             const cy = heatmapHeight / 2;
             const r = Math.sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy));
             const exp = Math.max(0, 1 - r * 0.008);
-            const zValue = (v * exp);
-            zValues[y][x] = (zValue > colorPaletteMax) ? colorPaletteMax : zValue;
+            const zValue = v * exp;
+            zValues[y][x] = zValue > colorPaletteMax ? colorPaletteMax : zValue;
             zValues[y][x] += smallValue;
         }
 
