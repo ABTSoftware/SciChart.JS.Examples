@@ -164,8 +164,8 @@ export default function UsingRolloverModifierTooltips() {
                     labelId="stroke-thickness-label"
                     id="stroke-thickness"
                     value={lastSeriesTooltipColor}
-                    onChange={() => {
-                        if (showButtons) handleChangeTooltipColor;
+                    onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                        if (showButtons) handleChangeTooltipColor(e);
                     }}
                 >
                     <MenuItem value="#ff0000">Red</MenuItem>

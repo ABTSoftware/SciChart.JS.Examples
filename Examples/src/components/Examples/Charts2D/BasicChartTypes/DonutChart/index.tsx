@@ -8,14 +8,14 @@ import { PieSegment } from "scichart/Charting/Visuals/SciChartPieSurface/PieSegm
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
+import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
 import classes from "../../../../Examples/Examples.module.scss";
-import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
 
 export const divElementId = "chart";
 
 export const drawExample = async () => {
     const sciChartPieSurface = await SciChartPieSurface.create(divElementId);
-    sciChartPieSurface.applyTheme(new SciChartJSDarkTheme());
+    sciChartPieSurface.applyTheme(new SciChartJSLightTheme());
     sciChartPieSurface.pieType = EPieType.Donut;
     sciChartPieSurface.holeRadius = 0.6;
     sciChartPieSurface.animate = true;
@@ -73,6 +73,7 @@ const orientationSelect = [
 ];
 
 export default function DonutChart() {
+    const [showControls, setShowControls] = React.useState(false);
     const [sciChartPieSurface, setSciChartPieSurface] = React.useState<SciChartPieSurface>();
     const [placementValue, setPlacementValue] = React.useState<ELegendPlacement>(ELegendPlacement.TopRight);
     const [orientationValue, setOrientationValue] = React.useState<ELegendOrientation>(ELegendOrientation.Vertical);
@@ -81,6 +82,7 @@ export default function DonutChart() {
         drawExample().then(scps => {
             setSciChartPieSurface(scps);
             scps.legend.placement = placementValue;
+            setShowControls(true);
         });
     }, []);
 
@@ -106,7 +108,9 @@ export default function DonutChart() {
                         labelId="sciChartPlacement-label"
                         id="sciChartPlacement"
                         value={placementValue}
-                        onChange={handleChangePlacement}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (showControls) handleChangePlacement(e);
+                        }}
                     >
                         {placementSelect.map(el => (
                             <MenuItem key={el.value} value={el.value}>
@@ -121,7 +125,9 @@ export default function DonutChart() {
                         labelId="sciChartOrientation-label"
                         id="sciChartOrientation"
                         value={orientationValue}
-                        onChange={handleChangeOrientation}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (showControls) handleChangeOrientation(e);
+                        }}
                     >
                         {orientationSelect.map(el => (
                             <MenuItem key={el.value} value={el.value}>

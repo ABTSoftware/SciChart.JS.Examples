@@ -136,7 +136,9 @@ export default function ChartLegendsAPI() {
                         control={
                             <Checkbox
                                 checked={showLegendValue}
-                                onChange={chartReady && handleChangeShowLegend}
+                                onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
+                                    if (chartReady) handleChangeShowLegend(e);
+                                }}
                                 name="checkedB"
                                 color="primary"
                             />
@@ -149,7 +151,9 @@ export default function ChartLegendsAPI() {
                         control={
                             <Checkbox
                                 checked={showCheckboxesValue}
-                                onChange={chartReady && handleChangeShowCheckboxes}
+                                onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
+                                    if (chartReady) handleChangeShowCheckboxes(e);
+                                }}
                                 name="checkedB"
                                 color="primary"
                             />
@@ -162,7 +166,9 @@ export default function ChartLegendsAPI() {
                         control={
                             <Checkbox
                                 checked={showSeriesMarkersValue}
-                                onChange={handleChangeShowSeriesMarkers}
+                                onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
+                                    if (chartReady) handleChangeShowSeriesMarkers(e);
+                                }}
                                 name="checkedB"
                                 color="primary"
                             />
@@ -178,7 +184,9 @@ export default function ChartLegendsAPI() {
                         labelId="sciChartPlacement-label"
                         id="sciChartPlacement"
                         value={placementValue}
-                        onChange={chartReady && handleChangePlacement}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (chartReady) handleChangePlacement(e);
+                        }}
                     >
                         {placementSelect.map(el => (
                             <MenuItem key={el.value} value={el.value}>
@@ -193,7 +201,9 @@ export default function ChartLegendsAPI() {
                         labelId="sciChartOrientation-label"
                         id="sciChartOrientation"
                         value={orientationValue}
-                        onChange={chartReady && handleChangeOrientation}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (chartReady) handleChangeOrientation(e);
+                        }}
                     >
                         {orientationSelect.map(el => (
                             <MenuItem key={el.value} value={el.value}>

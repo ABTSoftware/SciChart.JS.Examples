@@ -99,7 +99,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
         window.scrollTo(0, 0);
         window.Prism.highlightAll();
     }, []);
-    console.log(ExampleComponent);
+
     return (
         <div className={classes.root}>
             <SeoTags

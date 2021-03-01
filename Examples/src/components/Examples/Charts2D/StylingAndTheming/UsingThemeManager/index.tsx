@@ -120,8 +120,8 @@ export default function UsingThemeManager() {
                         labelId="sciChartTheme-label"
                         id="sciChartTheme"
                         value={themeToDisplay}
-                        onChange={() => {
-                            showChart ? handleChangeTheme : () => {};
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (showChart) handleChangeTheme(e);
                         }}
                     >
                         {themeSelect.map(el => (

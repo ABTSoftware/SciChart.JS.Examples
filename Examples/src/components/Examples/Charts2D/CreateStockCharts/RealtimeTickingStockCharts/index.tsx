@@ -175,6 +175,7 @@ let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
 export default function RealtimeTickingStockCharts() {
+    const [showControls, setShowControls] = React.useState(false);
     const [wasmContext, setWasmContext] = React.useState<TSciChart>();
     const [strokeThickness, setStrokeThickness] = React.useState(2);
     const [seriesType, setSeriesType] = React.useState(ESeriesType.OhlcSeries);
@@ -185,6 +186,7 @@ export default function RealtimeTickingStockCharts() {
             const res = await drawExample();
             scs = res.sciChartSurface;
             setWasmContext(res.wasmContext);
+            setShowControls(true);
             setControls(res.controls);
             autoStartTimerId = setTimeout(res.controls.startAnimation, 3000);
         })();
@@ -262,7 +264,9 @@ export default function RealtimeTickingStockCharts() {
                         labelId="stroke-thickness-label"
                         id="stroke-thickness"
                         value={strokeThickness}
-                        onChange={handleChangeStrokeThickness}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (showControls) handleChangeStrokeThickness(e);
+                        }}
                     >
                         <MenuItem value={1}>1</MenuItem>
                         <MenuItem value={2}>2</MenuItem>
@@ -277,7 +281,9 @@ export default function RealtimeTickingStockCharts() {
                         labelId="stroke-thickness-label"
                         id="stroke-thickness"
                         value={seriesType}
-                        onChange={handleChangeSeriesType}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (showControls) handleChangeSeriesType(e);
+                        }}
                     >
                         <MenuItem value={ESeriesType.OhlcSeries}>OHLC</MenuItem>
                         <MenuItem value={ESeriesType.CandlestickSeries}>Candlestick</MenuItem>
@@ -288,8 +294,20 @@ export default function RealtimeTickingStockCharts() {
             </div>
             <FormControl style={{ marginTop: 20, display: "flex" }}>
                 <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button onClick={controls.startAnimation}>Start</Button>
-                    <Button onClick={controls.stopAnimation}>Stop</Button>
+                    <Button
+                        onClick={() => {
+                            if (showControls) controls.startAnimation;
+                        }}
+                    >
+                        Start
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            if (showControls) controls.stopAnimation;
+                        }}
+                    >
+                        Stop
+                    </Button>
                 </ButtonGroup>
             </FormControl>
         </div>
