@@ -23,7 +23,12 @@
 }
 
 @mixin xs {
-    @media (min-width: $bp-xs) and (max-width: $bp-sm) {
+    @media (max-width: $bp-sm) {
+        @content;
+    }
+}
+@mixin xxs {
+    @media (max-width: $bp-xs) {
         @content;
     }
 }

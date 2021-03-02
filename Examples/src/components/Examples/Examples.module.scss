@@ -2,13 +2,14 @@
 .ChartWrapper {
     max-width: 900px;
     min-height: 600px;
-    height: 600px;
-    @include md {
-        min-height: 400px;
 
+    @include md {
         height: auto;
     }
-    @include sm {
+    @include xs {
+        min-height: 400px;
+    }
+    @include xxs {
         min-height: 200px;
     }
 }
