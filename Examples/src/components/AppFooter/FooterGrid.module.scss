@@ -13,6 +13,8 @@
     }
 
     a {
+        @extend %gutter-bottom;
+
         display: block;
         color: $color-primary-grey;
         text-decoration: none;

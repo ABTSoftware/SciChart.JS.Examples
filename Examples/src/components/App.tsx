@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { Theme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppRouter from "./AppRouter/AppRouter";
@@ -11,45 +11,10 @@ import AppFooter from "./AppFooter/AppFooter";
 import { EXAMPLES_PAGES } from "./AppRouter/examplePages";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 
+import classes from "./App.module.scss";
 import './index.scss';
-const drawerWidth = 240;
-
-const useStyles = makeStyles(
-    theme => ({
-        root: {
-            display: "flex",
-            [theme.breakpoints.down("md")]: {
-                display: "block"
-            }
-        },
-        drawerDesktop: {
-            width: drawerWidth,
-            flexShrink: 0,
-            [theme.breakpoints.down("md")]: {
-                display: "none"
-            }
-        },
-        drawerMobile: {
-            width: drawerWidth,
-            flexShrink: 0,
-            display: "none",
-            [theme.breakpoints.down("md")]: {
-                display: "block"
-            }
-        },
-        drawerPaper: {
-            width: drawerWidth
-        },
-        main: {
-            flexGrow: 1,
-            padding: 0
-        }
-    }),
-    { index: 1 }
-);
 
 export default function App() {
-    const classes = useStyles();
     const location = useLocation();
 
     const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
@@ -82,10 +47,12 @@ export default function App() {
     const toggleDrawer = () => setIsDrawerOpened(!isDrawerOpened);
 
     React.useEffect(() => {
-        // For deployment to demo.scichart.com we are getting the license from the server where it is set by enviroment variable.
-        // When you npm run dev, the beta trial key is served by the webpack dev server (webpack.client.no_server.config)
+        // For deployment to demo.scichart.com we are getting the license from the server
+        // where it is set by environment variable.
+        // When you npm run dev,
+        // the beta trial key is served by the webpack dev server (webpack.client.no_server.config)
         fetch("/api/license").then(r => r.text()).then(key => SciChartSurface.setRuntimeLicenseKey(key));
-        
+
         if (currentExample) {
             const parentMenuIds = getParentMenuIds(currentExample.id);
             const updatedOpenedItems: Record<string, boolean> = { ...openedMenuItems };
@@ -98,11 +65,11 @@ export default function App() {
 
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
-            <div className={classes.root}>
+            <div className={classes.App}>
                 <Drawer
-                    className={classes.drawerDesktop}
+                    className={classes.DrawerDesktop}
                     variant="permanent"
-                    classes={{ paper: classes.drawerPaper }}
+                    classes={{ paper: classes.DrawerPaper }}
                     anchor="left"
                     open={true}
                 >
@@ -114,9 +81,9 @@ export default function App() {
                 </Drawer>
 
                 <Drawer
-                    className={classes.drawerMobile}
+                    className={classes.DrawerMobile}
                     variant="temporary"
-                    classes={{ paper: classes.drawerPaper }}
+                    classes={{ paper: classes.DrawerPaper }}
                     anchor="left"
                     open={isMedium && isDrawerOpened}
                     onClose={toggleDrawer}
@@ -127,7 +94,7 @@ export default function App() {
                         toggleDrawer={toggleDrawer}
                     />
                 </Drawer>
-                <div className={classes.main}>
+                <div className={classes.MainAppContent}>
                     <AppBarTop toggleDrawer={toggleDrawer} />
                     <AppRouter currentExample={currentExample} />
                     <AppFooter />

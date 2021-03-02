@@ -1,5 +1,4 @@
 import * as React from "react";
-import { createStyles, makeStyles, withStyles, Theme, fade } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -21,18 +20,18 @@ const AppBarTop: React.FC<TProps> = props => {
 
     return (
         <AppBar position="sticky">
-            <Toolbar>
+            <Toolbar className={classes.AppBar}>
                 <IconButton
                     onClick={toggleDrawer}
                     edge="start"
-                    className={classes.menuButton}
+                    className={classes.MenuButton}
                     color="inherit"
                     aria-label="menu"
                 >
                     <MenuIcon />
                 </IconButton>
                 <Search />
-                <div style={{ flexGrow: 1 }} />
+                <div className={classes.FlexPlaceholder} />
                 <IconButton onClick={openGithub} aria-label="github" color="inherit">
                     <GitHubIcon />
                 </IconButton>
