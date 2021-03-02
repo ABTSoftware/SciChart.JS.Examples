@@ -1,7 +1,7 @@
 @import "../../assets/main";
 .ChartWrapper {
     max-width: 900px;
-    min-height: 500px;
+    min-height: 600px;
     height: 600px;
     @include md {
         min-height: 400px;
@@ -22,6 +22,57 @@
     margin-bottom: $default-spacing * 2;
 }
 
+/////*****ExamplesRoot*****/////
+.ExamplesRoot {
+    margin: $default-spacing * 2;
+
+    .SciChartLogo {
+        text-align: right;
+        margin-bottom: $default-spacing * 2;
+        @include sm {
+            display: none;
+        }
+    }
+    .Body {
+        display: flex;
+
+        @include sm {
+            display: block;
+        }
+    }
+    .ColMain {
+        flex-basis: 240px;
+        flex-shrink: 0;
+        flex-grow: 1;
+        overflow-x: auto;
+        margin-bottom: $default-spacing * 3;
+    }
+    .ColMainContent {
+        max-width: 900px;
+    }
+    .ColDescription {
+        flex-basis: 360px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        padding-left: $default-spacing * 3;
+        @include sm {
+            padding-left: 0;
+        }
+        margin-bottom: $default-spacing * 3;
+    }
+    .Description {
+        margin-bottom: $default-spacing * 3;
+    }
+    .Title {
+        margin-top: $default-spacing * 3;
+    }
+    .Subtitle {
+        margin-bottom: 20px;
+    }
+    .TextGreen {
+        color: $color-main-green;
+    }
+}
 /////*****VitalSignsMonitorDemo*****/////
 
 .ChartContainer {
