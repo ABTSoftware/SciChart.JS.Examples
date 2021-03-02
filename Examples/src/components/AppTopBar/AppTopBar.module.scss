@@ -1,8 +1,15 @@
 @import '../../assets/main.scss';
 
-.MenuButton {
-    margin-right: $default-spacing * 2;
-    @include lg{
+.AppBar {
+    .MenuButton {
         display: none;
+        margin-right: $default-spacing * 2;
+        @include md {
+            display: block;
+        }
+    }
+
+    .FlexPlaceholder {
+        flex-grow: 1;
     }
 }
