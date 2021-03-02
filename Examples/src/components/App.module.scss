@@ -1,0 +1,39 @@
+@import "../assets/main.scss";
+
+$drawerWidth: 240px;
+
+.App {
+    display: flex;
+
+    @include md {
+        display: block;
+    }
+}
+
+.DrawerDesktop {
+    width: $drawerWidth;
+    flex-shrink: 0;
+
+    @include md {
+        display: none;
+    }
+}
+
+.DrawerMobile {
+    width: $drawerWidth;
+    flex-shrink: 0;
+    display: none;
+
+    @include md {
+        display: block;
+    }
+}
+
+.DrawerPaper {
+    width: $drawerWidth;
+}
+
+.MainAppContent {
+    flex-grow: 1;
+    padding: 0;
+}
