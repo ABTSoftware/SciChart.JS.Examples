@@ -1,7 +1,5 @@
 import * as React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import ChartGroupTitle from "./ChartGroupTitle";
-import Grid from "@material-ui/core/Grid";
 import { EXAMPLES_PAGES } from "../AppRouter/examplePages";
 import GalleryCard from "./GalleryCard";
 // Featured Apps

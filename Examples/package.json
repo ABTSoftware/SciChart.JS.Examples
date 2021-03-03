@@ -32,6 +32,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
+    "react-transition-group": "^4.4.1",
     "request": "^2.88.2",
     "scichart": "^1.2.1463",
     "socket.io": "^3.0.4"

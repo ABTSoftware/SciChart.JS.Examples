@@ -1,6 +1,7 @@
-@import '../../assets/main.scss';
+@import "../../assets/main.scss";
 
 .AppBar {
+    background-color: $color-dark;
     .MenuButton {
         display: none;
         margin-right: $default-spacing * 2;

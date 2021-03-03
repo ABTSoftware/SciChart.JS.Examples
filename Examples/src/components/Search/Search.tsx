@@ -17,9 +17,9 @@ const useStyles = makeStyles(theme => ({
     mySearchField: {
         marginTop: 8,
         "& .MuiInputBase-root": {
-            backgroundColor: "#67bb6a",
+            backgroundColor: "#2F3941",
             "&:hover": {
-                backgroundColor: "#79c37c"
+                backgroundColor: "#4A545B"
             }
         },
         "& .MuiOutlinedInput-notchedOutline": {

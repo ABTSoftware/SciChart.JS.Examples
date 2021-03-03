@@ -1,0 +1,20 @@
+.open-side-bar-enter {
+    transition: all 1500ms;
+    opacity: 0;
+}
+
+.open-side-bar-enter-active {
+    transition: all 1500ms;
+    opacity: 1;
+}
+
+.open-side-bar-exit {
+    transition: all 1500ms;
+    opacity: 1;
+}
+
+.open-side-bar-exit-active {
+    transition: all 1500ms;
+
+    opacity: 0;
+}
