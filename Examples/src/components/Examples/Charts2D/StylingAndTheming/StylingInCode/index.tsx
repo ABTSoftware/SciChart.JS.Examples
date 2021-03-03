@@ -4,6 +4,7 @@ import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -22,35 +23,35 @@ const drawExample = async () => {
                 fontFamily: "Arial",
                 color: "#4682b4",
                 fontWeight: "bold",
-                fontStyle: "italic",
+                fontStyle: "italic"
             },
             majorGridLineStyle: {
                 strokeThickness: 1,
                 color: "#ADFF2F",
-                strokeDasharray: [10, 5],
+                strokeDasharray: [10, 5]
             },
             minorGridLineStyle: {
                 strokeThickness: 1,
                 color: "#EE82EE",
-                strokeDasharray: [2, 2],
+                strokeDasharray: [2, 2]
             },
             majorTickLineStyle: {
                 strokeThickness: 1,
                 color: "Blue",
-                tickSize: 8,
+                tickSize: 8
             },
             minorTickLineStyle: {
                 strokeThickness: 1,
                 color: "Red",
-                tickSize: 4,
+                tickSize: 4
             },
             labelStyle: {
                 fontSize: 16,
                 fontWeight: "bold",
                 fontStyle: "Italic",
                 color: "#4682b4",
-                fontFamily: "Arial",
-            },
+                fontFamily: "Arial"
+            }
         })
     );
 
@@ -64,33 +65,33 @@ const drawExample = async () => {
                 fontSize: 25,
                 fontFamily: "Montserrat",
                 fontWeight: "bold",
-                color: "#DC143C",
+                color: "#DC143C"
             },
             majorGridLineStyle: {
                 strokeThickness: 1,
                 color: "#ADFF2F",
-                strokeDasharray: [10, 5],
+                strokeDasharray: [10, 5]
             },
             minorGridLineStyle: {
                 strokeThickness: 1,
                 color: "#EE82EE",
-                strokeDasharray: [2, 2],
+                strokeDasharray: [2, 2]
             },
             majorTickLineStyle: {
                 strokeThickness: 1,
                 color: "#ADFF2F",
-                tickSize: 8,
+                tickSize: 8
             },
             minorTickLineStyle: {
                 strokeThickness: 1,
                 color: "#EE82EE",
-                tickSize: 4,
+                tickSize: 4
             },
             labelStyle: {
                 fontSize: 15,
                 color: "#DC143C",
-                fontFamily: "Arial",
-            },
+                fontFamily: "Arial"
+            }
         })
     );
 
@@ -101,34 +102,34 @@ const drawExample = async () => {
             axisTitleStyle: {
                 fontSize: 18,
                 fontFamily: "Arial",
-                color: "#ADFF2F",
+                color: "#ADFF2F"
             },
             axisAlignment: EAxisAlignment.Right,
             majorGridLineStyle: {
                 strokeThickness: 1,
                 color: "#ADFF2F",
-                strokeDasharray: [10, 5],
+                strokeDasharray: [10, 5]
             },
             minorGridLineStyle: {
                 strokeThickness: 1,
                 color: "#EE82EE",
-                strokeDasharray: [2, 2],
+                strokeDasharray: [2, 2]
             },
             majorTickLineStyle: {
                 strokeThickness: 1,
                 color: "#ADFF2F",
-                tickSize: 8,
+                tickSize: 8
             },
             minorTickLineStyle: {
                 strokeThickness: 1,
                 color: "#EE82EE",
-                tickSize: 4,
+                tickSize: 4
             },
             labelStyle: {
                 fontSize: 14,
                 color: "#ADFF2F",
-                fontFamily: "Arial",
-            },
+                fontFamily: "Arial"
+            }
         })
     );
 
@@ -152,5 +153,5 @@ export default function StylingInCode() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

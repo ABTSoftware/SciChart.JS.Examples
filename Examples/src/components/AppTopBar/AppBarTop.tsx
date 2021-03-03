@@ -1,29 +1,17 @@
 import * as React from "react";
-import { createStyles, makeStyles, withStyles, Theme, fade } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import Search from "../Search/Search";
+import classes from './AppTopBar.module.scss';
 
 type TProps = {
     toggleDrawer: () => void;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        menuButton: {
-            marginRight: theme.spacing(2),
-            [theme.breakpoints.up("lg")]: {
-                display: "none"
-            }
-        }
-    })
-);
-
 const AppBarTop: React.FC<TProps> = props => {
-    const classes = useStyles();
     const { toggleDrawer } = props;
 
     const openGithub = () => {
@@ -32,18 +20,18 @@ const AppBarTop: React.FC<TProps> = props => {
 
     return (
         <AppBar position="sticky">
-            <Toolbar>
+            <Toolbar className={classes.AppBar}>
                 <IconButton
                     onClick={toggleDrawer}
                     edge="start"
-                    className={classes.menuButton}
+                    className={classes.MenuButton}
                     color="inherit"
                     aria-label="menu"
                 >
                     <MenuIcon />
                 </IconButton>
                 <Search />
-                <div style={{ flexGrow: 1 }} />
+                <div className={classes.FlexPlaceholder} />
                 <IconButton onClick={openGithub} aria-label="github" color="inherit">
                     <GitHubIcon />
                 </IconButton>

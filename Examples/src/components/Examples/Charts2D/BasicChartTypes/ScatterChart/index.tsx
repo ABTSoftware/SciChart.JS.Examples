@@ -15,6 +15,7 @@ import {
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import classes from "../../../../Examples/Examples.module.scss";
 
 // tslint:disable:no-empty
 
@@ -96,5 +97,5 @@ export default function ScatterChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

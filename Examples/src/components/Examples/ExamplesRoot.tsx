@@ -13,71 +13,15 @@ import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { getExampleComponent } from "../AppRouter/examples";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
-import {ExampleStrings} from "./ExampleStrings";
+import { ExampleStrings } from "./ExampleStrings";
+import classes from "./Examples.module.scss";
 
 type TProps = {
     // example: () => JSX.Element;
     examplePage: TExamplePage;
 };
 
-const useStyles = makeStyles(
-    (theme) => ({
-        root: {
-            margin: theme.spacing(2),
-        },
-        sciChartLogo: {
-            textAlign: "right",
-            marginBottom: theme.spacing(2),
-            [theme.breakpoints.down("sm")]: {
-                display: "none",
-            },
-        },
-        body: {
-            display: "flex",
-            fontFamily:
-                "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol",
-            [theme.breakpoints.down("sm")]: {
-                display: "block",
-            },
-        },
-        colMain: {
-            flexBasis: 240,
-            flexShrink: 0,
-            flexGrow: 1,
-            overflowX: "auto",
-            marginBottom: theme.spacing(3),
-        },
-        colMainContent: {
-            maxWidth: 900,
-        },
-        colDescription: {
-            flexBasis: 360,
-            flexGrow: 0,
-            flexShrink: 0,
-            paddingLeft: theme.spacing(3),
-            [theme.breakpoints.down("sm")]: {
-                paddingLeft: 0,
-            },
-            marginBottom: theme.spacing(3),
-        },
-        description: {
-            marginBottom: theme.spacing(3),
-        },
-        title: {
-            marginTop: theme.spacing(3),
-        },
-        subtitle: {
-            marginBottom: 20,
-        },
-        textGreen: {
-            color: "#5CB85C",
-        },
-    }),
-    { index: 1 }
-);
-
-const ExamplesRoot: React.FC<TProps> = (props) => {
-    const classes = useStyles();
+const ExamplesRoot: React.FC<TProps> = props => {
     const { examplePage } = props;
 
     const ExampleComponent = getExampleComponent(examplePage.id);
@@ -101,29 +45,36 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
     }, []);
 
     return (
-        <div className={classes.root}>
-            <SeoTags title={seoTitleText} keywords={seoKeywords} description={seoDescription} image={exampleImage}
-                url={exampleUrl}/>
-            <div className={classes.body}>
-                <div className={classes.colMain}>
-                    <div className={classes.colMainContent}>
+        <div className={classes.ExamplesRoot}>
+            <SeoTags
+                title={seoTitleText}
+                keywords={seoKeywords}
+                description={seoDescription}
+                image={exampleImage}
+                url={exampleUrl}
+            />
+            <div className={classes.Body}>
+                <div className={classes.ColMain}>
+                    <div className={classes.ColMainContent}>
                         <p>SciChart.js - High Performance Realtime Javascript Charts Examples Suite</p>
-                        <div className={classes.title}>
+                        <div className={classes.Title}>
                             <Title title={titleText} />
-                            <div className={classes.subtitle}>{subtitleText}</div>
+                            <div className={classes.Subtitle}>{subtitleText}</div>
                         </div>
+
                         <ExampleComponent />
+
                         {examplePage && <SourceCode code={codeStr} githubUrl={githubUrl} />}
                     </div>
                 </div>
-                <div className={classes.colDescription}>
-                    <div className={classes.sciChartLogo}>
+                <div className={classes.ColDescription}>
+                    <div className={classes.SciChartLogo}>
                         <img src={sciChartLogoImg} width={209} height={42} />
                     </div>
-                    <div className={classes.description}>
-                        <Typography variant="h5" variantMapping={{ h5: "p" }} gutterBottom>
-                            <span className={classes.textGreen}>// </span>JavaScript Chart Examples
-                        </Typography>
+                    <div className={classes.Description}>
+                        <p>
+                            <span className={classes.TextGreen}>// </span>JavaScript Chart Examples
+                        </p>
                         <p>
                             <em>
                                 SciChart.js ships with ~40{" "}
@@ -145,7 +96,7 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
                         </ButtonGroup>
                     </div>
                     {DescComponent && (
-                        <div className={classes.description}>
+                        <div className={classes.Description}>
                             <Description>
                                 <DescComponent />
                             </Description>

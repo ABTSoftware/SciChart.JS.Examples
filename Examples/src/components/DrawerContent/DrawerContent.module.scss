@@ -1,0 +1,17 @@
+@import '../../assets/main.scss';
+
+.homepageLink {
+  color: rgba(0, 0, 0, 0.54);
+  cursor: pointer;
+  margin-top: 6;
+}
+
+.toolbar {
+  min-height: 56px;
+  padding-left: $default-spacing * 2;
+}
+
+.versionCaption {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 0.75rem;
+}

@@ -1,0 +1,140 @@
+@import "../../assets/main";
+.ChartWrapper {
+    max-width: 900px;
+    min-height: 600px;
+
+    @include md {
+        height: auto;
+    }
+    @include xs {
+        min-height: 400px;
+    }
+    @include xxs {
+        min-height: 200px;
+    }
+}
+
+.FormControl {
+    margin: $default-spacing;
+    min-width: 142;
+}
+
+.Notification {
+    margin-bottom: $default-spacing * 2;
+}
+
+/////*****ExamplesRoot*****/////
+.ExamplesRoot {
+    margin: $default-spacing * 2;
+
+    .SciChartLogo {
+        text-align: right;
+        margin-bottom: $default-spacing * 2;
+        @include sm {
+            display: none;
+        }
+    }
+    .Body {
+        display: flex;
+
+        @include sm {
+            display: block;
+        }
+    }
+    .ColMain {
+        flex-basis: 240px;
+        flex-shrink: 0;
+        flex-grow: 1;
+        overflow-x: auto;
+        margin-bottom: $default-spacing * 3;
+    }
+    .ColMainContent {
+        max-width: 900px;
+    }
+    .ColDescription {
+        flex-basis: 360px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        padding-left: $default-spacing * 3;
+        @include sm {
+            padding-left: 0;
+        }
+        margin-bottom: $default-spacing * 3;
+    }
+    .Description {
+        margin-bottom: $default-spacing * 3;
+    }
+    .Title {
+        margin-top: $default-spacing * 3;
+    }
+    .Subtitle {
+        margin-bottom: 20px;
+    }
+    .TextGreen {
+        color: $color-main-green;
+    }
+}
+/////*****VitalSignsMonitorDemo*****/////
+
+.ChartContainer {
+    display: flex;
+    background-color: black;
+    padding-top: 6;
+    width: 800;
+    font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";';
+    position: relative;
+}
+
+.InfoBoxContainer {
+    flex-basis: 200;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    div {
+        &:not(:first-child) {
+            border-top: 1px solid darkgrey;
+        }
+    }
+}
+
+.InfoBox {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-left: 1px solid darkgrey;
+    padding: 6;
+    height: 150px;
+    width: 200px;
+    background-color: black;
+}
+.IbRow1 {
+    flex-grow: 1;
+    display: flex;
+}
+.IbRow1Col1 {
+    flex-grow: 1;
+    font-size: 32;
+}
+.IbRow1Col2 {
+    text-align: right;
+    margin-top: 4;
+    font-size: 12;
+}
+.IbRow2 {
+    display: flex;
+}
+.IbRow2Col1 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 6;
+    font-size: 14;
+    img {
+        width: 45;
+    }
+}
+.IbRow2Col2 {
+    display: flex;
+    flex-direction: column;
+    font-size: 44;
+}

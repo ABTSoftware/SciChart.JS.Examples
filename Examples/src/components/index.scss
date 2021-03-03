@@ -1,0 +1,94 @@
+@import "../assets/main.scss";
+
+code {
+    font-family: Rubik, source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    // font-size: 62.5%;
+    height: 100%;
+}
+
+body {
+    font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+        "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    line-height: 1.6;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 100%;
+
+    margin: 0;
+}
+
+#root {
+    min-height: 100%;
+}
+
+ul li {
+    list-style: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}
+
+button:active,
+button:focus,
+button:hover {
+    outline: none;
+}
+
+html {
+    overflow-x: hidden;
+    font-family: Rubik, sans-serif;
+    // @include lg {
+    //     font-size: 50%;
+    // }
+}
+
+label {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    color: $color-font-dark;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+input,
+textarea,
+select,
+button {
+    font-family: Rubik, source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+

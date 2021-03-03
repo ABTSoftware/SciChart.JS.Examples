@@ -2,13 +2,41 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const config = require("./config/default");
+const autoprefixer = require("autoprefixer");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const filename = ext => `[name].[hash].${ext}`;
 
 module.exports = {
     mode: "production",
     entry: "./src/index.tsx",
     module: {
         rules: [
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    { loader: "style-loader" },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: {
+                                localIdentName: "[name]__[local]--[hash:base64:5]"
+                            }
+                        }
+                    },
+                    {
+                        loader: "postcss-loader"
+                    },
+                    { loader: "sass-loader" }
+                ],
+                exclude: /node_modules/
+            },
             {
                 test: /\.tsx?$/,
                 use: "ts-loader",
@@ -18,13 +46,13 @@ module.exports = {
                 test: /\.(png|svg|jpg|gif)$/,
                 loader: "file-loader",
                 options: {
-                    name: 'images/[name].[ext]',
-                },
+                    name: "images/[name].[ext]"
+                }
             }
         ]
     },
     resolve: {
-        extensions: [".tsx", ".ts", ".js"]
+        extensions: [".tsx", ".ts", ".js", ".css"]
     },
     output: {
         filename: "bundle.js",
@@ -44,5 +72,9 @@ module.exports = {
         }),
         new webpack.IgnorePlugin(/(fs)/),
         // new BundleAnalyzerPlugin()
+        new MiniCssExtractPlugin({
+            filename: filename("styles.css")
+        }),
+        require("autoprefixer")
     ]
 };

@@ -13,6 +13,7 @@ import { EColor } from "scichart/types/Color";
 import { XyzDataSeries3D } from "scichart/Charting3D/Model/DataSeries/XyzDataSeries3D";
 import { AscData, AscReader } from "./AscReader";
 import { linearColorMapLerp } from "scichart/utils/colorUtil";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -114,9 +115,5 @@ export default function LiDAR3DPointCloudDemo() {
         return () => sciChart3DSurface?.delete();
     }, []);
 
-    return (
-        <React.Fragment>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-        </React.Fragment>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

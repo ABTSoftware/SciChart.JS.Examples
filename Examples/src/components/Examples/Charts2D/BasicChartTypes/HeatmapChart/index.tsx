@@ -8,6 +8,9 @@ import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifie
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { zeroArray2D } from "scichart/utils/zeroArray2D";
+import classes from "../../../../Examples/Examples.module.scss";
+import Box from "../../../../shared/Helpers/Box/Box";
+import { Button, ButtonGroup } from "@material-ui/core";
 
 const divElementId = "chart";
 const cachedHeatmapDataForExample: number[][][] = [];
@@ -37,9 +40,9 @@ const drawExample = async () => {
                 { offset: 0.4, color: "#006400" },
                 { offset: 0.6, color: "#7FFF00" },
                 { offset: 0.8, color: "#FFFF00" },
-                { offset: 1.0, color: "#FF0000" },
-            ],
-        }),
+                { offset: 1.0, color: "#FF0000" }
+            ]
+        })
     });
 
     // Add heatmap to the chart
@@ -129,20 +132,23 @@ export default function HeatmapChart() {
 
     return (
         <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
+            <div id={divElementId} className={classes.ChartWrapper} />
             <div style={{ marginTop: 20 }}>
                 When click Start first time data is being generated, it could take a while
             </div>
-            {heatmapDataSeries && (
-                <div>
-                    <div style={{ marginTop: 20 }}>
-                        <button onClick={handleStart}>Start</button>
-                        <button onClick={handleStop} style={{ marginLeft: 10 }}>
+
+            <div>
+                <Box mt={20}>
+                    <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                        <Button onClick={heatmapDataSeries && handleStart}>Start</Button>
+                    </ButtonGroup>
+                    <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                        <Button onClick={heatmapDataSeries && handleStop} style={{ marginLeft: 10 }}>
                             Stop
-                        </button>
-                    </div>
-                </div>
-            )}
+                        </Button>
+                    </ButtonGroup>
+                </Box>
+            </div>
         </div>
     );
 }

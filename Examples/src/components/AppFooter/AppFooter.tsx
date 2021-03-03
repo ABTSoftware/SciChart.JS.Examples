@@ -1,5 +1,4 @@
 import * as React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import {
     MENU_ITEMS_2D,
     MENU_ITEMS_2D_ID,
@@ -10,34 +9,15 @@ import {
 } from "../AppRouter/examples";
 import FooterGrid from "./FooterGrid";
 import { useHistory } from "react-router-dom";
-import { Box, Link, Typography } from "@material-ui/core";
+import classes from "./AppFooter.module.scss";
+import Box from "../shared/Helpers/Box/Box";
 
 export type TFooterlink = {
     link: string;
     text: string;
 };
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        padding: theme.spacing(2),
-        overflow: "hidden",
-        backgroundColor: "#1E252B",
-        color: "white",
-        fontFamily:
-            "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol"
-    },
-    link1: {
-        color: "#BAC0C6",
-        marginRight: "10px"
-    },
-    siteLinks: {
-        display: "flex"
-    }
-}));
-
 export default function AppFooter() {
-    const classes = useStyles();
-
     const history = useHistory();
 
     const historyPushPath = (path: string) => {
@@ -47,9 +27,10 @@ export default function AppFooter() {
 
     return (
         <>
-            <div className={classes.root}>
-                <Box mb={4}>
-                    <Typography variant="h4">All JavaScript Chart Examples</Typography>
+            {/* <div className="Some"> */}
+            <div className={classes.AppFooter}>
+                <Box mb={32}>
+                    <h4>All JavaScript Chart Examples</h4>
                 </Box>
                 <FooterGrid
                     historyPushPath={historyPushPath}
@@ -69,24 +50,23 @@ export default function AppFooter() {
                     menuItems={MENU_ITEMS_3D}
                     menuItemsId={MENU_ITEMS_3D_ID}
                 />
-                <Box mb={3}>
-                    <Typography variant="h4">SciChart.js: Fast, Realtime, High Performance </Typography>
-                    <Box mt={1} className={classes.siteLinks}>
-                        <Link
-                            className={classes.link1}
+                <Box mb={32}>
+                    <h4>SciChart.js: Fast, Realtime, High Performance </h4>
+                    <Box mt={8} className={classes.SiteLinks}>
+                        <a
                             title="JavaScript Charts"
                             href="https://www.scichart.com/javascript-chart-features"
                         >
-                            <Typography>JavaScript Charts</Typography>
-                        </Link>
+                            JavaScript Charts
+                        </a>
 
-                        <Link className={classes.link1} title="JavaScript Chart Examples" href="/">
-                            <Typography> JavaScript Chart Examples</Typography>
-                        </Link>
+                        <a title="JavaScript Chart Examples" href="/">
+                            JavaScript Chart Examples
+                        </a>
 
-                        <Link className={classes.link1} title="Sitemap" href="/sitemap.xml">
-                            <Typography> Sitemap</Typography>
-                        </Link>
+                        <a title="Sitemap" href="/sitemap.xml">
+                            Sitemap
+                        </a>
                     </Box>
                 </Box>
             </div>
