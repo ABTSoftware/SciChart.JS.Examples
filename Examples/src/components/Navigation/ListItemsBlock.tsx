@@ -6,6 +6,7 @@ import { TMenuItem } from "../AppRouter/examples";
 import { useLocation } from "react-router-dom";
 import MenuListItemText from "../shared/MenuListItemText/MenuListItemText";
 import classes from "./ListItemsBlock.module.scss";
+import ListItemCollapseArrowIcon from "./ListItemCollapseArrowIcon";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -24,8 +25,11 @@ const ListItemsBlock: React.FC<TProps> = props => {
     return (
         <React.Fragment>
             <ListItem button onClick={() => onExpandClick(menuItemsId)} className={classes.MenuListItem}>
-                <MenuListItemText text={title} />
-                {/*{isOpened[MENU_ITEMS_2D_ID] ? <ExpandLess /> : <ExpandMore />}*/}
+                <MenuListItemText text={title} className={classes.MenuListItemText} />
+                <ListItemCollapseArrowIcon
+                    className={classes.CollapseArrowButton}
+                    isCollapseOpened={checkIsOpened(menuItemsId)}
+                />
             </ListItem>
             <Collapse in={checkIsOpened(menuItemsId)} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
@@ -33,6 +37,10 @@ const ListItemsBlock: React.FC<TProps> = props => {
                         <React.Fragment key={el.item.id}>
                             <ListItem button onClick={() => onExpandClick(el.item.id)} className={classes.MenuListItem}>
                                 <MenuListItemText text={el.item.name} className={classes.SecondLevelMenuListItemText} />
+                                <ListItemCollapseArrowIcon
+                                    className={classes.CollapseArrowButton}
+                                    isCollapseOpened={checkIsOpened(el.item.id)}
+                                />
                                 {/*{isOpened[el.item.id] ? <ExpandLess /> : <ExpandMore />}*/}
                             </ListItem>
                             <Collapse in={checkIsOpened(el.item.id)} timeout="auto" unmountOnExit>
@@ -40,12 +48,16 @@ const ListItemsBlock: React.FC<TProps> = props => {
                                     {el.submenu.map(subEl => (
                                         <ListItem
                                             key={subEl.id}
-
+                                            className={
+                                                location.pathname === subEl.path
+                                                    ? classes.SelectedBottomLevelListItem
+                                                    : classes.BottomLevelListItem
+                                            }
                                             selected={location.pathname === subEl.path}
                                             button
                                             onClick={() => historyPushPath(subEl.path)}
                                         >
-                                            <a  className={classes.ExampleLink} href={subEl.path} title={subEl.title}>
+                                            <a className={classes.ExampleLink} href={subEl.path} title={subEl.title}>
                                                 {subEl.title}
                                             </a>
                                             {/*<ListItemText*/}

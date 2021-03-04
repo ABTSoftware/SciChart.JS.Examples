@@ -1,10 +1,18 @@
-.NavigationList {
-  margin-bottom: 60px;
+@import "./CommonListItemStyles.module.scss";
 
-  .HomePageListItem {
-    font-size: 0.875rem;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    line-height: 1.43;
-  }
+.NavigationList {
+    margin-bottom: 60px;
+
+    .HomePageListItem {
+        @extend %ListItem;
+
+        font-size: 0.875rem;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        line-height: 1.43;
+    }
+}
+
+.HomePageListItem {
+    @extend %ListItem;
 }
