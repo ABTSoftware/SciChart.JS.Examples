@@ -47,6 +47,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_basicCharts_LineChart.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_basicCharts_SplineLineChart.title,
+        link: EXAMPLES_PAGES.chart2D_basicCharts_SplineLineChart.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart.title,
         link: EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart.path,
     },

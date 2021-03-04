@@ -8,6 +8,7 @@ import { columnChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/Col
 import { heatmapChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/HeatmapChart/exampleInfo";
 import { contourChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ContoursChart/exampleInfo";
 import { lineChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/LineChart/exampleInfo";
+import { splineLineChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SplineLineChart/exampleInfo";
 import { digitalLineChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DigitalLineChart/exampleInfo";
 import { mountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/MountainChart/exampleInfo";
 import { digitalMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/DigitalMountainChart/exampleInfo";
@@ -108,6 +109,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_basicCharts_LineChart: {
         id: "chart2D_basicCharts_LineChart",
         ...lineChartExampleInfo
+    },
+    chart2D_basicCharts_SplineLineChart: {
+        id: "chart2D_basicCharts_SplineLineChart",
+        ...splineLineChartExampleInfo
     },
     chart2D_basicCharts_DigitalLineChart: {
         id: "chart2D_basicCharts_DigitalLineChart",

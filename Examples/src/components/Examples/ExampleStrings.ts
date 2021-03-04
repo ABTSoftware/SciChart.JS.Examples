@@ -100,6 +100,12 @@ export const ExampleStrings = {
     urlLineChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Fan%20Charts%20Type.html",
     urlTitleLineChartDocumentation: "The specific page for the JavaScript Line Chart documentation will help you to get started",
 
+    // Spline line series
+    urlSplineLineChartDocumentation: "#",
+    urlTitleSplineLineChartDocumentation: "The specific page for the JavaScript Spline Line Chart documentation will help you to get started",
+    titleSplineLineChart: "JavaScript Spline Line Chart",
+    urlSplineLineChart: "/javascript-spline-line-chart",
+
     // Digital Line Chart
     urlDigitalLineChart: "/javascript-digital-line-chart",
     titleDigitalLineChart: "JavaScript Digital Line Chart",

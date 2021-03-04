@@ -60,6 +60,7 @@ import TenorCurves3DChart from "../Examples/FeaturedApps/ScientificCharts/TenorC
 import Load1MillionPointsChart from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints";
 import DragAxisToScale from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale";
 import RealtimeZoomPan from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan";
+import SplineLineChart from "../Examples/Charts2D/BasicChartTypes/SplineLineChart";
 
 export type TMenuItem = {
     item: {
@@ -75,6 +76,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         item: { id: "chart2D_basicCharts", name: "JavaScript Chart Types" },
         submenu: [
             EXAMPLES_PAGES.chart2D_basicCharts_LineChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_SplineLineChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart,
             EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DigitalBandSeriesChart,
@@ -242,6 +244,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return ContourChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_LineChart.id:
             return LineChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_SplineLineChart.id:
+            return SplineLineChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart.id:
             return DigitalLineChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_MountainChart.id:
@@ -323,6 +327,6 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
         case EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.id:
             return TenorCurves3DChart;
         default:
-            return () => undefined;
+            throw new Error("Ensure you update examples.ts getExampleComponent() to return an example");
     }
 };
