@@ -79,14 +79,14 @@
 .ChartContainer {
     display: flex;
     background-color: black;
-    padding-top: 6;
-    width: 800;
+    padding-top: 6px;
+    width: 800px;
     font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";';
     position: relative;
 }
 
 .InfoBoxContainer {
-    flex-basis: 200;
+    flex-basis: 200px;
     flex-grow: 0;
     flex-shrink: 0;
 
@@ -113,12 +113,12 @@
 }
 .IbRow1Col1 {
     flex-grow: 1;
-    font-size: 32;
+    font-size: 32px;
 }
 .IbRow1Col2 {
     text-align: right;
-    margin-top: 4;
-    font-size: 12;
+    margin-top: 4px;
+    font-size: 12px;
 }
 .IbRow2 {
     display: flex;
@@ -127,14 +127,14 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    padding-bottom: 6;
-    font-size: 14;
+    padding-bottom: 6px;
+    font-size: 14px;
     img {
-        width: 45;
+        width: 45px;
     }
 }
 .IbRow2Col2 {
     display: flex;
     flex-direction: column;
-    font-size: 44;
+    font-size: 44px;
 }
