@@ -4,7 +4,6 @@ $drawerWidth: 240px;
 
 .App {
     display: flex;
-
     @include md {
         display: block;
     }
