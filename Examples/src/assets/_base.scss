@@ -1,0 +1,56 @@
+$color-primary-grey: #bac0c6;
+
+$color-font-dark: #323640;
+
+$color-font-green: #117d31;
+
+$color-dark-green: #67ac5b;
+$color-main-green: #5cb85c;
+
+$color-dark-blue: #2c353d;
+
+//Media
+$bp-xl: 120em; //1920
+$bp-lg: 91.25em; //1460
+$bp-md: 60em; //960/16px=60em
+$bp-sm: 37.5em; //600px/16px=37.5em
+$bp-xs: 28.125em; // 450
+$bp-xxs: 0;
+
+// spacing
+$default-spacing: 8px;
+
+html {
+    box-sizing: border-box;
+    // font-size: 62.5%;
+    height: 100%;
+    * {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+    h1 {
+        line-height: 1.167;
+    }
+    h4 {
+        font-size: 2.125rem;
+        font-weight: 400;
+        line-height: 1.235;
+    }
+
+    h6 {
+        font-size: 1.25rem;
+        font-weight: 500;
+        line-height: 1.6;
+    }
+}
+.container {
+    width: 100%;
+    max-width: 1280px;
+    // margin: 0 auto;
+    // padding: 0 2.4rem;
+    // position: relative;
+}
+
+%gutter-bottom {
+    margin-bottom: 0.35em;
+}

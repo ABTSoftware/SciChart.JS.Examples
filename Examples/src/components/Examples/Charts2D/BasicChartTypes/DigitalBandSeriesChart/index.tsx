@@ -8,6 +8,7 @@ import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -62,5 +63,5 @@ export default function DigitalBandSeriesChart() {
         return () => scs?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

@@ -16,6 +16,8 @@ import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/Ellip
 import greyImg from "./img/greyImg.png";
 import yellowImg from "./img/yellowImg.png";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
+import Box from "../../../../shared/Helpers/Box/Box";
 
 const divElementId = "chart";
 const COLOR_GREEN = "#00FF00";
@@ -231,66 +233,7 @@ const drawExample = async (
 };
 
 // STYLES
-const useStyles = makeStyles(theme => ({
-    chartContainer: {
-        display: "flex",
-        backgroundColor: "black",
-        paddingTop: 6,
-        width: 800,
-        fontFamily:
-            '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";',
-        position: "relative"
-    },
-    infoBoxContainer: {
-        flexBasis: 200,
-        flexGrow: 0,
-        flexShrink: 0,
-        "&>div:not(:first-child)": {
-            borderTop: "1px solid darkgrey"
-        }
-    },
-    infoBox: {
-        display: "flex",
-        flexDirection: "column",
-        boxSizing: "border-box",
-        borderLeft: "1px solid darkgrey",
-        padding: 6,
-        height: 150,
-        width: 200,
-        backgroundColor: "black"
-    },
-    ibRow1: {
-        flexGrow: 1,
-        display: "flex"
-    },
-    ibRow1Col1: {
-        flexGrow: 1,
-        fontSize: 32
-    },
-    ibRow1Col2: {
-        textAlign: "right",
-        marginTop: 4,
-        fontSize: 12
-    },
-    ibRow2: {
-        display: "flex"
-    },
-    ibRow2Col1: {
-        flexGrow: 1,
-        display: "flex",
-        flexDirection: "column",
-        paddingBottom: 6,
-        fontSize: 14,
-        "& img": {
-            width: 45
-        }
-    },
-    ibRow2Col2: {
-        display: "flex",
-        flexDirection: "column",
-        fontSize: 44
-    }
-}));
+const useStyles = makeStyles(theme => ({}));
 
 let currentPoint = 0;
 let scs: SciChartSurface;
@@ -298,7 +241,6 @@ let autoStartTimerId: NodeJS.Timeout;
 
 // REACT COMPONENT
 export default function VitalSignsMonitorDemo() {
-    const classes = useStyles();
     const [infoEcg, setInfoEcg] = React.useState<number>(0);
     const [infoBloodPressure1, setInfoBloodPressure1] = React.useState<number>(0);
     const [infoBloodPressure2, setInfoBloodPressure2] = React.useState<number>(0);
@@ -330,16 +272,16 @@ export default function VitalSignsMonitorDemo() {
 
     return (
         <div style={{ overflowX: "auto" }}>
-            <div className={classes.chartContainer}>
+            <div className={classes.ChartContainer}>
                 <div id={divElementId} style={{ width: 600 }} />
-                <div className={classes.infoBoxContainer}>
-                    <div className={classes.infoBox} style={{ color: COLOR_GREEN }}>
-                        <div className={classes.ibRow1}>
-                            <div className={classes.ibRow1Col1}>ECG</div>
-                            <div className={classes.ibRow1Col2} />
+                <div className={classes.InfoBoxContainer}>
+                    <div className={classes.InfoBox} style={{ color: COLOR_GREEN }}>
+                        <div className={classes.IbRow1}>
+                            <div className={classes.IbRow1Col1}>ECG</div>
+                            <div className={classes.IbRow1Col2} />
                         </div>
-                        <div className={classes.ibRow2}>
-                            <div className={classes.ibRow2Col1}>
+                        <div className={classes.IbRow2}>
+                            <div className={classes.IbRow2Col1}>
                                 <div style={{ flexGrow: 1 }} />
                                 <div>
                                     V1 - 1.4MM
@@ -347,29 +289,29 @@ export default function VitalSignsMonitorDemo() {
                                     ST | +0.6 || +0.9
                                 </div>
                             </div>
-                            <div className={classes.ibRow2Col2}>
+                            <div className={classes.IbRow2Col2}>
                                 <div style={{ flexGrow: 1 }} />
                                 <div>{infoEcg}</div>
                             </div>
                         </div>
                     </div>
-                    <div className={classes.infoBox} style={{ color: COLOR_YELLOW }}>
-                        <div className={classes.ibRow1}>
-                            <div className={classes.ibRow1Col1}>NIBP</div>
-                            <div className={classes.ibRow1Col2}>
+                    <div className={classes.InfoBox} style={{ color: COLOR_YELLOW }}>
+                        <div className={classes.IbRow1}>
+                            <div className={classes.IbRow1Col1}>NIBP</div>
+                            <div className={classes.IbRow1Col2}>
                                 AUTO
                                 <br />
                                 145/95
                             </div>
                         </div>
-                        <div className={classes.ibRow2}>
-                            <div className={classes.ibRow2Col1}>
+                        <div className={classes.IbRow2}>
+                            <div className={classes.IbRow2Col1}>
                                 <div style={{ flexGrow: 1 }} />
                                 <div>
                                     <img src={yellowImg} />
                                 </div>
                             </div>
-                            <div className={classes.ibRow2Col2}>
+                            <div className={classes.IbRow2Col2}>
                                 <div style={{ flexGrow: 1 }} />
                                 <div>
                                     {infoBloodPressure1}/{infoBloodPressure2}
@@ -377,37 +319,37 @@ export default function VitalSignsMonitorDemo() {
                             </div>
                         </div>
                     </div>
-                    <div className={classes.infoBox} style={{ color: COLOR_GREY }}>
-                        <div className={classes.ibRow1}>
-                            <div className={classes.ibRow1Col1}>SV</div>
-                            <div className={classes.ibRow1Col2}>
+                    <div className={classes.InfoBox} style={{ color: COLOR_GREY }}>
+                        <div className={classes.IbRow1}>
+                            <div className={classes.IbRow1Col1}>SV</div>
+                            <div className={classes.IbRow1Col2}>
                                 ML 100
                                 <br />
                                 %**** 55
                             </div>
                         </div>
-                        <div className={classes.ibRow2}>
-                            <div className={classes.ibRow2Col1}>
+                        <div className={classes.IbRow2}>
+                            <div className={classes.IbRow2Col1}>
                                 <div style={{ flexGrow: 1 }} />
                                 <div>
                                     <img src={greyImg} />
                                 </div>
                             </div>
-                            <div className={classes.ibRow2Col2}>
+                            <div className={classes.IbRow2Col2}>
                                 <div style={{ flexGrow: 1 }} />
                                 <div>{infoBloodVolume.toFixed(1)}</div>
                             </div>
                         </div>
                     </div>
-                    <div className={classes.infoBox} style={{ color: COLOR_BLUE }}>
-                        <div className={classes.ibRow1}>
-                            <div className={classes.ibRow1Col1}>
+                    <div className={classes.InfoBox} style={{ color: COLOR_BLUE }}>
+                        <div className={classes.IbRow1}>
+                            <div className={classes.IbRow1Col1}>
                                 SPO<span style={{ fontSize: 12 }}>2</span>
                             </div>
-                            <div className={classes.ibRow1Col2}>18:06</div>
+                            <div className={classes.IbRow1Col2}>18:06</div>
                         </div>
-                        <div className={classes.ibRow2}>
-                            <div className={classes.ibRow2Col1}>
+                        <div className={classes.IbRow2}>
+                            <div className={classes.IbRow2Col1}>
                                 <div style={{ flexGrow: 1 }} />
                                 <div>
                                     71-
@@ -415,12 +357,12 @@ export default function VitalSignsMonitorDemo() {
                                     RESP
                                 </div>
                             </div>
-                            <div className={classes.ibRow2Col2}>{infoBloodOxygenation}</div>
+                            <div className={classes.IbRow2Col2}>{infoBloodOxygenation}</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style={{ marginTop: 20 }}>If viewed from a mobile device use horizontal scroll</div>
+            <Box mt={20}>If viewed from a mobile device use horizontal scroll</Box>
             <ButtonGroup
                 style={{ marginTop: 20 }}
                 size="medium"

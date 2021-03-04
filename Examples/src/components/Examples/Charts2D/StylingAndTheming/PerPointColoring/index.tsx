@@ -12,7 +12,7 @@ import {
     IFillPaletteProvider,
     IPointMarkerPaletteProvider,
     IStrokePaletteProvider,
-    TPointMarkerArgb,
+    TPointMarkerArgb
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
@@ -21,6 +21,7 @@ import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/Renderab
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import classes from "../../../../Examples/Examples.module.scss";
 
 // tslint:disable:no-empty
 // tslint:disable:max-classes-per-file
@@ -58,7 +59,7 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "X Axis",
-            growBy: new NumberRange(0.1, 0.1),
+            growBy: new NumberRange(0.1, 0.1)
         })
     );
 
@@ -66,7 +67,7 @@ const drawExample = async () => {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "Right Y Axis",
-            growBy: new NumberRange(0.1, 0.1),
+            growBy: new NumberRange(0.1, 0.1)
         })
     );
 
@@ -77,7 +78,7 @@ const drawExample = async () => {
             strokeThickness: 5,
             dataSeries: createLineData(wasmContext),
             // The LinePaletteProvider (declared below) implements per-point coloring for line series
-            paletteProvider: new LinePaletteProvider("#55FF55", yValue => yValue > 0.5),
+            paletteProvider: new LinePaletteProvider("#55FF55", yValue => yValue > 0.5)
         })
     );
 
@@ -89,7 +90,7 @@ const drawExample = async () => {
             strokeThickness: 5,
             dataSeries: createMountainData(wasmContext),
             // The MountainPaletteProvider (declared below) implements per-point coloring for mountain series
-            paletteProvider: new MountainPaletteProvider("#FF555533", "#FF5555", yValue => yValue > 0.1),
+            paletteProvider: new MountainPaletteProvider("#FF555533", "#FF5555", yValue => yValue > 0.1)
         })
     );
 
@@ -102,10 +103,10 @@ const drawExample = async () => {
                 height: 7,
                 strokeThickness: 2,
                 fill: "#FF6600",
-                stroke: "white",
+                stroke: "white"
             }),
             // The ScatterPaletteProvider (declared below) implements per-point coloring for scatter series
-            paletteProvider: new ScatterPaletteProvider("#FF6600", "white", yValue => yValue < -0.8),
+            paletteProvider: new ScatterPaletteProvider("#FF6600", "white", yValue => yValue < -0.8)
         })
     );
 
@@ -233,7 +234,7 @@ class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
         if (this.rule(yValue)) {
             return {
                 fill: this.fill,
-                stroke: this.stroke,
+                stroke: this.stroke
             };
         }
         return undefined;
@@ -252,5 +253,5 @@ export default function StylingInCode() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

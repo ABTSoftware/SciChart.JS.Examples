@@ -1,0 +1,26 @@
+@import '../../assets/main.scss';
+
+.MenuListItem {
+    font-size: 0.875rem;
+    font-weight: 600;
+    // used !important to prevent padding overriding by material-ui classes
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    line-height: 1.43;
+}
+
+.SecondLevelMenuListItemText {
+    margin-left: $default-spacing;
+}
+
+.ExampleLink {
+    @extend %gutter-bottom;
+
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-left: $default-spacing * 2;
+    color: rgba(0, 0, 0, 0.87);
+    text-decoration: none;
+    pointer-events: none;
+    cursor: default;
+}

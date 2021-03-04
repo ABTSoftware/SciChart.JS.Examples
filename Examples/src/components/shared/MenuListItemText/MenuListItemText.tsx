@@ -1,16 +1,16 @@
 import * as React from "react";
-import ListItemText from "@material-ui/core/ListItemText";
 
 type TProps = {
+    className?: string;
     text: string;
 };
 
 const MenuListItemText: React.FC<TProps> = (props) => {
-    const { text } = props;
+    const { className, text } = props;
     return (
-        <ListItemText primaryTypographyProps={{ variant: "body2" }}>
-            <span style={{ fontWeight: 600 }}>{text}</span>
-        </ListItemText>
+        <span className={className}>
+            {text}
+        </span>
     );
 };
 

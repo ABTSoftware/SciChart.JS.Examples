@@ -61,432 +61,428 @@ import dragAxisToScaleImg from "../Examples/Charts2D/ZoomingAndPanning/DragAxisT
 // 3D Chart Types
 import bubble3dImg from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/javascript-3d-bubble-chart.jpg";
 import mesh3dImg from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
+import classes from "./Gallery.module.scss";
 
 type TProps = {};
 
-const useStyles = makeStyles(theme => ({
-    root: {}
-}));
-
 const Gallery: React.FC<TProps> = props => {
-    const classes = useStyles();
-
     return (
-        <div className={classes.root}>
+        <div >
             <ChartGroupTitle title="Performance Demos" />
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+            <ul className={classes.Gallery}>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={load500Img}
                         title="Load 500 Series x 500 Points"
                         seoTitle="Load 500 Series x 500 Points JavaScript Chart Performance Demo"
                         examplePath={EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={realtimePerformanceImg}
                         title="Realtime Performance Demo"
                         seoTitle="Realtime JavaScript Chart Performance Demo with many millions of points"
                         examplePath={EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={ghostedTracesImg}
                         title="Realtime Ghosted Traces"
                         seoTitle="Realtime Ghosted Traces JavaScript Chart Performance demo"
                         examplePath={EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={millionPointsDemoImg}
                         title="One Million Points Demo"
                         seoTitle="Load One Million Points in a JavaScript Chart Performance Demo"
                         examplePath={EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints.path}
                     />
-                </Grid>
-            </Grid>
+                </li>
+            </ul>
+
             <ChartGroupTitle title="Scientific and Medical Charts" />
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+            <ul className={classes.Gallery}>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={lidarImg}
                         title="LiDAR 3D Point Cloud"
                         seoTitle="LiDAR 3D Point Cloud of Geospatial Data in JavaScript"
                         examplePath={EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={ecgImg}
                         title="ECG/EKG Medical Demo"
                         seoTitle="JavaScript Vital Signs ECG/EKG Medical Demo"
                         examplePath={EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={audioAnalyzerImage}
                         title="Audio Analyzer Demo"
                         seoTitle="JavaScript Realtime Audio Analyzer Demo"
                         examplePath={EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={tenorCurvesImage}
                         title="Tenor Curves 3D Demo"
                         seoTitle="JavaScript 3D Surface Mesh Plot Tenor Curves Demo"
                         examplePath={EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.path}
                     />
-                </Grid>
-            </Grid>
+                </li>
+            </ul>
             <ChartGroupTitle title="2D Chart Types" />
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+            <ul className={classes.Gallery}>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={lineChartImg}
                         title="Line Chart"
                         seoTitle="JavaScript Line Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_LineChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={bandChartImg}
                         title="Band Chart"
                         seoTitle="JavaScript Band Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={mountainImg}
                         title="Mountain Chart"
                         seoTitle="JavaScript Mountain Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_MountainChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={digitalLineChartImg}
                         title="Digital Line Chart"
                         seoTitle="JavaScript Digital Line Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={digitalBandChartImg}
                         title="Digital Band Chart"
                         seoTitle="JavaScript Digital Band Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_DigitalBandSeriesChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={digitalMountainImg}
                         title="Digital Mountain Chart"
                         seoTitle="JavaScript Digital Mountain Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={realtimeMountainImg}
                         title="Realtime Mountain Chart"
                         seoTitle="JavaScript Realtime Mountain Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_RealtimeMountainChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={bubbleChartImg}
                         title="Bubble Chart"
                         seoTitle="JavaScript Bubble Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={candlestickImg}
                         title="Candlestick Chart"
                         seoTitle="JavaScript Candlestick Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={columnChartImg}
                         title="Column Chart"
                         seoTitle="JavaScript Column Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={fanChartImg}
                         title="Fan Chart"
                         seoTitle="JavaScript Fan Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_FanChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={heatmapImg}
                         title="Heatmap Chart"
                         seoTitle="JavaScript Heatmap Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={contourImg}
                         title="Contours Chart"
                         seoTitle="JavaScript Contours Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_ContourChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={ohlcImg}
                         title="Ohlc Chart"
                         seoTitle="JavaScript Ohlc Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={scatterImg}
                         title="Scatter Chart"
                         seoTitle="JavaScript Scatter Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={stackedColumnImg}
                         title="Stacked Column Chart"
                         seoTitle="JavaScript Stacked Column Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={stackedColumnSideBySideImg}
                         title="Stacked Column Side by Side"
                         seoTitle="JavaScript Stacked Column Side by Side Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={stackedMountainImg}
                         title="Stacked Mountain Chart"
                         seoTitle="JavaScript Stacked Mountain Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={pieImg}
                         title="Pie Chart"
                         seoTitle="JavaScript Pie Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_PieChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={donutImg}
                         title="Donut Chart"
                         seoTitle="JavaScript Donut Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_basicCharts_DonutChart.path}
                     />
-                </Grid>
-            </Grid>
+                </li>
+            </ul>
             <ChartGroupTitle title="Annotations and Legends" />
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+            <ul className={classes.Gallery}>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={annotationsImg}
                         title="Chart Annotations"
                         seoTitle="JavaScript Chart Annotations Example"
                         examplePath={EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={editableAnnotationsImg}
                         title="Chart Editable Annotations"
                         seoTitle="JavaScript Chart Editable Annotations Example"
                         examplePath={EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={tradeMarkersImg}
                         title="Trading Buy Sell Markers"
                         seoTitle="Trading Buy Sell Marker Annotations in JavaScript Charts"
                         examplePath={EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={legendImg}
                         title="Chart Legends API"
                         seoTitle="JavaScript Chart Legend Example"
                         examplePath={EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.path}
                     />
-                </Grid>
-            </Grid>
+                </li>
+            </ul>
             <ChartGroupTitle title="Candlestick &amp; Stock Charts" />
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+            <ul className={classes.Gallery}>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={multiPaneStockImg}
                         title="Multi-Pane Stock Charts"
                         seoTitle="JavaScript Multi-Pane Stock Charts Example"
                         examplePath={EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={realtimeStockImg}
                         title="Realtime Ticking Stock Charts"
                         seoTitle="JavaScript Realtime Ticking Stock Charts Example"
                         examplePath={EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts.path}
                     />
-                </Grid>
-            </Grid>
+                </li>
+            </ul>
             <ChartGroupTitle title="Chart Axis API" />
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+            <ul className={classes.Gallery}>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={multipleXAxesImg}
                         title="Multiple X Axes"
                         seoTitle="JavaScript Chart with Multiple X Axis Example"
                         examplePath={EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={secondaryYAxesImg}
                         title="Secondary Y Axes"
                         seoTitle="JavaScript Chart with Secondary Y Axis Example"
                         examplePath={EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={verticalChartImg}
                         title="Vertical Charts"
                         seoTitle="JavaScript Vertical Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.path}
                     />
-                </Grid>
-            </Grid>
+                </li>
+            </ul>
             <ChartGroupTitle title="Styling and Theming" />
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+            <ul className={classes.Gallery}>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={pointMarkersImg}
                         title="Point Markers"
                         seoTitle="JavaScript Scatter Chart Custom Point Markers Example"
                         examplePath={EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={themeManagerImg}
                         title="Theme Manager"
                         seoTitle="JavaScript Chart Theme Manager Example"
                         examplePath={EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={stylingInCodeImg}
                         title="Styling Chart in Code"
                         seoTitle="JavaScript Chart Styling or Theming in Code"
                         examplePath={EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={paletteProviderImg}
                         title="Coloring Series per-point"
                         seoTitle="Coloring JavaScript Chart Series per-point using the PaletteProvider"
                         examplePath={EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={dashedLineImg}
                         title="Dashed Line Styling"
                         seoTitle="JavaScript Dashed and Dotted Line Chart Example"
                         examplePath={EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling.path}
                     />
-                </Grid>
-            </Grid>
+                </li>
+            </ul>
             <ChartGroupTitle title="Tooltips and Hit-Test" />
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+            <ul className={classes.Gallery}>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={hitTestApiImg}
                         title="Hit-Test API"
                         seoTitle="JavaScript Hit-Test API Example"
                         examplePath={EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={rolloverImg}
                         title="Rollover Modifier Tooltips"
                         seoTitle="JavaScript Rollover Modifier Tooltips Example"
                         examplePath={EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.path}
                     />
-                </Grid>
-            </Grid>
+                </li>
+            </ul>
             <ChartGroupTitle title="Zoom and Pan a Chart" />
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+            <ul className={classes.Gallery}>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={dragAxisToScaleImg}
                         title="Drag Axis to Scale or Pan"
                         seoTitle="Drag Axis on JavaScript Charts to Scale or Pan"
                         examplePath={EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={realtimeZoomPanImg}
                         title="Zoom and Pan with Realtime Charts"
                         seoTitle="Zoom and Pan a Realtime JavaScript Chart"
                         examplePath={EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.path}
                     />
-                </Grid>
-            </Grid>
+                </li>
+            </ul>
             <ChartGroupTitle title="3D Chart Types" />
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={4}>
+            <ul className={classes.Gallery}>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={bubble3dImg}
                         title="3D Bubble Chart"
                         seoTitle="JavaScript 3D Bubble Chart Example"
                         examplePath={EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.path}
                     />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                </li>
+                <li className={classes.GalleryItem}>
                     <GalleryCard
                         imgPath={mesh3dImg}
                         title="Surface Mesh 3D"
                         seoTitle="JavaScript Surface Mesh 3D Chart Example"
                         examplePath={EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.path}
                     />
-                </Grid>
-            </Grid>
+                </li>
+            </ul>
         </div>
     );
 };

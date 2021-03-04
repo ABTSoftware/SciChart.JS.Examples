@@ -29,6 +29,7 @@ import { EColor } from "scichart/types/Color";
 import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
 import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 export const divElementId = "chart";
 // Step = 5 minutes
@@ -103,7 +104,7 @@ export const drawExample = async () => {
             strokeThickness: STROKE_THICKNESS,
             zeroLineY: 0,
             yAxisId: AXIS2_ID,
-            dataSeries: volumeDataSeries,
+            dataSeries: volumeDataSeries
         })
     );
 
@@ -111,7 +112,7 @@ export const drawExample = async () => {
         new FastLineRenderableSeries(wasmContext, {
             stroke: "#ff6600",
             strokeThickness: STROKE_THICKNESS,
-            dataSeries: movingAverage20DataSeries,
+            dataSeries: movingAverage20DataSeries
         })
     );
 
@@ -119,7 +120,7 @@ export const drawExample = async () => {
         new FastLineRenderableSeries(wasmContext, {
             stroke: "#ffffff",
             strokeThickness: STROKE_THICKNESS,
-            dataSeries: movingAverage50DataSeries,
+            dataSeries: movingAverage50DataSeries
         })
     );
 
@@ -127,7 +128,7 @@ export const drawExample = async () => {
         new FastOhlcRenderableSeries(wasmContext, {
             strokeThickness: STROKE_THICKNESS,
             dataSeries: priceDataSeries,
-            dataPointWidth: 0.4,
+            dataPointWidth: 0.4
         })
     );
 
@@ -167,7 +168,7 @@ export const drawExample = async () => {
         updateChart();
     };
 
-    return { sciChartSurface, wasmContext, controls: { startAnimation, stopAnimation} };
+    return { sciChartSurface, wasmContext, controls: { startAnimation, stopAnimation } };
 };
 
 let scs: SciChartSurface;
@@ -179,7 +180,6 @@ export default function RealtimeTickingStockCharts() {
     const [strokeThickness, setStrokeThickness] = React.useState(2);
     const [seriesType, setSeriesType] = React.useState(ESeriesType.OhlcSeries);
     const [controls, setControls] = React.useState({ startAnimation: () => {}, stopAnimation: () => {} });
-
 
     React.useEffect(() => {
         (async () => {
@@ -196,13 +196,13 @@ export default function RealtimeTickingStockCharts() {
             clearTimeout(timerId);
             clearTimeout(autoStartTimerId);
             scs?.delete();
-        }
+        };
     }, []);
 
     const handleChangeStrokeThickness = (event: React.ChangeEvent<{ value: unknown }>) => {
         const newStrokeThickness = event.target.value as number;
         setStrokeThickness(newStrokeThickness);
-        scs.renderableSeries.asArray().forEach((rs) => {
+        scs.renderableSeries.asArray().forEach(rs => {
             rs.strokeThickness = newStrokeThickness;
         });
     };
@@ -219,7 +219,7 @@ export default function RealtimeTickingStockCharts() {
                     new FastLineRenderableSeries(wasmContext, {
                         stroke: EColor.Green,
                         strokeThickness,
-                        dataSeries: priceDataSeries,
+                        dataSeries: priceDataSeries
                     })
                 );
                 break;
@@ -228,7 +228,7 @@ export default function RealtimeTickingStockCharts() {
                     new FastOhlcRenderableSeries(wasmContext, {
                         strokeThickness,
                         dataSeries: priceDataSeries as OhlcDataSeries,
-                        dataPointWidth: 0.4,
+                        dataPointWidth: 0.4
                     })
                 );
                 break;
@@ -237,7 +237,7 @@ export default function RealtimeTickingStockCharts() {
                     new FastCandlestickRenderableSeries(wasmContext, {
                         strokeThickness,
                         dataSeries: priceDataSeries as OhlcDataSeries,
-                        dataPointWidth: 0.4,
+                        dataPointWidth: 0.4
                     })
                 );
                 break;
@@ -248,7 +248,7 @@ export default function RealtimeTickingStockCharts() {
                         stroke: "#4682b4",
                         strokeThickness,
                         zeroLineY: 0,
-                        dataSeries: priceDataSeries,
+                        dataSeries: priceDataSeries
                     })
                 );
         }
@@ -256,15 +256,17 @@ export default function RealtimeTickingStockCharts() {
 
     return (
         <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-            <div style={{ marginTop: 20, display: showControls ? "flex" : "none" }}>
+            <div id={divElementId} className={classes.ChartWrapper} />
+            <div style={{ marginTop: 20, display: "flex" }}>
                 <FormControl variant="filled" style={{ width: 200 }}>
                     <InputLabel id="stroke-thickness-label">Stroke Thickness</InputLabel>
                     <Select
                         labelId="stroke-thickness-label"
                         id="stroke-thickness"
                         value={strokeThickness}
-                        onChange={handleChangeStrokeThickness}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (showControls) handleChangeStrokeThickness(e);
+                        }}
                     >
                         <MenuItem value={1}>1</MenuItem>
                         <MenuItem value={2}>2</MenuItem>
@@ -279,7 +281,9 @@ export default function RealtimeTickingStockCharts() {
                         labelId="stroke-thickness-label"
                         id="stroke-thickness"
                         value={seriesType}
-                        onChange={handleChangeSeriesType}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (showControls) handleChangeSeriesType(e);
+                        }}
                     >
                         <MenuItem value={ESeriesType.OhlcSeries}>OHLC</MenuItem>
                         <MenuItem value={ESeriesType.CandlestickSeries}>Candlestick</MenuItem>
@@ -288,10 +292,22 @@ export default function RealtimeTickingStockCharts() {
                     </Select>
                 </FormControl>
             </div>
-            <FormControl style={{ marginTop: 20, display: showControls ? "flex" : "none" }}>
+            <FormControl style={{ marginTop: 20, display: "flex" }}>
                 <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button onClick={controls.startAnimation}>Start</Button>
-                    <Button onClick={controls.stopAnimation}>Stop</Button>
+                    <Button
+                        onClick={() => {
+                            if (showControls) controls.startAnimation;
+                        }}
+                    >
+                        Start
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            if (showControls) controls.stopAnimation;
+                        }}
+                    >
+                        Stop
+                    </Button>
                 </ButtonGroup>
             </FormControl>
         </div>

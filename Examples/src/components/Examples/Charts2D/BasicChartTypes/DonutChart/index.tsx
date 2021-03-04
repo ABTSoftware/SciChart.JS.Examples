@@ -9,6 +9,7 @@ import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
+import classes from "../../../../Examples/Examples.module.scss";
 
 export const divElementId = "chart";
 
@@ -99,15 +100,17 @@ export default function DonutChart() {
 
     return (
         <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-            <div style={{ marginTop: 20, display: showControls ? "flex" : "none" }}>
+            <div id={divElementId} className={classes.ChartWrapper} />
+            <div style={{ marginTop: 20, display: "flex" }}>
                 <FormControl variant="filled" style={{ width: 200 }}>
                     <InputLabel id="sciChartPlacement-label">Legend Placement</InputLabel>
                     <Select
                         labelId="sciChartPlacement-label"
                         id="sciChartPlacement"
                         value={placementValue}
-                        onChange={handleChangePlacement}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (showControls) handleChangePlacement(e);
+                        }}
                     >
                         {placementSelect.map(el => (
                             <MenuItem key={el.value} value={el.value}>
@@ -122,7 +125,9 @@ export default function DonutChart() {
                         labelId="sciChartOrientation-label"
                         id="sciChartOrientation"
                         value={orientationValue}
-                        onChange={handleChangeOrientation}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (showControls) handleChangeOrientation(e);
+                        }}
                     >
                         {orientationSelect.map(el => (
                             <MenuItem key={el.value} value={el.value}>

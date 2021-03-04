@@ -10,6 +10,7 @@ import { ScatterRenderableSeries3D } from "scichart/Charting3D/Visuals/Renderabl
 import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
 import { TSciChart3D } from "scichart/types/TSciChart3D";
 import { SciChartSurface } from "scichart";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -18,7 +19,7 @@ const drawExample = async () => {
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId);
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(300, 300, 300),
-        target: new Vector3(0, 50, 0),
+        target: new Vector3(0, 50, 0)
     });
 
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
@@ -79,5 +80,5 @@ export default function Bubble3DChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

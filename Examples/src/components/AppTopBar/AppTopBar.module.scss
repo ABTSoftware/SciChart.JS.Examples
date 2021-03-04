@@ -1,0 +1,15 @@
+@import '../../assets/main.scss';
+
+.AppBar {
+    .MenuButton {
+        display: none;
+        margin-right: $default-spacing * 2;
+        @include md {
+            display: block;
+        }
+    }
+
+    .FlexPlaceholder {
+        flex-grow: 1;
+    }
+}

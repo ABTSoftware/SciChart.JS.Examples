@@ -18,6 +18,8 @@ import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/
 import { Point } from "scichart/Core/Point";
 import { ENearestPointLogic } from "scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
+import classes from "../../../../Examples/Examples.module.scss";
+import Box from "../../../../shared/Helpers/Box/Box";
 
 const divElementId = "chart";
 
@@ -128,24 +130,9 @@ const drawExample = async (setHitTestsList: (hitTestsList: HitTestInfo[]) => voi
 
 const HIT_TEST_RADIUS = 10;
 
-const useStyles = makeStyles(theme => ({
-    notificationsBlock: {
-        marginTop: 20
-    },
-    notification: {
-        marginBottom: 16
-    },
-    description: {
-        width: 800,
-        marginBottom: 20
-    }
-}));
-
 let scs: SciChartSurface;
 
 export default function HitTestAPI() {
-    const classes = useStyles();
-
     const [hitTestsList, setHitTestsList] = React.useState<HitTestInfo[]>([]);
 
     React.useEffect(() => {
@@ -159,10 +146,10 @@ export default function HitTestAPI() {
 
     return (
         <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-            <div className={classes.notificationsBlock}>
+            <div id={divElementId} className={classes.ChartWrapper} />
+            <Box mt={20}>
                 {hitTestsList.map((ht, index) => (
-                    <Alert key={index} className={classes.notification}>
+                    <Alert key={index} style={{ marginTop: "16px" }}>
                         <AlertTitle>{ht.dataSeriesName}</AlertTitle>
                         Mouse Coord: {ht.hitTestPoint.x.toFixed(2)}, {ht.hitTestPoint.y.toFixed(2)}; Is Hit:{" "}
                         {ht.isHit && <span style={{ color: "red" }}>true</span>}
@@ -171,7 +158,7 @@ export default function HitTestAPI() {
                         {ht.xValue.toFixed(2)}, {ht.yValue.toFixed(2)}
                     </Alert>
                 ))}
-            </div>
+            </Box>
         </div>
     );
 }
