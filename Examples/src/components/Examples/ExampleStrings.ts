@@ -38,6 +38,10 @@ export const ExampleStrings = {
     urlBandChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Band%20Series%20type.html",
     urlTitleBandChartDocumentation: "This specific page in the JavaScript Band Chart documentation will help you to get started",
 
+    // Spline band chart
+    titleSplineBandChart: "JavaScript Spline Band Chart",
+    urlSplineBandChart: "/javascript-spline-band-chart",
+
     // Digital Band chart
     urlDigitalBandChart: "/javascript-digital-band-chart",
     urlTitleDigitalBandChart: "JavaScript Digital Band Chart example",
@@ -65,6 +69,10 @@ export const ExampleStrings = {
     urlMountainChart: "/javascript-mountain-chart",
     titleMountainChart: "JavaScript Mountain Chart",
     urlTitleMountainChart: "The JavaScript Mountain Chart example demonstrates how to create a Mountain Chart with SciChart.js",
+
+    // Spline mountain chart
+    urlSplineMountainChart: "/javascript-spline-mountain-chart",
+    titleSplineMountainChart: "Javascript Spline Mountain Chart",
 
     // Digital Mountain Chart
     urlDigitalMountainChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Digital%20(Step)%20Mountain%20Series%20Type.html",

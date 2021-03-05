@@ -11,6 +11,8 @@ import { GradientParams } from "scichart/Core/GradientParams";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Point } from "scichart/Core/Point";
 import classes from "../../../../Examples/Examples.module.scss";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
 
 const divElementId = "chart";
 
@@ -25,31 +27,31 @@ const drawExample = async () => {
     const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) });
     sciChartSurface.yAxes.add(yAxis);
 
+    const xValues = [0, 1,  2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    const yValues = [50, 35, 61, 58, 50, 50, 40, 53, 55, 23, 45, 12, 59, 60];
+
     // Create an XyDataSeries as data source
     const xyDataSeries = new XyDataSeries(wasmContext);
-    for (let i = 0; i < 100; i++) {
-        xyDataSeries.append(i, Math.sin(i * 0.1));
-    }
+    xyDataSeries.appendRange(xValues, yValues);
 
-    // Create and add a line series to the chart
+    // Create and add a standard line series to the chart.
+    // This will be used to compare the spline (smoothed) algorothm
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
-        stroke: "#ff6600",
-        strokeThickness: 5,
+        stroke: "#4282B4",
+        strokeThickness: 1,
         dataSeries: xyDataSeries,
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "#FFFFFF", stroke: "#006400"})
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
-    // OPTIONAL: PaletteProvider APIs allow you to add per-point colouring based on a rule, or a gradient
-    lineSeries.paletteProvider = PaletteFactory.createGradient(
-        wasmContext,
-        new GradientParams(new Point(0, 0), new Point(1, 1), [
-            { color: "red", offset: 0 },
-            { color: "pink", offset: 0.2 },
-            { color: "yellow", offset: 0.5 },
-            { color: "purple", offset: 0.7 },
-            { color: "green", offset: 1 },
-        ])
-    );
+    // Create and add a Spline line series to the chart
+    const splineSeries = new SplineLineRenderableSeries(wasmContext, {
+        stroke: "#006400",
+        strokeThickness: 3,
+        dataSeries: xyDataSeries,
+        interpolationPoints: 10, // Set interpolation points to decide the amount of smoothing
+    });
+    sciChartSurface.renderableSeries.add(splineSeries);
 
     // OPTIONAL: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());

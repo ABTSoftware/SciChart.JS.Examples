@@ -5,9 +5,10 @@ import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => (<div>
-    <p>Demonstrates how to create a JavaScript Mountain Chart. An area or polygon is rendered from the Y-value to the
-        zeroLineY, a configurable
-        property which defaults to zero.</p>
+    <p>Demonstrates how to create a JavaScript Spline Mountain Chart. An area or polygon is rendered from the Y-value to the
+        zeroLineY, a configurable property which defaults to zero.</p>
+    <p>This chart type features a spline or smoothed line which beautifies the datavizualization
+        where there are few points on the chart.</p>
     <h4>Tips!</h4>
     <p>By setting the stroke property you alter the line color, and fill alters the fill. The Mountain-series also
         supports semi-transparent and linear gradient brush fills and looks great!.</p>
@@ -35,14 +36,14 @@ const Subtitle = () => (<p>Demonstrates how to create a <strong>JavaScript Mount
     using SciChart.js, High Performance{' '}
     <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a></p>);
 
-export const mountainChartExampleInfo: TExampleInfo = {
-    title: ExampleStrings.titleMountainChart,
-    path: ExampleStrings.urlMountainChart,
+export const splineMountainChartExampleInfo: TExampleInfo = {
+    title: ExampleStrings.titleSplineMountainChart,
+    path: ExampleStrings.urlSplineMountainChart,
     subtitle: Subtitle,
     description: Description,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to create a JavaScript Spline Mountain Chart. An area or polygon is rendered with a gradient fill to configurable zero-line.",
+    seoDescription: "Demonstrates how to create a JavaScript Mountain Chart. An area or polygon is rendered with a gradient fill to configurable zero-line.",
     seoKeywords: "mountain, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-spline-mountain-chart.jpg"
+    thumbnailImage: "javascript-mountain-chart.jpg"
 };

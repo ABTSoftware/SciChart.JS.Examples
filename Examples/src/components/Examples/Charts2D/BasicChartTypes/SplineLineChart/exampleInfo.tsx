@@ -5,8 +5,10 @@ import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => (<div>
-    <p>This example demonstrates how the Spline Line chart in JavaScript can be created using the SplineLineRenderableSeries type</p>
-    <p>The JavaScript Spline Line type includes a spline-interpolation algorithm to smooth the line, when you have a few datapoints and want
+    <p>This example demonstrates how a JavaScript Spline Line chart can be created using the
+        SplineLineRenderableSeries type.</p>
+    <p>SciChart's Spline Line type includes a spline-interpolation algorithm to smooth the line, when you have a few
+        data-points and want
         a nicer looking, smoothed line series in your chart applications and dashboards</p>
     <h4>Tips!</h4>
     <p>As well as stroke, you can set strokeThickness, isVisible properties to change how the series is rendered.</p>
@@ -27,12 +29,12 @@ const Description = () => (<div>
     </ul>
     <h4>See Also</h4>
     <ul>
-        <li><a href={ExampleStrings.urlLineChart}
-               title={ExampleStrings.urlLineChartDocumentation}>The
-            JavaScript Bubble Chart Example</a></li>
-        <li><a href={ExampleStrings.urlPointMarkers}
-               title={ExampleStrings.titlePointMarkers}>Styling
-            Point-Markers Example</a></li>
+        <li><a href={ExampleStrings.urlSplineMountainChart}
+               title={ExampleStrings.titleSplineMountainChart}>The
+            JavaScript Spline Mountain Chart Example</a></li>
+        <li><a href={ExampleStrings.urlSplineBandChart}
+               title={ExampleStrings.titleSplineBandChart}>The
+            JavaScript Spline Band Chart Example</a></li>
     </ul>
 </div>);
 const Subtitle = () => (<p>Demonstrates how to create a <strong>JavaScript Spline Line Chart</strong>{' '}
