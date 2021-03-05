@@ -38,7 +38,8 @@
 
         .PageHomeHeader {
             padding: $default-spacing * 16 $default-spacing * 3 $default-spacing * 12;
-            max-width: 1280px;
+            @extend %Container;
+
             margin: auto;
             display: flex;
             align-items: stretch;

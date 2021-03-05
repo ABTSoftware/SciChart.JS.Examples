@@ -1,5 +1,13 @@
 @import "../../assets/main.scss";
 
+.DrawerContent {
+    // width: 30%;
+    // max-width: 240px;
+    @include md {
+        width: 100%;
+        max-width: 100%;
+    }
+}
 .homepageLink {
     color: rgba(0, 0, 0, 0.54);
     cursor: pointer;

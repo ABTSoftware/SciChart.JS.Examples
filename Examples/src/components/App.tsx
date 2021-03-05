@@ -69,7 +69,7 @@ export default function App() {
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
         <div className={classes.App}>
-            <Drawer
+            {/* <Drawer
                 className={classes.DrawerDesktop}
                 variant="permanent"
                 classes={{ paper: classes.DrawerPaper }}
@@ -81,7 +81,7 @@ export default function App() {
                     toggleOpenedMenuItem={toggleOpenedMenuItem}
                     toggleDrawer={() => {}}
                 />
-            </Drawer>
+            </Drawer> */}
 
             <Drawer
                 className={classes.DrawerMobile}
@@ -100,7 +100,23 @@ export default function App() {
             <div className={classes.MainAppContent}>
                 <AppBarTop toggleDrawer={toggleDrawer} />
                 <AppRouter currentExample={currentExample} />
-                <Gallery />
+                <div className={classes.MainAppWrapper}>
+                    <div className={classes.DrawerDesktop}>
+                        <DrawerContent
+                            testIsOpened={testIsOpened}
+                            toggleOpenedMenuItem={toggleOpenedMenuItem}
+                            toggleDrawer={() => {}}
+                        />
+                    </div>
+                    {/* <div>
+                        <DrawerContent
+                            testIsOpened={testIsOpened}
+                            toggleOpenedMenuItem={toggleOpenedMenuItem}
+                            toggleDrawer={() => {}}
+                        />
+                    </div> */}
+                    <Gallery />
+                </div>
 
                 <AppFooter />
             </div>

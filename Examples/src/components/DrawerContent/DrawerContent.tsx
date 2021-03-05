@@ -19,21 +19,16 @@ const DrawerContent: React.FC<TProps> = props => {
     const { testIsOpened, toggleOpenedMenuItem, toggleDrawer } = props;
 
     return (
-        <>
+        <div className={classes.DrawerContent}>
             <div className={classes.toolbar}>
-                <h6
-                    className={classes.homepageLink}
-                    onClick={() => history.push("/")}
-                >
+                <h6 className={classes.homepageLink} onClick={() => history.push("/")}>
                     SciChart.js
                 </h6>
-                <span className={classes.versionCaption}>
-                    {`v${APP_VERSION}`}
-                </span>
+                <span className={classes.versionCaption}>{`v${APP_VERSION}`}</span>
             </div>
             <Divider />
             <Navigation testIsOpened={testIsOpened} onExpandClick={toggleOpenedMenuItem} toggleDrawer={toggleDrawer} />
-        </>
+        </div>
     );
 };
 
