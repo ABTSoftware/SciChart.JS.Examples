@@ -1,5 +1,5 @@
 import * as React from "react";
-import ChartGroupTitle from "./ChartGroupTitle";
+
 import { EXAMPLES_PAGES } from "../AppRouter/examplePages";
 import GalleryCard from "./GalleryCard";
 // Featured Apps
@@ -60,84 +60,117 @@ import dragAxisToScaleImg from "../Examples/Charts2D/ZoomingAndPanning/DragAxisT
 import bubble3dImg from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/javascript-3d-bubble-chart.jpg";
 import mesh3dImg from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
 import classes from "./Gallery.module.scss";
+import GalleryList from "./GalleryList/GalleryList";
 
 type TProps = {};
 
-const Gallery: React.FC<TProps> = props => {
-    return (
-        <div >
-            <ChartGroupTitle title="Performance Demos" />
-            <ul className={classes.Gallery}>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={load500Img}
-                        title="Load 500 Series x 500 Points"
-                        seoTitle="Load 500 Series x 500 Points JavaScript Chart Performance Demo"
-                        examplePath={EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={realtimePerformanceImg}
-                        title="Realtime Performance Demo"
-                        seoTitle="Realtime JavaScript Chart Performance Demo with many millions of points"
-                        examplePath={EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={ghostedTracesImg}
-                        title="Realtime Ghosted Traces"
-                        seoTitle="Realtime Ghosted Traces JavaScript Chart Performance demo"
-                        examplePath={EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={millionPointsDemoImg}
-                        title="One Million Points Demo"
-                        seoTitle="Load One Million Points in a JavaScript Chart Performance Demo"
-                        examplePath={EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints.path}
-                    />
-                </li>
-            </ul>
+export type GalleryItem = {
+    chartGroupTitle: string;
+    items: {
+        imgPath: string;
+        title: string;
+        seoTitle: string;
+        examplePath: string;
+    }[];
+};
 
-            <ChartGroupTitle title="Scientific and Medical Charts" />
-            <ul className={classes.Gallery}>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={lidarImg}
-                        title="LiDAR 3D Point Cloud"
-                        seoTitle="LiDAR 3D Point Cloud of Geospatial Data in JavaScript"
-                        examplePath={EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={ecgImg}
-                        title="ECG/EKG Medical Demo"
-                        seoTitle="JavaScript Vital Signs ECG/EKG Medical Demo"
-                        examplePath={EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={audioAnalyzerImage}
-                        title="Audio Analyzer Demo"
-                        seoTitle="JavaScript Realtime Audio Analyzer Demo"
-                        examplePath={EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={tenorCurvesImage}
-                        title="Tenor Curves 3D Demo"
-                        seoTitle="JavaScript 3D Surface Mesh Plot Tenor Curves Demo"
-                        examplePath={EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.path}
-                    />
-                </li>
-            </ul>
-            <ChartGroupTitle title="2D Chart Types" />
+const Gallery: React.FC<TProps> = props => {
+    const examples: GalleryItem[] = [
+        {
+            chartGroupTitle: "Performance Demos",
+            items: [
+                {
+                    imgPath: load500Img,
+                    title: "Load 500 Series x 500 Points",
+                    seoTitle: "Load 500 Series x 500 Points JavaScript Chart Performance Demo",
+                    examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500.path
+                },
+                {
+                    imgPath: realtimePerformanceImg,
+                    title: "Realtime Performance Demo",
+                    seoTitle: "Realtime JavaScript Chart Performance Demo with many millions of points",
+                    examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.path
+                },
+                {
+                    imgPath: ghostedTracesImg,
+                    title: "Realtime Ghosted Traces",
+                    seoTitle: "Realtime Ghosted Traces JavaScript Chart Performance demo",
+                    examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path
+                },
+                {
+                    imgPath: millionPointsDemoImg,
+                    title: "One Million Points Demo",
+                    seoTitle: "Load One Million Points in a JavaScript Chart Performance Demo",
+                    examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints.path
+                }
+            ]
+        },
+        {
+            chartGroupTitle: "Scientific and Medical Charts",
+            items: [
+                {
+                    imgPath: lidarImg,
+                    title: "LiDAR 3D Point Cloud",
+                    seoTitle: "LiDAR 3D Point Cloud of Geospatial Data in JavaScript",
+                    examplePath: EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.path
+                },
+                {
+                    imgPath: ecgImg,
+                    title: "ECG/EKG Medical Demo",
+                    seoTitle: "JavaScript Vital Signs ECG/EKG Medical Demo",
+                    examplePath: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.path
+                },
+                {
+                    imgPath: audioAnalyzerImage,
+                    title: "Audio Analyzer Demo",
+                    seoTitle: "JavaScript Realtime Audio Analyzer Demo",
+                    examplePath: EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.path
+                },
+                {
+                    imgPath: tenorCurvesImage,
+                    title: "Tenor Curves 3D Demo",
+                    seoTitle: "JavaScript 3D Surface Mesh Plot Tenor Curves Demo",
+                    examplePath: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.path
+                }
+            ]
+        },
+        {
+            chartGroupTitle: "Scientific and Medical Charts",
+            items: [
+                {
+                    imgPath: lidarImg,
+                    title: "LiDAR 3D Point Cloud",
+                    seoTitle: "LiDAR 3D Point Cloud of Geospatial Data in JavaScript",
+                    examplePath: EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.path
+                },
+                {
+                    imgPath: ecgImg,
+                    title: "ECG/EKG Medical Demo",
+                    seoTitle: "JavaScript Vital Signs ECG/EKG Medical Demo",
+                    examplePath: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.path
+                },
+                {
+                    imgPath: audioAnalyzerImage,
+                    title: "Audio Analyzer Demo",
+                    seoTitle: "JavaScript Realtime Audio Analyzer Demo",
+                    examplePath: EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.path
+                },
+                {
+                    imgPath: tenorCurvesImage,
+                    title: "Tenor Curves 3D Demo",
+                    seoTitle: "JavaScript 3D Surface Mesh Plot Tenor Curves Demo",
+                    examplePath: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.path
+                }
+            ]
+        }
+    ];
+    return (
+        <div style={{ padding: "20px", minWidth: 0, minHeight: 0 }}>
+            {examples.map(item => {
+                return <GalleryList example={item} length={examples.length} />;
+            })}
+
+            {/* <ChartGroupTitle title="2D Chart Types" /> */}
             <ul className={classes.Gallery}>
                 <li className={classes.GalleryItem}>
                     <GalleryCard
@@ -300,7 +333,7 @@ const Gallery: React.FC<TProps> = props => {
                     />
                 </li>
             </ul>
-            <ChartGroupTitle title="Annotations and Legends" />
+            {/* <ChartGroupTitle title="Annotations and Legends" /> */}
             <ul className={classes.Gallery}>
                 <li className={classes.GalleryItem}>
                     <GalleryCard
@@ -335,7 +368,7 @@ const Gallery: React.FC<TProps> = props => {
                     />
                 </li>
             </ul>
-            <ChartGroupTitle title="Candlestick &amp; Stock Charts" />
+            {/* <ChartGroupTitle title="Candlestick &amp; Stock Charts" /> */}
             <ul className={classes.Gallery}>
                 <li className={classes.GalleryItem}>
                     <GalleryCard
@@ -354,7 +387,7 @@ const Gallery: React.FC<TProps> = props => {
                     />
                 </li>
             </ul>
-            <ChartGroupTitle title="Chart Axis API" />
+            {/* <ChartGroupTitle title="Chart Axis API" /> */}
             <ul className={classes.Gallery}>
                 <li className={classes.GalleryItem}>
                     <GalleryCard
@@ -381,7 +414,7 @@ const Gallery: React.FC<TProps> = props => {
                     />
                 </li>
             </ul>
-            <ChartGroupTitle title="Styling and Theming" />
+            {/* <ChartGroupTitle title="Styling and Theming" /> */}
             <ul className={classes.Gallery}>
                 <li className={classes.GalleryItem}>
                     <GalleryCard
@@ -424,7 +457,7 @@ const Gallery: React.FC<TProps> = props => {
                     />
                 </li>
             </ul>
-            <ChartGroupTitle title="Tooltips and Hit-Test" />
+            {/* <ChartGroupTitle title="Tooltips and Hit-Test" /> */}
             <ul className={classes.Gallery}>
                 <li className={classes.GalleryItem}>
                     <GalleryCard
@@ -443,7 +476,7 @@ const Gallery: React.FC<TProps> = props => {
                     />
                 </li>
             </ul>
-            <ChartGroupTitle title="Zoom and Pan a Chart" />
+            {/* <ChartGroupTitle title="Zoom and Pan a Chart" /> */}
             <ul className={classes.Gallery}>
                 <li className={classes.GalleryItem}>
                     <GalleryCard
@@ -462,7 +495,7 @@ const Gallery: React.FC<TProps> = props => {
                     />
                 </li>
             </ul>
-            <ChartGroupTitle title="3D Chart Types" />
+            {/* <ChartGroupTitle title="3D Chart Types" /> */}
             <ul className={classes.Gallery}>
                 <li className={classes.GalleryItem}>
                     <GalleryCard

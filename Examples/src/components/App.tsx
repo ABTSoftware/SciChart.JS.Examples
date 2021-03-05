@@ -14,6 +14,16 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import classes from "./App.module.scss";
 import "./index.scss";
 import Gallery from "./Gallery/Gallery";
+import Slider from "react-slick";
+
+const settings = {
+    dots: true,
+    infinite: true,
+
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1
+};
 
 export default function App() {
     const location = useLocation();
@@ -108,13 +118,8 @@ export default function App() {
                             toggleDrawer={() => {}}
                         />
                     </div>
-                    {/* <div>
-                        <DrawerContent
-                            testIsOpened={testIsOpened}
-                            toggleOpenedMenuItem={toggleOpenedMenuItem}
-                            toggleDrawer={() => {}}
-                        />
-                    </div> */}
+
+                    <div></div>
                     <Gallery />
                 </div>
 
