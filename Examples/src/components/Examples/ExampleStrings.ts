@@ -41,6 +41,8 @@ export const ExampleStrings = {
     // Spline band chart
     titleSplineBandChart: "JavaScript Spline Band Chart",
     urlSplineBandChart: "/javascript-spline-band-chart",
+    urlSplineBandChartDocumentation: "#",
+    urlTitleSplineBandChartDocumentation: "This specific page in the JavaScript Spline Band Chart documentation will help you to get started",
 
     // Digital Band chart
     urlDigitalBandChart: "/javascript-digital-band-chart",

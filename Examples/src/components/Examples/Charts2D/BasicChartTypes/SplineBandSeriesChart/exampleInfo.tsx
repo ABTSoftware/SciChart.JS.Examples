@@ -5,8 +5,9 @@ import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => (<div>
-    <p>Demonstrates how to create a JavaScript Band Chart. This is a chart type which draws an area (polygon or fill)
-        between two lines. The FastBandRenderableSeries requires an XyyDataSeries, which contains one X-point and two
+    <p>Spline Band Series are provided by the SplineBandRenderableSeries type. This is a chart type which draws an area
+        (polygon or fill) between two lines, using a spline interpolation (smoothing) algorithm.
+        The SplineBandRenderableSeries requires an XyyDataSeries, which contains one X-point and two
         Y-points</p>
     <p>Dual lines are drawn by the stroke, strokeY1 properties and shaded bands are drawn by the fill and fillY1
         properties, depending on whether y1 is greater than y2</p>
@@ -19,19 +20,20 @@ const Description = () => (<div>
             SciChart.js Documentation Home</a></li>
         <li><a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
             SciChart.js Tutorials</a></li>
-        <li><a href={ExampleStrings.urlBandChartDocumentation} target="_blank"
-               title={ExampleStrings.urlTitleBandChartDocumentation}>JavaScript Band Chart Documentation</a></li>
+        <li><a href={ExampleStrings.urlSplineBandChartDocumentation} target="_blank"
+               title={ExampleStrings.urlTitleSplineBandChartDocumentation}>JavaScript Spline Band Chart Documentation</a></li>
         <li><a href={ExampleStrings.urlRenderSeriesPropertiesDocumentation}
                title={ExampleStrings.urlTitleRenderSeriesProperties} target="_blank">
             Common RenderableSeries Properties</a></li>
     </ul>
     <h4>See Also</h4>
     <ul>
-        <li><a href={ExampleStrings.urlMultiPaneStockChart}
-               title={ExampleStrings.urlTitleMultiPaneStockChart}>The Multi-Pane
-            Stock Chart Example</a></li>
-        <li><a href={ExampleStrings.urlFanChart}
-               title={ExampleStrings.urlTitleFanChart}>The JavaScript Fan Chart Example</a></li>
+        <li><a href={ExampleStrings.urlSplineLineChart}
+               title={ExampleStrings.titleSplineLineChart}>The
+            JavaScript Spline Line Chart Example</a></li>
+        <li><a href={ExampleStrings.urlSplineMountainChart}
+               title={ExampleStrings.titleSplineMountainChart}>The
+            JavaScript Spline Mountain Chart Example</a></li>
     </ul>
 </div>);
 const Subtitle = () => (<p>Demonstrates how to create a <strong>JavaScript Band Chart</strong> or High-Low Fill{' '}
