@@ -7,9 +7,7 @@ import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { GradientParams } from "scichart/Core/GradientParams";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { Point } from "scichart/Core/Point";
 import classes from "../../../../Examples/Examples.module.scss";
 import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
@@ -24,7 +22,7 @@ const drawExample = async () => {
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
-    const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) });
+    const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.2) });
     sciChartSurface.yAxes.add(yAxis);
 
     const xValues = [0, 1,  2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];

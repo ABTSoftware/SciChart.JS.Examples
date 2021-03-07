@@ -61,8 +61,8 @@ import Load1MillionPointsChart from "../Examples/FeaturedApps/PerformanceDemos/L
 import DragAxisToScale from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale";
 import RealtimeZoomPan from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan";
 import SplineLineChart from "../Examples/Charts2D/BasicChartTypes/SplineLineChart";
-import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/MountainChart";
-import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/MountainChart";
+import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/SplineMountainChart";
+import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart";
 
 export type TMenuItem = {
     item: {
