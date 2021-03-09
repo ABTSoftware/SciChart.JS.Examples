@@ -24,19 +24,18 @@ const ListItemsBlock: React.FC<TProps> = props => {
 
     return (
         <div className={classes.ListItemBlock}>
-            <ListItem button onClick={() => onExpandClick(menuItemsId)} className={classes.CollapsibleMenuListItem}>
+            <div onClick={() => onExpandClick(menuItemsId)} className={classes.CollapsibleMenuListItem}>
                 <MenuListItemText text={title} className={classes.MenuListItemText} />
                 <ListItemCollapseArrowIcon
                     className={classes.CollapseArrowButton}
                     isCollapseOpened={checkIsOpened(menuItemsId)}
                 />
-            </ListItem>
+            </div>
             <Collapse in={checkIsOpened(menuItemsId)} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     {menuItems.map(el => (
                         <React.Fragment key={el.item.id}>
-                            <ListItem
-                                button
+                            <div
                                 className={classes.CollapsibleMenuListItem}
                                 onClick={() => onExpandClick(el.item.id)}
                             >
@@ -46,16 +45,16 @@ const ListItemsBlock: React.FC<TProps> = props => {
                                     isCollapseOpened={checkIsOpened(el.item.id)}
                                 />
                                 {/*{isOpened[el.item.id] ? <ExpandLess /> : <ExpandMore />}*/}
-                            </ListItem>
+                            </div>
                             <Collapse in={checkIsOpened(el.item.id)} timeout="auto" unmountOnExit>
                                 <List component="div" disablePadding>
                                     {el.submenu.map(subEl => (
-                                        <ListItem
+                                        <div
                                             key={subEl.id}
-                                            className={classes.BottomLevelListItem}
-                                            classes={{selected: classes.SelectedBottomLevelListItem}}
-                                            selected={location.pathname === subEl.path}
-                                            button
+                                            className={
+                                                location.pathname === subEl.path 
+                                                    ? classes.SelectedBottomLevelListItem
+                                                    : classes.BottomLevelListItem}
                                             onClick={() => historyPushPath(subEl.path)}
                                         >
                                             <a className={classes.ExampleLink} href={subEl.path} title={subEl.title}>
@@ -66,7 +65,7 @@ const ListItemsBlock: React.FC<TProps> = props => {
                                             {/*    primary={subEl.title}*/}
                                             {/*    primaryTypographyProps={{ variant: "body2" }}*/}
                                             {/*/>*/}
-                                        </ListItem>
+                                        </div>
                                     ))}
                                 </List>
                             </Collapse>

@@ -3,12 +3,10 @@
 
 .ListItemBlock {
     .MenuListItemText {
-        display: block;
         flex: auto;
     }
 
     .SecondLevelMenuListItemText {
-        display: block;
         flex: auto;
         margin-left: 20px;
     }
@@ -22,6 +20,7 @@
     }
 
     .SelectedBottomLevelListItem {
+        @extend %ListItem;
         @extend %SelectedListItem;
     }
 

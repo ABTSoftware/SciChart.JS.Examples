@@ -42,15 +42,12 @@ const Navigation: React.FC<TProps> = props => {
             component="nav"
             aria-labelledby="nested-list-subheader"
         >
-            <ListItem
-                button
-                className={classes.HomepageListItem}
-                classes={{ selected: classes.SelectedHomepageListItem }}
+            <div
+                className={location.pathname === "/" ? classes.SelectedHomepageListItem : classes.HomepageListItem}
                 onClick={historyPushHomepage}
-                selected={location.pathname === "/"}
             >
                 Homepage
-            </ListItem>
+            </div>
             <ListItemsBlock
                 onExpandClick={onExpandClick}
                 checkIsOpened={testIsOpened}
