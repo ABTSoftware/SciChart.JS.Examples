@@ -3,16 +3,7 @@
 .NavigationList {
     margin-bottom: 60px;
 
-    .HomePageListItem {
-        @extend %ListItem;
-
-        font-size: 0.875rem;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        line-height: 1.43;
+    .HomepageListItem {
+        @extend %MenuListItem;
     }
-}
-
-.HomePageListItem {
-    @extend %ListItem;
 }

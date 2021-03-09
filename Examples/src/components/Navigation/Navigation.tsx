@@ -37,10 +37,15 @@ const Navigation: React.FC<TProps> = props => {
     };
 
     return (
-        <List className={classes.NavigationList} component="nav" aria-labelledby="nested-list-subheader">
+        <List
+            className={classes.NavigationList}
+            component="nav"
+            aria-labelledby="nested-list-subheader"
+        >
             <ListItem
                 button
-                className={classes.HomePageListItem}
+                className={classes.HomepageListItem}
+                classes={{ selected: classes.SelectedListItem }}
                 onClick={historyPushHomepage}
                 selected={location.pathname === "/"}
             >

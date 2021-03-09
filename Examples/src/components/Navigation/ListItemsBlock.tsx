@@ -23,8 +23,8 @@ const ListItemsBlock: React.FC<TProps> = props => {
     const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId } = props;
 
     return (
-        <React.Fragment>
-            <ListItem button onClick={() => onExpandClick(menuItemsId)} className={classes.MenuListItem}>
+        <div className={classes.ListItemBlock}>
+            <ListItem button onClick={() => onExpandClick(menuItemsId)} className={classes.CollapsibleMenuListItem}>
                 <MenuListItemText text={title} className={classes.MenuListItemText} />
                 <ListItemCollapseArrowIcon
                     className={classes.CollapseArrowButton}
@@ -35,7 +35,11 @@ const ListItemsBlock: React.FC<TProps> = props => {
                 <List component="div" disablePadding>
                     {menuItems.map(el => (
                         <React.Fragment key={el.item.id}>
-                            <ListItem button onClick={() => onExpandClick(el.item.id)} className={classes.MenuListItem}>
+                            <ListItem
+                                button
+                                className={classes.CollapsibleMenuListItem}
+                                onClick={() => onExpandClick(el.item.id)}
+                            >
                                 <MenuListItemText text={el.item.name} className={classes.SecondLevelMenuListItemText} />
                                 <ListItemCollapseArrowIcon
                                     className={classes.CollapseArrowButton}
@@ -48,11 +52,8 @@ const ListItemsBlock: React.FC<TProps> = props => {
                                     {el.submenu.map(subEl => (
                                         <ListItem
                                             key={subEl.id}
-                                            className={
-                                                location.pathname === subEl.path
-                                                    ? classes.SelectedBottomLevelListItem
-                                                    : classes.BottomLevelListItem
-                                            }
+                                            className={classes.BottomLevelListItem}
+                                            classes={{selected: classes.SelectedBottomLevelListItem}}
                                             selected={location.pathname === subEl.path}
                                             button
                                             onClick={() => historyPushPath(subEl.path)}
@@ -73,7 +74,7 @@ const ListItemsBlock: React.FC<TProps> = props => {
                     ))}
                 </List>
             </Collapse>
-        </React.Fragment>
+        </div>
     );
 };
 

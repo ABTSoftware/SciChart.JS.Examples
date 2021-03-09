@@ -1,68 +1,45 @@
 @import "../../assets/main.scss";
 @import "./CommonListItemStyles.module.scss";
 
-.MenuListItem {
-    @extend %ListItem;
-
-    font-size: 0.875rem;
-    font-weight: 600;
-    // used !important to prevent padding overriding by material-ui classes
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
-    line-height: 1.43;
-}
-
-.MenuListItemText {
-    display: block;
-    flex: auto;
-}
-
-.SecondLevelMenuListItemText {
-    display: block;
-    flex: auto;
-    margin-left: 20px;
-}
-
-.BottomLevelListItem {
-    @extend %ListItem;
-
-    &::after {
-        content: "";
-        border-left: 0px solid #67ac5b;
-    }
-}
-
-.SelectedBottomLevelListItem {
-    @extend %ListItem;
-    background-color: #67ac5b !important;
-
-    &::after {
-        content: "";
+.ListItemBlock {
+    .MenuListItemText {
         display: block;
-        width: 0;
-        height: 0;
-        border-top: 16px solid transparent;
-        border-bottom: 16px solid transparent;
-        position: absolute;
-        right: -16;
-        border-left: 16px solid #67ac5b;
-        transition: border-left 0ms cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+        flex: auto;
     }
-}
-.ExampleLink {
-    @extend %gutter-bottom;
 
-    font-size: 0.875rem;
-    line-height: 1.5;
-    margin-left: $default-spacing * 2;
-    color: rgba(0, 0, 0, 0.87);
-    text-decoration: none;
-    pointer-events: none;
-    cursor: default;
-}
+    .SecondLevelMenuListItemText {
+        display: block;
+        flex: auto;
+        margin-left: 20px;
+    }
 
-.CollapseArrowButton {
-    background-color: #f9fafa;
-    color: #98a4af;
-    border-radius: 50%;
+    .CollapsibleMenuListItem {
+        @extend %MenuListItem;
+    }
+
+    .BottomLevelListItem {
+        @extend %ListItem;
+    }
+
+    .SelectedBottomLevelListItem {
+        @extend .SelectedListItem;
+    }
+
+    .ExampleLink {
+        @extend %gutter-bottom;
+
+        font-size: 0.875rem;
+        line-height: 1.5;
+        margin-left: 40px;
+        color: rgba(0, 0, 0, 0.87);
+        text-decoration: none;
+        pointer-events: none;
+        cursor: default;
+    }
+
+    .CollapseArrowButton {
+        background-color: #f9fafa;
+        color: #98a4af;
+        border-radius: 50%;
+    }
 }

@@ -1,5 +1,38 @@
+@import "../../assets/main.scss";
+
 %ListItem {
-    padding-left: 30px !important;
-    padding-right: 30px !important;
+  padding-left: 30px;
+  padding-right: 30px;
+
+    &::after {
+      content: "";
+      border-left: 0px solid $color-dark-green;
+    }
+}
+
+%MenuListItem {
+  @extend %ListItem;
+
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  line-height: 1.43;
+}
+
+.SelectedListItem {
+  background-color: $color-dark-green !important;
+
+  &::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 16px solid transparent;
+      border-bottom: 16px solid transparent;
+      position: absolute;
+      right: -16;
+      border-left: 16px solid $color-dark-green;
+      transition: border-left 0ms cubic-bezier(0.4, 0, 0.2, 1) 150ms;
   }
-  
+}
