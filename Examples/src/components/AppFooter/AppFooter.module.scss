@@ -26,4 +26,21 @@
             }
         }
     }
+
+    .Contacts {
+        .SocialMediaLinks {
+            display: flex;
+
+            a,
+            a:visited,
+            a:hover,
+            a:active {
+                display: block;
+                margin-right: $default-spacing * 2;
+                background-color: #2C353D;
+                color: inherit;
+                text-decoration: none;
+            }
+        }
+    }
 }
