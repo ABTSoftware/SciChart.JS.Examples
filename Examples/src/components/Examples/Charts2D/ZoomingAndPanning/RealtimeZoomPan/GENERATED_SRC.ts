@@ -10,6 +10,7 @@ import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableS
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import classes from "../../../../Examples/Examples.module.scss";
 
 export const divElementId = "chart";
 
@@ -95,10 +96,6 @@ export default function RealtimeZoomPan() {
         };
     }, []);
 
-    return (
-        <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-        </div>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
 `;

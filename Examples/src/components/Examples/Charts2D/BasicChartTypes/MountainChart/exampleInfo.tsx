@@ -42,7 +42,7 @@ export const mountainChartExampleInfo: TExampleInfo = {
     description: Description,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to create a JavaScript Mountain Chart. An area or polygon is rendered with a gradient fill to configurable zero-line.",
+    seoDescription: "Demonstrates how to create a JavaScript Spline Mountain Chart. An area or polygon is rendered with a gradient fill to configurable zero-line.",
     seoKeywords: "mountain, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-mountain-chart.jpg"
+    thumbnailImage: "javascript-spline-mountain-chart.jpg"
 };

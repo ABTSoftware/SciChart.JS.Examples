@@ -11,6 +11,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_basicCharts_SplineBandChart.title,
+        link: EXAMPLES_PAGES.chart2D_basicCharts_SplineBandChart.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_basicCharts_DigitalBandSeriesChart.title,
         link: EXAMPLES_PAGES.chart2D_basicCharts_DigitalBandSeriesChart.path,
     },
@@ -47,12 +51,20 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_basicCharts_LineChart.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_basicCharts_SplineLineChart.title,
+        link: EXAMPLES_PAGES.chart2D_basicCharts_SplineLineChart.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart.title,
         link: EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart.path,
     },
     {
         title: EXAMPLES_PAGES.chart2D_basicCharts_MountainChart.title,
         link: EXAMPLES_PAGES.chart2D_basicCharts_MountainChart.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_basicCharts_SplineMountainChart.title,
+        link: EXAMPLES_PAGES.chart2D_basicCharts_SplineMountainChart.path,
     },
     {
         title: EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart.title,

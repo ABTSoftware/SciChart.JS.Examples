@@ -12,6 +12,7 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -68,7 +69,7 @@ const drawExample = async () => {
             orientation: ELegendOrientation.Vertical,
             showLegend: true,
             showCheckboxes: true,
-            showSeriesMarkers: true,
+            showSeriesMarkers: true
         })
     );
     return { wasmContext, sciChartSurface };
@@ -86,6 +87,6 @@ export default function StackedMountainChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
 `;

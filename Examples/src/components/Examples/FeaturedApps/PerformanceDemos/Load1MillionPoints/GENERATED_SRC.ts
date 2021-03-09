@@ -17,6 +17,7 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { SciChartSurface } from "scichart";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -145,7 +146,7 @@ let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
 export default function Load1MillionPointsChart() {
-    const classes = useStyles();
+    const classes1 = useStyles();
 
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
 
@@ -166,17 +167,17 @@ export default function Load1MillionPointsChart() {
 
     return (
         <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
+            <div id={divElementId} className={classes.ChartWrapper} />
             <div>
-                <FormControl className={classes.formControl}>
+                <FormControl className={classes1.formControl}>
                     <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                         <Button id="loadPoints">Load</Button>
                     </ButtonGroup>
                 </FormControl>
             </div>
-            <div className={classes.notificationsBlock}>
+            <div className={classes1.notificationsBlock}>
                 {timeSpans.length > 0 && (
-                    <Alert key="0" severity="info" className={classes.notification}>
+                    <Alert key="0" severity="info" className={classes1.notification}>
                         {timeSpans.map((ts, index) => (
                             <div key={index}>
                                 <AlertTitle>{ts.title}</AlertTitle>

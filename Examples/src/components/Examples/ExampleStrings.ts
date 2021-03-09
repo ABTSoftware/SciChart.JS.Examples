@@ -38,6 +38,12 @@ export const ExampleStrings = {
     urlBandChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Band%20Series%20type.html",
     urlTitleBandChartDocumentation: "This specific page in the JavaScript Band Chart documentation will help you to get started",
 
+    // Spline band chart
+    titleSplineBandChart: "JavaScript Spline Band Chart",
+    urlSplineBandChart: "/javascript-spline-band-chart",
+    urlSplineBandChartDocumentation: "#",
+    urlTitleSplineBandChartDocumentation: "This specific page in the JavaScript Spline Band Chart documentation will help you to get started",
+
     // Digital Band chart
     urlDigitalBandChart: "/javascript-digital-band-chart",
     urlTitleDigitalBandChart: "JavaScript Digital Band Chart example",
@@ -65,6 +71,10 @@ export const ExampleStrings = {
     urlMountainChart: "/javascript-mountain-chart",
     titleMountainChart: "JavaScript Mountain Chart",
     urlTitleMountainChart: "The JavaScript Mountain Chart example demonstrates how to create a Mountain Chart with SciChart.js",
+
+    // Spline mountain chart
+    urlSplineMountainChart: "/javascript-spline-mountain-chart",
+    titleSplineMountainChart: "Javascript Spline Mountain Chart",
 
     // Digital Mountain Chart
     urlDigitalMountainChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Digital%20(Step)%20Mountain%20Series%20Type.html",
@@ -99,6 +109,12 @@ export const ExampleStrings = {
     titleLineChart: "JavaScript Line Chart",
     urlLineChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Fan%20Charts%20Type.html",
     urlTitleLineChartDocumentation: "The specific page for the JavaScript Line Chart documentation will help you to get started",
+
+    // Spline line series
+    urlSplineLineChartDocumentation: "#",
+    urlTitleSplineLineChartDocumentation: "The specific page for the JavaScript Spline Line Chart documentation will help you to get started",
+    titleSplineLineChart: "JavaScript Spline Line Chart",
+    urlSplineLineChart: "/javascript-spline-line-chart",
 
     // Digital Line Chart
     urlDigitalLineChart: "/javascript-digital-line-chart",

@@ -60,6 +60,9 @@ import TenorCurves3DChart from "../Examples/FeaturedApps/ScientificCharts/TenorC
 import Load1MillionPointsChart from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints";
 import DragAxisToScale from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale";
 import RealtimeZoomPan from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan";
+import SplineLineChart from "../Examples/Charts2D/BasicChartTypes/SplineLineChart";
+import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/SplineMountainChart";
+import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart";
 
 export type TMenuItem = {
     item: {
@@ -75,8 +78,10 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         item: { id: "chart2D_basicCharts", name: "JavaScript Chart Types" },
         submenu: [
             EXAMPLES_PAGES.chart2D_basicCharts_LineChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_SplineLineChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart,
             EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_SplineBandChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DigitalBandSeriesChart,
             EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart,
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
@@ -85,6 +90,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ContourChart,
             EXAMPLES_PAGES.chart2D_basicCharts_MountainChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_SplineMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_RealtimeMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
@@ -224,6 +230,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
     switch (exampleId) {
         case EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.id:
             return BandSeriesChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_SplineBandChart.id:
+            return SplineBandSeriesChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_DigitalBandSeriesChart.id:
             return DigitalBandSeriesChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_FanChart.id:
@@ -242,10 +250,14 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return ContourChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_LineChart.id:
             return LineChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_SplineLineChart.id:
+            return SplineLineChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart.id:
             return DigitalLineChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_MountainChart.id:
             return MountainChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_SplineMountainChart.id:
+            return SplineMountainChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart.id:
             return DigitalMountainChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_RealtimeMountainChart.id:
@@ -323,6 +335,6 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
         case EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.id:
             return TenorCurves3DChart;
         default:
-            return () => undefined;
+            throw new Error("Ensure you update examples.ts getExampleComponent() to return an example");
     }
 };

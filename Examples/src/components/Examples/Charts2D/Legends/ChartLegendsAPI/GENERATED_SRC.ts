@@ -17,6 +17,7 @@ import { TSciChart } from "scichart/types/TSciChart";
 import { SciChartLegend } from "scichart/Charting/Visuals/Legend/SciChartLegend";
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -57,12 +58,12 @@ const placementSelect = [
     { value: ELegendPlacement.TopLeft, text: "Top-Left" },
     { value: ELegendPlacement.TopRight, text: "Top-Right" },
     { value: ELegendPlacement.BottomLeft, text: "Bottom-Left" },
-    { value: ELegendPlacement.BottomRight, text: "Bottom-Right" },
+    { value: ELegendPlacement.BottomRight, text: "Bottom-Right" }
 ];
 
 const orientationSelect = [
     { value: ELegendOrientation.Vertical, text: "Vertical" },
-    { value: ELegendOrientation.Horizontal, text: "Horizontal" },
+    { value: ELegendOrientation.Horizontal, text: "Horizontal" }
 ];
 
 export default function ChartLegendsAPI() {
@@ -86,7 +87,7 @@ export default function ChartLegendsAPI() {
                 orientation: orientationValue,
                 showLegend: showLegendValue,
                 showCheckboxes: showCheckboxesValue,
-                showSeriesMarkers: showSeriesMarkersValue,
+                showSeriesMarkers: showSeriesMarkersValue
             });
             res.sciChartSurface.chartModifiers.add(lm);
             setSciChartLegend(lm.sciChartLegend);
@@ -128,14 +129,16 @@ export default function ChartLegendsAPI() {
 
     return (
         <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-            <div style={{ marginTop: 20, display: chartReady ? "flex" : "none" }}>
+            <div id={divElementId} className={classes.ChartWrapper} />
+            <div style={{ marginTop: 20, display: "flex" }}>
                 <FormControl>
                     <FormControlLabel
                         control={
                             <Checkbox
                                 checked={showLegendValue}
-                                onChange={handleChangeShowLegend}
+                                onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
+                                    if (chartReady) handleChangeShowLegend(e);
+                                }}
                                 name="checkedB"
                                 color="primary"
                             />
@@ -148,7 +151,9 @@ export default function ChartLegendsAPI() {
                         control={
                             <Checkbox
                                 checked={showCheckboxesValue}
-                                onChange={handleChangeShowCheckboxes}
+                                onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
+                                    if (chartReady) handleChangeShowCheckboxes(e);
+                                }}
                                 name="checkedB"
                                 color="primary"
                             />
@@ -161,7 +166,9 @@ export default function ChartLegendsAPI() {
                         control={
                             <Checkbox
                                 checked={showSeriesMarkersValue}
-                                onChange={handleChangeShowSeriesMarkers}
+                                onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
+                                    if (chartReady) handleChangeShowSeriesMarkers(e);
+                                }}
                                 name="checkedB"
                                 color="primary"
                             />
@@ -170,16 +177,18 @@ export default function ChartLegendsAPI() {
                     />
                 </FormControl>
             </div>
-            <div style={{ marginTop: 20, display: chartReady ? "flex" : "none" }}>
+            <div style={{ marginTop: 20, display: "flex" }}>
                 <FormControl variant="filled" style={{ width: 200 }}>
                     <InputLabel id="sciChartPlacement-label">Legend Placement</InputLabel>
                     <Select
                         labelId="sciChartPlacement-label"
                         id="sciChartPlacement"
                         value={placementValue}
-                        onChange={handleChangePlacement}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (chartReady) handleChangePlacement(e);
+                        }}
                     >
-                        {placementSelect.map((el) => (
+                        {placementSelect.map(el => (
                             <MenuItem key={el.value} value={el.value}>
                                 {el.text}
                             </MenuItem>
@@ -192,9 +201,11 @@ export default function ChartLegendsAPI() {
                         labelId="sciChartOrientation-label"
                         id="sciChartOrientation"
                         value={orientationValue}
-                        onChange={handleChangeOrientation}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (chartReady) handleChangeOrientation(e);
+                        }}
                     >
-                        {orientationSelect.map((el) => (
+                        {orientationSelect.map(el => (
                             <MenuItem key={el.value} value={el.value}>
                                 {el.text}
                             </MenuItem>
