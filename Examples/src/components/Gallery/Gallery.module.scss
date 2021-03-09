@@ -10,7 +10,21 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 36px;
-
+        .ButtonArrow {
+            color: $color-primary-dark-grey;
+            height: 54px;
+            width: 54px;
+            background-color: $color-primary-light-grey;
+            padding: 14px;
+            line-height: 18px;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+            text-align: center;
+            svg {
+                font-size: 20px;
+            }
+        }
         .ChartGroupTitle {
             display: flex;
             align-items: center;
@@ -31,16 +45,20 @@
     }
 }
 .Gallery {
-    // grid-template-columns: repeat(3, 1fr);
+    // display: grid;
+    // grid-template-columns: repeat(1fr);
     // grid-gap: 20px;
-    display: block;
-    // @include sm {
-    //     grid-template-columns: repeat(2, 1fr);
-    // }
-    // @include xs {
-    //     grid-template-columns: repeat(1, 1fr);
-    // }
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    @include sm {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include xs {
+        grid-template-columns: repeat(1, 1fr);
+    }
     .GalleryItem {
+        transition: all 1.2s;
         @include xs {
             padding: 12px 0px;
         }
@@ -55,7 +73,7 @@
 
         .GalleryItemCard {
             color: rgba(0, 0, 0, 0.54);
-
+            padding: 20px;
             text-align: center;
             &:hover {
                 cursor: pointer;
@@ -70,4 +88,8 @@
             }
         }
     }
+}
+
+.SliderWrapper1 {
+    margin-bottom: 20px;
 }

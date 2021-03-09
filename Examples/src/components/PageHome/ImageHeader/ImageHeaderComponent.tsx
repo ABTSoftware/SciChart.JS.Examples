@@ -76,7 +76,7 @@ export default function ImageHeaderComponent(props: TProps) {
     return (
         <div>
             <SwitchTransition>
-                <CSSTransition key={image} timeout={props.timeOut} classNames="open-side-bar">
+                <CSSTransition key={image} timeout={props.timeOut} classNames="image-chart">
                     <img className={props.className} src={images[image]} />
                 </CSSTransition>
             </SwitchTransition>

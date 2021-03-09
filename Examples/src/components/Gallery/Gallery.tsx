@@ -59,8 +59,8 @@ import dragAxisToScaleImg from "../Examples/Charts2D/ZoomingAndPanning/DragAxisT
 // 3D Chart Types
 import bubble3dImg from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/javascript-3d-bubble-chart.jpg";
 import mesh3dImg from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
-import classes from "./Gallery.module.scss";
 import GalleryList from "./GalleryList/GalleryList";
+import withWidth, { WithWidth } from "@material-ui/core/withWidth";
 
 type TProps = {};
 
@@ -74,7 +74,7 @@ export type GalleryItem = {
     }[];
 };
 
-const Gallery: React.FC<TProps> = props => {
+const Gallery: React.FC<TProps & WithWidth> = props => {
     const examples: GalleryItem[] = [
         {
             chartGroupTitle: "Performance Demos",
@@ -135,387 +135,301 @@ const Gallery: React.FC<TProps> = props => {
             ]
         },
         {
-            chartGroupTitle: "Scientific and Medical Charts",
+            chartGroupTitle: "2D Chart Types",
             items: [
                 {
-                    imgPath: lidarImg,
-                    title: "LiDAR 3D Point Cloud",
-                    seoTitle: "LiDAR 3D Point Cloud of Geospatial Data in JavaScript",
-                    examplePath: EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.path
+                    imgPath: lineChartImg,
+                    title: "Line Chart",
+                    seoTitle: "JavaScript Line Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_LineChart.path
                 },
                 {
-                    imgPath: ecgImg,
-                    title: "ECG/EKG Medical Demo",
-                    seoTitle: "JavaScript Vital Signs ECG/EKG Medical Demo",
-                    examplePath: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.path
+                    imgPath: bandChartImg,
+                    title: "Band Chart",
+                    seoTitle: "JavaScript Band Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.path
                 },
                 {
-                    imgPath: audioAnalyzerImage,
-                    title: "Audio Analyzer Demo",
-                    seoTitle: "JavaScript Realtime Audio Analyzer Demo",
-                    examplePath: EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.path
+                    imgPath: mountainImg,
+                    title: "Mountain Chart",
+                    seoTitle: "JavaScript Mountain Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_MountainChart.path
                 },
                 {
-                    imgPath: tenorCurvesImage,
-                    title: "Tenor Curves 3D Demo",
-                    seoTitle: "JavaScript 3D Surface Mesh Plot Tenor Curves Demo",
-                    examplePath: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.path
+                    imgPath: digitalLineChartImg,
+                    title: "Digital Line Chart",
+                    seoTitle: "JavaScript Digital Line Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart.path
+                },
+                {
+                    imgPath: digitalBandChartImg,
+                    title: "Digital Band Chart",
+                    seoTitle: "JavaScript Digital Band Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_DigitalBandSeriesChart.path
+                },
+                {
+                    imgPath: digitalMountainImg,
+                    title: "Digital Mountain Chart",
+                    seoTitle: "JavaScript Digital Band Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart.path
+                },
+                {
+                    imgPath: realtimeMountainImg,
+                    title: "Realtime Mountain Chart",
+                    seoTitle: "JavaScript Realtime Mountain Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_RealtimeMountainChart.path
+                },
+                {
+                    imgPath: bubbleChartImg,
+                    title: "Bubble Chart",
+                    seoTitle: "JavaScript Bubble Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart.path
+                },
+                {
+                    imgPath: candlestickImg,
+                    title: "Candlestick Chart",
+                    seoTitle: "JavaScript Candlestick Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart.path
+                },
+                {
+                    imgPath: columnChartImg,
+                    title: "Column Chart",
+                    seoTitle: "JavaScript Column Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.path
+                },
+                {
+                    imgPath: fanChartImg,
+                    title: "Fan Chart",
+                    seoTitle: "JavaScript Fan Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_FanChart.path
+                },
+                {
+                    imgPath: heatmapImg,
+                    title: "Heatmap Chart",
+                    seoTitle: "JavaScript Heatmap Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart.path
+                },
+                {
+                    imgPath: contourImg,
+                    title: "Contours Chart",
+                    seoTitle: "JavaScript Contours Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_ContourChart.path
+                },
+                {
+                    imgPath: ohlcImg,
+                    title: "Ohlc Chart",
+                    seoTitle: "JavaScript Ohlc Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart.path
+                },
+                {
+                    imgPath: scatterImg,
+                    title: "Scatter Chart",
+                    seoTitle: "JavaScript Scatter Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart.path
+                },
+                {
+                    imgPath: stackedColumnImg,
+                    title: "Stacked Chart",
+                    seoTitle: "JavaScript Stacked Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.path
+                },
+                {
+                    imgPath: stackedColumnSideBySideImg,
+                    title: "Stacked Column Side by Side",
+                    seoTitle: "JavaScript Stacked Column Side by Side Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide.path
+                },
+                {
+                    imgPath: stackedMountainImg,
+                    title: "Stacked Mountain Chart",
+                    seoTitle: "JavaScript Stacked Mountain Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart.path
+                },
+                {
+                    imgPath: pieImg,
+                    title: "Pie Chart",
+                    seoTitle: "JavaScript Pie Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_PieChart.path
+                },
+                {
+                    imgPath: donutImg,
+                    title: "Donut Chart",
+                    seoTitle: "JavaScript Donut Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_DonutChart.path
+                }
+            ]
+        },
+        {
+            chartGroupTitle: "Annotations and Legends",
+            items: [
+                {
+                    imgPath: annotationsImg,
+                    title: "Chart Annotations",
+                    seoTitle: "JavaScript Chart Annotations Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy.path
+                },
+                {
+                    imgPath: editableAnnotationsImg,
+                    title: "Chart Editable Annotations",
+                    seoTitle: "JavaScript Chart Editable Annotations Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations.path
+                },
+                {
+                    imgPath: tradeMarkersImg,
+                    title: "Trading Buy Sell Markers",
+                    seoTitle: "Trading Buy Sell Marker Annotations in JavaScript Charts",
+                    examplePath: EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.path
+                },
+                {
+                    imgPath: legendImg,
+                    title: "Chart Legends API",
+                    seoTitle: "JavaScript Chart Legend Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.path
+                }
+            ]
+        },
+        {
+            chartGroupTitle: "Candlestick & Stock Charts",
+            items: [
+                {
+                    imgPath: multiPaneStockImg,
+                    title: "Multi-Pane Stock Charts",
+                    seoTitle: "JavaScript Multi-Pane Stock Charts Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.path
+                },
+                {
+                    imgPath: realtimeStockImg,
+                    title: "Realtime Ticking Stock Charts",
+                    seoTitle: "JavaScript Realtime Ticking Stock Charts Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts.path
+                }
+            ]
+        },
+        {
+            chartGroupTitle: "Chart Axis API",
+            items: [
+                {
+                    imgPath: multipleXAxesImg,
+                    title: "Multiple X Axes",
+                    seoTitle: "JavaScript Chart with Multiple X Axis Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes.path
+                },
+                {
+                    imgPath: secondaryYAxesImg,
+                    title: "Secondary Y Axes",
+                    seoTitle: "JavaScript Chart with Secondary Y Axis Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes.path
+                },
+                {
+                    imgPath: verticalChartImg,
+                    title: "Vertical Charts",
+                    seoTitle: "JavaScript Vertical Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.path
+                }
+            ]
+        },
+        {
+            chartGroupTitle: "Styling and Theming",
+            items: [
+                {
+                    imgPath: pointMarkersImg,
+                    title: "Point Markers",
+                    seoTitle: "JavaScript Scatter Chart Custom Point Markers Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path
+                },
+                {
+                    imgPath: themeManagerImg,
+                    title: "Theme Manager",
+                    seoTitle: "JavaScript Chart Theme Manager Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.path
+                },
+                {
+                    imgPath: stylingInCodeImg,
+                    title: "Styling Chart in Code",
+                    seoTitle: "JavaScript Chart Styling or Theming in Code",
+                    examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode.path
+                },
+                {
+                    imgPath: paletteProviderImg,
+                    title: "Coloring Series per-point",
+                    seoTitle: "Coloring JavaScript Chart Series per-point using the PaletteProvider",
+                    examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring.path
+                },
+                {
+                    imgPath: dashedLineImg,
+                    title: "Dashed Line Styling",
+                    seoTitle: "JavaScript Dashed and Dotted Line Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling.path
+                }
+            ]
+        },
+        {
+            chartGroupTitle: "Tooltips and Hit-Test",
+            items: [
+                {
+                    imgPath: hitTestApiImg,
+                    title: "Hit-Test API",
+                    seoTitle: "JavaScript Hit-Test API Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.path
+                },
+                {
+                    imgPath: rolloverImg,
+                    title: "Rollover Modifier Tooltips",
+                    seoTitle: "JavaScript Rollover Modifier Tooltips Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.path
+                }
+            ]
+        },
+        {
+            chartGroupTitle: "Zoom and Pan a Chart",
+            items: [
+                {
+                    imgPath: dragAxisToScaleImg,
+                    title: "Drag Axis to Scale or Pan",
+                    seoTitle: "Drag Axis on JavaScript Charts to Scale or Pan",
+                    examplePath: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.path
+                },
+                {
+                    imgPath: realtimeZoomPanImg,
+                    title: "Zoom and Pan with Realtime Charts",
+                    seoTitle: "Zoom and Pan a Realtime JavaScript Chart",
+                    examplePath: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.path
+                }
+            ]
+        },
+        {
+            chartGroupTitle: "3D Chart Types",
+            items: [
+                {
+                    imgPath: bubble3dImg,
+                    title: "3D Bubble Chart",
+                    seoTitle: "JavaScript 3D Bubble Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.path
+                },
+                {
+                    imgPath: mesh3dImg,
+                    title: "Surface Mesh 3D",
+                    seoTitle: "JavaScript Surface Mesh 3D Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.path
                 }
             ]
         }
     ];
+
     return (
         <div style={{ padding: "20px", minWidth: 0, minHeight: 0 }}>
-            {examples.map(item => {
-                return <GalleryList example={item} length={examples.length} />;
+            {examples.map((item, index: number) => {
+                return (
+                    <GalleryList
+                        key={item.chartGroupTitle + index}
+                        slidersNumber={props.width === "sm" || props.width === "xs" ? 2 : 3}
+                        example={item}
+                        length={examples.length}
+                    />
+                );
             })}
-
-            {/* <ChartGroupTitle title="2D Chart Types" /> */}
-            <ul className={classes.Gallery}>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={lineChartImg}
-                        title="Line Chart"
-                        seoTitle="JavaScript Line Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_LineChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={bandChartImg}
-                        title="Band Chart"
-                        seoTitle="JavaScript Band Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={mountainImg}
-                        title="Mountain Chart"
-                        seoTitle="JavaScript Mountain Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_MountainChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={digitalLineChartImg}
-                        title="Digital Line Chart"
-                        seoTitle="JavaScript Digital Line Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={digitalBandChartImg}
-                        title="Digital Band Chart"
-                        seoTitle="JavaScript Digital Band Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_DigitalBandSeriesChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={digitalMountainImg}
-                        title="Digital Mountain Chart"
-                        seoTitle="JavaScript Digital Mountain Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={realtimeMountainImg}
-                        title="Realtime Mountain Chart"
-                        seoTitle="JavaScript Realtime Mountain Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_RealtimeMountainChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={bubbleChartImg}
-                        title="Bubble Chart"
-                        seoTitle="JavaScript Bubble Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={candlestickImg}
-                        title="Candlestick Chart"
-                        seoTitle="JavaScript Candlestick Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={columnChartImg}
-                        title="Column Chart"
-                        seoTitle="JavaScript Column Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={fanChartImg}
-                        title="Fan Chart"
-                        seoTitle="JavaScript Fan Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_FanChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={heatmapImg}
-                        title="Heatmap Chart"
-                        seoTitle="JavaScript Heatmap Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={contourImg}
-                        title="Contours Chart"
-                        seoTitle="JavaScript Contours Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_ContourChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={ohlcImg}
-                        title="Ohlc Chart"
-                        seoTitle="JavaScript Ohlc Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={scatterImg}
-                        title="Scatter Chart"
-                        seoTitle="JavaScript Scatter Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={stackedColumnImg}
-                        title="Stacked Column Chart"
-                        seoTitle="JavaScript Stacked Column Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={stackedColumnSideBySideImg}
-                        title="Stacked Column Side by Side"
-                        seoTitle="JavaScript Stacked Column Side by Side Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={stackedMountainImg}
-                        title="Stacked Mountain Chart"
-                        seoTitle="JavaScript Stacked Mountain Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={pieImg}
-                        title="Pie Chart"
-                        seoTitle="JavaScript Pie Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_PieChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={donutImg}
-                        title="Donut Chart"
-                        seoTitle="JavaScript Donut Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_basicCharts_DonutChart.path}
-                    />
-                </li>
-            </ul>
-            {/* <ChartGroupTitle title="Annotations and Legends" /> */}
-            <ul className={classes.Gallery}>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={annotationsImg}
-                        title="Chart Annotations"
-                        seoTitle="JavaScript Chart Annotations Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={editableAnnotationsImg}
-                        title="Chart Editable Annotations"
-                        seoTitle="JavaScript Chart Editable Annotations Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={tradeMarkersImg}
-                        title="Trading Buy Sell Markers"
-                        seoTitle="Trading Buy Sell Marker Annotations in JavaScript Charts"
-                        examplePath={EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={legendImg}
-                        title="Chart Legends API"
-                        seoTitle="JavaScript Chart Legend Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.path}
-                    />
-                </li>
-            </ul>
-            {/* <ChartGroupTitle title="Candlestick &amp; Stock Charts" /> */}
-            <ul className={classes.Gallery}>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={multiPaneStockImg}
-                        title="Multi-Pane Stock Charts"
-                        seoTitle="JavaScript Multi-Pane Stock Charts Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={realtimeStockImg}
-                        title="Realtime Ticking Stock Charts"
-                        seoTitle="JavaScript Realtime Ticking Stock Charts Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts.path}
-                    />
-                </li>
-            </ul>
-            {/* <ChartGroupTitle title="Chart Axis API" /> */}
-            <ul className={classes.Gallery}>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={multipleXAxesImg}
-                        title="Multiple X Axes"
-                        seoTitle="JavaScript Chart with Multiple X Axis Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={secondaryYAxesImg}
-                        title="Secondary Y Axes"
-                        seoTitle="JavaScript Chart with Secondary Y Axis Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={verticalChartImg}
-                        title="Vertical Charts"
-                        seoTitle="JavaScript Vertical Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.path}
-                    />
-                </li>
-            </ul>
-            {/* <ChartGroupTitle title="Styling and Theming" /> */}
-            <ul className={classes.Gallery}>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={pointMarkersImg}
-                        title="Point Markers"
-                        seoTitle="JavaScript Scatter Chart Custom Point Markers Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={themeManagerImg}
-                        title="Theme Manager"
-                        seoTitle="JavaScript Chart Theme Manager Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={stylingInCodeImg}
-                        title="Styling Chart in Code"
-                        seoTitle="JavaScript Chart Styling or Theming in Code"
-                        examplePath={EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={paletteProviderImg}
-                        title="Coloring Series per-point"
-                        seoTitle="Coloring JavaScript Chart Series per-point using the PaletteProvider"
-                        examplePath={EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={dashedLineImg}
-                        title="Dashed Line Styling"
-                        seoTitle="JavaScript Dashed and Dotted Line Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling.path}
-                    />
-                </li>
-            </ul>
-            {/* <ChartGroupTitle title="Tooltips and Hit-Test" /> */}
-            <ul className={classes.Gallery}>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={hitTestApiImg}
-                        title="Hit-Test API"
-                        seoTitle="JavaScript Hit-Test API Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={rolloverImg}
-                        title="Rollover Modifier Tooltips"
-                        seoTitle="JavaScript Rollover Modifier Tooltips Example"
-                        examplePath={EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.path}
-                    />
-                </li>
-            </ul>
-            {/* <ChartGroupTitle title="Zoom and Pan a Chart" /> */}
-            <ul className={classes.Gallery}>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={dragAxisToScaleImg}
-                        title="Drag Axis to Scale or Pan"
-                        seoTitle="Drag Axis on JavaScript Charts to Scale or Pan"
-                        examplePath={EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={realtimeZoomPanImg}
-                        title="Zoom and Pan with Realtime Charts"
-                        seoTitle="Zoom and Pan a Realtime JavaScript Chart"
-                        examplePath={EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.path}
-                    />
-                </li>
-            </ul>
-            {/* <ChartGroupTitle title="3D Chart Types" /> */}
-            <ul className={classes.Gallery}>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={bubble3dImg}
-                        title="3D Bubble Chart"
-                        seoTitle="JavaScript 3D Bubble Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.path}
-                    />
-                </li>
-                <li className={classes.GalleryItem}>
-                    <GalleryCard
-                        imgPath={mesh3dImg}
-                        title="Surface Mesh 3D"
-                        seoTitle="JavaScript Surface Mesh 3D Chart Example"
-                        examplePath={EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.path}
-                    />
-                </li>
-            </ul>
         </div>
     );
 };
 
-export default Gallery;
+export default withWidth()(Gallery);

@@ -1,19 +1,19 @@
-.open-side-bar-enter {
+.image-chart-enter {
     transition: all 1500ms;
     opacity: 0;
 }
 
-.open-side-bar-enter-active {
+.image-chart-enter-active {
     transition: all 1500ms;
     opacity: 1;
 }
 
-.open-side-bar-exit {
+.image-chart-exit {
     transition: all 1500ms;
     opacity: 1;
 }
 
-.open-side-bar-exit-active {
+.image-chart-exit-active {
     transition: all 1500ms;
 
     opacity: 0;
