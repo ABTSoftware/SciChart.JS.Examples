@@ -23,38 +23,38 @@ const ListItemsBlock: React.FC<TProps> = props => {
     const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId } = props;
 
     return (
-        <React.Fragment>
-            <ListItem button onClick={() => onExpandClick(menuItemsId)} className={classes.MenuListItem}>
+        <div className={classes.ListItemBlock}>
+            <div onClick={() => onExpandClick(menuItemsId)} className={classes.CollapsibleMenuListItem}>
                 <MenuListItemText text={title} className={classes.MenuListItemText} />
                 <ListItemCollapseArrowIcon
                     className={classes.CollapseArrowButton}
                     isCollapseOpened={checkIsOpened(menuItemsId)}
                 />
-            </ListItem>
+            </div>
             <Collapse in={checkIsOpened(menuItemsId)} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     {menuItems.map(el => (
                         <React.Fragment key={el.item.id}>
-                            <ListItem button onClick={() => onExpandClick(el.item.id)} className={classes.MenuListItem}>
+                            <div
+                                className={classes.CollapsibleMenuListItem}
+                                onClick={() => onExpandClick(el.item.id)}
+                            >
                                 <MenuListItemText text={el.item.name} className={classes.SecondLevelMenuListItemText} />
                                 <ListItemCollapseArrowIcon
                                     className={classes.CollapseArrowButton}
                                     isCollapseOpened={checkIsOpened(el.item.id)}
                                 />
                                 {/*{isOpened[el.item.id] ? <ExpandLess /> : <ExpandMore />}*/}
-                            </ListItem>
+                            </div>
                             <Collapse in={checkIsOpened(el.item.id)} timeout="auto" unmountOnExit>
                                 <List component="div" disablePadding>
                                     {el.submenu.map(subEl => (
-                                        <ListItem
+                                        <div
                                             key={subEl.id}
                                             className={
-                                                location.pathname === subEl.path
+                                                location.pathname === subEl.path 
                                                     ? classes.SelectedBottomLevelListItem
-                                                    : classes.BottomLevelListItem
-                                            }
-                                            selected={location.pathname === subEl.path}
-                                            button
+                                                    : classes.BottomLevelListItem}
                                             onClick={() => historyPushPath(subEl.path)}
                                         >
                                             <a className={classes.ExampleLink} href={subEl.path} title={subEl.title}>
@@ -65,7 +65,7 @@ const ListItemsBlock: React.FC<TProps> = props => {
                                             {/*    primary={subEl.title}*/}
                                             {/*    primaryTypographyProps={{ variant: "body2" }}*/}
                                             {/*/>*/}
-                                        </ListItem>
+                                        </div>
                                     ))}
                                 </List>
                             </Collapse>
@@ -73,7 +73,7 @@ const ListItemsBlock: React.FC<TProps> = props => {
                     ))}
                 </List>
             </Collapse>
-        </React.Fragment>
+        </div>
     );
 };
 

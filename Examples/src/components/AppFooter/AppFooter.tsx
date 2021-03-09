@@ -11,6 +11,10 @@ import FooterGrid from "./FooterGrid";
 import { useHistory } from "react-router-dom";
 import classes from "./AppFooter.module.scss";
 import Box from "../shared/Helpers/Box/Box";
+import FacebookIcon from '@material-ui/icons/Facebook';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
 export type TFooterlink = {
     link: string;
@@ -67,6 +71,23 @@ export default function AppFooter() {
                         <a title="Sitemap" href="/sitemap.xml">
                             Sitemap
                         </a>
+                    </Box>
+                    <Box mt={8} className={classes.Contacts}>
+                        <h4>Contact us</h4>
+                        <div className={classes.SocialMediaLinks}>
+                            <a href="https://www.facebook.com/scichart">
+                                <FacebookIcon fontSize="large" />
+                            </a>
+                            <a href="https://www.youtube.com/user/SciChart">
+                                <YouTubeIcon fontSize="large" />
+                            </a>
+                            <a href="https://www.linkedin.com/company/scichart">
+                                <LinkedInIcon fontSize="large" />
+                            </a>
+                            <a href="https://twitter.com/scichart">
+                                <TwitterIcon fontSize="large" />
+                            </a>
+                        </div>
                     </Box>
                 </Box>
             </div>
