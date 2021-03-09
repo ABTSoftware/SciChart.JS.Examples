@@ -20,7 +20,7 @@
   line-height: 1.43;
 }
 
-.SelectedListItem {
+%SelectedListItem {
   background-color: $color-dark-green !important;
 
   &::after {

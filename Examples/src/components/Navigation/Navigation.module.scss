@@ -6,4 +6,8 @@
     .HomepageListItem {
         @extend %MenuListItem;
     }
+
+    .SelectedHomepageListItem {
+        @extend %SelectedListItem;
+    }
 }

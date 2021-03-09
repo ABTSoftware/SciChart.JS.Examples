@@ -45,7 +45,7 @@ const Navigation: React.FC<TProps> = props => {
             <ListItem
                 button
                 className={classes.HomepageListItem}
-                classes={{ selected: classes.SelectedListItem }}
+                classes={{ selected: classes.SelectedHomepageListItem }}
                 onClick={historyPushHomepage}
                 selected={location.pathname === "/"}
             >

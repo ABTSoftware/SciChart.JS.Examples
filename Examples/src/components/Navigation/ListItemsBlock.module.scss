@@ -22,7 +22,7 @@
     }
 
     .SelectedBottomLevelListItem {
-        @extend .SelectedListItem;
+        @extend %SelectedListItem;
     }
 
     .ExampleLink {
