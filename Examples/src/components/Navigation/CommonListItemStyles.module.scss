@@ -1,5 +1,8 @@
 @import "../../assets/main.scss";
 
+$list-item-font-color: #3B5164;
+$menu-list-item-font-color: #1E252B;
+
 %ListItem {
     padding: 8px 30px 8px 30px;
     display: flex;
@@ -7,7 +10,8 @@
     border: 0;
     background-position: center;
     transition: background 0.8s;
-    background: #0000000f radial-gradient(circle, transparent 1%, #0000000f 1%) center/15000%;
+    background: transparent radial-gradient(circle, transparent 1%, #0000000f 1%) center/15000%;
+    color: $list-item-font-color;
     cursor: pointer;
 
     &:active {
@@ -30,6 +34,7 @@
 %MenuListItem {
   @extend %ListItem;
 
+  color: $menu-list-item-font-color;
   font-size: 0.875rem;
   font-weight: 600;
   padding-top: 12px;
