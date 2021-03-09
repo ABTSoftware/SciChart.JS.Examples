@@ -9,6 +9,7 @@ import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifie
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId2 = "chart2";
 
@@ -49,7 +50,7 @@ const drawExample = async () => {
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-            stroke: "#ff6600",
+            stroke: "#ff6600"
         })
     );
 
@@ -76,6 +77,6 @@ export default function VerticalCharts() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId2} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId2} className={classes.ChartWrapper} />;
 }
 `;

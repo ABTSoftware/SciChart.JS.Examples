@@ -15,6 +15,7 @@ import { HorizontalLineAnnotation } from "scichart/Charting/Visuals/Annotations/
 import { ELabelPlacement } from "scichart/types/LabelPlacement";
 import { VerticalLineAnnotation } from "scichart/Charting/Visuals/Annotations/VerticalLineAnnotation";
 import { AxisMarkerAnnotation } from "scichart/Charting/Visuals/Annotations/AxisMarkerAnnotation";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -226,6 +227,6 @@ export default function AnnotationsAreEasy() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
 `;

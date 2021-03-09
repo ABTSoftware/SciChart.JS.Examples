@@ -3,25 +3,16 @@ import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import {
-    EFillPaletteMode,
-    EStrokePaletteMode,
-    IFillPaletteProvider,
-    IStrokePaletteProvider
-} from "scichart/Charting/Model/IPaletteProvider";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-import {SplineMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineMountainRenderableSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { SplineMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineMountainRenderableSeries";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 
 const divElementId = "chart";
 
@@ -45,7 +36,7 @@ const drawExample = async () => {
         })
     );
 
-    const xValues = [0, 1,  2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
     const yValues = [50, 35, 61, 58, 50, 50, 40, 53, 55, 23, 45, 12, 59, 60];
 
     // Create an XyDataSeries as data source
@@ -62,7 +53,7 @@ const drawExample = async () => {
             { color: "rgba(70,130,180,1)", offset: 0 },
             { color: "rgba(70,130,180,0.2)", offset: 1 }
         ]),
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, stroke: "#006400", fill: "#FFFFFF"}),
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, stroke: "#006400", fill: "#FFFFFF" }),
         dataSeries: xyDataSeries
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
@@ -78,16 +69,16 @@ const drawExample = async () => {
     return { wasmContext, sciChartSurface };
 };
 
-export default function SplineMountainChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+let scs: SciChartSurface;
 
+export default function SplineMountainChart() {
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
+            scs = res.sciChartSurface;
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => scs?.delete();
     }, []);
 
     return <div id={divElementId} className={classes.ChartWrapper} />;

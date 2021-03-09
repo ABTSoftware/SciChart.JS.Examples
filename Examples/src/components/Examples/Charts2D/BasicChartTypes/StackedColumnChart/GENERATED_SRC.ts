@@ -12,6 +12,7 @@ import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModif
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const xValues = [1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003];
 const porkData = [10, 13, 7, 16, 4, 6, 20, 14, 16, 10, 24, 11];
@@ -104,7 +105,7 @@ const drawExample = async () => {
             orientation: ELegendOrientation.Vertical,
             showLegend: true,
             showCheckboxes: true,
-            showSeriesMarkers: true,
+            showSeriesMarkers: true
         })
     );
 
@@ -123,6 +124,6 @@ export default function StackedColumnChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
 `;

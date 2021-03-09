@@ -11,6 +11,9 @@ import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragMod
 import { EDragMode } from "scichart/types/DragMode";
 import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { Button, ButtonGroup } from "@material-ui/core";
+import classes from "../../../../Examples/Examples.module.scss";
+import Box from "../../../../shared/Helpers/Box/Box";
 
 const AMPLITUDE = 200;
 
@@ -110,22 +113,19 @@ const drawExample = async () => {
         timerId = setTimeout(updateFunc, timerInterval);
     };
 
-    return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo} };
+    return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo } };
 };
 
 let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
 export default function RealtimePerformanceDemo() {
-    const [showButtons, setShowButtons] = React.useState(false);
     const [controls, setControls] = React.useState({ startDemo: () => {}, stopDemo: () => {} });
-
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
             scs = res.sciChartSurface;
-            setShowButtons(true);
             setControls(res.controls);
             autoStartTimerId = setTimeout(res.controls.startDemo, 3000);
         })();
@@ -135,18 +135,22 @@ export default function RealtimePerformanceDemo() {
             clearTimeout(timerId);
             clearTimeout(autoStartTimerId);
             scs?.delete();
-        }
+        };
     }, []);
 
     return (
         <React.Fragment>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-            <div style={{ marginTop: 20, display: showButtons ? "block" : "none" }}>
-                <button onClick={controls.startDemo}>Start</button>
-                <button onClick={controls.stopDemo} style={{ marginLeft: 10 }}>
-                    Stop
-                </button>
-            </div>
+            <div id={divElementId} className={classes.ChartWrapper} />
+            <Box mt={20}>
+                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                    <Button onClick={controls.startDemo}>Start</Button>
+                </ButtonGroup>
+                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                    <Button onClick={controls.stopDemo} style={{ marginLeft: 10 }}>
+                        Stop
+                    </Button>
+                </ButtonGroup>
+            </Box>
         </React.Fragment>
     );
 }

@@ -2,15 +2,14 @@ import * as React from "react";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { PaletteFactory } from "scichart/Charting/Model/PaletteFactory";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import classes from "../../../../Examples/Examples.module.scss";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { SplineLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
 
 const divElementId = "chart";
 
@@ -25,7 +24,7 @@ const drawExample = async () => {
     const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.2) });
     sciChartSurface.yAxes.add(yAxis);
 
-    const xValues = [0, 1,  2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
     const yValues = [50, 35, 61, 58, 50, 50, 40, 53, 55, 23, 45, 12, 59, 60];
 
     // Create an XyDataSeries as data source
@@ -38,7 +37,7 @@ const drawExample = async () => {
         stroke: "#4282B4",
         strokeThickness: 1,
         dataSeries: xyDataSeries,
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "#FFFFFF", stroke: "#006400"})
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "#FFFFFF", stroke: "#006400" })
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -47,7 +46,7 @@ const drawExample = async () => {
         stroke: "#006400",
         strokeThickness: 3,
         dataSeries: xyDataSeries,
-        interpolationPoints: 10, // Set interpolation points to decide the amount of smoothing
+        interpolationPoints: 10 // Set interpolation points to decide the amount of smoothing
     });
     sciChartSurface.renderableSeries.add(splineSeries);
 
@@ -60,16 +59,17 @@ const drawExample = async () => {
     return { sciChartSurface, wasmContext };
 };
 
+let scs: SciChartSurface;
+
 export default function SplineLineChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
+            scs = res.sciChartSurface;
         })();
         // Deleting sciChartSurface to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => scs?.delete();
     }, []);
 
-    return <div id={divElementId}  className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

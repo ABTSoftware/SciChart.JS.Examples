@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/BasicChartTypes/LineChart/index.tsx";
+export const githubUrl = "/components/Examples/Charts2D/BasicChartTypes/SplineLineChart/index.tsx";
