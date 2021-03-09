@@ -13,12 +13,13 @@ import {
     EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider,
-    IStrokePaletteProvider,
+    IStrokePaletteProvider
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -30,7 +31,7 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             axisAlignment: EAxisAlignment.Top,
-            axisTitle: "X-Axis",
+            axisTitle: "X-Axis"
         })
     );
     sciChartSurface.yAxes.add(
@@ -38,7 +39,7 @@ const drawExample = async () => {
             axisAlignment: EAxisAlignment.Left,
             growBy: new NumberRange(0.05, 0.05),
             axisTitle: "Y-Axis",
-            labelFormat: ENumericFormat.Decimal_2,
+            labelFormat: ENumericFormat.Decimal_2
         })
     );
 
@@ -50,8 +51,8 @@ const drawExample = async () => {
         fill: "rgba(176, 196, 222, 0.7)", // is not used, because we have fillLinearGradient
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "rgba(70,130,180,1)", offset: 0 },
-            { color: "rgba(70,130,180,0.2)", offset: 1 },
-        ]),
+            { color: "rgba(70,130,180,0.2)", offset: 1 }
+        ])
         // Optional: Allows per-point colouring of mountain fill and stroke
         // paletteProvider: new MountainPaletteProvider(),
     });
@@ -128,6 +129,6 @@ export default function MountainChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
 `;

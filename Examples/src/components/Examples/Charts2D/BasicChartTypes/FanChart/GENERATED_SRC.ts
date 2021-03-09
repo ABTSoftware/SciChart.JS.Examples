@@ -10,6 +10,7 @@ import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 // tslint:disable:max-line-length
 
@@ -43,30 +44,30 @@ const drawExample = async () => {
     const variance1DataSeries = new XyyDataSeries(wasmContext);
 
     actualDataSeries.appendRange(
-        varianceData.map((v) => v.date),
-        varianceData.map((v) => v.actual)
+        varianceData.map(v => v.date),
+        varianceData.map(v => v.actual)
     );
     variance3DataSeries.appendRange(
-        varianceData.map((v) => v.date),
-        varianceData.map((v) => v.varMin),
-        varianceData.map((v) => v.varMax)
+        varianceData.map(v => v.date),
+        varianceData.map(v => v.varMin),
+        varianceData.map(v => v.varMax)
     );
     variance2DataSeries.appendRange(
-        varianceData.map((v) => v.date),
-        varianceData.map((v) => v.var1),
-        varianceData.map((v) => v.var4)
+        varianceData.map(v => v.date),
+        varianceData.map(v => v.var1),
+        varianceData.map(v => v.var4)
     );
     variance1DataSeries.appendRange(
-        varianceData.map((v) => v.date),
-        varianceData.map((v) => v.var2),
-        varianceData.map((v) => v.var3)
+        varianceData.map(v => v.date),
+        varianceData.map(v => v.var2),
+        varianceData.map(v => v.var3)
     );
 
     // Add a line series with the Xy data (the actual data)
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: actualDataSeries,
-            stroke: "Red",
+            stroke: "Red"
         })
     );
 
@@ -76,7 +77,7 @@ const drawExample = async () => {
             dataSeries: variance3DataSeries,
             opacity: 0.15,
             fill: "Red",
-            strokeY1: "#00000000",
+            strokeY1: "#00000000"
         })
     );
     sciChartSurface.renderableSeries.add(
@@ -84,7 +85,7 @@ const drawExample = async () => {
             dataSeries: variance2DataSeries,
             opacity: 0.33,
             fill: "Red",
-            strokeY1: "#00000000",
+            strokeY1: "#00000000"
         })
     );
     sciChartSurface.renderableSeries.add(
@@ -92,7 +93,7 @@ const drawExample = async () => {
             dataSeries: variance1DataSeries,
             opacity: 0.5,
             fill: "Red",
-            strokeY1: "#00000000",
+            strokeY1: "#00000000"
         })
     );
 
@@ -119,6 +120,6 @@ export default function FanChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
 `;

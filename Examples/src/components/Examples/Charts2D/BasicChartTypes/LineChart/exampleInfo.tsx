@@ -28,8 +28,8 @@ const Description = () => (<div>
     <h4>See Also</h4>
     <ul>
         <li><a href={ExampleStrings.urlScatterChart}
-               title={ExampleStrings.urlScatterChartDocumentation}>The
-            JavaScript Bubble Chart Example</a></li>
+               title={ExampleStrings.titleScatterChart}>The
+            JavaScript Scatter Chart Example</a></li>
         <li><a href={ExampleStrings.urlPointMarkers}
                title={ExampleStrings.titlePointMarkers}>Styling
             Point-Markers Example</a></li>

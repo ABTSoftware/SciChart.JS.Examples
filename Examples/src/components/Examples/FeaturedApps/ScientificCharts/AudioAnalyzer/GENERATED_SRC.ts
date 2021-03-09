@@ -12,6 +12,7 @@ import { EAutoRange } from "scichart/types/AutoRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { AudioDataProvider } from "./AudioDataProvider";
 import { Radix2FFT } from "./Radix2FFT";
+import classes from "../../../../Examples/Examples.module.scss";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";
@@ -50,7 +51,7 @@ export const drawExample = async () => {
 
     // INIT AUDIO
     const initAudio = () => {
-        return dataProvider.initAudio()
+        return dataProvider.initAudio();
     };
 
     function updateAnalysers(frame: number): void {
@@ -90,7 +91,7 @@ export const drawExample = async () => {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false,
+            drawMajorTickLines: false
         });
         sciChartSurface.xAxes.add(xAxis);
 
@@ -99,7 +100,7 @@ export const drawExample = async () => {
             visibleRange: new NumberRange(-32768, 32767), // [short.MIN. short.MAX]
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false,
+            drawMajorTickLines: false
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -113,7 +114,7 @@ export const drawExample = async () => {
         const rs = new FastLineRenderableSeries(wasmContext, {
             stroke: "#808080",
             strokeThickness: 1,
-            dataSeries: audioDS,
+            dataSeries: audioDS
         });
 
         sciChartSurface.renderableSeries.add(rs);
@@ -129,7 +130,7 @@ export const drawExample = async () => {
         const xAxis = new NumericAxis(wasmContext, {
             drawMajorTickLines: false,
             maxAutoTicks: 5,
-            axisAlignment: EAxisAlignment.Top,
+            axisAlignment: EAxisAlignment.Top
         });
         sciChartSurface.xAxes.add(xAxis);
 
@@ -139,7 +140,7 @@ export const drawExample = async () => {
             growBy: new NumberRange(0.1, 0.1),
             drawMinorTickLines: false,
             drawMajorTickLines: false,
-            maxAutoTicks: 5,
+            maxAutoTicks: 5
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -153,7 +154,7 @@ export const drawExample = async () => {
             stroke: "#E6E6FA",
             dataSeries: fftDS,
             // TODO: paletteProvider = new FFTPaletteProvider(),
-            zeroLineY: -30,
+            zeroLineY: -30
         });
         sciChartSurface.renderableSeries.add(rs);
     };
@@ -178,7 +179,7 @@ export const drawExample = async () => {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false,
+            drawMajorTickLines: false
             // TODO: drawMajorBands: false,
             // TODO: drawMinorGridLines: false,
             // TODO: drawMajorGridLines: false,
@@ -191,7 +192,7 @@ export const drawExample = async () => {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false,
+            drawMajorTickLines: false
             // TODO: drawMajorBands: false,
             // TODO: drawMinorGridLines: false,
             // TODO: drawMajorGridLines: false,
@@ -213,9 +214,9 @@ export const drawExample = async () => {
                     { offset: 0.25, color: "#800080" },
                     { offset: 0.5, color: "#FF0000" },
                     { offset: 0.75, color: "#FFFF00" },
-                    { offset: 1, color: "#FFFFFF" },
-                ],
-            }),
+                    { offset: 1, color: "#FFFFFF" }
+                ]
+            })
         });
         sciChartSurface.renderableSeries.add(rs);
     };
@@ -247,7 +248,7 @@ export const drawExample = async () => {
     updateChart();
 };
 
-export const requestCleanup = async () => {
+export const requestCleanup = () => {
     cleanupRequested = true;
 };
 

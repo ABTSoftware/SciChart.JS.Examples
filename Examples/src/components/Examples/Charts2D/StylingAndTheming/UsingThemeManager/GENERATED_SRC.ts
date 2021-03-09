@@ -16,6 +16,7 @@ import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/Renderable
 import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
 import { TSciChart } from "scichart/types/TSciChart";
 import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -37,7 +38,7 @@ const drawExample = async () => {
 
     series1.dataSeries = new XyDataSeries(wasmContext, {
         xValues: [1, 15, 30],
-        yValues: [1.12, 1.11, 1.1],
+        yValues: [1.12, 1.11, 1.1]
     });
 
     const series2 = new FastCandlestickRenderableSeries(wasmContext, {
@@ -47,9 +48,9 @@ const drawExample = async () => {
             openValues,
             highValues,
             lowValues,
-            closeValues,
+            closeValues
         }),
-        dataPointWidth: 0.5,
+        dataPointWidth: 0.5
     });
     sciChartSurface.renderableSeries.add(series2);
 
@@ -57,7 +58,7 @@ const drawExample = async () => {
         fill: "rgba(176, 196, 222, 0.7)",
         stroke: "#4682b4",
         strokeThickness: 2,
-        dataPointWidth: 0.5,
+        dataPointWidth: 0.5
     });
     sciChartSurface.renderableSeries.add(series3);
     const dataSeries = new XyDataSeries(wasmContext);
@@ -72,12 +73,12 @@ const drawExample = async () => {
 
 enum ETheme {
     SciChartDark,
-    SciChartLight,
+    SciChartLight
 }
 
 const themeSelect = [
     { value: ETheme.SciChartDark, text: "SciChartDark" },
-    { value: ETheme.SciChartLight, text: "SciChartLight" },
+    { value: ETheme.SciChartLight, text: "SciChartLight" }
 ];
 
 export default function UsingThemeManager() {
@@ -111,17 +112,19 @@ export default function UsingThemeManager() {
 
     return (
         <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-            <div style={{ marginTop: 20, display: showChart ? "block" : "none" }}>
+            <div id={divElementId} className={classes.ChartWrapper} />
+            <div style={{ marginTop: 20, display: "block" }}>
                 <FormControl variant="filled" style={{ width: 200 }}>
                     <InputLabel id="sciChartTheme-label">Select Theme</InputLabel>
                     <Select
                         labelId="sciChartTheme-label"
                         id="sciChartTheme"
                         value={themeToDisplay}
-                        onChange={handleChangeTheme}
+                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                            if (showChart) handleChangeTheme(e);
+                        }}
                     >
-                        {themeSelect.map((el) => (
+                        {themeSelect.map(el => (
                             <MenuItem key={el.value} value={el.value}>
                                 {el.text}
                             </MenuItem>

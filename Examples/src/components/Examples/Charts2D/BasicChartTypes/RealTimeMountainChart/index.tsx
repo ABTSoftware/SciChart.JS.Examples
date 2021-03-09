@@ -12,8 +12,12 @@ import { easing, TEasing } from "scichart/Core/Animations/EasingFunctions";
 import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
 import { RandomWalkGenerator } from "../../../../../../../Sandbox/CustomerExamples/AnimateXyValuesOnSeries/src/RandomWalkGenerator";
 import classes from "../../../../Examples/Examples.module.scss";
+import { AnimationToken } from "scichart/Core/AnimationToken";
 
 export const divElementId = "chart";
+
+let timerId: NodeJS.Timeout;
+let animationToken: AnimationToken;
 
 export const drawExample = async () => {
     // Create the SciChartSurface in the div 'scichart-root'
@@ -71,7 +75,7 @@ export const drawExample = async () => {
         const startY = xyDataSeries.getNativeYValues().get(count - 1);
 
         // use the DoubleAnimator class in scichart/Core/Animations/ to setup an animation from 0...1
-        DoubleAnimator.animate(
+        animationToken = DoubleAnimator.animate(
             0,
             1,
             duration,
@@ -89,7 +93,8 @@ export const drawExample = async () => {
                 pulsingDotAnnotation.y1 = currentY;
 
                 // Force redraw
-                // can use xyDataSeries.notifyDataChanged(); to just update, but if we want to zoom to fit, we must use zoomExtents
+                // can use xyDataSeries.notifyDataChanged();
+                // to just update, but if we want to zoom to fit, we must use zoomExtents
                 sciChartSurface.zoomExtents();
             },
             () => {
@@ -101,28 +106,51 @@ export const drawExample = async () => {
     };
 
     // This is the loop where we add a new X,Y point and animate every 1 second to demonstrate animations
-    const addData = () => {
+    const runAddDataOnTimeout = () => {
+        if (scs?.isDeleted) {
+            return;
+        }
         const generated = generator.getRandomWalkSeries(1);
         const x = generated.xValues[0];
         const y = generated.yValues[0];
         animateXy(dataSeries, x, y, 250, easing.outExpo);
-        setTimeout(addData, 1000);
+        timerId = setTimeout(runAddDataOnTimeout, 1000);
     };
 
-    addData();
-    return sciChartSurface;
+    const handleStop = () => {
+        animationToken.cancelAnimation();
+        clearTimeout(timerId);
+        timerId = undefined;
+    };
+
+    const handleStart = () => {
+        if (timerId) {
+            handleStop();
+        }
+        runAddDataOnTimeout();
+    };
+
+    return { sciChartSurface, wasmContext, controls: { handleStart, handleStop } };
 };
 
 let scs: SciChartSurface;
 
 export default function RealtimeMountainChart() {
+    const [controls, setControls] = React.useState({ handleStart: () => {}, handleStop: () => {} });
+
     React.useEffect(() => {
         (async () => {
-            scs = await drawExample();
+            const res = await drawExample();
+            scs = res.sciChartSurface;
+            setControls(res.controls);
+            res.controls.handleStart();
         })();
 
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => scs?.delete();
+        return () => {
+            controls.handleStop();
+            scs?.delete();
+        };
     }, []);
 
     return <div id={divElementId} className={classes.ChartWrapper} />;

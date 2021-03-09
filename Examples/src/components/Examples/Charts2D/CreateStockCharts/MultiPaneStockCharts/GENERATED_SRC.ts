@@ -31,6 +31,7 @@ import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 // tslint:disable:no-empty
 // tslint:disable:max-classes-per-file
@@ -367,7 +368,7 @@ export default function MultiPaneStockCharts() {
     }, []);
 
     return (
-        <div style={{ maxWidth: 900 }}>
+        <div className={classes.ChartWrapper}>
             <div id={divElementId1} />
             <div id={divElementId2} />
             <div id={divElementId3} />

@@ -15,6 +15,7 @@ import { SpritePointMarker } from "scichart/Charting/Visuals/PointMarkers/Sprite
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -63,9 +64,9 @@ const drawExample = async () => {
                 height: 9,
                 strokeThickness: 2,
                 fill: "#0077FF99",
-                stroke: "LightSteelBlue",
+                stroke: "LightSteelBlue"
             }),
-            dataSeries: dataSeriesArr[0],
+            dataSeries: dataSeriesArr[0]
         })
     );
 
@@ -78,9 +79,9 @@ const drawExample = async () => {
                 height: 9,
                 strokeThickness: 2,
                 fill: "#FF000099",
-                stroke: "Red",
+                stroke: "Red"
             }),
-            dataSeries: dataSeriesArr[1],
+            dataSeries: dataSeriesArr[1]
         })
     );
 
@@ -93,9 +94,9 @@ const drawExample = async () => {
                 height: 9,
                 strokeThickness: 2,
                 fill: "#FFDD00",
-                stroke: "#FF6600",
+                stroke: "#FF6600"
             }),
-            dataSeries: dataSeriesArr[2],
+            dataSeries: dataSeriesArr[2]
         })
     );
 
@@ -107,9 +108,9 @@ const drawExample = async () => {
                 width: 9,
                 height: 9,
                 strokeThickness: 2,
-                stroke: "#FF00FF",
+                stroke: "#FF00FF"
             }),
-            dataSeries: dataSeriesArr[3],
+            dataSeries: dataSeriesArr[3]
         })
     );
 
@@ -120,9 +121,9 @@ const drawExample = async () => {
         new FastLineRenderableSeries(wasmContext, {
             stroke: "#F5DEB3",
             pointMarker: new SpritePointMarker(wasmContext, {
-                image: imageBitmap,
+                image: imageBitmap
             }),
-            dataSeries: dataSeriesArr[4],
+            dataSeries: dataSeriesArr[4]
         })
     );
 
@@ -146,6 +147,6 @@ export default function UsePointMarkers() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} style={{ maxWidth: 900 }} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
 `;

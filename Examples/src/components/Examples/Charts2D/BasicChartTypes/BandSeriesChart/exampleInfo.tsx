@@ -5,7 +5,7 @@ import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
 
 const Description = () => (<div>
-    <p>Demonstrates how to create a JavaScript Band Chart. This is a chart type which draws an area (polygon or fill)
+    <p>Demonstrates how to create a JavaScript Spline Band Chart. This is a chart type which draws an area (polygon or fill)
         between two lines. The FastBandRenderableSeries requires an XyyDataSeries, which contains one X-point and two
         Y-points</p>
     <p>Dual lines are drawn by the stroke, strokeY1 properties and shaded bands are drawn by the fill and fillY1

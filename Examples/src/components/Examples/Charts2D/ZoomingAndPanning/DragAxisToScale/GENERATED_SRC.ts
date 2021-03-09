@@ -10,6 +10,7 @@ import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragMod
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { EColor } from "scichart/types/Color";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import classes from "../../../../Examples/Examples.module.scss";
 
 export const divElementId = "chart";
 
@@ -121,10 +122,6 @@ export default function DragAxisToScale() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return (
-        <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-        </div>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
 `;

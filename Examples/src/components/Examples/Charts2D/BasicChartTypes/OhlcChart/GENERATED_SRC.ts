@@ -11,12 +11,13 @@ import { FastOhlcRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {
     EStrokePaletteMode,
-    IFillPaletteProvider,
-    IPaletteProvider,
-    IStrokePaletteProvider,
+    IStrokePaletteProvider
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import classes from "../../../../Examples/Examples.module.scss";
+import Box from "../../../../shared/Helpers/Box/Box";
+import { Button, ButtonGroup } from "@material-ui/core";
 
 const divElementId = "chart";
 
@@ -43,7 +44,7 @@ const drawExample = async () => {
         openValues,
         highValues,
         lowValues,
-        closeValues,
+        closeValues
     });
     // Create the Ohlc series and add to the chart
     const ohlcSeries = new FastOhlcRenderableSeries(wasmContext, {
@@ -52,7 +53,7 @@ const drawExample = async () => {
         dataPointWidth: 0.7,
         strokeUp: "#50ff50",
         strokeDown: "#ff5050",
-        paletteProvider: new OhlcPaletteProvider(),
+        paletteProvider: new OhlcPaletteProvider()
     });
     sciChartSurface.renderableSeries.add(ohlcSeries);
 
@@ -158,13 +159,17 @@ export default function OhlcChart() {
 
     return (
         <div>
-            <div id={divElementId} style={{ maxWidth: 900 }} />
-            <div style={{ marginTop: 20 }}>
-                <button onClick={handleAddPoints}>Add 10 Points</button>
-                <button onClick={handleRemovePoints} style={{ marginLeft: 10 }}>
-                    Remove 10 Points
-                </button>
-            </div>
+            <div id={divElementId} className={classes.ChartWrapper} />
+            <Box mt={20}>
+                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                    <Button onClick={handleAddPoints}>Add 10 Points</Button>
+                </ButtonGroup>
+                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                    <Button onClick={handleRemovePoints} style={{ marginLeft: 10 }}>
+                        Remove 10 Points
+                    </Button>
+                </ButtonGroup>
+            </Box>
         </div>
     );
 }
