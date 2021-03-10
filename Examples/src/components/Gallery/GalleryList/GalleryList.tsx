@@ -4,6 +4,9 @@ import GalleryCard from "../GalleryCard";
 import classes from "../Gallery.module.scss";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 // Import Swiper styles
 
 // import "swiper/swiper.scss";
@@ -14,6 +17,7 @@ type TProps = {
 };
 export default function GalleryList(props: TProps) {
     const [index, setIndex] = React.useState(0);
+    const [showAll, setShowAll] = React.useState(false);
     const slideWidth = (1 / props.slidersNumber) * 100;
 
     const moveR = () => {
@@ -39,7 +43,7 @@ export default function GalleryList(props: TProps) {
                 </div>
 
                 {props.slidersNumber < props.example.items.length && (
-                    <div>
+                    <div className={classes.CarouselButtons}>
                         <button
                             className={classes.ButtonArrow}
                             onClick={() => {
@@ -60,24 +64,52 @@ export default function GalleryList(props: TProps) {
                 )}
             </div>
             <ul className={classes.Gallery}>
-                {props.example.items.map(item => (
-                    <li
-                        key={item.title + item.imgPath}
-                        className={classes.GalleryItem}
-                        style={{
-                            transform: `translateX(${index * 100}%)`,
-                            minWidth: `${slideWidth}%`,
-                            maxWidth: `${slideWidth}%`
+                {console.log(slideWidth)}
+                {props.example.items.map((item, itemIndex) => {
+                    if (props.slidersNumber !== 1 || itemIndex === 0 || showAll) {
+                        return (
+                            <li
+                                key={item.title + item.imgPath}
+                                className={classes.GalleryItem}
+                                style={{
+                                    transform: `translateX(${index * 100}%)`,
+                                    minWidth: `${slideWidth}%`,
+                                    maxWidth: `${slideWidth}%`
+                                }}
+                            >
+                                <GalleryCard
+                                    imgPath={item.imgPath}
+                                    title={item.title}
+                                    seoTitle={item.seoTitle}
+                                    examplePath={item.examplePath}
+                                />
+                            </li>
+                        );
+                    }
+                    return "";
+                })}
+
+                {!showAll ? (
+                    <button
+                        className={classes.ShowAllButton}
+                        onClick={() => {
+                            setShowAll(true);
                         }}
                     >
-                        <GalleryCard
-                            imgPath={item.imgPath}
-                            title={item.title}
-                            seoTitle={item.seoTitle}
-                            examplePath={item.examplePath}
-                        />
-                    </li>
-                ))}
+                        Show All
+                        <ArrowDropDownIcon />
+                    </button>
+                ) : (
+                    <button
+                        className={classes.ShowAllButton}
+                        onClick={() => {
+                            setShowAll(false);
+                        }}
+                    >
+                        Hide
+                        <ArrowDropUpIcon />
+                    </button>
+                )}
             </ul>
         </div>
     );

@@ -61,7 +61,7 @@ import bubble3dImg from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/ja
 import mesh3dImg from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
 import GalleryList from "./GalleryList/GalleryList";
 import withWidth, { WithWidth } from "@material-ui/core/withWidth";
-
+import classes from "./Gallery.module.scss";
 type TProps = {};
 
 export type GalleryItem = {
@@ -415,14 +415,19 @@ const Gallery: React.FC<TProps & WithWidth> = props => {
             ]
         }
     ];
-
+    let slidersWidth = 3;
+    if (props.width === "sm") {
+        slidersWidth = 2;
+    } else if (props.width === "xs") {
+        slidersWidth = 1;
+    }
     return (
-        <div style={{ padding: "20px", minWidth: 0, minHeight: 0 }}>
+        <div className={classes.GalleryContainer}>
             {examples.map((item, index: number) => {
                 return (
                     <GalleryList
                         key={item.chartGroupTitle + index}
-                        slidersNumber={props.width === "sm" || props.width === "xs" ? 2 : 3}
+                        slidersNumber={slidersWidth}
                         example={item}
                         length={examples.length}
                     />
