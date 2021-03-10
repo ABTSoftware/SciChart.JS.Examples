@@ -64,7 +64,6 @@ export default function GalleryList(props: TProps) {
                 )}
             </div>
             <ul className={classes.Gallery}>
-                {console.log(slideWidth)}
                 {props.example.items.map((item, itemIndex) => {
                     if (props.slidersNumber !== 1 || itemIndex === 0 || showAll) {
                         return (
