@@ -53,6 +53,7 @@ $menu-list-item-font-color: #1E252B;
 
 %SelectedListItem {
   background-color: $color-dark-green;
+  color: $color-primary-white;
 
   &::after {
       content: "";
