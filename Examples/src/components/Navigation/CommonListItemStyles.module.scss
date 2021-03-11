@@ -8,11 +8,11 @@
     background-position: center;
     transition: background 0.8s;
     background: transparent radial-gradient(circle, transparent 1%, #0000000f 1%) center/15000%;
-    color: $list-item-font-color;
+    color: $font-color;
     cursor: pointer;
 
     &:hover {
-      color: $list-item-font-color;
+      color: $font-color;
       background-color: rgba(0, 0, 0, 0.04);
 
       &::after {

@@ -15,6 +15,7 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { ExampleStrings } from "./ExampleStrings";
 import classes from "./Examples.module.scss";
+import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
 
 type TProps = {
     // example: () => JSX.Element;
@@ -56,45 +57,67 @@ const ExamplesRoot: React.FC<TProps> = props => {
             <div className={classes.Body}>
                 <div className={classes.ColMain}>
                     <div className={classes.ColMainContent}>
-                        <p>SciChart.js - High Performance Realtime Javascript Charts Examples Suite</p>
-                        <div className={classes.Title}>
-                            <Title title={titleText} />
-                            <div className={classes.Subtitle}>{subtitleText}</div>
-                        </div>
+                        <ComponentWrapper>
+                            <div className={classes.ExampleDescription}>
+                                <h5>JavaScript Chart Examples</h5>
+                                <p className={classes.ExampleDescriptionText}>
+                                    SciChart.js ships with ~40{" "}
+                                    <a className={classes.ExampleDescriptionLink} href="https://demo.scichart.com">
+                                        JavaScript Chart Examples
+                                    </a>{" "}
+                                    which you can browse, play with, view the source code and see related documentation.
+                                    All of this is possible with the SciChart.js Examples Suite, which ships as part of
+                                    the{" "}
+                                    <a
+                                        className={classes.ExampleDescriptionLink}
+                                        href="https://www.scichart.com/downloads"
+                                    >
+                                        SciChart.js SDK
+                                    </a>
+                                </p>
+                                <ButtonGroup
+                                    className={classes.ExampleDescriptionButton}
+                                    size="large"
+                                    color="primary"
+                                    aria-label="small outlined button group"
+                                >
+                                    <Button href="https://www.scichart.com/downloads/" target="_blank">
+                                        Download the SDK
+                                    </Button>
+                                </ButtonGroup>
+                            </div>
+                        </ComponentWrapper>
 
-                        <ExampleComponent />
+                        <ComponentWrapper>
+                            <h4 className={classes.Title}>{titleText} </h4>
 
-                        {examplePage && <SourceCode code={codeStr} githubUrl={githubUrl} />}
+                            <div className={classes.ExampleWrapper}>
+                                <div className={classes.Example}>
+                                    <div style={{ maxWidth: 900 }}>
+                                        <ExampleComponent />
+                                    </div>
+                                </div>
+
+                                {/* {DescComponent && ( */}
+                                <div className={classes.ExampleDescription}>
+                                    <div className={classes.Subtitle}>{subtitleText}</div>
+                                    {/* <Description> */}
+                                    <DescComponent />
+                                    {/* </Description> */}
+                                </div>
+                                {/* )} */}
+                                {/* <div style={{ overflow: "scroll" }}> */}
+                                {/* {examplePage && <SourceCode code={codeStr} githubUrl={githubUrl} />} */}
+                                {/* </div> */}
+                            </div>
+                        </ComponentWrapper>
                     </div>
                 </div>
-                <div className={classes.ColDescription}>
+                {/* <div className={classes.ColDescription}>
                     <div className={classes.SciChartLogo}>
                         <img src={sciChartLogoImg} width={209} height={42} />
                     </div>
-                    <div className={classes.Description}>
-                        <p>
-                            <span className={classes.TextGreen}>// </span>JavaScript Chart Examples
-                        </p>
-                        <p>
-                            <em>
-                                SciChart.js ships with ~40{" "}
-                                <a href="https://demo.scichart.com">JavaScript Chart Examples</a> which you can browse,
-                                play with, view the source code and see related documentation. All of this is possible
-                                with the SciChart.js Examples Suite, which ships as part of the{" "}
-                                <a href="https://www.scichart.com/downloads">SciChart.js SDK</a>
-                            </em>
-                        </p>
-                        <ButtonGroup
-                            style={{ marginTop: 0 }}
-                            size="large"
-                            color="primary"
-                            aria-label="small outlined button group"
-                        >
-                            <Button href="https://www.scichart.com/downloads/" target="_blank">
-                                Download the SDK
-                            </Button>
-                        </ButtonGroup>
-                    </div>
+
                     {DescComponent && (
                         <div className={classes.Description}>
                             <Description>
@@ -102,7 +125,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                             </Description>
                         </div>
                     )}
-                </div>
+                </div> */}
             </div>
         </div>
     );

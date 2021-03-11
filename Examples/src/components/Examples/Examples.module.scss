@@ -1,16 +1,22 @@
 @import "../../assets/main";
-.ChartWrapper {
-    max-width: 900px;
-    min-height: 600px;
 
+.ExampleWrapper {
+    display: flex;
+
+    flex-direction: row;
+    justify-content: space-between;
     @include md {
-        height: auto;
+        flex-direction: column;
     }
-    @include xs {
-        min-height: 400px;
+    .Example {
+        margin-right: 30px;
+        flex: 1;
     }
-    @include xxs {
-        min-height: 200px;
+    .ExampleDescription {
+        display: flex;
+        flex-direction: column;
+        min-width: 300px;
+        width: 25%;
     }
 }
 
@@ -25,8 +31,11 @@
 
 /////*****ExamplesRoot*****/////
 .ExamplesRoot {
-    margin: $default-spacing * 2;
-
+    margin: 0 $default-spacing * 2;
+    @include md {
+        margin: 0;
+        padding: $default-spacing * 2;
+    }
     .SciChartLogo {
         text-align: right;
         margin-bottom: $default-spacing * 2;
@@ -49,7 +58,10 @@
         margin-bottom: $default-spacing * 3;
     }
     .ColMainContent {
-        max-width: 900px;
+        max-width: 1280px;
+        @include md {
+            max-width: 800px;
+        }
     }
     .ColDescription {
         flex-basis: 360px;
@@ -61,14 +73,61 @@
         }
         margin-bottom: $default-spacing * 3;
     }
-    .Description {
-        margin-bottom: $default-spacing * 3;
+    .ExampleDescription {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .ExampleDescriptionLink {
+            &:hover,
+            &:active,
+            &:visited {
+                color: $color-main-green !important;
+            }
+        }
+        @include md {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 30px 20px;
+        }
+        h5 {
+            font-size: 1.875rem;
+            font-weight: 600;
+            line-height: 40px;
+            @include md {
+                margin-bottom: 20px;
+            }
+        }
+        .ExampleDescriptionText {
+            font-size: 1rem;
+            color: $font-color;
+            line-height: 30px;
+
+            width: 75%;
+            @include md {
+                margin-bottom: 20px;
+                width: 100%;
+            }
+        }
+        .ExampleDescriptionButton {
+            span {
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+        }
     }
     .Title {
-        margin-top: $default-spacing * 3;
+        width: 100%;
+        font-weight: 600;
+        margin-bottom: 30px;
     }
     .Subtitle {
         margin-bottom: 20px;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 30px;
+        p {
+        }
     }
     .TextGreen {
         color: $color-main-green;
@@ -81,7 +140,7 @@
     background-color: black;
     padding-top: 6px;
     width: 800px;
-    font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";';
+    // font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";';
     position: relative;
 }
 

@@ -7,6 +7,7 @@ import classes from "./PageHome.module.scss";
 
 import multiPaneStockImg from "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
 import ImageHeaderComponent from "./ImageHeader/ImageHeaderComponent";
+import Gallery from "../Gallery/Gallery";
 export const HOME_PAGE_TITLE = "HOMEPAGE";
 
 let prev = 0;
@@ -65,5 +66,6 @@ export default function PageHome() {
                 </div>
             </div>
         </div>
+        // <Gallery />
     );
 }

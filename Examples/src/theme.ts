@@ -8,11 +8,12 @@ export const customTheme = createMuiTheme({
             sm: 600,
             md: 960,
             lg: 1460,
-            xl: 1920,
-        },
+            xl: 1920
+        }
     },
     typography: {
         fontFamily: [
+            "Montserrat",
             "-apple-system",
             "BlinkMacSystemFont",
             '"Segoe UI"',

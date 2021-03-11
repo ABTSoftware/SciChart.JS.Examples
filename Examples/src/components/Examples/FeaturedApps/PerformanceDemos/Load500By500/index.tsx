@@ -187,7 +187,7 @@ export default function Load500By500() {
     }, []);
 
     return (
-        <div>
+        <>
             <div id={divElementId} className={classes.ChartWrapper} />
             <div>
                 <div className={classes.FormControl}>
@@ -208,6 +208,6 @@ export default function Load500By500() {
                     </Alert>
                 )}
             </div>
-        </div>
+        </>
     );
 }

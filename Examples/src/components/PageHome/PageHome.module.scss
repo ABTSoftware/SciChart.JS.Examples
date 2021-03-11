@@ -130,10 +130,10 @@
                 img {
                     position: absolute;
 
-                    border-radius: 20px;
+                    border-radius: $default-border-radius * 2;
                     border: 8px solid $color-grey;
                     @include xxs {
-                        border-radius: 10px;
+                        border-radius: $default-border-radius;
                         border: 4px solid $color-grey;
                     }
                 }

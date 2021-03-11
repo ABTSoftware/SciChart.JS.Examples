@@ -7,6 +7,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
+import ComponentWrapper from "../../ComponentWrapper/ComponentWrapper";
 // Import Swiper styles
 
 // import "swiper/swiper.scss";
@@ -35,7 +36,7 @@ export default function GalleryList(props: TProps) {
         setIndex(index + 1);
     };
     return (
-        <div className={classes.GalleryWrapper}>
+        <ComponentWrapper>
             <div className={classes.ChartGroupHeader}>
                 <div className={classes.ChartGroupTitle}>
                     <h6>{props.example.chartGroupTitle}</h6>
@@ -110,6 +111,6 @@ export default function GalleryList(props: TProps) {
                     </button>
                 )}
             </ul>
-        </div>
+        </ComponentWrapper>
     );
 }

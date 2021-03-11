@@ -15,15 +15,7 @@ import classes from "./App.module.scss";
 import "./index.scss";
 import Gallery from "./Gallery/Gallery";
 import Slider from "react-slick";
-
-const settings = {
-    dots: true,
-    infinite: true,
-
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1
-};
+import { PAGES } from "./AppRouter/pages";
 
 export default function App() {
     const location = useLocation();
@@ -109,7 +101,8 @@ export default function App() {
             </Drawer>
             <div className={classes.MainAppContent}>
                 <AppBarTop toggleDrawer={toggleDrawer} />
-                <AppRouter currentExample={currentExample} />
+                {PAGES.homapage.path === location.pathname && <AppRouter currentExample={currentExample} />}
+
                 <div className={classes.MainAppWrapper}>
                     <div className={classes.DrawerDesktop}>
                         <DrawerContent
@@ -118,9 +111,11 @@ export default function App() {
                             toggleDrawer={() => {}}
                         />
                     </div>
-
-                    <div></div>
-                    <Gallery />
+                    {PAGES.homapage.path === location.pathname ? (
+                        <Gallery />
+                    ) : (
+                        <AppRouter currentExample={currentExample} />
+                    )}
                 </div>
 
                 <AppFooter />

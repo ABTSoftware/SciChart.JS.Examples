@@ -1,0 +1,20 @@
+@import "../../assets/main.scss";
+////////Description
+.ExampleInfoText {
+    margin-bottom: 30px;
+}
+
+.Tips {
+    h4 {
+        font-size: 1.125rem;
+        margin-bottom: $default-spacing;
+        font-weight: 600;
+    }
+    background-color: $color-lightest-green;
+    padding: 30px;
+    font-size: 1rem;
+    font-style: italic;
+    border-radius: $default-border-radius;
+    border-left: 3px solid $color-dark-green;
+    margin-bottom: 30px;
+}
