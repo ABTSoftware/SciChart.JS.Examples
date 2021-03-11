@@ -1,17 +1,17 @@
 import * as React from "react";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {NumberRange} from "scichart/Core/NumberRange";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { NumberRange } from "scichart/Core/NumberRange";
 import classes from "../../../../Examples/Examples.module.scss";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
-import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
-import {ELegendOrientation} from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { SplineLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
+import { ELegendOrientation } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 
 const divElementId = "chart";
 
@@ -33,19 +33,21 @@ const drawExample = async () => {
     const xyDataSeries = new XyDataSeries(wasmContext, {
         dataSeriesName: "Original Data ",
         xValues,
-        yValues});
+        yValues
+    });
 
     const splineXyDataSeries = new XyDataSeries(wasmContext, {
         dataSeriesName: "Spline Data ",
         xValues,
-        yValues});
+        yValues
+    });
 
     // Create and add a standard line series to the chart.
     // This will be used to compare the spline (smoothed) algorothm
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#4282B4",
         strokeThickness: 1,
-        dataSeries: xyDataSeries,
+        dataSeries: xyDataSeries
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -63,12 +65,11 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    sciChartSurface.chartModifiers.add(new LegendModifier({ orientation: ELegendOrientation.Horizontal}));
+    sciChartSurface.chartModifiers.add(new LegendModifier({ orientation: ELegendOrientation.Horizontal }));
 
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
 };
-
 
 let scs: SciChartSurface;
 

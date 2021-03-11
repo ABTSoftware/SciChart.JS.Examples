@@ -13,9 +13,13 @@ import { EFillPaletteMode, IFillPaletteProvider } from "scichart/Charting/Model/
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import { ScaleAnimation } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
+
 import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
+
+const animation = new ScaleAnimation({ zeroLine: -100 });
 
 const drawExample = async () => {
     // Create a SciChartSurface with X,Y Axis
@@ -26,7 +30,8 @@ const drawExample = async () => {
     // Line Series
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#FFFFFF",
-        strokeThickness: 2
+        strokeThickness: 2,
+        animation
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -39,7 +44,8 @@ const drawExample = async () => {
             fill: "#4682b477"
         }),
         // Optional: Allows per-point colouring of bubble stroke
-        paletteProvider: new BubblePaletteProvider()
+        paletteProvider: new BubblePaletteProvider(),
+        animation
     });
     sciChartSurface.renderableSeries.add(bubbleSeries);
 
