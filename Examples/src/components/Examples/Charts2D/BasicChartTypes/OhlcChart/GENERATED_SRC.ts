@@ -14,8 +14,8 @@ import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IR
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import Box from "../../../../shared/Helpers/Box/Box";
 import { Button, ButtonGroup } from "@material-ui/core";
-import { uintArgbColorMultiplyOpacity } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/utils/colorUtil";
-import { SweepAnimation } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
+import { uintArgbColorMultiplyOpacity } from "scichart/utils/colorUtil";
+import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 
 import classes from "../../../../Examples/Examples.module.scss";
 

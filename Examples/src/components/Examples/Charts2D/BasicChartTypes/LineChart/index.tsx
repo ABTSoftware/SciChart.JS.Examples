@@ -10,7 +10,7 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Point } from "scichart/Core/Point";
-import { WaveAnimation } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 
 import classes from "../../../../Examples/Examples.module.scss";
 

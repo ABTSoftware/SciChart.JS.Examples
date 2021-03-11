@@ -19,7 +19,7 @@ import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IR
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
-import { ScaleAnimation } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
+import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
 
 import classes from "../../../../Examples/Examples.module.scss";
 

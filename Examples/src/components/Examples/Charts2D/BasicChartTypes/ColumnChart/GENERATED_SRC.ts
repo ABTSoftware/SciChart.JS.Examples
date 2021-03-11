@@ -7,7 +7,7 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { SciChartSurface } from "scichart";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { FadeAnimation } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
+import { FadeAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
 
 import classes from "../../../../Examples/Examples.module.scss";
 

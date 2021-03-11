@@ -19,8 +19,8 @@ import {
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { Button, ButtonGroup } from "@material-ui/core";
 import Box from "../../../../shared/Helpers/Box/Box";
-import { WaveAnimation } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
-import { uintArgbColorMultiplyOpacity } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/utils/colorUtil";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import { uintArgbColorMultiplyOpacity } from "scichart/utils/colorUtil";
 
 import classes from "../../../../Examples/Examples.module.scss";
 
