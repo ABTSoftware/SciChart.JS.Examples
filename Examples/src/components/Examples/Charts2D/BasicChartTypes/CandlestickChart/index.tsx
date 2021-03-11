@@ -19,7 +19,7 @@ import {
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { Button, ButtonGroup } from "@material-ui/core";
-import Box from "../../../../shared/Helpers/Box/Box";
+import Box from "../../../../../helpes/shared/Helpers/Box/Box";
 import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";

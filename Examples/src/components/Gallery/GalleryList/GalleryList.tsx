@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GalleryItem } from "../Gallery";
+
 import GalleryCard from "../GalleryCard";
 import classes from "../Gallery.module.scss";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
@@ -8,6 +8,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ComponentWrapper from "../../ComponentWrapper/ComponentWrapper";
+import { GalleryItem } from "../../../helpes/types/types";
 // Import Swiper styles
 
 // import "swiper/swiper.scss";

@@ -13,7 +13,7 @@ import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragMod
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { Button, ButtonGroup } from "@material-ui/core";
 import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../shared/Helpers/Box/Box";
+import Box from "../../../../../helpes/shared/Helpers/Box/Box";
 
 const AMPLITUDE = 200;
 

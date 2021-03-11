@@ -58,6 +58,7 @@ export type TExampleInfo = {
     path: string;
     subtitle: () => JSX.Element;
     description: () => JSX.Element;
+    seeAlso?: () => JSX.Element;
     code: string;
     githubUrl: string;
     seoDescription: string;

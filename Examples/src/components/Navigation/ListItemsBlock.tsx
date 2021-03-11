@@ -4,7 +4,7 @@ import Collapse from "@material-ui/core/Collapse";
 import List from "@material-ui/core/List";
 import { TMenuItem } from "../AppRouter/examples";
 import { useLocation } from "react-router-dom";
-import MenuListItemText from "../shared/MenuListItemText/MenuListItemText";
+import MenuListItemText from "../../helpes/shared/MenuListItemText/MenuListItemText";
 import classes from "./ListItemsBlock.module.scss";
 import ListItemCollapseArrowIcon from "./ListItemCollapseArrowIcon";
 

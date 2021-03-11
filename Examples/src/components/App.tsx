@@ -16,6 +16,7 @@ import "./index.scss";
 import Gallery from "./Gallery/Gallery";
 import Slider from "react-slick";
 import { PAGES } from "./AppRouter/pages";
+import { sciChartExamples } from "../helpes/SciChartExamples";
 
 export default function App() {
     const location = useLocation();
@@ -112,7 +113,7 @@ export default function App() {
                         />
                     </div>
                     {PAGES.homapage.path === location.pathname ? (
-                        <Gallery />
+                        <Gallery examples={sciChartExamples} />
                     ) : (
                         <AppRouter currentExample={currentExample} />
                     )}

@@ -3,35 +3,73 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import classes from "../../../Examples.module.scss";
+import realtimePerformanceImg from "../RealtimePerformanceDemo/javascript-chart-realtime-performance-demo.jpg";
+import ghostedTracesImg from "../RealtimeGhostedTraces/javascript-realtime-ghosted-traces-chart.jpg";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
-import { TSeeAlso } from "../../../../ExampleDescription/ExampleDescriptionTypes";
+import { TDocumentationLink, TSeeAlso } from "../../../../../helpes/types/ExampleDescriptionTypes";
+import { GalleryItem } from "../../../../../helpes/types/types";
+import Gallery from "../../../../Gallery/Gallery";
 
-const seeAlso: TSeeAlso[] = [
+const seeAlso: GalleryItem[] = [
     {
-        href: ExampleStrings.urlRealtimeJavaScriptChartDemo,
-        title: ExampleStrings.urlTitleRealtimeJavaScriptChartDemo,
-        exampleTitle: "Realtime JavaScript Chart Example"
-    },
-    {
-        href: ExampleStrings.urlRealtimeGhostedTracesDemo,
-        title: ExampleStrings.urlTitleRealtimeGhostedTracesDemo,
-        exampleTitle: "Realtime Ghosted Traces Example"
+        chartGroupTitle: "See also",
+        items: [
+            {
+                imgPath: realtimePerformanceImg,
+                title: "Realtime JavaScript Chart Example",
+                seoTitle: ExampleStrings.urlTitleRealtimeJavaScriptChartDemo,
+                examplePath: ExampleStrings.urlRealtimeJavaScriptChartDemo
+            },
+            {
+                imgPath: ghostedTracesImg,
+                title: "Realtime Ghosted Traces Example",
+                seoTitle: ExampleStrings.urlTitleRealtimeGhostedTracesDemo,
+                examplePath: ExampleStrings.urlRealtimeGhostedTracesDemo
+            }
+        ]
     }
 ];
 
-const documentationLinks: any[] = [
+// const sciChartExamples: GalleryItem[] = [
+//     {
+//         chartGroupTitle: "Performance Demos",
+//         items: [
+//             {
+//                 imgPath: realtimePerformanceImg,
+//                 title: "Realtime Performance Demo",
+//                 seoTitle: "Realtime JavaScript Chart Performance Demo with many millions of points",
+//                 examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.path
+//             },
+//             {
+//                 imgPath: ghostedTracesImg,
+//                 title: "Realtime Ghosted Traces",
+//                 seoTitle: "Realtime Ghosted Traces JavaScript Chart Performance demo",
+//                 examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path
+//             },
+//             {
+//                 imgPath: millionPointsDemoImg,
+//                 title: "One Million Points Demo",
+//                 seoTitle: "Load One Million Points in a JavaScript Chart Performance Demo",
+//                 examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints.path
+//             }
+//         ]
+//     }
+// ];
+const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
         title: ExampleStrings.titleDocumentationHome,
-
         linkTitle: "SciChart.js Documentation Home"
     },
     {
         href: ExampleStrings.urlTutorialsHome,
         title: ExampleStrings.titleTutorialsHome,
-
-        linkTitle: " SciChart.js Tutorials"
+        linkTitle: "SciChart.js Tutorials"
+    },
+    {
+        href: ExampleStrings.urlPerformanceTipsDocumentation,
+        title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
+        linkTitle: " SciChart.js Performance Tips and Tricks"
     }
 ];
 
@@ -52,38 +90,6 @@ const tips = [
 
 const Description = () => (
     <div>
-        <div className={classes.ExampleInfoText}></div>
-
-        <div className={classes.Tips}></div>
-
-        <div className={classes.Tips}>
-            <h4>Documentation Links</h4>
-            <ul>
-                <li>
-                    <a
-                        href={ExampleStrings.urlDocumentationHome}
-                        title={ExampleStrings.titleDocumentationHome}
-                        target="_blank"
-                    >
-                        SciChart.js Documentation Home
-                    </a>
-                </li>
-                <li>
-                    <a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
-                        SciChart.js Tutorials
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href={ExampleStrings.urlPerformanceTipsDocumentation}
-                        target="_blank"
-                        title={ExampleStrings.urlTitlePerformanceTipsDocumentation}
-                    >
-                        SciChart.js Performance Tips and Tricks
-                    </a>
-                </li>
-            </ul>
-        </div>
         <ExampleDescription
             documentationLinks={documentationLinks}
             tips={tips}
@@ -93,6 +99,8 @@ const Description = () => (
         />
     </div>
 );
+const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
+
 const Subtitle = () => (
     <p>
         Demonstrates loading <strong>250k points instantly</strong> using SciChart.js, High Performance{" "}
@@ -107,6 +115,7 @@ export const load500By500ExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlLoad500By500,
     subtitle: Subtitle,
     description: Description,
+    seeAlso: SeeAlsoComponent,
     code,
     githubUrl,
     seoDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!`,

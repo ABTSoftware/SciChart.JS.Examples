@@ -4,7 +4,7 @@
     margin-bottom: 30px;
 }
 
-.Tips {
+.UsefulLinksWrapper {
     h4 {
         font-size: 1.125rem;
         margin-bottom: $default-spacing;
@@ -17,4 +17,7 @@
     border-radius: $default-border-radius;
     border-left: 3px solid $color-dark-green;
     margin-bottom: 30px;
+    a {
+        color: $color-dark-green;
+    }
 }

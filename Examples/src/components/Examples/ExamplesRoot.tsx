@@ -31,6 +31,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const seoTitleText = titleText + ExampleStrings.exampleTitleSuffix;
     const subtitleText = examplePage ? examplePage.subtitle() : undefined;
     const DescComponent: () => JSX.Element = examplePage?.description;
+    const SeeAlsoComponent: () => JSX.Element = examplePage?.seeAlso;
     const codeStr = examplePage ? examplePage.code : "";
     const githubUrl = examplePage ? examplePage.githubUrl : "";
     const seoDescription = examplePage ? examplePage.seoDescription : "";
@@ -111,6 +112,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                 {/* </div> */}
                             </div>
                         </ComponentWrapper>
+                        <SeeAlsoComponent />
                     </div>
                 </div>
                 {/* <div className={classes.ColDescription}>

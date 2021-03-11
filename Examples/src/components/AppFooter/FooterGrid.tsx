@@ -2,7 +2,7 @@ import * as React from "react";
 import List from "@material-ui/core/List";
 import { TMenuItem } from "../AppRouter/examples";
 import { Grid } from "@material-ui/core";
-import Box from "../shared/Helpers/Box/Box";
+import Box from "../../helpes/shared/Helpers/Box/Box";
 import classes from "./FooterGrid.module.scss";
 
 type TProps = {

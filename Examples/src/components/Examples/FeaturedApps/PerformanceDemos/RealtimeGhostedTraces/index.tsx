@@ -9,7 +9,7 @@ import { fillNoisySinewave, getNoisySinewave } from "scichart/utils/math";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 
 import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../shared/Helpers/Box/Box";
+import Box from "../../../../../helpes/shared/Helpers/Box/Box";
 import { Button, ButtonGroup } from "@material-ui/core";
 
 const AMPLITUDE = 200;

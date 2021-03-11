@@ -1,5 +1,7 @@
 @import "../../assets/main";
-
+.ChartWrapper {
+    overflow: hidden;
+}
 .ExampleWrapper {
     display: flex;
 
@@ -11,12 +13,19 @@
     .Example {
         margin-right: 30px;
         flex: 1;
+        @include md {
+            margin-right: 0;
+        }
     }
     .ExampleDescription {
         display: flex;
         flex-direction: column;
         min-width: 300px;
         width: 25%;
+        @include md {
+            width: 100%;
+            min-width: 0;
+        }
     }
 }
 
