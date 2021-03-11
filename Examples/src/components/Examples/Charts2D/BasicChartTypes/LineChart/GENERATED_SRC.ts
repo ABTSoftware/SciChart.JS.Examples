@@ -10,6 +10,8 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Point } from "scichart/Core/Point";
+import { WaveAnimation } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+
 import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
@@ -36,6 +38,7 @@ const drawExample = async () => {
         stroke: "#ff6600",
         strokeThickness: 5,
         dataSeries: xyDataSeries,
+        animation: new WaveAnimation({ zeroLine: -1, pointDurationFraction: 0.5 })
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -47,7 +50,7 @@ const drawExample = async () => {
             { color: "pink", offset: 0.2 },
             { color: "yellow", offset: 0.5 },
             { color: "purple", offset: 0.7 },
-            { color: "green", offset: 1 },
+            { color: "green", offset: 1 }
         ])
     );
 
@@ -71,6 +74,6 @@ export default function LineChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId}  className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
 `;

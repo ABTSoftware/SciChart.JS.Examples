@@ -19,6 +19,8 @@ import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IR
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import { ScaleAnimation } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
+
 import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
@@ -52,7 +54,8 @@ const drawExample = async () => {
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "rgba(70,130,180,1)", offset: 0 },
             { color: "rgba(70,130,180,0.2)", offset: 1 }
-        ])
+        ]),
+        animation: new ScaleAnimation({ duration: 5000, zeroLine: 0 })
         // Optional: Allows per-point colouring of mountain fill and stroke
         // paletteProvider: new MountainPaletteProvider(),
     });
