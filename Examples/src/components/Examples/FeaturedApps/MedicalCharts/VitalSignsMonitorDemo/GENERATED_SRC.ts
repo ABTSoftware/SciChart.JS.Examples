@@ -278,11 +278,9 @@ export default function VitalSignsMonitorDemo() {
                     <div className={classes.InfoBox} style={{ color: COLOR_GREEN }}>
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>ECG</div>
-                            <div className={classes.IbRow1Col2} />
                         </div>
                         <div className={classes.IbRow2}>
                             <div className={classes.IbRow2Col1}>
-                                <div style={{ flexGrow: 1 }} />
                                 <div>
                                     V1 - 1.4MM
                                     <br />
@@ -290,7 +288,6 @@ export default function VitalSignsMonitorDemo() {
                                 </div>
                             </div>
                             <div className={classes.IbRow2Col2}>
-                                <div style={{ flexGrow: 1 }} />
                                 <div>{infoEcg}</div>
                             </div>
                         </div>
@@ -306,13 +303,11 @@ export default function VitalSignsMonitorDemo() {
                         </div>
                         <div className={classes.IbRow2}>
                             <div className={classes.IbRow2Col1}>
-                                <div style={{ flexGrow: 1 }} />
                                 <div>
                                     <img src={yellowImg} />
                                 </div>
                             </div>
                             <div className={classes.IbRow2Col2}>
-                                <div style={{ flexGrow: 1 }} />
                                 <div>
                                     {infoBloodPressure1}/{infoBloodPressure2}
                                 </div>
@@ -330,13 +325,11 @@ export default function VitalSignsMonitorDemo() {
                         </div>
                         <div className={classes.IbRow2}>
                             <div className={classes.IbRow2Col1}>
-                                <div style={{ flexGrow: 1 }} />
                                 <div>
                                     <img src={greyImg} />
                                 </div>
                             </div>
                             <div className={classes.IbRow2Col2}>
-                                <div style={{ flexGrow: 1 }} />
                                 <div>{infoBloodVolume.toFixed(1)}</div>
                             </div>
                         </div>
@@ -350,7 +343,6 @@ export default function VitalSignsMonitorDemo() {
                         </div>
                         <div className={classes.IbRow2}>
                             <div className={classes.IbRow2Col1}>
-                                <div style={{ flexGrow: 1 }} />
                                 <div>
                                     71-
                                     <br />

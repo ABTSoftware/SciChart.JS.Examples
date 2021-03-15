@@ -14,12 +14,14 @@ import {
     EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider,
-    IPaletteProvider,
     IStrokePaletteProvider
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { Button, ButtonGroup } from "@material-ui/core";
 import Box from "../../../../../helpes/shared/Helpers/Box/Box";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import { uintArgbColorMultiplyOpacity } from "scichart/utils/colorUtil";
+
 import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
@@ -59,7 +61,8 @@ const drawExample = async () => {
         brushDown: "#ff5050B2",
         strokeUp: "#50ff50",
         strokeDown: "#ff5050",
-        paletteProvider: new CandlestickPaletteProvider()
+        paletteProvider: new CandlestickPaletteProvider(),
+        animation: new WaveAnimation({ zeroLine: 1.12, pointDurationFraction: 0.5, fadeEffect: true })
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
 
@@ -101,7 +104,7 @@ class CandlestickPaletteProvider implements IStrokePaletteProvider, IFillPalette
      * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
      * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
      */
-    overrideFillArgb(xValue: number, yValue: number, index: number): number {
+    overrideFillArgb(xValue: number, yValue: number, index: number, opacity: number): number {
         const ohlcDataSeries = this.getDataSeries();
         // Get the open, close values
         const close = ohlcDataSeries.getNativeCloseValues().get(index);
@@ -109,7 +112,9 @@ class CandlestickPaletteProvider implements IStrokePaletteProvider, IFillPalette
 
         // If more than 1% change, return 'highlightColor' otherwise return undefined for default color
         if (Math.abs(1 - open / close) > 0.01) {
-            return this.highlightColor;
+            return opacity !== undefined
+                ? uintArgbColorMultiplyOpacity(this.highlightColor, opacity)
+                : this.highlightColor;
         }
         return undefined;
     }

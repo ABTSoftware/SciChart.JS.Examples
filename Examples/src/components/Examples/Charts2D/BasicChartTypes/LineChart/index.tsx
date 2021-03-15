@@ -10,6 +10,8 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Point } from "scichart/Core/Point";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+
 import classes from "../../../../Examples/Examples.module.scss";
 import image from "./javascript-line-chart.jpg";
 const divElementId = "chart";
@@ -35,7 +37,8 @@ const drawExample = async () => {
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#ff6600",
         strokeThickness: 5,
-        dataSeries: xyDataSeries
+        dataSeries: xyDataSeries,
+        animation: new WaveAnimation({ zeroLine: -1, pointDurationFraction: 0.5 })
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
