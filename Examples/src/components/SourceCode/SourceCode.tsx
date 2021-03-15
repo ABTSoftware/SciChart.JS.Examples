@@ -1,5 +1,5 @@
 import * as React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+
 import CloseIcon from "@material-ui/icons/Close";
 import classes from "./SourceCode.module.scss";
 
@@ -11,7 +11,10 @@ type TProps = {
 
 const SourceCode: React.FC<TProps> = props => {
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
-
+    const code = `${props.code}`;
+    React.useEffect(() => {
+        window.Prism.highlightAll();
+    }, []);
     return (
         <div className={classes.SourceCode}>
             <div className={classes.SourceCodeHeader}>
@@ -20,13 +23,10 @@ const SourceCode: React.FC<TProps> = props => {
             </div>
 
             <div className={classes.SourceCodeWrapper}>
-                <pre
-                    className="language-javascript line-numbers"
-                    style={{
-                    }}
-                >
+                <pre className="language-javascript line-numbers">
                     <code style={{ fontFamily: "Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace" }}>
-                        {props.code}
+                        {code}
+                        {/* const divEl = "chart"; */}
                     </code>
                 </pre>
             </div>
