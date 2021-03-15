@@ -24,7 +24,7 @@ const seeAlso: GalleryItem[] = [
                 imgPath: ghostedTracesImg,
                 title: "Realtime Ghosted Traces Example",
                 seoTitle: ExampleStrings.urlTitleRealtimeGhostedTracesDemo,
-                examplePath: ExampleStrings.urlRealtimeGhostedTracesDemo
+                examplePath: ExampleStrings.urlRealtimeGhostedTraces
             }
         ]
     }

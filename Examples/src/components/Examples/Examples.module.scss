@@ -1,6 +1,17 @@
 @import "../../assets/main";
 .ChartWrapper {
     overflow: hidden;
+    position: relative;
+    img {
+        display: block;
+        height: 100px;
+    }
+}
+.ExampleWrapperAudio {
+    display: flex;
+    div {
+        width: 100%;
+    }
 }
 .ExampleWrapper {
     display: flex;
@@ -13,7 +24,10 @@
     .Example {
         margin-right: 30px;
         flex: 1;
+        max-width: 70%;
         @include md {
+            max-width: 100%;
+
             margin-right: 0;
         }
     }
@@ -40,10 +54,9 @@
 
 /////*****ExamplesRoot*****/////
 .ExamplesRoot {
-    margin: 0 $default-spacing * 2;
     @include md {
         margin: 0;
-        padding: $default-spacing * 2;
+        padding: 0;
     }
     .SciChartLogo {
         text-align: right;
@@ -66,12 +79,7 @@
         overflow-x: auto;
         margin-bottom: $default-spacing * 3;
     }
-    .ColMainContent {
-        max-width: 1280px;
-        @include md {
-            max-width: 800px;
-        }
-    }
+
     .ColDescription {
         flex-basis: 360px;
         flex-grow: 0;
@@ -82,12 +90,12 @@
         }
         margin-bottom: $default-spacing * 3;
     }
-    .ExampleDescription {
+    .ExampleRootDescription {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        .ExampleDescriptionLink {
+        .ExampleRootDescriptionLink {
             &:hover,
             &:active,
             &:visited {
@@ -116,12 +124,6 @@
             @include md {
                 margin-bottom: 20px;
                 width: 100%;
-            }
-        }
-        .ExampleDescriptionButton {
-            span {
-                font-size: 0.8rem;
-                white-space: nowrap;
             }
         }
     }
@@ -202,4 +204,54 @@
     flex-direction: column;
     font-size: 44px;
     line-height: 44px;
+}
+
+.ButtonsWrapper {
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+    .ButtonsText {
+        margin-left: 10px;
+    }
+}
+
+.Animation {
+    transition: all 0.2s;
+
+    animation-name: up;
+    animation-delay: 0.9s;
+    animation-duration: 1.2s;
+}
+
+@keyframes up {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.SomeImage {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+//Common
+.OrangeButton {
+    background: linear-gradient(114.95deg, #febc48 0%, #e97502 100%);
+    border-radius: 4px;
+    span {
+        color: white !important;
+    }
+
+    span {
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
 }

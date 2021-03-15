@@ -1,0 +1,10 @@
+@import "../../assets/main.scss";
+.SourceCode {
+    margin: $default-spacing * 3 0;
+    max-width: 100%;
+}
+.SourceCodeHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

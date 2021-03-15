@@ -1,6 +1,7 @@
 @import "../../assets/main.scss";
 
 .GalleryContainer {
+    transition: all 5s;
     min-width: 0;
     min-height: 0px;
     width: 100%;

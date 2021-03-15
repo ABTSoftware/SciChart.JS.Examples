@@ -35,11 +35,12 @@ $default-border-radius: 10px;
 //
 %Container {
     max-width: 2300px;
+    padding: 0 20px;
     @include lg {
-        max-width: 1440px;
+        max-width: 1600px;
     }
     @include md {
-        max-width: 900px;
+        max-width: 1200px;
     }
 }
 html {

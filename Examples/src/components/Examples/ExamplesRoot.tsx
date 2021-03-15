@@ -1,14 +1,6 @@
 import * as React from "react";
-import Typography from "@material-ui/core/Typography";
-import Title from "../Title/Title";
-import SourceCode from "../SourceCode/SourceCode";
-import sciChartLogoImg from "../../images/scichart-logo-making-impossible-projects-possible@2x.png";
-import GettingStarted from "../GettingStarted/GettingStarted";
-import Description from "../Description/Description";
 import SeoTags from "../SeoTags/SeoTags";
-import { makeStyles } from "@material-ui/core/styles";
 import { TExamplePage } from "../AppRouter/examplePages";
-import { HOME_PAGE_TITLE } from "../PageHome/PageHome";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { getExampleComponent } from "../AppRouter/examples";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
@@ -16,7 +8,10 @@ import Button from "@material-ui/core/Button";
 import { ExampleStrings } from "./ExampleStrings";
 import classes from "./Examples.module.scss";
 import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
-
+import SourceCode from "../SourceCode/SourceCode";
+import CodeIcon from "@material-ui/icons/Code";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 type TProps = {
     // example: () => JSX.Element;
     examplePage: TExamplePage;
@@ -24,6 +19,11 @@ type TProps = {
 
 const ExamplesRoot: React.FC<TProps> = props => {
     const { examplePage } = props;
+    const [showSource, setShowSource] = React.useState(false);
+    const [firstRender, setFirstRender] = React.useState(true);
+
+    const myRef = React.useRef(null);
+    const executeScroll = () => myRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
 
     const ExampleComponent = getExampleComponent(examplePage.id);
 
@@ -57,63 +57,108 @@ const ExamplesRoot: React.FC<TProps> = props => {
             />
             <div className={classes.Body}>
                 <div className={classes.ColMain}>
-                    <div className={classes.ColMainContent}>
-                        <ComponentWrapper>
-                            <div className={classes.ExampleDescription}>
-                                <h5>JavaScript Chart Examples</h5>
-                                <p className={classes.ExampleDescriptionText}>
-                                    SciChart.js ships with ~40{" "}
-                                    <a className={classes.ExampleDescriptionLink} href="https://demo.scichart.com">
-                                        JavaScript Chart Examples
-                                    </a>{" "}
-                                    which you can browse, play with, view the source code and see related documentation.
-                                    All of this is possible with the SciChart.js Examples Suite, which ships as part of
-                                    the{" "}
-                                    <a
-                                        className={classes.ExampleDescriptionLink}
-                                        href="https://www.scichart.com/downloads"
-                                    >
-                                        SciChart.js SDK
-                                    </a>
-                                </p>
+                    <ComponentWrapper>
+                        <div className={classes.ExampleRootDescription}>
+                            <h5>JavaScript Chart Examples</h5>
+                            <p className={classes.ExampleDescriptionText}>
+                                SciChart.js ships with ~40{" "}
+                                <a className={classes.ExampleRootDescriptionLink} href="https://demo.scichart.com">
+                                    JavaScript Chart Examples
+                                </a>{" "}
+                                which you can browse, play with, view the source code and see related documentation. All
+                                of this is possible with the SciChart.js Examples Suite, which ships as part of the{" "}
+                                <a
+                                    className={classes.ExampleRootDescriptionLink}
+                                    href="https://www.scichart.com/downloads"
+                                >
+                                    SciChart.js SDK
+                                </a>
+                            </p>
+                            <div className={classes.OrangeButton}>
+                                <Button href="https://www.scichart.com/downloads/" target="_blank">
+                                    Download the SDK
+                                </Button>
+                            </div>
+                        </div>
+                    </ComponentWrapper>
+
+                    <ComponentWrapper>
+                        <h1 className={classes.Title}>{titleText} </h1>
+
+                        <div className={classes.ExampleWrapper}>
+                            <div className={classes.Example}>
+                                <ExampleComponent />
                                 <ButtonGroup
-                                    className={classes.ExampleDescriptionButton}
+                                    className={classes.ButtonsWrapper}
                                     size="large"
                                     color="primary"
                                     aria-label="small outlined button group"
                                 >
-                                    <Button href="https://www.scichart.com/downloads/" target="_blank">
-                                        Download the SDK
+                                    <Button
+                                        onClick={() => {
+                                            setShowSource(!showSource);
+                                            setFirstRender(false);
+                                            if (!showSource) {
+                                                executeScroll();
+                                            }
+                                        }}
+                                    >
+                                        <CodeIcon />
+                                        <span className={classes.ButtonsText}>VIEW SOURCE CODE</span>
+                                    </Button>
+                                </ButtonGroup>
+                                <ButtonGroup
+                                    className={classes.ButtonsWrapper}
+                                    size="large"
+                                    color="primary"
+                                    aria-label="small outlined button group"
+                                >
+                                    <Button
+                                        onClick={() => {
+                                            setShowSource(!showSource);
+                                        }}
+                                    >
+                                        <GitHubIcon />
+                                        <span className={classes.ButtonsText}>VIEW IN GITHUB</span>
                                     </Button>
                                 </ButtonGroup>
                             </div>
-                        </ComponentWrapper>
 
-                        <ComponentWrapper>
-                            <h4 className={classes.Title}>{titleText} </h4>
-
-                            <div className={classes.ExampleWrapper}>
-                                <div className={classes.Example}>
-                                    <div style={{ maxWidth: 900 }}>
-                                        <ExampleComponent />
-                                    </div>
-                                </div>
-
-                                {/* {DescComponent && ( */}
-                                <div className={classes.ExampleDescription}>
-                                    <div className={classes.Subtitle}>{subtitleText}</div>
-                                    {/* <Description> */}
-                                    <DescComponent />
-                                    {/* </Description> */}
-                                </div>
-                                {/* )} */}
-                                {/* <div style={{ overflow: "scroll" }}> */}
-                                {/* {examplePage && <SourceCode code={codeStr} githubUrl={githubUrl} />} */}
-                                {/* </div> */}
+                            {/* {DescComponent && ( */}
+                            <div className={classes.ExampleDescription}>
+                                <div className={classes.Subtitle}>{subtitleText}</div>
+                                {/* <Description> */}
+                                <DescComponent />
+                                {/* </Description> */}
                             </div>
-                        </ComponentWrapper>
-                        <SeeAlsoComponent />
+                            {/* )} */}
+                        </div>
+                    </ComponentWrapper>
+                    {/* <div style={{ overflow: "scroll" }}> */}
+
+                    <div ref={myRef}>
+                        <CSSTransition timeout={1000} unmountOnExit in={showSource} classNames="source-code">
+                            <ComponentWrapper>
+                                {examplePage && (
+                                    <SourceCode
+                                        onClose={() => {
+                                            setShowSource(false);
+                                        }}
+                                        code={codeStr}
+                                        githubUrl={githubUrl}
+                                    />
+                                )}
+                            </ComponentWrapper>
+                        </CSSTransition>
                     </div>
+
+                    {/* </div> */}
+
+                    {SeeAlsoComponent && (
+                        <div className={!showSource && !firstRender ? classes.Animation : ""}>
+                            <SeeAlsoComponent />
+                        </div>
+                    )}
                 </div>
                 {/* <div className={classes.ColDescription}>
                     <div className={classes.SciChartLogo}>

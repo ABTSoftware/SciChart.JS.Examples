@@ -1,35 +1,24 @@
 import * as React from "react";
-import Typography from "@material-ui/core/Typography";
-import viewOnGithubImg from "../../images/view-on-github.png";
 import { makeStyles } from "@material-ui/core/styles";
+import CloseIcon from "@material-ui/icons/Close";
+import classes from "./SourceCode.module.scss";
 
 type TProps = {
     code: string;
     githubUrl: string;
+    onClose: () => void;
 };
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        marginTop: theme.spacing(3),
-        marginBottom: theme.spacing(3),
-        maxWidth: "100%"
-    }
-}));
-
 const SourceCode: React.FC<TProps> = props => {
-    const classes = useStyles();
-    const { githubUrl } = props;
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
-    const fullGithubUrl = baseGithubPath + githubUrl;
 
     return (
-        <div className={classes.root}>
-            <Typography variant="h4" variantMapping={{ h4: "p" }} gutterBottom>
-                Source Code
-            </Typography>
-            <a href={fullGithubUrl} target="_blank">
-                <img src={viewOnGithubImg} height={23} alt="View on GitHub" />
-            </a>
+        <div className={classes.SourceCode}>
+            <div className={classes.SourceCodeHeader}>
+                <h4>Source Code</h4>
+                <CloseIcon onClick={props.onClose} />
+            </div>
+
             <pre
                 className="language-javascript line-numbers"
                 style={{ backgroundColor: "#272822", fontSize: "0.8em", maxHeight: 600 }}

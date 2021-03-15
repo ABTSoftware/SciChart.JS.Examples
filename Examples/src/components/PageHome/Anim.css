@@ -18,3 +18,49 @@
 
     opacity: 0;
 }
+/* source code */
+.source-code-enter {
+    transition: all 1000ms;
+
+    transform: scale(0);
+
+    opacity: 0;
+}
+
+.source-code-enter-active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.source-code-exit {
+    transition: all 1000ms;
+    transform: scale(1);
+    opacity: 1;
+}
+
+.source-code-exit-active {
+    transform: scale(0);
+    opacity: 0;
+}
+
+/* see also */
+
+.see-also-enter {
+    transition: all 200ms;
+    transform: translateY(0);
+}
+
+.see-also-enter-active {
+    transition: all 200ms;
+    transform: translateY(-50px);
+}
+
+.see-also-exit {
+    transition: all 200ms;
+    transform: translateY(-50px);
+}
+
+.see-also-exit-active {
+    transition: all 200ms;
+    transform: translateY(-50px);
+}
