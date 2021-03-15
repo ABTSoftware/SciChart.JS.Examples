@@ -229,7 +229,7 @@
     }
     @include sm {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
 
         button {
             &:not(:last-child) {
@@ -237,6 +237,9 @@
                 margin-bottom: 10px;
             }
         }
+    }
+    @include xs {
+        align-items: stretch;
     }
 }
 
