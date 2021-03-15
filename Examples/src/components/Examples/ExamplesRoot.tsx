@@ -45,6 +45,8 @@ const ExamplesRoot: React.FC<TProps> = props => {
         window.scrollTo(0, 0);
         window.Prism.highlightAll();
     }, []);
+    const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
+    const fullGithubUrl = baseGithubPath + githubUrl;
 
     return (
         <div className={classes.ExamplesRoot}>
@@ -88,12 +90,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                         <div className={classes.ExampleWrapper}>
                             <div className={classes.Example}>
                                 <ExampleComponent />
-                                <ButtonGroup
-                                    className={classes.ButtonsWrapper}
-                                    size="large"
-                                    color="primary"
-                                    aria-label="small outlined button group"
-                                >
+                                <div className={classes.ButtonsWrapper}>
                                     <Button
                                         onClick={() => {
                                             setShowSource(!showSource);
@@ -106,22 +103,17 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                         <CodeIcon />
                                         <span className={classes.ButtonsText}>VIEW SOURCE CODE</span>
                                     </Button>
-                                </ButtonGroup>
-                                <ButtonGroup
-                                    className={classes.ButtonsWrapper}
-                                    size="large"
-                                    color="primary"
-                                    aria-label="small outlined button group"
-                                >
                                     <Button
                                         onClick={() => {
                                             setShowSource(!showSource);
                                         }}
                                     >
                                         <GitHubIcon />
-                                        <span className={classes.ButtonsText}>VIEW IN GITHUB</span>
+                                        <a href={fullGithubUrl} target="_blank" className={classes.ButtonsText}>
+                                            VIEW IN GITHUB
+                                        </a>
                                     </Button>
-                                </ButtonGroup>
+                                </div>
                             </div>
 
                             {/* {DescComponent && ( */}

@@ -19,14 +19,17 @@ const SourceCode: React.FC<TProps> = props => {
                 <CloseIcon onClick={props.onClose} />
             </div>
 
-            <pre
-                className="language-javascript line-numbers"
-                style={{ backgroundColor: "#272822", fontSize: "0.8em", maxHeight: 600 }}
-            >
-                <code style={{ fontFamily: "Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace" }}>
-                    {props.code}
-                </code>
-            </pre>
+            <div className={classes.SourceCodeWrapper}>
+                <pre
+                    className="language-javascript line-numbers"
+                    style={{
+                    }}
+                >
+                    <code style={{ fontFamily: "Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace" }}>
+                        {props.code}
+                    </code>
+                </pre>
+            </div>
         </div>
     );
 };

@@ -26,7 +26,7 @@ const GalleryCard: React.FC<TProps> = props => {
     return (
         <div className={classes.GalleryItemCard}>
             <a className={classes.GalleryItemCardImage} href={examplePath} title={seoTitle} onClick={handleClickLink}>
-                <img src={imgPath} title={seoTitle} alt={seoTitle} onClick={handleClick(examplePath)} />
+                <img src={imgPath} title={seoTitle} alt={title} onClick={handleClick(examplePath)} />
             </a>
             <h5 className={classes.GalleryItemTitle}>{title}</h5>
         </div>

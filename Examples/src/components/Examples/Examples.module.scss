@@ -29,6 +29,7 @@
             max-width: 100%;
 
             margin-right: 0;
+            margin-bottom: 20px;
         }
     }
     .ExampleDescription {
@@ -45,6 +46,7 @@
 
 .FormControl {
     margin: $default-spacing;
+    margin-left: 0;
     min-width: 142;
 }
 
@@ -137,7 +139,8 @@
         font-weight: 400;
         font-size: 1rem;
         line-height: 30px;
-        p {
+        a {
+            color: $color-main-green;
         }
     }
     .TextGreen {
@@ -207,11 +210,33 @@
 }
 
 .ButtonsWrapper {
-    &:not(:last-child) {
-        margin-right: 10px;
+    display: flex;
+    button {
+        color: $color-main-green;
+        border: 1px $color-main-green solid;
+        text-align: center;
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
     }
     .ButtonsText {
         margin-left: 10px;
+        color: $color-main-green;
+        text-decoration: none;
+    }
+    @include md {
+        justify-content: space-around;
+    }
+    @include sm {
+        flex-direction: column;
+        align-items: stretch;
+
+        button {
+            &:not(:last-child) {
+                margin-right: 0px;
+                margin-bottom: 10px;
+            }
+        }
     }
 }
 

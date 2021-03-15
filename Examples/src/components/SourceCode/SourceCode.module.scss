@@ -8,3 +8,14 @@
     align-items: center;
     justify-content: space-between;
 }
+.SourceCodeWrapper {
+    background-color: #272822;
+    font-size: 0.8em;
+    overflow: scroll;
+    pre {
+        max-width: 80vw;
+        max-height: 600px;
+        // white-space: pre-wrap;
+        // word-break: break-all;
+    }
+}

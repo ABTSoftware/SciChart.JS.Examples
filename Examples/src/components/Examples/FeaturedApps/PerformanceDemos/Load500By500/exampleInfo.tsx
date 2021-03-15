@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import realtimePerformanceImg from "../RealtimePerformanceDemo/javascript-chart-realtime-performance-demo.jpg";
 import ghostedTracesImg from "../RealtimeGhostedTraces/javascript-realtime-ghosted-traces-chart.jpg";
+import millionPointsDemoImg from "../Load1MillionPoints/javascript-chart-performance-one-million-points.jpg";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 import { TDocumentationLink, TSeeAlso } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
@@ -17,14 +18,20 @@ const seeAlso: GalleryItem[] = [
             {
                 imgPath: realtimePerformanceImg,
                 title: "Realtime JavaScript Chart Example",
-                seoTitle: ExampleStrings.urlTitleRealtimeJavaScriptChartDemo,
+                seoTitle: "Realtime JavaScript Chart Performance Demo with many millions of points",
                 examplePath: ExampleStrings.urlRealtimeJavaScriptChartDemo
             },
             {
                 imgPath: ghostedTracesImg,
                 title: "Realtime Ghosted Traces Example",
-                seoTitle: ExampleStrings.urlTitleRealtimeGhostedTracesDemo,
+                seoTitle: "Realtime Ghosted Traces JavaScript Chart Performance demo",
                 examplePath: ExampleStrings.urlRealtimeGhostedTraces
+            },
+            {
+                imgPath: millionPointsDemoImg,
+                title: "One Million Points Demo",
+                seoTitle: "Load One Million Points in a JavaScript Chart Performance Demo",
+                examplePath: ExampleStrings.urlLoadOneMillionPoints
             }
         ]
     }
@@ -69,7 +76,7 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlPerformanceTipsDocumentation,
         title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
-        linkTitle: " SciChart.js Performance Tips and Tricks"
+        linkTitle: "SciChart.js Performance Tips and Tricks"
     }
 ];
 

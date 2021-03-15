@@ -27,23 +27,6 @@ type TTimeSpan = {
 const SERIES = 500;
 const POINTS = 500;
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 142
-        },
-        notificationsBlock: {},
-        notification: {
-            marginBottom: 16
-        },
-        description: {
-            width: 800,
-            marginBottom: 20
-        }
-    })
-);
-
 const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, 3, 2);
     const xAxis = new NumericAxis(wasmContext, {
