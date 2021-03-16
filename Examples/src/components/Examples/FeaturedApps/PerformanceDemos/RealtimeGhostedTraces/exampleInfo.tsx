@@ -41,7 +41,7 @@ const seeAlso: GalleryItem[] = [
         items: [
             {
                 imgPath: load500By500,
-                title: "Performance Demo: Load 500 series x 500 points",
+                title: ExampleStrings.titleLoad500By500,
                 seoTitle:
                     "This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!",
                 examplePath: ExampleStrings.urlLoad500By500
@@ -54,7 +54,7 @@ const seeAlso: GalleryItem[] = [
             },
             {
                 imgPath: millionPointsDemoImg,
-                title: "One Million Points Demo",
+                title: ExampleStrings.titleLoadOneMillionPoints,
                 seoTitle: "Load One Million Points in a JavaScript Chart Performance Demo",
                 examplePath: ExampleStrings.urlLoadOneMillionPoints
             }

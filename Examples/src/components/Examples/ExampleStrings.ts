@@ -107,7 +107,7 @@ export const ExampleStrings = {
     // Line Chart
     urlLineChart: "/javascript-line-chart",
     titleLineChart: "JavaScript Line Chart",
-    urlLineChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Fan%20Charts%20Type.html",
+    urlLineChartDocumentation: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Line%20Series%20Type.html",
     urlTitleLineChartDocumentation: "The specific page for the JavaScript Line Chart documentation will help you to get started",
 
     // Spline line series
@@ -183,7 +183,8 @@ export const ExampleStrings = {
 
     // Use Pointmarkers
     urlPointMarkers: "/javascript-chart-custom-pointmarkers",
-    titlePointMarkers: "The JavaScript Point-Markers example shows how to create different types of point-marker on Bubble and Scatter Series",
+    titlePointMarkers: "JavaScript Point-Markers Chart",
+    urlTitlePointMarkers: "The JavaScript Point-Markers example shows how to create different types of point-marker on Bubble and Scatter Series",
 
     // Multi Pane Stock Charts
     urlMultiPaneStockChart: "/javascript-multi-pane-stock-charts",

@@ -24,13 +24,13 @@ const seeAlso: GalleryItem[] = [
             },
             {
                 imgPath: ghostedTracesImg,
-                title: "Realtime Ghosted Traces Example",
+                title: ExampleStrings.titleRealtimeGhostedTraces,
                 seoTitle: "Realtime Ghosted Traces JavaScript Chart Performance demo",
                 examplePath: ExampleStrings.urlRealtimeGhostedTraces
             },
             {
                 imgPath: load500by500,
-                title: "Performance Demo: Load 500 series x 500 points",
+                title: ExampleStrings.titleLoad500By500,
                 seoTitle:
                     "This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!",
                 examplePath: ExampleStrings.urlLoad500By500

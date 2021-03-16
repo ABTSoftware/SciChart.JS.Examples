@@ -30,7 +30,7 @@ const Description = () => (<div>
                title={ExampleStrings.urlTitleBubbleChartDocumentation}>The
             JavaScript Bubble Chart Example</a></li>
         <li><a href={ExampleStrings.urlPointMarkers}
-               title={ExampleStrings.titlePointMarkers}>Styling
+               title={ExampleStrings.urlTitlePointMarkers}>Styling
             Point-Markers Example</a></li>
     </ul>
 </div>);
