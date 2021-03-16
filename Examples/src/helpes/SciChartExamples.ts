@@ -58,6 +58,7 @@ import dragAxisToScaleImg from "../components/Examples/Charts2D/ZoomingAndPannin
 import bubble3dImg from "../components/Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/javascript-3d-bubble-chart.jpg";
 import mesh3dImg from "../components/Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
 import { GalleryItem } from "./types/types";
+import { ExampleStrings } from "../components/Examples/ExampleStrings";
 
 export const sciChartExamples: GalleryItem[] = [
     {
@@ -65,25 +66,25 @@ export const sciChartExamples: GalleryItem[] = [
         items: [
             {
                 imgPath: load500Img,
-                title: "Load 500 Series x 500 Points",
+                title: ExampleStrings.titleLoad500By500,
                 seoTitle: "Load 500 Series x 500 Points JavaScript Chart Performance Demo",
                 examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500.path
             },
             {
                 imgPath: realtimePerformanceImg,
-                title: "Realtime Performance Demo",
+                title: ExampleStrings.urlTitleRealtimeJavaScriptChartDemo,
                 seoTitle: "Realtime JavaScript Chart Performance Demo with many millions of points",
                 examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.path
             },
             {
                 imgPath: ghostedTracesImg,
-                title: "Realtime Ghosted Traces",
+                title: ExampleStrings.titleRealtimeGhostedTraces,
                 seoTitle: "Realtime Ghosted Traces JavaScript Chart Performance demo",
                 examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path
             },
             {
                 imgPath: millionPointsDemoImg,
-                title: "One Million Points Demo",
+                title: ExampleStrings.titleLoadOneMillionPoints,
                 seoTitle: "Load One Million Points in a JavaScript Chart Performance Demo",
                 examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints.path
             }
@@ -94,25 +95,25 @@ export const sciChartExamples: GalleryItem[] = [
         items: [
             {
                 imgPath: lidarImg,
-                title: "LiDAR 3D Point Cloud",
+                title: ExampleStrings.titleLidarFeaturedApp,
                 seoTitle: "LiDAR 3D Point Cloud of Geospatial Data in JavaScript",
                 examplePath: EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo.path
             },
             {
                 imgPath: ecgImg,
-                title: "ECG/EKG Medical Demo",
+                title: ExampleStrings.titleVitalSigns,
                 seoTitle: "JavaScript Vital Signs ECG/EKG Medical Demo",
                 examplePath: EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo.path
             },
             {
                 imgPath: audioAnalyzerImage,
-                title: "Audio Analyzer Demo",
+                title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
                 seoTitle: "JavaScript Realtime Audio Analyzer Demo",
                 examplePath: EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.path
             },
             {
                 imgPath: tenorCurvesImage,
-                title: "Tenor Curves 3D Demo",
+                title: ExampleStrings.titleTenorCurvesFeaturedApp,
                 seoTitle: "JavaScript 3D Surface Mesh Plot Tenor Curves Demo",
                 examplePath: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.path
             }
@@ -123,43 +124,43 @@ export const sciChartExamples: GalleryItem[] = [
         items: [
             {
                 imgPath: lineChartImg,
-                title: "Line Chart",
+                title: ExampleStrings.titleLineChart,
                 seoTitle: "JavaScript Line Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_LineChart.path
             },
             {
                 imgPath: bandChartImg,
-                title: "Band Chart",
+                title: ExampleStrings.titleBandChart,
                 seoTitle: "JavaScript Band Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.path
             },
             {
                 imgPath: mountainImg,
-                title: "Mountain Chart",
+                title: ExampleStrings.titleMountainChart,
                 seoTitle: "JavaScript Mountain Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_MountainChart.path
             },
             {
                 imgPath: digitalLineChartImg,
-                title: "Digital Line Chart",
+                title: ExampleStrings.titleDigitalLineChart,
                 seoTitle: "JavaScript Digital Line Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_DigitalLineChart.path
             },
             {
                 imgPath: digitalBandChartImg,
-                title: "Digital Band Chart",
+                title: ExampleStrings.titleDigitalBandChart,
                 seoTitle: "JavaScript Digital Band Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_DigitalBandSeriesChart.path
             },
             {
                 imgPath: digitalMountainImg,
-                title: "Digital Mountain Chart",
+                title: ExampleStrings.titleDigitalMountainChart,
                 seoTitle: "JavaScript Digital Band Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart.path
             },
             {
                 imgPath: realtimeMountainImg,
-                title: "Realtime Mountain Chart",
+                title: ExampleStrings.titleMountainChart,
                 seoTitle: "JavaScript Realtime Mountain Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_RealtimeMountainChart.path
             },
@@ -171,13 +172,13 @@ export const sciChartExamples: GalleryItem[] = [
             },
             {
                 imgPath: candlestickImg,
-                title: "Candlestick Chart",
+                title: ExampleStrings.titleCandlestickChart,
                 seoTitle: "JavaScript Candlestick Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart.path
             },
             {
                 imgPath: columnChartImg,
-                title: "Column Chart",
+                title: ExampleStrings.titleColumnChart,
                 seoTitle: "JavaScript Column Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.path
             },
@@ -189,31 +190,31 @@ export const sciChartExamples: GalleryItem[] = [
             },
             {
                 imgPath: heatmapImg,
-                title: "Heatmap Chart",
+                title: ExampleStrings.titleHeatmapChart,
                 seoTitle: "JavaScript Heatmap Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart.path
             },
             {
                 imgPath: contourImg,
-                title: "Contours Chart",
+                title: ExampleStrings.titleContourChart,
                 seoTitle: "JavaScript Contours Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_ContourChart.path
             },
             {
                 imgPath: ohlcImg,
-                title: "Ohlc Chart",
+                title: ExampleStrings.titleOhlcChart,
                 seoTitle: "JavaScript Ohlc Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart.path
             },
             {
                 imgPath: scatterImg,
-                title: "Scatter Chart",
+                title: ExampleStrings.titleScatterChart,
                 seoTitle: "JavaScript Scatter Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart.path
             },
             {
                 imgPath: stackedColumnImg,
-                title: "Stacked Chart",
+                title: ExampleStrings.titleStackedColumnChart,
                 seoTitle: "JavaScript Stacked Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.path
             },
@@ -225,19 +226,19 @@ export const sciChartExamples: GalleryItem[] = [
             },
             {
                 imgPath: stackedMountainImg,
-                title: "Stacked Mountain Chart",
+                title: ExampleStrings.titleStackedMountainChart,
                 seoTitle: "JavaScript Stacked Mountain Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart.path
             },
             {
                 imgPath: pieImg,
-                title: "Pie Chart",
+                title: ExampleStrings.urlPieChart,
                 seoTitle: "JavaScript Pie Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_PieChart.path
             },
             {
                 imgPath: donutImg,
-                title: "Donut Chart",
+                title: ExampleStrings.titleDonutChart,
                 seoTitle: "JavaScript Donut Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_DonutChart.path
             }
@@ -248,25 +249,25 @@ export const sciChartExamples: GalleryItem[] = [
         items: [
             {
                 imgPath: annotationsImg,
-                title: "Chart Annotations",
+                title: ExampleStrings.titleAnnotationsAreEasy,
                 seoTitle: "JavaScript Chart Annotations Example",
                 examplePath: EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy.path
             },
             {
                 imgPath: editableAnnotationsImg,
-                title: "Chart Editable Annotations",
+                title: ExampleStrings.titleEditableAnnotations,
                 seoTitle: "JavaScript Chart Editable Annotations Example",
                 examplePath: EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations.path
             },
             {
                 imgPath: tradeMarkersImg,
-                title: "Trading Buy Sell Markers",
+                title: ExampleStrings.titleTradeMarkers,
                 seoTitle: "Trading Buy Sell Marker Annotations in JavaScript Charts",
                 examplePath: EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.path
             },
             {
                 imgPath: legendImg,
-                title: "Chart Legends API",
+                title: ExampleStrings.titleChartLegends,
                 seoTitle: "JavaScript Chart Legend Example",
                 examplePath: EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.path
             }
@@ -277,13 +278,13 @@ export const sciChartExamples: GalleryItem[] = [
         items: [
             {
                 imgPath: multiPaneStockImg,
-                title: "Multi-Pane Stock Charts",
+                title: ExampleStrings.titleMultiPaneStockChart,
                 seoTitle: "JavaScript Multi-Pane Stock Charts Example",
                 examplePath: EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.path
             },
             {
                 imgPath: realtimeStockImg,
-                title: "Realtime Ticking Stock Charts",
+                title: ExampleStrings.titleRealtimeTickingStockCharts,
                 seoTitle: "JavaScript Realtime Ticking Stock Charts Example",
                 examplePath: EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts.path
             }
@@ -294,7 +295,7 @@ export const sciChartExamples: GalleryItem[] = [
         items: [
             {
                 imgPath: multipleXAxesImg,
-                title: "Multiple X Axes",
+                title: ExampleStrings.titleMultipleXAxis,
                 seoTitle: "JavaScript Chart with Multiple X Axis Example",
                 examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes.path
             },
@@ -306,7 +307,7 @@ export const sciChartExamples: GalleryItem[] = [
             },
             {
                 imgPath: verticalChartImg,
-                title: "Vertical Charts",
+                title: ExampleStrings.titleVerticalCharts,
                 seoTitle: "JavaScript Vertical Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.path
             }
@@ -317,31 +318,31 @@ export const sciChartExamples: GalleryItem[] = [
         items: [
             {
                 imgPath: pointMarkersImg,
-                title: "Point Markers",
+                title: ExampleStrings.titleUsePointMarkers,
                 seoTitle: "JavaScript Scatter Chart Custom Point Markers Example",
                 examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path
             },
             {
                 imgPath: themeManagerImg,
-                title: "Theme Manager",
+                title: ExampleStrings.titleThemeManager,
                 seoTitle: "JavaScript Chart Theme Manager Example",
                 examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.path
             },
             {
                 imgPath: stylingInCodeImg,
-                title: "Styling Chart in Code",
+                title: ExampleStrings.titleStylingInCode,
                 seoTitle: "JavaScript Chart Styling or Theming in Code",
                 examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode.path
             },
             {
                 imgPath: paletteProviderImg,
-                title: "Coloring Series per-point",
+                title: ExampleStrings.titlePaletteProvider,
                 seoTitle: "Coloring JavaScript Chart Series per-point using the PaletteProvider",
                 examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring.path
             },
             {
                 imgPath: dashedLineImg,
-                title: "Dashed Line Styling",
+                title: ExampleStrings.titleDashedLineStyling,
                 seoTitle: "JavaScript Dashed and Dotted Line Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling.path
             }
@@ -352,13 +353,13 @@ export const sciChartExamples: GalleryItem[] = [
         items: [
             {
                 imgPath: hitTestApiImg,
-                title: "Hit-Test API",
+                title: ExampleStrings.titleHitTestApi,
                 seoTitle: "JavaScript Hit-Test API Example",
                 examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.path
             },
             {
                 imgPath: rolloverImg,
-                title: "Rollover Modifier Tooltips",
+                title: ExampleStrings.titleRolloverModifier,
                 seoTitle: "JavaScript Rollover Modifier Tooltips Example",
                 examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.path
             }
@@ -369,13 +370,13 @@ export const sciChartExamples: GalleryItem[] = [
         items: [
             {
                 imgPath: dragAxisToScaleImg,
-                title: "Drag Axis to Scale or Pan",
+                title: ExampleStrings.titleDragAxisToScale,
                 seoTitle: "Drag Axis on JavaScript Charts to Scale or Pan",
                 examplePath: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.path
             },
             {
                 imgPath: realtimeZoomPanImg,
-                title: "Zoom and Pan with Realtime Charts",
+                title: ExampleStrings.titleRealtimeZoomPan,
                 seoTitle: "Zoom and Pan a Realtime JavaScript Chart",
                 examplePath: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.path
             }
@@ -386,13 +387,13 @@ export const sciChartExamples: GalleryItem[] = [
         items: [
             {
                 imgPath: bubble3dImg,
-                title: "3D Bubble Chart",
+                title: ExampleStrings.titleBubble3DChart,
                 seoTitle: "JavaScript 3D Bubble Chart Example",
                 examplePath: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.path
             },
             {
                 imgPath: mesh3dImg,
-                title: "Surface Mesh 3D",
+                title: ExampleStrings.titleSurfaceMesh3D,
                 seoTitle: "JavaScript Surface Mesh 3D Chart Example",
                 examplePath: EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.path
             }

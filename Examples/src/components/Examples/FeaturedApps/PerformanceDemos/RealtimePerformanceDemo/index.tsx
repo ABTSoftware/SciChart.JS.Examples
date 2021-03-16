@@ -141,16 +141,12 @@ export default function RealtimePerformanceDemo() {
     return (
         <React.Fragment>
             <div id={divElementId} className={classes.ChartWrapper} />
-            <Box mt={20}>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button onClick={controls.startDemo}>Start</Button>
-                </ButtonGroup>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button onClick={controls.stopDemo} style={{ marginLeft: 10 }}>
-                        Stop
-                    </Button>
-                </ButtonGroup>
-            </Box>
+
+            <div className={classes.ButtonsWrapper}>
+                <Button onClick={controls.startDemo}>Start</Button>
+
+                <Button onClick={controls.stopDemo}>Stop</Button>
+            </div>
         </React.Fragment>
     );
 }

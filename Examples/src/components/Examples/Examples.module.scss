@@ -9,8 +9,16 @@
 }
 .ExampleWrapperAudio {
     display: flex;
-    div {
-        width: 100%;
+
+    .ExampleWrapperAudioMain {
+        width: 60%;
+        margin-right: 20px;
+    }
+    .ExampleWrapperAudioSub {
+        width: 30%;
+        div {
+            margin-bottom: 20px;
+        }
     }
 }
 .ExampleWrapper {
@@ -211,6 +219,7 @@
 
 .ButtonsWrapper {
     display: flex;
+    margin-top: 10px;
     button {
         color: $color-main-green;
         border: 1px $color-main-green solid;

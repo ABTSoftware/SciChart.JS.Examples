@@ -1,45 +1,95 @@
 import * as React from "react";
-import {TExampleInfo} from "../../../../AppRouter/examplePages";
-import {code} from "./GENERATED_SRC";
-import {githubUrl} from "./GENERATED_GITHUB_URL";
-import {ExampleStrings} from "../../../ExampleStrings";
+import { TExampleInfo } from "../../../../AppRouter/examplePages";
+import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
+import { ExampleStrings } from "../../../ExampleStrings";
+import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
+import Gallery from "../../../../Gallery/Gallery";
 
-const Description = () => (<div>
-    <p>This demo showcases the loading or startup time of SciChart.js with a million points.
-        Click 'Load' to run the example and see SciChart load 1-million points instantly!</p>
-    <h4>Tips!</h4>
-    <p>For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded appendRange
-        functions on dataseries.</p>
-    <h4>Documentation Links</h4>
-    <ul>
-        <li><a href={ExampleStrings.urlDocumentationHome} title={ExampleStrings.titleDocumentationHome} target="_blank">
-            SciChart.js Documentation Home</a></li>
-        <li><a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
-            SciChart.js Tutorials</a></li>
-        <li><a href={ExampleStrings.urlPerformanceTipsDocumentation} target="_blank"
-               title={ExampleStrings.urlTitlePerformanceTipsDocumentation}>SciChart.js Performance Tips and Tricks</a>
-        </li>
-    </ul>
-    <h4>See Also</h4>
-    <ul>
-        <li><a href={ExampleStrings.urlRealtimeJavaScriptChartDemo}
-               title={ExampleStrings.urlTitleRealtimeJavaScriptChartDemo}>Realtime JavaScript Chart Example</a></li>
-        <li><a href={ExampleStrings.urlLoad500By500}
-               title={ExampleStrings.urlTitleLoad500By500}>Performance Demo: Load 500 series x 500 points</a></li>
-        <li><a href={ExampleStrings.urlRealtimeGhostedTraces}
-               title={ExampleStrings.urlTitleRealtimeGhostedTraces}>Realtime Performance Demo</a></li>
-    </ul>
-</div>);
+import realtimePerformanceImg from "../RealtimePerformanceDemo/javascript-chart-realtime-performance-demo.jpg";
+import ghostedTracesImg from "../RealtimeGhostedTraces/javascript-realtime-ghosted-traces-chart.jpg";
+import load500by500 from "../Load500By500/javascript-chart-load-500-series-by-500-points.jpg";
+import { GalleryItem } from "../../../../../helpes/types/types";
+import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
+
+const seeAlso: GalleryItem[] = [
+    {
+        chartGroupTitle: "See also",
+        items: [
+            {
+                imgPath: realtimePerformanceImg,
+                title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
+                seoTitle: "Realtime JavaScript Chart Performance Demo with many millions of points",
+                examplePath: ExampleStrings.urlRealtimeJavaScriptChartDemo
+            },
+            {
+                imgPath: ghostedTracesImg,
+                title: "Realtime Ghosted Traces Example",
+                seoTitle: "Realtime Ghosted Traces JavaScript Chart Performance demo",
+                examplePath: ExampleStrings.urlRealtimeGhostedTraces
+            },
+            {
+                imgPath: load500by500,
+                title: "Performance Demo: Load 500 series x 500 points",
+                seoTitle:
+                    "This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!",
+                examplePath: ExampleStrings.urlLoad500By500
+            }
+        ]
+    }
+];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    },
+    {
+        href: ExampleStrings.urlTutorialsHome,
+        title: ExampleStrings.titleTutorialsHome,
+        linkTitle: "SciChart.js Tutorials"
+    },
+    {
+        href: ExampleStrings.urlPerformanceTipsDocumentation,
+        title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
+        linkTitle: "SciChart.js Performance Tips and Tricks"
+    }
+];
+// const previewDescription = ``;
+const description = `This demo showcases the loading or startup time of SciChart.js with a million points. Click 'Load' to run the example and see SciChart load 1-million points instantly!`;
+const tips = [
+    `For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded
+    appendRange functions on dataseries.`
+];
+
 const Subtitle = () => (
-    <p>Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds, making our{' '}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a>{' '}
-        the fastest in the world!</p>);
+    <p>
+        Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds, making our{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+            JavaScript Charts
+        </a>{" "}
+        the fastest in the world!
+    </p>
+);
+
+const Description = () => (
+    <>
+        <ExampleDescription
+            documentationLinks={documentationLinks}
+            tips={tips}
+            description={description}
+            seeAlso={seeAlso}
+        />
+    </>
+);
+const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
 
 export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLoadOneMillionPoints,
     path: ExampleStrings.urlLoadOneMillionPoints,
     subtitle: Subtitle,
     description: Description,
+    seeAlso: SeeAlsoComponent,
     code,
     githubUrl,
     seoDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.`,

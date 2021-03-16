@@ -175,18 +175,17 @@ export default function Load1MillionPointsChart() {
                     </ButtonGroup>
                 </div>
             </div>
-            <div className={classes1.notificationsBlock}>
-                {timeSpans.length > 0 && (
-                    <Alert key="0" severity="info" className={classes.Notification}>
-                        {timeSpans.map((ts, index) => (
-                            <div key={index}>
-                                <AlertTitle>{ts.title}</AlertTitle>
-                                Time: {ts.durationMs.toFixed(0)} ms
-                            </div>
-                        ))}
-                    </Alert>
-                )}
-            </div>
+
+            {timeSpans.length > 0 && (
+                <Alert key="0" severity="info" className={classes.Notification}>
+                    {timeSpans.map((ts, index) => (
+                        <div key={index}>
+                            <AlertTitle>{ts.title}</AlertTitle>
+                            Time: {ts.durationMs.toFixed(0)} ms
+                        </div>
+                    ))}
+                </Alert>
+            )}
         </div>
     );
 }

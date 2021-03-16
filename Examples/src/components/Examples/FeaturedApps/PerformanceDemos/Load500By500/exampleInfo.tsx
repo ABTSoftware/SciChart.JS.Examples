@@ -7,7 +7,7 @@ import realtimePerformanceImg from "../RealtimePerformanceDemo/javascript-chart-
 import ghostedTracesImg from "../RealtimeGhostedTraces/javascript-realtime-ghosted-traces-chart.jpg";
 import millionPointsDemoImg from "../Load1MillionPoints/javascript-chart-performance-one-million-points.jpg";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
-import { TDocumentationLink, TSeeAlso } from "../../../../../helpes/types/ExampleDescriptionTypes";
+import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import Gallery from "../../../../Gallery/Gallery";
 
@@ -17,7 +17,7 @@ const seeAlso: GalleryItem[] = [
         items: [
             {
                 imgPath: realtimePerformanceImg,
-                title: "Realtime JavaScript Chart Example",
+                title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
                 seoTitle: "Realtime JavaScript Chart Performance Demo with many millions of points",
                 examplePath: ExampleStrings.urlRealtimeJavaScriptChartDemo
             },
@@ -37,31 +37,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-// const sciChartExamples: GalleryItem[] = [
-//     {
-//         chartGroupTitle: "Performance Demos",
-//         items: [
-//             {
-//                 imgPath: realtimePerformanceImg,
-//                 title: "Realtime Performance Demo",
-//                 seoTitle: "Realtime JavaScript Chart Performance Demo with many millions of points",
-//                 examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.path
-//             },
-//             {
-//                 imgPath: ghostedTracesImg,
-//                 title: "Realtime Ghosted Traces",
-//                 seoTitle: "Realtime Ghosted Traces JavaScript Chart Performance demo",
-//                 examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.path
-//             },
-//             {
-//                 imgPath: millionPointsDemoImg,
-//                 title: "One Million Points Demo",
-//                 seoTitle: "Load One Million Points in a JavaScript Chart Performance Demo",
-//                 examplePath: EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints.path
-//             }
-//         ]
-//     }
-// ];
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
@@ -88,12 +63,6 @@ const tips = [
     `For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded
     appendRange functions on dataseries.`
 ];
-// (
-//     <>
-//         <a href={ExampleStrings.urlRealtimeGhostedTracesDemo} title={ExampleStrings.urlTitleRealtimeGhostedTracesDemo}>
-//             Realtime Ghosted Traces Example
-//         </a>
-//     </>
 
 const Description = () => (
     <div>

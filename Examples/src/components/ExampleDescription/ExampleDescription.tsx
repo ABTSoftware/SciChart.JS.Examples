@@ -7,7 +7,7 @@ import { GalleryItem } from "../../helpes/types/types";
 type TProps = {
     seeAlso: GalleryItem[];
     documentationLinks: TDocumentationLink[];
-    previewDescription: string;
+    previewDescription?: string;
     description: string;
     tips: string[];
 };
@@ -16,7 +16,7 @@ export default function ExampleDescription(props: TProps) {
     return (
         <div>
             <div className={classes.ExampleInfoText}>
-                <p>{props.previewDescription}</p>
+                {props.previewDescription && <p>{props.previewDescription}</p>}
                 <p>{props.description}</p>
             </div>
             <div className={classes.UsefulLinksWrapper}>
@@ -39,7 +39,7 @@ export default function ExampleDescription(props: TProps) {
                     })}
                 </ul>
             </div>
-            
+
             {/* <ul>
                 {props.seeAlso.map((item, index) => {
                     return (
