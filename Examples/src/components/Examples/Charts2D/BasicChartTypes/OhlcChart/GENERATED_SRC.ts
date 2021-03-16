@@ -9,15 +9,15 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { closeValues, dateValues, highValues, lowValues, openValues } from "./data/data";
 import { FastOhlcRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastOhlcRenderableSeries";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {
-    EStrokePaletteMode,
-    IStrokePaletteProvider
-} from "scichart/Charting/Model/IPaletteProvider";
+import { EStrokePaletteMode, IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import classes from "../../../../Examples/Examples.module.scss";
 import Box from "../../../../shared/Helpers/Box/Box";
 import { Button, ButtonGroup } from "@material-ui/core";
+import { uintArgbColorMultiplyOpacity } from "scichart/utils/colorUtil";
+import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
+
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -53,7 +53,8 @@ const drawExample = async () => {
         dataPointWidth: 0.7,
         strokeUp: "#50ff50",
         strokeDown: "#ff5050",
-        paletteProvider: new OhlcPaletteProvider()
+        paletteProvider: new OhlcPaletteProvider(),
+        animation: new SweepAnimation({ duration: 5000, fadeEffect: true })
     });
     sciChartSurface.renderableSeries.add(ohlcSeries);
 
@@ -94,7 +95,7 @@ class OhlcPaletteProvider implements IStrokePaletteProvider {
      * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
      * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
      */
-    overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
+    overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity: number): number {
         const ohlcDataSeries = this.getDataSeries();
         // Get the open, close values
         const close = ohlcDataSeries.getNativeCloseValues().get(index);
@@ -102,7 +103,9 @@ class OhlcPaletteProvider implements IStrokePaletteProvider {
 
         // If more than 1% change, return 'highlightColor' otherwise return undefined for default color
         if (Math.abs(1 - open / close) > 0.01) {
-            return this.highlightColor;
+            return opacity !== undefined
+                ? uintArgbColorMultiplyOpacity(this.highlightColor, opacity)
+                : this.highlightColor;
         }
         return undefined;
     }

@@ -10,6 +10,8 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import classes from "../../../../Examples/Examples.module.scss";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { SplineLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
+import { ELegendOrientation } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 
 const divElementId = "chart";
 
@@ -28,16 +30,24 @@ const drawExample = async () => {
     const yValues = [50, 35, 61, 58, 50, 50, 40, 53, 55, 23, 45, 12, 59, 60];
 
     // Create an XyDataSeries as data source
-    const xyDataSeries = new XyDataSeries(wasmContext);
-    xyDataSeries.appendRange(xValues, yValues);
+    const xyDataSeries = new XyDataSeries(wasmContext, {
+        dataSeriesName: "Original Data ",
+        xValues,
+        yValues
+    });
+
+    const splineXyDataSeries = new XyDataSeries(wasmContext, {
+        dataSeriesName: "Spline Data ",
+        xValues,
+        yValues
+    });
 
     // Create and add a standard line series to the chart.
     // This will be used to compare the spline (smoothed) algorothm
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#4282B4",
         strokeThickness: 1,
-        dataSeries: xyDataSeries,
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "#FFFFFF", stroke: "#006400" })
+        dataSeries: xyDataSeries
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -45,7 +55,8 @@ const drawExample = async () => {
     const splineSeries = new SplineLineRenderableSeries(wasmContext, {
         stroke: "#006400",
         strokeThickness: 3,
-        dataSeries: xyDataSeries,
+        dataSeries: splineXyDataSeries,
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "#FFFFFF", stroke: "#006400" }),
         interpolationPoints: 10 // Set interpolation points to decide the amount of smoothing
     });
     sciChartSurface.renderableSeries.add(splineSeries);
@@ -54,6 +65,7 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(new LegendModifier({ orientation: ELegendOrientation.Horizontal }));
 
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
