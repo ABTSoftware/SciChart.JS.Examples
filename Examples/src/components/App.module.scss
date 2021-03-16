@@ -30,6 +30,8 @@ $drawerWidth: 350px;
     width: $drawerWidth;
     flex-shrink: 0;
     display: none;
+    // fix for a bug of Drawer with anchor="right"
+    inset: unset !important;
 
     @include md {
         display: block;
@@ -38,8 +40,7 @@ $drawerWidth: 350px;
 
 .DrawerPaper {
     width: $drawerWidth;
-    overflow-x: visible;
-    border-radius: $default-border-radius $default-border-radius 0 0;
+    overflow-x: hidden;
 }
 
 .MainAppContent {
