@@ -1,40 +1,90 @@
 import * as React from "react";
-import {TExampleInfo} from "../../../../AppRouter/examplePages";
-import {code} from "./GENERATED_SRC";
-import {githubUrl} from "./GENERATED_GITHUB_URL";
-import {ExampleStrings} from "../../../ExampleStrings";
+import { TExampleInfo } from "../../../../AppRouter/examplePages";
+import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
+import { ExampleStrings } from "../../../ExampleStrings";
+import { GalleryItem } from "../../../../../helpes/types/types";
+import heatmapChart from "../HeatmapChart/javascript-heatmap-chart.jpg";
+import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
+import Gallery from "../../../../Gallery/Gallery";
+import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
-const Description = () => (<div>
-    <p>Demonstrates how to create a JavaScript Contour map Chart. The UniformContoursRenderableSeries accepts a 2D array
-        of data and calculates contour lines at a specified step value and draws them on the chart.</p>
-    <h4>Tips!</h4>
-    <p>Contours are calculated using GPU Shader programs so are very fast, but require some tweaking of properties on
-        UniformContoursRenderableSeries to get a good visual.</p>
-    <h4>Documentation Links</h4>
-    <ul>
-        <li><a href={ExampleStrings.urlDocumentationHome} title={ExampleStrings.titleDocumentationHome} target="_blank">
-            SciChart.js Documentation Home</a></li>
-        <li><a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
-            SciChart.js Tutorials</a></li>
-        <li><a href={ExampleStrings.urlContourChartDocumentation} target="_blank"
-               title={ExampleStrings.urlTitleContourChartDocumentation}>JavaScript Contours Chart Documentation</a></li>
-        <li><a href={ExampleStrings.urlRenderSeriesPropertiesDocumentation}
-               title={ExampleStrings.urlTitleRenderSeriesProperties} target="_blank">
-            Common RenderableSeries Properties</a></li>
-    </ul>
-</div>);
-const Subtitle = () => (<p>Demonstrates how to create a <strong>JavaScript Contour-map Chart</strong>{' '}
-    using SciChart.js, High Performance{' '}
-    <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a></p>);
+const description = `Demonstrates how to create a JavaScript Contour map Chart. The UniformContoursRenderableSeries accepts a 2D
+array of data and calculates contour lines at a specified step value and draws them on the chart.`;
+const tips = [
+    `Contours are calculated using GPU Shader programs so are very fast, but require some tweaking of properties
+on UniformContoursRenderableSeries to get a good visual.`
+];
+
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    },
+    {
+        href: ExampleStrings.urlTutorialsHome,
+        title: ExampleStrings.titleTutorialsHome,
+        linkTitle: "SciChart.js Tutorials"
+    },
+    {
+        href: ExampleStrings.urlContourChartDocumentation,
+        title: ExampleStrings.urlTitleContourChartDocumentation,
+        linkTitle: "JavaScript Contours Chart Documentation"
+    },
+    {
+        href: ExampleStrings.urlRenderSeriesPropertiesDocumentation,
+        title: ExampleStrings.urlTitleRenderSeriesProperties,
+        linkTitle: "Common RenderableSeries Properties"
+    }
+];
+
+const seeAlso: GalleryItem[] = [
+    {
+        chartGroupTitle: "See also",
+        items: [
+            {
+                imgPath: heatmapChart,
+                title: ExampleStrings.titleHeatmapChart,
+                seoTitle: ExampleStrings.urlTitleHeatmapChart,
+                examplePath: ExampleStrings.urlHeatmapChart
+            }
+        ]
+    }
+];
+
+const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
+
+const Subtitle = () => (
+    <p>
+        Demonstrates how to create a <strong>JavaScript Contour-map Chart</strong> using SciChart.js, High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+            JavaScript Charts
+        </a>
+    </p>
+);
+
+const Description = () => (
+    <div>
+        <ExampleDescription
+            documentationLinks={documentationLinks}
+            tips={tips}
+            description={description}
+            seeAlso={seeAlso}
+        />
+    </div>
+);
 
 export const contourChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleContourChart,
     path: ExampleStrings.urlContourChart,
     subtitle: Subtitle,
     description: Description,
+    seeAlso: SeeAlsoComponent,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to create a Realtime JavaScript Contour-map Chart. The Contours series accepts a 2D array" +
+    seoDescription:
+        "Demonstrates how to create a Realtime JavaScript Contour-map Chart. The Contours series accepts a 2D array" +
         "of data and calculates contour lines at a specified step value and draws them on the chart.",
     seoKeywords: "contour, contours, heatmap, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-contours-chart.jpg"

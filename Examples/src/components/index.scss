@@ -1,6 +1,7 @@
 @import "../assets/main.scss";
 code {
-    font-family: Rubik, source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 * {
@@ -62,7 +63,8 @@ button:hover {
 
 html {
     overflow-x: hidden;
-    font-family: Rubik, sans-serif;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     // @include lg {
     //     font-size: 50%;
     // }
@@ -89,5 +91,6 @@ input,
 textarea,
 select,
 button {
-    font-family: Rubik, source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }

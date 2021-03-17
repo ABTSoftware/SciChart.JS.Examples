@@ -2,9 +2,9 @@
 
 .ButtonWrapper {
     display: flex;
-    margin-top: 30px;
+    margin-top: 50px;
     a {
-        padding: 7px 21px;
+        padding: 20px 36px;
         align-items: center;
         color: white;
         background: linear-gradient(114.95deg, #febc48 0%, #e97502 100%);
@@ -37,7 +37,7 @@
         margin: auto;
 
         .PageHomeHeader {
-            padding: $default-spacing * 16 $default-spacing * 3 $default-spacing * 12;
+            padding: $default-spacing * 18.75 $default-spacing * 3;
             @extend %Container;
 
             margin: auto;
@@ -83,7 +83,7 @@
                 }
                 .PageHomeTitle {
                     color: $color-font-green;
-                    font-size: 3.875rem;
+                    font-size: 3.25rem;
 
                     font-weight: 600;
                     margin-bottom: 0;
