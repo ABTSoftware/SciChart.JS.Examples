@@ -2,9 +2,24 @@
 
 .AppBar {
     background-color: $color-dark;
+    height: 68px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    .Logo {
+        width: 152px;
+        height: 30px;
+        margin-right: $default-spacing * 2;
+    }
+
     .MenuButton {
         display: none;
-        margin-right: $default-spacing * 2;
+        margin-left: 12px;
+        padding: 9px;
+        color: $color-dark-green;
+        border: 1px solid $color-grey;
+        border-radius: 4px;
+
         @include md {
             display: block;
         }
@@ -12,5 +27,42 @@
 
     .FlexPlaceholder {
         flex-grow: 1;
+    }
+
+    .GitHubLink {
+        display: flex;
+        padding: 12px 12px;
+        margin-left: 12px;
+        border-radius: 4px;
+        background-color: $color-dark-blue;
+        color: $color-lightest-green;
+        text-decoration: none;
+    }
+
+    // TODO consider extracting common styles
+    .DownloadTrialButton {
+        display: flex;
+        flex: none;
+        width: 170px;
+        height: 100%;
+        margin-left: 12px;
+        padding: $default-spacing * 2 $default-spacing * 2;
+        border-radius: 4px;
+        background: $color-dark-green;
+
+        @include sm {
+            display: none;
+        }
+
+        span {
+            color: $color-lightest-green;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            line-height: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            text-decoration-thickness: auto;
+        }
     }
 }

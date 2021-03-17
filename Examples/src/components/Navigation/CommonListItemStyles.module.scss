@@ -1,6 +1,7 @@
 @import "../../assets/main.scss";
 
 %ListItem {
+    height: 52px;
     padding: 8px 30px 8px 30px;
     display: flex;
     align-items: center;
@@ -9,6 +10,9 @@
     transition: background 0.8s;
     background: transparent radial-gradient(circle, transparent 1%, #0000000f 1%) center/15000%;
     color: $font-color;
+    -webkit-tap-highlight-color: transparent;
+    font-weight: 500;
+    line-height: 17px;
     cursor: pointer;
 
     &:hover {
@@ -45,12 +49,16 @@
   font-weight: 600;
   padding-top: 12px;
   padding-bottom: 12px;
-  line-height: 1.43;
+  line-height: 17px;
 }
 
 %SelectedListItem {
   background-color: $color-dark-green;
   color: $color-primary-white;
+
+  a {
+    color: $color-primary-white;
+  }
 
   &::after {
       content: "";

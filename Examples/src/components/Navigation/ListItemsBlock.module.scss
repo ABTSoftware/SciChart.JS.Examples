@@ -25,11 +25,9 @@
     }
 
     .ExampleLink {
-        @extend %gutter-bottom;
-
         font-size: 0.875rem;
-        line-height: 1.5;
-        margin-left: 40px;
+        line-height: 17px;
+        margin: 9px 0 10px 40px;
         color: $font-color;
         text-decoration: none;
         pointer-events: none;
