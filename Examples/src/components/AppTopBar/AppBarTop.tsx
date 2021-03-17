@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useHistory } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -16,13 +15,13 @@ type TProps = {
 
 const AppBarTop: React.FC<TProps> = props => {
     const { toggleDrawer } = props;
-    const history = useHistory();
-
 
     return (
         <AppBar position="sticky">
             <Toolbar className={classes.AppBar}>
-                <img className={classes.Logo} src={Logo} alt="scichart-logo" onClick={() => history.push("/")} />
+                <a href="https://demo.scichart.com/" title="SciChart Demo">
+                    <img className={classes.Logo} src={Logo} alt="scichart-logo" />
+                </a>
                 <Search />
                 <div className={classes.FlexPlaceholder} />
                 <Button className={classes.DownloadTrialButton} href="https://www.scichart.com/downloads/" target="_blank">
