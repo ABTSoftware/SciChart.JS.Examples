@@ -90,7 +90,7 @@ export default function App() {
                 className={classes.DrawerMobile}
                 variant="temporary"
                 classes={{ paper: classes.DrawerPaper }}
-                anchor="left"
+                anchor="right"
                 open={isMedium && isDrawerOpened}
                 onClose={toggleDrawer}
             >

@@ -75,16 +75,16 @@ export default function AppFooter() {
                     <Box mt={8} className={classes.Contacts}>
                         <h4>Contact us</h4>
                         <div className={classes.SocialMediaLinks}>
-                            <a href="https://www.facebook.com/scichart">
+                            <a href="https://www.facebook.com/scichart" title="SciChart on Facebook">
                                 <FacebookIcon fontSize="large" />
                             </a>
-                            <a href="https://www.youtube.com/user/SciChart">
+                            <a href="https://www.youtube.com/user/SciChart" title="SciChart on YouTube">
                                 <YouTubeIcon fontSize="large" />
                             </a>
-                            <a href="https://www.linkedin.com/company/scichart">
+                            <a href="https://www.linkedin.com/company/scichart" title="SciChart on LinkedIn">
                                 <LinkedInIcon fontSize="large" />
                             </a>
-                            <a href="https://twitter.com/scichart">
+                            <a href="https://twitter.com/scichart" title="SciChart on Twitter">
                                 <TwitterIcon fontSize="large" />
                             </a>
                         </div>
