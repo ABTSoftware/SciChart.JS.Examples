@@ -1,6 +1,8 @@
 @import "../assets/main.scss";
 
-$drawerWidth: 350px;
+$drawerWidthDesktop: 350px;
+$drawerWidthTablet: 375px;
+$drawerWidthMobile: 100%;
 
 .App {
     display: flex;
@@ -12,7 +14,7 @@ $drawerWidth: 350px;
 
 .DrawerDesktop {
     background-color: $color-primary-white;
-    width: $drawerWidth;
+    width: $drawerWidthDesktop;
 
     margin-right: 30px;
     margin-bottom: 30px;
@@ -27,7 +29,6 @@ $drawerWidth: 350px;
 
 .DrawerMobile {
     background-color: $color-primary-white;
-    width: $drawerWidth;
     flex-shrink: 0;
     display: none;
     // fix for a bug of Drawer with anchor="right"
@@ -35,11 +36,16 @@ $drawerWidth: 350px;
 
     @include md {
         display: block;
+        width: $drawerWidthTablet;
+    }
+
+    @include xxs {
+        width: $drawerWidthMobile;
     }
 }
 
 .DrawerPaper {
-    width: $drawerWidth;
+    width: inherit;
     overflow-x: hidden;
 }
 
