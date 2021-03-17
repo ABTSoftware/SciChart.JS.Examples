@@ -17,8 +17,8 @@ const AppBarTop: React.FC<TProps> = props => {
     const { toggleDrawer } = props;
 
     return (
-        <AppBar position="sticky">
-            <Toolbar className={classes.AppBar}>
+        <AppBar position="sticky" className={classes.AppBar}>
+            <Toolbar className={classes.ToolBar}>
                 <a href="https://demo.scichart.com/" title="SciChart Demo">
                     <img className={classes.Logo} src={Logo} alt="scichart-logo" />
                 </a>
