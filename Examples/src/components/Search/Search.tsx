@@ -9,15 +9,17 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
     root: {
-        width: "100%",
+        display: "none",
         [theme.breakpoints.up("sm")]: {
-            width: "80ch"
+            width: "100%",
+            display: "block"
         }
     },
     mySearchField: {
         marginTop: 8,
         "& .MuiInputBase-root": {
             backgroundColor: "#2F3941",
+            color: '#97a0a8',
             "&:hover": {
                 backgroundColor: "#4A545B"
             }
