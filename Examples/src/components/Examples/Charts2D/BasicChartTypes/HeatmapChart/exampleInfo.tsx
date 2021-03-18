@@ -62,9 +62,13 @@ const Subtitle = () => (
 );
 
 const Description = () => (
-    <div>
-        <ExampleDescription documentationLinks={documentationLinks} description={description} seeAlso={seeAlso} />
-    </div>
+    <>
+        <ExampleDescription
+            documentationLinks={documentationLinks}
+            tips={tips}
+            description={description}
+        />
+    </>
 );
 
 export const heatmapChartExampleInfo: TExampleInfo = {

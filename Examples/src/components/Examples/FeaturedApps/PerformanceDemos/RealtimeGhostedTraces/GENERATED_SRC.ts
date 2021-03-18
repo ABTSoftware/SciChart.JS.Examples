@@ -9,7 +9,7 @@ import { fillNoisySinewave, getNoisySinewave } from "scichart/utils/math";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 
 import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../shared/Helpers/Box/Box";
+import Box from "../../../../../helpes/shared/Helpers/Box/Box";
 import { Button, ButtonGroup } from "@material-ui/core";
 
 const AMPLITUDE = 200;
@@ -117,16 +117,12 @@ export default function RealtimeGhostedTraces() {
     return (
         <React.Fragment>
             <div id={divElementId} className={classes.ChartWrapper} />
-            <Box mt={20}>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button id="startAnimation">Start</Button>
-                </ButtonGroup>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button id="stopAnimation" style={{ marginLeft: 10 }}>
-                        Stop
-                    </Button>
-                </ButtonGroup>
-            </Box>
+
+            <div className={classes.ButtonsWrapper}>
+                <Button id="startAnimation">Start</Button>
+
+                <Button id="stopAnimation">Stop</Button>
+            </div>
         </React.Fragment>
     );
 }

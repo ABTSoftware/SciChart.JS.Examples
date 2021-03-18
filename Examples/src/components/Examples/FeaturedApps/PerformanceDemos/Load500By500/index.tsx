@@ -174,10 +174,7 @@ export default function Load500By500() {
 
     return (
         <>
-            <div
-                className={classes.ChartWrapper}
-                // style={{ backgroundImage: `url(${image})`, backgroundSize: "cover", backgroundPosition: "center" }}
-            >
+            <div className={classes.ChartWrapper}>
                 <div id={divElementId} />
             </div>
             <div>

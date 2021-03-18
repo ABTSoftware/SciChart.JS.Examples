@@ -42,14 +42,6 @@ const documentationLinks: TDocumentationLink[] = [
         linkTitle: "Common RenderableSeries Properties"
     }
 ];
-const Subtitle = () => (
-    <p>
-        Demonstrates how to create a <strong>JavaScript Spline Line Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
-    </p>
-);
 
 const seeAlso: GalleryItem[] = [
     {
@@ -73,6 +65,15 @@ const seeAlso: GalleryItem[] = [
 
 const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
 
+const Subtitle = () => (
+    <p>
+        Demonstrates how to create a <strong>JavaScript Spline Line Chart</strong> using SciChart.js, High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+            JavaScript Charts
+        </a>
+    </p>
+);
+
 const Description = () => (
     <>
         <ExampleDescription
@@ -80,10 +81,10 @@ const Description = () => (
             tips={tips}
             description={description}
             previewDescription={previewDescription}
-            seeAlso={seeAlso}
         />
     </>
 );
+
 export const splineLineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineLineChart,
     path: ExampleStrings.urlSplineLineChart,

@@ -11,11 +11,15 @@
 .SourceCodeWrapper {
     background-color: #272822;
     font-size: 0.8em;
-
     pre {
         max-width: 90vw;
         max-height: 600px;
-        // white-space: pre-wrap;
+        overflow: auto;
+        word-wrap: normal;
+        // white-space: pre-line;
         // word-break: break-all;
+        code {
+            overflow: hidden;
+        }
     }
 }

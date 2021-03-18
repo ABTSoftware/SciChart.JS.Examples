@@ -21,6 +21,8 @@ import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface
 import { EColor } from "scichart/types/Color";
 import { getTenorCurveData } from "./TenorCurveData";
 import { IDeletable } from "scichart/Core/IDeletable";
+import classes from "../../../../Examples/Examples.module.scss";
+
 export const divElementId1 = "sciChart1";
 export const divElementId2 = "sciChart2";
 export const divElementId3 = "sciChart3";
@@ -187,14 +189,12 @@ export default function TenorCurves3DChart() {
 
     return (
         <React.Fragment>
-            <div style={{ display: "flex" }}>
-                <div id={divElementId1} style={{ width: X_3D_CHART_SIZE, height: Y_3D_CHART_SIZE }} />
-                <div style={{ marginLeft: 20 }}>
-                    <div
-                        id={divElementId2}
-                        style={{ width: X_2D_CHART_SIZE, height: Y_2D_CHART_SIZE, marginBottom: CHART_MARGIN }}
-                    />
-                    <div id={divElementId3} style={{ width: X_2D_CHART_SIZE, height: Y_2D_CHART_SIZE }} />
+            <div className={classes.ExampleWrapperAudio}>
+                <div id={divElementId1} className={classes.ExampleWrapperAudio}>
+                    <div>
+                        <div id={divElementId2} />
+                        <div id={divElementId3} />
+                    </div>
                 </div>
             </div>
         </React.Fragment>

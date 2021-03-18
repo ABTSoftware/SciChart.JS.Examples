@@ -251,7 +251,47 @@
         align-items: stretch;
     }
 }
+.InputSelectWrapper {
+    display: flex;
+    align-items: center;
+    color: $color-main-green;
+    border: 1px $color-main-green solid;
+    padding: 5px;
+    border-radius: 4px;
 
+    label {
+        margin-right: 5px;
+        margin: 0 auto;
+    }
+    select {
+        background-color: none !important;
+        outline: none;
+        border: none;
+        color: $color-main-green;
+        border-bottom: 1px $color-main-green solid;
+        font-size: 16px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: transparent;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        background-position-y: -2px;
+        text-align: center;
+        border-radius: 2px;
+        margin-right: 2rem;
+        padding-left: 5px;
+    }
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+    @include md {
+        &:not(:last-child) {
+            margin-right: 0px;
+            margin-bottom: 10px;
+        }
+    }
+}
 .Animation {
     transition: all 0.2s;
 

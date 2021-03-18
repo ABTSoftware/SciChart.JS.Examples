@@ -17,7 +17,7 @@ import greyImg from "./img/greyImg.png";
 import yellowImg from "./img/yellowImg.png";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../shared/Helpers/Box/Box";
+import Box from "../../../../../helpes/shared/Helpers/Box/Box";
 
 const divElementId = "chart";
 const COLOR_GREEN = "#00FF00";

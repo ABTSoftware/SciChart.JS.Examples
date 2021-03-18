@@ -81,7 +81,6 @@ const Description = () => (
             tips={tips}
             description={description}
             previewDescription={previewDescription}
-            seeAlso={seeAlso}
         />
     </div>
 );

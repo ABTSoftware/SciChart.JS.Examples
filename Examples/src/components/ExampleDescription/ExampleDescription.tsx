@@ -1,11 +1,8 @@
 import * as React from "react";
 import classes from "./ExampleDescription.module.scss";
-import { TDocumentationLink, TSeeAlso } from "../../helpes/types/ExampleDescriptionTypes";
-import Gallery from "../Gallery/Gallery";
-import { GalleryItem } from "../../helpes/types/types";
+import { TDocumentationLink } from "../../helpes/types/ExampleDescriptionTypes";
 
 type TProps = {
-    seeAlso: GalleryItem[];
     documentationLinks: TDocumentationLink[];
     previewDescription?: string;
     description: string;

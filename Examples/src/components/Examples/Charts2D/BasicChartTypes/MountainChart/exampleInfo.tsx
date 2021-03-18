@@ -71,7 +71,6 @@ const Description = () => (
             documentationLinks={documentationLinks}
             tips={tips}
             description={description}
-            seeAlso={seeAlso}
         />
     </div>
 );

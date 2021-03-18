@@ -12,7 +12,7 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { EStrokePaletteMode, IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import Box from "../../../../shared/Helpers/Box/Box";
+import Box from "../../../../../helpes/shared/Helpers/Box/Box";
 import { Button, ButtonGroup } from "@material-ui/core";
 import { uintArgbColorMultiplyOpacity } from "scichart/utils/colorUtil";
 import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";

@@ -23,7 +23,13 @@ const SourceCode: React.FC<TProps> = props => {
 
             <div className={classes.SourceCodeWrapper}>
                 <pre className="language-javascript line-numbers">
-                    <code style={{ fontFamily: "Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace" }}>{code}</code>
+                    <code
+                        style={{
+                            fontFamily: "Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace"
+                        }}
+                    >
+                        {code}
+                    </code>
                 </pre>
             </div>
         </div>
