@@ -1,60 +1,104 @@
 import * as React from "react";
-import {TExampleInfo} from "../../../../AppRouter/examplePages";
-import {code} from "./GENERATED_SRC";
-import {githubUrl} from "./GENERATED_GITHUB_URL";
-import {ExampleStrings} from "../../../ExampleStrings";
+import { TExampleInfo } from "../../../../AppRouter/examplePages";
+import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
+import { ExampleStrings } from "../../../ExampleStrings";
+import Gallery from "../../../../Gallery/Gallery";
+import { GalleryItem } from "../../../../../helpes/types/types";
+import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
+import ohlcImg from "../../BasicChartTypes/OhlcChart/javascript-ohlc-chart.jpg";
+import candlestickImg from "../../BasicChartTypes/CandlestickChart/javascript-candlestick-chart.jpg";
+import realtimeStockImg from "../../CreateStockCharts/RealtimeTickingStockCharts/javascript-realtime-ticking-stock-charts.jpg";
+import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
-const Description = () => (<div>
-    <p>An example which demonstrates creating static multi-pane stock charts in JavaScript with Price data as
-        Candlesticks, Volume bars behind the chart, Moving averages, plus how to link several charts together to draw
-        Macd and RSI indicators.</p>
-    <p>All charts are synchronized together by using the mouseEventGroup property on chart modifiers and the
-        SciChartVerticalGroup type.</p>
-    <p>Technical indicators are for demonstration purposes only. We recommend using the open source <a
-        href="https://www.npmjs.com/package/talib" target="_blank" rel="nofollow">TA-Lib</a> to add more complex
-        indicators to SciChart.js</p>
-    <h4>Tips!</h4>
-    <p>SciChart.js supports all the features you need to create rich, interactive, realtime JavaScript Stock Chart
-        applications.
-        Including Candlestick/OHLC charts, Band Series for bollinger bands, multi-panes, plus incredible real-time
-        performance.
+const previewDescription = `An example which demonstrates creating static multi-pane stock charts in JavaScript with Price data as
+Candlesticks, Volume bars behind the chart, Moving averages, plus how to link several charts together to
+draw Macd and RSI indicators.`;
+const description = ` All charts are synchronized together by using the mouseEventGroup property on chart modifiers and the
+SciChartVerticalGroup type. Technical indicators are for demonstration purposes only. We recommend using the open source TA-Lib to add more complex indicators to SciChart.js`;
+const tips = [
+    `SciChart.js supports all the features you need to create rich, interactive, realtime JavaScript Stock Chart
+    applications. Including Candlestick/OHLC charts, Band Series for bollinger bands, multi-panes, plus
+    incredible real-time performance.`
+];
+
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    },
+    {
+        href: ExampleStrings.urlTutorialsHome,
+        title: ExampleStrings.titleTutorialsHome,
+        linkTitle: "SciChart.js Tutorials"
+    },
+    {
+        href: ExampleStrings.urlCandlestickChartDocumentation,
+        title: ExampleStrings.urlTitleCandlestickChartDocumentation,
+        linkTitle: "JavaScript Candlestick Chart Documentation"
+    }
+];
+
+const seeAlso: GalleryItem[] = [
+    {
+        chartGroupTitle: "See also",
+        items: [
+            {
+                imgPath: realtimeStockImg,
+                title: ExampleStrings.titleRealtimeTickingStockCharts,
+                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
+                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
+            },
+            {
+                imgPath: ohlcImg,
+                title: ExampleStrings.titleOhlcChart,
+                seoTitle: ExampleStrings.urlTitleOhlcChart,
+                examplePath: ExampleStrings.urlOhlcChart
+            },
+            {
+                imgPath: candlestickImg,
+                title: ExampleStrings.titleCandlestickChart,
+                seoTitle: ExampleStrings.urlTitleCandlestickChart,
+                examplePath: ExampleStrings.urlCandlestickChart
+            }
+        ]
+    }
+];
+
+const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
+
+const Subtitle = () => (
+    <p>
+        Demonstrates how create a multi-pane <strong>JavaScript Stock Chart</strong> with indicator panels, synchronized
+        zooming, panning and cursors, using SciChart.js, High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+            JavaScript Charts
+        </a>
     </p>
-    <h4>Documentation Links</h4>
-    <ul>
-        <li><a href={ExampleStrings.urlDocumentationHome} title={ExampleStrings.titleDocumentationHome} target="_blank">
-            SciChart.js Documentation Home</a></li>
-        <li><a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
-            SciChart.js Tutorials</a></li>
-        <li><a href={ExampleStrings.urlCandlestickChartDocumentation} target="_blank"
-               title={ExampleStrings.urlTitleCandlestickChartDocumentation}>JavaScript Candlestick
-            Chart Documentation</a></li>
-    </ul>
-    <h4>See Also</h4>
-    <ul>
-        <li><a href={ExampleStrings.urlRealtimeTickingStockCharts}
-               title={ExampleStrings.urlTitleRealtimeTickingStockCharts}>The
-            Real-time Ticking Stock Charts Example</a></li>
-        <li><a href={ExampleStrings.urlCandlestickChart}
-               title={ExampleStrings.urlTitleCandlestickChart}>The
-            JavaScript Candlestick Chart Example</a></li>
-        <li><a href={ExampleStrings.urlOhlcChart}
-               title={ExampleStrings.urlTitleOhlcChart}>The
-            JavaScript Ohlc Chart Example</a></li>
-    </ul>
-</div>);
+);
 
-const Subtitle = () => (<p>Demonstrates how create a multi-pane <strong>JavaScript Stock Chart</strong>{' '}
-    with indicator panels, synchronized zooming, panning and cursors, using SciChart.js, High Performance{' '}
-    <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a></p>);
+const Description = () => (
+    <div>
+        <ExampleDescription
+            documentationLinks={documentationLinks}
+            tips={tips}
+            description={description}
+            previewDescription={previewDescription}
+        />
+    </div>
+);
 
 export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMultiPaneStockChart,
     path: ExampleStrings.urlMultiPaneStockChart,
     subtitle: Subtitle,
     description: Description,
+    seeAlso: SeeAlsoComponent,
     code,
     githubUrl,
-    seoDescription: "Multi-Pane JavaScript Stock Chart (Candlestick Chart) Example using SciChart.js. Features Indicators, Volume, Moving-Averages and Tooltips across stock charts",
+    seoDescription:
+        "Multi-Pane JavaScript Stock Chart (Candlestick Chart) Example using SciChart.js. Features Indicators, Volume, Moving-Averages and Tooltips across stock charts",
     seoKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-multi-pane-stock-charts.jpg"
 };

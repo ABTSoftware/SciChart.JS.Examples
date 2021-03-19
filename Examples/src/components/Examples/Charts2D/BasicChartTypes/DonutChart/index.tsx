@@ -101,7 +101,7 @@ export default function DonutChart() {
     return (
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
-            <div className={classes.ButtonsWrapper}>
+            <div className={classes.SelectWrapper}>
                 <div className={classes.InputSelectWrapper}>
                     <label id="sciChartPlacement-label">
                         Legend Placement

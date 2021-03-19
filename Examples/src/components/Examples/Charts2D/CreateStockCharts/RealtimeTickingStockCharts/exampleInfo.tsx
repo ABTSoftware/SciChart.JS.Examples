@@ -2,53 +2,97 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
-import {ExampleStrings} from "../../../ExampleStrings";
+import { ExampleStrings } from "../../../ExampleStrings";
+import Gallery from "../../../../Gallery/Gallery";
+import { GalleryItem } from "../../../../../helpes/types/types";
+import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
+import multiPaneStockChart from "../../CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
+import ohlcImg from "../../BasicChartTypes/OhlcChart/javascript-ohlc-chart.jpg";
+import candlestickImg from "../../BasicChartTypes/CandlestickChart/javascript-candlestick-chart.jpg";
+import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
-const Description = () => (<div>
-    <p>An example which demonstrates real-time ticking / updating stock charts in JavaScript with Price data as
-        Candlesticks or Ohlc and Moving average indicators on the chart.</p>
-    <p>Technical indicators are for demonstration purposes only. We recommend using the open source <a
-        href="https://www.npmjs.com/package/talib" target="_blank" rel="nofollow">TA-Lib</a> to add more complex
-        indicators to SciChart.js</p>
-    <h4>Tips!</h4>
-    <p>Click <strong>Start</strong> to see the example run in real-time!</p>
-    <p>You can change the series type from Candlestick to Ohlc to Mountain and more.</p>
-    <h4>Documentation Links</h4>
-    <ul>
-        <li><a href={ExampleStrings.urlDocumentationHome} title={ExampleStrings.titleDocumentationHome} target="_blank">
-            SciChart.js Documentation Home</a></li>
-        <li><a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
-            SciChart.js Tutorials</a></li>
-        <li><a href={ExampleStrings.urlCandlestickChartDocumentation} target="_blank"
-               title={ExampleStrings.urlTitleCandlestickChartDocumentation}>JavaScript Candlestick
-            Chart Documentation</a></li>
-    </ul>
-    <h4>See Also</h4>
-    <ul>
-        <li><a href={ExampleStrings.urlMultiPaneStockChart}
-               title={ExampleStrings.urlTitleMountainChart}>The
-            JavaScript Multi-Pane Stock Chart Example</a></li>
-        <li><a href={ExampleStrings.urlCandlestickChart}
-               title={ExampleStrings.urlTitleCandlestickChart}>The
-            JavaScript Candlestick Chart Example</a></li>
-        <li><a href={ExampleStrings.urlOhlcChart}
-               title={ExampleStrings.urlTitleOhlcChart}>The
-            JavaScript Ohlc Chart Example</a></li>
-    </ul>
-</div>);
+const previewDescription = `An example which demonstrates real-time ticking / updating stock charts in JavaScript with Price data as
+Candlesticks or Ohlc and Moving average indicators on the chart.`;
+const description = `Technical indicators are for demonstration purposes only. We recommend using the open source TA-Lib`;
+const tips = [`You can change the series type from Candlestick to Ohlc to Mountain and more.`];
 
-const Subtitle = () => (<p>Demonstrates how create a <strong>JavaScript Stock Chart</strong>{' '}
-    with live real-time ticking and updating, using SciChart.js, High Performance{' '}
-    <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a></p>);
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    },
+    {
+        href: ExampleStrings.urlTutorialsHome,
+        title: ExampleStrings.titleTutorialsHome,
+        linkTitle: "SciChart.js Tutorials"
+    },
+    {
+        href: ExampleStrings.urlCandlestickChartDocumentation,
+        title: ExampleStrings.urlTitleCandlestickChartDocumentation,
+        linkTitle: "JavaScript Candlestick Chart Documentation"
+    }
+];
+
+const seeAlso: GalleryItem[] = [
+    {
+        chartGroupTitle: "See also",
+        items: [
+            {
+                imgPath: multiPaneStockChart,
+                title: ExampleStrings.titleMultiPaneStockChart,
+                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
+                examplePath: ExampleStrings.urlMultiPaneStockChart
+            },
+            {
+                imgPath: ohlcImg,
+                title: ExampleStrings.titleOhlcChart,
+                seoTitle: ExampleStrings.urlTitleOhlcChart,
+                examplePath: ExampleStrings.urlOhlcChart
+            },
+            {
+                imgPath: candlestickImg,
+                title: ExampleStrings.titleCandlestickChart,
+                seoTitle: ExampleStrings.urlTitleCandlestickChart,
+                examplePath: ExampleStrings.urlCandlestickChart
+            }
+        ]
+    }
+];
+
+const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
+
+const Subtitle = () => (
+    <p>
+        Demonstrates how create a <strong>JavaScript Stock Chart</strong> with live real-time ticking and updating,
+        using SciChart.js, High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+            JavaScript Charts
+        </a>
+    </p>
+);
+
+const Description = () => (
+    <div>
+        <ExampleDescription
+            documentationLinks={documentationLinks}
+            tips={tips}
+            description={description}
+            previewDescription={previewDescription}
+        />
+    </div>
+);
 
 export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeTickingStockCharts,
     path: ExampleStrings.urlRealtimeTickingStockCharts,
     subtitle: Subtitle,
     description: Description,
+    seeAlso: SeeAlsoComponent,
     code,
     githubUrl,
-    seoDescription: "Realtime JavaScript Stock Chart demo using SciChart.js. Features live updating Candlestick/Ohlc charts, moving averages and volume",
+    seoDescription:
+        "Realtime JavaScript Stock Chart demo using SciChart.js. Features live updating Candlestick/Ohlc charts, moving averages and volume",
     seoKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-realtime-ticking-stock-charts.jpg"
 };
