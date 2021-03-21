@@ -57,7 +57,7 @@ const drawExample = async () => {
         strokeThickness: 2,
         dataPointWidth: 0.7,
         dataSeries,
-        animation: new FadeAnimation({ duration: 5000 })
+        animation: new FadeAnimation({ duration: 1000 })
     });
     sciChartSurface.renderableSeries.add(columnSeries);
 

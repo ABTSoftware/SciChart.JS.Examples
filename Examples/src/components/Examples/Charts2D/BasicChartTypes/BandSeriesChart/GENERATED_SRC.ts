@@ -40,7 +40,7 @@ const drawExample = async () => {
     rendSeries.fillY1 = "#FF191933";
     rendSeries.stroke = "#FF1919FF";
     rendSeries.strokeY1 = "#279B27FF";
-    rendSeries.animation = new ScaleAnimation({ duration: 4000, zeroLine: 0 });
+    rendSeries.animation = new ScaleAnimation({ duration: 600, zeroLine: 0 });
     sciChartSurface.renderableSeries.add(rendSeries);
 
     // Optional: Add some interactivity modifiers
