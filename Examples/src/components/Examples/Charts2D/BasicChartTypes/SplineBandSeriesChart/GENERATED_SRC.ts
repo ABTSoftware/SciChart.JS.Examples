@@ -11,6 +11,7 @@ import classes from "../../../../Examples/Examples.module.scss";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { SplineBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineBandRenderableSeries";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
 
 const divElementId = "chart";
 
@@ -40,7 +41,8 @@ const drawExample = async () => {
         dataSeries,
         strokeThickness: 2,
         interpolationPoints: 10, // Choose the number of points to interpolate for smoothing
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "#FFFFFF", stroke: "#006400" })
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "#FFFFFF", stroke: "#006400" }),
+        animation: new ScaleAnimation({ duration: 1000, zeroLine: 0, fadeEffect: true })
     });
     rendSeries.fill = "#279B2733";
     rendSeries.fillY1 = "#FF191933";

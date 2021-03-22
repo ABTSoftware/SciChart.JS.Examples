@@ -13,6 +13,7 @@ import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
 import { SplineMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineMountainRenderableSeries";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 
 const divElementId = "chart";
 
@@ -54,7 +55,8 @@ const drawExample = async () => {
             { color: "rgba(70,130,180,0.2)", offset: 1 }
         ]),
         pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, stroke: "#006400", fill: "#FFFFFF" }),
-        dataSeries: xyDataSeries
+        dataSeries: xyDataSeries,
+        animation: new WaveAnimation({ duration: 1000, fadeEffect: true, zeroLine: 10 })
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 

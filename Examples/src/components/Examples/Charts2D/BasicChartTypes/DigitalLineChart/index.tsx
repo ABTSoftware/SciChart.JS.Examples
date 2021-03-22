@@ -8,6 +8,7 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import classes from "../../../../Examples/Examples.module.scss";
+import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
 
 const divElementId = "chart";
 
@@ -33,7 +34,8 @@ const drawExample = async () => {
         stroke: "#ff6600",
         strokeThickness: 3,
         dataSeries: xyDataSeries,
-        isDigitalLine: true
+        isDigitalLine: true,
+        animation: new ScaleAnimation({ duration: 1000, fadeEffect: true })
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 

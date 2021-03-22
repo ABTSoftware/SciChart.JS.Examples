@@ -12,6 +12,7 @@ import { ENumericFormat } from "scichart/types/NumericFormat";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
 import classes from "../../../../Examples/Examples.module.scss";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 
 const divElementId = "chart";
 
@@ -46,7 +47,8 @@ const drawExample = async () => {
             { color: "rgba(70,130,180,1)", offset: 0 },
             { color: "rgba(70,130,180,0.2)", offset: 1 }
         ]),
-        isDigitalLine: true
+        isDigitalLine: true,
+        animation: new WaveAnimation({ duration: 1000, fadeEffect: true, zeroLine: 0 })
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 

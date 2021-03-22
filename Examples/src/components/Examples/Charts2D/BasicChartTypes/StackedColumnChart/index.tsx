@@ -13,6 +13,7 @@ import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 
 const xValues = [1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003];
 const porkData = [10, 13, 7, 16, 4, 6, 20, 14, 16, 10, 24, 11];
@@ -91,6 +92,7 @@ const drawExample = async () => {
     const verticallyStackedColumnCollection = new StackedColumnCollection(wasmContext);
     verticallyStackedColumnCollection.dataPointWidth = 0.8;
     verticallyStackedColumnCollection.add(rendSeries1, rendSeries2, rendSeries3, rendSeries4, rendSeries5);
+    verticallyStackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
 
     sciChartSurface.renderableSeries.add(verticallyStackedColumnCollection);
 

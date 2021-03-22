@@ -117,12 +117,6 @@ export const drawExample = async () => {
         timerId = setTimeout(runAddDataOnTimeout, 1000);
     };
 
-    const handleStop = () => {
-        animationToken.cancelAnimation();
-        clearTimeout(timerId);
-        timerId = undefined;
-    };
-
     const handleStart = () => {
         if (timerId) {
             handleStop();
@@ -133,22 +127,25 @@ export const drawExample = async () => {
     return { sciChartSurface, wasmContext, controls: { handleStart, handleStop } };
 };
 
+const handleStop = () => {
+    animationToken?.cancelAnimation();
+    clearTimeout(timerId);
+    timerId = undefined;
+};
+
 let scs: SciChartSurface;
 
 export default function RealtimeMountainChart() {
-    const [controls, setControls] = React.useState({ handleStart: () => {}, handleStop: () => {} });
-
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
             scs = res.sciChartSurface;
-            setControls(res.controls);
             res.controls.handleStart();
         })();
 
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            controls.handleStop();
+            handleStop();
             scs?.delete();
         };
     }, []);

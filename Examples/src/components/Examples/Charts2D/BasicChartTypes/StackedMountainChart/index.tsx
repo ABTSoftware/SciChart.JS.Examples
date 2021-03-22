@@ -13,6 +13,7 @@ import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModif
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 import classes from "../../../../Examples/Examples.module.scss";
+import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 
 const divElementId = "chart";
 
@@ -53,6 +54,7 @@ const drawExample = async () => {
     const stackedMountainCollection = new StackedMountainCollection(wasmContext);
     stackedMountainCollection.isOneHundredPercent = true;
     stackedMountainCollection.add(rendSeries1, rendSeries2, rendSeries3);
+    stackedMountainCollection.animation = new SweepAnimation({ duration: 1000, fadeEffect: true });
 
     // Add the StackedMountainCollection to the chart
     sciChartSurface.renderableSeries.add(stackedMountainCollection);

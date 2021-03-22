@@ -12,6 +12,7 @@ import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/Ellip
 import { SplineLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 import { ELegendOrientation } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 
 const divElementId = "chart";
 
@@ -47,7 +48,8 @@ const drawExample = async () => {
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#4282B4",
         strokeThickness: 1,
-        dataSeries: xyDataSeries
+        dataSeries: xyDataSeries,
+        animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true })
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -57,7 +59,8 @@ const drawExample = async () => {
         strokeThickness: 3,
         dataSeries: splineXyDataSeries,
         pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "#FFFFFF", stroke: "#006400" }),
-        interpolationPoints: 10 // Set interpolation points to decide the amount of smoothing
+        interpolationPoints: 10, // Set interpolation points to decide the amount of smoothing,
+        animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true })
     });
     sciChartSurface.renderableSeries.add(splineSeries);
 
