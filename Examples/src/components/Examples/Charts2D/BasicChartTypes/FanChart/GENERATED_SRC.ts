@@ -11,10 +11,12 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
+import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 
 // tslint:disable:max-line-length
 
 const divElementId = "chart";
+const animation = new SweepAnimation({ duration: 700, fadeEffect: true });
 
 const drawExample = async () => {
     // Create a SciChartSurface
@@ -67,7 +69,8 @@ const drawExample = async () => {
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: actualDataSeries,
-            stroke: "Red"
+            stroke: "Red",
+            animation
         })
     );
 
@@ -77,7 +80,8 @@ const drawExample = async () => {
             dataSeries: variance3DataSeries,
             opacity: 0.15,
             fill: "Red",
-            strokeY1: "#00000000"
+            strokeY1: "#00000000",
+            animation
         })
     );
     sciChartSurface.renderableSeries.add(
@@ -85,7 +89,8 @@ const drawExample = async () => {
             dataSeries: variance2DataSeries,
             opacity: 0.33,
             fill: "Red",
-            strokeY1: "#00000000"
+            strokeY1: "#00000000",
+            animation
         })
     );
     sciChartSurface.renderableSeries.add(
@@ -93,7 +98,8 @@ const drawExample = async () => {
             dataSeries: variance1DataSeries,
             opacity: 0.5,
             fill: "Red",
-            strokeY1: "#00000000"
+            strokeY1: "#00000000",
+            animation
         })
     );
 

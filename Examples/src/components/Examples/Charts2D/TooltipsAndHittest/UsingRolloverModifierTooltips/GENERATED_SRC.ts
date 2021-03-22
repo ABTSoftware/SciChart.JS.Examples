@@ -177,7 +177,7 @@ export default function UsingRolloverModifierTooltips() {
                 <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                     <Button
                         onClick={() => {
-                            if (showButtons) handleAddSeries;
+                            if (showButtons) handleAddSeries();
                         }}
                         size="medium"
                         color="primary"
@@ -187,7 +187,7 @@ export default function UsingRolloverModifierTooltips() {
                     </Button>
                     <Button
                         onClick={() => {
-                            if (showButtons) handleRemoveSeries;
+                            if (showButtons) handleRemoveSeries();
                         }}
                         size="medium"
                         color="primary"

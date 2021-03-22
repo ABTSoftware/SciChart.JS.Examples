@@ -62,7 +62,7 @@ const drawExample = async () => {
         strokeUp: "#50ff50",
         strokeDown: "#ff5050",
         paletteProvider: new CandlestickPaletteProvider(),
-        animation: new WaveAnimation({ zeroLine: 1.12, pointDurationFraction: 0.5, fadeEffect: true })
+        animation: new WaveAnimation({ zeroLine: 1.12, pointDurationFraction: 0.5, fadeEffect: true, duration: 1000 })
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
 

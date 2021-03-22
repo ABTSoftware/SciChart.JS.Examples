@@ -38,7 +38,7 @@ const drawExample = async () => {
         stroke: "#ff6600",
         strokeThickness: 5,
         dataSeries: xyDataSeries,
-        animation: new WaveAnimation({ zeroLine: -1, pointDurationFraction: 0.5 })
+        animation: new WaveAnimation({ zeroLine: -1, pointDurationFraction: 0.5, duration: 1000 })
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 

@@ -54,7 +54,7 @@ const drawExample = async () => {
         strokeUp: "#50ff50",
         strokeDown: "#ff5050",
         paletteProvider: new OhlcPaletteProvider(),
-        animation: new SweepAnimation({ duration: 5000, fadeEffect: true })
+        animation: new SweepAnimation({ duration: 1000, fadeEffect: true })
     });
     sciChartSurface.renderableSeries.add(ohlcSeries);
 
