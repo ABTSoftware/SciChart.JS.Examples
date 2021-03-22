@@ -13,7 +13,7 @@ import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModif
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 import classes from "../../../../Examples/Examples.module.scss";
-import { SweepAnimation } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
+import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 
 const divElementId = "chart";
 

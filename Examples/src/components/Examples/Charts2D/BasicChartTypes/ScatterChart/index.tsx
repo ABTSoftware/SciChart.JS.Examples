@@ -16,8 +16,8 @@ import {
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import classes from "../../../../Examples/Examples.module.scss";
-import { ScaleAnimation } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
-import { uintArgbColorMultiplyOpacity } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/utils/colorUtil";
+import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
+import { uintArgbColorMultiplyOpacity } from "scichart/utils/colorUtil";
 
 // tslint:disable:no-empty
 
