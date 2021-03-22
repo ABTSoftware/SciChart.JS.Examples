@@ -296,14 +296,14 @@ export default function RealtimeTickingStockCharts() {
                 <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                     <Button
                         onClick={() => {
-                            if (showControls) controls.startAnimation;
+                            if (showControls) controls.startAnimation();
                         }}
                     >
                         Start
                     </Button>
                     <Button
                         onClick={() => {
-                            if (showControls) controls.stopAnimation;
+                            if (showControls) controls.stopAnimation();
                         }}
                     >
                         Stop

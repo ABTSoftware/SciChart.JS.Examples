@@ -43,7 +43,7 @@ const drawExample = async () => {
         }),
         // Optional: PaletteProvider feature allows coloring per-point based on a rule
         paletteProvider: new ScatterPaletteProvider(),
-        animation: new ScaleAnimation({ duration: 5000, fadeEffect: true })
+        animation: new ScaleAnimation({ duration: 1000, fadeEffect: true })
     });
     sciChartSurface.renderableSeries.add(scatterSeries);
 
