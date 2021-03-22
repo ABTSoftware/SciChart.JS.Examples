@@ -19,7 +19,7 @@ import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
-const animation = new ScaleAnimation({ zeroLine: -100 });
+const animation = new ScaleAnimation({ zeroLine: -100, duration: 1000 });
 
 const drawExample = async () => {
     // Create a SciChartSurface with X,Y Axis

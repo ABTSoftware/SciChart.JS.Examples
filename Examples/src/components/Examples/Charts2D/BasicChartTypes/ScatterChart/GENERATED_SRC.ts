@@ -11,11 +11,13 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import {
     EStrokePaletteMode,
     IPointMarkerPaletteProvider,
-    TPointMarkerArgb,
+    TPointMarkerArgb
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import classes from "../../../../Examples/Examples.module.scss";
+import { ScaleAnimation } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
+import { uintArgbColorMultiplyOpacity } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/utils/colorUtil";
 
 // tslint:disable:no-empty
 
@@ -37,10 +39,11 @@ const drawExample = async () => {
             height: 7,
             strokeThickness: 1,
             fill: "steelblue",
-            stroke: "LightSteelBlue",
+            stroke: "LightSteelBlue"
         }),
         // Optional: PaletteProvider feature allows coloring per-point based on a rule
         paletteProvider: new ScatterPaletteProvider(),
+        animation: new ScaleAnimation({ duration: 5000, fadeEffect: true })
     });
     sciChartSurface.renderableSeries.add(scatterSeries);
 
@@ -73,13 +76,16 @@ class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
 
     onDetached(): void {}
 
-    overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
+    overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity: number): TPointMarkerArgb {
         // Y-values which are outside the range +0.5, -0.5 are colored red, while all other values are left default.
         if (yValue >= 0.5 || yValue <= -0.5) {
-            return {
-                stroke: this.overrideStroke,
-                fill: this.overrideFill,
-            };
+            const stroke =
+                opacity !== undefined
+                    ? uintArgbColorMultiplyOpacity(this.overrideStroke, opacity)
+                    : this.overrideStroke;
+            const fill =
+                opacity !== undefined ? uintArgbColorMultiplyOpacity(this.overrideFill, opacity) : this.overrideFill;
+            return { stroke, fill };
         }
         // Undefined means use default colors
         return undefined;

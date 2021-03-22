@@ -9,6 +9,7 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import classes from "../../../../Examples/Examples.module.scss";
+import { ScaleAnimation } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
 
 const divElementId = "chart";
 
@@ -36,7 +37,8 @@ const drawExample = async () => {
     const rendSeries = new FastBandRenderableSeries(wasmContext, {
         dataSeries,
         strokeThickness: 2,
-        isDigitalLine: true
+        isDigitalLine: true,
+        animation: new ScaleAnimation({ duration: 1000, zeroLine: 0, fadeEffect: true })
     });
     sciChartSurface.renderableSeries.add(rendSeries);
     rendSeries.fill = "#279B2733";
