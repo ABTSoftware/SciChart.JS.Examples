@@ -177,41 +177,45 @@ export default function ChartLegendsAPI() {
                     />
                 </FormControl>
             </div>
-            <div style={{ marginTop: 20, display: "flex" }}>
-                <FormControl variant="filled" style={{ width: 200 }}>
-                    <InputLabel id="sciChartPlacement-label">Legend Placement</InputLabel>
-                    <Select
-                        labelId="sciChartPlacement-label"
-                        id="sciChartPlacement"
-                        value={placementValue}
-                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                            if (chartReady) handleChangePlacement(e);
-                        }}
-                    >
-                        {placementSelect.map(el => (
-                            <MenuItem key={el.value} value={el.value}>
-                                {el.text}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <FormControl variant="filled" style={{ width: 200, marginLeft: 10 }}>
-                    <InputLabel id="sciChartOrientation-label">Legend Orientation</InputLabel>
-                    <Select
-                        labelId="sciChartOrientation-label"
-                        id="sciChartOrientation"
-                        value={orientationValue}
-                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                            if (chartReady) handleChangeOrientation(e);
-                        }}
-                    >
-                        {orientationSelect.map(el => (
-                            <MenuItem key={el.value} value={el.value}>
-                                {el.text}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+
+            <div className={classes.SelectWrapper}>
+                <div className={classes.InputSelectWrapper}>
+                    <label id="sciChartPlacement-label">
+                        Legend Placement
+                        <select
+                            id="sciChartPlacement"
+                            value={placementValue}
+                            onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                                if (chartReady) handleChangePlacement(e);
+                            }}
+                        >
+                            {placementSelect.map(el => (
+                                <option key={el.value} value={el.value}>
+                                    {el.text}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
+                </div>
+
+                <div className={classes.InputSelectWrapper}>
+                    <label id="sciChartPlacement-label">
+                        Legend Orientation
+                        <select
+                            id="sciChartOrientation"
+                            value={orientationValue}
+                            onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                                if (chartReady) handleChangeOrientation(e);
+                            }}
+                        >
+                            {orientationSelect.map(el => (
+                                <option key={el.value} value={el.value}>
+                                    {el.text}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
+                </div>
             </div>
         </div>
     );

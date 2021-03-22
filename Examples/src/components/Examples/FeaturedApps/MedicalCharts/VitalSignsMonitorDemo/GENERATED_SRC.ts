@@ -271,7 +271,7 @@ export default function VitalSignsMonitorDemo() {
     }, []);
 
     return (
-        <div style={{ overflowX: "auto" }}>
+        <div>
             <div className={classes.ChartContainer}>
                 <div id={divElementId} style={{ width: 600 }} />
                 <div className={classes.InfoBoxContainer}>

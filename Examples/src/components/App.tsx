@@ -14,7 +14,6 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import classes from "./App.module.scss";
 import "./index.scss";
 import Gallery from "./Gallery/Gallery";
-import Slider from "react-slick";
 import { PAGES } from "./AppRouter/pages";
 import { sciChartExamples } from "../helpes/SciChartExamples";
 
