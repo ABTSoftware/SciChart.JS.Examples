@@ -1,0 +1,38 @@
+.divider {
+  position: relative;
+  border-bottom: 1px solid $color-dark-blue;
+  margin-bottom: 16px;
+}
+
+.dividerBox {
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background-color: $color-dark-green;
+}
+
+%CommonLinkStyles {
+  a {
+    display: block;
+    color: $color-primary-grey;
+    text-decoration: none;
+    margin-bottom: 18px;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+  }
+}
+
+%CommonFooterGridConfigs {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+      
+  @include sm{
+      grid-template-columns: 50% 50%;
+  }
+      
+  @include xs{
+      grid-template-columns: 100%;
+  }
+} 
