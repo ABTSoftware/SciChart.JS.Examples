@@ -4,7 +4,6 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
-import Gallery from "../../../../Gallery/Gallery";
 
 import realtimePerformanceImg from "../RealtimePerformanceDemo/javascript-chart-realtime-performance-demo.jpg";
 import ghostedTracesImg from "../RealtimeGhostedTraces/javascript-realtime-ghosted-traces-chart.jpg";
@@ -76,14 +75,13 @@ const Description = () => (
         <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
     </>
 );
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
 
 export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLoadOneMillionPoints,
     path: ExampleStrings.urlLoadOneMillionPoints,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.`,

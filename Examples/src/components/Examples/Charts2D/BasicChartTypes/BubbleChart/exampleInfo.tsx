@@ -3,10 +3,8 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import scatterChart from "../ScatterChart/javascript-scatter-chart.jpg";
 import pointMarkers from "../../StylingAndTheming/UsePointMarkers/javascript-chart-custom-poinmarkers.jpg";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
@@ -47,7 +45,7 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: scatterChart,
+                imgPath: ExampleStrings.imgScatterChart,
                 title: ExampleStrings.titleScatterChart,
                 seoTitle: ExampleStrings.urlTitleScatterChart,
                 examplePath: ExampleStrings.urlScatterChart
@@ -62,7 +60,7 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
+
 
 const Subtitle = () => (
     <p>
@@ -89,7 +87,7 @@ export const bubbleChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlBubbleChart,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

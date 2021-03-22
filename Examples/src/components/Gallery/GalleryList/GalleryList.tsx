@@ -90,27 +90,28 @@ export default function GalleryList(props: TProps) {
                     return "";
                 })}
 
-                {!showAll ? (
-                    <button
-                        className={classes.ShowAllButton}
-                        onClick={() => {
-                            setShowAll(true);
-                        }}
-                    >
-                        Show All
-                        <ArrowDropDownIcon />
-                    </button>
-                ) : (
-                    <button
-                        className={classes.ShowAllButton}
-                        onClick={() => {
-                            setShowAll(false);
-                        }}
-                    >
-                        Hide
-                        <ArrowDropUpIcon />
-                    </button>
-                )}
+                {props.example.items.length > 1 &&
+                    (!showAll ? (
+                        <button
+                            className={classes.ShowAllButton}
+                            onClick={() => {
+                                setShowAll(true);
+                            }}
+                        >
+                            Show All
+                            <ArrowDropDownIcon />
+                        </button>
+                    ) : (
+                        <button
+                            className={classes.ShowAllButton}
+                            onClick={() => {
+                                setShowAll(false);
+                            }}
+                        >
+                            Hide
+                            <ArrowDropUpIcon />
+                        </button>
+                    ))}
             </ul>
         </ComponentWrapper>
     );

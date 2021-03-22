@@ -3,7 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import multiPaneStockChart from "../../CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
@@ -69,8 +68,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Candlestick Chart</strong> or Stock Chart using SciChart.js,
@@ -97,7 +94,7 @@ export const candlestickChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlCandlestickChart,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

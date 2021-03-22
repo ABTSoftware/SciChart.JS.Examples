@@ -8,7 +8,6 @@ import { GalleryItem } from "../../../../../helpes/types/types";
 import load500By500 from "../Load500By500/javascript-chart-load-500-series-by-500-points.jpg";
 import ghostedTracesImg from "../RealtimeGhostedTraces/javascript-realtime-ghosted-traces-chart.jpg";
 import millionPointsDemoImg from "../Load1MillionPoints/javascript-chart-performance-one-million-points.jpg";
-import Gallery from "../../../../Gallery/Gallery";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const Subtitle = () => (
@@ -72,8 +71,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Description = () => (
     <div>
         <ExampleDescription
@@ -90,7 +87,7 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlRealtimeJavaScriptChartDemo,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

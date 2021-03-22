@@ -3,7 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 
@@ -54,8 +53,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Mountain Chart</strong> using SciChart.js, High Performance{" "}
@@ -80,7 +77,7 @@ export const mountainChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlMountainChart,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

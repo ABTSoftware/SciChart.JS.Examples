@@ -3,7 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import ohlcImg from "../../BasicChartTypes/OhlcChart/javascript-ohlc-chart.jpg";
@@ -66,8 +65,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how create a multi-pane <strong>JavaScript Stock Chart</strong> with indicator panels, synchronized
@@ -94,7 +91,7 @@ export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlMultiPaneStockChart,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

@@ -3,7 +3,6 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import hitTestApiChart from "../HitTestAPI/javascript-chart-hit-test-on-click.png";
@@ -78,8 +77,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create <strong>crosshairs on mouseover</strong> using SciChart.js, High Performance{" "}
@@ -105,7 +102,7 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlCursorModifier,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription: "Demonstrates adding a Cursor (Crosshair) to a JavaScript Chart with SciChart.js CursorModifier",

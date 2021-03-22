@@ -7,7 +7,6 @@ import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescripti
 import { GalleryItem } from "../../../../../helpes/types/types";
 import splineMountain from "../SplineMountainChart/javascript-spline-mountain-chart.jpg";
 import splineBand from "../SplineBandSeriesChart/javascript-band-chart.jpg";
-import Gallery from "../../../../Gallery/Gallery";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `This example demonstrates how a JavaScript Spline Line chart can be created using the
@@ -63,8 +62,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Spline Line Chart</strong> using SciChart.js, High Performance{" "}
@@ -90,7 +87,7 @@ export const splineLineChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlSplineLineChart,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

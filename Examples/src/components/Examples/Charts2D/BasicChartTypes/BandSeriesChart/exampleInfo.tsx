@@ -3,12 +3,11 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
-import multiPaneStockChart from "../../CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
-import fanChart from "../FanChart/javascript-fan-chart.jpg";
+// import multiPaneStockChart from "src/components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
+// import fanChart from "../FanChart/javascript-fan-chart.jpg";
 
 const previewDescription = `Demonstrates how to create a JavaScript Spline Band Chart. This is a chart type which draws an area (polygon
     or fill) between two lines. The FastBandRenderableSeries requires an XyyDataSeries, which contains one
@@ -47,23 +46,23 @@ const seeAlso: GalleryItem[] = [
     {
         chartGroupTitle: "See also",
         items: [
-            {
-                imgPath: multiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
-            },
-            {
-                imgPath: fanChart,
-                title: ExampleStrings.titleFanChart,
-                seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
-                examplePath: ExampleStrings.urlFanChart
-            }
+            // {
+            //     imgPath: multiPaneStockChart,
+            //     title: ExampleStrings.titleMultiPaneStockChart,
+            //     seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
+            //     examplePath: ExampleStrings.urlMultiPaneStockChart
+            // },
+            // {
+            //     imgPath: fanChart,
+            //     title: ExampleStrings.titleFanChart,
+            //     seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
+            //     examplePath: ExampleStrings.urlFanChart
+            // }
         ]
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
+
 
 const Subtitle = () => (
     <p>
@@ -91,7 +90,7 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlBandChart,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

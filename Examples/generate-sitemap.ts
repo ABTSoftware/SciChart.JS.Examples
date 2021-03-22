@@ -61,28 +61,28 @@ const basePath = "https://demo.scichart.com";
         }
     });
 
-    // Create a stream to write to
-    const stream = new SitemapStream({
-        hostname: basePath,
-        lastmodDateOnly: true,
-        xmlns: {
-            // trim the xml namespace
-            news: false, // flip to false to omit the xml namespace for news
-            xhtml: false,
-            image: true,
-            video: false,
-            custom: [
-                'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"',
-                'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"',
-            ],
-        },
-    });
+    // // Create a stream to write to
+    // const stream = new SitemapStream({
+    //     hostname: basePath,
+    //     lastmodDateOnly: true,
+    //     xmlns: {
+    //         // trim the xml namespace
+    //         news: false, // flip to false to omit the xml namespace for news
+    //         xhtml: false,
+    //         image: true,
+    //         video: false,
+    //         custom: [
+    //             'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"',
+    //             'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"',
+    //         ],
+    //     },
+    // });
 
-    // Return a promise that resolves with your XML string
-    const data = await streamToPromise(Readable.from(links).pipe(stream));
-    const xmlStringResult = data.toString();
-    fs.writeFile("sitemap.xml", xmlStringResult, (err) => {
-        if (err) console.log(err);
-        console.log("sitemap.xml is successfully written to file.");
-    });
+    // // Return a promise that resolves with your XML string
+    // const data = await streamToPromise(Readable.from(links).pipe(stream));
+    // const xmlStringResult = data.toString();
+    // fs.writeFile("sitemap.xml", xmlStringResult, (err) => {
+    //     if (err) console.log(err);
+    //     console.log("sitemap.xml is successfully written to file.");
+    // });
 })();

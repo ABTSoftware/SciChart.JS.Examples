@@ -3,7 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import mountainImg from "../MountainChart/javascript-mountain-chart.jpg";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
@@ -67,7 +66,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Stacked Mountain Chart</strong> using SciChart.js, High
@@ -93,7 +91,7 @@ export const stackedMountainChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlStackedMountainChart,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

@@ -4,9 +4,7 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import splineMountain from "../SplineMountainChart/javascript-spline-mountain-chart.jpg";
-import splineLineChart from "../SplineLineChart/javascript-spline-smoothed-line-chart.jpg";
-import Gallery from "../../../../Gallery/Gallery";
+
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
@@ -58,13 +56,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: splineLineChart,
+                imgPath: ExampleStrings.imgSplineLineChart,
                 title: ExampleStrings.titleSplineLineChart,
                 seoTitle: ExampleStrings.urlTitleSplineLineChartDocumentation,
                 examplePath: ExampleStrings.urlSplineLineChartDocumentation
             },
             {
-                imgPath: splineMountain,
+                imgPath: ExampleStrings.imgSplineMountainChart,
                 title: ExampleStrings.titleSplineMountainChart,
                 seoTitle: ExampleStrings.urlTitleMountainChart,
                 examplePath: ExampleStrings.urlSplineMountainChart
@@ -72,8 +70,6 @@ const seeAlso: GalleryItem[] = [
         ]
     }
 ];
-
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
 
 const Description = () => (
     <div>
@@ -91,7 +87,7 @@ export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlSplineBandChart,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

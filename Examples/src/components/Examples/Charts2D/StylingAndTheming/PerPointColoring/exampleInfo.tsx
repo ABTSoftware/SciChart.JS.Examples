@@ -3,7 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import scatterChart from "../../BasicChartTypes/ScatterChart/javascript-scatter-chart.jpg";
@@ -63,8 +62,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how create <strong>JavaScript Charts with per-point coloring</strong> using SciChart.js, High
@@ -86,7 +83,7 @@ export const perPointColoringExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlPaletteProvider,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription: "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",

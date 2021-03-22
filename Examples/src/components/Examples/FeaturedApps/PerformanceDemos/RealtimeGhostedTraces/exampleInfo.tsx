@@ -3,7 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import load500By500 from "../Load500By500/javascript-chart-load-500-series-by-500-points.jpg";
 import realtimePerformanceImg from "../RealtimePerformanceDemo/javascript-chart-realtime-performance-demo.jpg";
 import millionPointsDemoImg from "../Load1MillionPoints/javascript-chart-performance-one-million-points.jpg";
@@ -73,14 +72,13 @@ const Description = () => (
         <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
     </div>
 );
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
 
 export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeGhostedTraces,
     path: ExampleStrings.urlRealtimeGhostedTraces,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

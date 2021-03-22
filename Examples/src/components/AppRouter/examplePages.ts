@@ -52,13 +52,14 @@ import { loadOneMillionPointsExampleInfo } from "../Examples/FeaturedApps/Perfor
 import { dragAxisToScaleExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/exampleInfo";
 import { realtimeZoomPanExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/exampleInfo";
 import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/exampleInfo";
+import { GalleryItem } from "../../helpes/types/types";
 
 export type TExampleInfo = {
     title: string;
     path: string;
     subtitle: () => JSX.Element;
     description: () => JSX.Element;
-    seeAlso?: () => JSX.Element;
+    seeAlso?: GalleryItem[];
     code: string;
     githubUrl: string;
     seoDescription: string;

@@ -9,7 +9,6 @@ import dragAxisChart from "../DragAxisToScale/drag-axis-on-javascript-charts-to-
 import secondaryYAxis from "../../ModifyAxisBehavior/SecondaryYAxes/javascript-chart-with-secondary-y-axis.jpg";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import Gallery from "../../../../Gallery/Gallery";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `This examples shows how to add zooming and panning behaviour to a realtime JavaScript Chart.`;
@@ -61,8 +60,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Zoom the real-time chart below by dragging on the surface. Then double-click to reset zoom and start
@@ -86,7 +83,7 @@ export const realtimeZoomPanExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlRealtimeZoomPan,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

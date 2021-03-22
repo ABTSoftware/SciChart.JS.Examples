@@ -3,7 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import secondaryYAxis from "../SecondaryYAxes/javascript-chart-with-secondary-y-axis.jpg";
 import multipleXAxes from "../MultipleXAxes/javascript-chart-with-multiple-x-axis.jpg";
 import { GalleryItem } from "../../../../../helpes/types/types";
@@ -56,8 +55,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>rotated JavaScript Chart with vertical X-Axis</strong> using SciChart.js,
@@ -79,7 +76,7 @@ export const verticalChartsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlVerticalCharts,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription: "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",

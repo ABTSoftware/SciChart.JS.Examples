@@ -3,7 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import load500by500 from "../../PerformanceDemos/Load500By500/javascript-chart-load-500-series-by-500-points.jpg";
@@ -59,8 +58,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Showcases how SciChart.js can be used in a <strong>Medical context</strong>, drawing ECGs with our High
@@ -81,7 +78,7 @@ export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlVitalSigns,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription: `In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time

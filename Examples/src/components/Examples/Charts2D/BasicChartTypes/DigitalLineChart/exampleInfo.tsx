@@ -5,7 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import Gallery from "../../../../Gallery/Gallery";
 import scatterChart from "../ScatterChart/javascript-scatter-chart.jpg";
 import pointMarkers from "../../StylingAndTheming/UsePointMarkers/javascript-chart-custom-poinmarkers.jpg";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
@@ -63,8 +62,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Digital Line Chart</strong> using SciChart.js, High Performance{" "}
@@ -90,7 +87,7 @@ export const digitalLineChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlDigitalLineChart,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

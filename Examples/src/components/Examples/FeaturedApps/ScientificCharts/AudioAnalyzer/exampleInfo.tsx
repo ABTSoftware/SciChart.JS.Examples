@@ -3,7 +3,6 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import columnChart from "../../../Charts2D/BasicChartTypes/ColumnChart/javascript-column-chart.jpg";
@@ -60,8 +59,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 // tslint:disable-next-line:max-line-length
 const Subtitle = () => (
     <p>
@@ -88,7 +85,7 @@ export const audioAnalyzerExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlAudioAnalyzerFeaturedApp,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

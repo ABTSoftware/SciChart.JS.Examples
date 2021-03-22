@@ -3,7 +3,6 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import hitTestApiChart from "../HitTestAPI/javascript-chart-hit-test-on-click.png";
@@ -71,8 +70,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create <strong>tooltips on mouse-over</strong> using SciChart.js, High Performance{" "}
@@ -98,7 +95,7 @@ export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlRolloverModifier,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

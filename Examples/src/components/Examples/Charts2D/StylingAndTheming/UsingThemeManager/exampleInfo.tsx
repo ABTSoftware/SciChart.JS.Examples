@@ -6,7 +6,6 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import stylingInCode from "../StylingInCode/javascript-chart-styling-theming-in-code.png";
-import Gallery from "../../../../Gallery/Gallery";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `SciChart.js ships with a light and a dark theme, which you can switch by calling the
@@ -48,8 +47,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates the <strong>light and dark theme</strong> in SciChart.js, High Performance{" "}
@@ -70,7 +67,7 @@ export const usingThemeManagerExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlThemeManager,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription: "Demonstrates our Light and Dark Themes for JavaScript Charts with SciChart.js ThemeManager API",

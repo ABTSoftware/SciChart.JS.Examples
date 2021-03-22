@@ -3,7 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 import stackedColumnImg from "../StackedColumnChart/javascript-stacked-column-chart.png";
 import stackedColumnSideBySide from "../StackedColumnSideBySide/javascript-stacked-grouped-column-chart-side-by-side.png";
@@ -60,8 +59,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Column Chart</strong> using SciChart.js, High Performance{" "}
@@ -85,7 +82,7 @@ export const columnChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlColumnChart,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

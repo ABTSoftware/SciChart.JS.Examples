@@ -39,7 +39,7 @@ export const ExampleStrings = {
         "https://www.scichart.com/documentation/js/current/The%20Scatter%20Series%20Type.html",
     urlTitleScatterChartDocumentation:
         "This specific page in the JavaScript Scatter Chart documentation will help you to get started",
-
+    imgScatterChart: "src/components/Examples/Charts2D/BasicChartTypes/ScatterChart/javascript-scatter-chart.jpg",
     // Band chart
     urlBandChart: "/javascript-band-chart",
     urlTitleBandChart: "JavaScript Band Chart example",
@@ -94,6 +94,8 @@ export const ExampleStrings = {
     // Spline mountain chart
     urlSplineMountainChart: "/javascript-spline-mountain-chart",
     titleSplineMountainChart: "Javascript Spline Mountain Chart",
+    imgSplineMountainChart:
+        "src/components/Examples/Charts2D/BasicChartTypes/SplineLineChart/javascript-spline-smoothed-line-chart.jpg",
 
     // Digital Mountain Chart
     urlDigitalMountainChartDocumentation:
@@ -146,6 +148,8 @@ export const ExampleStrings = {
         "The specific page for the JavaScript Spline Line Chart documentation will help you to get started",
     titleSplineLineChart: "JavaScript Spline Line Chart",
     urlSplineLineChart: "/javascript-spline-line-chart",
+    imgSplineLineChart:
+        "src/components/Examples/Charts2D/BasicChartTypes/SplineLineChart/javascript-spline-smoothed-line-chart.jpg",
 
     // Digital Line Chart
     urlDigitalLineChart: "/javascript-digital-line-chart",
@@ -240,6 +244,8 @@ export const ExampleStrings = {
     urlTitleMultiPaneStockChart:
         "The Multi-Pane stock chart example demonstrates multiple-series types in a realistic stock chart application",
     titleMultiPaneStockChart: "JavaScript Multi-Pane Stock Charts",
+    imageMultiPaneStockChart:
+        "src/components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg",
 
     // Realtime Ticking Stock Charts
     urlRealtimeTickingStockCharts: "/javascript-realtime-ticking-stock-charts",

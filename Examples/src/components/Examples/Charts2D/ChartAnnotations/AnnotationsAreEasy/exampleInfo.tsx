@@ -4,7 +4,6 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import Gallery from "../../../../Gallery/Gallery";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import stockChart from "../TradeMarkers/javascript-stock-chart-buy-sell-markers.jpg";
 import editableAnnotationsChart from "../EditableAnnotations/javascript-chart-editable-annotations.jpg";
@@ -58,8 +57,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how to add Annotations (shapes, boxes, lines, text) to a <strong>JavaScript Chart</strong> using
@@ -86,7 +83,7 @@ export const annotationsAreEasyExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlAnnotationsAreEasy,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

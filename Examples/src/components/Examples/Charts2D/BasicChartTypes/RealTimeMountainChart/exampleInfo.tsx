@@ -3,7 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import mountainImg from "../MountainChart/javascript-mountain-chart.jpg";
@@ -47,8 +46,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how create a <strong>JavaScript Mountain Chart with animated realtime updates</strong> using
@@ -74,7 +71,7 @@ export const realTimeMountainChartExampleInfo: TExampleInfo = {
     path: "/javascript-realtime-mountain-chart",
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription: "Demonstrates how to create a JavaScript Mountain Chart with animated realtime updates.",

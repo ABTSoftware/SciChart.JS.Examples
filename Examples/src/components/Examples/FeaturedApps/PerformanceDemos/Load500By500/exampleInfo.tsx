@@ -9,7 +9,6 @@ import millionPointsDemoImg from "../Load1MillionPoints/javascript-chart-perform
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import Gallery from "../../../../Gallery/Gallery";
 
 const seeAlso: GalleryItem[] = [
     {
@@ -75,7 +74,7 @@ const Description = () => (
         />
     </div>
 );
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
+// const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
 
 const Subtitle = () => (
     <p>
@@ -91,7 +90,7 @@ export const load500By500ExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlLoad500By500,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!`,

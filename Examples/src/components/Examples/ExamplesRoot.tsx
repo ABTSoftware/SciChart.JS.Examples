@@ -12,6 +12,8 @@ import SourceCode from "../SourceCode/SourceCode";
 import CodeIcon from "@material-ui/icons/Code";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
+import Gallery from "../Gallery/Gallery";
+import { GalleryItem } from "../../helpes/types/types";
 type TProps = {
     // example: () => JSX.Element;
     examplePage: TExamplePage;
@@ -31,7 +33,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const seoTitleText = titleText + ExampleStrings.exampleTitleSuffix;
     const subtitleText = examplePage ? examplePage.subtitle() : undefined;
     const DescComponent: () => JSX.Element = examplePage?.description;
-    const SeeAlsoComponent: () => JSX.Element = examplePage?.seeAlso;
+    const seeAlso: GalleryItem[] = examplePage?.seeAlso;
     const codeStr = examplePage ? examplePage.code : "";
     const githubUrl = examplePage ? examplePage.githubUrl : "";
     const seoDescription = examplePage ? examplePage.seoDescription : "";
@@ -120,7 +122,37 @@ const ExamplesRoot: React.FC<TProps> = props => {
                             <div className={classes.ExampleDescription}>
                                 <div className={classes.Subtitle}>{subtitleText}</div>
                                 {/* <Description> */}
-                                <DescComponent />
+                                <div>
+                                    <div className={classes.ExampleInfoText}>
+                                        {/* <div> */}
+                                        {props.previewDescription && <p>{props.previewDescription}</p>}
+                                        <p>{props.description}</p>
+                                    </div>
+                                    {props.tips && (
+                                        <div className={classes.UsefulLinksWrapper}>
+                                            {/* <div> */}
+                                            <h4>Tips!</h4>
+                                            {props.tips.map((item, index) => (
+                                                <p key={index + item}>{item}</p>
+                                            ))}
+                                        </div>
+                                    )}
+                                    <div className={classes.UsefulLinksWrapper}>
+                                        {/* <div> */}
+                                        <h4>Documentation Links</h4>
+                                        <ul>
+                                            {props.documentationLinks.map((item, index) => {
+                                                return (
+                                                    <li key={index + item.href}>
+                                                        <a href={item.href} title={item.title}>
+                                                            {item.linkTitle}
+                                                        </a>
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
+                                    </div>
+                                </div>
                                 {/* </Description> */}
                             </div>
                             {/* )} */}
@@ -146,9 +178,9 @@ const ExamplesRoot: React.FC<TProps> = props => {
 
                     {/* </div> */}
 
-                    {SeeAlsoComponent && (
+                    {seeAlso && (
                         <div className={!showSource && !firstRender ? classes.Animation : ""}>
-                            <SeeAlsoComponent />
+                            <Gallery examples={seeAlso} />
                         </div>
                     )}
                 </div>

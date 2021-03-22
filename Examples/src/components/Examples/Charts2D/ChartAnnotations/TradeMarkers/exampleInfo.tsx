@@ -3,7 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import Gallery from "../../../../Gallery/Gallery";
 import editableAnnotationsChart from "../EditableAnnotations/javascript-chart-editable-annotations.jpg";
 import annotationsAreEasyChart from "../AnnotationsAreEasy/javascript-chart-annotations.jpg";
 import { GalleryItem } from "../../../../../helpes/types/types";
@@ -57,8 +56,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how to add Buy/Sell Markers (annotations) and News/Dividend bullets to a{" "}
@@ -85,7 +82,7 @@ export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlTradeMarkers,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:

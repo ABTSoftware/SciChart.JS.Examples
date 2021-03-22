@@ -6,7 +6,6 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import heatmapChart from "../HeatmapChart/javascript-heatmap-chart.jpg";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import Gallery from "../../../../Gallery/Gallery";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates how to create a JavaScript Contour map Chart. The UniformContoursRenderableSeries accepts a 2D
@@ -53,8 +52,6 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Contour-map Chart</strong> using SciChart.js, High Performance{" "}
@@ -79,7 +76,7 @@ export const contourChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlContourChart,
     subtitle: Subtitle,
     description: Description,
-    seeAlso: SeeAlsoComponent,
+    seeAlso,
     code,
     githubUrl,
     seoDescription:
