@@ -81,10 +81,7 @@ export default function LineChart() {
     }, []);
 
     return (
-        <div
-            className={classes.ChartWrapper}
-            
-        >
+        <div className={classes.ChartWrapper}>
             {loading && <img src={image} className={classes.SomeImage} alt="" />}
             <div id={divElementId} style={{ opacity: !loading ? "1" : "0.5" }}></div>
         </div>

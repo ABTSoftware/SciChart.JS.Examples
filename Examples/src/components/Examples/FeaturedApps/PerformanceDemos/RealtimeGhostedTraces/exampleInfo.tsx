@@ -42,8 +42,7 @@ const seeAlso: GalleryItem[] = [
             {
                 imgPath: load500By500,
                 title: ExampleStrings.titleLoad500By500,
-                seoTitle:
-                    "This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!",
+                seoTitle: ExampleStrings.urlTitleLoad500By500,
                 examplePath: ExampleStrings.urlLoad500By500
             },
             {
@@ -71,11 +70,7 @@ const Subtitle = () => (
 );
 const Description = () => (
     <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-        />
+        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
     </div>
 );
 const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;

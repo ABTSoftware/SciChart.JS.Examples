@@ -27,17 +27,11 @@ export const divElementId1 = "sciChart1";
 export const divElementId2 = "sciChart2";
 export const divElementId3 = "sciChart3";
 
-export const X_2D_CHART_SIZE = 288;
-export const Y_2D_CHART_SIZE = 289;
-export const X_3D_CHART_SIZE = 600;
-export const Y_3D_CHART_SIZE = 600;
-export const CHART_MARGIN = 22;
-
 const X_DATA_SIZE = 25;
 const Z_DATA_SIZE = 25;
 
 export const drawChart1 = async () => {
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId1);
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId1, 1, 1);
 
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(-280, 250, -280),
@@ -109,11 +103,7 @@ export const drawChart1 = async () => {
 };
 
 export const drawChart2 = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-        divElementId2,
-        X_2D_CHART_SIZE,
-        Y_2D_CHART_SIZE
-    );
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId2, 1, 1);
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
@@ -145,11 +135,7 @@ export const drawChart2 = async () => {
 };
 
 export const drawChart3 = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-        divElementId3,
-        X_2D_CHART_SIZE,
-        Y_2D_CHART_SIZE
-    );
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId3, 1, 1);
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
@@ -190,11 +176,10 @@ export default function TenorCurves3DChart() {
     return (
         <React.Fragment>
             <div className={classes.ExampleWrapperAudio}>
-                <div id={divElementId1} className={classes.ExampleWrapperAudio}>
-                    <div>
-                        <div id={divElementId2} />
-                        <div id={divElementId3} />
-                    </div>
+                <div id={divElementId1} className={classes.ExampleWrapperAudioMain}></div>
+                <div className={classes.ExampleWrapperAudioSub}>
+                    <div id={divElementId2} />
+                    <div id={divElementId3} />
                 </div>
             </div>
         </React.Fragment>

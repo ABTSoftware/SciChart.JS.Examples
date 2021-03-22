@@ -27,20 +27,19 @@ const seeAlso: GalleryItem[] = [
             {
                 imgPath: load500By500,
                 title: ExampleStrings.titleLoad500By500,
-                seoTitle:
-                    "This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!",
+                seoTitle: ExampleStrings.urlTitleLoad500By500,
                 examplePath: ExampleStrings.urlLoad500By500
             },
             {
                 imgPath: ghostedTracesImg,
                 title: ExampleStrings.titleRealtimeGhostedTraces,
-                seoTitle: "Realtime Ghosted Traces JavaScript Chart Performance demo",
+                seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
                 examplePath: ExampleStrings.urlRealtimeGhostedTraces
             },
             {
                 imgPath: millionPointsDemoImg,
                 title: ExampleStrings.titleLoadOneMillionPoints,
-                seoTitle: "Load One Million Points in a JavaScript Chart Performance Demo",
+                seoTitle: ExampleStrings.urlTitleLoad500By500,
                 examplePath: ExampleStrings.urlLoadOneMillionPoints
             }
         ]
@@ -82,7 +81,6 @@ const Description = () => (
             tips={tips}
             description={description}
             previewDescription={previewDescription}
-
         />
     </div>
 );

@@ -2,25 +2,23 @@
 .ChartWrapper {
     overflow: hidden;
     position: relative;
+
     img {
         display: block;
-        height: 100px;
     }
 }
-.ExampleWrapperAudio {
-    display: flex;
 
+.ExampleWrapperAudio {
+    display: grid;
+    grid-template-columns: repeat(50, 1fr);
     .ExampleWrapperAudioMain {
-        width: 60%;
-        margin-right: 20px;
+        grid-column: 1 / 33;
     }
     .ExampleWrapperAudioSub {
-        width: 30%;
-        div {
-            margin-bottom: 20px;
-        }
+        grid-column: 35 /-1;
     }
 }
+
 .ExampleWrapper {
     display: flex;
 
@@ -326,6 +324,17 @@
     top: 0;
     width: 100%;
     min-height: 100%;
+}
+
+.Lidar {
+    min-height: 500;
+    @include md {
+        min-height: 300;
+        height: 70vh;
+    }
+    @include sm {
+        height: 60vw;
+    }
 }
 
 //Common

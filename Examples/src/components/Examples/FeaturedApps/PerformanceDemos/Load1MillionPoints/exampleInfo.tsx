@@ -25,14 +25,13 @@ const seeAlso: GalleryItem[] = [
             {
                 imgPath: ghostedTracesImg,
                 title: ExampleStrings.titleRealtimeGhostedTraces,
-                seoTitle: "Realtime Ghosted Traces JavaScript Chart Performance demo",
+                seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
                 examplePath: ExampleStrings.urlRealtimeGhostedTraces
             },
             {
                 imgPath: load500by500,
                 title: ExampleStrings.titleLoad500By500,
-                seoTitle:
-                    "This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!",
+                seoTitle: ExampleStrings.urlTitleLoad500By500,
                 examplePath: ExampleStrings.urlLoad500By500
             }
         ]
@@ -74,12 +73,7 @@ const Subtitle = () => (
 
 const Description = () => (
     <>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-
-        />
+        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
     </>
 );
 const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;

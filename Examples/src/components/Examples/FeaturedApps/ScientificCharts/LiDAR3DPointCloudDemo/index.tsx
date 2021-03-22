@@ -7,7 +7,7 @@ import { MouseWheelZoomModifier3D } from "scichart/Charting3D/ChartModifiers/Mou
 import { OrbitModifier3D } from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
 import { PixelPointMarker3D } from "scichart/Charting3D/Visuals/PointMarkers/DefaultPointMarkers";
 import { ScatterRenderableSeries3D } from "scichart/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
-import { TSciChart3D } from "scichart/types/TSciChart3D";
+import image from "./javascript-3d-lidar-visualization.jpg";
 import { EColorMapMode, TLinearColorMap } from "scichart/types/TLinearColorMap";
 import { EColor } from "scichart/types/Color";
 import { XyzDataSeries3D } from "scichart/Charting3D/Model/DataSeries/XyzDataSeries3D";
@@ -104,16 +104,26 @@ async function getDataFromServer() {
 }
 
 export default function LiDAR3DPointCloudDemo() {
+    const [loading, setLoading] = React.useState(true);
     const [sciChart3DSurface, setSciChart3DSurface] = React.useState<SciChart3DSurface>();
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
+            if (res) {
+                setLoading(false);
+            }
             setSciChart3DSurface(res.sciChart3DSurface);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => sciChart3DSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return (
+        <div className={classes.ChartWrapper}>
+            <div className={classes.Lidar}>
+                <div id={divElementId}></div>
+            </div>
+        </div>
+    );
 }

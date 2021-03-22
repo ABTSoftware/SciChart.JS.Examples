@@ -13,8 +13,7 @@ import realtimeStockImg from "../../CreateStockCharts/RealtimeTickingStockCharts
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `Demonstrates using the RolloverModifier, part of the ChartModifier API, to add mouse-over feedback of
-data-points on time-series to the user.
-</p>`;
+data-points on time-series to the user.`;
 const description = `This can be used to add Tooltips to a JavaScript chart as well as create Active legends which update values
 as the user moves the mouse.`;
 const tips = [

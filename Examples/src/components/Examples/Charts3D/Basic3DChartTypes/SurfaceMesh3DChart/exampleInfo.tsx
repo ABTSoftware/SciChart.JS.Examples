@@ -6,16 +6,16 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import Gallery from "../../../../Gallery/Gallery";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import bubbleChart from "../Bubble3DChart/javascript-3d-bubble-chart.jpg";
+import bubbleChart3d from "../Bubble3DChart/javascript-3d-bubble-chart.jpg";
 import lidarChart from "../../../FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/javascript-3d-lidar-visualization.jpg";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates how to create a JavaScript 3D Surface Mesh Chart. This is a chart type which draws a 3D
 point-marker (Sphere, Cylinder, Cube) or a 2D flat billboarded pointmarker (Ellipse, Quad, Pixel) at X,Y,Z
 locations in 3D Space.
-</p>`;
+`;
 const tips = [
-    `sBubbles can be colored individually, programmatically selected and scaled using the PointMetadata3D class.
+    `Bubbles can be colored individually, programmatically selected and scaled using the PointMetadata3D class.
     PointMetadata also allows you to tag individual bubbles with a business object of any type.`
 ];
 
@@ -42,10 +42,10 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: bubbleChart,
-                title: ExampleStrings.titleBubbleChart,
-                seoTitle: ExampleStrings.urlTitleBubbleChart,
-                examplePath: ExampleStrings.urlBubbleChart
+                imgPath: bubbleChart3d,
+                title: ExampleStrings.titleBubble3DChart,
+                seoTitle: ExampleStrings.titleBubble3DChart,
+                examplePath: ExampleStrings.urlBubble3DChart
             },
             {
                 imgPath: lidarChart,
@@ -79,6 +79,7 @@ export const surfaceMesh3DChartExampleInfo: TExampleInfo = {
     path: ExampleStrings.urlSurfaceMesh3D,
     subtitle: Subtitle,
     description: Description,
+    seeAlso: SeeAlsoComponent,
     code,
     githubUrl,
     seoDescription:
