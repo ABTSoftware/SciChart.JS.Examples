@@ -16,15 +16,15 @@ const FooterGrid: React.FC<TProps> = props => {
     const { title, menuItems } = props;
 
     return (
-        <Box mb={24}>
-            <Box mb={16}>
+        <Box mb={24} className={classes.FooterGrid}>
+            <Box mb={16} className={classes.TitleBox}>
                 <h5>{title}</h5>
                 <div className={classes.divider}>
                     <div className={classes.dividerBox}></div>
                 </div>
             </Box>
 
-            <Grid container direction="row" alignItems="flex-start">
+            <Grid container className={classes.GridListContainer} direction="row" alignItems="flex-start">
                 {menuItems.map(el => (
                     <div className={classes.FooterGridList} key={el.item.id}>
                         <h6>{el.item.name}</h6>

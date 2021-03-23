@@ -1,46 +1,123 @@
 @import "../../assets/main.scss";
+@import "./CommonFooterStyles.module.scss";
 
 .AppFooter {
-    padding: 16px;
+    padding: 40px;
     overflow: hidden;
     background: #1e252b !important;
     color: white;
     // font-family: "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol";
 
+    @include sm {
+        padding: 40px 0;
+    }
+
+    .FooterBottomSection {
+        @extend %CommonFooterGridConfigs;
+    }
+
     h4,
     h5,
     h6 {
-        color: $color-primary-grey;
+        color: $color-primary-white;
+        font-weight: 600;
     }
 
-    .SiteLinks {
+    h5 {
+        font-size: 22px;
+        line-height: 27px;
+    }
+
+    h6 {
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 26px;
+        margin-top: 40px;
+    }
+
+    @include sm {
+        h5 {
+            font-size: 20px;
+            line-height: 24px;
+    
+    
+        }
+    
+        h6 {
+            font-size: 16px;
+            line-height: 20px;
+        }
+    }
+
+    .LinksBox {
+        padding: 40px;
+
+        @include sm {
+            padding: 40px 16px 0 16px;
+        }
+
+        
+        P {
+            margin: 40px 0;
+            color: $color-primary-grey;
+        }
+
+    }
+
+    .RelatedLinks {
+        @extend %CommonLinkStyles;
+
+        display: flex;
+        flex-direction: column;
+        margin-top: 40px;
+    }
+
+    .ContactUsButton {
+        flex: none;
+        width: 170px;
+        padding: $default-spacing * 2 $default-spacing * 2;
+        border-radius: 4px;
+        background: $color-dark-green;
+        margin: 30px 0;
+
+        span {
+            color: $color-lightest-green;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            line-height: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            text-decoration-thickness: auto;
+        }
+    }
+
+    .SocialMediaLinks {
         display: flex;
 
         a {
-            color: $color-primary-grey;
-            margin-right: 10px;
-            text-decoration: none;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-    }
-
-    .Contacts {
-        .SocialMediaLinks {
             display: flex;
-
-            a,
-            a:visited,
-            a:hover,
-            a:active {
-                display: block;
-                margin-right: $default-spacing * 2;
-                background-color: $color-dark-blue;
-                color: inherit;
-                text-decoration: none;
-            }
+            flex: none;
+            justify-content: center;
+            align-items: center;
+            height: 44px;
+            width: 44px;
+            border-radius: 4px;
+            margin-right: $default-spacing * 2;
+            background-color: $color-dark-blue;
+            color: inherit;
+            text-decoration: none;
         }
     }
+}
+
+.Copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    padding: 0 $default-spacing;
+    background-color: $color-dark-blue;
+    color: #7a858f;
+    text-align: center;
 }
