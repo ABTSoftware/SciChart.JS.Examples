@@ -98,13 +98,13 @@ export default function ChartLegendsAPI() {
     }, []);
 
     const handleChangePlacement = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const newValue = event.target.value as ELegendPlacement;
+        const newValue = +event.target.value as ELegendPlacement;
         setPlacementValue(newValue);
         sciChartLegend.placement = newValue;
     };
 
     const handleChangeOrientation = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const newValue = event.target.value as ELegendOrientation;
+        const newValue = +event.target.value as ELegendOrientation;
         setOrientationValue(newValue);
         sciChartLegend.orientation = newValue;
     };

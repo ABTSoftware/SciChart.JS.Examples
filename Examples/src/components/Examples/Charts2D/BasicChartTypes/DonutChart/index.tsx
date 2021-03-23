@@ -87,13 +87,13 @@ export default function DonutChart() {
     }, []);
 
     const handleChangePlacement = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const newValue = event.target.value as ELegendPlacement;
+        const newValue = +event.target.value as ELegendPlacement;
         setPlacementValue(newValue);
         sciChartPieSurface.legend.placement = newValue;
     };
 
     const handleChangeOrientation = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const newValue = event.target.value as ELegendOrientation;
+        const newValue = +event.target.value as ELegendOrientation;
         setOrientationValue(newValue);
         sciChartPieSurface.legend.orientation = newValue;
     };
