@@ -44,16 +44,16 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: ExampleStrings.imgSplineMountainChart,
-                title: ExampleStrings.titleSplineMountainChart,
-                seoTitle: ExampleStrings.urlTitleMountainChart,
-                examplePath: ExampleStrings.urlSplineMountainChart
+                imgPath: ExampleStrings.imgGroupedColumnChart,
+                title: ExampleStrings.titleGroupedColumnChart,
+                seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
+                examplePath: ExampleStrings.urlGroupedColumnChart
             },
             {
-                imgPath: ExampleStrings.imgSplineBandChart,
-                title: ExampleStrings.titleSplineBandChart,
-                seoTitle: ExampleStrings.urlTitleSplineBandChartDocumentation,
-                examplePath: ExampleStrings.urlSplineBandChart
+                imgPath: ExampleStrings.imgLineChart,
+                title: ExampleStrings.titleLineChart,
+                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
+                examplePath: ExampleStrings.urlLineChart
             }
         ]
     }
