@@ -14,10 +14,6 @@
 
             grid-template-rows: repeat(3, 1fr);
     
-            @include sm{
-                grid-template-rows: repeat(7, 15%);
-            }
-    
             @include xs{
                 grid-template-rows: unset;
             }
