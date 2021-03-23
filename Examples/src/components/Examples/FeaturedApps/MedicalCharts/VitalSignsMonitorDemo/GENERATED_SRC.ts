@@ -273,7 +273,7 @@ export default function VitalSignsMonitorDemo() {
     return (
         <div>
             <div className={classes.ChartContainer}>
-                <div id={divElementId} style={{ width: 600 }} />
+                <div id={divElementId} className={classes.VitalSigns} />
                 <div className={classes.InfoBoxContainer}>
                     <div className={classes.InfoBox} style={{ color: COLOR_GREEN }}>
                         <div className={classes.IbRow1}>
