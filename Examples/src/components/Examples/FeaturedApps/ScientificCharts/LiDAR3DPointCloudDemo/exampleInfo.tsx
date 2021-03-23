@@ -9,9 +9,9 @@ import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescripti
 const description = `Demonstrating the capability of SciChart.js to create JavaScript 3D Point Cloud charts and visualize LiDAR
 data from the UK Defra Survey.`;
 const tips = [
-    `This example uses a ScatterRenderableSeries3D with PixelPointMarker to render a high performance LiDAR
+    `This example uses a ScatterRenderable Series3D with PixelPointMarker to render a high performance LiDAR
 visualization of a 500x500 (250k points) ASC format dataset.`,
-    `You can also overlay contours if you use the SurfaceMeshRenderableSeries3D and enable contours by setting
+    `You can also overlay contours if you use the SurfaceMeshRenderable Series3D and enable contours by setting
     the DrawMeshAs property.`
 ];
 

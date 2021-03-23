@@ -11,9 +11,9 @@ const description = `Demonstrating the capability of SciChart.js to create a com
 like this could be used to visualize Tenor curves in a financial setting, or other 2D/3D data combined on a
 single screen.`;
 const tips = [
-    `This example uses a SurfaceMeshRenderableSeries3D to render a 2-dimensional array as a heightmap. Line
+    `This example uses a SurfaceMeshRenderable Series3D to render a 2-dimensional array as a heightmap. Line
 charts are shown on the same example to show that 2D & 3D charts can be combined.`,
-    `You can also overlay contours if you use the SurfaceMeshRenderableSeries3D and enable contours by setting
+    `You can also overlay contours if you use the SurfaceMeshRenderable Series3D and enable contours by setting
     the DrawMeshAs property.`
 ];
 

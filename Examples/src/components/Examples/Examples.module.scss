@@ -8,14 +8,18 @@
     }
 }
 
-.ExampleWrapperAudio {
+.ExampleWrapperCompicated {
     display: grid;
     grid-template-columns: repeat(50, 1fr);
-    .ExampleWrapperAudioMain {
+    margin: 0 auto;
+    .ExampleWrapperCompicatedMain {
         grid-column: 1 / 33;
     }
-    .ExampleWrapperAudioSub {
+    .ExampleWrapperCompicatedSub {
         grid-column: 35 /-1;
+    }
+    @include xs {
+        max-width: 250px;
     }
 }
 
@@ -160,14 +164,21 @@
     background-color: black;
     padding-top: 6px;
     width: 800px;
+    max-width: 90vw;
     // font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";';
     position: relative;
 }
-
+.VitalSigns {
+    width: 100%;
+    max-width: 90vw;
+}
 .InfoBoxContainer {
-    flex-basis: 200px;
+    flex-basis: 25%;
     flex-grow: 0;
     flex-shrink: 0;
+    @include md {
+        flex-basis: 10%;
+    }
 }
 
 .InfoBox {
@@ -176,8 +187,8 @@
     box-sizing: border-box;
     border-left: 1px solid darkgrey;
     padding: 6;
-    height: 150px;
-    width: 200px;
+    height: 25%;
+    width: 100%;
     background-color: black;
     border-bottom: 1px solid darkgrey;
 }

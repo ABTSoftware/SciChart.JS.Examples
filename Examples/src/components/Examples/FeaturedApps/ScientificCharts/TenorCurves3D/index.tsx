@@ -175,9 +175,9 @@ export default function TenorCurves3DChart() {
 
     return (
         <React.Fragment>
-            <div className={classes.ExampleWrapperAudio}>
-                <div id={divElementId1} className={classes.ExampleWrapperAudioMain}></div>
-                <div className={classes.ExampleWrapperAudioSub}>
+            <div className={classes.ExampleWrapperCompicated}>
+                <div id={divElementId1} className={classes.ExampleWrapperCompicatedMain}></div>
+                <div className={classes.ExampleWrapperCompicatedSub}>
                     <div id={divElementId2} />
                     <div id={divElementId3} />
                 </div>
