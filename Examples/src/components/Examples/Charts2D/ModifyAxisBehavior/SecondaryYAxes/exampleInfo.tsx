@@ -5,9 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import verticalChart from "../VerticalCharts/javascript-vertical-charts.jpg";
-import multipleXAxes from "../MultipleXAxes/javascript-chart-with-multiple-x-axis.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates how to assign line series to different Y Axis in a JavaScript Chart. SciChart supports multiple
 top or bottom X-Axes and multiple left and right Y-Axes. This example shows in a simple way how to register
@@ -32,13 +29,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: multipleXAxes,
+                imgPath: ExampleStrings.imgMultipleXAxis,
                 title: ExampleStrings.titleMultipleXAxis,
                 seoTitle: ExampleStrings.urlTitleMultipleXAxis,
                 examplePath: ExampleStrings.urlMultipleXAxis
             },
             {
-                imgPath: verticalChart,
+                imgPath: ExampleStrings.imgVerticalCharts,
                 title: ExampleStrings.titleVerticalCharts,
                 seoTitle: ExampleStrings.urlTitleVerticalCharts,
                 examplePath: ExampleStrings.urlVerticalCharts
@@ -57,16 +54,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </div>
-);
 export const secondaryYAxesExampleInfo: TExampleInfo = {
     title: "Secondary Y Axes",
     path: ExampleStrings.urlSecondaryYAxis,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

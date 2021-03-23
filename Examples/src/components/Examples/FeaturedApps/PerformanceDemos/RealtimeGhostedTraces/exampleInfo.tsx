@@ -3,11 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import load500By500 from "../Load500By500/javascript-chart-load-500-series-by-500-points.jpg";
-import realtimePerformanceImg from "../RealtimePerformanceDemo/javascript-chart-realtime-performance-demo.jpg";
-import millionPointsDemoImg from "../Load1MillionPoints/javascript-chart-performance-one-million-points.jpg";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 
 const description = `This real-time performance demo shows persistence of old traces giving a ‘ghosted’ effect. As new series are
@@ -39,19 +35,19 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: load500By500,
+                imgPath: ExampleStrings.imgLoad500by500Charts,
                 title: ExampleStrings.titleLoad500By500,
                 seoTitle: ExampleStrings.urlTitleLoad500By500,
                 examplePath: ExampleStrings.urlLoad500By500
             },
             {
-                imgPath: realtimePerformanceImg,
+                imgPath: ExampleStrings.imgRealtimeJavaScriptChart,
                 title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
                 seoTitle: "Realtime JavaScript Chart Performance Demo with many millions of points",
                 examplePath: ExampleStrings.urlRealtimeJavaScriptChartDemo
             },
             {
-                imgPath: millionPointsDemoImg,
+                imgPath: ExampleStrings.imgLoadOneMillionPointsChart,
                 title: ExampleStrings.titleLoadOneMillionPoints,
                 seoTitle: "Load One Million Points in a JavaScript Chart Performance Demo",
                 examplePath: ExampleStrings.urlLoadOneMillionPoints
@@ -67,17 +63,14 @@ const Subtitle = () => (
         </a>
     </p>
 );
-const Description = () => (
-    <div>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </div>
-);
 
 export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeGhostedTraces,
     path: ExampleStrings.urlRealtimeGhostedTraces,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

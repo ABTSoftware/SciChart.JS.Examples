@@ -3,10 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import realtimePerformanceImg from "../RealtimePerformanceDemo/javascript-chart-realtime-performance-demo.jpg";
-import ghostedTracesImg from "../RealtimeGhostedTraces/javascript-realtime-ghosted-traces-chart.jpg";
-import millionPointsDemoImg from "../Load1MillionPoints/javascript-chart-performance-one-million-points.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
 
@@ -15,19 +11,19 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: realtimePerformanceImg,
+                imgPath: ExampleStrings.imgRealtimeJavaScriptChart,
                 title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
-                seoTitle: "Realtime JavaScript Chart Performance Demo with many millions of points",
+                seoTitle: ExampleStrings.urlTitleRealtimeJavaScriptChartDemo,
                 examplePath: ExampleStrings.urlRealtimeJavaScriptChartDemo
             },
             {
-                imgPath: ghostedTracesImg,
+                imgPath: ExampleStrings.imgRealtimeGhostedTracesChart,
                 title: ExampleStrings.titleRealtimeGhostedTraces,
                 seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
                 examplePath: ExampleStrings.urlRealtimeGhostedTraces
             },
             {
-                imgPath: millionPointsDemoImg,
+                imgPath: ExampleStrings.imgLoadOneMillionPointsChart,
                 title: ExampleStrings.titleLoadOneMillionPoints,
                 seoTitle: "Load One Million Points in a JavaScript Chart Performance Demo",
                 examplePath: ExampleStrings.urlLoadOneMillionPoints
@@ -63,19 +59,6 @@ const tips = [
     appendRange functions on dataseries.`
 ];
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-
-        />
-    </div>
-);
-// const SeeAlsoComponent = () => <Gallery examples={seeAlso} />;
-
 const Subtitle = () => (
     <p>
         Demonstrates loading <strong>250k points instantly</strong> using SciChart.js, High Performance{" "}
@@ -89,7 +72,10 @@ export const load500By500ExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLoad500By500,
     path: ExampleStrings.urlLoad500By500,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

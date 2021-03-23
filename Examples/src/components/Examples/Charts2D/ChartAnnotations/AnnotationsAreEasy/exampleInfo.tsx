@@ -5,9 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import stockChart from "../TradeMarkers/javascript-stock-chart-buy-sell-markers.jpg";
-import editableAnnotationsChart from "../EditableAnnotations/javascript-chart-editable-annotations.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `An introduction to the Annotations API in SciChart.js, which allows SVG elements or custom WebGL rendered
 elements to be placed over the chart at specific X,Y data-values.`;
@@ -42,13 +39,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: stockChart,
+                imgPath: ExampleStrings.imgTradeMarkers,
                 title: ExampleStrings.titleTradeMarkers,
                 seoTitle: ExampleStrings.urlTitleTradeMarkers,
                 examplePath: ExampleStrings.urlTradeMarkers
             },
             {
-                imgPath: editableAnnotationsChart,
+                imgPath: ExampleStrings.imgEditableAnnotation,
                 title: ExampleStrings.titleEditableAnnotations,
                 seoTitle: ExampleStrings.urlTitleEditableAnnotations,
                 examplePath: ExampleStrings.urlEditableAnnotations
@@ -67,22 +64,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const annotationsAreEasyExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleAnnotationsAreEasy,
     path: ExampleStrings.urlAnnotationsAreEasy,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

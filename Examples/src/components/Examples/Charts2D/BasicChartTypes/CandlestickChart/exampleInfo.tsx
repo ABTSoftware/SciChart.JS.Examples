@@ -5,10 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import multiPaneStockChart from "../../CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
-import realtimeStockImg from "../../CreateStockCharts/RealtimeTickingStockCharts/javascript-realtime-ticking-stock-charts.jpg";
-import ohlcImg from "../OhlcChart/javascript-ohlc-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `Demonstrates how to create a JavaScript Candlestick Chart. This is a chart type used in financial, stock
 trading applications which renders Date, Open, High, Low, Close data`;
@@ -47,19 +43,19 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: ohlcImg,
+                imgPath: ExampleStrings.imgOhlcChart,
                 title: ExampleStrings.titleOhlcChart,
                 seoTitle: ExampleStrings.urlTitleOhlcChart,
                 examplePath: ExampleStrings.urlOhlcChart
             },
             {
-                imgPath: multiPaneStockChart,
+                imgPath: ExampleStrings.imgMultiPaneStockChart,
                 title: ExampleStrings.titleMultiPaneStockChart,
                 seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
                 examplePath: ExampleStrings.urlMultiPaneStockChart
             },
             {
-                imgPath: realtimeStockImg,
+                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
                 title: ExampleStrings.titleRealtimeTickingStockCharts,
                 seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
                 examplePath: ExampleStrings.urlRealtimeTickingStockCharts
@@ -78,22 +74,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const candlestickChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCandlestickChart,
     path: ExampleStrings.urlCandlestickChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

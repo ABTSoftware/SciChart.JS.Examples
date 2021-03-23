@@ -5,8 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import mountainImg from "../MountainChart/javascript-mountain-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `>Demonstrates how to create a JavaScript Mountain Chart with animated realtime updates.`;
 const tips = [
@@ -37,7 +35,7 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: mountainImg,
+                imgPath: ExampleStrings.imgMountainChart,
                 title: ExampleStrings.titleMountainChart,
                 seoTitle: ExampleStrings.urlTitleStackedMountainChart,
                 examplePath: ExampleStrings.urlStackedMountainChart
@@ -56,21 +54,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-        />
-    </>
-);
-
 export const realTimeMountainChartExampleInfo: TExampleInfo = {
     title: "JavaScript Realtime Mountain Chart",
     path: "/javascript-realtime-mountain-chart",
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

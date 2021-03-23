@@ -5,9 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import scatterChart from "../ScatterChart/javascript-scatter-chart.jpg";
-import pointMarkers from "../../StylingAndTheming/UsePointMarkers/javascript-chart-custom-poinmarkers.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = ` Demonstrates how to create a JavaScript Digital Line Chart. The FastLineRenderableSeries can be used to
 render an XyDataSeries, XyyDataSeries (uses Y1 only) or OhlcDataSeries (renders Close).`;
@@ -47,13 +44,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: scatterChart,
+                imgPath: ExampleStrings.imgScatterChart,
                 title: ExampleStrings.titleScatterChart,
                 seoTitle: ExampleStrings.urlTitleScatterChart,
                 examplePath: ExampleStrings.urlScatterChart
             },
             {
-                imgPath: pointMarkers,
+                imgPath: ExampleStrings.imgPointMarkers,
                 title: ExampleStrings.titlePointMarkers,
                 seoTitle: ExampleStrings.urlTitlePointMarkersDocumentation,
                 examplePath: ExampleStrings.urlPointMarkers
@@ -71,22 +68,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const digitalLineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDigitalLineChart,
     path: ExampleStrings.urlDigitalLineChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

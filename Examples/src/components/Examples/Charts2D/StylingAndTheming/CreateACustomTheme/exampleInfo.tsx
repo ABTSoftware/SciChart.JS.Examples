@@ -5,9 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import themeManager from "../UsingThemeManager/javascript-chart-themes.png";
-import stylingInCode from "../StylingInCode/javascript-chart-styling-theming-in-code.png";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `With our ThemeManager API you can create a custom theme. To do this, create a type that implements all the
 properties of the IThemeProvider interface and pass to sciChartSurface.applyTheme.`;
@@ -36,13 +33,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: themeManager,
+                imgPath: ExampleStrings.imgThemeManagerChart,
                 title: ExampleStrings.titleThemeManager,
                 seoTitle: ExampleStrings.urlTitleThemeManager,
                 examplePath: ExampleStrings.urlThemeManager
             },
             {
-                imgPath: stylingInCode,
+                imgPath: ExampleStrings.imgStylingInCode,
                 title: ExampleStrings.titleStylingInCode,
                 seoTitle: ExampleStrings.urlTitleThemeManager,
                 examplePath: ExampleStrings.urlStylingInCode
@@ -60,17 +57,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </div>
-);
-
 export const createACustomThemeExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCustomTheme,
     path: ExampleStrings.urlCustomTheme,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

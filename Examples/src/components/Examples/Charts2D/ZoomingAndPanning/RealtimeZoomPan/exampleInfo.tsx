@@ -3,13 +3,8 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
-
-import verticalChart from "../../ModifyAxisBehavior/VerticalCharts/javascript-vertical-charts.jpg";
-import dragAxisChart from "../DragAxisToScale/drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
-import secondaryYAxis from "../../ModifyAxisBehavior/SecondaryYAxes/javascript-chart-with-secondary-y-axis.jpg";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `This examples shows how to add zooming and panning behaviour to a realtime JavaScript Chart.`;
 const description = `When you use AutoRanging in a SciChart.js chart, the chart will always automatically range to fit the data.{" "}
@@ -39,19 +34,19 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: secondaryYAxis,
+                imgPath: ExampleStrings.imgSecondaryYAxis,
                 title: ExampleStrings.titleSecondaryYAxis,
                 seoTitle: ExampleStrings.urlTitleSecondaryYAxis,
                 examplePath: ExampleStrings.urlSecondaryYAxis
             },
             {
-                imgPath: dragAxisChart,
+                imgPath: ExampleStrings.imgDragAxisToScale,
                 title: ExampleStrings.titleDragAxisToScale,
                 seoTitle: ExampleStrings.titleDragAxisToScale,
                 examplePath: ExampleStrings.urlDragAxisToScale
             },
             {
-                imgPath: verticalChart,
+                imgPath: ExampleStrings.imgVerticalCharts,
                 title: ExampleStrings.titleVerticalCharts,
                 seoTitle: ExampleStrings.urlTitleVerticalCharts,
                 examplePath: ExampleStrings.urlVerticalCharts
@@ -67,22 +62,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            previewDescription={previewDescription}
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-        />
-    </div>
-);
-
 export const realtimeZoomPanExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeZoomPan,
     path: ExampleStrings.urlRealtimeZoomPan,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

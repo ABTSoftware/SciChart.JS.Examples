@@ -5,10 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import multiPaneStockChart from "../../CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
-import ohlcImg from "../../BasicChartTypes/OhlcChart/javascript-ohlc-chart.jpg";
-import candlestickImg from "../../BasicChartTypes/CandlestickChart/javascript-candlestick-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `An example which demonstrates real-time ticking / updating stock charts in JavaScript with Price data as
 Candlesticks or Ohlc and Moving average indicators on the chart.`;
@@ -38,19 +34,19 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: multiPaneStockChart,
+                imgPath: ExampleStrings.imgMultiPaneStockChart,
                 title: ExampleStrings.titleMultiPaneStockChart,
                 seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
                 examplePath: ExampleStrings.urlMultiPaneStockChart
             },
             {
-                imgPath: ohlcImg,
+                imgPath: ExampleStrings.imgOhlcChart,
                 title: ExampleStrings.titleOhlcChart,
                 seoTitle: ExampleStrings.urlTitleOhlcChart,
                 examplePath: ExampleStrings.urlOhlcChart
             },
             {
-                imgPath: candlestickImg,
+                imgPath: ExampleStrings.imgCandleStickChart,
                 title: ExampleStrings.titleCandlestickChart,
                 seoTitle: ExampleStrings.urlTitleCandlestickChart,
                 examplePath: ExampleStrings.urlCandlestickChart
@@ -69,22 +65,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeTickingStockCharts,
     path: ExampleStrings.urlRealtimeTickingStockCharts,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

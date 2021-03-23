@@ -47,6 +47,7 @@ export const ExampleStrings = {
     urlBandChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Band%20Series%20type.html",
     urlTitleBandChartDocumentation:
         "This specific page in the JavaScript Band Chart documentation will help you to get started",
+    imgBandChart: "src/components/Examples/Charts2D/BasicChartTypes/BandSeriesChart/javascript-band-chart.jpg",
 
     // Spline band chart
     titleSplineBandChart: "JavaScript Spline Band Chart",
@@ -54,7 +55,8 @@ export const ExampleStrings = {
     urlSplineBandChartDocumentation: "#",
     urlTitleSplineBandChartDocumentation:
         "This specific page in the JavaScript Spline Band Chart documentation will help you to get started",
-
+    imgSplineBandChart:
+        "src/components/Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart/javascript-band-chart.jpg",
     // Digital Band chart
     urlDigitalBandChart: "/javascript-digital-band-chart",
     urlTitleDigitalBandChart: "JavaScript Digital Band Chart example",
@@ -71,7 +73,7 @@ export const ExampleStrings = {
         "This specific page in the JavaScript Bubble Chart documentation will help you to get started",
     urlTitleBubbleChart:
         "The JavaScript Bubble Chart example demonstrates how to create a Bubble Chart with SciChart.js",
-
+    imgBubbleChart: "src/components/Examples/Charts2D/BasicChartTypes/BubbleChart/javascript-bubble-chart.jpg",
     // Column Chart
     urlColumnChart: "/javascript-column-chart",
     titleColumnChart: "JavaScript Column Chart",
@@ -80,7 +82,7 @@ export const ExampleStrings = {
         "This specific page in the JavaScript Column Chart documentation will help you to get started",
     urlTitleColumnChart:
         "The JavaScript Column Chart example demonstrates how to create a Column Chart with SciChart.js",
-
+    imgColumnChart: "src/components/Examples/Charts2D/BasicChartTypes/ColumnChart/javascript-column-chart.jpg",
     // Mountain Chart
     urlMountainChartDocumentation:
         "https://www.scichart.com/documentation/js/current/The%20Mountain%20(Area)%20Series%20Type.html",
@@ -90,12 +92,12 @@ export const ExampleStrings = {
     titleMountainChart: "JavaScript Mountain Chart",
     urlTitleMountainChart:
         "The JavaScript Mountain Chart example demonstrates how to create a Mountain Chart with SciChart.js",
-
+    imgMountainChart: "src/components/Examples/Charts2D/BasicChartTypes/MountainChart/javascript-mountain-chart.jpg",
     // Spline mountain chart
     urlSplineMountainChart: "/javascript-spline-mountain-chart",
     titleSplineMountainChart: "Javascript Spline Mountain Chart",
     imgSplineMountainChart:
-        "src/components/Examples/Charts2D/BasicChartTypes/SplineLineChart/javascript-spline-smoothed-line-chart.jpg",
+        "src/components/Examples/Charts2D/BasicChartTypes/SplineMountainChart/javascript-spline-mountain-chart.jpg",
 
     // Digital Mountain Chart
     urlDigitalMountainChartDocumentation:
@@ -116,6 +118,8 @@ export const ExampleStrings = {
         "This specific page in the JavaScript Candlestick Chart documentation will help you to get started",
     urlCandlestickChartDocumentation:
         "https://www.scichart.com/documentation/js/current/The%20Candlestick%20Series%20type.html",
+    imgCandleStickChart:
+        "src/components/Examples/Charts2D/BasicChartTypes/CandlestickChart/javascript-candlestick-chart.jpg",
 
     // Ohlc Chart
     urlOhlcChart: "/javascript-ohlc-chart",
@@ -125,6 +129,7 @@ export const ExampleStrings = {
     urlTitleOhlcChartDocumentation:
         "This specific page in the JavaScript Ohlc Chart documentation will help you to get started",
     urlOhlcChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20OHLC%20Series%20Type.html",
+    imgOhlcChart: "src/components/Examples/Charts2D/BasicChartTypes/OhlcChart/javascript-ohlc-chart.jpg",
 
     // Fan Chart
     urlFanChart: "/javascript-fan-chart",
@@ -133,7 +138,7 @@ export const ExampleStrings = {
     urlFanChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Fan%20Charts%20Type.html",
     urlTitleFanChartDocumentation:
         "The specific page for the JavaScript Fan Chart documentation will help you to get started",
-
+    imgFanChart: "src/components/Examples/Charts2D/BasicChartTypes/FanChart/javascript-fan-chart.jpg",
     // Line Chart
     urlLineChart: "/javascript-line-chart",
     titleLineChart: "JavaScript Line Chart",
@@ -141,7 +146,7 @@ export const ExampleStrings = {
         "https://www.scichart.com/documentation/js/current/webframe.html#The%20Line%20Series%20Type.html",
     urlTitleLineChartDocumentation:
         "The specific page for the JavaScript Line Chart documentation will help you to get started",
-
+    imgLineChart: "src/components/Examples/Charts2D/BasicChartTypes/LineChart/javascript-line-chart.jpg",
     // Spline line series
     urlSplineLineChartDocumentation: "#",
     urlTitleSplineLineChartDocumentation:
@@ -164,6 +169,7 @@ export const ExampleStrings = {
     urlTitlePieChart:
         "The JavaScript Pie Chart example demonstrates how to create an animated Pie Chart with SciChart.js",
     titlePieChart: "JavaScript Pie Chart",
+    imgPieChart: "src/components/Examples/Charts2D/BasicChartTypes/PieChart/javascript-pie-chart.jpg",
 
     // Donut Chart
     urlDonutChart: "/javascript-donut-chart",
@@ -171,7 +177,7 @@ export const ExampleStrings = {
     urlDonutChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Donut%20Chart%20Type.html",
     urlTitleDonutChartDocumentation:
         "The specific page for the JavaScript Donut Chart documentation will help you to get started",
-
+    imgDonutChart: "src/components/Examples/Charts2D/BasicChartTypes/DonutChart/javascript-donut-chart.jpg",
     // Stacked Column Chart
     urlStackedColumnChart: "/javascript-stacked-column-chart",
     titleStackedColumnChart: "JavaScript Stacked Column Chart",
@@ -181,12 +187,16 @@ export const ExampleStrings = {
         "https://www.scichart.com/documentation/js/current/The%20Stacked%20Column%20Series%20Type.html",
     urlTitleStackedColumnChartDocumentation:
         "The specific page for the JavaScript Stacked Column Chart documentation will help you to get started",
+    imgStackedColumnChart:
+        "src/components/Examples/Charts2D/BasicChartTypes/StackedColumnChart/javascript-stacked-column-chart.png",
 
     // Stacked (Grouped) Column Chart
     urlGroupedColumnChart: "/javascript-stacked-grouped-column-chart-side-by-side",
     titleGroupedColumnChart: "JavaScript Stacked Column Side by Side",
     urlTitleGroupedColumnChart:
         "The JavaScript Stacked Column Chart side-by-side example demonstrates how to create a Grouped Column Chart with SciChart.js",
+    imgGroupedColumnChart:
+        "src/components/Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide/javascript-stacked-grouped-column-chart-side-by-side.png",
 
     // Stacked Mountain Chart
     urlStackedMountainChart: "/javascript-stacked-mountain-chart",
@@ -196,6 +206,8 @@ export const ExampleStrings = {
         "https://www.scichart.com/documentation/js/current/The%20Stacked%20Mountain%20Series%20Type.html",
     urlTitleStackedMountainChartDocumentation:
         "The specific page for the JavaScript Stacked Mountain Chart documentation will help you to get started",
+    imgStackedMountainChart:
+        "src/components/Examples/Charts2D/BasicChartTypes/StackedMountainChart/javascript-stacked-mountain-chart.jpg",
 
     // Heatmap Chart
     urlHeatmapChart: "/javascript-heatmap-chart",
@@ -205,13 +217,14 @@ export const ExampleStrings = {
         "https://www.scichart.com/documentation/js/current/The%20Uniform%20Heatmap%20Series%20Type.html",
     urlTitleHeatmapChartDocumentation:
         "The specific page for the JavaScript Heatmap Chart documentation will help you to get started",
-
+    imgHeatMapChart: "src/components/Examples/Charts2D/BasicChartTypes/HeatmapChart/javascript-heatmap-chart.jpg",
     // Contours chart
     urlTitleContourChartDocumentation:
         "The specific page for the JavaScript Contours Chart documentation will help you to get started",
     urlContourChartDocumentation: "#",
     titleContourChart: "JavaScript Contours chart",
     urlContourChart: "/javascript-heatmap-chart-with-contours",
+    imgContourChart: "src/components/Examples/Charts2D/BasicChartTypes/ContoursChart/javascript-contours-chart.jpg",
 
     // Annotations are easy
     urlAnnotationsAreEasy: "/javascript-chart-annotations",
@@ -220,31 +233,37 @@ export const ExampleStrings = {
         "https://www.scichart.com/documentation/js/current/The%20Annotations%20API%20Overview.html",
     urlTitleAnnotationsDocumentation:
         "The specific page for the SciChart.js Annotations documentation will help you to get started",
-
+    imgAnnotaionsAreEasyChart:
+        "src/components/Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/javascript-chart-annotations.jpg",
     // Editable annotations
     urlEditableAnnotations: "/editable-annotations",
     titleEditableAnnotations: "JavaScript Chart Editable Annotations",
     urlTitleEditableAnnotations:
         "The specific page for the SciChart.js Annotations documentation will help you to get started",
-
+    imgEditableAnnotation:
+        "src/components/Examples/Charts2D/ChartAnnotations/EditableAnnotations/javascript-chart-editable-annotations.jpg",
     // Trademarkers
     urlTradeMarkers: "/javascript-stock-chart-buy-sell-markers",
     titleTradeMarkers: "Trading Buy Sell Marker Annotations",
     urlTitleTradeMarkers:
         "The Trade Markers example demonstrates how to add buy/sell arrows and markers to a trading application",
+    imgTradeMarkers:
+        "src/components/Examples/Charts2D/ChartAnnotations/TradeMarkers/javascript-stock-chart-buy-sell-markers.jpg",
 
     // Use Pointmarkers
     urlPointMarkers: "/javascript-chart-custom-pointmarkers",
     titlePointMarkers: "JavaScript Point-Markers Chart",
     urlTitlePointMarkers:
         "The JavaScript Point-Markers example shows how to create different types of point-marker on Bubble and Scatter Series",
+    imgPointMarkers:
+        "src/components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/javascript-chart-custom-poinmarkers.jpg",
 
     // Multi Pane Stock Charts
     urlMultiPaneStockChart: "/javascript-multi-pane-stock-charts",
     urlTitleMultiPaneStockChart:
         "The Multi-Pane stock chart example demonstrates multiple-series types in a realistic stock chart application",
     titleMultiPaneStockChart: "JavaScript Multi-Pane Stock Charts",
-    imageMultiPaneStockChart:
+    imgMultiPaneStockChart:
         "src/components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg",
 
     // Realtime Ticking Stock Charts
@@ -252,6 +271,8 @@ export const ExampleStrings = {
     titleRealtimeTickingStockCharts: "JavaScript Realtime Ticking Stock Charts",
     urlTitleRealtimeTickingStockCharts:
         "The Realtime Ticking Stock Chart example shows how to pipe realtime financial data into SciChart.js Candlestick and Ohlc Chart types",
+    imgRealtimeTickingStockCharts:
+        "src/components/Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts/javascript-realtime-ticking-stock-charts.jpg",
 
     // Chart Legends
     urlChartLegends: "/javascript-chart-legends",
@@ -265,12 +286,15 @@ export const ExampleStrings = {
     titleMultipleXAxis: "Multiple X Axes",
     urlTitleMultipleXAxis:
         "The Multiple XAxes example shows how to add series with several X and Y axis to a JavaScript Chart.",
-
+    imgMultipleXAxis:
+        "src/components/Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes/javascript-chart-with-multiple-x-axis.jpg",
     // Secondary YAxis
     urlSecondaryYAxis: "/javascript-chart-with-secondary-y-axis",
     titleSecondaryYAxis: "Secondary Y-Axis Example",
     urlTitleSecondaryYAxis:
         "The Secondary YAxis example shows how to add series with multiple Y axis to a JavaScript Chart.",
+    imgSecondaryYAxis:
+        "src/components/Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/javascript-chart-with-secondary-y-axis.jpg",
 
     // Vertical charts
     titleVerticalCharts: "Vertical Charts",
@@ -280,10 +304,14 @@ export const ExampleStrings = {
     urlTitleVerticalChartsDocumentation:
         "The specific page for the SciChart.js API documentation for Vertical Charts will help you to get started",
     urlTitleVerticalCharts: "The Vertical Charts example shows how to use Axis Alignment to rotate a JavaScript Chart.",
+    imgVerticalCharts:
+        "src/components/Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/javascript-vertical-charts.jpg",
 
     // Drag Axis to Scale
     titleDragAxisToScale: "Drag Axis to Scale or Pan",
     urlDragAxisToScale: "/javascript-chart-drag-axis-to-scale-pan",
+    imgDragAxisToScale:
+        "src/components/Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/drag-axis-on-javascript-charts-to-scale-or-pan.jpg",
 
     // Realtime Zoom Pan
     titleRealtimeZoomPan: "Zoom and Pan a Realtime JavaScript Chart",
@@ -306,6 +334,8 @@ export const ExampleStrings = {
         "https://www.scichart.com/documentation/js/current/Axis%20Styling%20-%20Styling%20Title%20and%20Axis%20Labels.html",
     urlTitleAxisStylingDocumentation:
         "The specific page for the SciChart.js API documentation for Styling Axis and Gridlines will help you to get started",
+    imgStylingInCode:
+        "src/components/Examples/Charts2D/StylingAndTheming/StylingInCode/javascript-chart-styling-theming-in-code.png",
 
     // ThemeManager
     urlThemeManager: "/javascript-chart-themes",
@@ -314,6 +344,8 @@ export const ExampleStrings = {
     urlThemeManagerDocumentation: "https://www.scichart.com/documentation/js/current/ThemeManager%20API.html",
     urlTitleThemeManagerDocumentation:
         "The specific page for the SciChart.js API documentation for Styling Axis and Gridlines will help you to get started",
+    imgThemeManagerChart:
+        "src/components/Examples/Charts2D/StylingAndTheming/UsingThemeManager/javascript-chart-themes.png",
 
     // Create Custom Theme
     titleCustomTheme: "Create a Custom Theme",
@@ -336,7 +368,8 @@ export const ExampleStrings = {
     urlHitTestDocumentation: "https://www.scichart.com/documentation/js/current/Hit-Test%20API.html",
     urlTitleHitTestDocumentation:
         "The specific page for the SciChart.js documentation for the Hit-Test API to help you to get started",
-
+    imgHitTestApiChart:
+        "src/components/Examples/Charts2D/TooltipsAndHittest/HitTestAPI/javascript-chart-hit-test-on-click.png",
     // RolloverModifier
     urlRolloverModifierDocumentation: "https://www.scichart.com/documentation/js/current/RolloverModifier.html",
     urlTitleRolloverModifierDocumentation:
@@ -357,6 +390,7 @@ export const ExampleStrings = {
     urlBubble3DChartDocumentation: "#",
     urlTitleBubble3DChartDocumentation:
         "The specific page for the SciChart.js documentation for the 3D Bubble Chart to help you to get started",
+    imgBubble3DChart: "src/components/Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/javascript-3d-bubble-chart.jpg",
 
     // 3D Surface Mesh
     urlSurfaceMesh3DChartDocumentation: "#",
@@ -365,26 +399,36 @@ export const ExampleStrings = {
     titleSurfaceMesh3D: "JavaScript Surface Mesh 3D Chart",
     urlSurfaceMesh3D: "/javascript-3d-surface-mesh-chart",
     urlTitleSurfaceMesh3D: "The Surface Mesh 3D Chart example shows how to create this 3D Chart type in SciChart.js",
+    imgSurfaceMeash3D:
+        "src/components/Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg",
 
     // Featured Apps Lidar Example
     urlLidarFeaturedApp: "/javascript-3d-lidar-visualization",
     urlTitleLidarFeaturedApp: "LiDAR 3D Point Cloud of Geospatial Data",
     titleLidarFeaturedApp: "LiDAR 3D Point Cloud of Geospatial Data",
+    imgLidarFeaturedApp:
+        "src/components/Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/javascript-3d-lidar-visualization.jpg",
 
     // Featured Apps Load 500x500
     titleLoad500By500: "Load 500 Series x 500 Points Performance Demo",
     urlLoad500By500: "/performance/javascript-chart-load-500-series-by-500-points",
     urlTitleLoad500By500:
         "This example demonstrates the performance of loading 500 series with 500 points on a JavaScript Chart",
+    imgLoad500by500Charts:
+        "src/components/Examples/FeaturedApps/PerformanceDemos/Load500By500/javascript-chart-load-500-series-by-500-points.jpg",
 
     // Featured Apps Load 1 Million Points
     titleLoadOneMillionPoints: "Load 1 Million Points Performance Demo",
     urlLoadOneMillionPoints: "/javascript-chart-performance-load-one-million-points",
+    imgLoadOneMillionPointsChart:
+        "src/components/Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/javascript-chart-performance-one-million-points.jpg",
 
     // Featured Apps Performance Demo
     urlRealtimeJavaScriptChartDemo: "/javascript-chart-realtime-performance-demo",
     urlTitleRealtimeJavaScriptChartDemo: "JavaScript Chart Realtime Performance Demo",
     titleRealtimeJavaScriptChartDemo: "Realtime JavaScript Chart Performance Demo",
+    imgRealtimeJavaScriptChart:
+        "src/components/Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo/javascript-chart-realtime-performance-demo.jpg",
 
     // Featured Apps Ghosted Traces
     urlRealtimeGhostedTracesDemo: "",
@@ -393,7 +437,8 @@ export const ExampleStrings = {
     urlRealtimeGhostedTraces: "/javascript-realtime-ghosted-traces-chart",
     urlTitleRealtimeGhostedTraces:
         "This example demonstrates the performance of SciChart.js with Oscilloscope-style ghosted traces",
-
+    imgRealtimeGhostedTracesChart:
+        "src/components/Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces/javascript-realtime-ghosted-traces-chart.jpg",
     // Featured Apps Vital Signs
     titleVitalSigns: "JavaScript Vital Signs ECG/EKG Medical Demo",
     urlVitalSigns: "/javascript-vital-signs-ecg-medical-chart-example",

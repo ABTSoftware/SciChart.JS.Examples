@@ -5,9 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import stockChart from "../TradeMarkers/javascript-stock-chart-buy-sell-markers.jpg";
-import annotationsAreEasyChart from "../AnnotationsAreEasy/javascript-chart-annotations.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `An introduction to the Annotations Editable API in SciChart.js, which allows SVG elements or custom WebGL
 rendered elements to be editable over the chart at specific X,Y data-values.`;
@@ -38,13 +35,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: stockChart,
+                imgPath: ExampleStrings.imgTradeMarkers,
                 title: ExampleStrings.titleTradeMarkers,
                 seoTitle: ExampleStrings.urlTitleTradeMarkers,
                 examplePath: ExampleStrings.urlTradeMarkers
             },
             {
-                imgPath: annotationsAreEasyChart,
+                imgPath: ExampleStrings.imgAnnotaionsAreEasyChart,
                 title: ExampleStrings.titleAnnotationsAreEasy,
                 seoTitle: ExampleStrings.urlTitleAnnotationsDocumentation,
                 examplePath: ExampleStrings.urlAnnotationsAreEasy
@@ -63,22 +60,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const editableAnnotationsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleEditableAnnotations,
     path: ExampleStrings.urlEditableAnnotations,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

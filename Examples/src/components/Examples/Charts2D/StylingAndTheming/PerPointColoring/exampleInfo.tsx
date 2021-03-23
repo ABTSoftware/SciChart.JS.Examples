@@ -5,9 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import scatterChart from "../../BasicChartTypes/ScatterChart/javascript-scatter-chart.jpg";
-import themeManager from "../UsingThemeManager/javascript-chart-themes.png";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates how to use the PaletteProvider API to color lines, points and fills individually based on a
 rule. Using this API you can color individual data-points of the following chart series: Line, Column,
@@ -47,13 +44,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: themeManager,
+                imgPath: ExampleStrings.imgThemeManagerChart,
                 title: ExampleStrings.titleThemeManager,
                 seoTitle: ExampleStrings.urlTitleThemeManager,
                 examplePath: ExampleStrings.urlThemeManager
             },
             {
-                imgPath: scatterChart,
+                imgPath: ExampleStrings.imgScatterChart,
                 title: ExampleStrings.titleScatterChart,
                 seoTitle: ExampleStrings.urlTitleScatterChartDocumentation,
                 examplePath: ExampleStrings.urlScatterChart
@@ -72,17 +69,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </div>
-);
-
 export const perPointColoringExampleInfo: TExampleInfo = {
     title: ExampleStrings.titlePaletteProvider,
     path: ExampleStrings.urlPaletteProvider,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

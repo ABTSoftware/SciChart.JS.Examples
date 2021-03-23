@@ -4,11 +4,7 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import mountainImg from "../MountainChart/javascript-mountain-chart.jpg";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import stackedColumnChart from "../StackedColumnChart/javascript-stacked-column-chart.png";
-import groupedColumnChart from "../StackedColumnSideBySide/javascript-stacked-grouped-column-chart-side-by-side.png";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates how to create a JavaScript Mountain Chart. An area or polygon is rendered from the Y-value to
 the zeroLineY, a configurable property which defaults to zero.`;
@@ -45,19 +41,19 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: mountainImg,
+                imgPath: ExampleStrings.imgMountainChart,
                 title: ExampleStrings.titleMountainChart,
                 seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
+                examplePath: ExampleStrings.urlMountainChart
             },
             {
-                imgPath: stackedColumnChart,
+                imgPath: ExampleStrings.imgStackedColumnChart,
                 title: ExampleStrings.titleStackedColumnChart,
                 seoTitle: ExampleStrings.urlTitleStackedColumnChart,
                 examplePath: ExampleStrings.urlStackedColumnChart
             },
             {
-                imgPath: groupedColumnChart,
+                imgPath: ExampleStrings.imgGroupedColumnChart,
                 title: ExampleStrings.titleGroupedColumnChart,
                 seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
                 examplePath: ExampleStrings.urlGroupedColumnChart
@@ -76,21 +72,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-        />
-    </>
-);
-
 export const stackedMountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStackedMountainChart,
     path: ExampleStrings.urlStackedMountainChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

@@ -5,11 +5,6 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import hitTestApiChart from "../HitTestAPI/javascript-chart-hit-test-on-click.png";
-import candlestickImg from "../../BasicChartTypes/CandlestickChart/javascript-candlestick-chart.jpg";
-import multiPaneStockChart from "../../CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
-import realtimeStockImg from "../../CreateStockCharts/RealtimeTickingStockCharts/javascript-realtime-ticking-stock-charts.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `Demonstrates using the RolloverModifier, part of the ChartModifier API, to add mouse-over feedback of
 data-points on time-series to the user.`;
@@ -43,25 +38,25 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: hitTestApiChart,
+                imgPath: ExampleStrings.imgHitTestApiChart,
                 title: ExampleStrings.titleHitTestApi,
                 seoTitle: ExampleStrings.urlTitleHitTestDocumentation,
                 examplePath: ExampleStrings.urlHitTestApi
             },
             {
-                imgPath: realtimeStockImg,
+                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
                 title: ExampleStrings.titleRealtimeTickingStockCharts,
                 seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
                 examplePath: ExampleStrings.urlRealtimeTickingStockCharts
             },
             {
-                imgPath: multiPaneStockChart,
+                imgPath: ExampleStrings.imgMultiPaneStockChart,
                 title: ExampleStrings.titleMultiPaneStockChart,
                 seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
                 examplePath: ExampleStrings.urlMultiPaneStockChart
             },
             {
-                imgPath: candlestickImg,
+                imgPath: ExampleStrings.imgCandleStickChart,
                 title: ExampleStrings.titleCandlestickChart,
                 seoTitle: ExampleStrings.urlTitleCandlestickChart,
                 examplePath: ExampleStrings.urlCandlestickChart
@@ -79,22 +74,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRolloverModifier,
     path: ExampleStrings.urlRolloverModifier,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

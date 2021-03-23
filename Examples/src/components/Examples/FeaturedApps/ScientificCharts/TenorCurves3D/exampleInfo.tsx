@@ -5,7 +5,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import surfaceMesh3d from "../../../Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. An example
@@ -41,7 +40,7 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: surfaceMesh3d,
+                imgPath: ExampleStrings.imgSurfaceMeash3D,
                 title: ExampleStrings.titleSurfaceMesh3D,
                 seoTitle: ExampleStrings.urlTitleSurfaceMesh3D,
                 examplePath: ExampleStrings.urlSurfaceMesh3D
@@ -60,11 +59,6 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </div>
-);
 export const tenorCurvesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleTenorCurvesFeaturedApp,
     path: ExampleStrings.urlTenorCurvesFeaturedApp,

@@ -5,9 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import splineMountain from "../SplineMountainChart/javascript-spline-mountain-chart.jpg";
-import splineBand from "../SplineBandSeriesChart/javascript-band-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `This example demonstrates how a JavaScript Spline Line chart can be created using the
 SplineLineRenderableSeries type.`;
@@ -47,13 +44,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: splineMountain,
+                imgPath: ExampleStrings.imgSplineMountainChart,
                 title: ExampleStrings.titleSplineMountainChart,
                 seoTitle: ExampleStrings.urlTitleMountainChart,
                 examplePath: ExampleStrings.urlSplineMountainChart
             },
             {
-                imgPath: splineBand,
+                imgPath: ExampleStrings.imgSplineBandChart,
                 title: ExampleStrings.titleSplineBandChart,
                 seoTitle: ExampleStrings.urlTitleSplineBandChartDocumentation,
                 examplePath: ExampleStrings.urlSplineBandChart
@@ -71,22 +68,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </>
-);
-
 export const splineLineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineLineChart,
     path: ExampleStrings.urlSplineLineChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

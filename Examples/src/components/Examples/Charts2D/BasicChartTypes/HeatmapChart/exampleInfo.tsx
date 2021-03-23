@@ -5,12 +5,9 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
-import contoursChart from "../ContoursChart/javascript-contours-chart.jpg";
 
 const description = `Demonstrates how to create a JavaScript Heatmap Chart. The FastUniformHeatmapRenderableSeries accepts a 2D
 array of data and has user-defined color map which can be used to color points by value.`;
-const tips = [``];
 
 const documentationLinks: TDocumentationLink[] = [
     {
@@ -40,7 +37,7 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: contoursChart,
+                imgPath: ExampleStrings.imgContourChart,
                 title: ExampleStrings.titleContourChart,
                 seoTitle: ExampleStrings.urlTitleContourChartDocumentation,
                 examplePath: ExampleStrings.urlContourChart
@@ -58,21 +55,12 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-        />
-    </>
-);
-
 export const heatmapChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleHeatmapChart,
     path: ExampleStrings.urlHeatmapChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    description,
     seeAlso,
     code,
     githubUrl,

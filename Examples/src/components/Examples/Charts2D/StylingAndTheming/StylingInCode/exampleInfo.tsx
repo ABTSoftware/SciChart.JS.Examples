@@ -5,8 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import themeManager from "../UsingThemeManager/javascript-chart-themes.png";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `Using garish colors to demonstrate styling of a JavaScript chart, Axis, grid lines, tick lines and more.`;
 const description = `Almost any element in SciChart is stylable in code and most parts of the chart are exposed. You can easily
@@ -36,7 +34,7 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: themeManager,
+                imgPath: ExampleStrings.imgThemeManagerChart,
                 title: ExampleStrings.titleThemeManager,
                 seoTitle: ExampleStrings.urlTitleThemeManager,
                 examplePath: ExampleStrings.urlThemeManager
@@ -54,21 +52,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            previewDescription={previewDescription}
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-        />
-    </div>
-);
 export const stylingInCodeExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStylingInCode,
     path: ExampleStrings.urlStylingInCode,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

@@ -4,9 +4,7 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import pieChart from "../PieChart/javascript-pie-chart.jpg";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates how to create a JavaScript Donut Chart. This is a circular chart type with a hole in the center
 consisting of sectors which are proportional to the quantity it represents.`;
@@ -43,7 +41,7 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: pieChart,
+                imgPath: ExampleStrings.imgPieChart,
                 title: ExampleStrings.titlePieChart,
                 seoTitle: ExampleStrings.urlTitlePieChart,
                 examplePath: ExampleStrings.urlPieChart
@@ -61,17 +59,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </>
-);
-
 export const donutChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDonutChart,
     path: ExampleStrings.urlDonutChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

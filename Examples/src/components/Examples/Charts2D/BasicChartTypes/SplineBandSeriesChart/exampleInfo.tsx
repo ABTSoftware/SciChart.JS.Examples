@@ -6,7 +6,6 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `Spline Band Series are provided by the SplineBandRenderableSeries type. This is a chart type which draws an
 area (polygon or fill) between two lines, using a spline interpolation (smoothing) algorithm. The
@@ -59,7 +58,7 @@ const seeAlso: GalleryItem[] = [
                 imgPath: ExampleStrings.imgSplineLineChart,
                 title: ExampleStrings.titleSplineLineChart,
                 seoTitle: ExampleStrings.urlTitleSplineLineChartDocumentation,
-                examplePath: ExampleStrings.urlSplineLineChartDocumentation
+                examplePath: ExampleStrings.urlSplineLineChart
             },
             {
                 imgPath: ExampleStrings.imgSplineMountainChart,
@@ -71,22 +70,14 @@ const seeAlso: GalleryItem[] = [
     }
 ];
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineBandChart,
     path: ExampleStrings.urlSplineBandChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

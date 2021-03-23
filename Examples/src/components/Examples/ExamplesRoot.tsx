@@ -3,7 +3,6 @@ import SeoTags from "../SeoTags/SeoTags";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { getExampleComponent } from "../AppRouter/examples";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { ExampleStrings } from "./ExampleStrings";
 import classes from "./Examples.module.scss";
@@ -34,10 +33,10 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const seoTitleText = titleText + ExampleStrings.exampleTitleSuffix;
     const subtitleText = examplePage ? examplePage.subtitle() : undefined;
 
-    const documentationLinks = examplePage ? examplePage.documentationLinks() : undefined;
-    const tips = examplePage ? examplePage.tips() : undefined;
-    const previewDescription = examplePage ? examplePage.previewDescription() : undefined;
-    const description = examplePage ? examplePage.description() : undefined;
+    const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;
+    const tips = examplePage ? examplePage.tips : undefined;
+    const previewDescription = examplePage ? examplePage.previewDescription : undefined;
+    const description = examplePage ? examplePage.description : undefined;
 
     const seeAlso: GalleryItem[] = examplePage?.seeAlso;
     const codeStr = examplePage ? examplePage.code : "";

@@ -5,9 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import stylingInCode from "../StylingInCode/javascript-chart-styling-theming-in-code.png";
-import lineChart from "../../BasicChartTypes/LineChart/javascript-line-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates the Line series, Mountain series and Band series StrokeDashArray property which can be used to
 style a dashed line, dotted line or solid line.`;
@@ -39,13 +36,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: stylingInCode,
+                imgPath: ExampleStrings.imgStylingInCode,
                 title: ExampleStrings.titleStylingInCode,
                 seoTitle: ExampleStrings.urlTitleStylingInCode,
                 examplePath: ExampleStrings.urlStylingInCode
             },
             {
-                imgPath: lineChart,
+                imgPath: ExampleStrings.imgLineChart,
                 title: ExampleStrings.titleLineChart,
                 seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
                 examplePath: ExampleStrings.urlLineChart
@@ -63,17 +60,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </div>
-);
-
 export const dashedLineStylingExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDashedLineStyling,
     path: ExampleStrings.urlDashedLineStyling,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

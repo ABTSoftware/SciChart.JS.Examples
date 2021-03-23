@@ -5,12 +5,6 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import hitTestApiChart from "../HitTestAPI/javascript-chart-hit-test-on-click.png";
-import candlestickImg from "../../BasicChartTypes/CandlestickChart/javascript-candlestick-chart.jpg";
-import multiPaneStockChart from "../../CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
-import realtimeStockImg from "../../CreateStockCharts/RealtimeTickingStockCharts/javascript-realtime-ticking-stock-charts.jpg";
-import ohlcImg from "../../BasicChartTypes/OhlcChart/javascript-ohlc-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `Demonstrates using the CursorModifier, part of the ChartModifier API, to add a cursor and tooltips which
 tracks the mouse.`;
@@ -44,31 +38,31 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: hitTestApiChart,
+                imgPath: ExampleStrings.imgHitTestApiChart,
                 title: ExampleStrings.titleHitTestApi,
                 seoTitle: ExampleStrings.urlTitleHitTestDocumentation,
                 examplePath: ExampleStrings.urlHitTestApi
             },
             {
-                imgPath: realtimeStockImg,
+                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
                 title: ExampleStrings.titleRealtimeTickingStockCharts,
                 seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
                 examplePath: ExampleStrings.urlRealtimeTickingStockCharts
             },
             {
-                imgPath: ohlcImg,
+                imgPath: ExampleStrings.imgOhlcChart,
                 title: ExampleStrings.titleOhlcChart,
                 seoTitle: ExampleStrings.urlTitleOhlcChart,
                 examplePath: ExampleStrings.urlOhlcChart
             },
             {
-                imgPath: multiPaneStockChart,
+                imgPath: ExampleStrings.imgMultiPaneStockChart,
                 title: ExampleStrings.titleMultiPaneStockChart,
                 seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
                 examplePath: ExampleStrings.urlMultiPaneStockChart
             },
             {
-                imgPath: candlestickImg,
+                imgPath: ExampleStrings.imgCandleStickChart,
                 title: ExampleStrings.titleCandlestickChart,
                 seoTitle: ExampleStrings.urlTitleCandlestickChart,
                 examplePath: ExampleStrings.urlCandlestickChart
@@ -86,22 +80,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCursorModifier,
     path: ExampleStrings.urlCursorModifier,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

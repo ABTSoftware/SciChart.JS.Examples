@@ -5,8 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import pointMarkers from "../../StylingAndTheming/UsePointMarkers/javascript-chart-custom-poinmarkers.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `Demonstrates how to create a JavaScript Bubble Chart. This is a chart type which draws point-marker
 (Ellipse, Square, Triangle or Custom) at X,Y locations.`;
@@ -51,7 +49,7 @@ const seeAlso: GalleryItem[] = [
                 examplePath: ExampleStrings.urlScatterChart
             },
             {
-                imgPath: pointMarkers,
+                imgPath: ExampleStrings.imgPointMarkers,
                 title: ExampleStrings.titlePointMarkers,
                 seoTitle: ExampleStrings.urlTitlePointMarkersDocumentation,
                 examplePath: ExampleStrings.urlPointMarkers
@@ -59,8 +57,6 @@ const seeAlso: GalleryItem[] = [
         ]
     }
 ];
-
-
 
 const Subtitle = () => (
     <p>
@@ -71,22 +67,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const bubbleChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBubbleChart,
     path: ExampleStrings.urlBubbleChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

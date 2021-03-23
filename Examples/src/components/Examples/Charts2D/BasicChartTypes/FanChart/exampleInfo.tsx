@@ -5,8 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import bandChart from "../BandSeriesChart/javascript-band-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates how to create a JavaScript Fan Chart. This chart type can be used for visualizing forecasting
 or estimation figures and can be achieved in SciChart.js using several Band Series overlaid with varying
@@ -43,7 +41,7 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: bandChart,
+                imgPath: ExampleStrings.imgBandChart,
                 title: ExampleStrings.titleBandChart,
                 seoTitle: ExampleStrings.urlTitleBandChart,
                 examplePath: ExampleStrings.urlBandChart
@@ -61,20 +59,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-        />
-    </div>
-);
 export const fanChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleFanChart,
     path: ExampleStrings.urlFanChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

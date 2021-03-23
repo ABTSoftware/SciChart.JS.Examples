@@ -5,9 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import multiPaneStockChart from "../../CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
-import fanChart from "../FanChart/javascript-fan-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `Demonstrates how to create a JavaScript Digital Band Chart. This is a chart type which draws a digital area
 (polygon or fill) between two lines. The FastBandRenderableSeries requires an XyyDataSeries, which contains
@@ -47,13 +44,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: multiPaneStockChart,
+                imgPath: ExampleStrings.imgMultiPaneStockChart,
                 title: ExampleStrings.titleMultiPaneStockChart,
                 seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
                 examplePath: ExampleStrings.urlMultiPaneStockChart
             },
             {
-                imgPath: fanChart,
+                imgPath: ExampleStrings.imgFanChart,
                 title: ExampleStrings.titleFanChart,
                 seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
                 examplePath: ExampleStrings.urlFanChart
@@ -72,22 +69,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDigitalBandChart,
     path: ExampleStrings.urlDigitalBandChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

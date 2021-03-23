@@ -4,9 +4,7 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import heatmapChart from "../HeatmapChart/javascript-heatmap-chart.jpg";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates how to create a JavaScript Contour map Chart. The UniformContoursRenderableSeries accepts a 2D
 array of data and calculates contour lines at a specified step value and draws them on the chart.`;
@@ -43,7 +41,7 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: heatmapChart,
+                imgPath: ExampleStrings.imgHeatMapChart,
                 title: ExampleStrings.titleHeatmapChart,
                 seoTitle: ExampleStrings.urlTitleHeatmapChart,
                 examplePath: ExampleStrings.urlHeatmapChart
@@ -61,21 +59,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-        />
-    </div>
-);
-
 export const contourChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleContourChart,
     path: ExampleStrings.urlContourChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

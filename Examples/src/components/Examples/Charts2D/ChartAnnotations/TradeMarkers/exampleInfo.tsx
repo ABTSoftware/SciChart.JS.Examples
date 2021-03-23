@@ -3,11 +3,8 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import editableAnnotationsChart from "../EditableAnnotations/javascript-chart-editable-annotations.jpg";
-import annotationsAreEasyChart from "../AnnotationsAreEasy/javascript-chart-annotations.jpg";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `The Trade Markers demo uses the Annotations API to place CustomAnnotations rendering buy and sell or news
 bullet markers over a simulated price chart.`;
@@ -41,13 +38,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: editableAnnotationsChart,
+                imgPath: ExampleStrings.imgEditableAnnotation,
                 title: ExampleStrings.titleEditableAnnotations,
                 seoTitle: ExampleStrings.urlTitleEditableAnnotations,
                 examplePath: ExampleStrings.urlEditableAnnotations
             },
             {
-                imgPath: annotationsAreEasyChart,
+                imgPath: ExampleStrings.imgAnnotaionsAreEasyChart,
                 title: ExampleStrings.titleAnnotationsAreEasy,
                 seoTitle: ExampleStrings.urlTitleAnnotationsDocumentation,
                 examplePath: ExampleStrings.urlAnnotationsAreEasy
@@ -66,22 +63,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleTradeMarkers,
     path: ExampleStrings.urlTradeMarkers,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

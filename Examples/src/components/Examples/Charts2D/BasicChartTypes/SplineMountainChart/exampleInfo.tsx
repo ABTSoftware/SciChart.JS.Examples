@@ -5,8 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import stackedMountainImg from "../StackedMountainChart/javascript-stacked-mountain-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `Demonstrates how to create a JavaScript Spline Mountain Chart. An area or polygon is rendered from the
 Y-value to the zeroLineY, a configurable property which defaults to zero.`;
@@ -45,7 +43,7 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: stackedMountainImg,
+                imgPath: ExampleStrings.imgStackedMountainChart,
                 title: ExampleStrings.titleStackedMountainChart,
                 seoTitle: ExampleStrings.urlTitleStackedMountainChart,
                 examplePath: ExampleStrings.urlStackedMountainChart
@@ -63,22 +61,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </>
-);
-
 export const splineMountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineMountainChart,
     path: ExampleStrings.urlSplineMountainChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

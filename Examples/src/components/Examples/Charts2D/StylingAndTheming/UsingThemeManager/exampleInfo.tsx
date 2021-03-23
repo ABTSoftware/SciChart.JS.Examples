@@ -5,8 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import stylingInCode from "../StylingInCode/javascript-chart-styling-theming-in-code.png";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `SciChart.js ships with a light and a dark theme, which you can switch by calling the
 SciChartSurface.applyTheme() function.`;
@@ -38,7 +36,7 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: stylingInCode,
+                imgPath: ExampleStrings.imgStylingInCode,
                 title: ExampleStrings.titleStylingInCode,
                 seoTitle: ExampleStrings.urlTitleStylingInCode,
                 examplePath: ExampleStrings.urlStylingInCode
@@ -56,17 +54,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </div>
-);
-
 export const usingThemeManagerExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleThemeManager,
     path: ExampleStrings.urlThemeManager,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

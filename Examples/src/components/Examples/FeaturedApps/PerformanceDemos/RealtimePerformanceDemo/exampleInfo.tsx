@@ -5,10 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import load500By500 from "../Load500By500/javascript-chart-load-500-series-by-500-points.jpg";
-import ghostedTracesImg from "../RealtimeGhostedTraces/javascript-realtime-ghosted-traces-chart.jpg";
-import millionPointsDemoImg from "../Load1MillionPoints/javascript-chart-performance-one-million-points.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const Subtitle = () => (
     <p>
@@ -24,19 +20,19 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: load500By500,
+                imgPath: ExampleStrings.imgLoad500by500Charts,
                 title: ExampleStrings.titleLoad500By500,
                 seoTitle: ExampleStrings.urlTitleLoad500By500,
                 examplePath: ExampleStrings.urlLoad500By500
             },
             {
-                imgPath: ghostedTracesImg,
+                imgPath: ExampleStrings.imgRealtimeGhostedTracesChart,
                 title: ExampleStrings.titleRealtimeGhostedTraces,
                 seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
                 examplePath: ExampleStrings.urlRealtimeGhostedTraces
             },
             {
-                imgPath: millionPointsDemoImg,
+                imgPath: ExampleStrings.imgLoadOneMillionPointsChart,
                 title: ExampleStrings.titleLoadOneMillionPoints,
                 seoTitle: ExampleStrings.urlTitleLoad500By500,
                 examplePath: ExampleStrings.urlLoadOneMillionPoints
@@ -71,22 +67,14 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
     path: ExampleStrings.urlRealtimeJavaScriptChartDemo,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

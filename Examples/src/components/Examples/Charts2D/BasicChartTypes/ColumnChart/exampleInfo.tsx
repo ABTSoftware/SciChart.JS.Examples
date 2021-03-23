@@ -3,9 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
-import stackedColumnImg from "../StackedColumnChart/javascript-stacked-column-chart.png";
-import stackedColumnSideBySide from "../StackedColumnSideBySide/javascript-stacked-grouped-column-chart-side-by-side.png";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 
@@ -44,13 +41,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: stackedColumnImg,
+                imgPath: ExampleStrings.imgStackedColumnChart,
                 title: ExampleStrings.titleStackedColumnChart,
                 seoTitle: ExampleStrings.urlTitleStackedColumnChart,
                 examplePath: ExampleStrings.urlStackedColumnChart
             },
             {
-                imgPath: stackedColumnSideBySide,
+                imgPath: ExampleStrings.imgGroupedColumnChart,
                 title: ExampleStrings.titleGroupedColumnChart,
                 seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
                 examplePath: ExampleStrings.urlGroupedColumnChart
@@ -68,20 +65,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-        />
-    </div>
-);
 export const columnChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleColumnChart,
     path: ExampleStrings.urlColumnChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

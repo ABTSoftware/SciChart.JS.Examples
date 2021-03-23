@@ -4,10 +4,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import verticalChart from "../../ModifyAxisBehavior/VerticalCharts/javascript-vertical-charts.jpg";
-import secondaryYAxis from "../../ModifyAxisBehavior/SecondaryYAxes/javascript-chart-with-secondary-y-axis.jpg";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates how to add behaviour to scale, zoom or pan a chart by dragging the X or Y Axis on the chart.
 Try it out below! Drag an axis to watch the chart re-scale.`;
@@ -31,13 +28,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: secondaryYAxis,
+                imgPath: ExampleStrings.imgSecondaryYAxis,
                 title: ExampleStrings.titleSecondaryYAxis,
                 seoTitle: ExampleStrings.urlTitleSecondaryYAxis,
                 examplePath: ExampleStrings.urlSecondaryYAxis
             },
             {
-                imgPath: verticalChart,
+                imgPath: ExampleStrings.imgVerticalCharts,
                 title: ExampleStrings.titleVerticalCharts,
                 seoTitle: ExampleStrings.urlTitleVerticalCharts,
                 examplePath: ExampleStrings.urlVerticalCharts
@@ -56,17 +53,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </div>
-);
-
 export const dragAxisToScaleExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDragAxisToScale,
     path: ExampleStrings.urlDragAxisToScale,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+
     seeAlso,
     code,
     githubUrl,

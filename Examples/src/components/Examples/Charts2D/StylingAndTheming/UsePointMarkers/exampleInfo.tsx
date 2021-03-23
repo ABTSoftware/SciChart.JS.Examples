@@ -5,9 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import bubbleChart from "../../BasicChartTypes/BubbleChart/javascript-bubble-chart.jpg";
-import scatterChart from "../../BasicChartTypes/ScatterChart/javascript-scatter-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `Demonstrates how to use the FastLineRenderableSeries and the Data-Point Markers API to apply fast
 WebGL-rendered data point markers to a line series.`;
@@ -37,13 +34,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: scatterChart,
+                imgPath: ExampleStrings.imgScatterChart,
                 title: ExampleStrings.titleScatterChart,
                 seoTitle: ExampleStrings.urlTitleScatterChart,
                 examplePath: ExampleStrings.urlScatterChart
             },
             {
-                imgPath: bubbleChart,
+                imgPath: ExampleStrings.imgBubbleChart,
                 title: ExampleStrings.urlTitleBubbleChart,
                 seoTitle: ExampleStrings.titleBubbleChart,
                 examplePath: ExampleStrings.urlBubbleChart
@@ -61,20 +58,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            previewDescription={previewDescription}
-            documentationLinks={documentationLinks}
-            description={description}
-        />
-    </div>
-);
 export const usePointMarkersExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleUsePointMarkers,
     path: ExampleStrings.urlUsePointMarkers,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

@@ -5,9 +5,6 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import verticalChart from "../VerticalCharts/javascript-vertical-charts.jpg";
-import secondaryYAxis from "../SecondaryYAxes/javascript-chart-with-secondary-y-axis.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates a line chart with four series and multiple top / bottom X-Axis and left / right Y-Axis.
 SciChart supports multiple top or bottom X-Axes and multiple left and right Y-Axes. This example shows in a
@@ -32,13 +29,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: secondaryYAxis,
+                imgPath: ExampleStrings.imgSecondaryYAxis,
                 title: ExampleStrings.titleSecondaryYAxis,
                 seoTitle: ExampleStrings.urlTitleSecondaryYAxis,
                 examplePath: ExampleStrings.urlSecondaryYAxis
             },
             {
-                imgPath: verticalChart,
+                imgPath: ExampleStrings.imgVerticalCharts,
                 title: ExampleStrings.titleVerticalCharts,
                 seoTitle: ExampleStrings.urlTitleVerticalCharts,
                 examplePath: ExampleStrings.urlVerticalCharts
@@ -57,22 +54,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-
-        />
-    </div>
-);
-
 export const multipleXAxesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMultipleXAxis,
     path: ExampleStrings.urlMultipleXAxis,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

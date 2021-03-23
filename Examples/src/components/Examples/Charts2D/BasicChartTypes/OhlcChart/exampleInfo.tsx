@@ -3,12 +3,8 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import candlestickImg from "../CandlestickChart/javascript-candlestick-chart.jpg";
-import multiPaneStockChart from "../../CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
-import realtimeStockImg from "../../CreateStockCharts/RealtimeTickingStockCharts/javascript-realtime-ticking-stock-charts.jpg";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = ` Demonstrates how to create a JavaScript Digital Line Chart. The FastLineRenderableSeries can be used to
 render an XyDataSeries, XyyDataSeries (uses Y1 only) or OhlcDataSeries (renders Close).`;
@@ -47,19 +43,19 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: candlestickImg,
+                imgPath: ExampleStrings.imgCandleStickChart,
                 title: ExampleStrings.titleCandlestickChart,
                 seoTitle: ExampleStrings.urlTitleCandlestickChart,
                 examplePath: ExampleStrings.urlCandlestickChart
             },
             {
-                imgPath: multiPaneStockChart,
+                imgPath: ExampleStrings.imgMultiPaneStockChart,
                 title: ExampleStrings.titleMultiPaneStockChart,
                 seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
                 examplePath: ExampleStrings.urlMultiPaneStockChart
             },
             {
-                imgPath: realtimeStockImg,
+                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
                 title: ExampleStrings.titleRealtimeTickingStockCharts,
                 seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
                 examplePath: ExampleStrings.urlRealtimeTickingStockCharts
@@ -78,21 +74,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
 export const ohlcChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleOhlcChart,
     path: ExampleStrings.urlOhlcChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

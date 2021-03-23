@@ -5,7 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
+
 // import multiPaneStockChart from "src/components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
 // import fanChart from "../FanChart/javascript-fan-chart.jpg";
 
@@ -46,23 +46,21 @@ const seeAlso: GalleryItem[] = [
     {
         chartGroupTitle: "See also",
         items: [
-            // {
-            //     imgPath: multiPaneStockChart,
-            //     title: ExampleStrings.titleMultiPaneStockChart,
-            //     seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-            //     examplePath: ExampleStrings.urlMultiPaneStockChart
-            // },
-            // {
-            //     imgPath: fanChart,
-            //     title: ExampleStrings.titleFanChart,
-            //     seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
-            //     examplePath: ExampleStrings.urlFanChart
-            // }
+            {
+                imgPath: ExampleStrings.imgMultiPaneStockChart,
+                title: ExampleStrings.titleMultiPaneStockChart,
+                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
+                examplePath: ExampleStrings.urlMultiPaneStockChart
+            },
+            {
+                imgPath: ExampleStrings.imgFanChart,
+                title: ExampleStrings.titleFanChart,
+                seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
+                examplePath: ExampleStrings.urlFanChart
+            }
         ]
     }
 ];
-
-
 
 const Subtitle = () => (
     <p>
@@ -74,22 +72,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-            previewDescription={previewDescription}
-        />
-    </div>
-);
-
 export const bandSeriesChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBandChart,
     path: ExampleStrings.urlBandChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,

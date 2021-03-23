@@ -5,10 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import columnChart from "../ColumnChart/javascript-column-chart.jpg";
-import stackedMountainImg from "../StackedMountainChart/javascript-stacked-mountain-chart.jpg";
-import groupedColumnChart from "../StackedColumnSideBySide/javascript-stacked-grouped-column-chart-side-by-side.png";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates how to create a JavaScript Stacked Column Chart. An column or rectangle is rendered from the
 Y-value of each stacked column series to the Y-value of the next.`;
@@ -44,19 +40,19 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: stackedMountainImg,
+                imgPath: ExampleStrings.imgStackedMountainChart,
                 title: ExampleStrings.titleStackedMountainChart,
                 seoTitle: ExampleStrings.urlTitleStackedMountainChart,
                 examplePath: ExampleStrings.urlStackedMountainChart
             },
             {
-                imgPath: columnChart,
+                imgPath: ExampleStrings.imgColumnChart,
                 title: ExampleStrings.titleColumnChart,
                 seoTitle: ExampleStrings.urlTitleColumnChart,
                 examplePath: ExampleStrings.urlColumnChart
             },
             {
-                imgPath: groupedColumnChart,
+                imgPath: ExampleStrings.imgGroupedColumnChart,
                 title: ExampleStrings.titleGroupedColumnChart,
                 seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
                 examplePath: ExampleStrings.urlGroupedColumnChart
@@ -75,21 +71,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-        />
-    </>
-);
-
 export const stackedColumnChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStackedColumnChart,
     path: ExampleStrings.urlStackedColumnChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

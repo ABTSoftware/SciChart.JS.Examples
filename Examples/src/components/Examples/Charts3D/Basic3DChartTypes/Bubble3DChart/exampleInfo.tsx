@@ -4,10 +4,7 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
-import lidarChart from "../../../FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/javascript-3d-lidar-visualization.jpg";
-import surfaceMesh3d from "../SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates how to create a JavaScript 3D Bubble Chart. This is a chart type which draws a 3D point-marker
 (Sphere, Cylinder, Cube) or a 2D flat billboarded pointmarker (Ellipse, Quad, Pixel) at X,Y,Z locations in
@@ -40,13 +37,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: surfaceMesh3d,
+                imgPath: ExampleStrings.imgSurfaceMeash3D,
                 title: ExampleStrings.titleSurfaceMesh3D,
                 seoTitle: ExampleStrings.urlTitleSurfaceMesh3D,
                 examplePath: ExampleStrings.urlSurfaceMesh3D
             },
             {
-                imgPath: lidarChart,
+                imgPath: ExampleStrings.imgLidarFeaturedApp,
                 title: ExampleStrings.titleLidarFeaturedApp,
                 seoTitle: ExampleStrings.urlTitleLidarFeaturedApp,
                 examplePath: ExampleStrings.urlLidarFeaturedApp
@@ -64,17 +61,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </div>
-);
-
 export const bubble3DChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBubble3DChart,
     path: ExampleStrings.urlBubble3DChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

@@ -5,8 +5,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import columnChart from "../../../Charts2D/BasicChartTypes/ColumnChart/javascript-column-chart.jpg";
-import heatmapChart from "../../../Charts2D/BasicChartTypes/HeatmapChart/javascript-heatmap-chart.jpg";
 import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and visualize the
@@ -44,13 +42,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: heatmapChart,
+                imgPath: ExampleStrings.imgHeatMapChart,
                 title: ExampleStrings.titleHeatmapChart,
                 seoTitle: ExampleStrings.urlTitleHeatmapChart,
                 examplePath: ExampleStrings.urlHeatmapChart
             },
             {
-                imgPath: columnChart,
+                imgPath: ExampleStrings.imgColumnChart,
                 title: ExampleStrings.titleColumnChart,
                 seoTitle: ExampleStrings.urlTitleColumnChart,
                 examplePath: ExampleStrings.urlColumnChart
@@ -72,12 +70,6 @@ const Subtitle = () => (
             <strong>Note: </strong>this example requires microphone permissions to run.
         </em>
     </p>
-);
-
-const Description = () => (
-    <div>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </div>
 );
 
 export const audioAnalyzerExampleInfo: TExampleInfo = {

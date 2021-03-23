@@ -5,8 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import stackedMountainImg from "../StackedMountainChart/javascript-stacked-mountain-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrates how to create a JavaScript Digital Mountain Chart. An area or polygon is rendered from the
 Y-value to the zeroLineY, a configurable property which defaults to zero.`;
@@ -43,7 +41,7 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: stackedMountainImg,
+                imgPath: ExampleStrings.imgStackedMountainChart,
                 title: ExampleStrings.titleStackedMountainChart,
                 seoTitle: ExampleStrings.urlTitleStackedMountainChart,
                 examplePath: ExampleStrings.urlStackedMountainChart
@@ -62,21 +60,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <>
-        <ExampleDescription
-            documentationLinks={documentationLinks}
-            tips={tips}
-            description={description}
-        />
-    </>
-);
-
 export const digitalMountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDigitalMountainChart,
     path: ExampleStrings.urlDigitalMountainChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

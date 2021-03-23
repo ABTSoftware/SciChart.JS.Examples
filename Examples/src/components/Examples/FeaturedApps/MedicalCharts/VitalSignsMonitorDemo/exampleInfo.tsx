@@ -5,9 +5,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import load500by500 from "../../PerformanceDemos/Load500By500/javascript-chart-load-500-series-by-500-points.jpg";
-import ghostedTracesImg from "../../PerformanceDemos/RealtimeGhostedTraces/javascript-realtime-ghosted-traces-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const previewDescription = `In this example we are simulating four channels of data showing that SciChart.js can be used to draw
 real-time ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate,
@@ -43,13 +40,13 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: ghostedTracesImg,
+                imgPath: ExampleStrings.imgRealtimeGhostedTracesChart,
                 title: ExampleStrings.titleRealtimeGhostedTraces,
                 seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
                 examplePath: ExampleStrings.urlRealtimeGhostedTraces
             },
             {
-                imgPath: load500by500,
+                imgPath: ExampleStrings.imgLoad500by500Charts,
                 title: ExampleStrings.titleLoad500By500,
                 seoTitle: ExampleStrings.urlTitleLoad500By500,
                 examplePath: ExampleStrings.urlLoad500By500
@@ -68,16 +65,14 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </>
-);
 export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleVitalSigns,
     path: ExampleStrings.urlVitalSigns,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
     seeAlso,
     code,
     githubUrl,
