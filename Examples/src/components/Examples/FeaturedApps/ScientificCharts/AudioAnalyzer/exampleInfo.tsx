@@ -83,8 +83,10 @@ const Description = () => (
 export const audioAnalyzerExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
     path: ExampleStrings.urlAudioAnalyzerFeaturedApp,
+    documentationLinks,
+    tips,
+    description,
     subtitle: Subtitle,
-    description: Description,
     seeAlso,
     code,
     githubUrl,

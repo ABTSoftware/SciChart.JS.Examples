@@ -14,6 +14,7 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import Gallery from "../Gallery/Gallery";
 import { GalleryItem } from "../../helpes/types/types";
+import ExampleDescription from "../ExampleDescription/ExampleDescription";
 type TProps = {
     // example: () => JSX.Element;
     examplePage: TExamplePage;
@@ -32,7 +33,12 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const titleText = examplePage ? examplePage.title : ExampleStrings.siteHomeTitle;
     const seoTitleText = titleText + ExampleStrings.exampleTitleSuffix;
     const subtitleText = examplePage ? examplePage.subtitle() : undefined;
-    const DescComponent: () => JSX.Element = examplePage?.description;
+
+    const documentationLinks = examplePage ? examplePage.documentationLinks() : undefined;
+    const tips = examplePage ? examplePage.tips() : undefined;
+    const previewDescription = examplePage ? examplePage.previewDescription() : undefined;
+    const description = examplePage ? examplePage.description() : undefined;
+
     const seeAlso: GalleryItem[] = examplePage?.seeAlso;
     const codeStr = examplePage ? examplePage.code : "";
     const githubUrl = examplePage ? examplePage.githubUrl : "";
@@ -122,37 +128,12 @@ const ExamplesRoot: React.FC<TProps> = props => {
                             <div className={classes.ExampleDescription}>
                                 <div className={classes.Subtitle}>{subtitleText}</div>
                                 {/* <Description> */}
-                                <div>
-                                    <div className={classes.ExampleInfoText}>
-                                        {/* <div> */}
-                                        {props.previewDescription && <p>{props.previewDescription}</p>}
-                                        <p>{props.description}</p>
-                                    </div>
-                                    {props.tips && (
-                                        <div className={classes.UsefulLinksWrapper}>
-                                            {/* <div> */}
-                                            <h4>Tips!</h4>
-                                            {props.tips.map((item, index) => (
-                                                <p key={index + item}>{item}</p>
-                                            ))}
-                                        </div>
-                                    )}
-                                    <div className={classes.UsefulLinksWrapper}>
-                                        {/* <div> */}
-                                        <h4>Documentation Links</h4>
-                                        <ul>
-                                            {props.documentationLinks.map((item, index) => {
-                                                return (
-                                                    <li key={index + item.href}>
-                                                        <a href={item.href} title={item.title}>
-                                                            {item.linkTitle}
-                                                        </a>
-                                                    </li>
-                                                );
-                                            })}
-                                        </ul>
-                                    </div>
-                                </div>
+                                <ExampleDescription
+                                    documentationLinks={documentationLinks}
+                                    tips={tips}
+                                    description={description}
+                                    previewDescription={previewDescription}
+                                />
                                 {/* </Description> */}
                             </div>
                             {/* )} */}

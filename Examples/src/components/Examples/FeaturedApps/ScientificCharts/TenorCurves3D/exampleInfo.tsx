@@ -68,8 +68,10 @@ const Description = () => (
 export const tenorCurvesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleTenorCurvesFeaturedApp,
     path: ExampleStrings.urlTenorCurvesFeaturedApp,
+    documentationLinks,
+    tips,
+    description,
     subtitle: Subtitle,
-    description: Description,
     seeAlso,
     code,
     githubUrl,

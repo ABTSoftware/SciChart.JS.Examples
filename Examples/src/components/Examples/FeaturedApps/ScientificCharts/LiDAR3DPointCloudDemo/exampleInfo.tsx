@@ -7,7 +7,6 @@ import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 import bubbleChart3d from "../../../Charts3D/Basic3DChartTypes/Bubble3DChart/javascript-3d-bubble-chart.jpg";
 import surfaceMesh3d from "../../../Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
-import ExampleDescription from "../../../../ExampleDescription/ExampleDescription";
 
 const description = `Demonstrating the capability of SciChart.js to create JavaScript 3D Point Cloud charts and visualize LiDAR
 data from the UK Defra Survey.`;
@@ -65,16 +64,13 @@ const Subtitle = () => (
     </p>
 );
 
-const Description = () => (
-    <div>
-        <ExampleDescription documentationLinks={documentationLinks} tips={tips} description={description} />
-    </div>
-);
 export const lidar3DPointCloudExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLidarFeaturedApp,
     path: ExampleStrings.urlLidarFeaturedApp,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
     seeAlso,
     code,
     githubUrl,

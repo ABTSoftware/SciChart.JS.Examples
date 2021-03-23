@@ -57,8 +57,12 @@ import { GalleryItem } from "../../helpes/types/types";
 export type TExampleInfo = {
     title: string;
     path: string;
+    documentationLinks: any;
+    tips?: any;
+    description: any;
+    previewDescription?: any;
     subtitle: () => JSX.Element;
-    description: () => JSX.Element;
+
     seeAlso?: GalleryItem[];
     code: string;
     githubUrl: string;
