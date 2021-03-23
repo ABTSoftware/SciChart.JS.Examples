@@ -8,9 +8,9 @@ import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
 
 import classes from "../../../../Examples/Examples.module.scss";
+import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 
 const divElementId = "chart";
 
@@ -40,7 +40,7 @@ const drawExample = async () => {
     rendSeries.fillY1 = "#FF191933";
     rendSeries.stroke = "#FF1919FF";
     rendSeries.strokeY1 = "#279B27FF";
-    rendSeries.animation = new ScaleAnimation({ duration: 600, zeroLine: 0 });
+    rendSeries.animation = new SweepAnimation({ duration: 1500 });
     sciChartSurface.renderableSeries.add(rendSeries);
 
     // Optional: Add some interactivity modifiers
