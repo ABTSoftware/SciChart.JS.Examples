@@ -32,13 +32,13 @@
 
 %CommonFooterGridConfigs {
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: repeat(4, 1fr);
       
   @include sm{
-      grid-template-columns: 50% 50%;
+      grid-template-columns: repeat(2, 1fr);
   }
       
   @include xs{
-      grid-template-columns: 100%;
+      grid-template-columns: 1fr;
   }
 } 

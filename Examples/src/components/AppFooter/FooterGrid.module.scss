@@ -12,7 +12,7 @@
         .GridListContainer {
             @extend %CommonFooterGridConfigs;
 
-            grid-template-rows: 33% 33% 33%;
+            grid-template-rows: repeat(3, 1fr);
     
             @include sm{
                 grid-template-rows: repeat(7, 15%);
