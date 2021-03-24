@@ -2,7 +2,7 @@
 .ChartWrapper {
     overflow: hidden;
     position: relative;
-
+    background-color: black;
     img {
         display: block;
     }
@@ -161,12 +161,13 @@
 
 .ChartContainer {
     display: flex;
-    background-color: black;
-    padding-top: 6px;
-    width: 800px;
-    max-width: 90vw;
-    // font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";';
+    overflow: hidden;
     position: relative;
+    max-height: 60vh;
+    @include xs {
+        flex-direction: column;
+        max-height: none;
+    }
 }
 .VitalSigns {
     width: 100%;
@@ -176,8 +177,9 @@
     flex-basis: 25%;
     flex-grow: 0;
     flex-shrink: 0;
+    max-width: 90vw;
     @include md {
-        flex-basis: 10%;
+        flex-basis: 25%;
     }
 }
 
@@ -191,6 +193,9 @@
     width: 100%;
     background-color: black;
     border-bottom: 1px solid darkgrey;
+    @include sm {
+        height: auto;
+    }
 }
 .IbRow1 {
     flex-grow: 1;

@@ -20,6 +20,7 @@ type TProps = {
 };
 
 const ExamplesRoot: React.FC<TProps> = props => {
+    const [render, setRender] = React.useState(false);
     const { examplePage } = props;
     const [showSource, setShowSource] = React.useState(false);
     const [firstRender, setFirstRender] = React.useState(true);
@@ -55,6 +56,12 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const fullGithubUrl = baseGithubPath + githubUrl;
 
+    React.useEffect(() => {
+        setRender(true);
+        return () => {
+            setRender(false);
+        };
+    }, []);
     return (
         <div className={classes.ExamplesRoot}>
             <SeoTags
@@ -69,6 +76,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                     <ComponentWrapper>
                         <div className={classes.ExampleRootDescription}>
                             <h5>JavaScript Chart Examples</h5>
+
                             <p className={classes.ExampleDescriptionText}>
                                 SciChart.js ships with ~40{" "}
                                 <a className={classes.ExampleRootDescriptionLink} href="https://demo.scichart.com">
@@ -96,7 +104,9 @@ const ExamplesRoot: React.FC<TProps> = props => {
 
                         <div className={classes.ExampleWrapper}>
                             <div className={classes.Example}>
-                                <ExampleComponent />
+                                <CSSTransition timeout={1200} in={render} mountOnEnter classNames="source-code1">
+                                    <ExampleComponent />
+                                </CSSTransition>{" "}
                                 <div className={classes.ButtonsWrapper}>
                                     <Button
                                         onClick={() => {

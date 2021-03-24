@@ -121,7 +121,7 @@ export default function LiDAR3DPointCloudDemo() {
 
     return (
         <div className={classes.ChartWrapper}>
-            <div className={classes.Lidar}>
+            <div style={{ minHeight: 500 }}>
                 <div id={divElementId}></div>
             </div>
         </div>

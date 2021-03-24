@@ -43,6 +43,8 @@ $default-border-radius: 10px;
     }
     @include md {
         max-width: 1200px;
+
+        padding: 0 10px;
     }
 }
 html {
