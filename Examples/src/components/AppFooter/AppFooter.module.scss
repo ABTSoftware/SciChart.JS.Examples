@@ -115,8 +115,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px;
-    padding: 0 $default-spacing;
+    min-height: 60px;
+    padding: $default-spacing * 2;
     background-color: $color-dark-blue;
     color: #7a858f;
     text-align: center;
