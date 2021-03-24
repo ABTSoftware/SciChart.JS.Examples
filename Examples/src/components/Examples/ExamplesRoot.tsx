@@ -104,7 +104,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
 
                         <div className={classes.ExampleWrapper}>
                             <div className={classes.Example}>
-                                <CSSTransition timeout={1200} in={render} mountOnEnter classNames="source-code1">
+                                <CSSTransition timeout={2000} in={render} mountOnEnter classNames="example-anim">
                                     <ExampleComponent />
                                 </CSSTransition>{" "}
                                 <div className={classes.ButtonsWrapper}>

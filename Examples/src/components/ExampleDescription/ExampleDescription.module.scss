@@ -2,6 +2,9 @@
 ////////Description
 .ExampleInfoText {
     margin-bottom: 30px;
+    @include xs {
+        font-size: 14px;
+    }
 }
 
 .UsefulLinksWrapper {

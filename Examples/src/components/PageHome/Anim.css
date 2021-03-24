@@ -42,27 +42,27 @@
     transform: scale(0);
     opacity: 0;
 }
-/* source code */
-.source-code1-enter {
-    transition: all 1200ms;
+/* example-anim */
+.example-anim-enter {
+    transition: all 2000ms;
 
-    transform: translateY(+50%);
+    /* transform: translateY(+50%); */
 
-    opacity: 0.5;
+    opacity: 0.1;
 }
 
-.source-code1-enter-active {
-    transform: translateY(0%);
+.example-anim-enter-active {
+    /* transform: translateY(0%); */
     opacity: 1;
 }
 
-.source-code1-exit {
-    transition: all 1200ms;
+.example-anim-exit {
+    transition: all 2000ms;
 
     opacity: 1;
 }
 
-.source-code1-exit-active {
+.example-anim-exit-active {
     opacity: 0;
 }
 

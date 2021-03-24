@@ -5,7 +5,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { searchItems, TSearchItem } from "./searchItems";
-import classes from './Search.module.scss';
+import classes from "./Search.module.scss";
 
 export default function Search() {
     const history = useHistory();

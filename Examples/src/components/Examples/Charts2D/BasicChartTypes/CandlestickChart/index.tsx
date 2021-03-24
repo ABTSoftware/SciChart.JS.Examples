@@ -181,16 +181,10 @@ export default function CandlestickChart() {
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
 
-            <Box mt={20}>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button onClick={handleAddPoints}>Add 10 Points</Button>
-                </ButtonGroup>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button onClick={handleRemovePoints} style={{ marginLeft: 10 }}>
-                        Remove 10 Points
-                    </Button>
-                </ButtonGroup>
-            </Box>
+            <div className={classes.ButtonsWrapper}>
+                <Button onClick={handleAddPoints}>Add 10 Points</Button>
+                <Button onClick={handleRemovePoints}>Remove 10 Points</Button>
+            </div>
         </div>
     );
 }

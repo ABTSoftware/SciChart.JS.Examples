@@ -138,16 +138,10 @@ export default function HeatmapChart() {
             </div>
 
             <div>
-                <Box mt={20}>
-                    <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                        <Button onClick={heatmapDataSeries && handleStart}>Start</Button>
-                    </ButtonGroup>
-                    <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                        <Button onClick={heatmapDataSeries && handleStop} style={{ marginLeft: 10 }}>
-                            Stop
-                        </Button>
-                    </ButtonGroup>
-                </Box>
+                <div className={classes.ButtonsWrapper}>
+                    <Button onClick={heatmapDataSeries && handleStart}>Start</Button>
+                    <Button onClick={heatmapDataSeries && handleStop}>Stop</Button>
+                </div>
             </div>
         </div>
     );

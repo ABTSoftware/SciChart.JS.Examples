@@ -10,7 +10,6 @@ type TProps = {
 };
 
 export default function ExampleDescription(props: TProps) {
-
     return (
         <div>
             <div className={classes.ExampleInfoText}>
@@ -39,18 +38,6 @@ export default function ExampleDescription(props: TProps) {
                     })}
                 </ul>
             </div>
-
-            {/* <ul>
-                {props.seeAlso.map((item, index) => {
-                    return (
-                        <li key={index + item.href}>
-                            <a href={item.href} title={item.title}>
-                                {item.exampleTitle}
-                            </a>
-                        </li>
-                    );
-                })}
-            </ul> */}
         </div>
     );
 }
