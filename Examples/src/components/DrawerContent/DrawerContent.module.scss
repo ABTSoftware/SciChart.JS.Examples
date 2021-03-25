@@ -1,17 +1,66 @@
-@import '../../assets/main.scss';
+@import "../../assets/main.scss";
+
+.DrawerContent {
+    @include md {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.DrawerTopSection {
+    display: flex;
+    justify-content: space-between;
+    padding: $default-spacing * 2 $default-spacing * 2;
+
+    .CloseButton {
+        align-self: center;
+        cursor: pointer;
+        padding: 0;
+        display: none;
+        
+        @include md {
+            display: block;
+        }
+    }
+}
 
 .homepageLink {
-  color: rgba(0, 0, 0, 0.54);
-  cursor: pointer;
-  margin-top: 6;
+    color: rgba(0, 0, 0, 0.54);
+    cursor: pointer;
 }
 
 .toolbar {
-  min-height: 56px;
-  padding-left: $default-spacing * 2;
+    display: flex;
 }
 
 .versionCaption {
-  color: rgba(0, 0, 0, 0.54);
-  font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 0.75rem;
+    align-self: flex-end;
+    margin: 4px;
+}
+
+.DrawerContentDownloadTrialButton {
+    display: none;
+    justify-content: center;
+    height: 44px;
+    margin: 0 $default-spacing * 2 $default-spacing * 2 $default-spacing * 2;
+    border-radius: 4px;
+    background: $color-dark-green;
+
+    @include md {
+        display: flex;
+    }
+
+    span {
+        display: block;
+        color: $color-lightest-green;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        line-height: 15px;
+        text-align: center;
+        text-transform: uppercase;
+        text-decoration-thickness: auto;
+    }
 }

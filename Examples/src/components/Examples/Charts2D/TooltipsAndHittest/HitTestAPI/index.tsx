@@ -19,7 +19,7 @@ import { Point } from "scichart/Core/Point";
 import { ENearestPointLogic } from "scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../shared/Helpers/Box/Box";
+import Box from "../../../../../helpers/shared/Helpers/Box/Box";
 
 const divElementId = "chart";
 

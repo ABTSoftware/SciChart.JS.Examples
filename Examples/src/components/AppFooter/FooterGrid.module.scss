@@ -1,38 +1,58 @@
 @import "../../assets/main.scss";
+@import "./CommonFooterStyles.module.scss";
+
+.FooterGrid {
+    &:not(:last-child) {
+        .GridListContainer {
+            @extend %CommonFooterGridConfigs;
+        }
+    }
+
+    &:not(:first-child) {
+        .GridListContainer {
+            @extend %CommonFooterGridConfigs;
+
+            grid-template-rows: repeat(3, 1fr);
+    
+            @include xs{
+                grid-template-rows: unset;
+            }
+        }
+    }
+}
+
+.TitleBox {
+    padding: 40px 40px 0 40px;
+
+    @include sm {
+        padding: 40px 16px 0 16px;
+    }
+}
 
 .FooterGridList {
-    width: 33.3%;
+    @extend %CommonLinkStyles;
 
-    @include xs {
-        width: 100%;
+    padding: 0 40px;
+
+    &:first-child {
+        grid-row-end: span 3;
     }
 
-    h6 {
-        margin-left: $default-spacing;
-        color: $color-primary-grey;
+    &:first-child:last-child {
+        grid-column-end: span 4;
     }
 
-    a {
-        @extend %gutter-bottom;
+    @include sm{
+        padding: 0 16px;
 
-        display: block;
-        color: $color-primary-grey;
-        text-decoration: none;
-        margin-left: $default-spacing * 2;
-        font-size: 0.875rem;
-        cursor: pointer;
+        &:first-child {
+            grid-row-end: span 5;
+        }
+
+        &:nth-child(6) {
+            grid-row-start: 6;
+            grid-column-start: 1;
+        }
     }
-}
 
-.divider {
-    position: relative;
-    border-bottom: 1px solid $color-dark-blue;
-}
-
-.dividerBox {
-    position: absolute;
-    left: 0;
-    width: 30px;
-    height: 3px;
-    background-color: $color-dark-green;
 }

@@ -12,7 +12,7 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { EStrokePaletteMode, IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import Box from "../../../../shared/Helpers/Box/Box";
+import Box from "../../../../../helpers/shared/Helpers/Box/Box";
 import { Button, ButtonGroup } from "@material-ui/core";
 import { uintArgbColorMultiplyOpacity } from "scichart/utils/colorUtil";
 import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
@@ -163,16 +163,11 @@ export default function OhlcChart() {
     return (
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
-            <Box mt={20}>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button onClick={handleAddPoints}>Add 10 Points</Button>
-                </ButtonGroup>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button onClick={handleRemovePoints} style={{ marginLeft: 10 }}>
-                        Remove 10 Points
-                    </Button>
-                </ButtonGroup>
-            </Box>
+            <div className={classes.ButtonsWrapper}>
+                <Button onClick={handleAddPoints}>Add 10 Points</Button>
+
+                <Button onClick={handleRemovePoints}>Remove 10 Points</Button>
+            </div>
         </div>
     );
 }

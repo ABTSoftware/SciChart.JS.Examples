@@ -1,26 +1,42 @@
-@import '../../assets/main.scss';
+@import "../../assets/main.scss";
+@import "./CommonListItemStyles.module.scss";
 
-.MenuListItem {
-    font-size: 0.875rem;
-    font-weight: 600;
-    // used !important to prevent padding overriding by material-ui classes
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
-    line-height: 1.43;
-}
+.ListItemBlock {
+    .MenuListItemText {
+        flex: auto;
+    }
 
-.SecondLevelMenuListItemText {
-    margin-left: $default-spacing;
-}
+    .SecondLevelMenuListItemText {
+        flex: auto;
+        margin-left: 20px;
+    }
 
-.ExampleLink {
-    @extend %gutter-bottom;
+    .CollapsibleMenuListItem {
+        @extend %MenuListItem;
+    }
 
-    font-size: 0.875rem;
-    line-height: 1.5;
-    margin-left: $default-spacing * 2;
-    color: rgba(0, 0, 0, 0.87);
-    text-decoration: none;
-    pointer-events: none;
-    cursor: default;
+    .BottomLevelListItem {
+        @extend %ListItem;
+    }
+
+    .SelectedBottomLevelListItem {
+        @extend %ListItem;
+        @extend %SelectedListItem;
+    }
+
+    .ExampleLink {
+        font-size: 0.875rem;
+        line-height: 17px;
+        margin: 9px 0 10px 40px;
+        color: $font-color;
+        text-decoration: none;
+        pointer-events: none;
+        cursor: default;
+    }
+
+    .CollapseArrowButton {
+        background-color: #f9fafa;
+        color: #98a4af;
+        border-radius: 50%;
+    }
 }

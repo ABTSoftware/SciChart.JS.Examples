@@ -13,7 +13,7 @@ import { Point } from "scichart/Core/Point";
 import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 
 import classes from "../../../../Examples/Examples.module.scss";
-
+import image from "./javascript-line-chart.jpg";
 const divElementId = "chart";
 
 const drawExample = async () => {
@@ -65,14 +65,25 @@ const drawExample = async () => {
 
 export default function LineChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const [loading, setLoading] = React.useState(false);
+
     React.useEffect(() => {
         (async () => {
+            setLoading(true);
             const res = await drawExample();
             setSciChartSurface(res.sciChartSurface);
+            if (res) {
+                setLoading(false);
+            }
         })();
         // Deleting sciChartSurface to prevent memory leak
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return (
+        <div className={classes.ChartWrapper}>
+            {loading && <img src={image} className={classes.PreloadImage} alt="" />}
+            <div id={divElementId} style={{ opacity: !loading ? "1" : "0.5" }}></div>
+        </div>
+    );
 }

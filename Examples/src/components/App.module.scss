@@ -1,6 +1,8 @@
 @import "../assets/main.scss";
 
-$drawerWidth: 240px;
+$drawerWidthDesktop: 350px;
+$drawerWidthTablet: 375px;
+$drawerWidthMobile: 100%;
 
 .App {
     display: flex;
@@ -11,8 +13,14 @@ $drawerWidth: 240px;
 }
 
 .DrawerDesktop {
-    width: $drawerWidth;
+    background-color: $color-primary-white;
+    width: $drawerWidthDesktop;
+
+    margin-right: 30px;
+    margin-bottom: 30px;
     flex-shrink: 0;
+    overflow-x: visible;
+    border-radius: $default-border-radius;
 
     @include md {
         display: none;
@@ -20,20 +28,41 @@ $drawerWidth: 240px;
 }
 
 .DrawerMobile {
-    width: $drawerWidth;
+    background-color: $color-primary-white;
     flex-shrink: 0;
     display: none;
+    // fix for a bug of Drawer with anchor="right"
+    inset: unset !important;
 
     @include md {
         display: block;
+        width: $drawerWidthTablet;
+    }
+
+    @include xxs {
+        width: $drawerWidthMobile;
     }
 }
 
 .DrawerPaper {
-    width: $drawerWidth;
+    width: inherit;
+    overflow-x: hidden;
 }
 
 .MainAppContent {
     flex-grow: 1;
     padding: 0;
+    background-color: #e5e5e5;
+    max-width: 100vw;
+}
+
+.MainAppWrapper {
+    @extend %Container;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 20px;
+
+    justify-content: center;
+    min-height: 0px;
+    min-width: 0px;
 }

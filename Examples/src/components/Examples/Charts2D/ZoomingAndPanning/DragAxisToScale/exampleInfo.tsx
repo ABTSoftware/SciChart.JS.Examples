@@ -3,47 +3,46 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
+import { GalleryItem } from "../../../../../helpers/types/types";
+import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const Description = () => (
-    <div>
-        <p>
-            Demonstrates how to add behaviour to scale, zoom or pan a chart by dragging the X or Y Axis on the chart.
-            Try it out below! Drag an axis to watch the chart re-scale.
-        </p>
-        <h4>Tips!</h4>
-        <p>Try dragging an axis to zoom or pan the axis. Double clicking the chart resets the zoom!</p>
-        <h4>Documentation Links</h4>
-        <ul>
-            <li>
-                <a
-                    href={ExampleStrings.urlDocumentationHome}
-                    title={ExampleStrings.titleDocumentationHome}
-                    target="_blank"
-                >
-                    SciChart.js Documentation Home
-                </a>
-            </li>
-            <li>
-                <a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
-                    SciChart.js Tutorials
-                </a>
-            </li>
-        </ul>
-        <h4>See Also</h4>
-        <ul>
-            <li>
-                <a href={ExampleStrings.urlSecondaryYAxis} title={ExampleStrings.urlTitleSecondaryYAxis}>
-                    Secondary Y-Axis Example
-                </a>
-            </li>
-            <li>
-                <a href={ExampleStrings.urlVerticalCharts} title={ExampleStrings.urlTitleVerticalCharts}>
-                    Vertical Chart Axis Example
-                </a>
-            </li>
-        </ul>
-    </div>
-);
+const description = `Demonstrates how to add behaviour to scale, zoom or pan a chart by dragging the X or Y Axis on the chart.
+Try it out below! Drag an axis to watch the chart re-scale.`;
+const tips = [`Try dragging an axis to zoom or pan the axis. Double clicking the chart resets the zoom!`];
+
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    },
+    {
+        href: ExampleStrings.urlTutorialsHome,
+        title: ExampleStrings.titleTutorialsHome,
+        linkTitle: "SciChart.js Tutorials"
+    }
+];
+
+const seeAlso: GalleryItem[] = [
+    {
+        chartGroupTitle: "See also",
+        items: [
+            {
+                imgPath: ExampleStrings.imgSecondaryYAxis,
+                title: ExampleStrings.titleSecondaryYAxis,
+                seoTitle: ExampleStrings.urlTitleSecondaryYAxis,
+                examplePath: ExampleStrings.urlSecondaryYAxis
+            },
+            {
+                imgPath: ExampleStrings.imgVerticalCharts,
+                title: ExampleStrings.titleVerticalCharts,
+                seoTitle: ExampleStrings.urlTitleVerticalCharts,
+                examplePath: ExampleStrings.urlVerticalCharts
+            }
+        ]
+    }
+];
+
 const Subtitle = () => (
     <p>
         Demonstrates how to <strong>scale or pan the Axis on a JavaScript Chart</strong> using SciChart.js, High
@@ -58,10 +57,15 @@ export const dragAxisToScaleExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDragAxisToScale,
     path: ExampleStrings.urlDragAxisToScale,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+
+    seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to Zoom, Scale or Pan individual Axis on a JavaScript Chart with SciChart.js AxisDragModifiers",
+    seoDescription:
+        "Demonstrates how to Zoom, Scale or Pan individual Axis on a JavaScript Chart with SciChart.js AxisDragModifiers",
     seoKeywords: "drag, axis, scale, javascript, webgl, canvas",
     thumbnailImage: "drag-axis-on-javascript-charts-to-scale-or-pan.jpg"
 };

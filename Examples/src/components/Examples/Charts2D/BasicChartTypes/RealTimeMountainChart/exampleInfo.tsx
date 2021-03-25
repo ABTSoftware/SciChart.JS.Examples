@@ -2,33 +2,66 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
-import {ExampleStrings} from "../../../ExampleStrings";
+import { ExampleStrings } from "../../../ExampleStrings";
+import { GalleryItem } from "../../../../../helpers/types/types";
+import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const Description = () => (<div>
-    <p>Demonstrates how to create a JavaScript Mountain Chart with animated realtime updates.</p>
-    <h4>Documentation Links</h4>
-    <ul>
-        <li><a href={ExampleStrings.urlDocumentationHome} title={ExampleStrings.titleDocumentationHome} target="_blank">
-            SciChart.js Documentation Home</a></li>
-        <li><a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
-            SciChart.js Tutorials</a></li>
-        <li><a href="#" target="_blank">JavaScript Mountain Chart Documentation</a></li>
-    </ul>
-    <h4>See Also</h4>
-    <ul>
-        <li><a href="/javascript-mountain-chart">The JavaScript Mountain Chart Example</a></li>
-    </ul>
-</div>);
+const description = `>Demonstrates how to create a JavaScript Mountain Chart with animated realtime updates.`;
+const tips = [
+    `By setting the stroke property you alter the line color, and fill alters the fill. The Mountain-series also
+    supports semi-transparent and linear gradient brush fills and looks great!.`
+];
 
-const Subtitle = () => (<p>Demonstrates how create a <strong>JavaScript Mountain Chart with animated realtime updates</strong>{' '}
-    using SciChart.js, High Performance{' '}
-    <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a></p>);
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    },
+    {
+        href: ExampleStrings.urlTutorialsHome,
+        title: ExampleStrings.titleTutorialsHome,
+        linkTitle: "SciChart.js Tutorials"
+    },
+    {
+        href: ExampleStrings.urlRenderSeriesPropertiesDocumentation,
+        title: ExampleStrings.urlTitleRenderSeriesProperties,
+        linkTitle: "Common RenderableSeries Properties"
+    }
+];
+
+const seeAlso: GalleryItem[] = [
+    {
+        chartGroupTitle: "See also",
+        items: [
+            {
+                imgPath: ExampleStrings.imgMountainChart,
+                title: ExampleStrings.titleMountainChart,
+                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
+                examplePath: ExampleStrings.urlStackedMountainChart
+            }
+        ]
+    }
+];
+
+const Subtitle = () => (
+    <p>
+        Demonstrates how create a <strong>JavaScript Mountain Chart with animated realtime updates</strong> using
+        SciChart.js, High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+            JavaScript Charts
+        </a>
+    </p>
+);
 
 export const realTimeMountainChartExampleInfo: TExampleInfo = {
     title: "JavaScript Realtime Mountain Chart",
     path: "/javascript-realtime-mountain-chart",
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    seeAlso,
     code,
     githubUrl,
     seoDescription: "Demonstrates how to create a JavaScript Mountain Chart with animated realtime updates.",

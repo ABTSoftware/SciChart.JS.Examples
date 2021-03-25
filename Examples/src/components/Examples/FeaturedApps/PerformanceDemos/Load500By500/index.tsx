@@ -14,6 +14,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Button, ButtonGroup, FormControl } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import image from "./javascript-chart-load-500-series-by-500-points.jpg";
 import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
@@ -25,23 +26,6 @@ type TTimeSpan = {
 
 const SERIES = 500;
 const POINTS = 500;
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 142
-        },
-        notificationsBlock: {},
-        notification: {
-            marginBottom: 16
-        },
-        description: {
-            width: 800,
-            marginBottom: 20
-        }
-    })
-);
 
 const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, 3, 2);
@@ -168,16 +152,18 @@ let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
 export default function Load500By500() {
-    const classes1 = useStyles();
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
 
+    const [loading, setLoading] = React.useState(false);
     React.useEffect(() => {
         (async () => {
+            setLoading(true);
             const res = await drawExample((newTimeSpans: TTimeSpan[]) => {
                 setTimeSpans([...newTimeSpans]);
             });
             scs = res.sciChartSurface;
-            autoStartTimerId = setTimeout(res.loadPoints, 3000);
+            autoStartTimerId = setTimeout(res.loadPoints, 0);
+            if (res) setLoading(false);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
@@ -187,8 +173,10 @@ export default function Load500By500() {
     }, []);
 
     return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
+        <>
+            <div className={classes.ChartWrapper}>
+                <div id={divElementId} />
+            </div>
             <div>
                 <div className={classes.FormControl}>
                     <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
@@ -208,6 +196,6 @@ export default function Load500By500() {
                     </Alert>
                 )}
             </div>
-        </div>
+        </>
     );
 }

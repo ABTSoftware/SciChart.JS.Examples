@@ -34,7 +34,13 @@ export const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-
+    const customSvgString = [
+        ' <svg width="50" height="50"',
+        ' xmlns="http://www.w3.org/2000/svg">',
+        '<rect width="100%" height="100%" style="fill:#39603D">',
+        '<animate attributeName="rx" values="0;25;0"',
+        ' dur="2s" repeatCount="indefinite" color="#ffffff" /></rect></svg>'
+    ].join("");
     const horizontalLineAnnotation1 = new HorizontalLineAnnotation({
         stroke: "#FF6600",
         strokeThickness: 3,
@@ -96,8 +102,7 @@ export const drawExample = async () => {
             yCoordShift: 0,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
-            svgString:
-                ' <svg width="50" height="50"  xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" style="fill:#39603D"><animate attributeName="rx" values="0;25;0" dur="2s" repeatCount="indefinite" color="#ffffff" /></rect></svg>',
+            svgString: customSvgString,
             isEditable: true
         }),
         new TextAnnotation({

@@ -169,24 +169,23 @@ export default function Load1MillionPointsChart() {
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
             <div>
-                <FormControl className={classes1.formControl}>
+                <div className={classes.FormControl}>
                     <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                         <Button id="loadPoints">Load</Button>
                     </ButtonGroup>
-                </FormControl>
+                </div>
             </div>
-            <div className={classes1.notificationsBlock}>
-                {timeSpans.length > 0 && (
-                    <Alert key="0" severity="info" className={classes1.notification}>
-                        {timeSpans.map((ts, index) => (
-                            <div key={index}>
-                                <AlertTitle>{ts.title}</AlertTitle>
-                                Time: {ts.durationMs.toFixed(0)} ms
-                            </div>
-                        ))}
-                    </Alert>
-                )}
-            </div>
+
+            {timeSpans.length > 0 && (
+                <Alert key="0" severity="info" className={classes.Notification}>
+                    {timeSpans.map((ts, index) => (
+                        <div key={index}>
+                            <AlertTitle>{ts.title}</AlertTitle>
+                            Time: {ts.durationMs.toFixed(0)} ms
+                        </div>
+                    ))}
+                </Alert>
+            )}
         </div>
     );
 }

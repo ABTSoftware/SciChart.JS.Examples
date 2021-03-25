@@ -99,7 +99,7 @@ export default function UsingThemeManager() {
     }, []);
 
     const handleChangeTheme = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const newValue = event.target.value as ETheme;
+        const newValue = +event.target.value as ETheme;
         setThemeToDisplay(newValue);
         switch (newValue) {
             case ETheme.SciChartDark:
@@ -113,24 +113,25 @@ export default function UsingThemeManager() {
     return (
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
-            <div style={{ marginTop: 20, display: "block" }}>
-                <FormControl variant="filled" style={{ width: 200 }}>
-                    <InputLabel id="sciChartTheme-label">Select Theme</InputLabel>
-                    <Select
-                        labelId="sciChartTheme-label"
-                        id="sciChartTheme"
-                        value={themeToDisplay}
-                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                            if (showChart) handleChangeTheme(e);
-                        }}
-                    >
-                        {themeSelect.map(el => (
-                            <MenuItem key={el.value} value={el.value}>
-                                {el.text}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+            <div className={classes.SelectWrapper}>
+                <div className={classes.InputSelectWrapper}>
+                    <label id="sciChartTheme-label">
+                        Select Theme
+                        <select
+                            id="sciChartTheme"
+                            value={themeToDisplay}
+                            onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                                if (showChart) handleChangeTheme(e);
+                            }}
+                        >
+                            {themeSelect.map(el => (
+                                <option key={el.value} value={el.value}>
+                                    {el.text}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
+                </div>
             </div>
         </div>
     );
