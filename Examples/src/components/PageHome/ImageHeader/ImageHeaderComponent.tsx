@@ -73,6 +73,12 @@ export default function ImageHeaderComponent(props: TProps) {
         clearInterval(interval1);
     }, props.interval);
 
+    React.useEffect(() => {
+        return () => {
+            clearInterval(interval1);
+        };
+    }, []);
+
     return (
         <div>
             <SwitchTransition>

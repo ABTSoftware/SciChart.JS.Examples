@@ -3,8 +3,8 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpes/types/types";
-import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
+import { GalleryItem } from "../../../../../helpers/types/types";
+import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
 const description = `Demonstrates how to assign line series to different Y Axis in a JavaScript Chart. SciChart supports multiple
 top or bottom X-Axes and multiple left and right Y-Axes. This example shows in a simple way how to register

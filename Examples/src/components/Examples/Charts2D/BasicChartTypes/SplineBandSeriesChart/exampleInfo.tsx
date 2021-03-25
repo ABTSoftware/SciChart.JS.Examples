@@ -3,9 +3,9 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpes/types/types";
+import { GalleryItem } from "../../../../../helpers/types/types";
 
-import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
+import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
 const previewDescription = `Spline Band Series are provided by the SplineBandRenderableSeries type. This is a chart type which draws an
 area (polygon or fill) between two lines, using a spline interpolation (smoothing) algorithm. The

@@ -3,8 +3,8 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpes/types/types";
-import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
+import { GalleryItem } from "../../../../../helpers/types/types";
+import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
 const description = `Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and visualize the
 Fourier-Transform of an audio waveform.`;

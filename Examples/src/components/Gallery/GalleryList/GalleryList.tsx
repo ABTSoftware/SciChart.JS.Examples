@@ -8,7 +8,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ComponentWrapper from "../../ComponentWrapper/ComponentWrapper";
-import { GalleryItem } from "../../../helpes/types/types";
+import { GalleryItem } from "../../../helpers/types/types";
 // Import Swiper styles
 
 // import "swiper/swiper.scss";
@@ -46,20 +46,10 @@ export default function GalleryList(props: TProps) {
 
                 {props.slidersNumber < props.example.items.length && (
                     <div className={classes.CarouselButtons}>
-                        <button
-                            className={classes.ButtonArrow}
-                            onClick={() => {
-                                moveL();
-                            }}
-                        >
+                        <button className={classes.ButtonArrow} onClick={moveL}>
                             <ArrowBackIcon />
                         </button>
-                        <button
-                            className={classes.ButtonArrow}
-                            onClick={() => {
-                                moveR();
-                            }}
-                        >
+                        <button className={classes.ButtonArrow} onClick={moveR}>
                             <ArrowForwardIcon />
                         </button>
                     </div>

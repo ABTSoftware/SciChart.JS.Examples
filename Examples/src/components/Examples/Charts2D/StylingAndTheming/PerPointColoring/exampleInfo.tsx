@@ -3,8 +3,8 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpes/types/types";
-import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
+import { GalleryItem } from "../../../../../helpers/types/types";
+import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
 const description = `Demonstrates how to use the PaletteProvider API to color lines, points and fills individually based on a
 rule. Using this API you can color individual data-points of the following chart series: Line, Column,

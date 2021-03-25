@@ -3,8 +3,8 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
-import { GalleryItem } from "../../../../../helpes/types/types";
+import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import { GalleryItem } from "../../../../../helpers/types/types";
 
 const description = `Demonstrates how to create a JavaScript Stacked Column Chart. An column or rectangle is rendered from the
 Y-value of each stacked column series to the Y-value of the next.`;

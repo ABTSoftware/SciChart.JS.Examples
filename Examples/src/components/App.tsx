@@ -15,7 +15,7 @@ import classes from "./App.module.scss";
 import "./index.scss";
 import Gallery from "./Gallery/Gallery";
 import { PAGES } from "./AppRouter/pages";
-import { sciChartExamples } from "../helpes/SciChartExamples";
+import { sciChartExamples } from "../helpers/SciChartExamples";
 
 export default function App() {
     const location = useLocation();

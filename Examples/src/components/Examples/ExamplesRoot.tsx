@@ -12,7 +12,7 @@ import CodeIcon from "@material-ui/icons/Code";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import Gallery from "../Gallery/Gallery";
-import { GalleryItem } from "../../helpes/types/types";
+import { GalleryItem } from "../../helpers/types/types";
 import ExampleDescription from "../ExampleDescription/ExampleDescription";
 type TProps = {
     // example: () => JSX.Element;
@@ -133,22 +133,17 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                 </div>
                             </div>
 
-                            {/* {DescComponent && ( */}
                             <div className={classes.ExampleDescription}>
                                 <div className={classes.Subtitle}>{subtitleText}</div>
-                                {/* <Description> */}
                                 <ExampleDescription
                                     documentationLinks={documentationLinks}
                                     tips={tips}
                                     description={description}
                                     previewDescription={previewDescription}
                                 />
-                                {/* </Description> */}
                             </div>
-                            {/* )} */}
                         </div>
                     </ComponentWrapper>
-                    {/* <div style={{ overflow: "scroll" }}> */}
 
                     <div ref={myRef}>
                         <CSSTransition timeout={1000} unmountOnExit in={showSource} classNames="source-code">
@@ -166,27 +161,12 @@ const ExamplesRoot: React.FC<TProps> = props => {
                         </CSSTransition>
                     </div>
 
-                    {/* </div> */}
-
                     {seeAlso && (
                         <div className={!showSource && !firstRender ? classes.Animation : ""}>
                             <Gallery examples={seeAlso} />
                         </div>
                     )}
                 </div>
-                {/* <div className={classes.ColDescription}>
-                    <div className={classes.SciChartLogo}>
-                        <img src={sciChartLogoImg} width={209} height={42} />
-                    </div>
-
-                    {DescComponent && (
-                        <div className={classes.Description}>
-                            <Description>
-                                <DescComponent />
-                            </Description>
-                        </div>
-                    )}
-                </div> */}
             </div>
         </div>
     );

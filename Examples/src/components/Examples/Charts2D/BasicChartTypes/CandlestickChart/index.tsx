@@ -18,7 +18,7 @@ import {
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { Button, ButtonGroup } from "@material-ui/core";
-import Box from "../../../../../helpes/shared/Helpers/Box/Box";
+import Box from "../../../../../helpers/shared/Helpers/Box/Box";
 import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import { uintArgbColorMultiplyOpacity } from "scichart/utils/colorUtil";
 

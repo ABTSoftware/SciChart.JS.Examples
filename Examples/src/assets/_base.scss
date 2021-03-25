@@ -71,9 +71,6 @@ html {
 .container {
     width: 100%;
     @extend %Container;
-    // margin: 0 auto;
-    // padding: 0 2.4rem;
-    // position: relative;
 }
 
 %gutter-bottom {
