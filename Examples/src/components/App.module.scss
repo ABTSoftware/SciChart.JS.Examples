@@ -65,4 +65,9 @@ $drawerWidthMobile: 100%;
     justify-content: center;
     min-height: 0px;
     min-width: 0px;
+    .GalleryAppWrapper {
+        min-width: 0px;
+
+        flex: 1;
+    }
 }

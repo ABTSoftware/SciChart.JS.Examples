@@ -9,9 +9,7 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ComponentWrapper from "../../ComponentWrapper/ComponentWrapper";
 import { GalleryItem } from "../../../helpers/types/types";
-// Import Swiper styles
 
-// import "swiper/swiper.scss";
 type TProps = {
     example: GalleryItem;
     length: number;
