@@ -98,7 +98,9 @@ export default function App() {
                         />
                     </div>
                     {PAGES.homapage.path === location.pathname ? (
-                        <Gallery examples={sciChartExamples} />
+                        <div className={classes.GalleryAppWrapper}>
+                            <Gallery examples={sciChartExamples} />
+                        </div>
                     ) : (
                         <AppRouter currentExample={currentExample} />
                     )}
