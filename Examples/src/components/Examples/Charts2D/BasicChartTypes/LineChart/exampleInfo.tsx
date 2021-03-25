@@ -1,52 +1,86 @@
 import * as React from "react";
-import {TExampleInfo} from "../../../../AppRouter/examplePages";
-import {code} from "./GENERATED_SRC";
-import {githubUrl} from "./GENERATED_GITHUB_URL";
-import {ExampleStrings} from "../../../ExampleStrings";
+import { TExampleInfo } from "../../../../AppRouter/examplePages";
+import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
+import { ExampleStrings } from "../../../ExampleStrings";
+import { GalleryItem } from "../../../../../helpers/types/types";
+import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const Description = () => (<div>
-    <p>Demonstrates how to create a JavaScript Line Chart. The FastLineRenderableSeries can be used to render an
-        XyDataSeries, XyyDataSeries (uses Y1 only) or OhlcDataSeries (renders Close).</p>
-    <p>The scatter chart uses the PointMarker API to define the marker shape and size. Point-markers available out of
-        the box include Ellipse (circle), Triangle, Square, Cross and CustomPointMarker, which renders an image.</p>
-    <h4>Tips!</h4>
-    <p>As well as stroke, you can set strokeThickness, isVisible properties to change how the series is rendered.</p>
-    <p>You can add data-point markers to a line series using the PointMarker API. This is very performant and uses the
-        same WebGL rendering as our Scatter Charts.</p>
-    <h4>Documentation Links</h4>
-    <ul>
-        <li><a href={ExampleStrings.urlDocumentationHome} title={ExampleStrings.titleDocumentationHome} target="_blank">
-            SciChart.js Documentation Home</a></li>
-        <li><a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
-            SciChart.js Tutorials</a></li>
-        <li><a href={ExampleStrings.urlLineChartDocumentation} target="_blank"
-               title={ExampleStrings.urlTitleLineChartDocumentation}>JavaScript Line Chart Documentation</a></li>
-        <li><a href={ExampleStrings.urlRenderSeriesPropertiesDocumentation}
-               title={ExampleStrings.urlTitleRenderSeriesProperties} target="_blank">
-            Common RenderableSeries Properties</a></li>
-    </ul>
-    <h4>See Also</h4>
-    <ul>
-        <li><a href={ExampleStrings.urlScatterChart}
-               title={ExampleStrings.titleScatterChart}>The
-            JavaScript Scatter Chart Example</a></li>
-        <li><a href={ExampleStrings.urlPointMarkers}
-               title={ExampleStrings.titlePointMarkers}>Styling
-            Point-Markers Example</a></li>
-    </ul>
-</div>);
-const Subtitle = () => (<p>Demonstrates how to create a <strong>JavaScript Line Chart</strong>{' '}
-    using SciChart.js, High Performance{' '}
-    <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a></p>);
+const Subtitle = () => (
+    <p>
+        Demonstrates how to create a <strong>JavaScript Line Chart</strong> using SciChart.js, High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+            JavaScript Charts
+        </a>
+    </p>
+);
+
+const previewDescription = `Demonstrates how to create a JavaScript Line Chart. The FastLineRenderableSeries can be used to render an
+XyDataSeries, XyyDataSeries (uses Y1 only) or OhlcDataSeries (renders Close).`;
+const description = `The scatter chart uses the PointMarker API to define the marker shape and size. Point-markers available out
+of the box include Ellipse (circle), Triangle, Square, Cross and CustomPointMarker, which renders an image.`;
+const tips = [
+    ` As well as stroke, you can set strokeThickness, isVisible properties to change how the series is rendered.`,
+    ` You can add data-point markers to a line series using the PointMarker API. This is very performant and uses
+    the same WebGL rendering as our Scatter Charts.`
+];
+
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    },
+    {
+        href: ExampleStrings.urlTutorialsHome,
+        title: ExampleStrings.titleTutorialsHome,
+        linkTitle: "SciChart.js Tutorials"
+    },
+    {
+        href: ExampleStrings.urlLineChartDocumentation,
+        title: ExampleStrings.urlTitleLineChartDocumentation,
+        linkTitle: "JavaScript Line Chart Documentation"
+    },
+    {
+        href: ExampleStrings.urlRenderSeriesPropertiesDocumentation,
+        title: ExampleStrings.urlTitleRenderSeriesProperties,
+        linkTitle: "Common RenderableSeries Properties"
+    }
+];
+
+const seeAlso: GalleryItem[] = [
+    {
+        chartGroupTitle: "See also",
+        items: [
+            {
+                imgPath: ExampleStrings.imgScatterChart,
+                title: ExampleStrings.titleScatterChart,
+                seoTitle: ExampleStrings.urlTitleScatterChart,
+                examplePath: ExampleStrings.urlScatterChart
+            },
+            {
+                imgPath: ExampleStrings.imgPointMarkers,
+                title: ExampleStrings.titlePointMarkers,
+                seoTitle: ExampleStrings.urlTitlePointMarkersDocumentation,
+                examplePath: ExampleStrings.urlPointMarkers
+            }
+        ]
+    }
+];
 
 export const lineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLineChart,
     path: ExampleStrings.urlLineChart,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
+    seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to create a JavaScript Line Chart. " +
+    seoDescription:
+        "Demonstrates how to create a JavaScript Line Chart. " +
         "The Line Series also supports gradient-coloring and per-point coloring via our PaletteProvider API.",
     seoKeywords: "line, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-line-chart.jpg"

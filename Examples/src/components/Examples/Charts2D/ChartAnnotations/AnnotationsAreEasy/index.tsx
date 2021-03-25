@@ -37,7 +37,16 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     // Add the Annotations
-
+    const CustomAnnotationSvgString = [
+        '<svg width="300" height="100">',
+        "   <g>",
+        '       <rect x="0" y="0" width="100%" height="100%"',
+        ' stroke="red" stroke-width="10" fill="orange"/>',
+        '       <text x="50%" y="50%" dominant-baseline="middle"',
+        ' text-anchor="middle" font-family="Verdana" font-size="26" fill="blue">SVG ANNOTATION</text>',
+        "   </g>",
+        "</svg>"
+    ].join("");
     sciChartSurface.annotations.add(
         // Add TextAnnotations in the top left of the chart
         new TextAnnotation({ text: "Annotations are Easy!", fontSize: 24, x1: 0.3, y1: 9.7 }),
@@ -164,19 +173,26 @@ const drawExample = async () => {
         new CustomAnnotation({
             x1: 1,
             y1: 2.5,
-            svgString:
-                '<svg width="300" height="100">' +
-                "   <g>" +
-                '       <rect x="0" y="0" width="100%" height="100%" stroke="red" stroke-width="10" fill="orange"/>' +
-                '       <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="26" fill="blue">SVG ANNOTATION</text>' +
-                "   </g>" +
-                "</svg>"
+            svgString: CustomAnnotationSvgString
         })
     );
 
     return { sciChartSurface, wasmContext };
 };
 
+const getBuyMarkerAnnotationSvgString = [
+    '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">',
+    '<g transform="translate(-53.867218,-75.091687)">',
+    '<path style="fill:#1cb61c;',
+    "fill-opacity:0.34117647;stroke:#00b400;stroke-width:1px;",
+    'stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"',
+    'd="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,',
+    "-7.408333 7.158904,-7.408333 l 7.158906,7.408333",
+    ' H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"',
+    "/>",
+    "</g>",
+    "</svg>"
+].join("");
 // Returns a CustomAnnotation that represents a buy marker arrow
 // The CustomAnnotation supports SVG as content. Using Inkscape or similar you can create SVG content for annotations
 const getBuyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
@@ -185,17 +201,22 @@ const getBuyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
         y1,
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        svgString:
-            '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
-            '<g transform="translate(-53.867218,-75.091687)">' +
-            '<path style="fill:#1cb61c;fill-opacity:0.34117647;stroke:#00b400;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
-            'd="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,-7.408333 7.158904,-7.408333 l 7.158906,7.408333 H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"' +
-            "/>" +
-            "</g>" +
-            "</svg>"
+        svgString: getBuyMarkerAnnotationSvgString
     });
 };
 
+const getSellMarkerAnnotationSvgString = [
+    '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">',
+    '<g transform="translate(-54.616083,-75.548914)">',
+    '<path style="fill:#b22020;fill-opacity:0.34117648;stroke:#990000;stroke-width:1px;',
+    'stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"',
+    'd="m 55.47431,87.025547 c 7.158904,7.408333',
+    " 7.158904,7.408333 7.158904,7.408333 L 69.79212,",
+    '87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"',
+    "/>",
+    "</g>",
+    "</svg>"
+].join("");
 // Returns a CustomAnnotation that represents a sell marker arrow
 // The CustomAnnotation supports SVG as content. Using Inkscape or similar you can create SVG content for annotations
 const getSellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
@@ -204,14 +225,7 @@ const getSellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
         y1,
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        svgString:
-            '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
-            '<g transform="translate(-54.616083,-75.548914)">' +
-            '<path style="fill:#b22020;fill-opacity:0.34117648;stroke:#990000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
-            'd="m 55.47431,87.025547 c 7.158904,7.408333 7.158904,7.408333 7.158904,7.408333 L 69.79212,87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"' +
-            "/>" +
-            "</g>" +
-            "</svg>"
+        svgString: getSellMarkerAnnotationSvgString
     });
 };
 

@@ -25,6 +25,15 @@ export const drawExample = async () => {
     // instance must be passed to other types that exist on the same surface.
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
+    //this is only for nice looking source code
+    const svgString = [
+        '<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">',
+        '<rect x="0" y="0" width="100%" height="100%"',
+        'fill="transparent"/><circle cx="20" cy="20" fill="steelblue" r="1" stroke="steelblue"><animate attributeName="r" from="0" to="20" dur="1s"',
+        'begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" from="1" to="0" dur="1s"',
+        'begin="0s" repeatCount="indefinite"/></circle><circle cx="20" cy="20" fill="steelblue" r="5"/></svg>'
+    ].join("");
+
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
     const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
@@ -60,8 +69,7 @@ export const drawExample = async () => {
         yCoordShift: 0,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        svgString:
-            '<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="100%" height="100%" fill="transparent"/><circle cx="20" cy="20" fill="steelblue" r="1" stroke="steelblue"><animate attributeName="r" from="0" to="20" dur="1s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" from="1" to="0" dur="1s" begin="0s" repeatCount="indefinite"/></circle><circle cx="20" cy="20" fill="steelblue" r="5"/></svg>'
+        svgString: svgString
     });
 
     sciChartSurface.annotations.add(pulsingDotAnnotation);

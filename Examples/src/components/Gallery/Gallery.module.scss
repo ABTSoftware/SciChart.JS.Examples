@@ -1,42 +1,150 @@
 @import "../../assets/main.scss";
 
-.Gallery {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    @include sm {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.GalleryContainer {
+    transition: all 5s;
+    min-width: 0;
+    min-height: 0px;
+    width: 100%;
     @include xs {
-        grid-template-columns: repeat(1, 1fr);
     }
-    .GalleryItem {
-        padding: $default-spacing * 1.5;
-
+}
+.ChartGroupHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 36px;
+    @include sm {
+        align-items: flex-start;
+    }
+    .CarouselButtons {
+        display: block;
         @include xs {
-            padding: 12px 0px;
+            display: none;
         }
-        .GalleryItemTitle {
-            font-size: 1.5rem;
-            font-weight: 400;
-            line-height: 1.334;
-        }
-        .GalleryItemCard {
-            box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, 0.2);
-            color: rgba(0, 0, 0, 0.54);
-            padding: $default-spacing;
+        .ButtonArrow {
+            color: $color-primary-dark-grey;
+            height: 54px;
+            width: 54px;
+            background-color: $color-primary-light-grey;
+            padding: 14px;
+            line-height: 18px;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
             text-align: center;
-            &:hover {
-                cursor: pointer;
+            svg {
+                font-size: 20px;
+            }
+            @include sm {
+                height: 44px;
+                width: 44px;
+                svg {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+    .ChartGroupTitle {
+        display: flex;
+        align-items: center;
+        h6 {
+            font-size: 2.125rem;
+            font-weight: 500;
+            line-height: 1.235;
+            margin-right: 30px;
+        }
+        span {
+            font-size: 0.875rem;
+            color: $color-dark-green;
+            background-color: $color-primary-light-grey;
+            border-radius: $default-border-radius * 3;
+            padding: 6px 20px;
+        }
+        @include sm {
+            align-items: flex-start;
+            flex-direction: column;
+            h6 {
+                font-size: 1.375rem;
+                margin-right: 15px;
+                margin-bottom: 10px;
+            }
+        }
+        @include xs {
+            span {
+                padding: 6px 20px;
             }
         }
     }
 }
-.ChartGroupTitle {
-    font-size: 2.125rem;
-    font-weight: 500;
-    line-height: 1.235;
-    margin-top: $default-spacing * 4;
-    padding-left: $default-spacing;
+
+.Gallery {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+
+    @include xs {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .GalleryItem {
+        transition: all 1.2s;
+
+        padding: 10px;
+
+        @include xs {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            min-width: 100%;
+        }
+
+        .GalleryItemTitle {
+            font-size: 1.125rem;
+            font-weight: 400;
+            line-height: 1.334;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .GalleryItemCard {
+            color: rgba(0, 0, 0, 0.54);
+            text-align: center;
+            &:hover {
+                cursor: pointer;
+            }
+
+            .GalleryItemCardImage {
+                img {
+                    margin: 0 auto;
+                    max-width: 100%;
+                    display: block;
+                    border-radius: $default-border-radius;
+                    @include sm {
+                        height: 200px;
+                    }
+                    @include xs {
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.SliderWrapper1 {
+    margin-bottom: 20px;
+}
+.ShowAllButton {
+    display: none;
+    @include xs {
+        display: flex;
+        background-color: $color-primary-light-grey;
+        padding: 12px 26px;
+        color: $color-dark-green;
+        text-transform: uppercase;
+        align-items: center;
+        font-weight: 600;
+        border-radius: 4px;
+    }
 }

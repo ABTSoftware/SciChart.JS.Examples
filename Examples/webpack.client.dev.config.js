@@ -4,6 +4,7 @@ const webpackClientConfig = require("./webpack.client.config.js");
 module.exports = merge(webpackClientConfig, {
     mode: "development",
     devtool: "inline-source-map",
+
     devServer: {
         disableHostCheck: true,
         proxy: {
@@ -12,5 +13,6 @@ module.exports = merge(webpackClientConfig, {
             }
         }
     },
-    watch: true
+    watch: true,
+
 });

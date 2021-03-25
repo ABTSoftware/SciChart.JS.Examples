@@ -13,7 +13,7 @@ import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragMod
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { Button, ButtonGroup } from "@material-ui/core";
 import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../shared/Helpers/Box/Box";
+import Box from "../../../../../helpes/shared/Helpers/Box/Box";
 
 const AMPLITUDE = 200;
 
@@ -141,16 +141,12 @@ export default function RealtimePerformanceDemo() {
     return (
         <React.Fragment>
             <div id={divElementId} className={classes.ChartWrapper} />
-            <Box mt={20}>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button onClick={controls.startDemo}>Start</Button>
-                </ButtonGroup>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button onClick={controls.stopDemo} style={{ marginLeft: 10 }}>
-                        Stop
-                    </Button>
-                </ButtonGroup>
-            </Box>
+
+            <div className={classes.ButtonsWrapper}>
+                <Button onClick={controls.startDemo}>Start</Button>
+
+                <Button onClick={controls.stopDemo}>Stop</Button>
+            </div>
         </React.Fragment>
     );
 }

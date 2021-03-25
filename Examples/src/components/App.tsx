@@ -12,7 +12,10 @@ import { EXAMPLES_PAGES } from "./AppRouter/examplePages";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 
 import classes from "./App.module.scss";
-import './index.scss';
+import "./index.scss";
+import Gallery from "./Gallery/Gallery";
+import { PAGES } from "./AppRouter/pages";
+import { sciChartExamples } from "../helpers/SciChartExamples";
 
 export default function App() {
     const location = useLocation();
@@ -51,7 +54,9 @@ export default function App() {
         // where it is set by environment variable.
         // When you npm run dev,
         // the beta trial key is served by the webpack dev server (webpack.client.no_server.config)
-        fetch("/api/license").then(r => r.text()).then(key => SciChartSurface.setRuntimeLicenseKey(key));
+        fetch("/api/license")
+            .then(r => r.text())
+            .then(key => SciChartSurface.setRuntimeLicenseKey(key));
 
         if (currentExample) {
             const parentMenuIds = getParentMenuIds(currentExample.id);
@@ -65,40 +70,44 @@ export default function App() {
 
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
-            <div className={classes.App}>
-                <Drawer
-                    className={classes.DrawerDesktop}
-                    variant="permanent"
-                    classes={{ paper: classes.DrawerPaper }}
-                    anchor="left"
-                    open={true}
-                >
-                    <DrawerContent
-                        testIsOpened={testIsOpened}
-                        toggleOpenedMenuItem={toggleOpenedMenuItem}
-                        toggleDrawer={() => {}}
-                    />
-                </Drawer>
+        <div className={classes.App}>
+            <Drawer
+                className={classes.DrawerMobile}
+                variant="temporary"
+                classes={{ paper: classes.DrawerPaper }}
+                anchor="right"
+                open={isMedium && isDrawerOpened}
+                onClose={toggleDrawer}
+            >
+                <DrawerContent
+                    testIsOpened={testIsOpened}
+                    toggleOpenedMenuItem={toggleOpenedMenuItem}
+                    toggleDrawer={toggleDrawer}
+                />
+            </Drawer>
+            <div className={classes.MainAppContent}>
+                <AppBarTop toggleDrawer={toggleDrawer} />
+                {PAGES.homapage.path === location.pathname && <AppRouter currentExample={currentExample} />}
 
-                <Drawer
-                    className={classes.DrawerMobile}
-                    variant="temporary"
-                    classes={{ paper: classes.DrawerPaper }}
-                    anchor="left"
-                    open={isMedium && isDrawerOpened}
-                    onClose={toggleDrawer}
-                >
-                    <DrawerContent
-                        testIsOpened={testIsOpened}
-                        toggleOpenedMenuItem={toggleOpenedMenuItem}
-                        toggleDrawer={toggleDrawer}
-                    />
-                </Drawer>
-                <div className={classes.MainAppContent}>
-                    <AppBarTop toggleDrawer={toggleDrawer} />
-                    <AppRouter currentExample={currentExample} />
-                    <AppFooter />
+                <div className={classes.MainAppWrapper}>
+                    <div className={classes.DrawerDesktop}>
+                        <DrawerContent
+                            testIsOpened={testIsOpened}
+                            toggleOpenedMenuItem={toggleOpenedMenuItem}
+                            toggleDrawer={() => {}}
+                        />
+                    </div>
+                    {PAGES.homapage.path === location.pathname ? (
+                        <div className={classes.GalleryAppWrapper}>
+                            <Gallery examples={sciChartExamples} />
+                        </div>
+                    ) : (
+                        <AppRouter currentExample={currentExample} />
+                    )}
                 </div>
+
+                <AppFooter />
             </div>
+        </div>
     );
 }

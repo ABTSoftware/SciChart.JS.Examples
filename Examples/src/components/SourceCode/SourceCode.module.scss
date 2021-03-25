@@ -1,0 +1,23 @@
+@import "../../assets/main.scss";
+.SourceCode {
+    margin: $default-spacing * 3 0;
+    max-width: 100%;
+}
+.SourceCodeHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.SourceCodeWrapper {
+    background-color: #272822;
+    font-size: 0.8em;
+    pre {
+        max-width: 90vw;
+        max-height: 600px;
+        overflow: auto;
+        word-wrap: normal;
+        code {
+            overflow: hidden;
+        }
+    }
+}

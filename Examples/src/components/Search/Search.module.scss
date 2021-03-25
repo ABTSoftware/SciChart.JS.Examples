@@ -1,0 +1,24 @@
+@import "../../assets/main.scss";
+
+.Search {
+    display: block;
+    width: 700px;
+
+    @include sm {
+        display: none;
+    }
+
+    .SearchField {
+        background-color: $color-dark-grey;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: $color-grey;
+        }
+    }
+
+    svg,
+    input {
+        color: $color-light-grey;
+    }
+}

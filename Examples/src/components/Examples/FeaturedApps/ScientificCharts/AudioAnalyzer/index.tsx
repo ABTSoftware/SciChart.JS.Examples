@@ -260,14 +260,11 @@ export default function AudioAnalyzer() {
 
     return (
         <React.Fragment>
-            <div style={{ display: "flex" }}>
-                <div id={divElementIdAudioChart} style={{ width: TOP_CHART_WIDTH, height: TOP_CHART_HEIGHT }} />
-                <div style={{ marginLeft: 20 }}>
-                    <div
-                        id={divElementIdFttChart}
-                        style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT, marginBottom: CHART_MARGIN }}
-                    />
-                    <div id={divElementIdChart3} style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT }} />
+            <div className={classes.ExampleWrapperCompicated}>
+                <div id={divElementIdAudioChart} className={classes.ExampleWrapperCompicatedMain} />
+                <div className={classes.ExampleWrapperCompicatedSub}>
+                    <div id={divElementIdFttChart} />
+                    <div id={divElementIdChart3} />
                 </div>
             </div>
         </React.Fragment>

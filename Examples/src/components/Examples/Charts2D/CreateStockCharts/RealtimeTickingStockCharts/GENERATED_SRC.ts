@@ -200,7 +200,7 @@ export default function RealtimeTickingStockCharts() {
     }, []);
 
     const handleChangeStrokeThickness = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const newStrokeThickness = event.target.value as number;
+        const newStrokeThickness = +event.target.value as number;
         setStrokeThickness(newStrokeThickness);
         scs.renderableSeries.asArray().forEach(rs => {
             rs.strokeThickness = newStrokeThickness;
@@ -257,59 +257,60 @@ export default function RealtimeTickingStockCharts() {
     return (
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
-            <div style={{ marginTop: 20, display: "flex" }}>
-                <FormControl variant="filled" style={{ width: 200 }}>
-                    <InputLabel id="stroke-thickness-label">Stroke Thickness</InputLabel>
-                    <Select
-                        labelId="stroke-thickness-label"
-                        id="stroke-thickness"
-                        value={strokeThickness}
-                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                            if (showControls) handleChangeStrokeThickness(e);
-                        }}
-                    >
-                        <MenuItem value={1}>1</MenuItem>
-                        <MenuItem value={2}>2</MenuItem>
-                        <MenuItem value={3}>3</MenuItem>
-                        <MenuItem value={4}>4</MenuItem>
-                        <MenuItem value={5}>5</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl variant="filled" style={{ width: 200, marginLeft: 10 }}>
-                    <InputLabel id="stroke-thickness-label">Series Type</InputLabel>
-                    <Select
-                        labelId="stroke-thickness-label"
-                        id="stroke-thickness"
-                        value={seriesType}
-                        onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                            if (showControls) handleChangeSeriesType(e);
-                        }}
-                    >
-                        <MenuItem value={ESeriesType.OhlcSeries}>OHLC</MenuItem>
-                        <MenuItem value={ESeriesType.CandlestickSeries}>Candlestick</MenuItem>
-                        <MenuItem value={ESeriesType.LineSeries}>Line</MenuItem>
-                        <MenuItem value={ESeriesType.MountainSeries}>Mountain</MenuItem>
-                    </Select>
-                </FormControl>
+
+            <div className={classes.SelectWrapper}>
+                <div className={classes.InputSelectWrapper}>
+                    <label id="stroke-thickness-label">
+                        Stroke Thickness
+                        <select
+                            id="stroke-thickness"
+                            value={strokeThickness}
+                            onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                                if (showControls) handleChangeStrokeThickness(e);
+                            }}
+                        >
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
+                        </select>
+                    </label>
+                </div>
+                <div className={classes.InputSelectWrapper}>
+                    <label id="stroke-thickness-label">
+                        Series Type
+                        <select
+                            id="stroke-thickness"
+                            value={seriesType}
+                            onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                                if (showControls) handleChangeSeriesType(e);
+                            }}
+                        >
+                            <option value={ESeriesType.OhlcSeries}>OHLC</option>
+                            <option value={ESeriesType.CandlestickSeries}>Candlestick</option>
+                            <option value={ESeriesType.LineSeries}>Line</option>
+                            <option value={ESeriesType.MountainSeries}>Mountain</option>
+                        </select>
+                    </label>
+                </div>
             </div>
-            <FormControl style={{ marginTop: 20, display: "flex" }}>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button
-                        onClick={() => {
-                            if (showControls) controls.startAnimation;
-                        }}
-                    >
-                        Start
-                    </Button>
-                    <Button
-                        onClick={() => {
-                            if (showControls) controls.stopAnimation;
-                        }}
-                    >
-                        Stop
-                    </Button>
-                </ButtonGroup>
-            </FormControl>
+            <div className={classes.ButtonsWrapper}>
+                <Button
+                    onClick={() => {
+                        if (showControls) controls.startAnimation;
+                    }}
+                >
+                    Start
+                </Button>
+                <Button
+                    onClick={() => {
+                        if (showControls) controls.stopAnimation;
+                    }}
+                >
+                    Stop
+                </Button>
+            </div>
         </div>
     );
 }

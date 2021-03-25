@@ -5,31 +5,9 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { searchItems, TSearchItem } from "./searchItems";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        width: "100%",
-        [theme.breakpoints.up("sm")]: {
-            width: "80ch"
-        }
-    },
-    mySearchField: {
-        marginTop: 8,
-        "& .MuiInputBase-root": {
-            backgroundColor: "#67bb6a",
-            "&:hover": {
-                backgroundColor: "#79c37c"
-            }
-        },
-        "& .MuiOutlinedInput-notchedOutline": {
-            border: 0
-        }
-    }
-}));
+import classes from "./Search.module.scss";
 
 export default function Search() {
-    const classes = useStyles();
     const history = useHistory();
 
     const handleChange = (_e: any, value: TSearchItem | string) => {
@@ -40,7 +18,7 @@ export default function Search() {
     };
 
     return (
-        <div className={classes.root}>
+        <div className={classes.Search}>
             <Autocomplete
                 id="someElement1"
                 freeSolo
@@ -50,15 +28,15 @@ export default function Search() {
                 renderInput={params => (
                     <TextField
                         {...params}
-                        margin="normal"
+                        size="small"
+                        margin="none"
                         variant="outlined"
                         placeholder="Search for example names and chart types"
-                        className={classes.mySearchField}
+                        className={classes.SearchField}
                         InputProps={{
                             ...params.InputProps,
                             autoComplete: "new-password",
                             type: "text",
-                            style: { padding: 0 },
                             startAdornment: (
                                 <InputAdornment position="start" style={{ marginLeft: 10 }}>
                                     &nbsp;

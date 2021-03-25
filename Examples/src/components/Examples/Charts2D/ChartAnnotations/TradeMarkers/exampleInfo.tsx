@@ -1,46 +1,81 @@
 import * as React from "react";
-import {TExampleInfo} from "../../../../AppRouter/examplePages";
-import {code} from "./GENERATED_SRC";
-import {githubUrl} from "./GENERATED_GITHUB_URL";
-import {ExampleStrings} from "../../../ExampleStrings";
+import { TExampleInfo } from "../../../../AppRouter/examplePages";
+import { code } from "./GENERATED_SRC";
+import { githubUrl } from "./GENERATED_GITHUB_URL";
+import { ExampleStrings } from "../../../ExampleStrings";
+import { GalleryItem } from "../../../../../helpers/types/types";
+import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const Description = () => (<div>
-    <p>The Trade Markers demo uses the Annotations API to place CustomAnnotations rendering buy and sell or news bullet
-        markers over a simulated price chart.</p>
-    <p>The CustomAnnotations are created and added using SVG to the sciChartSurface.annotations collection. They may be
-        placed above or below candles with our helpful API.</p>
-    <h4>Tips!</h4>
-    <p>News/Event bullet annotations use AnnotationBase.yCoordinateMode = ECoordinateMode.RelativeY to always place the
-        event bullet at the bottom of the chart.
+const previewDescription = `The Trade Markers demo uses the Annotations API to place CustomAnnotations rendering buy and sell or news
+bullet markers over a simulated price chart.`;
+const description = `The CustomAnnotations are created and added using SVG to the sciChartSurface.annotations collection. They
+may be placed above or below candles with our helpful API.`;
+const tips = [
+    ` News/Event bullet annotations use AnnotationBase.${" "}yCoordinateMode = ECoordinateMode.${" "}RelativeY to always place
+the event bullet at the bottom of the chart.`
+];
+
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    },
+    {
+        href: ExampleStrings.urlTutorialsHome,
+        title: ExampleStrings.titleTutorialsHome,
+        linkTitle: "SciChart.js Tutorials"
+    },
+    {
+        href: ExampleStrings.urlAnnotationsDocumentation,
+        title: ExampleStrings.urlTitleAnnotationsDocumentation,
+        linkTitle: "Annotations API Documentation"
+    }
+];
+
+const seeAlso: GalleryItem[] = [
+    {
+        chartGroupTitle: "See also",
+        items: [
+            {
+                imgPath: ExampleStrings.imgEditableAnnotation,
+                title: ExampleStrings.titleEditableAnnotations,
+                seoTitle: ExampleStrings.urlTitleEditableAnnotations,
+                examplePath: ExampleStrings.urlEditableAnnotations
+            },
+            {
+                imgPath: ExampleStrings.imgAnnotaionsAreEasyChart,
+                title: ExampleStrings.titleAnnotationsAreEasy,
+                seoTitle: ExampleStrings.urlTitleAnnotationsDocumentation,
+                examplePath: ExampleStrings.urlAnnotationsAreEasy
+            }
+        ]
+    }
+];
+
+const Subtitle = () => (
+    <p>
+        Demonstrates how to add Buy/Sell Markers (annotations) and News/Dividend bullets to a{" "}
+        <strong>JavaScript Stock Chart</strong> using SciChart.js, High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+            JavaScript Charts
+        </a>
     </p>
-    <h4>Documentation Links</h4>
-    <ul>
-        <li><a href={ExampleStrings.urlDocumentationHome} title={ExampleStrings.titleDocumentationHome} target="_blank">
-            SciChart.js Documentation Home</a></li>
-        <li><a href={ExampleStrings.urlTutorialsHome} title={ExampleStrings.titleTutorialsHome} target="_blank">
-            SciChart.js Tutorials</a></li>
-        <li><a href={ExampleStrings.urlAnnotationsDocumentation} target="_blank"
-               title={ExampleStrings.urlTitleAnnotationsDocumentation}>Annotations API Documentation</a></li>
-    </ul>
-    <h4>See Also</h4>
-    <ul>
-        <li><a href={ExampleStrings.urlAnnotationsAreEasy}
-               title={ExampleStrings.urlTitleAnnotationsDocumentation}>JavaScript Chart Annotations Example</a></li>
-    </ul>
-</div>);
-
-const Subtitle = () => (<p>Demonstrates how to add Buy/Sell Markers (annotations) and News/Dividend bullets{' '}
-    to a <strong>JavaScript Stock Chart</strong> using SciChart.js, High Performance{' '}
-    <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">JavaScript Charts</a></p>);
+);
 
 export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleTradeMarkers,
     path: ExampleStrings.urlTradeMarkers,
     subtitle: Subtitle,
-    description: Description,
+    documentationLinks,
+    tips,
+    description,
+    previewDescription,
+    seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to place Buy/Sell arrow markers on a JavaScript Stock Chart using SciChart.js - Annotations API",
+    seoDescription:
+        "Demonstrates how to place Buy/Sell arrow markers on a JavaScript Stock Chart using SciChart.js - Annotations API",
     seoKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-stock-chart-buy-sell-markers.jpg"
 };

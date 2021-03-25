@@ -1,21 +1,61 @@
 @import "../../assets/main";
 .ChartWrapper {
-    max-width: 900px;
-    min-height: 600px;
+    overflow: hidden;
+    position: relative;
+    img {
+        display: block;
+    }
+}
 
-    @include md {
-        height: auto;
+.ExampleWrapperCompicated {
+    display: grid;
+    grid-template-columns: repeat(50, 1fr);
+    margin: 0 auto;
+    .ExampleWrapperCompicatedMain {
+        grid-column: 1 / 33;
+    }
+    .ExampleWrapperCompicatedSub {
+        grid-column: 35 /-1;
     }
     @include xs {
-        min-height: 400px;
+        max-width: 250px;
     }
-    @include xxs {
-        min-height: 200px;
+}
+
+.ExampleWrapper {
+    display: flex;
+
+    flex-direction: row;
+    justify-content: space-between;
+    @include md {
+        flex-direction: column;
+    }
+    .Example {
+        margin-right: 30px;
+        flex: 1;
+        max-width: 70%;
+        @include md {
+            max-width: 100%;
+
+            margin-right: 0;
+            margin-bottom: 20px;
+        }
+    }
+    .ExampleDescription {
+        display: flex;
+        flex-direction: column;
+        min-width: 300px;
+        width: 25%;
+        @include md {
+            width: 100%;
+            min-width: 0;
+        }
     }
 }
 
 .FormControl {
     margin: $default-spacing;
+    margin-left: 0;
     min-width: 142;
 }
 
@@ -25,8 +65,10 @@
 
 /////*****ExamplesRoot*****/////
 .ExamplesRoot {
-    margin: $default-spacing * 2;
-
+    @include md {
+        margin: 0;
+        padding: 0;
+    }
     .SciChartLogo {
         text-align: right;
         margin-bottom: $default-spacing * 2;
@@ -48,9 +90,7 @@
         overflow-x: auto;
         margin-bottom: $default-spacing * 3;
     }
-    .ColMainContent {
-        max-width: 900px;
-    }
+
     .ColDescription {
         flex-basis: 360px;
         flex-grow: 0;
@@ -61,14 +101,56 @@
         }
         margin-bottom: $default-spacing * 3;
     }
-    .Description {
-        margin-bottom: $default-spacing * 3;
+    .ExampleRootDescription {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .ExampleRootDescriptionLink {
+            &:hover,
+            &:active,
+            &:visited {
+                color: $color-main-green !important;
+            }
+        }
+        @include md {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 30px 20px;
+        }
+        h5 {
+            font-size: 1.875rem;
+            font-weight: 600;
+            line-height: 40px;
+            @include md {
+                margin-bottom: 20px;
+            }
+        }
+        .ExampleDescriptionText {
+            font-size: 1rem;
+            color: $font-color;
+            line-height: 30px;
+
+            width: 75%;
+            @include md {
+                margin-bottom: 20px;
+                width: 100%;
+            }
+        }
     }
     .Title {
-        margin-top: $default-spacing * 3;
+        width: 100%;
+        font-weight: 600;
+        margin-bottom: 30px;
     }
     .Subtitle {
         margin-bottom: 20px;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 30px;
+        a {
+            color: $color-main-green;
+        }
     }
     .TextGreen {
         color: $color-main-green;
@@ -78,17 +160,26 @@
 
 .ChartContainer {
     display: flex;
-    background-color: black;
-    padding-top: 6px;
-    width: 800px;
-    font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";';
+    overflow: hidden;
     position: relative;
+    max-height: 60vh;
+    @include xs {
+        flex-direction: column;
+        max-height: none;
+    }
 }
-
+.VitalSigns {
+    width: 100%;
+    max-width: 90vw;
+}
 .InfoBoxContainer {
-    flex-basis: 200px;
+    flex-basis: 25%;
     flex-grow: 0;
     flex-shrink: 0;
+    max-width: 90vw;
+    @include md {
+        flex-basis: 25%;
+    }
 }
 
 .InfoBox {
@@ -97,10 +188,13 @@
     box-sizing: border-box;
     border-left: 1px solid darkgrey;
     padding: 6;
-    height: 150px;
-    width: 200px;
+    height: 25%;
+    width: 100%;
     background-color: black;
     border-bottom: 1px solid darkgrey;
+    @include sm {
+        height: auto;
+    }
 }
 .IbRow1 {
     flex-grow: 1;
@@ -134,4 +228,136 @@
     flex-direction: column;
     font-size: 44px;
     line-height: 44px;
+}
+
+.ButtonsWrapper {
+    display: flex;
+    margin-top: 10px;
+    button {
+        color: $color-main-green;
+        border: 1px $color-main-green solid;
+        text-align: center;
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+    }
+    .ButtonsText {
+        margin-left: 10px;
+        color: $color-main-green;
+        text-decoration: none;
+    }
+
+    @include xs {
+        flex-direction: column;
+        align-items: center;
+        align-items: stretch;
+        button {
+            &:not(:last-child) {
+                margin-right: 0px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+.SelectWrapper {
+    display: flex;
+    margin-top: 10px;
+    @include sm {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    @include xs {
+        align-items: stretch;
+    }
+}
+.InputSelectWrapper {
+    display: flex;
+    align-items: center;
+    color: $color-main-green;
+    border: 1px $color-main-green solid;
+    padding: 5px;
+    border-radius: 4px;
+
+    label {
+        margin-right: 5px;
+        margin: 0 auto;
+    }
+    select {
+        background-color: none !important;
+        outline: none;
+        border: none;
+        color: $color-main-green;
+        border-bottom: 1px $color-main-green solid;
+        font-size: 16px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: transparent;
+        width: 100%;
+        text-align: center;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='rgb(92,184,92)' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        background-position-y: -2px;
+
+        border-radius: 2px;
+        margin-right: 20px;
+    }
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+    @include sm {
+        &:not(:last-child) {
+            margin-right: 0px;
+            margin-bottom: 10px;
+        }
+    }
+}
+.Animation {
+    transition: all 0.2s;
+
+    animation-name: up;
+    animation-delay: 0.9s;
+    animation-duration: 1.2s;
+}
+
+@keyframes up {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.PreloadImage {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+.Lidar {
+    min-height: 500;
+    @include md {
+        min-height: 300;
+        height: 70vh;
+    }
+    @include sm {
+        height: 60vw;
+    }
+}
+
+//Common
+.OrangeButton {
+    background: linear-gradient(114.95deg, #febc48 0%, #e97502 100%);
+    border-radius: 4px;
+
+    span {
+        color: white !important;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
 }

@@ -158,45 +158,48 @@ export default function UsingRolloverModifierTooltips() {
     return (
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
-            <FormControl variant="filled" style={{ marginTop: 20, display: "flex", width: 200 }}>
-                <InputLabel id="stroke-thickness-label">Tooltip Color</InputLabel>
-                <Select
-                    labelId="stroke-thickness-label"
-                    id="stroke-thickness"
-                    value={lastSeriesTooltipColor}
-                    onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                        if (showButtons) handleChangeTooltipColor(e);
+
+            <div className={classes.SelectWrapper}>
+                <div className={classes.InputSelectWrapper}>
+                    <label htmlFor="stroke-thickness">
+                        Tooltip Color
+                        <select
+                            id="stroke-thickness"
+                            value={lastSeriesTooltipColor}
+                            onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                                if (showButtons) handleChangeTooltipColor(e);
+                            }}
+                        >
+                            <option value="#ff0000">Red</option>
+                            <option value="#228B22">Green</option>
+                            <option value="#368BC1">Blue</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <div className={classes.ButtonsWrapper}>
+                <Button
+                    onClick={() => {
+                        if (showButtons) handleAddSeries;
                     }}
+                    size="medium"
+                    color="primary"
+                    variant="outlined"
                 >
-                    <MenuItem value="#ff0000">Red</MenuItem>
-                    <MenuItem value="#228B22">Green</MenuItem>
-                    <MenuItem value="#368BC1">Blue</MenuItem>
-                </Select>
-            </FormControl>
-            <FormControl style={{ marginTop: 20, display: "flex" }}>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button
-                        onClick={() => {
-                            if (showButtons) handleAddSeries();
-                        }}
-                        size="medium"
-                        color="primary"
-                        variant="outlined"
-                    >
-                        Add Series
-                    </Button>
-                    <Button
-                        onClick={() => {
-                            if (showButtons) handleRemoveSeries();
-                        }}
-                        size="medium"
-                        color="primary"
-                        variant="outlined"
-                    >
-                        Remove Series
-                    </Button>
-                </ButtonGroup>
-            </FormControl>
+                    Add Series
+                </Button>
+                <Button
+                    onClick={() => {
+                        if (showButtons) handleRemoveSeries;
+                    }}
+                    size="medium"
+                    color="primary"
+                    variant="outlined"
+                >
+                    Remove Series
+                </Button>
+            </div>
         </div>
     );
 }
