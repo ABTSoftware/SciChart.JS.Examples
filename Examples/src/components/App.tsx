@@ -71,20 +71,6 @@ export default function App() {
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
         <div className={classes.App}>
-            {/* <Drawer
-                className={classes.DrawerDesktop}
-                variant="permanent"
-                classes={{ paper: classes.DrawerPaper }}
-                anchor="left"
-                open={true}
-            >
-                <DrawerContent
-                    testIsOpened={testIsOpened}
-                    toggleOpenedMenuItem={toggleOpenedMenuItem}
-                    toggleDrawer={() => {}}
-                />
-            </Drawer> */}
-
             <Drawer
                 className={classes.DrawerMobile}
                 variant="temporary"

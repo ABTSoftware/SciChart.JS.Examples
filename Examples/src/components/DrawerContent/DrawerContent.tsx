@@ -38,7 +38,7 @@ const DrawerContent: React.FC<TProps> = props => {
                     <CloseIcon />
                 </IconButton>
             </div>
-            <div className={classes.DownloadTrialButton}>
+            <div className={classes.DrawerContentDownloadTrialButton}>
                 <Button href="https://www.scichart.com/downloads/" target="_blank">
                     Download Trial
                 </Button>

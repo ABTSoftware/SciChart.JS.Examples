@@ -6,9 +6,6 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpes/types/types";
 import { TDocumentationLink } from "../../../../../helpes/types/ExampleDescriptionTypes";
 
-// import multiPaneStockChart from "src/components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
-// import fanChart from "../FanChart/javascript-fan-chart.jpg";
-
 const previewDescription = `Demonstrates how to create a JavaScript Spline Band Chart. This is a chart type which draws an area (polygon
     or fill) between two lines. The FastBandRenderableSeries requires an XyyDataSeries, which contains one
     X-point and two Y-points`;

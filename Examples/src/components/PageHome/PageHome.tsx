@@ -37,13 +37,7 @@ export default function PageHome() {
                             realtime, create next-generation streaming, updating financial, medical, scientific and
                             big-data business applications.
                         </h3>
-                        <div
-                            className={classes.ButtonWrapper}
-                            // style={{ marginTop: 30 }}
-                            // size="large"
-                            // color="primary"
-                            // aria-label="small outlined button group"
-                        >
+                        <div className={classes.ButtonWrapper}>
                             <Button href="https://www.scichart.com/downloads/" target="_blank">
                                 DOWNLOAD TRIAL
                             </Button>
@@ -66,6 +60,5 @@ export default function PageHome() {
                 </div>
             </div>
         </div>
-        // <Gallery />
     );
 }

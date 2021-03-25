@@ -1,8 +1,6 @@
 @import "../../assets/main.scss";
 
 .DrawerContent {
-    // width: 30%;
-    // max-width: 240px;
     @include md {
         width: 100%;
         max-width: 100%;
@@ -42,8 +40,7 @@
     margin: 4px;
 }
 
-// TODO consider extracting common styles
-.DownloadTrialButton {
+.DrawerContentDownloadTrialButton {
     display: none;
     justify-content: center;
     height: 44px;
