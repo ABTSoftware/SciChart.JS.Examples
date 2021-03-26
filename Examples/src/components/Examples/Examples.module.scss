@@ -88,7 +88,7 @@
         flex-shrink: 0;
         flex-grow: 1;
         overflow-x: auto;
-        margin-bottom: $default-spacing * 3;
+        // margin-bottom: $default-spacing * 3;
     }
 
     .ColDescription {
@@ -354,8 +354,8 @@
 .OrangeButton {
     background: linear-gradient(114.95deg, #febc48 0%, #e97502 100%);
     border-radius: 4px;
-
     span {
+        padding: 6px 10px;
         color: white !important;
         font-size: 0.8rem;
         white-space: nowrap;

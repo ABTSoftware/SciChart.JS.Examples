@@ -44,6 +44,18 @@ const seeAlso: GalleryItem[] = [
                 examplePath: ExampleStrings.urlBubble3DChart
             },
             {
+                imgPath: ExampleStrings.imgTenorCurves,
+                title: ExampleStrings.titleTenorCurvesFeaturedApp,
+                seoTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
+                examplePath: ExampleStrings.urlTenorCurvesFeaturedApp
+            },
+            {
+                imgPath: ExampleStrings.imgAudioAnalyzer,
+                title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
+                seoTitle: ExampleStrings.titleAudioAnalyzerFeaturedApp,
+                examplePath: ExampleStrings.urlAudioAnalyzerFeaturedApp
+            },
+            {
                 imgPath: ExampleStrings.imgSurfaceMeash3D,
                 title: ExampleStrings.titleSurfaceMesh3D,
                 seoTitle: ExampleStrings.urlTitleSurfaceMesh3D,

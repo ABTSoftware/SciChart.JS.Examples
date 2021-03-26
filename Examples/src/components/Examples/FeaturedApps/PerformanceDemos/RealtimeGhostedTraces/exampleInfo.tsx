@@ -43,13 +43,19 @@ const seeAlso: GalleryItem[] = [
             {
                 imgPath: ExampleStrings.imgRealtimeJavaScriptChart,
                 title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
-                seoTitle: "Realtime JavaScript Chart Performance Demo with many millions of points",
+                seoTitle: ExampleStrings.urlTitleRealtimeJavaScriptChartDemo,
                 examplePath: ExampleStrings.urlRealtimeJavaScriptChartDemo
+            },
+            {
+                imgPath: ExampleStrings.imgTenorCurves,
+                title: ExampleStrings.titleTenorCurvesFeaturedApp,
+                seoTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
+                examplePath: ExampleStrings.urlTenorCurvesFeaturedApp
             },
             {
                 imgPath: ExampleStrings.imgLoadOneMillionPointsChart,
                 title: ExampleStrings.titleLoadOneMillionPoints,
-                seoTitle: "Load One Million Points in a JavaScript Chart Performance Demo",
+                seoTitle: ExampleStrings.titleLoadOneMillionPoints,
                 examplePath: ExampleStrings.urlLoadOneMillionPoints
             }
         ]

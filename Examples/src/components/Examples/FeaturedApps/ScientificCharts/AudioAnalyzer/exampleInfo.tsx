@@ -47,6 +47,12 @@ const seeAlso: GalleryItem[] = [
                 examplePath: ExampleStrings.urlHeatmapChart
             },
             {
+                imgPath: ExampleStrings.imgTenorCurves,
+                title: ExampleStrings.titleTenorCurvesFeaturedApp,
+                seoTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
+                examplePath: ExampleStrings.urlTenorCurvesFeaturedApp
+            },
+            {
                 imgPath: ExampleStrings.imgColumnChart,
                 title: ExampleStrings.titleColumnChart,
                 seoTitle: ExampleStrings.urlTitleColumnChart,

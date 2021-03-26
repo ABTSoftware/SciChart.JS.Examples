@@ -54,6 +54,18 @@ const seeAlso: GalleryItem[] = [
                 title: ExampleStrings.titleLineChart,
                 seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
                 examplePath: ExampleStrings.urlLineChart
+            },
+            {
+                imgPath: ExampleStrings.imgDonutChart,
+                title: ExampleStrings.titleDonutChart,
+                seoTitle: ExampleStrings.urlTitleDonutChartDocumentation,
+                examplePath: ExampleStrings.urlDonutChart
+            },
+            {
+                imgPath: ExampleStrings.imgCandleStickChart,
+                title: ExampleStrings.titleCandlestickChart,
+                seoTitle: ExampleStrings.urlTitleCandlestickChart,
+                examplePath: ExampleStrings.urlCandlestickChart
             }
         ]
     }
