@@ -51,7 +51,7 @@ const seeAlso: GalleryItem[] = [
             {
                 imgPath: ExampleStrings.imgPointMarkers,
                 title: ExampleStrings.titlePointMarkers,
-                seoTitle: ExampleStrings.urlTitlePointMarkersDocumentation,
+                seoTitle: ExampleStrings.urlTitlePointMarkers,
                 examplePath: ExampleStrings.urlPointMarkers
             }
         ]

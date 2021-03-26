@@ -318,7 +318,7 @@ export const sciChartExamples: GalleryItem[] = [
         items: [
             {
                 imgPath: pointMarkersImg,
-                title: ExampleStrings.titleUsePointMarkers,
+                title: ExampleStrings.titlePointMarkers,
                 seoTitle: "JavaScript Scatter Chart Custom Point Markers Example",
                 examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path
             },

@@ -57,6 +57,36 @@ const seeAlso: GalleryItem[] = [
                 title: ExampleStrings.titleGroupedColumnChart,
                 seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
                 examplePath: ExampleStrings.urlGroupedColumnChart
+            },
+            {
+                imgPath: ExampleStrings.imgStackedMountainChart,
+                title: ExampleStrings.titleStackedMountainChart,
+                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
+                examplePath: ExampleStrings.urlStackedMountainChart
+            },
+            {
+                imgPath: ExampleStrings.imgColumnChart,
+                title: ExampleStrings.titleColumnChart,
+                seoTitle: ExampleStrings.urlTitleColumnChart,
+                examplePath: ExampleStrings.urlColumnChart
+            },
+            {
+                imgPath: ExampleStrings.imgGroupedColumnChart,
+                title: ExampleStrings.titleGroupedColumnChart,
+                seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
+                examplePath: ExampleStrings.urlGroupedColumnChart
+            },
+            {
+                imgPath: ExampleStrings.imgLineChart,
+                title: ExampleStrings.titleLineChart,
+                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
+                examplePath: ExampleStrings.urlLineChart
+            },
+            {
+                imgPath: ExampleStrings.imgDonutChart,
+                title: ExampleStrings.titleDonutChart,
+                seoTitle: ExampleStrings.urlTitleDonutChartDocumentation,
+                examplePath: ExampleStrings.urlDonutChart
             }
         ]
     }

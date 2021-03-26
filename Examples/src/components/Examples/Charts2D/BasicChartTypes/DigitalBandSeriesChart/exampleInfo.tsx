@@ -54,6 +54,18 @@ const seeAlso: GalleryItem[] = [
                 title: ExampleStrings.titleFanChart,
                 seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
                 examplePath: ExampleStrings.urlFanChart
+            },
+            {
+                imgPath: ExampleStrings.imgHeatMapChart,
+                title: ExampleStrings.titleHeatmapChart,
+                seoTitle: ExampleStrings.urlTitleHeatmapChart,
+                examplePath: ExampleStrings.urlHeatmapChart
+            },
+            {
+                imgPath: ExampleStrings.imgFanChart,
+                title: ExampleStrings.titleFanChart,
+                seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
+                examplePath: ExampleStrings.urlFanChart
             }
         ]
     }

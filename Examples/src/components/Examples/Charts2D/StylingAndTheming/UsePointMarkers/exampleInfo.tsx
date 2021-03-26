@@ -23,8 +23,8 @@ const documentationLinks: TDocumentationLink[] = [
         linkTitle: "SciChart.js Tutorials"
     },
     {
-        href: ExampleStrings.urlPointMarkersDocumentation,
-        title: ExampleStrings.urlTitlePointMarkersDocumentation,
+        href: ExampleStrings.urlPointMarkers,
+        title: ExampleStrings.urlTitlePointMarkers,
         linkTitle: "Point-Markers API documentation"
     }
 ];
@@ -59,8 +59,8 @@ const Subtitle = () => (
 );
 
 export const usePointMarkersExampleInfo: TExampleInfo = {
-    title: ExampleStrings.titleUsePointMarkers,
-    path: ExampleStrings.urlUsePointMarkers,
+    title: ExampleStrings.titlePointMarkers,
+    path: ExampleStrings.urlPointMarkers,
     subtitle: Subtitle,
     documentationLinks,
     description,

@@ -48,6 +48,42 @@ const seeAlso: GalleryItem[] = [
                 title: ExampleStrings.titleAnnotationsAreEasy,
                 seoTitle: ExampleStrings.urlTitleAnnotationsDocumentation,
                 examplePath: ExampleStrings.urlAnnotationsAreEasy
+            },
+            {
+                imgPath: ExampleStrings.imgTradeMarkers,
+                title: ExampleStrings.titleTradeMarkers,
+                seoTitle: ExampleStrings.urlTitleTradeMarkers,
+                examplePath: ExampleStrings.urlTradeMarkers
+            },
+            {
+                imgPath: ExampleStrings.imgStackedColumnChart,
+                title: ExampleStrings.titleStackedColumnChart,
+                seoTitle: ExampleStrings.urlTitleStackedColumnChart,
+                examplePath: ExampleStrings.urlStackedColumnChart
+            },
+            {
+                imgPath: ExampleStrings.imgEditableAnnotation,
+                title: ExampleStrings.titleEditableAnnotations,
+                seoTitle: ExampleStrings.urlTitleEditableAnnotations,
+                examplePath: ExampleStrings.urlEditableAnnotations
+            },
+            {
+                imgPath: ExampleStrings.imgOhlcChart,
+                title: ExampleStrings.titleOhlcChart,
+                seoTitle: ExampleStrings.urlTitleOhlcChart,
+                examplePath: ExampleStrings.urlOhlcChart
+            },
+            {
+                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
+                title: ExampleStrings.titleRealtimeTickingStockCharts,
+                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
+                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
+            },
+            {
+                imgPath: ExampleStrings.imgCandleStickChart,
+                title: ExampleStrings.titleCandlestickChart,
+                seoTitle: ExampleStrings.urlTitleCandlestickChart,
+                examplePath: ExampleStrings.urlCandlestickChart
             }
         ]
     }

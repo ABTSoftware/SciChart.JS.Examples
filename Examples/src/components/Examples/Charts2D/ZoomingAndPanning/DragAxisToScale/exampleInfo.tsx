@@ -38,6 +38,12 @@ const seeAlso: GalleryItem[] = [
                 title: ExampleStrings.titleVerticalCharts,
                 seoTitle: ExampleStrings.urlTitleVerticalCharts,
                 examplePath: ExampleStrings.urlVerticalCharts
+            },
+            {
+                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
+                title: ExampleStrings.titleRealtimeTickingStockCharts,
+                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
+                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
             }
         ]
     }
