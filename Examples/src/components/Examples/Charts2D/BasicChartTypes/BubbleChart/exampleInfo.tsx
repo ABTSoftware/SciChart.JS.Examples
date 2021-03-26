@@ -49,6 +49,12 @@ const seeAlso: GalleryItem[] = [
                 examplePath: ExampleStrings.urlScatterChart
             },
             {
+                imgPath: ExampleStrings.imgLineChart,
+                title: ExampleStrings.titleLineChart,
+                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
+                examplePath: ExampleStrings.urlLineChart
+            },
+            {
                 imgPath: ExampleStrings.imgPointMarkers,
                 title: ExampleStrings.titlePointMarkers,
                 seoTitle: ExampleStrings.urlTitlePointMarkers,
