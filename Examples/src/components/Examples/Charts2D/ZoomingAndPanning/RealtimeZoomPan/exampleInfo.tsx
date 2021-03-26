@@ -46,6 +46,12 @@ const seeAlso: GalleryItem[] = [
                 examplePath: ExampleStrings.urlDragAxisToScale
             },
             {
+                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
+                title: ExampleStrings.titleRealtimeTickingStockCharts,
+                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
+                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
+            },
+            {
                 imgPath: ExampleStrings.imgVerticalCharts,
                 title: ExampleStrings.titleVerticalCharts,
                 seoTitle: ExampleStrings.urlTitleVerticalCharts,

@@ -36,6 +36,12 @@ const seeAlso: GalleryItem[] = [
                 title: ExampleStrings.titleLoadOneMillionPoints,
                 seoTitle: ExampleStrings.urlTitleLoad500By500,
                 examplePath: ExampleStrings.urlLoadOneMillionPoints
+            },
+            {
+                imgPath: ExampleStrings.imgTenorCurves,
+                title: ExampleStrings.titleTenorCurvesFeaturedApp,
+                seoTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
+                examplePath: ExampleStrings.urlTenorCurvesFeaturedApp
             }
         ]
     }

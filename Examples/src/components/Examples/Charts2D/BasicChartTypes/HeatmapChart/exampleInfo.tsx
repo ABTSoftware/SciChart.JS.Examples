@@ -41,6 +41,24 @@ const seeAlso: GalleryItem[] = [
                 title: ExampleStrings.titleContourChart,
                 seoTitle: ExampleStrings.urlTitleContourChartDocumentation,
                 examplePath: ExampleStrings.urlContourChart
+            },
+            {
+                imgPath: ExampleStrings.imgStackedMountainChart,
+                title: ExampleStrings.titleStackedMountainChart,
+                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
+                examplePath: ExampleStrings.urlStackedMountainChart
+            },
+            {
+                imgPath: ExampleStrings.imgOhlcChart,
+                title: ExampleStrings.titleOhlcChart,
+                seoTitle: ExampleStrings.urlTitleOhlcChart,
+                examplePath: ExampleStrings.urlOhlcChart
+            },
+            {
+                imgPath: ExampleStrings.imgMultiPaneStockChart,
+                title: ExampleStrings.titleMultiPaneStockChart,
+                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
+                examplePath: ExampleStrings.urlMultiPaneStockChart
             }
         ]
     }

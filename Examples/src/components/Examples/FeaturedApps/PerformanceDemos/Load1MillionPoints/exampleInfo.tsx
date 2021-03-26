@@ -27,6 +27,12 @@ const seeAlso: GalleryItem[] = [
                 title: ExampleStrings.titleLoad500By500,
                 seoTitle: ExampleStrings.urlTitleLoad500By500,
                 examplePath: ExampleStrings.urlLoad500By500
+            },
+            {
+                imgPath: ExampleStrings.imgLidarFeaturedApp,
+                title: ExampleStrings.titleLidarFeaturedApp,
+                seoTitle: ExampleStrings.titleLidarFeaturedApp,
+                examplePath: ExampleStrings.urlLidarFeaturedApp
             }
         ]
     }

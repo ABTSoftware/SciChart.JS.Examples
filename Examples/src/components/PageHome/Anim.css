@@ -44,11 +44,11 @@
 }
 /* example-anim */
 .example-anim-enter {
-    transition: all 2000ms;
+    transition: all 1500ms;
 
     /* transform: translateY(+50%); */
 
-    opacity: 0.1;
+    opacity: 0.3;
 }
 
 .example-anim-enter-active {
@@ -57,7 +57,7 @@
 }
 
 .example-anim-exit {
-    transition: all 2000ms;
+    transition: all 1500ms;
 
     opacity: 1;
 }

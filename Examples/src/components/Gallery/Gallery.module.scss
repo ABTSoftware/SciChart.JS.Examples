@@ -105,6 +105,7 @@
             line-height: 1.334;
             font-weight: 600;
             margin-top: 20px;
+            text-decoration: none;
         }
 
         .GalleryItemCard {
@@ -115,6 +116,7 @@
             }
 
             .GalleryItemCardImage {
+                text-decoration: none;
                 img {
                     margin: 0 auto;
                     max-width: 100%;
