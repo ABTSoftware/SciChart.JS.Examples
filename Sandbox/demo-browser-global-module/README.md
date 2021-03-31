@@ -9,11 +9,14 @@ Please note to use scichart.js you need to have a server to serve html. Just ope
 
 ## How to add scichart.browser.js to your project
 
-1. Add script pointing to a specific version into the **head** section of your html file. For instance to add version 1.0.1331 add this script:
+1. Add script pointing to a specific version into the **head** section of your html file. For instance to add version `1.3.1500` add this script:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/scichart@1.0.1331/_wasm/scichart.browser.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart.browser.js" crossorigin="anonymous"></script>
 ```
-2. Download data files for this specific version for 2D (and for 3D if you use 3D charts) and put them into html root folder on your web server. For example to download data files for version 1.0.1331 use these links
-   - `https://cdn.jsdelivr.net/npm/scichart@1.0.1331/_wasm/scichart2d.data`
-   - `https://cdn.jsdelivr.net/npm/scichart@1.0.1331/_wasm/scichart3d.data`
+2. Configure SciChartSurface to download .data file from the CDN.
+```typescript
+SciChart.SciChartSurface.configure({
+    dataUrl: "https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart2d.data"
+});
+```
 3. Create a chart
