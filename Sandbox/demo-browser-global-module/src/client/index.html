@@ -21,7 +21,8 @@
       async function initSciChart() {
         // In order to load data file from the CDN we need to set dataUrl
         SciChart.SciChartSurface.configure({
-          dataUrl: "https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart2d.data"
+          dataUrl: "https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart2d.data",
+          wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart2d.wasm"
         });
         const {
           sciChartSurface,
