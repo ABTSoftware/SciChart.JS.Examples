@@ -5,10 +5,9 @@ authors:
   - Andrew Burnett-Thompson
 alt_text: >-
  SciChart.js JavaScript Chart simple example proof of concept with js-fiddle
- normalize_css: no
+normalize_css: no
 tags:
   - SciChart
 categories: 
   - Tutorials
 priority: 1
-...
