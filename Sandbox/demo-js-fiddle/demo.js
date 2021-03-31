@@ -5,7 +5,8 @@ async function initSciChart() {
 	  sciChartSurface,
 	  wasmContext
 	} = await SciChart.SciChartSurface.create("scichart-root");
-  
+  sciChartSurface.applyTheme(new SciChart.SciChartJSLightTheme());
+	
   // Create the X & Y Axis
 	const xAxis = new SciChart.NumericAxis(wasmContext);
 	sciChartSurface.xAxes.add(xAxis);
