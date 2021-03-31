@@ -13,10 +13,11 @@ Please note to use scichart.js you need to have a server to serve html. Just ope
 ```html
 <script src="https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart.browser.js" crossorigin="anonymous"></script>
 ```
-2. Configure SciChartSurface to download .data file from the CDN.
+2. Configure SciChartSurface to download .data and .wasm files from the CDN.
 ```typescript
 SciChart.SciChartSurface.configure({
-    dataUrl: "https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart2d.data"
+    dataUrl: "https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart2d.data",
+    wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart2d.wasm"
 });
 ```
 3. Create a chart
