@@ -56,6 +56,7 @@ const drawExample = async () => {
     const series10 = addSeries("rgba(192, 192, 192, 0.1)");
 
     const reassignRenderableSeries = () => {
+        const oldSeries = series10.dataSeries;
         series10.dataSeries = series9.dataSeries;
         series9.dataSeries = series8.dataSeries;
         series8.dataSeries = series7.dataSeries;
@@ -70,6 +71,8 @@ const drawExample = async () => {
         const dataSeries = new XyDataSeries(wasmContext);
         fillNoisySinewave(500, 900, 7, amplitude, 30, dataSeries);
         series1.dataSeries = dataSeries;
+        // To prevent memory leak we should delete
+        oldSeries.delete();
 
         timerId = setTimeout(reassignRenderableSeries, 20);
     };
