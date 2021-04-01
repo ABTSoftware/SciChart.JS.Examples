@@ -56,7 +56,7 @@ const drawExample = async () => {
         ]),
         pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, stroke: "#006400", fill: "#FFFFFF" }),
         dataSeries: xyDataSeries,
-        animation: new WaveAnimation({ duration: 1000, fadeEffect: true, zeroLine: 10 })
+        animation: new WaveAnimation({ duration: 1000, fadeEffect: false, zeroLine: 10 })
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 

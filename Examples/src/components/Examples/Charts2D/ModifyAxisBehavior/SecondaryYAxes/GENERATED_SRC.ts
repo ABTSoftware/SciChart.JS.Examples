@@ -29,6 +29,10 @@ const drawExample = async () => {
     };
     const setXAxis1 = () => {
         const xAxis = new NumericAxis(wasmContext);
+        xAxis.axisBorder = {
+            borderTop: 1,
+            color: "#EEEEEE",
+        };
         xAxis.axisAlignment = EAxisAlignment.Bottom;
         xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
         sciChartSurface.xAxes.add(xAxis);
@@ -41,6 +45,10 @@ const drawExample = async () => {
         yAxis.axisTitle = "Left Axis";
         yAxis.axisTitleStyle = titleStyle1;
         yAxis.labelStyle = labelStyle1;
+        yAxis.axisBorder = {
+            borderRight: 1,
+            color: "#228B22",
+        };
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
         sciChartSurface.yAxes.add(yAxis);
     };
@@ -80,6 +88,10 @@ const drawExample = async () => {
         yAxis.labelStyle = labelStyle2;
         yAxis.axisAlignment = EAxisAlignment.Right;
         yAxis.axisTitle = "Right Axis";
+        yAxis.axisBorder = {
+            borderLeft: 1,
+            color: "#368BC1"
+        };
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_2;
         sciChartSurface.yAxes.add(yAxis);
     };
