@@ -60,7 +60,7 @@ const drawExample = async () => {
         dataSeries: splineXyDataSeries,
         pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "#FFFFFF", stroke: "#006400" }),
         interpolationPoints: 10, // Set interpolation points to decide the amount of smoothing,
-        animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true })
+        animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: false })
     });
     sciChartSurface.renderableSeries.add(splineSeries);
 
