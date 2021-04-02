@@ -1,9 +1,12 @@
----
- name: SciChart > Fiddler.js proof of concept
- description: Demonstrates the VerticalLineAnnotation type
- authors:
-   - Andrew Burnett-Thompson
- resources:
- normalize_css: no
- load_type: d
- ...
+name: SciChart, Fiddler.js proof of concept
+description: Demonstrates the VerticalLineAnnotation type
+authors:
+  - Andrew Burnett-Thompson
+alt_text: >-
+ SciChart.js JavaScript Chart simple example proof of concept with js-fiddle
+normalize_css: no
+tags:
+  - SciChart
+categories: 
+  - Tutorials
+priority: 1
