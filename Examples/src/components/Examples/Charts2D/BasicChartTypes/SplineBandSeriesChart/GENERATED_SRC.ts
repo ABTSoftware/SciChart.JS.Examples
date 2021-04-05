@@ -42,7 +42,7 @@ const drawExample = async () => {
         strokeThickness: 2,
         interpolationPoints: 10, // Choose the number of points to interpolate for smoothing
         pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "#FFFFFF", stroke: "#006400" }),
-        animation: new ScaleAnimation({ duration: 1000, zeroLine: 0, fadeEffect: false })
+        animation: new ScaleAnimation({ duration: 1000, zeroLine: 0, fadeEffect: true })
     });
     rendSeries.fill = "#279B2733";
     rendSeries.fillY1 = "#FF191933";
