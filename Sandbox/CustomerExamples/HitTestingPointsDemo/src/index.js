@@ -49,7 +49,7 @@ async function initSciChart() {
     lineSeries.dataSeries = new XyDataSeries(wasmContext, {
         dataSeriesName: "Line Series",
         xValues: [0,1,2,3,4,5,6,7,8,9],
-        yValues: [0,1,2,3,2,1,0,1,2,3],
+        yValues: [0,1,5,1,20,5,1,8,9,3],
     });
 
     // Add the line series to the SciChartSurface
