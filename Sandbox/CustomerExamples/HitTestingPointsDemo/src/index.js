@@ -44,7 +44,7 @@ async function initSciChart() {
             fill: "White",
             width: 9,
             height: 9,
-        })
+        }),
     });
     lineSeries.dataSeries = new XyDataSeries(wasmContext, {
         dataSeriesName: "Line Series",
@@ -87,11 +87,12 @@ async function initSciChart() {
 
 function showHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, timeout) {
     // Use a scatter series to temporarily render a single point at the hitTestInfo.x/yValue
-    const fill = hitTestInfo.isHit ? "#33FF33AA" : "#FF3333AA";
+    const fill = hitTestInfo.isHit ? "DarkGreen" : "Crimson";
     const series = new XyScatterRenderableSeries(wasmContext, {
         animation: new FadeAnimation({ duration: timeout }),
+        opacity: 0.7,
         dataSeries: new XyDataSeries(wasmContext, { xValues: [hitTestInfo.xValue], yValues: [hitTestInfo.yValue] }),
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 15, height: 15, opacity: 0.5, strokeThickness: 0, fill})
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 15, height: 15, strokeThickness: 0, fill})
     });
     sciChartSurface.renderableSeries.add(series);
     const annotation = new TextAnnotation({
