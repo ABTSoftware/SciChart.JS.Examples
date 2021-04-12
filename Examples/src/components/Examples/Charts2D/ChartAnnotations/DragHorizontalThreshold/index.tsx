@@ -24,6 +24,8 @@ import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationB
 import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import {GradientParams} from "scichart/Core/GradientParams";
 import {Point} from "scichart/Core/Point";
+import {VerticalLineAnnotation} from "scichart/Charting/Visuals/Annotations/VerticalLineAnnotation";
+import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
 
 const divElementId = "chart";
 
@@ -40,7 +42,9 @@ const drawExample = async () => {
     );
 
     // Create a paletteprovider to colour the series depending on a threshold value
-    const thresholdPalette = new ThresholdPaletteProvider(4, "#FF333333");
+    const thresholdPalette = new ThresholdPaletteProvider(
+        4, "#FF333333",
+        8, "#33FF3333");
 
     // Add a Column series with some values to the chart
     const { xValues, yValues } = ExampleDataProvider.getDampedSinewave(0, 10, 0, 0.001, 3000, 10);
@@ -69,7 +73,7 @@ const drawExample = async () => {
         x1: 0.5,
         y1: 4.2,
         fontSize: 16,
-        text: "Drag the line!",
+        text: "Drag the lines!",
         textColor: "White",
     });
     // Add a horizontal threshold at Y=5
@@ -83,13 +87,30 @@ const drawExample = async () => {
         onDrag: (args) => {
             // When the horizontal line is dragged, update the
             // threshold palette and redraw the SciChartSurface
-            thresholdPalette.thresholdValue = horizontalLine.y1;
+            thresholdPalette.yThresholdValue = horizontalLine.y1;
             textAnnotation.y1 = horizontalLine.y1 + 0.2;
             sciChartSurface.invalidateElement();
         },
     });
     sciChartSurface.annotations.add(horizontalLine);
     sciChartSurface.annotations.add(textAnnotation);
+
+    // Add a vertical line
+    const verticalLine = new VerticalLineAnnotation({
+        x1: 8,
+        strokeThickness: 2,
+        isEditable: true,
+        showLabel: true,
+        stroke: "DarkGreen",
+        axisLabelFill: "DarkGreen",
+        axisLabelStroke: "White",
+        labelPlacement: ELabelPlacement.Axis,
+        onDrag: (args) => {
+          thresholdPalette.xThresholdValue = verticalLine.x1;
+          sciChartSurface.invalidateElement();
+        },
+    });
+    sciChartSurface.annotations.add(verticalLine);
 
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
@@ -100,17 +121,22 @@ const drawExample = async () => {
 };
 
 /**
- * A paletteprovider which colours a series if Y-value over a threshold, else use default colour
+ * A paletteprovider which colours a series if X or Y-value over a threshold, else use default colour
  */
 export class ThresholdPaletteProvider implements IFillPaletteProvider, IStrokePaletteProvider {
     public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.GRADIENT;
     public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
-    public thresholdValue: number;
-    private readonly color: number;
+    public yThresholdValue: number;
+    public xThresholdValue: number;
+    private readonly yColor: number;
+    private readonly xColor: number;
 
-    constructor(thresholdValue: number, color: string) {
-        this.thresholdValue = thresholdValue;
-        this.color = parseColorToUIntArgb(color);
+    constructor(yThresholdValue: number, yColor: string,
+                xThresholdValue: number, xColor: string) {
+        this.yThresholdValue = yThresholdValue;
+        this.yColor = parseColorToUIntArgb(yColor);
+        this.xThresholdValue = xThresholdValue;
+        this.xColor = parseColorToUIntArgb(xColor);
     }
 
     onAttached(parentSeries: IRenderableSeries): void {
@@ -120,11 +146,22 @@ export class ThresholdPaletteProvider implements IFillPaletteProvider, IStrokePa
     }
 
     overrideFillArgb(xValue: number, yValue: number, index: number, opacity?: number): number {
-        return yValue > this.thresholdValue ? this.color : undefined;
+        // When the x-value of the series is greater than the x threshold
+        // fill with the xColor
+        if (xValue > this.xThresholdValue) {
+            return this.xColor;
+        }
+        // When the y-value of the series is greater than the y-threshold,
+        // fill with the y-color
+        if (yValue > this.yThresholdValue) {
+            return this.yColor;
+        }
+        // Undefined means use default color
+        return undefined;
     }
 
     overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity?: number): number {
-        return yValue > this.thresholdValue ? this.color : undefined;
+        return yValue > this.yThresholdValue ? this.yColor : undefined;
     }
 }
 

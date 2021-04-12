@@ -6,8 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Drag Horizontal Threshold demo shows how to add a draggable threshold to the chart and change chart colour based on the threshold value.`;
-const description = `The Drag Horizontal Threshold demo shows how to add a draggable threshold to a JavaScript chart and change chart colour based on the threshold value.`;
+const previewDescription = `Drag Threshold demo shows how to add draggable vertical and horizontal thresholds to the chart and change chart series colour based on the threshold value.`;
+const description = `The Drag Threshold demo shows how to add draggable vertical and horizontal thresholds to a JavaScript chart and change chart series colour based on the threshold value.`;
 const tips = [
     ` All Annotations have an isEditable property. When true, the annotation can be dragged and resized. Chart colouring may be changed via a rule using the PaletteProvider API.`
 ];
@@ -64,8 +64,8 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates interaction by dragging a horizontal line threhsold.{" "}
-        As the threshold moves, the chart colour updates.
+        Demonstrates interaction by dragging vertical and horizontal line thresholds.{" "}
+        As the thresholds move, the chart colour updates.
     </p>
 );
 
@@ -81,7 +81,7 @@ export const dragHorizontalThresholdExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Demonstrates how to add a draggable threshold which changes the series color in SciChart.js",
+        "Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js",
     seoKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-drag-horizontal-threshold.jpg"
 };
