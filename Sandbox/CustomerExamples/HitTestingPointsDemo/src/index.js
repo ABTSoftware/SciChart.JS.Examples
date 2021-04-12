@@ -11,6 +11,7 @@ import {NumberRange} from "scichart/Core/NumberRange";
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 import { ENearestPointLogic } from "scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider";
+import {autoReverseEasing, easing} from "scichart/Core/Animations/EasingFunctions";
 
 async function initSciChart() {
     // LICENSING //
@@ -81,7 +82,7 @@ async function initSciChart() {
             ` Result=(${hitTestInfo.xValue}, ${hitTestInfo.yValue}) `
         );
 
-        showHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, 200);
+        showHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, 1000);
     });
 }
 
@@ -89,10 +90,10 @@ function showHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, timeout) {
     // Use a scatter series to temporarily render a single point at the hitTestInfo.x/yValue
     const fill = hitTestInfo.isHit ? "DarkGreen" : "Crimson";
     const series = new XyScatterRenderableSeries(wasmContext, {
-        animation: new FadeAnimation({ duration: timeout }),
-        opacity: 0.7,
+        animation: new FadeAnimation({ duration: timeout, ease: (t) => 1-t }),
+        opacity: 1,
         dataSeries: new XyDataSeries(wasmContext, { xValues: [hitTestInfo.xValue], yValues: [hitTestInfo.yValue] }),
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 15, height: 15, strokeThickness: 0, fill})
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 25, height: 25, strokeThickness: 0, fill})
     });
     sciChartSurface.renderableSeries.add(series);
     const annotation = new TextAnnotation({
