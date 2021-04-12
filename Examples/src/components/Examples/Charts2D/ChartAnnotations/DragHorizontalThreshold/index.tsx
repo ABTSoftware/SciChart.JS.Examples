@@ -8,7 +8,6 @@ import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
 import {NumberRange} from "scichart/Core/NumberRange";
 import classes from "../../../../Examples/Examples.module.scss";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import {HorizontalLineAnnotation} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
 import {ELabelPlacement} from "scichart/types/LabelPlacement";
 import {
@@ -25,7 +24,6 @@ import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationB
 import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import {GradientParams} from "scichart/Core/GradientParams";
 import {Point} from "scichart/Core/Point";
-import {ScaleAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
 
 const divElementId = "chart";
 
@@ -45,16 +43,9 @@ const drawExample = async () => {
     const thresholdPalette = new ThresholdPaletteProvider(4, "#FF333333");
 
     // Add a Column series with some values to the chart
-    const { xValues, yValues } = ExampleDataProvider.getDampedSinewave(0, 10, 0, 0.01, 100, 3);
+    const { xValues, yValues } = ExampleDataProvider.getDampedSinewave(0, 10, 0, 0.001, 3000, 10);
 
     sciChartSurface.renderableSeries.add(
-        // new FastColumnRenderableSeries(wasmContext, {
-        //     dataSeries: new XyDataSeries(wasmContext, {
-        //         xValues,
-        //         yValues
-        //     }),
-        //     paletteProvider: thresholdPalette
-        // })
         new FastMountainRenderableSeries(wasmContext, {
             stroke: "#4682b4",
             strokeThickness: 5,
