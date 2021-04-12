@@ -6,13 +6,10 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `The Trade Markers demo uses the Annotations API to place CustomAnnotations rendering buy and sell or news
-bullet markers over a simulated price chart.`;
-const description = `The CustomAnnotations are created and added using SVG to the sciChartSurface.annotations collection. They
-may be placed above or below candles with our helpful API.`;
+const previewDescription = `Drag Horizontal Threshold demo shows how to add a draggable threshold to the chart and change chart colour based on the threshold value.`;
+const description = `The Drag Horizontal Threshold demo shows how to add a draggable threshold to a JavaScript chart and change chart colour based on the threshold value.`;
 const tips = [
-    ` News/Event bullet annotations use AnnotationBase.${" "}yCoordinateMode = ECoordinateMode.${" "}RelativeY to always place
-the event bullet at the bottom of the chart.`
+    ` All Annotations have an isEditable property. When true, the annotation can be dragged and resized. Chart colouring may be changed via a rule using the PaletteProvider API.`
 ];
 
 const documentationLinks: TDocumentationLink[] = [
@@ -56,52 +53,25 @@ const seeAlso: GalleryItem[] = [
                 examplePath: ExampleStrings.urlTradeMarkers
             },
             {
-                imgPath: ExampleStrings.imgStackedColumnChart,
-                title: ExampleStrings.titleStackedColumnChart,
-                seoTitle: ExampleStrings.urlTitleStackedColumnChart,
-                examplePath: ExampleStrings.urlStackedColumnChart
-            },
-            {
                 imgPath: ExampleStrings.imgEditableAnnotation,
                 title: ExampleStrings.titleEditableAnnotations,
                 seoTitle: ExampleStrings.urlTitleEditableAnnotations,
                 examplePath: ExampleStrings.urlEditableAnnotations
             },
-            {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
         ]
     }
 ];
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to add Buy/Sell Markers (annotations) and News/Dividend bullets to a{" "}
-        <strong>JavaScript Stock Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Demonstrates interaction by dragging a horizontal line threhsold.{" "}
+        As the threshold moves, the chart colour updates.
     </p>
 );
 
-export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
-    title: ExampleStrings.titleTradeMarkers,
-    path: ExampleStrings.urlTradeMarkers,
+export const dragHorizontalThresholdExampleInfo: TExampleInfo = {
+    title: ExampleStrings.titleDragHorizontalThreshold,
+    path: ExampleStrings.urlDragHorizontalThreshold,
     subtitle: Subtitle,
     documentationLinks,
     tips,
@@ -111,7 +81,7 @@ export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Demonstrates how to place Buy/Sell arrow markers on a JavaScript Stock Chart using SciChart.js - Annotations API",
+        "Demonstrates how to add a draggable threshold which changes the series color in SciChart.js",
     seoKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-stock-chart-buy-sell-markers.jpg"
+    thumbnailImage: "javascript-chart-drag-horizontal-threshold.jpg"
 };

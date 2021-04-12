@@ -41,16 +41,16 @@ const seeAlso: GalleryItem[] = [
                 examplePath: ExampleStrings.urlTradeMarkers
             },
             {
-                imgPath: ExampleStrings.imgAnnotaionsAreEasyChart,
+                imgPath: ExampleStrings.imgAnnotationsAreEasyChart,
                 title: ExampleStrings.titleAnnotationsAreEasy,
                 seoTitle: ExampleStrings.urlTitleAnnotationsDocumentation,
                 examplePath: ExampleStrings.urlAnnotationsAreEasy
             },
             {
-                imgPath: ExampleStrings.imgTradeMarkers,
-                title: ExampleStrings.titleTradeMarkers,
-                seoTitle: ExampleStrings.urlTitleTradeMarkers,
-                examplePath: ExampleStrings.urlTradeMarkers
+                imgPath: ExampleStrings.imgDragHorizontalThreshold,
+                title: ExampleStrings.titleDragHorizontalThreshold,
+                seoTitle: ExampleStrings.urlTitleDragHorizontalThreshold,
+                examplePath: ExampleStrings.urlDragHorizontalThreshold
             },
             {
                 imgPath: ExampleStrings.imgEditableAnnotation,
