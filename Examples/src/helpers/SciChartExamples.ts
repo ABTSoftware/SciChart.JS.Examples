@@ -35,6 +35,7 @@ import annotationsImg from "../components/Examples/Charts2D/ChartAnnotations/Ann
 import editableAnnotationsImg from "../components/Examples/Charts2D/ChartAnnotations/EditableAnnotations/javascript-chart-editable-annotations.jpg";
 import tradeMarkersImg from "../components/Examples/Charts2D/ChartAnnotations/TradeMarkers/javascript-stock-chart-buy-sell-markers.jpg";
 import legendImg from "../components/Examples/Charts2D/Legends/ChartLegendsAPI/javascript-chart-legends.jpg";
+import dragHorizontalThresholdImg from "../components/Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/javascript-chart-drag-horizontal-threshold.jpg";
 // Stock Charts
 import multiPaneStockImg from "../components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
 import realtimeStockImg from "../components/Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts/javascript-realtime-ticking-stock-charts.jpg";
@@ -264,6 +265,12 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleTradeMarkers,
                 seoTitle: "Trading Buy Sell Marker Annotations in JavaScript Charts",
                 examplePath: EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.path
+            },
+            {
+                imgPath: dragHorizontalThresholdImg,
+                title: ExampleStrings.titleDragHorizontalThreshold,
+                seoTitle: "Drag a Threshold to change the chart colour in JavaScript Charts",
+                examplePath: EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold.path
             },
             {
                 imgPath: legendImg,
