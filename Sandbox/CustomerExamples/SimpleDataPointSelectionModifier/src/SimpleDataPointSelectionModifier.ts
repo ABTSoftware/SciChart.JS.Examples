@@ -26,9 +26,18 @@ export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
     // Create an annotation with YCoordinateMode Relative, and Y1, Y2 = 0,1
     // This stretches the annotation to fit the viewport in the Y-direction
     // Below in modifierMouseMove we will be updating the annotation X-values as the mouse is moved.
+    // Pixel COORDINATE MODE EXAMPLE
+    // this.selectionAnnotation = new BoxAnnotation({
+    //   yCoordinateMode: ECoordinateMode.Pixel,
+    //   xCoordinateMode: ECoordinateMode.Pixel,
+    //   fill: "#ffffff33",
+    //   strokeThickness: 0
+    // });
+
+    // DataValue COORDINATE MODE EXAMPLE
     this.selectionAnnotation = new BoxAnnotation({
-      yCoordinateMode: ECoordinateMode.Pixel,
-      xCoordinateMode: ECoordinateMode.Pixel,
+      yCoordinateMode: ECoordinateMode.DataValue,
+      xCoordinateMode: ECoordinateMode.DataValue,
       fill: "#ffffff33",
       strokeThickness: 0
     });
@@ -46,10 +55,22 @@ export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
       this.startPoint = translatedPoint;
       this.endPoint = translatedPoint;
 
-      this.selectionAnnotation.x1 = translatedPoint.x;
-      this.selectionAnnotation.x2 = translatedPoint.x;
-      this.selectionAnnotation.y1 = translatedPoint.y;
-      this.selectionAnnotation.y2 = translatedPoint.y;
+      // Pixel COORDINATE MODE EXAMPLE
+      // this.selectionAnnotation.x1 = translatedPoint.x;
+      // this.selectionAnnotation.x2 = translatedPoint.x;
+      // this.selectionAnnotation.y1 = translatedPoint.y;
+      // this.selectionAnnotation.y2 = translatedPoint.y;
+
+      // DataValue COORDINATE MODE EXAMPLE
+      const { xCalc, yCalc } = this.getDefaultCoordCalculators();
+      if (!xCalc) {
+        return;
+      }
+      this.selectionAnnotation.x1 = xCalc.getDataValue(translatedPoint.x);
+      this.selectionAnnotation.x2 = xCalc.getDataValue(translatedPoint.x);
+      this.selectionAnnotation.y1 = yCalc.getDataValue(translatedPoint.y);
+      this.selectionAnnotation.y2 = yCalc.getDataValue(translatedPoint.y);
+
       this.isSelecting = true;
 
       this.parentSurface.annotations.remove(this.selectionAnnotation);
@@ -67,8 +88,18 @@ export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
 
     if (translatedPoint && this.isSelecting) {
       this.endPoint = args.mousePoint;
-      this.selectionAnnotation.x2 = translatedPoint.x;
-      this.selectionAnnotation.y2 = translatedPoint.y;
+
+      // Pixel COORDINATE MODE EXAMPLE
+      // this.selectionAnnotation.x2 = translatedPoint.x;
+      // this.selectionAnnotation.y2 = translatedPoint.y;
+
+      // DataValue COORDINATE MODE EXAMPLE
+      const { xCalc, yCalc } = this.getDefaultCoordCalculators();
+      if (!xCalc) {
+        return;
+      }
+      this.selectionAnnotation.x2 = xCalc.getDataValue(translatedPoint.x);
+      this.selectionAnnotation.y2 = yCalc.getDataValue(translatedPoint.y);
     }
   }
 
@@ -144,5 +175,18 @@ export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
           }
         }
       });
+  }
+
+  private getDefaultCoordCalculators() {
+    const xAxis = this.parentSurface.xAxes.get(0);
+    const yAxis = this.parentSurface.yAxes.get(0);
+    if (!xAxis || !yAxis) {
+      return { xCalc: undefined, yCalc: undefined };
+    }
+
+    const xCalc = xAxis.getCurrentCoordinateCalculator();
+    const yCalc = yAxis.getCurrentCoordinateCalculator();
+
+    return { xCalc, yCalc };
   }
 }
