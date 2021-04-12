@@ -3,15 +3,14 @@ import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import { Point } from "scichart/Core/Point";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {translateFromCanvasToSeriesViewRect} from "scichart/utils/translate";
 import {EAxisAlignment} from "scichart/types/AxisAlignment";
 import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {ENearestPointLogic} from "scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider";
 import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import {FadeAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import { ENearestPointLogic } from "scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider";
 
 async function initSciChart() {
     // LICENSING //
@@ -82,11 +81,11 @@ async function initSciChart() {
             ` Result=(${hitTestInfo.xValue}, ${hitTestInfo.yValue}) `
         );
 
-        animateHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, 200);
+        showHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, 200);
     });
 }
 
-function animateHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, timeout) {
+function showHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, timeout) {
     // Use a scatter series to temporarily render a single point at the hitTestInfo.x/yValue
     const fill = hitTestInfo.isHit ? "#33FF33AA" : "#FF3333AA";
     const series = new XyScatterRenderableSeries(wasmContext, {
@@ -107,6 +106,8 @@ function animateHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, timeout)
     const clearAll = () => {
         sciChartSurface.renderableSeries.remove(series);
         sciChartSurface.annotations.remove(annotation);
+        series.delete();
+        annotation.delete();
     }
     setTimeout(clearAll, timeout * 5);
 }
