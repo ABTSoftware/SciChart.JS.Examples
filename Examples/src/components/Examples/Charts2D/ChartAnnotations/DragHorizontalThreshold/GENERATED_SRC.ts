@@ -1,19 +1,31 @@
 export const code = `import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
-import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
-import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { ENumericFormat } from "scichart/types/NumericFormat";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
+import {NumberRange} from "scichart/Core/NumberRange";
 import classes from "../../../../Examples/Examples.module.scss";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {HorizontalLineAnnotation} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
+import {ELabelPlacement} from "scichart/types/LabelPlacement";
+import {
+    EFillPaletteMode,
+    EStrokePaletteMode,
+    IFillPaletteProvider,
+    IStrokePaletteProvider
+} from "scichart/Charting/Model/IPaletteProvider";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import {GradientParams} from "scichart/Core/GradientParams";
+import {Point} from "scichart/Core/Point";
+import {VerticalLineAnnotation} from "scichart/Charting/Visuals/Annotations/VerticalLineAnnotation";
+import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
 
 const divElementId = "chart";
 
@@ -24,41 +36,81 @@ const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
     // Add an XAxis, YAxis
-    sciChartSurface.xAxes.add(new CategoryAxis(wasmContext));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1), labelFormat: ENumericFormat.Decimal_4 })
+        new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) })
     );
 
-    // Add a Candlestick series with some values to the chart
-    const { dateValues, openValues, highValues, lowValues, closeValues } = ExampleDataProvider.getTradingData(200);
+    // Create a paletteprovider to colour the series depending on a threshold value
+    const thresholdPalette = new ThresholdPaletteProvider(
+        4, "#FF333333",
+        8, "#33FF3333");
+
+    // Add a Column series with some values to the chart
+    const { xValues, yValues } = ExampleDataProvider.getDampedSinewave(0, 10, 0, 0.001, 3000, 10);
 
     sciChartSurface.renderableSeries.add(
-        new FastCandlestickRenderableSeries(wasmContext, {
-            dataSeries: new OhlcDataSeries(wasmContext, {
-                xValues: dateValues,
-                openValues,
-                highValues,
-                lowValues,
-                closeValues
-            })
+        new FastMountainRenderableSeries(wasmContext, {
+            stroke: "#4682b4",
+            strokeThickness: 5,
+            zeroLineY: 0.0,
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues,
+                yValues
+            }),
+            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                { color: "rgba(70,130,180,1)", offset: 0 },
+                { color: "rgba(70,130,180,0.2)", offset: 1 }
+            ]),
+            paletteProvider: thresholdPalette,
         })
     );
 
-    // Add some trades to the chart using the Annotations API
-    for (let i = 0; i < dateValues.length; i++) {
-        // Every 10th bar, add a buy annotation
-        if (i % 10 === 0) {
-            sciChartSurface.annotations.add(buyMarkerAnnotation(i, lowValues[i]));
-        }
-        // Every 10th bar between buys, add a sell annotation
-        if ((i + 5) % 10 === 0) {
-            sciChartSurface.annotations.add(sellMarkerAnnotation(i, highValues[i]));
-        }
-        // Every 25th bar, add a news bullet
-        if (i % 25 === 0) {
-            sciChartSurface.annotations.add(newsBulletAnnotation(i));
-        }
-    }
+    // Add a label to tell user what to do
+    const textAnnotation = new TextAnnotation({
+        verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
+        xCoordinateMode: ECoordinateMode.Relative,
+        x1: 0.5,
+        y1: 4.2,
+        fontSize: 16,
+        text: "Drag the lines!",
+        textColor: "White",
+    });
+    // Add a horizontal threshold at Y=5
+    const horizontalLine = new HorizontalLineAnnotation( {
+        y1: 4.0,
+        isEditable: true,
+        showLabel: true,
+        stroke: "#FF3333",
+        axisLabelFill: "#FF3333",
+        labelPlacement: ELabelPlacement.Axis,
+        onDrag: (args) => {
+            // When the horizontal line is dragged, update the
+            // threshold palette and redraw the SciChartSurface
+            thresholdPalette.yThresholdValue = horizontalLine.y1;
+            textAnnotation.y1 = horizontalLine.y1 + 0.2;
+            sciChartSurface.invalidateElement();
+        },
+    });
+    sciChartSurface.annotations.add(horizontalLine);
+    sciChartSurface.annotations.add(textAnnotation);
+
+    // Add a vertical line
+    const verticalLine = new VerticalLineAnnotation({
+        x1: 8,
+        strokeThickness: 2,
+        isEditable: true,
+        showLabel: true,
+        stroke: "DarkGreen",
+        axisLabelFill: "DarkGreen",
+        axisLabelStroke: "White",
+        labelPlacement: ELabelPlacement.Axis,
+        onDrag: (args) => {
+          thresholdPalette.xThresholdValue = verticalLine.x1;
+          sciChartSurface.invalidateElement();
+        },
+    });
+    sciChartSurface.annotations.add(verticalLine);
 
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
@@ -68,84 +120,52 @@ const drawExample = async () => {
     return { sciChartSurface, wasmContext };
 };
 
-// Returns a CustomAnnotation that represents a buy marker arrow
-// The CustomAnnotation supports SVG as content. Using Inkscape or similar you can create SVG content for annotations
-const buyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
-    return new CustomAnnotation({
-        x1,
-        y1,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        svgString:
-            '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
-            '<g transform="translate(-53.867218,-75.091687)">' +
-            '<path style="fill:#1cb61c;fill-opacity:0.34117647;stroke:#00b400;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
-            'd="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,-7.408333 7.158904,-7.408333 l 7.158906,7.408333 H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"' +
-            "/>" +
-            "</g>" +
-            "</svg>"
-    });
-};
+/**
+ * A paletteprovider which colours a series if X or Y-value over a threshold, else use default colour
+ */
+export class ThresholdPaletteProvider implements IFillPaletteProvider, IStrokePaletteProvider {
+    public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.GRADIENT;
+    public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
+    public yThresholdValue: number;
+    public xThresholdValue: number;
+    private readonly yColor: number;
+    private readonly xColor: number;
 
-// Returns a CustomAnnotation that represents a sell marker arrow
-// The CustomAnnotation supports SVG as content. Using Inkscape or similar you can create SVG content for annotations
-const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
-    return new CustomAnnotation({
-        x1,
-        y1,
-        verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        svgString:
-            '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
-            '<g transform="translate(-54.616083,-75.548914)">' +
-            '<path style="fill:#b22020;fill-opacity:0.34117648;stroke:#990000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
-            'd="m 55.47431,87.025547 c 7.158904,7.408333 7.158904,7.408333 7.158904,7.408333 L 69.79212,87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"' +
-            "/>" +
-            "</g>" +
-            "</svg>"
-    });
-};
+    constructor(yThresholdValue: number, yColor: string,
+                xThresholdValue: number, xColor: string) {
+        this.yThresholdValue = yThresholdValue;
+        this.yColor = parseColorToUIntArgb(yColor);
+        this.xThresholdValue = xThresholdValue;
+        this.xColor = parseColorToUIntArgb(xColor);
+    }
 
-const newsBulletAnnotation = (x1: number): CustomAnnotation => {
-    return new CustomAnnotation({
-        x1,
-        y1: 0.99, // using YCoordinateMode.Relative and 0.99, places the annotation at the bottom of the viewport
-        yCoordinateMode: ECoordinateMode.Relative,
-        verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        svgString:
-            '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
-            "  <g" +
-            '     inkscape:label="Layer 1"' +
-            '     inkscape:groupmode="layer"' +
-            '     id="layer1"' +
-            '     transform="translate(-55.430212,-77.263552)">' +
-            "    <rect" +
-            '       style="fill:#C0D4EE;fill-opacity:1;stroke:#333333;stroke-width:0.26458332;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.66666667"' +
-            '       id="rect4528"' +
-            '       width="13.229166"' +
-            '       height="15.875"' +
-            '       x="55.562504"' +
-            '       y="77.395844"' +
-            '       rx="2"' +
-            '       ry="2" />' +
-            "    <text" +
-            '       xml:space="preserve"' +
-            '       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.26458332"' +
-            '       x="57.688622"' +
-            '       y="89.160347"' +
-            '       id="text4540"><tspan' +
-            '         sodipodi:role="line"' +
-            '         id="tspan4538"' +
-            '         x="57.688622"' +
-            '         y="89.160347"' +
-            "         style=\"font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#333333;fill-opacity:1;stroke-width:0.26458332\">N</tspan></text>" +
-            "  </g>" +
-            "</svg>"
-    });
-};
+    onAttached(parentSeries: IRenderableSeries): void {
+    }
 
-export default function TradeMarkers() {
+    onDetached(): void {
+    }
+
+    overrideFillArgb(xValue: number, yValue: number, index: number, opacity?: number): number {
+        // When the x-value of the series is greater than the x threshold
+        // fill with the xColor
+        if (xValue > this.xThresholdValue) {
+            return this.xColor;
+        }
+        // When the y-value of the series is greater than the y-threshold,
+        // fill with the y-color
+        if (yValue > this.yThresholdValue) {
+            return this.yColor;
+        }
+        // Undefined means use default color
+        return undefined;
+    }
+
+    overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity?: number): number {
+        return yValue > this.yThresholdValue ? this.yColor : undefined;
+    }
+}
+
+export default function DragHorizontalThreshold() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
     React.useEffect(() => {
