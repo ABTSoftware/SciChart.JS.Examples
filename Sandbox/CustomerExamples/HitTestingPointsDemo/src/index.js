@@ -12,6 +12,8 @@ import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotati
 import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 import { ENearestPointLogic } from "scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider";
 import {autoReverseEasing, easing} from "scichart/Core/Animations/EasingFunctions";
+import {LineAnnotation} from "scichart/Charting/Visuals/Annotations/LineAnnotation";
+import {DoubleAnimator} from "scichart/Core/Animations/DoubleAnimator";
 
 async function initSciChart() {
     // LICENSING //
@@ -81,12 +83,13 @@ async function initSciChart() {
             ` IsHit? ${hitTestInfo.isHit}\r\n` +
             ` Result=(${hitTestInfo.xValue}, ${hitTestInfo.yValue}) `
         );
-
         showHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, 1000);
     });
 }
 
 function showHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, timeout) {
+    sciChartSurface.annotations.clear();
+
     // Use a scatter series to temporarily render a single point at the hitTestInfo.x/yValue
     const fill = hitTestInfo.isHit ? "DarkGreen" : "Crimson";
     const series = new XyScatterRenderableSeries(wasmContext, {
@@ -96,7 +99,7 @@ function showHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, timeout) {
         pointMarker: new EllipsePointMarker(wasmContext, { width: 25, height: 25, strokeThickness: 0, fill})
     });
     sciChartSurface.renderableSeries.add(series);
-    const annotation = new TextAnnotation({
+    const hitOrMissLabel = new TextAnnotation({
         x1: hitTestInfo.xValue + 0.1,
         y1: hitTestInfo.yValue,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
@@ -104,14 +107,44 @@ function showHitTestPoint(sciChartSurface, wasmContext, hitTestInfo, timeout) {
         text: hitTestInfo.isHit ? "Hit!" : "miss...",
         textColor: "White"
     });
-    sciChartSurface.annotations.add(annotation);
-    const clearAll = () => {
-        sciChartSurface.renderableSeries.remove(series);
-        sciChartSurface.annotations.remove(annotation);
-        series.delete();
-        annotation.delete();
-    }
-    setTimeout(clearAll, timeout * 5);
+    sciChartSurface.annotations.add(hitOrMissLabel);
+
+    const hitTestLine = new LineAnnotation( {
+        x1: hitTestInfo.xValue,
+        y1: hitTestInfo.yValue,
+        x2: hitTestInfo.hitTestPointValues.x,// sciChartSurface.xAxes.get(0).getCurrentCoordinateCalculator().getDataValue(hitTestInfo.xCoord),
+        y2: hitTestInfo.hitTestPointValues.y,// sciChartSurface.yAxes.get(0).getCurrentCoordinateCalculator().getDataValue(hitTestInfo.yCoord),
+        stroke: fill,
+    });
+    sciChartSurface.annotations.add(hitTestLine);
+
+    DoubleAnimator.animate(
+        1,
+        0,
+        timeout,
+        (value) => {
+            hitTestLine.opacity = value;
+            hitOrMissLabel.opacity = value;
+        },
+        () => {
+            sciChartSurface.renderableSeries.remove(series);
+            sciChartSurface.annotations.remove(hitOrMissLabel);
+            sciChartSurface.annotations.remove(hitTestLine);
+            series.delete();
+            hitOrMissLabel.delete();
+            hitTestLine.delete();
+        },
+        easing.linear
+    );
+    // const clearAll = () => {
+    //     sciChartSurface.renderableSeries.remove(series);
+    //     sciChartSurface.annotations.remove(hitOrMissLabel);
+    //     sciChartSurface.annotations.remove(hitTestLine);
+    //     series.delete();
+    //     hitOrMissLabel.delete();
+    //     hitTestLine.delete();
+    // }
+    // setTimeout(clearAll, timeout);
 }
 
 initSciChart();
