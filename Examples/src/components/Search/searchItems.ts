@@ -111,6 +111,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold.title,
+        link: EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.title,
         link: EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.path,
     },

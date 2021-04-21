@@ -63,6 +63,7 @@ import RealtimeZoomPan from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoom
 import SplineLineChart from "../Examples/Charts2D/BasicChartTypes/SplineLineChart";
 import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/SplineMountainChart";
 import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart";
+import DragHorizontalThreshold from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold";
 
 export type TMenuItem = {
     item: {
@@ -107,7 +108,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy,
             EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations,
-            EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers
+            EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold
         ]
     },
     {
@@ -274,6 +276,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return EditableAnnotaions;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.id:
             return TradeMarkers;
+        case EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold.id:
+            return DragHorizontalThreshold;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.id:
             return RealtimeGhostedTraces;
         case EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.id:

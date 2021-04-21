@@ -1,0 +1,25 @@
+<html lang="en-us">
+<head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>SciChart.js Hit-Test API with Left Axis</title>
+    <script async type="text/javascript" src="bundle.js"></script>
+    <style>
+        body { font-family: 'Arial'}
+    </style>
+</head>
+<body>
+<h1>Hit Test with Left Axis SciChart.js</h1>
+<p>When there is a left axis, points must be translated to the series view rect to hit-test</p>
+
+<!-- the Div where the SciChartSurface will reside -->
+<div id="scichart-root" style="width: 900px; height:600px"></div>
+
+<p><strong>Instructions</strong></p>
+<ol>
+    <li>Click on the chart and look at the <strong>console</strong> to see hit-test results</li>
+    <li>When IsHit = true, the nearest point will momentarily turn <span style="font-weight: bold; color: darkgreen">green</span></li>
+    <li>When IsHit = false, the nearest point will momentarily turn <span style="font-weight: bold; color: crimson">red</span></li>
+</ol>
+</body>
+</html>

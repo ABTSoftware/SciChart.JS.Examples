@@ -53,6 +53,7 @@ import { dragAxisToScaleExampleInfo } from "../Examples/Charts2D/ZoomingAndPanni
 import { realtimeZoomPanExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/exampleInfo";
 import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/exampleInfo";
 import { GalleryItem } from "../../helpers/types/types";
+import {dragHorizontalThresholdExampleInfo} from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -169,6 +170,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_chartAnnotations_TradeMarkers: {
         id: "chart2D_chartAnnotations_TradeMarkers",
         ...tradeMarkerAnnotationsExampleInfo
+    },
+    chart2D_chartAnnotations_DragHorizontalThreshold: {
+        id: "chart2D_chartAnnotations_DragHorizontalThreshold",
+        ...dragHorizontalThresholdExampleInfo
     },
     featuredApps_performanceDemos_RealtimeGhostedTraces: {
         id: "featuredApps_performanceDemos_RealtimeGhostedTraces",

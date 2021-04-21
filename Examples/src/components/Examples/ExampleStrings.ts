@@ -236,7 +236,7 @@ export const ExampleStrings = {
         "https://www.scichart.com/documentation/js/current/The%20Annotations%20API%20Overview.html",
     urlTitleAnnotationsDocumentation:
         "The specific page for the SciChart.js Annotations documentation will help you to get started",
-    imgAnnotaionsAreEasyChart: "images/javascript-chart-annotations.jpg",
+    imgAnnotationsAreEasyChart: "images/javascript-chart-annotations.jpg",
     // Editable annotations
     urlEditableAnnotations: "/editable-annotations",
     titleEditableAnnotations: "JavaScript Chart Editable Annotations",
@@ -250,6 +250,12 @@ export const ExampleStrings = {
     urlTitleTradeMarkers:
         "The Trade Markers example demonstrates how to add buy/sell arrows and markers to a trading application",
     imgTradeMarkers: "images/javascript-stock-chart-buy-sell-markers.jpg",
+
+    // Drag horizontal threshold
+    titleDragHorizontalThreshold: "JavaScript Chart Drag Horizontal Threshold",
+    urlDragHorizontalThreshold: "/javascript-chart-drag-horizontal-threshold",
+    urlTitleDragHorizontalThreshold: "This Javascript chart example shows you how to add a draggable threshold and change the chart colour depending on threshold value",
+    imgDragHorizontalThreshold: "images/javascript-chart-drag-horizontal-threshold.jpg",
 
     // Use Pointmarkers
     urlPointMarkers: "/javascript-chart-custom-pointmarkers",
@@ -286,7 +292,7 @@ export const ExampleStrings = {
     urlTitleMultipleXAxis:
         "The Multiple XAxes example shows how to add series with several X and Y axis to a JavaScript Chart.",
     imgMultipleXAxis: "images/javascript-chart-with-multiple-x-axis.jpg",
-    
+
     // Secondary YAxis
     urlSecondaryYAxis: "/javascript-chart-with-secondary-y-axis",
     titleSecondaryYAxis: "Secondary Y-Axis Example",
@@ -437,5 +443,5 @@ export const ExampleStrings = {
     // Featured Apps Tenor Curves
     titleTenorCurvesFeaturedApp: "Tenor Curves Demo",
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
-    imgTenorCurves: "images/javascript-3d-surface-mesh-tenor-curve-example.jpg"
+    imgTenorCurves: "images/javascript-3d-surface-mesh-tenor-curve-example.jpg",
 };
