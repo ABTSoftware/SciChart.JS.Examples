@@ -15,6 +15,7 @@ import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/Annotatio
 import { ELabelPlacement } from "scichart/types/LabelPlacement";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import classes from "../../../../Examples/Examples.module.scss";
+import image from "./scichart-logo-white.png";
 
 const divElementId = "chart";
 
@@ -41,6 +42,13 @@ export const drawExample = async () => {
         '<animate attributeName="rx" values="0;25;0"',
         ' dur="2s" repeatCount="indefinite" color="#ffffff" /></rect></svg>'
     ].join("");
+    const customSvgString1 = [
+        ' <svg width="200" height="200"',
+        'xmlns="http://www.w3.org/2000/svg" style="background-color:green">',
+        `<image href=${image} height="100" width="200"/>`,
+        "</svg>"
+    ].join("");
+
     const horizontalLineAnnotation1 = new HorizontalLineAnnotation({
         stroke: "#FF6600",
         strokeThickness: 3,
@@ -103,6 +111,16 @@ export const drawExample = async () => {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             svgString: customSvgString,
+            isEditable: true
+        }),
+        new CustomAnnotation({
+            x1: 7,
+            y1: 7,
+            xCoordShift: 0,
+            yCoordShift: 0,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            svgString: customSvgString1,
             isEditable: true
         }),
         new TextAnnotation({
