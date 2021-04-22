@@ -60,6 +60,7 @@ import TenorCurves3DChart from "../Examples/FeaturedApps/ScientificCharts/TenorC
 import Load1MillionPointsChart from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints";
 import DragAxisToScale from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale";
 import RealtimeZoomPan from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan";
+import MultipleZoomPanModifiers from "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers";
 import SplineLineChart from "../Examples/Charts2D/BasicChartTypes/SplineLineChart";
 import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/SplineMountainChart";
 import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart";
@@ -154,7 +155,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         item: { id: "chart2D_zoomingAndPanning", name: "Zoom and Pan a Chart" },
         submenu: [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale,
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers,
         ]
     }
 ];
@@ -320,6 +322,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return DragAxisToScale;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.id:
             return RealtimeZoomPan;
+        case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.id:
+            return MultipleZoomPanModifiers;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.id:
             return Bubble3DChart;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.id:

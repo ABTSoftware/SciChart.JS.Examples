@@ -320,6 +320,11 @@ export const ExampleStrings = {
     urlRealtimeZoomPan: "/zoom-pan-realtime-javascript-chart",
     imgRealtimeZoomPan: "images/drag-axis-on-javascript-charts-to-scale-or-pan.jpg",
 
+    // Multiple Zoom Pan Modifiers
+    titleZoomPanWithMultipleChartModifiers: "Zoom and Pan with multiple Chart Modifiers",
+    urlZoomPanWithMultipleChartModifiers: "/zoom-pan-multiple-modifiers",
+    imgZoomPanWithMultipleChartModifiers: "images/zoom-pan-multiple-modifiers.jpg",
+
     // PaletteProvider
     titlePaletteProvider: "Coloring Series per-point using the PaletteProvider",
     urlPaletteProvider: "/javascript-chart-color-points-individually-with-paletteprovider",
