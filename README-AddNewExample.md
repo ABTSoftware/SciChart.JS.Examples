@@ -6,6 +6,7 @@ To add an example to the SciChart.js Examples Suite, use the following steps:
 
 * **Create folder** for your example, (e.g. `Examples/src/components/Examples/Charts2D/BasicChartTypes/BandSeriesChart/`)
 * **Place example code**. In the example folder create `index.tsx` file and put code for your example into it.
+* **Add image**. In the example folder create add image file with example.
 * **Add metadata**. In the example folder create metadata file `exampleInfo.ts` 
 ```ts
 import * as React from "react";
@@ -37,7 +38,10 @@ const documentationLinks: TDocumentationLink[] = [
     },
    ...
 ];
+```
+* **Add other examples on the page**
 
+```ts
 const seeAlso: GalleryItem[] = [
     {
         chartGroupTitle: "See also",
@@ -134,6 +138,24 @@ export const searchItems: TSearchItem[] = [
 ];
 
 ...
+```
+* **Add example to main page**
+
+Edit `Examples/src/helpers/SciChartExamples.ts` to add new example to main page
+
+```ts
+    ...
+
+    chartGroupTitle: "2D Chart Types",
+            items: [
+                ...
+                {
+                    imgPath: bandChartImg,
+                    title: ExampleStrings.titleBandChart,
+                    seoTitle: "JavaScript Band Chart Example",
+                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.path
+                },
+    ...
 ```
 
 * **Update sitemap**
