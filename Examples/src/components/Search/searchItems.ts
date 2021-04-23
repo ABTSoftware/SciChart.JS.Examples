@@ -183,6 +183,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.title,
+        link: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.title,
         link: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.path,
     },

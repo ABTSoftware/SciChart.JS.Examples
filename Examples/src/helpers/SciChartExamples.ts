@@ -55,6 +55,7 @@ import rolloverImg from "../components/Examples/Charts2D/TooltipsAndHittest/Usin
 // Zoom and Pan Charts
 import realtimeZoomPanImg from "../components/Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/zoom-and-pan-a-realtime-javascript-chart.jpg";
 import dragAxisToScaleImg from "../components/Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
+import multipleZoomPanModifiersImg from "../components/Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/zoom-pan-multiple-modifiers.jpg";
 // 3D Chart Types
 import bubble3dImg from "../components/Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/javascript-3d-bubble-chart.jpg";
 import mesh3dImg from "../components/Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
@@ -386,7 +387,13 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleRealtimeZoomPan,
                 seoTitle: "Zoom and Pan a Realtime JavaScript Chart",
                 examplePath: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.path
-            }
+            },
+            {
+                imgPath: multipleZoomPanModifiersImg,
+                title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
+                seoTitle: "Zoom and Pan a JavaScript Chart",
+                examplePath: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.path
+            },
         ]
     },
     {
