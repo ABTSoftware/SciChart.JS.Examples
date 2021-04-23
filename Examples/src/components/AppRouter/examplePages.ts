@@ -51,6 +51,7 @@ import { tenorCurvesExampleInfo } from "../Examples/FeaturedApps/ScientificChart
 import { loadOneMillionPointsExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/exampleInfo";
 import { dragAxisToScaleExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/exampleInfo";
 import { realtimeZoomPanExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/exampleInfo";
+import { zoomAndPanWithMultipleChartModifiersExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/exampleInfo";
 import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/exampleInfo";
 import { GalleryItem } from "../../helpers/types/types";
 import {dragHorizontalThresholdExampleInfo} from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
@@ -262,6 +263,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_zoomAndPanAChart_RealtimeZoomPan: {
         id: "chart2D_zoomAndPanAChart_RealtimeZoomPan",
         ...realtimeZoomPanExampleInfo
+    },
+    chart2D_zoomAndPanAChart_MultipleChartModifiers: {
+        id: "chart2D_zoomAndPanAChart_MultipleChartModifiers",
+        ...zoomAndPanWithMultipleChartModifiersExampleInfo
     },
     chart3D_basic3DChartTypes_Bubble3DChart: {
         id: "chart3D_basic3DChartTypes_Bubble3DChart",
