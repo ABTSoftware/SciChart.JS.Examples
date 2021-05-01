@@ -12,12 +12,11 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { EStrokePaletteMode, IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import Box from "../../../../../helpers/shared/Helpers/Box/Box";
-import { Button, ButtonGroup } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { uintArgbColorMultiplyOpacity } from "scichart/utils/colorUtil";
 import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
-
 import classes from "../../../../Examples/Examples.module.scss";
+import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
 
 const divElementId = "chart";
 
@@ -29,6 +28,7 @@ const drawExample = async () => {
     // Add an XAxis of type CategoryAxis - which collapses gaps in stock market data
     const xAxis = new CategoryAxis(wasmContext);
     xAxis.growBy = new NumberRange(0.05, 0.05);
+    xAxis.labelProvider = new SmartDateLabelProvider();
     sciChartSurface.xAxes.add(xAxis);
 
     // Add a YAxis and set text formatting

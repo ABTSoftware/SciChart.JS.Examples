@@ -62,10 +62,10 @@ const seeAlso: GalleryItem[] = [
                 examplePath: ExampleStrings.urlHeatmapChart
             },
             {
-                imgPath: ExampleStrings.imgFanChart,
-                title: ExampleStrings.titleFanChart,
-                seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
-                examplePath: ExampleStrings.urlFanChart
+                imgPath: ExampleStrings.imgContourChart,
+                title: ExampleStrings.titleContourChart,
+                seoTitle: ExampleStrings.urlTitleContourChartDocumentation,
+                examplePath: ExampleStrings.urlContourChart
             }
         ]
     }

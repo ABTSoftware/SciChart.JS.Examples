@@ -51,13 +51,7 @@ const seeAlso: GalleryItem[] = [
                 title: ExampleStrings.titleTradeMarkers,
                 seoTitle: ExampleStrings.urlTitleTradeMarkers,
                 examplePath: ExampleStrings.urlTradeMarkers
-            },
-            {
-                imgPath: ExampleStrings.imgEditableAnnotation,
-                title: ExampleStrings.titleEditableAnnotations,
-                seoTitle: ExampleStrings.urlTitleEditableAnnotations,
-                examplePath: ExampleStrings.urlEditableAnnotations
-            },
+            }
         ]
     }
 ];

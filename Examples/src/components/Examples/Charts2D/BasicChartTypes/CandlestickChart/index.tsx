@@ -17,10 +17,10 @@ import {
     IStrokePaletteProvider
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { Button, ButtonGroup } from "@material-ui/core";
-import Box from "../../../../../helpers/shared/Helpers/Box/Box";
+import { Button } from "@material-ui/core";
 import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import { uintArgbColorMultiplyOpacity } from "scichart/utils/colorUtil";
+import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
 
 import classes from "../../../../Examples/Examples.module.scss";
 
@@ -34,6 +34,7 @@ const drawExample = async () => {
     // Add an XAxis of type CategoryAxis - which collapses gaps in stock market data
     const xAxis = new CategoryAxis(wasmContext);
     xAxis.growBy = new NumberRange(0.05, 0.05);
+    xAxis.labelProvider = new SmartDateLabelProvider();
     sciChartSurface.xAxes.add(xAxis);
 
     // Create a NumericAxis on the YAxis

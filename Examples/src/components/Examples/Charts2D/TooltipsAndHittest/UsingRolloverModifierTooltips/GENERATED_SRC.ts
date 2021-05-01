@@ -1,9 +1,5 @@
 export const code = `import * as React from "react";
 import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
 import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { NumberRange } from "scichart/Core/NumberRange";
@@ -16,7 +12,6 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { TSciChart } from "scichart/types/TSciChart";
 import { IXyDataSeriesOptions, XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { SciChartSurface } from "scichart";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
 
@@ -95,7 +90,6 @@ const createDataSeries = (wasmContext: TSciChart, index: number, options?: IXyDa
 const colorsArr = ["#368BC1", "#eeeeee", "#228B22", "#be0000", "#ff6600", "#ff0000"];
 
 export default function UsingRolloverModifierTooltips() {
-    const [showButtons, setShowButtons] = React.useState(false);
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [wasmContext, setWasmContext] = React.useState<TSciChart>();
     const [lastSeriesTooltipColor, setLastSeriesTooltipColor] = React.useState<string>("");
@@ -105,7 +99,6 @@ export default function UsingRolloverModifierTooltips() {
             const res = await drawExample();
             setSciChartSurface(res.sciChartSurface);
             setWasmContext(res.wasmContext);
-            setShowButtons(true);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => sciChartSurface?.delete();
@@ -166,9 +159,7 @@ export default function UsingRolloverModifierTooltips() {
                         <select
                             id="stroke-thickness"
                             value={lastSeriesTooltipColor}
-                            onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                                if (showButtons) handleChangeTooltipColor(e);
-                            }}
+                            onChange={handleChangeTooltipColor}
                         >
                             <option value="#ff0000">Red</option>
                             <option value="#228B22">Green</option>
@@ -179,24 +170,10 @@ export default function UsingRolloverModifierTooltips() {
             </div>
 
             <div className={classes.ButtonsWrapper}>
-                <Button
-                    onClick={() => {
-                        if (showButtons) handleAddSeries;
-                    }}
-                    size="medium"
-                    color="primary"
-                    variant="outlined"
-                >
+                <Button onClick={handleAddSeries} size="medium" color="primary" variant="outlined">
                     Add Series
                 </Button>
-                <Button
-                    onClick={() => {
-                        if (showButtons) handleRemoveSeries;
-                    }}
-                    size="medium"
-                    color="primary"
-                    variant="outlined"
-                >
+                <Button onClick={handleRemoveSeries} size="medium" color="primary" variant="outlined">
                     Remove Series
                 </Button>
             </div>

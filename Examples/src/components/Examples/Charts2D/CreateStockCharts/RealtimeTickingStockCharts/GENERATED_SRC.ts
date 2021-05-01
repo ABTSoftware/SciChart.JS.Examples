@@ -1,10 +1,5 @@
 export const code = `import * as React from "react";
 import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
 import { SciChartSurface } from "scichart";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
 import { NumberRange } from "scichart/Core/NumberRange";
@@ -175,7 +170,6 @@ let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
 export default function RealtimeTickingStockCharts() {
-    const [showControls, setShowControls] = React.useState(false);
     const [wasmContext, setWasmContext] = React.useState<TSciChart>();
     const [strokeThickness, setStrokeThickness] = React.useState(2);
     const [seriesType, setSeriesType] = React.useState(ESeriesType.OhlcSeries);
@@ -186,7 +180,6 @@ export default function RealtimeTickingStockCharts() {
             const res = await drawExample();
             scs = res.sciChartSurface;
             setWasmContext(res.wasmContext);
-            setShowControls(true);
             setControls(res.controls);
             autoStartTimerId = setTimeout(res.controls.startAnimation, 3000);
         })();
@@ -262,13 +255,7 @@ export default function RealtimeTickingStockCharts() {
                 <div className={classes.InputSelectWrapper}>
                     <label id="stroke-thickness-label">
                         Stroke Thickness
-                        <select
-                            id="stroke-thickness"
-                            value={strokeThickness}
-                            onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                                if (showControls) handleChangeStrokeThickness(e);
-                            }}
-                        >
+                        <select id="stroke-thickness" value={strokeThickness} onChange={handleChangeStrokeThickness}>
                             <option value={1}>1</option>
                             <option value={2}>2</option>
                             <option value={3}>3</option>
@@ -280,13 +267,7 @@ export default function RealtimeTickingStockCharts() {
                 <div className={classes.InputSelectWrapper}>
                     <label id="stroke-thickness-label">
                         Series Type
-                        <select
-                            id="stroke-thickness"
-                            value={seriesType}
-                            onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                                if (showControls) handleChangeSeriesType(e);
-                            }}
-                        >
+                        <select id="stroke-thickness" value={seriesType} onChange={handleChangeSeriesType}>
                             <option value={ESeriesType.OhlcSeries}>OHLC</option>
                             <option value={ESeriesType.CandlestickSeries}>Candlestick</option>
                             <option value={ESeriesType.LineSeries}>Line</option>
@@ -296,20 +277,8 @@ export default function RealtimeTickingStockCharts() {
                 </div>
             </div>
             <div className={classes.ButtonsWrapper}>
-                <Button
-                    onClick={() => {
-                        if (showControls) controls.startAnimation;
-                    }}
-                >
-                    Start
-                </Button>
-                <Button
-                    onClick={() => {
-                        if (showControls) controls.stopAnimation;
-                    }}
-                >
-                    Stop
-                </Button>
+                <Button onClick={controls.startAnimation}>Start</Button>
+                <Button onClick={controls.stopAnimation}>Stop</Button>
             </div>
         </div>
     );

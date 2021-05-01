@@ -62,12 +62,6 @@ const seeAlso: GalleryItem[] = [
                 examplePath: ExampleStrings.urlStackedColumnChart
             },
             {
-                imgPath: ExampleStrings.imgEditableAnnotation,
-                title: ExampleStrings.titleEditableAnnotations,
-                seoTitle: ExampleStrings.urlTitleEditableAnnotations,
-                examplePath: ExampleStrings.urlEditableAnnotations
-            },
-            {
                 imgPath: ExampleStrings.imgOhlcChart,
                 title: ExampleStrings.titleOhlcChart,
                 seoTitle: ExampleStrings.urlTitleOhlcChart,

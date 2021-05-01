@@ -184,11 +184,12 @@
 }
 
 .InfoBox {
+    min-width: 200px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     border-left: 1px solid darkgrey;
-    padding: 6;
+    padding: 6px;
     height: 25%;
     width: 100%;
     background-color: black;

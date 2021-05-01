@@ -71,12 +71,6 @@ const seeAlso: GalleryItem[] = [
                 examplePath: ExampleStrings.urlColumnChart
             },
             {
-                imgPath: ExampleStrings.imgGroupedColumnChart,
-                title: ExampleStrings.titleGroupedColumnChart,
-                seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
-                examplePath: ExampleStrings.urlGroupedColumnChart
-            },
-            {
                 imgPath: ExampleStrings.imgLineChart,
                 title: ExampleStrings.titleLineChart,
                 seoTitle: ExampleStrings.urlTitleLineChartDocumentation,

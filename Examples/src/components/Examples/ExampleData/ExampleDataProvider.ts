@@ -91,7 +91,6 @@ export class ExampleDataProvider {
 
         const xValues: number[] = fourierData.xValues.filter((_, i) => i >= index0 && i < index1);
         const yValues: number[] = fourierData.yValues.filter((_, i) => i >= index0 && i < index1);
-        console.log("Length: " + xValues.length);
         return { xValues, yValues };
     }
 
