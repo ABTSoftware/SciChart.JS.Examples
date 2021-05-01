@@ -14,6 +14,7 @@ import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAn
 import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
+import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
 
 const divElementId = "chart";
 
@@ -24,7 +25,10 @@ const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
     // Add an XAxis, YAxis
-    sciChartSurface.xAxes.add(new CategoryAxis(wasmContext));
+    const xAxis = new CategoryAxis(wasmContext);
+    xAxis.growBy = new NumberRange(0.01, 0.01);
+    xAxis.labelProvider = new SmartDateLabelProvider();
+    sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1), labelFormat: ENumericFormat.Decimal_4 })
     );

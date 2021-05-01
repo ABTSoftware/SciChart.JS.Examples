@@ -32,10 +32,7 @@ import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-
-// tslint:disable:no-empty
-// tslint:disable:max-classes-per-file
-// tslint:disable:max-line-length
+import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
@@ -63,7 +60,11 @@ const drawExample = async () => {
         const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId1, 900, 400);
         sciChartSurface.applyTheme(darkTheme);
 
-        chart1XAxis = new CategoryAxis(wasmContext, { autoRange: EAutoRange.Once });
+        chart1XAxis = new CategoryAxis(wasmContext, {
+            drawLabels: false,
+            drawMajorTickLines: false,
+            drawMinorTickLines: false
+        });
         sciChartSurface.xAxes.add(chart1XAxis);
 
         const yAxis = new NumericAxis(wasmContext, {
@@ -224,11 +225,8 @@ const drawExample = async () => {
         const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId3, 900, 150);
         sciChartSurface.applyTheme(darkTheme);
 
-        chart3XAxis = new CategoryAxis(wasmContext, {
-            drawLabels: false,
-            drawMajorTickLines: false,
-            drawMinorTickLines: false
-        });
+        chart3XAxis = new CategoryAxis(wasmContext, { autoRange: EAutoRange.Once });
+        chart3XAxis.labelProvider = new SmartDateLabelProvider();
         sciChartSurface.xAxes.add(chart3XAxis);
 
         const yAxis = new NumericAxis(wasmContext, {

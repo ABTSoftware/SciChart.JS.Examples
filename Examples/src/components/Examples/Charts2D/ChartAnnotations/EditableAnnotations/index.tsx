@@ -45,7 +45,9 @@ export const drawExample = async () => {
     const customSvgString1 = [
         ' <svg width="200" height="200"',
         'xmlns="http://www.w3.org/2000/svg" style="background-color:green">',
-        `<image href=${image} height="100" width="200"/>`,
+        '<image href="',
+        image,
+        '" height="100" width="200"/>',
         "</svg>"
     ].join("");
 

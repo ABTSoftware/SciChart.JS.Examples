@@ -56,9 +56,10 @@ export default function GalleryList(props: TProps) {
             <ul className={classes.Gallery}>
                 {props.example.items.map((item, itemIndex) => {
                     if (props.slidersNumber !== 1 || itemIndex === 0 || showAll) {
+                        const key = item.title + item.imgPath;
                         return (
                             <li
-                                key={item.title + item.imgPath}
+                                key={key}
                                 className={classes.GalleryItem}
                                 style={{
                                     transform: `translateX(${index * 100}%)`,
