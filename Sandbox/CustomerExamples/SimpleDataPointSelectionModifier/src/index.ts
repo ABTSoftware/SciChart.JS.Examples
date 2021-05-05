@@ -7,6 +7,8 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { NumberRange } from "scichart/Core/NumberRange";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { EExecuteOn } from "scichart/types/ExecuteOn";
 
 async function initSciChart() {
   // LICENSING //
@@ -51,22 +53,32 @@ async function initSciChart() {
     new FastLineRenderableSeries(wasmContext, {
       dataSeries: xyData1,
       stroke: "red",
-      pointMarker: new EllipsePointMarker(wasmContext, { fill: "red", strokeThickness: 0 })
+      pointMarker: new EllipsePointMarker(wasmContext, {
+        fill: "red",
+        strokeThickness: 0
+      })
     }),
     new FastLineRenderableSeries(wasmContext, {
       dataSeries: xyData2,
       stroke: "green",
-      pointMarker: new EllipsePointMarker(wasmContext, { fill: "green", strokeThickness: 0 })
+      pointMarker: new EllipsePointMarker(wasmContext, {
+        fill: "green",
+        strokeThickness: 0
+      })
     }),
     new FastLineRenderableSeries(wasmContext, {
       dataSeries: xyData3,
       stroke: "blue",
-      pointMarker: new EllipsePointMarker(wasmContext, { fill: "blue", strokeThickness: 0 })
+      pointMarker: new EllipsePointMarker(wasmContext, {
+        fill: "blue",
+        strokeThickness: 0
+      })
     })
   );
 
   // Add a custom modifier to select ranges
   sciChartSurface.chartModifiers.add(
+    new ZoomPanModifier({ executeOn: EExecuteOn.MouseRightButton }),
     new ZoomExtentsModifier(),
     new SimpleDataPointSelectionModifier(),
     new MouseWheelZoomModifier()
