@@ -46,6 +46,11 @@ export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
   // Called when mouse-down on the chart
   public modifierMouseDown(args: ModifierMouseArgs): void {
     super.modifierMouseDown(args);
+
+    if (this.executeOn !== args.button) {
+      return;
+    }
+
     // Point coordinates relative to series view rectangle.
     const translatedPoint = translateFromCanvasToSeriesViewRect(
       args.mousePoint,
@@ -106,6 +111,11 @@ export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
   // Called when mouse-up on the chart
   public modifierMouseUp(args: ModifierMouseArgs) {
     super.modifierMouseUp(args);
+
+    if (this.executeOn !== args.button) {
+      return;
+    }
+
     this.isSelecting = false;
     this.performSelection();
     console.log("selectedPoints", this.selectedPoints);
