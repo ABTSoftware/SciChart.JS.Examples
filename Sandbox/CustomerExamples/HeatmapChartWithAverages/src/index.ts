@@ -10,6 +10,8 @@ import { CursorModifier } from "scichart/Charting/ChartModifiers/CursorModifier"
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { HeatMapSeriesSelectionModifier } from "./HeatMapSeriesSelectionModifier";
+import { EExecuteOn } from "scichart/types/ExecuteOn";
 
 async function initSciChart() {
   // LICENSING //
@@ -55,6 +57,7 @@ async function initSciChart() {
     1,
     initialZValues
   );
+  heatmapDataSeries.dataSeriesName = "First Heatmap DataSeries";
 
   const gradientStops = [
     { offset: 0, color: "yellow" },
@@ -91,6 +94,7 @@ async function initSciChart() {
     1,
     initialZValues2
   );
+  heatmapDataSeries2.dataSeriesName = "Second Heatmap DataSeries";
 
   // Create a Heatmap RenderableSeries with the color map. ColorMap.minimum/maximum defines the values in
   // HeatmapDataSeries which correspond to gradient stops at 0..1
@@ -118,7 +122,8 @@ async function initSciChart() {
 
   let lineChartData = new XyDataSeries(wasmContext, {
     xValues,
-    yValues
+    yValues,
+    dataSeriesName: "Line Data Series"
   });
 
   const lineRendSeries = new FastLineRenderableSeries(wasmContext, {
@@ -129,11 +134,15 @@ async function initSciChart() {
 
   sciChartSurface.renderableSeries.add(lineRendSeries);
 
-  // Add interaction
-  sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+  // Pan the chart with right mouse button clicked
+  sciChartSurface.chartModifiers.add(
+    new ZoomPanModifier({ executeOn: EExecuteOn.MouseRightButton })
+  );
   sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
   sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
   sciChartSurface.chartModifiers.add(new CursorModifier({ showTooltip: true }));
+  // Add Selection modifier for first heatmap renderable series
+  sciChartSurface.chartModifiers.add(new HeatMapSeriesSelectionModifier());
 
   const checkbox1 = document.querySelector("#firstHeatmap");
   checkbox1.addEventListener("change", e => {
@@ -158,7 +167,7 @@ async function initSciChart() {
     lineRendSeries.dataSeries = newLineChartData;
     lineChartData.delete();
     lineChartData = newLineChartData;
-  }
+  };
 }
 
 initSciChart();
