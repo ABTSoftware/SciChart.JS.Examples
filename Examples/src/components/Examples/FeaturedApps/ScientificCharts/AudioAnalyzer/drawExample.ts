@@ -80,7 +80,7 @@ export const drawExample = async () => {
 
     // AUDIO CHART
     const initAudioChart = async () => {
-        const { sciChartSurface, wasmContext } = await SciChartSurface.create(
+        const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(
             divElementIdAudioChart,
             TOP_CHART_WIDTH,
             TOP_CHART_HEIGHT
@@ -126,7 +126,7 @@ export const drawExample = async () => {
 
     // FFT CHART
     const initFftChart = async () => {
-        const { sciChartSurface, wasmContext } = await SciChartSurface.create(
+        const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(
             divElementIdFttChart,
             BOTTOM_CHART_WIDTH,
             BOTTOM_CHART_HEIGHT
@@ -178,7 +178,7 @@ export const drawExample = async () => {
             }
         }
 
-        const { sciChartSurface, wasmContext } = await SciChartSurface.create(
+        const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(
             divElementIdChart3,
             BOTTOM_CHART_WIDTH,
             BOTTOM_CHART_HEIGHT

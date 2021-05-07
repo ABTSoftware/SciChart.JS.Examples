@@ -27,7 +27,7 @@ const drawExample = async () => {
     const maxPoints = 1e6; // max points for a single series before the demo stops
 
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId);
 
     // Create an XAxis and YAxis
     const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
