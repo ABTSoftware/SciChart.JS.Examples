@@ -11,9 +11,8 @@ import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragMod
 import { EDragMode } from "scichart/types/DragMode";
 import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { Button, ButtonGroup } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../../helpers/shared/Helpers/Box/Box";
 
 const AMPLITUDE = 200;
 
