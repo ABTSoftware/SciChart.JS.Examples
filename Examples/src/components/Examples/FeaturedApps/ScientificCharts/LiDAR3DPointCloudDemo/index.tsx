@@ -86,10 +86,8 @@ async function getDataFromServer() {
         return linearColorMapLerp(colorMap, height);
     });
 
-    console.log("fetching data");
     const rawData = await fetch("/api/lidardata");
     const ascData: AscData = reader.parse(await rawData.text());
-    console.log("ascData", ascData);
 
     // Prepare metadata
     const meta: TMetadata[] = ascData.ColorValues.map(c => ({
