@@ -11,9 +11,8 @@ import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragMod
 import { EDragMode } from "scichart/types/DragMode";
 import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { Button, ButtonGroup } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../../helpers/shared/Helpers/Box/Box";
 
 const AMPLITUDE = 200;
 
@@ -27,7 +26,7 @@ const drawExample = async () => {
     const maxPoints = 1e6; // max points for a single series before the demo stops
 
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId);
 
     // Create an XAxis and YAxis
     const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
