@@ -1,5 +1,4 @@
 export const code = `import * as React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import { SciChartSurface } from "scichart";
@@ -20,6 +19,7 @@ import { ENearestPointLogic } from "scichart/Charting/Visuals/RenderableSeries/H
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 import classes from "../../../../Examples/Examples.module.scss";
 import Box from "../../../../../helpers/shared/Helpers/Box/Box";
+import { ESeriesType } from "scichart/types/SeriesType";
 
 const divElementId = "chart";
 
@@ -106,13 +106,15 @@ const drawExample = async (setHitTestsList: (hitTestsList: HitTestInfo[]) => voi
     sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent: MouseEvent) => {
         const newHitTestsList: HitTestInfo[] = [];
         sciChartSurface.renderableSeries.asArray().forEach(rs => {
-            // TODO: add hitTestProvider to all series
+            // Interpolation is used for LineSeries to test hit on the line
+            // for CandlestickSeries to test hit on the candle
+            // for ColumnSeries to test hit on the column
             if (rs.hitTestProvider) {
                 const hitTestInfo = rs.hitTestProvider.hitTest(
                     new Point(mouseEvent.offsetX, mouseEvent.offsetY),
                     ENearestPointLogic.NearestHorizontalPoint,
                     HIT_TEST_RADIUS,
-                    false
+                    [ESeriesType.LineSeries, ESeriesType.CandlestickSeries, ESeriesType.ColumnSeries].includes(rs.type)
                 );
                 svgAnnotation.isHidden = false;
                 svgAnnotation.x1 = hitTestInfo.hitTestPointValues.x;
