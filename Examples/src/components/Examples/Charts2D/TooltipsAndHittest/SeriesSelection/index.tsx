@@ -1,25 +1,15 @@
 import * as React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-
 import { SeriesSelectionModifier } from "scichart/Charting/ChartModifiers/SeriesSelectionModifier";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
 import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
-import { Point } from "scichart/Core/Point";
-import { ENearestPointLogic } from "scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider";
-import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 import classes from "../../../../Examples/Examples.module.scss";
 import Box from "../../../../../helpers/shared/Helpers/Box/Box";
 import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
