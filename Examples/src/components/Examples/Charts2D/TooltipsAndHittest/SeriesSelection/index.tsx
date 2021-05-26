@@ -11,6 +11,8 @@ import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+
+import { SeriesSelectionModifier } from "scichart/Charting/ChartModifiers/SeriesSelectionModifier";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
 import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
@@ -43,7 +45,7 @@ export const drawExample = async () => {
         })
     );
     sciChartSurface.applyTheme(new SciChartJSLightTheme());
-    // sciChartSurface.chartModifiers.add(new SeriesSelectionModifier({ enableHover: true, enableSelection: true }));
+    sciChartSurface.chartModifiers.add(new SeriesSelectionModifier({ enableHover: true, enableSelection: true }));
 
     const seriesCount = 80;
     const seriesPointCount = 50;
@@ -57,22 +59,24 @@ export const drawExample = async () => {
             strokeThickness: 2,
             stroke: "Blue",
             opacity: 0.5,
-            yAxisId: alignment.toString()
-            // onSelectedChanged: (sourceSeries, isSelected) => {
-            //     sourceSeries.strokeThickness = isSelected ? 5 : 2;
-            //     sourceSeries.stroke = isSelected ? "Purple" : "Blue";
-            //     sourceSeries.pointMarker = isSelected ? new EllipsePointMarker(wasmContext, {
-            //         width: 9,
-            //         height: 9,
-            //         strokeThickness: 1,
-            //         stroke: "White",
-            //         fill: "Purple",
-            //     }) : undefined;
-            // },
-            // onHoveredChanged: (sourceSeries, isHovered) => {
-            //     sourceSeries.opacity = isHovered ? 1.0 : 0.7;
-            //     sourceSeries.strokeThickness = isHovered ? 2 : 1;
-            // },
+            yAxisId: alignment.toString(),
+            onSelectedChanged: (sourceSeries, isSelected) => {
+                sourceSeries.strokeThickness = isSelected ? 5 : 2;
+                sourceSeries.stroke = isSelected ? "Purple" : "Blue";
+                sourceSeries.pointMarker = isSelected
+                    ? new EllipsePointMarker(wasmContext, {
+                          width: 9,
+                          height: 9,
+                          strokeThickness: 1,
+                          stroke: "White",
+                          fill: "Purple"
+                      })
+                    : undefined;
+            },
+            onHoveredChanged: (sourceSeries, isHovered) => {
+                sourceSeries.opacity = isHovered ? 1.0 : 0.7;
+                sourceSeries.strokeThickness = isHovered ? 2 : 1;
+            }
         });
         sciChartSurface.renderableSeries.add(lineSeries);
     }
