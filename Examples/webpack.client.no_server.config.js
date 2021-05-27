@@ -68,6 +68,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: "src/static/no_server.index.html", to: "index.html" },
+                { from: "src/static/webgl-intel.html", to: "webgl-intel.html" },
                 { from: "src/static/favicon.ico", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
