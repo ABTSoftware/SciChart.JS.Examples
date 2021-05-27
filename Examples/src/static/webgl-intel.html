@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Include SciChart.js -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart.browser.js"
+            crossorigin="anonymous"
+        ></script>
+        <title>Hello, SciChart.js world!</title>
+    </head>
+    <body>
+        <h1>Test WebGL context loss in a realtime example</h1>
+        <p>Leave the example running & full screen on Intel HD hardware to see the context loss</p>
+
+        <div id="scichart-root" style="width: 800px; height: 600px;"></div>
+        <script>
+            async function initSciChart() {
+                // In order to load data file from the CDN we need to set dataUrl
+                SciChart.SciChartSurface.configure({
+                    dataUrl: "https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart2d.data",
+                    wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart2d.wasm"
+                });
+
+                function getRandomInt(max) {
+                    return Math.floor(Math.random() * Math.floor(max));
+                }
+                const { sciChartSurface, wasmContext } = await SciChart.SciChartSurface.create("scichart-root");
+                const {
+                    XyDataSeries,
+                    FastLineRenderableSeries,
+                    NumericAxis,
+                    EAutoRange,
+                    CursorModifier,
+                    LegendModifier,
+                    MouseWheelZoomModifier,
+                    ZoomExtentsModifier,
+                    ZoomPanModifier,
+                    NumberRange
+                } = SciChart;
+                wasmContextRef = wasmContext;
+
+                const xAxis = new NumericAxis(wasmContext);
+                xAxis.autoRange = EAutoRange.Always;
+                const yAxis = new NumericAxis(wasmContext);
+                yAxis.autoRange = EAutoRange.Never;
+                sciChartSurface.xAxes.add(xAxis);
+                sciChartSurface.yAxes.add(yAxis);
+
+                const dataSeries = [];
+
+                for (let i = 1; i <= 10; i++) {
+                    const newColor = `rgba(${getRandomInt(256)}, ${getRandomInt(256)}, ${getRandomInt(256)}, 1)`;
+                    const newDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "Line " + i });
+                    dataSeries.push(newDataSeries);
+                    const newLineSeries = new FastLineRenderableSeries(wasmContext, {
+                        dataSeries: newDataSeries,
+                        strokeThickness: 2,
+                        stroke: newColor
+                    });
+
+                    const xValues = [];
+                    const yValues = [];
+                    for (let j = 0; j < 5; j++) {
+                        xValues.push(j);
+                        yValues.push(Math.random());
+                    }
+
+                    sciChartSurface.renderableSeries.add(newLineSeries);
+                }
+
+                sciChartSurface.zoomExtents();
+
+                const cursorModifier = new CursorModifier({ modifierGroup: "first" });
+                cursorModifier.showTooltip = true;
+
+                const legendModifier = new LegendModifier();
+                const mouseWheelZoomModifier = new MouseWheelZoomModifier();
+                const zoomExtentsModifer = new ZoomExtentsModifier();
+                const zoomPanModifier = new ZoomPanModifier({ modifierGroup: "first" });
+
+                sciChartSurface.chartModifiers.add(cursorModifier);
+                sciChartSurface.chartModifiers.add(legendModifier);
+                sciChartSurface.chartModifiers.add(mouseWheelZoomModifier);
+                sciChartSurface.chartModifiers.add(zoomExtentsModifer);
+                sciChartSurface.chartModifiers.add(zoomPanModifier);
+
+                // zoom to fit
+                sciChartSurface.zoomExtents();
+
+                let k = 0;
+                // tslint:disable-next-line:no-empty
+                let updateChart = () => {};
+
+                updateChart = () => {
+                    const axis = sciChartSurface.yAxes.get(0);
+                    axis.visibleRange = new NumberRange(0, 1 + Math.sin(k * 100));
+                    k++;
+                    setTimeout(updateChart, 10);
+                };
+
+                updateChart();
+            }
+
+            initSciChart();
+        </script>
+    </body>
+</html>
