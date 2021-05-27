@@ -32,14 +32,14 @@ export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) =
         visibleRange: new NumberRange(0, 1000000),
         autoRange: EAutoRange.Never
     });
-    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
     sciChartSurface.xAxes.add(xAxis);
     const yAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Left,
         visibleRange: new NumberRange(-5000, 5000),
         autoRange: EAutoRange.Never
     });
-    yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
     sciChartSurface.yAxes.add(yAxis);
 
     const dataSeries = new XyDataSeries(wasmContext);
