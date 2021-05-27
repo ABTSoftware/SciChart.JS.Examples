@@ -65,6 +65,7 @@ import SplineLineChart from "../Examples/Charts2D/BasicChartTypes/SplineLineChar
 import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/SplineMountainChart";
 import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart";
 import DragHorizontalThreshold from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold";
+import ContextLossTest from "../Examples/Charts2D/WebGLIssue";
 
 export type TMenuItem = {
     item: {
@@ -342,6 +343,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return AudioAnalyzer;
         case EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.id:
             return TenorCurves3DChart;
+        case EXAMPLES_PAGES.webGL_issue.id:
+            return ContextLossTest;
         default:
             throw new Error("Ensure you update examples.ts getExampleComponent() to return an example");
     }

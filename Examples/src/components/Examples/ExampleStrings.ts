@@ -40,6 +40,15 @@ export const ExampleStrings = {
     urlTitleScatterChartDocumentation:
         "This specific page in the JavaScript Scatter Chart documentation will help you to get started",
     imgScatterChart: "images/javascript-scatter-chart.jpg",
+    
+    // WebGL issue chart
+    urlWebGLChart: "/webgl-issue",
+    urlTitleWebGLChart: "WebGL issue",
+    titleWebGLChart: "WebGL issue",
+    urlWebGLChartDocumentation: "",
+    urlTitleWebGLChartDocumentation: "WebGL issue",
+    imgWebGLChart: "",
+
     // Band chart
     urlBandChart: "/javascript-band-chart",
     urlTitleBandChart: "JavaScript Band Chart example",
@@ -254,7 +263,8 @@ export const ExampleStrings = {
     // Drag horizontal threshold
     titleDragHorizontalThreshold: "JavaScript Chart Drag Horizontal Threshold",
     urlDragHorizontalThreshold: "/javascript-chart-drag-horizontal-threshold",
-    urlTitleDragHorizontalThreshold: "This Javascript chart example shows you how to add a draggable threshold and change the chart colour depending on threshold value",
+    urlTitleDragHorizontalThreshold:
+        "This Javascript chart example shows you how to add a draggable threshold and change the chart colour depending on threshold value",
     imgDragHorizontalThreshold: "images/javascript-chart-drag-horizontal-threshold.jpg",
 
     // Use Pointmarkers
@@ -448,5 +458,5 @@ export const ExampleStrings = {
     // Featured Apps Tenor Curves
     titleTenorCurvesFeaturedApp: "Tenor Curves Demo",
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
-    imgTenorCurves: "images/javascript-3d-surface-mesh-tenor-curve-example.jpg",
+    imgTenorCurves: "images/javascript-3d-surface-mesh-tenor-curve-example.jpg"
 };

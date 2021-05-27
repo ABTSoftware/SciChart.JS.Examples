@@ -48,13 +48,14 @@ import { lidar3DPointCloudExampleInfo } from "../Examples/FeaturedApps/Scientifi
 import { audioAnalyzerExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/exampleInfo";
 import { TPage } from "./pages";
 import { tenorCurvesExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/exampleInfo";
+import { webGLIssueChartExampleInfo } from "../Examples/Charts2D/WebGLIssue/exampleInfo";
 import { loadOneMillionPointsExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/exampleInfo";
 import { dragAxisToScaleExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/exampleInfo";
 import { realtimeZoomPanExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/exampleInfo";
 import { zoomAndPanWithMultipleChartModifiersExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/exampleInfo";
 import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/exampleInfo";
 import { GalleryItem } from "../../helpers/types/types";
-import {dragHorizontalThresholdExampleInfo} from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
+import { dragHorizontalThresholdExampleInfo } from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -299,5 +300,9 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_scientificCharts_TenorCurvesDemo: {
         id: "featuredApps_scientificCharts_TenorCurvesDemo",
         ...tenorCurvesExampleInfo
+    },
+    webGL_issue: {
+        id: "webGL_issue",
+        ...webGLIssueChartExampleInfo
     }
 });
