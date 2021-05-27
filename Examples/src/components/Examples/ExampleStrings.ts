@@ -377,6 +377,14 @@ export const ExampleStrings = {
     titleRolloverModifier: "Using Rollover Modifier Tooltips",
     urlRolloverModifier: "/javascript-chart-rollovermodifier-tooltips",
     imgRolloverModifierChart: "images/javascript-chart-rollovermodifier-tooltips.jpg",
+    
+    // SeriesSelection
+    urlSeriesSelectionDocumentation: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",// should be changed 
+    urlTitleSeriesSelectionDocumentation:
+        "The specific page for the SciChart.js API documentation for the Series Selection to help you to get started",
+    titleSeriesSelection: "Using Series Selection",
+    urlSeriesSelection: "/javascript-chart-series-selection",
+    imgSeriesSelectionChart: "images/javascript-chart-series-selection.jpg",
 
     // CursorModifier
     urlCursorModifier: "/javascript-chart-cursormodifier-crosshairs",

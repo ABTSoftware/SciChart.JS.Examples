@@ -41,7 +41,7 @@ const drawExample = async () => {
             axisAlignment: EAxisAlignment.Left,
             growBy: new NumberRange(0.05, 0.05),
             axisTitle: "Y-Axis",
-            labelFormat: ENumericFormat.Decimal_2
+            labelFormat: ENumericFormat.Decimal
         })
     );
 

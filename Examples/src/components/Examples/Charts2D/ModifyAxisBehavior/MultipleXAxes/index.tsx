@@ -34,7 +34,7 @@ const drawExample = async () => {
         xAxis.axisTitle = "X1 Axis";
         xAxis.axisTitleStyle = titleStyle1;
         xAxis.labelStyle = labelStyle1;
-        xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+        xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.xAxes.add(xAxis);
     };
     setXAxis1();
@@ -45,7 +45,7 @@ const drawExample = async () => {
         yAxis.axisTitle = "Y1 Axis";
         yAxis.axisTitleStyle = titleStyle1;
         yAxis.labelStyle = labelStyle1;
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
     };
     setYAxis1();
@@ -94,7 +94,7 @@ const drawExample = async () => {
         yAxis.labelStyle = labelStyle2;
         yAxis.axisAlignment = EAxisAlignment.Right;
         yAxis.axisTitle = "Y2 Axis";
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_2;
+        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
     };
     setYAxis2();
