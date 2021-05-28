@@ -52,6 +52,7 @@ import dashedLineImg from "../components/Examples/Charts2D/StylingAndTheming/Das
 // Tooltips and Hit-Test
 import hitTestApiImg from "../components/Examples/Charts2D/TooltipsAndHittest/HitTestAPI/javascript-chart-hit-test-on-click.png";
 import rolloverImg from "../components/Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/javascript-chart-rollovermodifier-tooltips.jpg";
+import seriesSelectionImg from "../components/Examples/Charts2D/TooltipsAndHittest/SeriesSelection/javascript-chart-series-selection.png";
 // Zoom and Pan Charts
 import realtimeZoomPanImg from "../components/Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/zoom-and-pan-a-realtime-javascript-chart.jpg";
 import dragAxisToScaleImg from "../components/Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
@@ -370,6 +371,12 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleRolloverModifier,
                 seoTitle: "JavaScript Rollover Modifier Tooltips Example",
                 examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.path
+            },
+            {
+                imgPath: seriesSelectionImg,
+                title: ExampleStrings.titleSeriesSelection,
+                seoTitle: "JavaScript Series Selection Example",
+                examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection.path
             }
         ]
     },
@@ -393,7 +400,7 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
                 seoTitle: "Zoom and Pan a JavaScript Chart",
                 examplePath: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.path
-            },
+            }
         ]
     },
     {
