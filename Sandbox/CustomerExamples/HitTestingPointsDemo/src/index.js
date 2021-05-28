@@ -11,7 +11,7 @@ import {NumberRange} from "scichart/Core/NumberRange";
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 import { ENearestPointLogic } from "scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider";
-import {autoReverseEasing, easing} from "scichart/Core/Animations/EasingFunctions";
+import {easing} from "scichart/Core/Animations/EasingFunctions";
 import {LineAnnotation} from "scichart/Charting/Visuals/Annotations/LineAnnotation";
 import {DoubleAnimator} from "scichart/Core/Animations/DoubleAnimator";
 
@@ -71,9 +71,9 @@ async function initSciChart() {
         // other parameters determine the type of hit-test operation to perform
         const hitTestInfo = lineSeries.hitTestProvider.hitTest(
             mousePoint,
-            ENearestPointLogic.NearestPoint2D,
+            ENearestPointLogic.NearestHorizontalPoint,
             HIT_TEST_RADIUS,
-            false);
+            true);
 
         // Log the result to console. HitTestInfo contains information about the hit-test operation
         console.log(`${hitTestInfo.dataSeriesName} hit test result:\r\n` +
