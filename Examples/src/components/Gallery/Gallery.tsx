@@ -4,7 +4,6 @@ import GalleryList from "./GalleryList/GalleryList";
 import withWidth, { WithWidth } from "@material-ui/core/withWidth";
 import classes from "./Gallery.module.scss";
 import { GalleryItem } from "../../helpers/types/types";
-import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
 
 type TProps = {
     examples: GalleryItem[];
