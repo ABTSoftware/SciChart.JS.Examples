@@ -393,6 +393,14 @@ export const ExampleStrings = {
         "The specific page for the SciChart.js API documentation for the CursorModifier to help you to get started",
     urlCursorModifierDocumentation: "https://www.scichart.com/documentation/js/current/CursorModifier.html",
 
+    // MetaData
+    titleMetaData: "MetaData",
+    urlMetaData: "/javascript-chart-metadata",
+    urlMetaDataDocumentation: "https://www.scichart.com/documentation/js/current/metadata.html",
+    urlTitleMetaDataDocumentation:
+        "The specific page for the SciChart.js documentation for the MetaData API to help you to get started",
+    imgMetaDataChart: "images/javascript-chart-metadata.png",
+
     // 3D Bubble Chart
     urlBubble3DChart: "/javascript-3d-bubble-chart",
     titleBubble3DChart: "JavaScript 3D Bubble Chart",

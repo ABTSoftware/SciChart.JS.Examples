@@ -53,6 +53,7 @@ import dashedLineImg from "../components/Examples/Charts2D/StylingAndTheming/Das
 import hitTestApiImg from "../components/Examples/Charts2D/TooltipsAndHittest/HitTestAPI/javascript-chart-hit-test-on-click.png";
 import rolloverImg from "../components/Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/javascript-chart-rollovermodifier-tooltips.jpg";
 import seriesSelectionImg from "../components/Examples/Charts2D/TooltipsAndHittest/SeriesSelection/javascript-chart-series-selection.png";
+import metaDataImg from "../components/Examples/Charts2D/TooltipsAndHittest/MetaData/javascript-chart-metadata.png"
 // Zoom and Pan Charts
 import realtimeZoomPanImg from "../components/Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/zoom-and-pan-a-realtime-javascript-chart.jpg";
 import dragAxisToScaleImg from "../components/Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
@@ -377,6 +378,12 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleSeriesSelection,
                 seoTitle: "JavaScript Series Selection Example",
                 examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection.path
+            },
+            {
+                imgPath: metaDataImg,
+                title: ExampleStrings.titleMetaData,
+                seoTitle: "JavaScript MetaData Example",
+                examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.path
             }
         ]
     },

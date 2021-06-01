@@ -66,6 +66,7 @@ import SplineLineChart from "../Examples/Charts2D/BasicChartTypes/SplineLineChar
 import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/SplineMountainChart";
 import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart";
 import DragHorizontalThreshold from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold";
+import UsingMetaData from "../Examples/Charts2D/TooltipsAndHittest/MetaData";
 
 export type TMenuItem = {
     item: {
@@ -150,7 +151,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips,
-            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData
         ]
     },
     {
@@ -322,6 +324,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return SeriesSelection;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips.id:
             return UsingCursorModifierTooltips;
+        case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.id:
+            return UsingMetaData;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.id:
             return DragAxisToScale;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.id:
