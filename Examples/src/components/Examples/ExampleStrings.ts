@@ -310,6 +310,12 @@ export const ExampleStrings = {
     urlTitleVerticalCharts: "The Vertical Charts example shows how to use Axis Alignment to rotate a JavaScript Chart.",
     imgVerticalCharts: "images/javascript-vertical-charts.jpg",
 
+    // Central axes
+    titleCentralAxes: "Central Axes",
+    urlCentralAxes: "/javascript-central-axes",
+    urlTitleCentralAxes: "The Central Axes example shows how to use inner axes and layout strategies to customize layout of a JavaScript Chart.",
+    imgCentralAxes: "images/javascript-central-axes.jpg",
+
     // Drag Axis to Scale
     titleDragAxisToScale: "Drag Axis to Scale or Pan",
     urlDragAxisToScale: "/javascript-chart-drag-axis-to-scale-pan",

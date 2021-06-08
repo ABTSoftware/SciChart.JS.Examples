@@ -27,6 +27,7 @@ import { chartLegendsAPIExampleInfo } from "../Examples/Charts2D/Legends/ChartLe
 import { multipleXAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes/exampleInfo";
 import { secondaryYAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/exampleInfo";
 import { verticalChartsExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/exampleInfo";
+import { centralAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes/exampleInfo";
 import { stackedColumnChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedColumnChart/exampleInfo";
 import { stackedColumnSideBySideExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide/exampleInfo";
 import { stackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedMountainChart/exampleInfo";
@@ -207,6 +208,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_modifyAxisBehavior_VerticalCharts: {
         id: "chart2D_modifyAxisBehavior_VerticalCharts",
         ...verticalChartsExampleInfo
+    },
+    chart2D_modifyAxisBehavior_CentralAxes: {
+        id: "chart2D_modifyAxisBehavior_CentralAxes",
+        ...centralAxesExampleInfo
     },
     chart2D_basicCharts_StackedColumnChart: {
         id: "chart2D_basicCharts_StackedColumnChart",

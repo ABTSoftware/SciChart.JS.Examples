@@ -65,6 +65,7 @@ import SplineLineChart from "../Examples/Charts2D/BasicChartTypes/SplineLineChar
 import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/SplineMountainChart";
 import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart";
 import DragHorizontalThreshold from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold";
+import CentralAxes from "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes";
 
 export type TMenuItem = {
     item: {
@@ -129,7 +130,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
         ]
     },
     {
@@ -294,6 +296,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return SecondaryYAxes;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.id:
             return VerticalCharts;
+        case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes.id:
+            return CentralAxes;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.id:
             return StackedColumnChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide.id:
