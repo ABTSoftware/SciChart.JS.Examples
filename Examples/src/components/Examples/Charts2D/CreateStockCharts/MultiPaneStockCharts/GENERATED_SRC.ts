@@ -171,7 +171,7 @@ const drawExample = async () => {
             growBy: new NumberRange(0.1, 0.1),
             axisAlignment
         });
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_2;
+        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
 
         const macdArray: number[] = [];
@@ -235,7 +235,7 @@ const drawExample = async () => {
             growBy: new NumberRange(0.1, 0.1),
             axisAlignment
         });
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_1;
+        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
 
         const RSI_PERIOD = 14;

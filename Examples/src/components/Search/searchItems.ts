@@ -171,8 +171,16 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection.title,
+        link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips.title,
         link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips.path,
+    },
+    {
+        title: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.title,
+        link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.path,
     },
     {
         title: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.title,
