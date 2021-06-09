@@ -143,6 +143,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes.path,
     },
     {
+        title: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes.title,
+        link: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes.path,
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.title,
         link: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path,
     },

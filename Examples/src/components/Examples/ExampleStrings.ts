@@ -316,6 +316,12 @@ export const ExampleStrings = {
     urlTitleCentralAxes: "The Central Axes example shows how to use inner axes and layout strategies to customize layout of a JavaScript Chart.",
     imgCentralAxes: "images/javascript-central-axes.jpg",
 
+    // Vertically Stacked axes
+    titleVerticallyStackedAxes: "Vertically Stacked Axes",
+    urlVerticallyStackedAxes: "/javascript-vertically-stacked-axes",
+    urlTitleVerticallyStackedAxes: "The Vertically Stacked Axe Axes example shows how to use Axis Layout Strategies to customize axis placement on a JavaScript Chart.",
+    imgVerticallyStackedAxes: "images/javascript-vertically-stacked-axes.png",
+
     // Drag Axis to Scale
     titleDragAxisToScale: "Drag Axis to Scale or Pan",
     urlDragAxisToScale: "/javascript-chart-drag-axis-to-scale-pan",
