@@ -38,6 +38,7 @@ import { perPointColoringExampleInfo } from "../Examples/Charts2D/StylingAndThem
 import { dashedLineStylingExampleInfo } from "../Examples/Charts2D/StylingAndTheming/DashedLineStyling/exampleInfo";
 import { hitTestApiExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI/exampleInfo";
 import { usingRolloverModifierTooltipsExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/exampleInfo";
+import { seriesSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/SeriesSelection/exampleInfo";
 import { usingCursorModifierTooltipsExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips/exampleInfo";
 import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo";
 import { surfaceMesh3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/exampleInfo";
@@ -54,7 +55,8 @@ import { realtimeZoomPanExampleInfo } from "../Examples/Charts2D/ZoomingAndPanni
 import { zoomAndPanWithMultipleChartModifiersExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/exampleInfo";
 import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/exampleInfo";
 import { GalleryItem } from "../../helpers/types/types";
-import {dragHorizontalThresholdExampleInfo} from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
+import { dragHorizontalThresholdExampleInfo } from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
+import { metaDataExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/MetaData/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -255,6 +257,14 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_tooltipsAndHittest_UsingCursorModifierTooltips: {
         id: "chart2D_tooltipsAndHittest_UsingCursorModifierTooltips",
         ...usingCursorModifierTooltipsExampleInfo
+    },
+    chart2D_tooltipsAndHittest_MetaData: {
+        id: "chart2D_tooltipsAndHittest_MetaData",
+        ...metaDataExampleInfo
+    },
+    chart2D_tooltipsAndHittest_SeriesSelection: {
+        id: "chart2D_tooltipsAndHittest_SeriesSelection",
+        ...seriesSelectionExampleInfo
     },
     chart2D_zoomAndPanAChart_DragAxisToScale: {
         id: "chart2D_zoomAndPanAChart_DragAxisToScale",
