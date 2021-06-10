@@ -377,6 +377,14 @@ export const ExampleStrings = {
     titleRolloverModifier: "Using Rollover Modifier Tooltips",
     urlRolloverModifier: "/javascript-chart-rollovermodifier-tooltips",
     imgRolloverModifierChart: "images/javascript-chart-rollovermodifier-tooltips.jpg",
+    
+    // SeriesSelection
+    urlSeriesSelectionDocumentation: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",// should be changed 
+    urlTitleSeriesSelectionDocumentation:
+        "The specific page for the SciChart.js API documentation for the Series Selection to help you to get started",
+    titleSeriesSelection: "Using Series Selection",
+    urlSeriesSelection: "/javascript-chart-series-selection",
+    imgSeriesSelectionChart: "images/javascript-chart-series-selection.jpg",
 
     // CursorModifier
     urlCursorModifier: "/javascript-chart-cursormodifier-crosshairs",
@@ -384,6 +392,14 @@ export const ExampleStrings = {
     urlTitleCursorModifierDocumentation:
         "The specific page for the SciChart.js API documentation for the CursorModifier to help you to get started",
     urlCursorModifierDocumentation: "https://www.scichart.com/documentation/js/current/CursorModifier.html",
+
+    // MetaData
+    titleMetaData: "MetaData",
+    urlMetaData: "/javascript-chart-metadata",
+    urlMetaDataDocumentation: "https://www.scichart.com/documentation/js/current/metadata.html",
+    urlTitleMetaDataDocumentation:
+        "The specific page for the SciChart.js documentation for the MetaData API to help you to get started",
+    imgMetaDataChart: "images/javascript-chart-metadata.png",
 
     // 3D Bubble Chart
     urlBubble3DChart: "/javascript-3d-bubble-chart",
