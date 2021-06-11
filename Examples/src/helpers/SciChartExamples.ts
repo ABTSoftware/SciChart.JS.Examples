@@ -43,6 +43,8 @@ import realtimeStockImg from "../components/Examples/Charts2D/CreateStockCharts/
 import multipleXAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes/javascript-chart-with-multiple-x-axis.jpg";
 import secondaryYAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/javascript-chart-with-secondary-y-axis.jpg";
 import verticalChartImg from "../components/Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/javascript-vertical-charts.jpg";
+import centralAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/CentralAxes/javascript-central-axes.jpg";
+import verticallyStackedAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/javascript-vertically-stacked-axes.jpg";
 // Styling and Theming
 import pointMarkersImg from "../components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/javascript-chart-custom-poinmarkers.jpg";
 import themeManagerImg from "../components/Examples/Charts2D/StylingAndTheming/UsingThemeManager/javascript-chart-themes.png";
@@ -320,7 +322,19 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleVerticalCharts,
                 seoTitle: "JavaScript Vertical Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.path
-            }
+            },
+            {
+                imgPath: centralAxesImg,
+                title: ExampleStrings.titleCentralAxes,
+                seoTitle: "JavaScript Central Axes Example",
+                examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes.path
+            },
+            {
+                imgPath: verticallyStackedAxesImg,
+                title: ExampleStrings.titleVerticallyStackedAxes,
+                seoTitle: "JavaScript Vertically Stacked Axes Example",
+                examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes.path
+            },
         ]
     },
     {
