@@ -30,7 +30,7 @@ const drawExample = async () => {
     xAxis.labelProvider = new SmartDateLabelProvider();
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1), labelFormat: ENumericFormat.Decimal_4 })
+        new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1), labelFormat: ENumericFormat.Decimal })
     );
 
     // Add a Candlestick series with some values to the chart

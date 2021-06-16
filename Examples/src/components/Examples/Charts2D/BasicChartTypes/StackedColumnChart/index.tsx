@@ -30,7 +30,7 @@ const drawExample = async () => {
 
     // Create XAxis, YAxis
     const xAxis = new NumericAxis(wasmContext);
-    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
     sciChartSurface.xAxes.add(xAxis);
     const yAxis = new NumericAxis(wasmContext);
     yAxis.growBy = new NumberRange(0, 0.1);

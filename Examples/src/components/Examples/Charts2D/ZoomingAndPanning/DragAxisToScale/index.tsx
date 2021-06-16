@@ -24,7 +24,7 @@ export const drawExample = async () => {
         const xAxis = new NumericAxis(wasmContext);
         xAxis.axisAlignment = EAxisAlignment.Top;
         xAxis.axisTitle = "Drag the X-Axis to Pan";
-        xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+        xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.xAxes.add(xAxis);
     };
 
@@ -33,7 +33,7 @@ export const drawExample = async () => {
         xAxis.id = ID_X_AXIS_2;
         xAxis.axisAlignment = EAxisAlignment.Bottom;
         xAxis.axisTitle = "Drag the X-Axis to Pan";
-        xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+        xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.xAxes.add(xAxis);
     };
 
@@ -41,7 +41,7 @@ export const drawExample = async () => {
         const yAxis = new NumericAxis(wasmContext);
         yAxis.axisAlignment = EAxisAlignment.Left;
         yAxis.axisTitle = "Drag the Y-Axis to Scale";
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
     };
 
@@ -50,7 +50,7 @@ export const drawExample = async () => {
         yAxis.id = ID_Y_AXIS_2;
         yAxis.axisAlignment = EAxisAlignment.Right;
         yAxis.axisTitle = "Drag the Y-Axis to Scale";
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
     };
 
