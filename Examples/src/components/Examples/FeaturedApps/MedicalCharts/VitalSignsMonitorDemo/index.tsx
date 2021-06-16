@@ -116,12 +116,7 @@ const drawExample = async (
         dataSeries4.append(i, NaN);
     }
 
-    const effect = new GlowEffect(wasmContext, {
-        range: 0,
-        intensity: 1,
-        color: "#333333",
-        offset: new Point(10, 10)
-    });
+    const effect = new GlowEffect(wasmContext);
 
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
