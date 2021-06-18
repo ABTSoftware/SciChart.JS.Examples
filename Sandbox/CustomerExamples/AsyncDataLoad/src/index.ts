@@ -2,6 +2,8 @@ import { SciChartSurface } from 'scichart/Charting/Visuals/SciChartSurface';
 import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
 import { FastLineRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries';
 import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
+import { TextAnnotation } from 'scichart/Charting/Visuals/Annotations/TextAnnotation';
+import { ECoordinateMode } from 'scichart/Charting/Visuals/Annotations/AnnotationBase';
 
 type DataResult = {
     xValues: number[];
@@ -55,6 +57,17 @@ async function initSciChart() {
         });
         sciChartSurface.renderableSeries.add(lineSeries);
     });
+
+    return sciChartSurface;
+
+
 }
 
-initSciChart();
+async function drawExample() {
+    const surface = await initSciChart();
+    const resp = await fetch("/api/getdata");
+    const data = await resp.text();
+    surface.annotations.add(new TextAnnotation({ text: data, x1: 0, y1:0.5, yCoordinateMode: ECoordinateMode.Relative }));
+}
+
+drawExample();
