@@ -25,7 +25,7 @@ const divElementId = "chart";
 const drawExample = async () => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
     const xAxis = new NumericAxis(wasmContext);
-    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
     sciChartSurface.xAxes.add(xAxis);
     const yAxis = new NumericAxis(wasmContext);
     yAxis.growBy = new NumberRange(0, 0.2);

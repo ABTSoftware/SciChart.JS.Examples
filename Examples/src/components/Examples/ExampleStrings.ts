@@ -310,6 +310,18 @@ export const ExampleStrings = {
     urlTitleVerticalCharts: "The Vertical Charts example shows how to use Axis Alignment to rotate a JavaScript Chart.",
     imgVerticalCharts: "images/javascript-vertical-charts.jpg",
 
+    // Central axes
+    titleCentralAxes: "Central Axes",
+    urlCentralAxes: "/javascript-central-axes",
+    urlTitleCentralAxes: "The Central Axes example shows how to use inner axes and layout strategies to customize layout of a JavaScript Chart.",
+    imgCentralAxes: "images/javascript-central-axes.jpg",
+
+    // Vertically Stacked axes
+    titleVerticallyStackedAxes: "Vertically Stacked Axes",
+    urlVerticallyStackedAxes: "/javascript-vertically-stacked-axes",
+    urlTitleVerticallyStackedAxes: "The Vertically Stacked Axe Axes example shows how to use Axis Layout Strategies to customize axis placement on a JavaScript Chart.",
+    imgVerticallyStackedAxes: "images/javascript-vertically-stacked-axes.png",
+
     // Drag Axis to Scale
     titleDragAxisToScale: "Drag Axis to Scale or Pan",
     urlDragAxisToScale: "/javascript-chart-drag-axis-to-scale-pan",
@@ -377,6 +389,14 @@ export const ExampleStrings = {
     titleRolloverModifier: "Using Rollover Modifier Tooltips",
     urlRolloverModifier: "/javascript-chart-rollovermodifier-tooltips",
     imgRolloverModifierChart: "images/javascript-chart-rollovermodifier-tooltips.jpg",
+    
+    // SeriesSelection
+    urlSeriesSelectionDocumentation: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",// should be changed 
+    urlTitleSeriesSelectionDocumentation:
+        "The specific page for the SciChart.js API documentation for the Series Selection to help you to get started",
+    titleSeriesSelection: "Using Series Selection",
+    urlSeriesSelection: "/javascript-chart-series-selection",
+    imgSeriesSelectionChart: "images/javascript-chart-series-selection.jpg",
 
     // CursorModifier
     urlCursorModifier: "/javascript-chart-cursormodifier-crosshairs",
@@ -384,6 +404,14 @@ export const ExampleStrings = {
     urlTitleCursorModifierDocumentation:
         "The specific page for the SciChart.js API documentation for the CursorModifier to help you to get started",
     urlCursorModifierDocumentation: "https://www.scichart.com/documentation/js/current/CursorModifier.html",
+
+    // MetaData
+    titleMetaData: "MetaData",
+    urlMetaData: "/javascript-chart-metadata",
+    urlMetaDataDocumentation: "https://www.scichart.com/documentation/js/current/metadata.html",
+    urlTitleMetaDataDocumentation:
+        "The specific page for the SciChart.js documentation for the MetaData API to help you to get started",
+    imgMetaDataChart: "images/javascript-chart-metadata.png",
 
     // 3D Bubble Chart
     urlBubble3DChart: "/javascript-3d-bubble-chart",
