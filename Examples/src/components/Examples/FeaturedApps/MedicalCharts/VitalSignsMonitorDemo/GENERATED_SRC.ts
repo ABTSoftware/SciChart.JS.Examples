@@ -101,7 +101,7 @@ const drawExample = async (
         visibleRange: new NumberRange(0, 4),
         isVisible: false
     });
-    yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_2;
+    yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
     sciChartSurface.yAxes.add(yAxis);
 
     // Create and fill initial data series

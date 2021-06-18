@@ -43,6 +43,8 @@ import realtimeStockImg from "../components/Examples/Charts2D/CreateStockCharts/
 import multipleXAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes/javascript-chart-with-multiple-x-axis.jpg";
 import secondaryYAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/javascript-chart-with-secondary-y-axis.jpg";
 import verticalChartImg from "../components/Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/javascript-vertical-charts.jpg";
+import centralAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/CentralAxes/javascript-central-axes.jpg";
+import verticallyStackedAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/javascript-vertically-stacked-axes.jpg";
 // Styling and Theming
 import pointMarkersImg from "../components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/javascript-chart-custom-poinmarkers.jpg";
 import themeManagerImg from "../components/Examples/Charts2D/StylingAndTheming/UsingThemeManager/javascript-chart-themes.png";
@@ -52,6 +54,8 @@ import dashedLineImg from "../components/Examples/Charts2D/StylingAndTheming/Das
 // Tooltips and Hit-Test
 import hitTestApiImg from "../components/Examples/Charts2D/TooltipsAndHittest/HitTestAPI/javascript-chart-hit-test-on-click.png";
 import rolloverImg from "../components/Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/javascript-chart-rollovermodifier-tooltips.jpg";
+import seriesSelectionImg from "../components/Examples/Charts2D/TooltipsAndHittest/SeriesSelection/javascript-chart-series-selection.png";
+import metaDataImg from "../components/Examples/Charts2D/TooltipsAndHittest/MetaData/javascript-chart-metadata.png"
 // Zoom and Pan Charts
 import realtimeZoomPanImg from "../components/Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/zoom-and-pan-a-realtime-javascript-chart.jpg";
 import dragAxisToScaleImg from "../components/Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
@@ -318,7 +322,19 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleVerticalCharts,
                 seoTitle: "JavaScript Vertical Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.path
-            }
+            },
+            {
+                imgPath: centralAxesImg,
+                title: ExampleStrings.titleCentralAxes,
+                seoTitle: "JavaScript Central Axes Example",
+                examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes.path
+            },
+            {
+                imgPath: verticallyStackedAxesImg,
+                title: ExampleStrings.titleVerticallyStackedAxes,
+                seoTitle: "JavaScript Vertically Stacked Axes Example",
+                examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes.path
+            },
         ]
     },
     {
@@ -370,6 +386,18 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleRolloverModifier,
                 seoTitle: "JavaScript Rollover Modifier Tooltips Example",
                 examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.path
+            },
+            {
+                imgPath: seriesSelectionImg,
+                title: ExampleStrings.titleSeriesSelection,
+                seoTitle: "JavaScript Series Selection Example",
+                examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection.path
+            },
+            {
+                imgPath: metaDataImg,
+                title: ExampleStrings.titleMetaData,
+                seoTitle: "JavaScript MetaData Example",
+                examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.path
             }
         ]
     },
@@ -393,7 +421,7 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
                 seoTitle: "Zoom and Pan a JavaScript Chart",
                 examplePath: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.path
-            },
+            }
         ]
     },
     {
