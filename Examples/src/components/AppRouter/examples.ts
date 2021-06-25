@@ -33,6 +33,8 @@ import ChartLegendsAPI from "../Examples/Charts2D/Legends/ChartLegendsAPI";
 import MultipleXAxes from "../Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes";
 import SecondaryYAxes from "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes";
 import VerticalCharts from "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts";
+import CentralAxes from "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes";
+import VerticallyStackedAxes from "../Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes";
 
 import UsePointMarkers from "../Examples/Charts2D/StylingAndTheming/UsePointMarkers";
 import UsingThemeManager from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager";
@@ -43,6 +45,7 @@ import DashedLineStyling from "../Examples/Charts2D/StylingAndTheming/DashedLine
 
 import HitTestAPI from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI";
 import UsingRolloverModifierTooltips from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips";
+import SeriesSelection from "../Examples/Charts2D/TooltipsAndHittest/SeriesSelection";
 import UsingCursorModifierTooltips from "../Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips";
 import Bubble3DChart from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart";
 
@@ -65,6 +68,7 @@ import SplineLineChart from "../Examples/Charts2D/BasicChartTypes/SplineLineChar
 import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/SplineMountainChart";
 import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart";
 import DragHorizontalThreshold from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold";
+import UsingMetaData from "../Examples/Charts2D/TooltipsAndHittest/MetaData";
 
 export type TMenuItem = {
     item: {
@@ -129,7 +133,9 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
         ]
     },
     {
@@ -140,7 +146,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
-            EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling
         ]
     },
     {
@@ -148,7 +154,9 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips,
-            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData
         ]
     },
     {
@@ -156,7 +164,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan,
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers
         ]
     }
 ];
@@ -294,6 +302,10 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return SecondaryYAxes;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.id:
             return VerticalCharts;
+        case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes.id:
+            return CentralAxes;
+        case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes.id:
+            return VerticallyStackedAxes;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.id:
             return StackedColumnChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide.id:
@@ -316,8 +328,12 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return HitTestAPI;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.id:
             return UsingRolloverModifierTooltips;
+        case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection.id:
+            return SeriesSelection;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips.id:
             return UsingCursorModifierTooltips;
+        case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.id:
+            return UsingMetaData;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.id:
             return DragAxisToScale;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.id:
