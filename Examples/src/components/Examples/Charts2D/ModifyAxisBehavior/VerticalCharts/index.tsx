@@ -41,6 +41,8 @@ const drawExample = async () => {
     yAxis.axisAlignment = EAxisAlignment.Top;
     yAxis.axisTitle = Y_TITLE;
     yAxis.growBy = new NumberRange(0.1, 0.1);
+    // Set 3 digits format for the RolloverModifier tooltip
+    yAxis.labelProvider.formatCursorLabel = value => value.toFixed(3);
     sciChartSurface.yAxes.add(yAxis);
 
     // An axis may be optionally flipped using flippedCoordinates property
