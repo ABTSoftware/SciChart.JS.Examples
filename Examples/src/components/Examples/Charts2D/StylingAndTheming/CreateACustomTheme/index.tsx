@@ -43,6 +43,8 @@ const drawExample = async () => {
         labelForegroundBrush: "#EEEEEE",
         legendBackgroundBrush: "#1D2C35",
         lineSeriesColor: "white",
+        loadingAnimationForeground: "#6495ED",
+        loadingAnimationBackground: "#0D213A",
         majorGridLineBrush: "#1F3D68",
         minorGridLineBrush: "#102A47",
         mountainAreaBrush: "white",

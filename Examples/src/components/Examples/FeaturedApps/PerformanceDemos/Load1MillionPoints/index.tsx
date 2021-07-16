@@ -25,7 +25,10 @@ export type TTimeSpan = {
 export const divElementId = "chart";
 
 export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, 3, 2);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        widthAspect: 3,
+        heightAspect: 2,
+    });
     sciChartSurface.applyTheme(new SciChartJSDarkTheme());
     const xAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Top,

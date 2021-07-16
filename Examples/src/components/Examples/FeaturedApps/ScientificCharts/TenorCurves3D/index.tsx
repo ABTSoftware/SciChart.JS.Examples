@@ -22,6 +22,7 @@ import { EColor } from "scichart/types/Color";
 import { getTenorCurveData } from "./TenorCurveData";
 import { IDeletable } from "scichart/Core/IDeletable";
 import classes from "../../../../Examples/Examples.module.scss";
+import {IChartCreationOptions} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/IChartCreationOptions";
 
 export const divElementId1 = "sciChart1";
 export const divElementId2 = "sciChart2";
@@ -31,7 +32,7 @@ const X_DATA_SIZE = 25;
 const Z_DATA_SIZE = 25;
 
 export const drawChart1 = async () => {
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId1, 1, 1);
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId1, { widthAspect: 1, heightAspect: 1});
 
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(-280, 250, -280),
@@ -103,7 +104,9 @@ export const drawChart1 = async () => {
 };
 
 export const drawChart2 = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId2, 1, 1);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId2, {
+            widthAspect: 1, heightAspect: 1
+    });
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
@@ -135,7 +138,10 @@ export const drawChart2 = async () => {
 };
 
 export const drawChart3 = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId3, 1, 1);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId3, {
+        widthAspect: 1,
+        heightAspect: 1
+    });
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 

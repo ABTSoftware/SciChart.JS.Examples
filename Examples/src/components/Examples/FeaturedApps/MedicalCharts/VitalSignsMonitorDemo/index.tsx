@@ -92,7 +92,9 @@ const drawExample = async (
     setInfoBloodVolume: React.Dispatch<React.SetStateAction<number>>,
     setInfoBloodOxygenation: React.Dispatch<React.SetStateAction<number>>
 ) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(divElementId, 600, 600);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(divElementId, {
+        widthAspect: 600, heightAspect: 600
+    });
     const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Once, isVisible: false });
     sciChartSurface.xAxes.add(xAxis);
 

@@ -6,13 +6,12 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { CenteredLeftAlignedInnerAxisLayoutStrategy } from "scichart/Charting/LayoutManager/CenteredLeftAlignedInnerAxisLayoutStrategy";
-import { CenteredTopAlignedInnerAxisLayoutStrategy } from "scichart/Charting/LayoutManager/CenteredTopAlignedInnerAxisLayoutStrategy";
 import classes from "../../../../Examples/Examples.module.scss";
 import { TSciChart } from "scichart/types/TSciChart";
 import { ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { PinchZoomModifier } from "scichart/Charting/ChartModifiers/PinchZoomModifier";
+import {CentralAxesLayoutManager} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/LayoutManager/CentralAxesLayoutManager";
 
 const divElementId = "chart1";
 
@@ -22,11 +21,7 @@ const drawExample = async () => {
     const yAxis1 = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
     const xAxis1 = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
 
-    sciChartSurface.layoutManager.leftInnerAxesLayoutStrategy =
-        new CenteredLeftAlignedInnerAxisLayoutStrategy(xAxis1);
-
-    sciChartSurface.layoutManager.topInnerAxesLayoutStrategy =
-        new CenteredTopAlignedInnerAxisLayoutStrategy(yAxis1);
+    sciChartSurface.layoutManager = new CentralAxesLayoutManager(sciChartSurface);
 
     xAxis1.isInnerAxis = true;
     xAxis1.visibleRange = new NumberRange(-5, 5);

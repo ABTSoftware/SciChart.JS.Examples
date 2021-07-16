@@ -82,8 +82,10 @@ export const drawExample = async () => {
     const initAudioChart = async () => {
         const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(
             divElementIdAudioChart,
-            TOP_CHART_WIDTH,
-            TOP_CHART_HEIGHT
+            {
+                widthAspect: TOP_CHART_WIDTH,
+                heightAspect: TOP_CHART_HEIGHT
+            }
         );
         const xAxis = new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Always,
@@ -128,8 +130,10 @@ export const drawExample = async () => {
     const initFftChart = async () => {
         const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(
             divElementIdFttChart,
-            BOTTOM_CHART_WIDTH,
-            BOTTOM_CHART_HEIGHT
+            {
+                widthAspect: BOTTOM_CHART_WIDTH,
+                heightAspect: BOTTOM_CHART_HEIGHT
+            }
         );
         const xAxis = new NumericAxis(wasmContext, {
             drawMajorTickLines: false,
@@ -180,8 +184,10 @@ export const drawExample = async () => {
 
         const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(
             divElementIdChart3,
-            BOTTOM_CHART_WIDTH,
-            BOTTOM_CHART_HEIGHT
+            {
+                widthAspect: BOTTOM_CHART_WIDTH,
+                heightAspect: BOTTOM_CHART_HEIGHT
+            }
         );
 
         const xAxis = new NumericAxis(wasmContext, {
