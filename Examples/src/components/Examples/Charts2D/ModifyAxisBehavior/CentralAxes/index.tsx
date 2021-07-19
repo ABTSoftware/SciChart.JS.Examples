@@ -1,17 +1,21 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import classes from "../../../../Examples/Examples.module.scss";
-import { TSciChart } from "scichart/types/TSciChart";
-import { ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { PinchZoomModifier } from "scichart/Charting/ChartModifiers/PinchZoomModifier";
-import {CentralAxesLayoutManager} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/LayoutManager/CentralAxesLayoutManager";
+import {TSciChart} from "scichart/types/TSciChart";
+import {ELineDrawMode} from "scichart/Charting/Drawing/WebGlRenderContext2D";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {PinchZoomModifier} from "scichart/Charting/ChartModifiers/PinchZoomModifier";
+import {
+    CentralAxesLayoutManager,
+    ICentralAxesLayoutManagerOptions
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/LayoutManager/CentralAxesLayoutManager";
+import {EInnerAxisPlacementCoordinateMode} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/LayoutManager/EInnerAxisPlacementCoordinateMode";
 
 const divElementId = "chart1";
 
@@ -21,7 +25,16 @@ const drawExample = async () => {
     const yAxis1 = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
     const xAxis1 = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
 
-    sciChartSurface.layoutManager = new CentralAxesLayoutManager(sciChartSurface);
+    // Optional parameters to control exact placement of the axis
+    // Below: These are defaults, but we specify them for completeness of the example
+    // Relative coordinate mode and 0.5 means 'place half way'
+    const options: ICentralAxesLayoutManagerOptions = {
+        horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Relative,
+        verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Relative,
+        horizontalAxisPosition: 0.5,
+        verticalAxisPosition: 0.5,
+    };
+    sciChartSurface.layoutManager = new CentralAxesLayoutManager(options);
 
     xAxis1.isInnerAxis = true;
     xAxis1.visibleRange = new NumberRange(-5, 5);

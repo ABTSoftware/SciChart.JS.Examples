@@ -1,4 +1,4 @@
-import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
+import {IUniformHeatmapSeriesOptions, UniformHeatmapDataSeries} from "scichart/Charting/Model/UniformHeatmapDataSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
@@ -216,7 +216,13 @@ export const drawExample = async () => {
         });
         sciChartSurface.yAxes.add(yAxis);
 
-        spectrogramDS = new UniformHeatmapDataSeries(wasmContext, 0, 1, 0, 1, spectrogramValues);
+        spectrogramDS = new UniformHeatmapDataSeries(wasmContext, {
+            xStart: 0,
+            xStep: 1,
+            yStart: 0,
+            yStep: 1,
+            zValues: spectrogramValues
+        });
 
         const rs = new UniformHeatmapRenderableSeries(wasmContext, {
             dataSeries: spectrogramDS,

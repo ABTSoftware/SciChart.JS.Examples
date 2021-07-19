@@ -207,7 +207,13 @@ export const drawExample = async () => {
         });
         sciChartSurface.yAxes.add(yAxis);
 
-        spectrogramDS = new UniformHeatmapDataSeries(wasmContext, 0, 1, 0, 1, spectrogramValues);
+        spectrogramDS = new UniformHeatmapDataSeries(wasmContext, {
+            xStart: 0,
+            xStep: 1,
+            yStart: 0,
+            yStep: 1,
+            zValues: spectrogramValues
+        });
 
         const rs = new UniformHeatmapRenderableSeries(wasmContext, {
             dataSeries: spectrogramDS,
