@@ -1,17 +1,15 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {FastCandlestickRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
-import {closeValues, dateValues, highValues, lowValues, openValues} from "./data/themeing2dData";
-import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import {RolloverModifier} from "scichart/Charting/ChartModifiers/RolloverModifier";
+import { SciChartSurface } from "scichart";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
+import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
+import { closeValues, dateValues, highValues, lowValues, openValues } from "./data/themeing2dData";
+import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
 import classes from "../../../../Examples/Examples.module.scss";
-import {IThemeProvider} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/IThemeProvider";
-import {EThemeProviderType} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
 
 const divElementId = "chart";
 
@@ -19,8 +17,8 @@ const drawExample = async () => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
-    const customTheme: IThemeProvider = {
-        type: EThemeProviderType.Dark,
+    // Create and apply your custom theme
+    sciChartSurface.applyTheme({
         annotationsGripsBackroundBrush: "white",
         annotationsGripsBorderBrush: "white",
         axis3DBandsFill: "#1F3D6833",
@@ -71,9 +69,7 @@ const drawExample = async () => {
         upBodyBrush: "#6495EDA0",
         upWickColor: "#6495ED",
         axisTitleColor: "#EEEEEE"
-    };
-    // Create and apply your custom theme
-    sciChartSurface.applyTheme(customTheme);
+    });
 
     // Create the XAxis, YAxis
     const xAxis = new NumericAxis(wasmContext);

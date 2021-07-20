@@ -18,7 +18,7 @@ import { Point } from "scichart/Core/Point";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 import classes from "../../../../Examples/Examples.module.scss";
 import Box from "../../../../../helpers/shared/Helpers/Box/Box";
-import {DpiHelper} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/TextureManager/DpiHelper";
+import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
 
 const divElementId = "chart";
 

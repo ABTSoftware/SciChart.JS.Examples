@@ -1,21 +1,21 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { SciChartSurface } from "scichart";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import classes from "../../../../Examples/Examples.module.scss";
-import {TSciChart} from "scichart/types/TSciChart";
-import {ELineDrawMode} from "scichart/Charting/Drawing/WebGlRenderContext2D";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {PinchZoomModifier} from "scichart/Charting/ChartModifiers/PinchZoomModifier";
+import { TSciChart } from "scichart/types/TSciChart";
+import { ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { PinchZoomModifier } from "scichart/Charting/ChartModifiers/PinchZoomModifier";
 import {
     CentralAxesLayoutManager,
     ICentralAxesLayoutManagerOptions
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/LayoutManager/CentralAxesLayoutManager";
-import {EInnerAxisPlacementCoordinateMode} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/LayoutManager/EInnerAxisPlacementCoordinateMode";
+} from "scichart/Charting/LayoutManager/CentralAxesLayoutManager";
+import { EInnerAxisPlacementCoordinateMode } from "scichart/Charting/LayoutManager/EInnerAxisPlacementCoordinateMode";
 
 const divElementId = "chart1";
 
@@ -32,7 +32,7 @@ const drawExample = async () => {
         horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Relative,
         verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Relative,
         horizontalAxisPosition: 0.5,
-        verticalAxisPosition: 0.5,
+        verticalAxisPosition: 0.5
     };
     sciChartSurface.layoutManager = new CentralAxesLayoutManager(options);
 
@@ -66,12 +66,7 @@ const drawExample = async () => {
 
     sciChartSurface.renderableSeries.add(lineSeries);
 
-
-    sciChartSurface.chartModifiers.add(
-        new ZoomPanModifier(),
-        new PinchZoomModifier(),
-        new MouseWheelZoomModifier(),
-    );
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new PinchZoomModifier(), new MouseWheelZoomModifier());
 
     return { sciChartSurface, wasmContext };
 };
