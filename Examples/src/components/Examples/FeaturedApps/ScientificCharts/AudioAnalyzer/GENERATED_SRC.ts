@@ -84,8 +84,10 @@ export const drawExample = async () => {
     const initAudioChart = async () => {
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(
             divElementIdAudioChart,
-            TOP_CHART_WIDTH,
-            TOP_CHART_HEIGHT
+            {
+                widthAspect: TOP_CHART_WIDTH,
+                heightAspect: TOP_CHART_HEIGHT
+            }
         );
         const xAxis = new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Always,
@@ -124,8 +126,10 @@ export const drawExample = async () => {
     const initFftChart = async () => {
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(
             divElementIdFttChart,
-            BOTTOM_CHART_WIDTH,
-            BOTTOM_CHART_HEIGHT
+            {
+                widthAspect: BOTTOM_CHART_WIDTH,
+                heightAspect: BOTTOM_CHART_HEIGHT
+            }
         );
         const xAxis = new NumericAxis(wasmContext, {
             drawMajorTickLines: false,
@@ -171,8 +175,10 @@ export const drawExample = async () => {
 
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(
             divElementIdChart3,
-            BOTTOM_CHART_WIDTH,
-            BOTTOM_CHART_HEIGHT
+            {
+                widthAspect: BOTTOM_CHART_WIDTH,
+                heightAspect: BOTTOM_CHART_HEIGHT
+            }
         );
 
         const xAxis = new NumericAxis(wasmContext, {
@@ -201,7 +207,13 @@ export const drawExample = async () => {
         });
         sciChartSurface.yAxes.add(yAxis);
 
-        spectrogramDS = new UniformHeatmapDataSeries(wasmContext, 0, 1, 0, 1, spectrogramValues);
+        spectrogramDS = new UniformHeatmapDataSeries(wasmContext, {
+            xStart: 0,
+            xStep: 1,
+            yStart: 0,
+            yStep: 1,
+            zValues: spectrogramValues
+        });
 
         const rs = new UniformHeatmapRenderableSeries(wasmContext, {
             dataSeries: spectrogramDS,

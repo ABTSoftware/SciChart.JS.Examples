@@ -25,7 +25,13 @@ const drawExample = async () => {
 
     // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
     const initialZValues: number[][] = iterate(WIDTH, HEIGHT, 200, 0, MAX_SERIES);
-    const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, 100, 1, 100, 1, initialZValues);
+    const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
+        xStart: 100,
+        xStep: 1,
+        yStart: 100,
+        yStep: 1,
+        zValues: initialZValues
+    });
 
     // Create a Heatmap RenderableSeries with the color map. ColorMap.minimum/maximum defines the values in
     // HeatmapDataSeries which correspond to gradient stops at 0..1

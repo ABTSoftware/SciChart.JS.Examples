@@ -6,13 +6,16 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { CenteredLeftAlignedInnerAxisLayoutStrategy } from "scichart/Charting/LayoutManager/CenteredLeftAlignedInnerAxisLayoutStrategy";
-import { CenteredTopAlignedInnerAxisLayoutStrategy } from "scichart/Charting/LayoutManager/CenteredTopAlignedInnerAxisLayoutStrategy";
 import classes from "../../../../Examples/Examples.module.scss";
 import { TSciChart } from "scichart/types/TSciChart";
 import { ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { PinchZoomModifier } from "scichart/Charting/ChartModifiers/PinchZoomModifier";
+import {
+    CentralAxesLayoutManager,
+    ICentralAxesLayoutManagerOptions
+} from "scichart/Charting/LayoutManager/CentralAxesLayoutManager";
+import { EInnerAxisPlacementCoordinateMode } from "scichart/Charting/LayoutManager/EInnerAxisPlacementCoordinateMode";
 
 const divElementId = "chart1";
 
@@ -22,11 +25,16 @@ const drawExample = async () => {
     const yAxis1 = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
     const xAxis1 = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
 
-    sciChartSurface.layoutManager.leftInnerAxesLayoutStrategy =
-        new CenteredLeftAlignedInnerAxisLayoutStrategy(xAxis1);
-
-    sciChartSurface.layoutManager.topInnerAxesLayoutStrategy =
-        new CenteredTopAlignedInnerAxisLayoutStrategy(yAxis1);
+    // Optional parameters to control exact placement of the axis
+    // Below: These are defaults, but we specify them for completeness of the example
+    // Relative coordinate mode and 0.5 means 'place half way'
+    const options: ICentralAxesLayoutManagerOptions = {
+        horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Relative,
+        verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Relative,
+        horizontalAxisPosition: 0.5,
+        verticalAxisPosition: 0.5
+    };
+    sciChartSurface.layoutManager = new CentralAxesLayoutManager(options);
 
     xAxis1.isInnerAxis = true;
     xAxis1.visibleRange = new NumberRange(-5, 5);
@@ -58,12 +66,7 @@ const drawExample = async () => {
 
     sciChartSurface.renderableSeries.add(lineSeries);
 
-
-    sciChartSurface.chartModifiers.add(
-        new ZoomPanModifier(),
-        new PinchZoomModifier(),
-        new MouseWheelZoomModifier(),
-    );
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new PinchZoomModifier(), new MouseWheelZoomModifier());
 
     return { sciChartSurface, wasmContext };
 };

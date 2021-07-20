@@ -27,7 +27,13 @@ const drawExample = async () => {
 
     // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
     const initialZValues: number[][] = createSeries(3, heatmapWidth, heatmapHeight, colorPaletteMax);
-    const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, 0, 1, 0, 1, initialZValues);
+    const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
+        xStart: 0,
+        xStep: 1,
+        yStart: 0,
+        yStep: 1,
+        zValues: initialZValues
+    });
 
     // Create a Contours RenderableSeries with the same data
     const contourSeries = new UniformContoursRenderableSeries(wasmContext, {

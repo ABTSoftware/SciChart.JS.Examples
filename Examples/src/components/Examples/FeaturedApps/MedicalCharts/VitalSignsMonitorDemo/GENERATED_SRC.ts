@@ -92,7 +92,9 @@ const drawExample = async (
     setInfoBloodVolume: React.Dispatch<React.SetStateAction<number>>,
     setInfoBloodOxygenation: React.Dispatch<React.SetStateAction<number>>
 ) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(divElementId, 600, 600);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(divElementId, {
+        widthAspect: 600, heightAspect: 600
+    });
     const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Once, isVisible: false });
     sciChartSurface.xAxes.add(xAxis);
 
@@ -116,12 +118,7 @@ const drawExample = async (
         dataSeries4.append(i, NaN);
     }
 
-    const effect = new GlowEffect(wasmContext, {
-        range: 0,
-        intensity: 1,
-        color: "#333333",
-        offset: new Point(10, 10)
-    });
+    const effect = new GlowEffect(wasmContext);
 
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
