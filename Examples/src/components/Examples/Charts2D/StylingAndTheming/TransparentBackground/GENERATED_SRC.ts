@@ -1,147 +1,111 @@
 export const code = `import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import classes from "../../../../Examples/Examples.module.scss";
+import {MouseWheelZoomModifier} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {ZoomExtentsModifier} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/ChartModifiers/ZoomExtentsModifier";
+import {ZoomPanModifier} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/ChartModifiers/ZoomPanModifier";
+import BackgroundImage from "./BackgroundGradient.jpg";
+import {SciChartJSLightTheme} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSLightTheme";
+import {FastBubbleRenderableSeries} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
+import {XyzDataSeries} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Model/XyzDataSeries";
+import {EllipsePointMarker} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {NumberRange} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/NumberRange";
+import {FastLineRenderableSeries} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {SplineLineRenderableSeries} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import {SweepAnimation} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
+import {FadeAnimation} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
+import {duration} from "@material-ui/core";
+import {FastColumnRenderableSeries} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import {XyDataSeries} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Model/XyDataSeries";
+import {WaveAnimation} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import {ShadowEffect} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/ShadowEffect";
+import {Point} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/Point";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    sciChartSurface.background = "#FFCA75";
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+        theme: new SciChartJSLightTheme(),
+    });
 
-    // Create and style xAxis
-    sciChartSurface.xAxes.add(
-        new NumericAxis(wasmContext, {
-            axisTitle: "X Axis",
-            drawMajorBands: true,
-            axisBandsFill: "#FF665555",
-            axisTitleStyle: {
-                fontSize: 16,
-                fontFamily: "Arial",
-                color: "#4682b4",
-                fontWeight: "bold",
-                fontStyle: "italic"
-            },
-            majorGridLineStyle: {
-                strokeThickness: 1,
-                color: "#ADFF2F",
-                strokeDasharray: [10, 5]
-            },
-            minorGridLineStyle: {
-                strokeThickness: 1,
-                color: "#EE82EE",
-                strokeDasharray: [2, 2]
-            },
-            majorTickLineStyle: {
-                strokeThickness: 1,
-                color: "Blue",
-                tickSize: 8
-            },
-            minorTickLineStyle: {
-                strokeThickness: 1,
-                color: "Red",
-                tickSize: 4
-            },
-            labelStyle: {
-                fontSize: 16,
-                fontWeight: "bold",
-                fontStyle: "Italic",
-                color: "#4682b4",
-                fontFamily: "Arial"
-            }
-        })
-    );
+    // Set the background to Transparent to show the underlying DOM through
+    sciChartSurface.background = "Transparent";
 
-    // Create and style left YAxis
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
-            axisAlignment: EAxisAlignment.Left,
-            axisBandsFill: "#FF665555",
-            axisTitle: "Left Y Axis",
-            axisTitleStyle: {
-                fontSize: 25,
-                fontFamily: "Montserrat",
-                fontWeight: "bold",
-                color: "#DC143C"
-            },
-            majorGridLineStyle: {
-                strokeThickness: 1,
-                color: "#ADFF2F",
-                strokeDasharray: [10, 5]
-            },
-            minorGridLineStyle: {
-                strokeThickness: 1,
-                color: "#EE82EE",
-                strokeDasharray: [2, 2]
-            },
-            majorTickLineStyle: {
-                strokeThickness: 1,
-                color: "#ADFF2F",
-                tickSize: 8
-            },
-            minorTickLineStyle: {
-                strokeThickness: 1,
-                color: "#EE82EE",
-                tickSize: 4
-            },
-            labelStyle: {
-                fontSize: 15,
-                color: "#DC143C",
-                fontFamily: "Arial"
-            }
-        })
-    );
+    const axisOptionsCommon = {
+        axisBandsFill: "#33333311",
+        drawMinorGridLines: false,
+        majorGridLineStyle: {color: "#FFF"},
+        labelStyle: {color: "#EEE"}
+    };
 
-    // Create and style right YAxis
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
-            axisTitle: "Right Y Axis",
-            axisTitleStyle: {
-                fontSize: 18,
-                fontFamily: "Arial",
-                color: "#ADFF2F"
-            },
-            axisAlignment: EAxisAlignment.Right,
-            majorGridLineStyle: {
-                strokeThickness: 1,
-                color: "#ADFF2F",
-                strokeDasharray: [10, 5]
-            },
-            minorGridLineStyle: {
-                strokeThickness: 1,
-                color: "#EE82EE",
-                strokeDasharray: [2, 2]
-            },
-            majorTickLineStyle: {
-                strokeThickness: 1,
-                color: "#ADFF2F",
-                tickSize: 8
-            },
-            minorTickLineStyle: {
-                strokeThickness: 1,
-                color: "#EE82EE",
-                tickSize: 4
-            },
-            labelStyle: {
-                fontSize: 14,
-                color: "#ADFF2F",
-                fontFamily: "Arial"
-            }
-        })
-    );
+    // Add X,Y axis. Note that Axis.axisBandsFill must be modified to show the background through.
+    // This is done in the axisOptions above
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        ...axisOptionsCommon,
+        axisBorder: {borderTop: 1, color: "#ccc"},
+        growBy: new NumberRange(0.1, 0.1),
+    }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        ...axisOptionsCommon,
+        axisBorder: {borderLeft: 1, color: "#ccc"},
+        growBy: new NumberRange(0.0, 0.1),
+    }));
+
+    // Add some series
+    //
+
+    // Line series with spline interpolation
+    sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
+            xValues: [0, 1, 2, 3],
+            yValues: [2, 3.5, 3.0, 5]
+        }),
+        stroke: "#FFF",
+        strokeThickness: 3,
+        animation: new SweepAnimation({ duration: 500 })
+    }));
+
+    // Bubble series
+    sciChartSurface.renderableSeries.add(new FastBubbleRenderableSeries(wasmContext, {
+        dataSeries: new XyzDataSeries(wasmContext, {
+            xValues: [0, 1, 2, 3],
+            yValues: [2, 3.5, 3.0, 5],
+            zValues: [30, 90, 40, 60]
+        }),
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 64,
+            height: 64,
+            strokeThickness: 2,
+            stroke: "#FFFFFF77",
+            fill: "#ffffff33"
+        }),
+        animation: new SweepAnimation({ delay: 200, duration: 500, fadeEffect: true }),
+    }));
+
+    // Column series
+    sciChartSurface.renderableSeries.add(new FastColumnRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
+            xValues: [0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3],
+            yValues: [0.8, 1, 1, 1.1, 1.2, 5.2, 2.8, 2.7, 2.6, 2.6, 2.5, 2.5, 2.5, 2.6, 3.2, 4],
+        }),
+        fill: "#FFFFFF33",
+        stroke: "#EEEEEE77",
+        strokeThickness: 2,
+        dataPointWidth: 0.57,
+        animation: new WaveAnimation({ delay: 400, duration: 600, fadeEffect: true })
+    }));
 
     // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(
+        new ZoomPanModifier(),
+        new MouseWheelZoomModifier(),
+        new ZoomExtentsModifier());
 
-    sciChartSurface.zoomExtents();
-
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
-export default function StylingInCode() {
+
+export default function TransparentBackground() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
     React.useEffect(() => {
@@ -153,6 +117,8 @@ export default function StylingInCode() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return (<div style={{backgroundImage: \`url(\${BackgroundImage})\`}}>
+        <div id={divElementId} className={classes.ChartWrapper}/>
+    </div>);
 }
 `;

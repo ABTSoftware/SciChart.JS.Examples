@@ -76,7 +76,7 @@ const drawExample = async () => {
             growBy: new NumberRange(0.3, 0.11),
             axisAlignment
         });
-        yAxis.labelProvider.formatLabel = (dataValue: number) => "$" + dataValue.toFixed(4);
+        yAxis.labelProvider.formatLabel = (dataValue: number) => "\$" + dataValue.toFixed(4);
         sciChartSurface.yAxes.add(yAxis);
 
         // OHLC DATA SERIES

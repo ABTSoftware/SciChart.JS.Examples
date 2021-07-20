@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/StylingAndTheming/StylingInCode/index.tsx";
+export const githubUrl = "/components/Examples/Charts2D/StylingAndTheming/TransparentBackground/index.tsx";
