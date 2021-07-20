@@ -51,6 +51,9 @@ import themeManagerImg from "../components/Examples/Charts2D/StylingAndTheming/U
 import stylingInCodeImg from "../components/Examples/Charts2D/StylingAndTheming/StylingInCode/javascript-chart-styling-theming-in-code.png";
 import paletteProviderImg from "../components/Examples/Charts2D/StylingAndTheming/PerPointColoring/javascript-chart-color-points-individually-with-paletteprovider.jpg";
 import dashedLineImg from "../components/Examples/Charts2D/StylingAndTheming/DashedLineStyling/javascript-chart-dashed-dotted-lines.jpg";
+import transparentBackgroundImg from "../components/Examples/Charts2D/StylingAndTheming/TransparentBackground/javascript-chart-background-image-with-transparency.jpg";
+import customThemeImg from "../components/Examples/Charts2D/StylingAndTheming/CreateACustomTheme/javascript-chart-custom-themed.jpg";
+
 // Tooltips and Hit-Test
 import hitTestApiImg from "../components/Examples/Charts2D/TooltipsAndHittest/HitTestAPI/javascript-chart-hit-test-on-click.png";
 import rolloverImg from "../components/Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/javascript-chart-rollovermodifier-tooltips.jpg";
@@ -341,16 +344,22 @@ export const sciChartExamples: GalleryItem[] = [
         chartGroupTitle: "Styling and Theming",
         items: [
             {
-                imgPath: pointMarkersImg,
-                title: ExampleStrings.titlePointMarkers,
-                seoTitle: "JavaScript Scatter Chart Custom Point Markers Example",
-                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path
+                imgPath: transparentBackgroundImg,
+                title: ExampleStrings.titleTransparentBackground,
+                seoTitle: "Background image on a Transparent JavaScript Chart",
+                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground.path
             },
             {
-                imgPath: themeManagerImg,
-                title: ExampleStrings.titleThemeManager,
-                seoTitle: "JavaScript Chart Theme Manager Example",
-                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.path
+                imgPath: dashedLineImg,
+                title: ExampleStrings.titleDashedLineStyling,
+                seoTitle: "JavaScript Dashed and Dotted Line Chart Example",
+                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling.path
+            },
+            {
+                imgPath: customThemeImg,
+                title: ExampleStrings.titleCustomTheme,
+                seoTitle: "Custom Themed JavaScript Chart",
+                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTheme.path
             },
             {
                 imgPath: stylingInCodeImg,
@@ -359,17 +368,23 @@ export const sciChartExamples: GalleryItem[] = [
                 examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode.path
             },
             {
+                imgPath: themeManagerImg,
+                title: ExampleStrings.titleThemeManager,
+                seoTitle: "JavaScript Chart Theme Manager Example",
+                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.path
+            },
+            {
                 imgPath: paletteProviderImg,
                 title: ExampleStrings.titlePaletteProvider,
                 seoTitle: "Coloring JavaScript Chart Series per-point using the PaletteProvider",
                 examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring.path
             },
             {
-                imgPath: dashedLineImg,
-                title: ExampleStrings.titleDashedLineStyling,
-                seoTitle: "JavaScript Dashed and Dotted Line Chart Example",
-                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling.path
-            }
+                imgPath: pointMarkersImg,
+                title: ExampleStrings.titlePointMarkers,
+                seoTitle: "JavaScript Scatter Chart Custom Point Markers Example",
+                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path
+            },
         ]
     },
     {

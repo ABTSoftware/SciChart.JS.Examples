@@ -42,6 +42,7 @@ import CustomTheme from "../Examples/Charts2D/StylingAndTheming/CreateACustomThe
 import StylingInCode from "../Examples/Charts2D/StylingAndTheming/StylingInCode";
 import PerPointColoring from "../Examples/Charts2D/StylingAndTheming/PerPointColoring";
 import DashedLineStyling from "../Examples/Charts2D/StylingAndTheming/DashedLineStyling";
+import TransparentBackground from "../Examples/Charts2D/StylingAndTheming/TransparentBackground";
 
 import HitTestAPI from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI";
 import UsingRolloverModifierTooltips from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips";
@@ -146,7 +147,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
-            EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground,
         ]
     },
     {
@@ -324,6 +326,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return PerPointColoring;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling.id:
             return DashedLineStyling;
+        case EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground.id:
+            return TransparentBackground;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.id:
             return HitTestAPI;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.id:

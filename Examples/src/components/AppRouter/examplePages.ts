@@ -38,6 +38,7 @@ import { createACustomThemeExampleInfo } from "../Examples/Charts2D/StylingAndTh
 import { stylingInCodeExampleInfo } from "../Examples/Charts2D/StylingAndTheming/StylingInCode/exampleInfo";
 import { perPointColoringExampleInfo } from "../Examples/Charts2D/StylingAndTheming/PerPointColoring/exampleInfo";
 import { dashedLineStylingExampleInfo } from "../Examples/Charts2D/StylingAndTheming/DashedLineStyling/exampleInfo";
+import { transparentBackgroundExampleInfo } from "../Examples/Charts2D/StylingAndTheming/TransparentBackground/exampleInfo";
 import { hitTestApiExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI/exampleInfo";
 import { usingRolloverModifierTooltipsExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/exampleInfo";
 import { seriesSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/SeriesSelection/exampleInfo";
@@ -255,6 +256,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_stylingAndTheming_DashedLineStyling: {
         id: "chart2D_stylingAndTheming_DashedLineStyling",
         ...dashedLineStylingExampleInfo
+    },
+    chart2D_stylingAndTheming_TransparentBackground: {
+        id: "chart2D_stylingAndTheming_TransparentBackground",
+        ...transparentBackgroundExampleInfo
     },
     chart2D_tooltipsAndHittest_HitTestApi: {
         id: "chart2D_tooltipsAndHittest_HitTestApi",

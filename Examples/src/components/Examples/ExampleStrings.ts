@@ -358,6 +358,11 @@ export const ExampleStrings = {
         "The specific page for the SciChart.js API documentation for Styling Axis and Gridlines will help you to get started",
     imgStylingInCode: "images/javascript-chart-styling-theming-in-code.png",
 
+    // Transparent Background
+    titleTransparentBackground: "Background Image with Transparency",
+    urlTransparentBackground: "/javascript-chart-transparent-background",
+    imgTransparentBackground: "images/javascript-chart-background-image-with-transparency.jpg",
+
     // ThemeManager
     urlThemeManager: "/javascript-chart-themes",
     titleThemeManager: "Using Theme Manager",
@@ -389,9 +394,9 @@ export const ExampleStrings = {
     titleRolloverModifier: "Using Rollover Modifier Tooltips",
     urlRolloverModifier: "/javascript-chart-rollovermodifier-tooltips",
     imgRolloverModifierChart: "images/javascript-chart-rollovermodifier-tooltips.jpg",
-    
+
     // SeriesSelection
-    urlSeriesSelectionDocumentation: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",// should be changed 
+    urlSeriesSelectionDocumentation: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",// should be changed
     urlTitleSeriesSelectionDocumentation:
         "The specific page for the SciChart.js API documentation for the Series Selection to help you to get started",
     titleSeriesSelection: "Using Series Selection",
@@ -477,4 +482,5 @@ export const ExampleStrings = {
     titleTenorCurvesFeaturedApp: "Tenor Curves Demo",
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
     imgTenorCurves: "images/javascript-3d-surface-mesh-tenor-curve-example.jpg",
+
 };
