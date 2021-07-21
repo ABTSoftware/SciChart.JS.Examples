@@ -12,7 +12,7 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { Point } from "scichart/Core/Point";
 
 import classes from "../../../../Examples/Examples.module.scss";
-import { EAnimationType } from "../../../../../../../../SciChart.Dev.JSv2/Web/src/SciChart/lib/types/AnimationType";
+import { EAnimationType } from "scichart/types/AnimationType";
 
 const divElementId = "chart";
 
