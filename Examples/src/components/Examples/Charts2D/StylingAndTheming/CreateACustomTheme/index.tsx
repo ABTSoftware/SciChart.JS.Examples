@@ -23,6 +23,7 @@ const drawExample = async () => {
         annotationsGripsBorderBrush: "white",
         axis3DBandsFill: "#1F3D6833",
         axisBandsFill: "#1F3D6833",
+        axisBorder: "#1F3D68",
         axisPlaneBackgroundFill: "Transparent",
         columnFillBrush: "white",
         columnLineColor: "white",
