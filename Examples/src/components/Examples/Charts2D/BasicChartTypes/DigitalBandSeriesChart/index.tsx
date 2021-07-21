@@ -10,6 +10,8 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import classes from "../../../../Examples/Examples.module.scss";
 import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
+import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 
 const divElementId = "chart";
 
@@ -38,7 +40,7 @@ const drawExample = async () => {
         dataSeries,
         strokeThickness: 2,
         isDigitalLine: true,
-        animation: new ScaleAnimation({ duration: 1000, zeroLine: 0, fadeEffect: true })
+        animation: new SweepAnimation({ duration: 800, fadeEffect: false })
     });
     sciChartSurface.renderableSeries.add(rendSeries);
     rendSeries.fill = "#279B2733";

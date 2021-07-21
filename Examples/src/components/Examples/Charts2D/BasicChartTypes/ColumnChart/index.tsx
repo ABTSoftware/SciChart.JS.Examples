@@ -7,9 +7,9 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { SciChartSurface } from "scichart";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { FadeAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
 
 import classes from "../../../../Examples/Examples.module.scss";
+import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 
 const divElementId = "chart";
 
@@ -57,7 +57,7 @@ const drawExample = async () => {
         strokeThickness: 2,
         dataPointWidth: 0.7,
         dataSeries,
-        animation: new FadeAnimation({ duration: 1000 })
+        animation: new WaveAnimation({ duration: 1000 })
     });
     sciChartSurface.renderableSeries.add(columnSeries);
 

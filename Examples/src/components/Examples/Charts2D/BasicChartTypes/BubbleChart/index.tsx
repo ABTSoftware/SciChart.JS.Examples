@@ -13,17 +13,19 @@ import { EFillPaletteMode, IFillPaletteProvider } from "scichart/Charting/Model/
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
+import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 
 import classes from "../../../../Examples/Examples.module.scss";
+import {SciChartJSDarkv2Theme} from "scichart/Charting/Themes/SciChartJSDarkv2Theme";
+
 
 const divElementId = "chart";
 
-const animation = new ScaleAnimation({ zeroLine: -100, duration: 1000 });
-
 const drawExample = async () => {
     // Create a SciChartSurface with X,Y Axis
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId,
+        { theme: new SciChartJSDarkv2Theme()
+        });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
 
@@ -31,7 +33,7 @@ const drawExample = async () => {
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#FFFFFF",
         strokeThickness: 2,
-        animation
+        animation: new SweepAnimation({ duration: 500 })
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -45,7 +47,7 @@ const drawExample = async () => {
         }),
         // Optional: Allows per-point colouring of bubble stroke
         paletteProvider: new BubblePaletteProvider(),
-        animation
+        animation: new SweepAnimation({ delay: 200, duration: 500, fadeEffect: true })
     });
     sciChartSurface.renderableSeries.add(bubbleSeries);
 
