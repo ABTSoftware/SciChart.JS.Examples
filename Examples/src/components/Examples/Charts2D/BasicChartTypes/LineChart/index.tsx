@@ -10,10 +10,10 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Point } from "scichart/Core/Point";
-import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 
 import classes from "../../../../Examples/Examples.module.scss";
-import image from "./javascript-line-chart.jpg";
+import { EAnimationType } from "../../../../../../../../SciChart.Dev.JSv2/Web/src/SciChart/lib/types/AnimationType";
+
 const divElementId = "chart";
 
 const drawExample = async () => {
@@ -38,7 +38,7 @@ const drawExample = async () => {
         stroke: "#ff6600",
         strokeThickness: 5,
         dataSeries: xyDataSeries,
-        animation: new WaveAnimation({ zeroLine: -1, pointDurationFraction: 0.5, duration: 1000 })
+        animation: { type: EAnimationType.Wave, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 1000 } }
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 

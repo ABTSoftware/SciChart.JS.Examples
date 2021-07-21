@@ -16,7 +16,6 @@ import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 
 import classes from "../../../../Examples/Examples.module.scss";
-import {SciChartJSDarkv2Theme} from "scichart/Charting/Themes/SciChartJSDarkv2Theme";
 
 
 const divElementId = "chart";
