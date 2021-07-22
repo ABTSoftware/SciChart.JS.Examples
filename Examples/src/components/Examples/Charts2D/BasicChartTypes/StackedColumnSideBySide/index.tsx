@@ -14,6 +14,7 @@ import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier"
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
 import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
+import {WaveAnimation} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 
 const xValues = [1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003];
 const tomatoesData = [7, 30, 27, 24, 21, 15, 17, 26, 22, 28, 21, 22];
@@ -23,68 +24,71 @@ const pepperData = [7, 24, 21, 11, 19, 17, 14, 27, 26, 22, 28, 16];
 const divElementId = "chart";
 
 const drawExample = async () => {
+    // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
-    const xAxis = new NumericAxis(wasmContext);
-    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
-    sciChartSurface.xAxes.add(xAxis);
-    const yAxis = new NumericAxis(wasmContext);
-    yAxis.growBy = new NumberRange(0, 0.2);
-    sciChartSurface.yAxes.add(yAxis);
 
-    const dataSeries1 = new XyDataSeries(wasmContext, { xValues, yValues: tomatoesData, dataSeriesName: "Tomato" });
-    const dataSeries2 = new XyDataSeries(wasmContext, { xValues, yValues: cucumberData, dataSeriesName: "Cucumber" });
-    const dataSeries3 = new XyDataSeries(wasmContext, { xValues, yValues: pepperData, dataSeriesName: "Pepper" });
-    const rendSeries1 = new StackedColumnRenderableSeries(wasmContext);
-    rendSeries1.fill = "#dc443f";
-    rendSeries1.stroke = "black";
-    rendSeries1.strokeThickness = 1;
-    rendSeries1.dataSeries = dataSeries1;
-    rendSeries1.rolloverModifierProps.markerColor = "#b83735";
-    rendSeries1.rolloverModifierProps.tooltipColor = "#dc443f";
-    rendSeries1.rolloverModifierProps.tooltipTextColor = "#fff";
-    rendSeries1.stackedGroupId = "one";
+    // Create XAxis, YAxis
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        labelFormat: ENumericFormat.Decimal,
+    }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        growBy: new NumberRange(0, 0.2)
+    }));
 
-    const rendSeries2 = new StackedColumnRenderableSeries(wasmContext);
-    rendSeries2.fill = "#aad34f";
-    rendSeries2.stroke = "black";
-    rendSeries2.strokeThickness = 1;
-    rendSeries2.dataSeries = dataSeries2;
-    rendSeries2.rolloverModifierProps.markerColor = "#87a73e";
-    rendSeries2.rolloverModifierProps.tooltipColor = "#aad34f";
-    rendSeries2.rolloverModifierProps.tooltipTextColor = "#000";
-    rendSeries2.stackedGroupId = "two";
+    // Create some RenderableSeries - for each part of the stacked column
+    // Notice the stackedGroupId. This defines if series are stacked (same), or grouped side by side (different)
+    const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: tomatoesData, dataSeriesName: "Tomato" }),
+        fill: "#dc443f",
+        stroke: "black",
+        strokeThickness: 1,
+        stackedGroupId: "Group0",
+    });
 
-    const rendSeries3 = new StackedColumnRenderableSeries(wasmContext);
-    rendSeries3.fill = "#8562b4";
-    rendSeries3.stroke = "black";
-    rendSeries3.strokeThickness = 1;
-    rendSeries3.dataSeries = dataSeries3;
-    rendSeries3.rolloverModifierProps.markerColor = "#715195";
-    rendSeries3.rolloverModifierProps.tooltipColor = "#8562b4";
-    rendSeries3.rolloverModifierProps.tooltipTextColor = "#fff";
-    rendSeries3.stackedGroupId = "three";
+    const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: cucumberData, dataSeriesName: "Cucumber" }),
+        fill: "#aad34f",
+        stroke: "black",
+        strokeThickness: 1,
+        stackedGroupId: "Group1",
+    });
 
-    const verticallyStackedColumnCollection = new StackedColumnCollection(wasmContext);
-    verticallyStackedColumnCollection.dataPointWidth = 0.5;
-    verticallyStackedColumnCollection.add(rendSeries1, rendSeries2, rendSeries3);
-    verticallyStackedColumnCollection.animation = new ScaleAnimation({ duration: 1000, fadeEffect: true });
+    const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: pepperData, dataSeriesName: "Pepper" }),
+        fill: "#8562b4",
+        stroke: "black",
+        strokeThickness: 1,
+        stackedGroupId: "Group2",
+    });
 
-    sciChartSurface.renderableSeries.add(verticallyStackedColumnCollection);
+    // To add the series to the chart, put them in a StackedColumnCollection
+    const stackedColumnCollection = new StackedColumnCollection(wasmContext);
+    stackedColumnCollection.dataPointWidth = 0.5;
+    stackedColumnCollection.add(rendSeries1, rendSeries2, rendSeries3);
+    stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
 
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+    // Add the Stacked Column collection to the chart
+    sciChartSurface.renderableSeries.add(stackedColumnCollection);
 
-    sciChartSurface.zoomExtents();
+    // Add some interactivity modifiers
+    sciChartSurface.chartModifiers.add(
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier(),
+        new MouseWheelZoomModifier());
 
-    sciChartSurface.chartModifiers.add(new RolloverModifier({ rolloverLineStroke: "#228B22" }));
+    // Add a legend to the chart to show the series
     sciChartSurface.chartModifiers.add(
         new LegendModifier({
-            placement: ELegendPlacement.TopRight,
-            orientation: ELegendOrientation.Horizontal,
+            placement: ELegendPlacement.TopLeft,
+            orientation: ELegendOrientation.Vertical,
             showLegend: true,
-            showCheckboxes: true,
+            showCheckboxes: false,
             showSeriesMarkers: true
         })
     );
+
+    sciChartSurface.zoomExtents();
+
     return { wasmContext, sciChartSurface };
 };
 
