@@ -26,16 +26,34 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
 
-    // Line Series
-    const lineSeries = new FastLineRenderableSeries(wasmContext, {
+    // Create some data
+    const xValues = [];
+    const yValues = [];
+    const zValues = [];
+    let prevYValue = 0;
+    for (let i = 0; i < 20; i++) {
+        const curYValue = Math.sin(i) * 10 + 5;
+        const size = Math.sin(i) * 60 + 3;
+
+        xValues.push(i);
+        yValues.push(prevYValue + curYValue);
+        zValues.push(size);
+
+        prevYValue += curYValue;
+    }
+
+    // Create and add a line series to the chart
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
         stroke: "#FFFFFF",
         strokeThickness: 2,
         animation: new SweepAnimation({ duration: 500 })
-    });
-    sciChartSurface.renderableSeries.add(lineSeries);
+    }));
 
-    // Bubble Series
-    const bubbleSeries = new FastBubbleRenderableSeries(wasmContext, {
+    // Create and add a Bubble series to the chart
+    // The Bubble series requires a special dataseries type called XyzDataSeries with X,Y and Z (size) values
+    sciChartSurface.renderableSeries.add(new FastBubbleRenderableSeries(wasmContext, {
+        dataSeries: new XyzDataSeries(wasmContext, { xValues, yValues, zValues }),
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 64,
             height: 64,
@@ -45,27 +63,7 @@ const drawExample = async () => {
         // Optional: Allows per-point colouring of bubble stroke
         paletteProvider: new BubblePaletteProvider(),
         animation: new SweepAnimation({ delay: 200, duration: 500, fadeEffect: true })
-    });
-    sciChartSurface.renderableSeries.add(bubbleSeries);
-
-    // Populate data to both series
-    const lineDataSeries = new XyDataSeries(wasmContext);
-    const bubbleDataSeries = new XyzDataSeries(wasmContext);
-    const POINTS = 20;
-    let prevYValue = 0;
-    for (let i = 0; i < POINTS; i++) {
-        const curYValue = Math.sin(i) * 10 - 5;
-        const size = Math.sin(i) * 60 + 3;
-
-        lineDataSeries.append(i, prevYValue + curYValue);
-        bubbleDataSeries.append(i, prevYValue + curYValue, size);
-
-        prevYValue += curYValue;
-    }
-
-    // Assign dataSeries to renderableSeries
-    lineSeries.dataSeries = lineDataSeries;
-    bubbleSeries.dataSeries = bubbleDataSeries;
+    }));
 
     // Add some zooming and panning behaviour
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
@@ -77,7 +75,7 @@ const drawExample = async () => {
 };
 
 /**
- * Optional: An example PaletteProvider which implements IPointMarkerPaletteProvider
+ * Optional: An example PaletteProvider which implements IFillPaletteProvider
  * This can be attached to Scatter or Bubble series to change the stroke or fill
  * of the series point-markers conditionally
  */
@@ -97,6 +95,8 @@ class BubblePaletteProvider implements IFillPaletteProvider {
     }
 }
 
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function BubbleChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     React.useEffect(() => {

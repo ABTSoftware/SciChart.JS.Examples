@@ -2,18 +2,15 @@ import * as React from "react";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { PaletteFactory } from "scichart/Charting/Model/PaletteFactory";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { GradientParams } from "scichart/Core/GradientParams";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Point } from "scichart/Core/Point";
-
-import classes from "../../../../Examples/Examples.module.scss";
 import { EAnimationType } from "scichart/types/AnimationType";
-import {ShadowEffect} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/ShadowEffect";
+import { ShadowEffect } from "scichart/Charting/Visuals/RenderableSeries/ShadowEffect";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -25,17 +22,15 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
 
+    // Create some xValues, yValues arrays
     const xValues = Array.from({length: 100}, (x,i) => i);
     const yValues = xValues.map(x => Math.sin(x * 0.1));
 
-    // Create an XyDataSeries as data source
-    const xyDataSeries = new XyDataSeries(wasmContext, { xValues, yValues });
-
     // Create and add a line series to the chart
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
         stroke: "#ff6600",
         strokeThickness: 5,
-        dataSeries: xyDataSeries,
         animation: { type: EAnimationType.Wave, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 1000 } },
         effect: new ShadowEffect(wasmContext, { brightness: 1, offset: new Point(5,-10), range: 0.7})
     }));
@@ -63,26 +58,18 @@ const drawExample = async () => {
     return { sciChartSurface, wasmContext };
 };
 
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function LineChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
-    const [loading, setLoading] = React.useState(false);
-
     React.useEffect(() => {
         (async () => {
-            setLoading(true);
             const res = await drawExample();
             setSciChartSurface(res.sciChartSurface);
-            if (res) {
-                setLoading(false);
-            }
         })();
         // Deleting sciChartSurface to prevent memory leak
         return () => sciChartSurface?.delete();
     }, []);
 
-    return (
-        <div className={classes.ChartWrapper}>
-            <div id={divElementId}></div>
-        </div>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

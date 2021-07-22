@@ -19,7 +19,10 @@ const WIDTH = 300;
 const HEIGHT = 200;
 
 const drawExample = async () => {
+    // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+
+    // Add XAxis and YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
@@ -92,6 +95,8 @@ function iterate(width: number, height: number, cpMax: number, index: number, ma
 let timerId: NodeJS.Timeout;
 let updateIndex: number = 0;
 
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function HeatmapChart() {
     const [heatmapDataSeries, setHeatmapDataSeries] = React.useState<UniformHeatmapDataSeries>();
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
