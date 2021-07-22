@@ -18,6 +18,9 @@ import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import classes from "../../../../Examples/Examples.module.scss";
 import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
 import { uintArgbColorMultiplyOpacity } from "scichart/utils/colorUtil";
+import {SweepAnimation} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
+import {WaveAnimation} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import {TrianglePointMarker} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/PointMarkers/TrianglePointMarker";
 
 // tslint:disable:no-empty
 
@@ -31,28 +34,39 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
 
+    // Create some xValues, yValues arrays
+    const xValues = Array.from({length: 250}, (x,i) => i);
+    const yValues = xValues.map(x => 3 * x + x * Math.random());
+    const y2Values = xValues.map(x => x + (x * Math.random()));
+
     // Create a Scatter Series with EllipsePointMarker
     // Multiple point-marker types are available including Square, Triangle, Cross and Sprite (custom)
-    const scatterSeries = new XyScatterRenderableSeries(wasmContext, {
+    sciChartSurface.renderableSeries.add(new XyScatterRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
         pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 7,
-            height: 7,
-            strokeThickness: 1,
+            width: 14,
+            height: 14,
+            strokeThickness: 0,
             fill: "steelblue",
-            stroke: "LightSteelBlue"
+            stroke: "LightSteelBlue",
         }),
-        // Optional: PaletteProvider feature allows coloring per-point based on a rule
-        paletteProvider: new ScatterPaletteProvider(),
-        animation: new ScaleAnimation({ duration: 1000, fadeEffect: true })
-    });
-    sciChartSurface.renderableSeries.add(scatterSeries);
+        opacity: 0.67,
+        animation: new SweepAnimation({ duration: 600, fadeEffect: true })
+    }));
 
-    // Create some Xy data and assign to the Scatter Series
-    const dataSeries = new XyDataSeries(wasmContext);
-    for (let i = 0; i < 100; i++) {
-        dataSeries.append(i, Math.sin(i * 0.1));
-    }
-    scatterSeries.dataSeries = dataSeries;
+    // Add a second scatter chart with a different pointmarker
+    sciChartSurface.renderableSeries.add(new XyScatterRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values }),
+        pointMarker: new TrianglePointMarker(wasmContext, {
+            width: 15,
+            height: 15,
+            fill: "#FF6600",
+            stroke: "#FFF",
+            strokeThickness: 0,
+        }),
+        opacity: 0.77,
+        animation: new SweepAnimation({ duration: 600, fadeEffect: true, delay: 200 })
+    }));
 
     // Optional: Add Interactivity Modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
@@ -63,34 +77,6 @@ const drawExample = async () => {
 
     return { sciChartSurface, wasmContext };
 };
-
-/**
- * Optional: Implement a IPointMarkerPaletteProvider which colors every tenth scatter point
- * to demonstrate the PaletteProvider feature
- */
-class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
-    readonly strokePaletteMode: EStrokePaletteMode;
-    private overrideStroke: number = parseColorToUIntArgb("Red");
-    private overrideFill: number = parseColorToUIntArgb("DarkRed");
-    onAttached(parentSeries: IRenderableSeries): void {}
-
-    onDetached(): void {}
-
-    overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity: number): TPointMarkerArgb {
-        // Y-values which are outside the range +0.5, -0.5 are colored red, while all other values are left default.
-        if (yValue >= 0.5 || yValue <= -0.5) {
-            const stroke =
-                opacity !== undefined
-                    ? uintArgbColorMultiplyOpacity(this.overrideStroke, opacity)
-                    : this.overrideStroke;
-            const fill =
-                opacity !== undefined ? uintArgbColorMultiplyOpacity(this.overrideFill, opacity) : this.overrideFill;
-            return { stroke, fill };
-        }
-        // Undefined means use default colors
-        return undefined;
-    }
-}
 
 export default function ScatterChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
