@@ -75,9 +75,5 @@ export default function CandlestickChart() {
     }, []);
 
 
-    return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
-        </div>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
