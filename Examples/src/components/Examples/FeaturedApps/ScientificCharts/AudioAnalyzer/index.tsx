@@ -120,6 +120,8 @@ export const drawExample = async () => {
         });
 
         sciChartSurface.renderableSeries.add(rs);
+
+        return sciChartSurface;
     };
 
     // FFT CHART
@@ -161,6 +163,8 @@ export const drawExample = async () => {
             zeroLineY: -30
         });
         sciChartSurface.renderableSeries.add(rs);
+
+        return sciChartSurface;
     };
 
     // SPECTROGRAM CHART
@@ -231,17 +235,15 @@ export const drawExample = async () => {
             })
         });
         sciChartSurface.renderableSeries.add(rs);
-    };
 
-    // CLEANUP
-    const cleanup = async () => {
-        dataProvider.closeAudio();
+        return sciChartSurface;
     };
 
     // DRAW CHARTS
-    await initAudioChart();
-    await initFftChart();
-    await initSpectogramChart();
+    const charts = [];
+    charts.push(await initAudioChart());
+    charts.push(await initFftChart());
+    charts.push(await initSpectogramChart());
 
     // INIT AUDIO
     await initAudio();
@@ -250,24 +252,31 @@ export const drawExample = async () => {
     let timerId: NodeJS.Timeout;
     let frameCounter = 0;
     const updateChart = () => {
-        if (cleanupRequested === true) {
-            cleanup();
-        } else {
+        if (!dataProvider.isDeleted) {
             updateAnalysers(frameCounter++);
             timerId = setTimeout(updateChart, 20);
         }
     };
     updateChart();
-};
 
-export const requestCleanup = () => {
-    cleanupRequested = true;
+    return { charts, dataProvider };
 };
 
 export default function AudioAnalyzer() {
+    let charts: SciChartSurface[];
+    let dataProvider: AudioDataProvider;
+
     React.useEffect(() => {
-        drawExample();
-        return requestCleanup;
+        drawExample().then(res => {
+            charts = res.charts;
+            dataProvider = res.dataProvider;
+        });
+        return () => {
+            // Ensure deleting charts on React component unmount
+            charts?.forEach(c => c.delete());
+            // ensure releasing audio data provider
+            dataProvider?.closeAudio();
+        }
     }, []);
 
     return (
