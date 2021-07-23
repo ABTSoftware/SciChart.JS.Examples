@@ -37,45 +37,55 @@ const drawExample = async () => {
     const pepperData = [7, 24, 21, 11, 19, 17, 14, 27, 26, 22, 28, 16];
 
     // Create some RenderableSeries - for each part of the stacked column
-    // Notice the stackedGroupId. This defines if series are stacked on one another, or grouped side by side
+    // Notice the stackedGroupId. This defines if series are stacked (same), or grouped side by side (different)
     const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: porkData, dataSeriesName: "Pork" }),
         fill: "#226Fb7",
-        strokeThickness: 0,
-        stackedGroupId: "Meat",
+        stroke: "#000",
+        strokeThickness: 1,
+        opacity: 0.8,
+        stackedGroupId: "StackedGroupId",
     });
 
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: vealData, dataSeriesName: "Veal" }),
         fill: "#ff9a2e",
-        strokeThickness: 0,
-        stackedGroupId: "Meat",
+        stroke: "#000",
+        strokeThickness: 1,
+        opacity: 0.8,
+        stackedGroupId: "StackedGroupId",
     });
 
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: tomatoesData, dataSeriesName: "Tomato" }),
         fill: "#dc443f",
-        strokeThickness: 0,
-        stackedGroupId: "Vegetables",
+        stroke: "#000",
+        strokeThickness: 1,
+        opacity: 0.8,
+        stackedGroupId: "StackedGroupId",
     });
 
     const rendSeries4 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: cucumberData, dataSeriesName: "Cucumber" }),
         fill: "#aad34f",
-        strokeThickness: 0,
-        stackedGroupId: "Vegetables",
+        stroke: "#000",
+        strokeThickness: 1,
+        opacity: 0.8,
+        stackedGroupId: "StackedGroupId",
     });
 
     const rendSeries5 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: pepperData, dataSeriesName: "Pepper" }),
         fill: "#8562b4",
-        strokeThickness: 0,
-        stackedGroupId: "Vegetables",
+        stroke: "#000",
+        strokeThickness: 1,
+        opacity: 0.8,
+        stackedGroupId: "StackedGroupId",
     });
 
     // To add the series to the chart, put them in a StackedColumnCollection
     const stackedColumnCollection = new StackedColumnCollection(wasmContext);
-    stackedColumnCollection.dataPointWidth = 0.5;
+    stackedColumnCollection.dataPointWidth = 0.6;
     stackedColumnCollection.add(rendSeries1, rendSeries2, rendSeries3, rendSeries4, rendSeries5);
     stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
 
