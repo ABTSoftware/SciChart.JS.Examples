@@ -11,7 +11,7 @@ import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/Rubbe
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 
 import classes from "../../../../Examples/Examples.module.scss";
-import {WaveAnimation} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 
 const divElementId = "chart";
 

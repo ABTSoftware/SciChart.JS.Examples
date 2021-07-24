@@ -7,14 +7,15 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { SquarePointMarker } from "scichart/Charting/Visuals/PointMarkers/SquarePointMarker";
-import { TrianglePointMarker } from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
 import { CrossPointMarker } from "scichart/Charting/Visuals/PointMarkers/CrossPointMarker";
+import { SpritePointMarker } from "scichart/Charting/Visuals/PointMarkers/SpritePointMarker";
+import {TrianglePointMarker} from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
 import { createImageAsync } from "scichart/utils/imageUtil";
 import customPointImage from "./img/CustomMarkerImage.png";
-import { SpritePointMarker } from "scichart/Charting/Visuals/PointMarkers/SpritePointMarker";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+
 import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
