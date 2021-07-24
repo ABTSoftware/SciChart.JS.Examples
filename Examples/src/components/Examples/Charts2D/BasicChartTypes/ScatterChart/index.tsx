@@ -68,6 +68,8 @@ const drawExample = async () => {
     return { sciChartSurface, wasmContext };
 };
 
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ScatterChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     React.useEffect(() => {

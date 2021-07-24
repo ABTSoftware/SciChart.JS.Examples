@@ -300,6 +300,10 @@ export const ExampleStrings = {
         "The Secondary YAxis example shows how to add series with multiple Y axis to a JavaScript Chart.",
     imgSecondaryYAxis: "images/javascript-chart-with-secondary-y-axis.jpg",
 
+    // Logarithmic Axis
+    urlLogarithmicAxis: "/javascript-chart-logarithmic-axis",
+    titleLogarithmicAxis: "Logarithmic Axis Example",
+
     // Vertical charts
     titleVerticalCharts: "Vertical Charts",
     urlVerticalCharts: "/javascript-vertical-charts",

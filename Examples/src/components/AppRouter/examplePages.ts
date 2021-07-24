@@ -60,6 +60,7 @@ import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnota
 import { GalleryItem } from "../../helpers/types/types";
 import { dragHorizontalThresholdExampleInfo } from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
 import { metaDataExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/MetaData/exampleInfo";
+import {logarithmicAxisExampleInfo} from "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -220,6 +221,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_modifyAxisBehavior_VerticallyStackedAxes: {
         id: "chart2D_modifyAxisBehavior_VerticallyStackedAxes",
         ...verticallyStackedAxesExampleInfo
+    },
+    chart2D_modifyAxisBehavior_LogarithmicAxis: {
+        id: "chart2D_modifyAxisBehavior_LogarithmicAxis",
+        ...logarithmicAxisExampleInfo
     },
     chart2D_basicCharts_StackedColumnChart: {
         id: "chart2D_basicCharts_StackedColumnChart",

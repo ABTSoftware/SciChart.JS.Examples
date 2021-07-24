@@ -45,6 +45,7 @@ import secondaryYAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavio
 import verticalChartImg from "../components/Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/javascript-vertical-charts.jpg";
 import centralAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/CentralAxes/javascript-central-axes.jpg";
 import verticallyStackedAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/javascript-vertically-stacked-axes.jpg";
+import logarithmicAxisImg from "../components/Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/javascript-chart-with-logarithmic-axis.jpg";
 // Styling and Theming
 import pointMarkersImg from "../components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/javascript-chart-custom-poinmarkers.jpg";
 import themeManagerImg from "../components/Examples/Charts2D/StylingAndTheming/UsingThemeManager/javascript-chart-themes.png";
@@ -337,6 +338,12 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleVerticallyStackedAxes,
                 seoTitle: "JavaScript Vertically Stacked Axes Example",
                 examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes.path
+            },
+            {
+                imgPath: logarithmicAxisImg,
+                title: ExampleStrings.titleLogarithmicAxis,
+                seoTitle: "JavaScript Logarithmic Axis Example",
+                examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis.path
             },
         ]
     },
