@@ -9,9 +9,8 @@ import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWhee
 import {ENumericFormat} from "scichart/types/NumericFormat";
 import {LogarithmicAxis} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
 import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
+import {LogarithmicLabelProvider} from "scichart/Charting/Visuals/Axis/LabelProvider/LogarithmicLabelProvider";
 import classes from "../../../../Examples/Examples.module.scss";
-import {Checkbox, FormControlLabel} from "@material-ui/core";
-import {LogarithmicLabelProvider} from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/Axis/LabelProvider/LogarithmicLabelProvider";
 
 const divElementId = "chart1";
 
@@ -66,24 +65,44 @@ export default function LogarithmicAxisExample() {
             setLogAxis(res.yAxis);
         });
         // Delete sciChartSurface on unmount component to prevent memory leak
-        // @ts-ignore
         return () => sciChartSurface?.delete();
     }, []);
 
-    const onCheckboxChanged = (e: ChangeEvent<HTMLInputElement>) => {
-        const labelFormat = e.target.checked ? ENumericFormat.Scientific : ENumericFormat.Exponential;
+    const onNotationChanged = (e: ChangeEvent<HTMLSelectElement>) => {
+        const labelFormat = e.target.value as ENumericFormat;
         const labelPrecision = 2;
         logAxis.labelProvider = new LogarithmicLabelProvider({ labelFormat, labelPrecision })
-        // (logAxis.labelProvider as LogarithmicLabelProvider) = e.target.checked ? Math.E : 10;
+    };
+
+    const onLogBaseChanged = (e: ChangeEvent<HTMLSelectElement>) => {
+        logAxis.logBase = parseFloat(e.target.value);
     };
 
     return (
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
-            <FormControlLabel
-                control={<Checkbox onChange={onCheckboxChanged} />}
-                label="Scientific Notation?"
-            />
+            <div className={classes.SelectWrapper}>
+                <div className={classes.InputSelectWrapper}>
+                    <label id="sciChartLogAxis-label">
+                        Log Axis Label Notation
+                        <select
+                            onChange={onNotationChanged}>
+                            <option key="Exponential" value="Exponential">Engineering</option>
+                            <option key="Scientific" value="Scientific">Scientific</option>
+                            <option key="Decimal" value="Decimal">Decimal</option>
+                        </select>
+                    </label>
+                    <label id="sciChartLogBase-label">
+                        Logarithmic Base
+                        <select
+                            onChange={onLogBaseChanged}>
+                            <option key="10" value="10">Log 10</option>
+                            <option key={Math.E} value={Math.E}>Log E</option>
+                            <option key="2" value="2">Log 2</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
         </div>
     );
 }
