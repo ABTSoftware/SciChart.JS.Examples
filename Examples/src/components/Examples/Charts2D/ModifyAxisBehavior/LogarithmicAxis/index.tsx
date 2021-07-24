@@ -10,6 +10,8 @@ import {ENumericFormat} from "scichart/types/NumericFormat";
 import {LogarithmicAxis} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
 import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
 import {LogarithmicLabelProvider} from "scichart/Charting/Visuals/Axis/LabelProvider/LogarithmicLabelProvider";
+import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
+import {EPointMarkerType} from "scichart/types/PointMarkerType";
 import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart1";
@@ -22,6 +24,10 @@ const drawExample = async () => {
 
     // Create an X and Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+
+    // The LogarithmicAxis will apply logarithmic scaling and labelling to your data.
+    // Simply replace a NumericAxis for a LogarithmicAxis on X or Y to apply this scaling
+    // Note options logBase, labelFormat which lets you specify exponent on labels
     const yAxis = new LogarithmicAxis(wasmContext, {
         logBase: baseValue,
         labelFormat: ENumericFormat.Exponential,
@@ -32,15 +38,32 @@ const drawExample = async () => {
     // Create some data
     const xValues = [];
     const yValues = [];
-    for (let x = 1; x < 300; x++) {
-        const y = Math.pow(x / 100, baseValue);
+    const y1Values = [];
+    const y2Values = [];
+    for (let x = 1; x < 100; x++) {
         xValues.push(x);
-        yValues.push(y);
+        yValues.push(Math.pow(x / 50, baseValue));
+        y1Values.push(Math.pow(x / 100, baseValue));
+        y2Values.push(Math.pow(x / 200, baseValue));
     }
 
-    // Create a line chart with the data
+    // Create some line charts with the data
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values }),
+        animation: new SweepAnimation({ duration: 800, delay: 300 }),
+        pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
+    }));
+
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values }),
+        animation: new SweepAnimation({ duration: 800, delay: 150}),
+        pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
+    }));
+
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+        animation: new SweepAnimation({ duration: 800}),
+        pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
     }));
 
     // Add some interactivity modifiers
