@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/index.tsx";
+export const githubUrl = "/components/Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/index.tsx";

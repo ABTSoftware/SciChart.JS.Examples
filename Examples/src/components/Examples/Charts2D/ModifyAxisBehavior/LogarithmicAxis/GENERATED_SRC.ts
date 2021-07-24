@@ -1,144 +1,87 @@
 export const code = `import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
-import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ENumericFormat } from "scichart/types/NumericFormat";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {ENumericFormat} from "scichart/types/NumericFormat";
+import {LogarithmicAxis} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
+import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
 import classes from "../../../../Examples/Examples.module.scss";
+import {Checkbox} from "@material-ui/core";
 
 const divElementId = "chart1";
 
+const baseValue = 10;
+
 const drawExample = async () => {
+    // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    const ID_Y_AXIS_2 = "yAxis2";
 
-    // FIRST CHART
-    const titleStyle1 = {
-        color: "#228B22",
-        fontSize: 30,
-        fontFamily: "Courier New"
-    };
-    const labelStyle1 = {
-        color: "#228B22"
-    };
-    const setXAxis1 = () => {
-        const xAxis = new NumericAxis(wasmContext);
-        xAxis.axisBorder = {
-            borderTop: 1,
-            color: "#EEEEEE",
-        };
-        xAxis.axisAlignment = EAxisAlignment.Bottom;
-        xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
-        sciChartSurface.xAxes.add(xAxis);
-    };
-    setXAxis1();
+    // Create an X and Y Axis
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+    const yAxis = new LogarithmicAxis(wasmContext, {
+        logBase: baseValue,
+        labelFormat: ENumericFormat.Scientific,
+        labelPrecision: 2,
+    });
+    sciChartSurface.yAxes.add(yAxis);
 
-    const setYAxis1 = () => {
-        const yAxis = new NumericAxis(wasmContext);
-        yAxis.axisAlignment = EAxisAlignment.Left;
-        yAxis.axisTitle = "Left Axis";
-        yAxis.axisTitleStyle = titleStyle1;
-        yAxis.labelStyle = labelStyle1;
-        yAxis.axisBorder = {
-            borderRight: 1,
-            color: "#228B22",
-        };
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
-        sciChartSurface.yAxes.add(yAxis);
-    };
-    setYAxis1();
+    // Create some data
+    const xValues = [];
+    const yValues = [];
+    for (let x = 1; x < 300; x++) {
+        const y = Math.pow(x / 100, baseValue);
+        xValues.push(x);
+        yValues.push(y);
+    }
 
-    const setSeries1 = () => {
-        const lineData = new XyDataSeries(wasmContext);
-        const iStep = 20;
-        const fAmpltude = 100.0;
-        const fFrequency = 1.0;
-        for (let i = 0; i < 500 + iStep; i += iStep) {
-            lineData.append(i, Math.sin((fFrequency * i * Math.PI) / 180.0) * fAmpltude);
-        }
-        const lineSeries = new FastLineRenderableSeries(wasmContext, {
-            stroke: "#228B22",
-            strokeThickness: 3,
-            dataSeries: lineData
-        });
-        sciChartSurface.renderableSeries.add(lineSeries);
-    };
-    setSeries1();
+    // Create a line chart with the data
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
+    }));
 
-    // SECOND CHART
-    const titleStyle2 = {
-        color: "#368BC1",
-        fontSize: 30,
-        fontFamily: "Courier New"
-    };
-    const labelStyle2 = {
-        color: "#368BC1"
-    };
-
-    const setYAxis2 = () => {
-        const yAxis = new NumericAxis(wasmContext);
-        yAxis.id = ID_Y_AXIS_2;
-        yAxis.axisTitleStyle = titleStyle2;
-        yAxis.labelStyle = labelStyle2;
-        yAxis.axisAlignment = EAxisAlignment.Right;
-        yAxis.axisTitle = "Right Axis";
-        yAxis.axisBorder = {
-            borderLeft: 1,
-            color: "#368BC1"
-        };
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
-        sciChartSurface.yAxes.add(yAxis);
-    };
-    setYAxis2();
-
-    const setSeries2 = () => {
-        const lineData = new XyDataSeries(wasmContext);
-        const iStep = 10;
-        const fAmpltude = 0.1;
-        const fFrequency = 1.5;
-        for (let i = 0; i < 500 + iStep; i += iStep) {
-            lineData.append(i, Math.sin((fFrequency * (i - 100) * Math.PI) / 180.0) * fAmpltude);
-        }
-        const lineSeries = new FastLineRenderableSeries(wasmContext, {
-            stroke: "#368BC1",
-            yAxisId: ID_Y_AXIS_2,
-            strokeThickness: 3,
-            dataSeries: lineData
-        });
-        sciChartSurface.renderableSeries.add(lineSeries);
-    };
-    setSeries2();
-
-    // Optional: Add some interactivity modifiers to enable zooming and panning
-    sciChartSurface.chartModifiers.add(
-        new YAxisDragModifier(),
-        new XAxisDragModifier(),
-        new ZoomPanModifier(),
+    // Add some interactivity modifiers
+    sciChartSurface.chartModifiers.add(new RubberBandXyZoomModifier(),
         new MouseWheelZoomModifier(),
-        new ZoomExtentsModifier()
-    );
+        new ZoomExtentsModifier());
 
-    return { sciChartSurface, wasmContext };
+    // Create a function to change axis parameters which gets passed back to the example
+    const changeAxisParams = (checked: boolean) => {
+        if (checked) {
+            yAxis.logBase = Math.E;
+        } else {
+            yAxis.logBase = 10;
+        }
+    };
+
+    return { sciChartSurface, wasmContext, changeAxisParams };
 };
 
-export default function SecondaryYAxes() {
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function LogarithmicAxisExample() {
+
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const [changeAxisParams, setChangeAxisParams] = React.useState<(checked: boolean) => void>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
+        drawExample().then(res => {
+            // Store some variables which we will need later
             setSciChartSurface(res.sciChartSurface);
-        })();
+            setChangeAxisParams(res.changeAxisParams);
+        });
         // Delete sciChartSurface on unmount component to prevent memory leak
+        // @ts-ignore
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return (
+        <div>
+            <div id={divElementId} className={classes.ChartWrapper} />
+            <Checkbox onChange={(e) => changeAxisParams(e.target.checked)}/>
+        </div>
+    );
 }
 `;

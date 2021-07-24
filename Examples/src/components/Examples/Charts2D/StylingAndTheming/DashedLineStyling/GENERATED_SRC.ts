@@ -10,7 +10,6 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { ENumericFormat } from "scichart/types/NumericFormat";
-import { TrianglePointMarker } from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
 import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
