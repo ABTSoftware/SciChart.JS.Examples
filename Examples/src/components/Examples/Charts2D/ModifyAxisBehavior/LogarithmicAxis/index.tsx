@@ -1,4 +1,5 @@
 import * as React from "react";
+import {ChangeEvent} from "react";
 import {SciChartSurface} from "scichart";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
@@ -9,7 +10,8 @@ import {ENumericFormat} from "scichart/types/NumericFormat";
 import {LogarithmicAxis} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
 import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
 import classes from "../../../../Examples/Examples.module.scss";
-import {Checkbox} from "@material-ui/core";
+import {Checkbox, FormControlLabel} from "@material-ui/core";
+import {LogarithmicLabelProvider} from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Charting/Visuals/Axis/LabelProvider/LogarithmicLabelProvider";
 
 const divElementId = "chart1";
 
@@ -23,7 +25,7 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     const yAxis = new LogarithmicAxis(wasmContext, {
         logBase: baseValue,
-        labelFormat: ENumericFormat.Scientific,
+        labelFormat: ENumericFormat.Exponential,
         labelPrecision: 2,
     });
     sciChartSurface.yAxes.add(yAxis);
@@ -47,16 +49,7 @@ const drawExample = async () => {
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier());
 
-    // Create a function to change axis parameters which gets passed back to the example
-    const changeAxisParams = (checked: boolean) => {
-        if (checked) {
-            yAxis.logBase = Math.E;
-        } else {
-            yAxis.logBase = 10;
-        }
-    };
-
-    return { sciChartSurface, wasmContext, changeAxisParams };
+    return { sciChartSurface, wasmContext, yAxis };
 };
 
 // React component needed as our examples app is react.
@@ -64,23 +57,33 @@ const drawExample = async () => {
 export default function LogarithmicAxisExample() {
 
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
-    const [changeAxisParams, setChangeAxisParams] = React.useState<(checked: boolean) => void>();
+    const [logAxis, setLogAxis] = React.useState<LogarithmicAxis>();
 
     React.useEffect(() => {
         drawExample().then(res => {
             // Store some variables which we will need later
             setSciChartSurface(res.sciChartSurface);
-            setChangeAxisParams(res.changeAxisParams);
+            setLogAxis(res.yAxis);
         });
         // Delete sciChartSurface on unmount component to prevent memory leak
         // @ts-ignore
         return () => sciChartSurface?.delete();
     }, []);
 
+    const onCheckboxChanged = (e: ChangeEvent<HTMLInputElement>) => {
+        const labelFormat = e.target.checked ? ENumericFormat.Scientific : ENumericFormat.Exponential;
+        const labelPrecision = 2;
+        logAxis.labelProvider = new LogarithmicLabelProvider({ labelFormat, labelPrecision })
+        // (logAxis.labelProvider as LogarithmicLabelProvider) = e.target.checked ? Math.E : 10;
+    };
+
     return (
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
-            <Checkbox onChange={(e) => changeAxisParams(e.target.checked)}/>
+            <FormControlLabel
+                control={<Checkbox onChange={onCheckboxChanged} />}
+                label="Scientific Notation?"
+            />
         </div>
     );
 }
