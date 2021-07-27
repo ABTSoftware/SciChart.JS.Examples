@@ -92,12 +92,15 @@ export default function LogarithmicAxisExample() {
     }, []);
 
     const onNotationChanged = (e: ChangeEvent<HTMLSelectElement>) => {
+        // To update the LogarithmicAxis label format from ENumericFormat.Scientific to Exponential or Decimal
+        // create and assign a new LogarithmicLabelProvider on the chart with the new properties
         const labelFormat = e.target.value as ENumericFormat;
         const labelPrecision = 2;
         logAxis.labelProvider = new LogarithmicLabelProvider({ labelFormat, labelPrecision })
     };
 
     const onLogBaseChanged = (e: ChangeEvent<HTMLSelectElement>) => {
+        // To update the logarithmic base set LogarithmicAxis.logBase = number
         logAxis.logBase = parseFloat(e.target.value);
     };
 
