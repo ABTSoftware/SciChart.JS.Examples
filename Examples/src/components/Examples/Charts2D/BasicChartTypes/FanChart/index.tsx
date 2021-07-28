@@ -11,12 +11,12 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
+import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 
 // tslint:disable:max-line-length
 
 const divElementId = "chart";
-const animation = new SweepAnimation({ duration: 700, fadeEffect: true });
+const animation = new WaveAnimation({ duration: 700, fadeEffect: true });
 
 const drawExample = async () => {
     // Create a SciChartSurface
