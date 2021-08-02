@@ -25,21 +25,24 @@ export type TTimeSpan = {
 export const divElementId = "chart";
 
 export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, 3, 2);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        widthAspect: 3,
+        heightAspect: 2,
+    });
     sciChartSurface.applyTheme(new SciChartJSDarkTheme());
     const xAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Top,
         visibleRange: new NumberRange(0, 1000000),
         autoRange: EAutoRange.Never
     });
-    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
     sciChartSurface.xAxes.add(xAxis);
     const yAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Left,
         visibleRange: new NumberRange(-5000, 5000),
         autoRange: EAutoRange.Never
     });
-    yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
     sciChartSurface.yAxes.add(yAxis);
 
     const dataSeries = new XyDataSeries(wasmContext);

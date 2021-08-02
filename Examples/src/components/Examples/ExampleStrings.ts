@@ -300,6 +300,10 @@ export const ExampleStrings = {
         "The Secondary YAxis example shows how to add series with multiple Y axis to a JavaScript Chart.",
     imgSecondaryYAxis: "images/javascript-chart-with-secondary-y-axis.jpg",
 
+    // Logarithmic Axis
+    urlLogarithmicAxis: "/javascript-chart-logarithmic-axis",
+    titleLogarithmicAxis: "Logarithmic Axis Example",
+
     // Vertical charts
     titleVerticalCharts: "Vertical Charts",
     urlVerticalCharts: "/javascript-vertical-charts",
@@ -309,6 +313,18 @@ export const ExampleStrings = {
         "The specific page for the SciChart.js API documentation for Vertical Charts will help you to get started",
     urlTitleVerticalCharts: "The Vertical Charts example shows how to use Axis Alignment to rotate a JavaScript Chart.",
     imgVerticalCharts: "images/javascript-vertical-charts.jpg",
+
+    // Central axes
+    titleCentralAxes: "Central Axes",
+    urlCentralAxes: "/javascript-central-axes",
+    urlTitleCentralAxes: "The Central Axes example shows how to use inner axes and layout strategies to customize layout of a JavaScript Chart.",
+    imgCentralAxes: "images/javascript-central-axes.jpg",
+
+    // Vertically Stacked axes
+    titleVerticallyStackedAxes: "Vertically Stacked Axes",
+    urlVerticallyStackedAxes: "/javascript-vertically-stacked-axes",
+    urlTitleVerticallyStackedAxes: "The Vertically Stacked Axe Axes example shows how to use Axis Layout Strategies to customize axis placement on a JavaScript Chart.",
+    imgVerticallyStackedAxes: "images/javascript-vertically-stacked-axes.png",
 
     // Drag Axis to Scale
     titleDragAxisToScale: "Drag Axis to Scale or Pan",
@@ -346,6 +362,11 @@ export const ExampleStrings = {
         "The specific page for the SciChart.js API documentation for Styling Axis and Gridlines will help you to get started",
     imgStylingInCode: "images/javascript-chart-styling-theming-in-code.png",
 
+    // Transparent Background
+    titleTransparentBackground: "Background Image with Transparency",
+    urlTransparentBackground: "/javascript-chart-transparent-background",
+    imgTransparentBackground: "images/javascript-chart-background-image-with-transparency.jpg",
+
     // ThemeManager
     urlThemeManager: "/javascript-chart-themes",
     titleThemeManager: "Using Theme Manager",
@@ -378,12 +399,28 @@ export const ExampleStrings = {
     urlRolloverModifier: "/javascript-chart-rollovermodifier-tooltips",
     imgRolloverModifierChart: "images/javascript-chart-rollovermodifier-tooltips.jpg",
 
+    // SeriesSelection
+    urlSeriesSelectionDocumentation: "https://www.scichart.com/documentation/js/current/webframe.html#SciChart_JS_User_Manual.html",// should be changed
+    urlTitleSeriesSelectionDocumentation:
+        "The specific page for the SciChart.js API documentation for the Series Selection to help you to get started",
+    titleSeriesSelection: "Using Series Selection",
+    urlSeriesSelection: "/javascript-chart-series-selection",
+    imgSeriesSelectionChart: "images/javascript-chart-series-selection.jpg",
+
     // CursorModifier
     urlCursorModifier: "/javascript-chart-cursormodifier-crosshairs",
     titleCursorModifier: "Using CursorModifier Crosshairs",
     urlTitleCursorModifierDocumentation:
         "The specific page for the SciChart.js API documentation for the CursorModifier to help you to get started",
     urlCursorModifierDocumentation: "https://www.scichart.com/documentation/js/current/CursorModifier.html",
+
+    // MetaData
+    titleMetaData: "MetaData",
+    urlMetaData: "/javascript-chart-metadata",
+    urlMetaDataDocumentation: "https://www.scichart.com/documentation/js/current/metadata.html",
+    urlTitleMetaDataDocumentation:
+        "The specific page for the SciChart.js documentation for the MetaData API to help you to get started",
+    imgMetaDataChart: "images/javascript-chart-metadata.png",
 
     // 3D Bubble Chart
     urlBubble3DChart: "/javascript-3d-bubble-chart",
@@ -449,4 +486,5 @@ export const ExampleStrings = {
     titleTenorCurvesFeaturedApp: "Tenor Curves Demo",
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
     imgTenorCurves: "images/javascript-3d-surface-mesh-tenor-curve-example.jpg",
+
 };
