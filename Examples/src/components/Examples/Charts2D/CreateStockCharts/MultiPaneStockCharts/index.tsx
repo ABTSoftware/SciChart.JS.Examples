@@ -57,7 +57,10 @@ const drawExample = async () => {
 
     // CHART 1
     const drawChart1 = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId1, 900, 400);
+        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId1, {
+            widthAspect: 900,
+            heightAspect: 400
+        });
         sciChartSurface.applyTheme(darkTheme);
 
         chart1XAxis = new CategoryAxis(wasmContext, {
@@ -155,7 +158,10 @@ const drawExample = async () => {
 
     // CHART 2
     const drawChart2 = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId2, 900, 150);
+        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId2, {
+            widthAspect: 900,
+            heightAspect: 150
+        });
         sciChartSurface.applyTheme(darkTheme);
 
         chart2XAxis = new CategoryAxis(wasmContext, {
@@ -171,7 +177,7 @@ const drawExample = async () => {
             growBy: new NumberRange(0.1, 0.1),
             axisAlignment
         });
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_2;
+        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
 
         const macdArray: number[] = [];
@@ -222,7 +228,10 @@ const drawExample = async () => {
 
     // CHART 3
     const drawChart3 = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId3, 900, 150);
+        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId3, {
+            widthAspect: 900,
+            heightAspect: 150
+        });
         sciChartSurface.applyTheme(darkTheme);
 
         chart3XAxis = new CategoryAxis(wasmContext, { autoRange: EAutoRange.Once });
@@ -235,7 +244,7 @@ const drawExample = async () => {
             growBy: new NumberRange(0.1, 0.1),
             axisAlignment
         });
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_1;
+        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
 
         const RSI_PERIOD = 14;
