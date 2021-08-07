@@ -25,12 +25,12 @@ const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     // sciChartSurface.applyTheme(new SciChartJSDarkTheme());
     const xAxis = new NumericAxis(wasmContext);
-    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis = new NumericAxis(wasmContext);
     sciChartSurface.yAxes.add(yAxis);
-    yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
 
     const colors = ["#FFFF00", "#228B22", "#ff0000", "#368BC1"];
     colors.forEach((color, index) => {

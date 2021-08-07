@@ -10,7 +10,6 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { ENumericFormat } from "scichart/types/NumericFormat";
-import { TrianglePointMarker } from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
 import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
@@ -27,7 +26,7 @@ const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
     // Create XAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Decimal_2 }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Decimal }));
 
     // Create YAxis
     sciChartSurface.yAxes.add(
