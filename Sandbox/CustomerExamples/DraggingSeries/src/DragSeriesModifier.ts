@@ -4,13 +4,20 @@ import { ModifierMouseArgs } from 'scichart/Charting/ChartModifiers/ModifierMous
 import { IRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/IRenderableSeries';
 import { ENearestPointLogic } from 'scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider';
 import { AxisBase2D, EClipMode } from 'scichart/Charting/Visuals/Axis/AxisBase2D';
+import { CustomAnnotation } from 'scichart/Charting/Visuals/Annotations/CustomAnnotation';
+
+export interface IDragSeriesModifierOptions extends IChartModifierBaseOptions {
+    annotations?: CustomAnnotation[];
+}
 
 export class DragSeriesModifier extends ChartModifierBase2D {
     private lastPoint: Point;
     private selectedRS: IRenderableSeries;
+    private markerAnnotations: CustomAnnotation[];
 
-    constructor(options?: IChartModifierBaseOptions) {
+    constructor(options?: IDragSeriesModifierOptions) {
         super(options);
+        this.markerAnnotations = options?.annotations ?? this.markerAnnotations;
     }
 
     public modifierMouseDown(args: ModifierMouseArgs): void {
@@ -23,7 +30,18 @@ export class DragSeriesModifier extends ChartModifierBase2D {
         const rsList = this.parentSurface.renderableSeries.asArray();
 
         this.selectedRS = undefined;
-        rsList.forEach(rs => {
+        rsList.forEach((rs, index) => {
+            // selection using axis markers
+            if (this.markerAnnotations) {
+                const rsAnnotation = this.markerAnnotations[index];
+                if (rsAnnotation) {
+                    const isClicked = rsAnnotation.checkIsClickedOnAnnotation(args.mousePoint.x, args.mousePoint.y);
+                    if (isClicked) {
+                        this.selectedRS = rs;
+                    }
+                }
+            }
+            // selection using renderable series body and hitTest
             if (rs.hitTestProvider) {
                 const hitTestInfo = rs.hitTestProvider.hitTest(
                     args.mousePoint,
@@ -39,7 +57,7 @@ export class DragSeriesModifier extends ChartModifierBase2D {
             }
         });
 
-        console.log(this.selectedRS?.dataSeries?.dataSeriesName);
+        console.log('Selected series', this.selectedRS?.dataSeries?.dataSeriesName);
 
         args.handled = true;
         this.lastPoint = args.mousePoint;
