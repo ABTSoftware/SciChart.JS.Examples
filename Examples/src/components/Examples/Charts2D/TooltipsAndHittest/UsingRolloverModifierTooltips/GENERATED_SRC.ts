@@ -20,7 +20,7 @@ const divElementId = "chart";
 const drawExample = async (): Promise<TWebAssemblyChart> => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     const xAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) });
-    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });

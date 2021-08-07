@@ -48,8 +48,7 @@ function getData(wasmContext: TSciChart3D) {
         const z = getGaussianRandom(150, 40);
 
         const scale = (Math.random() + 0.5) * 0.5;
-        const randomColor = Math.floor(Math.random() * 16777215);
-
+        const randomColor = Math.floor(Math.random() * 0xffffff) + 0xff000000;
         // To declare scale and colour, add an optional PointMetadata3D type as the w (fourth) parameter.
         // The PointMetadata3D type also has other properties defining the behaviour of the XYZ point
         xyzDataSeries.append(x, y, z, { vertexColorAbgr: randomColor, pointScale: scale });

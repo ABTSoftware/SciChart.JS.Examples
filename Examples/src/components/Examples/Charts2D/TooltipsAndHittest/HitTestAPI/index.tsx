@@ -15,11 +15,10 @@ import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/Renderable
 import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
 import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
 import { Point } from "scichart/Core/Point";
-import { ENearestPointLogic } from "scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 import classes from "../../../../Examples/Examples.module.scss";
 import Box from "../../../../../helpers/shared/Helpers/Box/Box";
-import { ESeriesType } from "scichart/types/SeriesType";
+import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
 
 const divElementId = "chart";
 
@@ -105,16 +104,19 @@ const drawExample = async (setHitTestsList: (hitTestsList: HitTestInfo[]) => voi
     sciChartSurface.annotations.add(svgAnnotation);
     sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent: MouseEvent) => {
         const newHitTestsList: HitTestInfo[] = [];
+        const dpiScaledPoint = new Point(
+            mouseEvent.x * DpiHelper.PIXEL_RATIO,
+            mouseEvent.y * DpiHelper.PIXEL_RATIO);
+
         sciChartSurface.renderableSeries.asArray().forEach(rs => {
             // Interpolation is used for LineSeries to test hit on the line
             // for CandlestickSeries to test hit on the candle
             // for ColumnSeries to test hit on the column
             if (rs.hitTestProvider) {
                 const hitTestInfo = rs.hitTestProvider.hitTest(
-                    new Point(mouseEvent.offsetX, mouseEvent.offsetY),
-                    ENearestPointLogic.NearestHorizontalPoint,
-                    HIT_TEST_RADIUS,
-                    [ESeriesType.LineSeries, ESeriesType.CandlestickSeries, ESeriesType.ColumnSeries].includes(rs.type)
+                    dpiScaledPoint.x,
+                    dpiScaledPoint.y,
+                    HIT_TEST_RADIUS
                 );
                 svgAnnotation.isHidden = false;
                 svgAnnotation.x1 = hitTestInfo.hitTestPointValues.x;
