@@ -47,7 +47,7 @@ const drawExample = async () => {
     // This will be used to compare the spline (smoothed) algorothm
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#4282B4",
-        strokeThickness: 1,
+        strokeThickness: 3,
         dataSeries: xyDataSeries,
         animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true })
     });
@@ -56,7 +56,7 @@ const drawExample = async () => {
     // Create and add a Spline line series to the chart
     const splineSeries = new SplineLineRenderableSeries(wasmContext, {
         stroke: "#006400",
-        strokeThickness: 3,
+        strokeThickness: 5,
         dataSeries: splineXyDataSeries,
         pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "#FFFFFF", stroke: "#006400" }),
         interpolationPoints: 10, // Set interpolation points to decide the amount of smoothing,
