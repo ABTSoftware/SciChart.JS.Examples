@@ -17,11 +17,11 @@
       "hardenedRuntime": true,
       "entitlements": "entitlements.mac.inherit.plist",
       "target": [
-          "dmg",
-          "zip"
+        "dmg",
+        "zip"
       ],
       "gatekeeperAssess": false
-  }
+    }
   },
   "author": "",
   "license": "MIT",
@@ -48,7 +48,7 @@
     "electron-is-dev": "^1.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "scichart": "^1.1.1368",
+    "scichart": "^1.4.1630",
     "source-map-support": "^0.5.19"
   },
   "electronWebpack": {

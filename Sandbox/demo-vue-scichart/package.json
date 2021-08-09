@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "scichart": "^1.0.1267",
+    "scichart": "^1.4.1630",
     "vue": "^3.0.0"
   },
   "devDependencies": {
