@@ -33,8 +33,6 @@ const drawExample = async () => {
         const effect = new GlowEffect(wasmContext, {
             range: 0,
             intensity: 0.5,
-            color: "#FF0000",
-            offset: new Point(10, 10)
         });
         const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke, effect });
         lineSeries.strokeThickness = 3;
