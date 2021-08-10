@@ -32,7 +32,7 @@ const drawExample = async () => {
             axisAlignment: EAxisAlignment.Left,
             growBy: new NumberRange(0.05, 0.05),
             axisTitle: "Y-Axis",
-            labelFormat: ENumericFormat.Decimal_2
+            labelFormat: ENumericFormat.Decimal
         })
     );
 
@@ -72,6 +72,8 @@ const drawExample = async () => {
     return { wasmContext, sciChartSurface };
 };
 
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function DigitalMountainChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
