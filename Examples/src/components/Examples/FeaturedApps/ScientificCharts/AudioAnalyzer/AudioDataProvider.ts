@@ -11,6 +11,7 @@ export class AudioDataProvider {
     private zeroGain: GainNode = null;
 
     private initializedProperty = false;
+    private isDeletedProperty = false;
 
     private audioData: AudioData;
 
@@ -26,6 +27,10 @@ export class AudioDataProvider {
 
     public get initialized() {
         return this.initializedProperty;
+    }
+
+    public get isDeleted() {
+        return this.isDeletedProperty;
     }
 
     public get bufferSize() {
@@ -83,6 +88,7 @@ export class AudioDataProvider {
         this.audioData = null;
         this.freqByteData = null;
         this.initializedProperty = false;
+        this.isDeletedProperty = true;
     }
 
     public next() {
