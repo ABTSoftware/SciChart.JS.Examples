@@ -1,21 +1,15 @@
 export const code = `import * as React from "react";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
 import { EPieType, SciChartPieSurface } from "scichart/Charting/Visuals/SciChartPieSurface/SciChartPieSurface";
 import { PieSegment } from "scichart/Charting/Visuals/SciChartPieSurface/PieSegment/PieSegment";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
-import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
 import classes from "../../../../Examples/Examples.module.scss";
 
 export const divElementId = "chart";
 
 export const drawExample = async () => {
     const sciChartPieSurface = await SciChartPieSurface.create(divElementId);
-    sciChartPieSurface.applyTheme(new SciChartJSLightTheme());
     sciChartPieSurface.pieType = EPieType.Donut;
     sciChartPieSurface.holeRadius = 0.6;
     sciChartPieSurface.animate = true;
