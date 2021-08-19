@@ -18,7 +18,6 @@ const GalleryCard: React.FC<TProps> = props => {
     return (
         <div className={classes.GalleryItemCard}>
             <Link className={classes.GalleryItemCardImage} to={examplePath} title={seoTitle}>
-                {/*<img src={imgPath} title={seoTitle} alt={title}  />*/}
                 <LazyLoadImage src={imgPath} title={seoTitle} alt={title}/>
                 <h5 className={classes.GalleryItemTitle}>{title}</h5>
             </Link>
