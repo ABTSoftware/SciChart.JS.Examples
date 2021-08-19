@@ -19,13 +19,22 @@ const WIDTH = 300;
 const HEIGHT = 200;
 
 const drawExample = async () => {
+    // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+
+    // Add XAxis and YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
     // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
     const initialZValues: number[][] = iterate(WIDTH, HEIGHT, 200, 0, MAX_SERIES);
-    const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, 100, 1, 100, 1, initialZValues);
+    const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
+        xStart: 100,
+        xStep: 1,
+        yStart: 100,
+        yStep: 1,
+        zValues: initialZValues
+    });
 
     // Create a Heatmap RenderableSeries with the color map. ColorMap.minimum/maximum defines the values in
     // HeatmapDataSeries which correspond to gradient stops at 0..1
@@ -86,6 +95,8 @@ function iterate(width: number, height: number, cpMax: number, index: number, ma
 let timerId: NodeJS.Timeout;
 let updateIndex: number = 0;
 
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function HeatmapChart() {
     const [heatmapDataSeries, setHeatmapDataSeries] = React.useState<UniformHeatmapDataSeries>();
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
