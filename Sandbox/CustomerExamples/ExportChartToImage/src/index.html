@@ -1,0 +1,24 @@
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Demo VS Code TypeScript Debugging</title>
+    <script async type="text/javascript" src="bundle.js"></script>
+    <style>
+      body {
+        font-family: "Arial";
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Export Chart to Image Demo</h1>
+    <p>Click buttons to export the chart as PNG. <br/>Drag the pulsing green CustomAnnotation and export again.</p>
+    <div style="margin-bottom: 10px; display: flex">
+      <button id="export_append">Generate PNG and append</button>
+      <button id="export_download" style="margin-left: 6px">Download PNG</button>
+    </div>
+    <!-- the Div where the SciChartSurface will reside -->
+    <div id="scichart-root" style="width: 800px; height: 600px; position: relative"></div>
+    <div id="export_image_result" style="margin-top: 10px"></div>
+  </body>
+</html>
