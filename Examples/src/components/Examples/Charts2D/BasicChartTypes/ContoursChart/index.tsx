@@ -14,8 +14,10 @@ import classes from "../../../../Examples/Examples.module.scss";
 const divElementId = "chart";
 
 const drawExample = async () => {
-    // Create a SciChartSurface with X,Y Axis
+    // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+
+    // Create an X & Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
@@ -26,27 +28,30 @@ const drawExample = async () => {
     const colorPaletteMax = 200;
 
     // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
-    const initialZValues: number[][] = createSeries(3, heatmapWidth, heatmapHeight, colorPaletteMax);
-    const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, 0, 1, 0, 1, initialZValues);
+    const initialZValues = createSeries(3, heatmapWidth, heatmapHeight, colorPaletteMax);
+    const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
+        zValues: initialZValues,
+        xStart: 0,
+        xStep: 1,
+        yStart: 0,
+        yStep: 1
+    });
 
-    // Create a Contours RenderableSeries with the same data
-    const contourSeries = new UniformContoursRenderableSeries(wasmContext, {
+    // Add the contours series and add to the chart
+    sciChartSurface.renderableSeries.add(new UniformContoursRenderableSeries(wasmContext, {
         dataSeries: heatmapDataSeries,
         zMin: 20,
         zMax: colorPaletteMax,
         zStep: 20,
         strokeThickness: 1,
         stroke: "#C6E6FF"
-    });
-
-    // Add the contours to the chart
-    sciChartSurface.renderableSeries.add(contourSeries);
+    }));
 
     // Create a background heatmap series with the same data and add to the chart
-    const heatmapSeries = new UniformHeatmapRenderableSeries(wasmContext, {
+    sciChartSurface.renderableSeries.add(new UniformHeatmapRenderableSeries(wasmContext, {
         dataSeries: heatmapDataSeries,
         useLinearTextureFiltering: false,
-        opacity: 0.8,
+        opacity: 0.5,
         colorMap: new HeatmapColorMap({
             minimum: colorPaletteMin,
             maximum: colorPaletteMax,
@@ -59,10 +64,7 @@ const drawExample = async () => {
                 { offset: 1.0, color: "#FF0000" }
             ]
         })
-    });
-
-    // Add heatmap to the chart
-    sciChartSurface.renderableSeries.add(heatmapSeries);
+    }));
 
     // Add interaction
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
