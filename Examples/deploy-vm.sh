@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Start production deploy"
+echo "Start staging deploy"
 server=$1
 appRoot=/home/webjsdemoadmin/apps/SciChart.JS.Examples.dev_v2/Examples
 ssh $server ". ~/.nvm/nvm.sh; pm2 stop examples; pm2 delete examples"
