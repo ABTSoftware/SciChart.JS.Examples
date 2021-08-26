@@ -1,6 +1,6 @@
 import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {XyDataSeries} from "scichart/Charting/model/XyDataSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {RolloverModifier} from "scichart/Charting/ChartModifiers/RolloverModifier";
 import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
