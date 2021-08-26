@@ -9,6 +9,7 @@ import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberB
 import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import {EZoomState} from "scichart/types/ZoomState";
+import { EExecuteOn } from "scichart/types/ExecuteOn";
 
 async function initSciChart() {
     // LICENSING //
@@ -62,7 +63,7 @@ async function initSciChart() {
     // Add RubberBandZoomModifier
     sciChartSurface.chartModifiers.add(new RubberBandXyZoomModifier());
     // Add ZoomPanModifier
-    // sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ executeOn: EExecuteOn.MouseRightButton }));
 
     // Part 2: Appending data in realtime
     //
