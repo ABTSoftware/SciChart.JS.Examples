@@ -28,18 +28,18 @@ const SERIES = 500;
 const POINTS = 500;
 
 const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, 3, 2);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, { widthAspect: 3, heightAspect: 2});
     const xAxis = new NumericAxis(wasmContext, {
         visibleRange: new NumberRange(0, POINTS),
         autoRange: EAutoRange.Never
     });
-    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    // xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
     sciChartSurface.xAxes.add(xAxis);
     const yAxis = new NumericAxis(wasmContext, {
         visibleRange: new NumberRange(-5000, 5000),
         autoRange: EAutoRange.Never
     });
-    yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    // yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
     sciChartSurface.yAxes.add(yAxis);
 
     const dataSeriesArray: XyDataSeries[] = new Array<XyDataSeries>(SERIES);

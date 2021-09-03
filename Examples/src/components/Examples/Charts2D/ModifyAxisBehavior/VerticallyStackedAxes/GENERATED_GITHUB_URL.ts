@@ -1,0 +1,1 @@
+export const githubUrl = "/components/Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/index.tsx";
