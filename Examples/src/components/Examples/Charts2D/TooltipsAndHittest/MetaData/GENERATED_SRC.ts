@@ -24,6 +24,8 @@ import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IR
 
 const divElementId = "chart";
 
+// Metadata must implement IPointMetadata
+// This one has a text field, and also holds the previous data value
 class MyMetadata implements IPointMetadata {
     public static create(title: string, prevousValue?: number, isSelected?: boolean) {
         const md = new MyMetadata();
@@ -42,6 +44,7 @@ class MyMetadata implements IPointMetadata {
     private constructor() {}
 }
 
+// This function returns the text that will appear in the rollover tooltip
 const tooltipDataTemplateRS: TRolloverTooltipDataTemplate = (seriesInfo: XySeriesInfo): string[] => {
     const valuesWithLabels: string[] = [];
     // Line Series
@@ -55,6 +58,8 @@ const tooltipDataTemplateRS: TRolloverTooltipDataTemplate = (seriesInfo: XySerie
     return valuesWithLabels;
 };
 
+// A PaletteProvider that will color the line differently depending on whether it is rising or falling.
+// tslint:disable-next-line: max-classes-per-file
 class LinePaletteProvider implements IStrokePaletteProvider {
     public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
 
@@ -84,6 +89,8 @@ class LinePaletteProvider implements IStrokePaletteProvider {
     }
 }
 
+const color = "#368BC1";
+
 const drawExample = async (): Promise<TWebAssemblyChart> => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     const xAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) });
@@ -97,7 +104,7 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
     const firstSeriesData = createDataSeries(wasmContext, 0, { dataSeriesName: "Sinewave A" });
 
     const renderableSeries1 = new FastLineRenderableSeries(wasmContext, {
-        stroke: colorsArr[0],
+        stroke: color,
         strokeThickness: 3,
         dataSeries: firstSeriesData,
         pointMarker: new EllipsePointMarker(wasmContext, {
@@ -105,12 +112,12 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
             height: 5,
             strokeThickness: 2,
             fill: "white",
-            stroke: colorsArr[0]
+            stroke: color
         }),
         paletteProvider: new LinePaletteProvider(),
     });
-    renderableSeries1.rolloverModifierProps.markerColor = colorsArr[0];
-    renderableSeries1.rolloverModifierProps.tooltipColor = colorsArr[0];
+    renderableSeries1.rolloverModifierProps.markerColor = color;
+    renderableSeries1.rolloverModifierProps.tooltipColor = color;
     sciChartSurface.renderableSeries.add(renderableSeries1);
 
     renderableSeries1.rolloverModifierProps.tooltipDataTemplate = tooltipDataTemplateRS;
@@ -124,6 +131,7 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
     return { sciChartSurface, wasmContext };
 };
 
+// Generate some data, including metadata
 const createDataSeries = (wasmContext: TSciChart, index: number, options?: IXyDataSeriesOptions) => {
     const sigma = Math.pow(0.6, index);
     const dataSeries = new XyDataSeries(wasmContext, options);
@@ -132,13 +140,13 @@ const createDataSeries = (wasmContext: TSciChart, index: number, options?: IXyDa
         const grow = 1 + i / 99;
         const metadata = i > 0 ? MyMetadata.create("Metadata " + i.toString() , prev) : undefined;
         const y = Math.sin((Math.PI * i) / 15) * grow * sigma;
+        // metadata is an optional parameter on all data manipulation methods on dataseries,
+        // so it can also be added as an array eg dataSeries.appendRange(xValues, yValues, metadataArray);
         dataSeries.append(i, y, metadata);
         prev = y;
     }
     return dataSeries;
 };
-
-const colorsArr = ["#368BC1", "#eeeeee", "#228B22", "#be0000", "#ff6600", "#ff0000"];
 
 export default function UsingMetaData() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();

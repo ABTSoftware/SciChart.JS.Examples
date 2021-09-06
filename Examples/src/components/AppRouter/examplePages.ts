@@ -60,7 +60,12 @@ import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnota
 import { GalleryItem } from "../../helpers/types/types";
 import { dragHorizontalThresholdExampleInfo } from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
 import { metaDataExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/MetaData/exampleInfo";
-import {logarithmicAxisExampleInfo} from "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/exampleInfo";
+import { logarithmicAxisExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/exampleInfo";
+import { simpleChartExampleInfo } from "../Examples/BuilderApi/SimpleChart/exampleInfo";
+import { fullChartExampleInfo } from "../Examples/BuilderApi/FullChart/exampleInfo";
+import { chartFromJSONExampleInfo } from "../Examples/BuilderApi/ChartFromJSON/exampleInfo";
+import { sharedDataExampleInfo } from "../Examples/BuilderApi/SharedData/exampleInfo";
+import { customTypesExampleInfo } from "../Examples/BuilderApi/CustomTypes/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -329,5 +334,25 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_scientificCharts_TenorCurvesDemo: {
         id: "featuredApps_scientificCharts_TenorCurvesDemo",
         ...tenorCurvesExampleInfo
+    },
+    builderApi_simplechart: {
+        id: "builderApi_simplechart",
+        ...simpleChartExampleInfo
+    },
+    builderApi_fullchart: {
+        id: "builderApi_fullchart",
+        ...fullChartExampleInfo
+    },
+    builderApi_chartFromJSON: {
+        id: "builderApi_chartFromJSON",
+        ...chartFromJSONExampleInfo
+    },
+    builderApi_SharedData: {
+        id: "builderApi_SharedData",
+        ...sharedDataExampleInfo
+    },
+    builderApi_CustomTypes: {
+        id: "builderApi_CustomTypes",
+        ...customTypesExampleInfo
     }
 });
