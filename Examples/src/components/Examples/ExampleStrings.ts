@@ -507,12 +507,12 @@ export const ExampleStrings = {
 
     // BuilderApi, Custom Types
     urlCustomTypes: "/javascript-custom-types",
-    titleCustomTypes: "Custom TypesJavaScript with Builder API",
+    titleCustomTypes: "Custom Types with Builder API",
     imgCustomTypes: "images/javascript-custom-types.jpg",
 
     // BuilderApi, Shared Data
     urlSharedData: "/javascript-shared-data",
     titleSharedData: "Reusable Templates using Shared Data",
-    imgSharedData: "images/javascript-custom-types.jpg",
+    imgSharedData: "images/javascript-shared-data.jpg",
 
 };

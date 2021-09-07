@@ -23,7 +23,10 @@ const drawExample = async (json: string, setErrors: (error: any)=> void): Promis
 };
 
 const defaultJSON = `{
-    "series": { "type": "LineSeries", "xyData": { "xValues": [1,3,4,7,9], "yValues": [10,6,7,2,16] } },
+    "series": { "type": "SplineLineSeries", 
+        "options": { "stroke": "red" }, 
+        "xyData": { "xValues": [1,3,4,7,9], "yValues": [10,6,7,2,16] } 
+    },
     "yAxes": { "type": "NumericAxis", "options": { "visibleRange": {"min": 0, "max": 20} } }
 }`;
 
@@ -61,7 +64,7 @@ export default function ChartFromJSON() {
 
     const loadMinimal = (event: any) => {
         setJSON(`{
-            "series": { "type": "LineSeries", "xyData": { "xValues": [1,3,4,7,9], "yValues": [10,6,7,2,16] } },
+            "series": { "type": "LineSeries", "xyData": { "xValues": [1,3,4,7,9], "yValues": [10,6,7,2,16] } }
         }`);
         setBuildRequested(false);
     };
@@ -70,7 +73,8 @@ export default function ChartFromJSON() {
         setJSON(`{
             "surface": {
                 "theme": {
-                    "type": "Dark"
+                    "type": "Dark",
+                    "axisTitleColor": "#96ccfa", "sciChartBackground": "#0c0136"
                 }
             },
             "xAxes": [{
@@ -92,7 +96,8 @@ export default function ChartFromJSON() {
                         "axisAlignment": "Left",
                         "axisTitle": "Left Axis",
                         "id": "y1",
-                        "visibleRange": { "min": 0, "max": 20 }
+                        "visibleRange": { "min": 0, "max": 20 },
+                        "zoomExtentsToInitialRange": true
                     }
                 }, {
                     "type": "NumericAxis",
@@ -100,7 +105,8 @@ export default function ChartFromJSON() {
                         "axisAlignment": "Right",
                         "axisTitle": "Right Axis",
                         "id": "y2",
-                        "visibleRange": { "min": 0, "max": 800 }
+                        "visibleRange": { "min": 0, "max": 800 },
+                        "zoomExtentsToInitialRange": true
                     }
                 }
             ],
@@ -147,7 +153,9 @@ export default function ChartFromJSON() {
                 }
             ],
             "modifiers": [
-                { "type": "Rollover", "options": { "yAxisId": "y1" } }
+                { "type": "Rollover", "options": { "yAxisId": "y1" } },
+                { "type": "MouseWheelZoom" },
+                { "type": "ZoomExtents" }
             ],
             "annotations": [{
                     "type": "SVGTextAnnotation",

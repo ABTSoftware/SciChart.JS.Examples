@@ -8,18 +8,19 @@ import { TDocumentationLink } from "../../../../helpers/types/ExampleDescription
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to use the Builder Api to create a <strong>Chart from JSON</strong> using SciChart.js, High Performance{" "}
+        Demonstrates how to use the Builder Api with <strong>Custom Types</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
     </p>
 );
 
-const previewDescription = `Demonstrates how to use the Builder Api to create a chart from JSON. `;
-const description = `This example simply passes the json you specify into the chartBuilder.build2DChart method`;
+const previewDescription = `Demonstrates how to make a custom PaletteProvider available for use with the Builder Api.`;
+const description = `To use a custom type, you just need to register it using chartBuilder.registerType, with a name, and a function that will create an instance of your type.  
+This example also shows how you can call methods within the builder api to get references to the objects being built, so you can update them later.`;
 const tips = [
-    ` When using this method in code, you don't need to pass a json string.  You can construct an object and get the benefit of intellisense`,
-    ` See the documentation links for the types and options you can specify`
+    ` Custom types can have options which will be passed to the registered function.`,
+    ` Add a toJSON method to your custom type if you want it to be serialized`
 ];
 
 const documentationLinks: TDocumentationLink[] = [
@@ -45,28 +46,28 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: ExampleStrings.imgScatterChart,
-                title: ExampleStrings.titleScatterChart,
-                seoTitle: ExampleStrings.urlTitleScatterChart,
-                examplePath: ExampleStrings.urlScatterChart
+                imgPath: ExampleStrings.imgChartFromJSON,
+                title: ExampleStrings.titleChartFromJSON,
+                seoTitle: ExampleStrings.titleChartFromJSON,
+                examplePath: ExampleStrings.urlChartFromJSON
             },
             {
-                imgPath: ExampleStrings.imgPointMarkers,
-                title: ExampleStrings.titlePointMarkers,
-                seoTitle: ExampleStrings.urlTitlePointMarkers,
-                examplePath: ExampleStrings.urlPointMarkers
+                imgPath: ExampleStrings.imgBuilderFullChart,
+                title: ExampleStrings.titleBuilderFullChart,
+                seoTitle: ExampleStrings.titleBuilderFullChart,
+                examplePath: ExampleStrings.urlBuilderFullChart
             },
             {
-                imgPath: ExampleStrings.imgStackedMountainChart,
-                title: ExampleStrings.titleStackedMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
+                imgPath: ExampleStrings.imgSharedData,
+                title: ExampleStrings.titleSharedData,
+                seoTitle: ExampleStrings.titleSharedData,
+                examplePath: ExampleStrings.urlSharedData
             },
             {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
+                imgPath: ExampleStrings.imgBuilderSimpleChart,
+                title: ExampleStrings.titleBuilderSimpleChart,
+                seoTitle: ExampleStrings.titleBuilderSimpleChart,
+                examplePath: ExampleStrings.urlBuilderSimpleChart
             }
         ]
     }
@@ -84,8 +85,8 @@ export const customTypesExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Demonstrates how to create a JavaScript Line Chart. " +
-        "The Line Series also supports gradient-coloring and per-point coloring via our PaletteProvider API.",
-    seoKeywords: "line, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-line-chart.jpg"
+        "Demonstrates how to make a custom type such as a PaletteProvider available for use with the Builder Api." +
+        "You can call methods within the builder api to get references to the objects being built, so you can update them later.",
+    seoKeywords: "custom, chart, javascript, builder, paletteprovider",
+    thumbnailImage: "javascript-custom-types.jpg"
 };

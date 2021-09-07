@@ -23,7 +23,10 @@ const drawExample = async (json: string, setErrors: (error: any)=> void): Promis
 };
 
 const defaultJSON = \`{
-    "series": { "type": "Line Series", "xyData": { "xValues": [1,3,4,7,9], "yValues": [10,6,7,2,16] } },
+    "series": { "type": "SplineLineSeries", 
+        "options": { "stroke": "red" }, 
+        "xyData": { "xValues": [1,3,4,7,9], "yValues": [10,6,7,2,16] } 
+    },
     "yAxes": { "type": "NumericAxis", "options": { "visibleRange": {"min": 0, "max": 20} } }
 }\`;
 
@@ -61,14 +64,107 @@ export default function ChartFromJSON() {
 
     const loadMinimal = (event: any) => {
         setJSON(\`{
-            "series": { "type": "Line Series", "xyData": { "xValues": [1,3,4,7,9], "yValues": [10,6,7,2,16] } },
+            "series": { "type": "LineSeries", "xyData": { "xValues": [1,3,4,7,9], "yValues": [10,6,7,2,16] } }
         }\`);
         setBuildRequested(false);
     };
 
     const loadFull = (event: any) => {
         setJSON(\`{
-            "series": { "type": "Line Series", "xyData": { "xValues": [1,3,4,7,9], "yValues": [10,6,7,2,16] } },
+            "surface": {
+                "theme": {
+                    "type": "Dark",
+                    "axisTitleColor": "#96ccfa", "sciChartBackground": "#0c0136"
+                }
+            },
+            "xAxes": [{
+                    "type": "CategoryAxis",
+                    "options": {
+                        "axisTitle": "X Axis Title",
+                        "labelProvider": {
+                            "type": "Text",
+                            "options": {
+                                "labels": { "1": "one", "2": "two", "3": "three", "4": "four", "5": "five" }
+                            }
+                        }
+                    }
+                }
+            ],
+            "yAxes": [{
+                    "type": "NumericAxis",
+                    "options": {
+                        "axisAlignment": "Left",
+                        "axisTitle": "Left Axis",
+                        "id": "y1",
+                        "visibleRange": { "min": 0, "max": 20 },
+                        "zoomExtentsToInitialRange": true
+                    }
+                }, {
+                    "type": "NumericAxis",
+                    "options": {
+                        "axisAlignment": "Right",
+                        "axisTitle": "Right Axis",
+                        "id": "y2",
+                        "visibleRange": { "min": 0, "max": 800 },
+                        "zoomExtentsToInitialRange": true
+                    }
+                }
+            ],
+            "series": [{
+                    "type": "SplineMountainSeries",
+                    "options": {
+                        "yAxisId": "y1",
+                        "fillLinearGradient": {
+                            "gradientStops": [{
+                                    "color": "rgba(203, 227, 247, 1)",
+                                    "offset": 0
+                                }, {
+                                    "color": "rgba(3, 93, 168, 0.5)",
+                                    "offset": 1
+                                }
+                            ],
+                            "startPoint": { "x": 0, "y": 0 },
+                            "endPoint": {"x": 0, "y": 1 }
+                        }
+                    },
+                    "xyData": {
+                        "xValues": [1, 2, 3, 4, 5],
+                        "yValues": [8, 6, 7, 2, 16]
+                    }
+                }, {
+                    "type": "BubbleSeries",
+                    "options": {
+                        "pointMarker": {
+                            "type": "Ellipse",
+                            "options": {
+                                "fill": "#ba130499",
+                                "strokeThickness": 0,
+                                "height": 100,
+                                "width": 100
+                            }
+                        },
+                        "yAxisId": "y2"
+                    },
+                    "xyzData": {
+                        "xValues": [1, 2, 3, 4, 5],
+                        "yValues": [180, 350, 490, 720, 530],
+                        "zValues": [20, 40, 20, 30, 35]
+                    }
+                }
+            ],
+            "modifiers": [
+                { "type": "Rollover", "options": { "yAxisId": "y1" } },
+                { "type": "MouseWheelZoom" },
+                { "type": "ZoomExtents" }
+            ],
+            "annotations": [{
+                    "type": "SVGTextAnnotation",
+                    "options": {
+                        "y1": 10,
+                        "text": "Annotation"
+                    }
+                }
+            ]
         }\`);
         setBuildRequested(false);
     };
@@ -83,7 +179,7 @@ export default function ChartFromJSON() {
         setJSON(\`{
             "surface": { "layoutManager": { "type": "CentralAxes" } },
             "series": {
-                "type": "Scatter Series",
+                "type": "ScatterSeries",
                 "options": { "pointMarker": { "type": "Ellipse", "options": { "fill": "white" } } },
                 "xyData": { "dataIsSortedInX": false, "xValues": [\${spiralX}], "yValues": [\${spiralY}] }
             },
@@ -115,7 +211,8 @@ export default function ChartFromJSON() {
                     <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                         <Button id="buildChart" onClick={handleBuild}>Build</Button>
                         <Button id="eg1" onClick={loadMinimal}>Minimal example</Button>
-                        <Button id="eg2" onClick={loadCentral}>Central Axes</Button>
+                        <Button id="eg2" onClick={loadFull}>Full example</Button>
+                        <Button id="eg3" onClick={loadCentral}>Central Axes</Button>
                     </ButtonGroup>
                 </div>
             </div>

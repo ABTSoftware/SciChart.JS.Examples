@@ -19,8 +19,9 @@ const Subtitle = () => (
 const previewDescription = `The Builder Api offers a way to pass data to the chart that cleanly separates the data from the chart definition.`;
 const description = `This allows data to be reused in the chart, but more importantly allows the data and the chart definition to be built separately and then combined with ease.`;
 const tips = [
-    ` When using this method in code, you don't need to pass a json string.  You can construct an object and get the benefit of intellisense`,
-    ` See the documentation links for the types and options you can specify`
+    ` To deserialize a definition before adding data, use JSON.parse(jsonString, chartBuilder.chartReviver)`,
+    ` To convert a chart to a definition without data, use sciChartSurface.toJSON(true)`,
+    ` Data will be serialized to the individual series if the resulting chart is serialized`
 ];
 
 const documentationLinks: TDocumentationLink[] = [
@@ -46,28 +47,28 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: ExampleStrings.imgScatterChart,
-                title: ExampleStrings.titleScatterChart,
-                seoTitle: ExampleStrings.urlTitleScatterChart,
-                examplePath: ExampleStrings.urlScatterChart
+                imgPath: ExampleStrings.imgChartFromJSON,
+                title: ExampleStrings.titleChartFromJSON,
+                seoTitle: ExampleStrings.titleChartFromJSON,
+                examplePath: ExampleStrings.urlChartFromJSON
             },
             {
-                imgPath: ExampleStrings.imgPointMarkers,
-                title: ExampleStrings.titlePointMarkers,
-                seoTitle: ExampleStrings.urlTitlePointMarkers,
-                examplePath: ExampleStrings.urlPointMarkers
+                imgPath: ExampleStrings.imgCustomTypes,
+                title: ExampleStrings.titleCustomTypes,
+                seoTitle: ExampleStrings.titleCustomTypes,
+                examplePath: ExampleStrings.urlCustomTypes
             },
             {
-                imgPath: ExampleStrings.imgStackedMountainChart,
-                title: ExampleStrings.titleStackedMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
+                imgPath: ExampleStrings.imgBuilderFullChart,
+                title: ExampleStrings.titleBuilderFullChart,
+                seoTitle: ExampleStrings.titleBuilderFullChart,
+                examplePath: ExampleStrings.urlBuilderFullChart
             },
             {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
+                imgPath: ExampleStrings.imgBuilderSimpleChart,
+                title: ExampleStrings.titleBuilderSimpleChart,
+                seoTitle: ExampleStrings.titleBuilderSimpleChart,
+                examplePath: ExampleStrings.urlBuilderSimpleChart
             }
         ]
     }
@@ -85,8 +86,8 @@ export const sharedDataExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Demonstrates how to create a JavaScript Line Chart. " +
-        "The Line Series also supports gradient-coloring and per-point coloring via our PaletteProvider API.",
-    seoKeywords: "line, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-line-chart.jpg"
+        "Demonstrates how to use the Builder Api to create Reusable Chart Templates." +
+        "Data can be easily integrated into a definition and shared between series",
+    seoKeywords: "template, chart, javascript, data, reuse",
+    thumbnailImage: "javascript-shared-data.jpg"
 };

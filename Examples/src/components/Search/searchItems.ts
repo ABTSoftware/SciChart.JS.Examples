@@ -242,4 +242,24 @@ export const searchItems: TSearchItem[] = [
         title: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.title,
         link: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.path,
     },
+    {
+        title: EXAMPLES_PAGES.builderApi_simplechart.title,
+        link: EXAMPLES_PAGES.builderApi_simplechart.path,
+    },
+    {
+        title: EXAMPLES_PAGES.builderApi_fullchart.title,
+        link: EXAMPLES_PAGES.builderApi_fullchart.path,
+    },
+    {
+        title: EXAMPLES_PAGES.builderApi_chartFromJSON.title,
+        link: EXAMPLES_PAGES.builderApi_chartFromJSON.path,
+    },
+    {
+        title: EXAMPLES_PAGES.builderApi_SharedData.title,
+        link: EXAMPLES_PAGES.builderApi_SharedData.path,
+    },
+    {
+        title: EXAMPLES_PAGES.builderApi_CustomTypes.title,
+        link: EXAMPLES_PAGES.builderApi_CustomTypes.path,
+    },
 ];

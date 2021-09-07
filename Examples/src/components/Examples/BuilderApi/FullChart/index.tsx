@@ -43,6 +43,7 @@ const drawExample = async () => {
                     axisTitle: "Left Axis",
                     axisAlignment: EAxisAlignment.Left,
                     visibleRange: new NumberRange(0, 20),
+                    zoomExtentsToInitialRange: true
                 }
             },
             {
@@ -52,7 +53,8 @@ const drawExample = async () => {
                     axisTitle: "Right Axis",
                     axisAlignment: EAxisAlignment.Right,
                     visibleRange: new NumberRange(0, 800),
-                    labelPrecision: 0
+                    labelPrecision: 0,
+                    zoomExtentsToInitialRange: true
                 }
             }
         ],
@@ -71,7 +73,7 @@ const drawExample = async () => {
             {
                 type: ESeriesType.BubbleSeries,
                 options: {
-                    yAxisId: "y1",
+                    yAxisId: "y2",
                     pointMarker: {
                         type: EPointMarkerType.Ellipse,
                         options: {
@@ -96,7 +98,9 @@ const drawExample = async () => {
             }
         ],
         modifiers: [
-            { type: EChart2DModifierType.Rollover, options: { yAxisId: "y1" } }
+            { type: EChart2DModifierType.Rollover, options: { yAxisId: "y1" } },
+            { type: EChart2DModifierType.MouseWheelZoom },
+            { type: EChart2DModifierType.ZoomExtents }
         ]
     });
 };

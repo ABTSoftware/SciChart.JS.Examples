@@ -7,22 +7,30 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { EAxisType } from "scichart/types/AxisType";
 import { ELabelProviderType } from "scichart/types/LabelProviderType";
+import { ISciChart2DDefinition } from "../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Builder/buildSurface";
+import { TSharedDataDefinition } from "../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Builder/buildDataSeries";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
-    // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, {
-        surface: { theme: { type: "dark", lineSeriesColor: "blue" } },
+    // Create a definition using dataIds
+    const chartTemplate: ISciChart2DDefinition = {
         series: [
-            { type: ESeriesType.ColumnSeries, xyData: { xDataId: "x", yDataId: "col" } },
+            {
+                type: ESeriesType.ColumnSeries,
+                options: { dataPointWidth: 0.5, fill: "rgba(44, 140, 219, 0.7)" },
+                xyData: { xDataId: "x", yDataId: "col" }
+            },
             { type: ESeriesType.LineSeries, xyData: { xDataId: "x", yDataId: "line" } },
             { type: ESeriesType.SplineBandSeries, xyyData: { xDataId: "x", yDataId: "col", y1DataId: "line" } }
-        ],
-        sharedData: { x: [1, 3, 4, 5, 6], col: [8, 2, 3, 7, 10], line: [10, 6, 7, 2, 16] }
-    });
+        ]
+    };
 
-    return { sciChartSurface, wasmContext };
+    // The data for the chart
+    const sharedData: TSharedDataDefinition = { x: [1, 3, 4, 5, 6], col: [8, 2, 3, 7, 10], line: [10, 6, 7, 2, 16] };
+
+    // Build the chart by combining the definition and data
+    return await chartBuilder.build2DChart(divElementId, { ...chartTemplate, sharedData });
 };
 
 // React component needed as our examples app is react.

@@ -83,5 +83,5 @@ export const simpleChartExampleInfo: TExampleInfo = {
         "Demonstrates how to use the Builder Api to create a simple chart using a definition object. " +
         "The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
     seoKeywords: "definition, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-line-chart.jpg"
+    thumbnailImage: "javascript-builder-simple.jpg"
 };

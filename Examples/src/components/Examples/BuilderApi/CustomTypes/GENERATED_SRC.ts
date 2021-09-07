@@ -10,7 +10,12 @@ import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { EAnimationType } from "scichart/types/AnimationType";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { EPaletteProviderType } from "scichart/types/PaletteProviderType";
-import { EFillPaletteMode, EStrokePaletteMode, IFillPaletteProvider, IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
+import {
+    EFillPaletteMode,
+    EStrokePaletteMode,
+    IFillPaletteProvider,
+    IStrokePaletteProvider
+} from "scichart/Charting/Model/IPaletteProvider";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { EBaseType } from "scichart/types/BaseType";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
@@ -20,10 +25,18 @@ const divElementId = "chart";
 
 // Define a custom PaletteProvider
 export class ExampleMountainPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
+    public static Name: "ExampleMountain";
     public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
     public readonly fillPaletteMode = EFillPaletteMode.SOLID;
-    private readonly palettedStroke = parseColorToUIntArgb("lime");
-    private readonly palettedFill = parseColorToUIntArgb("yellow");
+    private readonly palettedStroke: number;
+    private readonly palettedFill: number;
+    private readonly options: { stroke: string; fill: string };
+
+    constructor(options: { stroke: string; fill: string }) {
+        this.options = options;
+        this.palettedStroke = parseColorToUIntArgb(options.stroke);
+        this.palettedFill = parseColorToUIntArgb(options.fill);
+    }
 
     // tslint:disable-next-line:no-empty
     public onAttached(parentSeries: IRenderableSeries): void {}
@@ -47,28 +60,42 @@ export class ExampleMountainPaletteProvider implements IStrokePaletteProvider, I
         }
     }
 
-    // Add a toJSON method so this can be serialized.  
+    // Add a toJSON method so this can be serialized.
     // @ts-ignore
     public toJSON() {
-        return { type: EPaletteProviderType.Custom, customType: "ExampleMountain" };
+        return {
+            type: EPaletteProviderType.Custom,
+            customType: ExampleMountainPaletteProvider.Name,
+            options: this.options
+        };
     }
 }
 
 // Register it for use by the builder api
-chartBuilder.registerType(EBaseType.PaletteProvider, "ExampleMountain", () => new ExampleMountainPaletteProvider());
+chartBuilder.registerType(
+    EBaseType.PaletteProvider,
+    ExampleMountainPaletteProvider.Name,
+    (options: { stroke: string; fill: string }) => new ExampleMountainPaletteProvider(options)
+);
 
 const drawExample = async () => {
     // Build the surface
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, {
-                yAxes: { type: EAxisType.NumericAxis, 
-                         options: { axisAlignment: EAxisAlignment.Left, visibleRange: new NumberRange(0, 1) } }
-            });
-    // Build the series.  
+        yAxes: {
+            type: EAxisType.NumericAxis,
+            options: { axisAlignment: EAxisAlignment.Left, visibleRange: new NumberRange(0, 1) }
+        }
+    });
+    // Build the series.
     // By doing this separately we can easily get the reference to the series so we can add generated data to it
     const [mountainSeries] = chartBuilder.buildSeries(wasmContext, {
         type: ESeriesType.MountainSeries,
         options: {
-            paletteProvider: { type: EPaletteProviderType.Custom, customType: "ExampleMountain" },
+            paletteProvider: {
+                type: EPaletteProviderType.Custom,
+                customType: ExampleMountainPaletteProvider.Name,
+                options: { stroke: "lime", fill: "yellow" }
+            },
             fillLinearGradient: {
                 startPoint: { x: 0, y: 0 },
                 endPoint: { x: 0, y: 1 },
@@ -79,10 +106,11 @@ const drawExample = async () => {
             },
             drawNaNAs: ELineDrawMode.PolyLine,
             animation: { type: EAnimationType.Scale, options: { ease: "cubic" } }
-        },
-        xyData: {}
+        }
     });
 
+    // Create a dataSeries the normal way
+    const dataSeries = new XyDataSeries(wasmContext);
     // Generate data
     const POINTS = 1000;
     const STEP = (3 * Math.PI) / POINTS;
@@ -91,9 +119,10 @@ const drawExample = async () => {
         if (y < 0.2) {
             y = NaN;
         }
-        // We have to cast the dataSeries to the correct type in order to append to it.
-        (mountainSeries.dataSeries as XyDataSeries).append(i, y);
+        dataSeries.append(i, y);
     }
+    mountainSeries.dataSeries = dataSeries;
+    // Since we built the series separately, we have to manually add it to the surface
     sciChartSurface.renderableSeries.add(mountainSeries);
 
     return { sciChartSurface, wasmContext };
@@ -121,6 +150,4 @@ export default function BuilderCustomTypes() {
         </>
     );
 }
-
-
 `;
