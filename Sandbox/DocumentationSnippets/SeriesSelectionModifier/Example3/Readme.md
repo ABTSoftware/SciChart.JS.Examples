@@ -1,8 +1,8 @@
 # SciChart.js Documentation Code Snippets
 
-## DataPointSelectionModifier Example 1
+## SeriesSelectionModifier Example 3
 
-Code sample from DataPointSelectionModifier documentation 
+Code sample from SeriesSelectionModifier documentation 
 
 To view the full text of this code sample online, visit www.scichart.com/javascript-chart-documentation
 
