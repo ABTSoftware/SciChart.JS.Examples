@@ -158,5 +158,5 @@ Edit `Examples/src/helpers/SciChartExamples.ts` to add new example to main page
     ...
 ```
 
-* **Update sitemap**
-`npm run generateSitemap`
+* **Update sitemap and footers**
+`npm run generateAll`
