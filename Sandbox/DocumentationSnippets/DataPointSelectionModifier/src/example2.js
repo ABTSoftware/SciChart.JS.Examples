@@ -7,8 +7,8 @@ import {DataPointSelectionPaletteProvider} from "scichart/Charting/Model/DataPoi
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {NumberRange} from "scichart/Core/NumberRange";
 
-async function initSciChart() {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-div-id");
+export async function datapointSelectionExample2() {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-div-id-2");
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -75,5 +75,3 @@ async function initSciChart() {
     sciChartSurface.chartModifiers.get(0).selectionFill = "Red";
     sciChartSurface.chartModifiers.get(0).selectionStroke = "Blue";
 }
-
-initSciChart();

@@ -1,13 +1,12 @@
 import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {SeriesSelectionModifier} from "scichart/Charting/ChartModifiers/SeriesSelectionModifier";
 
-async function initSciChart() {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-div-id");
+export async function initSciChart2() {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-div-id-2");
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -68,5 +67,3 @@ async function initSciChart() {
     sciChartSurface.chartModifiers.add(seriesSelectionModifier);
     sciChartSurface.renderableSeries.add(series);
 }
-
-initSciChart();

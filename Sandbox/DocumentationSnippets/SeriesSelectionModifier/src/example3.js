@@ -9,8 +9,8 @@ import {LineAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animatio
 import {easing} from "scichart/Core/Animations/EasingFunctions";
 import {EPointMarkerType} from "scichart/types/PointMarkerType";
 
-async function initSciChart() {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-div-id");
+export async function initSciChart3() {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-div-id-3");
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -95,4 +95,3 @@ async function initSciChart() {
     }));
 }
 
-initSciChart();
