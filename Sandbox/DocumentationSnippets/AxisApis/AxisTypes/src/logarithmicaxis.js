@@ -1,5 +1,4 @@
 import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {EAxisAlignment} from "scichart/types/AxisAlignment";
 import {ENumericFormat} from "scichart/types/NumericFormat";
 import {LogarithmicAxis} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
@@ -18,11 +17,12 @@ export async function initLogAxis() {
     }));
 
     // Creating a Log(2) Axis on the YAxis
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+    sciChartSurface.yAxes.add(new LogarithmicAxis(wasmContext, {
         axisTitle: "Log(2) Axis",
         axisAlignment: EAxisAlignment.Left,
-        labelFormat: ENumericFormat.Exponential,
+        labelFormat: ENumericFormat.SignificantFigures,
+        majorTickMode: ELogarithmicMajorTickMode.RoundNumbers,
         logBase: 2,
-        visibleRange: new NumberRange(1, 512)
+        visibleRange: new NumberRange(0.1, 500)
     }));
 }
