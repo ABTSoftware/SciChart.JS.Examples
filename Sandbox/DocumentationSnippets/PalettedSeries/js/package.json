@@ -1,7 +1,7 @@
 {
-  "name": "tutorial1",
+  "name": "paletted-series",
   "version": "1.0.0",
-  "description": "First Tutorial with SciChart.js",
+  "description": "Paletted Series Documentation Snippet",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,14 +11,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "scichart": "^2.0.0-alpha.1955"
+    "scichart": "^2.0.0-alpha.1971"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.0.3",
+    "prettier": "^2.4.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
-    "ts-loader": "^7.0.5",
-    "typescript": "^4.0.5"
+    "webpack-dev-server": "^3.11.0"
   }
 }
