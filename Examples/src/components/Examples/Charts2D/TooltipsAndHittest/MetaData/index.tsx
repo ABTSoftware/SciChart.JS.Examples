@@ -97,7 +97,7 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
     const firstSeriesData = createDataSeries(wasmContext, 0, { dataSeriesName: "Sinewave A" });
 
     const renderableSeries1 = new FastLineRenderableSeries(wasmContext, {
-        stroke: colorsArr[0],
+        stroke: "#368BC1",
         strokeThickness: 3,
         dataSeries: firstSeriesData,
         pointMarker: new EllipsePointMarker(wasmContext, {
@@ -105,12 +105,12 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
             height: 5,
             strokeThickness: 2,
             fill: "white",
-            stroke: colorsArr[0]
+            stroke: "#368BC1"
         }),
         paletteProvider: new LinePaletteProvider(),
     });
-    renderableSeries1.rolloverModifierProps.markerColor = colorsArr[0];
-    renderableSeries1.rolloverModifierProps.tooltipColor = colorsArr[0];
+    renderableSeries1.rolloverModifierProps.markerColor = "#368BC1";
+    renderableSeries1.rolloverModifierProps.tooltipColor = "#368BC1";
     sciChartSurface.renderableSeries.add(renderableSeries1);
 
     renderableSeries1.rolloverModifierProps.tooltipDataTemplate = tooltipDataTemplateRS;
@@ -137,8 +137,6 @@ const createDataSeries = (wasmContext: TSciChart, index: number, options?: IXyDa
     }
     return dataSeries;
 };
-
-const colorsArr = ["#368BC1", "#eeeeee", "#228B22", "#be0000", "#ff6600", "#ff0000"];
 
 export default function UsingMetaData() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
