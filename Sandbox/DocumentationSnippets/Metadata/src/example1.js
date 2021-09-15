@@ -30,6 +30,20 @@ export async function initSciChart() {
     // Update a point and its metadata
     dataSeries.update(0, 3.3, { isSelected: false, note: "Updated"});
 
+    // Create metadata with template
+    const dataSeries2 = new XyDataSeries(wasmContext, {
+        xValues: [1, 2, 3, 4],
+        yValues: [4.3, 5.3, 6, 6.3],
+        metadata: { isSelected: false, note: ""}
+    });
+    
+    // Update a metadata value.  This will not trigger a chart redraw
+    // @ts-ignore
+    dataSeries2.getMetadataAt(0).note = "Updated";
+    // To force a redraw, use update and pass a new metadata object
+    // @ts-ignore
+    dataSeries2.update(0, 4.3, { isSelected: false, note: "Updated with redraw"});
+
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, { dataSeries }));
 }
 
