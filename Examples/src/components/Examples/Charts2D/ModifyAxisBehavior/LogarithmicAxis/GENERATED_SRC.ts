@@ -1,4 +1,5 @@
 export const code = `import * as React from "react";
+import {ChangeEvent} from "react";
 import {SciChartSurface} from "scichart";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
@@ -8,8 +9,10 @@ import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWhee
 import {ENumericFormat} from "scichart/types/NumericFormat";
 import {LogarithmicAxis} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
 import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
+import {LogarithmicLabelProvider} from "scichart/Charting/Visuals/Axis/LabelProvider/LogarithmicLabelProvider";
+import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
+import {EPointMarkerType} from "scichart/types/PointMarkerType";
 import classes from "../../../../Examples/Examples.module.scss";
-import {Checkbox} from "@material-ui/core";
 
 const divElementId = "chart1";
 
@@ -21,9 +24,13 @@ const drawExample = async () => {
 
     // Create an X and Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+
+    // The LogarithmicAxis will apply logarithmic scaling and labelling to your data.
+    // Simply replace a NumericAxis for a LogarithmicAxis on X or Y to apply this scaling
+    // Note options logBase, labelFormat which lets you specify exponent on labels
     const yAxis = new LogarithmicAxis(wasmContext, {
         logBase: baseValue,
-        labelFormat: ENumericFormat.Scientific,
+        labelFormat: ENumericFormat.Exponential,
         labelPrecision: 2,
     });
     sciChartSurface.yAxes.add(yAxis);
@@ -31,15 +38,32 @@ const drawExample = async () => {
     // Create some data
     const xValues = [];
     const yValues = [];
-    for (let x = 1; x < 300; x++) {
-        const y = Math.pow(x / 100, baseValue);
+    const y1Values = [];
+    const y2Values = [];
+    for (let x = 1; x < 100; x++) {
         xValues.push(x);
-        yValues.push(y);
+        yValues.push(Math.pow(x / 50, baseValue));
+        y1Values.push(Math.pow(x / 100, baseValue));
+        y2Values.push(Math.pow(x / 200, baseValue));
     }
 
-    // Create a line chart with the data
+    // Create some line charts with the data
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values }),
+        animation: new SweepAnimation({ duration: 800, delay: 300 }),
+        pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
+    }));
+
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values }),
+        animation: new SweepAnimation({ duration: 800, delay: 150}),
+        pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
+    }));
+
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+        animation: new SweepAnimation({ duration: 800}),
+        pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
     }));
 
     // Add some interactivity modifiers
@@ -47,16 +71,7 @@ const drawExample = async () => {
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier());
 
-    // Create a function to change axis parameters which gets passed back to the example
-    const changeAxisParams = (checked: boolean) => {
-        if (checked) {
-            yAxis.logBase = Math.E;
-        } else {
-            yAxis.logBase = 10;
-        }
-    };
-
-    return { sciChartSurface, wasmContext, changeAxisParams };
+    return { sciChartSurface, wasmContext, yAxis };
 };
 
 // React component needed as our examples app is react.
@@ -64,23 +79,56 @@ const drawExample = async () => {
 export default function LogarithmicAxisExample() {
 
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
-    const [changeAxisParams, setChangeAxisParams] = React.useState<(checked: boolean) => void>();
+    const [logAxis, setLogAxis] = React.useState<LogarithmicAxis>();
 
     React.useEffect(() => {
         drawExample().then(res => {
             // Store some variables which we will need later
             setSciChartSurface(res.sciChartSurface);
-            setChangeAxisParams(res.changeAxisParams);
+            setLogAxis(res.yAxis);
         });
         // Delete sciChartSurface on unmount component to prevent memory leak
-        // @ts-ignore
         return () => sciChartSurface?.delete();
     }, []);
+
+    const onNotationChanged = (e: ChangeEvent<HTMLSelectElement>) => {
+        // To update the LogarithmicAxis label format from ENumericFormat.Scientific to Exponential or Decimal
+        // create and assign a new LogarithmicLabelProvider on the chart with the new properties
+        const labelFormat = e.target.value as ENumericFormat;
+        const labelPrecision = 2;
+        logAxis.labelProvider = new LogarithmicLabelProvider({ labelFormat, labelPrecision })
+    };
+
+    const onLogBaseChanged = (e: ChangeEvent<HTMLSelectElement>) => {
+        // To update the logarithmic base set LogarithmicAxis.logBase = number
+        logAxis.logBase = parseFloat(e.target.value);
+    };
 
     return (
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
-            <Checkbox onChange={(e) => changeAxisParams(e.target.checked)}/>
+            <div className={classes.SelectWrapper}>
+                <div className={classes.InputSelectWrapper}>
+                    <label id="sciChartLogAxis-label">
+                        Log Axis Label Notation
+                        <select
+                            onChange={onNotationChanged}>
+                            <option key="Exponential" value="Exponential">Engineering</option>
+                            <option key="Scientific" value="Scientific">Scientific</option>
+                            <option key="Decimal" value="Decimal">Decimal</option>
+                        </select>
+                    </label>
+                    <label id="sciChartLogBase-label">
+                        Logarithmic Base
+                        <select
+                            onChange={onLogBaseChanged}>
+                            <option key="10" value="10">Log 10</option>
+                            <option key={Math.E} value={Math.E}>Log E</option>
+                            <option key="2" value="2">Log 2</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
         </div>
     );
 }

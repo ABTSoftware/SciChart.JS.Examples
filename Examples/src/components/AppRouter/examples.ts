@@ -71,6 +71,11 @@ import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/SplineMoun
 import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart";
 import DragHorizontalThreshold from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold";
 import UsingMetaData from "../Examples/Charts2D/TooltipsAndHittest/MetaData";
+import ChartFromJSON from "../Examples/BuilderApi/ChartFromJSON";
+import BuilderSharedData from "../Examples/BuilderApi/SharedData";
+import BuilderCustomTypes from "../Examples/BuilderApi/CustomTypes";
+import BuilderSimpleChart from "../Examples/BuilderApi/SimpleChart";
+import BuilderFullChart from "../Examples/BuilderApi/FullChart";
 
 export type TMenuItem = {
     item: {
@@ -138,7 +143,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis
         ]
     },
     {
@@ -150,7 +155,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling,
-            EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground
         ]
     },
     {
@@ -209,6 +214,27 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     }
 ];
 
+export const MENU_ITEMS_WHATSNEW_ID = "MENU_ITEMS_WHATSNEW_ID";
+export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
+    {
+        item: { id: "builderApi", name: "Builder Api" },
+        submenu: [
+            EXAMPLES_PAGES.builderApi_simplechart,
+            EXAMPLES_PAGES.builderApi_fullchart,
+            EXAMPLES_PAGES.builderApi_chartFromJSON,
+            EXAMPLES_PAGES.builderApi_SharedData,
+            EXAMPLES_PAGES.builderApi_CustomTypes
+        ]
+    },
+    {
+        item: { id: "new_modifyAxisBehavior", name: "Chart Axis APIs" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis
+        ]
+    }
+];
+
 export const getParentMenuIds = (exampleId: string): string[] => {
     const getSubmenuLevelIds = (menuItemsArr: TMenuItem[], id: string): string[] => {
         const res: string[] = [];
@@ -239,7 +265,18 @@ export const getParentMenuIds = (exampleId: string): string[] => {
         resMenuLevel.push(MENU_ITEMS_FEATURED_APPS_ID);
     }
 
-    return [...resMenuLevel, ...resSubmenuLevel2D, ...resSubmenuLevel3D, ...resSubmenuLevelFeaturedApps];
+    const resSubmenuLevelWhatsNew = getSubmenuLevelIds(MENU_ITEMS_WHATSNEW, exampleId);
+    if (resSubmenuLevelFeaturedApps.length > 0) {
+        resMenuLevel.push(MENU_ITEMS_WHATSNEW_ID);
+    }
+
+    return [
+        ...resMenuLevel,
+        ...resSubmenuLevel2D,
+        ...resSubmenuLevel3D,
+        ...resSubmenuLevelFeaturedApps,
+        ...resSubmenuLevelWhatsNew
+    ];
 };
 
 export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
@@ -366,6 +403,16 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return AudioAnalyzer;
         case EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.id:
             return TenorCurves3DChart;
+        case EXAMPLES_PAGES.builderApi_simplechart.id:
+            return BuilderSimpleChart;
+        case EXAMPLES_PAGES.builderApi_fullchart.id:
+            return BuilderFullChart;
+        case EXAMPLES_PAGES.builderApi_chartFromJSON.id:
+            return ChartFromJSON;
+        case EXAMPLES_PAGES.builderApi_SharedData.id:
+            return BuilderSharedData;
+        case EXAMPLES_PAGES.builderApi_CustomTypes.id:
+            return BuilderCustomTypes;
         default:
             throw new Error("Ensure you update examples.ts getExampleComponent() to return an example");
     }
