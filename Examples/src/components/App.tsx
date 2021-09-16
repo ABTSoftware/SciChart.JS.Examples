@@ -4,7 +4,13 @@ import { Theme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppRouter from "./AppRouter/AppRouter";
-import { getParentMenuIds, MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "./AppRouter/examples";
+import {
+    getParentMenuIds,
+    MENU_ITEMS_2D,
+    MENU_ITEMS_3D,
+    MENU_ITEMS_FEATURED_APPS,
+    MENU_ITEMS_WHATSNEW
+} from "./AppRouter/examples";
 import AppBarTop from "./AppTopBar/AppBarTop";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import AppFooter from "./AppFooter/AppFooter";
@@ -22,8 +28,16 @@ export default function App() {
 
     const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
-    let initialOpenedMenuItems = { MENU_ITEMS_FEATURED_APPS_ID: true, MENU_ITEMS_3D_ID: true, MENU_ITEMS_2D_ID: true };
+    let initialOpenedMenuItems = {
+        MENU_ITEMS_FEATURED_APPS_ID: true,
+        MENU_ITEMS_3D_ID: true,
+        MENU_ITEMS_2D_ID: true,
+        MENU_ITEMS_WHATSNEW_ID: true
+    };
 
+    MENU_ITEMS_WHATSNEW.forEach(item => {
+        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
+    });
     MENU_ITEMS_FEATURED_APPS.forEach(item => {
         initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
     });

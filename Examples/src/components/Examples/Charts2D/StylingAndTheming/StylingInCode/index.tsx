@@ -28,12 +28,12 @@ const drawExample = async () => {
             majorGridLineStyle: {
                 strokeThickness: 1,
                 color: "#ADFF2F",
-                strokeDasharray: [10, 5]
+                strokeDashArray: [10, 5]
             },
             minorGridLineStyle: {
                 strokeThickness: 1,
                 color: "#EE82EE",
-                strokeDasharray: [2, 2]
+                strokeDashArray: [2, 2]
             },
             majorTickLineStyle: {
                 strokeThickness: 1,
@@ -70,12 +70,12 @@ const drawExample = async () => {
             majorGridLineStyle: {
                 strokeThickness: 1,
                 color: "#ADFF2F",
-                strokeDasharray: [10, 5]
+                strokeDashArray: [10, 5]
             },
             minorGridLineStyle: {
                 strokeThickness: 1,
                 color: "#EE82EE",
-                strokeDasharray: [2, 2]
+                strokeDashArray: [2, 2]
             },
             majorTickLineStyle: {
                 strokeThickness: 1,
@@ -108,12 +108,12 @@ const drawExample = async () => {
             majorGridLineStyle: {
                 strokeThickness: 1,
                 color: "#ADFF2F",
-                strokeDasharray: [10, 5]
+                strokeDashArray: [10, 5]
             },
             minorGridLineStyle: {
                 strokeThickness: 1,
                 color: "#EE82EE",
-                strokeDasharray: [2, 2]
+                strokeDashArray: [2, 2]
             },
             majorTickLineStyle: {
                 strokeThickness: 1,

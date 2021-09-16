@@ -60,7 +60,8 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    sciChartSurface.chartModifiers.add(new RolloverModifier({ isVerticalChart: true }));
+    // fix removed property isVerticalChart: true
+    sciChartSurface.chartModifiers.add(new RolloverModifier());
 
     sciChartSurface.zoomExtents();
 
