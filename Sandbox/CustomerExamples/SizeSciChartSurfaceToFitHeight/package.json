@@ -1,7 +1,7 @@
 {
-  "name": "tutorial1",
+  "name": "size_scichart_to_fit_height",
   "version": "1.0.0",
-  "description": "First Tutorial with SciChart.js",
+  "description": "Size SciChartSurface to fit Height Demo",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,9 +16,10 @@
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.0.3",
+    "prettier": "^2.4.1",
+    "ts-loader": "^6.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
-    "ts-loader": "^6.2.1"
+    "webpack-dev-server": "^3.11.0"
   }
 }

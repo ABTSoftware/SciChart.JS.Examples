@@ -1,9 +1,9 @@
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
 
 async function initSciChart() {
     // LICENSING //
@@ -21,38 +21,64 @@ async function initSciChart() {
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
     // instance must be passed to other types that exist on the same surface.
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create("scichart-root");
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-root");
 
     // Create an X,Y Axis and add to the chart
-    const xAxis = new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 10)});
-    const yAxis = new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 10)});
-    
+    const xAxis = new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 10) });
+    const yAxis = new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 10) });
+
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis);
 
-    sciChartSurface.annotations.add(new TextAnnotation({
-        text: "This SciChartSurface is sized to fit the window horizontally and vertically",
-        textColor: "#FF6600",
-        fontSize: 24,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        x1: 0.5,
-        y1: 0.5
-    }));
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: "This SciChartSurface is sized to fit the window horizontally and vertically",
+            textColor: "#FF6600",
+            fontSize: 24,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            x1: 0.5,
+            y1: 0.4
+        })
+    );
 
-    sciChartSurface.annotations.add(new TextAnnotation({
-        text: "This is done entirely in CSS on the parent Div to SciChartSurface",
-        textColor: "#FF6600",
-        fontSize: 24,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        x1: 0.5,
-        y1: 0.6
-    }));
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: "This is done entirely in CSS on the parent Div to SciChartSurface",
+            textColor: "#FF6600",
+            fontSize: 24,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            x1: 0.5,
+            y1: 0.5
+        })
+    );
+
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: "After 3 seconds the chart width and height changes",
+            textColor: "#FF6600",
+            fontSize: 24,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            x1: 0.5,
+            y1: 0.6
+        })
+    );
+
+    // This changes the chart height and width after 3 seconds
+    setTimeout(() => {
+        console.log("changing the chart height and width dynamically");
+        const chartContainer = document.getElementById("scichart-container");
+        chartContainer.style.height = "600px";
+        chartContainer.style.width = "900px";
+    }, 3000);
 }
 
 initSciChart();
