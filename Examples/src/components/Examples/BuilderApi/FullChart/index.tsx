@@ -2,8 +2,6 @@ import * as React from "react";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { chartBuilder } from "scichart/Builder/chartBuilder";
 import classes from "../../../Examples/Examples.module.scss";
-import { ButtonGroup, Button, TextField } from "@material-ui/core";
-import { Alert, AlertTitle } from "@material-ui/lab";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { EAxisType } from "scichart/types/AxisType";
 import { ELabelProviderType } from "scichart/types/LabelProviderType";
@@ -15,7 +13,6 @@ import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/Annotatio
 import { EPointMarkerType } from "scichart/types/PointMarkerType";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
-import { ENumericFormat } from "../../../../../../../SciChart.Dev/Web/src/SciChart/lib/types/NumericFormat";
 
 const divElementId = "chart";
 

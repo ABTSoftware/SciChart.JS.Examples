@@ -2,13 +2,9 @@ import * as React from "react";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { chartBuilder } from "scichart/Builder/chartBuilder";
 import classes from "../../../Examples/Examples.module.scss";
-import { ButtonGroup, Button, TextField } from "@material-ui/core";
-import { Alert, AlertTitle } from "@material-ui/lab";
 import { ESeriesType } from "scichart/types/SeriesType";
-import { EAxisType } from "scichart/types/AxisType";
-import { ELabelProviderType } from "scichart/types/LabelProviderType";
-import { ISciChart2DDefinition } from "../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Builder/buildSurface";
-import { TSharedDataDefinition } from "../../../../../../../SciChart.Dev/Web/src/SciChart/lib/Builder/buildDataSeries";
+import { ISciChart2DDefinition } from "scichart/Builder/buildSurface";
+import { TSharedDataDefinition } from "scichart/Builder/buildDataSeries";
 
 const divElementId = "chart";
 
