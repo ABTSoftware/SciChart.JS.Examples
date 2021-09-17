@@ -515,4 +515,18 @@ export const ExampleStrings = {
     titleSharedData: "Reusable Templates using Shared Data",
     imgSharedData: "images/javascript-shared-data.jpg",
 
+    // Filters, Percentage Change
+    urlPercentageChange: "/javascript-percentage-change",
+    titlePercentageChange: "Realtime Percentage Change using Filter",
+    imgPercentageChange: "images/javascript-percentage-change.jpg",
+
+    // Filters, Trend, MA, Ratio
+    urlTrendMARatio: "/javascript-trend-ma-ratio",
+    titleTrendMARatio: "Trendline, Moving Average and Ratio Filters",
+    imgTrendMARatio: "images/javascript-trend-ma-ratio.jpg",
+
+    // Filters, Custom Filters
+    urlCustomFilters: "/javascript-custom-filters",
+    titleCustomFilters: "Custom Filters",
+    imgCustomFilters: "images/javascript-custom-filters.jpg",
 };

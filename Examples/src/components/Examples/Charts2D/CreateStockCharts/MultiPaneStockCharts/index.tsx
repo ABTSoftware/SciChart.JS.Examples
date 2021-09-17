@@ -33,6 +33,8 @@ import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
 import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
+import { XyMovingAverageFilter } from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
+import { EDataSeriesField } from "scichart/Charting/Model/Filters/XyFilterBase";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
@@ -94,12 +96,11 @@ const drawExample = async () => {
         sciChartSurface.renderableSeries.add(fcRendSeries);
 
         // MA1 SERIES
-        const maLowDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "MA 50 Low" });
-        for (let i = 0; i < dateValues.length; i++) {
-            const xValue = dateValues[i];
-            const avr50 = calcAverageForDoubleVector(usdDataSeries.getNativeLowValues(), 50, i);
-            maLowDataSeries.append(xValue, avr50);
-        }
+        const maLowDataSeries = new XyMovingAverageFilter(usdDataSeries, {
+            dataSeriesName: "MA 50 Low",
+            length: 50,
+            field: EDataSeriesField.Low
+        });
         const maLowRenderableSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries: maLowDataSeries
         });
@@ -110,12 +111,11 @@ const drawExample = async () => {
         maLowRenderableSeries.strokeThickness = 2;
 
         // MA2 SERIES
-        const maHighDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "MA 200 High" });
-        for (let i = 0; i < dateValues.length; i++) {
-            const xValue = dateValues[i];
-            const avr200 = calcAverageForDoubleVector(usdDataSeries.getNativeHighValues(), 200, i);
-            maHighDataSeries.append(xValue, avr200);
-        }
+        const maHighDataSeries = new XyMovingAverageFilter(usdDataSeries, {
+            dataSeriesName: "MA 200 High",
+            length: 200,
+            field: EDataSeriesField.High
+        });
         const maHighRenderableSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries: maHighDataSeries
         });
