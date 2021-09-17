@@ -27,10 +27,10 @@ const divElementId = "chart";
 // Metadata must implement IPointMetadata
 // This one has a text field, and also holds the previous data value
 class MyMetadata implements IPointMetadata {
-    public static create(title: string, prevousValue?: number, isSelected?: boolean) {
+    public static create(title: string, previousValue?: number, isSelected?: boolean) {
         const md = new MyMetadata();
         md.title = title;
-        md.previousValue = prevousValue ?? md.previousValue;
+        md.previousValue = previousValue ?? md.previousValue;
         md.isSelected = isSelected ?? md.isSelected;
         return md;
     }
