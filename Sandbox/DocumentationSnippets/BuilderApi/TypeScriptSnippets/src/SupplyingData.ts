@@ -12,7 +12,7 @@ export async function drawChartWithSharedDataSeries(divElementId: string) {
         ]
     };
     const sharedData: TSharedDataDefinition = { x: [1, 2, 3, 4, 5], col: [8, 2, 3, 7, 10], line: [10, 6, 7, 2, 16] };
-    return chartBuilder.build2DChart(divElementId, { ...chartDefinition, sharedData });
+    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, { ...chartDefinition, sharedData });
 }
 
 export async function drawChartWithManuallyCreatedDataSeries(divElementId: string) {
