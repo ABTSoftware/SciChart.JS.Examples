@@ -30,7 +30,7 @@ const drawExample = async () => {
     // Note options logBase, labelFormat which lets you specify exponent on labels
     const yAxis = new LogarithmicAxis(wasmContext, {
         logBase: baseValue,
-        labelFormat: ENumericFormat.Exponential,
+        labelFormat: ENumericFormat.Scientific,
         labelPrecision: 2,
     });
     sciChartSurface.yAxes.add(yAxis);
@@ -42,14 +42,14 @@ const drawExample = async () => {
     const y2Values = [];
     for (let x = 1; x < 100; x++) {
         xValues.push(x);
-        yValues.push(Math.pow(x / 50, baseValue));
-        y1Values.push(Math.pow(x / 100, baseValue));
-        y2Values.push(Math.pow(x / 200, baseValue));
+        yValues.push(Math.pow((x + 20) / 20, baseValue));
+        y1Values.push(Math.pow((x + 20) / 50, baseValue));
+        y2Values.push(Math.pow((x + 20) / 100, baseValue));
     }
 
     // Create some line charts with the data
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values }),
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
         animation: new SweepAnimation({ duration: 800, delay: 300 }),
         pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
     }));
@@ -61,8 +61,8 @@ const drawExample = async () => {
     }));
 
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-        animation: new SweepAnimation({ duration: 800}),
+        dataSeries: new XyDataSeries(wasmContext, { xValues,  yValues: y2Values }),
+        animation: new SweepAnimation({ duration: 800, delay: 1}),
         pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
     }));
 
@@ -92,11 +92,8 @@ export default function LogarithmicAxisExample() {
     }, []);
 
     const onNotationChanged = (e: ChangeEvent<HTMLSelectElement>) => {
-        // To update the LogarithmicAxis label format from ENumericFormat.Scientific to Exponential or Decimal
-        // create and assign a new LogarithmicLabelProvider on the chart with the new properties
         const labelFormat = e.target.value as ENumericFormat;
-        const labelPrecision = 2;
-        logAxis.labelProvider = new LogarithmicLabelProvider({ labelFormat, labelPrecision })
+        logAxis.labelProvider.numericFormat = labelFormat;
     };
 
     const onLogBaseChanged = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -113,9 +110,9 @@ export default function LogarithmicAxisExample() {
                         Log Axis Label Notation
                         <select
                             onChange={onNotationChanged}>
-                            <option key="Exponential" value="Exponential">Engineering</option>
                             <option key="Scientific" value="Scientific">Scientific</option>
-                            <option key="Decimal" value="Decimal">Decimal</option>
+                            <option key="Exponential" value="Exponential">Engineering</option>
+                            <option key="SignificantFigures" value="SignificantFigures">Significant Figures</option>
                         </select>
                     </label>
                     <label id="sciChartLogBase-label">

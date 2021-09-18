@@ -67,6 +67,13 @@ import multipleZoomPanModifiersImg from "../components/Examples/Charts2D/Zooming
 // 3D Chart Types
 import bubble3dImg from "../components/Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/javascript-3d-bubble-chart.jpg";
 import mesh3dImg from "../components/Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
+// Builder Api
+import builderSimpleImg from "../components/Examples/BuilderApi/SimpleChart/javascript-builder-simple.jpg";
+import builderFullImg from "../components/Examples/BuilderApi/FullChart/javascript-builder-full.jpg";
+import chartFromJSONImg from "../components/Examples/BuilderApi/ChartFromJSON/javascript-chart-from-json.jpg";
+import builderSharedDataImg from "../components/Examples/BuilderApi/SharedData/javascript-shared-data.jpg";
+import builderCustomTypesImg from "../components/Examples/BuilderApi/CustomTypes/javascript-custom-types.jpg";
+
 import { GalleryItem } from "./types/types";
 import { ExampleStrings } from "../components/Examples/ExampleStrings";
 

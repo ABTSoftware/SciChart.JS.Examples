@@ -487,4 +487,32 @@ export const ExampleStrings = {
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
     imgTenorCurves: "images/javascript-3d-surface-mesh-tenor-curve-example.jpg",
 
+    // BuilderApi, Simple Chart
+    urlBuilderSimpleChart: "/javascript-builder-simple",
+    titleBuilderSimpleChart: "Simple Chart using Builder API",
+    imgBuilderSimpleChart: "images/javascript-builder-simple.jpg",
+
+    // BuilderApi, Full Chart
+    urlBuilderFullChart: "/javascript-builder-full",
+    titleBuilderFullChart: "Full Chart using Builder API",
+    imgBuilderFullChart: "images/javascript-builder-full.jpg",
+
+    // BuilderApi, Chart From JSON
+    urlChartFromJSON: "/javascript-chart-from-json",
+    titleChartFromJSON: "Chart from JSON",
+    urlChartFromJSONDocumentation: "https://www.scichart.com/documentation/js/current/BuilderApi.html",
+    urlTitleChartFromJSONDocumentation:
+        "This specific page in the JavaScript Builder API documentation will help you to get started",
+    imgChartFromJSON: "images/javascript-chart-from-json.jpg",
+
+    // BuilderApi, Custom Types
+    urlCustomTypes: "/javascript-custom-types",
+    titleCustomTypes: "Custom Types with Builder API",
+    imgCustomTypes: "images/javascript-custom-types.jpg",
+
+    // BuilderApi, Shared Data
+    urlSharedData: "/javascript-shared-data",
+    titleSharedData: "Reusable Templates using Shared Data",
+    imgSharedData: "images/javascript-shared-data.jpg",
+
 };
