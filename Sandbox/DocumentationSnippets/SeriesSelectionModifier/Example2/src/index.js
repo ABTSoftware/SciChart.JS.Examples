@@ -1,6 +1,5 @@
 import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {NumberRange} from "scichart/Core/NumberRange";

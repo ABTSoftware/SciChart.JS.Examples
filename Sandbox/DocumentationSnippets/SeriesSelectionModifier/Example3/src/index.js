@@ -7,7 +7,7 @@ import {NumberRange} from "scichart/Core/NumberRange";
 import {SeriesSelectionModifier} from "scichart/Charting/ChartModifiers/SeriesSelectionModifier";
 import {LineAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/LineAnimation";
 import {easing} from "scichart/Core/Animations/EasingFunctions";
-import {ScatterAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/ScatterAnimation";
+import {EPointMarkerType} from "scichart/types/PointMarkerType";
 
 async function initSciChart() {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-div-id");
@@ -18,19 +18,22 @@ async function initSciChart() {
     const defaultStroke = "SteelBlue";
     const defaultFill = "LightSteelBlue";
 
-    const applyStyle = (series, isSelected, isHovered) => {
-        series.stroke = isSelected && isHovered ? "#FFBB99" :
-            isSelected ? "#FFF" :
-                isHovered ? "#FF7733" :
-                    defaultStroke;
-        series.pointMarker.stroke = series.stroke;
-        series.pointMarker.fill = isSelected && isHovered ? "#FFBB99" :
-            isSelected ? "#FFF" :
-                isHovered ? "#FF7733" :
-                    defaultFill;
-    };
+    // Method without animations ->
 
-    const applyStyleWithAnimation = (series, isSelected, isHovered) => {
+    // const applyStyle = (series, isSelected, isHovered) => {
+    //     series.stroke = isSelected && isHovered ? "#FFBB99" :
+    //         isSelected ? "#FFF" :
+    //             isHovered ? "#FF7733" :
+    //                 defaultStroke;
+    //     series.pointMarker.stroke = series.stroke;
+    //     series.pointMarker.fill = isSelected && isHovered ? "#FFBB99" :
+    //         isSelected ? "#FFF" :
+    //             isHovered ? "#FF7733" :
+    //                 defaultFill;
+    // };
+
+    // method with animations ->
+    const applyStyle = (series, isSelected, isHovered) => {
         const stroke = isSelected && isHovered ? "#FFBB99" :
             isSelected ? "#FFF" :
                 isHovered ? "#FF7733" :
@@ -45,7 +48,7 @@ async function initSciChart() {
             styles: {
                 stroke,
                 strokeThickness,
-                pointMarker: { stroke, fill }
+                pointMarker: { stroke, fill, type: EPointMarkerType.Ellipse }
             },
             duration: 250,
             ease: easing.outQuad
@@ -69,11 +72,11 @@ async function initSciChart() {
 
         // Apply a style to the series on selected and hovered
         onSelectedChanged: sourceSeries => {
-            applyStyleWithAnimation(sourceSeries, sourceSeries.isSelected, sourceSeries.isHovered);
+            applyStyle(sourceSeries, sourceSeries.isSelected, sourceSeries.isHovered);
         },
 
         onHoveredChanged: sourceSeries => {
-            applyStyleWithAnimation(sourceSeries, sourceSeries.isSelected, sourceSeries.isHovered);
+            applyStyle(sourceSeries, sourceSeries.isSelected, sourceSeries.isHovered);
         }
     }));
 
