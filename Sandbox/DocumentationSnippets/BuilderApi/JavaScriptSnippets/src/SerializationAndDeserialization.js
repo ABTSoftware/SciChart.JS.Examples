@@ -3,7 +3,7 @@ import { ESeriesType } from "scichart/types/SeriesType";
 import { EChart2DModifierType } from "scichart/types/ChartModifierType";
 import { ISciChart2DDefinition } from "scichart/Builder/buildSurface";
 
-export async function drawAndSerializeChart(divElementId) {
+export async function createJsonDefinition(divElementId) {
     const { sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
         series: { type: ESeriesType.LineSeries, xyData: { xValues: [1, 3, 4, 7, 9], yValues: [10, 6, 7, 2, 16] } }
     });
@@ -12,8 +12,8 @@ export async function drawAndSerializeChart(divElementId) {
     const json = JSON.stringify(definition);
 }
 
-export async function deserializeAndDrawChart(divElementId) {
-    const chartDefinition = {
+export async function rehydrateChart(divElementId) {
+    const jsonDefinition = {
         series: { type: ESeriesType.LineSeries, xyData: { xValues: [1, 3, 4, 7, 9], yValues: [10, 6, 7, 2, 16] } }
     };
     const json = JSON.stringify(chartDefinition);
