@@ -9,6 +9,8 @@ import { NumberRange } from 'scichart/Core/NumberRange';
 import { DragSeriesModifier } from './DragSeriesModifier';
 import { CustomAnnotation } from 'scichart/Charting/Visuals/Annotations/CustomAnnotation';
 import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from 'scichart/types/AnchorPoint';
+import { ZoomPanModifier } from 'scichart/Charting/ChartModifiers/ZoomPanModifier';
+import { EExecuteOn } from 'scichart/types/ExecuteOn';
 
 async function initSciChart() {
     // LICENSING //
@@ -97,9 +99,18 @@ async function initSciChart() {
     sciChartSurface.renderableSeries.add(lineSeries1, lineSeries2);
     sciChartSurface.annotations.add(customAnnotation1, customAnnotation2);
 
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(), new ZoomExtentsModifier());
+    sciChartSurface.chartModifiers.add(
+        new MouseWheelZoomModifier(),
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier({ executeOn: EExecuteOn.MouseRightButton })
+    );
 
-    sciChartSurface.chartModifiers.add(new DragSeriesModifier({ annotations: [customAnnotation1, customAnnotation2] }));
+    sciChartSurface.chartModifiers.add(
+        new DragSeriesModifier({
+            annotations: [customAnnotation1, customAnnotation2],
+            executeOn: EExecuteOn.MouseLeftButton
+        })
+    );
 }
 
 initSciChart();
