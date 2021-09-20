@@ -7,8 +7,9 @@ import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSer
 import {SciChartJSLightTheme} from "scichart/Charting/Themes/SciChartJSLightTheme";
 import {ScatterAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/ScatterAnimation";
 import { easing} from "scichart/Core/Animations/EasingFunctions";
+import {EPointMarkerType} from "scichart/types/PointMarkerType";
 
-export async function dataAnimation(divId) {
+export async function scatterDataAnimationWithStyle(divId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId, {
         theme: new SciChartJSLightTheme()
     });
@@ -33,9 +34,27 @@ export async function dataAnimation(divId) {
         const xValues = Array.from({length: 5}, () => Math.random() * 5);
         const yValues = Array.from({length: 5}, () => Math.random() * 5);
 
+        const randomColor = () => '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6);
+        const fillColor = randomColor();
+        const strokeColor = randomColor();
+        const size = Math.random() * 12 + 5;
+        const thickness = Math.random() * 4 + 1;
+        const pointMarkers = [EPointMarkerType.Ellipse, EPointMarkerType.Triangle, EPointMarkerType.Square];
+        const randomMarker = () => pointMarkers[Math.floor(Math.random() * 3)];
+
         scatterSeries.runAnimation(new ScatterAnimation({
             duration: 500,
             ease: easing.outQuad,
+            styles: {
+                pointMarker: {
+                    type: randomMarker(),
+                    width: size,
+                    height: size,
+                    strokeThickness: thickness,
+                    stroke: strokeColor,
+                    fill: fillColor
+                }
+            },
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
         }));
 
