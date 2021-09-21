@@ -15,7 +15,10 @@ import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/Annotatio
 import { ELabelPlacement } from "scichart/types/LabelPlacement";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import classes from "../../../../Examples/Examples.module.scss";
-import image from "./scichart-logo-white.png";
+import scichartImage from "./scichart-logo-white.png";
+import customPointImage from "./CustomMarkerImage.png";
+import { createImageAsync } from "scichart/utils/imageUtil";
+import { AxisMarkerAnnotation } from "scichart/Charting/Visuals/Annotations/AxisMarkerAnnotation";
 
 const divElementId = "chart";
 
@@ -35,7 +38,7 @@ export const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    const customSvgString = [
+    const customSvgStringSciChart = [
         ' <svg width="50" height="50"',
         ' xmlns="http://www.w3.org/2000/svg">',
         '<rect width="100%" height="100%" style="fill:#39603D">',
@@ -46,7 +49,7 @@ export const drawExample = async () => {
         ' <svg width="200" height="200"',
         'xmlns="http://www.w3.org/2000/svg" style="background-color:green">',
         '<image href="',
-        image,
+        scichartImage,
         '" height="100" width="200"/>',
         "</svg>"
     ].join("");
@@ -80,77 +83,100 @@ export const drawExample = async () => {
         isEditable: true
     });
 
+    const lineAnnotation = new LineAnnotation({
+        stroke: "#B73225",
+        strokeThickness: 3,
+        x1: 1.0,
+        x2: 4.0,
+        y1: 9.0,
+        y2: 8.0,
+        isEditable: true
+    });
+
+    const boxAnnotation = new BoxAnnotation({
+        stroke: "#4DA8DA",
+        strokeThickness: 1,
+        fill: "#007CC766",
+        x1: 1.0,
+        x2: 4.0,
+        y1: 5.0,
+        y2: 7.0,
+        isEditable: true
+    });
+
+    const customAnnotation = new CustomAnnotation({
+        x1: 7,
+        y1: 7,
+        xCoordShift: 0,
+        yCoordShift: 0,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        svgString: customSvgString1,
+        isEditable: true
+    });
+
+    const customAnnotationSciChart = new CustomAnnotation({
+        x1: 5,
+        y1: 9,
+        xCoordShift: 0,
+        yCoordShift: 0,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        svgString: customSvgStringSciChart,
+        isEditable: true
+    });
+
+    const textAnnotation = new TextAnnotation({
+        x1: 1,
+        y1: 2,
+        xCoordinateMode: ECoordinateMode.DataValue,
+        yCoordinateMode: ECoordinateMode.DataValue,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        textColor: "#F1B24A",
+        fontSize: 26,
+        fontFamily: "Times New Roman",
+        text: "Unmovable text",
+        isEditable: false
+    });
+
+    const textAnnotationSciChart = new TextAnnotation({
+        x1: 1,
+        y1: 3,
+        xCoordinateMode: ECoordinateMode.DataValue,
+        yCoordinateMode: ECoordinateMode.DataValue,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        textColor: "#F1B24A",
+        fontSize: 26,
+        fontFamily: "Times New Roman",
+        text: "SciChart is the best library",
+        isEditable: true
+    });
+
+    const imageBitmap = await createImageAsync(customPointImage);
+    const customAxisMarkerAnnotation = new AxisMarkerAnnotation({
+        color: "#efefef",
+        backgroundColor: "steelblue",
+        formattedValue: "Moveable Axis Marker X",
+        x1: 2.5,
+        isEditable: true,
+        image: imageBitmap
+        // imageWidth: 30,
+        // imageHeight: 30
+    });
+
     sciChartSurface.annotations.add(
         horizontalLineAnnotation1,
         horizontalLineAnnotation2,
         verticalLineAnnotation,
-        new LineAnnotation({
-            stroke: "#B73225",
-            strokeThickness: 3,
-            x1: 1.0,
-            x2: 4.0,
-            y1: 9.0,
-            y2: 8.0,
-            isEditable: true
-        }),
-
-        new BoxAnnotation({
-            stroke: "#4DA8DA",
-            strokeThickness: 1,
-            fill: "#007CC766",
-            x1: 1.0,
-            x2: 4.0,
-            y1: 5.0,
-            y2: 7.0,
-            isEditable: true
-        }),
-
-        new CustomAnnotation({
-            x1: 5,
-            y1: 9,
-            xCoordShift: 0,
-            yCoordShift: 0,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
-            svgString: customSvgString,
-            isEditable: true
-        }),
-        new CustomAnnotation({
-            x1: 7,
-            y1: 7,
-            xCoordShift: 0,
-            yCoordShift: 0,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
-            svgString: customSvgString1,
-            isEditable: true
-        }),
-        new TextAnnotation({
-            x1: 1,
-            y1: 3,
-            xCoordinateMode: ECoordinateMode.DataValue,
-            yCoordinateMode: ECoordinateMode.DataValue,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
-            textColor: "#F1B24A",
-            fontSize: 26,
-            fontFamily: "Times New Roman",
-            text: "SciChart is the best library",
-            isEditable: true
-        }),
-        new TextAnnotation({
-            x1: 1,
-            y1: 2,
-            xCoordinateMode: ECoordinateMode.DataValue,
-            yCoordinateMode: ECoordinateMode.DataValue,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
-            textColor: "#F1B24A",
-            fontSize: 26,
-            fontFamily: "Times New Roman",
-            text: "Unmovable text",
-            isEditable: false
-        })
+        lineAnnotation,
+        boxAnnotation,
+        customAnnotation,
+        customAnnotationSciChart,
+        textAnnotation,
+        textAnnotationSciChart,
+        customAxisMarkerAnnotation
     );
 
     return { sciChartSurface, wasmContext };
