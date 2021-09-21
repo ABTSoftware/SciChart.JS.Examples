@@ -19,8 +19,10 @@ import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAn
 import classes from "../../../../Examples/Examples.module.scss";
 import Box from "../../../../../helpers/shared/Helpers/Box/Box";
 import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
+import { translateFromCanvasToSeriesViewRect } from "scichart/utils/translate";
 
 const divElementId = "chart";
+const HIT_TEST_RADIUS = 10;
 
 const drawExample = async (setHitTestsList: (hitTestsList: HitTestInfo[]) => void) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
@@ -55,22 +57,21 @@ const drawExample = async (setHitTestsList: (hitTestsList: HitTestInfo[]) => voi
     const xBubbleValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     const yBubbleValues = [0.5, 1.0, 1.8, 2.9, 3.5, 3.0, 2.7, 2.4, 1.7];
     const zBubbleValues = [24, 12, 13, 16, 12, 15, 12, 19, 12];
-    sciChartSurface.renderableSeries.add(
-        new FastBubbleRenderableSeries(wasmContext, {
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 24,
-                height: 24,
-                fill: "white",
-                strokeThickness: 2,
-                stroke: "#368BC1"
-            }),
-            dataSeries: new XyzDataSeries(wasmContext, {
-                xValues: xBubbleValues,
-                yValues: yBubbleValues,
-                zValues: zBubbleValues
-            })
+    const bubbleSeries = new FastBubbleRenderableSeries(wasmContext, {
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 24,
+            height: 24,
+            fill: "white",
+            strokeThickness: 2,
+            stroke: "#368BC1"
+        }),
+        dataSeries: new XyzDataSeries(wasmContext, {
+            xValues: xBubbleValues,
+            yValues: yBubbleValues,
+            zValues: zBubbleValues
         })
-    );
+    });
+    sciChartSurface.renderableSeries.add(bubbleSeries);
 
     // Line series
     const xLineValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
@@ -105,34 +106,35 @@ const drawExample = async (setHitTestsList: (hitTestsList: HitTestInfo[]) => voi
     sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent: MouseEvent) => {
         const newHitTestsList: HitTestInfo[] = [];
         const dpiScaledPoint = new Point(
-            mouseEvent.x * DpiHelper.PIXEL_RATIO,
-            mouseEvent.y * DpiHelper.PIXEL_RATIO);
-
-        sciChartSurface.renderableSeries.asArray().forEach(rs => {
-            // Interpolation is used for LineSeries to test hit on the line
-            // for CandlestickSeries to test hit on the candle
-            // for ColumnSeries to test hit on the column
-            if (rs.hitTestProvider) {
-                const hitTestInfo = rs.hitTestProvider.hitTest(
-                    dpiScaledPoint.x,
-                    dpiScaledPoint.y,
-                    HIT_TEST_RADIUS
-                );
-                svgAnnotation.isHidden = false;
-                svgAnnotation.x1 = hitTestInfo.hitTestPointValues.x;
-                svgAnnotation.y1 = hitTestInfo.hitTestPointValues.y;
-                if (!hitTestInfo.isEmpty) {
-                    newHitTestsList.push(hitTestInfo);
+            mouseEvent.offsetX * DpiHelper.PIXEL_RATIO,
+            mouseEvent.offsetY * DpiHelper.PIXEL_RATIO
+        );
+        const dpiScaledRadius = HIT_TEST_RADIUS * DpiHelper.PIXEL_RATIO;
+        const clickInSeriesViewRect = translateFromCanvasToSeriesViewRect(
+            dpiScaledPoint,
+            sciChartSurface.seriesViewRect
+        );
+        if (clickInSeriesViewRect) {
+            sciChartSurface.renderableSeries.asArray().forEach(rs => {
+                // Interpolation is used for LineSeries to test hit on the line
+                // for CandlestickSeries to test hit on the candle
+                // for ColumnSeries to test hit on the column
+                if (rs.hitTestProvider) {
+                    const hitTestInfo = rs.hitTestProvider.hitTest(dpiScaledPoint.x, dpiScaledPoint.y, dpiScaledRadius);
+                    svgAnnotation.isHidden = false;
+                    svgAnnotation.x1 = hitTestInfo.hitTestPointValues.x;
+                    svgAnnotation.y1 = hitTestInfo.hitTestPointValues.y;
+                    if (!hitTestInfo.isEmpty) {
+                        newHitTestsList.push(hitTestInfo);
+                    }
                 }
-            }
-        });
-        setHitTestsList(newHitTestsList);
+            });
+            setHitTestsList(newHitTestsList);
+        }
     });
 
     return { wasmContext, sciChartSurface };
 };
-
-const HIT_TEST_RADIUS = 10;
 
 let scs: SciChartSurface;
 
