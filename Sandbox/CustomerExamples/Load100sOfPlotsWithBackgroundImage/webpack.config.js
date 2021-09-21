@@ -35,7 +35,6 @@ module.exports = {
         { from: "node_modules/scichart/_wasm/scichart3d.data", to: "" },
         { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
       ]
-    }),
-    new webpack.IgnorePlugin(/(fs)/)
+    })
   ]
 };

@@ -6,6 +6,7 @@ import {IAnnotation} from "scichart/Charting/Visuals/Annotations/IAnnotation";
 
 // Create a TypeScript class which inherits ChartModifierbase2D to insert into SciChartSurface.chartModifiers collection
 export class CreateAnnotationModifier extends ChartModifierBase2D {
+    public readonly type: string = "CreateAnnotationModifier";
     private editingAnnotation: IAnnotation;
 
     constructor() {

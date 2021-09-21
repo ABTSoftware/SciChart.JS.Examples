@@ -3,10 +3,12 @@ import {ModifierMouseArgs} from "scichart/Charting/ChartModifiers/ModifierMouseA
 import {Point} from "scichart/Core/Point";
 import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
 import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {DpiHelper} from "scichart/Charting/Visuals/TextureManager/DpiHelper";
+import {translateFromCanvasToSeriesViewRect} from "scichart/utils/translate";
 
 // Create a TypeScript class which inherits ChartModifierbase2D to insert into SciChartSurface.chartModifiers collection
 export class RangeSelectionChartModifier extends ChartModifierBase2D {
-
+    public readonly type = "RangeSelectionChartModifier";
     private startPoint: Point;
     private endPoint: Point;
     private readonly selectionAnnotation: BoxAnnotation;
@@ -31,23 +33,35 @@ export class RangeSelectionChartModifier extends ChartModifierBase2D {
     // Called when mouse-down on the chart
     public modifierMouseDown(args: ModifierMouseArgs): void{
         super.modifierMouseDown(args);
-        this.startPoint = args.mousePoint;
-        this.endPoint = args.mousePoint;
+        // by default args.mousePoint is point relative to the canvas
+        // to get point relative to the seriesViewRect we need to translate
+        const translatedPoint = translateFromCanvasToSeriesViewRect(args.mousePoint, this.parentSurface.seriesViewRect);
+        if (translatedPoint) {
+            this.startPoint = translatedPoint;
+            this.endPoint = translatedPoint;
 
-        this.selectionAnnotation.x1 = this.startPoint.x;
-        this.selectionAnnotation.x2 = this.endPoint.x;
-        this.isSelecting = true;
+            // by default args.mousePoint is premultiplied by the PIXEL_RATIO
+            // but for annotations we do not need that
+            this.selectionAnnotation.x1 = this.startPoint.x / DpiHelper.PIXEL_RATIO;
+            this.selectionAnnotation.x2 = this.endPoint.x / DpiHelper.PIXEL_RATIO;
+            this.isSelecting = true;
 
-        this.parentSurface.annotations.add(this.selectionAnnotation);
+            this.parentSurface.annotations.add(this.selectionAnnotation);
+        }
     }
 
     // Called when mouse-move on the chart
     public modifierMouseMove(args: ModifierMouseArgs): void {
         super.modifierMouseMove(args);
+        // by default args.mousePoint is point relative to the canvas
+        // to get point relative to the seriesViewRect we need to translate
+        const translatedPoint = translateFromCanvasToSeriesViewRect(args.mousePoint, this.parentSurface.seriesViewRect);
 
-        if (this.isSelecting) {
-            this.endPoint = args.mousePoint;
-            this.selectionAnnotation.x2 = this.endPoint.x;
+        if (translatedPoint && this.isSelecting) {
+            this.endPoint = translatedPoint;
+            // by default args.mousePoint is premultiplied by the PIXEL_RATIO
+            // but for annotations we do not need that
+            this.selectionAnnotation.x2 = this.endPoint.x / DpiHelper.PIXEL_RATIO;
         }
     }
 

@@ -2,15 +2,16 @@ import { ChartModifierBase2D, IChartModifierBaseOptions } from 'scichart/Chartin
 import { Point } from 'scichart/Core/Point';
 import { ModifierMouseArgs } from 'scichart/Charting/ChartModifiers/ModifierMouseArgs';
 import { IRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/IRenderableSeries';
-import { ENearestPointLogic } from 'scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider';
 import { AxisBase2D, EClipMode } from 'scichart/Charting/Visuals/Axis/AxisBase2D';
 import { CustomAnnotation } from 'scichart/Charting/Visuals/Annotations/CustomAnnotation';
+import { DpiHelper } from 'scichart/Charting/Visuals/TextureManager/DpiHelper';
 
 export interface IDragSeriesModifierOptions extends IChartModifierBaseOptions {
     annotations?: CustomAnnotation[];
 }
 
 export class DragSeriesModifier extends ChartModifierBase2D {
+    public readonly type = 'DragSeriesModifier';
     private lastPoint: Point;
     private selectedRS: IRenderableSeries;
     private markerAnnotations: CustomAnnotation[];
@@ -35,7 +36,11 @@ export class DragSeriesModifier extends ChartModifierBase2D {
             if (this.markerAnnotations) {
                 const rsAnnotation = this.markerAnnotations[index];
                 if (rsAnnotation) {
-                    const isClicked = rsAnnotation.checkIsClickedOnAnnotation(args.mousePoint.x, args.mousePoint.y);
+                    // The args has X and Y values premultiplied by PIXEL_RATIO
+                    // Which is why we need to divide by it
+                    const x = args.mousePoint.x / DpiHelper.PIXEL_RATIO;
+                    const y = args.mousePoint.y / DpiHelper.PIXEL_RATIO;
+                    const isClicked = rsAnnotation.checkIsClickedOnAnnotation(x, y);
                     if (isClicked) {
                         this.selectedRS = rs;
                     }
@@ -43,11 +48,15 @@ export class DragSeriesModifier extends ChartModifierBase2D {
             }
             // selection using renderable series body and hitTest
             if (rs.hitTestProvider) {
+                // Attention!
+                // if we add an event listener and use mouseEvent we need to multiply it by DpiHelper.PIXEL_RATIO
+                // sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent: MouseEvent) => { ... })
+                // For example: rs.hitTestProvider.hitTest(mouseEvent.offsetX * DpiHelper.PIXEL_RATIO, mouseEvent.offsetY * DpiHelper.PIXEL_RATIO)
+                // DpiHelper.PIXEL_RATIO is used for High DPI and Retina screen support and also for the browser scaling
                 const hitTestInfo = rs.hitTestProvider.hitTest(
-                    args.mousePoint,
-                    ENearestPointLogic.NearestHorizontalPoint,
-                    10,
-                    true
+                    args.mousePoint.x,
+                    args.mousePoint.y,
+                    10 * DpiHelper.PIXEL_RATIO
                 );
                 if (!hitTestInfo.isEmpty) {
                     if (hitTestInfo.isHit) {

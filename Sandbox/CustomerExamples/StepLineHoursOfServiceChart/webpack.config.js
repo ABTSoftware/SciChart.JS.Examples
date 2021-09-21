@@ -28,7 +28,6 @@ module.exports = {
                 { from: 'node_modules/scichart/_wasm/scichart2d.data', to: '' },
                 { from: 'node_modules/scichart/_wasm/scichart2d.wasm', to: '' }
             ]
-        }),
-        new webpack.IgnorePlugin(/(fs)/)
+        })
     ]
 };

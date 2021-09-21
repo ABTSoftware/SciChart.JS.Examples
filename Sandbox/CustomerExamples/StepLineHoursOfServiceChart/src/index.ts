@@ -25,8 +25,9 @@ async function initSciChart() {
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
     // instance must be passed to other types that exist on the same surface.
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root');
-    sciChartSurface.applyTheme(new SciChartJSLightTheme());
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root', {
+        theme: new SciChartJSLightTheme()
+    });
 
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
@@ -36,7 +37,8 @@ async function initSciChart() {
     });
     xAxis.majorDelta = 1;
     xAxis.minorDelta = 0.5;
-    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
+    xAxis.labelProvider.precision = 0;
+    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
     xAxis.drawMajorBands = false;
 
     const xValues = [0, 7.25, 7.45, 8, 9.25, 10, 10.5, 10.75, 11.25, 11.5, 15.25, 16, 24];
