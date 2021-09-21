@@ -30,7 +30,7 @@ export async function scatterDataAnimationWithStyle(divId) {
     sciChartSurface.renderableSeries.add(scatterSeries);
 
     // Update data using data animations
-    const animateData = () => {
+    const animateDataAndStyle = () => {
         const xValues = Array.from({length: 5}, () => Math.random() * 5);
         const yValues = Array.from({length: 5}, () => Math.random() * 5);
 
@@ -38,7 +38,6 @@ export async function scatterDataAnimationWithStyle(divId) {
         const fillColor = randomColor();
         const strokeColor = randomColor();
         const size = Math.random() * 12 + 5;
-        const thickness = Math.random() * 4 + 1;
         const pointMarkers = [EPointMarkerType.Ellipse, EPointMarkerType.Triangle, EPointMarkerType.Square];
         const randomMarker = () => pointMarkers[Math.floor(Math.random() * 3)];
 
@@ -50,7 +49,7 @@ export async function scatterDataAnimationWithStyle(divId) {
                     type: randomMarker(),
                     width: size,
                     height: size,
-                    strokeThickness: thickness,
+                    strokeThickness: 3,
                     stroke: strokeColor,
                     fill: fillColor
                 }
@@ -58,9 +57,9 @@ export async function scatterDataAnimationWithStyle(divId) {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
         }));
 
-        setTimeout(animateData, 1000);
+        setTimeout(animateDataAndStyle, 1000);
     };
 
-    setTimeout(animateData, 1000);
+    setTimeout(animateDataAndStyle, 1000);
 }
 

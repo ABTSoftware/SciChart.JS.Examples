@@ -7,7 +7,6 @@ import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSer
 import {SciChartJSLightTheme} from "scichart/Charting/Themes/SciChartJSLightTheme";
 import {ScatterAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/ScatterAnimation";
 import { easing} from "scichart/Core/Animations/EasingFunctions";
-import {EPointMarkerType} from "scichart/types/PointMarkerType";
 
 export async function scatterDataAnimation(divId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId, {
