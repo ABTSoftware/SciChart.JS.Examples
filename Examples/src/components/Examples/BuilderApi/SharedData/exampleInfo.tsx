@@ -36,8 +36,8 @@ const documentationLinks: TDocumentationLink[] = [
         linkTitle: "SciChart.js Tutorials"
     },
     {
-        href: ExampleStrings.urlChartFromJSONDocumentation,
-        title: ExampleStrings.urlTitleChartFromJSONDocumentation,
+        href: ExampleStrings.urlBuilderApiDocumentation,
+        title: ExampleStrings.urlTitleBuilderApiDocumentation,
         linkTitle: "JavaScript Builder API Documentation"
     }
 ];

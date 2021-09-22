@@ -6,10 +6,13 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `An example which demonstrates real-time ticking / updating stock charts in JavaScript with Price data as
-Candlesticks or Ohlc and Moving average indicators on the chart.`;
-const description = `Technical indicators are for demonstration purposes only. We recommend using the open source TA-Lib`;
-const tips = [`You can change the series type from Candlestick to Ohlc to Mountain and more.`];
+const previewDescription = `This uses a simple custom filter to apply random noise to a line, then a complex aggregation filter calculates the frequency distribution`;
+const description = `Simple Custom Filters are great if you just want to apply some function to each y value.  Just create an XyCustomFilter and set your function.
+If you want to significantly reshape your data, create a class that extends XyFilterBase`;
+const tips = [' There are CustomFilter and FitlerBase types for each of the series types (xy, xyy, xyz, ohlc)',
+' Complex custom filters do not have to output the same series type as they take as input.',
+' If your filter takes a parameter, use a setter to call filterAll when the parameter is updated'
+];
 
 const documentationLinks: TDocumentationLink[] = [
     {
@@ -23,9 +26,9 @@ const documentationLinks: TDocumentationLink[] = [
         linkTitle: "SciChart.js Tutorials"
     },
     {
-        href: ExampleStrings.urlCandlestickChartDocumentation,
-        title: ExampleStrings.urlTitleCandlestickChartDocumentation,
-        linkTitle: "JavaScript Candlestick Chart Documentation"
+        href: ExampleStrings.urlFiltersApiDocumentation,
+        title: ExampleStrings.urlTitleFiltersApiDocumentation,
+        linkTitle: "JavaScript Filters Api Documentation"
     }
 ];
 
@@ -57,7 +60,7 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how create a <strong>JavaScript Stock Chart</strong> with live real-time ticking and updating,
+        Demonstrates simple and advanced <strong>custom filters</strong>, with realtime updates
         using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts

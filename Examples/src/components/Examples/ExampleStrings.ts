@@ -500,8 +500,8 @@ export const ExampleStrings = {
     // BuilderApi, Chart From JSON
     urlChartFromJSON: "/javascript-chart-from-json",
     titleChartFromJSON: "Chart from JSON",
-    urlChartFromJSONDocumentation: "https://www.scichart.com/documentation/js/current/BuilderApi.html",
-    urlTitleChartFromJSONDocumentation:
+    urlBuilderApiDocumentation: "https://www.scichart.com/documentation/js/current/BuilderApi.html",
+    urlTitleBuilderApiDocumentation:
         "This specific page in the JavaScript Builder API documentation will help you to get started",
     imgChartFromJSON: "images/javascript-chart-from-json.jpg",
 
@@ -519,6 +519,9 @@ export const ExampleStrings = {
     urlPercentageChange: "/javascript-percentage-change",
     titlePercentageChange: "Realtime Percentage Change using Filter",
     imgPercentageChange: "images/javascript-percentage-change.jpg",
+    urlFiltersApiDocumentation: "https://www.scichart.com/documentation/js/current/Filters.html",
+    urlTitleFiltersApiDocumentation:
+        "This specific page in the JavaScript Filters API documentation will help you to get started",
 
     // Filters, Trend, MA, Ratio
     urlTrendMARatio: "/javascript-trend-ma-ratio",

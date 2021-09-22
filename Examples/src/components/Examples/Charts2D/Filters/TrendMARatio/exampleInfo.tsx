@@ -23,9 +23,9 @@ const documentationLinks: TDocumentationLink[] = [
         linkTitle: "SciChart.js Tutorials"
     },
     {
-        href: ExampleStrings.urlCandlestickChartDocumentation,
-        title: ExampleStrings.urlTitleCandlestickChartDocumentation,
-        linkTitle: "JavaScript Candlestick Chart Documentation"
+        href: ExampleStrings.urlFiltersApiDocumentation,
+        title: ExampleStrings.urlTitleFiltersApiDocumentation,
+        linkTitle: "JavaScript Filters Api Documentation"
     }
 ];
 
