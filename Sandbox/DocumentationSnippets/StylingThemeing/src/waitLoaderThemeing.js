@@ -45,7 +45,7 @@ export class CustomChartLoader {
     removeChartLoader(domChartRoot, loaderElement) {
 
         // Remove loader after 2000ms timeout
-        setTimeout(() => domChartRoot.removeChild(loaderElement), 100000);
+        setTimeout(() => domChartRoot.removeChild(loaderElement), 2000);
 
         // For instant removal once scichart has loaded, just call domChartRoot.removeChild(loaderElement) without the setTimeout
         // e.g.
