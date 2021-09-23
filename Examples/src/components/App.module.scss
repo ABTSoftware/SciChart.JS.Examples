@@ -98,3 +98,9 @@ $drawerWidthMobile: 100%;
         display: none;
     }
 }
+
+:global(.scichart__legend) {
+    input {
+        margin-top: 6px;
+    }
+}
