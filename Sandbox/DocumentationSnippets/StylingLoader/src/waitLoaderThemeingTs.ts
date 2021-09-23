@@ -23,7 +23,8 @@ export class CustomChartLoader implements ISciChartLoader {
 
     public addChartLoader(domChartRoot: HTMLDivElement, theme: IThemeProvider): HTMLElement {
         const loaderContainerDiv = document.createElement('div');
-        loaderContainerDiv.style.backgroundColor = 'black';
+        loaderContainerDiv.id = "Loader-div";
+        loaderContainerDiv.style.backgroundColor = 'red';
         loaderContainerDiv.style.height = '100%';
         loaderContainerDiv.style.width = '100%';
         loaderContainerDiv.style.display = 'flex';
@@ -31,13 +32,13 @@ export class CustomChartLoader implements ISciChartLoader {
         loaderContainerDiv.style.alignItems = 'center';
         const loaderImage = document.createElement('object');
         loaderImage.type = 'image/svg+xml';
-        loaderImage.data = '/svg_animation_ext.svg';
+        loaderImage.data = 'svg_animation_ext.svg';
         loaderContainerDiv.appendChild(loaderImage);
         domChartRoot.appendChild(loaderContainerDiv);
         return loaderContainerDiv;
     }
     public removeChartLoader(domChartRoot: HTMLDivElement, loaderElement: HTMLElement): void {
         // Remove loader after 2000ms timeout
-        setTimeout(() => domChartRoot.removeChild(loaderElement), 2000);
+        // setTimeout(() => domChartRoot.removeChild(loaderElement), 2000);
     }
 }

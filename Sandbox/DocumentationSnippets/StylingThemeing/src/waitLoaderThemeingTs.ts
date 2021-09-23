@@ -16,7 +16,7 @@ export async function waitLoaderThemeingTs(divId: string) {
 
 export class CustomChartLoader implements ISciChartLoader {
     public type: "Custom";
-    public loadingText: string = "Loading SciChart...";
+    public loadingText: string = "Initializing the Awesomeness...";
 
     constructor(options?: { loadingText?: string }) {
         this.loadingText = options?.loadingText ?? this.loadingText;
@@ -24,23 +24,38 @@ export class CustomChartLoader implements ISciChartLoader {
 
     public addChartLoader(domChartRoot: HTMLDivElement, theme: IThemeProvider): HTMLElement {
         const loaderContainerDiv = document.createElement("div");
-        loaderContainerDiv.style.backgroundColor = "Red";
+        loaderContainerDiv.style.backgroundColor = "#0F151C";
         loaderContainerDiv.style.height = "100%";
         loaderContainerDiv.style.width = "100%";
         loaderContainerDiv.style.display = "flex";
         loaderContainerDiv.style.justifyContent = "center";
         loaderContainerDiv.style.alignItems = "center";
+        const loaderImage = document.createElement("img") as HTMLImageElement;
+        loaderImage.src = "https://i.giphy.com/media/2WjpfxAI5MvC9Nl8U7/giphy.webp";
+        loaderContainerDiv.appendChild(loaderImage);
+
         const loaderText = document.createElement("div");
+        loaderText.style.marginLeft = "auto";
+        loaderText.style.marginRight = "auto";
+        loaderText.style.float = "left";
+        loaderText.style.bottom = "150px";
+        loaderText.style.textAlign = "center";
+        loaderText.style.position = "absolute";
         loaderText.innerHTML = this.loadingText;
-        loaderText.style.color = theme.loadingAnimationForeground;
+        loaderText.style.color = "#FF6600";
         loaderText.style.fontFamily = "Arial";
         loaderContainerDiv.appendChild(loaderText);
+
         domChartRoot.appendChild(loaderContainerDiv);
         return loaderContainerDiv;
     }
     public removeChartLoader(domChartRoot: HTMLDivElement, loaderElement: HTMLElement): void {
 
         // Remove loader after 2000ms timeout
-        setTimeout(() => domChartRoot.removeChild(loaderElement), 2000);
+        setTimeout(() => domChartRoot.removeChild(loaderElement), 100000);
+
+        // For instant removal once scichart has loaded, just call domChartRoot.removeChild(loaderElement) without the setTimeout
+        // e.g.
+        // domChartRoot.removeChild(loaderElement);
     }
 }
