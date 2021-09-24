@@ -66,6 +66,9 @@ import { fullChartExampleInfo } from "../Examples/BuilderApi/FullChart/exampleIn
 import { chartFromJSONExampleInfo } from "../Examples/BuilderApi/ChartFromJSON/exampleInfo";
 import { sharedDataExampleInfo } from "../Examples/BuilderApi/SharedData/exampleInfo";
 import { customTypesExampleInfo } from "../Examples/BuilderApi/CustomTypes/exampleInfo";
+import { multiLineLabelsExampleInfo } from "../Examples/Charts2D/AxisLabelCustomization/MultiLineLabels/exampleInfo";
+import { imageLabelsExampleInfo } from "../Examples/Charts2D/AxisLabelCustomization/ImageLabels/exampleInfo";
+import { rotatedLabelsExampleInfo } from "../Examples/Charts2D/AxisLabelCustomization/RotatedLabels/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -230,6 +233,18 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_modifyAxisBehavior_LogarithmicAxis: {
         id: "chart2D_modifyAxisBehavior_LogarithmicAxis",
         ...logarithmicAxisExampleInfo
+    },
+    chart2D_axisLabelCustomization_MultiLineLabels: {
+        id: "chart2D_axisLabelCustomization_MultiLineLabels",
+        ...multiLineLabelsExampleInfo
+    },
+    chart2D_axisLabelCustomization_ImageLabels: {
+        id: "chart2D_axisLabelCustomization_ImageLabels",
+        ...imageLabelsExampleInfo
+    },
+    chart2D_axisLabelCustomization_RotatedLabels: {
+        id: "chart2D_axisLabelCustomization_RotatedLabels",
+        ...rotatedLabelsExampleInfo
     },
     chart2D_basicCharts_StackedColumnChart: {
         id: "chart2D_basicCharts_StackedColumnChart",

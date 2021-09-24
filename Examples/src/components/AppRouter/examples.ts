@@ -76,6 +76,9 @@ import BuilderSharedData from "../Examples/BuilderApi/SharedData";
 import BuilderCustomTypes from "../Examples/BuilderApi/CustomTypes";
 import BuilderSimpleChart from "../Examples/BuilderApi/SimpleChart";
 import BuilderFullChart from "../Examples/BuilderApi/FullChart";
+import MultiLineLabels from "../Examples/Charts2D/AxisLabelCustomization/MultiLineLabels";
+import RotatedLabels from "../Examples/Charts2D/AxisLabelCustomization/RotatedLabels";
+import ImageLabels from "../Examples/Charts2D/AxisLabelCustomization/ImageLabels";
 
 export type TMenuItem = {
     item: {
@@ -144,6 +147,14 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis
+        ]
+    },
+    {
+        item: { id: "chart2D_axisLabelCustomization", name: "Axis Label Customization" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels,
         ]
     },
     {
@@ -232,7 +243,15 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis
         ]
-    }
+    },
+    {
+        item: { id: "chart2D_axisLabelCustomization", name: "Axis Label Customization" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels,
+        ]
+    },
 ];
 
 export const getParentMenuIds = (exampleId: string): string[] => {
@@ -385,6 +404,12 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return RealtimeZoomPan;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.id:
             return MultipleZoomPanModifiers;
+        case EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.id:
+            return MultiLineLabels;
+        case EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.id:
+            return RotatedLabels;
+        case EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels.id:
+            return ImageLabels;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.id:
             return Bubble3DChart;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.id:

@@ -515,4 +515,22 @@ export const ExampleStrings = {
     titleSharedData: "Reusable Templates using Shared Data",
     imgSharedData: "images/javascript-shared-data.jpg",
 
+    urlAxisLabelCustomizationDocumentation: "https://www.scichart.com/documentation/js/current/AxisLabelCustomization.html",
+    urlTitleAxisLabelCustomizationDocumentation:
+        "This specific page in the JavaScript Axis Label Customization documentation will help you to get started",
+
+    // Multi Line labels
+    urlMultiLineLabels: "/javascript-multiline-labels",
+    titleMultiLineLabels: "Multi-line Text labels",
+    imgMultiLineLabels: "images/javascript-multiline-labels.jpg",
+
+    // Image labels
+    urlImageLabels: "/javascript-image-labels",
+    titleImageLabels: "Image labels",
+    imgImageLabels: "images/javascript-image-labels.jpg",
+
+    // Rotated labels
+    urlRotatedLabels: "/javascript-rotated-labels",
+    titleRotatedLabels: "Rotated labels",
+    imgRotatedLabels: "images/javascript-rotated-labels.jpg",
 };
