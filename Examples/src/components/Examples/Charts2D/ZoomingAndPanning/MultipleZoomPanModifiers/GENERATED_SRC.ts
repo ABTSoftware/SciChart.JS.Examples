@@ -11,7 +11,7 @@ import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Anima
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { PinchZoomModifier } from "scichart/Charting/ChartModifiers/PinchZoomModifier";
 import { EExecuteOn } from "scichart/types/ExecuteOn";
-import { easing, TEasing } from "scichart/Core/Animations/EasingFunctions";
+import { easing } from "scichart/Core/Animations/EasingFunctions";
 
 import classes from "../../../../Examples/Examples.module.scss";
 

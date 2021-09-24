@@ -24,6 +24,7 @@ import { EColor } from "scichart/types/Color";
 import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
 import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import { XyMovingAverageFilter } from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
 import classes from "../../../../Examples/Examples.module.scss";
 
 export const divElementId = "chart";
@@ -62,8 +63,8 @@ export const drawExample = async () => {
 
     const priceDataSeries = new OhlcDataSeries(wasmContext);
     const volumeDataSeries = new XyDataSeries(wasmContext);
-    const movingAverage20DataSeries = new XyDataSeries(wasmContext);
-    const movingAverage50DataSeries = new XyDataSeries(wasmContext);
+    const movingAverage20DataSeries = new XyMovingAverageFilter(priceDataSeries,  { dataSeriesName: "MA 20", length: 20 })
+    const movingAverage50DataSeries = new XyMovingAverageFilter(priceDataSeries,  { dataSeriesName: "MA 50", length: 50 });
 
     const genPricesData = getNextRandomPriceBarFactory(START_DATE, STEP, false, START_PRICE);
 
@@ -74,16 +75,10 @@ export const drawExample = async () => {
             const length = priceDataSeries.count();
             priceDataSeries.update(length - 1, openValue, highValue, lowValue, closeValue);
             volumeDataSeries.update(length - 1, volume);
-            const nativeCloseValues = priceDataSeries.getNativeCloseValues();
-            movingAverage20DataSeries.update(length - 1, calcAverageForDoubleVector(nativeCloseValues, MOVING_AVR_20));
-            movingAverage50DataSeries.update(length - 1, calcAverageForDoubleVector(nativeCloseValues, MOVING_AVR_50));
         } else {
             priceDataSeries.append(xValue, openValue, highValue, lowValue, closeValue);
             const volume2 = initialDataset ? volume * 2 : volume;
             volumeDataSeries.append(xValue, volume2);
-            const nativeCloseValues = priceDataSeries.getNativeCloseValues();
-            movingAverage20DataSeries.append(length - 1, calcAverageForDoubleVector(nativeCloseValues, MOVING_AVR_20));
-            movingAverage50DataSeries.append(length - 1, calcAverageForDoubleVector(nativeCloseValues, MOVING_AVR_50));
         }
     };
 

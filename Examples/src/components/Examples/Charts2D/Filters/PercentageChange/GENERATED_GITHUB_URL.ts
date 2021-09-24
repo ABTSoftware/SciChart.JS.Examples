@@ -1,0 +1,1 @@
+export const githubUrl = "/components/Examples/Charts2D/Filters/PercentageChange/index.tsx";

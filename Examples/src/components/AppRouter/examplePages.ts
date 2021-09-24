@@ -69,6 +69,10 @@ import { customTypesExampleInfo } from "../Examples/BuilderApi/CustomTypes/examp
 import { multiLineLabelsExampleInfo } from "../Examples/Charts2D/AxisLabelCustomization/MultiLineLabels/exampleInfo";
 import { imageLabelsExampleInfo } from "../Examples/Charts2D/AxisLabelCustomization/ImageLabels/exampleInfo";
 import { rotatedLabelsExampleInfo } from "../Examples/Charts2D/AxisLabelCustomization/RotatedLabels/exampleInfo";
+import { percentageChangeExampleInfo } from "../Examples/Charts2D/Filters/PercentageChange/exampleInfo";
+import { trendMARatioExampleInfo } from "../Examples/Charts2D/Filters/TrendMARatio/exampleInfo";
+import { customFiltersExampleInfo } from "../Examples/Charts2D/Filters/CustomFilters/exampleInfo";
+
 
 export type TExampleInfo = {
     title: string;
@@ -317,6 +321,18 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_zoomAndPanAChart_MultipleChartModifiers: {
         id: "chart2D_zoomAndPanAChart_MultipleChartModifiers",
         ...zoomAndPanWithMultipleChartModifiersExampleInfo
+    },
+    chart2D_filters_PercentageChange: {
+        id: "chart2D_filters_PercentageChange",
+        ...percentageChangeExampleInfo
+    },
+    chart2D_filters_TrendMARatio: {
+        id: "chart2D_filters_TrendMARatio",
+        ...trendMARatioExampleInfo
+    },
+    chart2D_filters_CustomFilters: {
+        id: "chart2D_filters_CustomFilters",
+        ...customFiltersExampleInfo
     },
     chart3D_basic3DChartTypes_Bubble3DChart: {
         id: "chart3D_basic3DChartTypes_Bubble3DChart",

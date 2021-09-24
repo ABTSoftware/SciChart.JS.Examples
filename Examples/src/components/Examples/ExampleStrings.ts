@@ -500,8 +500,8 @@ export const ExampleStrings = {
     // BuilderApi, Chart From JSON
     urlChartFromJSON: "/javascript-chart-from-json",
     titleChartFromJSON: "Chart from JSON",
-    urlChartFromJSONDocumentation: "https://www.scichart.com/documentation/js/current/BuilderApi.html",
-    urlTitleChartFromJSONDocumentation:
+    urlBuilderApiDocumentation: "https://www.scichart.com/documentation/js/current/BuilderApi.html",
+    urlTitleBuilderApiDocumentation:
         "This specific page in the JavaScript Builder API documentation will help you to get started",
     imgChartFromJSON: "images/javascript-chart-from-json.jpg",
 
@@ -533,4 +533,22 @@ export const ExampleStrings = {
     urlRotatedLabels: "/javascript-rotated-labels",
     titleRotatedLabels: "Rotated labels",
     imgRotatedLabels: "images/javascript-rotated-labels.jpg",
+    
+    // Filters, Percentage Change
+    urlPercentageChange: "/javascript-percentage-change",
+    titlePercentageChange: "Realtime Percentage Change using Filter",
+    imgPercentageChange: "images/javascript-percentage-change.jpg",
+    urlFiltersApiDocumentation: "https://www.scichart.com/documentation/js/current/Filters.html",
+    urlTitleFiltersApiDocumentation:
+        "This specific page in the JavaScript Filters API documentation will help you to get started",
+
+    // Filters, Trend, MA, Ratio
+    urlTrendMARatio: "/javascript-trend-ma-ratio",
+    titleTrendMARatio: "Trendline, Moving Average and Ratio Filters",
+    imgTrendMARatio: "images/javascript-trend-ma-ratio.jpg",
+
+    // Filters, Custom Filters
+    urlCustomFilters: "/javascript-custom-filters",
+    titleCustomFilters: "Custom Filters",
+    imgCustomFilters: "images/javascript-custom-filters.jpg",
 };
