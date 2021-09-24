@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `This uses a simple custom filter to apply random noise to a line, then a complex aggregation filter calculates the frequency distribution`;
+const previewDescription = `This uses a simple custom filter to apply random noise to a line, then an advanced aggregation filter calculates the frequency distribution`;
 const description = `Simple Custom Filters are great if you just want to apply some function to each y value.  Just create an XyCustomFilter and set your function.
 If you want to significantly reshape your data, create a class that extends XyFilterBase`;
 const tips = [' There are CustomFilter and FitlerBase types for each of the series types (xy, xyy, xyz, ohlc)',
@@ -37,30 +37,36 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
+                imgPath: ExampleStrings.imgPercentageChange,
+                title: ExampleStrings.titlePercentageChange,
+                seoTitle: ExampleStrings.titlePercentageChange,
+                examplePath: ExampleStrings.urlPercentageChange
+            },
+            {
+                imgPath: ExampleStrings.imgTrendMARatio,
+                title: ExampleStrings.titleTrendMARatio,
+                seoTitle: ExampleStrings.titleTrendMARatio,
+                examplePath: ExampleStrings.urlTrendMARatio
+            },
+            {
                 imgPath: ExampleStrings.imgMultiPaneStockChart,
                 title: ExampleStrings.titleMultiPaneStockChart,
                 seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
                 examplePath: ExampleStrings.urlMultiPaneStockChart
             },
             {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
+                imgPath: ExampleStrings.imgScatterChart,
+                title: ExampleStrings.titleScatterChart,
+                seoTitle: ExampleStrings.urlTitleScatterChart,
+                examplePath: ExampleStrings.urlScatterChart
             },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
         ]
     }
 ];
 
 const Subtitle = () => (
     <p>
-        Demonstrates simple and advanced <strong>custom filters</strong>, with realtime updates
+        Demonstrates simple and advanced <strong>Custom Filters</strong>, with realtime updates
         using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
@@ -80,7 +86,7 @@ export const customFiltersExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Realtime JavaScript Stock Chart demo using SciChart.js. Features live updating Candlestick/Ohlc charts, moving averages and volume",
-    seoKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-javascript-trend-ma-ratio.jpg"
+        "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
+    seoKeywords: "real-time, filter, transform, updating, aggregation, custom, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-custom-filters.jpg"
 };

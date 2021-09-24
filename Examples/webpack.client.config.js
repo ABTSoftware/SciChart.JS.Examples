@@ -69,10 +69,10 @@ module.exports = {
                 { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
                 { from: "sitemap.xml", to: "" },
                 { from: "robots.txt", to: "" },
-                { from: "src/components/Examples/BuilderApi/**/*.jpg", to: "images/[name].jpg" }
+                { from: "src/components/Examples/BuilderApi/**/*.jpg", to: "images/[name].jpg" },
+                { from: "src/components/Examples/Charts2D/Filters/**/*.jpg", to: "images/[name].jpg" }
             ]
         }),
-        // new webpack.IgnorePlugin(/(fs)/),
         // new BundleAnalyzerPlugin()
         new MiniCssExtractPlugin({
             filename: filename("styles.css")

@@ -19,6 +19,8 @@ import { ENumericFormat } from "scichart/types/NumericFormat";
 import { formatNumber } from "scichart/utils/number";
 import classes from "../../../Examples.module.scss";
 import { XyRatioFilter } from "scichart/Charting/Model/Filters/XyRatioFilter";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 
 export const divElementId = "chart";
 
@@ -35,53 +37,62 @@ const getRandomData = (start: number, scale: number, count: number) => {
 const y1Data = getRandomData(50, 4, 200);
 const y2Data = getRandomData(40, 2, 200);
 
-export const drawExample = async (useRatio: boolean) => {
+export const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis = new NumericAxis(wasmContext, {
         autoRange: EAutoRange.Always,
+        axisAlignment: EAxisAlignment.Left,
+        axisTitle: "Original Data"
+    });
+    const yAxisRatio = new NumericAxis(wasmContext, {
+        autoRange: EAutoRange.Always,
+        id: "yRatio",
+        axisTitle: "Ratio"
     });
 
-    sciChartSurface.yAxes.add(yAxis);
-
-    const lineSeries = new FastLineRenderableSeries(wasmContext, {
-        strokeThickness: 3,
-        stroke: "white"
-    });
-    const ma1Series = new FastLineRenderableSeries(wasmContext, {
-        stroke: "red"
-    });
-    const trend1Series = new FastLineRenderableSeries(wasmContext, {
-        stroke: "blue"
-    });
-    sciChartSurface.renderableSeries.add(lineSeries, ma1Series, trend1Series);
+    sciChartSurface.yAxes.add(yAxis, yAxisRatio);
 
     const xValues = Array.apply(null, Array(y1Data.length)).map((x, i) => i);
-    const dataSeries1 = new XyDataSeries(wasmContext, { xValues, yValues: y1Data });
-    const dataSeries2 = new XyDataSeries(wasmContext, { xValues, yValues: y2Data });
+    const dataSeries1 = new XyDataSeries(wasmContext, { xValues, yValues: y1Data, dataSeriesName: "Original" });
+    const dataSeries2 = new XyDataSeries(wasmContext, { xValues, yValues: y2Data, dataSeriesName: "Divisor" });
 
-    if (useRatio) {
-        const ratio = new XyRatioFilter(dataSeries1, { divisorSeries: dataSeries2 });
-        lineSeries.dataSeries = ratio;
-        ma1Series.dataSeries = new XyMovingAverageFilter(ratio, { length: 10 });
-        trend1Series.dataSeries =  new XyLinearTrendFilter(ratio);
-    } else {
-        lineSeries.dataSeries = dataSeries1;
-        ma1Series.dataSeries = new XyMovingAverageFilter(dataSeries1, { length: 10 });
-        trend1Series.dataSeries =  new XyLinearTrendFilter(dataSeries1);
-        const lineSeries2 = new FastLineRenderableSeries(wasmContext, {
-            strokeThickness: 3,
-            stroke: "green",
-            dataSeries: dataSeries2
-        });
-        sciChartSurface.renderableSeries.add(lineSeries2);
-    }
+    const lineSeries1 = new FastLineRenderableSeries(wasmContext, {
+        strokeThickness: 3,
+        stroke: "#456990",
+        dataSeries: dataSeries1,
+    });
+    const lineSeries2 = new FastLineRenderableSeries(wasmContext, {
+        strokeThickness: 3,
+        stroke: "#C6E2E9",
+        dataSeries: dataSeries2
+    });
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new RolloverModifier());
+    const ratio = new XyRatioFilter(dataSeries1, { divisorSeries: dataSeries2, dataSeriesName: "Ratio" });
+    const ratioSeries = new FastLineRenderableSeries(wasmContext, {
+        strokeThickness: 3,
+        stroke: "#F7B32B",
+        dataSeries: ratio,
+        yAxisId: "yRatio"
+    });
+
+    const maSeries = new FastLineRenderableSeries(wasmContext, {
+        stroke: "#A93F55",
+        strokeThickness: 3,
+        dataSeries: new XyMovingAverageFilter(ratio, { length: 20, dataSeriesName: "Ratio MA(20)" }),
+        yAxisId: "yRatio",
+    });
+    const trendSeries = new FastLineRenderableSeries(wasmContext, {
+        stroke: "#F2BAC9",
+        strokeThickness: 3,
+        dataSeries: new XyLinearTrendFilter(ratio, { dataSeriesName: "Ratio Trend"}),
+        yAxisId: "yRatio"
+    });
+    sciChartSurface.renderableSeries.add(lineSeries1, lineSeries2, ratioSeries, maSeries, trendSeries);
+
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier(), new LegendModifier());
 
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext, dataSeries1, dataSeries2 };
@@ -92,11 +103,10 @@ let dataSeries1: XyDataSeries;
 let dataSeries2: XyDataSeries;
 
 export default function TrendMARatio() {
-    const [useRatio, setUseRatio] = React.useState(true);
 
     React.useEffect(() => {
         (async () => {
-            const res = await drawExample(useRatio);
+            const res = await drawExample();
             scs = res.sciChartSurface;
             dataSeries1 = res.dataSeries1;
             dataSeries2 = res.dataSeries2;
@@ -105,12 +115,7 @@ export default function TrendMARatio() {
         return () => {
             scs?.delete();
         };
-    }, [useRatio]);
-
-    const handleUseRatio = () => {
-        const newValue = !useRatio;
-        setUseRatio(newValue);
-    };
+    }, []);
 
     const handleAddData = () => {
         const xValues = Array.apply(null, Array(100)).map((x, i) => i + dataSeries1.count());
@@ -125,26 +130,14 @@ export default function TrendMARatio() {
         const newy1 = getRandomData(lasty1, 2, 100);
         y1Data.push(...newy1);
         dataSeries1.appendRange(xValues, newy1);
+        scs.zoomExtents();
     };
 
     return (
         <div>
-            <div id={divElementId} style={{ width: "75%", marginBottom: 20, touchAction: "none" }} />
+            <div id={divElementId} className={classes.ChartWrapper} />
             
             <div className={classes.ButtonsWrapper}>
-                <ToggleButtonGroup 
-                    exclusive 
-                    value={useRatio}
-                    onChange={handleUseRatio}
-                    size="medium" color="primary" aria-label="small outlined button group">
-                    <ToggleButton value={true} >
-                        Show Ratio
-                    </ToggleButton>
-                    <ToggleButton value={false} >
-                        Original Data
-                    </ToggleButton>
-                </ToggleButtonGroup>
-
                     <Button className={classes.ButtonsText} size="medium" onClick={handleAddData}>
                             Add Data
                     </Button>

@@ -46,23 +46,23 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
+                imgPath: ExampleStrings.imgTrendMARatio,
+                title: ExampleStrings.titleTrendMARatio,
+                seoTitle: ExampleStrings.titleTrendMARatio,
+                examplePath: ExampleStrings.urlTrendMARatio
             },
             {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
+                imgPath: ExampleStrings.imgCustomFilters,
+                title: ExampleStrings.titleCustomFilters,
+                seoTitle: ExampleStrings.titleCustomFilters,
+                examplePath: ExampleStrings.urlCustomFilters
             },
             {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
+                imgPath: ExampleStrings.imgLineChart,
+                title: ExampleStrings.titleLineChart,
+                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
+                examplePath: ExampleStrings.urlLineChart
+            },
         ]
     }
 ];
@@ -80,6 +80,6 @@ export const percentageChangeExampleInfo: TExampleInfo = {
     githubUrl,
     seoDescription:
         "How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan",
-    seoKeywords: "real-time, updating, percentage, chart, javascript, webgl, canvas",
+    seoKeywords: "real-time, updating, percentage, transform, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-percentage-change.jpg"
 };

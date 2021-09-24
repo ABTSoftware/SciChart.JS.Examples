@@ -158,7 +158,7 @@ export default function PercentageChange() {
 
     return (
         <div>
-            <div id={divElementId} style={{ width: "75%", marginBottom: 20, touchAction: "none" }} />
+            <div id={divElementId} className={classes.ChartWrapper} />
             
             <div className={classes.ButtonsWrapper}>
                 <ToggleButtonGroup 

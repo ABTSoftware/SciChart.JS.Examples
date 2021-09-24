@@ -1,279 +1,243 @@
-export const code = `import * as React from "react";
+export const code = `import { ButtonGroup } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+import * as React from "react";
 import { SciChartSurface } from "scichart";
-import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
+import { CursorModifier } from "scichart/Charting/ChartModifiers/CursorModifier";
+import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { BaseDataSeries } from "scichart/Charting/Model/BaseDataSeries";
+import { SeriesInfo } from "scichart/Charting/Model/ChartData/SeriesInfo";
+import { XySeriesInfo } from "scichart/Charting/Model/ChartData/XySeriesInfo";
+import { XyCustomFilter } from "scichart/Charting/Model/Filters/XyCustomFilter";
+import { XyFilterBase } from "scichart/Charting/Model/Filters/XyFilterBase";
+import { XyScaleOffsetFilter } from "scichart/Charting/Model/Filters/XyScaleOffsetFilter";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { getNextRandomPriceBarFactory } from "scichart/utils/randomPricesDataSource";
-import { calcAverageForDoubleVector } from "scichart/utils/calcAverage";
+import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
+import { LogarithmicAxis } from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { FastOhlcRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastOhlcRenderableSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { EXyDirection } from "scichart/types/XyDirection";
-import { easing } from "scichart/Core/Animations/EasingFunctions";
-import { TSciChart } from "scichart/types/TSciChart";
-import { ESeriesType } from "scichart/types/SeriesType";
-import { EColor } from "scichart/types/Color";
-import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
+import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { EAutoRange } from "scichart/types/AutoRange";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { ENumericFormat } from "scichart/types/NumericFormat";
-import { XyMovingAverageFilter } from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
-import classes from "../../../../Examples/Examples.module.scss";
+import { formatNumber } from "scichart/utils/number";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
+import classes from "../../../Examples.module.scss";
 
 export const divElementId = "chart";
-// Step = 5 minutes
-const STEP = 5;
-const START_PRICE = 20;
-const START_DATE = new Date("2020-01-01").getTime() / 1000;
-const AXIS2_ID = "AXIS2_ID";
-const UPDATE_TICKS = 25;
-const MOVING_AVR_20 = 20;
-const MOVING_AVR_50 = 50;
-
-const STROKE_THICKNESS = 2;
-
 let timerId: NodeJS.Timeout;
 
-export const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    const xAxis = new CategoryAxis(wasmContext);
-    xAxis.labelProvider.numericFormat = ENumericFormat.Date_HHMM;
-    xAxis.visibleRangeLimit = new NumberRange(1, 10000);
-    xAxis.growBy = new NumberRange(0.0, 0.05);
-    xAxis.autoRange = EAutoRange.Never;
-    sciChartSurface.xAxes.add(xAxis);
+// A custom filter which calculates the frequency distribution of the original data
+class AggregationFilter extends XyFilterBase {
+    private bins: Map<number, number> = new Map<number, number>();
+    private binWidthProperty = 1;
 
-    const priceYAxis = new NumericAxis(wasmContext);
-    priceYAxis.growBy = new NumberRange(0.25, 0.05);
-    priceYAxis.autoRange = EAutoRange.Always;
-    sciChartSurface.yAxes.add(priceYAxis);
-
-    const volumeYAxis = new NumericAxis(wasmContext, { id: AXIS2_ID, axisAlignment: EAxisAlignment.Left });
-    volumeYAxis.isVisible = false;
-    volumeYAxis.autoRange = EAutoRange.Always;
-    volumeYAxis.growBy = new NumberRange(0, 5);
-    sciChartSurface.yAxes.add(volumeYAxis);
-
-    const priceDataSeries = new OhlcDataSeries(wasmContext);
-    const volumeDataSeries = new XyDataSeries(wasmContext);
-    const movingAverage20DataSeries = new XyMovingAverageFilter(priceDataSeries,  { dataSeriesName: "MA 20", length: 20 })
-    const movingAverage50DataSeries = new XyMovingAverageFilter(priceDataSeries,  { dataSeriesName: "MA 50", length: 50 });
-
-    const genPricesData = getNextRandomPriceBarFactory(START_DATE, STEP, false, START_PRICE);
-
-    const fillPriceDataSeries = (requestUpdate: boolean, initialDataset: boolean) => {
-        const generatedData = genPricesData(requestUpdate);
-        const { xValue, openValue, highValue, lowValue, closeValue, volume } = generatedData;
-        if (requestUpdate) {
-            const length = priceDataSeries.count();
-            priceDataSeries.update(length - 1, openValue, highValue, lowValue, closeValue);
-            volumeDataSeries.update(length - 1, volume);
-        } else {
-            priceDataSeries.append(xValue, openValue, highValue, lowValue, closeValue);
-            const volume2 = initialDataset ? volume * 2 : volume;
-            volumeDataSeries.append(xValue, volume2);
-        }
-    };
-
-    // Initial dataset
-    for (let i = 0; i < 50; i++) {
-        fillPriceDataSeries(false, true);
+    constructor(originalSeries: BaseDataSeries, binWidth: number) {
+        super(originalSeries);
+        this.binWidthProperty = binWidth;
+        this.filterAll();
     }
 
-    sciChartSurface.renderableSeries.add(
-        new FastColumnRenderableSeries(wasmContext, {
-            fill: "#b0c4de",
-            stroke: "#4682b4",
-            strokeThickness: STROKE_THICKNESS,
-            zeroLineY: 0,
-            yAxisId: AXIS2_ID,
-            dataSeries: volumeDataSeries
-        })
-    );
+    public get binWidth() {
+        return this.binWidthProperty;
+    }
 
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "#ff6600",
-            strokeThickness: STROKE_THICKNESS,
-            dataSeries: movingAverage20DataSeries
-        })
-    );
+    public set binWidth(value: number) {
+        this.binWidthProperty = value;
+        this.filterAll();
+    }
 
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "#ffffff",
-            strokeThickness: STROKE_THICKNESS,
-            dataSeries: movingAverage50DataSeries
-        })
-    );
+    protected filterAll() {
+        this.clear();
+        this.bins.clear();
+        this.filter(0, this.getOriginalCount());
+    }
+    protected filterOnAppend(count: number): void {
+        // Overriding this so we do not have to reprocess the entire series on append
+        this.filter(this.getOriginalCount() - count, count);
+    }
 
-    sciChartSurface.renderableSeries.add(
-        new FastOhlcRenderableSeries(wasmContext, {
-            strokeThickness: STROKE_THICKNESS,
-            dataSeries: priceDataSeries,
-            dataPointWidth: 0.4
-        })
-    );
-
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
-    sciChartSurface.zoomExtents();
-
-    let tick = 0;
-    const updateChart = () => {
-        const requestUpdate: boolean = !(tick % UPDATE_TICKS === 0);
-
-        fillPriceDataSeries(requestUpdate, false);
-
-        // if the current updated bar is visible then shift by one point
-        const latestXIndex = priceDataSeries.count() - 1;
-        if (latestXIndex && latestXIndex < xAxis.visibleRange.max && !requestUpdate) {
-            const shiftedRange = new NumberRange(xAxis.visibleRange.min + 1, xAxis.visibleRange.max + 1);
-
-            // Shift the XAxis by the latest point
-            xAxis.animateVisibleRange(shiftedRange, 250, easing.inOutQuad);
+    protected filter(start: number, count: number): void {
+        const numUtil = this.originalSeries.webAssemblyContext.NumberUtil;
+        for (let i = start; i < start + count; i++) {
+            const bin = numUtil.RoundDown(this.getOriginalYValues().get(i), this.binWidth);
+            if (this.bins.has(bin)) {
+                const newVal = this.bins.get(bin) + 1;
+                this.bins.set(bin, newVal);
+            } else {
+                this.bins.set(bin, 1);
+            }
         }
+        // Map data is unsorted, so we must sort it before recreating the output series
+        const keys = Array.from(this.bins.keys()).sort((a, b) => a - b);
+        this.clear();
+        const yValues: number[] = [];
+        for (const key of keys) {
+            yValues.push(this.bins.get(key));
+        }
+        this.appendRange(keys, yValues);
+    }
 
-        tick++;
-        timerId = setTimeout(updateChart, 20);
+    protected onClear() {
+        this.clear();
+        this.bins.clear();
+    }
+}
+
+let lastX = 0;
+// Straight line data
+const getData = (n: number) => {
+    const xValues: number[] = [];
+    const yValues: number[] = [];
+    for (let i = 0; i < n; i++) {
+        xValues.push(lastX);
+        yValues.push(50 + lastX/1000);
+        lastX++;
+    }
+    return { xValues, yValues };
+};
+
+export const drawExample = async () => {
+    // Define some constants
+    const numberOfPointsPerTimerTick = 500; // 1,000 points every timer tick
+    const timerInterval = 10; // timer tick every 10 milliseconds
+    const maxPoints = 100000; // max points for a single series before the demo stops
+
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    sciChartSurface.applyTheme(new SciChartJSLightTheme());
+    const rawXAxis = new NumericAxis(wasmContext, { id: "rawX", isVisible: false, autoRange: EAutoRange.Always });
+    const aggXAxis = new NumericAxis(wasmContext, { 
+        id: "aggX", 
+        axisTitle: "Value",
+        autoRange: EAutoRange.Always 
+    });
+    sciChartSurface.xAxes.add(rawXAxis, aggXAxis);
+
+    const rawYAxis = new NumericAxis(wasmContext, {
+        autoRange: EAutoRange.Always,
+        id: "rawY"
+    });
+    const aggYAxis = new NumericAxis(wasmContext, {
+        axisTitle: "Frequency",
+        id: "aggY",
+        autoRange: EAutoRange.Always,
+        axisAlignment: EAxisAlignment.Left,
+        growBy: new NumberRange(0, 0.5)
+    });
+    sciChartSurface.yAxes.add(aggYAxis, rawYAxis);
+
+    const dataSeries = new XyDataSeries(wasmContext);
+
+    // Create a simple custom filter.  We just have to specify the filter function and this will be applied efficiently to data changes
+    const gaussFilter = new XyCustomFilter(dataSeries);
+    // This function exploits the central limit theorem to approximate a normal distribution
+    const gaussianRand = () => {
+        let rand = 0;
+        for (let i = 0; i < 6; i += 1) {
+            rand += Math.random();
+        }
+        return rand / 6;
     };
+    gaussFilter.filterFunction = ((i, y) => y * gaussianRand());
 
-    const stopAnimation = () => {
+    // Create a scatter series to show the randomised data
+    const pointSeries = new XyScatterRenderableSeries(wasmContext, {
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 1,
+            height: 1,
+            strokeThickness: 0,
+            fill: "#5555ff"
+        }),
+        opacity: 0.2,
+        dataSeries: gaussFilter,
+        xAxisId: "rawX",
+        yAxisId: "rawY"
+    });
+
+    // Pass the randomised data into the aggregation filter.
+    const aggFilter = new AggregationFilter(gaussFilter, 5);
+    const colSeries = new FastColumnRenderableSeries(wasmContext, {
+        id: "col",
+        fill: "#cc6600",
+        stroke: "#cc9933",
+        opacity: 0.5,
+        dataSeries: aggFilter,
+        xAxisId: "aggX",
+        yAxisId: "aggY"
+    });
+
+    sciChartSurface.renderableSeries.add(pointSeries, colSeries);
+
+    // Function called when the user clicks stopDemo button
+    const stopDemo = () => {
         clearTimeout(timerId);
         timerId = undefined;
+        lastX = 0;
     };
 
-    const startAnimation = () => {
+    // Function called when the user clicks startDemo button
+    const startDemo = () => {
         if (timerId) {
-            stopAnimation();
+            stopDemo();
+            dataSeries.clear();
         }
-        updateChart();
+        const updateFunc = () => {
+            if (dataSeries.count() >= maxPoints) {
+                stopDemo();
+                return;
+            }
+
+            // Get the next N random walk x,y values
+            const { xValues, yValues } = getData(numberOfPointsPerTimerTick);
+            // Append these to the dataSeries. This will cause the chart to redraw
+            dataSeries.appendRange(xValues, yValues);
+
+            timerId = setTimeout(updateFunc, timerInterval);
+        };
+
+        dataSeries.clear();
+
+        timerId = setTimeout(updateFunc, timerInterval);
     };
 
-    return { sciChartSurface, wasmContext, controls: { startAnimation, stopAnimation } };
+    return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo } };
 };
 
 let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
-export default function RealtimeTickingStockCharts() {
-    const [wasmContext, setWasmContext] = React.useState<TSciChart>();
-    const [strokeThickness, setStrokeThickness] = React.useState(2);
-    const [seriesType, setSeriesType] = React.useState(ESeriesType.OhlcSeries);
-    const [controls, setControls] = React.useState({ startAnimation: () => {}, stopAnimation: () => {} });
+export default function CustomFilters() {
+    const [controls, setControls] = React.useState({ startDemo: () => {}, stopDemo: () => {} });
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
             scs = res.sciChartSurface;
-            setWasmContext(res.wasmContext);
             setControls(res.controls);
-            autoStartTimerId = setTimeout(res.controls.startAnimation, 3000);
+            autoStartTimerId = setTimeout(res.controls.startDemo, 1000);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            controls.stopAnimation();
+            controls.stopDemo();
             clearTimeout(timerId);
             clearTimeout(autoStartTimerId);
             scs?.delete();
         };
     }, []);
 
-    const handleChangeStrokeThickness = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const newStrokeThickness = +event.target.value as number;
-        setStrokeThickness(newStrokeThickness);
-        scs.renderableSeries.asArray().forEach(rs => {
-            rs.strokeThickness = newStrokeThickness;
-        });
-    };
-
-    const handleChangeSeriesType = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const newSeriesType = event.target.value as ESeriesType;
-        setSeriesType(newSeriesType);
-        // We know that priceDataSeries it the last one with index 3
-        const priceDataSeries = scs.renderableSeries.get(3).dataSeries;
-        scs.renderableSeries.removeAt(3);
-        switch (newSeriesType) {
-            case ESeriesType.LineSeries:
-                scs.renderableSeries.add(
-                    new FastLineRenderableSeries(wasmContext, {
-                        stroke: EColor.Green,
-                        strokeThickness,
-                        dataSeries: priceDataSeries
-                    })
-                );
-                break;
-            case ESeriesType.OhlcSeries:
-                scs.renderableSeries.add(
-                    new FastOhlcRenderableSeries(wasmContext, {
-                        strokeThickness,
-                        dataSeries: priceDataSeries as OhlcDataSeries,
-                        dataPointWidth: 0.4
-                    })
-                );
-                break;
-            case ESeriesType.CandlestickSeries:
-                scs.renderableSeries.add(
-                    new FastCandlestickRenderableSeries(wasmContext, {
-                        strokeThickness,
-                        dataSeries: priceDataSeries as OhlcDataSeries,
-                        dataPointWidth: 0.4
-                    })
-                );
-                break;
-            case ESeriesType.MountainSeries:
-                scs.renderableSeries.add(
-                    new FastMountainRenderableSeries(wasmContext, {
-                        fill: "rgba(176, 196, 222, 0.7)",
-                        stroke: "#4682b4",
-                        strokeThickness,
-                        zeroLineY: 0,
-                        dataSeries: priceDataSeries
-                    })
-                );
-        }
-    };
-
     return (
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
-
-            <div className={classes.SelectWrapper}>
-                <div className={classes.InputSelectWrapper}>
-                    <label id="stroke-thickness-label">
-                        Stroke Thickness
-                        <select id="stroke-thickness" value={strokeThickness} onChange={handleChangeStrokeThickness}>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                        </select>
-                    </label>
-                </div>
-                <div className={classes.InputSelectWrapper}>
-                    <label id="stroke-thickness-label">
-                        Series Type
-                        <select id="stroke-thickness" value={seriesType} onChange={handleChangeSeriesType}>
-                            <option value={ESeriesType.OhlcSeries}>OHLC</option>
-                            <option value={ESeriesType.CandlestickSeries}>Candlestick</option>
-                            <option value={ESeriesType.LineSeries}>Line</option>
-                            <option value={ESeriesType.MountainSeries}>Mountain</option>
-                        </select>
-                    </label>
-                </div>
-            </div>
             <div className={classes.ButtonsWrapper}>
-                <Button onClick={controls.startAnimation}>Start</Button>
-                <Button onClick={controls.stopAnimation}>Stop</Button>
+                <Button onClick={controls.startDemo}>Start</Button>
+
+                <Button onClick={controls.stopDemo}>Stop</Button>
             </div>
         </div>
     );

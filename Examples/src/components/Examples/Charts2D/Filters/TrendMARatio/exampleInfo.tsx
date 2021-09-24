@@ -6,10 +6,9 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `An example which demonstrates real-time ticking / updating stock charts in JavaScript with Price data as
-Candlesticks or Ohlc and Moving average indicators on the chart.`;
-const description = `Technical indicators are for demonstration purposes only. We recommend using the open source TA-Lib`;
-const tips = [`You can change the series type from Candlestick to Ohlc to Mountain and more.`];
+const previewDescription = `Ratio Filter divides the original dataseries by the divisor series.  Moving Average and Linear Trend fitlers are then applied to the resulting ratio`;
+const description = `Click 'Add Data' to see how the filters automatically recaultate when data changes`;
+const tips = [`Moving Average and Linear Trend filters can be applied to any kind of data series, and you can pick which field to filter`];
 
 const documentationLinks: TDocumentationLink[] = [
     {
@@ -34,22 +33,28 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
+                imgPath: ExampleStrings.imgPercentageChange,
+                title: ExampleStrings.titlePercentageChange,
+                seoTitle: ExampleStrings.titlePercentageChange,
+                examplePath: ExampleStrings.urlPercentageChange
             },
             {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
+                imgPath: ExampleStrings.imgCustomFilters,
+                title: ExampleStrings.titleCustomFilters,
+                seoTitle: ExampleStrings.titleCustomFilters,
+                examplePath: ExampleStrings.urlCustomFilters
             },
             {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
+                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
+                title: ExampleStrings.titleRealtimeTickingStockCharts,
+                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
+                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
+            },
+            {
+                imgPath: ExampleStrings.imgLineChart,
+                title: ExampleStrings.titleLineChart,
+                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
+                examplePath: ExampleStrings.urlLineChart
             }
         ]
     }
@@ -57,7 +62,7 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how create a <strong>JavaScript Stock Chart</strong> with live real-time ticking and updating,
+        Demonstrates how use <strong>Linear Trend, Moving Average and Ratio Filters</strong> with filter chaining,
         using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
@@ -77,7 +82,7 @@ export const trendMARatioExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Realtime JavaScript Stock Chart demo using SciChart.js. Features live updating Candlestick/Ohlc charts, moving averages and volume",
-    seoKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
+        "Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining",
+    seoKeywords: "trend, line, moving, average, ratio, transform, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-javascript-trend-ma-ratio.jpg"
 };

@@ -1,85 +1,80 @@
-export const code = `import * as React from "react";
+export const code = `import { ButtonGroup } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+import * as React from "react";
 import { SciChartSurface } from "scichart";
-import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { getNextRandomPriceBarFactory } from "scichart/utils/randomPricesDataSource";
-import { calcAverageForDoubleVector } from "scichart/utils/calcAverage";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { FastOhlcRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastOhlcRenderableSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { EXyDirection } from "scichart/types/XyDirection";
-import { easing } from "scichart/Core/Animations/EasingFunctions";
-import { TSciChart } from "scichart/types/TSciChart";
-import { ESeriesType } from "scichart/types/SeriesType";
-import { EColor } from "scichart/types/Color";
-import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { XyMovingAverageFilter } from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
-import classes from "../../../../Examples/Examples.module.scss";
-import { FormControl, Typography } from "@material-ui/core";
-import { ToggleButton } from "@material-ui/lab";
 import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { SeriesInfo } from "scichart/Charting/Model/ChartData/SeriesInfo";
 import { XySeriesInfo } from "scichart/Charting/Model/ChartData/XySeriesInfo";
 import { XyScaleOffsetFilter } from "scichart/Charting/Model/Filters/XyScaleOffsetFilter";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
+import { EAutoRange } from "scichart/types/AutoRange";
+import { ENumericFormat } from "scichart/types/NumericFormat";
+import { formatNumber } from "scichart/utils/number";
+import classes from "../../../Examples.module.scss";
 
 export const divElementId = "chart";
+
+const getRandomData = (start: number, scale: number, count: number) => {
+    const data: number[] = [];
+    let y = start;
+    for (let i = 0; i < count; i++) {
+        y = y + Math.random() * scale - scale / 2;
+        data.push(y);
+    }
+    return data;
+};
+
+const y1Data = getRandomData(100, 6, 200);
+const y2Data = getRandomData(20, 1, 200);
 
 export const drawExample = async (usePercentage: boolean) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
-    const yAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
+    const yAxis = new NumericAxis(wasmContext, {
+        autoRange: EAutoRange.Always,
+        labelPostfix: usePercentage ? "%" : "",
+        labelPrecision: usePercentage ? 0 : 1
+    });
+    // Override the formatting of the cursor label as we don't want it to show the % postfix, since we're showing original data
+    yAxis.labelProvider.formatCursorLabel = (value: number) => formatNumber(value, ENumericFormat.Decimal, 1);
+
     sciChartSurface.yAxes.add(yAxis);
 
     const lineSeries = new TransformedSeries(wasmContext, {
-        strokeThickness: 5,
+        strokeThickness: 3,
         stroke: "white"
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
-    const dataSeries = new XyDataSeries(wasmContext, { containsNaN: true });
-    let y = 10;
-    for (let i = 0; i < 100; i++) {
-        y = y + (Math.random() * 2) - 1;
-        dataSeries.append(i, y);
-    }
-    const transform1 = new XyScaleOffsetFilter(dataSeries, { offset: -100 });
-    xAxis.visibleRangeChanged.subscribe(args => (transform1.scale = getScaleValue(dataSeries, args.visibleRange.min)));
+    const xValues = Array.apply(null, Array(y1Data.length)).map((x, i) => i);
+
+    const dataSeries1 = new XyDataSeries(wasmContext, { xValues, yValues: y1Data });
+
+    const transform1 = new XyScaleOffsetFilter(dataSeries1, { offset: -100 });
+    xAxis.visibleRangeChanged.subscribe(args => (transform1.scale = getScaleValue(dataSeries1, args.visibleRange.min)));
     if (usePercentage) {
         lineSeries.dataSeries = transform1;
-        lineSeries.originalSeries = dataSeries;
+        lineSeries.originalSeries = dataSeries1;
     } else {
-        lineSeries.dataSeries = dataSeries;
+        lineSeries.dataSeries = dataSeries1;
     }
 
     const lineSeries2 = new TransformedSeries(wasmContext, {
-        drawNaNAs: ELineDrawMode.PolyLine,
-        isDigitalLine: false
+        strokeThickness: 3,
+        stroke: "green"
     });
-    lineSeries2.strokeThickness = 5;
     sciChartSurface.renderableSeries.add(lineSeries2);
-    lineSeries2.stroke = "green";
 
-    const dataSeries2 = new XyDataSeries(wasmContext, { containsNaN: true });
-    let y2 = 1
-    for (let i = 0; i < 200; i++) {
-        y2 = y2 + (Math.random() * 2) - 1;
-        dataSeries2.append(i, y2);
-    }
+    const dataSeries2 = new XyDataSeries(wasmContext, { xValues, yValues: y2Data });
+
     const transform2 = new XyScaleOffsetFilter(dataSeries2, { offset: -100 });
     xAxis.visibleRangeChanged.subscribe(args => (transform2.scale = getScaleValue(dataSeries2, args.visibleRange.min)));
 
@@ -95,7 +90,7 @@ export const drawExample = async (usePercentage: boolean) => {
     sciChartSurface.chartModifiers.add(new RolloverModifier());
 
     sciChartSurface.zoomExtents();
-    return { sciChartSurface, wasmContext };
+    return { sciChartSurface, wasmContext, dataSeries1, dataSeries2 };
 };
 
 const getScaleValue = (dataSeries: XyDataSeries, zeroXValue: number) => {
@@ -120,7 +115,7 @@ class TransformedSeries extends FastLineRenderableSeries {
     public getSeriesInfo(hitTestInfo: HitTestInfo): SeriesInfo {
         const info = new XySeriesInfo(this, hitTestInfo);
         // Use y value from original series
-        if (this.originalSeries) {
+        if (this.originalSeries && info.dataSeriesIndex) {
             info.yValue = this.originalSeries.getNativeYValues().get(info.dataSeriesIndex);
         }
         return info;
@@ -128,41 +123,61 @@ class TransformedSeries extends FastLineRenderableSeries {
 }
 
 let scs: SciChartSurface;
+let dataSeries1: XyDataSeries;
+let dataSeries2: XyDataSeries;
 
 export default function PercentageChange() {
-    const [wasmContext, setWasmContext] = React.useState<TSciChart>();
-    const [usePercentage, setUsePercentage] = React.useState(false);
+    const [usePercentage, setUsePercentage] = React.useState(true);
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample(usePercentage);
             scs = res.sciChartSurface;
-            setWasmContext(res.wasmContext);
+            dataSeries1 = res.dataSeries1;
+            dataSeries2 = res.dataSeries2;
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
             scs?.delete();
         };
-    }, []);
+    }, [usePercentage, y2Data]);
 
     const handleUsePercentage = () => {
         const newValue = !usePercentage;
         setUsePercentage(newValue);
     };
 
+    const handleAddData = () => {
+        const xValues = Array.apply(null, Array(100)).map((x, i) => i + dataSeries1.count());
+        const lasty1 = dataSeries1.getNativeYValues().get(dataSeries1.count() - 1);
+        dataSeries1.appendRange(xValues, getRandomData(lasty1, 4, 100));
+
+        const lasty2 = dataSeries2.getNativeYValues().get(dataSeries2.count() - 1);
+        dataSeries2.appendRange(xValues, getRandomData(lasty2, 2, 100));
+    };
+
     return (
         <div>
-            <Typography variant="h4" gutterBottom>
-                Scale multiple series using Percentage Change
-            </Typography>
-             <div style={{ maxWidth: 800, marginBottom: 20 }}>
-            <FormControl variant="filled" >
-                <ToggleButton size="medium" selected={usePercentage} onChange={handleUsePercentage} value={usePercentage}>
-                    Use Percentage
-                </ToggleButton>
-            </FormControl>
-            </div>
-            <div id={divElementId} style={{ width: "75%", marginBottom: 20, touchAction: "none" }} />
+            <div id={divElementId} className={classes.ChartWrapper} />
+            
+            <div className={classes.ButtonsWrapper}>
+                <ToggleButtonGroup 
+                    exclusive 
+                    value={usePercentage}
+                    onChange={handleUsePercentage}
+                    size="medium" color="primary" aria-label="small outlined button group">
+                    <ToggleButton value={true} >
+                        Percentage Change
+                    </ToggleButton>
+                    <ToggleButton value={false} >
+                        Original Data
+                    </ToggleButton>
+                </ToggleButtonGroup>
+
+                    <Button className={classes.ButtonsText} size="medium" onClick={handleAddData}>
+                            Add Data
+                    </Button>
+                </div>
         </div>
     );
 }
