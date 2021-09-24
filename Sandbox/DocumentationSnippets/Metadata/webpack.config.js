@@ -6,16 +6,10 @@ module.exports = {
     mode: "production",
     entry: "./src/index.js",
     module: {
-        rules: [
-            {
-                test: /\.ts?$/,
-                use: "ts-loader",
-                exclude: /node_modules/
-            },
-        ]
+        rules: []
     },
     resolve: {
-        extensions: [".js", ".ts"]
+        extensions: [".js"]
     },
     output: {
         filename: "bundle.js",

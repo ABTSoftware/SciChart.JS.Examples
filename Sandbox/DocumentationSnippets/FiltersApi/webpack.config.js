@@ -3,7 +3,8 @@ const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 
 module.exports = {
-    mode: "production",
+    mode: "development",
+    devtool: "inline-source-map",
     entry: "./src/index.js",
     module: {
         rules: [
@@ -20,6 +21,14 @@ module.exports = {
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname, "build")
+    },
+    devServer: {
+        client: {
+          overlay: {
+            errors: true,
+            warnings: false,
+          },
+        },
     },
     plugins: [
         new CopyPlugin({
