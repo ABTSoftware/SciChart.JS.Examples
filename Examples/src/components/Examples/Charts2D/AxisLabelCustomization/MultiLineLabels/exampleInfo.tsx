@@ -7,11 +7,11 @@ import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
 const previewDescription = `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider`;
-const description = `Dual lines are drawn by the stroke, strokeY1 properties and shaded bands are drawn by the fill and fillY1
-properties, depending on whether y1 is greater than y2`;
+const description = `TextLabelProvider provides an easy way to map tick values to text.  It can also do basic word wrapping.  These examples also show how you can create
+multi-line axis titles using textureManager.createTextTexture.`;
 const tips = [
-    `If you have data where Y1 is greater than Y2 always, you’ll get an envelope effect. Great for rendering
-    confidence intervals, error margins or Bollinger Bands!`
+    `If some labels are not appearing, it is probably because there is not enough space for them.  Sometimes adjusting the padding in the labelStyle can help.`,
+    `To see how padding affects label placement try setting sciChartSurface.debugRendering = true;`
 ];
 
 const documentationLinks: TDocumentationLink[] = [
@@ -86,8 +86,7 @@ export const multiLineLabelsExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Demonstrates how to create a JavaScript Band Chart. This is a chart type which draws an area (polygon or fill) " +
-        "between two lines. The Band series requires one X-point and two Y-points to draw the polygon",
-    seoKeywords: "band, chart, javascript, webgl, canvas",
+        "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
+    seoKeywords: "text, axis, label, wrap, javascript, webgl, canvas",
     thumbnailImage: "javascript-multiline-labels.jpg"
 };

@@ -6,12 +6,11 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider`;
-const description = `Dual lines are drawn by the stroke, strokeY1 properties and shaded bands are drawn by the fill and fillY1
-properties, depending on whether y1 is greater than y2`;
+const previewDescription = `SciChart JS v2 allows you to use anything as an axis label, even an image.`;
+const description = `By default, the LabelProvider uses the size of the texture for layout, so we do not need to override the measurement functions here.
+However, if you want to allow your labels to overlap, you can do this by telling scichart they are smaller than they really are.`;
 const tips = [
-    `If you have data where Y1 is greater than Y2 always, you’ll get an envelope effect. Great for rendering
-    confidence intervals, error margins or Bollinger Bands!`
+    `Label textures are automatically cached, so complex label rendering will not slow down your chart.`
 ];
 
 const documentationLinks: TDocumentationLink[] = [
@@ -66,7 +65,7 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to use <strong>Multi-Line Text</strong> for axis labels using SciChart.js, High
+        Demonstrates how to use <strong>Images as Labels</strong> using SciChart.js, High
         Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
@@ -86,8 +85,7 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Demonstrates how to create a JavaScript Band Chart. This is a chart type which draws an area (polygon or fill) " +
-        "between two lines. The Band series requires one X-point and two Y-points to draw the polygon",
-    seoKeywords: "band, chart, javascript, webgl, canvas",
+        "Demonstrates how to use Images as Axis Labels",
+    seoKeywords: "image, axis, label, javascript, webgl, canvas",
     thumbnailImage: "javascript-multiline-labels.jpg"
 };

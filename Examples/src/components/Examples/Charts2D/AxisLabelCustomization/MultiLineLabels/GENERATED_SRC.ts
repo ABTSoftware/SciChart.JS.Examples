@@ -1,10 +1,10 @@
-import * as React from "react";
-import { CursorModifier } from "scichart/Charting/ChartModifiers/CursorModifier";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { EFillPaletteMode, EStrokePaletteMode, IFillPaletteProvider, IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
+export const code = `import * as React from "react";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { IStrokePaletteProvider, IFillPaletteProvider, EStrokePaletteMode, EFillPaletteMode } from "scichart/Charting/Model/IPaletteProvider";
 import { IPointMetadata } from "scichart/Charting/Model/IPointMetadata";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { TTextStyle } from "scichart/Charting/Visuals/Axis/AxisCore";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
 import { ELabelAlignment } from "scichart/Charting/Visuals/Axis/ELabelAlignment";
 import { TextLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/TextLabelProvider";
@@ -12,12 +12,8 @@ import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
-import { TextureManager } from "scichart/Charting/Visuals/TextureManager/TextureManager";
-import { Thickness } from "scichart/Core/Thickness";
 import { EAutoRange } from "scichart/types/AutoRange";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import classes from "../../../Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -81,31 +77,14 @@ const drawExample = async () => {
             "Smiling Face with Hearts",
             "Smiling Face with Smiling Eyes"
         ],
-        maxLength: 8
+        maxLength: 10
     });
     xAxis.labelProvider = labelProvider;
     xAxis.labelStyle.alignment = ELabelAlignment.Center;
-    xAxis.labelStyle.padding = new Thickness(2,1,2,1);
 
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
-    // if we specify getTitleTexture, we just need to set any value here, it could be just yAxis.axisTitle = "a";
-    yAxis.axisTitle = "Number of tweets that contained at least one emoji per ten thousand tweets";
-    yAxis.axisTitleStyle.fontSize = 14;
-    yAxis.axisTitleStyle.alignment = ELabelAlignment.Center;
-    yAxis.axisTitleRenderer.measure = (textStyle: TTextStyle, isHorizontal: boolean) => {
-        // Hardcode this for now
-        yAxis.axisTitleRenderer.desiredWidth = 34 * DpiHelper.PIXEL_RATIO;
-    };
-
-    yAxis.axisTitleRenderer.getTitleTexture = (text: string, textStyle: TTextStyle, textureManager: TextureManager) => {
-        return textureManager.createTextTexture(
-            ["Number of tweets that contained", "at least one emoji per ten thousand tweets"],
-            { ...textStyle, padding: new Thickness(0, 0, 0, 0) }
-        );
-    };
-    
     sciChartSurface.yAxes.add(yAxis);
 
     const columnSeries = new FastColumnRenderableSeries(wasmContext, {
@@ -120,6 +99,10 @@ const drawExample = async () => {
     dataSeries.appendRange([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [220, 170, 105, 85, 80, 75, 60, 50, 45, 45]);
     columnSeries.dataSeries = dataSeries;
 
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+
+    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
 };
@@ -139,3 +122,4 @@ export default function MultiLineLabels() {
 
     return <div id={divElementId} className={classes.ChartWrapper} />;
 }
+`;
