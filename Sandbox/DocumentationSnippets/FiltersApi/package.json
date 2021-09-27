@@ -1,5 +1,5 @@
 {
-  "name": "tutorial1",
+  "name": "filters-api-docsnippets",
   "version": "1.0.0",
   "description": "Filters Api example SciChart.js",
   "main": "index.js",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.0.3",
+    "prettier": "^2.4.1",
     "ts-loader": "^7.0.5",
     "typescript": "^4.0.5",
     "webpack": "^5.53.0",

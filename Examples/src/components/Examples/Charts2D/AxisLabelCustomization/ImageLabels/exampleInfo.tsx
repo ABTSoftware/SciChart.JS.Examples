@@ -36,28 +36,22 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
+                imgPath: ExampleStrings.imgMultiLineLabels,
+                title: ExampleStrings.titleMultiLineLabels,
+                seoTitle: ExampleStrings.titleMultiLineLabels,
+                examplePath: ExampleStrings.urlMultiLineLabels
             },
             {
-                imgPath: ExampleStrings.imgFanChart,
-                title: ExampleStrings.titleFanChart,
-                seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
-                examplePath: ExampleStrings.urlFanChart
+                imgPath: ExampleStrings.imgRotatedLabels,
+                title: ExampleStrings.titleRotatedLabels,
+                seoTitle: ExampleStrings.titleRotatedLabels,
+                examplePath: ExampleStrings.urlRotatedLabels
             },
             {
                 imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
                 title: ExampleStrings.titleRealtimeTickingStockCharts,
                 seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
                 examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
             }
         ]
     }

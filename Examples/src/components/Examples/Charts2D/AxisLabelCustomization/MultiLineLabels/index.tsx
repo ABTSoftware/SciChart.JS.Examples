@@ -4,6 +4,7 @@ import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModif
 import { EFillPaletteMode, EStrokePaletteMode, IFillPaletteProvider, IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
 import { IPointMetadata } from "scichart/Charting/Model/IPointMetadata";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
 import { TTextStyle } from "scichart/Charting/Visuals/Axis/AxisCore";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
 import { ELabelAlignment } from "scichart/Charting/Visuals/Axis/ELabelAlignment";
@@ -66,7 +67,7 @@ export class EmojiPaletteProvider implements IStrokePaletteProvider, IFillPalett
 
 const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    // sciChartSurface.debugRendering = true;
+    sciChartSurface.applyTheme(new SciChartJSDarkTheme());
     const xAxis = new CategoryAxis(wasmContext);
     const labelProvider = new TextLabelProvider({
         labels: [

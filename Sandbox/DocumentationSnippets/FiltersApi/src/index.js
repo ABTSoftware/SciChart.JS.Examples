@@ -1,10 +1,10 @@
-import { initSciChart} from "./scaleoffset1";
-import { initSciChart2} from "./lineartrend1";
-import { initSciChart3} from "./lineartrend2";
-import { initSciChart4} from "./movingAverage1";
-import { initSciChart5} from "./ratio";
-import { initSciChart6} from "./simpleCustomFilter";
-import { initSciChart7} from "./simpleCustomFilterts";
+import { initSciChart } from './scaleoffset1';
+import { initSciChart2 } from './lineartrend1';
+import { initSciChart3 } from './lineartrend2';
+import { initSciChart4 } from './movingAverage1';
+import { initSciChart5 } from './ratio';
+import { initSciChart6 } from './simpleCustomFilter';
+import { initSciChart7 } from './simpleCustomFilterts';
 
 initSciChart();
 initSciChart2();

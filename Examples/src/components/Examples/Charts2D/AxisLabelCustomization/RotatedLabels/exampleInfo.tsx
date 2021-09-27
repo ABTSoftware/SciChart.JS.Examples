@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `This custom LabelProvider renders rotated text for axis labels by overriding getLabelTexture and using textureManager.createTextTexture`;
+const previewDescription = `This custom LabelProvider renders rotated text for axis labels by overriding getLabelTexture and using textureManager.createTextTexture.`;
 const description = `In order to lay these out correctly, we also have to override the measuring functions of LabelProvider, so that the textures can overlap.`;
 const tips = [
     `Label textures are automatically cached, so complex label rendering will not slow down your chart.`
@@ -35,28 +35,22 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
+                imgPath: ExampleStrings.imgMultiLineLabels,
+                title: ExampleStrings.titleMultiLineLabels,
+                seoTitle: ExampleStrings.titleMultiLineLabels,
+                examplePath: ExampleStrings.urlMultiLineLabels
             },
             {
-                imgPath: ExampleStrings.imgFanChart,
-                title: ExampleStrings.titleFanChart,
-                seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
-                examplePath: ExampleStrings.urlFanChart
+                imgPath: ExampleStrings.imgImageLabels,
+                title: ExampleStrings.titleImageLabels,
+                seoTitle: ExampleStrings.titleImageLabels,
+                examplePath: ExampleStrings.urlImageLabels
             },
             {
                 imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
                 title: ExampleStrings.titleRealtimeTickingStockCharts,
                 seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
                 examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
             }
         ]
     }

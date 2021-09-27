@@ -7,7 +7,7 @@ import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
 const previewDescription = `Ratio Filter divides the original dataseries by the divisor series.  Moving Average and Linear Trend fitlers are then applied to the resulting ratio`;
-const description = `Click 'Add Data' to see how the filters automatically recaultate when data changes`;
+const description = `Click 'Add Data' to see how the filters automatically recalculate when data changes`;
 const tips = [`Moving Average and Linear Trend filters can be applied to any kind of data series, and you can pick which field to filter`];
 
 const documentationLinks: TDocumentationLink[] = [

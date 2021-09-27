@@ -16,11 +16,14 @@ export async function initSciChart() {
         xValues: [1, 2, 3, 4],
         yValues: [1, 2, 3, 4],
     });
-    const originalLine = new FastLineRenderableSeries(wasmContext, { dataSeries, stroke: "#5555ff" });
+    const originalLine = new FastLineRenderableSeries(wasmContext, { dataSeries, stroke: '#5555ff' });
 
     // Create the filter, passing in the original series
     const scaleOffsetFilter = new XyScaleOffsetFilter(dataSeries, { scale: 2, offset: -3 });
-    const filteredLine = new FastLineRenderableSeries(wasmContext, { dataSeries: scaleOffsetFilter, stroke: "#cc6600" });
+    const filteredLine = new FastLineRenderableSeries(wasmContext, {
+        dataSeries: scaleOffsetFilter,
+        stroke: '#cc6600',
+    });
 
     sciChartSurface.renderableSeries.add(originalLine, filteredLine);
 }

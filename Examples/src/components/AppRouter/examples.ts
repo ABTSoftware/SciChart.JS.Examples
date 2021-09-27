@@ -270,7 +270,13 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_filters_TrendMARatio,
             EXAMPLES_PAGES.chart2D_filters_CustomFilters
         ]
-    }
+    },
+    {
+        item: { id: "chart2D_stylingAndTheming", name: "Styling and Theming" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground
+        ]
+    },
 ];
 
 export const getParentMenuIds = (exampleId: string): string[] => {

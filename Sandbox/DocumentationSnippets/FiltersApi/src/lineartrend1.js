@@ -5,11 +5,10 @@ import { FastLineRenderableSeries } from 'scichart/Charting/Visuals/RenderableSe
 import { XyScatterRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries';
 import { NumberRange } from 'scichart/Core/NumberRange';
 import { XyLinearTrendFilter } from 'scichart/Charting/Model/Filters/XyLinearTrendFilter';
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
+import { TextAnnotation } from 'scichart/Charting/Visuals/Annotations/TextAnnotation';
+import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from 'scichart/types/AnchorPoint';
 
 export async function initSciChart2() {
-
     const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-div-id-2');
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -24,7 +23,10 @@ export async function initSciChart2() {
 
     // Create the filter, passing in the original series
     const linearTrendFilter = new XyLinearTrendFilter(dataSeries);
-    const filteredLine = new FastLineRenderableSeries(wasmContext, { dataSeries: linearTrendFilter, stroke: "#cc6600" });
+    const filteredLine = new FastLineRenderableSeries(wasmContext, {
+        dataSeries: linearTrendFilter,
+        stroke: '#cc6600',
+    });
 
     sciChartSurface.renderableSeries.add(originalLine, filteredLine);
 
@@ -32,7 +34,9 @@ export async function initSciChart2() {
         x1: 1,
         y1: 5,
         fontSize: 20,
-        text: `Slope: ${linearTrendFilter.slope}, y-intercept: ${linearTrendFilter.intercept}, correlation: ${linearTrendFilter.correlation.toFixed(3)}`
+        text: `Slope: ${linearTrendFilter.slope}, y-intercept: ${
+            linearTrendFilter.intercept
+        }, correlation: ${linearTrendFilter.correlation.toFixed(3)}`,
     });
 
     sciChartSurface.annotations.add(textAnnotation);
