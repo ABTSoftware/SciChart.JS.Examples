@@ -76,6 +76,12 @@ import BuilderSharedData from "../Examples/BuilderApi/SharedData";
 import BuilderCustomTypes from "../Examples/BuilderApi/CustomTypes";
 import BuilderSimpleChart from "../Examples/BuilderApi/SimpleChart";
 import BuilderFullChart from "../Examples/BuilderApi/FullChart";
+import MultiLineLabels from "../Examples/Charts2D/AxisLabelCustomization/MultiLineLabels";
+import RotatedLabels from "../Examples/Charts2D/AxisLabelCustomization/RotatedLabels";
+import ImageLabels from "../Examples/Charts2D/AxisLabelCustomization/ImageLabels";
+import PercentageChange from "../Examples/Charts2D/Filters/PercentageChange";
+import TrendMARatio from "../Examples/Charts2D/Filters/TrendMARatio";
+import CustomFilters from "../Examples/Charts2D/Filters/CustomFilters";
 
 export type TMenuItem = {
     item: {
@@ -147,6 +153,14 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         ]
     },
     {
+        item: { id: "chart2D_axisLabelCustomization", name: "Axis Label Customization" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels,
+        ]
+    },
+    {
         item: { id: "chart2D_stylingAndTheming", name: "Styling and Theming" },
         submenu: [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager,
@@ -174,6 +188,14 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers
+        ]
+    },
+    {
+        item: { id: "chart2D_filters", name: "Transforming Data with Filters" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_filters_PercentageChange,
+            EXAMPLES_PAGES.chart2D_filters_TrendMARatio,
+            EXAMPLES_PAGES.chart2D_filters_CustomFilters
         ]
     }
 ];
@@ -232,7 +254,29 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis
         ]
-    }
+    },
+    {
+        item: { id: "chart2D_axisLabelCustomization", name: "Axis Label Customization" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels,
+        ]
+    },
+    {
+        item: { id: "chart2D_filters", name: "Transforming Data with Filters" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_filters_PercentageChange,
+            EXAMPLES_PAGES.chart2D_filters_TrendMARatio,
+            EXAMPLES_PAGES.chart2D_filters_CustomFilters
+        ]
+    },
+    {
+        item: { id: "chart2D_stylingAndTheming", name: "Styling and Theming" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground
+        ]
+    },
 ];
 
 export const getParentMenuIds = (exampleId: string): string[] => {
@@ -385,6 +429,12 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return RealtimeZoomPan;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.id:
             return MultipleZoomPanModifiers;
+        case EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.id:
+            return MultiLineLabels;
+        case EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.id:
+            return RotatedLabels;
+        case EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels.id:
+            return ImageLabels;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.id:
             return Bubble3DChart;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.id:
@@ -413,6 +463,12 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return BuilderSharedData;
         case EXAMPLES_PAGES.builderApi_CustomTypes.id:
             return BuilderCustomTypes;
+        case EXAMPLES_PAGES.chart2D_filters_PercentageChange.id:
+            return PercentageChange;
+        case EXAMPLES_PAGES.chart2D_filters_TrendMARatio.id:
+            return TrendMARatio;
+        case EXAMPLES_PAGES.chart2D_filters_CustomFilters.id:
+            return CustomFilters;
         default:
             throw new Error("Ensure you update examples.ts getExampleComponent() to return an example");
     }

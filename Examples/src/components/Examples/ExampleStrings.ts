@@ -500,8 +500,8 @@ export const ExampleStrings = {
     // BuilderApi, Chart From JSON
     urlChartFromJSON: "/javascript-chart-from-json",
     titleChartFromJSON: "Chart from JSON",
-    urlChartFromJSONDocumentation: "https://www.scichart.com/documentation/js/current/BuilderApi.html",
-    urlTitleChartFromJSONDocumentation:
+    urlBuilderApiDocumentation: "https://www.scichart.com/documentation/js/current/BuilderApi.html",
+    urlTitleBuilderApiDocumentation:
         "This specific page in the JavaScript Builder API documentation will help you to get started",
     imgChartFromJSON: "images/javascript-chart-from-json.jpg",
 
@@ -515,4 +515,40 @@ export const ExampleStrings = {
     titleSharedData: "Reusable Templates using Shared Data",
     imgSharedData: "images/javascript-shared-data.jpg",
 
+    urlAxisLabelCustomizationDocumentation: "https://www.scichart.com/documentation/js/current/AxisLabelCustomization.html",
+    urlTitleAxisLabelCustomizationDocumentation:
+        "This specific page in the JavaScript Axis Label Customization documentation will help you to get started",
+
+    // Multi Line labels
+    urlMultiLineLabels: "/javascript-multiline-labels",
+    titleMultiLineLabels: "Multi-line Text labels",
+    imgMultiLineLabels: "images/javascript-multiline-labels.jpg",
+
+    // Image labels
+    urlImageLabels: "/javascript-image-labels",
+    titleImageLabels: "Image labels",
+    imgImageLabels: "images/javascript-image-labels.jpg",
+
+    // Rotated labels
+    urlRotatedLabels: "/javascript-rotated-labels",
+    titleRotatedLabels: "Rotated labels",
+    imgRotatedLabels: "images/javascript-rotated-labels.jpg",
+    
+    // Filters, Percentage Change
+    urlPercentageChange: "/javascript-percentage-change",
+    titlePercentageChange: "Realtime Percentage Change using Filter",
+    imgPercentageChange: "images/javascript-percentage-change.jpg",
+    urlFiltersApiDocumentation: "https://www.scichart.com/documentation/js/current/Filters.html",
+    urlTitleFiltersApiDocumentation:
+        "This specific page in the JavaScript Filters API documentation will help you to get started",
+
+    // Filters, Trend, MA, Ratio
+    urlTrendMARatio: "/javascript-trend-ma-ratio",
+    titleTrendMARatio: "Trendline, Moving Average and Ratio Filters",
+    imgTrendMARatio: "images/javascript-trend-ma-ratio.jpg",
+
+    // Filters, Custom Filters
+    urlCustomFilters: "/javascript-custom-filters",
+    titleCustomFilters: "Custom Filters",
+    imgCustomFilters: "images/javascript-custom-filters.jpg",
 };
