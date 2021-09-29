@@ -521,7 +521,7 @@ export const ExampleStrings = {
 
     // Multi Line labels
     urlMultiLineLabels: "/javascript-multiline-labels",
-    titleMultiLineLabels: "Multi-line Text labels",
+    titleMultiLineLabels: "Multi-line and Rotated Text labels",
     imgMultiLineLabels: "images/javascript-multiline-labels.jpg",
 
     // Image labels

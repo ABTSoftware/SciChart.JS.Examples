@@ -6,10 +6,11 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `This custom LabelProvider renders rotated text for axis labels by overriding getLabelTexture and using textureManager.createTextTexture.`;
-const description = `In order to lay these out correctly, we also have to override the measuring functions of LabelProvider, so that the textures can overlap.`;
+const previewDescription = `Rotating axis labels is now easy!  This example uses it to create vertical labels so as to fit more onto a x axis.`;
+const description = `maxAutoTicks has been increased to force more major gridlines to be rendered, and minor gridlines have been turned off.`;
 const tips = [
-    `Label textures are automatically cached, so complex label rendering will not slow down your chart.`
+    `Rotation is is degrees clockwise.`,
+    `All axes and label providers support rotation.`
 ];
 
 const documentationLinks: TDocumentationLink[] = [
@@ -58,7 +59,7 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a custom LabelProvider which produces <strong>Rotated Axis Labels</strong> using SciChart.js, High
+        Demonstrates how to use <strong>Rotated Axis Labels</strong> with SciChart.js, High
         Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
@@ -78,7 +79,7 @@ export const rotatedLabelsExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Demonstrates how to create a custom LabelProvider which produces Rotated Axis Labels",
-    seoKeywords: "Axis, label, rotated, text, javascript, webgl, canvas",
-    thumbnailImage: "javascript-multiline-labels.jpg"
+        "Rotate to create vertical axis labels and fit more on an axis",
+    seoKeywords: "Axis, label, rotated, vertical, javascript, webgl, canvas",
+    thumbnailImage: "javascript-rotated-labels.jpg"
 };
