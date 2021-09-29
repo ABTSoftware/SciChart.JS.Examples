@@ -70,7 +70,7 @@ module.exports = {
                 { from: "sitemap.xml", to: "" },
                 { from: "robots.txt", to: "" },
                 { from: "src/components/Examples/BuilderApi/**/*.jpg", to: "images/[name].jpg" },
-                { from: "src/components/Examples/Charts2D/Filters/**/*.jpg", to: "images/[name].jpg" }
+                { from: "src/components/Examples/Charts2D/Filters/**/*.jpg", to: "images/[name].jpg" },
                 { from: "src/components/Examples/Charts2D/AxisLabelCustomization/**/*.jpg", to: "images/[name].jpg" }
             ]
         }),
