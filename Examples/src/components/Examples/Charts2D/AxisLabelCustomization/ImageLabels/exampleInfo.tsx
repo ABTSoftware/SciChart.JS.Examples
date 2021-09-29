@@ -81,5 +81,5 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     seoDescription:
         "Demonstrates how to use Images as Axis Labels",
     seoKeywords: "image, axis, label, javascript, webgl, canvas",
-    thumbnailImage: "javascript-multiline-labels.jpg"
+    thumbnailImage: "javascript-image-labels.jpg"
 };
