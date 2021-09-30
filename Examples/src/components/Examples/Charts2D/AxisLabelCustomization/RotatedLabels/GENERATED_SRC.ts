@@ -1,63 +1,57 @@
 export const code = `import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { ELabelAlignment } from "scichart/Charting/Visuals/Axis/ELabelAlignment";
-import { TextLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/TextLabelProvider";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { GradientParams } from "scichart/Core/GradientParams";
+import { Point } from "scichart/Core/Point";
 import { EAutoRange } from "scichart/types/AutoRange";
-import { EmojiPaletteProvider } from "../MultiLineLabels";
 import classes from "../../../Examples.module.scss";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    // sciChartSurface.debugRendering = true;
-    const xAxis = new CategoryAxis(wasmContext);
-    const labelProvider = new TextLabelProvider({
-        labels: [
-            "Face with Tears of Joy",
-            "Loudly Crying Face",
-            "Pleading Face",
-            "Red Heart",
-            "Rolling on the Floor Laughing",
-            "Sparkles",
-            "Smiling Face with Heart-Eyes",
-            "Folded Hands",
-            "Smiling Face with Hearts",
-            "Smiling Face with Smiling Eyes"
-        ],
-        maxLength: 10
+    const xAxis = new CategoryAxis(wasmContext, { 
+        // Rotation is in degrees clockwise
+        rotation: 90, 
+        // Turn up the number of major ticks (default is 10)
+        maxAutoTicks: 30, 
+        // Turn off minor gridlines, since majors are now closer together
+        drawMinorGridLines: false 
     });
-    xAxis.labelProvider = labelProvider;
-    xAxis.labelStyle.alignment = ELabelAlignment.Center;
-
     sciChartSurface.xAxes.add(xAxis);
+
+    const dataSeries = new XyDataSeries(wasmContext);
+    const startTime = new Date(2020,0,1).getTime() / 1000;
+    let y = 100;
+    for (let i = 0; i < 50; i++) {
+        const x = startTime + i * 24 * 60 * 60;
+        y = y + Math.random() - 0.5;
+        dataSeries.append(x, y);
+    }
+    
+    const lineSeries = new FastMountainRenderableSeries(wasmContext, 
+        { 
+            dataSeries,
+            stroke: "#4682b4",
+            strokeThickness: 2,
+            zeroLineY: 0.0,
+            fill: "rgba(176, 196, 222, 0.7)", // when a solid color is required, use fill
+            // when a gradient is required, use fillLinearGradient
+            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                { color: "rgba(70,130,180,1)", offset: 0 },
+                { color: "rgba(70,130,180,0.2)", offset: 1 }
+            ]),
+            animation: new WaveAnimation({ duration: 1000, fadeEffect: true, zeroLine: 0 })
+        });
+    sciChartSurface.renderableSeries.add(lineSeries);
 
     const yAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
     sciChartSurface.yAxes.add(yAxis);
 
-    const columnSeries = new FastColumnRenderableSeries(wasmContext, {
-        strokeThickness: 0,
-        dataPointWidth: 0.5,
-        paletteProvider: new EmojiPaletteProvider(),
-        opacity: 0.7
-    });
-    sciChartSurface.renderableSeries.add(columnSeries);
-
-    const dataSeries = new XyDataSeries(wasmContext);
-    dataSeries.appendRange([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [220, 170, 105, 85, 80, 75, 60, 50, 45, 45]);
-    columnSeries.dataSeries = dataSeries;
-
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
 };

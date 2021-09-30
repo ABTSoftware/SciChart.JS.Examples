@@ -11,6 +11,8 @@ import { Point } from "scichart/Core/Point";
 import { EAnimationType } from "scichart/types/AnimationType";
 import { ShadowEffect } from "scichart/Charting/Visuals/RenderableSeries/ShadowEffect";
 import classes from "../../../../Examples/Examples.module.scss";
+import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
+import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
 
 const divElementId = "chart";
 

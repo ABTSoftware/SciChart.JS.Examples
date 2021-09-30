@@ -6,9 +6,9 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider`;
-const description = `TextLabelProvider provides an easy way to map tick values to text.  It can also do basic word wrapping.  These examples also show how you can create
-multi-line axis titles using textureManager.createTextTexture.`;
+const previewDescription = `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider. 
+Click the buttons below the chart to see different arrangements.`;
+const description = `TextLabelProvider provides an easy way to map tick values to text.  It can also do word wrapping.  Rotation is now available on all LabelProviders.`;
 const tips = [
     `If some labels are not appearing, it is probably because there is not enough space for them.  Sometimes adjusting the padding in the labelStyle can help.`,
     `To see how padding affects label placement try setting sciChartSurface.debugRendering = true;`

@@ -15,6 +15,7 @@ import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
 import { TextureManager, TTextureObject } from "scichart/Charting/Visuals/TextureManager/TextureManager";
 import { Thickness } from "scichart/Core/Thickness";
 import { EAutoRange } from "scichart/types/AutoRange";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 import { createImagesArrayAsync } from "scichart/utils/imageUtil";
 import classes from "../../../Examples.module.scss";
 import { divElementId3 } from "../../../FeaturedApps/ScientificCharts/TenorCurves3D";
@@ -35,12 +36,10 @@ const divElementId = "chart";
 const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     const xAxis = new CategoryAxis(wasmContext);
-    // These values are used to index into the array of images
-    xAxis.labelProvider = new TextLabelProvider({
-        labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-        maxLength: 10
-    });
+    // We need the data value as plain text
+    xAxis.labelProvider.numericFormat = ENumericFormat.NoFormat;
 
+    // SciChart utility function to create HtmlImage elements from urls
     const emojies = await createImagesArrayAsync([
         emojiUrl1,
         emojiUrl2,
@@ -57,9 +56,7 @@ const drawExample = async () => {
     xAxis.labelProvider.getLabelTexture = (
         labelText: string,
         textureManager: TextureManager,
-        labelStyle: TTextStyle,
-        width?: number,
-        height?: number
+        labelStyle: TTextStyle
     ): TTextureObject => {
         const index = parseInt(labelText);
         if (!isNaN(index)) {
@@ -70,26 +67,13 @@ const drawExample = async () => {
         }
         return textureManager.createTextTexture([labelText], labelStyle);
     };
-    xAxis.labelStyle.alignment = ELabelAlignment.Center;
 
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
-    // if we specify getTitleTexture, we just need to set any value here, it could be just yAxis.axisTitle = "a";
-    yAxis.axisTitle = "Number of tweets that contained at least one emoji per ten thousand tweets";
+    // Pass array to axisTitle to make it multiline
+    yAxis.axisTitle = ["Number of tweets that contained", "at least one emoji per ten thousand tweets"];
     yAxis.axisTitleStyle.fontSize = 14;
-    yAxis.axisTitleStyle.alignment = ELabelAlignment.Center;
-    yAxis.axisTitleRenderer.measure = (textStyle: TTextStyle, isHorizontal: boolean) => {
-        // Hardcode this for now
-        yAxis.axisTitleRenderer.desiredWidth = 34 * DpiHelper.PIXEL_RATIO;
-    };
-
-    yAxis.axisTitleRenderer.getTitleTexture = (text: string, textStyle: TTextStyle, textureManager: TextureManager) => {
-        return textureManager.createTextTexture(
-            ["Number of tweets that contained", "at least one emoji per ten thousand tweets"],
-            { ...textStyle, padding: new Thickness(0, 0, 0, 0) }
-        );
-    };
     sciChartSurface.yAxes.add(yAxis);
 
     const columnSeries = new FastColumnRenderableSeries(wasmContext, {
@@ -100,7 +84,7 @@ const drawExample = async () => {
     sciChartSurface.renderableSeries.add(columnSeries);
 
     const dataSeries = new XyDataSeries(wasmContext);
-    dataSeries.appendRange([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [220, 170, 105, 85, 80, 75, 60, 50, 45, 45]);
+    dataSeries.appendRange([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [220, 170, 105, 85, 80, 75, 60, 50, 45, 45]);
     columnSeries.dataSeries = dataSeries;
 
     sciChartSurface.zoomExtents();
