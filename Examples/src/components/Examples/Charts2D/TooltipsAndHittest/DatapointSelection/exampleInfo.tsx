@@ -6,13 +6,12 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Demonstrates the Hit Test API, which can be used to get feedback about clicks on data-points or lines and
-enable selection, of showing of context menus. Click on the data-point and see hit test info on the right.`;
-const description = `Click anywhere on the chart to call BaseRenderableSeries.hitTestProvider. hitTest. The HitTest function
-accepts a mouse-point and returns the nearest data-point, plus its location in X,Y coordinate space.`;
+const previewDescription = `Demonstrates the DataPointSelectionModifier, which provides a UI to select one or many data points, 
+and works with DataPointSelectionPaletteProvider to change the appearance of selected points`;
+const description = `Click to select a single point.  Drag to select many points. CTRL + Click or Drag to Union. SHIFT + Click or Drag to subtract`;
 const tips = [
-    `The hitTest function accepts parameters to control the hit-test logic. See the documentation on Hit-Testing
-    for more info!`
+    `Adding DataPointSelectionModifier will automatically create the metadata required to track selection, but it does not stop you using your own metadata.`,
+    `You don't have to use DataPointSelectionPaletteProvider.  You can create your own and use the metadata.isSelected that is passed to the paletteProvider methods.`
 ];
 
 const documentationLinks: TDocumentationLink[] = [
@@ -27,9 +26,9 @@ const documentationLinks: TDocumentationLink[] = [
         linkTitle: "SciChart.js Tutorials"
     },
     {
-        href: ExampleStrings.urlHitTestDocumentation,
-        title: ExampleStrings.urlTitleHitTestDocumentation,
-        linkTitle: "Hit-Test API documentation"
+        href: ExampleStrings.urlDataPointSelectionDocumentation,
+        title: ExampleStrings.urlTitleDataPointSelectionDocumentation,
+        linkTitle: "DataPointSelectionModifier documentation"
     }
 ];
 
@@ -38,10 +37,10 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
-                imgPath: ExampleStrings.imgDataPointSelection,
-                title: ExampleStrings.titleDataPointSelection,
-                seoTitle: ExampleStrings.titleDataPointSelection,
-                examplePath: ExampleStrings.urlDataPointSelection
+                imgPath: ExampleStrings.imgHitTestApiChart,
+                title: ExampleStrings.titleHitTestApi,
+                seoTitle: ExampleStrings.titleHitTestApi,
+                examplePath: ExampleStrings.urlHitTestApi
             },
             {
                 imgPath: ExampleStrings.imgSeriesSelectionChart,
@@ -67,7 +66,7 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to add <strong>Hit-Test on click behavior</strong> to a chart using SciChart.js, High
+        Demonstrates how to <strong>Select Data Points</strong> on a chart using SciChart.js, High
         Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
@@ -75,9 +74,9 @@ const Subtitle = () => (
     </p>
 );
 
-export const hitTestApiExampleInfo: TExampleInfo = {
-    title: ExampleStrings.titleHitTestApi,
-    path: ExampleStrings.urlHitTestApi,
+export const dataPointSelectionExampleInfo: TExampleInfo = {
+    title: ExampleStrings.titleDataPointSelection,
+    path: ExampleStrings.urlDataPointSelection,
     subtitle: Subtitle,
     documentationLinks,
     tips,
@@ -87,7 +86,7 @@ export const hitTestApiExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Demonstrates Hit-Testing a JavaScript Chart - point and click on the chart and get feedback about what data-points were clicked",
-    seoKeywords: "hit, test, api, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-hit-test-on-click.png"
+        "Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points",
+    seoKeywords: "datapoint, selection, api, chart, javascript, webgl, canvas",
+    thumbnailImage: "javascript-datapoint-selection.png"
 };

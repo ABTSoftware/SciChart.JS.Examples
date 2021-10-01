@@ -1,18 +1,14 @@
 import * as React from "react";
-import Alert from "@material-ui/lab/Alert";
-import AlertTitle from "@material-ui/lab/AlertTitle";
 import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { SeriesSelectionModifier } from "scichart/Charting/ChartModifiers/SeriesSelectionModifier";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
-import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../../helpers/shared/Helpers/Box/Box";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
@@ -91,12 +87,9 @@ function generateData(index: number, alignment: EAxisAlignment, pointCount: numb
     return { xValues, yValues };
 }
 
-const HIT_TEST_RADIUS = 10;
-
 let scs: SciChartSurface;
 
-export default function HitTestAPI() {
-    const [hitTestsList, setHitTestsList] = React.useState<HitTestInfo[]>([]);
+export default function SeriesSelection() {
 
     React.useEffect(() => {
         (async () => {
@@ -110,18 +103,6 @@ export default function HitTestAPI() {
     return (
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
-            <Box mt={20}>
-                {hitTestsList.map((ht, index) => (
-                    <Alert key={index} style={{ marginTop: "16px" }}>
-                        <AlertTitle>{ht.dataSeriesName}</AlertTitle>
-                        Mouse Coord: {ht.hitTestPoint.x.toFixed(2)}, {ht.hitTestPoint.y.toFixed(2)}; Is Hit:{" "}
-                        {ht.isHit && <span style={{ color: "red" }}>true</span>}
-                        {!ht.isHit ? "false" : ""}, Index: {ht.dataSeriesIndex}, Radius: {ht.hitTestRadius}; Nearest
-                        Data Coord: {ht.xCoord.toFixed(2)}, {ht.yCoord.toFixed(2)}; Nearest Data Value:{" "}
-                        {ht.xValue.toFixed(2)}, {ht.yValue.toFixed(2)}
-                    </Alert>
-                ))}
-            </Box>
         </div>
     );
 }

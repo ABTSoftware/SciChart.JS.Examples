@@ -72,6 +72,7 @@ import { rotatedLabelsExampleInfo } from "../Examples/Charts2D/AxisLabelCustomiz
 import { percentageChangeExampleInfo } from "../Examples/Charts2D/Filters/PercentageChange/exampleInfo";
 import { trendMARatioExampleInfo } from "../Examples/Charts2D/Filters/TrendMARatio/exampleInfo";
 import { customFiltersExampleInfo } from "../Examples/Charts2D/Filters/CustomFilters/exampleInfo";
+import { dataPointSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -305,6 +306,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_tooltipsAndHittest_MetaData: {
         id: "chart2D_tooltipsAndHittest_MetaData",
         ...metaDataExampleInfo
+    },
+    chart2D_tooltipsAndHittest_DataPointSelection: {
+        id: "chart2D_tooltipsAndHittest_DataPointSelection",
+        ...dataPointSelectionExampleInfo
     },
     chart2D_tooltipsAndHittest_SeriesSelection: {
         id: "chart2D_tooltipsAndHittest_SeriesSelection",

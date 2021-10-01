@@ -6,8 +6,10 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Rotating axis labels is now easy!  This example uses it to create vertical labels so as to fit more onto a x axis.`;
-const description = `maxAutoTicks has been increased to force more major gridlines to be rendered, and minor gridlines have been turned off.`;
+const previewDescription = `This example uses rotation to create vertical labels so as to fit more onto a x axis. 
+Y axis uses right aligned labels so decimals are nicely aligned.`;
+const description = `maxAutoTicks has been increased to force more major gridlines to be rendered, and minor gridlines have been turned off. 
+The default label alignment is Auto, meaning that labels will be aligned closest to the axis.`;
 const tips = [
     `Rotation is is degrees clockwise.`,
     `All axes and label providers support rotation.`
@@ -59,7 +61,7 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to use <strong>Rotated Axis Labels</strong> with SciChart.js, High
+        Demonstrates how to use <strong>Rotation and Alignment of Axis Labels</strong> with SciChart.js, High
         Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
