@@ -72,7 +72,9 @@ import { rotatedLabelsExampleInfo } from "../Examples/Charts2D/AxisLabelCustomiz
 import { percentageChangeExampleInfo } from "../Examples/Charts2D/Filters/PercentageChange/exampleInfo";
 import { trendMARatioExampleInfo } from "../Examples/Charts2D/Filters/TrendMARatio/exampleInfo";
 import { customFiltersExampleInfo } from "../Examples/Charts2D/Filters/CustomFilters/exampleInfo";
-
+import { dataAnimationExampleInfo } from "../Examples/Charts2D/Animations/DataAnimation/exampleInfo";
+import { styleAnimationExampleInfo } from "../Examples/Charts2D/Animations/StyleAnimation/exampleInfo";
+import { startupAnimationExampleInfo } from "../Examples/Charts2D/Animations/StartupAnimation/exampleInfo";
 
 export type TExampleInfo = {
     title: string;
@@ -98,6 +100,18 @@ function asRecord<T extends Record<string, TExamplePage>>(arg: T): T & Record<st
 }
 
 export const EXAMPLES_PAGES = asRecord({
+    chart2D_Animations_DataAnimation: {
+        id: "chart2D_Animations_DataAnimation",
+        ...dataAnimationExampleInfo
+    },
+    chart2D_Animations_StyleAnimation: {
+        id: "chart2D_Animations_StyleAnimation",
+        ...styleAnimationExampleInfo
+    },
+    chart2D_Animations_StartupAnimation: {
+        id: "chart2D_Animations_StartupAnimation",
+        ...startupAnimationExampleInfo
+    },
     chart2D_basicCharts_BandSeriesChart: {
         id: "chart2D_basicCharts_BandSeriesChart",
         ...bandSeriesChartExampleInfo

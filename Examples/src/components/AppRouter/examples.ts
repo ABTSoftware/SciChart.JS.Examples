@@ -19,6 +19,10 @@ import DonutChart from "../Examples/Charts2D/BasicChartTypes/DonutChart";
 import PieChart from "../Examples/Charts2D/BasicChartTypes/PieChart";
 import RealtimeMountainChart from "../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart";
 
+import DataAnimation from "../Examples/Charts2D/Animations/DataAnimation";
+import StyleAnimation from "../Examples/Charts2D/Animations/StyleAnimation";
+import StartupAnimation from "../Examples/Charts2D/Animations/StartupAnimation";
+
 import AnnotationsAreEasy from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy";
 import EditableAnnotaions from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations";
 import TradeMarkers from "../Examples/Charts2D/ChartAnnotations/TradeMarkers";
@@ -157,7 +161,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
-            EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels
         ]
     },
     {
@@ -239,13 +243,21 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
 export const MENU_ITEMS_WHATSNEW_ID = "MENU_ITEMS_WHATSNEW_ID";
 export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
     {
-        item: { id: "builderApi", name: "Builder Api" },
+        item: { id: "builderApi", name: "Builder API" },
         submenu: [
             EXAMPLES_PAGES.builderApi_simplechart,
             EXAMPLES_PAGES.builderApi_fullchart,
             EXAMPLES_PAGES.builderApi_chartFromJSON,
             EXAMPLES_PAGES.builderApi_SharedData,
             EXAMPLES_PAGES.builderApi_CustomTypes
+        ]
+    },
+    {
+        item: { id: "animationApi", name: "Animation API" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_Animations_DataAnimation,
+            EXAMPLES_PAGES.chart2D_Animations_StyleAnimation,
+            EXAMPLES_PAGES.chart2D_Animations_StartupAnimation
         ]
     },
     {
@@ -260,7 +272,7 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
-            EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels
         ]
     },
     {
@@ -273,10 +285,8 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
     },
     {
         item: { id: "chart2D_stylingAndTheming", name: "Styling and Theming" },
-        submenu: [
-            EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground
-        ]
-    },
+        submenu: [EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground]
+    }
 ];
 
 export const getParentMenuIds = (exampleId: string): string[] => {
@@ -325,6 +335,12 @@ export const getParentMenuIds = (exampleId: string): string[] => {
 
 export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
     switch (exampleId) {
+        case EXAMPLES_PAGES.chart2D_Animations_DataAnimation.id:
+            return DataAnimation;
+        case EXAMPLES_PAGES.chart2D_Animations_StyleAnimation.id:
+            return StyleAnimation;
+        case EXAMPLES_PAGES.chart2D_Animations_StartupAnimation.id:
+            return StartupAnimation;
         case EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.id:
             return BandSeriesChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_SplineBandChart.id:

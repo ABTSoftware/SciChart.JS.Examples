@@ -50,19 +50,19 @@ const drawExample = async () => {
     // Create some line charts with the data
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-        animation: new SweepAnimation({ duration: 800, delay: 300 }),
+        animation: new SweepAnimation({ duration: 3200, delay: 0 }),
         pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
     }));
 
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values }),
-        animation: new SweepAnimation({ duration: 800, delay: 150}),
+        animation: new SweepAnimation({ duration: 1600, delay: 0}),
         pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
     }));
 
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues,  yValues: y2Values }),
-        animation: new SweepAnimation({ duration: 800, delay: 1}),
+        animation: new SweepAnimation({ duration: 800, delay: 0}),
         pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
     }));
 
