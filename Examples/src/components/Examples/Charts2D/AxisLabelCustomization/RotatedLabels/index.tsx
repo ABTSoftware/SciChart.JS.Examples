@@ -1,6 +1,7 @@
 import * as React from "react";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
+import { ELabelAlignment } from "scichart/Charting/Visuals/Axis/ELabelAlignment";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
@@ -26,10 +27,10 @@ const drawExample = async () => {
 
     const dataSeries = new XyDataSeries(wasmContext);
     const startTime = new Date(2020,0,1).getTime() / 1000;
-    let y = 100;
+    let y = 110;
     for (let i = 0; i < 50; i++) {
         const x = startTime + i * 24 * 60 * 60;
-        y = y + Math.random() - 0.5;
+        y = y + 10 * (Math.random() - 0.8);
         dataSeries.append(x, y);
     }
     
@@ -49,7 +50,8 @@ const drawExample = async () => {
         });
     sciChartSurface.renderableSeries.add(lineSeries);
 
-    const yAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
+    // Override the label alignment for Y axis
+    const yAxis = new NumericAxis(wasmContext, { labelStyle: { alignment: ELabelAlignment.Right } });
     sciChartSurface.yAxes.add(yAxis);
 
     sciChartSurface.zoomExtents();

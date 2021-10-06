@@ -64,6 +64,14 @@ import metaDataImg from "../components/Examples/Charts2D/TooltipsAndHittest/Meta
 import realtimeZoomPanImg from "../components/Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/zoom-and-pan-a-realtime-javascript-chart.jpg";
 import dragAxisToScaleImg from "../components/Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
 import multipleZoomPanModifiersImg from "../components/Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/zoom-pan-multiple-modifiers.jpg";
+// Filters
+import trendMARatioImg from "../components/Examples/Charts2D/Filters/TrendMARatio/javascript-trend-ma-ratio.jpg";
+import percentageChangeImg from "../components/Examples/Charts2D/Filters/PercentageChange/javascript-percentage-change.jpg";
+import customFiltersImg from "../components/Examples/Charts2D/Filters/CustomFilters/javascript-custom-filters.jpg";
+// Axis Label Customization
+import multiLineLabelsImg from "../components/Examples/Charts2D/AxisLabelCustomization/MultiLineLabels/javascript-multiline-labels.jpg";
+import rotatedLabelsImg from "../components/Examples/Charts2D/AxisLabelCustomization/RotatedLabels/javascript-rotated-labels.jpg";
+import imageLabelsImg from "../components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/javascript-image-labels.jpg";
 // 3D Chart Types
 import bubble3dImg from "../components/Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/javascript-3d-bubble-chart.jpg";
 import mesh3dImg from "../components/Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
@@ -355,6 +363,35 @@ export const sciChartExamples: GalleryItem[] = [
         ]
     },
     {
+        chartGroupTitle: "Axis Label Customization",
+        items: [
+            {
+                imgPath: multiLineLabelsImg,
+                title: ExampleStrings.titleMultiLineLabels,
+                seoTitle: "JavaScript Multi-line Labels Example",
+                examplePath: EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.path
+            },
+            {
+                imgPath: rotatedLabelsImg,
+                title: ExampleStrings.titleRotatedLabels,
+                seoTitle: "JavaScript Rollover Modifier Tooltips Example",
+                examplePath: EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.path
+            },
+            {
+                imgPath: imageLabelsImg,
+                title: ExampleStrings.titleImageLabels,
+                seoTitle: "JavaScript Image Labels Example",
+                examplePath: EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels.path
+            },
+            {
+                imgPath: metaDataImg,
+                title: ExampleStrings.titleMetaData,
+                seoTitle: "JavaScript MetaData Example",
+                examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.path
+            }
+        ]
+    },
+    {
         chartGroupTitle: "Styling and Theming",
         items: [
             {
@@ -450,6 +487,64 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
                 seoTitle: "Zoom and Pan a JavaScript Chart",
                 examplePath: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.path
+            }
+        ]
+    },
+    {
+        chartGroupTitle: "Filters Api",
+        items: [
+            {
+                imgPath: percentageChangeImg,
+                title: ExampleStrings.titlePercentageChange,
+                seoTitle: "Percentage change using ScaleOffset Filter",
+                examplePath: EXAMPLES_PAGES.chart2D_filters_PercentageChange.path
+            },
+            {
+                imgPath: trendMARatioImg,
+                title: ExampleStrings.titleTrendMARatio,
+                seoTitle: "Linear Trend, Moving average and Ratio Filter",
+                examplePath: EXAMPLES_PAGES.chart2D_filters_TrendMARatio.path
+            },
+            {
+                imgPath: customFiltersImg,
+                title: ExampleStrings.titleCustomFilters,
+                seoTitle: "Aggregation using a custom filter",
+                examplePath: EXAMPLES_PAGES.chart2D_filters_CustomFilters.path
+            }
+        ]
+    },
+    {
+        chartGroupTitle: "Builder Api",
+        items: [
+            {
+                imgPath: builderSimpleImg,
+                title: ExampleStrings.titleBuilderSimpleChart,
+                seoTitle: "Simple chart using Builder Api",
+                examplePath: EXAMPLES_PAGES.builderApi_simplechart.path
+            },
+            {
+                imgPath: chartFromJSONImg,
+                title: ExampleStrings.titleChartFromJSON,
+                seoTitle: "Create a chart from a JSON string",
+                examplePath: EXAMPLES_PAGES.builderApi_chartFromJSON.path
+            },
+            {
+                imgPath: builderFullImg,
+                title: ExampleStrings.titleBuilderFullChart,
+                seoTitle: "Full chart using Builder Api",
+                examplePath: EXAMPLES_PAGES.builderApi_fullchart.path
+            },
+            {
+                imgPath: builderSharedDataImg,
+                title: ExampleStrings.titleSharedData,
+                seoTitle: "Reusable chart templates using builder api and shared data",
+                examplePath: EXAMPLES_PAGES.builderApi_SharedData.path
+            },
+            {
+                imgPath: builderCustomTypesImg,
+                title: ExampleStrings.titleCustomTypes,
+                seoTitle: "Using custom types with builder api",
+                examplePath: EXAMPLES_PAGES.builderApi_CustomTypes.path
             }
         ]
     },
