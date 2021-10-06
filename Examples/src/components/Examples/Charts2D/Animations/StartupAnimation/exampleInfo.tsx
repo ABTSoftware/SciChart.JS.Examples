@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Demonstrates how to run startup animations for a JavaScript Chart.`;
+const previewDescription = ``;//`Demonstrates how to run startup animations for a JavaScript Chart.`;
 const description = `Startup animations run on start and decorate charts`;
 const tips: string[] = ["Choose Fade, Scale, Wave or Sweep animation using the dropdown"];
 

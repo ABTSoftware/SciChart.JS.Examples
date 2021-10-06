@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Demonstrates how to run data animation for a JavaScript Chart.`;
+const previewDescription = ``;//`Demonstrates how to run data animation for a JavaScript Chart.`;
 const description = `Every second new random values are generated for the scatter series and transition from one state to another is animated`;
 const tips: string[] = ["Animations can be chained"];
 

@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Demonstrates how to run style and data animations simultaneously for a JavaScript Chart.`;
+const previewDescription = ``;// `Demonstrates how to run style and data animations simultaneously for a JavaScript Chart.`;
 const description = `By clicking the buttons the chart styles and data transform from one value to another`;
 const tips: string[] = ["Use runAnimation or enqueueAnimation method"];
 
