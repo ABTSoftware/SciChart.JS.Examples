@@ -391,6 +391,15 @@ export const ExampleStrings = {
         "The specific page for the SciChart.js documentation for the Hit-Test API to help you to get started",
     imgHitTestApiChart: "images/javascript-chart-hit-test-on-click.png",
 
+    // DataPointSelection
+    titleDataPointSelection: "Data Point Selection",
+    urlDataPointSelection: "/javascript-datapoint-selection",
+    urlDataPointSelectionDocumentation: "https://www.scichart.com/documentation/js/current/DataPointSelection.html",
+    urlTitleDataPointSelectionDocumentation:
+        "The specific page for the SciChart.js documentation for the DataPointSelectionModifier to help you to get started",
+    imgDataPointSelection: "images/javascript-datapoint-selection.png",
+    
+
     // RolloverModifier
     urlRolloverModifierDocumentation: "https://www.scichart.com/documentation/js/current/RolloverModifier.html",
     urlTitleRolloverModifierDocumentation:
@@ -531,7 +540,7 @@ export const ExampleStrings = {
 
     // Rotated labels
     urlRotatedLabels: "/javascript-rotated-labels",
-    titleRotatedLabels: "Rotated labels",
+    titleRotatedLabels: "Rotated labels and Alignment",
     imgRotatedLabels: "images/javascript-rotated-labels.jpg",
     
     // Filters, Percentage Change
