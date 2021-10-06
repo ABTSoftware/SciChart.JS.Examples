@@ -4,6 +4,7 @@
 
 To add an example to the SciChart.js Examples Suite, use the following steps:
 
+* **Update ExampleStrings** file with the new example data (Examples/src/components/Examples/ExampleStrings.ts)
 * **Create folder** for your example, (e.g. `Examples/src/components/Examples/Charts2D/BasicChartTypes/BandSeriesChart/`)
 * **Place example code**. In the example folder create `index.tsx` file and put code for your example into it.
 * **Add image**. In the example folder create add image file with example.
@@ -160,3 +161,8 @@ Edit `Examples/src/helpers/SciChartExamples.ts` to add new example to main page
 
 * **Update sitemap and footers**
 `npm run generateAll`
+
+* **Compress images**
+This will compress all images `npm run compressImages`.
+However, it is better to compress images only for newly created example. I created several examples here Examples/src/components/Examples/Charts2D/Animations and I run the script and pass the folder name into it
+`npm run compressImages Animations`

@@ -29,6 +29,35 @@ export const ExampleStrings = {
 
     // Urls, example titles
     //
+    // Data Animation
+    urlDataAnimation: "/javascript-data-animation",
+    titleDataAnimation: "JavaScript Data Animation",
+    urlTitleDataAnimation: "JavaScript Data Animation",
+    urlDataAnimationDocumentation:
+        "https://www.scichart.com/documentation/js/current/Dataset%20Animations.html",
+    urlTitleDataAnimationDocumentation:
+        "The specific page for the JavaScript Dataset Animation documentation will help you to get started",
+    imgDataAnimation: "images/javascript-data-animation.png",
+
+    // Style Animation
+    urlStyleAnimation: "/javascript-style-animation",
+    titleStyleAnimation: "JavaScript Style Animation",
+    urlTitleStyleAnimation: "JavaScript Style Animation",
+    urlStyleAnimationDocumentation:
+        "https://www.scichart.com/documentation/js/current/Series%20Style%20Animations.html",
+    urlTitleStyleAnimationDocumentation:
+        "The specific page for the JavaScript Style Transition Animation documentation will help you to get started",
+    imgStyleAnimation: "images/javascript-style-animation.png",
+
+    // OnStart Animation
+    urlStartupAnimation: "/javascript-startup-animation",
+    titleStartupAnimation: "JavaScript Startup Animation",
+    urlTitleStartupAnimation: "JavaScript Startup Animation",
+    urlStartupAnimationDocumentation:
+        "https://www.scichart.com/documentation/js/current/Series%20Startup%20Animations.html",
+    urlTitleStartupAnimationDocumentation:
+        "The specific page for the JavaScript Startup Animation documentation will help you to get started",
+    imgStartupAnimation: "images/javascript-startup-animation.png",
 
     // Scatter chart
     urlScatterChart: "/javascript-scatter-chart",
@@ -40,6 +69,7 @@ export const ExampleStrings = {
     urlTitleScatterChartDocumentation:
         "This specific page in the JavaScript Scatter Chart documentation will help you to get started",
     imgScatterChart: "images/javascript-scatter-chart.jpg",
+
     // Band chart
     urlBandChart: "/javascript-band-chart",
     urlTitleBandChart: "JavaScript Band Chart example",
@@ -542,7 +572,7 @@ export const ExampleStrings = {
     urlRotatedLabels: "/javascript-rotated-labels",
     titleRotatedLabels: "Rotated Labels and Alignment",
     imgRotatedLabels: "images/javascript-rotated-labels.jpg",
-    
+
     // Filters, Percentage Change
     urlPercentageChange: "/javascript-percentage-change",
     titlePercentageChange: "Realtime Percentage Change using Filter",

@@ -1,14 +1,17 @@
 import * as path from "path";
-import {Dirent, promises} from "fs";
+import { Dirent, promises } from "fs";
+import * as gulp from "gulp";
 // tslint:disable:no-var-requires
-const gulp = require('gulp');
-const smushit = require('gulp-smushit');
+const smushit = require("gulp-smushit");
 
 type TFileInfo = {
-    fileName: string,
-    fileDir: string,
-    filePath: string,
-}
+    fileName: string;
+    fileDir: string;
+    filePath: string;
+};
+
+const args = process.argv.slice(2);
+const folderParam = args[0];
 
 async function getFiles(pathUrl: string) {
     const entries = await promises.readdir(pathUrl, { withFileTypes: true });
@@ -19,7 +22,7 @@ async function getFiles(pathUrl: string) {
         .map((file: Dirent) => ({
             fileName: file.name,
             fileDir: pathUrl,
-            filePath: path.join(pathUrl, file.name),
+            filePath: path.join(pathUrl, file.name)
         }));
 
     // Get folders within the current directory
@@ -35,14 +38,15 @@ async function getFiles(pathUrl: string) {
     const examplesPath = path.join(__dirname, "src", "components", "Examples");
     const files = await getFiles(examplesPath);
     const imageFiles = files.filter((f: TFileInfo) => {
-        return f.fileName?.includes(".jpg");
+        const isCorrectFileType = f.fileName?.includes(".jpg") || f.fileName?.includes(".png");
+        const isFolderIncluded = folderParam ? f.fileDir?.includes(folderParam) : true;
+        return isCorrectFileType && isFolderIncluded;
     });
 
     for (const imageFile of imageFiles) {
         console.log("compressing image " + imageFile.filePath);
         gulp.src(imageFile.filePath)
-            .pipe(smushit({verbose: false}))
+            .pipe(smushit({ verbose: false }))
             .pipe(gulp.dest(imageFile.fileDir));
     }
-
 })();
