@@ -531,7 +531,7 @@ export const ExampleStrings = {
 
     // Rotated labels
     urlRotatedLabels: "/javascript-rotated-labels",
-    titleRotatedLabels: "Rotated labels",
+    titleRotatedLabels: "Rotated Labels and Alignment",
     imgRotatedLabels: "images/javascript-rotated-labels.jpg",
     
     // Filters, Percentage Change

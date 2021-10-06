@@ -10,6 +10,7 @@ import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IR
 import { EPaletteProviderType } from "scichart/types/PaletteProviderType";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { TPaletteProviderDefinition } from "scichart/Builder/buildSeries";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 
 export async function drawWithComplexOptionsUsingBuilderApi(divElementId: string) {
     return chartBuilder.buildChart(divElementId, {
@@ -21,6 +22,17 @@ export async function drawWithComplexOptionsUsingBuilderApi(divElementId: string
             }
         }
     });
+}
+
+export async function drawWithComplexOptionsAlternativeUsingBuilderApi(divElementId: string) {
+    const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {});
+    const pointMarker = new EllipsePointMarker(wasmContext, { stroke: "red" });
+    const seriesArray = await chartBuilder.buildSeries(wasmContext, {
+        xyData: { xValues: [1, 3, 4, 7, 9], yValues: [10, 6, 7, 2, 16] },
+        type: ESeriesType.ScatterSeries,
+        options: { pointMarker }
+    });
+    sciChartSurface.renderableSeries.add(...seriesArray);
 }
 
 export async function drawChartWithRegisteredFunctionUsingBuilderApi(divElementId: string) {
