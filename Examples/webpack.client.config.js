@@ -68,11 +68,7 @@ module.exports = {
                 { from: "node_modules/scichart/_wasm/scichart3d.data", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
                 { from: "sitemap.xml", to: "" },
-                { from: "robots.txt", to: "" },
-                { from: "src/components/Examples/BuilderApi/**/*.jpg", to: "images/[name].jpg" },
-                { from: "src/components/Examples/Charts2D/Filters/**/*.jpg", to: "images/[name].jpg" },
-                { from: "src/components/Examples/Charts2D/AxisLabelCustomization/**/*.jpg", to: "images/[name].jpg" },
-                { from: "src/components/Examples/Charts2D/Animations/**/*.png", to: "images/[name].png" }
+                { from: "robots.txt", to: "" }
             ]
         }),
         // new BundleAnalyzerPlugin()

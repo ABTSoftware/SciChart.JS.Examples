@@ -71,6 +71,7 @@ const drawExample = async () => {
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier());
 
+    sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext, yAxis };
 };
 

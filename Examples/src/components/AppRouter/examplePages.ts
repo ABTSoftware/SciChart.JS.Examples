@@ -75,6 +75,8 @@ import { customFiltersExampleInfo } from "../Examples/Charts2D/Filters/CustomFil
 import { dataAnimationExampleInfo } from "../Examples/Charts2D/Animations/DataAnimation/exampleInfo";
 import { styleAnimationExampleInfo } from "../Examples/Charts2D/Animations/StyleAnimation/exampleInfo";
 import { startupAnimationExampleInfo } from "../Examples/Charts2D/Animations/StartupAnimation/exampleInfo";
+import { dataPointSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection/exampleInfo";
+
 
 export type TExampleInfo = {
     title: string;
@@ -319,6 +321,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_tooltipsAndHittest_MetaData: {
         id: "chart2D_tooltipsAndHittest_MetaData",
         ...metaDataExampleInfo
+    },
+    chart2D_tooltipsAndHittest_DataPointSelection: {
+        id: "chart2D_tooltipsAndHittest_DataPointSelection",
+        ...dataPointSelectionExampleInfo
     },
     chart2D_tooltipsAndHittest_SeriesSelection: {
         id: "chart2D_tooltipsAndHittest_SeriesSelection",

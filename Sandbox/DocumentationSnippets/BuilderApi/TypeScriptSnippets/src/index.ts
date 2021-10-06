@@ -6,6 +6,7 @@ import {
     drawWithComplexOptionsUsingBuilderApi,
     drawChartWithRegisteredFunctionUsingBuilderApi,
     drawChartWithCustomSubtypeUsingBuilderApi,
+    drawWithComplexOptionsAlternativeUsingBuilderApi,
 } from "./ComplexOptions";
 import {
     drawChartWithSharedDataSeries,
@@ -25,7 +26,8 @@ import { drawChartWithFilterUsingBuilderApi } from "./FilterApi";
 
 drawSimpleChartUsingBuilderApi("scichart-div-1");
 drawComplexChartUsingBuilderApi("scichart-div-2");
-drawWithComplexOptionsUsingBuilderApi("scichart-div-3");
+//drawWithComplexOptionsUsingBuilderApi("scichart-div-3");
+drawWithComplexOptionsAlternativeUsingBuilderApi("scichart-div-3");
 drawChartWithRegisteredFunctionUsingBuilderApi("scichart-div-4");
 drawChartWithCustomSubtypeUsingBuilderApi("scichart-div-5");
 drawChartWithSharedDataSeries("scichart-div-6");

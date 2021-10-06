@@ -86,6 +86,7 @@ import ImageLabels from "../Examples/Charts2D/AxisLabelCustomization/ImageLabels
 import PercentageChange from "../Examples/Charts2D/Filters/PercentageChange";
 import TrendMARatio from "../Examples/Charts2D/Filters/TrendMARatio";
 import CustomFilters from "../Examples/Charts2D/Filters/CustomFilters";
+import DatapointSelection from "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection";
 
 export type TMenuItem = {
     item: {
@@ -183,6 +184,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData
         ]
     },
@@ -264,7 +266,8 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
         item: { id: "new_modifyAxisBehavior", name: "Chart Axis APIs" },
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes
         ]
     },
     {
@@ -273,6 +276,14 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
             EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels
+        ]
+    },
+    {
+        item: { id: "chart2D_tooltipsAndHittest", name: "Tooltips and Hit-Test" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData
         ]
     },
     {
@@ -439,6 +450,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return UsingCursorModifierTooltips;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.id:
             return UsingMetaData;
+        case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection.id:
+            return DatapointSelection;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.id:
             return DragAxisToScale;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.id:

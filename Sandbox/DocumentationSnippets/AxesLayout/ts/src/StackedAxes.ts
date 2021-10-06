@@ -6,7 +6,7 @@ import { RightAlignedOuterVerticallyStackedAxisLayoutStrategy } from "scichart/C
 import { LeftAlignedOuterVerticallyStackedAxisLayoutStrategy } from "scichart/Charting/LayoutManager/LeftAlignedOuterVerticallyStackedAxisLayoutStrategy";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { TSciChart } from "scichart/types/TSciChart";
-import { ZoomPanModifier } from 'scichart/Charting/ChartModifiers/ZoomPanModifier';
+import { NumberRange } from "scichart/Core/NumberRange";
 
 export async function verticallyStackedAxes(divElementId: string) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
@@ -19,9 +19,9 @@ export async function verticallyStackedAxes(divElementId: string) {
     const xAxis1 = new NumericAxis(wasmContext, { id: ID_X_AXIS_1, axisTitle: ID_X_AXIS_1, axisAlignment: EAxisAlignment.Top });
 
     // Vertical Axes
-    const yAxis1 = new NumericAxis(wasmContext, { id: ID_Y_AXIS_1, axisTitle: ID_Y_AXIS_1, axisAlignment: EAxisAlignment.Left });
-    const yAxis2 = new NumericAxis(wasmContext, { id: ID_Y_AXIS_2, axisTitle: ID_Y_AXIS_2, axisAlignment: EAxisAlignment.Left });
-    const yAxis3 = new NumericAxis(wasmContext, { id: ID_Y_AXIS_3, axisTitle: ID_Y_AXIS_3, axisAlignment: EAxisAlignment.Left });
+    const yAxis1 = new NumericAxis(wasmContext, { id: ID_Y_AXIS_1, axisTitle: ID_Y_AXIS_1, axisAlignment: EAxisAlignment.Left, visibleRange: new NumberRange(-2, 3) });
+    const yAxis2 = new NumericAxis(wasmContext, { id: ID_Y_AXIS_2, axisTitle: ID_Y_AXIS_2, axisAlignment: EAxisAlignment.Left, visibleRange: new NumberRange(-2, 2) });
+    const yAxis3 = new NumericAxis(wasmContext, { id: ID_Y_AXIS_3, axisTitle: ID_Y_AXIS_3, axisAlignment: EAxisAlignment.Left, visibleRange: new NumberRange(-3, 2) });
 
     sciChartSurface.xAxes.add(xAxis1);
     sciChartSurface.yAxes.add(yAxis1, yAxis2, yAxis3);
@@ -56,9 +56,6 @@ export async function verticallyStackedAxes(divElementId: string) {
 
     sciChartSurface.renderableSeries.add(lineSeries1, lineSeries2, lineSeries3);
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xAxisId: ID_X_AXIS_1, yAxisId: ID_Y_AXIS_1 }));
-
-    sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
 }
 

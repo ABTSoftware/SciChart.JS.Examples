@@ -3,6 +3,8 @@ import { CentralAxesLayoutManager } from "scichart/Charting/LayoutManager/Centra
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { SciChartSurface } from "scichart";
 import { NumberRange } from "scichart/Core/NumberRange";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
 
 export async function configureCentralAxesLayoutManager(divElementId: string) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
@@ -16,7 +18,7 @@ export async function configureCentralAxesLayoutManager(divElementId: string) {
     const options = {
         horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.DataValue,
         verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Pixel,
-        horizontalAxisPosition: 0,
+        horizontalAxisPosition: 3,
         verticalAxisPosition: 100,
 
     };
@@ -25,14 +27,19 @@ export async function configureCentralAxesLayoutManager(divElementId: string) {
 
 export async function configureAxesLayoutStrategies(divElementId: string) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    const xAxis = new NumericAxis(wasmContext, { isInnerAxis: true });
+    const xAxis = new NumericAxis(wasmContext, { isInnerAxis: true, axisAlignment: EAxisAlignment.Top, axisBorder: { borderTop: 2, color: "steelblue" } });
+    sciChartSurface.layoutManager.topInnerAxesLayoutStrategy.coordinateMode = EInnerAxisPlacementCoordinateMode.DataValue;
+    sciChartSurface.layoutManager.topInnerAxesLayoutStrategy.axisPosition = 7;
+
+    const xAxis2 = new NumericAxis(wasmContext, { isInnerAxis: true, axisAlignment: EAxisAlignment.Bottom, axisBorder: { borderBottom: 2, color: "white" } });
+    sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.coordinateMode = EInnerAxisPlacementCoordinateMode.Pixel;
+    sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.axisPosition = 300;
+
     const yAxis = new NumericAxis(wasmContext);
 
-    sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.coordinateMode = EInnerAxisPlacementCoordinateMode.Pixel;
-    sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.axisPosition = 100;
-
-    sciChartSurface.xAxes.add(xAxis);
+    sciChartSurface.xAxes.add(xAxis, xAxis2);
     sciChartSurface.yAxes.add(yAxis);
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
 }
 
 export async function customAxisIds(divElementId: string) {
