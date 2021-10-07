@@ -1,25 +1,18 @@
-export const code = `import { Slider } from "@material-ui/core";
-import { ToggleButtonGroup, ToggleButton } from "@material-ui/lab";
+export const code = `import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import * as React from "react";
-import { CursorModifier } from "scichart/Charting/ChartModifiers/CursorModifier";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { EFillPaletteMode, EStrokePaletteMode, IFillPaletteProvider, IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
 import { IPointMetadata } from "scichart/Charting/Model/IPointMetadata";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
-import { TTextStyle } from "scichart/Charting/Visuals/Axis/AxisCore";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { ELabelAlignment } from "scichart/Charting/Visuals/Axis/ELabelAlignment";
 import { TextLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/TextLabelProvider";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
-import { TextureManager } from "scichart/Charting/Visuals/TextureManager/TextureManager";
 import { Thickness } from "scichart/Core/Thickness";
 import { EAutoRange } from "scichart/types/AutoRange";
+import { ELabelAlignment } from "scichart/types/LabelAlignment";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import classes from "../../../Examples.module.scss";
 

@@ -64,6 +64,7 @@ import metaDataImg from "../components/Examples/Charts2D/TooltipsAndHittest/Meta
 import realtimeZoomPanImg from "../components/Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/zoom-and-pan-a-realtime-javascript-chart.jpg";
 import dragAxisToScaleImg from "../components/Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
 import multipleZoomPanModifiersImg from "../components/Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/zoom-pan-multiple-modifiers.jpg";
+import overviewImg from "../components/Examples/Charts2D/ZoomingAndPanning/OverviewModifier/javascript-overview-chart.jpg";
 // Filters
 import trendMARatioImg from "../components/Examples/Charts2D/Filters/TrendMARatio/javascript-trend-ma-ratio.jpg";
 import percentageChangeImg from "../components/Examples/Charts2D/Filters/PercentageChange/javascript-percentage-change.jpg";
@@ -470,6 +471,12 @@ export const sciChartExamples: GalleryItem[] = [
     {
         chartGroupTitle: "Zoom and Pan a Chart",
         items: [
+            {
+                imgPath: overviewImg,
+                title: ExampleStrings.titleOverview,
+                seoTitle: "Zoom and Pan with an Overview",
+                examplePath: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview.path
+            },
             {
                 imgPath: dragAxisToScaleImg,
                 title: ExampleStrings.titleDragAxisToScale,

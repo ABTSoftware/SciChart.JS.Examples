@@ -594,5 +594,5 @@ export const ExampleStrings = {
     // Overview
     urlOverview: "/javascript-overview",
     titleOverview: "Zoom and Pan with Overview Chart",
-    imgOverview: "images/javascript-overview.jpg",
+    imgOverview: "images/javascript-overview-chart.jpg",
 };

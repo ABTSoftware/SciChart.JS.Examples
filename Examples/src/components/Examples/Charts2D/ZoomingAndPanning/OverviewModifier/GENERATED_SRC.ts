@@ -10,92 +10,108 @@ import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableS
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { SciChartOverview } from "scichart/Charting/Visuals/SciChartOverview";
 import classes from "../../../../Examples/Examples.module.scss";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { EAutoRange } from "scichart/types/AutoRange";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import { EExecuteOn } from "scichart/types/ExecuteOn";
+import { ESeriesType } from "scichart/types/SeriesType";
+import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
 
 export const divElementId = "chart";
-
-let timerId: NodeJS.Timeout;
+export const divOverviewId = "overview";
 
 export const drawExample = async () => {
-    // Create the SciChartSurface in the div 'scichart-root'
-    // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
-    // instance must be passed to other types that exist on the same surface.
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {});
+    const POINTS = 10000;
 
-    // Create an X,Y Axis and add to the chart
-    const xAxis = new NumericAxis(wasmContext);
-    const yAxis = new NumericAxis(wasmContext);
-
+    const xAxis = new NumericAxis(wasmContext, {
+        id: "xAxis",
+        axisAlignment: EAxisAlignment.Top,
+        visibleRange: new NumberRange(3000, 4000),
+        autoRange: EAutoRange.Never
+    });
+    xAxis.labelProvider.precision = 0;
     sciChartSurface.xAxes.add(xAxis);
+    const yAxis = new NumericAxis(wasmContext, {
+        id: "yAxis",
+        axisAlignment: EAxisAlignment.Left,
+        visibleRange: new NumberRange(-5000, 5000),
+        autoRange: EAutoRange.Always
+    });
+    yAxis.labelProvider.precision = 0;
     sciChartSurface.yAxes.add(yAxis);
 
-    // Create a Scatter series, and Line series and add to chart
-    const scatterSeries = new XyScatterRenderableSeries(wasmContext, {
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "White", stroke: "SteelBlue" })
-    });
-    const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke: "#4083B7", strokeThickness: 2 });
-    sciChartSurface.renderableSeries.add(lineSeries, scatterSeries);
+    const dataSeries = new XyDataSeries(wasmContext);
+    const dataSeries2 = new XyDataSeries(wasmContext);
+    const rendSeries = new FastLineRenderableSeries(wasmContext, { dataSeries, strokeThickness: 2 });
+    const rendSeries2 = new XyScatterRenderableSeries(wasmContext, { dataSeries: dataSeries2, strokeThickness: 5 });
+    rendSeries.xAxisId = xAxis.id;
+    rendSeries.yAxisId = yAxis.id;
+    rendSeries2.xAxisId = xAxis.id;
+    rendSeries2.yAxisId = yAxis.id;
+    sciChartSurface.renderableSeries.add(rendSeries);
+    sciChartSurface.renderableSeries.add(rendSeries2);
+    rendSeries.stroke = "#99EE99FF";
+    rendSeries2.pointMarker = new EllipsePointMarker(wasmContext);
 
-    // Create and populate some XyDataSeries with static data
-    // Note: you can pass xValues, yValues arrays to constructors, and you can use appendRange for bigger datasets
-    const scatterData = new XyDataSeries(wasmContext, { dataSeriesName: "Cos(x)" });
-    const lineData = new XyDataSeries(wasmContext, { dataSeriesName: "Sin(x)" });
+    const generateDataSeries = (dataSeries: XyDataSeries) => {
+        const xValues = new Array(POINTS);
+        const yValues = new Array(POINTS);
+        let prevYValue = 0;
+        for (let i = 0; i < POINTS; i++) {
+            const curYValue = Math.random() * 10 - 5;
 
-    for (let i = 0; i < 1000; i++) {
-        lineData.append(i, Math.sin(i * 0.1));
-        scatterData.append(i, Math.cos(i * 0.1));
-    }
+            xValues[i] = i;
+            yValues[i] = prevYValue + curYValue;
 
-    // Assign these dataseries to the line/scatter renderableseries
-    scatterSeries.dataSeries = scatterData;
-    lineSeries.dataSeries = lineData;
-
-    //  We disable ZoomExtends animation
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ isAnimated: false }));
-    // Realtime zooming example
-    sciChartSurface.chartModifiers.add(new RubberBandXyZoomModifier());
-    // Realtime panning example
-    // sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-
-    // Part 2: Appending data in realtime
-    //
-    const updateDataFunc = () => {
-        // Append another data-point to the chart. We use dataSeries.count()
-        // to determine the current length before appending
-        const i = lineData.count();
-        lineData.append(i, Math.sin(i * 0.1));
-        scatterData.append(i, Math.cos(i * 0.1));
-
-        // If the zoomState is not UserZooming, then we are viewing the extents of the data
-        // In this case, we want to scroll the chart by setting visibleRange = NumberRange(i-1000, i)
-        if (sciChartSurface.zoomState !== EZoomState.UserZooming) {
-            xAxis.visibleRange = new NumberRange(i - 1000, i);
+            prevYValue += curYValue;
         }
 
-        // Repeat at 60Hz
-        timerId = setTimeout(updateDataFunc, 1 / 60);
-
-        // Warning, this will repeat forever, it's not best practice!
+        dataSeries.appendRange(xValues, yValues);
     };
 
-    updateDataFunc();
+    generateDataSeries(dataSeries);
+    generateDataSeries(dataSeries2);
+
+    const rubberBand = new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton });
+    const zoomPanModifier = new ZoomPanModifier();
+
+    sciChartSurface.chartModifiers.add(zoomPanModifier);
+    sciChartSurface.chartModifiers.add(rubberBand);
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+
+    // Add Overview
+    const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
+        mainAxisId: xAxis.id,
+        secondaryAxisId: yAxis.id
+    });
+    
     return sciChartSurface;
 };
 
 let scs: SciChartSurface;
 
-export default function RealtimeZoomPan() {
+export default function Overview() {
     React.useEffect(() => {
         (async () => {
             scs = await drawExample();
         })();
-        // IMPORTANT to cancel all subscriptions on component unmount!
         return () => {
-            clearTimeout(timerId);
             scs?.delete();
         };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return (<div style={{ display: "flex", flexDirection: "column", maxWidth: 800 }}>
+    <div id={divElementId} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }} />
+    <div id={divOverviewId} style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }} />
+</div>
+
+    )
 }
 `;

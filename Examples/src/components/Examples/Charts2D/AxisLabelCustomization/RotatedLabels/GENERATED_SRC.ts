@@ -1,7 +1,6 @@
 export const code = `import * as React from "react";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { ELabelAlignment } from "scichart/Charting/Visuals/Axis/ELabelAlignment";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
@@ -9,6 +8,7 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
 import { EAutoRange } from "scichart/types/AutoRange";
+import { ELabelAlignment } from "scichart/types/LabelAlignment";
 import classes from "../../../Examples.module.scss";
 
 const divElementId = "chart";

@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/index.tsx";
+export const githubUrl = "/components/Examples/Charts2D/ZoomingAndPanning/OverviewModifier/index.tsx";

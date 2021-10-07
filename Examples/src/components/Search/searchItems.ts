@@ -223,6 +223,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.path
     },
     {
+        title: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview.title,
+        link: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview.path
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_filters_TrendMARatio.title,
         link: EXAMPLES_PAGES.chart2D_filters_TrendMARatio.path,
     },
