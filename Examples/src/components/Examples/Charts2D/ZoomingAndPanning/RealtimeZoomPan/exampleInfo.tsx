@@ -7,7 +7,7 @@ import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescript
 import { GalleryItem } from "../../../../../helpers/types/types";
 
 const previewDescription = `This examples shows how to add zooming and panning behaviour to a realtime JavaScript Chart.`;
-const description = `When you use AutoRanging in a SciChart.js chart, the chart will always automatically range to fit the data.{" "}
+const description = `When you use AutoRanging in a SciChart.js chart, the chart will always automatically range to fit the data.
 This means that zoom, pan modifiers will not work on the chart. In order to allow both behaviors, this
 example demonstrates how to use the ZoomState property to determine when to zoom to fit, or when to allow
 user zooming.`;

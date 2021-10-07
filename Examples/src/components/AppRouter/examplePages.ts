@@ -76,6 +76,7 @@ import { dataAnimationExampleInfo } from "../Examples/Charts2D/Animations/DataAn
 import { styleAnimationExampleInfo } from "../Examples/Charts2D/Animations/StyleAnimation/exampleInfo";
 import { startupAnimationExampleInfo } from "../Examples/Charts2D/Animations/StartupAnimation/exampleInfo";
 import { dataPointSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection/exampleInfo";
+import { overviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -341,6 +342,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_zoomAndPanAChart_MultipleChartModifiers: {
         id: "chart2D_zoomAndPanAChart_MultipleChartModifiers",
         ...zoomAndPanWithMultipleChartModifiersExampleInfo
+    },
+    chart2D_zoomAndPanAChart_Overview: {
+        id: "chart2D_zoomAndPanAChart_Overview",
+        ...overviewExampleInfo
     },
     chart2D_filters_PercentageChange: {
         id: "chart2D_filters_PercentageChange",

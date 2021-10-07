@@ -590,4 +590,9 @@ export const ExampleStrings = {
     urlCustomFilters: "/javascript-custom-filters",
     titleCustomFilters: "Custom Filters",
     imgCustomFilters: "images/javascript-custom-filters.jpg",
+
+    // Overview
+    urlOverview: "/javascript-overview",
+    titleOverview: "Zoom and Pan with Overview Chart",
+    imgOverview: "images/javascript-overview.jpg",
 };

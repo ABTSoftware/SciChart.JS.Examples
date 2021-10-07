@@ -87,6 +87,7 @@ import PercentageChange from "../Examples/Charts2D/Filters/PercentageChange";
 import TrendMARatio from "../Examples/Charts2D/Filters/TrendMARatio";
 import CustomFilters from "../Examples/Charts2D/Filters/CustomFilters";
 import DatapointSelection from "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection";
+import Overview from "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier";
 
 export type TMenuItem = {
     item: {
@@ -193,7 +194,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan,
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview
         ]
     },
     {
@@ -297,6 +299,12 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
     {
         item: { id: "chart2D_stylingAndTheming", name: "Styling and Theming" },
         submenu: [EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground]
+    },
+    {
+        item: { id: "chart2D_zoomingAndPanning", name: "Zoom and Pan a Chart" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview
+        ]
     }
 ];
 
@@ -458,6 +466,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return RealtimeZoomPan;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.id:
             return MultipleZoomPanModifiers;
+        case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview.id:
+            return Overview;
         case EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.id:
             return MultiLineLabels;
         case EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.id:
