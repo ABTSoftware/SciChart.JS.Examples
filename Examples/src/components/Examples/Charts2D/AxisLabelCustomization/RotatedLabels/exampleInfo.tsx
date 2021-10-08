@@ -27,9 +27,9 @@ const documentationLinks: TDocumentationLink[] = [
         linkTitle: "SciChart.js Tutorials"
     },
     {
-        href: ExampleStrings.urlAxisLabelCustomizationDocumentation,
-        title: ExampleStrings.urlTitleAxisLabelCustomizationDocumentation,
-        linkTitle: "Axis Label Customization"
+        href: ExampleStrings.urlAxisLabelFormattingDocumentation,
+        title: ExampleStrings.urlTitleAxisLabelFormattingDocumentation,
+        linkTitle: "SciChart.js Axis Label Formatting Documentation"
     }
 ];
 

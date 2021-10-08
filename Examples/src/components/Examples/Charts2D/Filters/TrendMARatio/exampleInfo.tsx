@@ -22,7 +22,7 @@ const documentationLinks: TDocumentationLink[] = [
         linkTitle: "SciChart.js Tutorials"
     },
     {
-        href: ExampleStrings.urlFiltersApiDocumentation,
+        href: ExampleStrings.urlFiltersDocumentation,
         title: ExampleStrings.urlTitleFiltersApiDocumentation,
         linkTitle: "JavaScript Filters Api Documentation"
     }

@@ -6,9 +6,10 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates data series on a chart with multiple stacked Y-Axes.
-SciChart supports stacked e top or bottom axes. This example shows how to select a layout strategy of axes.`;
-const tips = [`Make sure data series and annotations are bound to the correct axis.`];
+const description = `Stacked axes allow data to be drawn in different sections of the chart but still overlap.
+Zoom vertically using the mouse wheel, or by dragging individual axes.  Right-click and drag to zoom horizontally.  Double click to Reset`;
+const tips = [`Make sure data series and annotations are bound to the correct axis.`,
+`You can also Horizontally stack top and bottom axes`];
 
 const documentationLinks: TDocumentationLink[] = [
     {
@@ -20,6 +21,11 @@ const documentationLinks: TDocumentationLink[] = [
         href: ExampleStrings.urlTutorialsHome,
         title: ExampleStrings.titleTutorialsHome,
         linkTitle: "SciChart.js Tutorials"
+    },
+    {
+        href: ExampleStrings.urlVerticallyStackedAxesDocumentation,
+        title: ExampleStrings.urlTitleVerticallyStackedAxesDocumentation,
+        linkTitle: "SciChart.js Stacked Axes Documentation"
     }
 ];
 
@@ -64,7 +70,7 @@ export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Demonstrates Vertically Stacked Axes on a JavaScript Chart using SciChart.js. SciChart supports left, right, top, bottom X, Y Stacked axes",
-    seoKeywords: "multiple, axis, chart, javascript, webgl, canvas",
+        "Demonstrates Vertically Stacked Axes on a JavaScript Chart using SciChart.js, allowing data to overlap",
+    seoKeywords: "multiple, stacked, overlap, axis, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-with-multiple-x-axis.jpg"
 };
