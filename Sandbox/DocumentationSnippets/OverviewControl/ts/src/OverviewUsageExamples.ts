@@ -61,7 +61,7 @@ export const configuringOverviewControl = async (divElementId: string, overviewD
 
     const dataSeries = new XyDataSeries(wasmContext);
     generateDataSeries(dataSeries);
-    const rendSeries = new FastLineRenderableSeries(wasmContext, { dataSeries });
+    const rendSeries = new FastLineRenderableSeries(wasmContext, { dataSeries, id: "MainSeries" });
     sciChartSurface.renderableSeries.add(rendSeries);
 
     // Add default Horizontal Overview
@@ -69,14 +69,29 @@ export const configuringOverviewControl = async (divElementId: string, overviewD
 
     // add styling to the overview component
     overview.applyTheme(new SciChartJSLightTheme());
-    overview.overviewSciChartSurface.padding = Thickness.fromNumber(20);
+    // Default padding is 10
+    overview.overviewSciChartSurface.padding = Thickness.fromNumber(0);
+    // overviewXAxis provides a shortcut to overviewSciChartSurface.xAxes.get(0)
     overview.overviewXAxis.isVisible = true;
+    overview.overviewXAxis.isInnerAxis = true;
+    overview.overviewXAxis.drawMinorGridLines = false;
+    overview.overviewXAxis.labelProvider.precision = 0;
+    // Setting an id on the series makes it easier to get and customise it on the overview
+    overview.overviewSciChartSurface.renderableSeries.getById("MainSeries").stroke = "#0a6fc2";
 
+    // Customize the selected area
     overview.rangeSelectionModifier.rangeSelectionAnnotation.svgString =
         `<svg width="50" height="50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100%" height="100%" style="fill:red">
+        <rect width="100%" height="100%" style="fill: rgb(142, 238, 195)">
         </rect>
         </svg>`;
+
+    // Customize the unselected area
+    overview.rangeSelectionModifier.unselectedsvgString = 
+        `<svg width="50" height="50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100%" height="100%" style="fill:transparent">
+        </rect>
+        </svg>`
 
     // Custom SVG template function for grab handles of the selection control
     overview.rangeSelectionModifier.rangeSelectionAnnotation.adornerSvgStringTemplate =
@@ -84,12 +99,10 @@ export const configuringOverviewControl = async (divElementId: string, overviewD
             const delta = 3;
             const ADORNER_GRIP_RADIUS = 10;
             return `<svg xmlns="http://www.w3.org/2000/svg">
-            <line x1="${x1 - delta}" y1="${y1}" x2="${x2 + delta}" y2="${y1}" stroke="red" stroke-width="6" />
-            <line x1="${x2}" y1="${y1 + delta}" x2="${x2}" y2="${y2 - delta}" stroke="red" stroke-width="6" />
-            <line x1="${x1 - delta}" y1="${y2}" x2="${x2 + delta}" y2="${y2}" stroke="red" stroke-width="6" />
-            <line x1="${x1}" y1="${y1 + delta}" x2="${x1}" y2="${y2 - delta}" stroke="red" stroke-width="6" />
-            <circle cx="${x1}" cy="${y1 / 2 + y2 / 2}" r="${ADORNER_GRIP_RADIUS}" fill="blue" stroke="green"/>
-            <circle cx="${x2}" cy="${y1 / 2 + y2 / 2}" r="${ADORNER_GRIP_RADIUS}" fill="blue" stroke="green"/>
+            <line x1="${x2}" y1="${y1 + delta}" x2="${x2}" y2="${y2 - delta}" stroke="rgb(85, 158, 218)" stroke-width="6" stroke-linecap="round" />
+            <line x1="${x1}" y1="${y1 + delta}" x2="${x1}" y2="${y2 - delta}" stroke="rgb(85, 158, 218)" stroke-width="6" stroke-linecap="round" />
+            <circle cx="${x1}" cy="${y1 / 2 + y2 / 2}" r="${ADORNER_GRIP_RADIUS}" fill="rgb(142, 238, 195)" stroke="rgb(85, 158, 218)"/>
+            <circle cx="${x2}" cy="${y1 / 2 + y2 / 2}" r="${ADORNER_GRIP_RADIUS}" fill="rgb(142, 238, 195)" stroke="rgb(85, 158, 218)"/>
             </svg>`;
         };
 };
@@ -97,9 +110,10 @@ export const configuringOverviewControl = async (divElementId: string, overviewD
 export const optionalParamsForOverviewControl = async (divElementId: string, overviewDivElementId: string) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
     const xAxis = new NumericAxis(wasmContext, { id: "xAxis" });
-    const yAxis = new NumericAxis(wasmContext, { id: "yAxis" });
+    const yAxis = new NumericAxis(wasmContext, { id: "yAxis", axisAlignment: EAxisAlignment.Left });
+    const yAxis2 = new NumericAxis(wasmContext, { id: "yAxis2", axisAlignment: EAxisAlignment.Right });
     sciChartSurface.xAxes.add(xAxis);
-    sciChartSurface.yAxes.add(yAxis);
+    sciChartSurface.yAxes.add(yAxis, yAxis2);
 
     const dataSeries = new XyDataSeries(wasmContext);
     generateDataSeries(dataSeries);
@@ -107,28 +121,27 @@ export const optionalParamsForOverviewControl = async (divElementId: string, ove
 
     const dataSeries2 = new XyDataSeries(wasmContext);
     generateDataSeries(dataSeries2);
-    const rendSeries2 = new XyScatterRenderableSeries(wasmContext, { dataSeries: dataSeries2, pointMarker: new EllipsePointMarker(wasmContext) });
+    const rendSeries2 = new XyScatterRenderableSeries(wasmContext, { 
+        dataSeries: dataSeries2, 
+        pointMarker: new EllipsePointMarker(wasmContext) 
+    });
 
     rendSeries.xAxisId = xAxis.id;
     rendSeries.yAxisId = yAxis.id;
     rendSeries2.xAxisId = xAxis.id;
-    rendSeries2.yAxisId = yAxis.id;
+    rendSeries2.yAxisId = yAxis2.id;
 
     sciChartSurface.renderableSeries.add(rendSeries, rendSeries2);
 
     sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier(), new MouseWheelZoomModifier());
 
-    // projects original renderable series to the overview
+    // A function to filter and convert renderable series for the overview
     const customTransformFunction = (renderableSeries: IRenderableSeries) => {
-        // return undefined to skip
-        if (renderableSeries.xAxisId !== xAxis.id || renderableSeries.yAxisId !== yAxis.id) {
-            return undefined;
-        }
-
-        if (renderableSeries.type !== ESeriesType.LineSeries) {
-            return undefined;
-        }
-
+    // return undefined to skip series not on the main axes
+    if (renderableSeries.xAxisId !== xAxis.id || renderableSeries.yAxisId !== yAxis.id) {
+        return undefined;
+    }
+        // Convert to a different Renderable Series type
         return new FastMountainRenderableSeries(wasmContext, {
             dataSeries: renderableSeries.dataSeries
         });
@@ -141,8 +154,8 @@ export const optionalParamsForOverviewControl = async (divElementId: string, ove
         transformRenderableSeries: customTransformFunction,
     });
 
-    return { wasmContext, sciChartSurface };
-};
+        return { wasmContext, sciChartSurface };
+    };
 
 export const verticalChartOverview = async (divElementId: string, overviewDivElementId: string) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
