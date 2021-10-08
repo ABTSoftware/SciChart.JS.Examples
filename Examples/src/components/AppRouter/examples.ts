@@ -205,6 +205,14 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_filters_TrendMARatio,
             EXAMPLES_PAGES.chart2D_filters_CustomFilters
         ]
+    },
+    {
+        item: { id: "animationApi", name: "Animation API" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_Animations_DataAnimation,
+            EXAMPLES_PAGES.chart2D_Animations_StyleAnimation,
+            EXAMPLES_PAGES.chart2D_Animations_StartupAnimation
+        ]
     }
 ];
 

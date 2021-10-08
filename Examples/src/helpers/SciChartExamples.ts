@@ -82,6 +82,10 @@ import builderFullImg from "../components/Examples/BuilderApi/FullChart/javascri
 import chartFromJSONImg from "../components/Examples/BuilderApi/ChartFromJSON/javascript-chart-from-json.jpg";
 import builderSharedDataImg from "../components/Examples/BuilderApi/SharedData/javascript-shared-data.jpg";
 import builderCustomTypesImg from "../components/Examples/BuilderApi/CustomTypes/javascript-custom-types.jpg";
+// Animations Api
+import startupAnimationImg from "../components/Examples/Charts2D/Animations/StartupAnimation/javascript-startup-animation.png";
+import dataAnimationImg from "../components/Examples/Charts2D/Animations/DataAnimation/javascript-data-animation.png";
+import styleAnimationImg from "../components/Examples/Charts2D/Animations/StyleAnimation/javascript-style-animation.png";
 
 import { GalleryItem } from "./types/types";
 import { ExampleStrings } from "../components/Examples/ExampleStrings";
@@ -552,6 +556,29 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleCustomTypes,
                 seoTitle: "Using custom types with builder api",
                 examplePath: EXAMPLES_PAGES.builderApi_CustomTypes.path
+            }
+        ]
+    },
+    {
+        chartGroupTitle: "Animations Api",
+        items: [
+            {
+                imgPath: startupAnimationImg,
+                title: ExampleStrings.titleStartupAnimation,
+                seoTitle: "Startup Animations",
+                examplePath: EXAMPLES_PAGES.chart2D_Animations_StartupAnimation.path
+            },
+            {
+                imgPath: dataAnimationImg,
+                title: ExampleStrings.titleDataAnimation,
+                seoTitle: "Data Animations",
+                examplePath: EXAMPLES_PAGES.chart2D_Animations_DataAnimation.path
+            },
+            {
+                imgPath: styleAnimationImg,
+                title: ExampleStrings.titleStyleAnimation,
+                seoTitle: "Style Animations",
+                examplePath: EXAMPLES_PAGES.chart2D_Animations_StyleAnimation.path
             }
         ]
     },

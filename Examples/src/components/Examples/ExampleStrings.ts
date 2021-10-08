@@ -466,7 +466,7 @@ urlTitleSplineMountainChartDocumentation:
     // MetaData
     titleMetaData: "MetaData",
     urlMetaData: "/javascript-chart-metadata",
-    urlMetaDataDocumentation: "https://www.scichart.com/documentation/js/current/metadata.html",
+    urlMetaDataDocumentation: "https://www.scichart.com/documentation/js/current/DataSeries%20PointMetaData%20Api.html",
     urlTitleMetaDataDocumentation:
         "The specific page for the SciChart.js documentation for the MetaData API to help you to get started",
     imgMetaDataChart: "images/javascript-chart-metadata.png",

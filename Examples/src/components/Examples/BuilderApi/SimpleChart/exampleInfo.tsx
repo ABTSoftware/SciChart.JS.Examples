@@ -8,8 +8,7 @@ import { TDocumentationLink } from "../../../../helpers/types/ExampleDescription
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to use the Builder Api to create a <strong>Simple Chart</strong>
-         using SciChart.js, High Performance{" "}
+        Demonstrates how to use the Builder Api to create a <strong>Simple Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>

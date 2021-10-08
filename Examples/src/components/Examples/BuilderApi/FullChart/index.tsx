@@ -18,7 +18,7 @@ const divElementId = "chart";
 
 const drawExample = async () => {
     return await chartBuilder.build2DChart(divElementId, {
-        surface: { theme: { type: "Dark", axisTitleColor: "#96ccfa", sciChartBackground: "#0c0136"  } },
+        surface: { theme: { type: "Light", axisTitleColor: "#1d4e8f"  } },
         xAxes: [{
             type: EAxisType.CategoryAxis,
             options: {
@@ -60,9 +60,10 @@ const drawExample = async () => {
                 type: ESeriesType.SplineMountainSeries,
                 options: {
                     yAxisId: "y1",
+                    stroke: "#1d4e8f",
                     fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                        { color: "rgba(203, 227, 247, 1)", offset: 0 },
-                        { color: "rgba(3, 93, 168, 0.5)", offset: 1 }
+                        { color: "rgba(161, 233, 255, 1)", offset: 0.5 },
+                        { color: "rgba(0, 55, 117, 0.3)", offset: 1 }
                     ]),
                 },
                 xyData: { xValues: [1,2,3,4,5], yValues: [8, 6, 7, 2, 16] }
@@ -77,7 +78,7 @@ const drawExample = async () => {
                             width: 100,
                             height: 100,
                             strokeThickness: 0,
-                            fill: "#ba130499"
+                            fill: "#FFA24399"
                         }
                     }
                 },

@@ -16,7 +16,7 @@ const drawExample = async (json: string, setErrors: (error: any)=> void): Promis
 
         return { sciChartSurface, wasmContext };
     } catch(error) {
-        const msg = error.message;
+        const msg = (error as any).message;
         setErrors(msg);
         return { sciChartSurface: undefined, wasmContext: undefined };
     };
@@ -63,9 +63,7 @@ export default function ChartFromJSON() {
     };
 
     const loadMinimal = (event: any) => {
-        setJSON(`{
-            "series": { "type": "LineSeries", "xyData": { "xValues": [1,3,4,7,9], "yValues": [10,6,7,2,16] } }
-        }`);
+        setJSON(defaultJSON);
         setBuildRequested(false);
     };
 
@@ -73,8 +71,8 @@ export default function ChartFromJSON() {
         setJSON(`{
             "surface": {
                 "theme": {
-                    "type": "Dark",
-                    "axisTitleColor": "#96ccfa", "sciChartBackground": "#0c0136"
+                    "type": "Light",
+                    "axisTitleColor": "#1d4e8f"
                 }
             },
             "xAxes": [{
@@ -114,12 +112,13 @@ export default function ChartFromJSON() {
                     "type": "SplineMountainSeries",
                     "options": {
                         "yAxisId": "y1",
+                        "stroke": "#1d4e8f",
                         "fillLinearGradient": {
                             "gradientStops": [{
-                                    "color": "rgba(203, 227, 247, 1)",
-                                    "offset": 0
+                                    "color": "rgba(161, 233, 255, 1)",
+                                    "offset": 0.5
                                 }, {
-                                    "color": "rgba(3, 93, 168, 0.5)",
+                                    "color": "rgba(0, 55, 117, 0.3)",
                                     "offset": 1
                                 }
                             ],
@@ -137,7 +136,7 @@ export default function ChartFromJSON() {
                         "pointMarker": {
                             "type": "Ellipse",
                             "options": {
-                                "fill": "#ba130499",
+                                "fill": "#FFA24399",
                                 "strokeThickness": 0,
                                 "height": 100,
                                 "width": 100
@@ -210,7 +209,7 @@ export default function ChartFromJSON() {
                 <div className={classes.FormControl}>
                     <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                         <Button id="buildChart" onClick={handleBuild}>Build</Button>
-                        <Button id="eg1" onClick={loadMinimal}>Minimal example</Button>
+                        <Button id="eg1" onClick={loadMinimal}>Simple example</Button>
                         <Button id="eg2" onClick={loadFull}>Full example</Button>
                         <Button id="eg3" onClick={loadCentral}>Central Axes</Button>
                     </ButtonGroup>
