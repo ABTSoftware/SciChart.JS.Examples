@@ -50,12 +50,7 @@ async function initSciChart() {
 
   // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
   const heatmapDataSeries = new UniformHeatmapDataSeries(
-    wasmContext,
-    0,
-    1,
-    0,
-    1,
-    initialZValues
+    wasmContext, { xStart: 0, xStep: 1, yStart: 0, yStep: 1, zValues: initialZValues }
   );
   heatmapDataSeries.dataSeriesName = "First Heatmap DataSeries";
 
@@ -87,12 +82,7 @@ async function initSciChart() {
 
   // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
   const heatmapDataSeries2 = new UniformHeatmapDataSeries(
-    wasmContext,
-    0,
-    1,
-    3,
-    1,
-    initialZValues2
+    wasmContext, { xStart: 0, xStep: 1, yStart: 3, yStep: 1, zValues: initialZValues2}
   );
   heatmapDataSeries2.dataSeriesName = "Second Heatmap DataSeries";
 

@@ -1,14 +1,15 @@
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { SimpleDataPointSelectionModifier } from "./SimpleDataPointSelectionModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { EExecuteOn } from "scichart/types/ExecuteOn";
+import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {SimpleDataPointSelectionModifier} from "./SimpleDataPointSelectionModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {EExecuteOn} from "scichart/types/ExecuteOn";
+import {EAxisAlignment} from "scichart/types/AxisAlignment";
 
 async function initSciChart() {
   // LICENSING //
@@ -33,7 +34,8 @@ async function initSciChart() {
   // Create an X,Y Axis and add to the chart
   const xAxis = new NumericAxis(wasmContext);
   const yAxis = new NumericAxis(wasmContext, {
-    growBy: new NumberRange(0.05, 0.05)
+    growBy: new NumberRange(0.05, 0.05),
+    axisAlignment: EAxisAlignment.Left
   });
 
   sciChartSurface.xAxes.add(xAxis);

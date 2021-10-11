@@ -10,10 +10,10 @@ import {FadeAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animatio
 import {NumberRange} from "scichart/Core/NumberRange";
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import { ENearestPointLogic } from "scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider";
 import {easing} from "scichart/Core/Animations/EasingFunctions";
 import {LineAnnotation} from "scichart/Charting/Visuals/Annotations/LineAnnotation";
 import {DoubleAnimator} from "scichart/Core/Animations/DoubleAnimator";
+import {DpiHelper} from "scichart/Charting/Visuals/TextureManager/DpiHelper";
 
 async function initSciChart() {
     // LICENSING //
@@ -63,21 +63,26 @@ async function initSciChart() {
     sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent) => {
 
         // Translate the point to the series viewrect before hit-testing
-        const mousePoint = new Point(mouseEvent.offsetX, mouseEvent.offsetY);
+        // Attention!
+        // We need to multiply it by DpiHelper.PIXEL_RATIO
+        // DpiHelper.PIXEL_RATIO is used for High DPI and Retina screen support and also for the browser scaling
+        const mousePointX = mouseEvent.offsetX * DpiHelper.PIXEL_RATIO;
+        const mousePointY = mouseEvent.offsetY * DpiHelper.PIXEL_RATIO;
         // const translatedPoint = translateFromCanvasToSeriesViewRect(mousePoint, sciChartSurface.seriesViewRect);
-        const HIT_TEST_RADIUS = 7;
+        const HIT_TEST_RADIUS = 10 * DpiHelper.PIXEL_RATIO;
 
         // call renderableSeries.hitTestProvider.hitTest passing in the mouse point
         // other parameters determine the type of hit-test operation to perform
-        const hitTestInfo = lineSeries.hitTestProvider.hitTest(
-            mousePoint,
-            ENearestPointLogic.NearestHorizontalPoint,
-            HIT_TEST_RADIUS,
-            true);
+        // here we use IHitTestProvider.hitTestDataPoint method which finds the nearest point on the 2D surface
+        const hitTestInfo = lineSeries.hitTestProvider.hitTestDataPoint(
+            mousePointX,
+            mousePointY,
+            HIT_TEST_RADIUS
+        );
 
         // Log the result to console. HitTestInfo contains information about the hit-test operation
         console.log(`${hitTestInfo.dataSeriesName} hit test result:\r\n` +
-            ` MouseCoord=(${mousePoint.x}, ${mousePoint.y})\r\n` +
+            ` MouseCoord=(${mousePointX}, ${mousePointY})\r\n` +
             // ` TranslatedCoord=(${translatedPoint.x}, ${translatedPoint.y})\r\n` +
             ` Hit-Test Coord=(${hitTestInfo.xCoord}, ${hitTestInfo.yCoord})\r\n` +
             ` IsHit? ${hitTestInfo.isHit}\r\n` +

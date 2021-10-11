@@ -43,22 +43,50 @@ import realtimeStockImg from "../components/Examples/Charts2D/CreateStockCharts/
 import multipleXAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes/javascript-chart-with-multiple-x-axis.jpg";
 import secondaryYAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/javascript-chart-with-secondary-y-axis.jpg";
 import verticalChartImg from "../components/Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/javascript-vertical-charts.jpg";
+import centralAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/CentralAxes/javascript-central-axes.jpg";
+import verticallyStackedAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/javascript-vertically-stacked-axes.jpg";
+import logarithmicAxisImg from "../components/Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/javascript-chart-with-logarithmic-axis.jpg";
 // Styling and Theming
 import pointMarkersImg from "../components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/javascript-chart-custom-poinmarkers.jpg";
 import themeManagerImg from "../components/Examples/Charts2D/StylingAndTheming/UsingThemeManager/javascript-chart-themes.png";
 import stylingInCodeImg from "../components/Examples/Charts2D/StylingAndTheming/StylingInCode/javascript-chart-styling-theming-in-code.png";
 import paletteProviderImg from "../components/Examples/Charts2D/StylingAndTheming/PerPointColoring/javascript-chart-color-points-individually-with-paletteprovider.jpg";
 import dashedLineImg from "../components/Examples/Charts2D/StylingAndTheming/DashedLineStyling/javascript-chart-dashed-dotted-lines.jpg";
+import transparentBackgroundImg from "../components/Examples/Charts2D/StylingAndTheming/TransparentBackground/javascript-chart-background-image-with-transparency.jpg";
+import customThemeImg from "../components/Examples/Charts2D/StylingAndTheming/CreateACustomTheme/javascript-chart-custom-themed.jpg";
+
 // Tooltips and Hit-Test
 import hitTestApiImg from "../components/Examples/Charts2D/TooltipsAndHittest/HitTestAPI/javascript-chart-hit-test-on-click.png";
 import rolloverImg from "../components/Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/javascript-chart-rollovermodifier-tooltips.jpg";
+import seriesSelectionImg from "../components/Examples/Charts2D/TooltipsAndHittest/SeriesSelection/javascript-chart-series-selection.png";
+import metaDataImg from "../components/Examples/Charts2D/TooltipsAndHittest/MetaData/javascript-chart-metadata.png"
 // Zoom and Pan Charts
 import realtimeZoomPanImg from "../components/Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/zoom-and-pan-a-realtime-javascript-chart.jpg";
 import dragAxisToScaleImg from "../components/Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
 import multipleZoomPanModifiersImg from "../components/Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/zoom-pan-multiple-modifiers.jpg";
+import overviewImg from "../components/Examples/Charts2D/ZoomingAndPanning/OverviewModifier/javascript-overview-chart.jpg";
+// Filters
+import trendMARatioImg from "../components/Examples/Charts2D/Filters/TrendMARatio/javascript-trend-ma-ratio.jpg";
+import percentageChangeImg from "../components/Examples/Charts2D/Filters/PercentageChange/javascript-percentage-change.jpg";
+import customFiltersImg from "../components/Examples/Charts2D/Filters/CustomFilters/javascript-custom-filters.jpg";
+// Axis Label Customization
+import multiLineLabelsImg from "../components/Examples/Charts2D/AxisLabelCustomization/MultiLineLabels/javascript-multiline-labels.jpg";
+import rotatedLabelsImg from "../components/Examples/Charts2D/AxisLabelCustomization/RotatedLabels/javascript-rotated-labels.jpg";
+import imageLabelsImg from "../components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/javascript-image-labels.jpg";
 // 3D Chart Types
 import bubble3dImg from "../components/Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/javascript-3d-bubble-chart.jpg";
 import mesh3dImg from "../components/Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/javascript-3d-surface-mesh-chart.jpg";
+// Builder Api
+import builderSimpleImg from "../components/Examples/BuilderApi/SimpleChart/javascript-builder-simple.jpg";
+import builderFullImg from "../components/Examples/BuilderApi/FullChart/javascript-builder-full.jpg";
+import chartFromJSONImg from "../components/Examples/BuilderApi/ChartFromJSON/javascript-chart-from-json.jpg";
+import builderSharedDataImg from "../components/Examples/BuilderApi/SharedData/javascript-shared-data.jpg";
+import builderCustomTypesImg from "../components/Examples/BuilderApi/CustomTypes/javascript-custom-types.jpg";
+// Animations Api
+import startupAnimationImg from "../components/Examples/Charts2D/Animations/StartupAnimation/javascript-startup-animation.png";
+import dataAnimationImg from "../components/Examples/Charts2D/Animations/DataAnimation/javascript-data-animation.png";
+import styleAnimationImg from "../components/Examples/Charts2D/Animations/StyleAnimation/javascript-style-animation.png";
+
 import { GalleryItem } from "./types/types";
 import { ExampleStrings } from "../components/Examples/ExampleStrings";
 
@@ -318,6 +346,53 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleVerticalCharts,
                 seoTitle: "JavaScript Vertical Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.path
+            },
+            {
+                imgPath: centralAxesImg,
+                title: ExampleStrings.titleCentralAxes,
+                seoTitle: "JavaScript Central Axes Example",
+                examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes.path
+            },
+            {
+                imgPath: verticallyStackedAxesImg,
+                title: ExampleStrings.titleVerticallyStackedAxes,
+                seoTitle: "JavaScript Vertically Stacked Axes Example",
+                examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes.path
+            },
+            {
+                imgPath: logarithmicAxisImg,
+                title: ExampleStrings.titleLogarithmicAxis,
+                seoTitle: "JavaScript Logarithmic Axis Example",
+                examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis.path
+            },
+        ]
+    },
+    {
+        chartGroupTitle: "Axis Label Customization",
+        items: [
+            {
+                imgPath: multiLineLabelsImg,
+                title: ExampleStrings.titleMultiLineLabels,
+                seoTitle: "JavaScript Multi-line Labels Example",
+                examplePath: EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.path
+            },
+            {
+                imgPath: rotatedLabelsImg,
+                title: ExampleStrings.titleRotatedLabels,
+                seoTitle: "JavaScript Rollover Modifier Tooltips Example",
+                examplePath: EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.path
+            },
+            {
+                imgPath: imageLabelsImg,
+                title: ExampleStrings.titleImageLabels,
+                seoTitle: "JavaScript Image Labels Example",
+                examplePath: EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels.path
+            },
+            {
+                imgPath: metaDataImg,
+                title: ExampleStrings.titleMetaData,
+                seoTitle: "JavaScript MetaData Example",
+                examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.path
             }
         ]
     },
@@ -325,16 +400,22 @@ export const sciChartExamples: GalleryItem[] = [
         chartGroupTitle: "Styling and Theming",
         items: [
             {
-                imgPath: pointMarkersImg,
-                title: ExampleStrings.titlePointMarkers,
-                seoTitle: "JavaScript Scatter Chart Custom Point Markers Example",
-                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path
+                imgPath: transparentBackgroundImg,
+                title: ExampleStrings.titleTransparentBackground,
+                seoTitle: "Background image on a Transparent JavaScript Chart",
+                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground.path
             },
             {
-                imgPath: themeManagerImg,
-                title: ExampleStrings.titleThemeManager,
-                seoTitle: "JavaScript Chart Theme Manager Example",
-                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.path
+                imgPath: dashedLineImg,
+                title: ExampleStrings.titleDashedLineStyling,
+                seoTitle: "JavaScript Dashed and Dotted Line Chart Example",
+                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling.path
+            },
+            {
+                imgPath: customThemeImg,
+                title: ExampleStrings.titleCustomTheme,
+                seoTitle: "Custom Themed JavaScript Chart",
+                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTheme.path
             },
             {
                 imgPath: stylingInCodeImg,
@@ -343,17 +424,23 @@ export const sciChartExamples: GalleryItem[] = [
                 examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode.path
             },
             {
+                imgPath: themeManagerImg,
+                title: ExampleStrings.titleThemeManager,
+                seoTitle: "JavaScript Chart Theme Manager Example",
+                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.path
+            },
+            {
                 imgPath: paletteProviderImg,
                 title: ExampleStrings.titlePaletteProvider,
                 seoTitle: "Coloring JavaScript Chart Series per-point using the PaletteProvider",
                 examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring.path
             },
             {
-                imgPath: dashedLineImg,
-                title: ExampleStrings.titleDashedLineStyling,
-                seoTitle: "JavaScript Dashed and Dotted Line Chart Example",
-                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling.path
-            }
+                imgPath: pointMarkersImg,
+                title: ExampleStrings.titlePointMarkers,
+                seoTitle: "JavaScript Scatter Chart Custom Point Markers Example",
+                examplePath: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path
+            },
         ]
     },
     {
@@ -370,12 +457,30 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleRolloverModifier,
                 seoTitle: "JavaScript Rollover Modifier Tooltips Example",
                 examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.path
+            },
+            {
+                imgPath: seriesSelectionImg,
+                title: ExampleStrings.titleSeriesSelection,
+                seoTitle: "JavaScript Series Selection Example",
+                examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection.path
+            },
+            {
+                imgPath: metaDataImg,
+                title: ExampleStrings.titleMetaData,
+                seoTitle: "JavaScript MetaData Example",
+                examplePath: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.path
             }
         ]
     },
     {
         chartGroupTitle: "Zoom and Pan a Chart",
         items: [
+            {
+                imgPath: overviewImg,
+                title: ExampleStrings.titleOverview,
+                seoTitle: "Zoom and Pan with an Overview",
+                examplePath: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview.path
+            },
             {
                 imgPath: dragAxisToScaleImg,
                 title: ExampleStrings.titleDragAxisToScale,
@@ -393,7 +498,88 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
                 seoTitle: "Zoom and Pan a JavaScript Chart",
                 examplePath: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.path
+            }
+        ]
+    },
+    {
+        chartGroupTitle: "Filters Api",
+        items: [
+            {
+                imgPath: percentageChangeImg,
+                title: ExampleStrings.titlePercentageChange,
+                seoTitle: "Percentage change using ScaleOffset Filter",
+                examplePath: EXAMPLES_PAGES.chart2D_filters_PercentageChange.path
             },
+            {
+                imgPath: trendMARatioImg,
+                title: ExampleStrings.titleTrendMARatio,
+                seoTitle: "Linear Trend, Moving average and Ratio Filter",
+                examplePath: EXAMPLES_PAGES.chart2D_filters_TrendMARatio.path
+            },
+            {
+                imgPath: customFiltersImg,
+                title: ExampleStrings.titleCustomFilters,
+                seoTitle: "Aggregation using a custom filter",
+                examplePath: EXAMPLES_PAGES.chart2D_filters_CustomFilters.path
+            }
+        ]
+    },
+    {
+        chartGroupTitle: "Builder Api",
+        items: [
+            {
+                imgPath: builderSimpleImg,
+                title: ExampleStrings.titleBuilderSimpleChart,
+                seoTitle: "Simple chart using Builder Api",
+                examplePath: EXAMPLES_PAGES.builderApi_simplechart.path
+            },
+            {
+                imgPath: chartFromJSONImg,
+                title: ExampleStrings.titleChartFromJSON,
+                seoTitle: "Create a chart from a JSON string",
+                examplePath: EXAMPLES_PAGES.builderApi_chartFromJSON.path
+            },
+            {
+                imgPath: builderFullImg,
+                title: ExampleStrings.titleBuilderFullChart,
+                seoTitle: "Full chart using Builder Api",
+                examplePath: EXAMPLES_PAGES.builderApi_fullchart.path
+            },
+            {
+                imgPath: builderSharedDataImg,
+                title: ExampleStrings.titleSharedData,
+                seoTitle: "Reusable chart templates using builder api and shared data",
+                examplePath: EXAMPLES_PAGES.builderApi_SharedData.path
+            },
+            {
+                imgPath: builderCustomTypesImg,
+                title: ExampleStrings.titleCustomTypes,
+                seoTitle: "Using custom types with builder api",
+                examplePath: EXAMPLES_PAGES.builderApi_CustomTypes.path
+            }
+        ]
+    },
+    {
+        chartGroupTitle: "Animations Api",
+        items: [
+            {
+                imgPath: startupAnimationImg,
+                title: ExampleStrings.titleStartupAnimation,
+                seoTitle: "Startup Animations",
+                examplePath: EXAMPLES_PAGES.chart2D_Animations_StartupAnimation.path
+            },
+            {
+                imgPath: dataAnimationImg,
+                title: ExampleStrings.titleDataAnimation,
+                seoTitle: "Data Animations",
+                examplePath: EXAMPLES_PAGES.chart2D_Animations_DataAnimation.path
+            },
+            {
+                imgPath: styleAnimationImg,
+                title: ExampleStrings.titleStyleAnimation,
+                seoTitle: "Style Animations",
+                examplePath: EXAMPLES_PAGES.chart2D_Animations_StyleAnimation.path
+            }
         ]
     },
     {

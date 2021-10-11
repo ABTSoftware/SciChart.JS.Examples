@@ -78,7 +78,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                             <h5>JavaScript Chart Examples</h5>
 
                             <p className={classes.ExampleDescriptionText}>
-                                SciChart.js ships with ~40{" "}
+                                SciChart.js ships with ~60{" "}
                                 <a className={classes.ExampleRootDescriptionLink} href="https://demo.scichart.com">
                                     JavaScript Chart Examples
                                 </a>{" "}
@@ -104,9 +104,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
 
                         <div className={classes.ExampleWrapper}>
                             <div className={classes.Example}>
-                                <CSSTransition timeout={1500} in={render} mountOnEnter classNames="example-anim">
-                                    <ExampleComponent />
-                                </CSSTransition>{" "}
+                                <ExampleComponent />
                                 <div className={classes.ButtonsWrapper}>
                                     <Button
                                         onClick={() => {

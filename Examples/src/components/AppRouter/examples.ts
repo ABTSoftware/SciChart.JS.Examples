@@ -19,6 +19,10 @@ import DonutChart from "../Examples/Charts2D/BasicChartTypes/DonutChart";
 import PieChart from "../Examples/Charts2D/BasicChartTypes/PieChart";
 import RealtimeMountainChart from "../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart";
 
+import DataAnimation from "../Examples/Charts2D/Animations/DataAnimation";
+import StyleAnimation from "../Examples/Charts2D/Animations/StyleAnimation";
+import StartupAnimation from "../Examples/Charts2D/Animations/StartupAnimation";
+
 import AnnotationsAreEasy from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy";
 import EditableAnnotaions from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations";
 import TradeMarkers from "../Examples/Charts2D/ChartAnnotations/TradeMarkers";
@@ -33,6 +37,9 @@ import ChartLegendsAPI from "../Examples/Charts2D/Legends/ChartLegendsAPI";
 import MultipleXAxes from "../Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes";
 import SecondaryYAxes from "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes";
 import VerticalCharts from "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts";
+import CentralAxes from "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes";
+import VerticallyStackedAxes from "../Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes";
+import LogarithmicAxisExample from "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis";
 
 import UsePointMarkers from "../Examples/Charts2D/StylingAndTheming/UsePointMarkers";
 import UsingThemeManager from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager";
@@ -40,9 +47,11 @@ import CustomTheme from "../Examples/Charts2D/StylingAndTheming/CreateACustomThe
 import StylingInCode from "../Examples/Charts2D/StylingAndTheming/StylingInCode";
 import PerPointColoring from "../Examples/Charts2D/StylingAndTheming/PerPointColoring";
 import DashedLineStyling from "../Examples/Charts2D/StylingAndTheming/DashedLineStyling";
+import TransparentBackground from "../Examples/Charts2D/StylingAndTheming/TransparentBackground";
 
 import HitTestAPI from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI";
 import UsingRolloverModifierTooltips from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips";
+import SeriesSelection from "../Examples/Charts2D/TooltipsAndHittest/SeriesSelection";
 import UsingCursorModifierTooltips from "../Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips";
 import Bubble3DChart from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart";
 
@@ -65,6 +74,20 @@ import SplineLineChart from "../Examples/Charts2D/BasicChartTypes/SplineLineChar
 import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/SplineMountainChart";
 import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart";
 import DragHorizontalThreshold from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold";
+import UsingMetaData from "../Examples/Charts2D/TooltipsAndHittest/MetaData";
+import ChartFromJSON from "../Examples/BuilderApi/ChartFromJSON";
+import BuilderSharedData from "../Examples/BuilderApi/SharedData";
+import BuilderCustomTypes from "../Examples/BuilderApi/CustomTypes";
+import BuilderSimpleChart from "../Examples/BuilderApi/SimpleChart";
+import BuilderFullChart from "../Examples/BuilderApi/FullChart";
+import MultiLineLabels from "../Examples/Charts2D/AxisLabelCustomization/MultiLineLabels";
+import RotatedLabels from "../Examples/Charts2D/AxisLabelCustomization/RotatedLabels";
+import ImageLabels from "../Examples/Charts2D/AxisLabelCustomization/ImageLabels";
+import PercentageChange from "../Examples/Charts2D/Filters/PercentageChange";
+import TrendMARatio from "../Examples/Charts2D/Filters/TrendMARatio";
+import CustomFilters from "../Examples/Charts2D/Filters/CustomFilters";
+import DatapointSelection from "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection";
+import Overview from "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier";
 
 export type TMenuItem = {
     item: {
@@ -129,7 +152,18 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis
+        ]
+    },
+    {
+        item: { id: "chart2D_axisLabelCustomization", name: "Axis Label Customization" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels
         ]
     },
     {
@@ -141,6 +175,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground
         ]
     },
     {
@@ -148,7 +183,10 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips,
-            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData
         ]
     },
     {
@@ -157,6 +195,23 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview
+        ]
+    },
+    {
+        item: { id: "chart2D_filters", name: "Transforming Data with Filters" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_filters_PercentageChange,
+            EXAMPLES_PAGES.chart2D_filters_TrendMARatio,
+            EXAMPLES_PAGES.chart2D_filters_CustomFilters
+        ]
+    },
+    {
+        item: { id: "animationApi", name: "Animation API" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_Animations_DataAnimation,
+            EXAMPLES_PAGES.chart2D_Animations_StyleAnimation,
+            EXAMPLES_PAGES.chart2D_Animations_StartupAnimation
         ]
     }
 ];
@@ -197,6 +252,70 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     }
 ];
 
+export const MENU_ITEMS_WHATSNEW_ID = "MENU_ITEMS_WHATSNEW_ID";
+export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
+    {
+        item: { id: "builderApi", name: "Builder API" },
+        submenu: [
+            EXAMPLES_PAGES.builderApi_simplechart,
+            EXAMPLES_PAGES.builderApi_fullchart,
+            EXAMPLES_PAGES.builderApi_chartFromJSON,
+            EXAMPLES_PAGES.builderApi_SharedData,
+            EXAMPLES_PAGES.builderApi_CustomTypes
+        ]
+    },
+    {
+        item: { id: "animationApi", name: "Animation API" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_Animations_DataAnimation,
+            EXAMPLES_PAGES.chart2D_Animations_StyleAnimation,
+            EXAMPLES_PAGES.chart2D_Animations_StartupAnimation
+        ]
+    },
+    {
+        item: { id: "new_modifyAxisBehavior", name: "Chart Axis APIs" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes
+        ]
+    },
+    {
+        item: { id: "chart2D_axisLabelCustomization", name: "Axis Label Customization" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
+            EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels
+        ]
+    },
+    {
+        item: { id: "chart2D_tooltipsAndHittest", name: "Tooltips and Hit-Test" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData
+        ]
+    },
+    {
+        item: { id: "chart2D_filters", name: "Transforming Data with Filters" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_filters_PercentageChange,
+            EXAMPLES_PAGES.chart2D_filters_TrendMARatio,
+            EXAMPLES_PAGES.chart2D_filters_CustomFilters
+        ]
+    },
+    {
+        item: { id: "chart2D_stylingAndTheming", name: "Styling and Theming" },
+        submenu: [EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground]
+    },
+    {
+        item: { id: "chart2D_zoomingAndPanning", name: "Zoom and Pan a Chart" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview
+        ]
+    }
+];
+
 export const getParentMenuIds = (exampleId: string): string[] => {
     const getSubmenuLevelIds = (menuItemsArr: TMenuItem[], id: string): string[] => {
         const res: string[] = [];
@@ -227,11 +346,28 @@ export const getParentMenuIds = (exampleId: string): string[] => {
         resMenuLevel.push(MENU_ITEMS_FEATURED_APPS_ID);
     }
 
-    return [...resMenuLevel, ...resSubmenuLevel2D, ...resSubmenuLevel3D, ...resSubmenuLevelFeaturedApps];
+    const resSubmenuLevelWhatsNew = getSubmenuLevelIds(MENU_ITEMS_WHATSNEW, exampleId);
+    if (resSubmenuLevelFeaturedApps.length > 0) {
+        resMenuLevel.push(MENU_ITEMS_WHATSNEW_ID);
+    }
+
+    return [
+        ...resMenuLevel,
+        ...resSubmenuLevel2D,
+        ...resSubmenuLevel3D,
+        ...resSubmenuLevelFeaturedApps,
+        ...resSubmenuLevelWhatsNew
+    ];
 };
 
 export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
     switch (exampleId) {
+        case EXAMPLES_PAGES.chart2D_Animations_DataAnimation.id:
+            return DataAnimation;
+        case EXAMPLES_PAGES.chart2D_Animations_StyleAnimation.id:
+            return StyleAnimation;
+        case EXAMPLES_PAGES.chart2D_Animations_StartupAnimation.id:
+            return StartupAnimation;
         case EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.id:
             return BandSeriesChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_SplineBandChart.id:
@@ -294,6 +430,12 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return SecondaryYAxes;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts.id:
             return VerticalCharts;
+        case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes.id:
+            return CentralAxes;
+        case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes.id:
+            return VerticallyStackedAxes;
+        case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis.id:
+            return LogarithmicAxisExample;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.id:
             return StackedColumnChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide.id:
@@ -312,18 +454,34 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return PerPointColoring;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling.id:
             return DashedLineStyling;
+        case EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground.id:
+            return TransparentBackground;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.id:
             return HitTestAPI;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.id:
             return UsingRolloverModifierTooltips;
+        case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection.id:
+            return SeriesSelection;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips.id:
             return UsingCursorModifierTooltips;
+        case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData.id:
+            return UsingMetaData;
+        case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection.id:
+            return DatapointSelection;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.id:
             return DragAxisToScale;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.id:
             return RealtimeZoomPan;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers.id:
             return MultipleZoomPanModifiers;
+        case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview.id:
+            return Overview;
+        case EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.id:
+            return MultiLineLabels;
+        case EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.id:
+            return RotatedLabels;
+        case EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels.id:
+            return ImageLabels;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.id:
             return Bubble3DChart;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.id:
@@ -342,6 +500,22 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return AudioAnalyzer;
         case EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.id:
             return TenorCurves3DChart;
+        case EXAMPLES_PAGES.builderApi_simplechart.id:
+            return BuilderSimpleChart;
+        case EXAMPLES_PAGES.builderApi_fullchart.id:
+            return BuilderFullChart;
+        case EXAMPLES_PAGES.builderApi_chartFromJSON.id:
+            return ChartFromJSON;
+        case EXAMPLES_PAGES.builderApi_SharedData.id:
+            return BuilderSharedData;
+        case EXAMPLES_PAGES.builderApi_CustomTypes.id:
+            return BuilderCustomTypes;
+        case EXAMPLES_PAGES.chart2D_filters_PercentageChange.id:
+            return PercentageChange;
+        case EXAMPLES_PAGES.chart2D_filters_TrendMARatio.id:
+            return TrendMARatio;
+        case EXAMPLES_PAGES.chart2D_filters_CustomFilters.id:
+            return CustomFilters;
         default:
             throw new Error("Ensure you update examples.ts getExampleComponent() to return an example");
     }

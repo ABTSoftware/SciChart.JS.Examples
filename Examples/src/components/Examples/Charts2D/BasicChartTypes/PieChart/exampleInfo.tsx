@@ -25,8 +25,8 @@ const documentationLinks: TDocumentationLink[] = [
         linkTitle: "SciChart.js Tutorials"
     },
     {
-        href: "#",
-        title: ExampleStrings.titlePieChart,
+        href: ExampleStrings.urlPieChartDocumentation,
+        title: ExampleStrings.urlTitlePieChartDocumentation,
         linkTitle: "JavaScript Pie Chart Documentation"
     },
     {

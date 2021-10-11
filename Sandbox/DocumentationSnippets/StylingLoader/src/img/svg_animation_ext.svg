@@ -1,0 +1,14 @@
+<svg id="loader-svg" class="animate poster-crop" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 792 519">
+    <g id="Layer_2" data-name="Layer 2">
+        <clipPath id="image2">
+            <polygon class="clss-1 color1 poster" points="265.46 519 0 385.28 151.88 0 462.25 0 265.46 519"/>
+            <polygon class="clss-2 color1 poster" points="430.34 519 322.94 464.08 499.23 0 627.12 0 430.34 519"/>
+            <polygon class="clss-3 color1 poster" points="595.22 519 487.76 464.08 664.1 0 792 0 595.22 519"/>
+        </clipPath>
+        <svg>
+            <polygon class="clss-3 color1 poster" points="595.22 519 487.76 464.08 664.1 0 792 0 595.22 519"/>
+            <polygon class="clss-2 color1 poster" points="430.34 519 322.94 464.08 499.23 0 627.12 0 430.34 519"/>
+            <polygon class="clss-1 color1 poster" points="265.46 519 0 385.28 151.88 0 462.25 0 265.46 519"/>
+        </svg>
+    </g>
+</svg>

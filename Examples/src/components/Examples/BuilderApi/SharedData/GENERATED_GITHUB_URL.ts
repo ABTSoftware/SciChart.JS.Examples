@@ -1,0 +1,1 @@
+export const githubUrl = "/components/Examples/BuilderApi/SharedData/index.tsx";

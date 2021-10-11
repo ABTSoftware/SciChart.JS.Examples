@@ -14,6 +14,7 @@ type TDataPoint = {
 
 // Create a TypeScript class which inherits ChartModifierbase2D to insert into SciChartSurface.chartModifiers collection
 export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
+  public readonly type = "SimpleDataPointSelectionModifier";
   private startPoint: Point;
   private endPoint: Point;
   private readonly selectionAnnotation: BoxAnnotation;
@@ -148,7 +149,8 @@ export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
         const yCalc = rs.yAxis.getCurrentCoordinateCalculator();
 
         // Find the bounds of the data inside the rectangle
-        let leftXData, rightXData;
+        let leftXData: number;
+        let rightXData: number;
         if (
           xCalc.getDataValue(this.startPoint.x) <=
           xCalc.getDataValue(this.endPoint.x)
@@ -159,7 +161,8 @@ export class SimpleDataPointSelectionModifier extends ChartModifierBase2D {
           leftXData = xCalc.getDataValue(this.endPoint.x);
           rightXData = xCalc.getDataValue(this.startPoint.x);
         }
-        let bottomYData, topYData;
+        let bottomYData: number;
+        let topYData: number;
         if (
           yCalc.getDataValue(this.startPoint.y) <=
           yCalc.getDataValue(this.endPoint.y)

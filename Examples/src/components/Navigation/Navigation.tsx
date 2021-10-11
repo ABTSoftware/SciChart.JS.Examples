@@ -9,7 +9,9 @@ import {
     MENU_ITEMS_FEATURED_APPS,
     MENU_ITEMS_2D_ID,
     MENU_ITEMS_3D_ID,
-    MENU_ITEMS_FEATURED_APPS_ID
+    MENU_ITEMS_FEATURED_APPS_ID,
+    MENU_ITEMS_WHATSNEW,
+    MENU_ITEMS_WHATSNEW_ID
 } from "../AppRouter/examples";
 import ListItemsBlock from "./ListItemsBlock";
 import classes from "./Navigation.module.scss";
@@ -48,6 +50,14 @@ const Navigation: React.FC<TProps> = props => {
             >
                 Homepage
             </div>
+            <ListItemsBlock
+                onExpandClick={onExpandClick}
+                checkIsOpened={testIsOpened}
+                historyPushPath={historyPushPath}
+                title="What's New"
+                menuItems={MENU_ITEMS_WHATSNEW}
+                menuItemsId={MENU_ITEMS_WHATSNEW_ID}
+            />
             <ListItemsBlock
                 onExpandClick={onExpandClick}
                 checkIsOpened={testIsOpened}

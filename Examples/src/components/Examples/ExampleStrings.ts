@@ -29,6 +29,35 @@ export const ExampleStrings = {
 
     // Urls, example titles
     //
+    // Data Animation
+    urlDataAnimation: "/javascript-data-animation",
+    titleDataAnimation: "JavaScript Data Animation",
+    urlTitleDataAnimation: "JavaScript Data Animation",
+    urlDataAnimationDocumentation:
+        "https://www.scichart.com/documentation/js/current/Dataset%20Animations.html",
+    urlTitleDataAnimationDocumentation:
+        "The specific page for the JavaScript Dataset Animation documentation will help you to get started",
+    imgDataAnimation: "images/javascript-data-animation.png",
+
+    // Style Animation
+    urlStyleAnimation: "/javascript-style-animation",
+    titleStyleAnimation: "JavaScript Style Animation",
+    urlTitleStyleAnimation: "JavaScript Style Animation",
+    urlStyleAnimationDocumentation:
+        "https://www.scichart.com/documentation/js/current/Series%20Style%20Animations.html",
+    urlTitleStyleAnimationDocumentation:
+        "The specific page for the JavaScript Style Transition Animation documentation will help you to get started",
+    imgStyleAnimation: "images/javascript-style-animation.png",
+
+    // OnStart Animation
+    urlStartupAnimation: "/javascript-startup-animation",
+    titleStartupAnimation: "JavaScript Startup Animation",
+    urlTitleStartupAnimation: "JavaScript Startup Animation",
+    urlStartupAnimationDocumentation:
+        "https://www.scichart.com/documentation/js/current/Series%20Startup%20Animations.html",
+    urlTitleStartupAnimationDocumentation:
+        "The specific page for the JavaScript Startup Animation documentation will help you to get started",
+    imgStartupAnimation: "images/javascript-startup-animation.png",
 
     // Scatter chart
     urlScatterChart: "/javascript-scatter-chart",
@@ -40,6 +69,7 @@ export const ExampleStrings = {
     urlTitleScatterChartDocumentation:
         "This specific page in the JavaScript Scatter Chart documentation will help you to get started",
     imgScatterChart: "images/javascript-scatter-chart.jpg",
+
     // Band chart
     urlBandChart: "/javascript-band-chart",
     urlTitleBandChart: "JavaScript Band Chart example",
@@ -52,7 +82,7 @@ export const ExampleStrings = {
     // Spline band chart
     titleSplineBandChart: "JavaScript Spline Band Chart",
     urlSplineBandChart: "/javascript-spline-band-chart",
-    urlSplineBandChartDocumentation: "#",
+    urlSplineBandChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Spline%20(Smoothed)%20Band%20Series%20Type.html",
     urlTitleSplineBandChartDocumentation:
         "This specific page in the JavaScript Spline Band Chart documentation will help you to get started",
     imgSplineBandChart: "images/javascript-band-chart.jpg",
@@ -98,6 +128,10 @@ export const ExampleStrings = {
     imgMountainChart: "images/javascript-mountain-chart.jpg",
 
     // Spline mountain chart
+    urlSplineMountainChartDocumentation:
+    "https://www.scichart.com/documentation/js/current/The%20Spline%20(Smoothed)%20Mountain%20Series%20Type.html",
+urlTitleSplineMountainChartDocumentation:
+    "This specific page in the JavaScript Spline Mountain Chart documentation will help you to get started",
     urlSplineMountainChart: "/javascript-spline-mountain-chart",
     titleSplineMountainChart: "Javascript Spline Mountain Chart",
     imgSplineMountainChart: "images/javascript-spline-mountain-chart.jpg",
@@ -147,12 +181,12 @@ export const ExampleStrings = {
     urlLineChart: "/javascript-line-chart",
     titleLineChart: "JavaScript Line Chart",
     urlLineChartDocumentation:
-        "https://www.scichart.com/documentation/js/current/webframe.html#The%20Line%20Series%20Type.html",
+        "https://www.scichart.com/documentation/js/current/The%20Line%20Series%20Type.html",
     urlTitleLineChartDocumentation:
         "The specific page for the JavaScript Line Chart documentation will help you to get started",
     imgLineChart: "images/javascript-line-chart.jpg",
     // Spline line series
-    urlSplineLineChartDocumentation: "#",
+    urlSplineLineChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Spline%20(Smoothed)%20Line%20Series%20Type.html",
     urlTitleSplineLineChartDocumentation:
         "The specific page for the JavaScript Spline Line Chart documentation will help you to get started",
     titleSplineLineChart: "JavaScript Spline Line Chart",
@@ -169,6 +203,9 @@ export const ExampleStrings = {
     imgDigitalLineChart: "images/javascript-digital-line-chart.jpg",
 
     // Pie Chart
+    urlPieChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Pie%20Chart%20Type.html",
+    urlTitlePieChartDocumentation:
+        "The specific page for the JavaScript Pie Chart documentation will help you to get started",
     urlPieChart: "/javascript-pie-chart",
     urlTitlePieChart:
         "The JavaScript Pie Chart example demonstrates how to create an animated Pie Chart with SciChart.js",
@@ -224,7 +261,7 @@ export const ExampleStrings = {
     // Contours chart
     urlTitleContourChartDocumentation:
         "The specific page for the JavaScript Contours Chart documentation will help you to get started",
-    urlContourChartDocumentation: "#",
+    urlContourChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Contours%20Series%20Type.html",
     titleContourChart: "JavaScript Contours chart",
     urlContourChart: "/javascript-heatmap-chart-with-contours",
     imgContourChart: "images/javascript-contours-chart.jpg",
@@ -300,6 +337,10 @@ export const ExampleStrings = {
         "The Secondary YAxis example shows how to add series with multiple Y axis to a JavaScript Chart.",
     imgSecondaryYAxis: "images/javascript-chart-with-secondary-y-axis.jpg",
 
+    // Logarithmic Axis
+    urlLogarithmicAxis: "/javascript-chart-logarithmic-axis",
+    titleLogarithmicAxis: "Logarithmic Axis Example",
+
     // Vertical charts
     titleVerticalCharts: "Vertical Charts",
     urlVerticalCharts: "/javascript-vertical-charts",
@@ -309,6 +350,21 @@ export const ExampleStrings = {
         "The specific page for the SciChart.js API documentation for Vertical Charts will help you to get started",
     urlTitleVerticalCharts: "The Vertical Charts example shows how to use Axis Alignment to rotate a JavaScript Chart.",
     imgVerticalCharts: "images/javascript-vertical-charts.jpg",
+
+    // Central axes
+    titleCentralAxes: "Central Axes",
+    urlCentralAxes: "/javascript-central-axes",
+    urlTitleCentralAxes: "The Central Axes example shows how to use inner axes and layout strategies to customize layout of a JavaScript Chart.",
+    imgCentralAxes: "images/javascript-central-axes.jpg",
+
+    // Vertically Stacked axes
+    titleVerticallyStackedAxes: "Vertically Stacked Axes",
+    urlVerticallyStackedAxes: "/javascript-vertically-stacked-axes",
+    urlTitleVerticallyStackedAxes: "The Vertically Stacked Axe Axes example shows how to use Axis Layout Strategies to customize axis placement on a JavaScript Chart.",
+    imgVerticallyStackedAxes: "images/javascript-vertically-stacked-axes.png",
+    urlVerticallyStackedAxesDocumentation: "https://www.scichart.com/documentation/js/current/Axis%20Layout%20-%20Vertically%20Stacked%20Axis.html",
+    urlTitleVerticallyStackedAxesDocumentation:
+        "The specific page for the SciChart.js documentation for the Vertically Stacked Axes to help you to get started",
 
     // Drag Axis to Scale
     titleDragAxisToScale: "Drag Axis to Scale or Pan",
@@ -346,6 +402,11 @@ export const ExampleStrings = {
         "The specific page for the SciChart.js API documentation for Styling Axis and Gridlines will help you to get started",
     imgStylingInCode: "images/javascript-chart-styling-theming-in-code.png",
 
+    // Transparent Background
+    titleTransparentBackground: "Background Image with Transparency",
+    urlTransparentBackground: "/javascript-chart-transparent-background",
+    imgTransparentBackground: "images/javascript-chart-background-image-with-transparency.jpg",
+
     // ThemeManager
     urlThemeManager: "/javascript-chart-themes",
     titleThemeManager: "Using Theme Manager",
@@ -370,6 +431,15 @@ export const ExampleStrings = {
         "The specific page for the SciChart.js documentation for the Hit-Test API to help you to get started",
     imgHitTestApiChart: "images/javascript-chart-hit-test-on-click.png",
 
+    // DataPointSelection
+    titleDataPointSelection: "Data Point Selection",
+    urlDataPointSelection: "/javascript-datapoint-selection",
+    urlDataPointSelectionDocumentation: "https://www.scichart.com/documentation/js/current/DataPointSelection.html",
+    urlTitleDataPointSelectionDocumentation:
+        "The specific page for the SciChart.js documentation for the DataPointSelectionModifier to help you to get started",
+    imgDataPointSelection: "images/javascript-datapoint-selection.png",
+    
+
     // RolloverModifier
     urlRolloverModifierDocumentation: "https://www.scichart.com/documentation/js/current/RolloverModifier.html",
     urlTitleRolloverModifierDocumentation:
@@ -378,12 +448,28 @@ export const ExampleStrings = {
     urlRolloverModifier: "/javascript-chart-rollovermodifier-tooltips",
     imgRolloverModifierChart: "images/javascript-chart-rollovermodifier-tooltips.jpg",
 
+    // SeriesSelection
+    urlSeriesSelectionDocumentation: "https://www.scichart.com/documentation/js/current/SciChart_JS_User_Manual.html",// should be changed
+    urlTitleSeriesSelectionDocumentation:
+        "The specific page for the SciChart.js API documentation for the Series Selection to help you to get started",
+    titleSeriesSelection: "Using Series Selection",
+    urlSeriesSelection: "/javascript-chart-series-selection",
+    imgSeriesSelectionChart: "images/javascript-chart-series-selection.jpg",
+
     // CursorModifier
     urlCursorModifier: "/javascript-chart-cursormodifier-crosshairs",
     titleCursorModifier: "Using CursorModifier Crosshairs",
     urlTitleCursorModifierDocumentation:
         "The specific page for the SciChart.js API documentation for the CursorModifier to help you to get started",
     urlCursorModifierDocumentation: "https://www.scichart.com/documentation/js/current/CursorModifier.html",
+
+    // MetaData
+    titleMetaData: "MetaData",
+    urlMetaData: "/javascript-chart-metadata",
+    urlMetaDataDocumentation: "https://www.scichart.com/documentation/js/current/DataSeries%20PointMetaData%20Api.html",
+    urlTitleMetaDataDocumentation:
+        "The specific page for the SciChart.js documentation for the MetaData API to help you to get started",
+    imgMetaDataChart: "images/javascript-chart-metadata.png",
 
     // 3D Bubble Chart
     urlBubble3DChart: "/javascript-3d-bubble-chart",
@@ -449,4 +535,87 @@ export const ExampleStrings = {
     titleTenorCurvesFeaturedApp: "Tenor Curves Demo",
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
     imgTenorCurves: "images/javascript-3d-surface-mesh-tenor-curve-example.jpg",
+
+    // BuilderApi, Simple Chart
+    urlBuilderSimpleChart: "/javascript-builder-simple",
+    titleBuilderSimpleChart: "Simple Chart using Builder API",
+    imgBuilderSimpleChart: "images/javascript-builder-simple.jpg",
+
+    // BuilderApi, Full Chart
+    urlBuilderFullChart: "/javascript-builder-full",
+    titleBuilderFullChart: "Full Chart using Builder API",
+    imgBuilderFullChart: "images/javascript-builder-full.jpg",
+
+    // BuilderApi, Chart From JSON
+    urlChartFromJSON: "/javascript-chart-from-json",
+    titleChartFromJSON: "Chart from JSON",
+    urlBuilderApiDocumentation: "https://www.scichart.com/documentation/js/current/Intro%20to%20the%20Builder%20API.html",
+    urlTitleBuilderApiDocumentation:
+        "This specific page in the JavaScript Builder API documentation will help you to get started",
+    imgChartFromJSON: "images/javascript-chart-from-json.jpg",
+
+    // BuilderApi, Custom Types
+    urlCustomTypes: "/javascript-custom-types",
+    titleCustomTypes: "Custom Types with Builder API",
+    imgCustomTypes: "images/javascript-custom-types.jpg",
+
+    // BuilderApi, Shared Data
+    urlSharedData: "/javascript-shared-data",
+    titleSharedData: "Reusable Templates using Shared Data",
+    imgSharedData: "images/javascript-shared-data.jpg",
+
+    urlTextLabelProviderDocumentation: "https://www.scichart.com/documentation/js/current/Axis%20Label%20Formatting%20-%20TextLabelProvider.html",
+    urlTitleTextLabelProviderDocumentation:
+        "This specific page in the JavaScript TextLabelProvider documentation will help you to get started",
+
+    // Multi Line labels
+    urlMultiLineLabels: "/javascript-multiline-labels",
+    titleMultiLineLabels: "Multi-line and Rotated Text labels",
+    imgMultiLineLabels: "images/javascript-multiline-labels.jpg",
+
+    urlAxisLabelFormattingDocumentation: "https://www.scichart.com/documentation/js/current/Axis%20Label%20Formatting%20-%20LabelProvider%20API.html",
+    urlTitleAxisLabelFormattingDocumentation:
+        "This specific page in the JavaScript Axis Label Formatting documentation will help you to get started",
+
+    // Image labels
+    urlImageLabels: "/javascript-image-labels",
+    titleImageLabels: "Image labels",
+    imgImageLabels: "images/javascript-image-labels.jpg",
+
+    urlCustomLabelProviderDocumentation: "https://www.scichart.com/documentation/js/current/Axis%20Label%20Formatting%20-%20Custom%20LabelProviders.html",
+    urlTitleCustomLabelProviderDocumentation:
+        "This specific page in the JavaScript Custom LabelProviders documentation will help you to get started",
+
+    // Rotated labels
+    urlRotatedLabels: "/javascript-rotated-labels",
+    titleRotatedLabels: "Rotated Labels and Alignment",
+    imgRotatedLabels: "images/javascript-rotated-labels.jpg",
+
+    // Filters, Percentage Change
+    urlPercentageChange: "/javascript-percentage-change",
+    titlePercentageChange: "Realtime Percentage Change using Filter",
+    imgPercentageChange: "images/javascript-percentage-change.jpg",
+    urlScaleOffsetDocumentation: "https://www.scichart.com/documentation/js/current/Scale%20Offset%20Filters.html",
+    urlTitleFiltersApiDocumentation:
+        "This specific page in the JavaScript Filters API documentation will help you to get started",
+
+    // Filters, Trend, MA, Ratio
+    urlTrendMARatio: "/javascript-trend-ma-ratio",
+    titleTrendMARatio: "Trendline, Moving Average and Ratio Filters",
+    imgTrendMARatio: "images/javascript-trend-ma-ratio.jpg",
+    urlFiltersDocumentation: "https://www.scichart.com/documentation/js/current/What%20is%20the%20Filters%20API.html",
+
+    // Filters, Custom Filters
+    urlCustomFilters: "/javascript-custom-filters",
+    titleCustomFilters: "Custom Filters",
+    imgCustomFilters: "images/javascript-custom-filters.jpg",
+    urlCustomFiltersDocumentation: "https://www.scichart.com/documentation/js/current/Creating%20a%20Custom%20Filter.html",
+
+    // Overview
+    urlOverview: "/javascript-overview",
+    titleOverview: "Zoom and Pan with Overview Chart",
+    imgOverview: "images/javascript-overview-chart.jpg",
+    urlOverviewDocumentation: "https://www.scichart.com/documentation/js/current/SciChartOverview.html",
+    urlTitleOverviewDocumentation:
+        "This specific page in the JavaScript ChartModifiers Api documentation will help you to get started",
 };

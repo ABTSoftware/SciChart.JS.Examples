@@ -4,7 +4,6 @@ import { Point } from "scichart/Core/Point";
 import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
 import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import { translateFromCanvasToSeriesViewRect } from "scichart/utils/translate";
-import { ENearestPointLogic } from "scichart/Charting/Visuals/RenderableSeries/HitTest/IHitTestProvider";
 
 type TDataPoint = {
   index: number;
@@ -14,6 +13,7 @@ type TDataPoint = {
 
 // Create a TypeScript class which inherits ChartModifierbase2D to insert into SciChartSurface.chartModifiers collection
 export class HeatMapSeriesSelectionModifier extends ChartModifierBase2D {
+  public readonly type = "HeatMapSeriesSelectionModifier";
   private startPoint: Point;
   private endPoint: Point;
   private readonly selectionAnnotation: BoxAnnotation;
@@ -128,16 +128,14 @@ export class HeatMapSeriesSelectionModifier extends ChartModifierBase2D {
     const firstRendSeries = this.parentSurface.renderableSeries.get(0);
 
     const startPointInfo = firstRendSeries.hitTestProvider.hitTest(
-      this.startPoint,
-      ENearestPointLogic.NearestPoint2D,
-      0,
-      false
+      this.startPoint.x,
+      this.startPoint.y,
+      0
     );
     const endPointInfo = firstRendSeries.hitTestProvider.hitTest(
-      this.endPoint,
-      ENearestPointLogic.NearestPoint2D,
-      0,
-      false
+      this.endPoint.x,
+      this.endPoint.y,
+      0
     );
 
     console.log(firstRendSeries.dataSeries.dataSeriesName);

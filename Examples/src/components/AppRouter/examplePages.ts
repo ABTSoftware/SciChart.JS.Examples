@@ -27,6 +27,8 @@ import { chartLegendsAPIExampleInfo } from "../Examples/Charts2D/Legends/ChartLe
 import { multipleXAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes/exampleInfo";
 import { secondaryYAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/exampleInfo";
 import { verticalChartsExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/exampleInfo";
+import { centralAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes/exampleInfo";
+import { verticallyStackedAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/exampleInfo";
 import { stackedColumnChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedColumnChart/exampleInfo";
 import { stackedColumnSideBySideExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide/exampleInfo";
 import { stackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedMountainChart/exampleInfo";
@@ -36,8 +38,10 @@ import { createACustomThemeExampleInfo } from "../Examples/Charts2D/StylingAndTh
 import { stylingInCodeExampleInfo } from "../Examples/Charts2D/StylingAndTheming/StylingInCode/exampleInfo";
 import { perPointColoringExampleInfo } from "../Examples/Charts2D/StylingAndTheming/PerPointColoring/exampleInfo";
 import { dashedLineStylingExampleInfo } from "../Examples/Charts2D/StylingAndTheming/DashedLineStyling/exampleInfo";
+import { transparentBackgroundExampleInfo } from "../Examples/Charts2D/StylingAndTheming/TransparentBackground/exampleInfo";
 import { hitTestApiExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/HitTestAPI/exampleInfo";
 import { usingRolloverModifierTooltipsExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/exampleInfo";
+import { seriesSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/SeriesSelection/exampleInfo";
 import { usingCursorModifierTooltipsExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips/exampleInfo";
 import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo";
 import { surfaceMesh3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/exampleInfo";
@@ -54,7 +58,26 @@ import { realtimeZoomPanExampleInfo } from "../Examples/Charts2D/ZoomingAndPanni
 import { zoomAndPanWithMultipleChartModifiersExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/exampleInfo";
 import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/exampleInfo";
 import { GalleryItem } from "../../helpers/types/types";
-import {dragHorizontalThresholdExampleInfo} from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
+import { dragHorizontalThresholdExampleInfo } from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
+import { metaDataExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/MetaData/exampleInfo";
+import { logarithmicAxisExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/exampleInfo";
+import { simpleChartExampleInfo } from "../Examples/BuilderApi/SimpleChart/exampleInfo";
+import { fullChartExampleInfo } from "../Examples/BuilderApi/FullChart/exampleInfo";
+import { chartFromJSONExampleInfo } from "../Examples/BuilderApi/ChartFromJSON/exampleInfo";
+import { sharedDataExampleInfo } from "../Examples/BuilderApi/SharedData/exampleInfo";
+import { customTypesExampleInfo } from "../Examples/BuilderApi/CustomTypes/exampleInfo";
+import { multiLineLabelsExampleInfo } from "../Examples/Charts2D/AxisLabelCustomization/MultiLineLabels/exampleInfo";
+import { imageLabelsExampleInfo } from "../Examples/Charts2D/AxisLabelCustomization/ImageLabels/exampleInfo";
+import { rotatedLabelsExampleInfo } from "../Examples/Charts2D/AxisLabelCustomization/RotatedLabels/exampleInfo";
+import { percentageChangeExampleInfo } from "../Examples/Charts2D/Filters/PercentageChange/exampleInfo";
+import { trendMARatioExampleInfo } from "../Examples/Charts2D/Filters/TrendMARatio/exampleInfo";
+import { customFiltersExampleInfo } from "../Examples/Charts2D/Filters/CustomFilters/exampleInfo";
+import { dataAnimationExampleInfo } from "../Examples/Charts2D/Animations/DataAnimation/exampleInfo";
+import { styleAnimationExampleInfo } from "../Examples/Charts2D/Animations/StyleAnimation/exampleInfo";
+import { startupAnimationExampleInfo } from "../Examples/Charts2D/Animations/StartupAnimation/exampleInfo";
+import { dataPointSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection/exampleInfo";
+import { overviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier/exampleInfo";
+
 
 export type TExampleInfo = {
     title: string;
@@ -80,6 +103,18 @@ function asRecord<T extends Record<string, TExamplePage>>(arg: T): T & Record<st
 }
 
 export const EXAMPLES_PAGES = asRecord({
+    chart2D_Animations_DataAnimation: {
+        id: "chart2D_Animations_DataAnimation",
+        ...dataAnimationExampleInfo
+    },
+    chart2D_Animations_StyleAnimation: {
+        id: "chart2D_Animations_StyleAnimation",
+        ...styleAnimationExampleInfo
+    },
+    chart2D_Animations_StartupAnimation: {
+        id: "chart2D_Animations_StartupAnimation",
+        ...startupAnimationExampleInfo
+    },
     chart2D_basicCharts_BandSeriesChart: {
         id: "chart2D_basicCharts_BandSeriesChart",
         ...bandSeriesChartExampleInfo
@@ -208,6 +243,30 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart2D_modifyAxisBehavior_VerticalCharts",
         ...verticalChartsExampleInfo
     },
+    chart2D_modifyAxisBehavior_CentralAxes: {
+        id: "chart2D_modifyAxisBehavior_CentralAxes",
+        ...centralAxesExampleInfo
+    },
+    chart2D_modifyAxisBehavior_VerticallyStackedAxes: {
+        id: "chart2D_modifyAxisBehavior_VerticallyStackedAxes",
+        ...verticallyStackedAxesExampleInfo
+    },
+    chart2D_modifyAxisBehavior_LogarithmicAxis: {
+        id: "chart2D_modifyAxisBehavior_LogarithmicAxis",
+        ...logarithmicAxisExampleInfo
+    },
+    chart2D_axisLabelCustomization_MultiLineLabels: {
+        id: "chart2D_axisLabelCustomization_MultiLineLabels",
+        ...multiLineLabelsExampleInfo
+    },
+    chart2D_axisLabelCustomization_ImageLabels: {
+        id: "chart2D_axisLabelCustomization_ImageLabels",
+        ...imageLabelsExampleInfo
+    },
+    chart2D_axisLabelCustomization_RotatedLabels: {
+        id: "chart2D_axisLabelCustomization_RotatedLabels",
+        ...rotatedLabelsExampleInfo
+    },
     chart2D_basicCharts_StackedColumnChart: {
         id: "chart2D_basicCharts_StackedColumnChart",
         ...stackedColumnChartExampleInfo
@@ -244,6 +303,10 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart2D_stylingAndTheming_DashedLineStyling",
         ...dashedLineStylingExampleInfo
     },
+    chart2D_stylingAndTheming_TransparentBackground: {
+        id: "chart2D_stylingAndTheming_TransparentBackground",
+        ...transparentBackgroundExampleInfo
+    },
     chart2D_tooltipsAndHittest_HitTestApi: {
         id: "chart2D_tooltipsAndHittest_HitTestApi",
         ...hitTestApiExampleInfo
@@ -256,6 +319,18 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart2D_tooltipsAndHittest_UsingCursorModifierTooltips",
         ...usingCursorModifierTooltipsExampleInfo
     },
+    chart2D_tooltipsAndHittest_MetaData: {
+        id: "chart2D_tooltipsAndHittest_MetaData",
+        ...metaDataExampleInfo
+    },
+    chart2D_tooltipsAndHittest_DataPointSelection: {
+        id: "chart2D_tooltipsAndHittest_DataPointSelection",
+        ...dataPointSelectionExampleInfo
+    },
+    chart2D_tooltipsAndHittest_SeriesSelection: {
+        id: "chart2D_tooltipsAndHittest_SeriesSelection",
+        ...seriesSelectionExampleInfo
+    },
     chart2D_zoomAndPanAChart_DragAxisToScale: {
         id: "chart2D_zoomAndPanAChart_DragAxisToScale",
         ...dragAxisToScaleExampleInfo
@@ -267,6 +342,22 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_zoomAndPanAChart_MultipleChartModifiers: {
         id: "chart2D_zoomAndPanAChart_MultipleChartModifiers",
         ...zoomAndPanWithMultipleChartModifiersExampleInfo
+    },
+    chart2D_zoomAndPanAChart_Overview: {
+        id: "chart2D_zoomAndPanAChart_Overview",
+        ...overviewExampleInfo
+    },
+    chart2D_filters_PercentageChange: {
+        id: "chart2D_filters_PercentageChange",
+        ...percentageChangeExampleInfo
+    },
+    chart2D_filters_TrendMARatio: {
+        id: "chart2D_filters_TrendMARatio",
+        ...trendMARatioExampleInfo
+    },
+    chart2D_filters_CustomFilters: {
+        id: "chart2D_filters_CustomFilters",
+        ...customFiltersExampleInfo
     },
     chart3D_basic3DChartTypes_Bubble3DChart: {
         id: "chart3D_basic3DChartTypes_Bubble3DChart",
@@ -299,5 +390,25 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_scientificCharts_TenorCurvesDemo: {
         id: "featuredApps_scientificCharts_TenorCurvesDemo",
         ...tenorCurvesExampleInfo
+    },
+    builderApi_simplechart: {
+        id: "builderApi_simplechart",
+        ...simpleChartExampleInfo
+    },
+    builderApi_fullchart: {
+        id: "builderApi_fullchart",
+        ...fullChartExampleInfo
+    },
+    builderApi_chartFromJSON: {
+        id: "builderApi_chartFromJSON",
+        ...chartFromJSONExampleInfo
+    },
+    builderApi_SharedData: {
+        id: "builderApi_SharedData",
+        ...sharedDataExampleInfo
+    },
+    builderApi_CustomTypes: {
+        id: "builderApi_CustomTypes",
+        ...customTypesExampleInfo
     }
 });

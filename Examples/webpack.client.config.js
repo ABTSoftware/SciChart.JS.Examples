@@ -71,7 +71,6 @@ module.exports = {
                 { from: "robots.txt", to: "" }
             ]
         }),
-        new webpack.IgnorePlugin(/(fs)/),
         // new BundleAnalyzerPlugin()
         new MiniCssExtractPlugin({
             filename: filename("styles.css")

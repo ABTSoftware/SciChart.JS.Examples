@@ -6,6 +6,7 @@ import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/Annotatio
 
 // Create a TypeScript class which inherits ChartModifierbase2D to insert into SciChartSurface.chartModifiers collection
 export class RangeSelectionChartModifier extends ChartModifierBase2D {
+  public readonly type = "RangeSelectionChartModifier";
   private startPoint: Point;
   private endPoint: Point;
   private readonly selectionAnnotation: BoxAnnotation;

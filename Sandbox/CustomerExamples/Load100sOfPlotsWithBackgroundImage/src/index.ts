@@ -10,12 +10,14 @@ function makeRows(container: HTMLElement, rows: number, cols: number) {
     container.style.setProperty('--grid-rows', rows.toString());
     container.style.setProperty('--grid-cols', cols.toString());
     for (let c = 0; c < rows * cols; c++) {
+        const cellContainer = document.createElement('div');
+        cellContainer.style.setProperty('background-image', `url("/hatchback.jpg")`);
+        cellContainer.style.setProperty('background-size', 'contain');
+        container.appendChild(cellContainer).className = 'grid-item';
         const cell = document.createElement('div');
         const chartNumber = (c + 1).toString();
         cell.id = 'chart' + chartNumber;
-        cell.style.setProperty('background-image', `url("/hatchback.jpg")`);
-        cell.style.setProperty('background-size', 'contain');
-        container.appendChild(cell).className = 'grid-item';
+        cellContainer.appendChild(cell);
     }
 }
 
@@ -44,7 +46,6 @@ async function initSciChart() {
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(`chart${chartNumber}`);
 
         // Sets the chart to have a transparent background, to make the background image visible
-        sciChartSurface.backgroundCompletelyTransparentEnabled = false;
         sciChartSurface.background = 'rgba(0,0,0,0)';
 
         sciChartSurface.padding = new Thickness(0, 0, 0, 0);
@@ -80,7 +81,13 @@ async function initSciChart() {
             [9, 9, 9, 1]
         ];
 
-        const dataSeries = new UniformHeatmapDataSeries(wasmContext, 0, 1, 0, 1, initialZValues);
+        const dataSeries = new UniformHeatmapDataSeries(wasmContext, {
+            xStart: 0,
+            xStep: 1,
+            yStart: 0,
+            yStep: 1,
+            zValues: initialZValues
+        });
         // Treat NaN values as transparent tiles
         dataSeries.hasNaNs = true;
 

@@ -1,0 +1,122 @@
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Styling the Loader (TypeScript)</title>
+    <script async type="text/javascript" src="bundle.js"></script>
+    <style>
+      body {
+        font-family: "Arial";
+      }
+
+      svg:not(:root) {
+        overflow: visible;
+      }
+
+      .poster {
+        position: relative;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .clss-1 {
+        fill: rgb(150, 228, 255);
+      }
+
+      .clss-2 {
+        fill: rgb(27, 173, 255);
+      }
+
+      .clss-3 {
+        fill: rgb(0, 105, 242);
+      }
+
+      .animate .clss-1 {
+        animation: widthAni 4s ease-in-out infinite;
+        transform-origin: center right;
+      }
+
+      .animate .clss-2 {
+        animation: springOut 4s ease-in infinite;
+      }
+
+      .animate .clss-3 {
+        animation: springOutAgain 4s ease-in infinite;
+      }
+
+      @keyframes widthAni {
+        0% {
+          transform: translate(-30%, 0) scaleX(0);
+        }
+        20%, 75% {
+          transform: translate(0, 0) scaleX(1);
+        }
+        95%, 100% {
+          transform: translate(-30%, 0) scaleX(0);
+        }
+      }
+
+      @keyframes springOut {
+        0%, 20% {
+          transform: translate(-21%, 0%);
+          opacity: 0;
+        }
+        21% {
+          transform: translate(-20.5%, 0%);
+          opacity: 1;
+        }
+        27% {
+          transform: translate(-4.75%, 0%);
+          opacity: 1;
+        }
+        31%, 55% {
+          transform: translate(0%, 0%);
+          opacity: 1;
+        }
+        67% {
+          transform: translate(-20.5%, 0);
+          opacity: 1;
+        }
+        68%, 90%, 100% {
+          transform: translate(-21%, 0);
+          opacity: 0;
+        }
+      }
+
+      @keyframes springOutAgain {
+        0%, 20% {
+          transform: translate(-41.5%, 0%);
+          opacity: 0;
+        }
+        21% {
+          transform: translate(-41%, 0%);
+          opacity: 1;
+        }
+        27% {
+          transform: translate(-9.5%, 0%);
+          opacity: 1;
+        }
+        31%, 55% {
+          transform: translate(0%, 0%);
+          opacity: 1;
+        }
+        67% {
+          transform: translate(-41%, 0%);
+          opacity: 1;
+        }
+        68%, 90%, 100% {
+          transform: translate(-41.5%, 0%);
+          opacity: 0;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Styling the Loader (TypeScript)</h1>
+    <p>Example from the SciChart.js documentation. See more at <a href="https://www.scichart.com/javascript-chart-documentation">scichart.com/javascript-chart-documentation</a></p>
+
+    <!-- the Div where the SciChartSurface will reside -->
+    <div id="scichart-div-id" style="width: 800px; height: 600px"></div>
+  </body>
+</html>

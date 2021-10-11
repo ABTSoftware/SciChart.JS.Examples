@@ -33,6 +33,8 @@ import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
 import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
+import { XyMovingAverageFilter } from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
+import { EDataSeriesField } from "scichart/Charting/Model/Filters/XyFilterBase";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
@@ -57,7 +59,10 @@ const drawExample = async () => {
 
     // CHART 1
     const drawChart1 = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId1, 900, 400);
+        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId1, {
+            widthAspect: 900,
+            heightAspect: 400
+        });
         sciChartSurface.applyTheme(darkTheme);
 
         chart1XAxis = new CategoryAxis(wasmContext, {
@@ -73,7 +78,7 @@ const drawExample = async () => {
             growBy: new NumberRange(0.3, 0.11),
             axisAlignment
         });
-        yAxis.labelProvider.formatLabel = (dataValue: number) => "$" + dataValue.toFixed(4);
+        yAxis.labelProvider.formatLabel = (dataValue: number) => "\$" + dataValue.toFixed(4);
         sciChartSurface.yAxes.add(yAxis);
 
         // OHLC DATA SERIES
@@ -91,12 +96,11 @@ const drawExample = async () => {
         sciChartSurface.renderableSeries.add(fcRendSeries);
 
         // MA1 SERIES
-        const maLowDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "MA 50 Low" });
-        for (let i = 0; i < dateValues.length; i++) {
-            const xValue = dateValues[i];
-            const avr50 = calcAverageForDoubleVector(usdDataSeries.getNativeLowValues(), 50, i);
-            maLowDataSeries.append(xValue, avr50);
-        }
+        const maLowDataSeries = new XyMovingAverageFilter(usdDataSeries, {
+            dataSeriesName: "MA 50 Low",
+            length: 50,
+            field: EDataSeriesField.Low
+        });
         const maLowRenderableSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries: maLowDataSeries
         });
@@ -107,12 +111,11 @@ const drawExample = async () => {
         maLowRenderableSeries.strokeThickness = 2;
 
         // MA2 SERIES
-        const maHighDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "MA 200 High" });
-        for (let i = 0; i < dateValues.length; i++) {
-            const xValue = dateValues[i];
-            const avr200 = calcAverageForDoubleVector(usdDataSeries.getNativeHighValues(), 200, i);
-            maHighDataSeries.append(xValue, avr200);
-        }
+        const maHighDataSeries = new XyMovingAverageFilter(usdDataSeries, {
+            dataSeriesName: "MA 200 High",
+            length: 200,
+            field: EDataSeriesField.High
+        });
         const maHighRenderableSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries: maHighDataSeries
         });
@@ -155,7 +158,10 @@ const drawExample = async () => {
 
     // CHART 2
     const drawChart2 = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId2, 900, 150);
+        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId2, {
+            widthAspect: 900,
+            heightAspect: 150
+        });
         sciChartSurface.applyTheme(darkTheme);
 
         chart2XAxis = new CategoryAxis(wasmContext, {
@@ -171,7 +177,7 @@ const drawExample = async () => {
             growBy: new NumberRange(0.1, 0.1),
             axisAlignment
         });
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_2;
+        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
 
         const macdArray: number[] = [];
@@ -222,7 +228,10 @@ const drawExample = async () => {
 
     // CHART 3
     const drawChart3 = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId3, 900, 150);
+        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId3, {
+            widthAspect: 900,
+            heightAspect: 150
+        });
         sciChartSurface.applyTheme(darkTheme);
 
         chart3XAxis = new CategoryAxis(wasmContext, { autoRange: EAutoRange.Once });
@@ -235,7 +244,7 @@ const drawExample = async () => {
             growBy: new NumberRange(0.1, 0.1),
             axisAlignment
         });
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_1;
+        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
 
         const RSI_PERIOD = 14;

@@ -1,0 +1,28 @@
+import { hitTest } from './hitTest';
+import { hitTestTs } from './hitTestTs';
+import { hitTestCandlestickTs } from './hitTestCandlestickTs';
+import { hitTestBubbleTs } from './hitTestBubbleTs';
+import { hitTestScatterTs } from './hitTestScatterTs';
+import { hitTestColumnTs } from './hitTestColumnTs';
+import { hitTestHeatmapTs } from './hitTestHeatmapTs';
+import { hitTestStackedColumnTs } from './hitTestStackedColumnTs';
+import { hitTestStackedMountainTs } from './hitTestStackedMountainTs';
+import { hitTestMountainTs } from './hitTestMountainTs';
+import { hitTestBandTs } from './hitTestBandTs';
+import { hitTestLineMetadataTs } from './hitTestLineMetadataTs';
+import { hitTestLineMetadata } from './hitTestLineMetadata';
+
+const divId = 'scichart-div-id';
+// hitTest(divId);
+// hitTestTs(divId);
+// hitTestCandlestickTs(divId);
+// hitTestBubbleTs(divId);
+// hitTestScatterTs(divId);
+// hitTestColumnTs(divId);
+// hitTestHeatmapTs(divId);
+// hitTestStackedColumnTs(divId);
+// hitTestStackedMountainTs(divId);
+// hitTestMountainTs(divId);
+// hitTestBandTs(divId);
+// hitTestLineMetadataTs(divId);
+hitTestLineMetadata(divId);

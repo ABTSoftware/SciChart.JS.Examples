@@ -43,12 +43,7 @@ async function initSciChart() {
 
   // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
   const heatmapDataSeries = new UniformHeatmapDataSeries(
-    wasmContext,
-    0,
-    1,
-    0,
-    1,
-    initialZValues
+    wasmContext, { xStart: 0, xStep: 1, yStart: 0, yStep: 1, zValues: initialZValues}
   );
 
   const gradientStops = [
@@ -103,12 +98,7 @@ async function initSciChart2() {
 
   // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
   const heatmapDataSeries = new UniformHeatmapDataSeries(
-    wasmContext,
-    0,
-    1,
-    0,
-    1,
-    initialZValues
+    wasmContext, { xStart: 0, xStep: 1, yStart: 0, yStep: 1, zValues: initialZValues}
   );
 
   const gradientStops = [
