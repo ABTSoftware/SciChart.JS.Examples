@@ -38,7 +38,7 @@ export async function legendModifierTs(divId: string) {
     sciChartSurface.renderableSeries.add(lineSeries2);
 
     // Internal placement
-    sciChartSurface.chartModifiers.add(new LegendModifier({ showCheckboxes: true }));
+    // sciChartSurface.chartModifiers.add(new LegendModifier({ showCheckboxes: true }));
     // External placement
-    // sciChartSurface.chartModifiers.add(new LegendModifier({ showCheckboxes: true, placementDivId: "legend-div" }));
+    sciChartSurface.chartModifiers.add(new LegendModifier({ placementDivId: "legend-div-id" }));
 }
