@@ -12,7 +12,7 @@
   "dependencies": {
     "dom-to-image": "^2.6.0",
     "file-saver": "^2.0.5",
-    "scichart": "^^2.0.0-beta.2072"
+    "scichart": "^2.0.0-beta.2084"
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.3",
