@@ -553,6 +553,8 @@ urlTitleSplineMountainChartDocumentation:
     urlTitleBuilderApiDocumentation:
         "This specific page in the JavaScript Builder API documentation will help you to get started",
     imgChartFromJSON: "images/javascript-chart-from-json.jpg",
+    urlDefinitionDocumentation: "https://www.scichart.com/documentation/js/current/typedoc/interfaces/iscichart2ddefinition.html",
+    urlTitleDefinitionDocumentation: "Full details of the definition object",
 
     // BuilderApi, Custom Types
     urlCustomTypes: "/javascript-custom-types",
