@@ -7,8 +7,6 @@ let isDev = require("electron-is-dev");
 
 let mainWindow = null;
 
-app.allowRendererProcessReuse = false;
-
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
