@@ -161,10 +161,10 @@ urlTitleSplineMountainChartDocumentation:
     // Ohlc Chart
     urlOhlcChart: "/javascript-ohlc-chart",
     urlTitleOhlcChart:
-        "The Ohlc Chart example shows how to create a JavaScript Ohlc Chart rendering financial stock data with SciChart.js",
-    titleOhlcChart: "JavaScript Ohlc Chart",
+        "The OHLC Chart example shows how to create a JavaScript OHLC Chart rendering financial stock data with SciChart.js",
+    titleOhlcChart: "JavaScript OHLC Chart",
     urlTitleOhlcChartDocumentation:
-        "This specific page in the JavaScript Ohlc Chart documentation will help you to get started",
+        "This specific page in the JavaScript OHLC Chart documentation will help you to get started",
     urlOhlcChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20OHLC%20Series%20Type.html",
     imgOhlcChart: "images/javascript-ohlc-chart.jpg",
 
@@ -438,7 +438,7 @@ urlTitleSplineMountainChartDocumentation:
     urlTitleDataPointSelectionDocumentation:
         "The specific page for the SciChart.js documentation for the DataPointSelectionModifier to help you to get started",
     imgDataPointSelection: "images/javascript-datapoint-selection.png",
-    
+
 
     // RolloverModifier
     urlRolloverModifierDocumentation: "https://www.scichart.com/documentation/js/current/RolloverModifier.html",
@@ -464,7 +464,7 @@ urlTitleSplineMountainChartDocumentation:
     urlCursorModifierDocumentation: "https://www.scichart.com/documentation/js/current/CursorModifier.html",
 
     // MetaData
-    titleMetaData: "MetaData",
+    titleMetaData: "PointMetadata API",
     urlMetaData: "/javascript-chart-metadata",
     urlMetaDataDocumentation: "https://www.scichart.com/documentation/js/current/DataSeries%20PointMetaData%20Api.html",
     urlTitleMetaDataDocumentation:

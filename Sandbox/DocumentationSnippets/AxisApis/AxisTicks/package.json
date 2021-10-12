@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "scichart": "^^2.0.0-beta.2072"
+    "scichart": "^2.0.0-beta.2084"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.0.3",

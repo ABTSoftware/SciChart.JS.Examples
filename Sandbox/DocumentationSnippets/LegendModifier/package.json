@@ -1,9 +1,10 @@
 {
-  "name": "styling-loader-ts",
+  "name": "hit-test-api",
   "version": "1.0.0",
-  "description": "Styling Loader (TypeScript)",
+  "description": "Legend Modifier example SciChart.js",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start": "webpack-dev-server"
   },
@@ -14,11 +15,9 @@
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.0.3",
-    "file-loader": "^6.2.0",
-    "prettier": "^2.3.2",
-    "ts-loader": "^6.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "ts-loader": "^7.0.5"
   }
 }

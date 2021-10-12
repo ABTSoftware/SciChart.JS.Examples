@@ -156,7 +156,7 @@ export const searchItems: TSearchItem[] = [
     },
     {
         title: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis.title,
-        link: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis.path,
+        link: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis.path
     },
     {
         title: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes.title,
@@ -187,6 +187,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling.path
     },
     {
+        title: EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground.title,
+        link: EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground.path
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.title,
         link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.path
     },
@@ -208,7 +212,7 @@ export const searchItems: TSearchItem[] = [
     },
     {
         title: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection.title,
-        link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection.path,
+        link: EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection.path
     },
     {
         title: EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.title,
@@ -228,27 +232,27 @@ export const searchItems: TSearchItem[] = [
     },
     {
         title: EXAMPLES_PAGES.chart2D_filters_TrendMARatio.title,
-        link: EXAMPLES_PAGES.chart2D_filters_TrendMARatio.path,
+        link: EXAMPLES_PAGES.chart2D_filters_TrendMARatio.path
     },
     {
         title: EXAMPLES_PAGES.chart2D_filters_PercentageChange.title,
-        link: EXAMPLES_PAGES.chart2D_filters_PercentageChange.path,
+        link: EXAMPLES_PAGES.chart2D_filters_PercentageChange.path
     },
     {
         title: EXAMPLES_PAGES.chart2D_filters_CustomFilters.title,
-        link: EXAMPLES_PAGES.chart2D_filters_CustomFilters.path,
+        link: EXAMPLES_PAGES.chart2D_filters_CustomFilters.path
     },
     {
         title: EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.title,
-        link: EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.path,
+        link: EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.path
     },
     {
         title: EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.title,
-        link: EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.path,
+        link: EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.path
     },
     {
         title: EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels.title,
-        link: EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels.path,
+        link: EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels.path
     },
     {
         title: EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart.title,
