@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.0",
-    "scichart": "^1.4.1630",
-    "web-vitals": "^0.2.4"
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.3.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3",
+    "scichart": "^2.0.0-beta.2084",
+    "web-vitals": "^2.1.2"
   },
   "scripts": {
     "copyWasm": "copy-files-from-to --config copy-files-from-to.json",
@@ -39,7 +39,7 @@
     ]
   },
   "devDependencies": {
-    "copy-files-from-to": "^3.2.0",
-    "prettier": "^2.1.2"
+    "copy-files-from-to": "^3.2.1",
+    "prettier": "^2.4.1"
   }
 }

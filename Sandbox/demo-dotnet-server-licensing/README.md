@@ -6,10 +6,11 @@ Server side licensing is currently available for dotnet servers.  Other platform
 
 ## Building the demo
 This demo uses typescript and webpack to manage the client side.  See the tsconfig.json and webpack.config.js files to see how this is set up. 
-The demo does not include license keys. It is really just intended as a code example.  If necessry you can contact support and we will issue you a short term key for this demo.  You will need to set the  server key in Startup.cs and the client key in index.ts as descibed below. Then from the project folder run
+The demo does not include license keys. It is really just intended as a code example.  If necessary you can contact support and we will issue you a short term key for this demo.  You will need to set the server key in Startup.cs and the client key in index.ts as described below. Then from the project folder run
 
 npm install
-npm run webpack
+npm run build
+dotnet run
 
 Runtime keys from the SciChart Licensing Wizard will not work with the server side component.
 

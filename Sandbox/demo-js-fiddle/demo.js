@@ -1,27 +1,27 @@
 async function initSciChart() {
 
   // Create the SciChartSurface
-	const {
-	  sciChartSurface,
-	  wasmContext
-	} = await SciChart.SciChartSurface.create("scichart-root");
-  sciChartSurface.applyTheme(new SciChart.SciChartJSLightTheme());
-  // Create the X & Y Axis
-	const xAxis = new SciChart.NumericAxis(wasmContext);
-	sciChartSurface.xAxes.add(xAxis);
+  const {
+	sciChartSurface,
+	wasmContext
+  } = await SciChart.chartBuilder.build2DChart("scichart-root", {
+	series: {
+		type: "LineSeries", 
+		xyData: {
+		  	xValues: [1,2,3,4],
+			yValues: [1,4,2,6]
+	  }
+  }
 
-	const yAxis = new SciChart.NumericAxis(wasmContext, {
-	  growBy: new SciChart.NumberRange(0.05, 0.05)
-	});
-	sciChartSurface.yAxes.add(yAxis);
+});
   
   // That's it! You now have a SciChartSurface!
 }
 
 // Required for jsfiddle. Configure where to load wasm files
 SciChart.SciChartSurface.configure({
-	wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart2d.wasm",
-  dataUrl: "https://cdn.jsdelivr.net/npm/scichart@1.3.1500/_wasm/scichart2d.data"
+	wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@2.0.0-beta.2084/_wasm/scichart2d.wasm",
+  dataUrl: "https://cdn.jsdelivr.net/npm/scichart@2.0.0-beta.2084/_wasm/scichart2d.data"
 });
 
 initSciChart();

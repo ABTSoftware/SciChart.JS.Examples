@@ -1,11 +1,11 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { SciChartSurface } from 'scichart/Charting/Visuals/SciChartSurface';
-import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
+import { chartBuilder } from 'scichart/Builder/chartBuilder';
+import { ESeriesType } from 'scichart/types/SeriesType';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements AfterViewInit {
   title = 'angular-scichart-demo';
@@ -32,16 +32,15 @@ async function initSciChart(): Promise<void> {
   // Create the SciChartSurface in the div 'scichart-root'
   // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
   // instance must be passed to other types that exist on the same surface.
-  const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-    'scichart-root-id'
+  const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(
+    'scichart-root-id',
+    {
+      series: {
+        type: ESeriesType.LineSeries,
+        xyData: { xValues: [1, 2, 3, 4, 5], yValues: [1, 4, 8, 2, 6] },
+      },
+    }
   );
-
-  // Create an X,Y Axis and add to the chart
-  const xAxis = new NumericAxis(wasmContext);
-  const yAxis = new NumericAxis(wasmContext);
-
-  sciChartSurface.xAxes.add(xAxis);
-  sciChartSurface.yAxes.add(yAxis);
 
   // That's it! You just created your first SciChartSurface!
 }
