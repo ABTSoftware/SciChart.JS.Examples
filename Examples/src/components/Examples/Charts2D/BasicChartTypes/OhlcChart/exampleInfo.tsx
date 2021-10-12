@@ -29,7 +29,7 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlOhlcChartDocumentation,
         title: ExampleStrings.urlTitleOhlcChartDocumentation,
-        linkTitle: "JavaScript Ohlc Chart Documentation"
+        linkTitle: "JavaScript OHLC Chart Documentation"
     },
     {
         href: ExampleStrings.urlRenderSeriesPropertiesDocumentation,
@@ -78,7 +78,7 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Ohlc Chart</strong> or Stock Chart using SciChart.js, High
+        Demonstrates how to create a <strong>JavaScript OHLC Chart</strong> or Stock Chart using SciChart.js, High
         Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
@@ -98,7 +98,7 @@ export const ohlcChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Demonstrates how to create a JavaScript Ohlc Chart. This is a chart type used in financial, stock trading " +
+        "Demonstrates how to create a JavaScript OHLC Chart. This is a chart type used in financial, stock trading " +
         "applications which renders Date, Open, High, Low, Close data.",
     seoKeywords: "ohlc, stock, trading, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-ohlc-chart.jpg"

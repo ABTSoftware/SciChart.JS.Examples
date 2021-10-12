@@ -233,7 +233,7 @@ export const sciChartExamples: GalleryItem[] = [
             {
                 imgPath: ohlcImg,
                 title: ExampleStrings.titleOhlcChart,
-                seoTitle: "JavaScript Ohlc Chart Example",
+                seoTitle: "JavaScript OHLC Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart.path
             },
             {
