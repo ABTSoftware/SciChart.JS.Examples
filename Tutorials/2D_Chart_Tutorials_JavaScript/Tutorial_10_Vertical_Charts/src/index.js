@@ -51,10 +51,7 @@ async function initSciChart() {
   sciChartSurface.chartModifiers.add(new ZoomPanModifier());
   sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
   sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-  sciChartSurface.chartModifiers.add(
-    // For RolloverModifier to work correctly with Vertical Chart isVerticalChart flag needs to be set True
-    new RolloverModifier({ isVerticalChart: true })
-  );
+  sciChartSurface.chartModifiers.add(new RolloverModifier());
 
   sciChartSurface.zoomExtents();
 }

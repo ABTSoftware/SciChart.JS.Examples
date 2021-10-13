@@ -1,10 +1,12 @@
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
-const webpack = require("webpack");
 
 module.exports = {
     mode: "production",
     entry: "./src/index.js",
+    performance: {
+        hints: false
+    },
     module: {
         rules: []
     },
