@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Include SciChart.js -->
+  <script
+          src="https://cdn.jsdelivr.net/npm/scichart@2.0.0-beta.2084/_wasm/scichart.browser.js"
+          crossorigin="anonymous"
+  ></script>
+  <title>Hello, SciChart.js world!</title>
+</head>
+<body style="margin: 0; padding: 0; overflow: hidden;">
+<div id="scichart-root" style="position: absolute; display: flex; flex-direction: column; width: 100%; height: 100%;"></div>
+
+<script>
+  async function initSciChart() {
+    // In order to load data file from the CDN we need to set dataUrl
+    SciChart.SciChartSurface.configure({
+      dataUrl: "https://cdn.jsdelivr.net/npm/scichart@2.0.0-beta.2084/_wasm/scichart2d.data",
+      wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@2.0.0-beta.2084/_wasm/scichart2d.wasm"
+    });
+
+    // Create the SciChartSurface
+    const {
+      sciChartSurface,
+      wasmContext
+    } = await SciChart.SciChartSurface.create("scichart-root");
+
+    // Create X,Y Axis
+    const xAxis = new SciChart.NumericAxis(wasmContext, {
+      labelPrecision: 1,
+    });
+    sciChartSurface.xAxes.add(xAxis);
+
+    const yAxis = new SciChart.NumericAxis(wasmContext, {
+      growBy: new SciChart.NumberRange(0.05, 0.05),
+      labelPrecision: 3,
+    });
+    sciChartSurface.yAxes.add(yAxis);
+
+    // Add series
+    sciChartSurface.renderableSeries.add(new SciChart.SplineLineRenderableSeries(wasmContext, {
+      dataSeries: new SciChart.XyDataSeries(wasmContext, {
+        xValues: [0, 1, 2, 3],
+        yValues: [2, 3.5, 3.0, 5]
+      }),
+      stroke: "#FFF",
+      strokeThickness: 3,
+      animation: new SciChart.SweepAnimation({ duration: 500 })
+    }));
+
+    // Column series
+    sciChartSurface.renderableSeries.add(new SciChart.FastColumnRenderableSeries(wasmContext, {
+      dataSeries: new SciChart.XyDataSeries(wasmContext, {
+        xValues: [0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3],
+        yValues: [0.8, 1, 1, 1.1, 1.2, 5.2, 2.8, 2.7, 2.6, 2.6, 2.5, 2.5, 2.5, 2.6, 3.2, 4],
+      }),
+      fill: "#FFFFFF33",
+      stroke: "#EEEEEE77",
+      strokeThickness: 2,
+      dataPointWidth: 0.57,
+      animation: new SciChart.WaveAnimation({ delay: 400, duration: 600, fadeEffect: true })
+    }));
+
+    // Bubble series
+    sciChartSurface.renderableSeries.add(new SciChart.FastBubbleRenderableSeries(wasmContext, {
+      dataSeries: new SciChart.XyzDataSeries(wasmContext, {
+        xValues: [0, 1, 2, 3],
+        yValues: [2, 3.5, 3.0, 5],
+        zValues: [30, 90, 40, 60]
+      }),
+      pointMarker: new SciChart.EllipsePointMarker(wasmContext, {
+        width: 64,
+        height: 64,
+        strokeThickness: 2,
+        stroke: "#FFFFFF77",
+        fill: "#ffffff33"
+      }),
+      animation: new SciChart.SweepAnimation({ delay: 200, duration: 500, fadeEffect: true }),
+    }));
+
+    // Add Interactivity Modifiers
+    sciChartSurface.chartModifiers.add(new SciChart.ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new SciChart.XAxisDragModifier( { dragMode: SciChart.EDragMode.Panning }));
+    sciChartSurface.chartModifiers.add(new SciChart.YAxisDragModifier( { dragMode: SciChart.EDragMode.Scale }));
+    sciChartSurface.chartModifiers.add(new SciChart.MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(new SciChart.PinchZoomModifier());
+    sciChartSurface.chartModifiers.add(new SciChart.ZoomExtentsModifier());
+
+    // Add a watermark
+    sciChartSurface.annotations.add(new SciChart.TextAnnotation({
+      fontSize: 16,
+      textColor: "#FFFFFF77",
+      xCoordinateMode: SciChart.ECoordinateMode.Relative,
+      yCoordinateMode: SciChart.ECoordinateMode.Relative,
+      text: "Drag the Axis, Zoom or Pan the Chart",
+      x1: 0.5,
+      y1: 0.2,
+      horizontalAnchorPoint: SciChart.EHorizontalAnchorPoint.Center,
+      verticalAnchorPoint: SciChart.EVerticalAnchorPoint.Center,
+    }));
+  }
+
+  initSciChart();
+</script>
+</body>
+</html>
