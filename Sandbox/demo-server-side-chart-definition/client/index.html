@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Include SciChart.js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/scichart@2.0.0-beta.2084/_wasm/scichart.browser.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Chart from Server with SciChart.js</title>
+  </head>
+  <body>
+    <h1>Chart from Server with SciChart.js</h1>
+    <div>
+      <label for="symbol">Symbol:</label> <input type="text" id="symbol" value="BTCUSDT" /><br>
+      <label for="interval">Interval:</label> <select id="interval">
+          <option value="1m">1 Minute</option>
+          <option value="5m">5 Minute</option>
+          <option value="15m">15 Minute</option>
+          <option value="1h">1 Hour</option>
+          <option value="2h">2 Hour</option>
+          <option value="4h" selected>4 Hour</option>
+          <option value="1d">1 Day</option>
+          <option value="1w">1 Week</option>
+          <option value="1M">1 Month</option>
+        </select><br>
+      <input type="button" value="Load Chart" onclick="loadChart()">
+    </div>
+    <div id="scichart-root" style="width: 800px; height: 600px;"></div>
+    <script>
+      // In order to load data file from the CDN we need to set dataUrl
+      SciChart.SciChartSurface.configure({
+        dataUrl: "https://cdn.jsdelivr.net/npm/scichart@2.0.0-beta.2084/_wasm/scichart2d.data",
+        wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@2.0.0-beta.2084/_wasm/scichart2d.wasm"
+      });
+
+      let scs;
+
+      async function loadChart() {
+        // Do I need to do this?
+        if (scs) {
+          scs.delete();
+        }
+        const symbol = document.querySelector("#symbol").value;
+        const interval = document.querySelector("#interval").value;
+        // Fetch the definition from the server
+        const response = await fetch(`/chart/${symbol}/${interval}`);
+        if (!response.ok) {
+          const error = await response.text();
+          alert(error);
+        } else {
+          const definition = await response.json();
+          // Build the chart
+          const { sciChartSurface, wasmContext } = await SciChart.chartBuilder.build2DChart("scichart-root", definition);
+          scs = sciChartSurface;
+        }
+      }
+
+      loadChart();
+    </script>
+  </body>
+</html>
