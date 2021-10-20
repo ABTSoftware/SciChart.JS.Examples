@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Include SciChart.js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/scichart@2.0.0-beta.2084/_wasm/scichart.browser.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Chart from Server with SciChart.js</title>
+  </head>
+  <body>
+    <h1>Chart from Server with SciChart.js</h1>
+    <input type="button" onClick="loadChart()" value="Reload">
+    <input type="button" onClick="deleteChart()" value="Delete">
+    <div id="scichart-root" style="width: 800px; height: 600px;"></div>
+    <script>
+      // In order to load data file from the CDN we need to set dataUrl
+      SciChart.SciChartSurface.configure({
+        dataUrl: "https://cdn.jsdelivr.net/npm/scichart@2.0.0-beta.2084/_wasm/scichart2d.data",
+        wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@2.0.0-beta.2084/_wasm/scichart2d.wasm"
+      });
+
+      let scs;
+      
+      let count = 0;
+      let times = 0;
+
+      async function deleteChart() {
+        if (scs) {
+          console.log("delete");
+          scs.delete();
+          scs = undefined;
+        } else {
+          console.log("noop");
+        }
+        console.log(await performance.measureUserAgentSpecificMemory().then(m => m.bytes / 1000000));
+      }
+
+      async function loadChart() {      
+        // Fetch the definition from the server
+        const definition = await fetch("/chart/BTCUSDT").then(response => response.json());
+        if (definition) {
+          // Build the chart
+          const { sciChartSurface, wasmContext } = await SciChart.chartBuilder.build2DChart("scichart-root", definition);
+          scs = sciChartSurface;
+        }
+        count ++;
+        console.log(count);
+        console.log(await performance.measureUserAgentSpecificMemory().then(m => m.bytes / 1000000));
+        // if (count === 1 && times === 0) {
+        //  console.log(await performance.measureUserAgentSpecificMemory());
+        // }
+        // count ++;
+        // if (count < 50) {
+        //   setTimeout(loadChart, 100);
+        // } else {
+        //   console.log(await performance.measureUserAgentSpecificMemory());
+        //   if (times < 5) {
+        //     times++;
+        //     count = 0;
+        //     setTimeout(loadChart, 100);
+        //   }
+        // }
+      }
+
+      // async function updateSeries() {
+      //   const dataSeries = new SciChart.OhlcDataSeries(scs.webAssemblyContext2D);
+      //   dataSeries.append(new Date().getTime() / 1000, 100, 200, 50, 150);
+      //   dataSeries.append(new Date().getTime() / 1000 + 60, 100, 200, 50, 150);
+      //   //scs.renderableSeries.get(0).dataSeries.delete();
+      //   scs.renderableSeries.get(0).dataSeries = dataSeries;
+      //   console.log(await performance.measureUserAgentSpecificMemory().then(m => m.bytes / 1000000));
+      // }
+
+      loadChart();
+    </script>
+  </body>
+</html>

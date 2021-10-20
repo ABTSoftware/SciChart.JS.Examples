@@ -125,14 +125,13 @@ Before the closing </body> tag add the following
     if (definition) {
       // Build the chart
       const { sciChartSurface, wasmContext } = await SciChart.chartBuilder.build2DChart("scichart-root", definition);
-      scs = sciChartSurface;
     }
   }
 
   loadChart();
 </script>
 ```
-That's it!  Refresh the page and you should see a chart with a simple line.  Now let's create a more interesting chart.  Because we are using Typescript and we have said that definition is an ISciChart2DDefinition, we can use intelliense to find out everything that is possible in this definition.  Feel free to experiment.
+That's it!  Refresh the page and you should see a chart with a simple line.  Now let's create a more interesting chart.  Because we are using Typescript and we have said that definition is an ISciChart2DDefinition, we can use intellisense to find out everything that is possible in this definition.  Feel free to experiment.
 
 # Realistic Chart
 To make this more realistic, lets bring in some crypto data from binance.  Start by

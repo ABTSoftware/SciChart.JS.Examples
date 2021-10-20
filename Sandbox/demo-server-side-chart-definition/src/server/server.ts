@@ -10,32 +10,32 @@ import { EChart2DModifierType } from "scichart/types/ChartModifierType";
 const app = express();
 const port = 3000;
 
-app.use(express.static("client"));
+app.use(express.static("build", { 
+  setHeaders: (res) => {
+    res.setHeader("Cross-Origin-Embedder-Policy","require-corp");
+    res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  }
+}));
 
-app.get("/chart", async (req, res) => {
-  const definition: ISciChart2DDefinition = {
-    series: {
-      type: ESeriesType.LineSeries,
-      options: {  },
-      xyData: { xValues: [1, 2, 3], yValues: [1, 3, 2] },
-    },
-  };
-  res.send(definition);
-});
+// app.get("/chart", async (req, res) => {
+//   const definition: ISciChart2DDefinition = {
+//     series: {
+//       type: ESeriesType.LineSeries,
+//       options: {  },
+//       xyData: { xValues: [1, 2, 3], yValues: [1, 3, 2] },
+//     },
+//   };
+//   res.send(definition);
+// });
 
 const binance = Binance();
 
-app.get("/chart/:symbol/:interval", async (req, res) => {
-  // get the requested symbol
+let candles: CandleChartResult[];
+
+app.get("/chart/:symbol", async (req, res) => {
   const symbol = req.params.symbol;
-  const interval = req.params.interval as CandleChartInterval_LT; 
-  let candles: CandleChartResult[] = []; 
-  // Fetch the data, with some error handling
-  try {
-     candles = await binance.candles({ symbol, interval });
-  } catch (err) {
-    res.status(400).send("Invalid Symbol or interval");
-    return;
+  if (!candles) {
+    candles = await binance.candles({ symbol, interval: "4h" });
   }
   const xValues: number[] = [];
   const openValues: number[] = [];
@@ -69,6 +69,8 @@ app.get("/chart/:symbol/:interval", async (req, res) => {
       { type: EChart2DModifierType.Cursor }
     ]
   };
+  res.setHeader("Cross-Origin-Embedder-Policy","require-corp");
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
   res.send(definition);
 });
 

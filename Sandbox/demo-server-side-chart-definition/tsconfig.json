@@ -7,9 +7,10 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "jsx": "react"
   },
   "include": [
-      "server/*.ts"
+      "src/**/*"
   ],
   "exclude": [
       "node_modules"
