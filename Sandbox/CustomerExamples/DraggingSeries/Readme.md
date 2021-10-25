@@ -13,7 +13,7 @@ Then visit https://localhost:8080 in your web browser!
 
 ## What it does
 
-This example adds cusotm DragSeriesModifier to the chart.
+This example adds custom DragSeriesModifier to the chart.
 
 ![Dragging Series Demo in SciChart.js](img/dragging_series.png)
 
