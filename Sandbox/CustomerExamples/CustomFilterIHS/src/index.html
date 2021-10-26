@@ -1,0 +1,25 @@
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>IHS Custom Filter demo</title>
+    <script async type="text/javascript" src="bundle.js"></script>
+    <style>
+      body {
+        font-family: "Arial";
+      }
+    </style>
+  </head>
+  <body>
+    <h1>IHS Custom Filter demo</h1>
+    <div>The Inverse Hyperbolic Sine is an approximation to the natural logarithm, which is well behaved at zero.  
+      It is often used in economics for analysing data based on nominal wealth, which can be very large, but also zero or even negative.  
+      See <a href="https://www.themsp.org/2017/10/01/visualizing-racial-wealth-gaps/">https://www.themsp.org/2017/10/01/visualizing-racial-wealth-gaps/</a> for an example.</div>
+    <div>Here we use a simple custom filter to apply the IHS transformation.</div>
+    <h2>Original Data</h2>
+    <!-- the Div where the SciChartSurface will reside -->
+    <div id="scichart-root" style="width: 600px; height: 400px"></div>
+    <h2>Transformed Data</h2>
+    <div id="scichart-root2" style="width: 600px; height: 400px"></div>
+  </body>
+</html>

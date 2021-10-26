@@ -38,6 +38,11 @@ const documentationLinks: TDocumentationLink[] = [
         href: ExampleStrings.urlBuilderApiDocumentation,
         title: ExampleStrings.urlTitleBuilderApiDocumentation,
         linkTitle: "JavaScript Builder API Documentation"
+    },
+    {
+        href: ExampleStrings.urlDefinitionDocumentation,
+        title: ExampleStrings.urlTitleDefinitionDocumentation,
+        linkTitle: "ISciChart2DDefinition Documentation"
     }
 ];
 
