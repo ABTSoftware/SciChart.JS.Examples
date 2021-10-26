@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "scichart": "^2.0.0-beta.2100"
+    "scichart": "2.0.2115"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^9.0.1",
