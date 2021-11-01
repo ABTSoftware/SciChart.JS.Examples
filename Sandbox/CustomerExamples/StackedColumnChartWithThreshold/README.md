@@ -11,4 +11,4 @@ Open this folder in terminal and run the following commands:
 
 Then visit https://localhost:8080 in your web browser!
 
-![Stacked Column Chart with Threshold Demo](img/chart-with-threshold.png)
+![Stacked Column Chart with Threshold Demo](img/chart-with-threshold2.png)
