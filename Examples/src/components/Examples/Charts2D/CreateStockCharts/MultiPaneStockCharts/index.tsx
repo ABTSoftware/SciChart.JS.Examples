@@ -9,7 +9,7 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
 import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { calcAverageForArray, calcAverageForDoubleVector } from "scichart/utils/calcAverage";
+import { calcAverageForArray } from "scichart/utils/calcAverage";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
@@ -35,6 +35,7 @@ import classes from "../../../../Examples/Examples.module.scss";
 import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
 import { XyMovingAverageFilter } from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
 import { EDataSeriesField } from "scichart/Charting/Model/Filters/XyFilterBase";
+import { ELabelAlignment } from "scichart/types/LabelAlignment";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
@@ -175,7 +176,8 @@ const drawExample = async () => {
             maxAutoTicks: 4,
             autoRange: EAutoRange.Always,
             growBy: new NumberRange(0.1, 0.1),
-            axisAlignment
+            axisAlignment,
+            labelStyle: { alignment: ELabelAlignment.Right }
         });
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
@@ -242,7 +244,8 @@ const drawExample = async () => {
             maxAutoTicks: 4,
             autoRange: EAutoRange.Always,
             growBy: new NumberRange(0.1, 0.1),
-            axisAlignment
+            axisAlignment,
+            labelStyle: { alignment: ELabelAlignment.Right }
         });
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);

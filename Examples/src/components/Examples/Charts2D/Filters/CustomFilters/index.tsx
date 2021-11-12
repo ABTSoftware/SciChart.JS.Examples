@@ -1,34 +1,20 @@
-import { ButtonGroup } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import * as React from "react";
 import { SciChartSurface } from "scichart";
-import { CursorModifier } from "scichart/Charting/ChartModifiers/CursorModifier";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { BaseDataSeries } from "scichart/Charting/Model/BaseDataSeries";
-import { SeriesInfo } from "scichart/Charting/Model/ChartData/SeriesInfo";
-import { XySeriesInfo } from "scichart/Charting/Model/ChartData/XySeriesInfo";
 import { XyCustomFilter } from "scichart/Charting/Model/Filters/XyCustomFilter";
 import { XyFilterBase } from "scichart/Charting/Model/Filters/XyFilterBase";
-import { XyScaleOffsetFilter } from "scichart/Charting/Model/Filters/XyScaleOffsetFilter";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
-import { LogarithmicAxis } from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
 import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAutoRange } from "scichart/types/AutoRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { formatNumber } from "scichart/utils/number";
-import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import classes from "../../../Examples.module.scss";
+import { ELabelAlignment } from "scichart/types/LabelAlignment";
 
 export const divElementId = "chart";
 let timerId: NodeJS.Timeout;
@@ -97,7 +83,7 @@ const getData = (n: number) => {
     const yValues: number[] = [];
     for (let i = 0; i < n; i++) {
         xValues.push(lastX);
-        yValues.push(50 + lastX/1000);
+        yValues.push(50 + lastX / 1000);
         lastX++;
     }
     return { xValues, yValues };
@@ -112,23 +98,27 @@ export const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     sciChartSurface.applyTheme(new SciChartJSLightTheme());
     const rawXAxis = new NumericAxis(wasmContext, { id: "rawX", isVisible: false, autoRange: EAutoRange.Always });
-    const aggXAxis = new NumericAxis(wasmContext, { 
-        id: "aggX", 
+    const aggXAxis = new NumericAxis(wasmContext, {
+        id: "aggX",
         axisTitle: "Value",
-        autoRange: EAutoRange.Always 
+        autoRange: EAutoRange.Always,
+        labelPrecision: 0
     });
     sciChartSurface.xAxes.add(rawXAxis, aggXAxis);
 
     const rawYAxis = new NumericAxis(wasmContext, {
         autoRange: EAutoRange.Always,
-        id: "rawY"
+        id: "rawY",
+        labelPrecision: 0,
+        labelStyle: { alignment: ELabelAlignment.Right }
     });
     const aggYAxis = new NumericAxis(wasmContext, {
         axisTitle: "Frequency",
         id: "aggY",
         autoRange: EAutoRange.Always,
         axisAlignment: EAxisAlignment.Left,
-        growBy: new NumberRange(0, 0.5)
+        growBy: new NumberRange(0, 0.5),
+        labelPrecision: 0
     });
     sciChartSurface.yAxes.add(aggYAxis, rawYAxis);
 
@@ -144,7 +134,7 @@ export const drawExample = async () => {
         }
         return rand / 6;
     };
-    gaussFilter.filterFunction = ((i, y) => y * gaussianRand());
+    gaussFilter.filterFunction = (i, y) => y * gaussianRand();
 
     // Create a scatter series to show the randomised data
     const pointSeries = new XyScatterRenderableSeries(wasmContext, {
