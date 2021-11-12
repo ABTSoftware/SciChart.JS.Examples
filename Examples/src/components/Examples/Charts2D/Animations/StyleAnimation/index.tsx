@@ -35,7 +35,7 @@ const drawExample = async () => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJSLightTheme()
     });
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Top }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Top, labelPrecision: 0 }));
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Right, growBy: new NumberRange(0.4, 0.4) })
     );

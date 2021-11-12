@@ -11,6 +11,7 @@ import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragMod
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
+import { ELabelAlignment } from "scichart/types/LabelAlignment";
 
 const divElementId = "chart1";
 
@@ -31,10 +32,11 @@ const drawExample = async () => {
         const xAxis = new NumericAxis(wasmContext);
         xAxis.axisBorder = {
             borderTop: 1,
-            color: "#EEEEEE",
+            color: "#EEEEEE"
         };
         xAxis.axisAlignment = EAxisAlignment.Bottom;
         xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
+        xAxis.labelProvider.precision = 0;
         sciChartSurface.xAxes.add(xAxis);
     };
     setXAxis1();
@@ -47,9 +49,10 @@ const drawExample = async () => {
         yAxis.labelStyle = labelStyle1;
         yAxis.axisBorder = {
             borderRight: 1,
-            color: "#228B22",
+            color: "#228B22"
         };
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
+        yAxis.labelProvider.precision = 0;
         sciChartSurface.yAxes.add(yAxis);
     };
     setYAxis1();
@@ -78,7 +81,8 @@ const drawExample = async () => {
         fontFamily: "Courier New"
     };
     const labelStyle2 = {
-        color: "#368BC1"
+        color: "#368BC1",
+        alignment: ELabelAlignment.Right
     };
 
     const setYAxis2 = () => {
@@ -93,6 +97,7 @@ const drawExample = async () => {
             color: "#368BC1"
         };
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
+        yAxis.labelProvider.precision = 2;
         sciChartSurface.yAxes.add(yAxis);
     };
     setYAxis2();

@@ -11,7 +11,7 @@ import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifie
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
-import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
@@ -21,8 +21,8 @@ const drawExample = async () => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
 
     // Create an xAxis, yAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0, 0.1) }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelPrecision: 0 }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0, 0.1), labelPrecision: 0 }));
 
     // Create the three Stacked Mountain series
     const rendSeries1 = new StackedMountainRenderableSeries(wasmContext, {
@@ -56,10 +56,7 @@ const drawExample = async () => {
     sciChartSurface.renderableSeries.add(stackedMountainCollection);
 
     // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(
-        new ZoomExtentsModifier(),
-        new ZoomPanModifier(),
-        new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
     // Add a legend to the chart to show the series
     sciChartSurface.chartModifiers.add(

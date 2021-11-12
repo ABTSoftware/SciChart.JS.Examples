@@ -11,6 +11,7 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { EColor } from "scichart/types/Color";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
+import { ELabelAlignment } from "scichart/types/LabelAlignment";
 
 export const divElementId = "chart";
 
@@ -25,6 +26,7 @@ export const drawExample = async () => {
         xAxis.axisAlignment = EAxisAlignment.Top;
         xAxis.axisTitle = "Drag the X-Axis to Pan";
         xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
+        xAxis.labelProvider.precision = 0;
         sciChartSurface.xAxes.add(xAxis);
     };
 
@@ -34,6 +36,7 @@ export const drawExample = async () => {
         xAxis.axisAlignment = EAxisAlignment.Bottom;
         xAxis.axisTitle = "Drag the X-Axis to Pan";
         xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
+        xAxis.labelProvider.precision = 0;
         sciChartSurface.xAxes.add(xAxis);
     };
 
@@ -42,6 +45,7 @@ export const drawExample = async () => {
         yAxis.axisAlignment = EAxisAlignment.Left;
         yAxis.axisTitle = "Drag the Y-Axis to Scale";
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
+        yAxis.labelProvider.precision = 0;
         sciChartSurface.yAxes.add(yAxis);
     };
 
@@ -51,6 +55,8 @@ export const drawExample = async () => {
         yAxis.axisAlignment = EAxisAlignment.Right;
         yAxis.axisTitle = "Drag the Y-Axis to Scale";
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
+        yAxis.labelProvider.precision = 0;
+        yAxis.labelStyle = { alignment: ELabelAlignment.Right };
         sciChartSurface.yAxes.add(yAxis);
     };
 
