@@ -5,6 +5,7 @@ This example showcases:
 * How to add extra space for AxisMarkerAnnotation
 * How to load an image asynchronously
 * How to listen to on hover event and change the cursor (uses `MouseOverAnnotationModifier`)
+* How to change the cursor when hover over axes (uses `MouseOverAxisModifier`)
 * How to listen to isSelected event (uses `CustomBoxAnnotation`)
 
 ## Running the Example
