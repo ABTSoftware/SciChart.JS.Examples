@@ -9,6 +9,7 @@ import { AxisMarkerAnnotation } from 'scichart/Charting/Visuals/Annotations/Axis
 import { MouseOverAnnotationModifier } from './MouseOverAnnotationModifier';
 import { CustomBoxAnnotation } from './CustomBoxAnnotation';
 import { createImageAsync } from 'scichart/utils/imageUtil';
+import { MouseOverAxisModifier } from './MouseOverAxisModifier';
 
 async function initSciChart() {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root');
@@ -29,7 +30,11 @@ async function initSciChart() {
 
     sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier(), new MouseWheelZoomModifier());
 
+    // This adds modifier to change cursor when hover over annotations
     sciChartSurface.chartModifiers.add(new MouseOverAnnotationModifier());
+
+    // This adds modifier to change cursor when hover over axes
+    sciChartSurface.chartModifiers.add(new MouseOverAxisModifier());
 
     const axisMarkerAnnotation = new AxisMarkerAnnotation({
         color: '#03fc3d',
