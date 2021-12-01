@@ -32,14 +32,24 @@ export default {
       const { sciChartSurface, wasmContext } =
         await SciChart.SciChartSurface.create("scichart-root");
 
+      const {
+        NumericAxis,
+        XyDataSeries,
+        ZoomExtentsModifier,
+        ZoomPanModifier,
+        MouseWheelZoomModifier,
+        RolloverModifier,
+        FastLineRenderableSeries,
+      } = SciChart;
+      
       // Create an X,Y Axis and add to the chart
-      const xAxis = new SciChart.NumericAxis(wasmContext);
-      const yAxis = new SciChart.NumericAxis(wasmContext);
+      const xAxis = new NumericAxis(wasmContext);
+      const yAxis = new NumericAxis(wasmContext);
       sciChartSurface.xAxes.add(xAxis);
       sciChartSurface.yAxes.add(yAxis);
 
       // Declare a DataSeries
-      const xyDataSeries = new SciChart.XyDataSeries(wasmContext);
+      const xyDataSeries = new XyDataSeries(wasmContext);
 
       function getRandonInt(max) {
         return Math.floor(Math.random() * max);
@@ -56,14 +66,14 @@ export default {
 
       // Add Chart Modifiers
       sciChartSurface.chartModifiers.add(
-        new SciChart.ZoomExtentsModifier(),
-        new SciChart.ZoomPanModifier(),
-        new SciChart.MouseWheelZoomModifier(),
-        new SciChart.RolloverModifier({ rolloverLineStroke: "rgba(255,0,0,1)" })
+        new ZoomExtentsModifier(),
+        new ZoomPanModifier(),
+        new MouseWheelZoomModifier(),
+        new RolloverModifier({ rolloverLineStroke: "rgba(255,0,0,1)" })
       );
 
       // Add a line series to the SciChartSurface
-      const lineSeries = new SciChart.FastLineRenderableSeries(wasmContext);
+      const lineSeries = new FastLineRenderableSeries(wasmContext);
       lineSeries.strokeThickness = 3;
       lineSeries.stroke = "rgba(255,0,0,1)";
       lineSeries.dataSeries = xyDataSeries;
