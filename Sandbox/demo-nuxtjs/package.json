@@ -1,0 +1,20 @@
+{
+  "name": "demo-nuxt-scichart",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "buildsci": "webpack",
+    "startsci": "webpack-dev-server"
+  },
+  "dependencies": {
+    "core-js": "^3.15.1",
+    "nuxt": "^2.15.7",
+    "scichart": "2.0.2146"
+  },
+  "devDependencies": {
+  }
+}
