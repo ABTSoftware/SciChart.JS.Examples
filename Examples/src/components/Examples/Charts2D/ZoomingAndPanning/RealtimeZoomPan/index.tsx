@@ -23,7 +23,7 @@ export const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
     // Create an X,Y Axis and add to the chart
-    const xAxis = new NumericAxis(wasmContext);
+    const xAxis = new NumericAxis(wasmContext, { labelPrecision: 0 });
     const yAxis = new NumericAxis(wasmContext);
 
     sciChartSurface.xAxes.add(xAxis);

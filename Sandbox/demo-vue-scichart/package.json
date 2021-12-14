@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "scichart": "^2.0.0-beta.2084",
+    "scichart": "2.0.2115",
     "vue": "^3.0.0"
   },
   "devDependencies": {

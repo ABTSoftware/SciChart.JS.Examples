@@ -1,0 +1,23 @@
+{
+  "name": "logarithmic-axis",
+  "version": "1.0.0",
+  "description": "Logarithmic axis demo",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "scichart": "^2.0.0-beta.2084"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.0.3",
+    "prettier": "^2.3.2",
+    "ts-loader": "^6.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

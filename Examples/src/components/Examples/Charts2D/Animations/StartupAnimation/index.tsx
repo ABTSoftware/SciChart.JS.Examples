@@ -17,6 +17,8 @@ import { EAnimationType } from "scichart/types/AnimationType";
 import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
 import { FadeAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
+import { ELabelAlignment } from "scichart/types/LabelAlignment";
+import { EAutoRange } from "scichart/types/AutoRange";
 
 const divElementId = "chart";
 
@@ -35,8 +37,15 @@ const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: new SciChartJSLightTheme()
     });
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelPrecision: 0 }));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            labelPrecision: 0,
+            labelStyle: { alignment: ELabelAlignment.Right },
+            autoRange: EAutoRange.Never,
+            visibleRange: new NumberRange(0, 110)
+        })
+    );
 
     // Bubble Series
     const bubbleSeries = new FastBubbleRenderableSeries(wasmContext, {
@@ -80,7 +89,6 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    sciChartSurface.zoomExtents();
     return { wasmContext, sciChartSurface };
 };
 

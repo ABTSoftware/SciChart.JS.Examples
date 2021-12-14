@@ -28,7 +28,7 @@ const drawExample = async () => {
     xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
     sciChartSurface.xAxes.add(xAxis);
 
-    const yAxis = new NumericAxis(wasmContext);
+    const yAxis = new NumericAxis(wasmContext, { labelPrecision: 0 });
     sciChartSurface.yAxes.add(yAxis);
     yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
 

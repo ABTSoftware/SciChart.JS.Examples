@@ -1,17 +1,17 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {StackedColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/StackedColumnRenderableSeries";
-import {StackedColumnCollection} from "scichart/Charting/Visuals/RenderableSeries/StackedColumnCollection";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ELegendOrientation, ELegendPlacement} from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
-import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
-import {ENumericFormat} from "scichart/types/NumericFormat";
-import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import { SciChartSurface } from "scichart";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { StackedColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnRenderableSeries";
+import { StackedColumnCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnCollection";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
+import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
+import { ENumericFormat } from "scichart/types/NumericFormat";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
@@ -21,12 +21,24 @@ const drawExample = async () => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
 
     // Create XAxis, YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        labelFormat: ENumericFormat.Decimal,
-    }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        growBy: new NumberRange(0, 0.1)
-    }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            labelFormat: ENumericFormat.Decimal,
+            labelPrecision: 0,
+            autoTicks: false,
+            majorDelta: 1,
+            minorDelta: 1,
+            drawMajorGridLines: false,
+            drawMinorGridLines: false,
+            drawMajorBands: false
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0, 0.1),
+            labelPrecision: 0
+        })
+    );
 
     // Data for the example
     const xValues = [1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003];
@@ -44,7 +56,7 @@ const drawExample = async () => {
         stroke: "#000",
         strokeThickness: 1,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        stackedGroupId: "StackedGroupId"
     });
 
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
@@ -53,7 +65,7 @@ const drawExample = async () => {
         stroke: "#000",
         strokeThickness: 1,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        stackedGroupId: "StackedGroupId"
     });
 
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
@@ -62,7 +74,7 @@ const drawExample = async () => {
         stroke: "#000",
         strokeThickness: 1,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        stackedGroupId: "StackedGroupId"
     });
 
     const rendSeries4 = new StackedColumnRenderableSeries(wasmContext, {
@@ -71,7 +83,7 @@ const drawExample = async () => {
         stroke: "#000",
         strokeThickness: 1,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        stackedGroupId: "StackedGroupId"
     });
 
     const rendSeries5 = new StackedColumnRenderableSeries(wasmContext, {
@@ -80,7 +92,7 @@ const drawExample = async () => {
         stroke: "#000",
         strokeThickness: 1,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId",
+        stackedGroupId: "StackedGroupId"
     });
 
     // To add the series to the chart, put them in a StackedColumnCollection
@@ -93,10 +105,7 @@ const drawExample = async () => {
     sciChartSurface.renderableSeries.add(stackedColumnCollection);
 
     // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(
-        new ZoomExtentsModifier(),
-        new ZoomPanModifier(),
-        new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
     // Add a legend to the chart to show the series
     sciChartSurface.chartModifiers.add(

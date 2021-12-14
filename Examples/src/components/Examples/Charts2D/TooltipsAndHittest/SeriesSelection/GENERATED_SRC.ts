@@ -9,6 +9,7 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import classes from "../../../../Examples/Examples.module.scss";
+import { ELabelAlignment } from "scichart/types/LabelAlignment";
 
 const divElementId = "chart";
 
@@ -20,14 +21,17 @@ export const drawExample = async () => {
         new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.05, 0.05),
             id: EAxisAlignment.Left.toString(),
-            axisAlignment: EAxisAlignment.Left
+            axisAlignment: EAxisAlignment.Left,
+            labelPrecision: 0
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.05, 0.05),
             id: EAxisAlignment.Right.toString(),
-            axisAlignment: EAxisAlignment.Right
+            axisAlignment: EAxisAlignment.Right,
+            labelPrecision: 0,
+            labelStyle: { alignment: ELabelAlignment.Right }
         })
     );
     sciChartSurface.applyTheme(new SciChartJSLightTheme());
@@ -90,7 +94,6 @@ function generateData(index: number, alignment: EAxisAlignment, pointCount: numb
 let scs: SciChartSurface;
 
 export default function SeriesSelection() {
-
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
