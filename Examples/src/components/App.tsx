@@ -16,7 +16,7 @@ import DrawerContent from "./DrawerContent/DrawerContent";
 import AppFooter from "./AppFooter/AppFooter";
 import { EXAMPLES_PAGES } from "./AppRouter/examplePages";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-
+import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";
 import classes from "./App.module.scss";
 import "./index.scss";
 import Gallery from "./Gallery/Gallery";
@@ -72,6 +72,7 @@ export default function App() {
             .then(r => r.text())
             .then(key => SciChartSurface.setRuntimeLicenseKey(key));
 
+        SciChartDefaults.useSharedCache = true;
         if (currentExample) {
             const parentMenuIds = getParentMenuIds(currentExample.id);
             const updatedOpenedItems: Record<string, boolean> = { ...openedMenuItems };
