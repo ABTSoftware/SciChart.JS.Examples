@@ -1,21 +1,81 @@
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>Updating the legend demo</title>
-    <script async type="text/javascript" src="bundle.js"></script>
-    <style>
-      body {
-        font-family: "Arial";
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Updating the Legend demo</h1>
-    <p>The white legend checkbox is clicked programmatically after 2 seconds and the white series is hidden.</p>
-    <p>After 2 seconds it is clicked again. There are console log messages for each event.</p>
-    <!-- the Div where the SciChartSurface will reside -->
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <title>Updating the legend demo</title>
+  <script async type="text/javascript" src="bundle.js"></script>
+  <style>
+    body {
+      font-family: "Arial";
+    }
+
+    .container {
+      display: flex;
+    }
+
+    #place-for-legend {
+      background-color: #1d1d1f;
+    }
+
+    #place-for-legend .scichart__legend>div {
+      background: none !important;
+    }
+
+    #place-for-legend .scichart__legend-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.112);
+      padding-bottom: 10px;
+      padding-top: 10px;
+    }
+
+    /* Marker of each legend item overwritting */
+    #place-for-legend .scichart__legend-item label:nth-of-type(1) {
+      height: 2px !important;
+      width: 20px !important;
+      margin: 0 10px !important;
+      position: relative;
+      border-radius: 2px;
+    }
+
+    /* Text of each legend item overwritting */
+    #place-for-legend .scichart__legend-item label:nth-of-type(2) {
+      font-size: .85rem;
+    }
+
+    /* Totally specific displaying for first item */
+    #place-for-legend .scichart__legend-item:nth-of-type(1) label:nth-of-type(1):after {
+      content: '';
+      background-color: inherit;
+      width: 6px;
+      height: 6px;
+      position: absolute;
+      border-radius: 50%;
+      left: calc(50% - 3px);
+      top: calc(50% - 3px);
+    }
+
+    /* Totally specific displaying for second item */
+    #place-for-legend .scichart__legend-item:nth-of-type(2) label:nth-of-type(1):after {
+      content: '';
+      background-color: inherit;
+      width: 6px;
+      height: 6px;
+      position: absolute;
+      left: calc(50% - 3px);
+      top: calc(50% - 3px);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Updating the Legend demo</h1>
+  <p>The white legend checkbox is clicked programmatically after 2 seconds and the white series is hidden.</p>
+  <p>After 2 seconds it is clicked again. There are console log messages for each event.</p>
+  <!-- the Div where the SciChartSurface will reside -->
+  <div class="container">
     <div id="scichart-root" style="width: 800px; height: 600px"></div>
-    <div id="place-for-legend" style="margin-top: 10px; width: 300px"></div>
-  </body>
+    <div id="place-for-legend"></div>
+  </div>
+</body>
+
 </html>

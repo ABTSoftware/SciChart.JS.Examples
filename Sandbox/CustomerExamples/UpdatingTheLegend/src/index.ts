@@ -56,8 +56,8 @@ async function initSciChart() {
 
     sciChartSurface.renderableSeries.add(lineSeries1, lineSeries2);
     // To place the Legend outside of the canvas uncomment this line
-    // sciChartSurface.chartModifiers.add(new LegendModifier({ showCheckboxes: true, placementDivId: "place-for-legend" }));
-    sciChartSurface.chartModifiers.add(new LegendModifier({ showCheckboxes: true }));
+    sciChartSurface.chartModifiers.add(new LegendModifier({ showCheckboxes: true, placementDivId: "place-for-legend" }));
+    // sciChartSurface.chartModifiers.add(new LegendModifier({ showCheckboxes: true }));
 
     setTimeout(() => {
         console.log('hide the white series');
