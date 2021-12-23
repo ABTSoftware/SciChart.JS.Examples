@@ -56,7 +56,7 @@ async function initSciChart() {
     });
 
     sciChartSurface.renderableSeries.add(lineSeries1, lineSeries2);
-    // To place the Legend outside of the canvas uncomment this line
+    // Pass placementDivId to place the legend outside the chart
     const legendModifier = new LegendModifier({ showCheckboxes: true, placementDivId: "place-for-legend" });
 
     legendModifier.sciChartLegend.getLegendItemHTML = (
