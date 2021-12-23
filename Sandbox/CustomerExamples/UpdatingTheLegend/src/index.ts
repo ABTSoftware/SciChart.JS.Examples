@@ -5,6 +5,7 @@ import { FastLineRenderableSeries } from 'scichart/Charting/Visuals/RenderableSe
 import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
 import { NumberRange } from 'scichart/Core/NumberRange';
 import { LegendModifier } from 'scichart/Charting/ChartModifiers/LegendModifier';
+import { ELegendOrientation, TLegendItem } from 'scichart/Charting/Visuals/Legend/SciChartLegendBase';
 
 async function initSciChart() {
     // LICENSING //
@@ -56,7 +57,40 @@ async function initSciChart() {
 
     sciChartSurface.renderableSeries.add(lineSeries1, lineSeries2);
     // To place the Legend outside of the canvas uncomment this line
-    sciChartSurface.chartModifiers.add(new LegendModifier({ showCheckboxes: true, placementDivId: "place-for-legend" }));
+    const legendModifier = new LegendModifier({ showCheckboxes: true, placementDivId: "place-for-legend" });
+
+    legendModifier.sciChartLegend.getLegendItemHTML = (
+        orientation: ELegendOrientation,
+        showCheckboxes: boolean,
+        showSeriesMarkers: boolean,
+        item: TLegendItem
+    ): string => {
+        sciChartSurface.renderableSeries.getById(item.id);
+        const display = orientation === ELegendOrientation.Vertical ? "flex" : "inline-flex";
+        let str = `<span class="scichart__legend-item" style="display: ${display}; align-items: center; margin-right: 4px; white-space: nowrap;">`;
+        if (showCheckboxes) {
+            const checked = item.checked ? "checked" : "";
+            str += `<input ${checked} type="checkbox" id="${item.id}">`;
+        }
+        if (showSeriesMarkers) {
+            if (item.gradient) {
+                let gradientStr = "";
+                item.gradient.gradientStops.forEach(s => {
+                    gradientStr += `,${s.color}`;
+                });
+                str += `<label for="${item.id}" style="background-image: linear-gradient(to right${gradientStr}); margin: 4px; width: 30px; height: 13px;"></label>`;
+            } else {
+                str += `<label for="${item.id}" style="background-color: ${item.color}; margin: 4px; width: 40px !important; height: 2px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="${item.color}" style="width: 12px; height: 12px;position: absolute;left: 50%;top: calc(50% - 9px);transform: translate(-50%, -50%);"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                </label>`;
+            }
+        }
+        str += `<label for="${item.id}" style="margin-left: 4px;">${item.name}</label>`;
+        str += `</span>`;
+        return str;
+    }
+    
+    sciChartSurface.chartModifiers.add(legendModifier);
     // sciChartSurface.chartModifiers.add(new LegendModifier({ showCheckboxes: true }));
 
     setTimeout(() => {
