@@ -52,3 +52,7 @@ We extend the class like this:
 With placementDivId legend can be attached into a specific element in the DOM and then customizable unically by id with CSS.
 
 ![Customization of Legend with CSS in SciChart.js](img/legend-customization-css.png)
+
+Example of rewriting (getLegendItemHTML):
+
+![HTML Legend method overriding in SciChart.js](img/html-item.png)
