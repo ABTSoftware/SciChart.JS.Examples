@@ -1,0 +1,24 @@
+{
+  "name": "zoom-extends-to-original-scale",
+  "version": "1.0.0",
+  "description": "Zoom Extends to Original Scale Demo",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "scichart": "^2.0.2186"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^9.0.1",
+    "prettier": "^2.5.1",
+    "ts-loader": "^9.2.6",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.2"
+  }
+}
