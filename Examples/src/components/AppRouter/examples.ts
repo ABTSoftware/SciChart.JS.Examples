@@ -22,6 +22,7 @@ import RealtimeMountainChart from "../Examples/Charts2D/BasicChartTypes/RealTime
 import DataAnimation from "../Examples/Charts2D/Animations/DataAnimation";
 import StyleAnimation from "../Examples/Charts2D/Animations/StyleAnimation";
 import StartupAnimation from "../Examples/Charts2D/Animations/StartupAnimation";
+import GenericAnimations from "../Examples/Charts2D/Animations/GenericAnimation";
 
 import AnnotationsAreEasy from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy";
 import EditableAnnotaions from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations";
@@ -211,7 +212,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_Animations_DataAnimation,
             EXAMPLES_PAGES.chart2D_Animations_StyleAnimation,
-            EXAMPLES_PAGES.chart2D_Animations_StartupAnimation
+            EXAMPLES_PAGES.chart2D_Animations_StartupAnimation,
+            EXAMPLES_PAGES.chart2D_Animations_GenericAnimation
         ]
     }
 ];
@@ -269,7 +271,8 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_Animations_DataAnimation,
             EXAMPLES_PAGES.chart2D_Animations_StyleAnimation,
-            EXAMPLES_PAGES.chart2D_Animations_StartupAnimation
+            EXAMPLES_PAGES.chart2D_Animations_StartupAnimation,
+            EXAMPLES_PAGES.chart2D_Animations_GenericAnimation
         ]
     },
     {
@@ -368,6 +371,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return StyleAnimation;
         case EXAMPLES_PAGES.chart2D_Animations_StartupAnimation.id:
             return StartupAnimation;
+        case EXAMPLES_PAGES.chart2D_Animations_GenericAnimation.id:
+            return GenericAnimations;
         case EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.id:
             return BandSeriesChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_SplineBandChart.id:
