@@ -8,23 +8,6 @@ import { easing } from "scichart/Core/Animations/EasingFunctions";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 
-const getChartData = () => {
-    const xValues = [];
-    const yValues = [];
-    const y1Values = [];
-
-    for (let i = 0; i <= 1000; i++) {
-        const x = 0.1 * i;
-        xValues.push(x);
-        yValues.push(Math.sin(x * 0.09));
-    }
-    return {
-        xValues,
-        yValues,
-        y1Values
-    };
-};
-
 const buildFrom = (xAxis, yAxis) => ({
     minX: xAxis.visibleRange.min,
     maxX: xAxis.visibleRange.max,
@@ -40,7 +23,6 @@ const buildTo = (xAxis, yAxis) => ({
 });
 
 async function drawVisibleRangeAnimationsChart(divId) {
-    const { xValues, yValues, y1Values } = getChartData();
 
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId, {
         theme: new SciChartJSLightTheme()
@@ -73,16 +55,12 @@ async function drawVisibleRangeAnimationsChart(divId) {
         from: buildFrom(xAxis, yAxis),
         to: buildTo(xAxis, yAxis),
         duration: 3000,
-        delay: 6000,
         ease: easing.inSine,
         onAnimate: (from, to, progress) => {
             const xInterpolate = NumberRangeAnimator.interpolate(new NumberRange(from.minX, from.maxX), new NumberRange(to.minX, to.maxX), progress);
             const yInterpolate = NumberRangeAnimator.interpolate(new NumberRange(from.minY, from.maxY), new NumberRange(to.minY, to.maxY), progress);
-            xAxis.visibleRange.min = xInterpolate.min;
-            xAxis.visibleRange.max = xInterpolate.max;
-
-            yAxis.visibleRange.min = yInterpolate.min;
-            yAxis.visibleRange.max = yInterpolate.max;
+            xAxis.visibleRange = new NumberRange(xInterpolate.min, xInterpolate.max);
+            yAxis.visibleRange = new NumberRange(yInterpolate.min, yInterpolate.max);
         },
         onCompleted: () => {
             visibleRangeAnimation.delay = 0;

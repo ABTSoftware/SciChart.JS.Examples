@@ -4,15 +4,11 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
 import { GenericAnimation } from "scichart/Core/Animations/GenericAnimation";
 import { easing } from "scichart/Core/Animations/EasingFunctions";
-import { DoubleAnimator } from "scichart/Core/Animations/DoubleAnimator";
 import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
-import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
 
-async function drawAnnotationAnimationsChart(divId) {
+async function drawAnnotationAnimationsChart(divId: string) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId, {
         theme: new SciChartJSLightTheme()
     });
@@ -82,7 +78,7 @@ async function drawAnnotationAnimationsChart(divId) {
                 animation.to = { x1: SVG_STEPS[indexStep].x, y1: SVG_STEPS[indexStep].y };
                 animation.reset();
                 const countEl = document.getElementById("svgInfo").querySelector("span");
-                countEl.innerHTML = +countEl.innerHTML + 1;
+                countEl.innerHTML = (+countEl.innerHTML + 1).toString();
             }
         });
         sciChartSurface.addAnimation(animation);
@@ -117,25 +113,25 @@ async function drawAnnotationAnimationsChart(divId) {
                 animation.to = from;
                 animation.reset();
                 const countEl = document.getElementById("boxInfo").querySelector("span");
-                countEl.innerHTML = +countEl.innerHTML + 1;
+                countEl.innerHTML = (+countEl.innerHTML + 1).toString();
             }
         });
         sciChartSurface.addAnimation(animation);
     };
-    const updateSvgUI = (progress, x, y) => {
+    const updateSvgUI = (progress: number, x: number, y: number) => {
         document.getElementById("svgProgress").innerHTML = Math.round(progress * 100) + '%';
         document.getElementById("svgSpinner").style.width = Math.round(progress * 100) + '%';
-        document.getElementById("svgXCoord").innerHTML = 'X: ' + parseFloat(x).toFixed(2);
-        document.getElementById("svgYCoord").innerHTML = 'Y: ' + parseFloat(y).toFixed(2);
+        document.getElementById("svgXCoord").innerHTML = 'X: ' + x.toFixed(2);
+        document.getElementById("svgYCoord").innerHTML = 'Y: ' + y.toFixed(2);
     };
-    const updateBoxUI = (progress, x1, y1, x2, y2) => {
+    const updateBoxUI = (progress: number, x1: number, y1: number, x2: number, y2: number) => {
         document.getElementById("boxProgress").innerHTML = Math.round(progress * 100) + '%';
         document.getElementById("boxSpinner").style.width = Math.round(progress * 100) + '%';
-        document.getElementById("boxX1Coord").innerHTML = 'X1: ' + parseFloat(x1).toFixed(2);
-        document.getElementById("boxY1Coord").innerHTML = 'Y1: ' + parseFloat(y1).toFixed(2);
-        document.getElementById("boxX2Coord").innerHTML = 'X2: ' + parseFloat(x2).toFixed(2);
-        document.getElementById("boxY2Coord").innerHTML = 'Y2: ' + parseFloat(y2).toFixed(2);
-        
+        document.getElementById("boxX1Coord").innerHTML = 'X1: ' + x1.toFixed(2);
+        document.getElementById("boxY1Coord").innerHTML = 'Y1: ' + y1.toFixed(2);
+        document.getElementById("boxX2Coord").innerHTML = 'X2: ' + x2.toFixed(2);
+        document.getElementById("boxY2Coord").innerHTML = 'Y2: ' + y2.toFixed(2);
+
     }
 }
 
