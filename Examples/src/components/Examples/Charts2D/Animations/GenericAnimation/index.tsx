@@ -12,6 +12,7 @@ import { IAnnotation } from "scichart/Charting/Visuals/Annotations/IAnnotation";
 import { GenericAnimation } from "scichart/Core/Animations/GenericAnimation";
 import { easing } from "scichart/Core/Animations/EasingFunctions";
 import Button from "@material-ui/core/Button/Button";
+import { NumberRange } from "scichart/Core/NumberRange";
 
 const divElementId = "chart";
 
@@ -40,8 +41,8 @@ export const drawExample = async () => {
         theme: new SciChartJSLightTheme()
     });
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-1.0, 100.0) }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-2.0, 3.5) }));
 
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
@@ -72,8 +73,6 @@ export const drawExample = async () => {
         sciChartSurface.addAnimation(animationSinPoint);
         sciChartSurface.addAnimation(animationCosPoint);
     }
-
-    sciChartSurface.zoomExtents();
 
     return { sciChartSurface, animations: { animation, animationSinPoint, animationCosPoint }, startAnimation };
 };
