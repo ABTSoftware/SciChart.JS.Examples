@@ -3,9 +3,10 @@ import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
 import { GenericAnimation } from "scichart/Core/Animations/GenericAnimation";
+import { NumberRangeAnimator } from "scichart/Core/Animations/NumberRangeAnimator";
 import { easing } from "scichart/Core/Animations/EasingFunctions";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 
 const getChartData = () => {
     const xValues = [];
@@ -51,13 +52,22 @@ async function drawVisibleRangeAnimationsChart(divId) {
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis);
 
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-            strokeThickness: 4,
-            stroke: "#05445E"
-        })
-    );
+    
+    const columnSeries = new FastColumnRenderableSeries(wasmContext, {
+        fill: "rgba(176, 196, 222, 1)",
+        stroke: "#4682b4",
+        strokeThickness: 2,
+        dataPointWidth: 0.5,
+        opacity: 0.7
+    });
+    sciChartSurface.renderableSeries.add(columnSeries);
+
+    const dataSeries = new XyDataSeries(wasmContext);
+    for (let i = 0; i < 200; i++) {
+        dataSeries.append(i, 2 * Math.sin(i * 0.2));
+    }
+    columnSeries.dataSeries = dataSeries;
+
     // Setup animations
     const visibleRangeAnimation = new GenericAnimation({
         from: buildFrom(xAxis, yAxis),
@@ -66,10 +76,13 @@ async function drawVisibleRangeAnimationsChart(divId) {
         delay: 6000,
         ease: easing.inSine,
         onAnimate: (from, to, progress) => {
-            xAxis.visibleRange.min = from.minX + (to.minX - from.minX) * progress;
-            xAxis.visibleRange.max = from.maxX + (to.maxX - from.maxX) * progress;
-            yAxis.visibleRange.min = from.minY + (to.minY - from.minY) * progress;
-            yAxis.visibleRange.max = from.maxY + (to.maxY - from.maxY) * progress;
+            const xInterpolate = NumberRangeAnimator.interpolate(new NumberRange(from.minX, from.maxX), new NumberRange(to.minX, to.maxX), progress);
+            const yInterpolate = NumberRangeAnimator.interpolate(new NumberRange(from.minY, from.maxY), new NumberRange(to.minY, to.maxY), progress);
+            xAxis.visibleRange.min = xInterpolate.min;
+            xAxis.visibleRange.max = xInterpolate.max;
+
+            yAxis.visibleRange.min = yInterpolate.min;
+            yAxis.visibleRange.max = yInterpolate.max;
         },
         onCompleted: () => {
             visibleRangeAnimation.delay = 0;
