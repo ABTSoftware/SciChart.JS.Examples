@@ -62,11 +62,16 @@ async function drawDataPointAnimationsChart(divId) {
         duration: 1000,
         ease: easing.inOutSine,
         onAnimate: (from, to, progress) => {
+            const newXValues = [];
+            const newYValues = []
+
             from.xValues.forEach((value, index) => {
-                const x = interpolateNumber(value, to.xValues[index], progress);
-                const y = interpolateNumber(from.yValues[index], to.yValues[index], progress);
-                dataSeries.updateXy(index, x, y);
+                newXValues.push(interpolateNumber(value, to.xValues[index], progress));
+                newYValues.push(interpolateNumber(from.yValues[index], to.yValues[index], progress));
             });
+
+            dataSeries.clear();
+            dataSeries.appendRange(newXValues, newYValues);
         },
         onCompleted: () => {
             dataAnimation.from = dataAnimation.to;
