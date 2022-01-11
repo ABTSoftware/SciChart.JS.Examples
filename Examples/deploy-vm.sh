@@ -1,8 +1,10 @@
 #!/bin/bash
 echo "Start staging deploy"
 server=$1
-appRoot=/home/webjsdemoadmin/apps/SciChart.JS.Examples.dev_v2/Examples
-ssh $server ". ~/.nvm/nvm.sh; pm2 stop examples; pm2 delete examples"
+appRoot=$2
+appPort=$3
+appName=$4
+ssh $server ". ~/.nvm/nvm.sh; pm2 stop ${appName}; pm2 delete ${appName}"
 ssh $server "cd ${appRoot} && git checkout . && git pull"
 ssh $server ". ~/.nvm/nvm.sh; cd ${appRoot}; rm package-lock.json; node -v; npm i --loglevel verbose; npm run build"
-ssh $server ". ~/.nvm/nvm.sh; cd ${appRoot}; pm2 start build/server.js --name examples"
+ssh $server ". ~/.nvm/nvm.sh; cd ${appRoot}; PORT=${appPort} pm2 start build/server.js --name ${appName}"
