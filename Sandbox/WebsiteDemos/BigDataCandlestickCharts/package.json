@@ -19,6 +19,7 @@
     "copy-webpack-plugin": "^6.0.3",
     "file-loader": "^6.2.0",
     "prettier": "^2.1.2",
+    "raw-loader": "^4.0.2",
     "ts-loader": "^8.0.11",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",

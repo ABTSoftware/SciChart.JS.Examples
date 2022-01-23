@@ -13,13 +13,20 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"]
-      }
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: "[path][name].[ext]",
+            },
+          },
+        ],
+      },
     ]
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"]
+    extensions: [".tsx", ".ts", ".js" ]
   },
   output: {
     filename: "bundle.js",

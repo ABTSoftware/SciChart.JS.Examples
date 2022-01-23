@@ -10,43 +10,83 @@ import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWhee
 import {EAutoRange} from "scichart/types/AutoRange";
 import Papa = require("papaparse");
 import {NumberRange} from "scichart/Core/NumberRange";
-
-const priceDataUrls = ["https://www.cryptodatadownload.com/cdd/Bitstamp_BTCUSD_2017_minute.csv"];
+import csvData from "raw-loader!./Data/Bitstamp_BTCUSD_2017_minute.csv";
+import { chartBuilder } from "scichart/Builder/chartBuilder";
+import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
+import {FastCandlestickRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
 
 type priceBar = {
   date: number,
   open: number,
   high: number,
   low: number,
-  close: number
+  close: number,
+  volume: number,
 };
 
-async function loadPriceData(url: string): Promise<priceBar[]> {
+async function loadPriceData(): Promise<priceBar[]> {
   return new Promise<priceBar[]>((resolve, reject) => {
-    fetch(url, { mode: "cors" }).then((response) => {
-      const priceBars: priceBar[] = [];
-      console.log("Fetching... ");
-      response.text().then(csv => {
-        console.log(`Response Status: ${response.status} about to parse`);
-        console.log(csv.length);
-        Papa.parse(csv, {
-          step: function(row) {
-            console.log("Row:", row.data);
-          },
-          complete: function() {
-            console.log("Complete!");
-            resolve(priceBars);
-          }
-        });
-      }).catch(reason => reject())
+    const priceBars: priceBar[] = [];
+    let rowCount = 0;
+    Papa.parse(csvData, {
+      step: function(row) {
+        // Skip header rows
+        // Row format: Array (9)
+        // 0 "1514764740" // Unix timestamp
+        // 1 "2017-12-31 23:59:00"
+        // 2 "BTC/USD" // Symbol
+        // 3 "13913.28" // Open
+        // 4 "13913.28" // High
+        // 5 "13867.18" // Low
+        // 6 "13880.00" // Close
+        // 7 "0.59174759" // Volume BTC
+        // 8 "8213.4565492" // Volume USD
+        if (++rowCount > 2 && rowCount < 1000) {
+          const rowData = row.data as Array<string>;
+          priceBars.push(
+              {
+                date: Number.parseInt(rowData[0]),
+                open: Number.parseFloat(rowData[3]),
+                high: Number.parseFloat(rowData[4]),
+                low: Number.parseFloat(rowData[5]),
+                close: Number.parseFloat(rowData[6]),
+                volume: Number.parseFloat(rowData[8])
+          });
+        }
+      },
+      complete: function() {
+        resolve(priceBars);
+      }
     });
+    resolve(priceBars);
   });
 }
 
 async function runExample() {
+  // Create an empty SciChartSurface
   const { sciChartSurface, wasmContext } = await initSciChart();
+
+  // Set loading notification
   sciChartSurface.annotations.add(new TextAnnotation({ text: "Loading price data...", x1: 0.5, y1: 0.5, xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative, horizontalAnchorPoint: EHorizontalAnchorPoint.Center, verticalAnchorPoint: EVerticalAnchorPoint.Center, fontSize: 20 }));
-  const priceBars = await loadPriceData(priceDataUrls[0]);
+
+  // Load price bars
+  const priceBars = await loadPriceData();
+
+  // Set price bars as Candlestick in Scichart
+  const ohlcDataSeries = new OhlcDataSeries(wasmContext, {
+    dataIsSortedInX: true,
+    containsNaN: false,
+    xValues: priceBars.map(p => p.date),
+    openValues: priceBars.map(p => p.open),
+    highValues: priceBars.map(p => p.high),
+    lowValues: priceBars.map(p => p.low),
+    closeValues: priceBars.map(p => p.close),
+  });
+
+  sciChartSurface.renderableSeries.add(new FastCandlestickRenderableSeries(wasmContext, { dataSeries: ohlcDataSeries }));
+
+  // Clear loading notification
+  sciChartSurface.annotations.clear();
 }
 
 

@@ -25,6 +25,7 @@
         "forceConsistentCasingInFileNames": true
     },
     "include": [
+        "src/Data/*",
         "src/**/*",
         "testUnit/**/*"
     ],
