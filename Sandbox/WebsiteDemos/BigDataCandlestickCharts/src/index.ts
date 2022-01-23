@@ -26,39 +26,44 @@ type priceBar = {
 
 async function loadPriceData(): Promise<priceBar[]> {
   return new Promise<priceBar[]>((resolve, reject) => {
-    const priceBars: priceBar[] = [];
-    let rowCount = 0;
-    Papa.parse(csvData, {
-      step: function(row) {
-        // Skip header rows
-        // Row format: Array (9)
-        // 0 "1514764740" // Unix timestamp
-        // 1 "2017-12-31 23:59:00"
-        // 2 "BTC/USD" // Symbol
-        // 3 "13913.28" // Open
-        // 4 "13913.28" // High
-        // 5 "13867.18" // Low
-        // 6 "13880.00" // Close
-        // 7 "0.59174759" // Volume BTC
-        // 8 "8213.4565492" // Volume USD
-        if (++rowCount > 2 && rowCount < 1000) {
-          const rowData = row.data as Array<string>;
-          priceBars.push(
-              {
+    setTimeout(() => {
+      const priceBars: priceBar[] = [];
+      let rowCount = 0;
+      Papa.parse(csvData, {
+        step: function(row) {
+          // Skip header rows
+          // Row format: Array (9)
+          // 0 "1514764740" // Unix timestamp
+          // 1 "2017-12-31 23:59:00"
+          // 2 "BTC/USD" // Symbol
+          // 3 "13913.28" // Open
+          // 4 "13913.28" // High
+          // 5 "13867.18" // Low
+          // 6 "13880.00" // Close
+          // 7 "0.59174759" // Volume BTC
+          // 8 "8213.4565492" // Volume USD
+          if (++rowCount > 2) {
+            const rowData = row.data as Array<string>;
+            const priceBar = {
                 date: Number.parseInt(rowData[0]),
                 open: Number.parseFloat(rowData[3]),
                 high: Number.parseFloat(rowData[4]),
                 low: Number.parseFloat(rowData[5]),
                 close: Number.parseFloat(rowData[6]),
                 volume: Number.parseFloat(rowData[8])
-          });
+            };
+            if (!Number.isNaN(priceBar.date)) {
+              priceBars.push(priceBar);
+            }
+          }
+        },
+        complete: function() {
+          // CSV Data is in reverse date order
+          resolve(priceBars.reverse());
         }
-      },
-      complete: function() {
-        resolve(priceBars);
-      }
-    });
-    resolve(priceBars);
+      });
+      resolve(priceBars);
+    }, 0);
   });
 }
 
@@ -72,17 +77,16 @@ async function runExample() {
   // Load price bars
   const priceBars = await loadPriceData();
 
+  console.log(`PriceBar[0].date ${priceBars[0].date}`);
+  console.log(`PriceBar[last].date ${priceBars[priceBars.length-1].date}`);
   // Set price bars as Candlestick in Scichart
   const ohlcDataSeries = new OhlcDataSeries(wasmContext, {
-    dataIsSortedInX: true,
-    containsNaN: false,
     xValues: priceBars.map(p => p.date),
     openValues: priceBars.map(p => p.open),
     highValues: priceBars.map(p => p.high),
     lowValues: priceBars.map(p => p.low),
     closeValues: priceBars.map(p => p.close),
   });
-
   sciChartSurface.renderableSeries.add(new FastCandlestickRenderableSeries(wasmContext, { dataSeries: ohlcDataSeries }));
 
   // Clear loading notification
@@ -113,11 +117,17 @@ async function initSciChart() {
 
   // Create an X,Y Axis and add to the chart
   const xAxis = new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Date_DDMMHHMM });
-  const yAxis = new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Decimal, labelPrecision: 2, autoRange: EAutoRange.Always, growBy: new NumberRange(0.1, 0.1) });
+  const yAxis = new NumericAxis(wasmContext, {
+    labelFormat: ENumericFormat.Decimal,
+    labelPrecision: 2,
+    autoRange: EAutoRange.Always,
+    growBy: new NumberRange(0.1, 0.1)
+  });
 
   sciChartSurface.xAxes.add(xAxis);
   sciChartSurface.yAxes.add(yAxis);
 
+  // Add some zoom, pan interaction
   sciChartSurface.chartModifiers.add(
       new ZoomPanModifier(),
       new ZoomExtentsModifier(),
