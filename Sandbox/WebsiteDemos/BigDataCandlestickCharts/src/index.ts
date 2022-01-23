@@ -8,14 +8,23 @@ import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier"
 import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {EAutoRange} from "scichart/types/AutoRange";
-import Papa = require("papaparse");
 import {NumberRange} from "scichart/Core/NumberRange";
 import csvData from "raw-loader!./Data/Bitstamp_BTCUSD_2017_minute.csv";
-import { chartBuilder } from "scichart/Builder/chartBuilder";
 import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
 import {FastCandlestickRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
 import {XyMovingAverageFilter} from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import {
+  EFillPaletteMode,
+  EStrokePaletteMode,
+  IFillPaletteProvider,
+  IStrokePaletteProvider
+} from "scichart/Charting/Model/IPaletteProvider";
+import Papa = require("papaparse");
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
 
 type priceBar = {
   date: number,
@@ -89,6 +98,14 @@ async function runExample() {
     closeValues: priceBars.map(p => p.close),
   });
 
+  // Add the volume with metadata (Convert Up/Down bar into Green/Red color. This is used later in the paletteprovider)
+  const volumeSeries = new XyDataSeries(wasmContext, {
+    dataSeriesName: "Volume",
+    xValues: priceBars.map(p => p.date),
+    yValues: priceBars.map(p => p.volume),
+  });
+  sciChartSurface.renderableSeries.add(new FastColumnRenderableSeries(wasmContext, { dataSeries: volumeSeries, yAxisId: "volumeYAxis", dataPointWidth: 0.1, strokeThickness: 0 }))
+
   // Add a moving average
   const movingAverage50Data = new XyMovingAverageFilter(ohlcDataSeries, { dataSeriesName: "MA (50)", length: 50 });
   sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, { dataSeries: movingAverage50Data, stroke: "SteelBlue" }));
@@ -103,7 +120,6 @@ async function runExample() {
   // Clear loading notification
   sciChartSurface.annotations.clear();
 }
-
 
 
 async function initSciChart() {
@@ -135,8 +151,17 @@ async function initSciChart() {
     growBy: new NumberRange(0.1, 0.1)
   });
 
+  // Add a hidden YAxis for volume
+  const volumeYAxis = new NumericAxis(wasmContext, {
+    growBy: new NumberRange(0, 4),
+    id: "volumeYAxis",
+    isVisible: false,
+    autoRange: EAutoRange.Always,
+  });
+
   sciChartSurface.xAxes.add(xAxis);
   sciChartSurface.yAxes.add(yAxis);
+  sciChartSurface.yAxes.add(volumeYAxis);
 
   // Add some zoom, pan interaction
   sciChartSurface.chartModifiers.add(
