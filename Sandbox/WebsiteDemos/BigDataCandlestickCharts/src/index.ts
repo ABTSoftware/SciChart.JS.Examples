@@ -14,6 +14,8 @@ import csvData from "raw-loader!./Data/Bitstamp_BTCUSD_2017_minute.csv";
 import { chartBuilder } from "scichart/Builder/chartBuilder";
 import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
 import {FastCandlestickRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
+import {XyMovingAverageFilter} from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 
 type priceBar = {
   date: number,
@@ -77,16 +79,25 @@ async function runExample() {
   // Load price bars
   const priceBars = await loadPriceData();
 
-  console.log(`PriceBar[0].date ${priceBars[0].date}`);
-  console.log(`PriceBar[last].date ${priceBars[priceBars.length-1].date}`);
   // Set price bars as Candlestick in Scichart
   const ohlcDataSeries = new OhlcDataSeries(wasmContext, {
+    dataSeriesName: "Bitcoin/US Dollar",
     xValues: priceBars.map(p => p.date),
     openValues: priceBars.map(p => p.open),
     highValues: priceBars.map(p => p.high),
     lowValues: priceBars.map(p => p.low),
     closeValues: priceBars.map(p => p.close),
   });
+
+  // Add a moving average
+  const movingAverage50Data = new XyMovingAverageFilter(ohlcDataSeries, { dataSeriesName: "MA (50)", length: 50 });
+  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, { dataSeries: movingAverage50Data, stroke: "SteelBlue" }));
+
+  // Add a second moving average
+  const movingAverage200Data = new XyMovingAverageFilter(ohlcDataSeries, { dataSeriesName: "MA (200)", length: 200 });
+  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, { dataSeries: movingAverage200Data, stroke: "Crimson" }));
+
+  // Add the candlestick series with highest z-index
   sciChartSurface.renderableSeries.add(new FastCandlestickRenderableSeries(wasmContext, { dataSeries: ohlcDataSeries }));
 
   // Clear loading notification
