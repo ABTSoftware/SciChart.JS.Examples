@@ -16,15 +16,8 @@ import {XyMovingAverageFilter} from "scichart/Charting/Model/Filters/XyMovingAve
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import {
-  EFillPaletteMode,
-  EStrokePaletteMode,
-  IFillPaletteProvider,
-  IStrokePaletteProvider
-} from "scichart/Charting/Model/IPaletteProvider";
 import Papa = require("papaparse");
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
+import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
 
 type priceBar = {
   date: number,
@@ -73,7 +66,6 @@ async function loadPriceData(): Promise<priceBar[]> {
           resolve(priceBars.reverse());
         }
       });
-      resolve(priceBars);
     }, 0);
   });
 }
@@ -168,6 +160,7 @@ async function initSciChart() {
       new ZoomPanModifier(),
       new ZoomExtentsModifier(),
       new MouseWheelZoomModifier(),
+      new LegendModifier({ showCheckboxes: false, showLegend: true })
   )
 
   // That's it! You just created your first SciChartSurface!
