@@ -48,6 +48,12 @@ const seeAlso: GalleryItem[] = [
                 title: ExampleStrings.titleStyleAnimation,
                 seoTitle: ExampleStrings.urlTitleStyleAnimation,
                 examplePath: ExampleStrings.urlStyleAnimation
+            },
+            {
+                imgPath: ExampleStrings.imgGenericAnimation,
+                title: ExampleStrings.titleGenericAnimation,
+                seoTitle: ExampleStrings.urlTitleGenericAnimation,
+                examplePath: ExampleStrings.urlGenericAnimation
             }
         ]
     }
