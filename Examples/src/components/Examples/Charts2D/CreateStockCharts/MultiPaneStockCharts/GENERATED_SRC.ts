@@ -221,7 +221,7 @@ const drawExample = async () => {
         // XDirection for ZoomExtendsModifier does not work
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "first" }));
+        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "first", showTooltip: false }));
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
 

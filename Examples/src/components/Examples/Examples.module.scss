@@ -60,6 +60,13 @@
     min-width: 142;
 }
 
+.AlignRight {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .Notification {
     margin-bottom: $default-spacing * 2;
 }
@@ -261,6 +268,7 @@
         }
     }
 }
+
 .SelectWrapper {
     display: flex;
     margin-top: 10px;

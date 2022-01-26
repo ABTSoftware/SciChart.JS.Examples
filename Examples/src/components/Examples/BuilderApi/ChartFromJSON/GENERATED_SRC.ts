@@ -208,7 +208,6 @@ export default function ChartFromJSON() {
             <div>
                 <div className={classes.FormControl}>
                     <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                        <Button id="buildChart" onClick={handleBuild}>Build</Button>
                         <Button id="eg1" onClick={loadMinimal}>Simple example</Button>
                         <Button id="eg2" onClick={loadFull}>Full example</Button>
                         <Button id="eg3" onClick={loadCentral}>Central Axes</Button>
@@ -234,6 +233,11 @@ export default function ChartFromJSON() {
                     value={json}
                     onChange={handleChangeJSON}
                 />
+            </div>
+            <div className={[classes.FormControl, classes.AlignRight].join(' ')}>
+                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                    <Button className={classes.ButtonFilled} id="buildChart" onClick={handleBuild}>Apply</Button>
+                </ButtonGroup>
             </div>
         </>
     );
