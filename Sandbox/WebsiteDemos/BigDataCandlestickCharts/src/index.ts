@@ -16,15 +16,10 @@ import {XyMovingAverageFilter} from "scichart/Charting/Model/Filters/XyMovingAve
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import {
-  EFillPaletteMode,
-  EStrokePaletteMode,
-  IFillPaletteProvider,
-  IStrokePaletteProvider
-} from "scichart/Charting/Model/IPaletteProvider";
 import Papa = require("papaparse");
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
+import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
+import {SciChartDefaults} from "scichart/Charting/Visuals/SciChartDefaults";
+import {CategoryAxis} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Axis/CategoryAxis";
 
 type priceBar = {
   date: number,
@@ -73,12 +68,12 @@ async function loadPriceData(): Promise<priceBar[]> {
           resolve(priceBars.reverse());
         }
       });
-      resolve(priceBars);
     }, 0);
   });
 }
 
 async function runExample() {
+
   // Create an empty SciChartSurface
   const { sciChartSurface, wasmContext } = await initSciChart();
 
@@ -106,6 +101,9 @@ async function runExample() {
   });
   sciChartSurface.renderableSeries.add(new FastColumnRenderableSeries(wasmContext, { dataSeries: volumeSeries, yAxisId: "volumeYAxis", dataPointWidth: 0.1, strokeThickness: 0 }))
 
+  // Add the candlestick series with highest z-index
+  sciChartSurface.renderableSeries.add(new FastCandlestickRenderableSeries(wasmContext, { dataSeries: ohlcDataSeries, resamplingPrecision: 1 }));
+
   // Add a moving average
   const movingAverage50Data = new XyMovingAverageFilter(ohlcDataSeries, { dataSeriesName: "MA (50)", length: 50 });
   sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, { dataSeries: movingAverage50Data, stroke: "SteelBlue" }));
@@ -113,9 +111,6 @@ async function runExample() {
   // Add a second moving average
   const movingAverage200Data = new XyMovingAverageFilter(ohlcDataSeries, { dataSeriesName: "MA (200)", length: 200 });
   sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, { dataSeries: movingAverage200Data, stroke: "Crimson" }));
-
-  // Add the candlestick series with highest z-index
-  sciChartSurface.renderableSeries.add(new FastCandlestickRenderableSeries(wasmContext, { dataSeries: ohlcDataSeries }));
 
   // Clear loading notification
   sciChartSurface.annotations.clear();
@@ -143,7 +138,7 @@ async function initSciChart() {
   );
 
   // Create an X,Y Axis and add to the chart
-  const xAxis = new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Date_DDMMHHMM });
+  const xAxis = new CategoryAxis(wasmContext, { labelFormat: ENumericFormat.Date_DDMMHHMM });
   const yAxis = new NumericAxis(wasmContext, {
     labelFormat: ENumericFormat.Decimal,
     labelPrecision: 2,
@@ -168,6 +163,7 @@ async function initSciChart() {
       new ZoomPanModifier(),
       new ZoomExtentsModifier(),
       new MouseWheelZoomModifier(),
+      new LegendModifier({ showCheckboxes: false, showLegend: true })
   )
 
   // That's it! You just created your first SciChartSurface!
