@@ -19,6 +19,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_Animations_StartupAnimation.path
     },
     {
+        title: EXAMPLES_PAGES.chart2D_Animations_GenericAnimation.title,
+        link: EXAMPLES_PAGES.chart2D_Animations_GenericAnimation.path
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.title,
         link: EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.path
     },
