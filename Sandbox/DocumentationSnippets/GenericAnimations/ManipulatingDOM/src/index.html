@@ -1,0 +1,78 @@
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>SciChart.js Documentation Examples</title>
+    <script async type="text/javascript" src="bundle.js"></script>
+    <style>
+        body {
+            font-family: 'Arial'
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .col>* {
+            margin-bottom: 10px;
+        }
+
+        .spinner {
+            width: 0;
+            height: 10px;
+            background-color: #189AB4;
+        }
+
+        .col {
+            border: 1px solid #000;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #fff;
+            padding: 10px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>User Interaction and DOM updates with Generic Animations Example</h1>
+    <p>Example from the SciChart.js documentation. See more at <a
+            href="https://www.scichart.com/javascript-chart-documentation">scichart.com/javascript-chart-documentation</a>
+    </p>
+
+    <!-- the Div where the SciChartSurface will reside -->
+    <div class="container">
+        <div id="scichart" style="width: 800px; height: 600px;"></div>
+        <div class="actions">
+            <div class="col svg-col">
+                <button id="svgBtn">Start SVG Animation</button>
+                <div id="svgProgress"></div>
+                <div id="svgXCoord"></div>
+                <div id="svgYCoord"></div>
+                <div id="svgInfo">Animations completed: <span>0</span></div>
+                <div id="svgSpinner" class="spinner"></div>
+            </div>
+            <div class="col box-col">
+                <button id="boxBtn">Start Box Animation</button>
+                <div id="boxProgress"></div>
+                <div id="boxX1Coord"></div>
+                <div id="boxY1Coord"></div>
+                <div id="boxX2Coord"></div>
+                <div id="boxY2Coord"></div>
+                <div id="boxInfo">Animations completed: <span>0</span></div>
+                <div id="boxSpinner" class="spinner"></div>
+            </div>
+        </div>
+    </div>
+    <br />
+</body>
+
+</html>
