@@ -59,6 +59,17 @@ export const ExampleStrings = {
         "The specific page for the JavaScript Startup Animation documentation will help you to get started",
     imgStartupAnimation: "images/javascript-startup-animation.png",
 
+    // Generic Animations
+    urlGenericAnimation: "/javascript-generic-animation",
+    titleGenericAnimation: "JavaScript Generic Animation",
+    urlTitleGenericAnimation: "JavaScript Generic Animation",
+    urlGenericAnimationDocumentation:
+        "https://www.scichart.com/documentation/js/current/Series%20Generic%20Animations.html",
+    urlTitleGenericAnimationDocumentation:
+        "The specific page for the JavaScript Generic Animation documentation will help you to get started",
+    imgGenericAnimation: "images/javascript-generic-animation.png",
+
+
     // Scatter chart
     urlScatterChart: "/javascript-scatter-chart",
     titleScatterChart: "JavaScript Scatter Chart",

@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Robot', sans-serif;
+    overflow-x: hidden;
+}
+* {
+    box-sizing: border-box;
+}
+.SciChartDashboard {
+    background-image: url(/images/background.webp);
+    background-size: 100% 100%;
+    min-height: calc(100vh - 200px);
+    width: 100%;
+}
+
+.SciChartDashboard_w_20 {
+    width: 20%;
+}
+.SciChartDashboard_w_25 {
+    width: 25%;
+}
+.SciChartDashboard_w_35 {
+    width: 35%;
+}
+.SciChartDashboard_w_100 {
+    width: 100%;
+}
+.SciChartDashboard_m_b_10 {
+    margin-bottom: 10px;
+}
+
+.SciChartDashboard_Column {
+    flex-direction: column;
+    display: flex;
+}
+
+.SciChartDashboard_DefaultChartSize {
+    width: 100%;
+    height: 400px;
+}
+
+.SciChartDashboard_SmallChartSize {
+    width: 100%;
+    height: 200px;
+}
+
+.SciChartDashboard_hidden {
+    display: none !important;
+}
+
+.SciChartDashboard_Row {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 10px;
+}
+.SciChartDashboard_Container {
+    border: 1px solid #fff;
+    border-radius: 30px;
+    display: flex;
+    color: #fff;
+    padding: 8px;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.SciChartDashboard_Container:not(:last-of-type) {
+    margin-right: 10px;
+}
+.SciChartDashboard_LeftCell {
+    width: 20%;
+}
+.SciChartDashboard_Text {
+    font-size: 10px;
+}
+.SciChartDashboard_Heading {
+    font-size: 14px;
+}
+.SciChartDashboard_Button {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 8px;
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 8px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.SciChartDashboard_Button:hover {
+    color: #000;
+    background: rgba(255, 255, 255, 1);
+    transition: all .3s ease;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+@media screen and (max-width: 1200px) {
+    .SciChartDashboard_Row {
+        flex-wrap: wrap;
+        padding: 0;
+    }
+    .SciChartDashboard_Container:not(.SciChartDashboard_w_100) {
+        margin: 10px;
+    }
+    .SciChartDashboard_w_20,
+    .SciChartDashboard_w_25,
+    .SciChartDashboard_w_35 {
+        width: calc(50% - 20px);
+    }
+}
+@media screen and (max-width: 500px) {
+    .SciChartDashboard_Row {
+        flex-wrap: wrap;
+        padding: 0;
+    }
+    .SciChartDashboard_Container:not(.SciChartDashboard_w_100) {
+        margin: 10px;
+    }
+    .SciChartDashboard_w_20,
+    .SciChartDashboard_w_25,
+    .SciChartDashboard_w_35 {
+        width: calc(100% - 20px);
+    }
+}
