@@ -19,7 +19,7 @@ import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSe
 import Papa = require("papaparse");
 import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
 import {SciChartDefaults} from "scichart/Charting/Visuals/SciChartDefaults";
-import {CategoryAxis} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Axis/CategoryAxis";
+import {CategoryAxis} from "scichart/Charting/Visuals/Axis/CategoryAxis";
 
 type priceBar = {
   date: number,
