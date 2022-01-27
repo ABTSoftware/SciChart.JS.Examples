@@ -5,7 +5,7 @@ import { FastColumnRenderableSeries } from 'scichart/Charting/Visuals/Renderable
 import { NumberRange } from 'scichart/Core/NumberRange';
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
 import { TextLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/TextLabelProvider";
-import { ELabelAlignment } from "scichart/Charting/Visuals/Axis/ELabelAlignment";
+import { ELabelAlignment } from "scichart/types/LabelAlignment";
 import { Thickness } from 'scichart/Core/Thickness';
 
 

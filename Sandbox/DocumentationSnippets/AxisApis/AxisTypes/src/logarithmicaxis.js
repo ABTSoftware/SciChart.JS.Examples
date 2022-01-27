@@ -3,6 +3,7 @@ import {EAxisAlignment} from "scichart/types/AxisAlignment";
 import {ENumericFormat} from "scichart/types/NumericFormat";
 import {LogarithmicAxis} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
 import {NumberRange} from "scichart/Core/NumberRange";
+import {ELogarithmicMajorTickMode} from "scichart/Charting/Numerics/TickProviders/LogarithmicTickProvider";
 
 export async function initLogAxis() {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-div-4");
