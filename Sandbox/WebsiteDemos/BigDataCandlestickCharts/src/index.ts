@@ -20,6 +20,7 @@ import Papa = require("papaparse");
 import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
 import {SciChartDefaults} from "scichart/Charting/Visuals/SciChartDefaults";
 import {CategoryAxis} from "scichart/Charting/Visuals/Axis/CategoryAxis";
+import {SmartDateLabelProvider} from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
 
 type priceBar = {
   date: number,
@@ -138,7 +139,7 @@ async function initSciChart() {
   );
 
   // Create an X,Y Axis and add to the chart
-  const xAxis = new CategoryAxis(wasmContext, { labelFormat: ENumericFormat.Date_DDMMHHMM });
+  const xAxis = new CategoryAxis(wasmContext, { labelProvider: new SmartDateLabelProvider() });
   const yAxis = new NumericAxis(wasmContext, {
     labelFormat: ENumericFormat.Decimal,
     labelPrecision: 2,
