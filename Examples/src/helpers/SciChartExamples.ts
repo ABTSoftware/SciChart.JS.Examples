@@ -86,6 +86,7 @@ import builderCustomTypesImg from "../components/Examples/BuilderApi/CustomTypes
 import startupAnimationImg from "../components/Examples/Charts2D/Animations/StartupAnimation/javascript-startup-animation.png";
 import dataAnimationImg from "../components/Examples/Charts2D/Animations/DataAnimation/javascript-data-animation.png";
 import styleAnimationImg from "../components/Examples/Charts2D/Animations/StyleAnimation/javascript-style-animation.png";
+import genericAnimationImg from "../components/Examples/Charts2D/Animations/GenericAnimation/javascript-generic-animation.png";
 
 import { GalleryItem } from "./types/types";
 import { ExampleStrings } from "../components/Examples/ExampleStrings";
@@ -579,6 +580,12 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleStyleAnimation,
                 seoTitle: "Style Animations",
                 examplePath: EXAMPLES_PAGES.chart2D_Animations_StyleAnimation.path
+            },
+            {
+                imgPath: genericAnimationImg,
+                title: ExampleStrings.titleGenericAnimation,
+                seoTitle: "Generic Animations",
+                examplePath: EXAMPLES_PAGES.chart2D_Animations_GenericAnimation.path
             }
         ]
     },

@@ -77,6 +77,7 @@ import { styleAnimationExampleInfo } from "../Examples/Charts2D/Animations/Style
 import { startupAnimationExampleInfo } from "../Examples/Charts2D/Animations/StartupAnimation/exampleInfo";
 import { dataPointSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection/exampleInfo";
 import { overviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier/exampleInfo";
+import { genericAnimationExampleInfo } from "../Examples/Charts2D/Animations/GenericAnimation/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -114,6 +115,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_Animations_StartupAnimation: {
         id: "chart2D_Animations_StartupAnimation",
         ...startupAnimationExampleInfo
+    },
+    chart2D_Animations_GenericAnimation: {
+        id: "chart2D_Animations_GenericAnimation",
+        ...genericAnimationExampleInfo
     },
     chart2D_basicCharts_BandSeriesChart: {
         id: "chart2D_basicCharts_BandSeriesChart",

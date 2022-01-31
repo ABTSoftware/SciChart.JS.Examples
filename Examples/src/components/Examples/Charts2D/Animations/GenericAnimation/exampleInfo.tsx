@@ -6,9 +6,9 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = ``;//`Demonstrates how to run startup animations for a JavaScript Chart.`;
-const description = `Startup animations run on start and decorate charts`;
-const tips: string[] = ["Choose Fade, Scale, Wave or Sweep animation using the dropdown"];
+const previewDescription = ``; //`Demonstrates how to run Generic Animation for a JavaScript Chart.`;
+const description = `Generic Animation gives an opportunity to build complex animations and control progress of each animation separately`;
+const tips: string[] = ["Use START, CANCEL or RESTART buttons to see the control action of Generic Animation"];
 
 const documentationLinks: TDocumentationLink[] = [
     {
@@ -22,14 +22,14 @@ const documentationLinks: TDocumentationLink[] = [
         linkTitle: "SciChart.js Tutorials"
     },
     {
-        href: ExampleStrings.urlStartupAnimationDocumentation,
-        title: ExampleStrings.urlTitleStartupAnimationDocumentation,
-        linkTitle: "JavaScript Startup Animation Documentation"
+        href: ExampleStrings.urlGenericAnimationDocumentation,
+        title: ExampleStrings.urlTitleGenericAnimationDocumentation,
+        linkTitle: "Generic Animation Documentation"
     },
     {
-        href: ExampleStrings.urlRenderSeriesPropertiesDocumentation,
-        title: ExampleStrings.urlTitleRenderSeriesProperties,
-        linkTitle: "Common RenderableSeries Properties"
+        href: ExampleStrings.urlAnnotationsDocumentation,
+        title: ExampleStrings.urlTitleAnnotationsDocumentation,
+        linkTitle: "Annotations API Documentation"
     }
 ];
 
@@ -50,10 +50,10 @@ const seeAlso: GalleryItem[] = [
                 examplePath: ExampleStrings.urlStyleAnimation
             },
             {
-                imgPath: ExampleStrings.imgGenericAnimation,
-                title: ExampleStrings.titleGenericAnimation,
-                seoTitle: ExampleStrings.urlTitleGenericAnimation,
-                examplePath: ExampleStrings.urlGenericAnimation
+                imgPath: ExampleStrings.imgStartupAnimation,
+                title: ExampleStrings.titleStartupAnimation,
+                seoTitle: ExampleStrings.urlTitleStartupAnimation,
+                examplePath: ExampleStrings.urlStartupAnimation
             }
         ]
     }
@@ -61,16 +61,16 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to run <strong>Startup Animations</strong> using SciChart.js, High Performance{" "}
+        Demonstrates how to run <strong>Generic Animation</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
     </p>
 );
 
-export const startupAnimationExampleInfo: TExampleInfo = {
-    title: ExampleStrings.titleStartupAnimation,
-    path: ExampleStrings.urlStartupAnimation,
+export const genericAnimationExampleInfo: TExampleInfo = {
+    title: ExampleStrings.titleGenericAnimation,
+    path: ExampleStrings.urlGenericAnimation,
     subtitle: Subtitle,
     documentationLinks,
     tips,
@@ -79,7 +79,7 @@ export const startupAnimationExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to run Startup Animations with JavaScript.",
-    seoKeywords: "startup, on-start, animation, javascript",
-    thumbnailImage: "javascript-startup-animation.png"
+    seoDescription: "Demonstrates how to run Generic Animation with JavaScript.",
+    seoKeywords: "generic, animation, javascript",
+    thumbnailImage: "javascript-generic-animation.png"
 };
