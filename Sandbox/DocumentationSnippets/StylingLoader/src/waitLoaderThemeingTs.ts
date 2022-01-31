@@ -30,9 +30,8 @@ export class CustomChartLoader implements ISciChartLoader {
         loaderContainerDiv.style.display = 'flex';
         loaderContainerDiv.style.justifyContent = 'center';
         loaderContainerDiv.style.alignItems = 'center';
-        const loaderImage = document.createElement('object');
-        loaderImage.type = 'image/svg+xml';
-        loaderImage.data = 'svg_animation_ext.svg';
+        const loaderImage = document.createElement('img');
+        loaderImage.src = 'svg_animation_ext.svg';
         loaderContainerDiv.appendChild(loaderImage);
         domChartRoot.appendChild(loaderContainerDiv);
         return loaderContainerDiv;
