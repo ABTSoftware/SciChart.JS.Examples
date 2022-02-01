@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Include SciChart.js -->
     <script
-      src="https://cdn.jsdelivr.net/npm/scichart@2.1.0-beta.40/_wasm/scichart.browser.js"
+      src="https://cdn.jsdelivr.net/npm/scichart@2.1.2261/_wasm/scichart.browser.js"
       crossorigin="anonymous"
     ></script>
     <title>Hello, SciChart.js world!</title>
@@ -21,20 +21,17 @@
       async function initSciChart() {
         // In order to load data file from the CDN we need to set dataUrl
         SciChart.SciChartSurface.configure({
-          dataUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.0-beta.40/_wasm/scichart2d.data",
-          wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.0-beta.40/_wasm/scichart2d.wasm"
+          dataUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.2261/_wasm/scichart2d.data",
+          wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.2261/_wasm/scichart2d.wasm"
         });
-        const {
-          sciChartSurface,
-          wasmContext
-        } = await SciChart.SciChartSurface.create("scichart-root");
-        const xAxis = new SciChart.NumericAxis(wasmContext);
-        sciChartSurface.xAxes.add(xAxis);
-
-        const yAxis = new SciChart.NumericAxis(wasmContext, {
-          growBy: new SciChart.NumberRange(0.05, 0.05)
+        await SciChart.chartBuilder.buildChart("scichart-root", {
+          series: {
+            type: "LineSeries", options: { stroke: "steelblue" }, 
+            xyData: {
+              xValues: [1, 2, 5, 8, 10],
+              yValues: [3, 1, 7, 5, 8]
+          }}
         });
-        sciChartSurface.yAxes.add(yAxis);
       }
 
       initSciChart();
