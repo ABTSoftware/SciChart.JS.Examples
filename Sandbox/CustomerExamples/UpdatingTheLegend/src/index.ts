@@ -6,6 +6,9 @@ import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
 import { NumberRange } from 'scichart/Core/NumberRange';
 import { LegendModifier } from 'scichart/Charting/ChartModifiers/LegendModifier';
 import { ELegendOrientation, TLegendItem } from 'scichart/Charting/Visuals/Legend/SciChartLegendBase';
+import { ISpritePointMarkerOptions, SpritePointMarker } from 'scichart/Charting/Visuals/PointMarkers/SpritePointMarker';
+import { createImageAsync } from "scichart/utils/imageUtil";
+import { TSciChart } from 'scichart/types/TSciChart';
 
 async function initSciChart() {
     // LICENSING //
@@ -37,21 +40,29 @@ async function initSciChart() {
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis1);
 
+    const imageBitmap = await createImageAsync("/public/star.svg");
     const lineSeries1 = new FastLineRenderableSeries(wasmContext, {
         stroke: 'white',
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5],
             yValues: [3, 4, 3, 4, 3],
             dataSeriesName: 'white'
+        }),
+        pointMarker: new StarPointMarker(wasmContext, {
+            image: imageBitmap,
+            fill: 'white'
         })
     });
-
     const lineSeries2 = new FastLineRenderableSeries(wasmContext, {
         stroke: 'red',
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5],
             yValues: [5, 6, 5, 5, 4],
-            dataSeriesName: 'red'
+            dataSeriesName: 'red',
+        }),
+        pointMarker: new StarPointMarker(wasmContext, {
+            image: imageBitmap,
+            fill: 'red'
         })
     });
 
@@ -89,7 +100,7 @@ async function initSciChart() {
         str += `</span>`;
         return str;
     }
-    
+
     sciChartSurface.chartModifiers.add(legendModifier);
     // sciChartSurface.chartModifiers.add(new LegendModifier({ showCheckboxes: true }));
 
@@ -105,3 +116,33 @@ async function initSciChart() {
 }
 
 initSciChart();
+
+class StarPointMarker extends SpritePointMarker {
+
+    constructor(webAssemblyContext: TSciChart, options?: ISpritePointMarkerOptions) {
+        super(webAssemblyContext, options);
+        this.image = options?.image;
+    }
+
+    public drawSprite(
+        context: CanvasRenderingContext2D,
+        spriteWidth: number,
+        spriteHeight: number,
+        stroke: string,
+        strokeThickness: number,
+        fill: string
+    ): void {
+        const centerX = context.canvas.width / 2;
+        const centerY = context.canvas.height / 2;
+        const halfHeight = this.height / 2;
+        const halfWidth = this.width / 2;
+        
+        context.fillStyle = fill;
+        context.fillRect(0, 0, this.width * 2, this.height * 2);
+        context.globalCompositeOperation = "destination-in";
+        
+        if (this.image) {
+            context.drawImage(this.image, centerX - halfWidth, centerY - halfHeight, this.width, this.height);
+        }
+    }
+}

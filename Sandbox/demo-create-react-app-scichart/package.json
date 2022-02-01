@@ -9,7 +9,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3",
-    "scichart": "2.0.2115",
+    "scichart": "2.1.0-beta.40",
     "web-vitals": "^2.1.2"
   },
   "scripts": {

@@ -126,25 +126,32 @@ export class HeatMapSeriesSelectionModifier extends ChartModifierBase2D {
       return;
     }
     const firstRendSeries = this.parentSurface.renderableSeries.get(0);
+    if (firstRendSeries.isVisible) {
+      const startPointInfo = firstRendSeries.hitTestProvider.hitTest(
+        this.startPoint.x,
+        this.startPoint.y,
+        0
+      );
+      const endPointInfo = firstRendSeries.hitTestProvider.hitTest(
+        this.endPoint.x,
+        this.endPoint.y,
+        0
+      );
 
-    const startPointInfo = firstRendSeries.hitTestProvider.hitTest(
-      this.startPoint.x,
-      this.startPoint.y,
-      0
-    );
-    const endPointInfo = firstRendSeries.hitTestProvider.hitTest(
-      this.endPoint.x,
-      this.endPoint.y,
-      0
-    );
-
-    console.log(firstRendSeries.dataSeries.dataSeriesName);
-    console.log("startPointInfo", startPointInfo.hitTestPointValues);
-    console.log("xIndex start", Math.floor(startPointInfo.hitTestPointValues.x));
-    console.log("yIndex start", Math.floor(startPointInfo.hitTestPointValues.y));
-    console.log("endPointInfo", endPointInfo.hitTestPointValues);
-    console.log("xIndex end", Math.floor(endPointInfo.hitTestPointValues.x));
-    console.log("yIndex end", Math.floor(endPointInfo.hitTestPointValues.y));
+      console.log(firstRendSeries.dataSeries.dataSeriesName);
+      console.log("startPointInfo", startPointInfo.hitTestPointValues);
+      console.log(
+        "xIndex start",
+        Math.floor(startPointInfo.hitTestPointValues.x)
+      );
+      console.log(
+        "yIndex start",
+        Math.floor(startPointInfo.hitTestPointValues.y)
+      );
+      console.log("endPointInfo", endPointInfo.hitTestPointValues);
+      console.log("xIndex end", Math.floor(endPointInfo.hitTestPointValues.x));
+      console.log("yIndex end", Math.floor(endPointInfo.hitTestPointValues.y));
+    }
   }
 
   private getDefaultCoordCalculators() {

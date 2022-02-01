@@ -1,8 +1,8 @@
-import {setLabelProvider} from "./setLabelProvider";
-import {setLabelPrePostFix} from "./labelPrePostFix";
-import {formatLabelsAsDates} from "./formatLabelsAsDates";
-import {labelProviderFunction} from "./labelProviderFunction";
-import {labelProviderClass, labelProviderClassExample} from "./labelProviderClass";
+import { setLabelProvider } from "./setLabelProvider";
+import { setLabelPrePostFix } from "./labelPrePostFix";
+import { formatLabelsAsDates } from "./formatLabelsAsDates";
+import { labelProviderFunction } from "./labelProviderFunction";
+import { labelProviderClassExampleTs } from "./labelProviderClass";
 
 setLabelProvider("scichart-div-1");
 setLabelPrePostFix("scichart-div-2");
