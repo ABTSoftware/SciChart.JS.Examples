@@ -3,6 +3,8 @@ import { CentralAxesLayoutManager } from "scichart/Charting/LayoutManager/Centra
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { SciChartSurface } from "scichart";
 import { NumberRange } from "scichart/Core/NumberRange";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 
 export async function configureCentralAxesLayoutManager(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
