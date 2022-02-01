@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Include SciChart.js -->
@@ -9,32 +8,10 @@
       src="https://cdn.jsdelivr.net/npm/scichart@2.1.2261/_wasm/scichart.browser.js"
       crossorigin="anonymous"
     ></script>
+    <script src="scichart-example.js" defer></script>
     <title>Hello, SciChart.js world!</title>
   </head>
   <body>
-    <h1>Hello, SciChart.js world!</h1>
-    <p>Note, this is a work in progress! Debugging the scichart.js bundle</p>
-
     <div id="scichart-root" style="width: 800px; height: 600px;"></div>
-
-    <script>
-      async function initSciChart() {
-        // In order to load data file from the CDN we need to set dataUrl
-        SciChart.SciChartSurface.configure({
-          dataUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.2261/_wasm/scichart2d.data",
-          wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.2261/_wasm/scichart2d.wasm"
-        });
-        await SciChart.chartBuilder.buildChart("scichart-root", {
-          series: {
-            type: "LineSeries", options: { stroke: "steelblue" }, 
-            xyData: {
-              xValues: [1, 2, 5, 8, 10],
-              yValues: [3, 1, 7, 5, 8]
-          }}
-        });
-      }
-
-      initSciChart();
-    </script>
   </body>
 </html>
