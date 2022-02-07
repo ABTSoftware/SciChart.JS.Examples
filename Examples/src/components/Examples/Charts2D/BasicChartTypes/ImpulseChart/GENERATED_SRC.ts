@@ -60,4 +60,5 @@ export default function ImpulseChart() {
     return (
         <div id={divElementId} className={classes.ChartWrapper} />
     );
-}`;
+}
+`;

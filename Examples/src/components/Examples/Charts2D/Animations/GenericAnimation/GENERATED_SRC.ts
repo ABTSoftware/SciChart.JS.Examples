@@ -1,5 +1,4 @@
-export const code = `
-import * as React from "react";
+export const code = `import * as React from "react";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import classes from "../../../../Examples/Examples.module.scss";

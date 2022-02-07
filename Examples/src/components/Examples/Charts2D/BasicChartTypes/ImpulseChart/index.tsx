@@ -6,7 +6,7 @@ import { NumberRange } from "scichart/Core/NumberRange";
 
 import classes from "../../../../Examples/Examples.module.scss";
 import { EAutoRange } from "scichart/types/AutoRange";
-// import { FastImpulseRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastImpulseRenderableSeries";
+import { FastImpulseRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastImpulseRenderableSeries";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
@@ -30,11 +30,11 @@ const drawExample = async () => {
         yValues.push(Math.sin(i * 0.2) * Math.log(i / 100));
     }
     dataSeries.appendRange(xValues, yValues);
-    // const impulseSeries = new FastImpulseRenderableSeries(wasmContext, {
-    //     fill: "#26c6da",
-    //     dataSeries
-    // });
-    // sciChartSurface.renderableSeries.add(impulseSeries);
+    const impulseSeries = new FastImpulseRenderableSeries(wasmContext, {
+        fill: "#26c6da",
+        dataSeries
+    });
+    sciChartSurface.renderableSeries.add(impulseSeries);
 
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
