@@ -4,6 +4,7 @@ import {DetectClicksOnChartPartsModifier} from "./DetectClicksOnChartPartsModifi
 import {EAxisAlignment} from "scichart/types/AxisAlignment";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {SimpleChartModifierTs} from "./SimpleChartModifierTs";
 
 export async function customModifiersSandboxTs(divId: string) {
     console.log('customModifier typescript example');
@@ -16,12 +17,13 @@ export async function customModifiersSandboxTs(divId: string) {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { id: "YAxis_1", axisTitle: "YAxis 1", axisAlignment: EAxisAlignment.Right}));
 
     sciChartSurface.chartModifiers.add(new DetectClicksOnChartPartsModifier());
+    sciChartSurface.chartModifiers.add(new SimpleChartModifierTs());
 
     const xValues = Array.from(Array(25).keys())
     const yValues = xValues.map(x => Math.sin(x * 0.1));
     console.log(yValues);
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: "Yellow series" }),
         strokeThickness: 3,
         stroke: "Yellow",
         yAxisId: "YAxis_0",

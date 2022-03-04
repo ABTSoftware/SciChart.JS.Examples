@@ -4,6 +4,7 @@ import {DetectClicksOnChartPartsModifierJs} from "./DetectClicksOnChartPartsModi
 import {EAxisAlignment} from "scichart/types/AxisAlignment";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {SimpleChartModifierJs} from "./SimpleChartModifierJS";
 
 export async function customModifiersSandboxJs(divId) {
     console.log('customModifier typescript example');
@@ -16,6 +17,7 @@ export async function customModifiersSandboxJs(divId) {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { id: "YAxis_1", axisTitle: "YAxis 1", axisAlignment: EAxisAlignment.Right}));
 
     sciChartSurface.chartModifiers.add(new DetectClicksOnChartPartsModifierJs());
+    sciChartSurface.chartModifiers.add(new SimpleChartModifierJs());
 
     const xValues = Array.from(Array(25).keys())
     const yValues = xValues.map(x => Math.sin(x * 0.1));
