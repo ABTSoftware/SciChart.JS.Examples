@@ -8,7 +8,6 @@ To view the full text of this code sample online, visit www.scichart.com/javascr
 
 ## How to use/run 
 
-
 To run the tutorial, open this folder in terminal and run the following commands:
 
 * `npm install`

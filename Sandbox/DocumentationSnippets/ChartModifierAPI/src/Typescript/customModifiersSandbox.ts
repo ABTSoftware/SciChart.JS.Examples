@@ -5,6 +5,7 @@ import {EAxisAlignment} from "scichart/types/AxisAlignment";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {SimpleChartModifierTs} from "./SimpleChartModifierTs";
+import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
 
 export async function customModifiersSandboxTs(divId: string) {
     console.log('customModifier typescript example');
@@ -18,6 +19,7 @@ export async function customModifiersSandboxTs(divId: string) {
 
     sciChartSurface.chartModifiers.add(new DetectClicksOnChartPartsModifier());
     sciChartSurface.chartModifiers.add(new SimpleChartModifierTs());
+    sciChartSurface.chartModifiers.add(new LegendModifier());
 
     const xValues = Array.from(Array(25).keys())
     const yValues = xValues.map(x => Math.sin(x * 0.1));
@@ -30,4 +32,13 @@ export async function customModifiersSandboxTs(divId: string) {
         xAxisId: "XAxis_0",
         onHoveredChanged: sourceSeries => sourceSeries.strokeThickness = sourceSeries.isHovered ? 7 : 3,
     }));
+
+    // We need setTimeout to wait the Legend being rendered
+    setTimeout(()=> {
+        // SciChart legend is always generated with scichart__legend class
+        const divElement = document.getElementsByClassName('scichart__legend')[1];
+        divElement.addEventListener('click', () => {
+            console.log('Click on the Legend TS example');
+        });
+    });
 }
