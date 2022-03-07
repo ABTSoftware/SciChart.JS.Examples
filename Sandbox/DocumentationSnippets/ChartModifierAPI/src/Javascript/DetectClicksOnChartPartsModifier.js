@@ -2,6 +2,7 @@ import {ChartModifierBase2D} from "scichart/Charting/ChartModifiers/ChartModifie
 import {EChart2DModifierType} from "scichart/types/ChartModifierType";
 import {testIsInBounds} from "scichart/utils/pointUtil";
 import {RubberBandSvgRect} from "scichart/Charting/Visuals/RubberBandSvgRect/RubberBandSvgRect";
+import {DpiHelper} from "scichart/Charting/Visuals/TextureManager/DpiHelper";
 
 // A custom modifier which detects clicks on chart parts
 export class DetectClicksOnChartPartsModifierJs extends ChartModifierBase2D {
@@ -75,10 +76,10 @@ export class DetectClicksOnChartPartsModifierJs extends ChartModifierBase2D {
             return;
         }
         this.debugRect.isHidden = false;
-        this.debugRect.x1 = rect.x;
-        this.debugRect.y1 = rect.y;
-        this.debugRect.x2 = rect.x + rect.width;
-        this.debugRect.y2 = rect.y + rect.height;
+        this.debugRect.x1 = rect.x / DpiHelper.PIXEL_RATIO;
+        this.debugRect.y1 = rect.y / DpiHelper.PIXEL_RATIO;
+        this.debugRect.x2 = rect.x / DpiHelper.PIXEL_RATIO + rect.width / DpiHelper.PIXEL_RATIO;
+        this.debugRect.y2 = rect.y / DpiHelper.PIXEL_RATIO + rect.height / DpiHelper.PIXEL_RATIO;
         this.debugRect.isHidden = false;
     }
 }
