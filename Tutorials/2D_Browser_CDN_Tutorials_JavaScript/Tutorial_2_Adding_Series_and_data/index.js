@@ -6,8 +6,8 @@ async function initSciChart() {
     
 	// Load SciChart.js from CDN. Ensure version numbers match the script in index.html
 	SciChart.SciChartSurface.configure({
-		dataUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.0-beta.40/_wasm/scichart2d.data",
-		wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.0-beta.40/_wasm/scichart2d.wasm"
+		dataUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.data`,
+		wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.wasm`
 	});
 
     // Create the SciChartSurface in the div 'scichart-root'
