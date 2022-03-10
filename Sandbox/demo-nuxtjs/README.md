@@ -8,9 +8,11 @@
 ### To Make SciChart Class available object the Nuxt should include BrowserBundle (compiled JS code from CDN)
 ### script section of nuxt.config.js:
 ```
+import {libraryVersion} from "../../Core/BuildStamp";
+...
 script: [
     {
-        src: "https://cdn.jsdelivr.net/npm/scichart@2.0.2146/_wasm/scichart.browser.js",
+        src: `https://cdn.jsdelivr.net/npm/scichart@${libraryVersion}/_wasm/scichart.browser.js`,
     },
 ]
 ```

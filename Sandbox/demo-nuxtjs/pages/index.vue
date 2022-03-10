@@ -21,9 +21,9 @@ export default {
       // https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Sandbox/demo-browser-global-module
       SciChart.SciChartSurface.configure({
         dataUrl:
-          "https://cdn.jsdelivr.net/npm/scichart@2.0.2115/_wasm/scichart2d.data",
+          `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.data`,
         wasmUrl:
-          "https://cdn.jsdelivr.net/npm/scichart@2.0.2115/_wasm/scichart2d.wasm",
+          `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.wasm`,
       });
 
       // Create the SciChartSurface in the div 'scichart-root'
@@ -41,7 +41,7 @@ export default {
         RolloverModifier,
         FastLineRenderableSeries,
       } = SciChart;
-      
+
       // Create an X,Y Axis and add to the chart
       const xAxis = new NumericAxis(wasmContext);
       const yAxis = new NumericAxis(wasmContext);
