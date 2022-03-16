@@ -1,4 +1,5 @@
 const path = require("path");
+import { libraryVersion } from "scichart/Core/BuildStamp";
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -21,7 +22,7 @@ export default {
     ],
     script: [
       {
-        src: "https://cdn.jsdelivr.net/npm/scichart@2.0.2146/_wasm/scichart.browser.js",
+        src: `https://cdn.jsdelivr.net/npm/scichart@${libraryVersion}/_wasm/scichart.browser.js`,
       },
     ],
   },
