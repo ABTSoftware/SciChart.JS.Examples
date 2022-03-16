@@ -1,0 +1,24 @@
+{
+  "name": "oil-and-gas",
+  "version": "1.0.0",
+  "description": "Oil and Gas showcase with SciChart.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "scichart": "2.1.0-beta.40",
+    "typescript": "^4.0.5"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.0.3",
+    "ts-loader": "^6.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

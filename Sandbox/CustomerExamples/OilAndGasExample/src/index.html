@@ -1,0 +1,67 @@
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>SciChart.js Tutorial 1</title>
+    <script async type="text/javascript" src="bundle.js"></script>
+    <style>
+        body {
+            font-family: 'Arial'
+        }
+
+        .main-charts {
+            display: flex;
+            max-width: 1500px;
+            overflow: auto;
+            border: 1px solid #000;
+        }
+
+        .main-charts::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 7px;
+        }
+
+        .main-charts::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, .5);
+            box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+        }
+
+        .scichart__legend {
+            float: none !important;
+            height: auto !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-charts">
+        <div class="main-charts_chart-container">
+            <div id="scichart-gr-legend"></div>
+            <div id="scichart-gr" style="min-width: 300px; height: 600px; position: relative;"></div>
+        </div>
+        <div class="main-charts_chart-container">
+            <div id="scichart-rhdb-legend"></div>
+            <div id="scichart-rhdb" style="min-width: 300px; height: 600px; position: relative;"></div>
+        </div>
+        <div class="main-charts_chart-container">
+            <div id="scichart-nphi-legend"></div>
+            <div id="scichart-nphi" style="min-width: 300px; height: 600px; position: relative;"></div>
+        </div>
+        <div class="main-charts_chart-container">
+            <div id="scichart-dt-legend"></div>
+            <div id="scichart-dt" style="min-width: 300px; height: 600px; position: relative;"></div>
+        </div>
+        <div class="main-charts_chart-container">
+            <div id="scichart-lld-legend"></div>
+            <div id="scichart-lld" style="min-width: 300px; height: 600px; position: relative;"></div>
+        </div>
+        <div class="main-charts_chart-container">
+            <div id="scichart-vsh-legend"></div>
+            <div id="scichart-vsh" style="min-width: 300px; height: 600px; position: relative;"></div>
+        </div>
+    </div>
+</body>
+
+</html>
