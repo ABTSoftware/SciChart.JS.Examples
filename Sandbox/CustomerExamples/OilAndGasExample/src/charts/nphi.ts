@@ -1,13 +1,7 @@
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { axesSetup, generateModifiers, getRandomSinewave } from "./utils";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
+import { axesSetup, generateDefaultLegend, generateModifiers, getRandomSinewave } from "./utils";
 import { NumberRange } from "scichart/Core/NumberRange";
 
 export default async function initNphiChart(id: string, group: SciChartVerticalGroup, pointsCount: number, visibleRange: NumberRange) {
@@ -21,7 +15,9 @@ export default async function initNphiChart(id: string, group: SciChartVerticalG
         stroke: `rgba(${255 - color},${color},${(color + 125) % 255},0.7)`
     });
     lineSeries.dataSeries = getRandomSinewave(wasmContext, 0, Math.random() * 3, Math.random() * 50, pointsCount, 1).dataSeries;
+    lineSeries.dataSeries.dataSeriesName = 'NPHI';
     sciChartSurface.renderableSeries.add(lineSeries);
-    generateModifiers(sciChartSurface, id);
+    const getLegendItemHtml = generateDefaultLegend(sciChartSurface, 'rgba(253,253,8,255)');
+    generateModifiers(sciChartSurface, id, getLegendItemHtml);
     group.addSurfaceToGroup(sciChartSurface);
 }
