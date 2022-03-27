@@ -12,7 +12,8 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      contextIsolation: false,
     },
     backgroundColor: "#222222" /* Prevents white flicker on resize https://github.com/electron/electron/issues/10801 */
   });
