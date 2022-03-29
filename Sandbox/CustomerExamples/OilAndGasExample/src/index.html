@@ -160,8 +160,9 @@
 
         .main-charts {
             display: flex;
+            justify-content: space-around;
             max-width: 100%;
-            height: 70%;
+            height: 100%;
             overflow-x: auto;
             overflow-y: hidden;
             background: radial-gradient(circle, rgb(60, 60, 63) 0%, rgb(28, 28, 30) 100%);
@@ -220,51 +221,61 @@
             display: block;
         }
 
-        .actions-bar-container {
-            position: relative;
-            border: 2px solid #ccc;
-            padding-top: 20px;
+        .chart-container {
+            display: flex;
+            flex-direction: column;
+            flex: auto;
+            max-width: 16%;
         }
 
-        .actions-bar {
-            background: radial-gradient(circle, rgb(60, 60, 63) 0%, rgb(28, 28, 30) 100%);
+        .legend-root {
+            min-height: 115px;
+            display: flex;
+            align-items: end;
+            background-color: #2C2C2E;
+        }
+
+        .chart-root {
+            flex: auto;
+        }
+
+        .chart-legend {
+            flex: auto;
+        }
+
+        .full-size-legend {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .legend-text-item {
             height: 20px;
-            position: absolute;
-            left: 0;
-            top: 0;
             width: 100%;
+            display: flex;
+            justify-content: space-around;
+            font-size: 10px;
+            font-weight: 700;
+            color: LightGray;
+            align-items: center;
         }
 
-        .close {
-            position: absolute;
-            right: 10px;
-            top: 0;
-            width: 20px;
+        .legend-color-item {
             height: 20px;
-            opacity: 0.3;
+            width: 100%;
+            display: flex;
+            flex: auto;
         }
 
-        .close:hover {
-            opacity: 1;
-            cursor: pointer;
+        .color-label {
+            height: 100%;
+            flex: auto;
         }
 
-        .close:before,
-        .close:after {
-            position: absolute;
-            left: 15px;
-            content: ' ';
-            height: 18px;
-            width: 2px;
-            background-color: #fff;
-        }
-
-        .close:before {
-            transform: rotate(45deg);
-        }
-
-        .close:after {
-            transform: rotate(-45deg);
+        .scichart__legend-line {
+            width: 100%;
+            height: 2px;
+            display: block;
         }
     </style>
 </head>
@@ -272,10 +283,7 @@
 <body>
     <main>
         <div class="sidebar-charts">
-            <div class="sidebar-charts-2d actions-bar-container">
-                <div class="actions-bar">
-                    <div class="close"></div>
-                </div>
+            <div class="sidebar-charts-2d">
                 <div class="sidebar-charts-2d-item sidebar-charts-2d-item-small">
                     <div class="sidebar-charts-2d-title">GR</div>
                     <div class="sidebar-charts-2d-line" style="position: relative;top: 15px;">
@@ -355,489 +363,35 @@
                     <div class="sidebar-charts-2d-title">NPHI</div>
                 </div>
             </div>
-            <div class="sidebar-charts-3d actions-bar-container">
-                <div class="actions-bar">
-                    <div class="close"></div>
-                </div>
+            <div class="sidebar-charts-3d">
                 <div id="scichart-3d" style="position: relative; height: 100%; width: 100%;"></div>
             </div>
         </div>
         <div class="main-container">
-            <div class="main-charts actions-bar-container">
-                <div class="actions-bar">
-                    <div class="close"></div>
+            <div class="main-charts">
+                <div class="chart-container">
+                    <div id="shale-legend" class="legend-root"></div>
+                    <div id="shale-chart" class="chart-root"></div>
                 </div>
-                <div class="main-charts_chart-container">
-                    <div id="scichart-gr-legend"></div>
-                    <div id="scichart-gr" style="min-width: 300px; height: calc(100% - 150px); position: relative;">
-                    </div>
+                <div class="chart-container">
+                    <div id="density-legend" class="legend-root"></div>
+                    <div id="density-chart" class="chart-root"></div>
                 </div>
-                <div class="main-charts_chart-container">
-                    <div id="scichart-rhdb-legend"></div>
-                    <div id="scichart-rhdb" style="min-width: 300px; height: calc(100% - 150px); position: relative;">
-                    </div>
+                <div class="chart-container">
+                    <div id="resistivity-legend" class="legend-root"></div>
+                    <div id="resistivity-chart" class="chart-root"></div>
                 </div>
-                <div class="main-charts_chart-container">
-                    <div id="scichart-nphi-legend"></div>
-                    <div id="scichart-nphi" style="min-width: 300px; height: calc(100% - 150px); position: relative;">
-                    </div>
+                <div class="chart-container">
+                    <div id="pore-space-legend" class="legend-root"></div>
+                    <div id="pore-space-chart" class="chart-root"></div>
                 </div>
-                <div class="main-charts_chart-container">
-                    <div id="scichart-dt-legend"></div>
-                    <div id="scichart-dt" style="min-width: 300px; height: calc(100% - 150px); position: relative;">
-                    </div>
+                <div class="chart-container">
+                    <div id="sonic-legend" class="legend-root"></div>
+                    <div id="sonic-chart" class="chart-root"></div>
                 </div>
-                <div class="main-charts_chart-container">
-                    <div id="scichart-lld-legend"></div>
-                    <div id="scichart-lld" style="min-width: 300px; height: calc(100% - 150px); position: relative;">
-                    </div>
-                </div>
-                <div class="main-charts_chart-container">
-                    <div id="scichart-vsh-legend"></div>
-                    <div id="scichart-vsh" style="min-width: 300px; height: 100%; position: relative;"></div>
-                </div>
-            </div>
-            <div class="main-area actions-bar-container">
-                <div class="actions-bar">
-                    <div class="close"></div>
-                </div>
-                <div class="container">
-                    <div class="box red">
-                        <div class="icon">
-                            <span class="material-icons">
-                                lock
-                            </span>
-                        </div>
-                        <div class="title">Views</div>
-                        <div class="content">
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        rounded_corner
-                                    </span>
-                                </div>
-                                <div class="line-text">Layout</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        history_toggle_off
-                                    </span>
-                                </div>
-                                <div class="line-text">Frequency</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        trending_up
-                                    </span>
-                                </div>
-                                <div class="line-text">Xplot</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        stacked_line_chart
-                                    </span>
-                                </div>
-                                <div class="line-text">Multiplot</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        video_camera_back
-                                    </span>
-                                </div>
-                                <div class="line-text">Image3D</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="box purple">
-                        <div class="icon">
-                            <span class="material-icons">
-                                lock
-                            </span>
-                        </div>
-                        <div class="title">Tools</div>
-                        <div class="content">
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        filter_frames
-                                    </span>
-                                </div>
-                                <div class="line-text">Artis</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        badge
-                                    </span>
-                                </div>
-                                <div class="line-text">Launcher</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        person
-                                    </span>
-                                </div>
-                                <div class="line-text">LogLan</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        text_snippet
-                                    </span>
-                                </div>
-                                <div class="line-text">Text File</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="box grey">
-                        <div class="icon">
-                            <span class="material-icons">
-                                lock
-                            </span>
-                        </div>
-                        <div class="title">Petrophysics</div>
-                        <div class="content">
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        image
-                                    </span>
-                                </div>
-                                <div class="line-text">FedImage</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        gamepad
-                                    </span>
-                                </div>
-                                <div class="line-text">Multimin</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        trending_up
-                                    </span>
-                                </div>
-                                <div class="line-text">Xplot</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="box green">
-                        <div class="icon">
-                            <span class="material-icons">
-                                lock
-                            </span>
-                        </div>
-                        <div class="title">Data</div>
-                        <div class="content">
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        text_format
-                                    </span>
-                                </div>
-                                <div class="line-text">Text</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        keyboard_alt
-                                    </span>
-                                </div>
-                                <div class="line-text">Text Importer</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        photo_album
-                                    </span>
-                                </div>
-                                <div class="line-text">Photo Importer</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        insights
-                                    </span>
-                                </div>
-                                <div class="line-text">Audit Trail</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="box blue">
-                        <div class="icon">
-                            <span class="material-icons">
-                                lock
-                            </span>
-                        </div>
-                        <div class="title">Core Analysis</div>
-                        <div class="content">
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        import_export
-                                    </span>
-                                </div>
-                                <div class="line-text">Core Import</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        fact_check
-                                    </span>
-                                </div>
-                                <div class="line-text">Core Correct</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        build
-                                    </span>
-                                </div>
-                                <div class="line-text">Core Build</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        model_training
-                                    </span>
-                                </div>
-                                <div class="line-text">Core Model</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="line">
-                                <div class="line-icon">
-                                    <span class="material-icons">
-                                        video_camera_back
-                                    </span>
-                                </div>
-                                <div class="line-text">Image3D</div>
-                                <div class="line-icon-file">
-                                    <span class="material-icons">
-                                        insert_drive_file
-                                    </span>
-                                </div>
-                                <div class="line-icon-folder">
-                                    <span class="material-icons">
-                                        folder
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="chart-container">
+                    <div id="texture-legend" class="legend-root"></div>
+                    <div id="texture-chart" class="chart-root"></div>
                 </div>
             </div>
         </div>

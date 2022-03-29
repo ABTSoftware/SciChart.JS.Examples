@@ -18,5 +18,3 @@ export const initVerticalCharts = () => Promise.all([
 ]).then((surfaces) => {
     surfaces.forEach((surface) => surfaceGroup.addSurfaceToGroup(surface))
 });
-
-initVerticalCharts();

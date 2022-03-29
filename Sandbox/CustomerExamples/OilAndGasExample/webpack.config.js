@@ -4,7 +4,7 @@ const webpack = require("webpack");
 
 module.exports = {
     mode: "production",
-    entry: "./src/charts/VerticalCharts/initVerticalCharts.ts",
+    entry: "./src/index.ts",
     // entry: "./src/index.ts",
     module: {
         rules: [
@@ -25,8 +25,7 @@ module.exports = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                // { from: "src/index.html", to: "" },
-                { from: "src/indexVerticalCharts.html", to: "index.html" },
+                { from: "src/index.html", to: "" },
                 { from: "src/Data/Shale.csv", to: "" },
                 { from: "src/Data/Density.csv", to: "" },
                 { from: "src/Data/Resistivity.csv", to: "" },

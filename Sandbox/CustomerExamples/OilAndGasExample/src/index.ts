@@ -16,6 +16,7 @@ import init2dSixthChart from "./charts/2dcharts/sixth";
 import init2dSeventhChart from "./charts/2dcharts/seventh";
 import init2dEighthChart from "./charts/2dcharts/eighth";
 import init2dNinthChart from "./charts/2dcharts/ninth";
+import { initVerticalCharts } from "./charts/VerticalCharts/initVerticalCharts";
 
 ({
     charts: {
@@ -43,13 +44,6 @@ import init2dNinthChart from "./charts/2dcharts/ninth";
         this.buildCharts();
     },
     buildCharts() {
-        initGrChart(this.charts.gr, this.chartGroup, this.pointsCount, this.visibleRange);
-        initRhdbChart(this.charts.rhdb, this.chartGroup, this.pointsCount, this.visibleRange);
-        initNphiChart(this.charts.nphi, this.chartGroup, this.pointsCount, this.visibleRange);
-        initDtChart(this.charts.dt, this.chartGroup, this.pointsCount, this.visibleRange);
-        initLldChart(this.charts.lld, this.chartGroup, this.pointsCount, this.visibleRange);
-        initVshChart(this.charts.vsh, this.chartGroup, this.pointsCount, this.visibleRange);
-        init3dChart(this.charts["3d"]);
         init2dFirstChart(this.charts["2dFirst"]);
         init2dSecondChart(this.charts["2dSecond"]);
         init2dThirdChart(this.charts["2dThird"]);
@@ -59,5 +53,7 @@ import init2dNinthChart from "./charts/2dcharts/ninth";
         init2dSeventhChart(this.charts["2dSeventh"]);
         init2dEighthChart(this.charts["2dEighth"]);
         init2dNinthChart(this.charts["2dNinth"]);
+        init3dChart(this.charts["3d"]);
+        initVerticalCharts();
     }
 }).init();
