@@ -67,9 +67,7 @@ export const getCommonChartConfigs = (axisTitle: string): ISciChart2DDefinition 
 
 export const getCommonChartModifiersConfig = (): TModifierDefinition[] => ([
     { type: EChart2DModifierType.ZoomExtents, options: { modifierGroup: "VerticalChartsGroup", xyDirection: EXyDirection.XDirection } },
-    // TODO uncomment after fixing Builder API issues
-    // { type: EChart2DModifierType.Rollover, options: { modifierGroup: "VerticalChartsGroup" } },
-    // { type: EChart2DModifierType.ZoomPan, options: { modifierGroup: "VerticalChartsGroup", excludedYAxisIds: [AxisCore.DEFAULT_AXIS_ID] } },
+    { type: EChart2DModifierType.ZoomPan, options: { modifierGroup: "VerticalChartsGroup", excludedYAxisIds: [AxisCore.DEFAULT_AXIS_ID] } },
     {
         type: EChart2DModifierType.MouseWheelZoom, options: {
             modifierGroup: "VerticalChartsGroup",

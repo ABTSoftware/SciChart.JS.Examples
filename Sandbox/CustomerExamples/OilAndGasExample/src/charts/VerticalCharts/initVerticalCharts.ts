@@ -1,3 +1,4 @@
+import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
 import { drawDensityChart } from "./DensityChart";
 import { drawPoreSpaceChart } from "./PoreSpaceChart";
@@ -16,5 +17,8 @@ export const initVerticalCharts = () => Promise.all([
     drawSonicChart(),
     drawTextureChart(),
 ]).then((surfaces) => {
-    surfaces.forEach((surface) => surfaceGroup.addSurfaceToGroup(surface))
+    surfaces.forEach((surface) => {
+        surfaceGroup.addSurfaceToGroup(surface);
+        surface.chartModifiers.add(new RolloverModifier({ modifierGroup: "VerticalChartsGroup" }))
+    });
 });
