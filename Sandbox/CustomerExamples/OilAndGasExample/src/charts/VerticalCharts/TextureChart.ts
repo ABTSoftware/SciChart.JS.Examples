@@ -61,6 +61,9 @@ export const drawTextureChart = async () => {
         },
     ]);
 
+    renderableSeries[0].rolloverModifierProps.showRollover = false;
+    renderableSeries[1].rolloverModifierProps.showRollover = false;
+
     sciChartSurface.renderableSeries.add(...renderableSeries);
 
     const legendModifier = new LegendModifier({ placementDivId: `texture-legend` });

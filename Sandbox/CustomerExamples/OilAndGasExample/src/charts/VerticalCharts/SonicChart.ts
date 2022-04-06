@@ -61,6 +61,9 @@ export const drawSonicChart = async () => {
         }
     });
 
+    renderableSeries[0].rolloverModifierProps.tooltipColor = "LimeGreen";
+    renderableSeries[0].rolloverModifierProps.tooltipTextColor = "Black";
+    
     sciChartSurface.renderableSeries.add(...renderableSeries);
 
     const legendModifier = new LegendModifier({ placementDivId: `sonic-legend` });

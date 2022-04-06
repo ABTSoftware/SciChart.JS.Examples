@@ -9,6 +9,7 @@ import { EThemeProviderType } from "scichart/types/ThemeProviderType";
 import { PaletteRange, RangeFillPaletteProvider } from "./RangeFillPaletteProvider";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
 import { EColor } from "scichart/types/Color";
+import { StackedMountainCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainCollection";
 
 export const drawShaleChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("shale-chart", {
@@ -81,6 +82,9 @@ export const drawShaleChart = async () => {
             isOneHundredPercent: true
         },
     });
+
+    const stackedMountainCollection = renderableSeries[0] as StackedMountainCollection
+    stackedMountainCollection.get(2).rolloverModifierProps.showRollover = false;
 
     sciChartSurface.renderableSeries.add(...renderableSeries)
 
