@@ -6,20 +6,23 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { EThemeProviderType } from "scichart/types/ThemeProviderType";
+import { PaletteRange, RangeFillPaletteProvider } from "./RangeFillPaletteProvider";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
+import { EColor } from "scichart/types/Color";
 
 export const drawShaleChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("shale-chart", {
+        ...getCommonChartConfigs("Shale"),
         surface: {
             padding: Thickness.fromNumber(0),
-            theme: { type: EThemeProviderType.DarkV2 },
+            theme: { type: EThemeProviderType.Dark, sciChartBackground: "Transparent" },
         },
-
-        ...getCommonChartConfigs("Shale"),
         modifiers: getCommonChartModifiersConfig(),
     });
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(0, 100);
+    sciChartSurface.yAxes.get(0).drawMajorGridLines = false;
+    sciChartSurface.xAxes.get(0).drawMajorGridLines = false;
 
     const dataSeries1 = new XyDataSeries(wasmContext, { dataIsSortedInX: true, containsNaN: false });
     const dataSeries2 = new XyDataSeries(wasmContext, { dataIsSortedInX: true, containsNaN: false });
@@ -39,7 +42,7 @@ export const drawShaleChart = async () => {
             {
                 type: ESeriesType.StackedMountainSeries,
                 options: {
-                    fill: "LightGreen",
+                    fill: "transparent",
                     stroke: "#474747",
                     dataSeries: dataSeries1
                 }
@@ -49,7 +52,20 @@ export const drawShaleChart = async () => {
                 options: {
                     fill: "#E4E840",
                     stroke: "#474747",
-                    dataSeries: dataSeries2
+                    dataSeries: dataSeries2,
+                    paletteProvider: new RangeFillPaletteProvider([
+                        new PaletteRange(0, 100, EColor.Orange),
+                        new PaletteRange(150, 200, EColor.Orange),
+                        new PaletteRange(220, 260, EColor.Blue),
+                        new PaletteRange(260, 280, EColor.Red),
+                        new PaletteRange(280, 350, EColor.Orange),
+                        new PaletteRange(400, 420, EColor.LimeGreen),
+                        new PaletteRange(480, 580, EColor.Blue),
+                        new PaletteRange(600, 620, EColor.Aqua),
+                        new PaletteRange(750, 800, EColor.Orange),
+                        new PaletteRange(820, 840, EColor.LimeGreen),
+                        new PaletteRange(900, 950, EColor.Aqua)
+                    ])
                 }
             },
             {
@@ -67,21 +83,6 @@ export const drawShaleChart = async () => {
     });
 
     sciChartSurface.renderableSeries.add(...renderableSeries)
-
-    // TODO
-    // renderableSeries2.paletteProvider = new RangeFillPaletteProvider([
-    //     new PaletteRange(0, 100, EColor.Orange),
-    //     new PaletteRange(150, 200, EColor.Orange),
-    //     new PaletteRange(220, 260, EColor.Blue),
-    //     new PaletteRange(260, 280, EColor.Red),
-    //     new PaletteRange(280, 350, EColor.Orange),
-    //     new PaletteRange(400, 420, EColor.LimeGreen),
-    //     new PaletteRange(480, 580, EColor.Blue),
-    //     new PaletteRange(600, 620, EColor.LightSteelBlue),
-    //     new PaletteRange(750, 800, EColor.Orange),
-    //     new PaletteRange(820, 840, EColor.LimeGreen),
-    //     new PaletteRange(900, 950, EColor.LightSteelBlue)
-    // ])
 
     const legendModifier = new LegendModifier({ placementDivId: `shale-legend` });
     legendModifier.sciChartLegend.getLegendHTML = generateShaleLegend;
