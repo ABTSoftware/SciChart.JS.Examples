@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "scichart": "^2.1.2294",
+    "scichart": "^2.1.2301",
     "typescript": "^4.0.5"
   },
   "devDependencies": {

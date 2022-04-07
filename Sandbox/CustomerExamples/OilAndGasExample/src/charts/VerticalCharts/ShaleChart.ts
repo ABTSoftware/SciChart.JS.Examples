@@ -54,19 +54,20 @@ export const drawShaleChart = async () => {
                     fill: "#E4E840",
                     stroke: "#474747",
                     dataSeries: dataSeries2,
-                    paletteProvider: new RangeFillPaletteProvider([
-                        new PaletteRange(0, 100, EColor.Orange),
-                        new PaletteRange(150, 200, EColor.Orange),
-                        new PaletteRange(220, 260, EColor.Blue),
-                        new PaletteRange(260, 280, EColor.Red),
-                        new PaletteRange(280, 350, EColor.Orange),
-                        new PaletteRange(400, 420, EColor.LimeGreen),
-                        new PaletteRange(480, 580, EColor.Blue),
-                        new PaletteRange(600, 620, EColor.Aqua),
-                        new PaletteRange(750, 800, EColor.Orange),
-                        new PaletteRange(820, 840, EColor.LimeGreen),
-                        new PaletteRange(900, 950, EColor.Aqua)
-                    ])
+                    // TODO: Uncomment after chart.js v2.2 release
+                    // paletteProvider: new RangeFillPaletteProvider([
+                    //     new PaletteRange(0, 100, EColor.Orange),
+                    //     new PaletteRange(150, 200, EColor.Orange),
+                    //     new PaletteRange(220, 260, EColor.Blue),
+                    //     new PaletteRange(260, 280, EColor.Red),
+                    //     new PaletteRange(280, 350, EColor.Orange),
+                    //     new PaletteRange(400, 420, EColor.LimeGreen),
+                    //     new PaletteRange(480, 580, EColor.Blue),
+                    //     new PaletteRange(600, 620, EColor.Aqua),
+                    //     new PaletteRange(750, 800, EColor.Orange),
+                    //     new PaletteRange(820, 840, EColor.LimeGreen),
+                    //     new PaletteRange(900, 950, EColor.Aqua)
+                    // ])
                 }
             },
             {
