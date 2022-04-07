@@ -5,7 +5,7 @@ import {EAxisAlignment} from "scichart/types/AxisAlignment";
 export async function stylingAxisBorderAndBackground(divId) {
 
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId );
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId);
 
     const yAxis = new NumericAxis(wasmContext, {
         axisTitleStyle: { color: "#368BC1" },
