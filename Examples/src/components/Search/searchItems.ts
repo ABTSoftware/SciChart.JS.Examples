@@ -171,6 +171,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes.path
     },
     {
+        title: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes.title,
+        link: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes.path
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.title,
         link: EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.path
     },

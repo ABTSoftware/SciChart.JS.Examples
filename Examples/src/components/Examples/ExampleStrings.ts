@@ -392,6 +392,16 @@ urlTitleSplineMountainChartDocumentation:
     urlDragAxisToScale: "/javascript-chart-drag-axis-to-scale-pan",
     imgDragAxisToScale: "images/drag-axis-on-javascript-charts-to-scale-or-pan.jpg",
 
+
+    // Draw Behind Axes
+    titleDrawBehindAxes: "Draw Behind Axis",
+    urlDrawBehindAxes: "/javascript-draw-behind-axes",
+    urlTitleDrawBehindAxes: "The DrawBehindAxes example shows how to use Draw series for all SciChartSurface area of a JavaScript Chart.",
+    urlTitleInnerAxes: "JavaScript Inner Axes",
+    urlInnerAxes:
+        "https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Layout%20-%20Inside%20and%20Central%20Axis.html",
+    imgDrawBehindAxes: "images/javascript-draw-behind-axes.jpg",
+
     // Realtime Zoom Pan
     titleRealtimeZoomPan: "Zoom and Pan a Realtime JavaScript Chart",
     urlRealtimeZoomPan: "/zoom-pan-realtime-javascript-chart",
