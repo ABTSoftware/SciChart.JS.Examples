@@ -6,11 +6,9 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Column Chart. Columns are rendered with a stroke and fill, and
-support gradient fill and paletteproviders for more custom coloring options.`;
+const description = `Demonstrates how to create a JavaScript Impulse Chart. Impulses are rendered with a fill and size.`;
 const tips = [
-    `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much
-    space the column takes up.`
+    `To change the size of the impulse point, set the size property. Default value is 10.0.`
 ];
 
 const documentationLinks: TDocumentationLink[] = [
@@ -25,9 +23,9 @@ const documentationLinks: TDocumentationLink[] = [
         linkTitle: "SciChart.js Tutorials"
     },
     {
-        href: ExampleStrings.urlColumnChartDocumentation,
-        title: ExampleStrings.urlTitleColumnChartDocumentation,
-        linkTitle: "JavaScript Column Chart Documentation"
+        href: ExampleStrings.urlImpulseChartDocumentation,
+        title: ExampleStrings.urlTitleImpulseChartDocumentation,
+        linkTitle: "JavaScript Impulse Chart Documentation"
     },
     {
         href: ExampleStrings.urlRenderSeriesPropertiesDocumentation,
@@ -41,6 +39,12 @@ const seeAlso: GalleryItem[] = [
         chartGroupTitle: "See also",
         items: [
             {
+                imgPath: ExampleStrings.imgColumnChart,
+                title: ExampleStrings.titleColumnChart,
+                seoTitle: ExampleStrings.urlTitleColumnChart,
+                examplePath: ExampleStrings.urlColumnChart
+            },
+            {
                 imgPath: ExampleStrings.imgStackedColumnChart,
                 title: ExampleStrings.titleStackedColumnChart,
                 seoTitle: ExampleStrings.urlTitleStackedColumnChart,
@@ -51,12 +55,6 @@ const seeAlso: GalleryItem[] = [
                 title: ExampleStrings.titleGroupedColumnChart,
                 seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
                 examplePath: ExampleStrings.urlGroupedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgImpulseChart,
-                title: ExampleStrings.titleImpulseChart,
-                seoTitle: ExampleStrings.urlTitleImpulseChart,
-                examplePath: ExampleStrings.urlImpulseChart
             }
         ]
     }
@@ -64,16 +62,16 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Column Chart</strong> using SciChart.js, High Performance{" "}
+        Demonstrates how to create a <strong>JavaScript Impulse Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
     </p>
 );
 
-export const columnChartExampleInfo: TExampleInfo = {
-    title: ExampleStrings.titleColumnChart,
-    path: ExampleStrings.urlColumnChart,
+export const impulseChartExampleInfo: TExampleInfo = {
+    title: ExampleStrings.titleImpulseChart,
+    path: ExampleStrings.urlImpulseChart,
     subtitle: Subtitle,
     documentationLinks,
     tips,
@@ -82,8 +80,7 @@ export const columnChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     seoDescription:
-        "Demonstrates how to create a JavaScript Column Chart. Columns are rendered with a stroke and fill, and support " +
-        "gradient fill and paletteproviders for more custom coloring options.",
-    seoKeywords: "column, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-column-chart.jpg"
+        "Demonstrates how to create a JavaScript Impulse Chart. Impulse are rendered with a fill and size properties",
+    seoKeywords: "impulse, lollipop, javascript, webgl, canvas",
+    thumbnailImage: "javascript-impulse-chart.jpg"
 };

@@ -5,6 +5,7 @@ import BubbleChart from "../Examples/Charts2D/BasicChartTypes/BubbleChart";
 import CandlestickChart from "../Examples/Charts2D/BasicChartTypes/CandlestickChart";
 import OhlcChart from "../Examples/Charts2D/BasicChartTypes/OhlcChart";
 import ColumnChart from "../Examples/Charts2D/BasicChartTypes/ColumnChart";
+import ImpulseChart from "../Examples/Charts2D/BasicChartTypes/ImpulseChart";
 import HeatmapChart from "../Examples/Charts2D/BasicChartTypes/HeatmapChart";
 import ContourChart from "../Examples/Charts2D/BasicChartTypes/ContoursChart";
 import LineChart from "../Examples/Charts2D/BasicChartTypes/LineChart";
@@ -112,6 +113,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart,
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart,
             EXAMPLES_PAGES.chart2D_basicCharts_FanChart,
             EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ContourChart,
@@ -389,6 +391,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return OhlcChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.id:
             return ColumnChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart.id:
+            return ImpulseChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart.id:
             return HeatmapChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_ContourChart.id:

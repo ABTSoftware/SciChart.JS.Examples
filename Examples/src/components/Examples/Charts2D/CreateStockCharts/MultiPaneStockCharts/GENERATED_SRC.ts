@@ -324,9 +324,9 @@ class VolumePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvi
         this.volumnDownArgb = parseColorToUIntArgb(volumeDownColor);
     }
 
-    onAttached(parentSeries: IRenderableSeries): void {}
+    onAttached(parentSeries: IRenderableSeries): void { }
 
-    onDetached(): void {}
+    onDetached(): void { }
 
     overrideFillArgb(xValue: number, yValue: number, index: number): number {
         const open = this.priceData.getNativeOpenValues().get(index);
@@ -351,9 +351,9 @@ class MacdHistogramPaletteProvider implements IStrokePaletteProvider, IFillPalet
         this.belowZeroArgb = parseColorToUIntArgb(belowZeroColor);
     }
 
-    onAttached(parentSeries: IRenderableSeries): void {}
+    onAttached(parentSeries: IRenderableSeries): void { }
 
-    onDetached(): void {}
+    onDetached(): void { }
 
     overrideFillArgb(xValue: number, yValue: number, index: number): number {
         return yValue >= 0 ? this.aboveZeroArgb : this.belowZeroArgb;

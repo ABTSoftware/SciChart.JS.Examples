@@ -55,6 +55,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.path
     },
     {
+        title: EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart.title,
+        link: EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart.path
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart.title,
         link: EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart.path
     },
