@@ -79,6 +79,7 @@ import { startupAnimationExampleInfo } from "../Examples/Charts2D/Animations/Sta
 import { dataPointSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection/exampleInfo";
 import { overviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier/exampleInfo";
 import { genericAnimationExampleInfo } from "../Examples/Charts2D/Animations/GenericAnimation/exampleInfo";
+import { drawBehindAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -264,6 +265,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_modifyAxisBehavior_LogarithmicAxis: {
         id: "chart2D_modifyAxisBehavior_LogarithmicAxis",
         ...logarithmicAxisExampleInfo
+    },
+    chart2D_modifyAxisBehavior_DrawBehindAxes: {
+        id: "chart2D_modifyAxisBehavior_DrawBehindAxes",
+        ...drawBehindAxesExampleInfo
     },
     chart2D_axisLabelCustomization_MultiLineLabels: {
         id: "chart2D_axisLabelCustomization_MultiLineLabels",

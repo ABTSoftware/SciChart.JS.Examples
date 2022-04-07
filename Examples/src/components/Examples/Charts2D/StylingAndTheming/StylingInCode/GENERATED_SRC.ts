@@ -51,7 +51,9 @@ const drawExample = async () => {
                 fontStyle: "Italic",
                 color: "#4682b4",
                 fontFamily: "Arial"
-            }
+            },
+            // @ts-ignore
+            backgroundColor: 'rgba(70, 130, 180, .5)'
         })
     );
 
@@ -91,7 +93,9 @@ const drawExample = async () => {
                 fontSize: 15,
                 color: "#DC143C",
                 fontFamily: "Arial"
-            }
+            },
+            // @ts-ignore
+            backgroundColor: 'rgba(220, 20, 60, .5)'
         })
     );
 
@@ -129,7 +133,9 @@ const drawExample = async () => {
                 fontSize: 14,
                 color: "#ADFF2F",
                 fontFamily: "Arial"
-            }
+            },
+            // @ts-ignore
+            backgroundColor: 'rgba(173, 255, 47, .5)'
         })
     );
 
