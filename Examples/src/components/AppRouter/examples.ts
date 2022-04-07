@@ -42,6 +42,7 @@ import VerticalCharts from "../Examples/Charts2D/ModifyAxisBehavior/VerticalChar
 import CentralAxes from "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes";
 import VerticallyStackedAxes from "../Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes";
 import LogarithmicAxisExample from "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis";
+import DrawBehindAxes from "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes";
 
 import UsePointMarkers from "../Examples/Charts2D/StylingAndTheming/UsePointMarkers";
 import UsingThemeManager from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager";
@@ -158,7 +159,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes
         ]
     },
     {
@@ -282,7 +284,8 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes
         ]
     },
     {
@@ -445,6 +448,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return VerticallyStackedAxes;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis.id:
             return LogarithmicAxisExample;
+        case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes.id:
+            return DrawBehindAxes;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.id:
             return StackedColumnChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide.id:
