@@ -127,6 +127,16 @@ export const ExampleStrings = {
         "The JavaScript Column Chart example demonstrates how to create a Column Chart with SciChart.js",
     imgColumnChart: "images/javascript-column-chart.jpg",
 
+    // Impulse Chart
+    urlImpulseChart: "/javascript-impulse-chart",
+    titleImpulseChart: "JavaScript Impulse Chart",
+    urlImpulseChartDocumentation: "https://www.scichart.com/documentation/js/current/The%Impulse%20Series%20Type.html",
+    urlTitleImpulseChartDocumentation:
+        "This specific page in the JavaScript Impulse Chart documentation will help you to get started",
+    urlTitleImpulseChart:
+        "The JavaScript Impulse Chart example demonstrates how to create a Impulse Chart with SciChart.js",
+    imgImpulseChart: "images/javascript-impulse-chart.jpg",
+
     // Mountain Chart
     urlMountainChartDocumentation:
         "https://www.scichart.com/documentation/js/current/The%20Mountain%20(Area)%20Series%20Type.html",
@@ -381,6 +391,16 @@ urlTitleSplineMountainChartDocumentation:
     titleDragAxisToScale: "Drag Axis to Scale or Pan",
     urlDragAxisToScale: "/javascript-chart-drag-axis-to-scale-pan",
     imgDragAxisToScale: "images/drag-axis-on-javascript-charts-to-scale-or-pan.jpg",
+
+
+    // Draw Behind Axes
+    titleDrawBehindAxes: "Draw Behind Axis",
+    urlDrawBehindAxes: "/javascript-draw-behind-axes",
+    urlTitleDrawBehindAxes: "The DrawBehindAxes example shows how to use Draw series for all SciChartSurface area of a JavaScript Chart.",
+    urlTitleInnerAxes: "JavaScript Inner Axes",
+    urlInnerAxes:
+        "https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Layout%20-%20Inside%20and%20Central%20Axis.html",
+    imgDrawBehindAxes: "images/javascript-draw-behind-axes.jpg",
 
     // Realtime Zoom Pan
     titleRealtimeZoomPan: "Zoom and Pan a Realtime JavaScript Chart",

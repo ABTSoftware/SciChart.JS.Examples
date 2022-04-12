@@ -6,6 +6,7 @@ import { bubbleChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/Bub
 import { candlestickChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/CandlestickChart/exampleInfo";
 import { ohlcChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/OhlcChart/exampleInfo";
 import { columnChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ColumnChart/exampleInfo";
+import { impulseChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ImpulseChart/exampleInfo";
 import { heatmapChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/HeatmapChart/exampleInfo";
 import { contourChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ContoursChart/exampleInfo";
 import { lineChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/LineChart/exampleInfo";
@@ -78,6 +79,7 @@ import { startupAnimationExampleInfo } from "../Examples/Charts2D/Animations/Sta
 import { dataPointSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection/exampleInfo";
 import { overviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier/exampleInfo";
 import { genericAnimationExampleInfo } from "../Examples/Charts2D/Animations/GenericAnimation/exampleInfo";
+import { drawBehindAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -151,6 +153,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_basicCharts_ColumnChart: {
         id: "chart2D_basicCharts_ColumnChart",
         ...columnChartExampleInfo
+    },
+    chart2D_basicCharts_ImpulseChart: {
+        id: "chart2D_basicCharts_ImpulseChart",
+        ...impulseChartExampleInfo
     },
     chart2D_basicCharts_HeatmapChart: {
         id: "chart2D_basicCharts_HeatmapChart",
@@ -259,6 +265,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_modifyAxisBehavior_LogarithmicAxis: {
         id: "chart2D_modifyAxisBehavior_LogarithmicAxis",
         ...logarithmicAxisExampleInfo
+    },
+    chart2D_modifyAxisBehavior_DrawBehindAxes: {
+        id: "chart2D_modifyAxisBehavior_DrawBehindAxes",
+        ...drawBehindAxesExampleInfo
     },
     chart2D_axisLabelCustomization_MultiLineLabels: {
         id: "chart2D_axisLabelCustomization_MultiLineLabels",

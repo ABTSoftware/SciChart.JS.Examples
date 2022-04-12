@@ -51,6 +51,12 @@ const seeAlso: GalleryItem[] = [
                 title: ExampleStrings.titleGroupedColumnChart,
                 seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
                 examplePath: ExampleStrings.urlGroupedColumnChart
+            },
+            {
+                imgPath: ExampleStrings.imgImpulseChart,
+                title: ExampleStrings.titleImpulseChart,
+                seoTitle: ExampleStrings.urlTitleImpulseChart,
+                examplePath: ExampleStrings.urlImpulseChart
             }
         ]
     }

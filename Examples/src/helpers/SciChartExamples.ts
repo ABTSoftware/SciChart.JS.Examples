@@ -17,6 +17,7 @@ import digitalBandChartImg from "../components/Examples/Charts2D/BasicChartTypes
 import bubbleChartImg from "../components/Examples/Charts2D/BasicChartTypes/BubbleChart/javascript-bubble-chart.jpg";
 import candlestickImg from "../components/Examples/Charts2D/BasicChartTypes/CandlestickChart/javascript-candlestick-chart.jpg";
 import columnChartImg from "../components/Examples/Charts2D/BasicChartTypes/ColumnChart/javascript-column-chart.jpg";
+import impulseChartImg from "../components/Examples/Charts2D/BasicChartTypes/ImpulseChart/javascript-impulse-chart.jpg";
 import fanChartImg from "../components/Examples/Charts2D/BasicChartTypes/FanChart/javascript-fan-chart.jpg";
 import heatmapImg from "../components/Examples/Charts2D/BasicChartTypes/HeatmapChart/javascript-heatmap-chart.jpg";
 import contourImg from "../components/Examples/Charts2D/BasicChartTypes/ContoursChart/javascript-contours-chart.jpg";
@@ -44,6 +45,7 @@ import multipleXAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior
 import secondaryYAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/javascript-chart-with-secondary-y-axis.jpg";
 import verticalChartImg from "../components/Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/javascript-vertical-charts.jpg";
 import centralAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/CentralAxes/javascript-central-axes.jpg";
+import drawBehindAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes/javascript-draw-behind-axes.jpg";
 import verticallyStackedAxesImg from "../components/Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/javascript-vertically-stacked-axes.jpg";
 import logarithmicAxisImg from "../components/Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/javascript-chart-with-logarithmic-axis.jpg";
 // Styling and Theming
@@ -214,6 +216,12 @@ export const sciChartExamples: GalleryItem[] = [
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.path
             },
             {
+                imgPath: impulseChartImg,
+                title: ExampleStrings.titleImpulseChart,
+                seoTitle: "JavaScript Impulse Chart Example",
+                examplePath: EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart.path
+            },
+            {
                 imgPath: fanChartImg,
                 title: "Fan Chart",
                 seoTitle: "JavaScript Fan Chart Example",
@@ -365,6 +373,12 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleLogarithmicAxis,
                 seoTitle: "JavaScript Logarithmic Axis Example",
                 examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis.path
+            },
+            {
+                imgPath: drawBehindAxesImg,
+                title: ExampleStrings.titleDrawBehindAxes,
+                seoTitle: "JavaScript Draw Behind Axes Example",
+                examplePath: EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes.path
             },
         ]
     },

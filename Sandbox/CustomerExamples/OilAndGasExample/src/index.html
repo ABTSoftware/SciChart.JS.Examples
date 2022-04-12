@@ -1,0 +1,434 @@
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>SciChart.js Oil &amp; Gas Sample</title>
+    <script async type="text/javascript" src="bundle.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial';
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar-charts {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-charts-2d {
+            height: 50%;
+            background: radial-gradient(circle, rgb(60, 60, 63) 0%, rgb(28, 28, 30) 100%);
+        }
+
+        .sidebar-charts-2d-item-small {
+            height: 55px;
+        }
+
+        .sidebar-charts-2d-item {
+            width: 33.33%;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            float: left;
+        }
+
+        .sidebar-charts-2d-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+        }
+
+        .sidebar-charts-2d-title {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-charts-3d {
+            height: 50%;
+        }
+
+        .main-container {
+            width: 70%;
+        }
+
+        .main-area {
+            height: 30%;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: auto;
+            padding-left: 10px;
+            background: radial-gradient(circle, rgb(60, 60, 63) 0%, rgb(28, 28, 30) 100%);
+        }
+
+        .main-area .container {
+            min-width: 350px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .main-area .box {
+            padding-bottom: 1px;
+            position: relative;
+        }
+
+        .box.red {
+            background-color: #eec0c3;
+        }
+
+        .box.purple {
+            background-color: #e7c3fa;
+        }
+
+        .box.grey {
+            background-color: #c9d3dd;
+        }
+
+        .box.green {
+            background-color: #bfe9c8;
+        }
+
+        .box.yellow {
+            background-color: #f4eabf;
+        }
+
+        .box.blue {
+            background-color: #d3e5e7;
+        }
+
+        .main-area .icon {
+            position: absolute;
+            left: 10px;
+            top: 4px;
+        }
+
+        .main-area .icon span {
+            font-size: 16px;
+        }
+
+        .main-area .title {
+            text-align: center;
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .main-area .line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+
+        .main-area .line:hover {
+            cursor: pointer;
+            background-color: #fff;
+        }
+
+        .main-area .line-icon {
+            width: 30px;
+            text-align: center;
+            padding-left: 10px;
+            margin-right: 10px;
+        }
+
+        .main-area .line-text {
+            width: 100%;
+        }
+
+        .main-area .line-icon-file,
+        .main-area .line-icon-folder {
+            text-align: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            margin-left: 2px;
+        }
+
+        .main-area .line-icon-folder {
+            margin-right: 2px;
+        }
+
+        .main-charts {
+            display: flex;
+            justify-content: space-around;
+            max-width: 100%;
+            height: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            background: radial-gradient(circle, rgb(60, 60, 63) 0%, rgb(28, 28, 30) 100%);
+        }
+
+        *::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 7px;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 1px rgba(255, 255, 255, 1);
+        }
+
+        .scichart__legend {
+            float: none !important;
+            height: auto !important;
+            text-align: unset !important;
+            background: radial-gradient(circle, rgb(60, 60, 63) 0%, rgb(28, 28, 30) 100%);
+            min-height: 150px;
+        }
+
+        .scichart__legend>div {
+            margin: 0 !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            background: transparent !important;
+        }
+
+        .scichart__legend-item {
+            display: block;
+            text-align: center;
+        }
+
+        .scichart__legend-item-justify {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        .scichart__legend-item-simple {
+            min-height: 40px;
+            /* display: flex;
+            align-items: center;
+            justify-content: center; */
+        }
+
+        .scichart__legend-line {
+            width: 100%;
+            height: 2px;
+            display: block;
+        }
+
+        .chart-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            flex: auto;
+            max-width: 16%;
+        }
+
+        .legend-root {
+            min-height: 115px;
+            display: flex;
+            align-items: end;
+            background-color: #2C2C2E;
+        }
+
+        .chart-root {
+            flex: auto;
+        }
+
+        .chart-legend {
+            flex: auto;
+        }
+
+        .full-size-legend {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .legend-text-item {
+            height: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            font-size: 10px;
+            font-weight: 700;
+            color: LightGray;
+            align-items: center;
+        }
+
+        .legend-color-item {
+            height: 20px;
+            width: 100%;
+            display: flex;
+            flex: auto;
+        }
+
+        .color-label {
+            height: 100%;
+            flex: auto;
+        }
+
+        #shale-chart-background {
+            position: absolute;
+            top: 115px;
+            width: 100%;
+            min-height: calc(100% - 115px - 25px);
+            background-color: LightGreen;
+        }
+
+        #shale-chart-background>svg {
+            position: absolute;
+            min-height: 100%;
+        }
+
+        .scichart__legend-line {
+            width: 100%;
+            height: 2px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="sidebar-charts">
+            <div class="sidebar-charts-2d">
+                <div class="sidebar-charts-2d-item sidebar-charts-2d-item-small">
+                    <div class="sidebar-charts-2d-title">GR</div>
+                    <div class="sidebar-charts-2d-line" style="position: relative;top: 15px;">
+                        <span>0</span>
+                        <span style="padding-left: 12px;">(GAP)</span>
+                        <span>200</span>
+                    </div>
+                </div>
+                <div class="sidebar-charts-2d-item sidebar-charts-2d-item-small">
+                    <div class="sidebar-charts-2d-title">RHDB</div>
+                    <div class="sidebar-charts-2d-line" style="position: relative;top: 15px;">
+                        <span>100</span>
+                        <span>(RCI)</span>
+                        <span>206</span>
+                    </div>
+                </div>
+                <div class="sidebar-charts-2d-item sidebar-charts-2d-item-small">
+                    <div class="sidebar-charts-2d-title">NPHI</div>
+                    <div class="sidebar-charts-2d-line" style="position: relative;top: 15px;">
+                        <span>0.45</span>
+                        <span>(VIV)</span>
+                        <span>4.11</span>
+                    </div>
+                </div>
+                <div class="sidebar-charts-2d-item">
+                    <div id="scichart-2d-first" style="width: 100%; height: 100px; position: relative;"></div>
+                </div>
+                <div class="sidebar-charts-2d-item">
+                    <div id="scichart-2d-second" style="width: 100%; height: 100px; position: relative;"></div>
+                </div>
+                <div class="sidebar-charts-2d-item">
+                    <div id="scichart-2d-third" style="width: 100%; height: 100px; position: relative;"></div>
+                </div>
+                <div class="sidebar-charts-2d-item">
+                    <div id="scichart-2d-fourth" style="width: 100%; height: 100px; position: relative;"></div>
+                </div>
+                <div class="sidebar-charts-2d-item">
+                    <div id="scichart-2d-fifth" style="width: 100%; height: 100px; position: relative;"></div>
+                </div>
+                <div class="sidebar-charts-2d-item">
+                    <div id="scichart-2d-sixth" style="width: 100%; height: 100px; position: relative;"></div>
+                </div>
+                <div class="sidebar-charts-2d-item">
+                    <div id="scichart-2d-seventh" style="width: 100%; height: 100px; position: relative;"></div>
+                </div>
+                <div class="sidebar-charts-2d-item">
+                    <div id="scichart-2d-eighth" style="width: 100%; height: 100px; position: relative;"></div>
+                </div>
+                <div class="sidebar-charts-2d-item">
+                    <div id="scichart-2d-ninth" style="width: 100%; height: 100px; position: relative;"></div>
+                </div>
+                <div class="sidebar-charts-2d-item sidebar-charts-2d-item-small"
+                    style="position: relative;bottom: 15px;">
+                    <div class="sidebar-charts-2d-line" style="margin-bottom: 20px;">
+                        <span>0</span>
+                        <span style="padding-left: 12px;">(GAP)</span>
+                        <span>200</span>
+                    </div>
+                    <div class="sidebar-charts-2d-title">GR</div>
+                </div>
+                <div class="sidebar-charts-2d-item sidebar-charts-2d-item-small"
+                    style="position: relative;bottom: 15px;">
+                    <div class="sidebar-charts-2d-line" style="margin-bottom: 20px;">
+                        <span>100</span>
+                        <span>(RCI)</span>
+                        <span>206</span>
+                    </div>
+                    <div class="sidebar-charts-2d-title">RHDB</div>
+                </div>
+                <div class="sidebar-charts-2d-item sidebar-charts-2d-item-small"
+                    style="position: relative;bottom: 15px;">
+                    <div class="sidebar-charts-2d-line" style="margin-bottom: 20px;">
+                        <span>0.45</span>
+                        <span>(VIV)</span>
+                        <span>4.11</span>
+                    </div>
+                    <div class="sidebar-charts-2d-title">NPHI</div>
+                </div>
+            </div>
+            <div class="sidebar-charts-3d">
+                <div id="scichart-3d" style="position: relative; height: 100%; width: 100%;"></div>
+            </div>
+        </div>
+        <div class="main-container">
+            <div class="main-charts">
+                <div class="chart-container">
+                    <div id="shale-legend" class="legend-root"></div>
+                    <div id="shale-chart-background" class="chart-root">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                            <style type="text/css">
+                                line {
+                                    stroke: #474747;
+                                }
+                            </style>
+                            <defs>
+                                <pattern id="grid1" patternUnits="userSpaceOnUse" width="10" height="10">
+                                    <line x1="0" y1="0" x2="10" y2="10" />
+                                </pattern>
+                                <pattern id="grid2" patternUnits="userSpaceOnUse" width="10" height="10">
+                                    <line x1="0" y1="10" x2="10" y2="0" />
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid1)" />
+                            <rect width="100%" height="100%" fill="url(#grid2)" />
+                        </svg>
+                    </div>
+                    <div id="shale-chart" class="chart-root"></div>
+                </div>
+                <div class="chart-container">
+                    <div id="density-legend" class="legend-root"></div>
+                    <div id="density-chart" class="chart-root"></div>
+                </div>
+                <div class="chart-container">
+                    <div id="resistivity-legend" class="legend-root"></div>
+                    <div id="resistivity-chart" class="chart-root"></div>
+                </div>
+                <div class="chart-container">
+                    <div id="pore-space-legend" class="legend-root"></div>
+                    <div id="pore-space-chart" class="chart-root"></div>
+                </div>
+                <div class="chart-container">
+                    <div id="sonic-legend" class="legend-root"></div>
+                    <div id="sonic-chart" class="chart-root"></div>
+                </div>
+                <div class="chart-container">
+                    <div id="texture-legend" class="legend-root"></div>
+                    <div id="texture-chart" class="chart-root"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -44,7 +44,7 @@ const drawExample = async () => {
         emojiUrl10
     ]);
 
-    xAxis.labelProvider.getLabelTexture = (
+    const getLabelTexture = (
         labelText: string,
         textureManager: TextureManager,
         labelStyle: TTextStyle
@@ -58,6 +58,17 @@ const drawExample = async () => {
         }
         return textureManager.createTextTexture([labelText], labelStyle);
     };
+    xAxis.labelProvider.getLabelTexture = getLabelTexture;
+
+    // If using asyncLabels = true, override this as well
+    xAxis.labelProvider.getLabelTextureAsync = (
+        labelText: string,
+        textureManager: TextureManager,
+        labelStyle: TTextStyle
+    ) => Promise.resolve(getLabelTexture(labelText, textureManager, labelStyle))
+
+    // Disable shared cache for this provider, otherwise other axes might pick up the emoji textures
+    xAxis.labelProvider.useSharedCache = false;
 
     sciChartSurface.xAxes.add(xAxis);
 

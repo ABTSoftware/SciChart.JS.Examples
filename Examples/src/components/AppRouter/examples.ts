@@ -5,6 +5,7 @@ import BubbleChart from "../Examples/Charts2D/BasicChartTypes/BubbleChart";
 import CandlestickChart from "../Examples/Charts2D/BasicChartTypes/CandlestickChart";
 import OhlcChart from "../Examples/Charts2D/BasicChartTypes/OhlcChart";
 import ColumnChart from "../Examples/Charts2D/BasicChartTypes/ColumnChart";
+import ImpulseChart from "../Examples/Charts2D/BasicChartTypes/ImpulseChart";
 import HeatmapChart from "../Examples/Charts2D/BasicChartTypes/HeatmapChart";
 import ContourChart from "../Examples/Charts2D/BasicChartTypes/ContoursChart";
 import LineChart from "../Examples/Charts2D/BasicChartTypes/LineChart";
@@ -41,6 +42,7 @@ import VerticalCharts from "../Examples/Charts2D/ModifyAxisBehavior/VerticalChar
 import CentralAxes from "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes";
 import VerticallyStackedAxes from "../Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes";
 import LogarithmicAxisExample from "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis";
+import DrawBehindAxes from "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes";
 
 import UsePointMarkers from "../Examples/Charts2D/StylingAndTheming/UsePointMarkers";
 import UsingThemeManager from "../Examples/Charts2D/StylingAndTheming/UsingThemeManager";
@@ -112,6 +114,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart,
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart,
             EXAMPLES_PAGES.chart2D_basicCharts_FanChart,
             EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ContourChart,
@@ -156,7 +159,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes
         ]
     },
     {
@@ -280,7 +284,8 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes
         ]
     },
     {
@@ -389,6 +394,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return OhlcChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.id:
             return ColumnChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart.id:
+            return ImpulseChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart.id:
             return HeatmapChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_ContourChart.id:
@@ -441,6 +448,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return VerticallyStackedAxes;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis.id:
             return LogarithmicAxisExample;
+        case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes.id:
+            return DrawBehindAxes;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart.id:
             return StackedColumnChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide.id:
