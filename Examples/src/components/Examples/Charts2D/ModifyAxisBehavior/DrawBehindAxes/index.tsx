@@ -14,53 +14,48 @@ const divElementId = "chart1";
 
 const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    // Allows to use all existing space for drawing
+
+    // When true, Series are drawn behind axis (Axis inside chart)
     sciChartSurface.drawSeriesBehindAxis = true;
 
-    const yAxis1 = new NumericAxis(wasmContext, {
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        growBy: new NumberRange(0.1, 0.1),
+        visibleRange: new NumberRange(35.0, 42.6),
+    }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
         growBy: new NumberRange(0.1, 0.1),
         visibleRange: new NumberRange(-5.0, 90.0),
-    });
-    const xAxis1 = new NumericAxis(wasmContext, {
-        growBy: new NumberRange(0.1, 0.1),
-        visibleRange: new NumberRange(35.0, 42.6)
-    });
+    }));
 
-    sciChartSurface.xAxes.add(xAxis1);
-    sciChartSurface.yAxes.add(yAxis1);
+    const xValues = [];
+    const yValues = [];
+    const y1Values = [];
 
-
-    const lineSeries = new FastLineRenderableSeries(wasmContext, {
-        drawNaNAs: ELineDrawMode.PolyLine,
-        isDigitalLine: false
-    });
-
-    const lineSeries1 = new FastLineRenderableSeries(wasmContext, {
-        drawNaNAs: ELineDrawMode.PolyLine,
-        isDigitalLine: false
-    });
-
-    lineSeries.strokeThickness = 5;
-    lineSeries.stroke = "rgba(255, 134, 72, .47)";
-
-    lineSeries1.strokeThickness = 3;
-    lineSeries1.stroke = "rgba(50, 134, 72, .47)";
-
-    sciChartSurface.renderableSeries.add(lineSeries);
-    sciChartSurface.renderableSeries.add(lineSeries1);
-
-    const dataSeries = new XyDataSeries(wasmContext, { containsNaN: true });
-    const dataSeries1 = new XyDataSeries(wasmContext, { containsNaN: true });
     for (let i = 0; i < 100; i += 0.1) {
-        let y = Math.tan(i);
-        let y1 = Math.cos(i * 100) * 5;
-        dataSeries.append(i, y);
-        dataSeries1.append(i, y1);
+        xValues.push(i);
+        yValues.push(Math.tan(i));
+        y1Values.push(Math.cos(i * 100) * 5);
     }
-    lineSeries.dataSeries = dataSeries;
-    lineSeries1.dataSeries = dataSeries1;
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new PinchZoomModifier(), new MouseWheelZoomModifier());
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        drawNaNAs: ELineDrawMode.PolyLine,
+        strokeThickness: 5,
+        stroke: "rgba(255, 134, 72, .47)",
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
+    }));
+
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        drawNaNAs: ELineDrawMode.PolyLine,
+        strokeThickness: 3,
+        stroke: "rgba(50, 134, 72, .47)",
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values })
+    }))
+
+    sciChartSurface.chartModifiers.add(
+        new ZoomPanModifier(),
+        new PinchZoomModifier(),
+        new MouseWheelZoomModifier(),
+        new ZoomPanModifier());
 
     return { sciChartSurface, wasmContext };
 };
