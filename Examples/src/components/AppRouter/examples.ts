@@ -91,6 +91,7 @@ import TrendMARatio from "../Examples/Charts2D/Filters/TrendMARatio";
 import CustomFilters from "../Examples/Charts2D/Filters/CustomFilters";
 import DatapointSelection from "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection";
 import Overview from "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier";
+import ErrorBarsChart from "../Examples/Charts2D/BasicChartTypes/ErrorBarsChart";
 
 export type TMenuItem = {
     item: {
@@ -114,6 +115,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart,
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_ErrorBarsChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart,
             EXAMPLES_PAGES.chart2D_basicCharts_FanChart,
             EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart,
@@ -321,7 +323,14 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview
         ]
-    }
+    },
+    {
+        item: { id: "chart2D_newChartTypes", name: "New Chart Types" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_basicCharts_ErrorBarsChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart
+        ]
+    },
 ];
 
 export const getParentMenuIds = (exampleId: string): string[] => {
@@ -394,6 +403,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return OhlcChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.id:
             return ColumnChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_ErrorBarsChart.id:
+            return ErrorBarsChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart.id:
             return ImpulseChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart.id:

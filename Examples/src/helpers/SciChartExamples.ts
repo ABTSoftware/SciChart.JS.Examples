@@ -17,6 +17,7 @@ import digitalBandChartImg from "../components/Examples/Charts2D/BasicChartTypes
 import bubbleChartImg from "../components/Examples/Charts2D/BasicChartTypes/BubbleChart/javascript-bubble-chart.jpg";
 import candlestickImg from "../components/Examples/Charts2D/BasicChartTypes/CandlestickChart/javascript-candlestick-chart.jpg";
 import columnChartImg from "../components/Examples/Charts2D/BasicChartTypes/ColumnChart/javascript-column-chart.jpg";
+import errorBarsImg from "../components/Examples/Charts2D/BasicChartTypes/ErrorBarsChart/javascript-error-bars-chart.jpg";
 import impulseChartImg from "../components/Examples/Charts2D/BasicChartTypes/ImpulseChart/javascript-impulse-chart.jpg";
 import fanChartImg from "../components/Examples/Charts2D/BasicChartTypes/FanChart/javascript-fan-chart.jpg";
 import heatmapImg from "../components/Examples/Charts2D/BasicChartTypes/HeatmapChart/javascript-heatmap-chart.jpg";
@@ -214,6 +215,12 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleColumnChart,
                 seoTitle: "JavaScript Column Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.path
+            },
+            {
+                imgPath: errorBarsImg,
+                title: ExampleStrings.titleErrorBarsChart,
+                seoTitle: "JavaScript Error Bars Chart Example",
+                examplePath: EXAMPLES_PAGES.chart2D_basicCharts_ErrorBarsChart.path
             },
             {
                 imgPath: impulseChartImg,
