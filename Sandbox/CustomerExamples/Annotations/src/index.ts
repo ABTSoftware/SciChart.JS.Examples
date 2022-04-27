@@ -11,6 +11,7 @@ import { CustomBoxAnnotation } from './CustomBoxAnnotation';
 import { createImageAsync } from 'scichart/utils/imageUtil';
 import { MouseOverAxisModifier } from './MouseOverAxisModifier';
 import { CustomAnnotation } from 'scichart/Charting/Visuals/Annotations/CustomAnnotation';
+import {AxisMarkerAnnotationWithoutGrips} from "./AxisMarkerAnnotationWithoutGrips";
 
 async function initSciChart() {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root');
@@ -53,7 +54,7 @@ async function initSciChart() {
     const url = URL.createObjectURL(blob);
     const htmlImageElement = await createImageAsync(url);
 
-    const customAxisMarkerAnnotation = new AxisMarkerAnnotation({
+    const customAxisMarkerAnnotation = new AxisMarkerAnnotationWithoutGrips({
         y1: 3,
         isEditable: true,
         image: htmlImageElement,
