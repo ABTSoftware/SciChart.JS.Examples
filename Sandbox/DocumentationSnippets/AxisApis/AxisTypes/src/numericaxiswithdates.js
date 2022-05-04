@@ -12,7 +12,7 @@ export async function initNumericAxisWithDates() {
     const xAxis = new NumericAxis(wasmContext, {
         drawMajorGridLines: true,
         drawMinorGridLines: true,
-        axisTitle: "X Axis",
+        axisTitle: "Numeric Date X Axis",
         axisAlignment: EAxisAlignment.Bottom,
         autoRange: EAutoRange.Once,
     });
@@ -28,7 +28,7 @@ export async function initNumericAxisWithDates() {
 
     // Creating a NumericAxis as a YAxis on the left
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        axisTitle: "Y Axis",
+        axisTitle: "Numeric Y Axis",
         axisAlignment: EAxisAlignment.Left,
     }));
 }

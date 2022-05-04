@@ -10,6 +10,8 @@ import { MouseOverAnnotationModifier } from './MouseOverAnnotationModifier';
 import { CustomBoxAnnotation } from './CustomBoxAnnotation';
 import { createImageAsync } from 'scichart/utils/imageUtil';
 import { MouseOverAxisModifier } from './MouseOverAxisModifier';
+import { CustomAnnotation } from 'scichart/Charting/Visuals/Annotations/CustomAnnotation';
+import {AxisMarkerAnnotationWithoutGrips} from "./AxisMarkerAnnotationWithoutGrips";
 
 async function initSciChart() {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root');
@@ -41,7 +43,7 @@ async function initSciChart() {
         backgroundColor: '#2d03fc',
         formattedValue: 'Axis Marker',
         y1: 7,
-        isEditable: true
+        isEditable: true,
     });
 
     // This creates a red circle image and waits until it is created
@@ -52,12 +54,12 @@ async function initSciChart() {
     const url = URL.createObjectURL(blob);
     const htmlImageElement = await createImageAsync(url);
 
-    const customAxisMarkerAnnotation = new AxisMarkerAnnotation({
+    const customAxisMarkerAnnotation = new AxisMarkerAnnotationWithoutGrips({
         y1: 3,
         isEditable: true,
         image: htmlImageElement,
         imageWidth: 50,
-        imageHeight: 50
+        imageHeight: 50,
     });
 
     const callWhenSelectionChanges = (isSelected: boolean) => {
@@ -76,10 +78,38 @@ async function initSciChart() {
         x2: 6.0,
         y1: 6.0,
         y2: 8.0,
-        isEditable: true
+        isEditable: true,
+    });
+    const svg = `<svg width="400" height="110" style="pointer-events: all">
+    <rect width="100%" height="100%" style="fill:rgb(0,0,0, .5);stroke-width:3;stroke:rgb(0,0,0)" />
+    <foreignObject x="10%" y="10%" width="80%" height="80%">
+        <body xmlns="http://www.w3.org/1999/xhtml">
+            <form class="form" id="form">
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" placeholder="Enter email" class="form-control" />
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="text" id="password" placeholder="Enter password" class="form-control" />
+                </div>
+                <button id="send">Send</button>
+            </form>
+        </body>
+    </foreignObject>
+  </svg>`;
+    const customAnnotation = new CustomAnnotation({
+        x1: 2.0,
+        y1: 4.0,
+        svgString: svg,
     });
 
-    sciChartSurface.annotations.add(axisMarkerAnnotation, customAxisMarkerAnnotation, boxAnnotationGreen);
+    sciChartSurface.annotations.add(
+        axisMarkerAnnotation,
+        customAxisMarkerAnnotation,
+        boxAnnotationGreen,
+        customAnnotation
+    );
 }
 
 initSciChart();

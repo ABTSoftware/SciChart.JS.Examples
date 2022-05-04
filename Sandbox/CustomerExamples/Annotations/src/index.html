@@ -1,18 +1,44 @@
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>Annotations Demo</title>
-    <script async type="text/javascript" src="bundle.js"></script>
-    <style>
-      body {
-        font-family: "Arial";
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Annotations Demo</h1>
-    <!-- the Div where the SciChartSurface will reside -->
-    <div id="scichart-root" style="width: 800px; height: 600px"></div>
-  </body>
+    <head>
+        <meta charset="utf-8" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <title>Annotations Demo</title>
+        <script async type="text/javascript" src="bundle.js"></script>
+        <style>
+            body {
+                font-family: 'Arial';
+            }
+
+            .form {
+                border: 1px solid #fff;
+                padding: 10px;
+                border-radius: 4px;
+                color: #fff;
+            }
+
+            .form div {
+                display: flex;
+            }
+
+            .form label,
+            .form input {
+                width: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Annotations Demo</h1>
+        <!-- the Div where the SciChartSurface will reside -->
+        <div id="scichart-root" style="width: 800px; height: 600px"></div>
+        <script>
+            document.addEventListener('click', function (e) {
+                if (e.target && e.target.id == 'send') {
+                    e.preventDefault();
+                    const emailEl = e.target.parentNode.querySelector('#email');
+                    const passwordEl = e.target.parentNode.querySelector('#password');
+                    alert(`Email: ${emailEl.value}; Password: ${passwordEl.value}`);
+                }
+            });
+        </script>
+    </body>
 </html>

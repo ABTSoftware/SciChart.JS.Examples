@@ -7,6 +7,7 @@ This example showcases:
 * How to listen to on hover event and change the cursor (uses `MouseOverAnnotationModifier`)
 * How to change the cursor when hover over axes (uses `MouseOverAxisModifier`)
 * How to listen to isSelected event (uses `CustomBoxAnnotation`)
+* How to hide grips for annotations (uses `AxisMarkerAnnotationWithoutGrips`)
 
 ## Running the Example
 
