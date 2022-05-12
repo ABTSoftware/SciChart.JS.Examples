@@ -11,7 +11,7 @@ import { CustomBoxAnnotation } from './CustomBoxAnnotation';
 import { createImageAsync } from 'scichart/utils/imageUtil';
 import { MouseOverAxisModifier } from './MouseOverAxisModifier';
 import { CustomAnnotation } from 'scichart/Charting/Visuals/Annotations/CustomAnnotation';
-import {AxisMarkerAnnotationWithoutGrips} from "./AxisMarkerAnnotationWithoutGrips";
+import { AxisMarkerAnnotationWithoutGrips } from "./AxisMarkerAnnotationWithoutGrips";
 
 async function initSciChart() {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root');
@@ -80,7 +80,7 @@ async function initSciChart() {
         y2: 8.0,
         isEditable: true,
     });
-    const svg = `<svg width="400" height="110" style="pointer-events: all">
+    const svg = `<svg width="400" height="110">
     <rect width="100%" height="100%" style="fill:rgb(0,0,0, .5);stroke-width:3;stroke:rgb(0,0,0)" />
     <foreignObject x="10%" y="10%" width="80%" height="80%">
         <body xmlns="http://www.w3.org/1999/xhtml">
@@ -102,6 +102,7 @@ async function initSciChart() {
         x1: 2.0,
         y1: 4.0,
         svgString: svg,
+        isEditable: true
     });
 
     sciChartSurface.annotations.add(
