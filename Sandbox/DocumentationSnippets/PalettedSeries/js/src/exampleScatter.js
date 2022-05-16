@@ -1,18 +1,14 @@
 import { SciChartSurface } from 'scichart';
 import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
 import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
-import {
-    EStrokePaletteMode,
-    IPointMarkerPaletteProvider, TPointMarkerArgb
-} from 'scichart/Charting/Model/IPaletteProvider';
+import { DefaultPaletteProvider, EStrokePaletteMode } from 'scichart/Charting/Model/IPaletteProvider';
 import { parseColorToUIntArgb } from 'scichart/utils/parseColor';
 import { NumberRange } from 'scichart/Core/NumberRange';
 import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 
-export const drawExampleScatter = async (divElementId: string) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+export const drawExampleScatter = async () => {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-div-id');
 
     // Create XAxis
     sciChartSurface.xAxes.add(
@@ -49,20 +45,15 @@ export const drawExampleScatter = async (divElementId: string) => {
  * An example PaletteProvider for overriding scatter points
  * This can be attached to line, mountain, column or candlestick series to change the pointmarker fill/stroke of the series conditionally
  */
-class ScatterPointPaletteProvider implements IPointMarkerPaletteProvider {
-    readonly strokePaletteMode: EStrokePaletteMode;
-    private readonly stroke: number;
-    private readonly rule: (yValue: number) => boolean;
-    constructor(stroke: string, rule: (yValue: number) => boolean) {
+class ScatterPointPaletteProvider extends DefaultPaletteProvider {
+    constructor(stroke, rule) {
+        super();
         this.strokePaletteMode = EStrokePaletteMode.SOLID;
         this.rule = rule;
         this.stroke = parseColorToUIntArgb(stroke);
     }
 
-    onAttached(parentSeries: IRenderableSeries): void {}
-    onDetached(): void {}
-
-    public overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
+    overridePointMarkerArgb(xValue, yValue, index) {
         // Conditional logic for coloring here. Returning 'undefined' means 'use default renderableSeries colour'
         // else, we can return a color of choice.
         //

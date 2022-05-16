@@ -1,3 +1,7 @@
 import { drawExampleLine } from "./exampleLine";
+import {drawExampleImpulse} from "./exampleImpulse";
+import {drawExampleScatter} from "./exampleScatter";
 
-drawExampleLine();
+// drawExampleLine();
+// drawExampleImpulse();
+drawExampleScatter();
