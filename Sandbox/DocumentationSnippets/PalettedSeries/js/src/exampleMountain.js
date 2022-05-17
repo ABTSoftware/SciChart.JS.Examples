@@ -5,20 +5,16 @@ import { NumberRange } from 'scichart/Core/NumberRange';
 import { FastMountainRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries';
 import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
 import {
+    DefaultPaletteProvider,
     EFillPaletteMode,
-    EStrokePaletteMode,
-    IFillPaletteProvider,
-    IPointMarkerPaletteProvider,
-    IStrokePaletteProvider,
-    TPointMarkerArgb
+    EStrokePaletteMode
 } from 'scichart/Charting/Model/IPaletteProvider';
 import { parseColorToUIntArgb } from 'scichart/utils/parseColor';
-import { IRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/IRenderableSeries';
-import { IPointMetadata } from 'scichart/Charting/Model/IPointMetadata';
 import { uintArgbColorMultiplyOpacity } from 'scichart/utils/colorUtil';
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 
-export const drawExampleMountain = async (divElementId: string) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+export const drawExampleMountain = async () => {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-div-id', {
         theme: new SciChartJSLightTheme()
     });
 
@@ -45,7 +41,7 @@ export const drawExampleMountain = async (divElementId: string) => {
         //     strokeThickness: 5,
         //     fill: '#ff0000',
         //     stroke: '#000000',
-        //     opacity: 1 // Does not work correctly with opacity 0.5
+        //     opacity: 1
         // }),
         opacity: 1,
         paletteProvider: new MountainPaletteProvider()
@@ -54,60 +50,42 @@ export const drawExampleMountain = async (divElementId: string) => {
     sciChartSurface.renderableSeries.add(mountainSeries);
 };
 
-export class MountainPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
-    public readonly fillPaletteMode = EFillPaletteMode.SOLID;
-    public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
-    private readonly limeStroke = parseColorToUIntArgb('lime');
-    private readonly yellowFill = parseColorToUIntArgb('yellow');
+export class MountainPaletteProvider extends DefaultPaletteProvider {
+    constructor() {
+        super();
 
-    public onAttached(parentSeries: IRenderableSeries): void {}
+        this.fillPaletteMode = EFillPaletteMode.SOLID;
+        this.strokePaletteMode = EStrokePaletteMode.SOLID;
+        this.limeStroke = parseColorToUIntArgb('lime');
+        this.yellowFill = parseColorToUIntArgb('yellow');
+    }
 
-    public onDetached(): void {}
-
-    public overrideFillArgb(
-        xValue: number,
-        yValue: number,
-        index: number,
-        opacity?: number,
-        metadata?: IPointMetadata
-    ): number {
+    overrideFillArgb(xValue, yValue, index, opacity, metadata) {
         if (yValue >= 0.5) {
             return opacity !== undefined ? uintArgbColorMultiplyOpacity(this.yellowFill, opacity) : this.yellowFill;
         }
         return undefined;
     }
 
-    public overrideStrokeArgb(
-        xValue: number,
-        yValue: number,
-        index: number,
-        opacity?: number,
-        metadata?: IPointMetadata
-    ): number {
+    overrideStrokeArgb(xValue, yValue, index, opacity, metadata) {
         if (yValue >= 0.5) {
             return opacity !== undefined ? uintArgbColorMultiplyOpacity(this.limeStroke, opacity) : this.limeStroke;
         }
-        return undefined;
+    return undefined;
     }
 }
 
-export class MountainPointMarkerPaletteProvider implements IPointMarkerPaletteProvider {
-    public readonly fillPaletteMode = EFillPaletteMode.SOLID;
-    public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
-    private readonly redStroke = parseColorToUIntArgb('red');
-    private readonly blueFill = parseColorToUIntArgb('blue');
+class MountainPointMarkerPaletteProvider extends DefaultPaletteProvider {
 
-    public onAttached(parentSeries: IRenderableSeries): void {}
+    constructor() {
+        super();
+        this.fillPaletteMode = EFillPaletteMode.SOLID;
+        this.strokePaletteMode = EStrokePaletteMode.SOLID;
+        this.redStroke = parseColorToUIntArgb('red');
+        this.blueFill = parseColorToUIntArgb('blue');
+    }
 
-    public onDetached(): void {}
-
-    public overridePointMarkerArgb(
-        xValue: number,
-        yValue: number,
-        index: number,
-        opacity?: number,
-        metadata?: IPointMetadata
-    ): TPointMarkerArgb {
+    overridePointMarkerArgb(xValue, yValue, index, opacity, metadata) {
         if (yValue >= 0.5) {
             // The opacity is already applied in the texture
             // And this opacity is the renderable series opacity, therefore we do not use it here
