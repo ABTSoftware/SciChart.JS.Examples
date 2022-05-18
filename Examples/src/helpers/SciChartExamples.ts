@@ -89,7 +89,7 @@ import builderCustomTypesImg from "../components/Examples/BuilderApi/CustomTypes
 import startupAnimationImg from "../components/Examples/Charts2D/Animations/StartupAnimation/javascript-startup-animation.png";
 import dataAnimationImg from "../components/Examples/Charts2D/Animations/DataAnimation/javascript-data-animation.png";
 import styleAnimationImg from "../components/Examples/Charts2D/Animations/StyleAnimation/javascript-style-animation.png";
-import genericAnimationImg from "../components/Examples/Charts2D/Animations/GenericAnimation/javascript-generic-animation.png";
+import genericAnimationImg from "../components/Examples/Charts2D/Animations/GenericAnimation/javascript-generic-animation.jpg";
 
 import { GalleryItem } from "./types/types";
 import { ExampleStrings } from "../components/Examples/ExampleStrings";
