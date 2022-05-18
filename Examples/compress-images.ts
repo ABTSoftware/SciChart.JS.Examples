@@ -44,9 +44,13 @@ async function getFiles(pathUrl: string) {
     });
 
     for (const imageFile of imageFiles) {
-        console.log("compressing image " + imageFile.filePath);
-        gulp.src(imageFile.filePath)
-            .pipe(smushit({ verbose: false }))
-            .pipe(gulp.dest(imageFile.fileDir));
+        try {
+            console.log("compressing image " + imageFile.filePath);
+            gulp.src(imageFile.filePath)
+                .pipe(smushit({ verbose: false }))
+                .pipe(gulp.dest(imageFile.fileDir));
+        } catch (err) {
+            console.warn(err);
+        }
     }
 })();

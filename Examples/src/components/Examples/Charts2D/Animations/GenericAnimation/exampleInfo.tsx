@@ -81,5 +81,5 @@ export const genericAnimationExampleInfo: TExampleInfo = {
     githubUrl,
     seoDescription: "Demonstrates how to run Generic Animation with JavaScript.",
     seoKeywords: "generic, animation, javascript",
-    thumbnailImage: "javascript-generic-animation.png"
+    thumbnailImage: "javascript-generic-animation.jpg"
 };
