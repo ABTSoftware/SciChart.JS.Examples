@@ -7,6 +7,7 @@ import { candlestickChartExampleInfo } from "../Examples/Charts2D/BasicChartType
 import { ohlcChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/OhlcChart/exampleInfo";
 import { columnChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ColumnChart/exampleInfo";
 import { impulseChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ImpulseChart/exampleInfo";
+import { errorBarsChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ErrorBarsChart/exampleInfo";
 import { heatmapChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/HeatmapChart/exampleInfo";
 import { contourChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ContoursChart/exampleInfo";
 import { lineChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/LineChart/exampleInfo";
@@ -149,6 +150,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_basicCharts_OhlcChart: {
         id: "chart2D_basicCharts_OhlcChart",
         ...ohlcChartExampleInfo
+    },
+    chart2D_basicCharts_ErrorBarsChart: {
+        id: "chart2D_basicCharts_ErrorBarsChart",
+        ...errorBarsChartExampleInfo
     },
     chart2D_basicCharts_ColumnChart: {
         id: "chart2D_basicCharts_ColumnChart",

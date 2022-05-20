@@ -1,65 +1,79 @@
 import { SciChartSurface } from 'scichart';
-import { SciChartJSLightTheme } from 'scichart/Charting/Themes/SciChartJSLightTheme';
 import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
-import { NumberRange } from 'scichart/Core/NumberRange';
 import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
-import { XyScatterRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries';
-import { EllipsePointMarker } from 'scichart/Charting/Visuals/PointMarkers/EllipsePointMarker';
 import {
     EStrokePaletteMode,
-    IPointMarkerPaletteProvider,
-    TPointMarkerArgb
+    IPointMarkerPaletteProvider, TPointMarkerArgb
 } from 'scichart/Charting/Model/IPaletteProvider';
 import { parseColorToUIntArgb } from 'scichart/utils/parseColor';
-import { IRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/IRenderableSeries';
+import { NumberRange } from 'scichart/Core/NumberRange';
+import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 
 export const drawExampleScatter = async (divElementId: string) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJSLightTheme()
-    });
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+
+    // Create XAxis
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.1, 0.1)
+        })
+    );
+
+    // Create YAxis
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.1, 0.1)
+        })
+    );
 
     const dataSeries = new XyDataSeries(wasmContext);
-    for (let i = 0; i < 20; i++) {
-        dataSeries.append(i, Math.sin(i * 0.1));
+    for (let i = 0; i < 50; i++) {
+        dataSeries.append(i, Math.sin(i * 0.05));
     }
 
-    const scatterSeries = new XyScatterRenderableSeries(wasmContext, {
-        dataSeries,
-        pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 40,
-            height: 40,
-            strokeThickness: 6,
-            stroke: '#FF0000',
-            fill: '#0000FF',
-            opacity: 1
-        }),
-        paletteProvider: new ScatterPaletteProvider()
-    });
-    sciChartSurface.renderableSeries.add(scatterSeries);
-
+    // Create a line series with a PaletteProvider. See implementation of LinePaletteProvider below
+    sciChartSurface.renderableSeries.add(
+        new XyScatterRenderableSeries(wasmContext, {
+            pointMarker: new EllipsePointMarker(wasmContext, { width: 10, height: 10, strokeThickness: 2, fill: "SteelBlue", stroke: "SteelBlue"}),
+            dataSeries,
+            // The LinePaletteProvider (declared below) implements per-point coloring for line series
+            paletteProvider: new ScatterPointPaletteProvider('#55FF55', yValue => yValue > 0.5)
+        })
+    );
     sciChartSurface.zoomExtents();
-    return { sciChartSurface, wasmContext };
 };
 
-class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
-    public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
-    private readonly limeStroke = parseColorToUIntArgb('lime');
-    private readonly yellowFill = parseColorToUIntArgb('yellow');
+/**
+ * An example PaletteProvider for overriding scatter points
+ * This can be attached to line, mountain, column or candlestick series to change the pointmarker fill/stroke of the series conditionally
+ */
+class ScatterPointPaletteProvider implements IPointMarkerPaletteProvider {
+    readonly strokePaletteMode: EStrokePaletteMode;
+    private readonly stroke: number;
+    private readonly rule: (yValue: number) => boolean;
+    constructor(stroke: string, rule: (yValue: number) => boolean) {
+        this.strokePaletteMode = EStrokePaletteMode.SOLID;
+        this.rule = rule;
+        this.stroke = parseColorToUIntArgb(stroke);
+    }
 
-    public onAttached(parentSeries: IRenderableSeries): void {}
-
-    public onDetached(): void {}
+    onAttached(parentSeries: IRenderableSeries): void {}
+    onDetached(): void {}
 
     public overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
-        if (yValue > 0.75) {
-            return {
-                stroke: this.limeStroke,
-                fill: this.yellowFill
-            };
-        } else {
-            return undefined;
-        }
+        // Conditional logic for coloring here. Returning 'undefined' means 'use default renderableSeries colour'
+        // else, we can return a color of choice.
+        //
+        // Note that colors returned are Argb format as number. There are helper functions which can convert from Html
+        // color codes to Argb format.
+        //
+        // Performance considerations: overridePointMarkerArgb is called per-point on the series when drawing.
+        // Caching color values and doing minimal logic in this function will help performance
+        return this.rule(yValue) ? {
+            stroke: this.stroke,
+            fill: 0x000000,
+        } : undefined;
     }
 }

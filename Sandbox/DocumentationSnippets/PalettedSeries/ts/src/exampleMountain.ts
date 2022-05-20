@@ -3,7 +3,6 @@ import { SciChartJSLightTheme } from 'scichart/Charting/Themes/SciChartJSLightTh
 import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
 import { NumberRange } from 'scichart/Core/NumberRange';
 import { FastMountainRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries';
-import { EllipsePointMarker } from 'scichart/Charting/Visuals/PointMarkers/EllipsePointMarker';
 import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
 import {
     EFillPaletteMode,

@@ -67,7 +67,7 @@ export const ExampleStrings = {
         "https://www.scichart.com/documentation/js/current/Series%20Generic%20Animations.html",
     urlTitleGenericAnimationDocumentation:
         "The specific page for the JavaScript Generic Animation documentation will help you to get started",
-    imgGenericAnimation: "images/javascript-generic-animation.png",
+    imgGenericAnimation: "images/javascript-generic-animation.jpg",
 
 
     // Scatter chart
@@ -126,6 +126,16 @@ export const ExampleStrings = {
     urlTitleColumnChart:
         "The JavaScript Column Chart example demonstrates how to create a Column Chart with SciChart.js",
     imgColumnChart: "images/javascript-column-chart.jpg",
+
+    // Error Bars Chart
+    urlErrorBarsChart: "/javascript-error-bars-chart",
+    titleErrorBarsChart: "JavaScript Error Bars Chart",
+    urlErrorBarsChartDocumentation: "https://www.scichart.com/documentation/js/current/The%Error%20Bars%20Series%20Type.html",
+    urlTitleErrorBarsChartDocumentation:
+        "This specific page in the JavaScript Error Bars Chart documentation will help you to get started",
+    urlTitleErrorBarsChart:
+        "The JavaScript Error Bars Chart example demonstrates how to create a Error Bars Chart with SciChart.js",
+    imgErrorBarsChart: "images/javascript-error-bars-chart.jpg",
 
     // Impulse Chart
     urlImpulseChart: "/javascript-impulse-chart",
