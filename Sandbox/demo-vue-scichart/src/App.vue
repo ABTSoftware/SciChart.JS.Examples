@@ -1,16 +1,19 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <Scichart2d msg="2D" />
+  <scichart3d msg="3D" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import Scichart2d from "./components/Scichart2d.vue";
+import Scichart3d from "./components/Scichart3d.vue";
 
 export default defineComponent({
   name: "App",
   components: {
-    HelloWorld
+    Scichart2d,
+    Scichart3d
   }
 });
 </script>
