@@ -26,6 +26,14 @@ Vue.js requires *.data file to be in the /public output folder, and *.wasm files
     {
       "from": "./node_modules/scichart/_wasm/scichart2d.wasm",
       "to": "./public/js/scichart2d.wasm"
+    },
+    {
+      "from": "./node_modules/scichart/_wasm/scichart3d.data",
+      "to": "./public/scichart3d.data"
+    },
+    {
+      "from": "./node_modules/scichart/_wasm/scichart3d.wasm",
+      "to": "./public/js/scichart3d.wasm"
     }
   ]
 }
