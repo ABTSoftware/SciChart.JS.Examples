@@ -71,6 +71,7 @@ const Subtitle = () => (
 
 export const seriesSelectionExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSeriesSelection,
+    pageTitle: ExampleStrings.titleSeriesSelection + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlSeriesSelection,
     subtitle: Subtitle,
     documentationLinks,
@@ -80,8 +81,8 @@ export const seriesSelectionExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates Hit-Testing a JavaScript Chart - point and click on the chart and get feedback about what data-points were clicked",
-    seoKeywords: "hit, test, api, chart, javascript, webgl, canvas",
+    metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-hit-test-on-click.png"
 };

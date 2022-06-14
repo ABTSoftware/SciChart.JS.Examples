@@ -70,6 +70,7 @@ const Subtitle = () => (
 
 export const startupAnimationExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStartupAnimation,
+    pageTitle: ExampleStrings.titleStartupAnimation + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlStartupAnimation,
     subtitle: Subtitle,
     documentationLinks,
@@ -79,7 +80,7 @@ export const startupAnimationExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to run Startup Animations with JavaScript.",
-    seoKeywords: "startup, on-start, animation, javascript",
+    metaDescription: "Demonstrates how to run Startup Animations with JavaScript.",
+    metaKeywords: "startup, on-start, animation, javascript",
     thumbnailImage: "javascript-startup-animation.png"
 };

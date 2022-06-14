@@ -63,6 +63,7 @@ const Subtitle = () => (
 
 export const bubble3DChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBubble3DChart,
+    pageTitle: ExampleStrings.pageTitleBubble3DChart,
     path: ExampleStrings.urlBubble3DChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -71,9 +72,9 @@ export const bubble3DChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how a JavaScript 3D Bubble Chart. Each point draws a 3D point-marker " +
         "(Sphere, Cylinder, Cube) at X,Y,Z locations in 3D Space.",
-    seoKeywords: "3d, bubble, chart, javascript, webgl, canvas",
+    metaKeywords: "3d, bubble, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-3d-bubble-chart.jpg"
 };

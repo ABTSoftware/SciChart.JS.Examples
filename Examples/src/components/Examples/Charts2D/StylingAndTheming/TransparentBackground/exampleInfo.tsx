@@ -54,6 +54,7 @@ const Subtitle = () => (
 
 export const transparentBackgroundExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleTransparentBackground,
+    pageTitle: ExampleStrings.titleTransparentBackground + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTransparentBackground,
     subtitle: Subtitle,
     documentationLinks,
@@ -63,7 +64,7 @@ export const transparentBackgroundExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to create a JavaScript Chart with background image using transparency in SciChart.js",
-    seoKeywords: "styling, transparent, background, chart, javascript, webgl, canvas",
+    metaDescription: "Demonstrates how to create a JavaScript Chart with background image using transparency in SciChart.js",
+    metaKeywords: "styling, transparent, background, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-background-image-with-transparency.jpg",
 };

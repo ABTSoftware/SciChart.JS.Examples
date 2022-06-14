@@ -77,6 +77,7 @@ const Subtitle = () => (
 
 export const hitTestApiExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleHitTestApi,
+    pageTitle: ExampleStrings.titleHitTestApi + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlHitTestApi,
     subtitle: Subtitle,
     documentationLinks,
@@ -86,8 +87,8 @@ export const hitTestApiExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates Hit-Testing a JavaScript Chart - point and click on the chart and get feedback about what data-points were clicked",
-    seoKeywords: "hit, test, api, chart, javascript, webgl, canvas",
+    metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-hit-test-on-click.png"
 };

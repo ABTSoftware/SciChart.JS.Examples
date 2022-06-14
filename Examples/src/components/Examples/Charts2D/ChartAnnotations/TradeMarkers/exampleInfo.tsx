@@ -95,6 +95,7 @@ const Subtitle = () => (
 
 export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleTradeMarkers,
+    pageTitle: ExampleStrings.titleTradeMarkers + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTradeMarkers,
     subtitle: Subtitle,
     documentationLinks,
@@ -104,8 +105,8 @@ export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to place Buy/Sell arrow markers on a JavaScript Stock Chart using SciChart.js - Annotations API",
-    seoKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
+    metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-stock-chart-buy-sell-markers.jpg"
 };

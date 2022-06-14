@@ -72,6 +72,7 @@ const Subtitle = () => (
 
 export const donutChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDonutChart,
+    pageTitle: ExampleStrings.pageTitleDonutChart,
     path: ExampleStrings.urlDonutChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -80,9 +81,9 @@ export const donutChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Donut Chart. This is a circular chart type with a hole in the center " +
         "consisting of sectors which are proportional to the quantity it represents.",
-    seoKeywords: "donut, chart, javascript, canvas",
+    metaKeywords: "donut, chart, javascript, canvas",
     thumbnailImage: "javascript-donut-chart.jpg"
 };

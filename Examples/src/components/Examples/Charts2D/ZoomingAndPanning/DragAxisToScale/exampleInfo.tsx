@@ -61,6 +61,7 @@ const Subtitle = () => (
 
 export const dragAxisToScaleExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDragAxisToScale,
+    pageTitle: ExampleStrings.titleDragAxisToScale + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDragAxisToScale,
     subtitle: Subtitle,
     documentationLinks,
@@ -70,8 +71,8 @@ export const dragAxisToScaleExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to Zoom, Scale or Pan individual Axis on a JavaScript Chart with SciChart.js AxisDragModifiers",
-    seoKeywords: "drag, axis, scale, javascript, webgl, canvas",
+    metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
     thumbnailImage: "drag-axis-on-javascript-charts-to-scale-or-pan.jpg"
 };

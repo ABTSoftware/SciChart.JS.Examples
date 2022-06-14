@@ -73,6 +73,7 @@ const Subtitle = () => (
 
 export const stackedColumnChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStackedColumnChart,
+    pageTitle: ExampleStrings.pageTitleStackedColumnChart,
     path: ExampleStrings.urlStackedColumnChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -81,8 +82,8 @@ export const stackedColumnChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Stacked Column Chart. Stacked Column series can be stacked 100%, grouped side by side or above and below.",
-    seoKeywords: "stacked, column, chart, javascript, webgl, canvas",
+    metaKeywords: "stacked, column, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-stacked-column-chart.png"
 };

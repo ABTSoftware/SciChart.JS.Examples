@@ -16,7 +16,7 @@ const Subtitle = () => (
 );
 
 const previewDescription = `Demonstrates how to make a custom PaletteProvider available for use with the Builder Api.`;
-const description = `To use a custom type, you just need to register it using chartBuilder.registerType, with a name, and a function that will create an instance of your type.  
+const description = `To use a custom type, you just need to register it using chartBuilder.registerType, with a name, and a function that will create an instance of your type.
 This example also shows how you can call methods within the builder api to get references to the objects being built, so you can update them later.`;
 const tips = [
     ` Custom types can have options which will be passed to the registered function.`,
@@ -75,6 +75,7 @@ const seeAlso: GalleryItem[] = [
 
 export const customTypesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCustomTypes,
+    pageTitle: ExampleStrings.titleCustomTypes + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCustomTypes,
     subtitle: Subtitle,
     documentationLinks,
@@ -84,9 +85,9 @@ export const customTypesExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to make a custom type such as a PaletteProvider available for use with the Builder Api." +
         "You can call methods within the builder api to get references to the objects being built, so you can update them later.",
-    seoKeywords: "custom, chart, javascript, builder, paletteprovider",
+    metaKeywords: "custom, chart, javascript, builder, paletteprovider",
     thumbnailImage: "javascript-custom-types.jpg"
 };

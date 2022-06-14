@@ -64,6 +64,7 @@ const Subtitle = () => (
 
 export const verticalChartsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleVerticalCharts,
+    pageTitle: ExampleStrings.titleVerticalCharts + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlVerticalCharts,
     subtitle: Subtitle,
     documentationLinks,
@@ -72,7 +73,7 @@ export const verticalChartsExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
-    seoKeywords: "vertical, chart, javascript, webgl, canvas",
+    metaDescription: "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
+    metaKeywords: "vertical, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-vertical-charts.jpg"
 };

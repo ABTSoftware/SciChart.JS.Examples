@@ -88,6 +88,7 @@ const Subtitle = () => (
 
 export const candlestickChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCandlestickChart,
+    pageTitle: ExampleStrings.pageTitleCandlestickChart,
     path: ExampleStrings.urlCandlestickChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -97,9 +98,9 @@ export const candlestickChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Candlestick Chart. This is a chart type used in financial, stock trading " +
         "applications which renders Date, Open, High, Low, Close data",
-    seoKeywords: "candlestick, chart, javascript, webgl, canvas",
+    metaKeywords: "candlestick, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-candlestick-chart.jpg"
 };

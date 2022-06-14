@@ -69,6 +69,7 @@ const Subtitle = () => (
 
 export const scatterChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleScatterChart,
+    pageTitle: ExampleStrings.pageTitleScatterChart,
     path: ExampleStrings.urlScatterChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -78,9 +79,9 @@ export const scatterChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Scatter Chart. The Scatter Chart supports different markers (Triangle, Circle, Square) " +
         "and can be colored per-point using our PaletteProvider API.",
-    seoKeywords: "scatter, chart, javascript, webgl, canvas",
+    metaKeywords: "scatter, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-scatter-chart.jpg"
 };

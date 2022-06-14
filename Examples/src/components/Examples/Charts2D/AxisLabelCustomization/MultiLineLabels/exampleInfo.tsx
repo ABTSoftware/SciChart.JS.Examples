@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider. 
+const previewDescription = `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider.
 Click the buttons below the chart to see different arrangements.`;
 const description = `TextLabelProvider provides an easy way to map tick values to text.  It can also do word wrapping.  Rotation is now available on all LabelProviders.`;
 const tips = [
@@ -70,6 +70,7 @@ const Subtitle = () => (
 
 export const multiLineLabelsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMultiLineLabels,
+    pageTitle: ExampleStrings.titleMultiLineLabels + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlMultiLineLabels,
     subtitle: Subtitle,
     documentationLinks,
@@ -79,8 +80,8 @@ export const multiLineLabelsExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
-    seoKeywords: "text, axis, label, wrap, javascript, webgl, canvas",
+    metaKeywords: "text, axis, label, wrap, javascript, webgl, canvas",
     thumbnailImage: "javascript-multiline-labels.jpg"
 };

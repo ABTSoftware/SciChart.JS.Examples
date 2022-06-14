@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Demonstrates the DataPointSelectionModifier, which provides a UI to select one or many data points, 
+const previewDescription = `Demonstrates the DataPointSelectionModifier, which provides a UI to select one or many data points,
 and works with DataPointSelectionPaletteProvider to change the appearance of selected points`;
 const description = `Click to select a single point.  Drag to select many points. CTRL + Click or Drag to Union. SHIFT + Click or Drag to subtract`;
 const tips = [
@@ -76,6 +76,7 @@ const Subtitle = () => (
 
 export const dataPointSelectionExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDataPointSelection,
+    pageTitle: ExampleStrings.titleDataPointSelection + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDataPointSelection,
     subtitle: Subtitle,
     documentationLinks,
@@ -85,8 +86,8 @@ export const dataPointSelectionExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points",
-    seoKeywords: "datapoint, selection, api, chart, javascript, webgl, canvas",
+    metaKeywords: "datapoint, selection, api, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-datapoint-selection.png"
 };

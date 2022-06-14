@@ -76,6 +76,7 @@ const Subtitle = () => (
 
 export const customFiltersExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCustomFilters,
+    pageTitle: ExampleStrings.titleCustomFilters + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCustomFilters,
     subtitle: Subtitle,
     documentationLinks,
@@ -85,8 +86,8 @@ export const customFiltersExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
-    seoKeywords: "real-time, filter, transform, updating, aggregation, custom, chart, javascript, webgl, canvas",
+    metaKeywords: "real-time, filter, transform, updating, aggregation, custom, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-custom-filters.jpg"
 };

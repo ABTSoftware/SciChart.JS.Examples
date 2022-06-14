@@ -16,9 +16,9 @@ const Subtitle = () => (
     </p>
 );
 
-const previewDescription = `ScaleOffsetFilter multiples each data point by a scale factor and adds an offset. 
+const previewDescription = `ScaleOffsetFilter multiples each data point by a scale factor and adds an offset.
 This can be used to convert data to a percentage change`;
-const description = `The zero value for change is the visible start of the chart and data rescales as you pan.  
+const description = `The zero value for change is the visible start of the chart and data rescales as you pan.
 Click the Add Data button to see that data is automatically transformed when the original data is updated.
 A simple extention to the RenderableSeries allows us to show the original values for the transformed series in the rollover tooltip`;
 const tips = [`ScaleOffsetFilters are available for all DataSeries types, so you could do the same thing for a band or candlestick chart`];
@@ -69,6 +69,7 @@ const seeAlso: GalleryItem[] = [
 
 export const percentageChangeExampleInfo: TExampleInfo = {
     title: ExampleStrings.titlePercentageChange,
+    pageTitle: ExampleStrings.titlePercentageChange + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlPercentageChange,
     subtitle: Subtitle,
     documentationLinks,
@@ -78,8 +79,8 @@ export const percentageChangeExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan",
-    seoKeywords: "real-time, updating, percentage, transform, chart, javascript, webgl, canvas",
+    metaKeywords: "real-time, updating, percentage, transform, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-percentage-change.jpg"
 };

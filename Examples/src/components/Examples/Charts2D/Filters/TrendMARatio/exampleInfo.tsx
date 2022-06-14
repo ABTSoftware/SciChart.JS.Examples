@@ -72,6 +72,7 @@ const Subtitle = () => (
 
 export const trendMARatioExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleTrendMARatio,
+    pageTitle: ExampleStrings.titleTrendMARatio + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTrendMARatio,
     subtitle: Subtitle,
     documentationLinks,
@@ -81,8 +82,8 @@ export const trendMARatioExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining",
-    seoKeywords: "trend, line, moving, average, ratio, transform, chart, javascript, webgl, canvas",
+    metaKeywords: "trend, line, moving, average, ratio, transform, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-javascript-trend-ma-ratio.jpg"
 };

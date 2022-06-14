@@ -98,6 +98,7 @@ const Subtitle = () => (
 
 export const editableAnnotationsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleEditableAnnotations,
+    pageTitle: ExampleStrings.titleEditableAnnotations + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlEditableAnnotations,
     subtitle: Subtitle,
     documentationLinks,
@@ -107,8 +108,8 @@ export const editableAnnotationsExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to edita Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a JavaScript Chart using SciChart.js Annotations API",
-    seoKeywords: "annotations, chart, api, javascript, webgl, canvas, drag and drop",
+    metaKeywords: "annotations, chart, api, javascript, webgl, canvas, drag and drop",
     thumbnailImage: "javascript-chart-editable-annotations.jpg"
 };

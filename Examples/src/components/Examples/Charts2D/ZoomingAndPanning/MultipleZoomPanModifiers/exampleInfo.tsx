@@ -52,6 +52,7 @@ const Subtitle = () => (
 
 export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
+    pageTitle: ExampleStrings.titleZoomPanWithMultipleChartModifiers + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlZoomPanWithMultipleChartModifiers,
     subtitle: Subtitle,
     documentationLinks,
@@ -60,8 +61,8 @@ export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to use multiple Zoom and Pan Modifiers on a JavaScript Chart with SciChart.js",
-    seoKeywords: "zoom, pan, pinch, touch, scale, javascript, webgl, canvas",
+    metaKeywords: "zoom, pan, pinch, touch, scale, javascript, webgl, canvas",
     thumbnailImage: "zoom-pan-javascript-charts-with-multiple-modifiers.jpg"
 };

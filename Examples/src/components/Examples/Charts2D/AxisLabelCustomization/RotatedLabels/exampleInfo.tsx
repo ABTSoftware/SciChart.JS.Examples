@@ -6,9 +6,9 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `This example uses rotation to create vertical labels so as to fit more onto a x axis. 
+const previewDescription = `This example uses rotation to create vertical labels so as to fit more onto a x axis.
 Y axis uses right aligned labels so decimals are nicely aligned.`;
-const description = `maxAutoTicks has been increased to force more major gridlines to be rendered, and minor gridlines have been turned off. 
+const description = `maxAutoTicks has been increased to force more major gridlines to be rendered, and minor gridlines have been turned off.
 The default label alignment is Auto, meaning that labels will be aligned closest to the axis.`;
 const tips = [
     `Rotation is is degrees clockwise.`,
@@ -71,6 +71,7 @@ const Subtitle = () => (
 
 export const rotatedLabelsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRotatedLabels,
+    pageTitle: ExampleStrings.titleRotatedLabels + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRotatedLabels,
     subtitle: Subtitle,
     documentationLinks,
@@ -80,8 +81,8 @@ export const rotatedLabelsExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Rotate to create vertical axis labels and fit more on an axis",
-    seoKeywords: "Axis, label, rotated, vertical, javascript, webgl, canvas",
+    metaKeywords: "Axis, label, rotated, vertical, javascript, webgl, canvas",
     thumbnailImage: "javascript-rotated-labels.jpg"
 };

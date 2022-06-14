@@ -70,6 +70,7 @@ const Subtitle = () => (
 
 export const dataAnimationExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDataAnimation,
+    pageTitle: ExampleStrings.titleDataAnimation + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDataAnimation,
     subtitle: Subtitle,
     documentationLinks,
@@ -79,7 +80,7 @@ export const dataAnimationExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
-    seoKeywords: "data, dataset, animation, webgl, canvas",
+    metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
+    metaKeywords: "data, dataset, animation, webgl, canvas",
     thumbnailImage: "javascript-data-animation.png"
 };

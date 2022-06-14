@@ -8,10 +8,8 @@ import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescript
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Line Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Demonstrates how to create a <strong>JavaScript Line Chart</strong> using{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">SciChart.js</a>, High Performance JavaScript Charts.
     </p>
 );
 
@@ -82,6 +80,7 @@ const seeAlso: GalleryItem[] = [
 
 export const lineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLineChart,
+    pageTitle: ExampleStrings.pageTitleLineChart,
     path: ExampleStrings.urlLineChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -91,9 +90,9 @@ export const lineChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Line Chart. " +
         "The Line Series also supports gradient-coloring and per-point coloring via our PaletteProvider API.",
-    seoKeywords: "line, chart, javascript, webgl, canvas",
+    metaKeywords: "line, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-line-chart.jpg"
 };

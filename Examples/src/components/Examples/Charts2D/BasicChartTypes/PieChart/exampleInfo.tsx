@@ -72,8 +72,9 @@ const Subtitle = () => (
 );
 
 export const pieChartExampleInfo: TExampleInfo = {
-    title: "JavaScript Pie Chart",
-    path: "/javascript-pie-chart",
+    title: ExampleStrings.titlePieChart,
+    pageTitle: ExampleStrings.pageTitlePieChart,
+    path: ExampleStrings.urlPieChart,
     subtitle: Subtitle,
     documentationLinks,
     tips,
@@ -81,9 +82,9 @@ export const pieChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Pie Chart. This is a circular chart type with a hole in the center " +
         "consisting of sectors which are proportional to the quantity it represents.",
-    seoKeywords: "pie, chart, javascript, canvas",
+    metaKeywords: "pie, chart, javascript, canvas",
     thumbnailImage: "javascript-pie-chart.jpg"
 };

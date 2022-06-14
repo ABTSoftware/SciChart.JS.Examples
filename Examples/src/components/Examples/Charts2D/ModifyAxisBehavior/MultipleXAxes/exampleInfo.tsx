@@ -56,6 +56,7 @@ const Subtitle = () => (
 
 export const multipleXAxesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMultipleXAxis,
+    pageTitle: ExampleStrings.titleMultipleXAxis + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlMultipleXAxis,
     subtitle: Subtitle,
     documentationLinks,
@@ -64,8 +65,8 @@ export const multipleXAxesExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates Multiple X & Y Axis on a JavaScript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
-    seoKeywords: "multiple, axis, chart, javascript, webgl, canvas",
+    metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-with-multiple-x-axis.jpg"
 };

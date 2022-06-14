@@ -82,6 +82,7 @@ const Subtitle = () => (
 
 export const splineLineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineLineChart,
+    pageTitle: ExampleStrings.pageTitleSplineLineChart,
     path: ExampleStrings.urlSplineLineChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -91,9 +92,9 @@ export const splineLineChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Spline (smoothed) Line Chart. " +
         "The Spline Line Series also supports gradient-coloring and per-point coloring via our PaletteProvider API.",
-    seoKeywords: "spline, smoothed, line, chart, javascript, webgl, canvas",
+    metaKeywords: "spline, smoothed, line, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-spline-smoothed-line-chart.jpg"
 };

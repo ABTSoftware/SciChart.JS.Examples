@@ -98,6 +98,7 @@ const Subtitle = () => (
 
 export const stackedMountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStackedMountainChart,
+    pageTitle: ExampleStrings.pageTitleStackedMountainChart,
     path: ExampleStrings.urlStackedMountainChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -106,8 +107,8 @@ export const stackedMountainChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Stacked Mountain Chart. Stacked Mountains support 100% stacking with optional gradient fills.",
-    seoKeywords: "stacked, mountain, chart, javascript, webgl, canvas",
+    metaKeywords: "stacked, mountain, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-stacked-mountain-chart.jpg"
 };

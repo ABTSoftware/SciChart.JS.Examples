@@ -31,7 +31,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const ExampleComponent = getExampleComponent(examplePage.id);
 
     const titleText = examplePage ? examplePage.title : ExampleStrings.siteHomeTitle;
-    const seoTitleText = titleText + ExampleStrings.exampleTitleSuffix;
+    const seoTitleText = examplePage.pageTitle;
     const subtitleText = examplePage ? examplePage.subtitle() : undefined;
 
     const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;
@@ -42,8 +42,8 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const seeAlso: GalleryItem[] = examplePage?.seeAlso;
     const codeStr = examplePage ? examplePage.code : "";
     const githubUrl = examplePage ? examplePage.githubUrl : "";
-    const seoDescription = examplePage ? examplePage.seoDescription : "";
-    const seoKeywords = examplePage ? examplePage.seoKeywords : "";
+    const seoDescription = examplePage ? examplePage.metaDescription : "";
+    const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = process.env.PUBLIC_URL ?? "https://demo.scichart.com";
     const exampleImage = examplePage ? `${basePath}/images/${examplePage.thumbnailImage}` : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";

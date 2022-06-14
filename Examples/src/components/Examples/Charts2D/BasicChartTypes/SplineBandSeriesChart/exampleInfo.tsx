@@ -90,6 +90,7 @@ const seeAlso: GalleryItem[] = [
 
 export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineBandChart,
+    pageTitle: ExampleStrings.pageTitleSplineBandChart,
     path: ExampleStrings.urlSplineBandChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -99,9 +100,9 @@ export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Band Chart. This is a chart type which draws an area (polygon or fill) " +
         "between two lines. The Band series requires one X-point and two Y-points to draw the polygon",
-    seoKeywords: "band, chart, javascript, webgl, canvas",
+    metaKeywords: "band, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-band-chart.jpg"
 };

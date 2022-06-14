@@ -79,6 +79,7 @@ const Subtitle = () => (
 
 export const contourChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleContourChart,
+    pageTitle: ExampleStrings.pageTitleContourChart,
     path: ExampleStrings.urlContourChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -87,9 +88,9 @@ export const contourChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a Realtime JavaScript Contour-map Chart. The Contours series accepts a 2D array" +
         "of data and calculates contour lines at a specified step value and draws them on the chart.",
-    seoKeywords: "contour, contours, heatmap, chart, javascript, webgl, canvas",
+    metaKeywords: "contour, contours, heatmap, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-contours-chart.jpg"
 };

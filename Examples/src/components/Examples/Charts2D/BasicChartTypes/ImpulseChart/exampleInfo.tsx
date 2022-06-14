@@ -71,6 +71,7 @@ const Subtitle = () => (
 
 export const impulseChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleImpulseChart,
+    pageTitle: ExampleStrings.pageTitleImpulseChart,
     path: ExampleStrings.urlImpulseChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -79,8 +80,8 @@ export const impulseChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Impulse Chart. Impulse are rendered with a fill and size properties",
-    seoKeywords: "impulse, lollipop, javascript, webgl, canvas",
+    metaKeywords: "impulse, lollipop, javascript, webgl, canvas",
     thumbnailImage: "javascript-impulse-chart.jpg"
 };

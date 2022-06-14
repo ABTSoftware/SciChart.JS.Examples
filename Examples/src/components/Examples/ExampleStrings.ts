@@ -7,7 +7,7 @@ export const ExampleStrings = {
         "Examples for SciChart.js: High Performance JavaScript Charts. Featuring 2D & 3D JavaScript Chart types, performance demos, JavaScript stock charts, Heatmaps, Bubble charts",
     siteHomeMetaImage:
         "https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-javascript-chart-collage-1485.jpg",
-    exampleTitleSuffix: " | JavaScript Chart Examples",
+    exampleGenericTitleSuffix: " | JavaScript Chart Examples",
 
     // Documentation links and link tooltips
     //
@@ -25,7 +25,7 @@ export const ExampleStrings = {
     urlPerformanceTipsDocumentation:
         "https://www.scichart.com/documentation/js/current/Common%20RenderableSeries%20Features.html",
     urlTitlePerformanceTipsDocumentation: "Go to the Performance Tips and Tricks page in the SciChart.js Documentation",
-    urlJavascriptChartFeatures: "https://www.scichart.com/javascript-chart-features",
+    urlJavascriptChartFeatures: "https://www.scichart.com/javascript-charts",
 
     // Urls, example titles
     //
@@ -73,6 +73,7 @@ export const ExampleStrings = {
     // Scatter chart
     urlScatterChart: "/javascript-scatter-chart",
     titleScatterChart: "JavaScript Scatter Chart",
+    pageTitleScatterChart: "JavaScript Scatter Chart | JavaScript Charts | SciChart.js",
     urlTitleScatterChart:
         "The JavaScript Scatter Chart example demonstrates how to create a Scatter Chart with SciChart.js",
     urlScatterChartDocumentation:
@@ -85,6 +86,7 @@ export const ExampleStrings = {
     urlBandChart: "/javascript-band-chart",
     urlTitleBandChart: "JavaScript Band Chart example",
     titleBandChart: "JavaScript Band Chart",
+    pageTitleBandChart: "JavaScript Band Chart | JavaScript Charts | View Examples",
     urlBandChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Band%20Series%20type.html",
     urlTitleBandChartDocumentation:
         "This specific page in the JavaScript Band Chart documentation will help you to get started",
@@ -92,6 +94,7 @@ export const ExampleStrings = {
 
     // Spline band chart
     titleSplineBandChart: "JavaScript Spline Band Chart",
+    pageTitleSplineBandChart: "JavaScript Spline Band Chart | JavaScript Charts | SciChart",
     urlSplineBandChart: "/javascript-spline-band-chart",
     urlSplineBandChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Spline%20(Smoothed)%20Band%20Series%20Type.html",
     urlTitleSplineBandChartDocumentation:
@@ -102,6 +105,7 @@ export const ExampleStrings = {
     urlDigitalBandChart: "/javascript-digital-band-chart",
     urlTitleDigitalBandChart: "JavaScript Digital Band Chart example",
     titleDigitalBandChart: "JavaScript Digital Band Chart",
+    pageTitleDigitalBandChart: "JavaScript Digital Band Chart | JavaScript Chart Library",
     urlDigitalBandChartDocumentation: "https://www.scichart.com/documentation/js/current/DigitalBandSeriesType.html",
     urlTitleDigitalBandChartDocumentation:
         "This specific page in the JavaScript Digital Band Chart documentation will help you to get started",
@@ -110,6 +114,7 @@ export const ExampleStrings = {
     // Bubble Chart
     urlBubbleChart: "/javascript-bubble-chart",
     titleBubbleChart: "JavaScript Bubble Chart",
+    pageTitleBubbleChart: "JavaScript Bubble Chart | Online JavaScript Chart Examples",
     urlBubbleChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Bubble%20Series%20Type.html",
     urlTitleBubbleChartDocumentation:
         "This specific page in the JavaScript Bubble Chart documentation will help you to get started",
@@ -120,6 +125,7 @@ export const ExampleStrings = {
     // Column Chart
     urlColumnChart: "/javascript-column-chart",
     titleColumnChart: "JavaScript Column Chart",
+    pageTitleColumnChart: "JavaScript Column Chart | JavaScript Charts | SciChart.js",
     urlColumnChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Column%20Series%20Type.html",
     urlTitleColumnChartDocumentation:
         "This specific page in the JavaScript Column Chart documentation will help you to get started",
@@ -130,6 +136,7 @@ export const ExampleStrings = {
     // Error Bars Chart
     urlErrorBarsChart: "/javascript-error-bars-chart",
     titleErrorBarsChart: "JavaScript Error Bars Chart",
+    pageTitleErrorBarsChart: "JavaScript Error Bars Chart |  Online Examples | SciChart.js",
     urlErrorBarsChartDocumentation: "https://www.scichart.com/documentation/js/current/The%Error%20Bars%20Series%20Type.html",
     urlTitleErrorBarsChartDocumentation:
         "This specific page in the JavaScript Error Bars Chart documentation will help you to get started",
@@ -140,6 +147,7 @@ export const ExampleStrings = {
     // Impulse Chart
     urlImpulseChart: "/javascript-impulse-chart",
     titleImpulseChart: "JavaScript Impulse Chart",
+    pageTitleImpulseChart: "JavaScript Impulse Chart | JavaScript Charts | View Online",
     urlImpulseChartDocumentation: "https://www.scichart.com/documentation/js/current/The%Impulse%20Series%20Type.html",
     urlTitleImpulseChartDocumentation:
         "This specific page in the JavaScript Impulse Chart documentation will help you to get started",
@@ -154,17 +162,25 @@ export const ExampleStrings = {
         "This specific page in the JavaScript Mountain Chart documentation will help you to get started",
     urlMountainChart: "/javascript-mountain-chart",
     titleMountainChart: "JavaScript Mountain Chart",
+    pageTitleMountainChart: "JavaScript Mountain Chart | View Examples Now | SciChart.js",
     urlTitleMountainChart:
         "The JavaScript Mountain Chart example demonstrates how to create a Mountain Chart with SciChart.js",
     imgMountainChart: "images/javascript-mountain-chart.jpg",
 
+    // Realtime Mountain Chart
+    urlRealtimeMountainChart: "/javascript-realtime-mountain-chart",
+    titleRealtimeMountainChart: "JavaScript Realtime Mountain Chart",
+    pageTitleRealtimeMountainChart: "JavaScript Realtime Mountain Chart | View Online At SciChart",
+    imgRealtimeMountainChart: "images/javascript-animated-mountain-chart.jpg",
+
     // Spline mountain chart
     urlSplineMountainChartDocumentation:
-    "https://www.scichart.com/documentation/js/current/The%20Spline%20(Smoothed)%20Mountain%20Series%20Type.html",
-urlTitleSplineMountainChartDocumentation:
+        "https://www.scichart.com/documentation/js/current/The%20Spline%20(Smoothed)%20Mountain%20Series%20Type.html",
+    urlTitleSplineMountainChartDocumentation:
     "This specific page in the JavaScript Spline Mountain Chart documentation will help you to get started",
     urlSplineMountainChart: "/javascript-spline-mountain-chart",
     titleSplineMountainChart: "Javascript Spline Mountain Chart",
+    pageTitleSplineMountainChart: "JavaScript Spline Mountain Chart | JavaScript Chart Library",
     imgSplineMountainChart: "images/javascript-spline-mountain-chart.jpg",
 
     // Digital Mountain Chart
@@ -174,6 +190,7 @@ urlTitleSplineMountainChartDocumentation:
         "This specific page in the JavaScript Digital Mountain Chart documentation will help you to get started",
     urlDigitalMountainChart: "/javascript-digital-mountain-chart",
     titleDigitalMountainChart: "JavaScript Digital Mountain Chart",
+    pageTitleDigitalMountainChart: "JavaScript Digital Mountain Chart | JavaScript Chart Example",
     urlTitleDigitalMountainChart:
         "The JavaScript Digital Mountain Chart example demonstrates how to create a Digital Mountain Chart with SciChart.js",
     imgDigitalMountainChart: "images/javascript-digital-mountain-chart.jpg",
@@ -181,6 +198,7 @@ urlTitleSplineMountainChartDocumentation:
     // Candlestick Chart
     urlCandlestickChart: "/javascript-candlestick-chart",
     titleCandlestickChart: "JavaScript Candlestick Chart",
+    pageTitleCandlestickChart: "JavaScript Candlestick Chart | Chart Examples | SciChart.js",
     urlTitleCandlestickChart:
         "The JavaScript Candlestick Chart example demonstrates how to create a Candlestick Chart with SciChart.js",
     urlTitleCandlestickChartDocumentation:
@@ -194,6 +212,7 @@ urlTitleSplineMountainChartDocumentation:
     urlTitleOhlcChart:
         "The OHLC Chart example shows how to create a JavaScript OHLC Chart rendering financial stock data with SciChart.js",
     titleOhlcChart: "JavaScript OHLC Chart",
+    pageTitleOhlcChart: "JavaScript OHLC Chart | JavaScript Chart Examples | SciChart",
     urlTitleOhlcChartDocumentation:
         "This specific page in the JavaScript OHLC Chart documentation will help you to get started",
     urlOhlcChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20OHLC%20Series%20Type.html",
@@ -203,6 +222,7 @@ urlTitleSplineMountainChartDocumentation:
     urlFanChart: "/javascript-fan-chart",
     urlTitleFanChart: "The JavaScript Fan Chart example",
     titleFanChart: "JavaScript Fan Chart",
+    pageTitleFanChart: "JavaScript Fan Chart | JavaScript Chart Library | View Now",
     urlFanChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Fan%20Charts%20Type.html",
     urlTitleFanChartDocumentation:
         "The specific page for the JavaScript Fan Chart documentation will help you to get started",
@@ -211,6 +231,7 @@ urlTitleSplineMountainChartDocumentation:
     // Line Chart
     urlLineChart: "/javascript-line-chart",
     titleLineChart: "JavaScript Line Chart",
+    pageTitleLineChart: "JavaScript Line Chart | JavaScript Chart Examples | SciChart",
     urlLineChartDocumentation:
         "https://www.scichart.com/documentation/js/current/The%20Line%20Series%20Type.html",
     urlTitleLineChartDocumentation:
@@ -221,12 +242,14 @@ urlTitleSplineMountainChartDocumentation:
     urlTitleSplineLineChartDocumentation:
         "The specific page for the JavaScript Spline Line Chart documentation will help you to get started",
     titleSplineLineChart: "JavaScript Spline Line Chart",
+    pageTitleSplineLineChart: "JavaScript Spline Line Chart | JavaScript Chart Library",
     urlSplineLineChart: "/javascript-spline-line-chart",
     imgSplineLineChart: "images/javascript-spline-smoothed-line-chart.jpg",
 
     // Digital Line Chart
     urlDigitalLineChart: "/javascript-digital-line-chart",
     titleDigitalLineChart: "JavaScript Digital Line Chart",
+    pageTitleDigitalLineChart: "JavaScript Digital Line Chart | JavaScript Charts | View Now",
     urlDigitalLineChartDocumentation:
         "https://www.scichart.com/documentation/js/current/The%20Digital%20(Step)%20Line%20Series.html",
     urlTitleDigitalLineChartDocumentation:
@@ -241,11 +264,13 @@ urlTitleSplineMountainChartDocumentation:
     urlTitlePieChart:
         "The JavaScript Pie Chart example demonstrates how to create an animated Pie Chart with SciChart.js",
     titlePieChart: "JavaScript Pie Chart",
+    pageTitlePieChart: "JavaScript Pie Chart | JavaScript Chart Examples | SciChart",
     imgPieChart: "images/javascript-pie-chart.jpg",
 
     // Donut Chart
     urlDonutChart: "/javascript-donut-chart",
     titleDonutChart: "JavaScript Donut Chart",
+    pageTitleDonutChart: "JavaScript Donut Chart | JavaScript Charts | SciChart.js",
     urlDonutChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Donut%20Chart%20Type.html",
     urlTitleDonutChartDocumentation:
         "The specific page for the JavaScript Donut Chart documentation will help you to get started",
@@ -254,6 +279,7 @@ urlTitleSplineMountainChartDocumentation:
     // Stacked Column Chart
     urlStackedColumnChart: "/javascript-stacked-column-chart",
     titleStackedColumnChart: "JavaScript Stacked Column Chart",
+    pageTitleStackedColumnChart: "JavaScript Stacked Column Chart | Online JavaScript Charts",
     urlTitleStackedColumnChart:
         "The JavaScript Stacked Column Chart example demonstrates how to create a Stacked Column Chart with SciChart.js",
     urlStackedColumnChartDocumentation:
@@ -265,6 +291,7 @@ urlTitleSplineMountainChartDocumentation:
     // Stacked (Grouped) Column Chart
     urlGroupedColumnChart: "/javascript-stacked-grouped-column-chart-side-by-side",
     titleGroupedColumnChart: "JavaScript Stacked Column Side by Side",
+    pageTitleGroupedColumnChart: "JavaScript Stacked Group Column Chart | View Examples Now",
     urlTitleGroupedColumnChart:
         "The JavaScript Stacked Column Chart side-by-side example demonstrates how to create a Grouped Column Chart with SciChart.js",
     imgGroupedColumnChart: "images/javascript-stacked-grouped-column-chart-side-by-side.png",
@@ -273,6 +300,7 @@ urlTitleSplineMountainChartDocumentation:
     urlStackedMountainChart: "/javascript-stacked-mountain-chart",
     urlTitleStackedMountainChart: "The Stacked Mountain Chart and 100% Stacked Mountain Chart example in SciChart.js",
     titleStackedMountainChart: "JavaScript Stacked Mountain Chart",
+    pageTitleStackedMountainChart: "JavaScript Stacked Mountain Chart | JavaScript Chart Library",
     urlStackedMountainChartDocumentation:
         "https://www.scichart.com/documentation/js/current/The%20Stacked%20Mountain%20Series%20Type.html",
     urlTitleStackedMountainChartDocumentation:
@@ -283,6 +311,7 @@ urlTitleSplineMountainChartDocumentation:
     urlHeatmapChart: "/javascript-heatmap-chart",
     urlTitleHeatmapChart: "The Heatmap Chart example in SciChart.js",
     titleHeatmapChart: "JavaScript Heatmap Chart",
+    pageTitleHeatmapChart: "JavaScript Heatmap Chart | JavaScript Chart Library Examples",
     urlHeatmapChartDocumentation:
         "https://www.scichart.com/documentation/js/current/The%20Uniform%20Heatmap%20Series%20Type.html",
     urlTitleHeatmapChartDocumentation:
@@ -293,7 +322,8 @@ urlTitleSplineMountainChartDocumentation:
     urlTitleContourChartDocumentation:
         "The specific page for the JavaScript Contours Chart documentation will help you to get started",
     urlContourChartDocumentation: "https://www.scichart.com/documentation/js/current/The%20Contours%20Series%20Type.html",
-    titleContourChart: "JavaScript Contours chart",
+    titleContourChart: "JavaScript Heatmap Chart With Contours",
+    pageTitleContourChart: "JavaScript Heatmap Chart With Contours Example | SciChart.js",
     urlContourChart: "/javascript-heatmap-chart-with-contours",
     imgContourChart: "images/javascript-contours-chart.jpg",
 
@@ -337,11 +367,13 @@ urlTitleSplineMountainChartDocumentation:
     urlTitleMultiPaneStockChart:
         "The Multi-Pane stock chart example demonstrates multiple-series types in a realistic stock chart application",
     titleMultiPaneStockChart: "JavaScript Multi-Pane Stock Charts",
+    pageTitleMultiPaneStockChart: "JavaScript Multi-Pane Stock Chart | View JavaScript Charts",
     imgMultiPaneStockChart: "images/javascript-multi-pane-stock-charts.jpg",
 
     // Realtime Ticking Stock Charts
     urlRealtimeTickingStockCharts: "/javascript-realtime-ticking-stock-charts",
     titleRealtimeTickingStockCharts: "JavaScript Realtime Ticking Stock Charts",
+    pageTitleRealtimeTickingStockCharts: "JavaScript Realtime Ticking Stock Chart | SciChart.js",
     urlTitleRealtimeTickingStockCharts:
         "The Realtime Ticking Stock Chart example shows how to pipe realtime financial data into SciChart.js Candlestick and Ohlc Chart types",
     imgRealtimeTickingStockCharts: "images/javascript-realtime-ticking-stock-charts.jpg",
@@ -363,7 +395,7 @@ urlTitleSplineMountainChartDocumentation:
 
     // Secondary YAxis
     urlSecondaryYAxis: "/javascript-chart-with-secondary-y-axis",
-    titleSecondaryYAxis: "Secondary Y-Axis Example",
+    titleSecondaryYAxis: "Secondary Y Axes",
     urlTitleSecondaryYAxis:
         "The Secondary YAxis example shows how to add series with multiple Y axis to a JavaScript Chart.",
     imgSecondaryYAxis: "images/javascript-chart-with-secondary-y-axis.jpg",
@@ -515,6 +547,7 @@ urlTitleSplineMountainChartDocumentation:
     // 3D Bubble Chart
     urlBubble3DChart: "/javascript-3d-bubble-chart",
     titleBubble3DChart: "JavaScript 3D Bubble Chart",
+    pageTitleBubble3DChart: "JavaScript 3D Bubble Chart | 3D JavaScript Charts | View Now",
     urlBubble3DChartDocumentation: "#",
     urlTitleBubble3DChartDocumentation:
         "The specific page for the SciChart.js documentation for the 3D Bubble Chart to help you to get started",
@@ -525,6 +558,7 @@ urlTitleSplineMountainChartDocumentation:
     urlTitleSurfaceMesh3DChartDocumentation:
         "The specific page for the SciChart.js documentation for the 3D Surface Mesh Chart to help you to get started",
     titleSurfaceMesh3D: "JavaScript Surface Mesh 3D Chart",
+    pageTitleSurfaceMesh3D: "JavaScript 3D Surface Mesh Chart | View 3D JavaScript Charts",
     urlSurfaceMesh3D: "/javascript-3d-surface-mesh-chart",
     urlTitleSurfaceMesh3D: "The Surface Mesh 3D Chart example shows how to create this 3D Chart type in SciChart.js",
     imgSurfaceMeash3D: "images/javascript-3d-surface-mesh-chart.jpg",

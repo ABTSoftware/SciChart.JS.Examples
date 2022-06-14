@@ -73,6 +73,7 @@ const Subtitle = () => (
 
 export const columnChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleColumnChart,
+    pageTitle: ExampleStrings.pageTitleColumnChart,
     path: ExampleStrings.urlColumnChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -81,9 +82,9 @@ export const columnChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Column Chart. Columns are rendered with a stroke and fill, and support " +
         "gradient fill and paletteproviders for more custom coloring options.",
-    seoKeywords: "column, chart, javascript, webgl, canvas",
+    metaKeywords: "column, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-column-chart.jpg"
 };

@@ -73,6 +73,7 @@ const Subtitle = () => (
 
 export const errorBarsChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleErrorBarsChart,
+    pageTitle: ExampleStrings.pageTitleErrorBarsChart,
     path: ExampleStrings.urlErrorBarsChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -81,8 +82,8 @@ export const errorBarsChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Error Bars Chart. Error Bars are rendered with a stroke and dataPointWidth properties",
-    seoKeywords: "error, bars, javascript, webgl, canvas",
+    metaKeywords: "error, bars, javascript, webgl, canvas",
     thumbnailImage: "javascript-error-bars-chart.jpg"
 };

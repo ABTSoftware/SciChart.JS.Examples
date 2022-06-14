@@ -55,8 +55,9 @@ const Subtitle = () => (
 );
 
 export const realTimeMountainChartExampleInfo: TExampleInfo = {
-    title: "JavaScript Realtime Mountain Chart",
-    path: "/javascript-realtime-mountain-chart",
+    title: ExampleStrings.titleRealtimeMountainChart,
+    pageTitle: ExampleStrings.pageTitleRealtimeMountainChart,
+    path: ExampleStrings.urlRealtimeMountainChart,
     subtitle: Subtitle,
     documentationLinks,
     tips,
@@ -64,7 +65,7 @@ export const realTimeMountainChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to create a JavaScript Mountain Chart with animated realtime updates.",
-    seoKeywords: "mountain, chart, realtime, animated, javascript, canvas",
-    thumbnailImage: "javascript-animated-mountain-chart.jpg"
+    metaDescription: "Demonstrates how to create a JavaScript Mountain Chart with animated realtime updates.",
+    metaKeywords: "mountain, chart, realtime, animated, javascript, canvas",
+    thumbnailImage: ExampleStrings.imgRealtimeMountainChart
 };

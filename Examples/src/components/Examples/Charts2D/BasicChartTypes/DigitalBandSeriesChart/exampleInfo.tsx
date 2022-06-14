@@ -83,6 +83,7 @@ const Subtitle = () => (
 
 export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDigitalBandChart,
+    pageTitle: ExampleStrings.pageTitleDigitalBandChart,
     path: ExampleStrings.urlDigitalBandChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -92,9 +93,9 @@ export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Digital Band Chart. This is a chart type which draws a digital area (polygon or fill) " +
         "between two lines. The Band series requires one X-point and two Y-points to draw the polygon",
-    seoKeywords: "digital, band, chart, javascript, webgl, canvas",
+    metaKeywords: "digital, band, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-digital-band-chart.jpg"
 };

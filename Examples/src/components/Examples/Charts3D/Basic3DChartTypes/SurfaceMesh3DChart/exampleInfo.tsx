@@ -64,6 +64,7 @@ const Subtitle = () => (
 
 export const surfaceMesh3DChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSurfaceMesh3D,
+    pageTitle: ExampleStrings.pageTitleSurfaceMesh3D,
     path: ExampleStrings.urlSurfaceMesh3D,
     subtitle: Subtitle,
     documentationLinks,
@@ -72,8 +73,8 @@ export const surfaceMesh3DChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript 3D Surface Mesh Plot. This 3D Chart type can be used in scientific or financial applications to view data in many dimensions",
-    seoKeywords: "3d, surface, mesh, chart, javascript, webgl, canvas",
+    metaKeywords: "3d, surface, mesh, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-3d-surface-mesh-chart.jpg"
 };

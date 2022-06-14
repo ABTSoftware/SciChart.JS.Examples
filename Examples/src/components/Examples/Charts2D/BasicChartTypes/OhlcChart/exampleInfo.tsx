@@ -88,6 +88,7 @@ const Subtitle = () => (
 
 export const ohlcChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleOhlcChart,
+    pageTitle: ExampleStrings.pageTitleOhlcChart,
     path: ExampleStrings.urlOhlcChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -97,9 +98,9 @@ export const ohlcChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript OHLC Chart. This is a chart type used in financial, stock trading " +
         "applications which renders Date, Open, High, Low, Close data.",
-    seoKeywords: "ohlc, stock, trading, chart, javascript, webgl, canvas",
+    metaKeywords: "ohlc, stock, trading, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-ohlc-chart.jpg"
 };

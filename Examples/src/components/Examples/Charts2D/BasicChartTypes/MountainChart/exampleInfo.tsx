@@ -73,6 +73,7 @@ const Subtitle = () => (
 
 export const mountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMountainChart,
+    pageTitle: ExampleStrings.pageTitleMountainChart,
     path: ExampleStrings.urlMountainChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -81,8 +82,8 @@ export const mountainChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Spline Mountain Chart. An area or polygon is rendered with a gradient fill to configurable zero-line.",
-    seoKeywords: "mountain, chart, javascript, webgl, canvas",
+    metaKeywords: "mountain, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-spline-mountain-chart.jpg"
 };

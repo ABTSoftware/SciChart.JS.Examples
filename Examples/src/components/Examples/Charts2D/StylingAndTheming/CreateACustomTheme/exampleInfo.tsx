@@ -59,6 +59,7 @@ const Subtitle = () => (
 
 export const createACustomThemeExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCustomTheme,
+    pageTitle: ExampleStrings.titleCustomTheme + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCustomTheme,
     subtitle: Subtitle,
     documentationLinks,
@@ -67,7 +68,7 @@ export const createACustomThemeExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a Custom Theme for a SciChart.js JavaScript Chart using our Theming API",
-    seoKeywords: "theming, chart, javascript, webgl, canvas"
+    metaKeywords: "theming, chart, javascript, webgl, canvas"
 };

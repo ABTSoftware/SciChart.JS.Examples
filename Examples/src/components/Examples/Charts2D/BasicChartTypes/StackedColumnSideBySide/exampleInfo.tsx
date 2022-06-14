@@ -92,6 +92,7 @@ const Subtitle = () => (
 
 export const stackedColumnSideBySideExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleGroupedColumnChart,
+    pageTitle: ExampleStrings.pageTitleGroupedColumnChart,
     path: ExampleStrings.urlGroupedColumnChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -100,8 +101,8 @@ export const stackedColumnSideBySideExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Stacked Column Chart with side-by-side grouping. Stacked Column series can be stacked 100%, grouped side by side or above and below.",
-    seoKeywords: "stacked, column, side-by-side, chart, javascript, webgl, canvas",
+    metaKeywords: "stacked, column, side-by-side, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-stacked-grouped-column-chart-side-by-side.png"
 };

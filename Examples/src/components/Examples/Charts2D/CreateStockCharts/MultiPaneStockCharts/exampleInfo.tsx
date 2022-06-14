@@ -73,6 +73,7 @@ const Subtitle = () => (
 
 export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMultiPaneStockChart,
+    pageTitle: ExampleStrings.pageTitleMultiPaneStockChart,
     path: ExampleStrings.urlMultiPaneStockChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -82,8 +83,8 @@ export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Multi-Pane JavaScript Stock Chart (Candlestick Chart) Example using SciChart.js. Features Indicators, Volume, Moving-Averages and Tooltips across stock charts",
-    seoKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
+    metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-multi-pane-stock-charts.jpg"
 };

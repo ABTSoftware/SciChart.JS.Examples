@@ -61,6 +61,7 @@ const Subtitle = () => (
 
 export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleVerticallyStackedAxes,
+    pageTitle: ExampleStrings.titleVerticallyStackedAxes + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlVerticallyStackedAxes,
     subtitle: Subtitle,
     documentationLinks,
@@ -69,8 +70,8 @@ export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates Vertically Stacked Axes on a JavaScript Chart using SciChart.js, allowing data to overlap",
-    seoKeywords: "multiple, stacked, overlap, axis, chart, javascript, webgl, canvas",
+    metaKeywords: "multiple, stacked, overlap, axis, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-with-multiple-x-axis.jpg"
 };

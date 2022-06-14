@@ -79,6 +79,7 @@ const Subtitle = () => (
 
 export const audioAnalyzerExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
+    pageTitle: ExampleStrings.titleAudioAnalyzerFeaturedApp + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlAudioAnalyzerFeaturedApp,
     documentationLinks,
     tips,
@@ -87,9 +88,9 @@ export const audioAnalyzerExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and " +
         "visualize the Fourier-Transform of an audio waveform in realtime.",
-    seoKeywords: "audio, analyzer, demo, chart, javascript, webgl, canvas",
+    metaKeywords: "audio, analyzer, demo, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-realtime-audio-analyzer.jpg"
 };

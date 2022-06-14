@@ -74,6 +74,7 @@ const Subtitle = () => (
 
 export const digitalMountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDigitalMountainChart,
+    pageTitle: ExampleStrings.pageTitleDigitalMountainChart,
     path: ExampleStrings.urlDigitalMountainChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -82,8 +83,8 @@ export const digitalMountainChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Digital Mountain Chart. An area or polygon is rendered with a gradient fill to configurable zero-line.",
-    seoKeywords: "digital, mountain, chart, javascript, webgl, canvas",
+    metaKeywords: "digital, mountain, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-digital-mountain-chart.jpg"
 };

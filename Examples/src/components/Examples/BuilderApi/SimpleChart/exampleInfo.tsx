@@ -69,6 +69,7 @@ const seeAlso: GalleryItem[] = [
 
 export const simpleChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBuilderSimpleChart,
+    pageTitle: ExampleStrings.titleBuilderSimpleChart + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlBuilderSimpleChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -78,9 +79,9 @@ export const simpleChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to use the Builder Api to create a simple chart using a definition object. " +
         "The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
-    seoKeywords: "definition, chart, javascript, webgl, canvas",
+    metaKeywords: "definition, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-builder-simple.jpg"
 };

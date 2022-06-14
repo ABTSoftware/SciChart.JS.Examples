@@ -59,6 +59,7 @@ const Subtitle = () => (
 
 export const drawBehindAxesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDrawBehindAxes,
+    pageTitle: ExampleStrings.titleDrawBehindAxes + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDrawBehindAxes,
     subtitle: Subtitle,
     documentationLinks,
@@ -67,8 +68,8 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates the option of the transparent Axes customization on a JavaScript Chart using SciChart.js.",
-    seoKeywords: "multiple, axis, chart, javascript, webgl, canvas",
+    metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-draw-behind-axes.png"
 };

@@ -70,6 +70,7 @@ const Subtitle = () => (
 
 export const genericAnimationExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleGenericAnimation,
+    pageTitle: ExampleStrings.titleGenericAnimation + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlGenericAnimation,
     subtitle: Subtitle,
     documentationLinks,
@@ -79,7 +80,7 @@ export const genericAnimationExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to run Generic Animation with JavaScript.",
-    seoKeywords: "generic, animation, javascript",
+    metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
+    metaKeywords: "generic, animation, javascript",
     thumbnailImage: "javascript-generic-animation.jpg"
 };

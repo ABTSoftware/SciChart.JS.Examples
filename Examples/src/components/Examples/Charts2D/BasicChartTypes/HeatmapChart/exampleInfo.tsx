@@ -75,6 +75,7 @@ const Subtitle = () => (
 
 export const heatmapChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleHeatmapChart,
+    pageTitle: ExampleStrings.pageTitleHeatmapChart,
     path: ExampleStrings.urlHeatmapChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -82,9 +83,9 @@ export const heatmapChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a Realtime JavaScript Heatmap Chart. The Heatmap series accepts a 2D array" +
         "of data and has user-defined color map which can be used to color points by value.",
-    seoKeywords: "heatmap, chart, javascript, webgl, canvas",
+    metaKeywords: "heatmap, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-heatmap-chart.jpg"
 };

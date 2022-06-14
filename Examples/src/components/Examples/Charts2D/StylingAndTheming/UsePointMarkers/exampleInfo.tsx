@@ -60,6 +60,7 @@ const Subtitle = () => (
 
 export const usePointMarkersExampleInfo: TExampleInfo = {
     title: ExampleStrings.titlePointMarkers,
+    pageTitle: ExampleStrings.titlePointMarkers + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlPointMarkers,
     subtitle: Subtitle,
     documentationLinks,
@@ -68,8 +69,8 @@ export const usePointMarkersExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates the different point-marker types for JavaScript Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
-    seoKeywords: "data, point, marker, chart, javascript, webgl, canvas",
+    metaKeywords: "data, point, marker, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-custom-poinmarkers.jpg"
 };

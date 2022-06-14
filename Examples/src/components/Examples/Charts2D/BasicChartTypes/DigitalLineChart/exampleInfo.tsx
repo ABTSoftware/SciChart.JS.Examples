@@ -82,6 +82,7 @@ const Subtitle = () => (
 
 export const digitalLineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDigitalLineChart,
+    pageTitle: ExampleStrings.pageTitleDigitalLineChart,
     path: ExampleStrings.urlDigitalLineChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -91,9 +92,9 @@ export const digitalLineChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Digital Line Chart. " +
         "The Digital Line Series also supports gradient-coloring and per-point coloring via our PaletteProvider API.",
-    seoKeywords: "digital, line, chart, javascript, webgl, canvas",
+    metaKeywords: "digital, line, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-digital-line-chart.jpg"
 };

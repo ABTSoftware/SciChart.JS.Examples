@@ -73,6 +73,7 @@ const Subtitle = () => (
 
 export const fanChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleFanChart,
+    pageTitle: ExampleStrings.pageTitleFanChart,
     path: ExampleStrings.urlFanChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -81,9 +82,9 @@ export const fanChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Fan Chart. This chart type can be used for visualizing forecasting or " +
         "estimation figures and can be achieved in SciChart.js using several Band Series overlaid with varying opacity.",
-    seoKeywords: "fan, chart, javascript, webgl, canvas",
+    metaKeywords: "fan, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-fan-chart.jpg"
 };

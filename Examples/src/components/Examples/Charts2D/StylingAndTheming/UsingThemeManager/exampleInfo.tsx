@@ -56,6 +56,7 @@ const Subtitle = () => (
 
 export const usingThemeManagerExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleThemeManager,
+    pageTitle: ExampleStrings.titleThemeManager + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlThemeManager,
     subtitle: Subtitle,
     documentationLinks,
@@ -64,7 +65,7 @@ export const usingThemeManagerExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates our Light and Dark Themes for JavaScript Charts with SciChart.js ThemeManager API",
-    seoKeywords: "theme, provider, chart, javascript, webgl, canvas",
+    metaDescription: "Demonstrates our Light and Dark Themes for JavaScript Charts with SciChart.js ThemeManager API",
+    metaKeywords: "theme, provider, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-themes.png"
 };
