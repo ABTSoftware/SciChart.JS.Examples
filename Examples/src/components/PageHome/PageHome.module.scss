@@ -80,6 +80,9 @@
                     @include sm {
                         width: 100%;
                     }
+                    a {
+                        color: #5cb85c;
+                    }
                 }
                 .PageHomeTitle {
                     color: $color-font-green;
