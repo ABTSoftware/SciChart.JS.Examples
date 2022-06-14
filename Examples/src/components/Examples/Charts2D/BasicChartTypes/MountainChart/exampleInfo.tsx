@@ -64,10 +64,11 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Mountain Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Use our Mountain Chart example to learn how to create a <strong>JavaScript Mountain Chart</strong> using SciChart.js,{" "}
+        our in-house built{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Framework">
+            JavaScript Chart framework
+        </a>.
     </p>
 );
 

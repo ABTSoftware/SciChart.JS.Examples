@@ -78,10 +78,11 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Mountain Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        This example showcases how to create a <strong>JavaScript Spline Mountain Chart</strong> using{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
+            SciChart.js
+        </a>'{" "}
+        feature-rich and High Performance JavaScript Charts.
     </p>
 );
 

@@ -64,10 +64,11 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Column Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        View information on how to create a <strong>JavaScript Column Chart</strong> using SciChart.js, a High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
+            JavaScript Chart Library
+        </a>{" "}
+        by SciChart.
     </p>
 );
 
@@ -83,7 +84,7 @@ export const columnChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Column Chart. Columns are rendered with a stroke and fill, and support " +
+        "Columns are rendered with a stroke and fill, and support " +
         "gradient fill and paletteproviders for more custom coloring options.",
     metaKeywords: "column, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-column-chart.jpg"

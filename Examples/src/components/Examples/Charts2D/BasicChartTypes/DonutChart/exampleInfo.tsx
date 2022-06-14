@@ -63,10 +63,10 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how create a <strong>JavaScript Donut Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        This demo demonstrates how create a <strong>JavaScript Donut Chart</strong> with our powerful JavaScript library,{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
+            SciChart.js
+        </a>.
     </p>
 );
 

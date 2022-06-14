@@ -88,11 +88,11 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Stacked Mountain Chart</strong> using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Learn how to make a <strong>JavaScript Stacked Mountain Chart</strong> using with SciChart's{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="powerful JavaScript Charts">
+            powerful JavaScript Charts
+        </a>{" "}
+        and it's range of features.
     </p>
 );
 

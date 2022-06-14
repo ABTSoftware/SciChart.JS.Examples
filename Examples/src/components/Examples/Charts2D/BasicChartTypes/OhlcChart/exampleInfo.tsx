@@ -78,11 +78,11 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript OHLC Chart</strong> or Stock Chart using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        For this example, we demonstrate how to create a <strong>JavaScript OHLC Chart</strong>{" "}
+        or Stock Chart using SciChart.js. This is our powerful{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Component">
+            JavaScript Chart Component
+        </a>.
     </p>
 );
 

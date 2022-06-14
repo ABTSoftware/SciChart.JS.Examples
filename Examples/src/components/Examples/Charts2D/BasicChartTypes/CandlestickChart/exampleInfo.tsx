@@ -78,11 +78,12 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Candlestick Chart</strong> or Stock Chart using SciChart.js,
-        High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        This{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart">
+            JavaScript Chart
+        </a>{" "}
+        demo shows you how to create a <strong>JavaScript Candlestick Chart</strong> or Stock Chart using SciChart.js,{" "}
+        High Performance JavaScript Charts
     </p>
 );
 

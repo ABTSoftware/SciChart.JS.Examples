@@ -46,11 +46,11 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how create a <strong>JavaScript Mountain Chart with animated realtime updates</strong> using
-        SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+        This example demonstrates how create a <strong>JavaScript Mountain Chart</strong>{" "}
+        with animated realtime updates using SciChart.js, our High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Charts">
             JavaScript Charts
-        </a>
+        </a>.
     </p>
 );
 

@@ -66,10 +66,12 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Bubble Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Demonstrates how to create a <strong>JavaScript Bubble Chart</strong>{" "}
+        This is a{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Charts">
+            JavaScript Chart
+        </a>{" "}
+        type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations
     </p>
 );
 

@@ -9,11 +9,14 @@ import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescript
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Line Chart</strong> using{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">SciChart.js</a>, High Performance JavaScript Charts.
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
+            SciChart.js
+        </a>,{" "}
+        High Performance JavaScript Charts.
     </p>
 );
 
-const previewDescription = `Demonstrates how to create a JavaScript Line Chart. The FastLineRenderableSeries can be used to render an
+const previewDescription = `The FastLineRenderableSeries can be used to render an
 XyDataSeries, XyyDataSeries (uses Y1 only) or OhlcDataSeries (renders Close).`;
 const description = `The scatter chart uses the PointMarker API to define the marker shape and size. Point-markers available out
 of the box include Ellipse (circle), Triangle, Square, Cross and CustomPointMarker, which renders an image.`;

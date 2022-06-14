@@ -70,10 +70,10 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Contour-map Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Our Contours Chart example demonstrates how to create a <strong>JavaScript Contour-map Chart</strong> using our{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="powerful JavaScript Chart Library">
+            powerful JavaScript Chart Library
+        </a>.
     </p>
 );
 

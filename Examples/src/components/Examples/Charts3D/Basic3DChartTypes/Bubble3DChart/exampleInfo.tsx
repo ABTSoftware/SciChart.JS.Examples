@@ -54,10 +54,10 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript 3D Bubble Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript 3D Charts
-        </a>
+        Our team demonstrates how to create a <strong>JavaScript 3D Bubble Chart</strong> using SciChart.js, capable of creating detailed{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="3D JavaScript Charts">
+            3D JavaScript Charts
+        </a>.
     </p>
 );
 

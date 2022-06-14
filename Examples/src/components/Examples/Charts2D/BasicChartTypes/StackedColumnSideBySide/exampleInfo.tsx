@@ -82,11 +82,11 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Stacked Column Chart Side-by-side</strong> using SciChart.js,
-        High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        We have created a simple example that shows you how to create a{" "}
+        <strong>JavaScript Stacked Column Chart Side-by-side</strong> using our{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Framework">
+            JavaScript Chart Framework
+        </a>.
     </p>
 );
 

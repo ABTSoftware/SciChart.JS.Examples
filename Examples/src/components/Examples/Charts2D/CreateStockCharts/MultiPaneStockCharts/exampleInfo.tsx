@@ -63,11 +63,11 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how create a multi-pane <strong>JavaScript Stock Chart</strong> with indicator panels, synchronized
-        zooming, panning and cursors, using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Here we are demonstrating how create a multi-pane JavaScript Stock Chart with indicator panels,{" "}
+        synchronized zooming, panning and cursors, using our{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="powerful and feature rich JavaScript Charting Library">
+            powerful and feature rich JavaScript Charting Library
+        </a>.
     </p>
 );
 

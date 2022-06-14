@@ -57,11 +57,11 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how create a <strong>JavaScript Stock Chart</strong> with live real-time ticking and updating,
-        using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Get the code view our example to learn how create a <strong>JavaScript Stock Chart</strong>{" "}
+        with live real-time ticking and updating, using SciChart.js, our range of{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="High Performance JavaScript Charts">
+            High Performance JavaScript Charts
+        </a>.
     </p>
 );
 

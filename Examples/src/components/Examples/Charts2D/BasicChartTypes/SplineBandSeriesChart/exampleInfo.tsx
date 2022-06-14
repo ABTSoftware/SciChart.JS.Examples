@@ -19,10 +19,10 @@ const tips = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Band Chart</strong> or High-Low Fill using SciChart.js, High
-        Performance{" "}
+        Demonstrates how to create a <strong>JavaScript Spline Band Chart</strong> or High-Low Fill using SciChart.js,{" "}
+        our High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
+            JavaScript Chart Software
         </a>
     </p>
 );
