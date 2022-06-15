@@ -6,8 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Mountain Chart. An area or polygon is rendered from the Y-value to
-the zeroLineY, a configurable property which defaults to zero.`;
+const description = `A mountain or area chart draws a line with polygon underneath. In SciChart.js the Zero line of the mountain is configurable, so it can be zero or a specific value. The fill color can be solid or gradient as well!`;
 const tips = [
     `By setting the stroke property you alter the line color, and fill alters the fill. The Mountain-series also
     supports semi-transparent and linear gradient brush fills and looks great!.`

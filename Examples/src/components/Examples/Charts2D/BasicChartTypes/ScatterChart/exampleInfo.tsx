@@ -6,10 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = ` Demonstrates how to create a JavaScript Digital Line Chart. The FastLineRenderableSeries can be used to
-render an XyDataSeries, XyyDataSeries (uses Y1 only) or OhlcDataSeries (renders Close).`;
-const description = `The scatter chart uses the PointMarker API to define the marker shape and size. Point-markers available out
-of the box include Ellipse (circle), Triangle, Square, Cross and CustomPointMarker, which renders an image.`;
+const previewDescription = `Scatter Charts in SciChart.js can render a number of pre-defined point types (Circle, Square, Triangle, Cross). Custom shapes are also possible.`;
+const description = `Each Scatter-chart point can have varying color using our PaletteProvider API. Varying sizes are also possible with the Bubble Chart type.`;
 const tips = [
     `Perhaps you wanted a scatter point with a line? If so, you can do this using the Line Series type and by
     setting the pointMarker property.`

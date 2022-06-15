@@ -6,8 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Pie Chart. This is a circular chart type with a hole in the center
-consisting of sectors which are proportional to the quantity it represents.`;
+const description = `Pie Charts in SciChart.js support selection, legends, different text labels, animated updates,
+    gradient or solid fills and more.`;
 const tips = [
     `You can change the fill color of every segment and the style of its label.`,
     `Every segment can be highlighted by clicking on it or when selected in the legend.`

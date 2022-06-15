@@ -6,8 +6,9 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Contour map Chart. The UniformContoursRenderableSeries accepts a 2D
-array of data and calculates contour lines at a specified step value and draws them on the chart.`;
+const description = `Our Heatmap is highly dynamic and enables display of Sonar, MRI/medical imagery, Spectrograms or Audio/Radio analysis in JavaScript.
+    The entire heatmap is represented by a 2D array and is color-mapped to a numeric value.
+    Contour lines are calculated at a specified step value and drawn over the chart automatically.`;
 const tips = [
     `Contours are calculated using GPU Shader programs so are very fast, but require some tweaking of properties
 on UniformContoursRenderableSeries to get a good visual.`

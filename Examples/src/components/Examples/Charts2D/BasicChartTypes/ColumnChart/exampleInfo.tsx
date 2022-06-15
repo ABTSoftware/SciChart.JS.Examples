@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Column Chart. Columns are rendered with a stroke and fill, and
+const description = `Columns in SciChart.js are rendered with a stroke and fill, and
 support gradient fill and paletteproviders for more custom coloring options.`;
 const tips = [
     `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much

@@ -6,7 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Error Bars Chart. Error Bars are rendered with high and low caps.`;
+const description = `Error Bars on JavaScript Charts are useful to display uncertainty or statistical confidence of a data-point.
+    In SciChart.js Error Bars can have custom error values per point or a fixed percentage error value. Error bars can be horizontal or vertical.`;
 const tips = [
     `To change the size of the cap, use the dataPointWidth and dataPointWidthMode properties.`,
     `It is possible to change orientation of error bars.`,

@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
 
-const previewDescription = `This example demonstrating how a JavaScript Spline Line chart can be created uses the
+const previewDescription = `This example demonstrating a JavaScript Spline Line chart uses the
 SplineLineRenderableSeries type.`;
 const description = `SciChart's Spline Line type includes a spline-interpolation algorithm to smooth the line, when you have a
 few data-points and want a nicer looking, smoothed line series in your chart applications and dashboards`;

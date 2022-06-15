@@ -6,7 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `>Demonstrates how to create a JavaScript Mountain Chart with animated realtime updates.`;
+const description = `This variation on Mountain or Area charts in SciChart.js uses dynamic updates to show how easy it is to achieve
+    animated realtime charts with our library.`;
 const tips = [
     `By setting the stroke property you alter the line color, and fill alters the fill. The Mountain-series also
     supports semi-transparent and linear gradient brush fills and looks great!.`

@@ -6,10 +6,9 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript 3D Surface Mesh Chart. This is a chart type which draws a 3D
-point-marker (Sphere, Cylinder, Cube) or a 2D flat billboarded pointmarker (Ellipse, Quad, Pixel) at X,Y,Z
-locations in 3D Space.
-`;
+const description = `The Surface Mesh chart type can be used to represent 2D data in a 3D map.
+    It looks like a topographical map where values in a 2D array are drawn as heights and mapped to a color.
+    The Surface Mesh 3D chart type in SciChart.js is highly dynamic and allows for large volumes of data to be plotted.`;
 const tips = [
     `Bubbles can be colored individually, programmatically selected and scaled using the PointMetadata3D class.
     PointMetadata also allows you to tag individual bubbles with a business object of any type.`

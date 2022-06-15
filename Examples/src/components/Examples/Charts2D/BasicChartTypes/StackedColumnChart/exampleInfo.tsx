@@ -6,8 +6,9 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
 
-const description = `Demonstrates how to create a JavaScript Stacked Column Chart. An column or rectangle is rendered from the
-Y-value of each stacked column series to the Y-value of the next.`;
+const description = `Stacked Column Charts can be created in JavaScript using SciChart.js. An column or rectangle is rendered from the
+    Y-value of each stacked column series to the Y-value of the next.
+    Each column can have a different color and you can stack to 100% using our library.`;
 const tips = [
     `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much space the column takes up.`
 ];

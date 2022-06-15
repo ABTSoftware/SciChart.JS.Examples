@@ -6,9 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript 3D Bubble Chart. This is a chart type which draws a 3D point-marker
-(Sphere, Cylinder, Cube) or a 2D flat billboarded pointmarker (Ellipse, Quad, Pixel) at X,Y,Z locations in
-3D Space.`;
+const description = `JavaScript 3D Bubble Charts can be created using SciChart.js.
+    Large datasets up to a million points can be drawn, enabling point-clouds or visualisation of large statistical datsets in a browser.`;
 const tips = [
     `Bubbles can be colored individually, programmatically selected and scaled using the PointMetadata3D class.
     PointMetadata also allows you to tag individual bubbles with a business object of any type.`

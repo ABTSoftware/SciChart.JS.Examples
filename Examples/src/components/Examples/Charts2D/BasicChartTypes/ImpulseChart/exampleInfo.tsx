@@ -6,7 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Impulse Chart. Impulses are rendered with a fill and size.`;
+const description = `An Impulse Chart (otherwise known as Stem Chart, Lollipop Chart) displays a single point at the top of a thin stem.
+    In SciChart.js these can be customised with different color points or shapes.`;
 const tips = [
     `To change the size of the impulse point, set the size property. Default value is 10.0.`
 ];

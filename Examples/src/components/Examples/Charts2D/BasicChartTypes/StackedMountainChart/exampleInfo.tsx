@@ -6,8 +6,9 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Mountain Chart. An area or polygon is rendered from the Y-value to
-the zeroLineY, a configurable property which defaults to zero.`;
+const description = `Stacked Mountain Charts can be created in JavaScript using SciChart.js. An mountain or area is rendered from the
+    Y-value of each stacked mountain series to the Y-value of the next.
+    Each area can have a different color and you can stack to 100% using our library.`;
 const tips = [
     `By setting the stroke property you alter the line color, and fill alters the fill. The Mountain-series also
     supports semi-transparent and linear gradient brush fills and looks great!.`

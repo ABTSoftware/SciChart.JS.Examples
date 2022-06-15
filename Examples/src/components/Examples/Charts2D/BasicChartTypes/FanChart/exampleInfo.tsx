@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Fan Chart. This chart type can be used for visualizing forecasting
+const description = `Fan charts can be used for visualizing, forecasting
 or estimation figures and can be achieved in SciChart.js using several Band Series overlaid with varying
 opacity.`;
 const tips = [

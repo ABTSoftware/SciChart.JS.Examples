@@ -6,8 +6,9 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Heatmap Chart. The FastUniformHeatmapRenderableSeries accepts a 2D
-array of data and has user-defined color map which can be used to color points by value.`;
+const description = `Our Heatmap is highly dynamic and enables display of Sonar, MRI/medical imagery, Spectrograms or Audio/Radio analysis in JavaScript.
+    The entire heatmap is represented by a 2D array and is color-mapped to a numeric value.
+    Massive heatmaps (1000x1000 or more) can be achieved in SciChart.js!`;
 
 const documentationLinks: TDocumentationLink[] = [
     {

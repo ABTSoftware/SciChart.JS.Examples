@@ -84,14 +84,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                 </a>{" "}
                                 which you can browse, view the source code and see related documentation.{" "}
                                 Build incredible complex dashboards with SciChart.js, our High Performance{" "}
-                                <a
-                                    className={classes.ExampleRootDescriptionLink}
-                                    href="https://www.scichart.com/javascript-charts"
-                                    target="_blank"
-                                    title="JavaScript Chart Library"
-                                >
-                                    JavaScript Chart Library
-                                </a>
+                                JavaScript Chart Library.
                             </p>
                             <div className={classes.OrangeButton}>
                                 <Button href="https://www.scichart.com/downloads/" target="_blank" title="Download SciChart.js">

@@ -10,7 +10,7 @@ const previewDescription = `An example which demonstrates creating static multi-
 Candlesticks, Volume bars behind the chart, Moving averages, plus how to link several charts together to
 draw Macd and RSI indicators.`;
 const description = ` All charts are synchronized together by using the mouseEventGroup property on chart modifiers and the
-SciChartVerticalGroup type. Technical indicators are for demonstration purposes only. We recommend using the open source TA-Lib to add more complex indicators to SciChart.js`;
+SciChartVerticalGroup type. Technical indicators are for demo purposes only. We recommend using TA-Lib to add more complex indicators to SciChart.js`;
 const tips = [
     `SciChart.js supports all the features you need to create rich, interactive, realtime JavaScript Stock Chart
     applications. Including Candlestick/OHLC charts, Band Series for bollinger bands, multi-panes, plus
