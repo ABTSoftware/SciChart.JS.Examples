@@ -78,22 +78,24 @@ const ExamplesRoot: React.FC<TProps> = props => {
                             <h5>JavaScript Chart Examples</h5>
 
                             <p className={classes.ExampleDescriptionText}>
-                                SciChart.js ships with ~60{" "}
-                                <a className={classes.ExampleRootDescriptionLink} href="https://demo.scichart.com">
-                                    JavaScript Chart Examples
+                                SciChart.js ships with over 80{" "}
+                                <a className={classes.ExampleRootDescriptionLink} href="https://demo.scichart.com" title="SciChart.js Examples">
+                                    JavaScript Chart demos
                                 </a>{" "}
-                                which you can browse, play with, view the source code and see related documentation. All
-                                of this is possible with the SciChart.js Examples Suite, which ships as part of the{" "}
+                                which you can browse, view the source code and see related documentation.{" "}
+                                Build incredible complex dashboards with SciChart.js, our High Performance{" "}
                                 <a
                                     className={classes.ExampleRootDescriptionLink}
-                                    href="https://www.scichart.com/downloads"
+                                    href="https://www.scichart.com/javascript-charts"
+                                    target="_blank"
+                                    title="JavaScript Chart Library"
                                 >
-                                    SciChart.js SDK
+                                    JavaScript Chart Library
                                 </a>
                             </p>
                             <div className={classes.OrangeButton}>
-                                <Button href="https://www.scichart.com/downloads/" target="_blank">
-                                    Download the SDK
+                                <Button href="https://www.scichart.com/downloads/" target="_blank" title="Download SciChart.js">
+                                    Free Trial
                                 </Button>
                             </div>
                         </div>
