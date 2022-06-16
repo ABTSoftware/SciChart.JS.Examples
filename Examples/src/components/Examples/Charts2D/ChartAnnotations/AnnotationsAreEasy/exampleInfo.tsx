@@ -90,6 +90,7 @@ const Subtitle = () => (
 
 export const annotationsAreEasyExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleAnnotationsAreEasy,
+    pageTitle: ExampleStrings.titleAnnotationsAreEasy + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlAnnotationsAreEasy,
     subtitle: Subtitle,
     documentationLinks,
@@ -99,8 +100,8 @@ export const annotationsAreEasyExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to place Annotations (lines, arrows, markers, text) over a JavaScript Chart using SciChart.js Annotations API",
-    seoKeywords: "annotations, chart, api, javascript, webgl, canvas",
+    metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-annotations.jpg"
 };

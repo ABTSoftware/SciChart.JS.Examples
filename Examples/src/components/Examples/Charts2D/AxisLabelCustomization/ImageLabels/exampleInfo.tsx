@@ -69,6 +69,7 @@ const Subtitle = () => (
 
 export const imageLabelsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleImageLabels,
+    pageTitle: ExampleStrings.titleImageLabels + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlImageLabels,
     subtitle: Subtitle,
     documentationLinks,
@@ -78,8 +79,8 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to use Images as Axis Labels",
-    seoKeywords: "image, axis, label, javascript, webgl, canvas",
+    metaKeywords: "image, axis, label, javascript, webgl, canvas",
     thumbnailImage: "javascript-image-labels.jpg"
 };

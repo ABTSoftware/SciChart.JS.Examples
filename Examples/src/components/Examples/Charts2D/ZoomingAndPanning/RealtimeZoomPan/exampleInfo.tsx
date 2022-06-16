@@ -70,6 +70,7 @@ const Subtitle = () => (
 
 export const realtimeZoomPanExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeZoomPan,
+    pageTitle: ExampleStrings.titleRealtimeZoomPan + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeZoomPan,
     subtitle: Subtitle,
     documentationLinks,
@@ -79,8 +80,8 @@ export const realtimeZoomPanExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to zoom and pan a realtime JavaScript Chart while it is updating, with SciChart.js ZoomState API",
-    seoKeywords: "drag, axis, scale, javascript, webgl, canvas",
+    metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
     thumbnailImage: "zoom-and-pan-a-realtime-javascript-chart.jpg"
 };

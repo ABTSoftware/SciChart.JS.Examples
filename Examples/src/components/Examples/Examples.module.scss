@@ -115,6 +115,7 @@
         justify-content: space-between;
 
         .ExampleRootDescriptionLink {
+            color: $color-main-green !important;
             &:hover,
             &:active,
             &:visited {
@@ -357,8 +358,10 @@
 .OrangeButton {
     background: linear-gradient(114.95deg, #febc48 0%, #e97502 100%);
     border-radius: 4px;
+    margin: 10px;
     span {
-        padding: 6px 10px;
+        font-weight: bold;
+        padding: 6px 15px;
         color: white !important;
         font-size: 0.8rem;
         white-space: nowrap;

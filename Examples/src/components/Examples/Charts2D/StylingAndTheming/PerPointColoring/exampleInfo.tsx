@@ -71,6 +71,7 @@ const Subtitle = () => (
 
 export const perPointColoringExampleInfo: TExampleInfo = {
     title: ExampleStrings.titlePaletteProvider,
+    pageTitle: ExampleStrings.titlePaletteProvider + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlPaletteProvider,
     subtitle: Subtitle,
     documentationLinks,
@@ -79,7 +80,7 @@ export const perPointColoringExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
-    seoKeywords: "palette, provider, api, chart, javascript, webgl, canvas",
+    metaDescription: "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
+    metaKeywords: "palette, provider, api, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-color-points-individually-with-paletteprovider.jpg"
 };

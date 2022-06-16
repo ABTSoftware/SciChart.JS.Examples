@@ -6,8 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Demonstrates how to create a JavaScript Spline Mountain Chart. An area or polygon is rendered from the
-Y-value to the zeroLineY, a configurable property which defaults to zero.`;
+const previewDescription = `A mountain or area chart draws a polygon from a line to configurable zero value. This variation on Mountain Charts in SciChart.js uses Spline (smoothed) lines to achieve a nice visual effect!`;
 const description = `This chart type features a spline or smoothed line which beautifies the datavizualization where there are
 few points on the chart.`;
 const tips = [
@@ -78,15 +77,17 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Mountain Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        This example showcases how to create a <strong>JavaScript Spline Mountain Chart</strong> using{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
+            SciChart.js
+        </a>'{" "}
+        feature-rich and High Performance JavaScript Charts.
     </p>
 );
 
 export const splineMountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineMountainChart,
+    pageTitle: ExampleStrings.pageTitleSplineMountainChart,
     path: ExampleStrings.urlSplineMountainChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -96,8 +97,8 @@ export const splineMountainChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Mountain Chart. An area or polygon is rendered with a gradient fill to configurable zero-line.",
-    seoKeywords: "mountain, chart, javascript, webgl, canvas",
+    metaKeywords: "mountain, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-mountain-chart.jpg"
 };

@@ -80,6 +80,7 @@ const seeAlso: GalleryItem[] = [
 
 export const chartFromJSONExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleChartFromJSON,
+    pageTitle: ExampleStrings.titleChartFromJSON + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlChartFromJSON,
     subtitle: Subtitle,
     documentationLinks,
@@ -89,8 +90,8 @@ export const chartFromJSONExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Chart from JSON using the builder API. ",
-    seoKeywords: "json, chart, javascript, webgl, canvas",
+    metaKeywords: "json, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-from-json.jpg"
 };

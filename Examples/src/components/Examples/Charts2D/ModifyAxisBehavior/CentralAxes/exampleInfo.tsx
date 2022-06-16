@@ -49,6 +49,7 @@ const Subtitle = () => (
 
 export const centralAxesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCentralAxes,
+    pageTitle: ExampleStrings.titleCentralAxes + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCentralAxes,
     subtitle: Subtitle,
     documentationLinks,
@@ -57,8 +58,8 @@ export const centralAxesExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates Central Axes on a JavaScript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout",
-    seoKeywords: "multiple, axis, chart, javascript, webgl, canvas",
+    metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-central-axes.png"
 };

@@ -70,6 +70,7 @@ const Subtitle = () => (
 
 export const load500By500ExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLoad500By500,
+    pageTitle: ExampleStrings.titleLoad500By500 + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlLoad500By500,
     subtitle: Subtitle,
     documentationLinks,
@@ -79,7 +80,7 @@ export const load500By500ExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!`,
-    seoKeywords: "performance, demo, chart, javascript, webgl, canvas",
+    metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!`,
+    metaKeywords: "performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-load-500-series-by-500-points.jpg"
 };

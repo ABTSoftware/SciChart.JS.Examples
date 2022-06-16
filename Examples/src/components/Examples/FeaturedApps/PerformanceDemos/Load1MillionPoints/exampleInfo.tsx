@@ -73,6 +73,7 @@ const Subtitle = () => (
 
 export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLoadOneMillionPoints,
+    pageTitle: ExampleStrings.titleLoadOneMillionPoints + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlLoadOneMillionPoints,
     subtitle: Subtitle,
     documentationLinks,
@@ -81,7 +82,7 @@ export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.`,
-    seoKeywords: "performance, loading, million, points, chart, javascript, webgl, canvas",
+    metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.`,
+    metaKeywords: "performance, loading, million, points, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-performance-one-million-points.jpg"
 };

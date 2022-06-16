@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Fan Chart. This chart type can be used for visualizing forecasting
+const description = `Fan charts can be used for visualizing, forecasting
 or estimation figures and can be achieved in SciChart.js using several Band Series overlaid with varying
 opacity.`;
 const tips = [
@@ -64,8 +64,9 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Fan Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+        Here we demonstrate how to create a <strong>JavaScript Fan Chart</strong> using SciChart.js.{" "}
+        Zoom in and out to see the detail you can go to using our{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Charts">
             JavaScript Charts
         </a>
     </p>
@@ -73,6 +74,7 @@ const Subtitle = () => (
 
 export const fanChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleFanChart,
+    pageTitle: ExampleStrings.pageTitleFanChart,
     path: ExampleStrings.urlFanChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -81,9 +83,9 @@ export const fanChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Fan Chart. This chart type can be used for visualizing forecasting or " +
         "estimation figures and can be achieved in SciChart.js using several Band Series overlaid with varying opacity.",
-    seoKeywords: "fan, chart, javascript, webgl, canvas",
+    metaKeywords: "fan, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-fan-chart.jpg"
 };

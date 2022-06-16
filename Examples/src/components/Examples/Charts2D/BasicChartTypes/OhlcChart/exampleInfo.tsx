@@ -6,11 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
 
-const previewDescription = ` Demonstrates how to create a JavaScript Digital Line Chart. The FastLineRenderableSeries can be used to
-render an XyDataSeries, XyyDataSeries (uses Y1 only) or OhlcDataSeries (renders Close).`;
-const description = `The FastOhlcRenderableSeries requires an OhlcDataSeries, which contains X,Open,High,Low,Close data. The
-color of the candles is controlled by the strokeUp, strokeDown properties. Further customisation of color
-per-bar can be achieved with the SciChart.js PaletteProvider API.`;
+const previewDescription = `SciChart.js supports Candlestick Charts or OHLC with custom colours per bar and Date X-Axis.`;
+const description = `OHLC charts can be animated, dynamically updated for real trading apps or combined with other series types to draw technical indicators or shapes.`;
 const tips = [
     `Try dragging on the chart to pan or zoom it. Use the mousewheel to zoom and double-click to zoom to fit.`
 ];
@@ -78,16 +75,17 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript OHLC Chart</strong> or Stock Chart using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        For this example, we demonstrate how to create a <strong>JavaScript OHLC Chart</strong>{" "}
+        or Stock Chart using SciChart.js. This is our powerful{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Component">
+            JavaScript Chart Component
+        </a>.
     </p>
 );
 
 export const ohlcChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleOhlcChart,
+    pageTitle: ExampleStrings.pageTitleOhlcChart,
     path: ExampleStrings.urlOhlcChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -97,9 +95,9 @@ export const ohlcChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript OHLC Chart. This is a chart type used in financial, stock trading " +
         "applications which renders Date, Open, High, Low, Close data.",
-    seoKeywords: "ohlc, stock, trading, chart, javascript, webgl, canvas",
+    metaKeywords: "ohlc, stock, trading, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-ohlc-chart.jpg"
 };

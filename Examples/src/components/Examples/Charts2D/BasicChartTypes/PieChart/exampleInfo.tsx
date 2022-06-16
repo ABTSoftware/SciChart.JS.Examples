@@ -6,8 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Pie Chart. This is a circular chart type with a hole in the center
-consisting of sectors which are proportional to the quantity it represents.`;
+const description = `Pie Charts in SciChart.js support selection, legends, different text labels, animated updates,
+    gradient or solid fills and more.`;
 const tips = [
     `You can change the fill color of every segment and the style of its label.`,
     `Every segment can be highlighted by clicking on it or when selected in the legend.`
@@ -64,16 +64,17 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how create a <strong>JavaScript Pie Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        For an example that demonstrates how create a <strong>JavaScript Pie Chart</strong>, our demo code teaches you how to do this with SciChart's{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
+            JavaScript Charting Library
+        </a>.
     </p>
 );
 
 export const pieChartExampleInfo: TExampleInfo = {
-    title: "JavaScript Pie Chart",
-    path: "/javascript-pie-chart",
+    title: ExampleStrings.titlePieChart,
+    pageTitle: ExampleStrings.pageTitlePieChart,
+    path: ExampleStrings.urlPieChart,
     subtitle: Subtitle,
     documentationLinks,
     tips,
@@ -81,9 +82,9 @@ export const pieChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Pie Chart. This is a circular chart type with a hole in the center " +
         "consisting of sectors which are proportional to the quantity it represents.",
-    seoKeywords: "pie, chart, javascript, canvas",
+    metaKeywords: "pie, chart, javascript, canvas",
     thumbnailImage: "javascript-pie-chart.jpg"
 };

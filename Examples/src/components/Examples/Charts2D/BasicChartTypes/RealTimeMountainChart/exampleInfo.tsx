@@ -6,7 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `>Demonstrates how to create a JavaScript Mountain Chart with animated realtime updates.`;
+const description = `This variation on Mountain or Area charts in SciChart.js uses dynamic updates to show how easy it is to achieve
+    animated realtime charts with our library.`;
 const tips = [
     `By setting the stroke property you alter the line color, and fill alters the fill. The Mountain-series also
     supports semi-transparent and linear gradient brush fills and looks great!.`
@@ -46,17 +47,18 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how create a <strong>JavaScript Mountain Chart with animated realtime updates</strong> using
-        SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+        This example demonstrates how create a <strong>JavaScript Mountain Chart</strong>{" "}
+        with animated realtime updates using SciChart.js, our High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Charts">
             JavaScript Charts
-        </a>
+        </a>.
     </p>
 );
 
 export const realTimeMountainChartExampleInfo: TExampleInfo = {
-    title: "JavaScript Realtime Mountain Chart",
-    path: "/javascript-realtime-mountain-chart",
+    title: ExampleStrings.titleRealtimeMountainChart,
+    pageTitle: ExampleStrings.pageTitleRealtimeMountainChart,
+    path: ExampleStrings.urlRealtimeMountainChart,
     subtitle: Subtitle,
     documentationLinks,
     tips,
@@ -64,7 +66,7 @@ export const realTimeMountainChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to create a JavaScript Mountain Chart with animated realtime updates.",
-    seoKeywords: "mountain, chart, realtime, animated, javascript, canvas",
-    thumbnailImage: "javascript-animated-mountain-chart.jpg"
+    metaDescription: "Demonstrates how to create a JavaScript Mountain Chart with animated realtime updates.",
+    metaKeywords: "mountain, chart, realtime, animated, javascript, canvas",
+    thumbnailImage: ExampleStrings.imgRealtimeMountainChart
 };

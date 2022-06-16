@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Column Chart. Columns are rendered with a stroke and fill, and
+const description = `Columns in SciChart.js are rendered with a stroke and fill, and
 support gradient fill and paletteproviders for more custom coloring options.`;
 const tips = [
     `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much
@@ -64,15 +64,17 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Column Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        View information on how to create a <strong>JavaScript Column Chart</strong> using SciChart.js, a High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
+            JavaScript Chart Library
+        </a>{" "}
+        by SciChart.
     </p>
 );
 
 export const columnChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleColumnChart,
+    pageTitle: ExampleStrings.pageTitleColumnChart,
     path: ExampleStrings.urlColumnChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -81,9 +83,9 @@ export const columnChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
-        "Demonstrates how to create a JavaScript Column Chart. Columns are rendered with a stroke and fill, and support " +
+    metaDescription:
+        "Columns are rendered with a stroke and fill, and support " +
         "gradient fill and paletteproviders for more custom coloring options.",
-    seoKeywords: "column, chart, javascript, webgl, canvas",
+    metaKeywords: "column, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-column-chart.jpg"
 };

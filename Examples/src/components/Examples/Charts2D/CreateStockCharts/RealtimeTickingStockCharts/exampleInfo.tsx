@@ -57,16 +57,17 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how create a <strong>JavaScript Stock Chart</strong> with live real-time ticking and updating,
-        using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Get the code view our example to learn how create a <strong>JavaScript Stock Chart</strong>{" "}
+        with live real-time ticking and updating, using SciChart.js, our range of{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="High Performance JavaScript Charts">
+            High Performance JavaScript Charts
+        </a>.
     </p>
 );
 
 export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeTickingStockCharts,
+    pageTitle: ExampleStrings.pageTitleRealtimeTickingStockCharts,
     path: ExampleStrings.urlRealtimeTickingStockCharts,
     subtitle: Subtitle,
     documentationLinks,
@@ -76,8 +77,8 @@ export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Realtime JavaScript Stock Chart demo using SciChart.js. Features live updating Candlestick/Ohlc charts, moving averages and volume",
-    seoKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
+    metaKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-realtime-ticking-stock-charts.jpg"
 };

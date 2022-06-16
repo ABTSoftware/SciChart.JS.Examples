@@ -55,7 +55,8 @@ const Subtitle = () => (
 );
 
 export const secondaryYAxesExampleInfo: TExampleInfo = {
-    title: "Secondary Y Axes",
+    title: ExampleStrings.titleSecondaryYAxis,
+    pageTitle: ExampleStrings.titleSecondaryYAxis + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlSecondaryYAxis,
     subtitle: Subtitle,
     documentationLinks,
@@ -64,8 +65,8 @@ export const secondaryYAxesExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates Secondary Y Axis on a JavaScript Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
-    seoKeywords: "secondary, axis, chart, javascript, webgl, canvas",
+    metaKeywords: "secondary, axis, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-with-secondary-y-axis.jpg"
 };

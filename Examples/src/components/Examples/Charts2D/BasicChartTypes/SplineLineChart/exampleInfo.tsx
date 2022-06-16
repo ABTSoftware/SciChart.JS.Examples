@@ -6,7 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
 
-const previewDescription = `This example demonstrates how a JavaScript Spline Line chart can be created using the
+const previewDescription = `This example demonstrating a JavaScript Spline Line chart uses the
 SplineLineRenderableSeries type.`;
 const description = `SciChart's Spline Line type includes a spline-interpolation algorithm to smooth the line, when you have a
 few data-points and want a nicer looking, smoothed line series in your chart applications and dashboards`;
@@ -73,15 +73,16 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Spline Line Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
+        Demonstrates how to create a <strong>JavaScript Spline Line Chart</strong> using SciChart.js, our feature-rich{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
+            JavaScript Chart Library
         </a>
     </p>
 );
 
 export const splineLineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineLineChart,
+    pageTitle: ExampleStrings.pageTitleSplineLineChart,
     path: ExampleStrings.urlSplineLineChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -91,9 +92,9 @@ export const splineLineChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Spline (smoothed) Line Chart. " +
         "The Spline Line Series also supports gradient-coloring and per-point coloring via our PaletteProvider API.",
-    seoKeywords: "spline, smoothed, line, chart, javascript, webgl, canvas",
+    metaKeywords: "spline, smoothed, line, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-spline-smoothed-line-chart.jpg"
 };

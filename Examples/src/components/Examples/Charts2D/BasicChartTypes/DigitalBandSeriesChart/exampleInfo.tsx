@@ -6,11 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Demonstrates how to create a JavaScript Digital Band Chart. This is a chart type which draws a digital area
-(polygon or fill) between two lines. The FastBandRenderableSeries requires an XyyDataSeries, which contains
-one X-point and two Y-points`;
-const description = `Dual lines are drawn by the stroke, strokeY1 properties and shaded bands are drawn by the fill and fillY1
-properties, depending on whether y1 is greater than y2`;
+const previewDescription = `Step bands or Digital bands are created in SciChart.js using the FastBandRenderableSeries. By setting the property IsDigitalLine=true the line is drawn as a step function.`;
+const description = `Band series (also known as High-Low fill or Poylgon Fill) can be used to draw thresholds, a fill between two lines or areas of interest on a chart.`;
 const tips = [
     `If you have data where Y1 is greater than Y2 always, you’ll get an envelope effect. Great for rendering
     confidence intervals, error margins or Bollinger Bands!`
@@ -73,16 +70,17 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Digital Band Chart</strong> or High-Low Fill using SciChart.js,
-        High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
+        Demonstrates how to create a <strong>JavaScript Digital Band Chart</strong> or High-Low Fill using SciChart.js.{" "}
+        This is our High Performance{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
+            JavaScript Chart Library
         </a>
     </p>
 );
 
 export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDigitalBandChart,
+    pageTitle: ExampleStrings.pageTitleDigitalBandChart,
     path: ExampleStrings.urlDigitalBandChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -92,9 +90,9 @@ export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Digital Band Chart. This is a chart type which draws a digital area (polygon or fill) " +
         "between two lines. The Band series requires one X-point and two Y-points to draw the polygon",
-    seoKeywords: "digital, band, chart, javascript, webgl, canvas",
+    metaKeywords: "digital, band, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-digital-band-chart.jpg"
 };

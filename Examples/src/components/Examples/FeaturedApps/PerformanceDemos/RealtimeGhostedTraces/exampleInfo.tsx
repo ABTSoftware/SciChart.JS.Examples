@@ -72,6 +72,7 @@ const Subtitle = () => (
 
 export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeGhostedTraces,
+    pageTitle: ExampleStrings.titleRealtimeGhostedTraces + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeGhostedTraces,
     subtitle: Subtitle,
     documentationLinks,
@@ -80,8 +81,8 @@ export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "This demo showcases the realtime performance of our JavaScript Chart by animating several series with thousands of data-points at 60 FPS",
-    seoKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",
+    metaKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-realtime-ghosted-traces-chart.jpg"
 };

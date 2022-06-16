@@ -70,6 +70,7 @@ const Subtitle = () => (
 
 export const styleAnimationExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStyleAnimation,
+    pageTitle: ExampleStrings.titleStyleAnimation + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlStyleAnimation,
     subtitle: Subtitle,
     documentationLinks,
@@ -79,7 +80,7 @@ export const styleAnimationExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
-    seoKeywords: "style, animation, javascript, webgl, canvas",
+    metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
+    metaKeywords: "style, animation, javascript, webgl, canvas",
     thumbnailImage: "javascript-style-animation.png"
 };

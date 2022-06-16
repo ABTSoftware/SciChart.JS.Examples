@@ -54,6 +54,7 @@ const Subtitle = () => (
 
 export const stylingInCodeExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStylingInCode,
+    pageTitle: ExampleStrings.titleStylingInCode + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlStylingInCode,
     subtitle: Subtitle,
     documentationLinks,
@@ -63,7 +64,7 @@ export const stylingInCodeExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates how to style a JavaScript Chart entirely in code with SciChart.js themeing API",
-    seoKeywords: "styling, in, code, chart, javascript, webgl, canvas",
+    metaDescription: "Demonstrates how to style a JavaScript Chart entirely in code with SciChart.js themeing API",
+    metaKeywords: "styling, in, code, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-styling-theming-in-code.png"
 };

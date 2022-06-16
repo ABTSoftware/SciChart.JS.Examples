@@ -82,6 +82,7 @@ const Subtitle = () => (
 
 export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCursorModifier,
+    pageTitle: ExampleStrings.titleCursorModifier + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCursorModifier,
     subtitle: Subtitle,
     documentationLinks,
@@ -91,6 +92,6 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates adding a Cursor (Crosshair) to a JavaScript Chart with SciChart.js CursorModifier",
-    seoKeywords: "cursor, modifier, chart, javascript, webgl, canvas"
+    metaDescription: "Demonstrates adding a Cursor (Crosshair) to a JavaScript Chart with SciChart.js CursorModifier",
+    metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas"
 };

@@ -75,6 +75,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
+    pageTitle: ExampleStrings.titleRealtimeJavaScriptChartDemo + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeJavaScriptChartDemo,
     subtitle: Subtitle,
     documentationLinks,
@@ -84,8 +85,8 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
-    seoKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
+    metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-realtime-performance-demo.jpg"
 };

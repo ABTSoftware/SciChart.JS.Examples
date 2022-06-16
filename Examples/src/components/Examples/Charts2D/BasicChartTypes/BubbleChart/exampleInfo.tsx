@@ -6,10 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Demonstrates how to create a JavaScript Bubble Chart. This is a chart type which draws point-marker
-(Ellipse, Square, Triangle or Custom) at X,Y locations.`;
-const description = `The FastBubbleRenderableSeries requires an XyzDataSeries, which contains X,Y,Z data. The size or scale of
-the point is defined by a Z-point.`;
+const previewDescription = `Bubble charts are created in SciChart.js using the FastBubbleRenderableSeries. `;
+const description = `The JS Bubble chart type can be animated, have varying point colours and sizes and supports a variety of point types: circle, square, and custom shapes are possible.`;
 const tips = [
     `If you share a single XyzDataSeries between Line and Bubble Renderable Series, the line will render the X-Y
     points while the Bubble will render the X-Y-Z points.`
@@ -66,15 +64,18 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Bubble Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Demonstrates how to create a <strong>JavaScript Bubble Chart</strong>{" "}
+        This is a{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Charts">
+            JavaScript Chart
+        </a>{" "}
+        type which draws point-markers (Ellipse, Square, Triangle, Circle) at X,Y locations
     </p>
 );
 
 export const bubbleChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBubbleChart,
+    pageTitle: ExampleStrings.pageTitleBubbleChart,
     path: ExampleStrings.urlBubbleChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -84,9 +85,9 @@ export const bubbleChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Bubble Chart. This is a chart type which draws point-marker (Ellipse, " +
         "Square, Triangle or Custom) at X,Y locations.",
-    seoKeywords: "bubble, chart, javascript, webgl, canvas",
+    metaKeywords: "bubble, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-bubble-chart.jpg"
 };

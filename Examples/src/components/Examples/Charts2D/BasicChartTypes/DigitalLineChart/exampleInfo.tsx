@@ -6,10 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
 
-const previewDescription = ` Demonstrates how to create a JavaScript Digital Line Chart. The FastLineRenderableSeries can be used to
-render an XyDataSeries, XyyDataSeries (uses Y1 only) or OhlcDataSeries (renders Close).`;
-const description = `The scatter chart uses the PointMarker API to define the marker shape and size. Point-markers available out
-of the box include Ellipse (circle), Triangle, Square, Cross and CustomPointMarker, which renders an image.`;
+const previewDescription = `Step Lines or Digital Lines are created in SciChart.js using the FastLineRenderableSeries. By setting the property IsDigitalLine=true the line is drawn as a step function.`;
+const description = `In SciChart.js lines can be stepped, continuous or spline interpolated (smoothed) using our flexible JS Chart Library.`;
 const tips = [
     `As well as stroke, you can set strokeThickness, isVisible properties to change how the series is rendered.`,
     `You can add data-point markers to a line series using the PointMarker API. This is very performant and uses
@@ -73,8 +71,8 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Digital Line Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+        Demonstrates how to create a <strong>JavaScript Digital Line Chart</strong> using SciChart.js, our powerful{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Charts">
             JavaScript Charts
         </a>
     </p>
@@ -82,6 +80,7 @@ const Subtitle = () => (
 
 export const digitalLineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDigitalLineChart,
+    pageTitle: ExampleStrings.pageTitleDigitalLineChart,
     path: ExampleStrings.urlDigitalLineChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -91,9 +90,9 @@ export const digitalLineChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Digital Line Chart. " +
         "The Digital Line Series also supports gradient-coloring and per-point coloring via our PaletteProvider API.",
-    seoKeywords: "digital, line, chart, javascript, webgl, canvas",
+    metaKeywords: "digital, line, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-digital-line-chart.jpg"
 };

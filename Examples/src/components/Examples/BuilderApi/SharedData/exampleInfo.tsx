@@ -76,6 +76,7 @@ const seeAlso: GalleryItem[] = [
 
 export const sharedDataExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSharedData,
+    pageTitle: ExampleStrings.titleSharedData + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlSharedData,
     subtitle: Subtitle,
     documentationLinks,
@@ -85,9 +86,9 @@ export const sharedDataExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to use the Builder Api to create Reusable Chart Templates." +
         "Data can be easily integrated into a definition and shared between series",
-    seoKeywords: "template, chart, javascript, data, reuse",
+    metaKeywords: "template, chart, javascript, data, reuse",
     thumbnailImage: "javascript-shared-data.jpg"
 };

@@ -6,11 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = `Demonstrates how to create a JavaScript Candlestick Chart. This is a chart type used in financial, stock
-trading applications which renders Date, Open, High, Low, Close data`;
-const description = `The FastCandlestickRenderableSeries requires an OhlcDataSeries, which contains X,Open,High,Low,Close data.
-The color of the candles is controlled by the strokeUp, strokeDown, fillUp and fillDown properties. Further
-customisation of color per-candle can be achieved with the SciChart.js PaletteProvider API.`;
+const previewDescription = `SciChart.js supports Candlestick Charts or OHLC with custom colours per bar and Date X-Axis.`;
+const description = `Candlestick charts can be animated, dynamically updated for real trading apps or combined with other series types to draw technical indicators or shapes.`;
 const tips = [
     `Try dragging on the chart to pan or zoom it. Use the mousewheel to zoom and double-click to zoom to fit.`
 ];
@@ -78,16 +75,18 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Candlestick Chart</strong> or Stock Chart using SciChart.js,
-        High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        This{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart">
+            JavaScript Chart
+        </a>{" "}
+        demo shows you how to create a <strong>JavaScript Candlestick Chart</strong> or Stock Chart using SciChart.js,{" "}
+        High Performance JavaScript Charts
     </p>
 );
 
 export const candlestickChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCandlestickChart,
+    pageTitle: ExampleStrings.pageTitleCandlestickChart,
     path: ExampleStrings.urlCandlestickChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -97,9 +96,9 @@ export const candlestickChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Candlestick Chart. This is a chart type used in financial, stock trading " +
         "applications which renders Date, Open, High, Low, Close data",
-    seoKeywords: "candlestick, chart, javascript, webgl, canvas",
+    metaKeywords: "candlestick, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-candlestick-chart.jpg"
 };

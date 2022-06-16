@@ -33,7 +33,7 @@ export default function PageHome() {
                         </h1>
                         <h3 className={classes.PageHomeAboutText}>
                             With our cutting-edge, award-winning graphics engine in WebAssembly & WebGL, SciChart.js
-                            brings you the world's fastest JavaScript Chart Component. Plot millions of data-points in
+                            brings you the world's fastest <a href="https://www.scichart.com/javascript-chart/" target="_blank" title="JavaScript Chart Library">JavaScript Chart Library</a>. Plot millions of data-points in
                             realtime, create next-generation streaming, updating financial, medical, scientific and
                             big-data business applications.
                         </h3>

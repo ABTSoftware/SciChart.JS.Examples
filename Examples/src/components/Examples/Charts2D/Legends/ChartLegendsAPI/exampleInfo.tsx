@@ -70,6 +70,7 @@ const Subtitle = () => (
 
 export const chartLegendsAPIExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleChartLegends,
+    pageTitle: ExampleStrings.titleChartLegends + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlChartLegends,
     subtitle: Subtitle,
     documentationLinks,
@@ -79,9 +80,9 @@ export const chartLegendsAPIExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to add a Legends to a JavaScript Line Chart using SciChart.js. The legend is created when you add " +
         "a LegendModifier type to the sciChartSurface.chartModifiers collection.",
-    seoKeywords: "legend, api, chart, javascript, webgl, canvas",
+    metaKeywords: "legend, api, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-legends.jpg"
 };

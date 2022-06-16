@@ -62,6 +62,7 @@ const Subtitle = () => (
 
 export const dashedLineStylingExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDashedLineStyling,
+    pageTitle: ExampleStrings.titleDashedLineStyling + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDashedLineStyling,
     subtitle: Subtitle,
     documentationLinks,
@@ -70,7 +71,7 @@ export const dashedLineStylingExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription: "Demonstrates dashed line series in JavaScript charts with SciChart.js",
-    seoKeywords: "dash, dashed, dotted, line, chart, javascript, webgl, canvas",
+    metaDescription: "Demonstrates dashed line series in JavaScript charts with SciChart.js",
+    metaKeywords: "dash, dashed, dotted, line, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-dashed-dotted-lines.jpg"
 };

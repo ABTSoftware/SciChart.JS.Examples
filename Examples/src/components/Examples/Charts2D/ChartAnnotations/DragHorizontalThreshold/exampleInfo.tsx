@@ -65,6 +65,7 @@ const Subtitle = () => (
 
 export const dragHorizontalThresholdExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDragHorizontalThreshold,
+    pageTitle: ExampleStrings.titleDragHorizontalThreshold + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDragHorizontalThreshold,
     subtitle: Subtitle,
     documentationLinks,
@@ -74,8 +75,8 @@ export const dragHorizontalThresholdExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js",
-    seoKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
+    metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-drag-horizontal-threshold.jpg"
 };

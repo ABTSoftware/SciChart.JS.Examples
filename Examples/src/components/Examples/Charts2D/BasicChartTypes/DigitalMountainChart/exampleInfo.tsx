@@ -6,8 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Digital Mountain Chart. An area or polygon is rendered from the
-Y-value to the zeroLineY, a configurable property which defaults to zero.`;
+const description = `A mountain or area chart draws a polygon from a line to configurable zero value.
+    This variation on Mountain Charts in SciChart.js uses the IsDigitalLine property to achieve a stepped-line visual effect!`;
 const tips = [
     `By setting the stroke property you alter the line color, and fill alters the fill. The Mountain-series also
     supports semi-transparent and linear gradient brush fills and looks great!.`
@@ -64,16 +64,17 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Digital Mountain Chart</strong> using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        For Digital Mountain Charts, you can use this demonstration to see how to create a <strong>JavaScript Digital Mountain Chart</strong>{" "}
+        using SciChart.js, and its powerful{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
+            JavaScript Chart Library
+        </a>.
     </p>
 );
 
 export const digitalMountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDigitalMountainChart,
+    pageTitle: ExampleStrings.pageTitleDigitalMountainChart,
     path: ExampleStrings.urlDigitalMountainChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -82,8 +83,8 @@ export const digitalMountainChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Digital Mountain Chart. An area or polygon is rendered with a gradient fill to configurable zero-line.",
-    seoKeywords: "digital, mountain, chart, javascript, webgl, canvas",
+    metaKeywords: "digital, mountain, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-digital-mountain-chart.jpg"
 };

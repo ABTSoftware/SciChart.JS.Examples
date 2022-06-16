@@ -76,6 +76,7 @@ const Subtitle = () => (
 
 export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRolloverModifier,
+    pageTitle: ExampleStrings.titleRolloverModifier + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRolloverModifier,
     subtitle: Subtitle,
     documentationLinks,
@@ -85,8 +86,8 @@ export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates adding Tooltips on mouse-move to a JavaScript Chart with SciChart.js RolloverModifier",
-    seoKeywords: "rollover, modifier, chart, javascript, webgl, canvas",
+    metaKeywords: "rollover, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-chart-rollovermodifier-tooltips.jpg"
 };

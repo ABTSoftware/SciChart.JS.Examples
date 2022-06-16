@@ -6,10 +6,8 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const previewDescription = ` Demonstrates how to create a JavaScript Digital Line Chart. The FastLineRenderableSeries can be used to
-render an XyDataSeries, XyyDataSeries (uses Y1 only) or OhlcDataSeries (renders Close).`;
-const description = `The scatter chart uses the PointMarker API to define the marker shape and size. Point-markers available out
-of the box include Ellipse (circle), Triangle, Square, Cross and CustomPointMarker, which renders an image.`;
+const previewDescription = `Scatter Charts in SciChart.js can render a number of pre-defined point types (Circle, Square, Triangle, Cross). Custom shapes are also possible.`;
+const description = `Each Scatter-chart point can have varying color using our PaletteProvider API. Varying sizes are also possible with the Bubble Chart type.`;
 const tips = [
     `Perhaps you wanted a scatter point with a line? If so, you can do this using the Line Series type and by
     setting the pointMarker property.`
@@ -60,15 +58,16 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Scatter Chart</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
+        We have created an example that demonstrates how to create a <strong>JavaScript Scatter Chart</strong> using{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
+            SciChart.js
         </a>
     </p>
 );
 
 export const scatterChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleScatterChart,
+    pageTitle: ExampleStrings.pageTitleScatterChart,
     path: ExampleStrings.urlScatterChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -78,9 +77,9 @@ export const scatterChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Scatter Chart. The Scatter Chart supports different markers (Triangle, Circle, Square) " +
         "and can be colored per-point using our PaletteProvider API.",
-    seoKeywords: "scatter, chart, javascript, webgl, canvas",
+    metaKeywords: "scatter, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-scatter-chart.jpg"
 };

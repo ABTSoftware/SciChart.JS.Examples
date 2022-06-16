@@ -10,7 +10,7 @@ const previewDescription = `An example which demonstrates creating static multi-
 Candlesticks, Volume bars behind the chart, Moving averages, plus how to link several charts together to
 draw Macd and RSI indicators.`;
 const description = ` All charts are synchronized together by using the mouseEventGroup property on chart modifiers and the
-SciChartVerticalGroup type. Technical indicators are for demonstration purposes only. We recommend using the open source TA-Lib to add more complex indicators to SciChart.js`;
+SciChartVerticalGroup type. Technical indicators are for demo purposes only. We recommend using TA-Lib to add more complex indicators to SciChart.js`;
 const tips = [
     `SciChart.js supports all the features you need to create rich, interactive, realtime JavaScript Stock Chart
     applications. Including Candlestick/OHLC charts, Band Series for bollinger bands, multi-panes, plus
@@ -63,16 +63,17 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how create a multi-pane <strong>JavaScript Stock Chart</strong> with indicator panels, synchronized
-        zooming, panning and cursors, using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Here we are demonstrating how create a multi-pane JavaScript Stock Chart with indicator panels,{" "}
+        synchronized zooming, panning and cursors, using our{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="powerful and feature rich JavaScript Charting Library">
+            powerful and feature rich JavaScript Charting Library
+        </a>.
     </p>
 );
 
 export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMultiPaneStockChart,
+    pageTitle: ExampleStrings.pageTitleMultiPaneStockChart,
     path: ExampleStrings.urlMultiPaneStockChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -82,8 +83,8 @@ export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Multi-Pane JavaScript Stock Chart (Candlestick Chart) Example using SciChart.js. Features Indicators, Volume, Moving-Averages and Tooltips across stock charts",
-    seoKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
+    metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-multi-pane-stock-charts.jpg"
 };

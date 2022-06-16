@@ -31,7 +31,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const ExampleComponent = getExampleComponent(examplePage.id);
 
     const titleText = examplePage ? examplePage.title : ExampleStrings.siteHomeTitle;
-    const seoTitleText = titleText + ExampleStrings.exampleTitleSuffix;
+    const seoTitleText = examplePage.pageTitle;
     const subtitleText = examplePage ? examplePage.subtitle() : undefined;
 
     const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;
@@ -42,8 +42,8 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const seeAlso: GalleryItem[] = examplePage?.seeAlso;
     const codeStr = examplePage ? examplePage.code : "";
     const githubUrl = examplePage ? examplePage.githubUrl : "";
-    const seoDescription = examplePage ? examplePage.seoDescription : "";
-    const seoKeywords = examplePage ? examplePage.seoKeywords : "";
+    const seoDescription = examplePage ? examplePage.metaDescription : "";
+    const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = process.env.PUBLIC_URL ?? "https://demo.scichart.com";
     const exampleImage = examplePage ? `${basePath}/images/${examplePage.thumbnailImage}` : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";
@@ -78,22 +78,17 @@ const ExamplesRoot: React.FC<TProps> = props => {
                             <h5>JavaScript Chart Examples</h5>
 
                             <p className={classes.ExampleDescriptionText}>
-                                SciChart.js ships with ~60{" "}
-                                <a className={classes.ExampleRootDescriptionLink} href="https://demo.scichart.com">
-                                    JavaScript Chart Examples
+                                SciChart.js ships with over 80{" "}
+                                <a className={classes.ExampleRootDescriptionLink} href="https://demo.scichart.com" title="SciChart.js Examples">
+                                    JavaScript Chart demos
                                 </a>{" "}
-                                which you can browse, play with, view the source code and see related documentation. All
-                                of this is possible with the SciChart.js Examples Suite, which ships as part of the{" "}
-                                <a
-                                    className={classes.ExampleRootDescriptionLink}
-                                    href="https://www.scichart.com/downloads"
-                                >
-                                    SciChart.js SDK
-                                </a>
+                                which you can browse, view the source code and see related documentation.{" "}
+                                Build incredible complex dashboards with SciChart.js, our High Performance{" "}
+                                JavaScript Chart Library.
                             </p>
                             <div className={classes.OrangeButton}>
-                                <Button href="https://www.scichart.com/downloads/" target="_blank">
-                                    Download the SDK
+                                <Button href="https://www.scichart.com/downloads/" target="_blank" title="Download SciChart.js">
+                                    Free Trial
                                 </Button>
                             </div>
                         </div>

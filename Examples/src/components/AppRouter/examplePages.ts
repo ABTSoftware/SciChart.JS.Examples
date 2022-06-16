@@ -84,7 +84,14 @@ import { drawBehindAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavi
 
 
 export type TExampleInfo = {
+    /**
+     * Example title
+     */
     title: string;
+    /**
+     * Meta title
+     */
+    pageTitle: string;
     path: string;
     documentationLinks: any;
     tips?: any;
@@ -95,8 +102,14 @@ export type TExampleInfo = {
     seeAlso?: GalleryItem[];
     code: string;
     githubUrl: string;
-    seoDescription: string;
-    seoKeywords: string;
+    /**
+     * Page meta description
+     */
+    metaDescription: string;
+    /**
+     * Page meta keywords
+     */
+    metaKeywords: string;
     thumbnailImage?: string;
 };
 

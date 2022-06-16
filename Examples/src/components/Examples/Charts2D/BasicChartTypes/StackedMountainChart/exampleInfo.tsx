@@ -6,8 +6,9 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
-const description = `Demonstrates how to create a JavaScript Mountain Chart. An area or polygon is rendered from the Y-value to
-the zeroLineY, a configurable property which defaults to zero.`;
+const description = `Stacked Mountain Charts can be created in JavaScript using SciChart.js. An mountain or area is rendered from the
+    Y-value of each stacked mountain series to the Y-value of the next.
+    Each area can have a different color and you can stack to 100% using our library.`;
 const tips = [
     `By setting the stroke property you alter the line color, and fill alters the fill. The Mountain-series also
     supports semi-transparent and linear gradient brush fills and looks great!.`
@@ -88,16 +89,17 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Stacked Mountain Chart</strong> using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Learn how to make a <strong>JavaScript Stacked Mountain Chart</strong> using with SciChart's{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="powerful JavaScript Charts">
+            powerful JavaScript Charts
+        </a>{" "}
+        and it's range of features.
     </p>
 );
 
 export const stackedMountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStackedMountainChart,
+    pageTitle: ExampleStrings.pageTitleStackedMountainChart,
     path: ExampleStrings.urlStackedMountainChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -106,8 +108,8 @@ export const stackedMountainChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Stacked Mountain Chart. Stacked Mountains support 100% stacking with optional gradient fills.",
-    seoKeywords: "stacked, mountain, chart, javascript, webgl, canvas",
+    metaKeywords: "stacked, mountain, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-stacked-mountain-chart.jpg"
 };

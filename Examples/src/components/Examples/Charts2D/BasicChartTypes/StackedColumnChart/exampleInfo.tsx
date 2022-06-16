@@ -6,8 +6,9 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
 
-const description = `Demonstrates how to create a JavaScript Stacked Column Chart. An column or rectangle is rendered from the
-Y-value of each stacked column series to the Y-value of the next.`;
+const description = `Stacked Column Charts can be created in JavaScript using SciChart.js. An column or rectangle is rendered from the
+    Y-value of each stacked column series to the Y-value of the next.
+    Each column can have a different color and you can stack to 100% using our library.`;
 const tips = [
     `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much space the column takes up.`
 ];
@@ -63,16 +64,16 @@ const seeAlso: GalleryItem[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Stacked Column Chart</strong> using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        The example on this page demonstrates how to create a <strong>JavaScript Stacked Column Chart</strong> using our{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
+            feature-rich JavaScript Chart Library
+        </a>, SciChart.js.
     </p>
 );
 
 export const stackedColumnChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStackedColumnChart,
+    pageTitle: ExampleStrings.pageTitleStackedColumnChart,
     path: ExampleStrings.urlStackedColumnChart,
     subtitle: Subtitle,
     documentationLinks,
@@ -81,8 +82,8 @@ export const stackedColumnChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    seoDescription:
+    metaDescription:
         "Demonstrates how to create a JavaScript Stacked Column Chart. Stacked Column series can be stacked 100%, grouped side by side or above and below.",
-    seoKeywords: "stacked, column, chart, javascript, webgl, canvas",
+    metaKeywords: "stacked, column, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-stacked-column-chart.png"
 };
