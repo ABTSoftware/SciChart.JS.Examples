@@ -72,8 +72,7 @@ export const bubble3DChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how a JavaScript 3D Bubble Chart. Each point draws a 3D point-marker " +
-        "(Sphere, Cylinder, Cube) at X,Y,Z locations in 3D Space.",
+        "Create detailed JavaScript 3D Bubble Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.",
     metaKeywords: "3d, bubble, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-3d-bubble-chart.jpg"
 };

@@ -91,8 +91,7 @@ export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Digital Band Chart. This is a chart type which draws a digital area (polygon or fill) " +
-        "between two lines. The Band series requires one X-point and two Y-points to draw the polygon",
+        "Learn how to create a JavaScript Digital Band Chart or High-Low Fill Chart with SciChart's easy-to-follow demos. Get your free trial today.",
     metaKeywords: "digital, band, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-digital-band-chart.jpg"
 };

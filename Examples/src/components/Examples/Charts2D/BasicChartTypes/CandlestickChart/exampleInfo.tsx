@@ -97,8 +97,7 @@ export const candlestickChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Candlestick Chart. This is a chart type used in financial, stock trading " +
-        "applications which renders Date, Open, High, Low, Close data",
+        "Discover how to create a JavaScript Candlestick Chart or Stock Chart using SciChart.js. For high Performance JavaScript Charts, get your free demo now.",
     metaKeywords: "candlestick, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-candlestick-chart.jpg"
 };

@@ -98,7 +98,7 @@ export const splineMountainChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Mountain Chart. An area or polygon is rendered with a gradient fill to configurable zero-line.",
+        "JavaScript Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
     metaKeywords: "mountain, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-mountain-chart.jpg"
 };

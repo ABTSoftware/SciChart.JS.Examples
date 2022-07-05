@@ -93,8 +93,7 @@ export const splineLineChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Spline (smoothed) Line Chart. " +
-        "The Spline Line Series also supports gradient-coloring and per-point coloring via our PaletteProvider API.",
+        "Discover how to create a JavaScript Spline Line Chart with SciChart. Demo includes algorithm for smoother lines. Get your free trial now.",
     metaKeywords: "spline, smoothed, line, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-spline-smoothed-line-chart.jpg"
 };

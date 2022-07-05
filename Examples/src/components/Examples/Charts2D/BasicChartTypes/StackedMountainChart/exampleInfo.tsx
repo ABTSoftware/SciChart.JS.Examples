@@ -109,7 +109,7 @@ export const stackedMountainChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Stacked Mountain Chart. Stacked Mountains support 100% stacking with optional gradient fills.",
+        "Design a high performance JavaScript Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.",
     metaKeywords: "stacked, mountain, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-stacked-mountain-chart.jpg"
 };

@@ -84,7 +84,7 @@ export const digitalMountainChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Digital Mountain Chart. An area or polygon is rendered with a gradient fill to configurable zero-line.",
+        "Create JavaScript Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
     metaKeywords: "digital, mountain, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-digital-mountain-chart.jpg"
 };

@@ -84,8 +84,7 @@ export const columnChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Columns are rendered with a stroke and fill, and support " +
-        "gradient fill and paletteproviders for more custom coloring options.",
+        "JavaScript Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
     metaKeywords: "column, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-column-chart.jpg"
 };

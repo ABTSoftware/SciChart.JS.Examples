@@ -82,8 +82,7 @@ export const donutChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Donut Chart. This is a circular chart type with a hole in the center " +
-        "consisting of sectors which are proportional to the quantity it represents.",
+        "Create JavaScript Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
     metaKeywords: "donut, chart, javascript, canvas",
     thumbnailImage: "javascript-donut-chart.jpg"
 };

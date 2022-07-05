@@ -86,8 +86,7 @@ export const heatmapChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a Realtime JavaScript Heatmap Chart. The Heatmap series accepts a 2D array" +
-        "of data and has user-defined color map which can be used to color points by value.",
+        "Easily create a high performance JavaScript Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
     metaKeywords: "heatmap, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-heatmap-chart.jpg"
 };

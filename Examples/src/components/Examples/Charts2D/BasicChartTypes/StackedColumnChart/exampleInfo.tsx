@@ -83,7 +83,7 @@ export const stackedColumnChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Stacked Column Chart. Stacked Column series can be stacked 100%, grouped side by side or above and below.",
+        "Discover how to create a JavaScript Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!",
     metaKeywords: "stacked, column, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-stacked-column-chart.png"
 };

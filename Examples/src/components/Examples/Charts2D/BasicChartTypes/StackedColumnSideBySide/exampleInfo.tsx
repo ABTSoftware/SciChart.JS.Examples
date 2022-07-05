@@ -102,7 +102,7 @@ export const stackedColumnSideBySideExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Stacked Column Chart with side-by-side grouping. Stacked Column series can be stacked 100%, grouped side by side or above and below.",
+        "Design JavaScript Stacked Group Column Chart side-by-side using our 5-star rated JavaScript Chart Framework, SciChart.js. Get  your free demo now.",
     metaKeywords: "stacked, column, side-by-side, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-stacked-grouped-column-chart-side-by-side.png"
 };

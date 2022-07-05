@@ -83,8 +83,7 @@ export const pieChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Pie Chart. This is a circular chart type with a hole in the center " +
-        "consisting of sectors which are proportional to the quantity it represents.",
+        "Easily create and customise a high performance JavaScript Pie Chart with 5-star rated SciChart.js. Get your free trial now to access the whole library. ",
     metaKeywords: "pie, chart, javascript, canvas",
     thumbnailImage: "javascript-pie-chart.jpg"
 };

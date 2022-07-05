@@ -73,7 +73,7 @@ export const surfaceMesh3DChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript 3D Surface Mesh Plot. This 3D Chart type can be used in scientific or financial applications to view data in many dimensions",
+        "Design a JavaScript 3D Surface Mesh Chart with SciChart.js - feature-rich JavaScript chart library. Represent 2D data in a 3D map. Get your free demo.",
     metaKeywords: "3d, surface, mesh, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-3d-surface-mesh-chart.jpg"
 };
