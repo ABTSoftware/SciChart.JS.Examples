@@ -94,8 +94,7 @@ export const lineChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Line Chart. " +
-        "The Line Series also supports gradient-coloring and per-point coloring via our PaletteProvider API.",
+        "Discover how to create a high performance JavaScript Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
     metaKeywords: "line, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-line-chart.jpg"
 };

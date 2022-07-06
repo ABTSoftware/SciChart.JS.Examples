@@ -91,8 +91,7 @@ export const digitalLineChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Digital Line Chart. " +
-        "The Digital Line Series also supports gradient-coloring and per-point coloring via our PaletteProvider API.",
+        "Discover how to create a JavaScript Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
     metaKeywords: "digital, line, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-digital-line-chart.jpg"
 };

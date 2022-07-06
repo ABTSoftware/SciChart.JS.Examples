@@ -98,8 +98,7 @@ export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Band Chart. This is a chart type which draws an area (polygon or fill) " +
-        "between two lines. The Band series requires one X-point and two Y-points to draw the polygon",
+        "SciChart's JavaScript Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.",
     metaKeywords: "band, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-band-chart.jpg"
 };

@@ -78,7 +78,7 @@ export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Realtime JavaScript Stock Chart demo using SciChart.js. Features live updating Candlestick/Ohlc charts, moving averages and volume",
+        "Create a JavaScript Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
     metaKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-realtime-ticking-stock-charts.jpg"
 };

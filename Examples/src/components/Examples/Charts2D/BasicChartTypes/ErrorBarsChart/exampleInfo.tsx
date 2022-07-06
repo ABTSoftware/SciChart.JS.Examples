@@ -85,7 +85,7 @@ export const errorBarsChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Error Bars Chart. Error Bars are rendered with a stroke and dataPointWidth properties",
+        "Create JavaScript Error Bars Chart using high performance SciChart.js. Display uncertainty or statistical confidence of a data-point. Get free demo now.",
     metaKeywords: "error, bars, javascript, webgl, canvas",
     thumbnailImage: "javascript-error-bars-chart.jpg"
 };

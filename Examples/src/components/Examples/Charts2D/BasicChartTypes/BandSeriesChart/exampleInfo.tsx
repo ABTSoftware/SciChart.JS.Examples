@@ -91,8 +91,7 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Band Chart. This is a chart type which draws an area (polygon or fill) " +
-        "between two lines. The Band series requires one X-point and two Y-points to draw the polygon",
+        "Easily create a JavaScript Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
     metaKeywords: "band, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-band-chart.jpg"
 };

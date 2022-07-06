@@ -90,8 +90,7 @@ export const contourChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a Realtime JavaScript Contour-map Chart. The Contours series accepts a 2D array" +
-        "of data and calculates contour lines at a specified step value and draws them on the chart.",
+        "Design a highly dynamic JavaScript Heatmap Chart With Contours with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.",
     metaKeywords: "contour, contours, heatmap, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-contours-chart.jpg"
 };

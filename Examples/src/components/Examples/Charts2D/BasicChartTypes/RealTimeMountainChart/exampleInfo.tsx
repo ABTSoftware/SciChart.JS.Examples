@@ -66,7 +66,7 @@ export const realTimeMountainChartExampleInfo: TExampleInfo = {
     seeAlso,
     code,
     githubUrl,
-    metaDescription: "Demonstrates how to create a JavaScript Mountain Chart with animated realtime updates.",
+    metaDescription: "JavaScript Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",
     metaKeywords: "mountain, chart, realtime, animated, javascript, canvas",
     thumbnailImage: ExampleStrings.imgRealtimeMountainChart
 };

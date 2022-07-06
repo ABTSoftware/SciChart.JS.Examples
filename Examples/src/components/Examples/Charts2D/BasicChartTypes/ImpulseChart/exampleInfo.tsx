@@ -82,7 +82,7 @@ export const impulseChartExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a JavaScript Impulse Chart. Impulse are rendered with a fill and size properties",
+        "Easily create JavaScript Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. ",
     metaKeywords: "impulse, lollipop, javascript, webgl, canvas",
     thumbnailImage: "javascript-impulse-chart.jpg"
 };
