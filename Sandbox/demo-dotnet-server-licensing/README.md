@@ -111,7 +111,7 @@ The SciChart license server sends debug messages to the Ilogger.  To see these, 
 ```
 "Logging": {
     "LogLevel": {
-      "SciChart": "Debug",
+      "scichart": "^2.2.2401",
 ```
 If the client is not behaving as expected, we may ask you to enable client side license debugging.  This is done in Chrome DevTools by adding a Local Storage key of LICENSE_DEBUG with value 1.
 
