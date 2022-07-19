@@ -92,6 +92,7 @@ import CustomFilters from "../Examples/Charts2D/Filters/CustomFilters";
 import DatapointSelection from "../Examples/Charts2D/TooltipsAndHittest/DatapointSelection";
 import Overview from "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier";
 import ErrorBarsChart from "../Examples/Charts2D/BasicChartTypes/ErrorBarsChart";
+import NonUniformHeatmapChart from "../Examples/Charts2D/BasicChartTypes/NonUniformHeatmapChart";
 
 export type TMenuItem = {
     item: {
@@ -119,6 +120,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart,
             EXAMPLES_PAGES.chart2D_basicCharts_FanChart,
             EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_NonUniformHeatmapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ContourChart,
             EXAMPLES_PAGES.chart2D_basicCharts_MountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_SplineMountainChart,
@@ -328,7 +330,8 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
         item: { id: "chart2D_newChartTypes", name: "New Chart Types" },
         submenu: [
             EXAMPLES_PAGES.chart2D_basicCharts_ErrorBarsChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart
+            EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_NonUniformHeatmapChart,
         ]
     },
 ];
@@ -409,6 +412,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return ImpulseChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart.id:
             return HeatmapChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_NonUniformHeatmapChart.id:
+            return NonUniformHeatmapChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_ContourChart.id:
             return ContourChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_LineChart.id:
