@@ -8,6 +8,7 @@ This example showcases:
 * How to change the cursor when hover over axes (uses `MouseOverAxisModifier`)
 * How to listen to isSelected event (uses `CustomBoxAnnotation`)
 * How to hide grips for annotations (uses `AxisMarkerAnnotationWithoutGrips`)
+* How to Extend Line annotation to draw caps on the ends (`CappedLineAnnotation`)
 
 ## Running the Example
 
