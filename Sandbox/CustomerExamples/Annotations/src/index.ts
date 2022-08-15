@@ -12,6 +12,7 @@ import { createImageAsync } from 'scichart/utils/imageUtil';
 import { MouseOverAxisModifier } from './MouseOverAxisModifier';
 import { CustomAnnotation } from 'scichart/Charting/Visuals/Annotations/CustomAnnotation';
 import { AxisMarkerAnnotationWithoutGrips } from "./AxisMarkerAnnotationWithoutGrips";
+import { CappedLineAnnotation } from './CappedLineAnnotation';
 
 async function initSciChart() {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root');
@@ -105,11 +106,22 @@ async function initSciChart() {
         isEditable: true
     });
 
+    const cappedLine = new CappedLineAnnotation({
+        x1: 1,
+        y1: 8,
+        x2: 2,
+        y2: 5,
+        strokeDashArray: [5,2],
+        capLength: 20,
+        isEditable: true
+    })
+
     sciChartSurface.annotations.add(
         axisMarkerAnnotation,
         customAxisMarkerAnnotation,
         boxAnnotationGreen,
-        customAnnotation
+        customAnnotation,
+        cappedLine
     );
 }
 
