@@ -7,6 +7,7 @@ import { LogarithmicAxis } from 'scichart/Charting/Visuals/Axis/LogarithmicAxis'
 import { ZoomPanModifier } from 'scichart/Charting/ChartModifiers/ZoomPanModifier';
 import { MouseWheelZoomModifier } from 'scichart/Charting/ChartModifiers/MouseWheelZoomModifier';
 import { ZoomExtentsModifier } from 'scichart/Charting/ChartModifiers/ZoomExtentsModifier';
+import {ENumericFormat} from "scichart/types/NumericFormat";
 
 async function initSciChart() {
     // LICENSING //
@@ -29,7 +30,19 @@ async function initSciChart() {
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
 
-    const yAxis = new LogarithmicAxis(wasmContext);
+    // Specify a logarithmic Y-Axis with:
+    // Logarithmic base = 10
+    // Scientific label format e.g. 1x10^4
+    // autoTicks=false meaning we specify major/minor delta
+    // majorDelta = 1 meaning a label every 1x10^1
+    // minorDelta = 0.1 meaning a minor gridline every 10th between major gridlines
+    const yAxis = new LogarithmicAxis(wasmContext, {
+        logBase: 10,
+        labelFormat: ENumericFormat.Scientific,
+        majorDelta: 1,
+        minorDelta: 0.1,
+        autoTicks: false,
+    });
 
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis);
