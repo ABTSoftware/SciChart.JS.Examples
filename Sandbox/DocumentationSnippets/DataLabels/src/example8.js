@@ -4,8 +4,10 @@ import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/Ellipse
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {NumberRange} from "scichart/Core/NumberRange";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {EDataLabelSkipMode} from "scichart/Types/DataLabelSkipMode";
 
-export async function dataLabelProviderGetText(divElementId) {
+export async function dataLabelSkipModes(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -22,23 +24,19 @@ export async function dataLabelProviderGetText(divElementId) {
             fill: "LightSteelBlue"}),
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8],
+            yValues: [4.3, 5, 5, 6, 6.3, 6.3, 7, 7.2, 7.8, 8, 8, 8],
         }),
         // dataLabels style must be specified to show labels
         dataLabels: {
+            skipMode: EDataLabelSkipMode.SkipIfSame,
+            skipNumber: 0,
             style: {
                 fontFamily: "Arial",
-                fontSize: 16,
+                fontSize: 18,
                 color: "#EEE"
             }
         }
     });
-
-    // Override default dataLabelProvider.getText() function
-    // See type DataLabelState for available data
-    lineSeries.dataLabelProvider.getText = (dataLabelState) => {
-        return `[x: ${dataLabelState.xVal()}, y: ${dataLabelState.yVal()}]`;
-    };
 
     sciChartSurface.renderableSeries.add(lineSeries);
 }

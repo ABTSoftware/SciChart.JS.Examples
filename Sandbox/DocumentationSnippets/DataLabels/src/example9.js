@@ -1,15 +1,19 @@
+import {NumberRange} from "scichart/Core/NumberRange";
+import {EDataLabelSkipMode} from "scichart/Types/DataLabelSkipMode";
 import {chartBuilder} from "scichart/Builder/chartBuilder";
-import {ESeriesType} from "scichart//types/SeriesType";
+import {ESeriesType} from "scichart/types/SeriesType";
 import {EPointMarkerType} from "scichart/types/PointMarkerType";
+import {EAxisType} from "scichart/types/AxisType";
 
-export async function dataLabelProviderGetTextBuilderApi(divElementId) {
-
+export async function dataLabelSkipModesBuilder(divElementId) {
     const { sciChartSurface, wasmContext } = await chartBuilder.buildChart(divElementId, {
+        xAxes: [ { type: EAxisType.NumericAxis, options: { growBy: new NumberRange(0.1, 0.1) }}],
+        yAxes: [ { type: EAxisType.NumericAxis, options: { growBy: new NumberRange(0.1, 0.1) }}],
         series: {
             type: ESeriesType.LineSeries,
             xyData: {
                 xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                yValues: [4.3, 5.3, 6, 6.3, 6, 5.2, 4.5, 4.6, 5, 6, 7, 8],
+                yValues: [4.3, 5, 5, 6, 6.3, 6.3, 7, 7.2, 7.8, 8, 8, 8],
             },
             options: {
                 stroke: "SteelBlue",
@@ -25,18 +29,15 @@ export async function dataLabelProviderGetTextBuilderApi(divElementId) {
                     }
                 },
                 dataLabels: {
+                    skipMode: EDataLabelSkipMode.SkipIfSame,
+                    skipNumber: 0,
                     style: {
                         fontFamily: "Arial",
-                        fontSize: 16,
+                        fontSize: 18,
                         color: "#EEE"
                     }
                 }
             },
         }
     });
-
-    // Note you can access dataLabelProvider from a constructed chart as follows
-    sciChartSurface.renderableSeries.get(0).dataLabelProvider.getText = (dataLabelState) => {
-        return `[x: ${dataLabelState.xVal()}, y: ${dataLabelState.yVal()}]`;
-    };
 }
