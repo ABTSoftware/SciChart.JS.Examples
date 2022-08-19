@@ -5,6 +5,8 @@ import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
 import { NumberRange } from 'scichart/Core/NumberRange';
 import { XyCustomFilter } from 'scichart/Charting/Model/Filters/XyCustomFilter';
 import { CursorModifier } from 'scichart/Charting/ChartModifiers/CursorModifier';
+import {ENumericFormat} from "scichart/types/NumericFormat";
+import {formatNumber} from "scichart/utils/number";
 
 async function initSciChart() {
     // Create the SciChartSurface in the div 'scichart-root'
@@ -38,11 +40,20 @@ async function initSciChart() {
     // Create Transformed chart
     const { sciChartSurface: sciChartSurface2, wasmContext: wasmContext2 } = await SciChartSurface.create('scichart-root2');
     sciChartSurface2.xAxes.add(new NumericAxis(wasmContext2, { visibleRange: new NumberRange(0,100), labelPrecision: 0, axisTitle: "Percentile" }));
-    sciChartSurface2.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1), axisTitle:"Transformed Wealth" }));
+    const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1), axisTitle:"Transformed Wealth" });
+    yAxis.maxAutoTicks = 20;
+    sciChartSurface2.yAxes.add(yAxis);
 
     // Inverse hyperbolic sine filter
+    // This converts the data to an approximation of Log(n)
     const ihsFilter = new XyCustomFilter(dataSeries, { filterFunction: ((i, y) => Math.log(y + Math.sqrt(1 + y*y))) });
 
+    // Now we have to convert axis labels back so they make sense
+    // Inverse hyperbolic sine is an approximation of LogE(2*n) so we invert it
+    yAxis.labelProvider.formatLabel = (dataLabel: number) => {
+        const transformedLabel = (0.5 * Math.pow(Math.E, dataLabel));
+        return formatNumber(transformedLabel, ENumericFormat.Scientific, 2);
+    }
     const lineSeriesTransformed = new FastLineRenderableSeries(wasmContext, {
         stroke: 'white',
         dataSeries: ihsFilter
