@@ -3,11 +3,7 @@ import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
 import { FastLineRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries';
 import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
 import { NumberRange } from 'scichart/Core/NumberRange';
-import { ZoomPanModifier } from 'scichart/Charting/ChartModifiers/ZoomPanModifier';
-import { MouseWheelZoomModifier } from 'scichart/Charting/ChartModifiers/MouseWheelZoomModifier';
-import { ZoomExtentsModifier } from 'scichart/Charting/ChartModifiers/ZoomExtentsModifier';
 import { XyCustomFilter } from 'scichart/Charting/Model/Filters/XyCustomFilter';
-import { RolloverModifier } from 'scichart/Charting/ChartModifiers/RolloverModifier';
 import { CursorModifier } from 'scichart/Charting/ChartModifiers/CursorModifier';
 
 async function initSciChart() {
