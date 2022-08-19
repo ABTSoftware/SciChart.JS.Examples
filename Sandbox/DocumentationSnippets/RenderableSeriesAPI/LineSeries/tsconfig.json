@@ -19,15 +19,17 @@
         "jsx": "react",
         "allowJs": true,
         "typeRoots": [
-            "./src/types", "./node_modules/@types"],
+          "../src/types",
+            "../node_modules/@types"
+        ],
         "esModuleInterop": false,
         "skipLibCheck": false,
         "forceConsistentCasingInFileNames": true
     },
     "include": [
-        "src/**/*"
+        "LineSeries/src/**/*"
     ],
     "exclude": [
-        "node_modules"
+        "../node_modules"
     ]
 }

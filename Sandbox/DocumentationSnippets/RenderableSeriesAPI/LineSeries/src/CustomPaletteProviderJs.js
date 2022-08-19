@@ -1,5 +1,7 @@
 import {DefaultPaletteProvider, EStrokePaletteMode} from "scichart/Charting/Model/IPaletteProvider";
 import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import {chartBuilder} from "scichart/Builder/chartBuilder";
+import {EBaseType} from "scichart/types/BaseType";
 
 // Custom PaletteProvider for line series
 export class ThresholdLinePaletteProvider extends DefaultPaletteProvider {
@@ -17,3 +19,7 @@ export class ThresholdLinePaletteProvider extends DefaultPaletteProvider {
         return this.rule(yValue) ? this.stroke : undefined;
     }
 }
+
+// Register the custom ThresholdLinePaletteProvider with the chartBuilder
+chartBuilder.registerType(EBaseType.PaletteProvider, "ThresholdLinePaletteProvider",
+    (options) => new ThresholdLinePaletteProvider(options.stroke, options.rule));
