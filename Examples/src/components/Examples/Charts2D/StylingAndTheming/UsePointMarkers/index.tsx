@@ -9,7 +9,7 @@ import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/Ellip
 import { SquarePointMarker } from "scichart/Charting/Visuals/PointMarkers/SquarePointMarker";
 import { CrossPointMarker } from "scichart/Charting/Visuals/PointMarkers/CrossPointMarker";
 import { SpritePointMarker } from "scichart/Charting/Visuals/PointMarkers/SpritePointMarker";
-import {TrianglePointMarker} from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
+import { TrianglePointMarker } from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
 import { createImageAsync } from "scichart/utils/imageUtil";
 import customPointImage from "./img/CustomMarkerImage.png";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
