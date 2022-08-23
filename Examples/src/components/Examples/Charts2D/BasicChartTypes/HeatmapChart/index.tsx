@@ -15,8 +15,8 @@ import { Button, ButtonGroup } from "@material-ui/core";
 const divElementId = "chart";
 const cachedHeatmapDataForExample: number[][][] = [];
 const MAX_SERIES = 20;
-const WIDTH = 30;
-const HEIGHT = 20;
+const WIDTH = 300;
+const HEIGHT = 200;
 
 const drawExample = async () => {
     // Create a SciChartSurface
@@ -40,13 +40,6 @@ const drawExample = async () => {
     // HeatmapDataSeries which correspond to gradient stops at 0..1
     const heatmapSeries = new UniformHeatmapRenderableSeries(wasmContext, {
         dataSeries: heatmapDataSeries,
-        dataLabels: {
-            style: {
-                fontFamily: "Arial",
-                fontSize: 16,
-                color: "white"
-            }
-        },
         colorMap: new HeatmapColorMap({
             minimum: 0,
             maximum: 200,
