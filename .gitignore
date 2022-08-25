@@ -3,6 +3,5 @@
 **/node_modules
 **/.idea
 .DS_Store
-package-lock.json
 Sandbox/demo-electron/dist/main/main.js
-
+Sandbox/**/package-lock.json
