@@ -25,6 +25,9 @@ import { sciChartExamples } from "../helpers/SciChartExamples";
 
 export default function App() {
     const location = useLocation();
+    // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
+    const isIFrame = location.pathname.substring(1, 7) === 'iframe';
+    const pathname = isIFrame ? location.pathname.substring(7) : location.pathname;
 
     const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
@@ -52,7 +55,7 @@ export default function App() {
 
     const [isDrawerOpened, setIsDrawerOpened] = React.useState(false);
 
-    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === location.pathname);
+    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     const currentExampleId = currentExample?.id;
 
@@ -85,6 +88,10 @@ export default function App() {
             setOpenedMenuItems(updatedOpenedItems);
         }
     }, [currentExampleId]);
+
+    if (isIFrame) {
+        return <AppRouter currentExample={currentExample} isIFrame={true}/>
+    }
 
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
