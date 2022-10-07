@@ -32,7 +32,7 @@ export default function App() {
         MENU_ITEMS_FEATURED_APPS_ID: true,
         MENU_ITEMS_3D_ID: true,
         MENU_ITEMS_2D_ID: true,
-        MENU_ITEMS_WHATSNEW_ID: true
+        MENU_ITEMS_WHATSNEW_ID: false
     };
 
     MENU_ITEMS_WHATSNEW.forEach(item => {

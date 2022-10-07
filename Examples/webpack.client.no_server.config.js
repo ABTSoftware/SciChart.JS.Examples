@@ -22,6 +22,13 @@ const betaTrialKey = "";
 module.exports = {
     ...webpackClientConfig,
     mode: "development",
+    node: {
+        child_process: "empty",
+        fs: "empty",
+        crypto: "empty",
+        net: "empty",
+        tls: "empty"
+    },
     devtool: "inline-source-map",
     watch: true,
     module: {

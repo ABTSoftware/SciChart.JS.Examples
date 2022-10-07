@@ -147,6 +147,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts.path
     },
     {
+        title: EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts.title,
+        link: EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts.path
+    },
+    {
         title: EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.title,
         link: EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.path
     },
@@ -309,6 +313,10 @@ export const searchItems: TSearchItem[] = [
     {
         title: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.title,
         link: EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.path
+    },
+    {
+        title: EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes.title,
+        link: EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes.path
     },
     {
         title: EXAMPLES_PAGES.builderApi_simplechart.title,

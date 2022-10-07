@@ -69,13 +69,12 @@ const orientationSelect = [
 export default function DonutChart() {
     const [showControls, setShowControls] = React.useState(false);
     const [sciChartPieSurface, setSciChartPieSurface] = React.useState<SciChartPieSurface>();
-    const [placementValue, setPlacementValue] = React.useState<ELegendPlacement>(ELegendPlacement.TopRight);
+    const [placementValue, setPlacementValue] = React.useState<ELegendPlacement>(ELegendPlacement.TopLeft);
     const [orientationValue, setOrientationValue] = React.useState<ELegendOrientation>(ELegendOrientation.Vertical);
 
     React.useEffect(() => {
         drawExample().then(scps => {
             setSciChartPieSurface(scps);
-            scps.legend.placement = placementValue;
             setShowControls(true);
         });
     }, []);

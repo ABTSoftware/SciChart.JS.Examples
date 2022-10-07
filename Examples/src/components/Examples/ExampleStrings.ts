@@ -370,6 +370,14 @@ export const ExampleStrings = {
     pageTitleMultiPaneStockChart: "JavaScript Multi-Pane Stock Chart | View JavaScript Charts",
     imgMultiPaneStockChart: "images/javascript-multi-pane-stock-charts.jpg",
 
+    // SubChart Stock Charts
+    urluSubChartStockChart: "/javascript-subchart-stock-charts",
+    urlTitleSubChartStockChart:
+        "The Subchart stock chart example demonstrates multiple-series types in a realistic stock chart application using the new subcharts api",
+    titleSubChartStockChart: "JavaScript Multi-Pane Stock Charts using Subcharts",
+    pageTitleSubChartStockChart: "JavaScript Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
+    imguSubChartStockChart: "images/javascript-subcharts-stock-charts.jpg",
+
     // Realtime Ticking Stock Charts
     urlRealtimeTickingStockCharts: "/javascript-realtime-ticking-stock-charts",
     titleRealtimeTickingStockCharts: "JavaScript Realtime Ticking Stock Charts",

@@ -3,6 +3,13 @@ const webpackClientConfig = require("./webpack.client.config.js");
 
 module.exports = merge(webpackClientConfig, {
     mode: "development",
+    node: {
+        child_process: "empty",
+        fs: "empty",
+        crypto: "empty",
+        net: "empty",
+        tls: "empty"
+    },
     devtool: "inline-source-map",
 
     devServer: {
