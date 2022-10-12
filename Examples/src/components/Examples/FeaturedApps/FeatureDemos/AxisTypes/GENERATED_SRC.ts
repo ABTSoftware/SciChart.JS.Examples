@@ -1,5 +1,7 @@
 export const code = `import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import * as React from "react";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import {
     EFillPaletteMode,
@@ -9,41 +11,62 @@ import {
 } from "scichart/Charting/Model/IPaletteProvider";
 import { IPointMetadata } from "scichart/Charting/Model/IPointMetadata";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
 import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
+import { DateTimeNumericAxis } from "scichart/Charting/Visuals/Axis/DateTimeNumericAxis";
 import { TextLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/TextLabelProvider";
+import { LogarithmicAxis } from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { ShadowEffect } from "scichart/Charting/Visuals/RenderableSeries/ShadowEffect";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { Point } from "scichart/Core/Point";
 import { Thickness } from "scichart/Core/Thickness";
 import { EAutoRange } from "scichart/types/AutoRange";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { ELabelAlignment } from "scichart/types/LabelAlignment";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import { getBinanceCandles } from "../../../../../utils/binanceApi";
 import classes from "../../../Examples.module.scss";
 
 const divElementId = "chart";
 
+const colorStrings = [
+    "4FBEE6",
+    "AD3D8D",
+    "6BBDAE",
+    "E76E63",
+    "2C4B92"
+];
+const colors = colorStrings.map(c => parseColorToUIntArgb(c + "AA"));
+
 const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    // sciChartSurface.debugRendering = true;
+    sciChartSurface.applyTheme(new SciChartJSLightTheme());
     const xAxis = new CategoryAxis(wasmContext, { id: "XCategory" });
     const labelProvider = new TextLabelProvider({
         labels: [
             "Bitcoin",
-            "Etherium",
+            "Ethereum",
             "XRP",
             "Cardano",
             "Dogecoin"
         ]
     });
     xAxis.labelProvider = labelProvider;
+    xAxis.labelStyle.fontSize = 18;
     xAxis.labelStyle.alignment = ELabelAlignment.Center;
     xAxis.labelStyle.padding = new Thickness(2, 1, 2, 1);
     // Allow rotated labels to overlap
     xAxis.axisRenderer.hideOverlappingLabels = false;
     // Keep first and last labels aligned to their ticks
     xAxis.axisRenderer.keepLabelsWithinAxis = false;
+    xAxis.axisTitle = ["Top 5 Coins - Category Axis", "Custom labels using TextLabelProvider"];
+    xAxis.axisTitleStyle.fontSize = 18;
 
     sciChartSurface.xAxes.add(xAxis);
 
@@ -51,12 +74,14 @@ const drawExample = async () => {
         id: "YNumeric",
         autoRange: EAutoRange.Always,
         labelPrefix: "\$",
-        labelFormat: ENumericFormat.SignificantFigures,
-        labelPrecision: 4
+        labelPostfix: "B",
+        labelPrecision: 0,
+        axisAlignment: EAxisAlignment.Left,
+        labelStyle: { fontSize: 18 } 
     });
     // Pass array to axisTitle to make it multiline
-    yAxis.axisTitle = ["Numeric Axis", "labelFormat: SignificanFigures, labelPrecision: 4,  labelPrefix: '\$'"];
-    yAxis.axisTitleStyle.fontSize = 12;
+    yAxis.axisTitle = ["Market Cap - Numeric Axis", "formatting using prefix and postfix"];
+    yAxis.axisTitleStyle.fontSize = 18;
 
     sciChartSurface.yAxes.add(yAxis);
 
@@ -64,7 +89,6 @@ const drawExample = async () => {
         strokeThickness: 0,
         dataPointWidth: 0.5,
         paletteProvider: new AxisTypesPaletteProvider(),
-        opacity: 0.7,
         xAxisId: xAxis.id,
         yAxisId: yAxis.id
     });
@@ -73,12 +97,64 @@ const drawExample = async () => {
     const dataSeries = new XyDataSeries(wasmContext);
     dataSeries.appendRange(
         [0, 1, 2, 3, 4],
-        [380966724099, 162168710334, 23879373372, 14564158769, 8371917659]
+        [380.9, 162.1, 23.87, 14.56, 8.372]
     );
     columnSeries.dataSeries = dataSeries;
+    const endDate = new Date(2022, 10, 5);
+    const startTime = (endDate.getTime() / 1000) - 500 * 7 * 24 * 60 * 60;
+    const dateXAxis = new DateTimeNumericAxis(wasmContext, {
+        axisAlignment: EAxisAlignment.Top,
+        id: "XDate",
+        labelStyle: { fontSize: 18 } ,
+        axisTitle: ["Date Axis", "Auto formats based on the date range"],
+        axisTitleStyle: { fontSize: 18 },
+        visibleRangeLimit: new NumberRange(startTime, endDate.getTime() / 1000)
+    });
+    sciChartSurface.xAxes.add(dateXAxis);
+    const logYAxis = new LogarithmicAxis(wasmContext, {
+        id: "YLog",
+        logBase: 2,
+        labelFormat: ENumericFormat.SignificantFigures,
+        labelPrefix: "\$",
+        axisAlignment: EAxisAlignment.Right,
+        labelStyle: { fontSize: 18 },
+        axisTitle: ["Price - Logarithmic Axis", "base 2, labelFormat: SignificantFigures"],
+        axisTitleStyle: { fontSize: 18 } 
+    });
+    sciChartSurface.yAxes.add(logYAxis);
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.zoomExtents();
+    const symbols = ["BTCUSDT", "ETHUSDT", "XRPUSDT", "ADAUSDT", "DOGEUSDT"];
+    for (let index = 0; index < symbols.length; index++) {
+        const symbol = symbols[index];
+        const priceDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: symbol })
+        const series = new FastLineRenderableSeries(wasmContext, {
+            id: symbol,
+            strokeThickness: 3,
+            xAxisId: dateXAxis.id,
+            yAxisId: logYAxis.id,
+            stroke: colorStrings[index],
+            dataSeries: priceDataSeries,
+        });
+        // const shadowSeries = new FastLineRenderableSeries(wasmContext, {
+        //     strokeThickness: 5,
+        //     xAxisId: dateXAxis.id,
+        //     yAxisId: logYAxis.id,
+        //     stroke: "444444",
+        //     dataSeries: priceDataSeries,
+        // });
+        sciChartSurface.renderableSeries.add(series);
+        // Do this async
+        getBinanceCandles(symbol, "1w", undefined, endDate).then( data => {
+            priceDataSeries.appendRange(data.xValues, data.closeValues);
+            sciChartSurface.zoomExtents();
+        });
+    }
+
+    sciChartSurface.chartModifiers.add(
+        new ZoomPanModifier( { includedXAxisIds: [dateXAxis.id], includedYAxisIds: [logYAxis.id] }),
+        new MouseWheelZoomModifier( { includedXAxisIds: [dateXAxis.id], includedYAxisIds: [logYAxis.id] }),
+        new ZoomExtentsModifier()
+    );
     return { sciChartSurface, wasmContext, labelProvider };
 };
 
@@ -143,13 +219,6 @@ export default function FeatureAxisTypes() {
 class AxisTypesPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
     public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
     public readonly fillPaletteMode = EFillPaletteMode.SOLID;
-    private readonly colors = [
-        parseColorToUIntArgb("4FBEE6"),
-        parseColorToUIntArgb("AD3D8D"),
-        parseColorToUIntArgb("6BBDAE"),
-        parseColorToUIntArgb("E76E63"),
-        parseColorToUIntArgb("2C4B92")
-    ];
 
     // tslint:disable-next-line:no-empty
     public onAttached(parentSeries: IRenderableSeries): void {}
@@ -158,7 +227,7 @@ class AxisTypesPaletteProvider implements IStrokePaletteProvider, IFillPalettePr
     public onDetached(): void {}
 
     public overrideFillArgb(xValue: number, yValue: number, index: number): number {
-        return this.colors[xValue];
+        return colors[xValue];
     }
 
     public overrideStrokeArgb(

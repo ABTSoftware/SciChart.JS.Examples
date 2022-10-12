@@ -1,296 +1,375 @@
-export const code = `import * as React from "react";
+export const code = `import { Typography } from "@material-ui/core";
+import * as React from "react";
+import { chartBuilder } from "scichart/Builder/chartBuilder";
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
-import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { SciChartSurface } from "scichart";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
-import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { calcAverageForArray } from "scichart/utils/calcAverage";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
-import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { EXyDirection } from "scichart/types/XyDirection";
-import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
 import {
     EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider,
     IStrokePaletteProvider
 } from "scichart/Charting/Model/IPaletteProvider";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import { EDraggingGripPoint } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
+import { HorizontalLineAnnotation, IHVLineAnnotationOptions } from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
+import { I2DSubSurfaceOptions } from "scichart/Charting/Visuals/I2DSurfaceOptions";
 import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
-import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import classes from "../../../../Examples/Examples.module.scss";
-import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
-import { XyMovingAverageFilter } from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
-import { EDataSeriesField } from "scichart/Charting/Model/Filters/XyFilterBase";
-import { ELabelAlignment } from "scichart/types/LabelAlignment";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { Point } from "scichart/Core/Point";
+import { Rect } from "scichart/Core/Rect";
+import { Thickness } from "scichart/Core/Thickness";
+import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
+import { EAutoRange } from "scichart/types/AutoRange";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import { EAxisType } from "scichart/types/AxisType";
+import { EChart2DModifierType } from "scichart/types/ChartModifierType";
+import { EDataFilterType } from "scichart/types/DataFilterType";
+import { ESeriesType } from "scichart/types/SeriesType";
+import { EXyDirection } from "scichart/types/XyDirection";
+import { calcAverageForArray } from "scichart/utils/calcAverage";
+import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import { multiPaneData } from "../../../ExampleData/multiPaneData";
+import { SciChartJS2022Theme } from "../../../Theme2022";
+import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
+import { BasePaletteProvider } from "scichart/Charting/Model/BasePaletteProvider";
 
-const divElementId1 = "cc_chart_3_1";
-const divElementId2 = "cc_chart_3_2";
-const divElementId3 = "cc_chart_3_3";
+export const mainChartWrapper = "cc_chart";
+export const mainChartWrapper2 = "cc_chart2";
+export const subChartWrapper1 = "subChartWrapper1";
+export const subChartWrapper2 = "subChartWrapper2";
+export const subChartWrapper3 = "subChartWrapper3";
+export const dividerId1 = "dividerId1";
+export const dividerId2 = "dividerId2";
+export const containerId = "containerId";
+export const containerId2 = "containerId2";
 
-const drawExample = async () => {
+const getDataForSecondPane = (xValues: number[], closeValues: number[]) => {
+    const macdArray: number[] = [];
+    const signalArray: number[] = [];
+    const divergenceArray: number[] = [];
+    for (let i = 0; i < xValues.length; i++) {
+        const maSlow = calcAverageForArray(closeValues, 12, i);
+        const maFast = calcAverageForArray(closeValues, 25, i);
+        const macd = maSlow - maFast;
+        macdArray.push(macd);
+        const signal = calcAverageForArray(macdArray, 9, i);
+        signalArray.push(signal);
+        const divergence = macd - signal;
+        divergenceArray.push(divergence);
+    }
+
+    return { macdArray, signalArray, divergenceArray };
+};
+
+const getDataForThirdPane = (xValues: number[], closeValues: number[]) => {
+    const RSI_PERIOD = 14;
+    const rsiArray: number[] = [];
+    const gainArray: number[] = [];
+    const lossArray: number[] = [];
+    rsiArray.push(NaN);
+    gainArray.push(NaN);
+    lossArray.push(NaN);
+    for (let i = 1; i < xValues.length; i++) {
+        const previousClose = closeValues[i - 1];
+        const currentClose = closeValues[i];
+        const gain = currentClose > previousClose ? currentClose - previousClose : 0;
+        gainArray.push(gain);
+        const loss = previousClose > currentClose ? previousClose - currentClose : 0;
+        lossArray.push(loss);
+        const relativeStrength =
+            calcAverageForArray(gainArray, RSI_PERIOD) / calcAverageForArray(lossArray, RSI_PERIOD);
+        const rsi = 100 - 100 / (1 + relativeStrength);
+        rsiArray.push(rsi);
+    }
+
+    return { rsiArray };
+};
+
+export const drawExample = async () => {
     const verticalGroup = new SciChartVerticalGroup();
-    const {
-        dateValues,
-        openValues,
-        highValues,
-        lowValues,
-        closeValues,
-        volumeValues
-    } = ExampleDataProvider.getTradingData();
-    const darkTheme = new SciChartJSDarkTheme();
+    const { dateValues: xValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
+    const { macdArray, signalArray, divergenceArray } = getDataForSecondPane(xValues, closeValues);
+    const { rsiArray } = getDataForThirdPane(xValues, closeValues);
 
-    let chart1XAxis: CategoryAxis;
-    let chart2XAxis: CategoryAxis;
-    let chart3XAxis: CategoryAxis;
     const axisAlignment = EAxisAlignment.Right;
+    const theme = new SciChartJS2022Theme();
 
-    // CHART 1
-    const drawChart1 = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId1, {
-            widthAspect: 900,
-            heightAspect: 400
-        });
-        sciChartSurface.applyTheme(darkTheme);
-
-        chart1XAxis = new CategoryAxis(wasmContext, {
-            drawLabels: false,
-            drawMajorTickLines: false,
-            drawMinorTickLines: false
-        });
-        sciChartSurface.xAxes.add(chart1XAxis);
-
-        const yAxis = new NumericAxis(wasmContext, {
-            maxAutoTicks: 5,
-            autoRange: EAutoRange.Always,
-            growBy: new NumberRange(0.3, 0.11),
-            axisAlignment
-        });
-        yAxis.labelProvider.formatLabel = (dataValue: number) => "\$" + dataValue.toFixed(4);
-        sciChartSurface.yAxes.add(yAxis);
-
-        // OHLC DATA SERIES
-        const usdDataSeries = new OhlcDataSeries(wasmContext, {
-            dataSeriesName: "OHLC Close",
-            xValues: dateValues,
-            openValues,
-            highValues,
-            lowValues,
-            closeValues
-        });
-        const fcRendSeries = new FastCandlestickRenderableSeries(wasmContext, {
-            dataSeries: usdDataSeries
-        });
-        sciChartSurface.renderableSeries.add(fcRendSeries);
-
-        // MA1 SERIES
-        const maLowDataSeries = new XyMovingAverageFilter(usdDataSeries, {
-            dataSeriesName: "MA 50 Low",
-            length: 50,
-            field: EDataSeriesField.Low
-        });
-        const maLowRenderableSeries = new FastLineRenderableSeries(wasmContext, {
-            dataSeries: maLowDataSeries
-        });
-        sciChartSurface.renderableSeries.add(maLowRenderableSeries);
-        maLowRenderableSeries.rolloverModifierProps.tooltipColor = "red";
-        maLowRenderableSeries.rolloverModifierProps.markerColor = "red";
-        maLowRenderableSeries.stroke = "#ff0000";
-        maLowRenderableSeries.strokeThickness = 2;
-
-        // MA2 SERIES
-        const maHighDataSeries = new XyMovingAverageFilter(usdDataSeries, {
-            dataSeriesName: "MA 200 High",
-            length: 200,
-            field: EDataSeriesField.High
-        });
-        const maHighRenderableSeries = new FastLineRenderableSeries(wasmContext, {
-            dataSeries: maHighDataSeries
-        });
-        sciChartSurface.renderableSeries.add(maHighRenderableSeries);
-        maHighRenderableSeries.stroke = "#228B22";
-        maHighRenderableSeries.strokeThickness = 2;
-
-        // VOLUME SERIES
-        const yAxis2 = new NumericAxis(wasmContext, {
-            id: "yAxis2",
-            isVisible: false,
-            autoRange: EAutoRange.Always,
-            growBy: new NumberRange(0, 3)
-        });
-        sciChartSurface.yAxes.add(yAxis2);
-
-        const volumeRenderableSeries = new FastColumnRenderableSeries(wasmContext, {
-            yAxisId: "yAxis2",
-            dataSeries: new XyDataSeries(wasmContext, {
-                dataSeriesName: "Volume",
-                xValues: dateValues,
-                yValues: volumeValues
-            }),
-            dataPointWidth: 0.5,
-            strokeThickness: 1,
-            paletteProvider: new VolumePaletteProvider(usdDataSeries, "#50FF50B2", "#FF5050B2")
-        });
-        sciChartSurface.renderableSeries.add(volumeRenderableSeries);
-
-        // MODIFIERS
-        sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-        sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-        sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "first" }));
-
-        verticalGroup.addSurfaceToGroup(sciChartSurface);
-
-        return { wasmContext, sciChartSurface };
+    const commonSubChartSurfaceOptions: I2DSubSurfaceOptions = {
+        subChartPadding: Thickness.fromNumber(10),
+        isTransparent: false,
+        theme
     };
 
-    // CHART 2
-    const drawChart2 = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId2, {
-            widthAspect: 900,
-            heightAspect: 150
-        });
-        sciChartSurface.applyTheme(darkTheme);
+    const subChartModifiers = [
+        { type: EChart2DModifierType.ZoomPan, options: { xyDirection: EXyDirection.XDirection } },
+        { type: EChart2DModifierType.PinchZoom, options: { xyDirection: EXyDirection.XDirection } },
+        { type: EChart2DModifierType.ZoomExtents, options: { xyDirection: EXyDirection.XDirection } },
+        { type: EChart2DModifierType.MouseWheelZoom, options: { xyDirection: EXyDirection.XDirection } }
+    ];
 
-        chart2XAxis = new CategoryAxis(wasmContext, {
-            drawLabels: false,
-            drawMajorTickLines: false,
-            drawMinorTickLines: false
-        });
-        sciChartSurface.xAxes.add(chart2XAxis);
+    const upCol = "6BBDAE";
+    const downCol = "E76E63";
+    const opacity = "AA";
 
-        const yAxis = new NumericAxis(wasmContext, {
-            maxAutoTicks: 4,
-            autoRange: EAutoRange.Always,
-            growBy: new NumberRange(0.1, 0.1),
-            axisAlignment,
-            labelStyle: { alignment: ELabelAlignment.Right }
-        });
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
-        sciChartSurface.yAxes.add(yAxis);
+    const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(mainChartWrapper2, {
+        surface: {
+            id: "mainSurface",
+            theme
+        },
+        xAxes: {
+            type: EAxisType.NumericAxis,
+            options: {
+                isVisible: false
+            }
+        },
+        yAxes: {
+            type: EAxisType.NumericAxis,
+            options: {
+                isVisible: false
+            }
+        },
+        modifiers: {
+            type: EChart2DModifierType.Custom,
+            customType: FinChartLegendModifier.customType,
+            options: {
+                crosshairStroke: "#E0FDFF"
+            } as IFinanceLegendModifierOptions
+        },
+        subCharts: [
+            {
+                surface: {
+                    ...commonSubChartSurfaceOptions,
+                    position: new Rect(0, 0, 1, 0.5),
+                    id: "subChart1",
+                    subChartContainerId: subChartWrapper1
+                },
+                xAxes: {
+                    type: EAxisType.CategoryAxis,
+                    options: {
+                        drawLabels: false,
+                        autoRange: EAutoRange.Once,
+                        //maxAutoTicks: 20,
+                        useNativeText: false,
+                        minorsPerMajor: 3
+                    }
+                },
+                yAxes: [
+                    {
+                        type: EAxisType.NumericAxis,
+                        options: {
+                            maxAutoTicks: 10,
+                            autoRange: EAutoRange.Always,
+                            growBy: new NumberRange(0.3, 0.11),
+                            labelPrecision: 2,
+                            labelPrefix: "\$",
+                            axisAlignment,
+                            drawMinorGridLines: false
+                        }
+                    },
+                    {
+                        type: EAxisType.NumericAxis,
+                        options: {
+                            id: "yAxis2",
+                            isVisible: false,
+                            autoRange: EAutoRange.Always,
+                            growBy: new NumberRange(0, 3)
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        type: ESeriesType.CandlestickSeries,
+                        ohlcData: {
+                            dataSeriesName: "OHLC Close",
+                            xValues,
+                            openValues,
+                            highValues,
+                            lowValues,
+                            closeValues
+                        },
+                        options: {
+                            brushUp: upCol + opacity,
+                            brushDown: downCol + opacity,
+                            strokeUp: upCol,
+                            strokeDown: downCol
+                        }
+                    },
+                    {
+                        type: ESeriesType.LineSeries,
+                        xyData: {
+                            xValues,
+                            yValues: closeValues,
+                            filter: {
+                                type: EDataFilterType.XyMovingAverage,
+                                options: {
+                                    dataSeriesName: "MA 50 Low",
+                                    length: 50
+                                }
+                            }
+                        },
+                        options: {
+                            stroke: "#4FBEE6",
+                            strokeThickness: 2
+                        }
+                    },
+                    {
+                        type: ESeriesType.LineSeries,
+                        xyData: {
+                            xValues,
+                            yValues: closeValues,
+                            filter: {
+                                type: EDataFilterType.XyMovingAverage,
+                                options: {
+                                    dataSeriesName: "MA 200 High",
+                                    length: 200
+                                }
+                            }
+                        },
+                        options: {
+                            stroke: "AE418D",
+                            strokeThickness: 2
+                        }
+                    },
+                    {
+                        type: ESeriesType.ColumnSeries,
+                        xyData: {
+                            dataSeriesName: "Volume",
+                            xValues,
+                            yValues: volumeValues
+                        },
+                        options: {
+                            yAxisId: "yAxis2",
+                            dataPointWidth: 0.5,
+                            strokeThickness: 0,
+                            paletteProvider: new VolumePaletteProvider(
+                                openValues,
+                                closeValues,
+                                upCol + opacity,
+                                downCol + opacity
+                            )
+                        }
+                    }
+                ],
 
-        const macdArray: number[] = [];
-        const signalArray: number[] = [];
-        const divergenceArray: number[] = [];
-        for (let i = 0; i < dateValues.length; i++) {
-            const maSlow = calcAverageForArray(closeValues, 12, i);
-            const maFast = calcAverageForArray(closeValues, 25, i);
-            const macd = maSlow - maFast;
-            macdArray.push(macd);
-            const signal = calcAverageForArray(macdArray, 9, i);
-            signalArray.push(signal);
-            const divergence = macd - signal;
-            divergenceArray.push(divergence);
-        }
+                modifiers: subChartModifiers,
+                sharedData: {}
+            },
+            {
+                surface: {
+                    ...commonSubChartSurfaceOptions,
+                    position: new Rect(0, 0.5, 1, 0.3),
+                    subChartContainerId: subChartWrapper2,
+                    id: "subChart2"
+                },
+                xAxes: [
+                    {
+                        type: EAxisType.CategoryAxis,
+                        options: {
+                            drawLabels: false,
+                            drawMajorTickLines: false,
+                            drawMinorTickLines: false,
+                            useNativeText: false,
+                            minorsPerMajor: 3
+                        }
+                    }
+                ],
+                yAxes: [
+                    {
+                        type: EAxisType.NumericAxis,
+                        options: {
+                            maxAutoTicks: 6,
+                            autoRange: EAutoRange.Always,
+                            growBy: new NumberRange(0.1, 0.1),
+                            axisAlignment,
+                            labelPrecision: 2,
+                            drawMinorGridLines: false
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        type: ESeriesType.BandSeries,
+                        xyyData: {
+                            dataSeriesName: "MACD",
+                            xValues,
+                            yValues: signalArray,
+                            y1Values: macdArray
+                        },
+                        options: {
+                            stroke: downCol,
+                            strokeY1: upCol,
+                            fill: upCol + opacity,
+                            fillY1: downCol + opacity
+                        }
+                    },
+                    {
+                        type: ESeriesType.ColumnSeries,
+                        xyData: {
+                            dataSeriesName: "Divergence",
+                            xValues,
+                            yValues: divergenceArray
+                        },
+                        options: {
+                            dataPointWidth: 0.5,
+                            paletteProvider: new MacdHistogramPaletteProvider(upCol + opacity, downCol + opacity)
+                        }
+                    }
+                ],
+                modifiers: subChartModifiers
+            },
+            {
+                surface: {
+                    ...commonSubChartSurfaceOptions,
+                    position: new Rect(0, 0.8, 1, 0.2),
+                    subChartPadding: Thickness.fromNumber(10),
+                    id: "subChart3",
+                    isTransparent: false,
+                    subChartContainerId: subChartWrapper3
+                },
+                xAxes: {
+                    type: EAxisType.CategoryAxis,
+                    options: {
+                        drawLabels: true,
+                        drawMajorTickLines: true,
+                        drawMinorTickLines: false,
+                        useNativeText: false,
+                        minorsPerMajor: 3
+                    }
+                },
+                yAxes: {
+                    type: EAxisType.NumericAxis,
+                    options: {
+                        labelPrecision: 0,
+                        maxAutoTicks: 6,
+                        autoRange: EAutoRange.Always,
+                        growBy: new NumberRange(0.1, 0.1),
+                        axisAlignment,
+                        drawMinorGridLines: false
+                    }
+                },
+                series: {
+                    type: ESeriesType.LineSeries,
+                    xyData: { dataSeriesName: "RSI", xValues, yValues: rsiArray },
+                    options: {
+                        stroke: "#4FBEE6",
+                        strokeThickness: 2
+                    }
+                },
+                modifiers: subChartModifiers
+            }
+        ]
+    });
 
-        const bandSeries = new FastBandRenderableSeries(wasmContext, {
-            dataSeries: new XyyDataSeries(wasmContext, {
-                dataSeriesName: "MACD",
-                xValues: dateValues,
-                yValues: signalArray,
-                y1Values: macdArray
-            })
-        });
-        sciChartSurface.renderableSeries.add(bandSeries);
+    const [subSurface1, subSurface2, subSurface3] = mainSurface.subCharts;
 
-        const columnSeries = new FastColumnRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, {
-                dataSeriesName: "Divergence",
-                xValues: dateValues,
-                yValues: divergenceArray
-            }),
-            paletteProvider: new MacdHistogramPaletteProvider("#50FF50B2", "#FF5050B2"),
-            dataPointWidth: 0.5
-        });
-        sciChartSurface.renderableSeries.add(columnSeries);
+    verticalGroup.addSurfaceToGroup(subSurface1);
+    verticalGroup.addSurfaceToGroup(subSurface2);
+    verticalGroup.addSurfaceToGroup(subSurface3);
 
-        sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
-        // XDirection for ZoomExtendsModifier does not work
-        sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "first", showTooltip: false }));
+    const chart1XAxis = subSurface1.xAxes.get(0);
+    const chart2XAxis = subSurface2.xAxes.get(0);
+    const chart3XAxis = subSurface3.xAxes.get(0);
 
-        verticalGroup.addSurfaceToGroup(sciChartSurface);
-
-        return { wasmContext, sciChartSurface };
-    };
-
-    // CHART 3
-    const drawChart3 = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId3, {
-            widthAspect: 900,
-            heightAspect: 150
-        });
-        sciChartSurface.applyTheme(darkTheme);
-
-        chart3XAxis = new CategoryAxis(wasmContext, { autoRange: EAutoRange.Once });
-        chart3XAxis.labelProvider = new SmartDateLabelProvider();
-        sciChartSurface.xAxes.add(chart3XAxis);
-
-        const yAxis = new NumericAxis(wasmContext, {
-            maxAutoTicks: 4,
-            autoRange: EAutoRange.Always,
-            growBy: new NumberRange(0.1, 0.1),
-            axisAlignment,
-            labelStyle: { alignment: ELabelAlignment.Right }
-        });
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
-        sciChartSurface.yAxes.add(yAxis);
-
-        const RSI_PERIOD = 14;
-        const rsiArray: number[] = [];
-        const gainArray: number[] = [];
-        const lossArray: number[] = [];
-        rsiArray.push(NaN);
-        gainArray.push(NaN);
-        lossArray.push(NaN);
-        for (let i = 1; i < dateValues.length; i++) {
-            const previousClose = closeValues[i - 1];
-            const currentClose = closeValues[i];
-            const gain = currentClose > previousClose ? currentClose - previousClose : 0;
-            gainArray.push(gain);
-            const loss = previousClose > currentClose ? previousClose - currentClose : 0;
-            lossArray.push(loss);
-            const relativeStrength =
-                calcAverageForArray(gainArray, RSI_PERIOD) / calcAverageForArray(lossArray, RSI_PERIOD);
-            const rsi = 100 - 100 / (1 + relativeStrength);
-            rsiArray.push(rsi);
-        }
-        const macdRenderableSeries = new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { dataSeriesName: "RSI", xValues: dateValues, yValues: rsiArray })
-        });
-        sciChartSurface.renderableSeries.add(macdRenderableSeries);
-        macdRenderableSeries.stroke = "#c3e4fe";
-        macdRenderableSeries.strokeThickness = 2;
-
-        sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
-        // XDirection for ZoomExtendsModifier does not work
-        sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "first" }));
-
-        verticalGroup.addSurfaceToGroup(sciChartSurface);
-
-        return { wasmContext, sciChartSurface };
-    };
-
-    // DRAW CHARTS
-    const res = await Promise.all([drawChart1(), drawChart2(), drawChart3()]);
-
-    // SYNCHRONIZE VISIBLE RANGES
+    // Synchronize visible ranges
     chart1XAxis.visibleRangeChanged.subscribe(data1 => {
         chart2XAxis.visibleRange = data1.visibleRange;
         chart3XAxis.visibleRange = data1.visibleRange;
@@ -304,33 +383,169 @@ const drawExample = async () => {
         chart2XAxis.visibleRange = data1.visibleRange;
     });
 
-    return res;
+    // Add some trades to the chart using the Annotations API
+    for (let i = 0; i < subSurface1.renderableSeries.get(0).dataSeries.count(); i++) {
+        // Every 1000th bar, add a buy annotation
+        if (i % 1000 === 0) {
+            subSurface1.annotations.add(buyMarkerAnnotation(i, lowValues[i]));
+        }
+        // Every 1000th bar between buys, add a sell annotation
+        if ((i + 500) % 1000 === 0) {
+            subSurface1.annotations.add(sellMarkerAnnotation(i, highValues[i]));
+        }
+    }
+
+    // Resizing Logic
+    const firstDividerElement = document.getElementById(dividerId1);
+    const secondDividerElement = document.getElementById(dividerId2);
+    firstDividerElement.style;
+    let isDraggingFirst = false;
+    let isDraggingSecond = false;
+    let dragStartPosition: number;
+    const container = document.getElementById(containerId2);
+
+    const baseHeight = container.offsetHeight;
+    const minPaneSize = 0.2;
+
+    const resizePanesFirst = (mouseYOffset: number) => {
+        let newPosition = mouseYOffset / baseHeight;
+
+        if (newPosition < minPaneSize) {
+            newPosition = minPaneSize;
+        }
+
+        if (newPosition > subSurface3.subPosition.y - minPaneSize) {
+            newPosition = subSurface3.subPosition.y - minPaneSize;
+        }
+        firstDividerElement.style.top = \`\${newPosition * 100}%\`;
+        subSurface1.subPosition = new Rect(0, 0, 1, newPosition);
+        subSurface2.subPosition = new Rect(0, newPosition, 1, subSurface3.subPosition.y - newPosition);
+    };
+
+    const resizePanesSecond = (mouseYOffset: number) => {
+        let newPosition = mouseYOffset / baseHeight;
+
+        if (newPosition > 1 - minPaneSize) {
+            newPosition = 1 - minPaneSize;
+        }
+
+        if (newPosition < subSurface1.subPosition.height + minPaneSize) {
+            newPosition = subSurface1.subPosition.height + minPaneSize;
+        }
+        secondDividerElement.style.top = \`\${newPosition * 100}%\`;
+        subSurface2.subPosition = new Rect(
+            0,
+            subSurface1.subPosition.height,
+            1,
+            newPosition - subSurface1.subPosition.height
+        );
+        subSurface3.subPosition = new Rect(0, newPosition, 1, 1 - newPosition);
+    };
+
+    const mouseDownHandlerFirst = (event: MouseEvent) => {
+        isDraggingFirst = true;
+        dragStartPosition = event.clientY;
+    };
+
+    const mouseDownHandlerSecond = (event: MouseEvent) => {
+        isDraggingSecond = true;
+        dragStartPosition = event.clientY;
+    };
+
+    const mouseUpHandler = () => {
+        if (!isDraggingFirst && !isDraggingSecond) {
+            return;
+        }
+
+        isDraggingFirst = false;
+        isDraggingSecond = false;
+    };
+
+    const mouseMoveHandler = (event: MouseEvent) => {
+        if (!isDraggingFirst && !isDraggingSecond) {
+            return;
+        }
+
+        const rect = container.getBoundingClientRect();
+        const mouseYOffset = event.clientY - rect.top;
+
+        if (isDraggingFirst) {
+            resizePanesFirst(mouseYOffset);
+        } else {
+            resizePanesSecond(mouseYOffset);
+        }
+    };
+
+    const paneMouseDownHandler = (event: MouseEvent) => {
+        event.preventDefault();
+    };
+
+    firstDividerElement.addEventListener("mousedown", mouseDownHandlerFirst);
+    secondDividerElement.addEventListener("mousedown", mouseDownHandlerSecond);
+    container.addEventListener("mousedown", paneMouseDownHandler);
+    container.addEventListener("mouseup", mouseUpHandler);
+    container.addEventListener("mousemove", mouseMoveHandler);
+    container.addEventListener("mouseleave", mouseUpHandler);
+
+    firstDividerElement.style.top = \`\${subSurface1.subPosition.height * 100}%\`;
+    secondDividerElement.style.top = \`\${subSurface3.subPosition.y * 100}%\`;
+
+    return { sciChartSurface: mainSurface, wasmContext };
 };
+
+interface ICustomHVLineAnnotationOptions extends IHVLineAnnotationOptions {
+    dragThreshold?: NumberRange;
+}
+
+class CustomHorizontalLineAnnotation extends HorizontalLineAnnotation {
+    public dragThreshold: NumberRange = new NumberRange(0, 1);
+
+    constructor(options?: ICustomHVLineAnnotationOptions) {
+        super(options);
+        this.dragThreshold = options?.dragThreshold ?? this.dragThreshold;
+    }
+
+    public calcDragDistance(xyValues: Point) {
+        if (this.adornerDraggingPoint === EDraggingGripPoint.Body) {
+            if (!this.prevValue) {
+                this.prevValue = xyValues;
+                return;
+            }
+
+            const xDelta = this.prevValue.x - xyValues.x;
+            const yDelta = this.prevValue.y - xyValues.y;
+            const newExpectedY1Value = this.y1 - yDelta;
+            if (newExpectedY1Value >= this.dragThreshold.min && newExpectedY1Value <= this.dragThreshold.max) {
+                super.calcDragDistance(xyValues);
+            }
+        }
+    }
+}
 
 /**
  * An example PaletteProvider applied to the volume column series. It will return green / red
  * fills and strokes when the main price data bar is up or down
  */
-class VolumePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
+// tslint:disable-next-line: max-classes-per-file
+class VolumePaletteProvider extends BasePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
     public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
     public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
-    private priceData: OhlcDataSeries;
+    private openValues: number[];
+    private closeValues: number[];
     private volumeUpArgb: number;
     private volumnDownArgb: number;
 
-    constructor(priceData: OhlcDataSeries, volumeUpColor: string, volumeDownColor: string) {
-        this.priceData = priceData;
+    constructor(openValues: number[], closeValues: number[], volumeUpColor: string, volumeDownColor: string) {
+        super();
+        this.openValues = openValues;
+        this.closeValues = closeValues;
         this.volumeUpArgb = parseColorToUIntArgb(volumeUpColor);
         this.volumnDownArgb = parseColorToUIntArgb(volumeDownColor);
     }
 
-    onAttached(parentSeries: IRenderableSeries): void { }
-
-    onDetached(): void { }
-
     overrideFillArgb(xValue: number, yValue: number, index: number): number {
-        const open = this.priceData.getNativeOpenValues().get(index);
-        const close = this.priceData.getNativeCloseValues().get(index);
+        const open = this.openValues[index];
+        const close = this.closeValues[index];
 
         return close >= open ? this.volumeUpArgb : this.volumnDownArgb;
     }
@@ -340,20 +555,19 @@ class VolumePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvi
     }
 }
 
-class MacdHistogramPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
+// tslint:disable-next-line: max-classes-per-file
+class MacdHistogramPaletteProvider extends BasePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
     public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
     public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
     private aboveZeroArgb: number;
     private belowZeroArgb: number;
 
     constructor(aboveZeroColor: string, belowZeroColor: string) {
+        super();
+
         this.aboveZeroArgb = parseColorToUIntArgb(aboveZeroColor);
         this.belowZeroArgb = parseColorToUIntArgb(belowZeroColor);
     }
-
-    onAttached(parentSeries: IRenderableSeries): void { }
-
-    onDetached(): void { }
 
     overrideFillArgb(xValue: number, yValue: number, index: number): number {
         return yValue >= 0 ? this.aboveZeroArgb : this.belowZeroArgb;
@@ -364,12 +578,51 @@ class MacdHistogramPaletteProvider implements IStrokePaletteProvider, IFillPalet
     }
 }
 
+// Returns a CustomAnnotation that represents a buy marker arrow
+// The CustomAnnotation supports SVG as content. Using Inkscape or similar you can create SVG content for annotations
+const buyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
+    return new CustomAnnotation({
+        x1,
+        y1,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        svgString:
+            '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
+            '<g transform="translate(-53.867218,-75.091687)">' +
+            '<path style="fill:#1cb61c;fill-opacity:0.34117647;stroke:#00b400;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
+            'd="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,-7.408333 7.158904,-7.408333 l 7.158906,7.408333 H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"' +
+            "/>" +
+            "</g>" +
+            "</svg>"
+    });
+};
+
+// Returns a CustomAnnotation that represents a sell marker arrow
+// The CustomAnnotation supports SVG as content. Using Inkscape or similar you can create SVG content for annotations
+const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
+    return new CustomAnnotation({
+        x1,
+        y1,
+        verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        svgString:
+            '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
+            '<g transform="translate(-54.616083,-75.548914)">' +
+            '<path style="fill:#b22020;fill-opacity:0.34117648;stroke:#990000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
+            'd="m 55.47431,87.025547 c 7.158904,7.408333 7.158904,7.408333 7.158904,7.408333 L 69.79212,87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"' +
+            "/>" +
+            "</g>" +
+            "</svg>"
+    });
+};
+
 let charts: TWebAssemblyChart[];
 
-export default function MultiPaneStockCharts() {
+export default function SubChartStockCharts() {
     React.useEffect(() => {
         (async () => {
-            charts = await drawExample();
+            const chart = await drawExample();
+            charts.push(chart);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
@@ -378,10 +631,71 @@ export default function MultiPaneStockCharts() {
     }, []);
 
     return (
-        <div className={classes.ChartWrapper}>
-            <div id={divElementId1} />
-            <div id={divElementId2} />
-            <div id={divElementId3} />
+        <div>
+            <div style={{ maxWidth: 800, marginBottom: 20 }}>
+                <Typography variant="body1" style={{ color: "blue" }}>
+                    Multipane created using SubCharts API and BuilderAPI
+                </Typography>
+            </div>
+            <div
+                id={containerId2}
+                style={{
+                    position: "relative",
+                    maxWidth: 900,
+                    maxHeight: 1000,
+                    touchAction: "none"
+                }}
+            >
+                <div
+                    id={subChartWrapper1}
+                    style={{
+                        position: "absolute" // important
+                    }}
+                />
+                <div
+                    id={dividerId1}
+                    style={{
+                        width: "100%",
+                        height: "2px",
+                        backgroundColor: "#2B2D70",
+                        position: "absolute",
+                        zIndex: 1
+                    }}
+                />
+                <div
+                    id={subChartWrapper2}
+                    style={{
+                        position: "absolute" // important
+                    }}
+                />
+                <div
+                    id={dividerId2}
+                    style={{
+                        width: "100%",
+                        height: "2px",
+                        backgroundColor: "#2B2D70",
+                        position: "absolute",
+                        zIndex: 1
+                    }}
+                />
+                <div
+                    id={subChartWrapper3}
+                    style={{
+                        position: "absolute" // important
+                    }}
+                />
+                <div
+                    id={mainChartWrapper2}
+                    style={{
+                        minWidth: "100%",
+                        maxWidth: "100%",
+                        width: "100%",
+                        minHeight: "100%",
+                        maxHeight: "100%",
+                        height: "100%"
+                    }}
+                ></div>
+            </div>
         </div>
     );
 }

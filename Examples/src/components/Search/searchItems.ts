@@ -319,6 +319,10 @@ export const searchItems: TSearchItem[] = [
         link: EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes.path
     },
     {
+        title: EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout.title,
+        link: EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout.path
+    },
+    {
         title: EXAMPLES_PAGES.builderApi_simplechart.title,
         link: EXAMPLES_PAGES.builderApi_simplechart.path
     },

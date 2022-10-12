@@ -83,6 +83,7 @@ import { genericAnimationExampleInfo } from "../Examples/Charts2D/Animations/Gen
 import { drawBehindAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes/exampleInfo";
 import { axisTypesExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisTypes/exampleInfo";
 import { subChartStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts/exampleInfo";
+import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisLayout/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -421,6 +422,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_featureDemos_axisTypes: {
         id: "featuredApps_featureDemos_axisTypes",
         ...axisTypesExampleInfo
+    },
+    featuredApps_featureDemos_axisLayout: {
+        id: "featuredApps_featureDemos_axisLayout",
+        ...axisLayoutExampleInfo
     },
     featuredApps_scientificCharts_Lidar3DPointCloudDemo: {
         id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",

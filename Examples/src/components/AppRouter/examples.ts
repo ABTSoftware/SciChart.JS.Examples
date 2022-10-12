@@ -94,6 +94,7 @@ import Overview from "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier";
 import ErrorBarsChart from "../Examples/Charts2D/BasicChartTypes/ErrorBarsChart";
 import FeatureAxisTypes from "../Examples/FeaturedApps/FeatureDemos/AxisTypes";
 import SubChartStockCharts from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts";
+import FeatureAxisLayout from "../Examples/FeaturedApps/FeatureDemos/AxisLayout";
 
 export type TMenuItem = {
     item: {
@@ -263,7 +264,10 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     },
     {
         item: { id: "featuredApps_featureDemos", name: "Feature Demos" },
-        submenu: [EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes]
+        submenu: [
+            EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes,
+            EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout
+        ]
     },
 ];
 
@@ -536,6 +540,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return TenorCurves3DChart;
         case EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes.id:
             return FeatureAxisTypes;
+        case EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout.id:
+            return FeatureAxisLayout;
         case EXAMPLES_PAGES.builderApi_simplechart.id:
             return BuilderSimpleChart;
         case EXAMPLES_PAGES.builderApi_fullchart.id:
