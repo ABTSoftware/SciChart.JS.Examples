@@ -7,12 +7,16 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "./utils";
+import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
 
 export 
 const drawPoreSpaceChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("pore-space-chart", {
         ...getCommonChartConfigs("Pore Space"),
         modifiers: getCommonChartModifiersConfig(),
+        surface: {
+            theme: { type: EThemeProviderType.SC2022 },
+        }
     });
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(-0.2, 1.6);

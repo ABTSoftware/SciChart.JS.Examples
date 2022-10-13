@@ -6,12 +6,16 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
+import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
 
 export 
 const drawDensityChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("density-chart", {
         ...getCommonChartConfigs("Density"),
         modifiers: getCommonChartModifiersConfig(),
+        surface: {
+            theme: { type: EThemeProviderType.SC2022 },
+        }
     });
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(-0.2, 0.2);

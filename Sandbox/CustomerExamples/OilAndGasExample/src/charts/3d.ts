@@ -10,9 +10,17 @@ import { EllipsePointMarker3D, QuadPointMarker, SpherePointMarker3D } from "scic
 import { ScatterRenderableSeries3D } from "scichart/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
 import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
 import { TSciChart3D } from "scichart/types/TSciChart3D";
+import {theme} from "../theme";
+import {
+    SciChartJSLightTheme
+} from "../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSLightTheme";
+import {
+    SciChartJSDarkTheme
+} from "../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSDarkTheme";
 
 export default async function init3dChart(id: string) {
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(id);
+
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(id, { theme });
 
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(300, 300, 300),

@@ -7,11 +7,15 @@ import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { RangeFillPaletteProvider, PaletteRange } from "./RangeFillPaletteProvider";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
+import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
 
 export const drawTextureChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("texture-chart", {
         ...getCommonChartConfigs("Texture"),
         modifiers: getCommonChartModifiersConfig(),
+        surface: {
+            theme: { type: EThemeProviderType.SC2022 },
+        }
     });
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(-5, 30);

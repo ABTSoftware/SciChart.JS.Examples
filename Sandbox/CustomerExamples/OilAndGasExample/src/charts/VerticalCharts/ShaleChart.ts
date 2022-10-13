@@ -10,13 +10,14 @@ import { PaletteRange, RangeFillPaletteProvider } from "./RangeFillPaletteProvid
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
 import { EColor } from "scichart/types/Color";
 import { StackedMountainCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainCollection";
+import {theme} from "../../theme";
 
 export const drawShaleChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("shale-chart", {
         ...getCommonChartConfigs("Shale"),
         surface: {
             padding: Thickness.fromNumber(0),
-            theme: { type: EThemeProviderType.Dark, sciChartBackground: "Transparent" },
+            theme: { type: EThemeProviderType.SC2022, sciChartBackground: "Transparent" },
         },
         modifiers: getCommonChartModifiersConfig(),
     });

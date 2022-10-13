@@ -6,11 +6,15 @@ import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/Heat
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "./utils";
+import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
 
 export const drawSonicChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("sonic-chart", {
         ...getCommonChartConfigs("Sonic"),
         modifiers: getCommonChartModifiersConfig(),
+        surface: {
+            theme: { type: EThemeProviderType.SC2022 },
+        }
     });
 
     let heatmapZValues: number[][] = [];
