@@ -1,5 +1,4 @@
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";

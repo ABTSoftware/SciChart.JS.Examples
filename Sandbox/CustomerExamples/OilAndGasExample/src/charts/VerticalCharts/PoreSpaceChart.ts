@@ -8,7 +8,15 @@ import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "./utils";
 import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
-import {LegendTextColor} from "../../theme";
+import {
+    LegendTextColor,
+    PoreSpaceFill1,
+    PoreSpaceFill2,
+    PoreSpaceScatterFill,
+    PoreSpaceScatterStroke,
+    PoreSpaceStroke1,
+    PoreSpaceStroke2
+} from "../../theme";
 
 export 
 const drawPoreSpaceChart = async () => {
@@ -48,8 +56,8 @@ const drawPoreSpaceChart = async () => {
             options: {
                 dataSeries: dataSeries1,
                 strokeThickness: 2,
-                stroke: "#4682B4",
-                fill: "#4682B490",
+                stroke: PoreSpaceStroke1,
+                fill: PoreSpaceFill1,
             }
         },
         {
@@ -57,8 +65,8 @@ const drawPoreSpaceChart = async () => {
             options: {
                 dataSeries: dataSeries2,
                 strokeThickness: 2,
-                stroke: "#757000",
-                fill: "#75700090",
+                stroke: PoreSpaceStroke2,
+                fill: PoreSpaceFill2,
             }
         },
         {
@@ -67,8 +75,8 @@ const drawPoreSpaceChart = async () => {
                 dataSeries: dataSeries3,
                 pointMarker: new EllipsePointMarker(wasmContext, {
                     strokeThickness: 1,
-                    stroke: "White",
-                    fill: "DodgerBlue",
+                    stroke: PoreSpaceScatterStroke,
+                    fill: PoreSpaceScatterFill,
                     width: 8,
                     height: 8,
                 })
@@ -98,19 +106,19 @@ const generatePoreLegend = (
 ): string => {
     return `
     <div class="chart-legend" style="color: ${LegendTextColor};">
-        <div style="height: 18px; flex: auto; background-color: ${"#4682B490"}; border-bottom: 2px solid #4682B4;"></div>
+        <div style="height: 18px; flex: auto; background-color: ${PoreSpaceFill1}; border-bottom: 2px solid ${PoreSpaceStroke1};"></div>
         <div class="legend-text-item">
             <span>${-0.2}</span>
             <span>${"PHIE"}</span>
             <span>${1.6}</span>
         </div>
-        <div style="height: 18px; flex: auto; background-color: ${"#75700090"}; border-bottom: 2px solid #757000;"></div>
+        <div style="height: 18px; flex: auto; background-color: ${PoreSpaceFill2}; border-bottom: 2px solid ${PoreSpaceStroke2};"></div>
         <div class="legend-text-item">
             <span>${-0.2}</span>
             <span>${"PHIT"}</span>
             <span>${1.6}</span>
         </div>
-        <div style="height: 18px; flex: auto; background-color: ${"DodgerBlue"}; border-bottom: 2px solid White;"></div>
+        <div style="height: 18px; flex: auto; background-color: ${PoreSpaceScatterFill}; border-bottom: 2px solid ${PoreSpaceScatterStroke};"></div>
         <div class="legend-text-item">
             <span>${-0.2}</span>
             <span>${"CORE"}</span>

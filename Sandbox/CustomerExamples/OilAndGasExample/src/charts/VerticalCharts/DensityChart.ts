@@ -7,7 +7,13 @@ import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
 import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
-import {DensityBackgroundOne, DensityBackgroundTwo, DensityLegendSeparator, LegendTextColor} from "../../theme";
+import {
+    DensityBackgroundOne,
+    DensityBackgroundTwo, DensityFillY, DensityFillY1,
+    DensityLegendSeparator,
+    DensityStrokeY, DensityStrokeY1,
+    LegendTextColor
+} from "../../theme";
 
 export 
 const drawDensityChart = async () => {
@@ -34,10 +40,10 @@ const drawDensityChart = async () => {
         options: {
             dataSeries,
             strokeThickness: 2,
-            stroke: "#1C1C1E",
-            strokeY1: "Red",
-            fill: "ForestGreen",
-            fillY1: "Orange",
+            stroke: DensityStrokeY,
+            strokeY1: DensityStrokeY1,
+            fill: DensityFillY,
+            fillY1: DensityFillY1,
         }
     });
 

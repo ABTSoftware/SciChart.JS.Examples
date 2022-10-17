@@ -8,7 +8,13 @@ import { ESeriesType } from "scichart/types/SeriesType";
 import { RangeFillPaletteProvider, PaletteRange } from "./RangeFillPaletteProvider";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
 import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
-import {LegendTextColor} from "../../theme";
+import {
+    LegendTextColor,
+    TextureFill,
+    TextureLine,
+    TexturePalette1,
+    TexturePalette2, TexturePalette3
+} from "../../theme";
 
 export const drawTextureChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("texture-chart", {
@@ -32,17 +38,17 @@ export const drawTextureChart = async () => {
     });
 
     const rangePaletteProvider = new RangeFillPaletteProvider([
-        new PaletteRange(8, 8, "Goldenrod"),
-        new PaletteRange(18, 22, "DarkCyan"),
-        new PaletteRange(22, 25, "Goldenrod"),
-        new PaletteRange(25, 26, "DarkCyan"),
-        new PaletteRange(29, 29, "DarkCyan"),
-        new PaletteRange(40, 40, "Green"),
-        new PaletteRange(50, 55, "Green"),
-        new PaletteRange(55, 58, "DarkCyan"),
-        new PaletteRange(70, 75, "Goldenrod"),
-        new PaletteRange(75, 76, "Green"),
-        new PaletteRange(85, 97, "DarkCyan")
+        new PaletteRange(8, 8, TexturePalette1),
+        new PaletteRange(18, 22, TexturePalette2),
+        new PaletteRange(22, 25, TexturePalette1),
+        new PaletteRange(25, 26, TexturePalette2),
+        new PaletteRange(29, 29, TexturePalette2),
+        new PaletteRange(40, 40, TexturePalette3),
+        new PaletteRange(50, 55, TexturePalette3),
+        new PaletteRange(55, 58, TexturePalette2),
+        new PaletteRange(70, 75, TexturePalette1),
+        new PaletteRange(75, 76, TexturePalette3),
+        new PaletteRange(85, 97, TexturePalette2)
     ]);
 
     const renderableSeries = chartBuilder.buildSeries(wasmContext, [
@@ -53,7 +59,7 @@ export const drawTextureChart = async () => {
                 paletteProvider: rangePaletteProvider,
                 isDigitalLine: true,
                 strokeThickness: 0,
-                fill: "#90808080",
+                fill: TextureFill,
             }
         },
         {
@@ -61,7 +67,7 @@ export const drawTextureChart = async () => {
             options: {
                 dataSeries: dataSeries2,
                 strokeThickness: 4,
-                stroke: "#808080",
+                stroke: TextureLine,
             }
         },
     ]);
@@ -91,16 +97,16 @@ const generateTextureLegend = (
     return `
     <div class="chart-legend full-size-legend" style="color: ${LegendTextColor};">
         <div class="legend-color-item">
-            <div class="color-label" style="background-color: ${"#808080"};"></div>
-            <div class="color-label" style="background-color: ${"DarkCyan"};"></div>
+            <div class="color-label" style="background-color: ${TextureLine};"></div>
+            <div class="color-label" style="background-color: ${TexturePalette2};"></div>
         </div>
         <div class="legend-text-item">
             <span>${"MUD"}</span>
             <span>${"GRAIN"}</span>
         </div>
         <div class="legend-color-item">
-            <div class="color-label" style="background-color: ${"Goldenrod"};"></div>
-            <div class="color-label" style="background-color: ${"Green"};"></div>
+            <div class="color-label" style="background-color: ${TexturePalette1};"></div>
+            <div class="color-label" style="background-color: ${TexturePalette3};"></div>
         </div>
         <div class="legend-text-item">
             <span>${"SAND"}</span>

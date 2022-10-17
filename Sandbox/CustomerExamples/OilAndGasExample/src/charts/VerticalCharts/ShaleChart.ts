@@ -10,7 +10,14 @@ import { PaletteRange, RangeFillPaletteProvider } from "./RangeFillPaletteProvid
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
 import { EColor } from "scichart/types/Color";
 import { StackedMountainCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainCollection";
-import {LegendTextColor, ShaleBackgroundColor, ShaleLegendColor1, ShaleLegendColor2, theme} from "../../theme";
+import {
+    LegendTextColor,
+    ShaleBackgroundColor,
+    ShaleLegendColor1,
+    ShaleLegendColor2,
+    ShaleSeriesStroke, ShaleWaterSeries,
+    theme
+} from "../../theme";
 
 export const drawShaleChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("shale-chart", {
@@ -45,15 +52,15 @@ export const drawShaleChart = async () => {
                 type: ESeriesType.StackedMountainSeries,
                 options: {
                     fill: "transparent",
-                    stroke: "#474747",
+                    stroke: ShaleSeriesStroke,
                     dataSeries: dataSeries1
                 }
             },
             {
                 type: ESeriesType.StackedMountainSeries,
                 options: {
-                    fill: "#E4E840",
-                    stroke: "#474747",
+                    fill: ShaleWaterSeries,
+                    stroke: ShaleSeriesStroke,
                     dataSeries: dataSeries2,
                     // TODO: Uncomment after chart.js v2.2 release
                     // paletteProvider: new RangeFillPaletteProvider([
@@ -75,7 +82,7 @@ export const drawShaleChart = async () => {
                 type: ESeriesType.StackedMountainSeries,
                 options: {
                     fill: ShaleLegendColor1,
-                    stroke: "#474747",
+                    stroke: ShaleSeriesStroke,
                     dataSeries: dataSeries3
                 }
             },
