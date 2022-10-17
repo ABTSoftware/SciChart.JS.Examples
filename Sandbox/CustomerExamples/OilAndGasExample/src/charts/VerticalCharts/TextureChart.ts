@@ -7,22 +7,14 @@ import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { RangeFillPaletteProvider, PaletteRange } from "./RangeFillPaletteProvider";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
-import {
-    LegendTextColor,
-    TextureFill,
-    TextureLine,
-    TexturePalette1,
-    TexturePalette2,
-    TexturePalette3,
-    theme
-} from "../../theme";
+import { theme } from "../../theme";
 
 export const drawTextureChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("texture-chart", {
         ...getCommonChartConfigs("Texture"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: theme.type },
+            theme: { type: theme.SciChartJsTheme.type },
         }
     });
 
@@ -39,17 +31,17 @@ export const drawTextureChart = async () => {
     });
 
     const rangePaletteProvider = new RangeFillPaletteProvider([
-        new PaletteRange(8, 8, TexturePalette1),
-        new PaletteRange(18, 22, TexturePalette2),
-        new PaletteRange(22, 25, TexturePalette1),
-        new PaletteRange(25, 26, TexturePalette2),
-        new PaletteRange(29, 29, TexturePalette2),
-        new PaletteRange(40, 40, TexturePalette3),
-        new PaletteRange(50, 55, TexturePalette3),
-        new PaletteRange(55, 58, TexturePalette2),
-        new PaletteRange(70, 75, TexturePalette1),
-        new PaletteRange(75, 76, TexturePalette3),
-        new PaletteRange(85, 97, TexturePalette2)
+        new PaletteRange(8, 8, theme.TexturePalette1),
+        new PaletteRange(18, 22, theme.TexturePalette2),
+        new PaletteRange(22, 25, theme.TexturePalette1),
+        new PaletteRange(25, 26, theme.TexturePalette2),
+        new PaletteRange(29, 29, theme.TexturePalette2),
+        new PaletteRange(40, 40, theme.TexturePalette3),
+        new PaletteRange(50, 55, theme.TexturePalette3),
+        new PaletteRange(55, 58, theme.TexturePalette2),
+        new PaletteRange(70, 75, theme.TexturePalette1),
+        new PaletteRange(75, 76, theme.TexturePalette3),
+        new PaletteRange(85, 97, theme.TexturePalette2)
     ]);
 
     const renderableSeries = chartBuilder.buildSeries(wasmContext, [
@@ -60,7 +52,7 @@ export const drawTextureChart = async () => {
                 paletteProvider: rangePaletteProvider,
                 isDigitalLine: true,
                 strokeThickness: 0,
-                fill: TextureFill,
+                fill: theme.TextureFill,
             }
         },
         {
@@ -68,7 +60,7 @@ export const drawTextureChart = async () => {
             options: {
                 dataSeries: dataSeries2,
                 strokeThickness: 4,
-                stroke: TextureLine,
+                stroke: theme.TextureLine,
             }
         },
     ]);
@@ -96,18 +88,18 @@ const generateTextureLegend = (
     items: TLegendItem[]
 ): string => {
     return `
-    <div class="chart-legend full-size-legend" style="color: ${LegendTextColor};">
+    <div class="chart-legend full-size-legend" style="color: ${theme.LegendTextColor};">
         <div class="legend-color-item">
-            <div class="color-label" style="background-color: ${TextureLine};"></div>
-            <div class="color-label" style="background-color: ${TexturePalette2};"></div>
+            <div class="color-label" style="background-color: ${theme.TextureLine};"></div>
+            <div class="color-label" style="background-color: ${theme.TexturePalette2};"></div>
         </div>
         <div class="legend-text-item">
             <span>${"MUD"}</span>
             <span>${"GRAIN"}</span>
         </div>
         <div class="legend-color-item">
-            <div class="color-label" style="background-color: ${TexturePalette1};"></div>
-            <div class="color-label" style="background-color: ${TexturePalette3};"></div>
+            <div class="color-label" style="background-color: ${theme.TexturePalette1};"></div>
+            <div class="color-label" style="background-color: ${theme.TexturePalette3};"></div>
         </div>
         <div class="legend-text-item">
             <span>${"SAND"}</span>

@@ -7,8 +7,7 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
-import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
-import {LegendTextColor, ResistivityLineStroke, ResistivityLineStroke2, theme} from "../../theme";
+import { theme} from "../../theme";
 
 export 
 const drawResistivityChart = async () => {
@@ -16,7 +15,7 @@ const drawResistivityChart = async () => {
         ...getCommonChartConfigs("Resistivity"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: theme.type },
+            theme: { type: theme.SciChartJsTheme.type },
         }
     });
 
@@ -37,7 +36,7 @@ const drawResistivityChart = async () => {
             options: {
                 dataSeries,
                 strokeThickness: 2,
-                stroke: ResistivityLineStroke,
+                stroke: theme.ResistivityLineStroke,
             }
         },
         {
@@ -45,7 +44,7 @@ const drawResistivityChart = async () => {
             options: {
                 dataSeries: movingAverage20DataSeries,
                 strokeDashArray: [5, 5],
-                stroke: ResistivityLineStroke2,
+                stroke: theme.ResistivityLineStroke2,
             }
         },
     ]);
@@ -70,14 +69,14 @@ const generateResistivityLegend = (
     items: TLegendItem[]
 ): string => {
     return `
-    <div class="chart-legend" style="color: ${LegendTextColor};">
-    <span class="scichart__legend-line" style="border-top: 2px dashed ${ResistivityLineStroke2}"></span>
+    <div class="chart-legend" style="color: ${theme.LegendTextColor};">
+    <span class="scichart__legend-line" style="border-top: 2px dashed ${theme.ResistivityLineStroke2}"></span>
         <div class="legend-text-item">
             <span>${0}</span>
             <span>${"AVRG 40"}</span>
             <span>${1}</span>
         </div>
-        <span class="scichart__legend-line" style="border-top: 2px solid ${ResistivityLineStroke}"></span>
+        <span class="scichart__legend-line" style="border-top: 2px solid ${theme.ResistivityLineStroke}"></span>
         <div class="legend-text-item">
             <span>${0}</span>
             <span>${"RESISTIVITY"}</span>

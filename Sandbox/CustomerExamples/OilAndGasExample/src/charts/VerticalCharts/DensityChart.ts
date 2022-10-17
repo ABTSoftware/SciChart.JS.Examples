@@ -6,17 +6,7 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
-import {
-    DensityBackgroundOne,
-    DensityBackgroundTwo,
-    DensityFillY,
-    DensityFillY1,
-    DensityLegendSeparator,
-    DensityStrokeY,
-    DensityStrokeY1,
-    LegendTextColor,
-    theme
-} from "../../theme";
+import { theme } from "../../theme";
 
 export 
 const drawDensityChart = async () => {
@@ -24,7 +14,7 @@ const drawDensityChart = async () => {
         ...getCommonChartConfigs("Density"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: theme.type },
+            theme: { type: theme.SciChartJsTheme.type },
         }
     });
 
@@ -43,10 +33,10 @@ const drawDensityChart = async () => {
         options: {
             dataSeries,
             strokeThickness: 2,
-            stroke: DensityStrokeY,
-            strokeY1: DensityStrokeY1,
-            fill: DensityFillY,
-            fillY1: DensityFillY1,
+            stroke: theme.DensityStrokeY,
+            strokeY1: theme.DensityStrokeY1,
+            fill: theme.DensityFillY,
+            fillY1: theme.DensityFillY1,
         }
     });
 
@@ -71,12 +61,12 @@ const generateDensityLegend = (
 ): string => {
     return `
     <div class="chart-legend">
-        <div class="legend-color-item" style="height: 30px; color: ${LegendTextColor}">
-            <div class="color-label" style="background-color: ${DensityBackgroundOne};"></div>
-            <div class="color-label" style="background-color: ${DensityBackgroundTwo};"></div>
+        <div class="legend-color-item" style="height: 30px; color: ${theme.LegendTextColor}">
+            <div class="color-label" style="background-color: ${theme.DensityBackgroundOne};"></div>
+            <div class="color-label" style="background-color: ${theme.DensityBackgroundTwo};"></div>
         </div>
-        <span class="scichart__legend-line" style="border-top: 2px solid ${DensityLegendSeparator}"></span>
-        <div class="legend-text-item" style="color: ${LegendTextColor}">
+        <span class="scichart__legend-line" style="border-top: 2px solid ${theme.DensityLegendSeparator}"></span>
+        <div class="legend-text-item" style="color: $theme.LegendTextColor}">
             <span>${-0.2}</span>
             <span>${"DENSITY"}</span>
             <span>${0.2}</span>

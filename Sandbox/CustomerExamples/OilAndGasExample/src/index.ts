@@ -11,7 +11,7 @@ import init2dSeventhChart from "./charts/2dcharts/seventh";
 import init2dEighthChart from "./charts/2dcharts/eighth";
 import init2dNinthChart from "./charts/2dcharts/ninth";
 import { initVerticalCharts } from "./charts/VerticalCharts/initVerticalCharts";
-import {ShaleBackgroundColor, SidebarBackground, SidebarTextColor} from "./theme";
+import { theme } from "./theme";
 
 ({
     charts: {
@@ -37,15 +37,15 @@ import {ShaleBackgroundColor, SidebarBackground, SidebarTextColor} from "./theme
     visibleRange: new NumberRange(0.0, 1.0),
     init() {
         const sidebar2d = document.getElementById("sidebar-charts-2d");
-        sidebar2d.style.background = SidebarBackground;
-        sidebar2d.style.color = SidebarTextColor;
+        sidebar2d.style.background = theme.SidebarBackground;
+        sidebar2d.style.color = theme.SidebarTextColor;
 
         const mainCharts = document.getElementById("main-charts");
-        mainCharts.style.background = SidebarBackground;
-        mainCharts.style.color = SidebarTextColor;
+        mainCharts.style.background = theme.SidebarBackground;
+        mainCharts.style.color = theme.SidebarTextColor;
 
         const shaleChartBackground = document.getElementById("shale-chart-background");
-        shaleChartBackground.style.backgroundColor = ShaleBackgroundColor;
+        shaleChartBackground.style.backgroundColor = theme.ShaleBackgroundColor;
 
         this.buildCharts();
     },

@@ -12,7 +12,7 @@ import { getColor } from "../utils";
 import {theme} from "../../theme";
 
 export default async function init2dSecondChart(id: string) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: theme.SciChartJsTheme });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5), isVisible: false }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5), isVisible: false }));
 

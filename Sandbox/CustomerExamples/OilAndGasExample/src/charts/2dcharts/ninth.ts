@@ -10,7 +10,7 @@ import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/Renderab
 import {theme} from "../../theme";
 
 export default async function init2dNinthChart(id: string) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: theme.SciChartJsTheme });
     // Create an xAxis, yAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5), isVisible: false }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5), isVisible: false }));

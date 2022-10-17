@@ -5,26 +5,16 @@ import { ELegendPlacement, ELegendOrientation, TLegendItem } from "scichart/Char
 import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
-import { EThemeProviderType } from "scichart/types/ThemeProviderType";
-import { PaletteRange, RangeFillPaletteProvider } from "./RangeFillPaletteProvider";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
-import { EColor } from "scichart/types/Color";
 import { StackedMountainCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainCollection";
-import {
-    LegendTextColor,
-    ShaleBackgroundColor,
-    ShaleLegendColor1,
-    ShaleLegendColor2,
-    ShaleSeriesStroke, ShaleWaterSeries,
-    theme
-} from "../../theme";
+import { theme } from "../../theme";
 
 export const drawShaleChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("shale-chart", {
         ...getCommonChartConfigs("Shale"),
         surface: {
             padding: Thickness.fromNumber(0),
-            theme: { type: theme.type, sciChartBackground: "Transparent" },
+            theme: { type: theme.SciChartJsTheme.type, sciChartBackground: "Transparent" },
         },
         modifiers: getCommonChartModifiersConfig(),
     });
@@ -52,15 +42,15 @@ export const drawShaleChart = async () => {
                 type: ESeriesType.StackedMountainSeries,
                 options: {
                     fill: "transparent",
-                    stroke: ShaleSeriesStroke,
+                    stroke: theme.ShaleSeriesStroke,
                     dataSeries: dataSeries1
                 }
             },
             {
                 type: ESeriesType.StackedMountainSeries,
                 options: {
-                    fill: ShaleWaterSeries,
-                    stroke: ShaleSeriesStroke,
+                    fill: theme.ShaleWaterSeries,
+                    stroke: theme.ShaleSeriesStroke,
                     dataSeries: dataSeries2,
                     // TODO: Uncomment after chart.js v2.2 release
                     // paletteProvider: new RangeFillPaletteProvider([
@@ -81,8 +71,8 @@ export const drawShaleChart = async () => {
             {
                 type: ESeriesType.StackedMountainSeries,
                 options: {
-                    fill: ShaleLegendColor1,
-                    stroke: ShaleSeriesStroke,
+                    fill: theme.ShaleLegendColor1,
+                    stroke: theme.ShaleSeriesStroke,
                     dataSeries: dataSeries3
                 }
             },
@@ -117,16 +107,16 @@ const generateShaleLegend = (
     return `
     <div class="chart-legend full-size-legend">
         <div class="legend-color-item">
-            <div class="color-label" style="background-color: ${ShaleLegendColor1}; color: ${LegendTextColor};"></div>
-            <div class="color-label" style="background-color: ${ShaleLegendColor2}; color: ${LegendTextColor};"></div>
+            <div class="color-label" style="background-color: ${theme.ShaleLegendColor1}; color: ${theme.LegendTextColor};"></div>
+            <div class="color-label" style="background-color: ${theme.ShaleLegendColor2}; color: ${theme.LegendTextColor};"></div>
         </div>
-        <div class="legend-text-item" style="color: ${LegendTextColor}">
+        <div class="legend-text-item" style="color: ${theme.LegendTextColor}">
             <span>${"100"}</span>
             <span>${"OIL"}</span>
             <span>${"WATER"}</span>
             <span>${"0"}</span>
         </div>
-        <div class="legend-color-item" style="background-color: ${ShaleBackgroundColor};">
+        <div class="legend-color-item" style="background-color: ${theme.ShaleBackgroundColor};">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                 <style type="text/css">
                     line { stroke: #474747;  }
@@ -143,7 +133,7 @@ const generateShaleLegend = (
                 <rect width="100%" height="100%" fill="url(#grid2)" />
             </svg>
         </div>
-        <div class="legend-text-item" style="color: ${LegendTextColor};">
+        <div class="legend-text-item" style="color: ${theme.LegendTextColor};">
             <span>${"0"}</span>
             <span>${"SHALE"}</span>
             <span>${"100"}</span>

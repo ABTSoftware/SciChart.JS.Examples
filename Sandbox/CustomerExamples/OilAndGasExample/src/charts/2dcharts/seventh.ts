@@ -9,7 +9,7 @@ import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/Ellip
 import {theme} from "../../theme";
 
 export default async function init2dSeventhChart(id: string) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: theme.SciChartJsTheme });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-1.5, 3.5), isVisible: false }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-1.5, 3.5), isVisible: false }));
 
