@@ -15,6 +15,8 @@ export const SonicGradient6 = "Red";
 
 // general colours
 export const LegendTextColor = "LightGray";
+export const SidebarBackground = "radial-gradient(circle, #21253D 0%, #09090F 100%)";
+export const SidebarTextColor = "#FFF";
 
 // Shale chart
 export const ShaleBackgroundColor = "LightGreen";

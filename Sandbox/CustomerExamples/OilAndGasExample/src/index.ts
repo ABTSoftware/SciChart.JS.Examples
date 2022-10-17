@@ -1,10 +1,4 @@
-import initGrChart from "./charts/gr";
-import initRhdbChart from "./charts/rhdb";
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
-import initNphiChart from "./charts/nphi";
-import initDtChart from "./charts/dt";
-import initLldChart from "./charts/lld";
-import initVshChart from "./charts/vsh";
 import { NumberRange } from "scichart/Core/NumberRange";
 import init3dChart from "./charts/3d";
 import init2dFirstChart from "./charts/2dcharts/first";
@@ -17,6 +11,7 @@ import init2dSeventhChart from "./charts/2dcharts/seventh";
 import init2dEighthChart from "./charts/2dcharts/eighth";
 import init2dNinthChart from "./charts/2dcharts/ninth";
 import { initVerticalCharts } from "./charts/VerticalCharts/initVerticalCharts";
+import {ShaleBackgroundColor, SidebarBackground, SidebarTextColor} from "./theme";
 
 ({
     charts: {
@@ -41,6 +36,17 @@ import { initVerticalCharts } from "./charts/VerticalCharts/initVerticalCharts";
     pointsCount: 10000,
     visibleRange: new NumberRange(0.0, 1.0),
     init() {
+        const sidebar2d = document.getElementById("sidebar-charts-2d");
+        sidebar2d.style.background = SidebarBackground;
+        sidebar2d.style.color = SidebarTextColor;
+
+        const mainCharts = document.getElementById("main-charts");
+        mainCharts.style.background = SidebarBackground;
+        mainCharts.style.color = SidebarTextColor;
+
+        const shaleChartBackground = document.getElementById("shale-chart-background");
+        shaleChartBackground.style.backgroundColor = ShaleBackgroundColor;
+
         this.buildCharts();
     },
     buildCharts() {
