@@ -5,6 +5,9 @@ import {
 import {
     SciChartJSLightTheme
 } from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSLightTheme";
+import {
+    SciChartJS2022Theme
+} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJS2022Theme";
 
 
 export interface AppThemeBase {
@@ -72,6 +75,74 @@ export interface AppThemeBase {
     TexturePalette1: string;
     TexturePalette2: string;
     TexturePalette3: string;
+}
+
+export class App2022BrandTheme implements AppThemeBase {
+
+    SciChartJsTheme = new SciChartJS2022Theme();
+
+    // general colours
+    LegendTextColor = "LightGray";
+    SidebarBackground = this.SciChartJsTheme.sciChartBackground;
+    SidebarTextColor = "#FFF";
+
+    // Charts grid colours
+    ChartsGridStroke1 = "#B73E96";
+    ChartsGridStroke2 = "#919C70";
+    ChartsGridStroke3 = "#7C68AB";
+
+    // 3D Chart colors
+    Chart3DScatterFill = "#9D7387";
+    Chart3DColor1 = "#28266D";
+    Chart3DColor2 = "#A6A37B";
+    Chart3DColor3 = "#6CCCD9";
+    Chart3DColor4 = "#5E8AC7";
+    Chart3DColor5 = "#A374AC";
+    Chart3DColor6 = "#8A4784";
+    Chart3DColor7 = "#8D3841";
+
+    // Shale chart
+    ShaleBackgroundColor = "#BAADA0AA";
+    ShaleLegendColor1 = "#9B5691";
+    ShaleLegendColor2 = "#3333FF";
+    ShaleWaterSeries = "#57A6DB";
+    ShaleSeriesStroke = "#9B5691";
+
+    // Density chart
+    DensityLegendSeparator = "#FF3333";
+    DensityBackgroundOne = "#83705B";
+    DensityBackgroundTwo = "#E1398C";
+    DensityStrokeY = "#1C1C1E";
+    DensityStrokeY1 = "#FF3333";
+    DensityFillY = "#83705B77";
+    DensityFillY1 = "#E1398C77";
+
+    // Resistivity Chart
+    ResistivityLineStroke = "#00BFFF";
+    ResistivityLineStroke2 = "#FF4500";
+
+    // Pore Space Chart
+    PoreSpaceStroke1 = "#4A6677";
+    PoreSpaceStroke2 = "#757000";
+    PoreSpaceFill1 = "#4682B490";
+    PoreSpaceFill2 = "#75700090";
+    PoreSpaceScatterStroke = "#FFF";
+    PoreSpaceScatterFill = "#005A9C";
+
+    // Sonic vertical
+    SonicGradient1 = "#28266D";
+    SonicGradient2 = "#41459D";
+    SonicGradient3 = "#83705B";
+    SonicGradient4 = "#904A9C";
+    SonicGradient5 = "#42AAC6";
+    SonicGradient6 = "#B84F9E";
+
+    // Texture chart
+    TextureFill = "#90808080";
+    TextureLine = "#808080";
+    TexturePalette1 = "#B1B38A";
+    TexturePalette2 = "#207093";
+    TexturePalette3 = "#795745";
 }
 
 export class AppDarkTheme implements AppThemeBase {
@@ -210,4 +281,4 @@ export class AppLightTheme implements AppThemeBase {
     TexturePalette3 = "#33FF33";
 }
 
-export const appTheme: AppThemeBase = new AppDarkTheme();
+export const appTheme: AppThemeBase = new App2022BrandTheme();
