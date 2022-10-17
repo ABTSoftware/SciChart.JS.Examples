@@ -1,13 +1,16 @@
 import {
+    SciChartJSDarkTheme
+} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSDarkTheme";
+import {
     SciChartJS2022Theme
-} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJS2022Theme";
+} from "scichart/Charting/Themes/SciChartJS2022Theme";
 
 // Chart theme used on all 2D & 3D SciChartSurfaces
 export const theme = new SciChartJS2022Theme();
 
 // general colours
 export const LegendTextColor = "LightGray";
-export const SidebarBackground = "radial-gradient(circle, #21253D 0%, #09090F 100%)";
+export const SidebarBackground = theme.sciChartBackground;
 export const SidebarTextColor = "#FFF";
 
 // Charts grid colours

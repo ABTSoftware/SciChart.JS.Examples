@@ -6,13 +6,16 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
-import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
 import {
     DensityBackgroundOne,
-    DensityBackgroundTwo, DensityFillY, DensityFillY1,
+    DensityBackgroundTwo,
+    DensityFillY,
+    DensityFillY1,
     DensityLegendSeparator,
-    DensityStrokeY, DensityStrokeY1,
-    LegendTextColor
+    DensityStrokeY,
+    DensityStrokeY1,
+    LegendTextColor,
+    theme
 } from "../../theme";
 
 export 
@@ -21,7 +24,7 @@ const drawDensityChart = async () => {
         ...getCommonChartConfigs("Density"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: EThemeProviderType.SC2022 },
+            theme: { type: theme.type },
         }
     });
 
