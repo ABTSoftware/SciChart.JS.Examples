@@ -8,6 +8,7 @@ import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
 import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
+import {LegendTextColor} from "../../theme";
 
 export 
 const drawResistivityChart = async () => {
@@ -69,7 +70,7 @@ const generateResistivityLegend = (
     items: TLegendItem[]
 ): string => {
     return `
-    <div class="chart-legend">
+    <div class="chart-legend" style="color: ${LegendTextColor};">
     <span class="scichart__legend-line" style="border-top: 2px dashed ${"OrangeRed"}"></span>
         <div class="legend-text-item">
             <span>${0}</span>

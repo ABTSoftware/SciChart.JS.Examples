@@ -10,7 +10,7 @@ import { PaletteRange, RangeFillPaletteProvider } from "./RangeFillPaletteProvid
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
 import { EColor } from "scichart/types/Color";
 import { StackedMountainCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainCollection";
-import {theme} from "../../theme";
+import {LegendTextColor, ShaleBackgroundColor, ShaleLegendColor1, ShaleLegendColor2, theme} from "../../theme";
 
 export const drawShaleChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("shale-chart", {
@@ -74,7 +74,7 @@ export const drawShaleChart = async () => {
             {
                 type: ESeriesType.StackedMountainSeries,
                 options: {
-                    fill: "Firebrick",
+                    fill: ShaleLegendColor1,
                     stroke: "#474747",
                     dataSeries: dataSeries3
                 }
@@ -110,16 +110,16 @@ const generateShaleLegend = (
     return `
     <div class="chart-legend full-size-legend">
         <div class="legend-color-item">
-            <div class="color-label" style="background-color: ${"Firebrick"};"></div>
-            <div class="color-label" style="background-color: ${"Blue"};"></div>
+            <div class="color-label" style="background-color: ${ShaleLegendColor1}; color: ${LegendTextColor};"></div>
+            <div class="color-label" style="background-color: ${ShaleLegendColor2}; color: ${LegendTextColor};"></div>
         </div>
-        <div class="legend-text-item">
+        <div class="legend-text-item" style="color: ${LegendTextColor}">
             <span>${"100"}</span>
             <span>${"OIL"}</span>
             <span>${"WATER"}</span>
             <span>${"0"}</span>
         </div>
-        <div class="legend-color-item" style="background-color: ${"LightGreen"};">
+        <div class="legend-color-item" style="background-color: ${ShaleBackgroundColor};">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                 <style type="text/css">
                     line { stroke: #474747;  }
@@ -136,7 +136,7 @@ const generateShaleLegend = (
                 <rect width="100%" height="100%" fill="url(#grid2)" />
             </svg>
         </div>
-        <div class="legend-text-item">
+        <div class="legend-text-item" style="color: ${LegendTextColor};">
             <span>${"0"}</span>
             <span>${"SHALE"}</span>
             <span>${"100"}</span>

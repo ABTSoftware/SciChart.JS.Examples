@@ -8,6 +8,7 @@ import { ESeriesType } from "scichart/types/SeriesType";
 import { RangeFillPaletteProvider, PaletteRange } from "./RangeFillPaletteProvider";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
 import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
+import {LegendTextColor} from "../../theme";
 
 export const drawTextureChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("texture-chart", {
@@ -88,7 +89,7 @@ const generateTextureLegend = (
     items: TLegendItem[]
 ): string => {
     return `
-    <div class="chart-legend full-size-legend">
+    <div class="chart-legend full-size-legend" style="color: ${LegendTextColor};">
         <div class="legend-color-item">
             <div class="color-label" style="background-color: ${"#808080"};"></div>
             <div class="color-label" style="background-color: ${"DarkCyan"};"></div>

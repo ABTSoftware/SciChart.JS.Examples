@@ -7,6 +7,7 @@ import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
 import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
+import {DensityBackgroundOne, DensityBackgroundTwo, DensityLegendSeparator, LegendTextColor} from "../../theme";
 
 export 
 const drawDensityChart = async () => {
@@ -61,12 +62,12 @@ const generateDensityLegend = (
 ): string => {
     return `
     <div class="chart-legend">
-        <div class="legend-color-item" style="height: 30px;">
-            <div class="color-label" style="background-color: ${"ForestGreen"};"></div>
-            <div class="color-label" style="background-color: ${"Orange"};"></div>
+        <div class="legend-color-item" style="height: 30px; color: ${LegendTextColor}">
+            <div class="color-label" style="background-color: ${DensityBackgroundOne};"></div>
+            <div class="color-label" style="background-color: ${DensityBackgroundTwo};"></div>
         </div>
-        <span class="scichart__legend-line" style="border-top: 2px solid ${"Red"}"></span>
-        <div class="legend-text-item">
+        <span class="scichart__legend-line" style="border-top: 2px solid ${DensityLegendSeparator}"></span>
+        <div class="legend-text-item" style="color: ${LegendTextColor}">
             <span>${-0.2}</span>
             <span>${"DENSITY"}</span>
             <span>${0.2}</span>

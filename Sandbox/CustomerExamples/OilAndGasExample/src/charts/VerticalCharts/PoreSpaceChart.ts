@@ -8,6 +8,7 @@ import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "./utils";
 import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
+import {LegendTextColor} from "../../theme";
 
 export 
 const drawPoreSpaceChart = async () => {
@@ -96,7 +97,7 @@ const generatePoreLegend = (
     items: TLegendItem[]
 ): string => {
     return `
-    <div class="chart-legend">
+    <div class="chart-legend" style="color: ${LegendTextColor};">
         <div style="height: 18px; flex: auto; background-color: ${"#4682B490"}; border-bottom: 2px solid #4682B4;"></div>
         <div class="legend-text-item">
             <span>${-0.2}</span>
