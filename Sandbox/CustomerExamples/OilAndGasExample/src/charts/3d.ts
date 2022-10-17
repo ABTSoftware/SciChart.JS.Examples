@@ -1,4 +1,3 @@
-import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import { CameraController } from "scichart/Charting3D/CameraController";
 import { MouseWheelZoomModifier3D } from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
 import { OrbitModifier3D } from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
@@ -10,12 +9,7 @@ import { ScatterRenderableSeries3D } from "scichart/Charting3D/Visuals/Renderabl
 import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
 import { TSciChart3D } from "scichart/types/TSciChart3D";
 import { appTheme } from "../theme";
-import {
-    SciChartJSLightTheme
-} from "../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSLightTheme";
-import {
-    SciChartJSDarkTheme
-} from "../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSDarkTheme";
+import { parseColorToUIntArgb } from "SciChart/utils/parseColor";
 
 export default async function init3dChart(id: string) {
 
@@ -57,6 +51,18 @@ function getData(wasmContext: TSciChart3D) {
     const xyzDataSeriesY = new XyzDataSeries3D(wasmContext);
     const xyzDataSeriesZ = new XyzDataSeries3D(wasmContext);
     const count = 1000;
+
+    const fixedColor = parseColorToUIntArgb(appTheme.Chart3DScatterFill);
+    const colorRange = [
+        parseColorToUIntArgb(appTheme.Chart3DColor1),
+        parseColorToUIntArgb(appTheme.Chart3DColor2),
+        parseColorToUIntArgb(appTheme.Chart3DColor3),
+        parseColorToUIntArgb(appTheme.Chart3DColor4),
+        parseColorToUIntArgb(appTheme.Chart3DColor5),
+        parseColorToUIntArgb(appTheme.Chart3DColor6),
+        parseColorToUIntArgb(appTheme.Chart3DColor7)
+    ];
+
     for (let i = 0; i < count; i++) {
         const x = getGaussianRandom(200, 40);
         const y = getGaussianRandom(200, 40);
@@ -65,10 +71,10 @@ function getData(wasmContext: TSciChart3D) {
         const scale = (Math.random() + 0.5) * 0.5;
         // To declare scale and colour, add an optional PointMetadata3D type as the w (fourth) parameter.
         // The PointMetadata3D type also has other properties defining the behaviour of the XYZ point
-        xyzDataSeries.append(x, y, z, { vertexColorAbgr: appTheme.Chart3DScatterFill, pointScale: scale });
-        xyzDataSeriesX.append(0, y, z, { vertexColorAbgr: getColor(y), pointScale: scale });
-        xyzDataSeriesY.append(x, 0, z, { vertexColorAbgr: getColor(z), pointScale: scale });
-        xyzDataSeriesZ.append(x, y, 0, { vertexColorAbgr: getColor(y), pointScale: scale });
+        xyzDataSeries.append(x, y, z, { vertexColorAbgr: fixedColor, pointScale: scale });
+        xyzDataSeriesX.append(0, y, z, { vertexColorAbgr: getColor(colorRange, y), pointScale: scale });
+        xyzDataSeriesY.append(x, 0, z, { vertexColorAbgr: getColor(colorRange, z), pointScale: scale });
+        xyzDataSeriesZ.append(x, y, 0, { vertexColorAbgr: getColor(colorRange, y), pointScale: scale });
     }
 
     return {
@@ -79,8 +85,8 @@ function getData(wasmContext: TSciChart3D) {
     };
 }
 
-function getColor(coord: number): number {
-    const colors = [appTheme.Chart3DColor1, appTheme.Chart3DColor2, appTheme.Chart3DColor3, appTheme.Chart3DColor4, appTheme.Chart3DColor5, appTheme.Chart3DColor6, appTheme.Chart3DColor7];
+function getColor(colors: number[], coord: number): number {
+
     const divider = 350 / 7;
     const index = Math.ceil(coord / divider) - 1;
     return colors[index];

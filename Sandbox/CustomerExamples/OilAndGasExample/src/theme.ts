@@ -21,14 +21,14 @@ export interface AppThemeBase {
     ChartsGridStroke3: string;
 
     // 3D Chart colors
-    Chart3DScatterFill: number
-    Chart3DColor1: number;
-    Chart3DColor2: number;
-    Chart3DColor3: number;
-    Chart3DColor4: number;
-    Chart3DColor5: number;
-    Chart3DColor6: number;
-    Chart3DColor7: number;
+    Chart3DScatterFill: string
+    Chart3DColor1: string;
+    Chart3DColor2: string;
+    Chart3DColor3: string;
+    Chart3DColor4: string;
+    Chart3DColor5: string;
+    Chart3DColor6: string;
+    Chart3DColor7: string;
 
     // Shale chart
     ShaleBackgroundColor: string;
@@ -84,62 +84,62 @@ export class AppDarkTheme implements AppThemeBase {
     SidebarTextColor = "#FFF";
 
     // Charts grid colours
-    ChartsGridStroke1 = "rgba(213, 42, 167, 1)";
-    ChartsGridStroke2 = "rgba(43,212,82,1)";
-    ChartsGridStroke3 = "rgba(145,110,235,1)";
+    ChartsGridStroke1 = "#d52aa7";
+    ChartsGridStroke2 = "#2bd452";
+    ChartsGridStroke3 = "#916eeb";
 
     // 3D Chart colors
-    Chart3DScatterFill = 0xffa88d32;
-    Chart3DColor1 = 0xff0a0aae;
-    Chart3DColor2 = 0xff2964ba;
-    Chart3DColor3 = 0xff36e15a;
-    Chart3DColor4 = 0xfff7e24d;
-    Chart3DColor5 = 0xffb8e946;
-    Chart3DColor6 = 0xffdd8037;
-    Chart3DColor7 = 0xffa81d09;
+    Chart3DScatterFill = "#a88d32";
+    Chart3DColor1 = "#0a0aae";
+    Chart3DColor2 = "#2964ba";
+    Chart3DColor3 = "#36e15a";
+    Chart3DColor4 = "#f7e24d";
+    Chart3DColor5 = "#b8e946";
+    Chart3DColor6 = "#dd8037";
+    Chart3DColor7 = "#a81d09";
 
     // Shale chart
-    ShaleBackgroundColor = "LightGreen";
-    ShaleLegendColor1 = "FireBrick";
-    ShaleLegendColor2 = "Blue";
+    ShaleBackgroundColor = "#90EE90";
+    ShaleLegendColor1 = "#b22222";
+    ShaleLegendColor2 = "#3333FF";
     ShaleWaterSeries = "#E4E840";
     ShaleSeriesStroke = "#474747";
 
     // Density chart
-    DensityLegendSeparator = "Red";
-    DensityBackgroundOne = "ForestGreen";
-    DensityBackgroundTwo = "Orange";
+    DensityLegendSeparator = "#FF3333";
+    DensityBackgroundOne = "#228B22";
+    DensityBackgroundTwo = "#FFA500";
     DensityStrokeY = "#1C1C1E";
-    DensityStrokeY1 = "Red";
-    DensityFillY = "ForestGreen";
-    DensityFillY1 = "Orange";
+    DensityStrokeY1 = "#FF3333";
+    DensityFillY = "#228B22";
+    DensityFillY1 = "#FFA500";
 
     // Resistivity Chart
-    ResistivityLineStroke = "DeepSkyBlue";
-    ResistivityLineStroke2 = "OrangeRed";
+    ResistivityLineStroke = "#00BFFF";
+    ResistivityLineStroke2 = "#FF4500";
 
     // Pore Space Chart
     PoreSpaceStroke1 = "#4682B4";
     PoreSpaceStroke2 = "#757000";
     PoreSpaceFill1 = "#4682B490";
     PoreSpaceFill2 = "#75700090";
-    PoreSpaceScatterStroke = "White";
-    PoreSpaceScatterFill = "DodgerBlue";
+    PoreSpaceScatterStroke = "#FFF";
+    PoreSpaceScatterFill = "#005A9C";
 
     // Sonic vertical
-    SonicGradient1 = "DarkBlue";
-    SonicGradient2 = "Blue";
-    SonicGradient3 = "ForestGreen";
-    SonicGradient4 = "Chartreuse";
-    SonicGradient5 = "Yellow";
-    SonicGradient6 = "Red";
+    SonicGradient1 = "#00008B";
+    SonicGradient2 = "#3333FF";
+    SonicGradient3 = "#228B22";
+    SonicGradient4 = "#DFFF00";
+    SonicGradient5 = "#FFFF00";
+    SonicGradient6 = "#FF3333";
 
     // Texture chart
     TextureFill = "#90808080";
     TextureLine = "#808080";
-    TexturePalette1 = "Goldenrod";
-    TexturePalette2 = "DarkCyan";
-    TexturePalette3 = "Green";
+    TexturePalette1 = "#DAA520";
+    TexturePalette2 = "#008b8b";
+    TexturePalette3 = "#33FF33";
 }
 
 export class AppLightTheme implements AppThemeBase {
@@ -152,62 +152,62 @@ export class AppLightTheme implements AppThemeBase {
     SidebarTextColor = "#333";
 
     // Charts grid colours
-    ChartsGridStroke1 = "rgba(213, 42, 167, 1)";
-    ChartsGridStroke2 = "rgba(43,212,82,1)";
-    ChartsGridStroke3 = "rgba(145,110,235,1)";
+    ChartsGridStroke1 = "#d52aa7";
+    ChartsGridStroke2 = "#2bd452";
+    ChartsGridStroke3 = "#916eeb";
 
     // 3D Chart colors
-    Chart3DScatterFill = 0xffa88d32;
-    Chart3DColor1 = 0xff0a0aae;
-    Chart3DColor2 = 0xff2964ba;
-    Chart3DColor3 = 0xff36e15a;
-    Chart3DColor4 = 0xfff7e24d;
-    Chart3DColor5 = 0xffb8e946;
-    Chart3DColor6 = 0xffdd8037;
-    Chart3DColor7 = 0xffa81d09;
+    Chart3DScatterFill = "#a88d32";
+    Chart3DColor1 = "#0a0aae";
+    Chart3DColor2 = "#2964ba";
+    Chart3DColor3 = "#36e15a";
+    Chart3DColor4 = "#f7e24d";
+    Chart3DColor5 = "#b8e946";
+    Chart3DColor6 = "#dd8037";
+    Chart3DColor7 = "#a81d09";
 
     // Shale chart
-    ShaleBackgroundColor = "LightGreen";
-    ShaleLegendColor1 = "FireBrick";
-    ShaleLegendColor2 = "Blue";
+    ShaleBackgroundColor = "#90EE90";
+    ShaleLegendColor1 = "#b22222";
+    ShaleLegendColor2 = "#3333FF";
     ShaleWaterSeries = "#E4E840";
     ShaleSeriesStroke = "#474747";
 
     // Density chart
-    DensityLegendSeparator = "Red";
-    DensityBackgroundOne = "ForestGreen";
-    DensityBackgroundTwo = "Orange";
+    DensityLegendSeparator = "#FF3333";
+    DensityBackgroundOne = "#228B22";
+    DensityBackgroundTwo = "#FFA500";
     DensityStrokeY = "#1C1C1E";
-    DensityStrokeY1 = "Red";
-    DensityFillY = "ForestGreen";
-    DensityFillY1 = "Orange";
+    DensityStrokeY1 = "#FF3333";
+    DensityFillY = "#228B22";
+    DensityFillY1 = "#FFA500";
 
     // Resistivity Chart
-    ResistivityLineStroke = "DeepSkyBlue";
-    ResistivityLineStroke2 = "OrangeRed";
+    ResistivityLineStroke = "#00BFFF";
+    ResistivityLineStroke2 = "#FF4500";
 
     // Pore Space Chart
     PoreSpaceStroke1 = "#4682B4";
     PoreSpaceStroke2 = "#757000";
     PoreSpaceFill1 = "#4682B490";
     PoreSpaceFill2 = "#75700090";
-    PoreSpaceScatterStroke = "White";
-    PoreSpaceScatterFill = "DodgerBlue";
+    PoreSpaceScatterStroke = "#FFF";
+    PoreSpaceScatterFill = "#005A9C";
 
     // Sonic vertical
-    SonicGradient1 = "DarkBlue";
-    SonicGradient2 = "Blue";
-    SonicGradient3 = "ForestGreen";
-    SonicGradient4 = "Chartreuse";
-    SonicGradient5 = "Yellow";
-    SonicGradient6 = "Red";
+    SonicGradient1 = "#00008B";
+    SonicGradient2 = "#3333FF";
+    SonicGradient3 = "#228B22";
+    SonicGradient4 = "#DFFF00";
+    SonicGradient5 = "#FFFF00";
+    SonicGradient6 = "#FF3333";
 
     // Texture chart
     TextureFill = "#90808080";
     TextureLine = "#808080";
-    TexturePalette1 = "Goldenrod";
-    TexturePalette2 = "DarkCyan";
-    TexturePalette3 = "Green";
+    TexturePalette1 = "#DAA520";
+    TexturePalette2 = "#008b8b";
+    TexturePalette3 = "#33FF33";
 }
 
-export const appTheme: AppThemeBase = new AppLightTheme();
+export const appTheme: AppThemeBase = new AppDarkTheme();
