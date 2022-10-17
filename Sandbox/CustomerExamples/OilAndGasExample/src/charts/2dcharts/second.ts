@@ -9,10 +9,10 @@ import { Point } from "scichart/Core/Point";
 import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
 import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
 import { getColor } from "../utils";
-import {theme} from "../../theme";
+import {appTheme} from "../../theme";
 
 export default async function init2dSecondChart(id: string) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: theme.SciChartJsTheme });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: appTheme.SciChartJsTheme });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5), isVisible: false }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5), isVisible: false }));
 

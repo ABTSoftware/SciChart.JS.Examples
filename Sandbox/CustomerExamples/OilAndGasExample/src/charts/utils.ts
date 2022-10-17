@@ -9,7 +9,7 @@ import { ELegendOrientation, TLegendItem } from "scichart/Charting/Visuals/Legen
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { TSciChart } from "scichart/types/TSciChart";
-import { theme } from "../theme";
+import { appTheme } from "../theme";
 
 export function getRandomSinewave(
     wasmContext: TSciChart,
@@ -77,9 +77,9 @@ export function axesSetup(sciChartSurface: SciChartSurface, wasmContext: TSciCha
 
 export function getColor(name: string): string {
     const colors: any = {
-        red: theme.ChartsGridStroke1,
-        green: theme.ChartsGridStroke2,
-        blue: theme.ChartsGridStroke3,
+        red: appTheme.ChartsGridStroke1,
+        green: appTheme.ChartsGridStroke2,
+        blue: appTheme.ChartsGridStroke3,
     }
     return colors[name];
 }

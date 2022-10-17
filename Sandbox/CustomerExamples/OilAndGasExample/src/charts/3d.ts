@@ -9,7 +9,7 @@ import { QuadPointMarker, SpherePointMarker3D } from "scichart/Charting3D/Visual
 import { ScatterRenderableSeries3D } from "scichart/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
 import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
 import { TSciChart3D } from "scichart/types/TSciChart3D";
-import { theme } from "../theme";
+import { appTheme } from "../theme";
 import {
     SciChartJSLightTheme
 } from "../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSLightTheme";
@@ -19,7 +19,7 @@ import {
 
 export default async function init3dChart(id: string) {
 
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(id, { theme: theme.SciChartJsTheme });
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(id, { theme: appTheme.SciChartJsTheme });
 
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(300, 300, 300),
@@ -65,7 +65,7 @@ function getData(wasmContext: TSciChart3D) {
         const scale = (Math.random() + 0.5) * 0.5;
         // To declare scale and colour, add an optional PointMetadata3D type as the w (fourth) parameter.
         // The PointMetadata3D type also has other properties defining the behaviour of the XYZ point
-        xyzDataSeries.append(x, y, z, { vertexColorAbgr: theme.Chart3DScatterFill, pointScale: scale });
+        xyzDataSeries.append(x, y, z, { vertexColorAbgr: appTheme.Chart3DScatterFill, pointScale: scale });
         xyzDataSeriesX.append(0, y, z, { vertexColorAbgr: getColor(y), pointScale: scale });
         xyzDataSeriesY.append(x, 0, z, { vertexColorAbgr: getColor(z), pointScale: scale });
         xyzDataSeriesZ.append(x, y, 0, { vertexColorAbgr: getColor(y), pointScale: scale });
@@ -80,7 +80,7 @@ function getData(wasmContext: TSciChart3D) {
 }
 
 function getColor(coord: number): number {
-    const colors = [theme.Chart3DColor1, theme.Chart3DColor2, theme.Chart3DColor3, theme.Chart3DColor4, theme.Chart3DColor5, theme.Chart3DColor6, theme.Chart3DColor7];
+    const colors = [appTheme.Chart3DColor1, appTheme.Chart3DColor2, appTheme.Chart3DColor3, appTheme.Chart3DColor4, appTheme.Chart3DColor5, appTheme.Chart3DColor6, appTheme.Chart3DColor7];
     const divider = 350 / 7;
     const index = Math.ceil(coord / divider) - 1;
     return colors[index];

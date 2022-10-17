@@ -6,10 +6,10 @@ import { getColor } from "../utils";
 import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import { TSciChart } from "scichart/types/TSciChart";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {theme} from "../../theme";
+import {appTheme} from "../../theme";
 
 export default async function init2dSeventhChart(id: string) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: theme.SciChartJsTheme });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: appTheme.SciChartJsTheme });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-1.5, 3.5), isVisible: false }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-1.5, 3.5), isVisible: false }));
 

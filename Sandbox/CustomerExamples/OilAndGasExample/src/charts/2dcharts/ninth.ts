@@ -7,10 +7,10 @@ import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifie
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { getColor, getDataDiagonal } from "../utils";
 import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import {theme} from "../../theme";
+import {appTheme} from "../../theme";
 
 export default async function init2dNinthChart(id: string) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: theme.SciChartJsTheme });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(id, { theme: appTheme.SciChartJsTheme });
     // Create an xAxis, yAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5), isVisible: false }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5), isVisible: false }));

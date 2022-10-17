@@ -7,7 +7,7 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "./utils";
-import { theme } from "../../theme";
+import { appTheme } from "../../theme";
 
 export 
 const drawPoreSpaceChart = async () => {
@@ -15,7 +15,7 @@ const drawPoreSpaceChart = async () => {
         ...getCommonChartConfigs("Pore Space"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: theme.SciChartJsTheme.type },
+            theme: { type: appTheme.SciChartJsTheme.type },
         }
     });
 
@@ -47,8 +47,8 @@ const drawPoreSpaceChart = async () => {
             options: {
                 dataSeries: dataSeries1,
                 strokeThickness: 2,
-                stroke: theme.PoreSpaceStroke1,
-                fill: theme.PoreSpaceFill1,
+                stroke: appTheme.PoreSpaceStroke1,
+                fill: appTheme.PoreSpaceFill1,
             }
         },
         {
@@ -56,8 +56,8 @@ const drawPoreSpaceChart = async () => {
             options: {
                 dataSeries: dataSeries2,
                 strokeThickness: 2,
-                stroke: theme.PoreSpaceStroke2,
-                fill: theme.PoreSpaceFill2,
+                stroke: appTheme.PoreSpaceStroke2,
+                fill: appTheme.PoreSpaceFill2,
             }
         },
         {
@@ -66,8 +66,8 @@ const drawPoreSpaceChart = async () => {
                 dataSeries: dataSeries3,
                 pointMarker: new EllipsePointMarker(wasmContext, {
                     strokeThickness: 1,
-                    stroke: theme.PoreSpaceScatterStroke,
-                    fill: theme.PoreSpaceScatterFill,
+                    stroke: appTheme.PoreSpaceScatterStroke,
+                    fill: appTheme.PoreSpaceScatterFill,
                     width: 8,
                     height: 8,
                 })
@@ -96,20 +96,20 @@ const generatePoreLegend = (
     items: TLegendItem[]
 ): string => {
     return `
-    <div class="chart-legend" style="color: ${theme.LegendTextColor};">
-        <div style="height: 18px; flex: auto; background-color: ${theme.PoreSpaceFill1}; border-bottom: 2px solid ${theme.PoreSpaceStroke1};"></div>
+    <div class="chart-legend" style="color: ${appTheme.LegendTextColor};">
+        <div style="height: 18px; flex: auto; background-color: ${appTheme.PoreSpaceFill1}; border-bottom: 2px solid ${appTheme.PoreSpaceStroke1};"></div>
         <div class="legend-text-item">
             <span>${-0.2}</span>
             <span>${"PHIE"}</span>
             <span>${1.6}</span>
         </div>
-        <div style="height: 18px; flex: auto; background-color: ${theme.PoreSpaceFill2}; border-bottom: 2px solid ${theme.PoreSpaceStroke2};"></div>
+        <div style="height: 18px; flex: auto; background-color: ${appTheme.PoreSpaceFill2}; border-bottom: 2px solid ${appTheme.PoreSpaceStroke2};"></div>
         <div class="legend-text-item">
             <span>${-0.2}</span>
             <span>${"PHIT"}</span>
             <span>${1.6}</span>
         </div>
-        <div style="height: 18px; flex: auto; background-color: ${theme.PoreSpaceScatterFill}; border-bottom: 2px solid ${theme.PoreSpaceScatterStroke};"></div>
+        <div style="height: 18px; flex: auto; background-color: ${appTheme.PoreSpaceScatterFill}; border-bottom: 2px solid ${appTheme.PoreSpaceScatterStroke};"></div>
         <div class="legend-text-item">
             <span>${-0.2}</span>
             <span>${"CORE"}</span>
