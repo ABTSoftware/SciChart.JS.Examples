@@ -10,6 +10,11 @@ export const LegendTextColor = "LightGray";
 export const SidebarBackground = "radial-gradient(circle, #21253D 0%, #09090F 100%)";
 export const SidebarTextColor = "#FFF";
 
+// Charts grid colours
+export const ChartsGridStroke1 = "rgba(213, 42, 167, 1)";
+export const ChartsGridStroke2 = "rgba(43,212,82,1)";
+export const ChartsGridStroke3 = "rgba(145,110,235,1)";
+
 // Shale chart
 export const ShaleBackgroundColor = "LightGreen";
 export const ShaleLegendColor1 = "FireBrick";
@@ -27,6 +32,8 @@ export const DensityFillY = "ForestGreen";
 export const DensityFillY1 = "Orange";
 
 // Resistivity Chart
+export const ResistivityLineStroke = "DeepSkyBlue";
+export const ResistivityLineStroke2 = "OrangeRed";
 
 // Pore Space Chart
 export const PoreSpaceStroke1 = "#4682B4";

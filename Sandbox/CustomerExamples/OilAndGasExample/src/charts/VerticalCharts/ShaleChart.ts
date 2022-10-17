@@ -24,7 +24,7 @@ export const drawShaleChart = async () => {
         ...getCommonChartConfigs("Shale"),
         surface: {
             padding: Thickness.fromNumber(0),
-            theme: { type: EThemeProviderType.SC2022, sciChartBackground: "Transparent" },
+            theme: { type: theme.type, sciChartBackground: "Transparent" },
         },
         modifiers: getCommonChartModifiersConfig(),
     });

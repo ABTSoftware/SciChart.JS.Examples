@@ -10,6 +10,7 @@ import { ELegendOrientation, TLegendItem } from "scichart/Charting/Visuals/Legen
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { TSciChart } from "scichart/types/TSciChart";
+import {ChartsGridStroke1, ChartsGridStroke2, ChartsGridStroke3} from "../theme";
 
 export function getRandomSinewave(
     wasmContext: TSciChart,
@@ -77,13 +78,12 @@ export function axesSetup(sciChartSurface: SciChartSurface, wasmContext: TSciCha
 
 export function getColor(name: string): string {
     const colors: any = {
-        red: 'rgba(213,42,167,1)',
-        green: 'rgba(43,212,82,1)',
-        blue: 'rgba(145,110,235,1)',
+        red: ChartsGridStroke1,
+        green: ChartsGridStroke2,
+        blue: ChartsGridStroke3,
     }
     return colors[name];
 }
-
 
 export function generateDefaultLegend(sciChartSurface: SciChartSurface, typeColor: string) {
     return (

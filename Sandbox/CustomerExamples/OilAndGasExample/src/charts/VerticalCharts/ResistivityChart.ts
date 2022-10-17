@@ -8,7 +8,7 @@ import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
 import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
-import {LegendTextColor} from "../../theme";
+import {LegendTextColor, ResistivityLineStroke, ResistivityLineStroke2, theme} from "../../theme";
 
 export 
 const drawResistivityChart = async () => {
@@ -16,7 +16,7 @@ const drawResistivityChart = async () => {
         ...getCommonChartConfigs("Resistivity"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: EThemeProviderType.SC2022 },
+            theme: { type: theme.type },
         }
     });
 
@@ -37,7 +37,7 @@ const drawResistivityChart = async () => {
             options: {
                 dataSeries,
                 strokeThickness: 2,
-                stroke: "DeepSkyBlue",
+                stroke: ResistivityLineStroke,
             }
         },
         {
@@ -45,7 +45,7 @@ const drawResistivityChart = async () => {
             options: {
                 dataSeries: movingAverage20DataSeries,
                 strokeDashArray: [5, 5],
-                stroke: "OrangeRed",
+                stroke: ResistivityLineStroke2,
             }
         },
     ]);
@@ -71,13 +71,13 @@ const generateResistivityLegend = (
 ): string => {
     return `
     <div class="chart-legend" style="color: ${LegendTextColor};">
-    <span class="scichart__legend-line" style="border-top: 2px dashed ${"OrangeRed"}"></span>
+    <span class="scichart__legend-line" style="border-top: 2px dashed ${ResistivityLineStroke2}"></span>
         <div class="legend-text-item">
             <span>${0}</span>
             <span>${"AVRG 40"}</span>
             <span>${1}</span>
         </div>
-        <span class="scichart__legend-line" style="border-top: 2px solid ${"DeepSkyBlue"}"></span>
+        <span class="scichart__legend-line" style="border-top: 2px solid ${ResistivityLineStroke}"></span>
         <div class="legend-text-item">
             <span>${0}</span>
             <span>${"RESISTIVITY"}</span>

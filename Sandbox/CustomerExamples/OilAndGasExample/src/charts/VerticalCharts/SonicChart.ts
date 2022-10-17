@@ -6,7 +6,6 @@ import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/Heat
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "./utils";
-import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
 import {
     LegendTextColor,
     SonicGradient1,
@@ -14,7 +13,8 @@ import {
     SonicGradient3,
     SonicGradient4,
     SonicGradient5,
-    SonicGradient6
+    SonicGradient6,
+    theme
 } from "../../theme";
 
 export const drawSonicChart = async () => {
@@ -22,7 +22,7 @@ export const drawSonicChart = async () => {
         ...getCommonChartConfigs("Sonic"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: EThemeProviderType.SC2022 },
+            theme: { type: theme.type },
         }
     });
 

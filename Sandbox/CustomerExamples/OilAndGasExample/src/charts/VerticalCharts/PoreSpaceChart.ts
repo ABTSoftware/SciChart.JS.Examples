@@ -15,7 +15,8 @@ import {
     PoreSpaceScatterFill,
     PoreSpaceScatterStroke,
     PoreSpaceStroke1,
-    PoreSpaceStroke2
+    PoreSpaceStroke2,
+    theme
 } from "../../theme";
 
 export 
@@ -24,7 +25,7 @@ const drawPoreSpaceChart = async () => {
         ...getCommonChartConfigs("Pore Space"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: EThemeProviderType.SC2022 },
+            theme: { type: theme.type},
         }
     });
 

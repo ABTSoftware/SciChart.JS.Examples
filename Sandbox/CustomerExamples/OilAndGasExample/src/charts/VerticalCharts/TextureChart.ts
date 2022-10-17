@@ -7,13 +7,14 @@ import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { RangeFillPaletteProvider, PaletteRange } from "./RangeFillPaletteProvider";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
-import {EThemeProviderType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/ThemeProviderType";
 import {
     LegendTextColor,
     TextureFill,
     TextureLine,
     TexturePalette1,
-    TexturePalette2, TexturePalette3
+    TexturePalette2,
+    TexturePalette3,
+    theme
 } from "../../theme";
 
 export const drawTextureChart = async () => {
@@ -21,7 +22,7 @@ export const drawTextureChart = async () => {
         ...getCommonChartConfigs("Texture"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: EThemeProviderType.SC2022 },
+            theme: { type: theme.type },
         }
     });
 

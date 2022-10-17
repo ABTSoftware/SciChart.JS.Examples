@@ -3,8 +3,6 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
 import { axesSetup, generateModifiers, getRandomSinewave } from "./utils";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { XyLinearTrendFilter } from "scichart/Charting/Model/Filters/XyLinearTrendFilter";
-import { XyRatioFilter } from "scichart/Charting/Model/Filters/XyRatioFilter";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { ELegendOrientation, TLegendItem } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 
