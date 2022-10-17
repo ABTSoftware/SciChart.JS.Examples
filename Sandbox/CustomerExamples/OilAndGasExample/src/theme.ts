@@ -105,7 +105,7 @@ export class App2022BrandTheme implements AppThemeBase {
     ShaleBackgroundColor = "#BAADA0AA";
     ShaleLegendColor1 = "#9B5691";
     ShaleLegendColor2 = "#3333FF";
-    ShaleWaterSeries = "#57A6DB";
+    ShaleWaterSeries = "#57A6DB77";
     ShaleSeriesStroke = "#9B5691";
 
     // Density chart
