@@ -15,7 +15,7 @@ const drawPoreSpaceChart = async () => {
         ...getCommonChartConfigs("Pore Space"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: appTheme.SciChartJsTheme.type },
+            theme: appTheme.SciChartJsTheme,
         }
     });
 

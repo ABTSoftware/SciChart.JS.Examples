@@ -13,7 +13,7 @@ export const drawSonicChart = async () => {
         ...getCommonChartConfigs("Sonic"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: appTheme.SciChartJsTheme.type },
+            theme: appTheme.SciChartJsTheme,
         }
     });
 

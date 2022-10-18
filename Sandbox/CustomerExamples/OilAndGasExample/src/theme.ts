@@ -1,17 +1,17 @@
-import {IThemeProvider} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/IThemeProvider";
+import {IThemeProvider, ThemeProvider} from "scichart/Charting/Themes/IThemeProvider";
 import {
     SciChartJSDarkv2Theme
-} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSDarkv2Theme";
+} from "scichart/Charting/Themes/SciChartJSDarkv2Theme";
 import {
     SciChartJSLightTheme
-} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSLightTheme";
+} from "scichart/Charting/Themes/SciChartJSLightTheme";
 import {
     SciChartJS2022Theme
-} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJS2022Theme";
+} from "scichart/Charting/Themes/SciChartJS2022Theme";
 
 
 export interface AppThemeBase {
-    SciChartJsTheme: IThemeProvider;
+    SciChartJsTheme: ThemeProvider;
 
     // General colours
     LegendTextColor: string;

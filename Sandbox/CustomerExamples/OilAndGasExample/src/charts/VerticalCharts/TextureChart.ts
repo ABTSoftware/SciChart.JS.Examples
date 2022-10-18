@@ -14,7 +14,7 @@ export const drawTextureChart = async () => {
         ...getCommonChartConfigs("Texture"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: appTheme.SciChartJsTheme.type },
+            theme: appTheme.SciChartJsTheme,
         }
     });
 

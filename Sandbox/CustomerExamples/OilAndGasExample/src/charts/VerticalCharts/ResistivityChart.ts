@@ -15,7 +15,7 @@ const drawResistivityChart = async () => {
         ...getCommonChartConfigs("Resistivity"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: appTheme.SciChartJsTheme.type },
+            theme: appTheme.SciChartJsTheme,
         }
     });
 

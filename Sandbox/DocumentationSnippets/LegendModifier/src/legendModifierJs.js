@@ -4,7 +4,7 @@ import { FastLineRenderableSeries } from 'scichart/Charting/Visuals/RenderableSe
 import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
 import { NumberRange } from 'scichart/Core/NumberRange';
 import { LegendModifier } from 'scichart/Charting/ChartModifiers/LegendModifier';
-import {IRenderableSeries} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 
 export async function legendModifierJs(divId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId);

@@ -14,7 +14,7 @@ const drawDensityChart = async () => {
         ...getCommonChartConfigs("Density"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
-            theme: { type: appTheme.SciChartJsTheme.type },
+            theme: appTheme.SciChartJsTheme,
         }
     });
 
