@@ -75,6 +75,9 @@ export interface AppThemeBase {
     TextureSandFill: string;
     TextureGrainFill: string;
     TextureGravelFill: string;
+    RolloverLineColor: string;
+    RolloverTooltipFill: string;
+    RolloverTooltipText: string;
 }
 
 export class App2022BrandTheme implements AppThemeBase {
@@ -143,6 +146,11 @@ export class App2022BrandTheme implements AppThemeBase {
     TextureSandFill = "#E7C565";
     TextureGrainFill = "#209FD9";
     TextureGravelFill = "#BE7336";
+
+    // Cursors
+    RolloverLineColor = "#DF69A8";
+    RolloverTooltipFill = "#AE408E";
+    RolloverTooltipText = "#FFF";
 }
 
 export class AppDarkTheme implements AppThemeBase {
@@ -211,6 +219,11 @@ export class AppDarkTheme implements AppThemeBase {
     TextureSandFill = "#DAA520";
     TextureGrainFill = "#008b8b";
     TextureGravelFill = "#33FF33";
+
+    // Cursors
+    RolloverLineColor = "#AE408E";
+    RolloverTooltipFill = "#AE408E";
+    RolloverTooltipText = "#FFF";
 }
 
 export class AppLightTheme implements AppThemeBase {
@@ -279,6 +292,11 @@ export class AppLightTheme implements AppThemeBase {
     TextureSandFill = "#DAA520";
     TextureGrainFill = "#008b8b";
     TextureGravelFill = "#33FF33";
+
+    // Cursors
+    RolloverLineColor = "#AE408E";
+    RolloverTooltipFill = "#AE408E";
+    RolloverTooltipText = "#FFF";
 }
 
 export const appTheme: AppThemeBase = new App2022BrandTheme();

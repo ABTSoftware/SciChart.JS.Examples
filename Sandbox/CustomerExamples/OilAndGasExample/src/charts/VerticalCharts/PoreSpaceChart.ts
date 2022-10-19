@@ -49,7 +49,7 @@ const drawPoreSpaceChart = async () => {
                 strokeThickness: 2,
                 stroke: appTheme.PoreSpaceStroke1,
                 fill: appTheme.PoreSpacePhieFill,
-            }
+            },
         },
         {
             type: ESeriesType.StackedMountainSeries,

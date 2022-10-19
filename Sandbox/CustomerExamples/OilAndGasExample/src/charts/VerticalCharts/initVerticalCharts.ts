@@ -6,6 +6,7 @@ import { drawResistivityChart } from "./ResistivityChart";
 import { drawShaleChart } from "./ShaleChart";
 import { drawSonicChart } from "./SonicChart";
 import { drawTextureChart } from "./TextureChart";
+import { appTheme } from "./../../theme";
 
 const surfaceGroup = new SciChartVerticalGroup();
 
@@ -19,6 +20,13 @@ export const initVerticalCharts = () => Promise.all([
 ]).then((surfaces) => {
     surfaces.forEach((surface) => {
         surfaceGroup.addSurfaceToGroup(surface);
-        surface.chartModifiers.add(new RolloverModifier({ modifierGroup: "VerticalChartsGroup" }))
+        surface.chartModifiers.add(new RolloverModifier({
+            modifierGroup: "VerticalChartsGroup",
+            rolloverLineStroke: appTheme.RolloverLineColor,
+        }));
+        // surface.renderableSeries.asArray().forEach(rs => {
+        //     rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
+        //     rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
+        // });
     });
 });
