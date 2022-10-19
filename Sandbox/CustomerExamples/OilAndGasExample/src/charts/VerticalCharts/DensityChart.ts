@@ -32,7 +32,7 @@ const drawDensityChart = async () => {
         type: ESeriesType.BandSeries,
         options: {
             dataSeries,
-            strokeThickness: 2,
+            strokeThickness: 0,
             stroke: appTheme.DensityStrokeY,
             strokeY1: appTheme.DensityStrokeY1,
             fill: appTheme.DensityFillY,

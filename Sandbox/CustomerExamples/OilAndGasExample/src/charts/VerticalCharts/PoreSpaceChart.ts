@@ -48,7 +48,7 @@ const drawPoreSpaceChart = async () => {
                 dataSeries: dataSeries1,
                 strokeThickness: 2,
                 stroke: appTheme.PoreSpaceStroke1,
-                fill: appTheme.PoreSpaceFill1,
+                fill: appTheme.PoreSpacePhieFill,
             }
         },
         {
@@ -57,7 +57,7 @@ const drawPoreSpaceChart = async () => {
                 dataSeries: dataSeries2,
                 strokeThickness: 2,
                 stroke: appTheme.PoreSpaceStroke2,
-                fill: appTheme.PoreSpaceFill2,
+                fill: appTheme.PoreSpacePhitFill,
             }
         },
         {
@@ -97,13 +97,13 @@ const generatePoreLegend = (
 ): string => {
     return `
     <div class="chart-legend" style="color: ${appTheme.LegendTextColor};">
-        <div style="height: 18px; flex: auto; background-color: ${appTheme.PoreSpaceFill1}; border-bottom: 2px solid ${appTheme.PoreSpaceStroke1};"></div>
+        <div style="height: 18px; flex: auto; background-color: ${appTheme.PoreSpacePhieFill}; border-bottom: 2px solid ${appTheme.PoreSpaceStroke1};"></div>
         <div class="legend-text-item">
             <span>${-0.2}</span>
             <span>${"PHIE"}</span>
             <span>${1.6}</span>
         </div>
-        <div style="height: 18px; flex: auto; background-color: ${appTheme.PoreSpaceFill2}; border-bottom: 2px solid ${appTheme.PoreSpaceStroke2};"></div>
+        <div style="height: 18px; flex: auto; background-color: ${appTheme.PoreSpacePhitFill}; border-bottom: 2px solid ${appTheme.PoreSpaceStroke2};"></div>
         <div class="legend-text-item">
             <span>${-0.2}</span>
             <span>${"PHIT"}</span>

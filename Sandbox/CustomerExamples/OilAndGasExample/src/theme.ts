@@ -35,8 +35,8 @@ export interface AppThemeBase {
 
     // Shale chart
     ShaleBackgroundColor: string;
-    ShaleLegendColor1: string;
-    ShaleLegendColor2: string;
+    ShaleOilLegendColor: string;
+    ShaleWaterLegendColor: string;
     ShaleWaterSeries: string;
     ShaleSeriesStroke: string;
 
@@ -56,8 +56,8 @@ export interface AppThemeBase {
     // Pore Space Chart
     PoreSpaceStroke1: string;
     PoreSpaceStroke2: string;
-    PoreSpaceFill1: string;
-    PoreSpaceFill2: string;
+    PoreSpacePhieFill: string;
+    PoreSpacePhitFill: string;
     PoreSpaceScatterStroke: string;
     PoreSpaceScatterFill: string;
 
@@ -72,9 +72,9 @@ export interface AppThemeBase {
     // Texture chart
     TextureFill: string;
     TextureLine: string;
-    TexturePalette1: string;
-    TexturePalette2: string;
-    TexturePalette3: string;
+    TextureSandFill: string;
+    TextureGrainFill: string;
+    TextureGravelFill: string;
 }
 
 export class App2022BrandTheme implements AppThemeBase {
@@ -87,62 +87,62 @@ export class App2022BrandTheme implements AppThemeBase {
     SidebarTextColor = "#FFF";
 
     // Charts grid colours
-    ChartsGridStroke1 = "#B73E96";
-    ChartsGridStroke2 = "#919C70";
-    ChartsGridStroke3 = "#7C68AB";
+    ChartsGridStroke1 = "#AE408E";
+    ChartsGridStroke2 = "#EA6F63";
+    ChartsGridStroke3 = "#45BEE8";
 
     // 3D Chart colors
-    Chart3DScatterFill = "#9D7387";
+    Chart3DScatterFill = "#F1CFB5";
     Chart3DColor1 = "#28266D";
-    Chart3DColor2 = "#A6A37B";
-    Chart3DColor3 = "#6CCCD9";
-    Chart3DColor4 = "#5E8AC7";
-    Chart3DColor5 = "#A374AC";
-    Chart3DColor6 = "#8A4784";
-    Chart3DColor7 = "#8D3841";
+    Chart3DColor2 = "#E7C565";
+    Chart3DColor3 = "#83D2F5";
+    Chart3DColor4 = "#209FD9";
+    Chart3DColor5 = "#BE7336";
+    Chart3DColor6 = "#AE408E";
+    Chart3DColor7 = "#634E97";
 
     // Shale chart
-    ShaleBackgroundColor = "#BAADA0AA";
-    ShaleLegendColor1 = "#9B5691";
-    ShaleLegendColor2 = "#3333FF";
-    ShaleWaterSeries = "#57A6DB77";
-    ShaleSeriesStroke = "#9B5691";
+    ShaleBackgroundColor = "#67BDAFAA";
+    ShaleOilLegendColor = "#AE408E";
+    ShaleWaterLegendColor = "#209FD9";
+    ShaleWaterSeries = "#209FD9";
+    ShaleSeriesStroke = "#E4F5FC";
 
     // Density chart
-    DensityLegendSeparator = "#FF3333";
-    DensityBackgroundOne = "#83705B";
-    DensityBackgroundTwo = "#E1398C";
-    DensityStrokeY = "#1C1C1E";
-    DensityStrokeY1 = "#FF3333";
-    DensityFillY = "#83705B77";
-    DensityFillY1 = "#E1398C77";
+    DensityLegendSeparator = "#264B93";
+    DensityBackgroundOne = "#537ABD";
+    DensityBackgroundTwo = "#67BDAF";
+    DensityStrokeY = "#45BEE8";
+    DensityStrokeY1 = "#AE408E";
+    DensityFillY = "#45BEE877";
+    DensityFillY1 = "#67BDAF";
 
     // Resistivity Chart
-    ResistivityLineStroke = "#00BFFF";
-    ResistivityLineStroke2 = "#FF4500";
+    ResistivityLineStroke = "#45BEE8";
+    ResistivityLineStroke2 = "#67BDAF";
 
     // Pore Space Chart
-    PoreSpaceStroke1 = "#4A6677";
-    PoreSpaceStroke2 = "#757000";
-    PoreSpaceFill1 = "#4682B490";
-    PoreSpaceFill2 = "#75700090";
+    PoreSpaceStroke1 = "#E4F5FC";
+    PoreSpaceStroke2 = "#F1CFB5";
+    PoreSpacePhieFill = "#67BDAF";
+    PoreSpacePhitFill = "#F48420";
     PoreSpaceScatterStroke = "#FFF";
-    PoreSpaceScatterFill = "#005A9C";
+    PoreSpaceScatterFill = "#83D2F5";
 
     // Sonic vertical
-    SonicGradient1 = "#28266D";
-    SonicGradient2 = "#41459D";
-    SonicGradient3 = "#83705B";
-    SonicGradient4 = "#904A9C";
-    SonicGradient5 = "#42AAC6";
-    SonicGradient6 = "#B84F9E";
+    SonicGradient1 = "#634E97";
+    SonicGradient2 = "#264B93";
+    SonicGradient3 = "#AE408E";
+    SonicGradient4 = "#45BEE8";
+    SonicGradient5 = "#E4F5FC";
+    SonicGradient6 = "#DF69A8";
 
     // Texture chart
     TextureFill = "#90808080";
     TextureLine = "#808080";
-    TexturePalette1 = "#B1B38A";
-    TexturePalette2 = "#207093";
-    TexturePalette3 = "#795745";
+    TextureSandFill = "#E7C565";
+    TextureGrainFill = "#209FD9";
+    TextureGravelFill = "#BE7336";
 }
 
 export class AppDarkTheme implements AppThemeBase {
@@ -171,8 +171,8 @@ export class AppDarkTheme implements AppThemeBase {
 
     // Shale chart
     ShaleBackgroundColor = "#90EE90";
-    ShaleLegendColor1 = "#b22222";
-    ShaleLegendColor2 = "#3333FF";
+    ShaleOilLegendColor = "#b22222";
+    ShaleWaterLegendColor = "#3333FF";
     ShaleWaterSeries = "#E4E840";
     ShaleSeriesStroke = "#474747";
 
@@ -192,8 +192,8 @@ export class AppDarkTheme implements AppThemeBase {
     // Pore Space Chart
     PoreSpaceStroke1 = "#4682B4";
     PoreSpaceStroke2 = "#757000";
-    PoreSpaceFill1 = "#4682B490";
-    PoreSpaceFill2 = "#75700090";
+    PoreSpacePhieFill = "#4682B490";
+    PoreSpacePhitFill = "#75700090";
     PoreSpaceScatterStroke = "#FFF";
     PoreSpaceScatterFill = "#005A9C";
 
@@ -208,9 +208,9 @@ export class AppDarkTheme implements AppThemeBase {
     // Texture chart
     TextureFill = "#90808080";
     TextureLine = "#808080";
-    TexturePalette1 = "#DAA520";
-    TexturePalette2 = "#008b8b";
-    TexturePalette3 = "#33FF33";
+    TextureSandFill = "#DAA520";
+    TextureGrainFill = "#008b8b";
+    TextureGravelFill = "#33FF33";
 }
 
 export class AppLightTheme implements AppThemeBase {
@@ -239,8 +239,8 @@ export class AppLightTheme implements AppThemeBase {
 
     // Shale chart
     ShaleBackgroundColor = "#90EE90";
-    ShaleLegendColor1 = "#b22222";
-    ShaleLegendColor2 = "#3333FF";
+    ShaleOilLegendColor = "#b22222";
+    ShaleWaterLegendColor = "#3333FF";
     ShaleWaterSeries = "#E4E840";
     ShaleSeriesStroke = "#474747";
 
@@ -260,8 +260,8 @@ export class AppLightTheme implements AppThemeBase {
     // Pore Space Chart
     PoreSpaceStroke1 = "#4682B4";
     PoreSpaceStroke2 = "#757000";
-    PoreSpaceFill1 = "#4682B490";
-    PoreSpaceFill2 = "#75700090";
+    PoreSpacePhieFill = "#4682B490";
+    PoreSpacePhitFill = "#75700090";
     PoreSpaceScatterStroke = "#FFF";
     PoreSpaceScatterFill = "#005A9C";
 
@@ -276,9 +276,9 @@ export class AppLightTheme implements AppThemeBase {
     // Texture chart
     TextureFill = "#90808080";
     TextureLine = "#808080";
-    TexturePalette1 = "#DAA520";
-    TexturePalette2 = "#008b8b";
-    TexturePalette3 = "#33FF33";
+    TextureSandFill = "#DAA520";
+    TextureGrainFill = "#008b8b";
+    TextureGravelFill = "#33FF33";
 }
 
 export const appTheme: AppThemeBase = new App2022BrandTheme();

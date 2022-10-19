@@ -43,6 +43,7 @@ export const drawShaleChart = async () => {
                 options: {
                     fill: "transparent",
                     stroke: appTheme.ShaleSeriesStroke,
+                    strokeThickness: 2,
                     dataSeries: dataSeries1
                 }
             },
@@ -51,6 +52,7 @@ export const drawShaleChart = async () => {
                 options: {
                     fill: appTheme.ShaleWaterSeries,
                     stroke: appTheme.ShaleSeriesStroke,
+                    strokeThickness: 2,
                     dataSeries: dataSeries2,
                     // TODO: Uncomment after chart.js v2.2 release
                     // paletteProvider: new RangeFillPaletteProvider([
@@ -71,8 +73,9 @@ export const drawShaleChart = async () => {
             {
                 type: ESeriesType.StackedMountainSeries,
                 options: {
-                    fill: appTheme.ShaleLegendColor1,
+                    fill: appTheme.ShaleOilLegendColor,
                     stroke: appTheme.ShaleSeriesStroke,
+                    strokeThickness: 0,
                     dataSeries: dataSeries3
                 }
             },
@@ -107,8 +110,8 @@ const generateShaleLegend = (
     return `
     <div class="chart-legend full-size-legend">
         <div class="legend-color-item">
-            <div class="color-label" style="background-color: ${appTheme.ShaleLegendColor1}; color: ${appTheme.LegendTextColor};"></div>
-            <div class="color-label" style="background-color: ${appTheme.ShaleLegendColor2}; color: ${appTheme.LegendTextColor};"></div>
+            <div class="color-label" style="background-color: ${appTheme.ShaleOilLegendColor}; color: ${appTheme.LegendTextColor};"></div>
+            <div class="color-label" style="background-color: ${appTheme.ShaleWaterLegendColor}; color: ${appTheme.LegendTextColor};"></div>
         </div>
         <div class="legend-text-item" style="color: ${appTheme.LegendTextColor}">
             <span>${"100"}</span>

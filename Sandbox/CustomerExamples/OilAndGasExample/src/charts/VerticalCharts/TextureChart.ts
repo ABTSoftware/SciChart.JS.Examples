@@ -31,17 +31,17 @@ export const drawTextureChart = async () => {
     });
 
     const rangePaletteProvider = new RangeFillPaletteProvider([
-        new PaletteRange(8, 8, appTheme.TexturePalette1),
-        new PaletteRange(18, 22, appTheme.TexturePalette2),
-        new PaletteRange(22, 25, appTheme.TexturePalette1),
-        new PaletteRange(25, 26, appTheme.TexturePalette2),
-        new PaletteRange(29, 29, appTheme.TexturePalette2),
-        new PaletteRange(40, 40, appTheme.TexturePalette3),
-        new PaletteRange(50, 55, appTheme.TexturePalette3),
-        new PaletteRange(55, 58, appTheme.TexturePalette2),
-        new PaletteRange(70, 75, appTheme.TexturePalette1),
-        new PaletteRange(75, 76, appTheme.TexturePalette3),
-        new PaletteRange(85, 97, appTheme.TexturePalette2)
+        new PaletteRange(8, 8, appTheme.TextureSandFill),
+        new PaletteRange(18, 22, appTheme.TextureGrainFill),
+        new PaletteRange(22, 25, appTheme.TextureSandFill),
+        new PaletteRange(25, 26, appTheme.TextureGrainFill),
+        new PaletteRange(29, 29, appTheme.TextureGrainFill),
+        new PaletteRange(40, 40, appTheme.TextureGravelFill),
+        new PaletteRange(50, 55, appTheme.TextureGravelFill),
+        new PaletteRange(55, 58, appTheme.TextureGrainFill),
+        new PaletteRange(70, 75, appTheme.TextureSandFill),
+        new PaletteRange(75, 76, appTheme.TextureGravelFill),
+        new PaletteRange(85, 97, appTheme.TextureGrainFill)
     ]);
 
     const renderableSeries = chartBuilder.buildSeries(wasmContext, [
@@ -91,15 +91,15 @@ const generateTextureLegend = (
     <div class="chart-legend full-size-legend" style="color: ${appTheme.LegendTextColor};">
         <div class="legend-color-item">
             <div class="color-label" style="background-color: ${appTheme.TextureLine};"></div>
-            <div class="color-label" style="background-color: ${appTheme.TexturePalette2};"></div>
+            <div class="color-label" style="background-color: ${appTheme.TextureGrainFill};"></div>
         </div>
         <div class="legend-text-item">
             <span>${"MUD"}</span>
             <span>${"GRAIN"}</span>
         </div>
         <div class="legend-color-item">
-            <div class="color-label" style="background-color: ${appTheme.TexturePalette1};"></div>
-            <div class="color-label" style="background-color: ${appTheme.TexturePalette3};"></div>
+            <div class="color-label" style="background-color: ${appTheme.TextureSandFill};"></div>
+            <div class="color-label" style="background-color: ${appTheme.TextureGravelFill};"></div>
         </div>
         <div class="legend-text-item">
             <span>${"SAND"}</span>
