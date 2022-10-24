@@ -42,6 +42,12 @@ const drawDensityChart = async () => {
 
     sciChartSurface.renderableSeries.add(...renderableSeries)
 
+    renderableSeries.forEach(rs => {
+        rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
+        rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
+        rs.rolloverModifierProps.markerColor = appTheme.RolloverTooltipFill;
+    });
+
     const legendModifier = new LegendModifier({ placementDivId: `density-legend` });
     legendModifier.sciChartLegend.getLegendHTML = generateDensityLegend;
     sciChartSurface.chartModifiers.add(legendModifier);

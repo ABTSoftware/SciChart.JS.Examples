@@ -77,6 +77,12 @@ const drawPoreSpaceChart = async () => {
 
     sciChartSurface.renderableSeries.add(...renderableSeries);
 
+    renderableSeries.forEach(rs => {
+        rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
+        rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
+        rs.rolloverModifierProps.markerColor = appTheme.RolloverTooltipFill;
+    });
+
     const legendModifier = new LegendModifier({ placementDivId: `pore-space-legend` });
     legendModifier.sciChartLegend.getLegendHTML = generatePoreLegend;
     sciChartSurface.chartModifiers.add(legendModifier);

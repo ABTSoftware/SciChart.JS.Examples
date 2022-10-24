@@ -51,6 +51,12 @@ const drawResistivityChart = async () => {
 
     sciChartSurface.renderableSeries.add(...renderableSeries)
 
+    renderableSeries.forEach(rs => {
+        rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
+        rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
+        rs.rolloverModifierProps.markerColor = appTheme.RolloverTooltipFill;
+    });
+
     const legendModifier = new LegendModifier({ placementDivId: `resistivity-legend` });
     legendModifier.sciChartLegend.getLegendHTML = generateResistivityLegend;
     sciChartSurface.chartModifiers.add(legendModifier);

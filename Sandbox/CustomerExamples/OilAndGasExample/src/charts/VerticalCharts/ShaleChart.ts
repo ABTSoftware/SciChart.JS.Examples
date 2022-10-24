@@ -87,7 +87,11 @@ export const drawShaleChart = async () => {
 
     const stackedMountainCollection = renderableSeries[0] as StackedMountainCollection
     stackedMountainCollection.get(2).rolloverModifierProps.showRollover = false;
-
+    stackedMountainCollection.asArray().forEach(rs => {
+        rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
+        rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
+        rs.rolloverModifierProps.markerColor = appTheme.RolloverTooltipFill;
+    });
     sciChartSurface.renderableSeries.add(...renderableSeries)
 
     const legendModifier = new LegendModifier({ placementDivId: `shale-legend` });
