@@ -231,72 +231,72 @@ export class AppLightTheme implements AppThemeBase {
     SciChartJsTheme = new SciChartJSLightTheme();
 
     // general colours
-    LegendTextColor = "#333";
+    LegendTextColor = "#222";
     SidebarBackground = this.SciChartJsTheme.sciChartBackground;
-    SidebarTextColor = "#333";
+    SidebarTextColor = "#222";
 
     // Charts grid colours
-    ChartsGridStroke1 = "#d52aa7";
-    ChartsGridStroke2 = "#2bd452";
-    ChartsGridStroke3 = "#916eeb";
+    ChartsGridStroke1 = "#DF69A8";
+    ChartsGridStroke2 = "#EA6F63";
+    ChartsGridStroke3 = "#45BEE8";
 
     // 3D Chart colors
-    Chart3DScatterFill = "#a88d32";
-    Chart3DColor1 = "#0a0aae";
-    Chart3DColor2 = "#2964ba";
-    Chart3DColor3 = "#36e15a";
-    Chart3DColor4 = "#f7e24d";
-    Chart3DColor5 = "#b8e946";
-    Chart3DColor6 = "#dd8037";
-    Chart3DColor7 = "#a81d09";
+    Chart3DScatterFill = "#DF69A8";
+    Chart3DColor1 = "#E4F5FC";
+    Chart3DColor2 = "#45BEE8";
+    Chart3DColor3 = "#45BEE8";
+    Chart3DColor4 = "#EA6F63";
+    Chart3DColor5 = "#DF69A8";
+    Chart3DColor6 = "#8065A3";
+    Chart3DColor7 = "#364BA0";
 
     // Shale chart
-    ShaleBackgroundColor = "#90EE90";
-    ShaleOilLegendColor = "#b22222";
-    ShaleWaterLegendColor = "#3333FF";
-    ShaleWaterSeries = "#E4E840";
-    ShaleSeriesStroke = "#474747";
+    ShaleBackgroundColor = "#B9E0D4";
+    ShaleOilLegendColor = "#DF69A8";
+    ShaleWaterLegendColor = "#45BEE8";
+    ShaleWaterSeries = "#45BEE8";
+    ShaleSeriesStroke = "#E4F5FC";
 
     // Density chart
-    DensityLegendSeparator = "#FF3333";
-    DensityBackgroundOne = "#228B22";
-    DensityBackgroundTwo = "#FFA500";
-    DensityStrokeY = "#1C1C1E";
-    DensityStrokeY1 = "#FF3333";
-    DensityFillY = "#228B22";
-    DensityFillY1 = "#FFA500";
+    DensityLegendSeparator = "#264B93";
+    DensityBackgroundOne = "#364BA0";
+    DensityBackgroundTwo = "#67BDAF";
+    DensityStrokeY = "#45BEE8";
+    DensityStrokeY1 = "#AE408E";
+    DensityFillY = "#364BA0";
+    DensityFillY1 = "#67BDAF";
 
     // Resistivity Chart
-    ResistivityLineStroke = "#00BFFF";
-    ResistivityLineStroke2 = "#FF4500";
+    ResistivityLineStroke = "#45BEE8";
+    ResistivityLineStroke2 = "#AE408E";
 
     // Pore Space Chart
-    PoreSpaceStroke1 = "#4682B4";
-    PoreSpaceStroke2 = "#757000";
-    PoreSpacePhieFill = "#4682B490";
-    PoreSpacePhitFill = "#75700090";
+    PoreSpaceStroke1 = "#E4F5FC";
+    PoreSpaceStroke2 = "#F1CFB5";
+    PoreSpacePhieFill = "#67BDAF";
+    PoreSpacePhitFill = "#EA6F63";
     PoreSpaceScatterStroke = "#FFF";
-    PoreSpaceScatterFill = "#005A9C";
+    PoreSpaceScatterFill = "#83D2F5";
 
     // Sonic vertical
-    SonicGradient1 = "#00008B";
-    SonicGradient2 = "#3333FF";
-    SonicGradient3 = "#228B22";
-    SonicGradient4 = "#DFFF00";
-    SonicGradient5 = "#FFFF00";
-    SonicGradient6 = "#FF3333";
+    SonicGradient1 = "#50C7E0";
+    SonicGradient2 = "#66C6B7";
+    SonicGradient3 = "#EA6F63";
+    SonicGradient4 = "#DF69A8";
+    SonicGradient5 = "#882B91";
+    SonicGradient6 = "#364BA0";
 
     // Texture chart
     TextureFill = "#90808080";
     TextureLine = "#808080";
-    TextureSandFill = "#DAA520";
-    TextureGrainFill = "#008b8b";
-    TextureGravelFill = "#33FF33";
+    TextureSandFill = "#E7C565";
+    TextureGrainFill = "#209FD9";
+    TextureGravelFill = "#BE7336";
 
     // Cursors
-    RolloverLineColor = "#AE408E";
-    RolloverTooltipFill = "#AE408E";
+    RolloverLineColor = "#364BA0";
+    RolloverTooltipFill = "#364BA0";
     RolloverTooltipText = "#FFF";
 }
 
-export const appTheme: AppThemeBase = new App2022BrandTheme();
+export const appTheme: AppThemeBase = new AppLightTheme();
