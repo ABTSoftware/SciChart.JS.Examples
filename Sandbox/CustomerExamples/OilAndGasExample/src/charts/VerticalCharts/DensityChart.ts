@@ -46,6 +46,9 @@ const drawDensityChart = async () => {
         rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
         rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
         rs.rolloverModifierProps.markerColor = appTheme.RolloverTooltipFill;
+        rs.rolloverModifierProps1.tooltipColor = appTheme.RolloverTooltipFill;
+        rs.rolloverModifierProps1.tooltipTextColor = appTheme.RolloverTooltipText;
+        rs.rolloverModifierProps1.markerColor = appTheme.RolloverTooltipFill;
     });
 
     const legendModifier = new LegendModifier({ placementDivId: `density-legend` });
