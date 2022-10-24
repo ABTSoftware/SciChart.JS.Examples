@@ -254,17 +254,17 @@ export class AppLightTheme implements AppThemeBase {
     ShaleBackgroundColor = "#B9E0D4";
     ShaleOilLegendColor = "#DF69A8";
     ShaleWaterLegendColor = "#45BEE8";
-    ShaleWaterSeries = "#45BEE8";
-    ShaleSeriesStroke = "#E4F5FC";
+    ShaleWaterSeries = "#45BEE877";
+    ShaleSeriesStroke = "#264B93";
 
     // Density chart
     DensityLegendSeparator = "#264B93";
-    DensityBackgroundOne = "#364BA0";
-    DensityBackgroundTwo = "#67BDAF";
+    DensityBackgroundOne = "#AE408E";
+    DensityBackgroundTwo = "#EA6F63AA";
     DensityStrokeY = "#45BEE8";
     DensityStrokeY1 = "#AE408E";
-    DensityFillY = "#364BA0";
-    DensityFillY1 = "#67BDAF";
+    DensityFillY = "#AE408EAA";
+    DensityFillY1 = "#EA6F63AA";
 
     // Resistivity Chart
     ResistivityLineStroke = "#45BEE8";
@@ -273,18 +273,18 @@ export class AppLightTheme implements AppThemeBase {
     // Pore Space Chart
     PoreSpaceStroke1 = "#E4F5FC";
     PoreSpaceStroke2 = "#F1CFB5";
-    PoreSpacePhieFill = "#67BDAF";
-    PoreSpacePhitFill = "#EA6F63";
-    PoreSpaceScatterStroke = "#FFF";
-    PoreSpaceScatterFill = "#83D2F5";
+    PoreSpacePhieFill = "#45BEE8";
+    PoreSpacePhitFill = "#AE408E";
+    PoreSpaceScatterStroke = "#EA6F63";
+    PoreSpaceScatterFill = "#EA6F63";
 
     // Sonic vertical
-    SonicGradient1 = "#50C7E0";
-    SonicGradient2 = "#66C6B7";
-    SonicGradient3 = "#EA6F63";
-    SonicGradient4 = "#DF69A8";
-    SonicGradient5 = "#882B91";
-    SonicGradient6 = "#364BA0";
+    SonicGradient1 = "#634E9733";
+    SonicGradient2 = "#264B9355";
+    SonicGradient3 = "#AE408E77";
+    SonicGradient4 = "#45BEE899";
+    SonicGradient5 = "#E4F5FCAA";
+    SonicGradient6 = "#DF69A8";
 
     // Texture chart
     TextureFill = "#90808080";
