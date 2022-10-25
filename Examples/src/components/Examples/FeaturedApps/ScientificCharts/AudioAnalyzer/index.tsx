@@ -1,18 +1,19 @@
 import * as React from "react";
-import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
-import { UniformHeatmapRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { AudioDataProvider } from "./AudioDataProvider";
-import { Radix2FFT } from "./Radix2FFT";
-import classes from "../../../../Examples/Examples.module.scss";
+import {UniformHeatmapDataSeries} from "scichart/Charting/Model/UniformHeatmapDataSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {HeatmapColorMap} from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
+import {
+    UniformHeatmapRenderableSeries
+} from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
+import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {EAutoRange} from "scichart/types/AutoRange";
+import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import {AudioDataProvider} from "./AudioDataProvider";
+import {Radix2FFT} from "./Radix2FFT";
 import {appTheme} from "../../../theme";
 import {
     LogarithmicAxis
@@ -183,9 +184,9 @@ export const drawExample = async () => {
                 heightAspect: BOTTOM_CHART_HEIGHT
             }
         );
-        const xAxis = new NumericAxis(wasmContext, {
-            // logBase: 10,
-            // labelFormat: ENumericFormat.SignificantFigures,
+        const xAxis = new LogarithmicAxis(wasmContext, {
+            logBase: 10,
+            labelFormat: ENumericFormat.SignificantFigures,
             maxAutoTicks: 5,
             axisTitleStyle: { fontSize: 10 },
             drawMinorGridLines: false,
@@ -209,7 +210,7 @@ export const drawExample = async () => {
         fftDS = new XyDataSeries(wasmContext);
         fftXValues = new Array<number>(fftSize);
         for (let i = 0; i < fftSize; i++) {
-            fftXValues[i] = i * hzPerDataPoint;
+            fftXValues[i] = (i + 1) * hzPerDataPoint;
         }
 
         const rs = new FastColumnRenderableSeries(wasmContext, {
