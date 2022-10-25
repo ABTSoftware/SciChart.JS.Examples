@@ -22,6 +22,15 @@ import {ENumericFormat} from "../../../../../../../../scichart.dev/Web/src/SciCh
 import {GradientParams} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/GradientParams";
 import {PaletteFactory} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Model/PaletteFactory";
 import {Point} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/Point";
+import {
+    FastMountainRenderableSeries
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import {
+    XyScatterRenderableSeries
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
+import {
+    EllipsePointMarker
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/PointMarkers/EllipsePointMarker";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";
@@ -213,9 +222,11 @@ export const drawExample = async () => {
             fftXValues[i] = (i + 1) * hzPerDataPoint;
         }
 
-        const rs = new FastColumnRenderableSeries(wasmContext, {
-            stroke: "#E6E6FA",
+        // Make a column chart with a gradient palette on the stroke only
+        const rs = new FastMountainRenderableSeries(wasmContext, {
             dataSeries: fftDS,
+            pointMarker: new EllipsePointMarker(wasmContext, { width: 9, height: 9 }),
+            strokeThickness: 3,
             paletteProvider: PaletteFactory.createGradient(
                 wasmContext,
                 new GradientParams(new Point(0, 0), new Point(1, 1), [
@@ -224,7 +235,14 @@ export const drawExample = async () => {
                     { offset: 0.01, color: "#8166A2" },
                     { offset: 0.1, color: "#AE418C" },
                     { offset: 1.0, color: "#CA5B79" }
-                ])
+                ]),
+                {
+                    enableStroke: true,
+                    enableFill: true,
+                    enablePointMarkers: true,
+                    fillOpacity: 0.17,
+                    pointMarkerOpacity: 0.37
+                }
             )
         });
         sciChartSurface.renderableSeries.add(rs);
