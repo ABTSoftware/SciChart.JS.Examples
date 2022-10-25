@@ -38,13 +38,13 @@ import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { getBinanceCandles } from "../../../../../utils/binanceApi";
 import { RightAlignedOuterVerticallyStackedAxisLayoutStrategy } from "scichart/Charting/LayoutManager/RightAlignedOuterVerticallyStackedAxisLayoutStrategy"
 import classes from "../../../Examples.module.scss";
-import { SciChartJS2022Theme } from "../../../Theme2022";
+import { appTheme } from "../../../theme";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    sciChartSurface.applyTheme(new SciChartJS2022Theme());
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsThemeDark });
+
     const commonAxisOptions: INumericAxisOptions = {
         drawMajorBands: false,
         drawMajorGridLines: false,

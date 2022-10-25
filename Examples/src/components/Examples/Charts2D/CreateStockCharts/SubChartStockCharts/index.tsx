@@ -28,9 +28,9 @@ import { EXyDirection } from "scichart/types/XyDirection";
 import { calcAverageForArray } from "scichart/utils/calcAverage";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { multiPaneData } from "../../../ExampleData/multiPaneData";
-import { SciChartJS2022Theme } from "../../../Theme2022";
 import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
 import { BasePaletteProvider } from "scichart/Charting/Model/BasePaletteProvider";
+import {appTheme} from "../../../theme";
 
 export const mainChartWrapper = "cc_chart";
 export const mainChartWrapper2 = "cc_chart2";
@@ -91,12 +91,11 @@ export const drawExample = async () => {
     const { rsiArray } = getDataForThirdPane(xValues, closeValues);
 
     const axisAlignment = EAxisAlignment.Right;
-    const theme = new SciChartJS2022Theme();
 
     const commonSubChartSurfaceOptions: I2DSubSurfaceOptions = {
         subChartPadding: Thickness.fromNumber(10),
         isTransparent: false,
-        theme
+        theme: appTheme.SciChartJsThemeDark
     };
 
     const subChartModifiers = [
@@ -113,7 +112,7 @@ export const drawExample = async () => {
     const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(mainChartWrapper2, {
         surface: {
             id: "mainSurface",
-            theme
+            theme: appTheme.SciChartJsThemeDark
         },
         xAxes: {
             type: EAxisType.NumericAxis,
@@ -147,7 +146,7 @@ export const drawExample = async () => {
                     options: {
                         drawLabels: false,
                         autoRange: EAutoRange.Once,
-                        //maxAutoTicks: 20,
+                        // maxAutoTicks: 20,
                         useNativeText: false,
                         minorsPerMajor: 3
                     }
