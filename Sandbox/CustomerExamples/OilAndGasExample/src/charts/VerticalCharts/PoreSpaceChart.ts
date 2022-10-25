@@ -7,12 +7,16 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getDataRows } from "./utils";
+import { appTheme } from "../../theme";
 
 export 
 const drawPoreSpaceChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("pore-space-chart", {
         ...getCommonChartConfigs("Pore Space"),
         modifiers: getCommonChartModifiersConfig(),
+        surface: {
+            theme: appTheme.SciChartJsTheme,
+        }
     });
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(-0.2, 1.6);
@@ -43,17 +47,17 @@ const drawPoreSpaceChart = async () => {
             options: {
                 dataSeries: dataSeries1,
                 strokeThickness: 2,
-                stroke: "#4682B4",
-                fill: "#4682B490",
-            }
+                stroke: appTheme.PoreSpaceStroke1,
+                fill: appTheme.PoreSpacePhieFill,
+            },
         },
         {
             type: ESeriesType.StackedMountainSeries,
             options: {
                 dataSeries: dataSeries2,
                 strokeThickness: 2,
-                stroke: "#757000",
-                fill: "#75700090",
+                stroke: appTheme.PoreSpaceStroke2,
+                fill: appTheme.PoreSpacePhitFill,
             }
         },
         {
@@ -62,8 +66,8 @@ const drawPoreSpaceChart = async () => {
                 dataSeries: dataSeries3,
                 pointMarker: new EllipsePointMarker(wasmContext, {
                     strokeThickness: 1,
-                    stroke: "White",
-                    fill: "DodgerBlue",
+                    stroke: appTheme.PoreSpaceScatterStroke,
+                    fill: appTheme.PoreSpaceScatterFill,
                     width: 8,
                     height: 8,
                 })
@@ -72,6 +76,12 @@ const drawPoreSpaceChart = async () => {
     ]);
 
     sciChartSurface.renderableSeries.add(...renderableSeries);
+
+    renderableSeries.forEach(rs => {
+        rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
+        rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
+        rs.rolloverModifierProps.markerColor = appTheme.RolloverTooltipFill;
+    });
 
     const legendModifier = new LegendModifier({ placementDivId: `pore-space-legend` });
     legendModifier.sciChartLegend.getLegendHTML = generatePoreLegend;
@@ -92,20 +102,20 @@ const generatePoreLegend = (
     items: TLegendItem[]
 ): string => {
     return `
-    <div class="chart-legend">
-        <div style="height: 18px; flex: auto; background-color: ${"#4682B490"}; border-bottom: 2px solid #4682B4;"></div>
+    <div class="chart-legend" style="color: ${appTheme.LegendTextColor};">
+        <div style="height: 18px; flex: auto; background-color: ${appTheme.PoreSpacePhieFill}; border-bottom: 2px solid ${appTheme.PoreSpaceStroke1};"></div>
         <div class="legend-text-item">
             <span>${-0.2}</span>
             <span>${"PHIE"}</span>
             <span>${1.6}</span>
         </div>
-        <div style="height: 18px; flex: auto; background-color: ${"#75700090"}; border-bottom: 2px solid #757000;"></div>
+        <div style="height: 18px; flex: auto; background-color: ${appTheme.PoreSpacePhitFill}; border-bottom: 2px solid ${appTheme.PoreSpaceStroke2};"></div>
         <div class="legend-text-item">
             <span>${-0.2}</span>
             <span>${"PHIT"}</span>
             <span>${1.6}</span>
         </div>
-        <div style="height: 18px; flex: auto; background-color: ${"DodgerBlue"}; border-bottom: 2px solid White;"></div>
+        <div style="height: 18px; flex: auto; background-color: ${appTheme.PoreSpaceScatterFill}; border-bottom: 2px solid ${appTheme.PoreSpaceScatterStroke};"></div>
         <div class="legend-text-item">
             <span>${-0.2}</span>
             <span>${"CORE"}</span>
