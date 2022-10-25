@@ -3,11 +3,19 @@ import { SciChartJS2022Theme } from "sciChart/Charting/Themes/SciChartJS2022Them
 import {
     SciChartJSLightTheme
 } from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSLightTheme";
+import {
+    SciChartJSDarkTheme
+} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSDarkTheme";
 
 export interface AppThemeBase {
     SciChartJsThemeDark: IThemeProvider;
     SciChartJsThemeMid: IThemeProvider;
     SciChartJsThemeLight: IThemeProvider;
+
+    // general colors
+    ForegroundColor: string;
+    BackgroundDark: string;
+    BackgroundMid: string;
 
     // Series colors
     VividSkyBlue: string;
@@ -44,10 +52,15 @@ export class SciChart2022AppTheme implements AppThemeBase {
     };
     SciChartJsThemeLight = new SciChartJSLightTheme();
 
+    // General colors
+    ForegroundColor = "#FFF";
+    BackgroundDark = this.SciChartJsThemeDark.sciChartBackground;
+    BackgroundMid = this.SciChartJsThemeMid.sciChartBackground;
+
     // Series colors
     VividSkyBlue = "#50C7E0";
     VividPink = "#EC0F6C";
-    VividTeal = "#66C6B7";
+    VividTeal = "#30BC9A";
     VividOrange = "#F48420";
     VividBlue = "#364BA0";
     VividPurple = "#882B91";
