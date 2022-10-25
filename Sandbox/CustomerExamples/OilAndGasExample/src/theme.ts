@@ -1,4 +1,4 @@
-import {IThemeProvider, ThemeProvider} from "scichart/Charting/Themes/IThemeProvider";
+import {ThemeProvider} from "scichart/Charting/Themes/IThemeProvider";
 import {
     SciChartJSDarkv2Theme
 } from "scichart/Charting/Themes/SciChartJSDarkv2Theme";
