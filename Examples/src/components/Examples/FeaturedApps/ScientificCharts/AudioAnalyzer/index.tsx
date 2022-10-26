@@ -108,7 +108,10 @@ export const drawExample = async () => {
     // AUDIO CHART
     const initAudioChart = async () => {
         // Create a chart for the audio
-        const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementIdAudioChart, { theme: appTheme.SciChartJsThemeMid });
+        const {
+            sciChartSurface,
+            wasmContext
+        } = await SciChartSurface.create(divElementIdAudioChart, {theme: appTheme.SciChartJsThemeMid});
 
         // Create an XAxis for the live audio
         const xAxis = new NumericAxis(wasmContext, {
@@ -185,7 +188,7 @@ export const drawExample = async () => {
 
     // FFT CHART
     const initFftChart = async () => {
-        const { sciChartSurface, wasmContext } = await SciChartSurface.create(
+        const {sciChartSurface, wasmContext} = await SciChartSurface.create(
             divElementIdFttChart,
             {
                 theme: appTheme.SciChartJsThemeMid,
@@ -197,7 +200,7 @@ export const drawExample = async () => {
             logBase: 10,
             labelFormat: ENumericFormat.SignificantFigures,
             maxAutoTicks: 5,
-            axisTitleStyle: { fontSize: 10 },
+            axisTitleStyle: {fontSize: 10},
             drawMinorGridLines: false,
             drawMinorTickLines: false,
             drawMajorTickLines: false
@@ -212,7 +215,7 @@ export const drawExample = async () => {
             drawMinorTickLines: false,
             drawMajorTickLines: false,
             labelPrecision: 0,
-            axisTitleStyle: { fontSize: 10 }
+            axisTitleStyle: {fontSize: 10}
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -225,16 +228,16 @@ export const drawExample = async () => {
         // Make a column chart with a gradient palette on the stroke only
         const rs = new FastMountainRenderableSeries(wasmContext, {
             dataSeries: fftDS,
-            pointMarker: new EllipsePointMarker(wasmContext, { width: 9, height: 9 }),
+            pointMarker: new EllipsePointMarker(wasmContext, {width: 9, height: 9}),
             strokeThickness: 3,
             paletteProvider: PaletteFactory.createGradient(
                 wasmContext,
                 new GradientParams(new Point(0, 0), new Point(1, 1), [
-                    { offset: 0, color: "#36B8E6" },
-                    { offset: 0.001, color: "#5D8CC2" },
-                    { offset: 0.01, color: "#8166A2" },
-                    { offset: 0.1, color: "#AE418C" },
-                    { offset: 1.0, color: "#CA5B79" }
+                    {offset: 0, color: "#36B8E6"},
+                    {offset: 0.001, color: "#5D8CC2"},
+                    {offset: 0.01, color: "#8166A2"},
+                    {offset: 0.1, color: "#AE418C"},
+                    {offset: 1.0, color: "#CA5B79"}
                 ]),
                 {
                     enableStroke: true,
@@ -260,7 +263,7 @@ export const drawExample = async () => {
             }
         }
 
-        const { sciChartSurface, wasmContext } = await SciChartSurface.create(
+        const {sciChartSurface, wasmContext} = await SciChartSurface.create(
             divElementIdChart3,
             {
                 theme: appTheme.SciChartJsThemeMid,
@@ -299,11 +302,11 @@ export const drawExample = async () => {
                 minimum: 0,
                 maximum: 70,
                 gradientStops: [
-                    { offset: 0, color: "#000000" },
-                    { offset: 0.25, color: "#800080" },
-                    { offset: 0.5, color: "#FF0000" },
-                    { offset: 0.75, color: "#FFFF00" },
-                    { offset: 1, color: "#FFFFFF" }
+                    {offset: 0, color: "#000000"},
+                    {offset: 0.25, color: "#800080"},
+                    {offset: 0.5, color: "#FF0000"},
+                    {offset: 0.75, color: "#FFFF00"},
+                    {offset: 1, color: "#FFFFFF"}
                 ]
             })
         });
@@ -313,10 +316,7 @@ export const drawExample = async () => {
     };
 
     // DRAW CHARTS
-    const charts = [];
-    charts.push(await initAudioChart());
-    charts.push(await initFftChart());
-    charts.push(await initSpectogramChart());
+    const charts = await Promise.all([initAudioChart(), initFftChart(), initSpectogramChart()]);
 
     // INIT AUDIO
     await initAudio();
@@ -332,7 +332,7 @@ export const drawExample = async () => {
     };
     updateChart();
 
-    return { charts, dataProvider };
+    return {charts, dataProvider};
 };
 
 export default function AudioAnalyzer() {
@@ -355,12 +355,24 @@ export default function AudioAnalyzer() {
     return (
         <React.Fragment>
             <div>
-                <div id={divElementIdAudioChart} style={{ width: TOP_CHART_WIDTH, height: TOP_CHART_HEIGHT / 2 }} />
+                <div id={divElementIdAudioChart} style={{
+                    width: TOP_CHART_WIDTH,
+                    height: TOP_CHART_HEIGHT / 2,
+                    background: appTheme.BackgroundDark
+                }}/>
 
-                <div style={{ display: "flex" }}>
-                    <div id={divElementIdFttChart} style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT }} />
-                    <br />
-                    <div id={divElementIdChart3} style={{ width: BOTTOM_CHART_WIDTH, height: BOTTOM_CHART_HEIGHT }} />
+                <div style={{display: "flex"}}>
+                    <div id={divElementIdFttChart} style={{
+                        width: BOTTOM_CHART_WIDTH,
+                        height: BOTTOM_CHART_HEIGHT,
+                        background: appTheme.BackgroundDark
+                    }}/>
+                    <br/>
+                    <div id={divElementIdChart3} style={{
+                        width: BOTTOM_CHART_WIDTH,
+                        height: BOTTOM_CHART_HEIGHT,
+                        background: appTheme.BackgroundDark
+                    }}/>
                 </div>
             </div>
         </React.Fragment>

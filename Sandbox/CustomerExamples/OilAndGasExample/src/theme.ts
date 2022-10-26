@@ -299,4 +299,4 @@ export class AppLightTheme implements AppThemeBase {
     RolloverTooltipText = "#FFF";
 }
 
-export const appTheme: AppThemeBase = new AppLightTheme();
+export const appTheme: AppThemeBase = new App2022BrandTheme();
