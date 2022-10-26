@@ -28,6 +28,16 @@ import {
     EllipsePointMarker
 } from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import classes from "../../../Examples.module.scss";
+import {
+    TextAnnotation
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/TextAnnotation";
+import {
+    ECoordinateMode
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/AnnotationBase";
+import {
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/AnchorPoint";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";
@@ -174,6 +184,19 @@ export const drawExample = async () => {
             dataSeries: historyDS
         });
         sciChartSurface.renderableSeries.add(histrs);
+
+        // Add instructions
+        sciChartSurface.annotations.add(new TextAnnotation({
+            x1: 0,
+            y1: 0,
+            xAxisId: "history",
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+            verticalAnchorPoint: EVerticalAnchorPoint.Top,
+            text: "This example uses your microphone to generate waveforms. Say something!",
+            textColor: "#FFFFFF44"
+        }))
 
         return sciChartSurface;
     };
@@ -335,7 +358,7 @@ export default function AudioAnalyzer() {
             <div style={{background: appTheme.BackgroundDark}} className={classes.ChartWrapper}>
                 <div id={divElementIdAudioChart} style={{ height: "50%" }}/>
 
-                <div style={{display: "flex"}}>
+                <div style={{display: "flex" }}>
                     <div id={divElementIdFttChart} style={{ width: "100%", height: "100%" }}/>
                     <br/>
                     <div id={divElementIdChart3} style={{ width: "100%", height: "100%" }}/>
