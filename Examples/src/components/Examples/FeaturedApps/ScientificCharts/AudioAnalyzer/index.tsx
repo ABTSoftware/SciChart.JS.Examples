@@ -27,6 +27,7 @@ import {
 import {
     EllipsePointMarker
 } from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import classes from "../../../Examples.module.scss";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";
@@ -331,7 +332,7 @@ export default function AudioAnalyzer() {
 
     return (
         <React.Fragment>
-            <div style={{background: appTheme.BackgroundDark}}>
+            <div style={{background: appTheme.BackgroundDark}} className={classes.ChartWrapper}>
                 <div id={divElementIdAudioChart} style={{ height: "50%" }}/>
 
                 <div style={{display: "flex"}}>
