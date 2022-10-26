@@ -2,7 +2,6 @@ import * as React from "react";
 import {UniformHeatmapDataSeries} from "scichart/Charting/Model/UniformHeatmapDataSeries";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {HeatmapColorMap} from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
 import {
@@ -26,20 +25,12 @@ import {
     FastMountainRenderableSeries
 } from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import {
-    XyScatterRenderableSeries
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import {
     EllipsePointMarker
 } from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/PointMarkers/EllipsePointMarker";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";
 export const divElementIdChart3 = "sciChart3";
-
-export const TOP_CHART_WIDTH = 600;
-export const TOP_CHART_HEIGHT = 420;
-export const BOTTOM_CHART_WIDTH = 300;
-export const BOTTOM_CHART_HEIGHT = 200;
 
 const AUDIO_STREAM_BUFFER_SIZE = 2048;
 
@@ -57,7 +48,7 @@ export const drawExample = async () => {
 
     const hzPerDataPoint = sampleRate / bufferSize;
     const fftSize = fft.fftSize;
-    const fftCount = BOTTOM_CHART_HEIGHT;
+    const fftCount = 200;
 
     let fftXValues: number[];
     let spectrogramValues: number[][];
@@ -188,14 +179,7 @@ export const drawExample = async () => {
 
     // FFT CHART
     const initFftChart = async () => {
-        const {sciChartSurface, wasmContext} = await SciChartSurface.create(
-            divElementIdFttChart,
-            {
-                theme: appTheme.SciChartJsThemeMid,
-                widthAspect: BOTTOM_CHART_WIDTH,
-                heightAspect: BOTTOM_CHART_HEIGHT
-            }
-        );
+        const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementIdFttChart, { theme: appTheme.SciChartJsThemeMid });
         const xAxis = new LogarithmicAxis(wasmContext, {
             logBase: 10,
             labelFormat: ENumericFormat.SignificantFigures,
@@ -263,14 +247,7 @@ export const drawExample = async () => {
             }
         }
 
-        const {sciChartSurface, wasmContext} = await SciChartSurface.create(
-            divElementIdChart3,
-            {
-                theme: appTheme.SciChartJsThemeMid,
-                widthAspect: BOTTOM_CHART_WIDTH,
-                heightAspect: BOTTOM_CHART_HEIGHT
-            }
-        );
+        const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementIdChart3, { theme: appTheme.SciChartJsThemeMid });
 
         const xAxis = new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Always,
@@ -354,25 +331,13 @@ export default function AudioAnalyzer() {
 
     return (
         <React.Fragment>
-            <div>
-                <div id={divElementIdAudioChart} style={{
-                    width: TOP_CHART_WIDTH,
-                    height: TOP_CHART_HEIGHT / 2,
-                    background: appTheme.BackgroundDark
-                }}/>
+            <div style={{background: appTheme.BackgroundDark}}>
+                <div id={divElementIdAudioChart} style={{ height: "50%" }}/>
 
                 <div style={{display: "flex"}}>
-                    <div id={divElementIdFttChart} style={{
-                        width: BOTTOM_CHART_WIDTH,
-                        height: BOTTOM_CHART_HEIGHT,
-                        background: appTheme.BackgroundDark
-                    }}/>
+                    <div id={divElementIdFttChart} style={{ width: "100%", height: "100%" }}/>
                     <br/>
-                    <div id={divElementIdChart3} style={{
-                        width: BOTTOM_CHART_WIDTH,
-                        height: BOTTOM_CHART_HEIGHT,
-                        background: appTheme.BackgroundDark
-                    }}/>
+                    <div id={divElementIdChart3} style={{ width: "100%", height: "100%" }}/>
                 </div>
             </div>
         </React.Fragment>
