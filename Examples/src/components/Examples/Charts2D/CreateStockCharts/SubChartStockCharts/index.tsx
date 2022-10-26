@@ -615,7 +615,7 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
     });
 };
 
-let charts: TWebAssemblyChart[];
+const charts: TWebAssemblyChart[] = [];
 
 export default function SubChartStockCharts() {
     React.useEffect(() => {
