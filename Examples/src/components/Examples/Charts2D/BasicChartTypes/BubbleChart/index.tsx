@@ -46,7 +46,7 @@ const drawExample = async () => {
     let prevYValue = 0;
     for (let i = 0; i < 20; i++) {
         const curYValue = Math.sin(i) * 10 + 5;
-        const size = Math.sin(i) * 100 + 3;
+        const size = Math.sin(i) * 60 + 3;
 
         xValues.push(i);
         yValues.push(prevYValue + curYValue);
