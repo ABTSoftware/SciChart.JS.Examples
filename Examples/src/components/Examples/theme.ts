@@ -46,6 +46,9 @@ export class SciChart2022AppTheme implements AppThemeBase {
     VividBlue = "#364BA0";
     VividPurple = "#882B91";
 
+    DarkIndigo = "#14233C";
+    Indigo = "#264B93";
+
     MutedSkyBlue = "#83D2F5";
     MutedPink = "#DF69A8";
     MutedTeal = "#7BCAAB";

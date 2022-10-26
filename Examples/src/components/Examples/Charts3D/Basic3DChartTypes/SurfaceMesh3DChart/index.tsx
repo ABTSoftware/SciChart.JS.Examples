@@ -14,17 +14,18 @@ import { UniformGridDataSeries3D } from "scichart/Charting3D/Model/DataSeries/Un
 import { NumberRange } from "scichart/Core/NumberRange";
 import { zeroArray2D } from "scichart/utils/zeroArray2D";
 import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
 // SCICHART CODE
 const drawExample = async () => {
     // Create a SciChart3DSurface
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId);
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
     // Create and position the camera in the 3D world
     sciChart3DSurface.camera = new CameraController(wasmContext, {
-        position: new Vector3(-200, 200, -200),
+        position: new Vector3(-200, 150, 200),
         target: new Vector3(0, 50, 0)
     });
     // Set the worlddimensions, which defines the Axis cube size
@@ -63,13 +64,9 @@ const drawExample = async () => {
     // Create the color map
     const colorMap = new GradientColorPalette(wasmContext, {
         gradientStops: [
-            { offset: 1, color: "#8B0000" },
-            { offset: 0.9, color: "#FF0000" },
-            { offset: 0.7, color: "#FF0000" },
-            { offset: 0.5, color: "#ADFF2F" },
-            { offset: 0.3, color: "#00FFFF" },
-            { offset: 0.1, color: "#0000FF" },
-            { offset: 0, color: "#1D2C6B" }
+            { offset: 0.9, color: appTheme.VividOrange },
+            { offset: 0.2, color: appTheme.Indigo },
+            { offset: 0, color: appTheme.DarkIndigo }
         ]
     });
 
@@ -81,11 +78,11 @@ const drawExample = async () => {
         opacity: 0.9,
         cellHardnessFactor: 1.0,
         shininess: 0,
-        lightingFactor: 0.8,
+        lightingFactor: 0.0,
         highlight: 1.0,
-        stroke: "rgba(24,139,34,0.5)",
+        stroke: appTheme.VividBlue,
         strokeThickness: 2.0,
-        contourStroke: "rgba(24,139,34,0.5)",
+        contourStroke: appTheme.VividBlue,
         contourInterval: 2,
         contourOffset: 0,
         contourStrokeThickness: 2,

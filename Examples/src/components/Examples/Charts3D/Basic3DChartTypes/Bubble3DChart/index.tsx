@@ -11,12 +11,13 @@ import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface
 import { TSciChart3D } from "scichart/types/TSciChart3D";
 import { SciChartSurface } from "scichart";
 import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
 // SCICHART CODE
 const drawExample = async () => {
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId);
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(300, 300, 300),
         target: new Vector3(0, 50, 0)
@@ -47,7 +48,7 @@ function getData(wasmContext: TSciChart3D) {
         const y = getGaussianRandom(100, 20);
         const z = getGaussianRandom(150, 40);
 
-        const scale = (Math.random() + 0.5) * 0.5;
+        const scale = (Math.random() + 0.5);
         const randomColor = Math.floor(Math.random() * 0xffffff) + 0xff000000;
         // To declare scale and colour, add an optional PointMetadata3D type as the w (fourth) parameter.
         // The PointMetadata3D type also has other properties defining the behaviour of the XYZ point
