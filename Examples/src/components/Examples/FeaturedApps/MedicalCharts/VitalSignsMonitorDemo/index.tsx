@@ -1,7 +1,5 @@
 import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { vitalSignsEcgData } from "./data/vitalSignsEcgData";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
@@ -12,11 +10,8 @@ import { GlowEffect } from "scichart/Charting/Visuals/RenderableSeries/GlowEffec
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import greyImg from "./img/greyImg.png";
-import yellowImg from "./img/yellowImg.png";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../../helpers/shared/Helpers/Box/Box";
 import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
@@ -88,10 +83,7 @@ const drawExample = async (
     setInfoBloodVolume: React.Dispatch<React.SetStateAction<number>>,
     setInfoBloodOxygenation: React.Dispatch<React.SetStateAction<number>>
 ) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(divElementId, {
-        widthAspect: 600, heightAspect: 600,
-        theme: appTheme.SciChartJsTheme
-    });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
     const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Once, isVisible: false });
     sciChartSurface.xAxes.add(xAxis);
 
@@ -253,7 +245,7 @@ export default function VitalSignsMonitorDemo() {
             );
             scs = res.sciChartSurface;
             setControls(res.controls);
-            autoStartTimerId = setTimeout(res.controls.handleStart, 3000);
+            autoStartTimerId = setTimeout(res.controls.handleStart, 0);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
@@ -265,7 +257,7 @@ export default function VitalSignsMonitorDemo() {
     }, []);
 
     return (
-        <div>
+        <div className={classes.ChartWrapper}>
             <div className={classes.ChartContainer}>
                 <div id={divElementId} className={classes.VitalSigns} />
                 <div className={classes.InfoBoxContainer}>
@@ -338,20 +330,6 @@ export default function VitalSignsMonitorDemo() {
                     </div>
                 </div>
             </div>
-            <Box mt={20}>If viewed from a mobile device use horizontal scroll</Box>
-            <ButtonGroup
-                style={{ marginTop: 20 }}
-                size="medium"
-                color="primary"
-                aria-label="small outlined button group"
-            >
-                <Button id="startAnimation" onClick={controls.handleStart}>
-                    Start
-                </Button>
-                <Button id="stopAnimation" onClick={controls.handleStop}>
-                    Stop
-                </Button>
-            </ButtonGroup>
         </div>
     );
 }
