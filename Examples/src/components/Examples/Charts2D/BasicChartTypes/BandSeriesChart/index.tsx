@@ -9,12 +9,13 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsThemeMid });
 
     // Add an XAxis, YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -37,11 +38,11 @@ const drawExample = async () => {
     // The bandseries requires a special dataseries type called XyyDataSeries with X,Y and Y1 values
     sciChartSurface.renderableSeries.add(new FastBandRenderableSeries(wasmContext, {
         dataSeries: new XyyDataSeries(wasmContext, { xValues, yValues, y1Values }),
-        strokeThickness: 2,
-        fill: "#279B2733",
-        fillY1: "#FF191933",
-        stroke: "#FF1919FF",
-        strokeY1: "#279B27FF",
+        strokeThickness: 3,
+        fill: appTheme.VividOrange + "33",
+        fillY1: appTheme.VividSkyBlue + "33",
+        stroke: appTheme.VividOrange,
+        strokeY1: appTheme.VividSkyBlue,
         animation: new SweepAnimation({ duration: 800 })
     }));
 
