@@ -19,7 +19,7 @@ const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsThemeMid });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
     // Create X,Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));

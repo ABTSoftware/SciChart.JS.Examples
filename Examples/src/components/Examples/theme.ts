@@ -1,21 +1,12 @@
 import {IThemeProvider} from "scichart/Charting/Themes/IThemeProvider";
 import { SciChartJS2022Theme } from "sciChart/Charting/Themes/SciChartJS2022Theme";
-import {
-    SciChartJSLightTheme
-} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSLightTheme";
-import {
-    SciChartJSDarkTheme
-} from "../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/SciChartJSDarkTheme";
 
 export interface AppThemeBase {
-    SciChartJsThemeDark: IThemeProvider;
-    SciChartJsThemeMid: IThemeProvider;
-    SciChartJsThemeLight: IThemeProvider;
+    SciChartJsTheme: IThemeProvider;
 
     // general colors
     ForegroundColor: string;
-    BackgroundDark: string;
-    BackgroundMid: string;
+    Background: string;
 
     // Series colors
     VividSkyBlue: string;
@@ -41,21 +32,11 @@ export interface AppThemeBase {
 }
 
 export class SciChart2022AppTheme implements AppThemeBase {
-    SciChartJsThemeMid = new SciChartJS2022Theme();
-    SciChartJsThemeDark = {
-        ...new SciChartJS2022Theme(),
-        sciChartBackground: "radial-gradient(circle, #21253D 0%, #09090F 100%)",
-        loadingAnimationBackground: "radial-gradient(circle, #21253D 0%, #09090F 100%)",
-        majorGridLineBrush: "#2B2D7077",
-        minorGridLineBrush: "#191C6D77",
-        tickTextBrush: "#E0FDFF"
-    };
-    SciChartJsThemeLight = new SciChartJSLightTheme();
+    SciChartJsTheme = new SciChartJS2022Theme();
 
     // General colors
     ForegroundColor = "#FFF";
-    BackgroundDark = this.SciChartJsThemeDark.sciChartBackground;
-    BackgroundMid = this.SciChartJsThemeMid.sciChartBackground;
+    Background = this.SciChartJsTheme.sciChartBackground;
 
     // Series colors
     VividSkyBlue = "#50C7E0";

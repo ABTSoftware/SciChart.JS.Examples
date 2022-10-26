@@ -43,7 +43,7 @@ import { appTheme } from "../../../theme";
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsThemeDark });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
     const commonAxisOptions: INumericAxisOptions = {
         drawMajorBands: false,

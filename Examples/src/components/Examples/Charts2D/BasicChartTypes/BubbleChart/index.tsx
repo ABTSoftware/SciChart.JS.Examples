@@ -22,10 +22,10 @@ import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animati
 
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {IPointMetadata} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Model/IPointMetadata";
+import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
 import {
     SplineLineRenderableSeries
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
 
 
 const divElementId = "chart";
@@ -35,7 +35,7 @@ const drawExample = async () => {
     const {
         sciChartSurface,
         wasmContext
-    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsThemeMid});
+    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.05, 0.05)}));
 

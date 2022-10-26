@@ -4,15 +4,15 @@ import {chartBuilder} from "scichart/Builder/chartBuilder";
 import classes from "../../../Examples/Examples.module.scss";
 import {ESeriesType} from "scichart/types/SeriesType";
 import {appTheme} from "../../theme";
-import {EAxisType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/AxisType";
-import {EAnimationType} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/AnimationType";
+import {EAxisType} from "scichart/types/AxisType";
+import {EAnimationType} from "scichart/types/AnimationType";
 
 const divElementId = "chart";
 const drawExample = async () => {
 
     // Create a chart as simple as possible
     return await chartBuilder.build2DChart(divElementId, {
-        surface: { theme: appTheme.SciChartJsThemeDark },
+        surface: { theme: appTheme.SciChartJsTheme },
         // @ts-ignore
         xAxes: { type: EAxisType.NumericAxis, options: { growBy: { min: 0.1, max: 0.1 }}},
         // @ts-ignore

@@ -7,24 +7,23 @@ import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsM
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {SciChartSurface} from "scichart";
 import {NumberRange} from "scichart/Core/NumberRange";
-
 import classes from "../../../../Examples/Examples.module.scss";
 import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import {appTheme} from "../../../theme";
-import {GradientParams} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/GradientParams";
-import {Point} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/Point";
+import {GradientParams} from "scichart/Core/GradientParams";
+import {Point} from "scichart/Core/Point";
 import {
     EHorizontalTextPosition,
     EVerticalTextPosition
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/TextPosition";
-import {PaletteFactory} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Model/PaletteFactory";
-import {Thickness} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/Thickness";
+} from "scichart/types/TextPosition";
+import {PaletteFactory} from "scichart/Charting/Model/PaletteFactory";
+import {Thickness} from "scichart/Core/Thickness";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsThemeMid});
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     // Add an X, Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));

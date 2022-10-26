@@ -19,7 +19,7 @@ const divElementId = "chart";
 
 const drawExample = async () => {
     return await chartBuilder.build2DChart(divElementId, {
-        surface: { theme: appTheme.SciChartJsThemeDark },
+        surface: { theme: appTheme.SciChartJsTheme },
         xAxes: [{
             type: EAxisType.CategoryAxis,
             options: {

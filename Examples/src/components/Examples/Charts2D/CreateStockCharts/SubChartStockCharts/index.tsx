@@ -95,7 +95,7 @@ export const drawExample = async () => {
     const commonSubChartSurfaceOptions: I2DSubSurfaceOptions = {
         subChartPadding: Thickness.fromNumber(10),
         isTransparent: false,
-        theme: appTheme.SciChartJsThemeDark
+        theme: appTheme.SciChartJsTheme
     };
 
     const subChartModifiers = [
@@ -112,7 +112,7 @@ export const drawExample = async () => {
     const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(mainChartWrapper2, {
         surface: {
             id: "mainSurface",
-            theme: appTheme.SciChartJsThemeDark
+            theme: appTheme.SciChartJsTheme
         },
         xAxes: {
             type: EAxisType.NumericAxis,

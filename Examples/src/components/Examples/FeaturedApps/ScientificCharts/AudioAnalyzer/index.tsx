@@ -16,28 +16,28 @@ import {Radix2FFT} from "./Radix2FFT";
 import {appTheme} from "../../../theme";
 import {
     LogarithmicAxis
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Axis/LogarithmicAxis";
-import {ENumericFormat} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/NumericFormat";
-import {GradientParams} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/GradientParams";
-import {PaletteFactory} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Model/PaletteFactory";
-import {Point} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/Point";
+} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
+import {ENumericFormat} from "scichart/types/NumericFormat";
+import {GradientParams} from "scichart/Core/GradientParams";
+import {PaletteFactory} from "scichart/Charting/Model/PaletteFactory";
+import {Point} from "scichart/Core/Point";
 import {
     FastMountainRenderableSeries
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import {
     EllipsePointMarker
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/PointMarkers/EllipsePointMarker";
+} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import classes from "../../../Examples.module.scss";
 import {
     TextAnnotation
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/TextAnnotation";
+} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {
     ECoordinateMode
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/AnnotationBase";
+} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import {
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/AnchorPoint";
+} from "scichart/types/AnchorPoint";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";
@@ -113,7 +113,7 @@ export const drawExample = async () => {
         const {
             sciChartSurface,
             wasmContext
-        } = await SciChartSurface.create(divElementIdAudioChart, {theme: appTheme.SciChartJsThemeMid});
+        } = await SciChartSurface.create(divElementIdAudioChart, {theme: appTheme.SciChartJsTheme});
 
         // Create an XAxis for the live audio
         const xAxis = new NumericAxis(wasmContext, {
@@ -203,7 +203,7 @@ export const drawExample = async () => {
 
     // FFT CHART
     const initFftChart = async () => {
-        const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementIdFttChart, { theme: appTheme.SciChartJsThemeMid });
+        const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementIdFttChart, { theme: appTheme.SciChartJsTheme });
         const xAxis = new LogarithmicAxis(wasmContext, {
             logBase: 10,
             labelFormat: ENumericFormat.SignificantFigures,
@@ -271,7 +271,7 @@ export const drawExample = async () => {
             }
         }
 
-        const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementIdChart3, { theme: appTheme.SciChartJsThemeMid });
+        const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementIdChart3, { theme: appTheme.SciChartJsTheme });
 
         const xAxis = new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Always,
@@ -355,7 +355,7 @@ export default function AudioAnalyzer() {
 
     return (
         <React.Fragment>
-            <div style={{background: appTheme.BackgroundDark}} className={classes.ChartWrapper}>
+            <div style={{background: appTheme.Background}} className={classes.ChartWrapper}>
                 <div id={divElementIdAudioChart} style={{ display: "flex", flexDirection: "column", height: "50%" }}/>
 
                 <div style={{display: "flex" }}>

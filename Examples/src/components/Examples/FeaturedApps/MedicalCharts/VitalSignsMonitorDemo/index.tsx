@@ -90,7 +90,7 @@ const drawExample = async (
 ) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(divElementId, {
         widthAspect: 600, heightAspect: 600,
-        theme: appTheme.SciChartJsThemeMid
+        theme: appTheme.SciChartJsTheme
     });
     const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Once, isVisible: false });
     sciChartSurface.xAxes.add(xAxis);
@@ -269,7 +269,7 @@ export default function VitalSignsMonitorDemo() {
             <div className={classes.ChartContainer}>
                 <div id={divElementId} className={classes.VitalSigns} />
                 <div className={classes.InfoBoxContainer}>
-                    <div className={classes.InfoBox} style={{ color: appTheme.VividOrange, background: appTheme.BackgroundMid }}>
+                    <div className={classes.InfoBox} style={{ color: appTheme.VividOrange, background: appTheme.Background }}>
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>ECG</div>
                         </div>
@@ -286,7 +286,7 @@ export default function VitalSignsMonitorDemo() {
                             </div>
                         </div>
                     </div>
-                    <div className={classes.InfoBox} style={{ color: appTheme.VividSkyBlue, background: appTheme.BackgroundMid }}>
+                    <div className={classes.InfoBox} style={{ color: appTheme.VividSkyBlue, background: appTheme.Background }}>
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>NIBP</div>
                             <div className={classes.IbRow1Col2}>
@@ -303,7 +303,7 @@ export default function VitalSignsMonitorDemo() {
                             </div>
                         </div>
                     </div>
-                    <div className={classes.InfoBox} style={{ color: appTheme.VividPink, background: appTheme.BackgroundMid }}>
+                    <div className={classes.InfoBox} style={{ color: appTheme.VividPink, background: appTheme.Background }}>
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>SV</div>
                             <div className={classes.IbRow1Col2}>
@@ -318,7 +318,7 @@ export default function VitalSignsMonitorDemo() {
                             </div>
                         </div>
                     </div>
-                    <div className={classes.InfoBox} style={{ color: appTheme.VividTeal, background: appTheme.BackgroundMid }}>
+                    <div className={classes.InfoBox} style={{ color: appTheme.VividTeal, background: appTheme.Background }}>
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>
                                 SPO<span style={{ fontSize: 12 }}>2</span>

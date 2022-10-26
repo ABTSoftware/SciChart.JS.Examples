@@ -19,7 +19,7 @@ let timerId: NodeJS.Timeout;
 const drawExample = async () => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsThemeMid
+        theme: appTheme.SciChartJsTheme
     });
 
     const length = 120;
