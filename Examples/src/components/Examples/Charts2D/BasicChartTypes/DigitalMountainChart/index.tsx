@@ -55,9 +55,7 @@ const drawExample = async () => {
 
     // Optional: Add some interactivity to the chart
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(
-        new RubberBandXyZoomModifier({ fill: "#228B2255", stroke: "#228B22CC", strokeThickness: 3 })
-    );
+    sciChartSurface.chartModifiers.add(new RubberBandXyZoomModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
