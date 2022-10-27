@@ -17,9 +17,13 @@ const drawExample = async () => {
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
-    // Add an XAxis, YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.4, 0.4) }));
+    // Create an XAxis and YAxis
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis" }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.4, 0.4),
+            axisTitle: "Y Axis",
+        })
+    );
 
     // Create some data for the example. We need X, Y and Y1 values
     const xValues = [];
@@ -52,7 +56,7 @@ const drawExample = async () => {
         new ZoomExtentsModifier(),
         new ZoomPanModifier(),
         new MouseWheelZoomModifier());
-    
+
     return { wasmContext, sciChartSurface };
 };
 

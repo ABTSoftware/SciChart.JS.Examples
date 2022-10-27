@@ -27,10 +27,10 @@ const drawExample = async () => {
     } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     // Create an XAxis and YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis" }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.05, 0.2),
+            axisTitle: "Y Axis",
         })
     );
 
