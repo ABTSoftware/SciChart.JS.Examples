@@ -133,10 +133,10 @@ const newsBulletAnnotation = (x1: number): CustomAnnotation => {
                  id="layer1"
                  transform="translate(-55.430212,-77.263552)">
                 <rect
-                   style="fill:${appTheme.ForegroundColor};fill-opacity:1;stroke:${appTheme.Background};stroke-width:0.26458332;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.66666667"
+                   style="fill:${appTheme.ForegroundColor};fill-opacity:1;stroke:${appTheme.Background};stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.66666667"
                    id="rect4528"
-                   width="32"
-                   height="16"
+                   width="50"
+                   height="18"
                    x="55.562504"
                    y="77.395844"
                    rx="2"
@@ -144,14 +144,14 @@ const newsBulletAnnotation = (x1: number): CustomAnnotation => {
                 <text
                    xml:space="preserve"
                    style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:${appTheme.Background};fill-opacity:1;stroke:none;stroke-width:0.26458332"
-                   x="57.688622"
-                   y="89.160347"
+                   x="59.688622"
+                   y="91.160347"
                    id="text4540"><tspan
                      sodipodi:role="line"
                      id="tspan4538"
                      x="57.688622"
                      y="89.160347"
-                     style=\"font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:${appTheme.Background};fill-opacity:1;stroke-width:0.26458332\">News</tspan></text>
+                     style=\"font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:${appTheme.Background};fill-opacity:1;stroke-width:0.26458332\">Dividend</tspan></text>
               </g>
             </svg>`
     });
