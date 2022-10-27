@@ -12,12 +12,14 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 
 import classes from "../../../../Examples/Examples.module.scss";
 import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
     // Create an XAxis and YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -27,25 +29,22 @@ const drawExample = async () => {
     );
 
     const POINTS = 1000;
-    const xValues = [];
-    const yValues = [];
-    const STEP = (3 * Math.PI) / POINTS;
-    for (let i = 0; i <= 1000; i++) {
-        xValues.push(i);
-        yValues.push(Math.abs(Math.sin(i * STEP)));
-    }
+
+    // Create arrays of x, y values
+    const xValues = Array.from(Array(POINTS).keys());
+    const yValues = new RandomWalkGenerator().Seed(0).getRandomWalkSeries(POINTS).yValues;
 
     // Create a Mountain Series and add to the chart
     sciChartSurface.renderableSeries.add(new FastMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-        stroke: "#4682b4",
-        strokeThickness: 2,
+        stroke: appTheme.VividSkyBlue,
+        strokeThickness: 3,
         zeroLineY: 0.0,
-        fill: "rgba(176, 196, 222, 0.7)", // when a solid color is required, use fill
+        fill: appTheme.VividSkyBlue, // when a solid color is required, use fill
         // when a gradient is required, use fillLinearGradient
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-            { color: "rgba(70,130,180,1)", offset: 0 },
-            { color: "rgba(70,130,180,0.2)", offset: 1 }
+            { color: appTheme.MutedSkyBlue, offset: 0 },
+            { color: "Transparent", offset: 1 }
         ]),
         animation: new WaveAnimation({ duration: 1000, fadeEffect: true, zeroLine: 0 })
     }));
