@@ -196,7 +196,7 @@ export const drawExample = async () => {
             verticalAnchorPoint: EVerticalAnchorPoint.Top,
             text: "This example uses your microphone to generate waveforms. Say something!",
             textColor: "#FFFFFF44"
-        }))
+        }));
 
         return sciChartSurface;
     };

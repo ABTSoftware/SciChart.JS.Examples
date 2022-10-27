@@ -37,7 +37,7 @@ export class SciChart2022AppTheme implements AppThemeBase {
     SciChartJsTheme = new SciChartJS2022Theme();
 
     // General colors
-    ForegroundColor = "#FFF";
+    ForegroundColor = "#FFFFFF";
     Background = this.SciChartJsTheme.sciChartBackground;
 
     // Series colors

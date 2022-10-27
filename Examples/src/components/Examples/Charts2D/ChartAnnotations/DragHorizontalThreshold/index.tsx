@@ -19,13 +19,14 @@ import {
 import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import {parseColorToUIntArgb} from "scichart/utils/parseColor";
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
 import {GradientParams} from "scichart/Core/GradientParams";
 import {Point} from "scichart/Core/Point";
 import {VerticalLineAnnotation} from "scichart/Charting/Visuals/Annotations/VerticalLineAnnotation";
 import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
@@ -33,7 +34,7 @@ const divElementId = "chart";
 // tslint:disable:max-line-length
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
     // Add an XAxis, YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -43,15 +44,15 @@ const drawExample = async () => {
 
     // Create a paletteprovider to colour the series depending on a threshold value
     const thresholdPalette = new ThresholdPaletteProvider(
-        4, "#FF333333",
-        8, "#33FF3333");
+        4, appTheme.MutedOrange,
+        8, appTheme.VividTeal);
 
     // Add a Column series with some values to the chart
     const { xValues, yValues } = ExampleDataProvider.getDampedSinewave(0, 10, 0, 0.001, 3000, 10);
 
     sciChartSurface.renderableSeries.add(
         new FastMountainRenderableSeries(wasmContext, {
-            stroke: "#4682b4",
+            stroke: appTheme.PaleSkyBlue,
             strokeThickness: 5,
             zeroLineY: 0.0,
             dataSeries: new XyDataSeries(wasmContext, {
@@ -59,8 +60,8 @@ const drawExample = async () => {
                 yValues
             }),
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: "rgba(70,130,180,1)", offset: 0 },
-                { color: "rgba(70,130,180,0.2)", offset: 1 }
+                { color: appTheme.VividSkyBlue, offset: 0 },
+                { color: appTheme.VividSkyBlue + "77", offset: 1 }
             ]),
             paletteProvider: thresholdPalette,
         })
@@ -72,7 +73,7 @@ const drawExample = async () => {
         xCoordinateMode: ECoordinateMode.Relative,
         x1: 0.5,
         y1: 4.2,
-        fontSize: 16,
+        fontSize: 22,
         text: "Drag the lines!",
         textColor: "White",
     });
@@ -81,8 +82,10 @@ const drawExample = async () => {
         y1: 4.0,
         isEditable: true,
         showLabel: true,
-        stroke: "#FF3333",
-        axisLabelFill: "#FF3333",
+        stroke: appTheme.VividOrange,
+        strokeThickness: 3,
+        axisLabelFill: appTheme.VividOrange,
+        axisLabelStroke: appTheme.ForegroundColor,
         labelPlacement: ELabelPlacement.Axis,
         onDrag: (args) => {
             // When the horizontal line is dragged, update the
@@ -98,19 +101,34 @@ const drawExample = async () => {
     // Add a vertical line
     const verticalLine = new VerticalLineAnnotation({
         x1: 8,
-        strokeThickness: 2,
+        strokeThickness: 3,
         isEditable: true,
         showLabel: true,
-        stroke: "DarkGreen",
-        axisLabelFill: "DarkGreen",
-        axisLabelStroke: "White",
+        stroke: appTheme.VividTeal,
+        axisLabelFill: appTheme.VividTeal,
+        axisLabelStroke: appTheme.ForegroundColor,
         labelPlacement: ELabelPlacement.Axis,
         onDrag: (args) => {
-          thresholdPalette.xThresholdValue = verticalLine.x1;
-          sciChartSurface.invalidateElement();
+            // When the vertical line is dragged, update the
+            // threshold palette and redraw the SciChartSurface
+            thresholdPalette.xThresholdValue = verticalLine.x1;
+            sciChartSurface.invalidateElement();
         },
     });
     sciChartSurface.annotations.add(verticalLine);
+
+    // Add instructions
+    sciChartSurface.annotations.add(new TextAnnotation({
+        x1: 0,
+        y1: 0,
+        xAxisId: "history",
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        text: "SciChart.js supports editable, draggable annotations and dynamic color/fill rules. Drag a threshold line!",
+        textColor: appTheme.ForegroundColor + "77",
+    }))
 
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
