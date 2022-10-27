@@ -15,6 +15,8 @@ export interface AppThemeBase {
     VividOrange: string;
     VividBlue: string;
     VividPurple: string;
+    VividGreen: string;
+    VividRed: string;
 
     MutedSkyBlue: string;
     MutedPink: string;
@@ -45,6 +47,8 @@ export class SciChart2022AppTheme implements AppThemeBase {
     VividOrange = "#F48420";
     VividBlue = "#364BA0";
     VividPurple = "#882B91";
+    VividGreen = "#67BDAF";
+    VividRed = "#C52E60";
 
     DarkIndigo = "#14233C";
     Indigo = "#264B93";
