@@ -124,6 +124,7 @@ const drawExample = async () => {
         new ZoomExtentsModifier()
     );
 
+    // Optional: Add some annotations (text) to show detail
     sciChartSurface.annotations.add(new TextAnnotation({
         x1: varianceData[0].date,
         y1: varianceData[0].actual,
@@ -132,7 +133,7 @@ const drawExample = async () => {
         text: "Actual data",
         opacity: 0.45,
         textColor: appTheme.ForegroundColor,
-    }))
+    }));
 
     sciChartSurface.annotations.add(new TextAnnotation({
         x1: varianceData[5].date,
@@ -142,7 +143,7 @@ const drawExample = async () => {
         yCoordShift: 50,
         opacity: 0.45,
         textColor: appTheme.ForegroundColor,
-    }))
+    }));
 
     sciChartSurface.zoomExtents();
     return { wasmContext, sciChartSurface };

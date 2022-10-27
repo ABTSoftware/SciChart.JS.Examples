@@ -14,6 +14,7 @@ import { XyzDataSeries3D } from "scichart/Charting3D/Model/DataSeries/XyzDataSer
 import { AscData, AscReader } from "./AscReader";
 import { linearColorMapLerp } from "scichart/utils/colorUtil";
 import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
@@ -27,7 +28,7 @@ const drawExample = async () => {
     const dataFromServer = await getDataFromServer();
 
     // Create a SciChart3DSurface
-    const { wasmContext, sciChart3DSurface } = await SciChart3DSurface.create(divElementId);
+    const { wasmContext, sciChart3DSurface } = await SciChart3DSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
     // Create and attach a camera to the 3D Viewport
     sciChart3DSurface.camera = new CameraController(wasmContext, {
@@ -49,11 +50,11 @@ const drawExample = async () => {
         dataFromServer.meta
     );
 
-    const series = new ScatterRenderableSeries3D(wasmContext, {
+    const pointCloud = new ScatterRenderableSeries3D(wasmContext, {
         pointMarker: new PixelPointMarker3D(wasmContext, { fill: "#00FF00" }),
         dataSeries: xyzDataSeries
     });
-    sciChart3DSurface.renderableSeries.add(series);
+    sciChart3DSurface.renderableSeries.add(pointCloud);
 
     // Add interactivity modifiers for orbiting and zooming with the mousewheel
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
@@ -119,9 +120,7 @@ export default function LiDAR3DPointCloudDemo() {
 
     return (
         <div className={classes.ChartWrapper}>
-            <div style={{ minHeight: 500 }}>
-                <div id={divElementId}></div>
-            </div>
+            <div id={divElementId}></div>
         </div>
     );
 }
