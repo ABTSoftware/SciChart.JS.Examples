@@ -218,9 +218,6 @@ const drawExample = async (
     return { sciChartSurface, wasmContext, controls: { handleStart, handleStop } };
 };
 
-// STYLES
-const useStyles = makeStyles(theme => ({}));
-
 let currentPoint = 0;
 let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
