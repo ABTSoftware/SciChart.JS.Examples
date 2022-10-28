@@ -125,7 +125,9 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
             stroke: appTheme.VividOrange,
             strokeThickness: 3,
+            // Digital (step) lines are enabled by setting isDigitalLine: true
             isDigitalLine: true,
+            // Optional pointmarkers may be added via this property.
             pointMarker: new EllipsePointMarker(wasmContext, { width: 9, height: 9, fill: appTheme.ForegroundColor, strokeThickness: 0}),
             animation: { type: EAnimationType.Wave  , options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 } },
         }));
@@ -149,7 +151,7 @@ const drawExample = async () => {
         sciChartSurface.chartModifiers.add(new RolloverModifier({
             rolloverLineStroke: appTheme.VividOrange,
             rolloverLineStrokeThickness: 2,
-            rolloverLineStrokeDashArray: [2.2],
+            rolloverLineStrokeDashArray: [2, 2],
         }));
 
         return sciChartSurface;
@@ -166,6 +168,7 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
             stroke: appTheme.VividOrange,
             strokeThickness: 3,
+            // Dashed line charts are enabled by setting the StrokeDashArray property. The array defines draw & gap pixel length
             strokeDashArray: [2, 2],
             animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 } },
         }));
@@ -384,7 +387,7 @@ const drawExample = async () => {
             }
         };
 
-        // Create a line series with threshold palleteprovider
+        // Create a line series with threshold palette provider
         sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
             strokeThickness: 3,

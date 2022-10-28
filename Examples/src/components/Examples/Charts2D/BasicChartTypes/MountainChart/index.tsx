@@ -30,9 +30,8 @@ const drawExample = async () => {
 
     const POINTS = 1000;
 
-    // Create arrays of x, y values
-    const xValues = Array.from(Array(POINTS).keys());
-    const yValues = new RandomWalkGenerator().Seed(0).getRandomWalkSeries(POINTS).yValues;
+    // Create arrays of x, y values (just arrays of numbers)
+    const { xValues, yValues } = new RandomWalkGenerator().Seed(0).getRandomWalkSeries(POINTS);
 
     // Create a Mountain Series and add to the chart
     sciChartSurface.renderableSeries.add(new FastMountainRenderableSeries(wasmContext, {

@@ -67,6 +67,7 @@ const drawExample = async () => {
     // The Bubble series requires a special dataseries type called XyzDataSeries with X,Y and Z (size) values
     sciChartSurface.renderableSeries.add(new FastBubbleRenderableSeries(wasmContext, {
         dataSeries: new XyzDataSeries(wasmContext, {xValues, yValues, zValues}),
+        // Pointmarker defines the marker shown per-bubble point. This will be scaled according to z-value
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 64,
             height: 64,
