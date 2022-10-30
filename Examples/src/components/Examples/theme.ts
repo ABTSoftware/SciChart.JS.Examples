@@ -24,6 +24,7 @@ export interface AppThemeBase {
     MutedOrange: string;
     MutedBlue: string;
     MutedPurple: string;
+    MutedRed: string;
 
     PaleSkyBlue: string;
     PalePink: string;
@@ -59,6 +60,7 @@ export class SciChart2022AppTheme implements AppThemeBase {
     MutedOrange = "#E7C565";
     MutedBlue = "#537ABD";
     MutedPurple = "#A16DAE";
+    MutedRed = "#DC7969";
 
     PaleSkyBlue = "#E4F5FC";
     PalePink = "#EEB3D2";
