@@ -159,7 +159,6 @@ export default function StackedColumnChart() {
                 100% Stacked Column?&nbsp;
                 <input  type="checkbox" onChange={onChecked}/>
             </label>
-
         </div>
     );
 }
