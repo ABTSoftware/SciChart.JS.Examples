@@ -27,6 +27,10 @@ import {HeatmapColorMap} from "scichart/Charting/Visuals/RenderableSeries/Heatma
 import {zeroArray2D} from "scichart/utils/zeroArray2D";
 import {Point} from "scichart/Core/Point";
 import {NumberRange} from "scichart/Core/NumberRange";
+import {Thickness} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/Thickness";
+import {
+    ResetCamera3DModifier
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting3D/ChartModifiers/ResetCamera3DModifier";
 
 export const div3DChart = "div3DChart";
 export const div2DChart1 = "div2DChart1";
@@ -63,6 +67,7 @@ export const draw3DChart = async () => {
     // Add optional interaction modifiers (mousewheel and orbit via mouse drag)
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
+    sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
 
     // returns data for the example. UniformGridDataSeries3D expects number[][] 2D Array
     // filled with values. The values are heights (y-values) on the 3d chart and
@@ -200,15 +205,42 @@ export const draw3DChartLegend = async () => {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
             loadingAnimationBackground: appTheme.DarkIndigo + "BB",
+        },
+        canvasBorder: {
+            border: 2,
+            color: appTheme.DarkIndigo
         }
     });
-    const axisOptions = {
+    const xAxisOptions = {
         drawMajorGridLines: false,
         drawMinorGridLines: false,
+        drawMajorTickLines: false,
+        drawMinorTickLines: false,
+        drawLabels: false,
     };
+    const yAxisOptions = {
+        ...xAxisOptions,
+        drawMajorTickLines: true,
+        drawMinorTickLines: true,
+        drawLabels: true,
+        axisBorder: {
+            borderLeft: 1,
+            color: appTheme.ForegroundColor + "77"
+        },
+        majorTickLineStyle: {
+            color: appTheme.ForegroundColor,
+            tickSize: 6,
+            strokeThickness: 1,
+        },
+        minorTickLineStyle: {
+            color: appTheme.ForegroundColor,
+            tickSize: 3,
+            strokeThickness: 1,
+        }
+    }
     // We want to hide major/minor gridlines and labels on the xaxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {...axisOptions, drawLabels: false, } ));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {...axisOptions, }  ));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {...xAxisOptions, } ));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {...yAxisOptions } ));
 
     const legendHeatmapData = zeroArray2D([100, 1]);
     for(let i = 0; i < 100; i++) {
