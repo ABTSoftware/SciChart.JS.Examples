@@ -29,6 +29,8 @@ import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
 import {parseColorToUIntArgb} from "scichart/utils/parseColor";
 import {HorizontalLineAnnotation} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
 import {ELabelPlacement} from "scichart/types/LabelPlacement";
+import {EDataLabelSkipMode} from "scichart/types/DataLabelSkipMode";
+import {EVerticalTextPosition} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/TextPosition";
 
 const divElementId1 = "chart1";
 const divElementId2 = "chart2";
@@ -130,6 +132,12 @@ const drawExample = async () => {
             // Optional pointmarkers may be added via this property.
             pointMarker: new EllipsePointMarker(wasmContext, { width: 9, height: 9, fill: appTheme.ForegroundColor, strokeThickness: 0}),
             animation: { type: EAnimationType.Wave  , options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 } },
+            // Optional DataLabels may be added via this property.
+            dataLabels: {
+                style: { fontFamily: "Arial", fontSize: 13, color: appTheme.ForegroundColor, padding: new Thickness(5, 5, 5, 5) },
+                aboveBelow: false,
+                verticalTextPosition: EVerticalTextPosition.Top,
+            }
         }));
 
         return sciChartSurface;
@@ -392,7 +400,13 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
             strokeThickness: 3,
             stroke: appTheme.VividOrange,
-            paletteProvider
+            // paletteprovider allows per-point colouring
+            paletteProvider,
+            // Datalabels may be shown using this property
+            dataLabels: {
+                style: { fontFamily: "Arial", fontSize: 11, color: appTheme.PaleSkyBlue },
+                skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious
+            }
         }));
 
         // Add annotations to show the thresholds

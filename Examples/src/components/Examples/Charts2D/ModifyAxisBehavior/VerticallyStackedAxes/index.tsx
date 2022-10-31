@@ -16,35 +16,57 @@ import { LeftAlignedOuterVerticallyStackedAxisLayoutStrategy } from "scichart/Ch
 import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
 import { EXyDirection } from "scichart/types/XyDirection";
 import { EExecuteOn } from "scichart/types/ExecuteOn";
+import {appTheme} from "../../../theme";
+import {
+    TextAnnotation
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/AnchorPoint";
+import {
+    ECoordinateMode
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/AnnotationBase";
 
 const divElementId = "chart1";
 
 const drawExample = async (seriesCount: number) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     sciChartSurface.layoutManager.leftOuterAxesLayoutStrategy = new LeftAlignedOuterVerticallyStackedAxisLayoutStrategy();
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Top
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis"}));
+
+    // Add title annotation
+    sciChartSurface.annotations.add(new TextAnnotation({
+        text: "Vertically Stacked Axis: Custom layout of axis to allow traces to overlap. Useful for ECG charts",
+        fontSize: 16,
+        textColor: appTheme.ForegroundColor,
+        x1: 0.5,
+        y1: 0,
+        opacity: 0.77,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
     }));
 
     for (let i = 0; i < seriesCount; i++) {
         const range = 10 / seriesCount;
-        const yAxis = new NumericAxis(wasmContext, { 
+        const yAxis = new NumericAxis(wasmContext, {
             id: "Y" + i,
             visibleRange: new NumberRange(-range, range),
             axisAlignment: EAxisAlignment.Left,
             zoomExtentsToInitialRange: true,
             maxAutoTicks: 5,
             drawMinorGridLines: false,
-            axisBorder: { borderTop: 5, borderBottom: 5 }
+            axisBorder: { borderTop: 5, borderBottom: 5 },
+            axisTitle: `Y ${i}`
         });
         sciChartSurface.yAxes.add(yAxis);
 
-        let color = Math.round(((i + 1) * 250) / seriesCount);
         const lineSeries = new FastLineRenderableSeries(wasmContext, {
             yAxisId: yAxis.id,
-            stroke: `rgba(${255 - color},${color},${(color + 125) % 255},0.7)`
+            stroke: "auto",
+            strokeThickness: 2,
         });
         lineSeries.dataSeries = getRandomSinewave(wasmContext, 0, Math.random() * 3, Math.random() * 50, 10000, 10);
         sciChartSurface.renderableSeries.add(lineSeries);
