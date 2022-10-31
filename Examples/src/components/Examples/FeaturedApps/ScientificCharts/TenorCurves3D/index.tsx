@@ -3,7 +3,6 @@ import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/Renderable
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {SciChartSurface} from "scichart";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {
     EDrawMeshAs,
@@ -18,7 +17,6 @@ import {MouseWheelZoomModifier3D} from "scichart/Charting3D/ChartModifiers/Mouse
 import {CameraController} from "scichart/Charting3D/CameraController";
 import {Vector3} from "scichart/Charting3D/Vector3";
 import {SciChart3DSurface} from "scichart/Charting3D/Visuals/SciChart3DSurface";
-import {EColor} from "scichart/types/Color";
 import {getTenorCurveData} from "./TenorCurveData";
 import {IDeletable} from "scichart/Core/IDeletable";
 import classes from "../../../../Examples/Examples.module.scss";
@@ -27,6 +25,8 @@ import {UniformHeatmapRenderableSeries} from "scichart/Charting/Visuals/Renderab
 import {UniformHeatmapDataSeries} from "scichart/Charting/Model/UniformHeatmapDataSeries";
 import {HeatmapColorMap} from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
 import {zeroArray2D} from "scichart/utils/zeroArray2D";
+import {Point} from "scichart/Core/Point";
+import {NumberRange} from "scichart/Core/NumberRange";
 
 export const div3DChart = "div3DChart";
 export const div2DChart1 = "div2DChart1";
@@ -117,17 +117,28 @@ export const drawLineChart1 = async () => {
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
-    const yAxis = new NumericAxis(wasmContext);
-    sciChartSurface.yAxes.add(yAxis);
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05)}));
 
-    const lineSeries = new FastLineRenderableSeries(wasmContext, {stroke: "#E6E6FA"});
-    lineSeries.strokeThickness = 3;
-    lineSeries.pointMarker = new EllipsePointMarker(wasmContext, {
-        width: 5,
-        height: 5,
-        fill: EColor.White
+    const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
+        stroke: appTheme.VividSkyBlue,
+        strokeThickness: 3,
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 9,
+            height: 9,
+            stroke: appTheme.VividSkyBlue,
+            strokeThickness: 2,
+            fill: appTheme.ForegroundColor
+        }),
+        fillLinearGradient: {
+            startPoint: new Point(0,0),
+            endPoint: new Point(0,1),
+            gradientStops: [
+                { offset: 0, color: appTheme.VividSkyBlue },
+                { offset: 1, color: "Transparent" },
+            ]
+        },
     });
-    sciChartSurface.renderableSeries.add(lineSeries);
+    sciChartSurface.renderableSeries.add(mountainSeries);
 
     const dataSeries = new XyDataSeries(wasmContext);
     const tenorCurvesData = getTenorCurveData(X_DATA_SIZE, Z_DATA_SIZE);
@@ -139,7 +150,7 @@ export const drawLineChart1 = async () => {
         }
         dataSeries.append(z, average / X_DATA_SIZE);
     }
-    lineSeries.dataSeries = dataSeries;
+    mountainSeries.dataSeries = dataSeries;
 
     return sciChartSurface;
 };
@@ -148,11 +159,26 @@ export const drawLineChart2 = async () => {
     const {sciChartSurface, wasmContext} = await SciChartSurface.create(div2DChart2, {theme: appTheme.SciChartJsTheme});
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05)}));
 
     const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
-        stroke: "#FFC9A8AA",
-        strokeThickness: 3,
+        stroke: appTheme.PaleSkyBlue,
+        strokeThickness: 5,
+        fillLinearGradient: {
+            startPoint: new Point(0,0),
+            endPoint: new Point(0,1),
+            gradientStops: [
+                { offset: 0, color: appTheme.VividTeal},
+                { offset: 1, color: "Transparent"}
+            ]
+        },
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 9,
+            height: 9,
+            stroke: appTheme.PaleSkyBlue,
+            strokeThickness: 2,
+            fill: appTheme.ForegroundColor
+        }),
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 
@@ -248,24 +274,6 @@ export default function TenorCurves3DChart() {
                     <div id={div2DChart1} style={{position: "relative", height: "50%"}}></div>
                     <div id={div2DChart2} style={{height: "50%"}}></div>
                 </div>
-                {/*<div style={{display: "flex", flexWrap: "wrap", height: "100%"}}>*/}
-                {/*    <div style={{width: "50%"}}>*/}
-                {/*        <div id={div3DChart} style={{width: "100%", height: "100%"}}>*/}
-                {/*        </div>*/}
-                {/*        <div id={div3DChartLegend} style={{*/}
-                {/*            position: "relative",*/}
-                {/*            right: "120px",*/}
-                {/*            top: "50px",*/}
-                {/*            height: "90%",*/}
-                {/*            width: "100px",*/}
-                {/*            background: "Red"*/}
-                {/*        }}></div>*/}
-                {/*    </div>*/}
-                {/*    <div style={{display: "flex", flexDirection: "column", width: "50%", alignItems: "stretch"}}>*/}
-                {/*        <div id={div2DChart1} style={{flex: "auto"}}/>*/}
-                {/*        <div id={div2DChart2} style={{flex: "auto"}}/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
             </div>
         </React.Fragment>
     );
