@@ -13,7 +13,7 @@ import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier"
 import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
+import { appTheme } from "../../../theme";
 
 const divElementId = "chart";
 
