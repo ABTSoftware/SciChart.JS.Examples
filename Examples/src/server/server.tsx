@@ -14,8 +14,15 @@ import App from "../components/App";
 import { customTheme } from "../theme";
 import { renderIndexHtml } from "./renderIndexHtml";
 import * as http from "http";
-import {createSocketServer } from "./websockets";
+import { createSocketServer } from "./websockets";
 import { tq3080_DSM_2M } from "./Data/tq3080_DSM_2M";
+import { candlesADAUSDT } from "./BinanceData/candlesADAUSDT";
+import { TBinanceQueryParams } from "./types/TBinanceQueryParams";
+import { candlesBTCUSDT } from "./BinanceData/candlesBTCUSDT";
+import { TBinanceCandleData } from "../commonTypes/TBinanceCandleData";
+import { candlesDOGEUSDT } from "./BinanceData/candlesDOGEUSDT";
+import { candlesETHUSDT } from "./BinanceData/candlesETHUSDT";
+import { candlesXRPUSDT } from "./BinanceData/candlesXRPUSDT";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
@@ -52,21 +59,23 @@ app.use(compression({ filter: shouldCompress }));
 const server = http.createServer(app);
 const io = createSocketServer(server);
 
-function shouldCompress (req: Request, res: Response) {
-    if (req.headers['x-no-compression']) {
+function shouldCompress(req: Request, res: Response) {
+    if (req.headers["x-no-compression"]) {
         // don't compress responses with this request header
-        return false
+        return false;
     }
 
     // fallback to standard filter function
-    return compression.filter(req, res)
+    return compression.filter(req, res);
 }
 
 // Server static assets
-app.use(express.static(targetDir, {
-    etag: true,
-    maxAge: 0
-}));
+app.use(
+    express.static(targetDir, {
+        etag: true,
+        maxAge: 0
+    })
+);
 
 app.get("/api/license", (req, res) => {
     const domainLicense = process.env.SCLICENSE;
@@ -77,6 +86,29 @@ app.get("/api/license", (req, res) => {
 app.get("/api/lidarData", (req, res) => {
     console.log("returning lidar data");
     res.send(tq3080_DSM_2M);
+});
+
+app.get("/api/get-binance-candles", (req, res) => {
+    const params = req.query as TBinanceQueryParams;
+    let data: TBinanceCandleData;
+    switch (params.symbol) {
+        case "ADAUSDT":
+            data = candlesADAUSDT;
+            break;
+        case "BTCUSDT":
+            data = candlesBTCUSDT;
+            break;
+        case "DOGEUSDT":
+            data = candlesDOGEUSDT;
+            break;
+        case "ETHUSDT":
+            data = candlesETHUSDT;
+            break;
+        case "XRPUSDT":
+            data = candlesXRPUSDT;
+            break;
+    }
+    res.send(data);
 });
 
 app.use("/api/thevirustracker", (req: Request, res: Response) => {
