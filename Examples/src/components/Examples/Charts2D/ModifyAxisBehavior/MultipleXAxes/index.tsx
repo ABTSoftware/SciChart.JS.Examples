@@ -15,19 +15,10 @@ import {ELabelAlignment} from "scichart/types/LabelAlignment";
 import {appTheme} from "../../../theme";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
-import {
-    EllipsePointMarker
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {
-    TextAnnotation
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/TextAnnotation";
-import {
-    ECoordinateMode
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/AnnotationBase";
-import {
-    EHorizontalAnchorPoint,
-    EVerticalAnchorPoint
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/AnchorPoint";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 
 const divElementId = "chart1";
 
