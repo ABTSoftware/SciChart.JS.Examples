@@ -16,7 +16,7 @@ import {HeatmapLegend} from "scichart/Charting/Visuals/HeatmapLegend";
 const divElementId = "chart";
 const divHeatmapLegend = "heatmapLegend";
 const cachedHeatmapDataForExample: number[][][] = [];
-const MAX_SERIES = 20;
+const MAX_SERIES = 100;
 const WIDTH = 300;
 const HEIGHT = 200;
 
@@ -31,7 +31,7 @@ const drawExample = async () => {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
     // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
-    const initialZValues: number[][] = generateExampleData(WIDTH, HEIGHT, 200, 0, MAX_SERIES);
+    const initialZValues: number[][] = generateExampleData(WIDTH, HEIGHT, 200, 20, MAX_SERIES);
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
         xStart: 100,
         xStep: 1,
@@ -44,6 +44,7 @@ const drawExample = async () => {
     // HeatmapDataSeries which correspond to gradient stops at 0..1
     const heatmapSeries = new UniformHeatmapRenderableSeries(wasmContext, {
         dataSeries: heatmapDataSeries,
+        useLinearTextureFiltering: false,
         colorMap: new HeatmapColorMap({
             minimum: 0,
             maximum: 200,
@@ -118,7 +119,8 @@ function generateExampleData(width: number, height: number, cpMax: number, index
     const zValues = zeroArray2D([height, width]);
     // math.round but to X digits
     function roundTo(number: number, digits: number) {
-        return parseFloat(number.toFixed(digits));
+        return number;
+        // return parseFloat(number.toFixed(digits));
     }
     const angle = roundTo(Math.PI * 2 * index, 3) / maxIndex;
 
@@ -131,7 +133,7 @@ function generateExampleData(width: number, height: number, cpMax: number, index
             const cy = height / 2;
             const r = Math.sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy));
             const exp = Math.max(0, 1 - r * 0.008);
-            const zValue = v * exp + Math.random() * 50;
+            const zValue = v * exp + Math.random() * 10;
             zValues[y][x] = zValue > cpMax ? cpMax : zValue;
         }
     }
@@ -141,49 +143,26 @@ function generateExampleData(width: number, height: number, cpMax: number, index
 
 let timerId: NodeJS.Timeout;
 let updateIndex: number = 0;
+let heatmapDataSeries: UniformHeatmapDataSeries;
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function HeatmapChart() {
-    const [heatmapDataSeries, setHeatmapDataSeries] = React.useState<UniformHeatmapDataSeries>();
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
 
-    React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            const legend = await drawHeatmapLegend();
-            setSciChartSurface(res.sciChartSurface);
-            setHeatmapLegend(legend);
-            setHeatmapDataSeries(res.heatmapDataSeries);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            sciChartSurface?.delete();
-            heatmapLegend?.delete();
-        }
-    }, []);
-
     const updateChart = () => {
-        timerId = setTimeout(updateChart, 25);
         // Cycle through pre-generated data on timer tick
-        const newZValues = cachedHeatmapDataForExample[updateIndex++];
+        const newZValues = generateExampleData(WIDTH, HEIGHT, 200, updateIndex++, MAX_SERIES);
         // Update the heatmap z-values
         heatmapDataSeries.setZValues(newZValues);
         if (updateIndex >= MAX_SERIES) {
             updateIndex = 0;
         }
+        timerId = setTimeout(updateChart, 20);
     };
 
     const handleStart = () => {
-        // Pre-generate data for the example.
-        // We do this once since data-generation of complex waveforms is quite heavy.
-        if (cachedHeatmapDataForExample.length === 0) {
-            for (let i = 1; i < MAX_SERIES; i++) {
-                cachedHeatmapDataForExample.push(generateExampleData(WIDTH, HEIGHT, 200, i, MAX_SERIES));
-            }
-        }
-
         if (!timerId) {
             updateChart();
         }
@@ -193,6 +172,22 @@ export default function HeatmapChart() {
         clearTimeout(timerId);
         timerId = undefined;
     };
+
+    React.useEffect(() => {
+        (async () => {
+            const res = await drawExample();
+            const legend = await drawHeatmapLegend();
+            setSciChartSurface(res.sciChartSurface);
+            setHeatmapLegend(legend);
+            heatmapDataSeries = res.heatmapDataSeries;
+            handleStart();
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => {
+            sciChartSurface?.delete();
+            heatmapLegend?.delete();
+        }
+    }, []);
 
     return (
         <div className={classes.ChartWrapper}>
