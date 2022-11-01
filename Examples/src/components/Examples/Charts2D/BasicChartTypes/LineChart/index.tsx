@@ -337,7 +337,7 @@ const drawExample = async () => {
             -0.0313127, -0.3261995, -0.5490017, -0.2462973, 0.2475873,
             0.15, -0.2443795, -0.7002707, NaN, -1.2466400,
             -0.8722853, -1.1531512, -0.7264951, -0.9779677, -0.5377044
-        ]
+        ];
 
         sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
