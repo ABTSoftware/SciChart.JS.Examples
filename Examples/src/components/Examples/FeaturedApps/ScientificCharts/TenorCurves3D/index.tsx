@@ -21,16 +21,10 @@ import {getTenorCurveData} from "./TenorCurveData";
 import {IDeletable} from "scichart/Core/IDeletable";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {UniformHeatmapRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
-import {UniformHeatmapDataSeries} from "scichart/Charting/Model/UniformHeatmapDataSeries";
-import {HeatmapColorMap} from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
-import {zeroArray2D} from "scichart/utils/zeroArray2D";
 import {Point} from "scichart/Core/Point";
 import {NumberRange} from "scichart/Core/NumberRange";
-import {Thickness} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/Thickness";
-import {
-    ResetCamera3DModifier
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting3D/ChartModifiers/ResetCamera3DModifier";
+import {ResetCamera3DModifier} from "scichart/Charting3D/ChartModifiers/ResetCamera3DModifier";
+import {HeatmapLegend} from "scichart/Charting/Visuals/HeatmapLegend";
 
 export const div3DChart = "div3DChart";
 export const div2DChart1 = "div2DChart1";
@@ -199,66 +193,29 @@ export const drawLineChart2 = async () => {
 };
 
 export const draw3DChartLegend = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(div3DChartLegend, {
-        // Create a theme based on the app theme but with a more transparent background
+    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(div3DChartLegend, {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
             loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
-        canvasBorder: {
-            border: 2,
-            color: appTheme.DarkIndigo
-        }
-    });
-    const xAxisOptions = {
-        drawMajorGridLines: false,
-        drawMinorGridLines: false,
-        drawMajorTickLines: false,
-        drawMinorTickLines: false,
-        drawLabels: false,
-    };
-    const yAxisOptions = {
-        ...xAxisOptions,
-        drawMajorTickLines: true,
-        drawMinorTickLines: true,
-        drawLabels: true,
-        axisBorder: {
-            borderLeft: 1,
-            color: appTheme.ForegroundColor + "77"
+        yAxisOptions: {
+            axisBorder: {
+                borderLeft: 1,
+                color: appTheme.ForegroundColor + "77"
+            },
+            majorTickLineStyle: {
+                color: appTheme.ForegroundColor,
+                tickSize: 6,
+                strokeThickness: 1,
+            },
+            minorTickLineStyle: {
+                color: appTheme.ForegroundColor,
+                tickSize: 3,
+                strokeThickness: 1,
+            }
         },
-        majorTickLineStyle: {
-            color: appTheme.ForegroundColor,
-            tickSize: 6,
-            strokeThickness: 1,
-        },
-        minorTickLineStyle: {
-            color: appTheme.ForegroundColor,
-            tickSize: 3,
-            strokeThickness: 1,
-        }
-    }
-    // We want to hide major/minor gridlines and labels on the xaxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {...xAxisOptions, } ));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {...yAxisOptions } ));
-
-    const legendHeatmapData = zeroArray2D([100, 1]);
-    for(let i = 0; i < 100; i++) {
-        legendHeatmapData[i][0] = i;
-    }
-
-    // Add a heatmap with 1D data. This contains a 1x100 array of values equal to 0...99.
-    // the values are mapped ot a colormap with the same gradient stops as the 3d chart. result is a 3d chart heat legend
-    sciChartSurface.renderableSeries.add(new UniformHeatmapRenderableSeries(wasmContext, {
-        dataSeries: new UniformHeatmapDataSeries(wasmContext, {
-            xStart: 0,
-            xStep: 1,
-            yStart: 0,
-            yStep: 1,
-            zValues: legendHeatmapData,
-        }),
-        useLinearTextureFiltering: true,
-        colorMap: new HeatmapColorMap({
+        colorMap: {
             minimum: 0,
             maximum: 100,
             gradientStops: [
@@ -269,11 +226,11 @@ export const draw3DChartLegend = async () => {
                 {offset: 0.3, color: appTheme.VividSkyBlue},
                 {offset: 0.2, color: appTheme.Indigo},
                 {offset: 0, color: appTheme.DarkIndigo}
-            ]
-        })
-    }));
+            ],
+        }
+    });
 
-    return sciChartSurface;
+    return heatmapLegend;
 }
 
 let surfaces: IDeletable[] = [];
