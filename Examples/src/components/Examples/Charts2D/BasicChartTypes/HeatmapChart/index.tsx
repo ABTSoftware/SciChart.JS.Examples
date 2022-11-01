@@ -184,6 +184,7 @@ export default function HeatmapChart() {
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
+            handleStop();
             sciChartSurface?.delete();
             heatmapLegend?.delete();
         }
