@@ -1,5 +1,8 @@
 import * as React from "react";
-import {EPieType, SciChartPieSurface} from "scichart/Charting/Visuals/SciChartPieSurface/SciChartPieSurface";
+import {
+    EPieType,
+    SciChartPieSurface
+} from "scichart/Charting/Visuals/SciChartPieSurface/SciChartPieSurface";
 import {PieSegment} from "scichart/Charting/Visuals/SciChartPieSurface/PieSegment/PieSegment";
 import {GradientParams} from "scichart/Core/GradientParams";
 import {Point} from "scichart/Core/Point";
@@ -47,21 +50,21 @@ export const drawExample = async () => {
 
     // Colors are just hex strings, supporting #FFFFFF (RBG) or 8-digit with RGBA or CSS color strings e.g. rgba()
     const colors = [
-        appTheme.VividOrange,
-        appTheme.Indigo,
-        appTheme.MutedSkyBlue,
-        appTheme.MutedTeal,
-        appTheme.VividSkyBlue,
-        appTheme.MutedRed,
-        appTheme.MutedPink,
-        appTheme.VividPink,
-        appTheme.VividPurple,
-        appTheme.MutedOrange,
-        appTheme.VividOrange,
-        appTheme.PaleTeal,
-        appTheme.PaleBlue,
-        appTheme.PaleOrange,
-        appTheme.PalePink,
+        { color1: appTheme.VividOrange, color2: appTheme.MutedOrange },
+        { color1: appTheme.Indigo, color2: appTheme.VividBlue },
+        { color1: appTheme.MutedSkyBlue, color2: appTheme.MutedTeal },
+        { color1: appTheme.MutedTeal, color2: appTheme.PaleTeal },
+        { color1: appTheme.VividSkyBlue, color2: appTheme.MutedSkyBlue },
+        { color1: appTheme.MutedRed },
+        { color1: appTheme.MutedPink },
+        { color1: appTheme.VividPink },
+        { color1: appTheme.VividPurple },
+        { color1: appTheme.MutedOrange },
+        { color1: appTheme.VividOrange },
+        { color1: appTheme.PaleTeal },
+        { color1: appTheme.PaleBlue },
+        { color1: appTheme.PaleOrange },
+        { color1: appTheme.PalePink },
     ];
 
     // Optional Relative radius adjustment per segment
@@ -69,7 +72,7 @@ export const drawExample = async () => {
         0.8,0.8,0.8,0.8,0.85,0.85,0.85,0.9,0.9,0.9,0.95,0.95,0.95,0.95,0.95
     ];
 
-    const toPieSegment = (name: string, value: number, color1: string, radiusAdjustment: number) => {
+    const toPieSegment = (name: string, value: number, radiusAdjustment: number, color1: string, color2?: string) => {
         return new PieSegment({
             value,
             text: name,
@@ -78,13 +81,15 @@ export const drawExample = async () => {
             showLabel: value > 2,
             colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: color1, offset: 0 },
-                { color: color1 + "77", offset: 1 }
+                { color: color2 ?? color1 + "77", offset: 1 }
             ]),
         });
     }
 
     // Transform the data to pie segment and add to scichart
-    const pieSegments = dataset.map((row, index) => toPieSegment(row.name, row.percent, colors[index], radiusSize[index]));
+    const pieSegments = dataset.map((row, index) =>
+        toPieSegment(row.name, row.percent, radiusSize[index], colors[index].color1, colors[index].color2)
+    );
 
     sciChartPieSurface.pieSegments.add(...pieSegments);
 
