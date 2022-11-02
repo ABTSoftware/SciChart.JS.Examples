@@ -8,14 +8,14 @@ import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAutoRange } from "scichart/types/AutoRange";
-import { convertRgbToHexColor } from "scichart/utils/convertColor";
 import { AlertTitle } from "@material-ui/lab";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Button, ButtonGroup, FormControl } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import image from "./javascript-chart-load-500-series-by-500-points.jpg";
 import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme} from "../../../theme";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 
 const divElementId = "chart";
 
@@ -28,27 +28,48 @@ const SERIES = 500;
 const POINTS = 500;
 
 const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, { widthAspect: 3, heightAspect: 2});
-    const xAxis = new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(0, POINTS),
-        autoRange: EAutoRange.Never
-    });
-    // xAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
-    sciChartSurface.xAxes.add(xAxis);
-    const yAxis = new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(-5000, 5000),
-        autoRange: EAutoRange.Never
-    });
-    // yAxis.labelProvider.numericFormat = ENumericFormat.Decimal_0;
-    sciChartSurface.yAxes.add(yAxis);
 
+    // Create the SciChartSurface
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
+
+    // Create an X,Y Axis
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        visibleRange: new NumberRange(0, POINTS),
+        autoRange: EAutoRange.Never,
+        axisTitle: "X Axis",
+    }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        visibleRange: new NumberRange(-250, 250),
+        autoRange: EAutoRange.Never,
+        axisTitle: "Y Axis",
+    }));
+
+    // add a title annotation
+    // Add title annotation
+    sciChartSurface.annotations.add(new TextAnnotation({
+        text: "SciChart.js Performance Demo: Draw 500 Series x 500 Points (250k Points total)",
+        fontSize: 16,
+        textColor: appTheme.ForegroundColor,
+        x1: 1,
+        y1: 0,
+        xCoordShift: -20,
+        opacity: 0.77,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+    }));
+
+    // We pre-create N empty FastLineRenderableSeries for the performance test. Going to fill these with data below
     const dataSeriesArray: XyDataSeries[] = new Array<XyDataSeries>(SERIES);
     const rendSeriesArray: FastLineRenderableSeries[] = new Array<FastLineRenderableSeries>(SERIES);
     for (let i = 0; i < SERIES; i++) {
         const dataSeries: XyDataSeries = new XyDataSeries(wasmContext);
         const rendSeries: FastLineRenderableSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries,
-            strokeThickness: 2
+            strokeThickness: 2,
+            stroke: "auto",
         });
 
         dataSeriesArray[i] = dataSeries;
@@ -57,6 +78,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         sciChartSurface.renderableSeries.add(rendSeries);
     }
 
+    // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
     // Buttons for chart
@@ -68,7 +90,6 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
 
         const xValuesArray: number[][] = new Array<number[]>(SERIES);
         const yValuesArray: number[][] = new Array<number[]>(SERIES);
-        const strokeArray: string[] = new Array<string>(SERIES);
         for (let i = 0; i < SERIES; i++) {
             // Allocate data arrays
             xValuesArray[i] = new Array<number>(POINTS);
@@ -76,12 +97,6 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
 
             // Clear data, if any
             dataSeriesArray[i].clear();
-
-            // Generate stroke
-            const r = Math.random();
-            const g = Math.random();
-            const b = Math.random();
-            strokeArray[i] = convertRgbToHexColor(r, g, b);
 
             // Generate points
             let prevYValue = 0;
@@ -95,7 +110,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
             }
         }
 
-        // Add the first time span: Generating 1M data points
+        // Add the first time span: Generating 500 series x 500 points
         newTimeSpans.push({
             title: "Generate 500x500 Data Points",
             durationMs: Date.now() - generateTimestamp
@@ -105,7 +120,6 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         const appendTimestamp = Date.now();
         for (let i = 0; i < SERIES; i++) {
             dataSeriesArray[i].appendRange(xValuesArray[i], yValuesArray[i]);
-            rendSeriesArray[i].stroke = strokeArray[i];
         }
 
         // Add the second time span: Generation of data point
@@ -134,7 +148,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
                 sciChartSurface.rendered.unsubscribe(handler);
 
                 // Zoom extents at the end of performance measurement
-                sciChartSurface.zoomExtents();
+                // sciChartSurface.zoomExtents();
             }
             setTimeout(sciChartSurface.invalidateElement, 0);
             // Increment frame index
@@ -175,26 +189,28 @@ export default function Load500By500() {
     return (
         <>
             <div className={classes.ChartWrapper}>
-                <div id={divElementId} />
-            </div>
-            <div>
-                <div className={classes.FormControl}>
-                    <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                        <Button id="loadPoints">Load</Button>
-                    </ButtonGroup>
+                <div id={divElementId} style={{width: "100%", height: "calc(100% - 200px)" }} />
+                <div style={{height: "200px", width: "100%", padding: "10", background: appTheme.ForegroundColor }}>
+                    <div>
+                        <div className={classes.FormControl}>
+                            <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                                <Button id="loadPoints">Reload Data</Button>
+                            </ButtonGroup>
+                        </div>
+                    </div>
+                    <div>
+                        {timeSpans.length > 0 && (
+                            <Alert key="0" className={classes.Notification}>
+                                <AlertTitle>Performance Results</AlertTitle>
+                                {timeSpans.map((ts, index) => (
+                                    <div key={index}>
+                                        {ts.title}: {ts.durationMs.toFixed(0)} ms
+                                    </div>
+                                ))}
+                            </Alert>
+                        )}
+                    </div>
                 </div>
-            </div>
-            <div>
-                {timeSpans.length > 0 && (
-                    <Alert key="0" className={classes.Notification}>
-                        <AlertTitle>Performance Results</AlertTitle>
-                        {timeSpans.map((ts, index) => (
-                            <div key={index}>
-                                {ts.title}: {ts.durationMs.toFixed(0)} ms
-                            </div>
-                        ))}
-                    </Alert>
-                )}
             </div>
         </>
     );
