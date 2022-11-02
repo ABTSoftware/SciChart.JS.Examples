@@ -22,7 +22,7 @@ export const drawExample = async () => {
         holeRadius: 0.6,
         holeRadiusSizingMode: ESizingMode.Relative,
         animate: true,
-        seriesSpacing: 15,
+        seriesSpacing: 10,
         showLegend: true,
         showLegendSeriesMarkers: true,
         animateLegend: true,
@@ -58,7 +58,7 @@ export const drawExample = async () => {
 
     // Optional Relative radius adjustment per segment
     const radiusSize = [
-        0.8,0.85,0.9,0.9,0.9,1,1,1
+        0.8,0.85,0.9,0.9,0.9,0.95,0.95,0.95
     ];
 
     const toPieSegment = (name: string, value: number, radiusAdjustment: number, color1: string, color2?: string) => {
