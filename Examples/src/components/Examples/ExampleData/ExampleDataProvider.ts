@@ -131,6 +131,4 @@ export class ExampleDataProvider {
 
         return {dateValues, openValues, highValues, lowValues, closeValues, volumeValues};
     }
-
-
 }
