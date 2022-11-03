@@ -12,6 +12,7 @@ import { TSciChart3D } from "scichart/types/TSciChart3D";
 import { SciChartSurface } from "scichart";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
+import {ResetCamera3DModifier} from "scichart/Charting3D/ChartModifiers/ResetCamera3DModifier";
 
 const divElementId = "chart";
 
@@ -25,6 +26,7 @@ const drawExample = async () => {
 
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
+    sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
 
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis" });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, { axisTitle: "Y Axis" });

@@ -5,18 +5,19 @@ import { OrbitModifier3D } from "scichart/Charting3D/ChartModifiers/OrbitModifie
 import { Vector3 } from "scichart/Charting3D/Vector3";
 import { NumericAxis3D } from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
 import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
-import {
-    EDrawMeshAs,
-    SurfaceMeshRenderableSeries3D
-} from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/SurfaceMeshRenderableSeries3D";
+import { EDrawMeshAs, SurfaceMeshRenderableSeries3D } from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/SurfaceMeshRenderableSeries3D";
 import { GradientColorPalette } from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
 import { UniformGridDataSeries3D } from "scichart/Charting3D/Model/DataSeries/UniformGridDataSeries3D";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { zeroArray2D } from "scichart/utils/zeroArray2D";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
+import {Button} from "@material-ui/core";
+import {HeatmapLegend} from "scichart/Charting/Visuals/HeatmapLegend";
+import {ResetCamera3DModifier} from "scichart/Charting3D/ChartModifiers/ResetCamera3DModifier";
 
 const divElementId = "chart";
+const divHeatmapLegend = "heatmapLegend";
 
 // SCICHART CODE
 const drawExample = async () => {
@@ -64,10 +65,14 @@ const drawExample = async () => {
     // Create the color map
     const colorMap = new GradientColorPalette(wasmContext, {
         gradientStops: [
-            { offset: 0.9, color: appTheme.VividOrange },
-            { offset: 0.2, color: appTheme.Indigo },
-            { offset: 0, color: appTheme.DarkIndigo }
-        ]
+            {offset: 1, color: appTheme.VividPink},
+            {offset: 0.9, color: appTheme.VividOrange},
+            {offset: 0.7, color: appTheme.MutedRed},
+            {offset: 0.5, color: appTheme.VividGreen},
+            {offset: 0.3, color: appTheme.VividSkyBlue},
+            {offset: 0.15, color: appTheme.Indigo},
+            {offset: 0, color: appTheme.DarkIndigo}
+        ],
     });
 
     // Finally, create a SurfaceMeshRenderableSeries3D and add to the chart
@@ -97,22 +102,78 @@ const drawExample = async () => {
     // Optional: Add some interactivity modifiers
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
+    sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
 
     return { sciChart3DSurface, wasmContext };
 };
 
+const drawHeatmapLegend = async () => {
+    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
+        theme: {
+            ...appTheme.SciChartJsTheme,
+            sciChartBackground: appTheme.DarkIndigo + "BB",
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
+        },
+        yAxisOptions: {
+            axisBorder: {
+                borderLeft: 1,
+                color: appTheme.ForegroundColor + "77"
+            },
+            majorTickLineStyle: {
+                color: appTheme.ForegroundColor,
+                tickSize: 6,
+                strokeThickness: 1,
+            },
+            minorTickLineStyle: {
+                color: appTheme.ForegroundColor,
+                tickSize: 3,
+                strokeThickness: 1,
+            }
+        },
+        colorMap: {
+            minimum: 0,
+            maximum: 0.5,
+            gradientStops: [
+                {offset: 1, color: appTheme.VividPink},
+                {offset: 0.9, color: appTheme.VividOrange},
+                {offset: 0.7, color: appTheme.MutedRed},
+                {offset: 0.5, color: appTheme.VividGreen},
+                {offset: 0.3, color: appTheme.VividSkyBlue},
+                {offset: 0.15, color: appTheme.Indigo},
+                {offset: 0, color: appTheme.DarkIndigo}
+            ],
+        }
+    });
+
+    return heatmapLegend;
+}
+
 // REACT COMPONENT
 export default function SurfaceMesh3DChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChart3DSurface>();
+    const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
+            const legend = await drawHeatmapLegend();
+            setHeatmapLegend(legend);
             setSciChartSurface(res.sciChart3DSurface);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => {
+            sciChartSurface?.delete();
+            heatmapLegend?.delete();
+        }
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return (
+        <div className={classes.ChartWrapper}>
+            <div style={{position: "relative", height: "100%", width: "100%" }}>
+                <div id={divElementId} style={{position: "absolute", height: "100%", width: "100%"}}></div>
+                <div id={divHeatmapLegend} style={{position: "absolute", height: "95%", width: "100px", right: "75px", margin: "20"}}>
+                </div>
+            </div>
+        </div>
+    )
 }
