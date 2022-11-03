@@ -201,9 +201,9 @@
     flex-grow: 0;
     flex-shrink: 0;
     max-width: 90vw;
-    @include md {
-        flex-basis: 25%;
-    }
+    //@include md {
+    //    flex-basis: 25%;
+    //}
 }
 
 .InfoBox {
@@ -217,9 +217,9 @@
     width: 100%;
     background-color: black;
     border-bottom: 1px solid #364BA0;
-    @include sm {
-        height: auto;
-    }
+    //@include sm {
+    //    height: auto;
+    //}
 }
 .IbRow1 {
     flex-grow: 1;

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { xValues, y1Values, y2Values, y3Values, y4Values } from "./data/stackedMountainChartData";
 import { StackedMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainRenderableSeries";
@@ -104,7 +103,7 @@ export default function StackedMountainChart() {
 
     return (<div className={classes.ChartWrapper}>
         <div style={{position: "relative", width: "100%", height: "100%"}}>
-            <div id={divElementId} />
+            <div id={divElementId} style={{position: "relative", width: "100%", height: "100%"}}/>
             <label style={{position: "absolute", right: "100px", top: "50px",
                 border: `1px solid ${appTheme.Indigo}`,
                 color: appTheme.ForegroundColor, background: appTheme.Background, padding: "10"}}>

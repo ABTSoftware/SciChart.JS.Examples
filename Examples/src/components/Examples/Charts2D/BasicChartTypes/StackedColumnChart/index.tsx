@@ -1,7 +1,6 @@
 import * as React from "react";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { StackedColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnRenderableSeries";
 import { StackedColumnCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnCollection";
@@ -12,11 +11,7 @@ import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
-import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {
-    StackedMountainCollection
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/StackedMountainCollection";
 
 const divElementId = "chart";
 
@@ -152,7 +147,7 @@ export default function StackedColumnChart() {
 
     return (
         <div style={{position: "relative", width: "100%", height: "100%"}}>
-            <div id={divElementId} />
+            <div id={divElementId} style={{position: "relative", width: "100%", height: "100%"}}/>
             <label style={{position: "absolute", right: "100px", top: "50px",
                 border: `1px solid ${appTheme.Indigo}`,
                 color: appTheme.ForegroundColor, background: appTheme.Background, padding: "10"}}>
