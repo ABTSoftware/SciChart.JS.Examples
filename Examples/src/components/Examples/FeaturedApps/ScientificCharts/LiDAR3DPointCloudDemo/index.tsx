@@ -16,8 +16,8 @@ import {appTheme} from "../../../theme";
 import {EDrawMeshAs, EMeshPaletteMode, SurfaceMeshRenderableSeries3D} from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/SurfaceMeshRenderableSeries3D";
 import {UniformGridDataSeries3D} from "scichart/Charting3D/Model/DataSeries/UniformGridDataSeries3D";
 import {GradientColorPalette} from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
-import {zeroArray2D} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/utils/zeroArray2D";
-import {HeatmapLegend} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/HeatmapLegend";
+import {zeroArray2D} from "scichart/utils/zeroArray2D";
+import {HeatmapLegend} from "scichart/Charting/Visuals/HeatmapLegend";
 
 const div3DChart = "chart";
 const div3DChartLegend = "heatmapLegend";
@@ -115,6 +115,11 @@ const drawHeatmapLegend = async () => {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
                 strokeThickness: 1,
+            },
+            axisTitle: "Height (meters)",
+            axisTitleStyle: {
+                fontSize: 13,
+                color: appTheme.ForegroundColor,
             }
         },
         colorMap: {

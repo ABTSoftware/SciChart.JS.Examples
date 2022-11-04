@@ -67,7 +67,7 @@ const drawExample = async () => {
     sciChart3DSurface.renderableSeries.add(new ScatterRenderableSeries3D(wasmContext, {
         dataSeries: new XyzDataSeries3D(wasmContext, { xValues: lifeExpectancy, yValues: gdpPerCapita, zValues: year, metadata }),
         pointMarker: new SpherePointMarker3D(wasmContext, { size: 10 }),
-        opacity: 0.5
+        opacity: 0.9
     }));
 
     return { sciChart3DSurface, wasmContext };
