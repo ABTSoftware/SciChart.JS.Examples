@@ -77,7 +77,8 @@ const drawExample = async () => {
         strokeThickness: 4,
         stroke: appTheme.VividOrange,
         dataLabels: {
-            style: { fontFamily: "Arial", fontSize: 13, color: appTheme.PaleSkyBlue, padding: Thickness.fromNumber(5) },
+            style: { fontFamily: "Arial", fontSize: 13, padding: Thickness.fromNumber(5) },
+            color: appTheme.PaleSkyBlue,
             skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious,
         },
         paletteProvider: strokePaletteProvider

@@ -134,7 +134,8 @@ const drawExample = async () => {
             animation: { type: EAnimationType.Wave  , options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 } },
             // Optional DataLabels may be added via this property.
             dataLabels: {
-                style: { fontFamily: "Arial", fontSize: 13, color: appTheme.ForegroundColor, padding: new Thickness(5, 5, 5, 5) },
+                style: { fontFamily: "Arial", fontSize: 13, padding: new Thickness(5, 5, 5, 5) },
+                color: appTheme.ForegroundColor,
                 aboveBelow: false,
                 verticalTextPosition: EVerticalTextPosition.Top,
             }
@@ -404,7 +405,8 @@ const drawExample = async () => {
             paletteProvider,
             // Datalabels may be shown using this property
             dataLabels: {
-                style: { fontFamily: "Arial", fontSize: 11, color: appTheme.PaleSkyBlue },
+                style: { fontFamily: "Arial", fontSize: 11, },
+                color: appTheme.PaleSkyBlue,
                 skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious
             }
         }));

@@ -45,7 +45,8 @@ const drawExample = async () => {
         dataLabels: {
             horizontalTextPosition: EHorizontalTextPosition.Center,
             verticalTextPosition: EVerticalTextPosition.Top,
-            style: { fontFamily: "Arial", fontSize: 16, color: appTheme.ForegroundColor, padding: new Thickness(0,0,20,0) }
+            style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0,0,20,0) },
+            color: appTheme.ForegroundColor,
         },
         // Optional series animation executed when series shows
         animation: new WaveAnimation({duration: 1000}),
