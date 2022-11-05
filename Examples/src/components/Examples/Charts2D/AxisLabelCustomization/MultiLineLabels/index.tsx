@@ -19,6 +19,9 @@ import {GradientParams} from "scichart/Core/GradientParams";
 import {EHorizontalTextPosition, EVerticalTextPosition} from "scichart/types/TextPosition";
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 
 const divElementId = "chart";
 
@@ -120,9 +123,23 @@ const drawExample = async () => {
         animation: new WaveAnimation({ duration: 1000 })
     }));
 
+    // Add some interaction
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+
+    // Add title annotation
+    sciChartSurface.annotations.add(new TextAnnotation({
+        text: "Multi-Line and Rotated Axis Labels in SciChart.js",
+        fontSize: 16,
+        textColor: appTheme.ForegroundColor,
+        x1: 0.5,
+        y1: 0,
+        opacity: 0.77,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+    }));
 
     return { sciChartSurface, wasmContext, labelProvider };
 };

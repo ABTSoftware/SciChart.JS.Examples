@@ -19,25 +19,23 @@ import scichartImage from "./scichart-logo-white.png";
 import customPointImage from "./CustomMarkerImage.png";
 import { createImageAsync } from "scichart/utils/imageUtil";
 import { AxisMarkerAnnotation } from "scichart/Charting/Visuals/Annotations/AxisMarkerAnnotation";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
 export const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
-    const xAxis = new NumericAxis(wasmContext);
-    xAxis.visibleRange = new NumberRange(0, 10);
+    // Create an X,Y axis
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        visibleRange: new NumberRange(0, 10)
+    }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        visibleRange: new NumberRange(0, 10)
+    }));
 
-    sciChartSurface.xAxes.add(xAxis);
-
-    const yAxis = new NumericAxis(wasmContext);
-    yAxis.visibleRange = new NumberRange(0, 10);
-
-    sciChartSurface.yAxes.add(yAxis);
-
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     const customSvgStringSciChart = [
         ' <svg width="50" height="50"',
         ' xmlns="http://www.w3.org/2000/svg">',
@@ -135,7 +133,7 @@ export const drawExample = async () => {
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
         textColor: "#F1B24A",
         fontSize: 26,
-        fontFamily: "Times New Roman",
+        fontFamily: "Arial",
         text: "Unmovable text",
         isEditable: false
     });
@@ -149,8 +147,8 @@ export const drawExample = async () => {
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
         textColor: "#F1B24A",
         fontSize: 26,
-        fontFamily: "Times New Roman",
-        text: "SciChart is the best library",
+        fontFamily: "Arial",
+        text: "Moveable TextAnnotation",
         isEditable: true
     });
 
@@ -178,6 +176,10 @@ export const drawExample = async () => {
         textAnnotationSciChart,
         customAxisMarkerAnnotation
     );
+
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     return { sciChartSurface, wasmContext };
 };
