@@ -22,11 +22,25 @@ import {SciChartOverview} from "scichart/Charting/Visuals/SciChartOverview";
 import {CursorModifier} from "scichart/Charting/ChartModifiers/CursorModifier";
 import {CursorTooltipSvgAnnotation} from "scichart/Charting/Visuals/Annotations/CursorTooltipSvgAnnotation";
 import {SeriesInfo} from "scichart/Charting/Model/ChartData/SeriesInfo";
-import {EDataSeriesType} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Model/IDataSeries";
+import {EDataSeriesType} from "scichart/Charting/Model/IDataSeries";
+import {ESeriesType} from "scichart/types/SeriesType";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import {GradientParams} from "scichart/Core/GradientParams";
+import {Point} from "scichart/Core/Point";
+import {OhlcSeriesInfo} from "scichart/Charting/Model/ChartData/OhlcSeriesInfo";
+import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {
+    EFillPaletteMode,
+    IFillPaletteProvider
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Model/IPaletteProvider";
+import {IPointMetadata} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Model/IPointMetadata";
+import {parseColorToUIntArgb} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/utils/parseColor";
 
 const divElementId = "chart";
 const divOverviewId = "overview";
-const divCursorLegendId = "cursorLegend";
+const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
 
 // SCICHART EXAMPLE
 const drawExample = async () => {
@@ -45,11 +59,18 @@ const drawExample = async () => {
 
     // Create a NumericAxis on the YAxis with 2 Decimal Places
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(1.1, 1.2),
         growBy: new NumberRange(0.1, 0.1),
         labelFormat: ENumericFormat.Decimal,
         labelPrecision: 2,
-        labelPrefix: "$ ",
+        labelPrefix: "$",
+        autoRange: EAutoRange.Always,
+    }));
+
+    // Create a secondary YAxis to host volume data on its own scale
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        id: Y_AXIS_VOLUME_ID,
+        growBy: new NumberRange(0, 4),
+        isVisible: false,
         autoRange: EAutoRange.Always,
     }));
 
@@ -72,8 +93,9 @@ const drawExample = async () => {
         dataSeries: candleDataSeries,
         stroke: appTheme.ForegroundColor, // used by cursorModifier below
         strokeThickness: 1,
-        brushUp: appTheme.VividGreen + "AA",
-        brushDown: appTheme.MutedRed + "AA",
+        opacity: 0.5,
+        brushUp: appTheme.VividGreen,
+        brushDown: appTheme.MutedRed,
         strokeUp: appTheme.VividGreen,
         strokeDown: appTheme.MutedRed,
     }));
@@ -89,12 +111,24 @@ const drawExample = async () => {
         stroke: appTheme.VividPink
     }));
 
+    // Add volume data onto the chart
+    sciChartSurface.renderableSeries.add(new FastColumnRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: volumeValues, dataSeriesName: "Volume" }),
+        strokeThickness: 0,
+        // This is how we get volume to scale - on a hidden YAxis
+        yAxisId: Y_AXIS_VOLUME_ID,
+        // This is how we colour volume bars red or green
+        paletteProvider: new VolumePaletteProvider(candleDataSeries, appTheme.VividGreen + "AA", appTheme.MutedRed + "AA")
+    }));
+
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(
         new ZoomExtentsModifier(),
         new ZoomPanModifier(),
         new MouseWheelZoomModifier(),
         new CursorModifier({
+            crosshairStroke: appTheme.VividOrange,
+            axisLabelFill: appTheme.VividOrange,
             tooltipLegendTemplate: getTooltipLegendTemplate
         }));
 
@@ -102,9 +136,26 @@ const drawExample = async () => {
     // displaying its series. Zooming the chart will zoom the overview and vice versa
     const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
         theme: appTheme.SciChartJsTheme,
+        transformRenderableSeries: getOverviewSeries
     });
 
     return { sciChartSurface, overview };
+};
+
+// Override the Renderableseries to display on the scichart overview
+const getOverviewSeries = (renderableSeries: IRenderableSeries) => {
+    if (renderableSeries.type === ESeriesType.CandlestickSeries) {
+        // Swap the default candlestick series on the overview chart for a mountain series. Same data
+        return new FastMountainRenderableSeries(renderableSeries.parentSurface.webAssemblyContext2D, {
+            dataSeries: renderableSeries.dataSeries,
+            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                {color: appTheme.MutedSkyBlue, offset: 0},
+                {color: "Transparent", offset: 1}
+            ]),
+            stroke: appTheme.VividSkyBlue,
+        });
+    }
+    return undefined;
 };
 
 // Override the standard tooltip displayed by CursorModifier
@@ -115,8 +166,13 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
     seriesInfos.forEach((seriesInfo, index) => {
         const y = 40 + index * 20;
         const textColor = seriesInfo.stroke;
+        let legendText = seriesInfo.formattedYValue;
+        if (seriesInfo.dataSeriesType === EDataSeriesType.Ohlc) {
+            const o = seriesInfo as OhlcSeriesInfo;
+            legendText = `Open=${o.formattedOpenValue} High=${o.formattedHighValue} Low=${o.formattedLowValue} Close=${o.formattedCloseValue}`;
+        }
         outputSvgString += `<text x="8" y="${y}" font-size="13" font-family="Verdana" fill="${textColor}">
-            ${seriesInfo.seriesName}: ${seriesInfo.formattedYValue}
+            ${seriesInfo.seriesName}: ${legendText}
         </text>`;
     });
 
@@ -125,6 +181,27 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
             </svg>`;
 
 };
+
+class VolumePaletteProvider implements IFillPaletteProvider {
+    fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
+    private ohlcDataSeries: OhlcDataSeries;
+    private upColorArgb: number;
+    private downColorArgb: number;
+
+    constructor(masterData: OhlcDataSeries, upColor: string, downColor: string) {
+        this.upColorArgb = parseColorToUIntArgb(upColor);
+        this.downColorArgb = parseColorToUIntArgb(downColor);
+        this.ohlcDataSeries = masterData;
+    }
+    onAttached(parentSeries: IRenderableSeries): void {}
+    onDetached(): void {}
+
+    // Return up or down color for the volume bars depending on Ohlc data
+    overrideFillArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): number {
+        const isUpCandle = this.ohlcDataSeries.getNativeOpenValues().get(index) >= this.ohlcDataSeries.getNativeCloseValues().get(index);
+        return isUpCandle ? this.upColorArgb : this.downColorArgb;
+    }
+}
 
 const itemsToDelete: IDeletable[] = [];
 
