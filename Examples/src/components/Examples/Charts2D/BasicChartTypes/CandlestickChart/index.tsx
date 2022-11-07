@@ -198,28 +198,27 @@ class VolumePaletteProvider implements IFillPaletteProvider {
     }
 }
 
-const itemsToDelete: IDeletable[] = [];
-
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function CandlestickChart() {
+    const itemsToDelete: IDeletable[] = [];
     React.useEffect(() => {
         (async () => {
             const { sciChartSurface, overview } = await drawExample();
             itemsToDelete.push(sciChartSurface, overview);
         })();
         return () => {
-            itemsToDelete.forEach(item => item.delete())
+            itemsToDelete.forEach(item => item.delete());
         };
     }, []);
 
 
-    return (
-        <div className={classes.ChartWrapper}>
+    return <React.Fragment>
+        <div className={classes.ChartWrapper} style={{background: appTheme.DarkIndigo }}>
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                <div id={divElementId} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }} />
-                <div id={divOverviewId} style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }} />
+                <div id={divElementId} style={{ flexBasis: "100%", flexGrow: 1, flexShrink: 1 }} />
+                <div id={divOverviewId} style={{ flexBasis: "200px", flexGrow: 1, flexShrink: 1 }} />
             </div>
         </div>
-    )
+    </React.Fragment>
 }
