@@ -13,6 +13,7 @@ import { MouseOverAxisModifier } from './MouseOverAxisModifier';
 import { CustomAnnotation } from 'scichart/Charting/Visuals/Annotations/CustomAnnotation';
 import { AxisMarkerAnnotationWithoutGrips } from "./AxisMarkerAnnotationWithoutGrips";
 import { CappedLineAnnotation } from './CappedLineAnnotation';
+import { TextAnnotation } from 'scichart/Charting/Visuals/Annotations/TextAnnotation';
 
 async function initSciChart() {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root');
@@ -116,12 +117,26 @@ async function initSciChart() {
         isEditable: true
     })
 
+    const dragTextAnnotation = new TextAnnotation({
+        x1: 3,
+        y1: 5,
+        text: "Drag me",
+        isEditable: true,
+        // You can refer to the annotation being created here
+        onDragEnded: () => {
+            dragTextAnnotation.text = `Dragged me to ${dragTextAnnotation.x1.toFixed(1)},${dragTextAnnotation.y1.toFixed(1)}`;
+        },
+    });
+    // or subscribe to events afterwards
+    dragTextAnnotation.dragDelta.subscribe((args) => dragTextAnnotation.text = "Dragging...");
+
     sciChartSurface.annotations.add(
         axisMarkerAnnotation,
         customAxisMarkerAnnotation,
         boxAnnotationGreen,
         customAnnotation,
-        cappedLine
+        cappedLine,
+        dragTextAnnotation
     );
 }
 
