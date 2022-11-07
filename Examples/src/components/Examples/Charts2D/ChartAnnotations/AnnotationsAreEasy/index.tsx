@@ -40,7 +40,6 @@ const drawExample = async () => {
 
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     const textColor = appTheme.ForegroundColor;
     const stroke = appTheme.VividSkyBlue;
