@@ -3,9 +3,7 @@ import {SciChartSurface} from "scichart";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
-import {
-    FastCandlestickRenderableSeries
-} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
+import {FastCandlestickRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
 import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
@@ -31,12 +29,9 @@ import {Point} from "scichart/Core/Point";
 import {OhlcSeriesInfo} from "scichart/Charting/Model/ChartData/OhlcSeriesInfo";
 import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {
-    EFillPaletteMode,
-    IFillPaletteProvider
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Model/IPaletteProvider";
-import {IPointMetadata} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Model/IPointMetadata";
-import {parseColorToUIntArgb} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/utils/parseColor";
+import {EFillPaletteMode, IFillPaletteProvider} from "scichart/Charting/Model/IPaletteProvider";
+import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
 
 const divElementId = "chart";
 const divOverviewId = "overview";
