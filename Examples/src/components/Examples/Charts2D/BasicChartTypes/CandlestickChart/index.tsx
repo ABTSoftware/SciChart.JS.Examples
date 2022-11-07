@@ -93,14 +93,14 @@ const drawExample = async () => {
         dataSeries: candleDataSeries,
         stroke: appTheme.ForegroundColor, // used by cursorModifier below
         strokeThickness: 1,
-        opacity: 0.5,
-        brushUp: appTheme.VividGreen,
-        brushDown: appTheme.MutedRed,
+        brushUp: appTheme.VividGreen + "77",
+        brushDown: appTheme.MutedRed + "77",
         strokeUp: appTheme.VividGreen,
         strokeDown: appTheme.MutedRed,
     }));
 
     // Add some moving averages using SciChart's filters/transforms API
+    // when candleDataSeries updates, XyMovingAverageFilter automatically recomputes
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyMovingAverageFilter(candleDataSeries, { dataSeriesName: "Moving Average (20)", length: 20 }),
         stroke: appTheme.VividSkyBlue
@@ -118,7 +118,7 @@ const drawExample = async () => {
         // This is how we get volume to scale - on a hidden YAxis
         yAxisId: Y_AXIS_VOLUME_ID,
         // This is how we colour volume bars red or green
-        paletteProvider: new VolumePaletteProvider(candleDataSeries, appTheme.VividGreen + "AA", appTheme.MutedRed + "AA")
+        paletteProvider: new VolumePaletteProvider(candleDataSeries, appTheme.VividGreen + "77", appTheme.MutedRed + "77")
     }));
 
     // Optional: Add some interactivity modifiers
@@ -164,7 +164,7 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
 
     // Foreach series there will be a seriesInfo supplied by SciChart. This contains info about the series under the house
     seriesInfos.forEach((seriesInfo, index) => {
-        const y = 40 + index * 20;
+        const y = 20 + index * 20;
         const textColor = seriesInfo.stroke;
         let legendText = seriesInfo.formattedYValue;
         if (seriesInfo.dataSeriesType === EDataSeriesType.Ohlc) {
