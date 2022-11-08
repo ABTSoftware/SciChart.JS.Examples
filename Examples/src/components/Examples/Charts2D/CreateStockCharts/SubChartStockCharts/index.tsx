@@ -603,18 +603,14 @@ export default function SubChartStockCharts() {
     }, []);
 
     return (
-        <div className={classes.ChartsWrapper}>
-            <div
-                id={containerId2}
-                style={{
-                    position: "relative",
-                    maxWidth: 900,
-                    width: "100%",
-                    maxHeight: 1000,
-                    height: "100%",
-                    touchAction: "none"
-                }}
-            >
+        <div className={classes.ChartsWrapper}                id={containerId2}
+        style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            touchAction: "none"
+        }}>
+
                 <div
                     id={subChartWrapper1}
                     style={{
@@ -670,7 +666,6 @@ export default function SubChartStockCharts() {
                         height: "100%"
                     }}
                 ></div>
-            </div>
         </div>
     );
 }
