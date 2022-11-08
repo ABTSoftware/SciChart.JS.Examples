@@ -226,5 +226,5 @@ export default function LogarithmicAxisExample() {
                 </ToggleButton>
             </ToggleButtonGroup>
         </div>
-    );;
+    );
 }
