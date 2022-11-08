@@ -1,5 +1,4 @@
 import * as React from "react";
-import {ChangeEvent} from "react";
 import {SciChartSurface} from "scichart";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
@@ -9,11 +8,15 @@ import {ENumericFormat} from "scichart/types/NumericFormat";
 import {LogarithmicAxis} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
 import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
 import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
-import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
 import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
 import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {NumericAxis} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Axis/NumericAxis";
+import classes from "../../../Examples.module.scss";
+import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
 const divElementId = "chart1";
+
+const Y_AXIS_LINEAR_ID = "Y_AXIS_LINEAR_ID";
 
 const drawExample = async () => {
 
@@ -37,17 +40,25 @@ const drawExample = async () => {
     // The LogarithmicAxis will apply logarithmic scaling and labelling to your data.
     // Simply replace a NumericAxis for a LogarithmicAxis on X or Y to apply this scaling
     // Note options logBase, labelFormat which lets you specify exponent on labels
-    const yAxis = new LogarithmicAxis(wasmContext, {
+    const yAxisLogarithmic = new LogarithmicAxis(wasmContext, {
         logBase: 10,
         labelFormat: ENumericFormat.Scientific,
         labelPrecision: 2,
     });
-    sciChartSurface.yAxes.add(yAxis);
+    sciChartSurface.yAxes.add(yAxisLogarithmic);
+
+    const yAxisLinear = new NumericAxis(wasmContext, {
+        labelFormat: ENumericFormat.Decimal,
+        labelPrecision: 2,
+        isVisible: false,
+        id: Y_AXIS_LINEAR_ID
+    });
+    sciChartSurface.yAxes.add(yAxisLinear);
 
     // Create some data
     const data0 = ExampleDataProvider.getExponentialCurve(1.8, 100);
-    const data1 = ExampleDataProvider.getExponentialCurve(2.25, 100);
-    const data2 = ExampleDataProvider.getExponentialCurve(3.59, 100);
+    const data1 = ExampleDataProvider.getExponentialCurve(1.9, 100);
+    const data2 = ExampleDataProvider.getExponentialCurve(2.0, 100);
 
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues: data0.xValues, yValues: data0.yValues }),
@@ -79,7 +90,7 @@ const drawExample = async () => {
         new ZoomExtentsModifier());
 
     sciChartSurface.zoomExtents();
-    return { sciChartSurface, wasmContext, yAxis };
+    return { sciChartSurface, wasmContext, yAxisLogarithmic, yAxisLinear };
 };
 
 // React component needed as our examples app is react.
@@ -88,52 +99,47 @@ export default function LogarithmicAxisExample() {
 
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [logAxis, setLogAxis] = React.useState<LogarithmicAxis>();
+    const [linearAxis, setLinearAxis] = React.useState<NumericAxis>();
+    let isLogarithmicAxis = true;
 
     React.useEffect(() => {
+        console.log("React.useEffect");
         drawExample().then(res => {
             // Store some variables which we will need later
             setSciChartSurface(res.sciChartSurface);
-            setLogAxis(res.yAxis);
+            setLogAxis(res.yAxisLogarithmic);
+            setLinearAxis(res.yAxisLinear);
         });
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => sciChartSurface?.delete();
     }, []);
 
-    const onNotationChanged = (e: ChangeEvent<HTMLSelectElement>) => {
-        const labelFormat = e.target.value as ENumericFormat;
-        logAxis.labelProvider.numericFormat = labelFormat;
+    const handleIsLogAxis = (event: any, value: any) => {
+        isLogarithmicAxis = !isLogarithmicAxis;
+        logAxis.isVisible = isLogarithmicAxis;
+        linearAxis.isVisible = !isLogarithmicAxis;
+        const activeAxisId = isLogarithmicAxis ? logAxis.id : linearAxis.id;
+        console.log(`Setting YaxisId = ${activeAxisId}`);
+        sciChartSurface.renderableSeries.asArray().forEach(rs => rs.yAxisId = activeAxisId);
+        // Toggle linear to log axis on click
+        sciChartSurface.zoomExtents();
     };
 
-    const onLogBaseChanged = (e: ChangeEvent<HTMLSelectElement>) => {
-        // To update the logarithmic base set LogarithmicAxis.logBase = number
-        logAxis.logBase = parseFloat(e.target.value);
-    };
-
-    return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
-            <div className={classes.SelectWrapper}>
-                <div className={classes.InputSelectWrapper}>
-                    <label id="sciChartLogAxis-label">
-                        Log Axis Label Notation
-                        <select
-                            onChange={onNotationChanged}>
-                            <option key="Scientific" value="Scientific">Scientific</option>
-                            <option key="Exponential" value="Exponential">Engineering</option>
-                            <option key="SignificantFigures" value="SignificantFigures">Significant Figures</option>
-                        </select>
-                    </label>
-                    <label id="sciChartLogBase-label">
-                        Logarithmic Base
-                        <select
-                            onChange={onLogBaseChanged}>
-                            <option key="10" value="10">Log 10</option>
-                            <option key={Math.E} value={Math.E}>Log E</option>
-                            <option key="2" value="2">Log 2</option>
-                        </select>
-                    </label>
-                </div>
-            </div>
+    return (<div className={classes.ChartWrapper} style={{background: appTheme.DarkIndigo, }}>
+            <div id={divElementId} style={{height: "calc(100% - 100px)", width: "100%"}}/>
+            <ToggleButtonGroup
+                style={{height: "100px", padding: "10",}}
+                exclusive
+                value={isLogarithmicAxis}
+                onChange={handleIsLogAxis}
+                size="medium" color="primary" aria-label="small outlined button group">
+                <ToggleButton value={true} style={{color: appTheme.ForegroundColor}}>
+                    Logarithmic X &amp; Y Axis
+                </ToggleButton>
+                <ToggleButton value={false} style={{color: appTheme.ForegroundColor}}>
+                    Linear Y Axis
+                </ToggleButton>
+            </ToggleButtonGroup>
         </div>
-    );
+    );;
 }
