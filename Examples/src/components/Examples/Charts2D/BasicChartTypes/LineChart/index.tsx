@@ -1,36 +1,36 @@
 import * as React from "react";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {EAnimationType} from "scichart/types/AnimationType";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { EAnimationType } from "scichart/types/AnimationType";
 import classes from "../../../../Examples/Examples.module.scss";
-import {makeStyles} from "@material-ui/core/styles";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {appTheme} from "../../../theme";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
-import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
-import {RolloverModifier} from "scichart/Charting/ChartModifiers/RolloverModifier";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {PaletteFactory} from "scichart/Charting/Model/PaletteFactory";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {Point} from "scichart/Core/Point";
-import {Thickness} from "scichart/Core/Thickness";
-import {SeriesSelectionModifier} from "scichart/Charting/ChartModifiers/SeriesSelectionModifier";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {ELineDrawMode} from "scichart/Charting/Drawing/WebGlRenderContext2D";
-import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import {EStrokePaletteMode, IStrokePaletteProvider} from "scichart/Charting/Model/IPaletteProvider";
-import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
-import {HorizontalLineAnnotation} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
-import {ELabelPlacement} from "scichart/types/LabelPlacement";
-import {EDataLabelSkipMode} from "scichart/types/DataLabelSkipMode";
-import {EVerticalTextPosition} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/TextPosition";
+import { makeStyles } from "@material-ui/core/styles";
+import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import { appTheme } from "../../../theme";
+import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { EHorizontalAnchorPoint } from "scichart/types/AnchorPoint";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
+import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { PaletteFactory } from "scichart/Charting/Model/PaletteFactory";
+import { GradientParams } from "scichart/Core/GradientParams";
+import { Point } from "scichart/Core/Point";
+import { Thickness } from "scichart/Core/Thickness";
+import { SeriesSelectionModifier } from "scichart/Charting/ChartModifiers/SeriesSelectionModifier";
+import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
+import { ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
+import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
+import { EStrokePaletteMode, IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
+import { IPointMetadata } from "scichart/Charting/Model/IPointMetadata";
+import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import { HorizontalLineAnnotation } from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
+import { ELabelPlacement } from "scichart/types/LabelPlacement";
+import { EDataLabelSkipMode } from "scichart/types/DataLabelSkipMode";
+import { EVerticalTextPosition } from "scichart/types/TextPosition";
 
 const divElementId1 = "chart1";
 const divElementId2 = "chart2";
@@ -43,30 +43,33 @@ const divElementId8 = "chart8";
 const divElementId9 = "chart9";
 
 const drawExample = async () => {
-
-    const createChartCommon = async (divId:string, title: string, isVertical: boolean = false) => {
+    const createChartCommon = async (divId: string, title: string, isVertical: boolean = false) => {
         // Create a SciChartSurface
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId, {
             theme: appTheme.SciChartJsTheme,
-            padding: new Thickness(5, 5, 5, 5),
+            padding: new Thickness(5, 5, 5, 5)
         });
 
         // Create the X,Y Axis
-        sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { maxAutoTicks: 5}));
-        sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { maxAutoTicks: 5, growBy: new NumberRange(0.05, 0.2) }));
+        sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { maxAutoTicks: 5 }));
+        sciChartSurface.yAxes.add(
+            new NumericAxis(wasmContext, { maxAutoTicks: 5, growBy: new NumberRange(0.05, 0.2) })
+        );
 
         // Add title annotation
-        sciChartSurface.annotations.add(new TextAnnotation({
-            text: title,
-            fontSize: 16,
-            textColor: appTheme.ForegroundColor,
-            x1: 0.5,
-            y1: 0,
-            opacity: 0.77,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative,
-        }));
+        sciChartSurface.annotations.add(
+            new TextAnnotation({
+                text: title,
+                fontSize: 16,
+                textColor: appTheme.ForegroundColor,
+                x1: 0.5,
+                y1: 0,
+                opacity: 0.77,
+                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+                xCoordinateMode: ECoordinateMode.Relative,
+                yCoordinateMode: ECoordinateMode.Relative
+            })
+        );
 
         if (isVertical) {
             // Only for vertical charts, annotation x,y coordinates are treated as swapped
@@ -85,7 +88,7 @@ const drawExample = async () => {
         return {
             xValues: data.xValues,
             yValues: data.yValues.map(y => (whichSeries === 0 ? y : whichSeries === 1 ? y * 1.1 : y * 1.5))
-        }
+        };
     };
 
     const initJustLineCharts = async () => {
@@ -94,24 +97,34 @@ const drawExample = async () => {
         let data = createLineData(2);
 
         // Create and add a line series to the chart
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
-            stroke: appTheme.VividOrange,
-            strokeThickness: 3,
-            opacity: 1,
-            animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 } },
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
+                stroke: appTheme.VividOrange,
+                strokeThickness: 3,
+                opacity: 1,
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
+                }
+            })
+        );
 
         data = createLineData(0);
 
         // Create and add a line series to the chart
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
-            stroke: appTheme.VividTeal,
-            strokeThickness: 3,
-            opacity: 1,
-            animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 } },
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
+                stroke: appTheme.VividTeal,
+                strokeThickness: 3,
+                opacity: 1,
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
+                }
+            })
+        );
 
         return sciChartSurface;
     };
@@ -119,27 +132,37 @@ const drawExample = async () => {
     const initDigitalLineCharts = async () => {
         const { sciChartSurface, wasmContext } = await createChartCommon(divElementId2, "Digital (Step) Line Charts");
 
-        const xValues = [0,1,2,3,4,5,6,7,8];
-        const yValues = [1,2,3,2,0.5,1,2.5,1,1]
+        const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        const yValues = [1, 2, 3, 2, 0.5, 1, 2.5, 1, 1];
 
         // Create the Digital Line chart
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-            stroke: appTheme.VividOrange,
-            strokeThickness: 3,
-            // Digital (step) lines are enabled by setting isDigitalLine: true
-            isDigitalLine: true,
-            // Optional pointmarkers may be added via this property.
-            pointMarker: new EllipsePointMarker(wasmContext, { width: 9, height: 9, fill: appTheme.ForegroundColor, strokeThickness: 0}),
-            animation: { type: EAnimationType.Wave  , options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 } },
-            // Optional DataLabels may be added via this property.
-            dataLabels: {
-                style: { fontFamily: "Arial", fontSize: 13, padding: new Thickness(5, 5, 5, 5) },
-                color: appTheme.ForegroundColor,
-                aboveBelow: false,
-                verticalTextPosition: EVerticalTextPosition.Top,
-            }
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+                stroke: appTheme.VividOrange,
+                strokeThickness: 3,
+                // Digital (step) lines are enabled by setting isDigitalLine: true
+                isDigitalLine: true,
+                // Optional pointmarkers may be added via this property.
+                pointMarker: new EllipsePointMarker(wasmContext, {
+                    width: 9,
+                    height: 9,
+                    fill: appTheme.ForegroundColor,
+                    strokeThickness: 0
+                }),
+                animation: {
+                    type: EAnimationType.Wave,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 }
+                },
+                // Optional DataLabels may be added via this property.
+                dataLabels: {
+                    style: { fontFamily: "Arial", fontSize: 13, padding: new Thickness(5, 5, 5, 5) },
+                    color: appTheme.ForegroundColor,
+                    aboveBelow: false,
+                    verticalTextPosition: EVerticalTextPosition.Top
+                }
+            })
+        );
 
         return sciChartSurface;
     };
@@ -149,19 +172,26 @@ const drawExample = async () => {
 
         const { xValues, yValues } = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(25);
 
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-            stroke: appTheme.VividOrange,
-            strokeThickness: 3,
-            animation: { type: EAnimationType.Wave  , options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 } },
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+                stroke: appTheme.VividOrange,
+                strokeThickness: 3,
+                animation: {
+                    type: EAnimationType.Wave,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 }
+                }
+            })
+        );
 
         // The RolloverModifier adds tooltip behaviour to the chart
-        sciChartSurface.chartModifiers.add(new RolloverModifier({
-            rolloverLineStroke: appTheme.VividOrange,
-            rolloverLineStrokeThickness: 2,
-            rolloverLineStrokeDashArray: [2, 2],
-        }));
+        sciChartSurface.chartModifiers.add(
+            new RolloverModifier({
+                rolloverLineStroke: appTheme.VividOrange,
+                rolloverLineStrokeThickness: 2,
+                rolloverLineStrokeDashArray: [2, 2]
+            })
+        );
 
         return sciChartSurface;
     };
@@ -173,38 +203,53 @@ const drawExample = async () => {
         let data = createLineData(0);
 
         // Create and add a line series to the chart
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
-            stroke: appTheme.VividOrange,
-            strokeThickness: 3,
-            // Dashed line charts are enabled by setting the StrokeDashArray property. The array defines draw & gap pixel length
-            strokeDashArray: [2, 2],
-            animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 } },
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
+                stroke: appTheme.VividOrange,
+                strokeThickness: 3,
+                // Dashed line charts are enabled by setting the StrokeDashArray property. The array defines draw & gap pixel length
+                strokeDashArray: [2, 2],
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 }
+                }
+            })
+        );
 
         data = createLineData(1);
 
         // Create and add a line series to the chart
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
-            stroke: appTheme.VividOrange,
-            strokeThickness: 3,
-            opacity: 0.77,
-            strokeDashArray: [3, 3],
-            animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 } },
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
+                stroke: appTheme.VividOrange,
+                strokeThickness: 3,
+                opacity: 0.77,
+                strokeDashArray: [3, 3],
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
+                }
+            })
+        );
 
         data = createLineData(2);
 
         // Create and add a line series to the chart
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
-            stroke: appTheme.VividOrange,
-            strokeThickness: 3,
-            opacity: 0.55,
-            strokeDashArray: [10, 5],
-            animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 } },
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
+                stroke: appTheme.VividOrange,
+                strokeThickness: 3,
+                opacity: 0.55,
+                strokeDashArray: [10, 5],
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
+                }
+            })
+        );
 
         return sciChartSurface;
     };
@@ -217,18 +262,26 @@ const drawExample = async () => {
         // Returns IStrokePaletteProvider, preconfigured to colour each point with a gradient
         // Can be fully customised to execute any rule on x,y,index or metadata per-point to colour the series
         // See PaletteProvider documentation for more details
-        const gradientPalette = PaletteFactory.createGradient(wasmContext, new GradientParams(new Point(0,0), new Point(1,1), [
-            { offset: 0, color: appTheme.VividOrange },
-            { offset: 0.5, color: appTheme.VividTeal },
-            { offset: 1.0, color: appTheme.VividSkyBlue },
-        ]));
+        const gradientPalette = PaletteFactory.createGradient(
+            wasmContext,
+            new GradientParams(new Point(0, 0), new Point(1, 1), [
+                { offset: 0, color: appTheme.VividOrange },
+                { offset: 0.5, color: appTheme.VividTeal },
+                { offset: 1.0, color: appTheme.VividSkyBlue }
+            ])
+        );
 
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
-            paletteProvider: gradientPalette,
-            strokeThickness: 5,
-            animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 } },
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
+                paletteProvider: gradientPalette,
+                strokeThickness: 5,
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
+                }
+            })
+        );
 
         return sciChartSurface;
     };
@@ -250,45 +303,60 @@ const drawExample = async () => {
         };
 
         // Create and add a line series to the chart
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
-            stroke: appTheme.VividOrange,
-            strokeThickness: 3,
-            opacity: 0.7,
-            onHoveredChanged,
-            onSelectedChanged,
-            animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 } },
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
+                stroke: appTheme.VividOrange,
+                strokeThickness: 3,
+                opacity: 0.7,
+                onHoveredChanged,
+                onSelectedChanged,
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 }
+                }
+            })
+        );
 
         data = createLineData(1);
 
         // Create and add a line series to the chart
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
-            stroke: appTheme.VividOrange,
-            strokeThickness: 3,
-            opacity: 0.7,
-            onHoveredChanged,
-            onSelectedChanged,
-            animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 } },
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
+                stroke: appTheme.VividOrange,
+                strokeThickness: 3,
+                opacity: 0.7,
+                onHoveredChanged,
+                onSelectedChanged,
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
+                }
+            })
+        );
 
         data = createLineData(2);
 
         // Create and add a line series to the chart
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
-            stroke: appTheme.VividOrange,
-            strokeThickness: 3,
-            opacity: 0.7,
-            onHoveredChanged,
-            onSelectedChanged,
-            animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 } },
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
+                stroke: appTheme.VividOrange,
+                strokeThickness: 3,
+                opacity: 0.7,
+                onHoveredChanged,
+                onSelectedChanged,
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
+                }
+            })
+        );
 
         // SeriesSelectionModifier adds the hover/select behaviour to the chart
         // This has a global hovered/selected callback and there are also callbacks per-series (see above)
-        sciChartSurface.chartModifiers.add(new SeriesSelectionModifier({ enableHover: true, enableSelection: true }))
+        sciChartSurface.chartModifiers.add(new SeriesSelectionModifier({ enableHover: true, enableSelection: true }));
 
         sciChartSurface.renderableSeries.get(2).isSelected = true;
 
@@ -305,23 +373,43 @@ const drawExample = async () => {
 
         let data = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(50);
 
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
-            strokeThickness: 3,
-            stroke: appTheme.VividOrange,
-            pointMarker: new EllipsePointMarker(wasmContext, { width: 5, height: 5, fill: appTheme.VividOrange, strokeThickness: 0 }),
-            animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 } },
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
+                strokeThickness: 3,
+                stroke: appTheme.VividOrange,
+                pointMarker: new EllipsePointMarker(wasmContext, {
+                    width: 5,
+                    height: 5,
+                    fill: appTheme.VividOrange,
+                    strokeThickness: 0
+                }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 }
+                }
+            })
+        );
 
         data = new RandomWalkGenerator().Seed(12345).getRandomWalkSeries(50);
 
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
-            strokeThickness: 3,
-            stroke: appTheme.VividTeal,
-            pointMarker: new EllipsePointMarker(wasmContext, { width: 5, height: 5, fill: appTheme.VividTeal, strokeThickness: 0 }),
-            animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 } },
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
+                strokeThickness: 3,
+                stroke: appTheme.VividTeal,
+                pointMarker: new EllipsePointMarker(wasmContext, {
+                    width: 5,
+                    height: 5,
+                    fill: appTheme.VividTeal,
+                    strokeThickness: 0
+                }),
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 }
+                }
+            })
+        );
 
         return sciChartSurface;
     };
@@ -329,40 +417,73 @@ const drawExample = async () => {
     const initGapsInLineCharts = async () => {
         const { sciChartSurface, wasmContext } = await createChartCommon(divElementId8, "Gaps in Line Charts");
 
-        const xValues = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+        const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 
         // When yValues has NaN in it, LineSeries.drawNaNAs can draw them as gaps or closed lines
         const yValues = [
-            0.3933834, -0.0493884, 0.4083136, -0.0458077, -0.5242618,
-            -0.9631066, -0.6873195, NaN, -0.1682597, 0.1255406,
-            -0.0313127, -0.3261995, -0.5490017, -0.2462973, 0.2475873,
-            0.15, -0.2443795, -0.7002707, NaN, -1.2466400,
-            -0.8722853, -1.1531512, -0.7264951, -0.9779677, -0.5377044
+            0.3933834,
+            -0.0493884,
+            0.4083136,
+            -0.0458077,
+            -0.5242618,
+            -0.9631066,
+            -0.6873195,
+            NaN,
+            -0.1682597,
+            0.1255406,
+            -0.0313127,
+            -0.3261995,
+            -0.5490017,
+            -0.2462973,
+            0.2475873,
+            0.15,
+            -0.2443795,
+            -0.7002707,
+            NaN,
+            -1.24664,
+            -0.8722853,
+            -1.1531512,
+            -0.7264951,
+            -0.9779677,
+            -0.5377044
         ];
 
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-            strokeThickness: 3,
-            stroke: appTheme.VividTeal,
-            drawNaNAs: ELineDrawMode.DiscontinuousLine,
-            pointMarker: new EllipsePointMarker(wasmContext, { width: 5, height: 5, fill: appTheme.VividTeal, strokeThickness: 0 })
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+                strokeThickness: 3,
+                stroke: appTheme.VividTeal,
+                drawNaNAs: ELineDrawMode.DiscontinuousLine,
+                pointMarker: new EllipsePointMarker(wasmContext, {
+                    width: 5,
+                    height: 5,
+                    fill: appTheme.VividTeal,
+                    strokeThickness: 0
+                })
+            })
+        );
 
         // Highlight the gaps with annotations stretched vertically
-        sciChartSurface.annotations.add(new BoxAnnotation({
-            x1: 6, x2: 8,
-            y1: 0.1, y2: 1.0,
-            yCoordinateMode: ECoordinateMode.Relative,
-            fill: appTheme.MutedTeal + "33",
-            strokeThickness: 0
-        }),
-        new BoxAnnotation({
-            x1: 17, x2: 19,
-            y1: 0.1, y2: 1,
-            yCoordinateMode: ECoordinateMode.Relative,
-            fill: appTheme.MutedTeal + "33",
-            strokeThickness: 0,
-        }));
+        sciChartSurface.annotations.add(
+            new BoxAnnotation({
+                x1: 6,
+                x2: 8,
+                y1: 0.1,
+                y2: 1.0,
+                yCoordinateMode: ECoordinateMode.Relative,
+                fill: appTheme.MutedTeal + "33",
+                strokeThickness: 0
+            }),
+            new BoxAnnotation({
+                x1: 17,
+                x2: 19,
+                y1: 0.1,
+                y2: 1,
+                yCoordinateMode: ECoordinateMode.Relative,
+                fill: appTheme.MutedTeal + "33",
+                strokeThickness: 0
+            })
+        );
 
         return sciChartSurface;
     };
@@ -381,10 +502,16 @@ const drawExample = async () => {
         // see PaletteProvider API for more details
         const paletteProvider: IStrokePaletteProvider = {
             strokePaletteMode: EStrokePaletteMode.GRADIENT,
-            onAttached(parentSeries: IRenderableSeries): void { },
-            onDetached(): void { },
+            onAttached(parentSeries: IRenderableSeries): void {},
+            onDetached(): void {},
             // This function called once per data-point. Colors returned must be in ARGB format (uint) e.g. 0xFF0000FF is Red
-            overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): number {
+            overrideStrokeArgb(
+                xValue: number,
+                yValue: number,
+                index: number,
+                opacity?: number,
+                metadata?: IPointMetadata
+            ): number {
                 if (yValue < THRESHOLD_LOW_LEVEL) {
                     return THRESHOLD_LOW_COLOR_ARGB;
                 }
@@ -397,46 +524,61 @@ const drawExample = async () => {
         };
 
         // Create a line series with threshold palette provider
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-            strokeThickness: 3,
-            stroke: appTheme.VividOrange,
-            // paletteprovider allows per-point colouring
-            paletteProvider,
-            // Datalabels may be shown using this property
-            dataLabels: {
-                style: { fontFamily: "Arial", fontSize: 11, },
-                color: appTheme.PaleSkyBlue,
-                skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious
-            }
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+                strokeThickness: 3,
+                stroke: appTheme.VividOrange,
+                // paletteprovider allows per-point colouring
+                paletteProvider,
+                // Datalabels may be shown using this property
+                dataLabels: {
+                    style: { fontFamily: "Arial", fontSize: 11 },
+                    color: appTheme.PaleSkyBlue,
+                    skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious
+                }
+            })
+        );
 
         // Add annotations to show the thresholds
-        sciChartSurface.annotations.add(new HorizontalLineAnnotation( {
-            stroke: appTheme.VividTeal,
-            strokeDashArray: [2, 2],
-            y1: THRESHOLD_HIGH_LEVEL,
-            labelPlacement: ELabelPlacement.TopRight,
-            labelValue: "High warning",
-            axisLabelFill: appTheme.VividTeal,
-            showLabel: true,
-        }));
-        sciChartSurface.annotations.add(new HorizontalLineAnnotation( {
-            stroke: appTheme.VividPink,
-            strokeDashArray: [2, 2],
-            labelPlacement: ELabelPlacement.BottomLeft,
-            y1: THRESHOLD_LOW_LEVEL,
-            labelValue: "Low warning",
-            axisLabelFill: appTheme.VividPink,
-            showLabel: true,
-        }));
+        sciChartSurface.annotations.add(
+            new HorizontalLineAnnotation({
+                stroke: appTheme.VividTeal,
+                strokeDashArray: [2, 2],
+                y1: THRESHOLD_HIGH_LEVEL,
+                labelPlacement: ELabelPlacement.TopRight,
+                labelValue: "High warning",
+                axisLabelFill: appTheme.VividTeal,
+                showLabel: true
+            })
+        );
+        sciChartSurface.annotations.add(
+            new HorizontalLineAnnotation({
+                stroke: appTheme.VividPink,
+                strokeDashArray: [2, 2],
+                labelPlacement: ELabelPlacement.BottomLeft,
+                y1: THRESHOLD_LOW_LEVEL,
+                labelValue: "Low warning",
+                axisLabelFill: appTheme.VividPink,
+                showLabel: true
+            })
+        );
 
         return sciChartSurface;
     };
 
-    const charts = await Promise.all([initJustLineCharts(), initDigitalLineCharts(), initTooltipsOnLineCharts(),
-        initDashedLineCharts(), initPalettedLineCharts(), initHoveredLineCharts(), initGapsInLineCharts(),
-        initVerticalLineCharts(), initGapsInLineCharts(), initThresholdedLineCharts()]);
+    const charts = await Promise.all([
+        initJustLineCharts(),
+        initDigitalLineCharts(),
+        initTooltipsOnLineCharts(),
+        initDashedLineCharts(),
+        initPalettedLineCharts(),
+        initHoveredLineCharts(),
+        initGapsInLineCharts(),
+        initVerticalLineCharts(),
+        initGapsInLineCharts(),
+        initThresholdedLineCharts()
+    ]);
 
     return { charts };
 };
@@ -449,7 +591,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        background: appTheme.DarkIndigo,
+        background: appTheme.DarkIndigo
     },
     flexContainerRow: {
         display: "flex",
@@ -457,12 +599,12 @@ const useStyles = makeStyles(theme => ({
         alignContent: "stretch",
         margin: 10,
         height: "33.33%",
-        width: "calc(100% - 10)",
+        width: "calc(100% - 10)"
         // background: "#00ff0033",
     },
     item: {
         height: "100%",
-        width: "32%",
+        width: "32%"
         // background: "#FF000033",
     }
 }));
@@ -483,24 +625,24 @@ export default function LineChart() {
     const localClasses = useStyles();
 
     return (
-            <div className={classes.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.flexContainerRow}>
-                        <div id={divElementId1} className={localClasses.item}/>
-                        <div id={divElementId2} className={localClasses.item}/>
-                        <div id={divElementId3} className={localClasses.item}/>
-                    </div>
-                    <div className={localClasses.flexContainerRow}>
-                        <div id={divElementId4} className={localClasses.item}/>
-                        <div id={divElementId5} className={localClasses.item}/>
-                        <div id={divElementId6} className={localClasses.item}/>
-                    </div>
-                    <div className={localClasses.flexContainerRow}>
-                        <div id={divElementId7} className={localClasses.item}/>
-                        <div id={divElementId8} className={localClasses.item}/>
-                        <div id={divElementId9} className={localClasses.item}/>
-                    </div>
+        <div className={classes.ChartWrapper}>
+            <div className={localClasses.flexOuterContainer}>
+                <div className={localClasses.flexContainerRow}>
+                    <div id={divElementId1} className={localClasses.item} />
+                    <div id={divElementId2} className={localClasses.item} />
+                    <div id={divElementId3} className={localClasses.item} />
+                </div>
+                <div className={localClasses.flexContainerRow}>
+                    <div id={divElementId4} className={localClasses.item} />
+                    <div id={divElementId5} className={localClasses.item} />
+                    <div id={divElementId6} className={localClasses.item} />
+                </div>
+                <div className={localClasses.flexContainerRow}>
+                    <div id={divElementId7} className={localClasses.item} />
+                    <div id={divElementId8} className={localClasses.item} />
+                    <div id={divElementId9} className={localClasses.item} />
                 </div>
             </div>
-        );
+        </div>
+    );
 }
