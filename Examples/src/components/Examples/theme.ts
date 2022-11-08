@@ -1,5 +1,5 @@
 import {IThemeProvider} from "scichart/Charting/Themes/IThemeProvider";
-import { SciChartJS2022Theme } from "sciChart/Charting/Themes/SciChartJS2022Theme";
+import { SciChartJsNavyTheme } from "sciChart/Charting/Themes/SciChartJsNavyTheme";
 
 export interface AppThemeBase {
     SciChartJsTheme: IThemeProvider;
@@ -35,7 +35,7 @@ export interface AppThemeBase {
 }
 
 export class SciChart2022AppTheme implements AppThemeBase {
-    SciChartJsTheme = new SciChartJS2022Theme();
+    SciChartJsTheme = new SciChartJsNavyTheme();
 
     // General colors
     ForegroundColor = "#FFFFFF";
