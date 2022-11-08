@@ -32,6 +32,8 @@ import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {EFillPaletteMode, IFillPaletteProvider} from "scichart/Charting/Model/IPaletteProvider";
 import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
 import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import {FastOhlcRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastOhlcRenderableSeries";
+import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
 
 const divElementId = "chart";
 const divOverviewId = "overview";
@@ -84,7 +86,7 @@ const drawExample = async () => {
     // Create and add the Candlestick series
     // The Candlestick Series requires a special dataseries type called OhlcDataSeries with o,h,l,c and date values
     const candleDataSeries = new OhlcDataSeries(wasmContext, { xValues, openValues, highValues, lowValues, closeValues, dataSeriesName: "BTC/USDT" });
-    sciChartSurface.renderableSeries.add(new FastCandlestickRenderableSeries(wasmContext, {
+    const candlestickSeries = new FastCandlestickRenderableSeries(wasmContext, {
         dataSeries: candleDataSeries,
         stroke: appTheme.ForegroundColor, // used by cursorModifier below
         strokeThickness: 1,
@@ -92,7 +94,19 @@ const drawExample = async () => {
         brushDown: appTheme.MutedRed + "77",
         strokeUp: appTheme.VividGreen,
         strokeDown: appTheme.MutedRed,
-    }));
+    });
+    sciChartSurface.renderableSeries.add(candlestickSeries);
+
+    // Add an Ohlcseries. this will be invisible to begin with
+    const ohlcSeries = new FastOhlcRenderableSeries(wasmContext, {
+        dataSeries: candleDataSeries,
+        stroke: appTheme.ForegroundColor, // used by cursorModifier below
+        strokeThickness: 1,
+        strokeUp: appTheme.VividGreen,
+        strokeDown: appTheme.MutedRed,
+        isVisible: false
+    });
+    sciChartSurface.renderableSeries.add(ohlcSeries);
 
     // Add some moving averages using SciChart's filters/transforms API
     // when candleDataSeries updates, XyMovingAverageFilter automatically recomputes
@@ -134,7 +148,7 @@ const drawExample = async () => {
         transformRenderableSeries: getOverviewSeries
     });
 
-    return { sciChartSurface, overview };
+    return { sciChartSurface, overview, candlestickSeries, ohlcSeries };
 };
 
 // Override the Renderableseries to display on the scichart overview
@@ -203,9 +217,15 @@ class VolumePaletteProvider implements IFillPaletteProvider {
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function CandlestickChart() {
     const itemsToDelete: IDeletable[] = [];
+    const [preset, setPreset] = React.useState<number>(0);
+    const [candlestickChartSeries, setCandlestickChartSeries] = React.useState<FastCandlestickRenderableSeries>();
+    const [ohlcChartSeries, setOhlcChartSeries] = React.useState<FastOhlcRenderableSeries>();
+
     React.useEffect(() => {
         (async () => {
-            const { sciChartSurface, overview } = await drawExample();
+            const { sciChartSurface, overview, candlestickSeries, ohlcSeries } = await drawExample();
+            setCandlestickChartSeries(candlestickSeries);
+            setOhlcChartSeries(ohlcSeries);
             itemsToDelete.push(sciChartSurface, overview);
         })();
         return () => {
@@ -213,10 +233,31 @@ export default function CandlestickChart() {
         };
     }, []);
 
+    const handleToggleButtonChanged = (event: any, state: number) => {
+        if (state === null) return;
+        setPreset(state);
+        console.log(`Toggling Candle/Ohlc state: ${state}`);
+        // Toggle visibility of candlestick or OHLC series
+        candlestickChartSeries.isVisible = state === 0;
+        ohlcChartSeries.isVisible = state === 1;
+    };
 
     return <React.Fragment>
         <div className={classes.ChartWrapper} style={{background: appTheme.DarkIndigo }}>
-            <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+            <ToggleButtonGroup
+                style={{height: "70px", padding: "10"}}
+                exclusive
+                value={preset}
+                onChange={handleToggleButtonChanged}
+                size="small" color="primary" aria-label="small outlined button group">
+                <ToggleButton value={0} style={{color: appTheme.ForegroundColor}}>
+                    Candlestick Series
+                </ToggleButton>
+                <ToggleButton value={1} style={{color: appTheme.ForegroundColor}}>
+                    OHLC Series
+                </ToggleButton>
+            </ToggleButtonGroup>
+            <div style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}>
                 <div id={divElementId} style={{ flexBasis: "100%", flexGrow: 1, flexShrink: 1 }} />
                 <div id={divOverviewId} style={{ flexBasis: "200px", flexGrow: 1, flexShrink: 1 }} />
             </div>
