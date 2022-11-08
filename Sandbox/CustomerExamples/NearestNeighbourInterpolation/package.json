@@ -1,0 +1,21 @@
+{
+  "name": "scichart-nearest-neighbor-interpolation",
+  "version": "1.0.0",
+  "description": "Nearest Neighbour interpolation using custom filter in SciChart.js",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "parcel-bundler": "1.12.5",
+    "scichart": "2.2.2401"
+  },
+  "devDependencies": {
+    "typescript": "4.4.4"
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.13.8"
+  },
+  "keywords": []
+}

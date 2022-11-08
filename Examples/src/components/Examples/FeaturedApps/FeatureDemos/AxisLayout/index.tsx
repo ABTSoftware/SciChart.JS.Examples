@@ -35,7 +35,6 @@ import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { ELabelAlignment } from "scichart/types/LabelAlignment";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import { getBinanceCandles } from "../../../../../utils/binanceApi";
 import { RightAlignedOuterVerticallyStackedAxisLayoutStrategy } from "scichart/Charting/LayoutManager/RightAlignedOuterVerticallyStackedAxisLayoutStrategy"
 import classes from "../../../Examples.module.scss";
 import { appTheme } from "../../../theme";
