@@ -25,6 +25,11 @@
     }
 }
 
+.FullHeightChartWrapper {
+    @extend .ChartWrapper;
+    flex: auto;
+}
+
 .ExampleWrapperCompicated {
     display: grid;
     grid-template-columns: repeat(50, 1fr);
@@ -49,6 +54,8 @@
         flex-direction: column;
     }
     .Example {
+        display: flex;
+        flex-direction: column;
         margin-right: 30px;
         flex: 1;
         max-width: 70%;
@@ -211,12 +218,12 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    border-left: 1px solid #364BA0;
+    border-left: 1px solid #364ba0;
     padding: 6px;
     height: 25%;
     width: 100%;
     background-color: black;
-    border-bottom: 1px solid #364BA0;
+    border-bottom: 1px solid #364ba0;
     //@include sm {
     //    height: auto;
     //}
@@ -257,6 +264,7 @@
 
 .ButtonsWrapper {
     display: flex;
+    flex: none;
     margin-top: 10px;
     button {
         color: $color-main-green;

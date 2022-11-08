@@ -1,43 +1,36 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ENumericFormat} from "scichart/types/NumericFormat";
-import {LogarithmicAxis} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
-import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
-import {appTheme} from "../../../theme";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {NumericAxis} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Axis/NumericAxis";
+import { SciChartSurface } from "scichart";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ENumericFormat } from "scichart/types/NumericFormat";
+import { LogarithmicAxis } from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
+import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
+import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
+import { appTheme } from "../../../theme";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import classes from "../../../Examples.module.scss";
-import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
-import {AxisBase2D} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Axis/AxisBase2D";
-import {
-    LegendModifier
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/ChartModifiers/LegendModifier";
-import {
-    TextAnnotation
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/AnchorPoint";
-import {
-    ECoordinateMode
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/AnnotationBase";
+import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+import { AxisBase2D } from "scichart/Charting/Visuals/Axis/AxisBase2D";
+import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
+import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import { EHorizontalAnchorPoint } from "scichart/types/AnchorPoint";
+import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 const divElementId = "chart1";
 
 const Y_AXIS_LINEAR_ID = "Y_AXIS_LINEAR_ID";
 const X_AXIS_LINEAR_ID = "X_AXIS_LINEAR_ID";
 
 const drawExample = async () => {
-
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: {
             ...appTheme.SciChartJsTheme,
             majorGridLineBrush: appTheme.MutedSkyBlue + "55",
-            minorGridLineBrush: appTheme.MutedSkyBlue + "22",
+            minorGridLineBrush: appTheme.MutedSkyBlue + "22"
         }
     });
 
@@ -46,7 +39,7 @@ const drawExample = async () => {
         logBase: 10,
         labelFormat: ENumericFormat.Scientific,
         labelPrecision: 2,
-        minorsPerMajor: 10,
+        minorsPerMajor: 10
     });
     sciChartSurface.xAxes.add(xAxisLogarithmic);
 
@@ -57,7 +50,7 @@ const drawExample = async () => {
         logBase: 10,
         labelFormat: ENumericFormat.Scientific,
         labelPrecision: 2,
-        minorsPerMajor: 10,
+        minorsPerMajor: 10
     });
     sciChartSurface.yAxes.add(yAxisLogarithmic);
 
@@ -73,7 +66,7 @@ const drawExample = async () => {
         labelFormat: ENumericFormat.Decimal,
         labelPrecision: 2,
         isVisible: false,
-        id: Y_AXIS_LINEAR_ID,
+        id: Y_AXIS_LINEAR_ID
     });
     sciChartSurface.yAxes.add(yAxisLinear);
 
@@ -82,35 +75,70 @@ const drawExample = async () => {
     const data1 = ExampleDataProvider.getExponentialCurve(2.2, 100);
     const data2 = ExampleDataProvider.getExponentialCurve(2.4, 100);
 
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data0.xValues, yValues: data0.yValues, dataSeriesName: "y = x ^ 2" }),
-        stroke: appTheme.VividSkyBlue,
-        strokeThickness: 3,
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: appTheme.VividSkyBlue, strokeThickness: 0 }),
-        animation: new SweepAnimation({ duration: 800, delay: 0}),
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: data0.xValues,
+                yValues: data0.yValues,
+                dataSeriesName: "y = x ^ 2"
+            }),
+            stroke: appTheme.VividSkyBlue,
+            strokeThickness: 3,
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 7,
+                height: 7,
+                fill: appTheme.VividSkyBlue,
+                strokeThickness: 0
+            }),
+            animation: new SweepAnimation({ duration: 800, delay: 0 })
+        })
+    );
 
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues, dataSeriesName: "y = x ^ 2.2" }),
-        stroke: appTheme.VividPink,
-        strokeThickness: 3,
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: appTheme.VividPink, strokeThickness: 0 }),
-        animation: new SweepAnimation({ duration: 800, delay: 0}),
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: data1.xValues,
+                yValues: data1.yValues,
+                dataSeriesName: "y = x ^ 2.2"
+            }),
+            stroke: appTheme.VividPink,
+            strokeThickness: 3,
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 7,
+                height: 7,
+                fill: appTheme.VividPink,
+                strokeThickness: 0
+            }),
+            animation: new SweepAnimation({ duration: 800, delay: 0 })
+        })
+    );
 
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data2.xValues, yValues: data2.yValues, dataSeriesName: "y = x ^ 2.4" }),
-        stroke: appTheme.VividOrange,
-        strokeThickness: 3,
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: appTheme.VividOrange, strokeThickness: 0 }),
-        animation: new SweepAnimation({ duration: 800, delay: 0}),
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: data2.xValues,
+                yValues: data2.yValues,
+                dataSeriesName: "y = x ^ 2.4"
+            }),
+            stroke: appTheme.VividOrange,
+            strokeThickness: 3,
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 7,
+                height: 7,
+                fill: appTheme.VividOrange,
+                strokeThickness: 0
+            }),
+            animation: new SweepAnimation({ duration: 800, delay: 0 })
+        })
+    );
 
     // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new RubberBandXyZoomModifier(),
+    sciChartSurface.chartModifiers.add(
+        new RubberBandXyZoomModifier(),
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier(),
-        new LegendModifier({ showCheckboxes: false }));
+        new LegendModifier({ showCheckboxes: false })
+    );
 
     // Add title annotation
     const titleAnnotation = new TextAnnotation({
@@ -124,18 +152,25 @@ const drawExample = async () => {
         opacity: 0.77,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative
     });
     sciChartSurface.annotations.add(titleAnnotation);
 
     sciChartSurface.zoomExtents();
-    return { sciChartSurface, wasmContext, yAxisLogarithmic, yAxisLinear, xAxisLinear, xAxisLogarithmic, titleAnnotation };
+    return {
+        sciChartSurface,
+        wasmContext,
+        yAxisLogarithmic,
+        yAxisLinear,
+        xAxisLinear,
+        xAxisLogarithmic,
+        titleAnnotation
+    };
 };
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function LogarithmicAxisExample() {
-
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [linearXAxis, setLinearXAxis] = React.useState<NumericAxis>();
     const [logXAxis, setLogXAxis] = React.useState<LogarithmicAxis>();
@@ -145,7 +180,6 @@ export default function LogarithmicAxisExample() {
     const [preset, setPreset] = React.useState<number>(0);
 
     React.useEffect(() => {
-
         (async () => {
             const res = await drawExample();
             // Store some variables which we will need later when switching x,y axis type
@@ -162,13 +196,12 @@ export default function LogarithmicAxisExample() {
     }, []);
 
     const handleToggleButtonChanged = (event: any, state: number) => {
-
         const toggleAxis = (axis: AxisBase2D, isEnabled: boolean) => {
             axis.isVisible = isEnabled; // toggle this axis as visible/invisible
             axis.isPrimaryAxis = isEnabled; // Only the primary axis shows gridlines
-        }
+        };
         setPreset(state);
-        switch(state) {
+        switch (state) {
             case 0:
                 console.log(`Setting state to Logarithmic X & Y Axis`);
                 toggleAxis(logXAxis, true);
@@ -207,21 +240,25 @@ export default function LogarithmicAxisExample() {
         sciChartSurface.zoomExtents();
     };
 
-    return (<div className={classes.ChartWrapper} style={{background: appTheme.DarkIndigo, }}>
-            <div id={divElementId} style={{height: "calc(100% - 100px)", width: "100%"}}/>
+    return (
+        <div className={classes.ChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+            <div id={divElementId} style={{ height: "calc(100% - 100px)", width: "100%" }} />
             <ToggleButtonGroup
-                style={{height: "100px", padding: "10",}}
+                style={{ height: "100px", padding: "10" }}
                 exclusive
                 value={preset}
                 onChange={handleToggleButtonChanged}
-                size="medium" color="primary" aria-label="small outlined button group">
-                <ToggleButton value={0} style={{color: appTheme.ForegroundColor}}>
+                size="medium"
+                color="primary"
+                aria-label="small outlined button group"
+            >
+                <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
                     Logarithmic X &amp; Y Axis
                 </ToggleButton>
-                <ToggleButton value={1} style={{color: appTheme.ForegroundColor}}>
+                <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
                     Log X Axis, Linear Y Axis
                 </ToggleButton>
-                <ToggleButton value={2} style={{color: appTheme.ForegroundColor}}>
+                <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>
                     Linear X &amp; Y Axis
                 </ToggleButton>
             </ToggleButtonGroup>

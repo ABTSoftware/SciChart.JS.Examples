@@ -10,18 +10,17 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { zeroArray2D } from "scichart/utils/zeroArray2D";
 import { UniformContoursRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformContoursRenderableSeries";
 import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
-import {HeatmapLegend} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/HeatmapLegend";
+import { appTheme } from "../../../theme";
+import { HeatmapLegend } from "scichart/Charting/Visuals/HeatmapLegend";
 
 const divElementId = "chart";
 const divHeatmapLegend = "heatmapLegend";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId,
-        {
-            theme: appTheme.SciChartJsTheme
-        });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Create an X & Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -44,34 +43,38 @@ const drawExample = async () => {
     });
 
     // Add the contours series and add to the chart
-    sciChartSurface.renderableSeries.add(new UniformContoursRenderableSeries(wasmContext, {
-        dataSeries: heatmapDataSeries,
-        zMin: 20,
-        zMax: colorPaletteMax,
-        zStep: 20,
-        strokeThickness: 1,
-        stroke: appTheme.PaleSkyBlue
-    }));
+    sciChartSurface.renderableSeries.add(
+        new UniformContoursRenderableSeries(wasmContext, {
+            dataSeries: heatmapDataSeries,
+            zMin: 20,
+            zMax: colorPaletteMax,
+            zStep: 20,
+            strokeThickness: 1,
+            stroke: appTheme.PaleSkyBlue
+        })
+    );
 
     // Create a background heatmap series with the same data and add to the chart
-    sciChartSurface.renderableSeries.add(new UniformHeatmapRenderableSeries(wasmContext, {
-        dataSeries: heatmapDataSeries,
-        useLinearTextureFiltering: false,
-        opacity: 0.5,
-        colorMap: new HeatmapColorMap({
-            minimum: colorPaletteMin,
-            maximum: colorPaletteMax,
-            gradientStops: [
-                {offset: 1, color: appTheme.VividPink},
-                {offset: 0.9, color: appTheme.VividOrange},
-                {offset: 0.7, color: appTheme.MutedRed},
-                {offset: 0.5, color: appTheme.VividGreen},
-                {offset: 0.3, color: appTheme.VividSkyBlue},
-                {offset: 0.2, color: appTheme.Indigo},
-                {offset: 0, color: appTheme.DarkIndigo}
-            ]
+    sciChartSurface.renderableSeries.add(
+        new UniformHeatmapRenderableSeries(wasmContext, {
+            dataSeries: heatmapDataSeries,
+            useLinearTextureFiltering: false,
+            opacity: 0.5,
+            colorMap: new HeatmapColorMap({
+                minimum: colorPaletteMin,
+                maximum: colorPaletteMax,
+                gradientStops: [
+                    { offset: 1, color: appTheme.VividPink },
+                    { offset: 0.9, color: appTheme.VividOrange },
+                    { offset: 0.7, color: appTheme.MutedRed },
+                    { offset: 0.5, color: appTheme.VividGreen },
+                    { offset: 0.3, color: appTheme.VividSkyBlue },
+                    { offset: 0.2, color: appTheme.Indigo },
+                    { offset: 0, color: appTheme.DarkIndigo }
+                ]
+            })
         })
-    }));
+    );
 
     // Add interaction
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
@@ -86,7 +89,7 @@ const drawHeatmapLegend = async () => {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB"
         },
         yAxisOptions: {
             axisBorder: {
@@ -96,31 +99,31 @@ const drawHeatmapLegend = async () => {
             majorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 6,
-                strokeThickness: 1,
+                strokeThickness: 1
             },
             minorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
-                strokeThickness: 1,
+                strokeThickness: 1
             }
         },
         colorMap: {
             minimum: 0,
             maximum: 200,
             gradientStops: [
-                {offset: 1, color: appTheme.VividPink},
-                {offset: 0.9, color: appTheme.VividOrange},
-                {offset: 0.7, color: appTheme.MutedRed},
-                {offset: 0.5, color: appTheme.VividGreen},
-                {offset: 0.3, color: appTheme.VividSkyBlue},
-                {offset: 0.2, color: appTheme.Indigo},
-                {offset: 0, color: appTheme.DarkIndigo}
-            ],
+                { offset: 1, color: appTheme.VividPink },
+                { offset: 0.9, color: appTheme.VividOrange },
+                { offset: 0.7, color: appTheme.MutedRed },
+                { offset: 0.5, color: appTheme.VividGreen },
+                { offset: 0.3, color: appTheme.VividSkyBlue },
+                { offset: 0.2, color: appTheme.Indigo },
+                { offset: 0, color: appTheme.DarkIndigo }
+            ]
         }
     });
 
     return heatmapLegend;
-}
+};
 
 // This function generates data for the heatmap with contours series example
 function generateExampleData(index: number, heatmapWidth: number, heatmapHeight: number, colorPaletteMax: number) {
@@ -163,14 +166,17 @@ export default function ContourChart() {
         return () => {
             sciChartSurface?.delete();
             heatmapLegend?.delete();
-        }
+        };
     }, []);
 
     return (
         <div className={classes.ChartWrapper}>
-            <div style={{position: "relative", height: "100%", width: "100%" }}>
-                <div id={divElementId} style={{position: "absolute", height: "100%", width: "100%"}}></div>
-                <div id={divHeatmapLegend} style={{position: "absolute", height: "92%", width: "100px", right: "70px", margin: "20"}}></div>
+            <div style={{ position: "relative", height: "100%", width: "100%" }}>
+                <div id={divElementId} style={{ position: "absolute", height: "100%", width: "100%" }}></div>
+                <div
+                    id={divHeatmapLegend}
+                    style={{ position: "absolute", height: "92%", width: "100px", right: "70px", margin: "20" }}
+                ></div>
             </div>
         </div>
     );
