@@ -9,7 +9,10 @@ import {
 } from "scichart/Charting/Model/IPaletteProvider";
 import { EDraggingGripPoint } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
-import { HorizontalLineAnnotation, IHVLineAnnotationOptions } from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
+import {
+    HorizontalLineAnnotation,
+    IHVLineAnnotationOptions
+} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
 import { I2DSubSurfaceOptions } from "scichart/Charting/Visuals/I2DSurfaceOptions";
 import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
@@ -397,7 +400,6 @@ export const drawExample = async () => {
     // Resizing Logic
     const firstDividerElement = document.getElementById(dividerId1);
     const secondDividerElement = document.getElementById(dividerId2);
-    firstDividerElement.style;
     let isDraggingFirst = false;
     let isDraggingSecond = false;
     let dragStartPosition: number;
@@ -491,35 +493,6 @@ export const drawExample = async () => {
 
     return { sciChartSurface: mainSurface, wasmContext };
 };
-
-interface ICustomHVLineAnnotationOptions extends IHVLineAnnotationOptions {
-    dragThreshold?: NumberRange;
-}
-
-class CustomHorizontalLineAnnotation extends HorizontalLineAnnotation {
-    public dragThreshold: NumberRange = new NumberRange(0, 1);
-
-    constructor(options?: ICustomHVLineAnnotationOptions) {
-        super(options);
-        this.dragThreshold = options?.dragThreshold ?? this.dragThreshold;
-    }
-
-    public calcDragDistance(xyValues: Point) {
-        if (this.adornerDraggingPoint === EDraggingGripPoint.Body) {
-            if (!this.prevValue) {
-                this.prevValue = xyValues;
-                return;
-            }
-
-            const xDelta = this.prevValue.x - xyValues.x;
-            const yDelta = this.prevValue.y - xyValues.y;
-            const newExpectedY1Value = this.y1 - yDelta;
-            if (newExpectedY1Value >= this.dragThreshold.min && newExpectedY1Value <= this.dragThreshold.max) {
-                super.calcDragDistance(xyValues);
-            }
-        }
-    }
-}
 
 /**
  * An example PaletteProvider applied to the volume column series. It will return green / red
@@ -615,7 +588,7 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
     });
 };
 
-const charts: TWebAssemblyChart[] = [];
+let charts: TWebAssemblyChart[] = [];
 
 export default function SubChartStockCharts() {
     React.useEffect(() => {
@@ -635,7 +608,10 @@ export default function SubChartStockCharts() {
                 id={containerId2}
                 style={{
                     position: "relative",
+                    maxWidth: 900,
+                    width: "100%",
                     maxHeight: 1000,
+                    height: "100%",
                     touchAction: "none"
                 }}
             >
@@ -649,12 +625,15 @@ export default function SubChartStockCharts() {
                     id={dividerId1}
                     style={{
                         width: "100%",
-                        height: "2px",
+                        height: "6px",
                         backgroundColor: "#2B2D70",
+                        cursor: "row-resize",
                         position: "absolute",
                         zIndex: 1
                     }}
-                />
+                >
+                    <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
+                </div>
                 <div
                     id={subChartWrapper2}
                     style={{
@@ -665,12 +644,15 @@ export default function SubChartStockCharts() {
                     id={dividerId2}
                     style={{
                         width: "100%",
-                        height: "2px",
+                        height: "6px",
                         backgroundColor: "#2B2D70",
+                        cursor: "row-resize",
                         position: "absolute",
                         zIndex: 1
                     }}
-                />
+                >
+                    <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
+                </div>
                 <div
                     id={subChartWrapper3}
                     style={{

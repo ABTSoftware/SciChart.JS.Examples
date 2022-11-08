@@ -2,6 +2,7 @@
 **/build
 **/node_modules
 **/.idea
+**/.cache
 .DS_Store
 Sandbox/demo-electron/dist/main/main.js
 Sandbox/**/package-lock.json
