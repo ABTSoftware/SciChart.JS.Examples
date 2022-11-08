@@ -78,32 +78,32 @@ const drawExample = async () => {
     sciChartSurface.yAxes.add(yAxisLinear);
 
     // Create some data
-    const data0 = ExampleDataProvider.getExponentialCurve(1.8, 100);
-    const data1 = ExampleDataProvider.getExponentialCurve(2.0, 100);
-    const data2 = ExampleDataProvider.getExponentialCurve(2.2, 100);
+    const data0 = ExampleDataProvider.getExponentialCurve(2, 100);
+    const data1 = ExampleDataProvider.getExponentialCurve(2.2, 100);
+    const data2 = ExampleDataProvider.getExponentialCurve(2.4, 100);
 
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data0.xValues, yValues: data0.yValues, dataSeriesName: "x ^ 1.8" }),
+        dataSeries: new XyDataSeries(wasmContext, { xValues: data0.xValues, yValues: data0.yValues, dataSeriesName: "y = x ^ 2" }),
         stroke: appTheme.VividSkyBlue,
         strokeThickness: 3,
         pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: appTheme.VividSkyBlue, strokeThickness: 0 }),
-        // animation: new SweepAnimation({ duration: 800, delay: 0}),
+        animation: new SweepAnimation({ duration: 800, delay: 0}),
     }));
 
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues, dataSeriesName: "x ^ 1.9" }),
+        dataSeries: new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues, dataSeriesName: "y = x ^ 2.2" }),
         stroke: appTheme.VividPink,
         strokeThickness: 3,
         pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: appTheme.VividPink, strokeThickness: 0 }),
-        // animation: new SweepAnimation({ duration: 800, delay: 0}),
+        animation: new SweepAnimation({ duration: 800, delay: 0}),
     }));
 
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data2.xValues, yValues: data2.yValues, dataSeriesName: "x ^ 2.0" }),
+        dataSeries: new XyDataSeries(wasmContext, { xValues: data2.xValues, yValues: data2.yValues, dataSeriesName: "y = x ^ 2.4" }),
         stroke: appTheme.VividOrange,
         strokeThickness: 3,
         pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: appTheme.VividOrange, strokeThickness: 0 }),
-        // animation: new SweepAnimation({ duration: 800, delay: 0}),
+        animation: new SweepAnimation({ duration: 800, delay: 0}),
     }));
 
     // Add some interactivity modifiers

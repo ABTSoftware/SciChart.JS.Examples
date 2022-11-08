@@ -135,12 +135,9 @@ export class ExampleDataProvider {
     public static getExponentialCurve(power: number, pointCount: number): IXyValues {
         const xValues: number[] = [];
         const yValues: number[] = [];
-        let x = 0.0001;
-        const fudgeFactor = 1.4;
         for (let i = 0; i < pointCount; i++) {
-            x *= fudgeFactor;
             const y = Math.pow(i + 1, power);
-            xValues.push(x);
+            xValues.push(i + 1);
             yValues.push(y);
         }
         return { xValues, yValues };
