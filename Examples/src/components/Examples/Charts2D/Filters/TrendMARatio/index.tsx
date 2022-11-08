@@ -19,6 +19,10 @@ import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationB
 import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 import {XyRatioFilter} from "scichart/Charting/Model/Filters/XyRatioFilter";
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {
+    ELegendOrientation,
+    ELegendPlacement
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Legend/SciChartLegendBase";
 
 export const divElementId = "chart";
 
@@ -96,13 +100,13 @@ export const drawExample = async () => {
 
     // Add a title over the chart with information
     sciChartSurface.annotations.add(new TextAnnotation({
-        x1: 1,
+        x1: 0.5,
         y1: 0,
         yCoordShift: 20,
         xCoordShift: -20,
         xCoordinateMode: ECoordinateMode.Relative,
         yCoordinateMode: ECoordinateMode.Relative,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
         fontSize: 18,
         opacity: .55,
@@ -115,7 +119,7 @@ export const drawExample = async () => {
         new MouseWheelZoomModifier(),
         new ZoomPanModifier(),
         new ZoomExtentsModifier(),
-        new LegendModifier());
+        new LegendModifier({ placement: ELegendPlacement.BottomLeft, orientation: ELegendOrientation.Horizontal}));
 
     return { sciChartSurface, wasmContext };
 };

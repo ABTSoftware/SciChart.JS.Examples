@@ -58,7 +58,7 @@ const drawExample = async () => {
         labelStyle: {
             color: appTheme.VividSkyBlue
         },
-        growBy: new NumberRange(0.1, 0.1),
+        growBy: new NumberRange(0.2, 0.2),
         backgroundColor: appTheme.VividSkyBlue + "22",
         axisBorder: {
             borderRight: 1,
@@ -93,7 +93,7 @@ const drawExample = async () => {
         axisTitle:  "Y Axis Right",
         labelFormat: ENumericFormat.Decimal,
         labelPrecision: 2,
-        growBy: new NumberRange(0.1, 0.1),
+        growBy: new NumberRange(0.2, 0.2),
         backgroundColor: appTheme.VividOrange + "22",
         axisBorder: {
             borderLeft: 1,
@@ -139,11 +139,12 @@ const drawExample = async () => {
     }));
 
     sciChartSurface.annotations.add(new TextAnnotation({
-        x1: 60,
+        x1: 30,
         y1: 1.1,
         fontSize: 18,
         textColor: appTheme.VividSkyBlue,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
         text: "Blue series is bound to the Shared X-Axis, and Left Y-Axis",
     }));
 
