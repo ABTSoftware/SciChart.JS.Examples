@@ -595,17 +595,16 @@ const useStyles = makeStyles(theme => ({
     },
     flexContainerRow: {
         display: "flex",
+        flex: "auto",
+        flexBasis: "33%",
         justifyContent: "space-between",
         alignContent: "stretch",
         margin: 10,
-        height: "33.33%",
-        width: "calc(100% - 10)"
-        // background: "#00ff0033",
+        width: "calc(100% - 10px)"
     },
     item: {
+        flex: "auto",
         height: "100%",
-        width: "32%"
-        // background: "#FF000033",
     }
 }));
 
