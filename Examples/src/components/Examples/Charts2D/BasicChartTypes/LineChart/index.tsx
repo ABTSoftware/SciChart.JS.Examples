@@ -53,7 +53,7 @@ const drawExample = async () => {
         // Create the X,Y Axis
         sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { maxAutoTicks: 5 }));
         sciChartSurface.yAxes.add(
-            new NumericAxis(wasmContext, { maxAutoTicks: 5, growBy: new NumberRange(0.05, 0.2) })
+            new NumericAxis(wasmContext, { maxAutoTicks: 5, growBy: new NumberRange(0.05, 0.25) })
         );
 
         // Add title annotation
@@ -156,7 +156,7 @@ const drawExample = async () => {
                 },
                 // Optional DataLabels may be added via this property.
                 dataLabels: {
-                    style: { fontFamily: "Arial", fontSize: 13, padding: new Thickness(5, 5, 5, 5) },
+                    style: { fontFamily: "Arial", fontSize: 11, padding: new Thickness(5, 5, 5, 5) },
                     color: appTheme.ForegroundColor,
                     aboveBelow: false,
                     verticalTextPosition: EVerticalTextPosition.Top
@@ -532,11 +532,11 @@ const drawExample = async () => {
                 // paletteprovider allows per-point colouring
                 paletteProvider,
                 // Datalabels may be shown using this property
-                dataLabels: {
-                    style: { fontFamily: "Arial", fontSize: 11 },
-                    color: appTheme.PaleSkyBlue,
-                    skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious
-                }
+                // dataLabels: {
+                //     style: { fontFamily: "Arial", fontSize: 8 },
+                //     color: appTheme.PaleSkyBlue,
+                //     skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious
+                // }
             })
         );
 

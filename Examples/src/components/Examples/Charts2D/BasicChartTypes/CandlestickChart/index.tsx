@@ -102,6 +102,7 @@ const drawExample = async () => {
         dataSeries: candleDataSeries,
         stroke: appTheme.ForegroundColor, // used by cursorModifier below
         strokeThickness: 1,
+        dataPointWidth: 0.9,
         strokeUp: appTheme.VividGreen,
         strokeDown: appTheme.MutedRed,
         isVisible: false
