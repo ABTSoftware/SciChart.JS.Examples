@@ -138,18 +138,19 @@ const drawExample = async () => {
 };
 
 // Override the Renderableseries to display on the scichart overview
-const getOverviewSeries = (renderableSeries: IRenderableSeries) => {
-    if (renderableSeries.type === ESeriesType.CandlestickSeries) {
+const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
+    if (defaultSeries.type === ESeriesType.CandlestickSeries) {
         // Swap the default candlestick series on the overview chart for a mountain series. Same data
-        return new FastMountainRenderableSeries(renderableSeries.parentSurface.webAssemblyContext2D, {
-            dataSeries: renderableSeries.dataSeries,
+        return new FastMountainRenderableSeries(defaultSeries.parentSurface.webAssemblyContext2D, {
+            dataSeries: defaultSeries.dataSeries,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                {color: appTheme.MutedSkyBlue, offset: 0},
+                {color: appTheme.VividSkyBlue + "77", offset: 0},
                 {color: "Transparent", offset: 1}
             ]),
             stroke: appTheme.VividSkyBlue,
         });
     }
+    // hide all other series
     return undefined;
 };
 

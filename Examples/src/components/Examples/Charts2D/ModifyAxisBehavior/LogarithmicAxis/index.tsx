@@ -1,7 +1,6 @@
 import * as React from "react";
 import {ChangeEvent} from "react";
 import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
@@ -9,61 +8,69 @@ import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWhee
 import {ENumericFormat} from "scichart/types/NumericFormat";
 import {LogarithmicAxis} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
 import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import {LogarithmicLabelProvider} from "scichart/Charting/Visuals/Axis/LabelProvider/LogarithmicLabelProvider";
 import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
-import {EPointMarkerType} from "scichart/types/PointMarkerType";
 import classes from "../../../../Examples/Examples.module.scss";
-
+import {appTheme} from "../../../theme";
+import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 const divElementId = "chart1";
 
-const baseValue = 10;
-
 const drawExample = async () => {
+
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: {
+            ...appTheme.SciChartJsTheme,
+            majorGridLineBrush: appTheme.MutedSkyBlue + "77",
+            minorGridLineBrush: appTheme.MutedSkyBlue + "33",
+        }
+    });
 
     // Create an X and Y Axis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+    const xAxis = new LogarithmicAxis(wasmContext, {
+        logBase: 10,
+        labelFormat: ENumericFormat.Scientific,
+        labelPrecision: 2,
+    });
+    sciChartSurface.xAxes.add(xAxis);
 
     // The LogarithmicAxis will apply logarithmic scaling and labelling to your data.
     // Simply replace a NumericAxis for a LogarithmicAxis on X or Y to apply this scaling
     // Note options logBase, labelFormat which lets you specify exponent on labels
     const yAxis = new LogarithmicAxis(wasmContext, {
-        logBase: baseValue,
+        logBase: 10,
         labelFormat: ENumericFormat.Scientific,
         labelPrecision: 2,
     });
     sciChartSurface.yAxes.add(yAxis);
 
     // Create some data
-    const xValues = [];
-    const yValues = [];
-    const y1Values = [];
-    const y2Values = [];
-    for (let x = 1; x < 100; x++) {
-        xValues.push(x);
-        yValues.push(Math.pow((x + 20) / 20, baseValue));
-        y1Values.push(Math.pow((x + 20) / 50, baseValue));
-        y2Values.push(Math.pow((x + 20) / 100, baseValue));
-    }
-
-    // Create some line charts with the data
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-        animation: new SweepAnimation({ duration: 3200, delay: 0 }),
-        pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
-    }));
+    const data0 = ExampleDataProvider.getExponentialCurve(1.8, 100);
+    const data1 = ExampleDataProvider.getExponentialCurve(2.25, 100);
+    const data2 = ExampleDataProvider.getExponentialCurve(3.59, 100);
 
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values }),
-        animation: new SweepAnimation({ duration: 1600, delay: 0}),
-        pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
-    }));
-
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues,  yValues: y2Values }),
+        dataSeries: new XyDataSeries(wasmContext, { xValues: data0.xValues, yValues: data0.yValues }),
+        stroke: appTheme.VividSkyBlue,
+        strokeThickness: 3,
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: appTheme.VividSkyBlue, strokeThickness: 0 }),
         animation: new SweepAnimation({ duration: 800, delay: 0}),
-        pointMarker: { type: EPointMarkerType.Ellipse, options: { width: 7, height: 7, fill: "LightSteelBlue", stroke: "#fff" }}
+    }));
+
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues }),
+        stroke: appTheme.VividPink,
+        strokeThickness: 3,
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: appTheme.VividPink, strokeThickness: 0 }),
+        animation: new SweepAnimation({ duration: 800, delay: 0}),
+    }));
+
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues: data2.xValues, yValues: data2.yValues }),
+        stroke: appTheme.VividOrange,
+        strokeThickness: 3,
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: appTheme.VividOrange, strokeThickness: 0 }),
+        animation: new SweepAnimation({ duration: 800, delay: 0}),
     }));
 
     // Add some interactivity modifiers
