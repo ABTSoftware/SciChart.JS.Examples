@@ -1,5 +1,5 @@
 import {IThemeProvider} from "scichart/Charting/Themes/IThemeProvider";
-import { SciChartJsNavyTheme } from "sciChart/Charting/Themes/SciChartJsNavyTheme";
+import { SciChartJsNavyTheme } from "scichart/Charting/Themes/SciChartJsNavyTheme";
 
 export interface AppThemeBase {
     SciChartJsTheme: IThemeProvider;
