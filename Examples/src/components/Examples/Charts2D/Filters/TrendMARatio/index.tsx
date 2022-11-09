@@ -22,7 +22,7 @@ import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWhee
 import {
     ELegendOrientation,
     ELegendPlacement
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Legend/SciChartLegendBase";
+} from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 
 export const divElementId = "chart";
 
