@@ -1,247 +1,164 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { TSciChart } from "scichart/types/TSciChart";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {
-    EFillPaletteMode,
     EStrokePaletteMode,
-    IFillPaletteProvider,
     IPointMarkerPaletteProvider,
     IStrokePaletteProvider,
-    TPointMarkerArgb
+    TPointMarkerArgb,
 } from "scichart/Charting/Model/IPaletteProvider";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import {NumberRange} from "scichart/Core/NumberRange";
 import classes from "../../../../Examples/Examples.module.scss";
-
-// tslint:disable:no-empty
-// tslint:disable:max-classes-per-file
+import {appTheme} from "../../../theme";
+import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
+import {EDataLabelSkipMode} from "scichart/types/DataLabelSkipMode";
+import {HorizontalLineAnnotation} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
+import {ELabelPlacement} from "scichart/types/LabelPlacement";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
+import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {Thickness} from "scichart/Core/Thickness";
 
 const divElementId = "chart";
 
-const createLineData = (wasmContext: TSciChart) => {
-    const xyDataSeries = new XyDataSeries(wasmContext);
-    for (let i = 0; i < 250; i++) {
-        xyDataSeries.append(i, Math.sin(i * 0.05));
-    }
-    return xyDataSeries;
-};
-
-const createMountainData = (wasmContext: TSciChart) => {
-    const xyDataSeries = new XyDataSeries(wasmContext);
-    for (let i = 0; i < 250; i++) {
-        xyDataSeries.append(i, Math.sin(i * 0.05) * Math.sin((i + 50) * 0.002));
-    }
-    return xyDataSeries;
-};
-
-const createScatterData = (wasmContext: TSciChart) => {
-    const xyDataSeries = new XyDataSeries(wasmContext);
-    for (let i = 0; i < 100; i++) {
-        xyDataSeries.append(i * 2.5, Math.sin((i + 50) * 0.05));
-    }
-    return xyDataSeries;
-};
-
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
-    // Create XAxis
-    sciChartSurface.xAxes.add(
-        new NumericAxis(wasmContext, {
-            axisTitle: "X Axis",
-            growBy: new NumberRange(0.1, 0.1)
-        })
-    );
+    // Create a SciChartSurface
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme,
+    });
 
-    // Create YAxis
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
-            axisTitle: "Right Y Axis",
-            growBy: new NumberRange(0.1, 0.1)
-        })
-    );
+    // Create the X,Y Axis
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { maxAutoTicks: 5}));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { maxAutoTicks: 5, growBy: new NumberRange(0.05, 0.2) }));
 
-    // Create a line series with a PaletteProvider. See implementation of LinePaletteProvider below
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "SteelBlue",
-            strokeThickness: 5,
-            dataSeries: createLineData(wasmContext),
-            // The LinePaletteProvider (declared below) implements per-point coloring for line series
-            paletteProvider: new LinePaletteProvider("#55FF55", yValue => yValue > 0.5)
-        })
-    );
+    const { xValues, yValues } = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(50);
 
-    // Create a mountain series with PaletteProvider. See implementation of MountainPaletteProvider below
-    sciChartSurface.renderableSeries.add(
-        new FastMountainRenderableSeries(wasmContext, {
-            stroke: "#B0C4DE",
-            fill: "#B0C4DE55",
-            strokeThickness: 5,
-            dataSeries: createMountainData(wasmContext),
-            // The MountainPaletteProvider (declared below) implements per-point coloring for mountain series
-            paletteProvider: new MountainPaletteProvider("#FF555533", "#FF5555", yValue => yValue > 0.1)
-        })
-    );
+    const THRESHOLD_HIGH_LEVEL = 0;
+    const THRESHOLD_LOW_LEVEL = -2;
+    // For performance reasons PaletteProviders require colors as Argb numbers e.g. 0xFFFF0000 = red
+    const THRESHOLD_LOW_COLOR_ARGB = parseColorToUIntArgb(appTheme.VividPink);
+    const THRESHOLD_HIGH_COLOR_ARGB = parseColorToUIntArgb(appTheme.VividTeal);
 
-    // Create a Scatter series with PaletteProvider. See implementation of ScatterPaletteProvider below
-    sciChartSurface.renderableSeries.add(
-        new XyScatterRenderableSeries(wasmContext, {
-            dataSeries: createScatterData(wasmContext),
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 7,
-                height: 7,
-                strokeThickness: 2,
-                fill: "#FF6600",
-                stroke: "white"
-            }),
-            // The ScatterPaletteProvider (declared below) implements per-point coloring for scatter series
-            paletteProvider: new ScatterPaletteProvider("#FF6600", "white", yValue => yValue < -0.8)
-        })
-    );
+    const getColor = (yValue: number) => {
+        if (yValue < THRESHOLD_LOW_LEVEL) {
+            return THRESHOLD_LOW_COLOR_ARGB;
+        }
+        if (yValue > THRESHOLD_HIGH_LEVEL) {
+            return THRESHOLD_HIGH_COLOR_ARGB;
+        }
+        // Undefined means use default series stroke on this data-point
+        return undefined;
+    };
 
-    // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+    // PaletteProvider API allows for per-point colouring, filling of points or areas based on a rule
+    // see PaletteProvider API for more details
+    const strokePaletteProvider: IStrokePaletteProvider = {
+        onAttached(parentSeries: IRenderableSeries): void {},
+        onDetached(): void {},
+        strokePaletteMode: EStrokePaletteMode.GRADIENT,
+        // This function called once per data-point for line stroke. Colors returned must be in ARGB format (uint) e.g. 0xFF0000FF is Red
+        overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): number {
+            return getColor(yValue)
+        }
+    };
 
-    sciChartSurface.zoomExtents();
+    // Create a line series with threshold palette provider
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+        strokeThickness: 4,
+        stroke: appTheme.VividOrange,
+        dataLabels: {
+            style: { fontFamily: "Arial", fontSize: 13, padding: Thickness.fromNumber(5) },
+            color: appTheme.PaleSkyBlue,
+            skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious,
+        },
+        paletteProvider: strokePaletteProvider
+    }));
+
+    const pointPaletteProvider: IPointMarkerPaletteProvider = {
+        strokePaletteMode: EStrokePaletteMode.SOLID,
+        onAttached(parentSeries: IRenderableSeries): void {},
+        onDetached(): void {},
+        // This function called once per data-point for scatter fill
+        overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): TPointMarkerArgb {
+            const color = getColor(yValue);
+            return { stroke: color, fill: color };
+        }
+    };
+
+    // Create a scatter series with threshold paletteprovider
+    sciChartSurface.renderableSeries.add(new XyScatterRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+        pointMarker: new EllipsePointMarker(wasmContext, {width: 7, height: 7, stroke: appTheme.VividOrange, fill: appTheme.VividOrange}),
+        paletteProvider: pointPaletteProvider
+    }));
+
+    // Add annotations to show the thresholds
+    sciChartSurface.annotations.add(new HorizontalLineAnnotation( {
+        stroke: appTheme.VividTeal,
+        strokeThickness: 2,
+        strokeDashArray: [3, 3],
+        y1: THRESHOLD_HIGH_LEVEL,
+        labelPlacement: ELabelPlacement.TopRight,
+        labelValue: "High warning",
+        axisLabelFill: appTheme.VividTeal,
+        axisFontSize: 16,
+        showLabel: true,
+    }));
+    sciChartSurface.annotations.add(new HorizontalLineAnnotation( {
+        stroke: appTheme.VividPink,
+        strokeThickness: 2,
+        strokeDashArray: [3, 3],
+        labelPlacement: ELabelPlacement.BottomLeft,
+        y1: THRESHOLD_LOW_LEVEL,
+        labelValue: "Low warning",
+        axisLabelFill: appTheme.VividPink,
+        axisFontSize: 16,
+        showLabel: true,
+    }));
+    // Add annotations to fill the threshold areas
+    sciChartSurface.annotations.add(new BoxAnnotation({
+        x1: 0, x2: 1,
+        y1: -2, y2: -9999,
+        fill: appTheme.VividPink + "11",
+        strokeThickness: 0,
+        xCoordinateMode: ECoordinateMode.Relative
+    }));
+    sciChartSurface.annotations.add(new BoxAnnotation({
+        x1: 0, x2: 1,
+        y1: 0, y2: 9999,
+        fill: appTheme.VividTeal + "11",
+        strokeThickness: 0,
+        xCoordinateMode: ECoordinateMode.Relative
+    }));
+    // Add title annotation
+    sciChartSurface.annotations.add(new TextAnnotation({
+        text: "Per point colouring in SciChart.js. Can be applied to lines, areas, scatter points and bubbles",
+        fontSize: 16,
+        textColor: appTheme.ForegroundColor,
+        x1: 0,
+        y1: 0,
+        xCoordShift: 10,
+        yCoordShift: 10,
+        opacity: 0.77,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+    }));
 
     return { sciChartSurface, wasmContext };
 };
 
-/**
- * An example PaletteProvider which implements IStrokePaletteProvider.
- * This can be attached to line, mountain, column or candlestick series to change the stroke of the series conditionally
- */
-class LinePaletteProvider implements IStrokePaletteProvider {
-    /**
-     * This property chooses how colors are blended when they change
-     */
-    readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
-    private stroke: number;
-    private rule: (yValue: number) => boolean;
-
-    constructor(stroke: string, rule: (yValue: number) => boolean) {
-        this.rule = rule;
-        this.stroke = parseColorToUIntArgb(stroke);
-    }
-
-    onAttached(parentSeries: IRenderableSeries): void {}
-    onDetached(): void {}
-
-    /**
-     * Called by SciChart and may be used to override the color of a line segment or
-     * stroke outline in various chart types.
-     * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
-     * @param renderSeries
-     * @param xValue the current XValue
-     * @param yValue the current YValue
-     * @param index the current index to the data
-     * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
-     */
-    overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
-        // Conditional logic for coloring here. Returning 'undefined' means 'use default renderableSeries.stroke'
-        // else, we can return a color of choice.
-        //
-        // Note that colors returned are Argb format as number. There are helper functions which can convert from Html
-        // color codes to Argb format.
-        //
-        // Performance considerations: overrideStrokeArgb is called per-point on the series when drawing.
-        // Caching color values and doing minimal logic in this function will help performance
-        return this.rule(yValue) ? this.stroke : undefined;
-    }
-}
-
-/**
- * An example PaletteProvider which implements IStrokePaletteProvider and IFillPaletteProvider
- * This can be attached to line, mountain, column or candlestick series to change the stroke or fill
- * of the series conditionally
- */
-class MountainPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
-    /**
-     * This property chooses how stroke colors are blended when they change
-     */
-    public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.GRADIENT;
-    /**
-     * This property chooses how fills are blended when they change
-     */
-    public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.GRADIENT;
-    private readonly stroke: number;
-    private readonly fill: number;
-    private readonly rule: (yValue: number) => boolean;
-
-    constructor(fill: string, stroke: string, rule: (yValue: number) => boolean) {
-        this.rule = rule;
-        this.fill = parseColorToUIntArgb(fill);
-        this.stroke = parseColorToUIntArgb(stroke);
-    }
-
-    onAttached(parentSeries: IRenderableSeries): void {}
-    onDetached(): void {}
-    /**
-     * Called by SciChart and may be used to override the color of filled polygon in various chart types.
-     * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
-     * @param renderSeries
-     * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
-     */
-    overrideFillArgb(xValue: number, yValue: number, index: number): number {
-        return this.rule(yValue) ? this.fill : undefined;
-    }
-    /**
-     * Called by SciChart and may be used to override the color of a line segment or
-     * stroke outline in various chart types.
-     * @remarks WARNING: CALLED PER-VERTEX, MAY RESULT IN PERFORMANCE DEGREDATION IF COMPLEX CODE EXECUTED HERE
-     * @returns an ARGB color code, e.g. 0xFFFF0000 would be red, or 'undefined' for default colouring
-     */
-    overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
-        return this.rule(yValue) ? this.stroke : undefined;
-    }
-}
-
-/**
- * An example PaletteProvider which implements IPointMarkerPaletteProvider
- * This can be attached to scatter series to change the stroke or fill
- * of the series conditionally
- */
-class ScatterPaletteProvider implements IPointMarkerPaletteProvider {
-    readonly strokePaletteMode: EStrokePaletteMode;
-    private readonly stroke: number;
-    private readonly fill: number;
-    private readonly rule: (yValue: number) => boolean;
-
-    constructor(stroke: string, fill: string, rule: (yValue: number) => boolean) {
-        this.rule = rule;
-        this.stroke = parseColorToUIntArgb(stroke);
-        this.fill = parseColorToUIntArgb(fill);
-    }
-
-    onAttached(parentSeries: IRenderableSeries): void {}
-
-    onDetached(): void {}
-
-    overridePointMarkerArgb(xValue: number, yValue: number, index: number): TPointMarkerArgb {
-        if (this.rule(yValue)) {
-            return {
-                fill: this.fill,
-                stroke: this.stroke
-            };
-        }
-        return undefined;
-    }
-}
-
-export default function StylingInCode() {
+export default function PerPointColoring() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
     React.useEffect(() => {

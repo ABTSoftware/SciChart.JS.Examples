@@ -12,17 +12,18 @@ import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { SplineBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineBandRenderableSeries";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
     // Add an XAxis, YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Top }));
     sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Left, growBy: new NumberRange(0.4, 0.4) })
+        new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Left, growBy: new NumberRange(0.2, 0.2) })
     );
 
     // The spline bandseries requires a special dataseries type called XyyDataSeries
@@ -39,15 +40,16 @@ const drawExample = async () => {
     // Create the band series and add to the chart
     const rendSeries = new SplineBandRenderableSeries(wasmContext, {
         dataSeries,
-        strokeThickness: 2,
-        interpolationPoints: 10, // Choose the number of points to interpolate for smoothing
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: "#FFFFFF", stroke: "#006400" }),
+        strokeThickness: 3,
+        interpolationPoints: 20, // Choose the number of points to interpolate for smoothing
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 9, height: 9, fill: appTheme.PaleSkyBlue, stroke: appTheme.VividSkyBlue }),
         animation: new ScaleAnimation({ duration: 800, zeroLine: 0, fadeEffect: true })
     });
-    rendSeries.fill = "#279B2733";
-    rendSeries.fillY1 = "#FF191933";
-    rendSeries.stroke = "#FF1919FF";
-    rendSeries.strokeY1 = "#279B27FF";
+
+    rendSeries.fill = appTheme.VividOrange + "33";
+    rendSeries.fillY1 = appTheme.VividSkyBlue + "33";
+    rendSeries.stroke = appTheme.VividOrange;
+    rendSeries.strokeY1 = appTheme.VividSkyBlue;
     sciChartSurface.renderableSeries.add(rendSeries);
 
     // Optional: Add some interactivity modifiers

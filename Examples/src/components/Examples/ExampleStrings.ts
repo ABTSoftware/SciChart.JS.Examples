@@ -363,7 +363,7 @@ export const ExampleStrings = {
     imgPointMarkers: "images/javascript-chart-custom-poinmarkers.jpg",
 
     // Multi Pane Stock Charts
-    urlMultiPaneStockChart: "/javascript-multi-pane-stock-charts",
+    urlMultiPaneStockChart: "/javascript-multi-pane-stock-charts-old-technique",
     urlTitleMultiPaneStockChart:
         "The Multi-Pane stock chart example demonstrates multiple-series types in a realistic stock chart application",
     titleMultiPaneStockChart: "JavaScript Multi-Pane Stock Charts",
@@ -371,7 +371,7 @@ export const ExampleStrings = {
     imgMultiPaneStockChart: "images/javascript-multi-pane-stock-charts.jpg",
 
     // SubChart Stock Charts
-    urluSubChartStockChart: "/javascript-subchart-stock-charts",
+    urluSubChartStockChart: "/javascript-multi-pane-stock-charts",
     urlTitleSubChartStockChart:
         "The Subchart stock chart example demonstrates multiple-series types in a realistic stock chart application using the new subcharts api",
     titleSubChartStockChart: "JavaScript Multi-Pane Stock Charts using Subcharts",

@@ -1,6 +1,5 @@
 import { SciChartSurface } from "scichart";
 import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
@@ -10,6 +9,7 @@ import { ELegendOrientation, TLegendItem } from "scichart/Charting/Visuals/Legen
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { TSciChart } from "scichart/types/TSciChart";
+import { appTheme } from "../theme";
 
 export function getRandomSinewave(
     wasmContext: TSciChart,
@@ -77,13 +77,12 @@ export function axesSetup(sciChartSurface: SciChartSurface, wasmContext: TSciCha
 
 export function getColor(name: string): string {
     const colors: any = {
-        red: 'rgba(213,42,167,1)',
-        green: 'rgba(43,212,82,1)',
-        blue: 'rgba(145,110,235,1)',
+        red: appTheme.ChartsGridStroke1,
+        green: appTheme.ChartsGridStroke2,
+        blue: appTheme.ChartsGridStroke3,
     }
     return colors[name];
 }
-
 
 export function generateDefaultLegend(sciChartSurface: SciChartSurface, typeColor: string) {
     return (

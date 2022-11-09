@@ -1,71 +1,87 @@
 import * as React from "react";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme} from "../../../theme";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 
 const divElementId2 = "chart2";
 
-const X_TITLE = "X Axis";
-const Y_TITLE = "Y Axis";
-
-// Chart data for y=sin(x*0.1)
-const xValues: number[] = [];
-const yValues: number[] = [];
-for (let i = 0; i <= 100; i++) {
-    const x = 0.1 * i;
-    xValues.push(x);
-    yValues.push(Math.sin(x));
-}
-
 const drawExample = async () => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId2);
+    const {
+        wasmContext,
+        sciChartSurface
+    } = await SciChartSurface.create(divElementId2, {theme: appTheme.SciChartJsTheme});
 
     // Setting an XAxis on the Left or Right
     // and YAxis on the Top or Bottom
     // causes the chart and series to be rotated vertically
-    const xAxis = new NumericAxis(wasmContext);
-    xAxis.axisAlignment = EAxisAlignment.Left;
-    xAxis.axisTitle = X_TITLE;
-    xAxis.growBy = new NumberRange(0.1, 0.1);
-    sciChartSurface.xAxes.add(xAxis);
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        axisTitle: "X Axis with Alignment = Left",
+        axisAlignment: EAxisAlignment.Left,
+        growBy: new NumberRange(0.1, 0.1)
+    }));
 
-    const yAxis = new NumericAxis(wasmContext);
-    yAxis.axisAlignment = EAxisAlignment.Top;
-    yAxis.axisTitle = Y_TITLE;
-    yAxis.growBy = new NumberRange(0.1, 0.1);
-    // Set 3 digits format for the RolloverModifier tooltip
-    yAxis.labelProvider.formatCursorLabel = value => value.toFixed(3);
-    sciChartSurface.yAxes.add(yAxis);
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        axisTitle: "Y Axis with Alignment = Bottom",
+        axisAlignment: EAxisAlignment.Bottom,
+        growBy: new NumberRange(0.1, 0.1)
+    }));
 
-    // An axis may be optionally flipped using flippedCoordinates property
-    xAxis.flippedCoordinates = true;
+    // Generate some data. xValues/yValues are just arrays of numbers
+    const generator = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(100);
+    const xValues = generator.xValues;
+    const yValues = generator.yValues;
 
-    // Add a series with sinewave. This will be drawn vertically.
+    // Add a line series to the chart. This will be drawn vertically.
     sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-            stroke: "#ff6600"
+        new SplineLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 9,
+                height: 9,
+                fill: appTheme.ForegroundColor,
+                stroke: appTheme.VividOrange
+            }),
+            strokeThickness: 5,
+            stroke: appTheme.VividOrange
         })
     );
+
+    // Add title / instructions
+    sciChartSurface.annotations.add(new TextAnnotation({
+        x1: 0.0,
+        yCoordShift: 10,
+        y1: 0.5,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        fontSize: 16,
+        opacity: .77,
+        textColor: appTheme.ForegroundColor,
+        text: "To rotate a chart in SciChart.js, set XAxis.alignment = Left/Right and YAxis.alignment=Top/Bottom"
+    }))
 
     // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    // fix removed property isVerticalChart: true
-    sciChartSurface.chartModifiers.add(new RolloverModifier());
 
     sciChartSurface.zoomExtents();
 
-    return { wasmContext, sciChartSurface };
+    return {wasmContext, sciChartSurface};
 };
 
 export default function VerticalCharts() {
@@ -80,5 +96,5 @@ export default function VerticalCharts() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId2} className={classes.ChartWrapper} />;
+    return <div id={divElementId2} className={classes.ChartWrapper}/>;
 }

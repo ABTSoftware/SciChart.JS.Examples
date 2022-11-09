@@ -10,7 +10,6 @@ import { EAutoRange } from "scichart/types/AutoRange";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { createImagesArrayAsync } from "scichart/utils/imageUtil";
 import classes from "../../../Examples.module.scss";
-import { EmojiPaletteProvider } from "../MultiLineLabels";
 import emojiUrl1 from "./emojies/e1-face-with-tears-of-joy.png";
 import emojiUrl10 from "./emojies/e10-smiling-face-with-smiling-eyes.png";
 import emojiUrl2 from "./emojies/e2-loudly-crying-face.png";
@@ -21,6 +20,14 @@ import emojiUrl6 from "./emojies/e6-sparkles.png";
 import emojiUrl7 from "./emojies/e7-smiling-face-with-heart-eyes.png";
 import emojiUrl8 from "./emojies/e8-folded-hands.png";
 import emojiUrl9 from "./emojies/e9-smiling-face-with-hearts.png";
+import {
+    EFillPaletteMode,
+    EStrokePaletteMode, IFillPaletteProvider,
+    IStrokePaletteProvider
+} from "scichart/Charting/Model/IPaletteProvider";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
 
 const divElementId = "chart";
 
@@ -107,4 +114,46 @@ export default function ImageLabels() {
     }, []);
 
     return <div id={divElementId} className={classes.ChartWrapper} />;
+}
+
+export class EmojiPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
+    public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
+    public readonly fillPaletteMode = EFillPaletteMode.SOLID;
+    private readonly pfYellow = parseColorToUIntArgb("FFCC4D");
+    private readonly pfBlue = parseColorToUIntArgb("5DADEC");
+    private readonly pfOrange = parseColorToUIntArgb("F58E01");
+    private readonly pfRed = parseColorToUIntArgb("DE2A43");
+    private readonly pfPink = parseColorToUIntArgb("FE7891");
+
+    // tslint:disable-next-line:no-empty
+    public onAttached(parentSeries: IRenderableSeries): void {}
+
+    // tslint:disable-next-line:no-empty
+    public onDetached(): void {}
+
+    public overrideFillArgb(xValue: number, yValue: number, index: number): number {
+        if (xValue === 0 || xValue === 4 || xValue === 8) {
+            return this.pfYellow;
+        } else if (xValue === 1 || xValue === 7) {
+            return this.pfBlue;
+        } else if (xValue === 2 || xValue === 5) {
+            return this.pfOrange;
+        } else if (xValue === 3 || xValue === 6) {
+            return this.pfRed;
+        } else if (xValue === 9) {
+            return this.pfPink;
+        } else {
+            return undefined;
+        }
+    }
+
+    public overrideStrokeArgb(
+        xValue: number,
+        yValue: number,
+        index: number,
+        opacity?: number,
+        metadata?: IPointMetadata
+    ): number {
+        return undefined;
+    }
 }

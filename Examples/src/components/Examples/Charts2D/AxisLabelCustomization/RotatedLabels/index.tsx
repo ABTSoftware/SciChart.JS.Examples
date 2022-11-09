@@ -1,60 +1,69 @@
 import * as React from "react";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
-import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { GradientParams } from "scichart/Core/GradientParams";
-import { Point } from "scichart/Core/Point";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { ELabelAlignment } from "scichart/types/LabelAlignment";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import {GradientParams} from "scichart/Core/GradientParams";
+import {Point} from "scichart/Core/Point";
 import classes from "../../../Examples.module.scss";
+import {appTheme} from "../../../theme";
+import {SplineMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineMountainRenderableSeries";
+import {ENumericFormat} from "scichart/types/NumericFormat";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    const xAxis = new CategoryAxis(wasmContext, { 
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+
+    // Add an X Axis
+    const xAxis = new NumericAxis(wasmContext, {
+        axisTitle: "X Axis with Rotated Labels",
+        labelFormat: ENumericFormat.Date_DDMMYYYY,
+        labelStyle: {
+            fontSize: 16,
+        },
         // Rotation is in degrees clockwise
-        rotation: 90, 
+        rotation: 90,
         // Turn up the number of major ticks (default is 10)
-        maxAutoTicks: 30, 
+        maxAutoTicks: 30,
         // Turn off minor gridlines, since majors are now closer together
-        drawMinorGridLines: false 
+        drawMinorGridLines: false
     });
     sciChartSurface.xAxes.add(xAxis);
 
-    const dataSeries = new XyDataSeries(wasmContext);
+    // Add a Y Axis
+    const yAxis = new NumericAxis(wasmContext, { axisTitle: "Y Axis", labelStyle: { fontSize: 16 } });
+    sciChartSurface.yAxes.add(yAxis);
+
+    // Generate some data
     const startTime = new Date(2020,0,1).getTime() / 1000;
     let y = 110;
+    const xValues: number[] = [];
+    const yValues: number[] = [];
     for (let i = 0; i < 50; i++) {
         const x = startTime + i * 24 * 60 * 60;
         y = y + 10 * (Math.random() - 0.8);
-        dataSeries.append(x, y);
+        xValues.push(x);
+        yValues.push(y);
     }
-    
-    const lineSeries = new FastMountainRenderableSeries(wasmContext, 
-        { 
-            dataSeries,
-            stroke: "#4682b4",
-            strokeThickness: 2,
+
+    // Add a Spline Mountain series
+    const mountainSeries = new SplineMountainRenderableSeries(wasmContext,
+        {
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+            stroke: appTheme.VividSkyBlue,
+            strokeThickness: 3,
             zeroLineY: 0.0,
             fill: "rgba(176, 196, 222, 0.7)", // when a solid color is required, use fill
             // when a gradient is required, use fillLinearGradient
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: "rgba(70,130,180,1)", offset: 0 },
-                { color: "rgba(70,130,180,0.2)", offset: 1 }
+                { color: appTheme.VividTeal + "77", offset: 0 },
+                { color: "Transparent", offset: 1 }
             ]),
             animation: new WaveAnimation({ duration: 1000, fadeEffect: true, zeroLine: 0 })
         });
-    sciChartSurface.renderableSeries.add(lineSeries);
+    sciChartSurface.renderableSeries.add(mountainSeries);
 
-    // Override the label alignment for Y axis
-    const yAxis = new NumericAxis(wasmContext, { labelStyle: { alignment: ELabelAlignment.Right } });
-    sciChartSurface.yAxes.add(yAxis);
-
-    sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
 };
 

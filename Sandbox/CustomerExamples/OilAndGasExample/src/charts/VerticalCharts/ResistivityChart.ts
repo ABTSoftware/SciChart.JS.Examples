@@ -7,12 +7,16 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
+import { appTheme} from "../../theme";
 
 export 
 const drawResistivityChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("resistivity-chart", {
         ...getCommonChartConfigs("Resistivity"),
         modifiers: getCommonChartModifiersConfig(),
+        surface: {
+            theme: appTheme.SciChartJsTheme,
+        }
     });
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(0, 1);
@@ -32,7 +36,7 @@ const drawResistivityChart = async () => {
             options: {
                 dataSeries,
                 strokeThickness: 2,
-                stroke: "DeepSkyBlue",
+                stroke: appTheme.ResistivityLineStroke,
             }
         },
         {
@@ -40,12 +44,18 @@ const drawResistivityChart = async () => {
             options: {
                 dataSeries: movingAverage20DataSeries,
                 strokeDashArray: [5, 5],
-                stroke: "OrangeRed",
+                stroke: appTheme.ResistivityLineStroke2,
             }
         },
     ]);
 
     sciChartSurface.renderableSeries.add(...renderableSeries)
+
+    renderableSeries.forEach(rs => {
+        rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
+        rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
+        rs.rolloverModifierProps.markerColor = appTheme.RolloverTooltipFill;
+    });
 
     const legendModifier = new LegendModifier({ placementDivId: `resistivity-legend` });
     legendModifier.sciChartLegend.getLegendHTML = generateResistivityLegend;
@@ -65,14 +75,14 @@ const generateResistivityLegend = (
     items: TLegendItem[]
 ): string => {
     return `
-    <div class="chart-legend">
-    <span class="scichart__legend-line" style="border-top: 2px dashed ${"OrangeRed"}"></span>
+    <div class="chart-legend" style="color: ${appTheme.LegendTextColor};">
+    <span class="scichart__legend-line" style="border-top: 2px dashed ${appTheme.ResistivityLineStroke2}"></span>
         <div class="legend-text-item">
             <span>${0}</span>
             <span>${"AVRG 40"}</span>
             <span>${1}</span>
         </div>
-        <span class="scichart__legend-line" style="border-top: 2px solid ${"DeepSkyBlue"}"></span>
+        <span class="scichart__legend-line" style="border-top: 2px solid ${appTheme.ResistivityLineStroke}"></span>
         <div class="legend-text-item">
             <span>${0}</span>
             <span>${"RESISTIVITY"}</span>

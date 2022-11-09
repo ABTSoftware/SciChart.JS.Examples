@@ -9,25 +9,29 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { zeroArray2D } from "scichart/utils/zeroArray2D";
 import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../../helpers/shared/Helpers/Box/Box";
-import { Button, ButtonGroup } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+import {appTheme} from "../../../theme";
+import {HeatmapLegend} from "scichart/Charting/Visuals/HeatmapLegend";
 
 const divElementId = "chart";
+const divHeatmapLegend = "heatmapLegend";
 const cachedHeatmapDataForExample: number[][][] = [];
-const MAX_SERIES = 20;
+const MAX_SERIES = 100;
 const WIDTH = 300;
 const HEIGHT = 200;
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Add XAxis and YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
     // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
-    const initialZValues: number[][] = iterate(WIDTH, HEIGHT, 200, 0, MAX_SERIES);
+    const initialZValues: number[][] = generateExampleData(WIDTH, HEIGHT, 200, 20, MAX_SERIES);
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
         xStart: 100,
         xStep: 1,
@@ -40,16 +44,18 @@ const drawExample = async () => {
     // HeatmapDataSeries which correspond to gradient stops at 0..1
     const heatmapSeries = new UniformHeatmapRenderableSeries(wasmContext, {
         dataSeries: heatmapDataSeries,
+        useLinearTextureFiltering: false,
         colorMap: new HeatmapColorMap({
             minimum: 0,
             maximum: 200,
             gradientStops: [
-                { offset: 0, color: "#00008B" },
-                { offset: 0.2, color: "#6495ED" },
-                { offset: 0.4, color: "#006400" },
-                { offset: 0.6, color: "#7FFF00" },
-                { offset: 0.8, color: "#FFFF00" },
-                { offset: 1.0, color: "#FF0000" }
+                {offset: 1, color: appTheme.VividPink},
+                {offset: 0.9, color: appTheme.VividOrange},
+                {offset: 0.7, color: appTheme.MutedRed},
+                {offset: 0.5, color: appTheme.VividGreen},
+                {offset: 0.3, color: appTheme.VividSkyBlue},
+                {offset: 0.2, color: appTheme.Indigo},
+                {offset: 0, color: appTheme.DarkIndigo}
             ]
         })
     });
@@ -65,14 +71,56 @@ const drawExample = async () => {
     return { sciChartSurface, wasmContext, heatmapDataSeries };
 };
 
+const drawHeatmapLegend = async () => {
+    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
+        theme: {
+            ...appTheme.SciChartJsTheme,
+            sciChartBackground: appTheme.DarkIndigo + "BB",
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
+        },
+        yAxisOptions: {
+            axisBorder: {
+                borderLeft: 1,
+                color: appTheme.ForegroundColor + "77"
+            },
+            majorTickLineStyle: {
+                color: appTheme.ForegroundColor,
+                tickSize: 6,
+                strokeThickness: 1,
+            },
+            minorTickLineStyle: {
+                color: appTheme.ForegroundColor,
+                tickSize: 3,
+                strokeThickness: 1,
+            }
+        },
+        colorMap: {
+            minimum: 0,
+            maximum: 200,
+            gradientStops: [
+                {offset: 1, color: appTheme.VividPink},
+                {offset: 0.9, color: appTheme.VividOrange},
+                {offset: 0.7, color: appTheme.MutedRed},
+                {offset: 0.5, color: appTheme.VividGreen},
+                {offset: 0.3, color: appTheme.VividSkyBlue},
+                {offset: 0.2, color: appTheme.Indigo},
+                {offset: 0, color: appTheme.DarkIndigo}
+            ],
+        }
+    });
+
+    return heatmapLegend;
+}
+
 // This function generates data for the heatmap series example
 // because data-generation is not trivial, we generate once before the example starts
 // so you can see the speed & power of SciChart.js
-function iterate(width: number, height: number, cpMax: number, index: number, maxIndex: number): number[][] {
+function generateExampleData(width: number, height: number, cpMax: number, index: number, maxIndex: number): number[][] {
     const zValues = zeroArray2D([height, width]);
     // math.round but to X digits
     function roundTo(number: number, digits: number) {
-        return parseFloat(number.toFixed(digits));
+        return number;
+        // return parseFloat(number.toFixed(digits));
     }
     const angle = roundTo(Math.PI * 2 * index, 3) / maxIndex;
 
@@ -85,52 +133,36 @@ function iterate(width: number, height: number, cpMax: number, index: number, ma
             const cy = height / 2;
             const r = Math.sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy));
             const exp = Math.max(0, 1 - r * 0.008);
-            const zValue = v * exp + Math.random() * 50;
+            const zValue = v * exp + Math.random() * 10;
             zValues[y][x] = zValue > cpMax ? cpMax : zValue;
         }
     }
     return zValues;
 }
 
+
 let timerId: NodeJS.Timeout;
 let updateIndex: number = 0;
+let heatmapDataSeries: UniformHeatmapDataSeries;
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function HeatmapChart() {
-    const [heatmapDataSeries, setHeatmapDataSeries] = React.useState<UniformHeatmapDataSeries>();
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
-
-    React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-            setHeatmapDataSeries(res.heatmapDataSeries);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
-    }, []);
+    const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
 
     const updateChart = () => {
-        timerId = setTimeout(updateChart, 20);
-        // Cycle through pre-generated data every 20ms
-        const newZValues = cachedHeatmapDataForExample[updateIndex++];
+        // Cycle through pre-generated data on timer tick
+        const newZValues = generateExampleData(WIDTH, HEIGHT, 200, updateIndex++, MAX_SERIES);
         // Update the heatmap z-values
         heatmapDataSeries.setZValues(newZValues);
         if (updateIndex >= MAX_SERIES) {
             updateIndex = 0;
         }
+        timerId = setTimeout(updateChart, 20);
     };
 
     const handleStart = () => {
-        // Pre-generate data for the example.
-        // We do this once since data-generation of complex waveforms is quite heavy.
-        if (cachedHeatmapDataForExample.length === 0) {
-            for (let i = 1; i < MAX_SERIES; i++) {
-                cachedHeatmapDataForExample.push(iterate(WIDTH, HEIGHT, 200, i, MAX_SERIES));
-            }
-        }
-
         if (!timerId) {
             updateChart();
         }
@@ -141,17 +173,35 @@ export default function HeatmapChart() {
         timerId = undefined;
     };
 
-    return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
-            <div style={{ marginTop: 20 }}>
-                When click Start first time data is being generated, it could take a while
-            </div>
+    React.useEffect(() => {
+        (async () => {
+            const res = await drawExample();
+            const legend = await drawHeatmapLegend();
+            setSciChartSurface(res.sciChartSurface);
+            setHeatmapLegend(legend);
+            heatmapDataSeries = res.heatmapDataSeries;
+            handleStart();
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => {
+            handleStop();
+            sciChartSurface?.delete();
+            heatmapLegend?.delete();
+        }
+    }, []);
 
-            <div>
-                <div className={classes.ButtonsWrapper}>
-                    <Button onClick={heatmapDataSeries && handleStart}>Start</Button>
-                    <Button onClick={heatmapDataSeries && handleStop}>Stop</Button>
+    return (
+        <div className={classes.ChartWrapper}>
+
+            <div style={{position: "relative", height: "100%", width: "100%" }}>
+                <div id={divElementId} style={{position: "absolute", height: "100%", width: "100%"}}></div>
+                <div id={divHeatmapLegend} style={{position: "absolute", height: "95%", width: "100px", right: "75px", margin: "20"}}>
+                </div>
+                <div style={{position: "absolute", left: "10px", top: "10px", margin: "20"}}>
+                    <div className={classes.ButtonsWrapper}>
+                        <Button onClick={heatmapDataSeries && handleStart}>Start</Button>
+                        <Button onClick={heatmapDataSeries && handleStop}>Stop</Button>
+                    </div>
                 </div>
             </div>
         </div>

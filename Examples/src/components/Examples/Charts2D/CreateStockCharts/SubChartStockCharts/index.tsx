@@ -1,4 +1,3 @@
-import { Typography } from "@material-ui/core";
 import * as React from "react";
 import { chartBuilder } from "scichart/Builder/chartBuilder";
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
@@ -31,9 +30,10 @@ import { EXyDirection } from "scichart/types/XyDirection";
 import { calcAverageForArray } from "scichart/utils/calcAverage";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { multiPaneData } from "../../../ExampleData/multiPaneData";
-import { SciChartJS2022Theme } from "../../../Theme2022";
 import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
 import { BasePaletteProvider } from "scichart/Charting/Model/BasePaletteProvider";
+import {appTheme} from "../../../theme";
+import classes from "../../../../Examples/Examples.module.scss";
 
 export const mainChartWrapper = "cc_chart";
 export const mainChartWrapper2 = "cc_chart2";
@@ -94,12 +94,11 @@ export const drawExample = async () => {
     const { rsiArray } = getDataForThirdPane(xValues, closeValues);
 
     const axisAlignment = EAxisAlignment.Right;
-    const theme = new SciChartJS2022Theme();
 
     const commonSubChartSurfaceOptions: I2DSubSurfaceOptions = {
         subChartPadding: Thickness.fromNumber(10),
         isTransparent: false,
-        theme
+        theme: appTheme.SciChartJsTheme
     };
 
     const subChartModifiers = [
@@ -116,7 +115,7 @@ export const drawExample = async () => {
     const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(mainChartWrapper2, {
         surface: {
             id: "mainSurface",
-            theme
+            theme: appTheme.SciChartJsTheme
         },
         xAxes: {
             type: EAxisType.NumericAxis,
@@ -150,7 +149,7 @@ export const drawExample = async () => {
                     options: {
                         drawLabels: false,
                         autoRange: EAutoRange.Once,
-                        //maxAutoTicks: 20,
+                        // maxAutoTicks: 20,
                         useNativeText: false,
                         minorsPerMajor: 3
                     }
@@ -589,7 +588,7 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
     });
 };
 
-let charts: TWebAssemblyChart[] = [];
+const charts: TWebAssemblyChart[] = [];
 
 export default function SubChartStockCharts() {
     React.useEffect(() => {
@@ -604,23 +603,14 @@ export default function SubChartStockCharts() {
     }, []);
 
     return (
-        <div>
-            <div style={{ maxWidth: 800, marginBottom: 20 }}>
-                <Typography variant="body1" style={{ color: "blue" }}>
-                    Multipane created using SubCharts API and BuilderAPI
-                </Typography>
-            </div>
-            <div
-                id={containerId2}
-                style={{
-                    position: "relative",
-                    maxWidth: 900,
-                    width: "100%",
-                    maxHeight: 1000,
-                    height: "100%",
-                    touchAction: "none"
-                }}
-            >
+        <div className={classes.ChartsWrapper}                id={containerId2}
+        style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            touchAction: "none"
+        }}>
+
                 <div
                     id={subChartWrapper1}
                     style={{
@@ -676,7 +666,6 @@ export default function SubChartStockCharts() {
                         height: "100%"
                     }}
                 ></div>
-            </div>
         </div>
     );
 }

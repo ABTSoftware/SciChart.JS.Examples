@@ -17,7 +17,7 @@ export function getVarianceData(): TVarPoint[] {
     const dateStep = 1546387200 - startDate // one day;
 
     const length: number = 10;
-    const yValues: number[] = new RandomWalkGenerator().getRandomWalkSeries(length).yValues;
+    const yValues: number[] = new RandomWalkGenerator().Seed(923478).getRandomWalkSeries(length).yValues;
     for(let i = 0; i < length; i++) {
         const date = startDate + dateStep * i;
 

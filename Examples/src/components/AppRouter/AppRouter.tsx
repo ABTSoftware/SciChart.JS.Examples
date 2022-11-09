@@ -5,7 +5,7 @@ import { PAGES } from "./pages";
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import ExamplesRoot from "../Examples/ExamplesRoot";
 import { getExampleComponent } from "./examples";
-
+import classes from "../Examples/Examples.module.scss";
 type TProps = {
     currentExample: TExamplePage;
     isIFrame?: boolean;
@@ -16,7 +16,7 @@ const examplePagesKeys = Object.keys(EXAMPLES_PAGES);
 export default function AppRouter(props: TProps) {
     const { currentExample, isIFrame = false } = props;
     if (isIFrame) {
-        const ExampleComponent = getExampleComponent(currentExample.id);
+        const ExampleComponent = () => <div className={classes.ExampleWrapperIFrame}>{getExampleComponent(currentExample.id)()}</div>;
         return (
             <Switch>
                 {examplePagesKeys.map(key => {

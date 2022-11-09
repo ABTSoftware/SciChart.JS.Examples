@@ -2,27 +2,18 @@ import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModif
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import {
-    ILineAnnotationOptions,
-    LineAnnotation
-} from "scichart/Charting/Visuals/Annotations/LineAnnotation";
+import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { GlowEffect } from "scichart/Charting/Visuals/RenderableSeries/GlowEffect";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-// import { GenericAnimation } from "scichart/Core/Animations/GenericAnimation";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { colors } from "../utils/colors";
-import { easing } from "scichart/Core/Animations/EasingFunctions";
-import {
-    CustomAnnotation,
-    ICustomAnnotationOptions
-} from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
+import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
 import { axisOptionsCommon, theme } from "../utils/theme";
 import { getVerticalChartData } from "../services/data.service";
-import { IAnnotation } from "scichart/Charting/Visuals/Annotations/IAnnotation";
 
 export const verticalChart = "verticalChart";
 
