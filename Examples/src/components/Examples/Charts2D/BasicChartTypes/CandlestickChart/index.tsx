@@ -285,25 +285,30 @@ export default function CandlestickChart() {
         ohlcChartSeries.isVisible = state === 1;
     };
 
-    return <React.Fragment>
-        <div className={classes.ChartWrapper} style={{background: appTheme.DarkIndigo }}>
-            <ToggleButtonGroup
-                style={{height: "70px", padding: "10"}}
-                exclusive
-                value={preset}
-                onChange={handleToggleButtonChanged}
-                size="small" color="primary" aria-label="small outlined button group">
-                <ToggleButton value={0} style={{color: appTheme.ForegroundColor}}>
-                    Candlestick Series
-                </ToggleButton>
-                <ToggleButton value={1} style={{color: appTheme.ForegroundColor}}>
-                    OHLC Series
-                </ToggleButton>
-            </ToggleButtonGroup>
-            <div style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}>
-                <div id={divElementId} style={{ flexBasis: "100%", flexGrow: 1, flexShrink: 1 }} />
-                <div id={divOverviewId} style={{ flexBasis: "200px", flexGrow: 1, flexShrink: 1 }} />
+    return (
+        <React.Fragment>
+            <div className={classes.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
+                <ToggleButtonGroup
+                    style={{ height: "70px", padding: "10" }}
+                    exclusive
+                    value={preset}
+                    onChange={handleToggleButtonChanged}
+                    size="small"
+                    color="primary"
+                    aria-label="small outlined button group"
+                >
+                    <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
+                        Candlestick Series
+                    </ToggleButton>
+                    <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
+                        OHLC Series
+                    </ToggleButton>
+                </ToggleButtonGroup>
+                <div style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}>
+                    <div id={divElementId} style={{ flexBasis: "80%", flexGrow: 1, flexShrink: 1 }} />
+                    <div id={divOverviewId} style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }} />
+                </div>
             </div>
-        </div>
-    </React.Fragment>
+        </React.Fragment>
+    );
 }
