@@ -153,8 +153,8 @@ export default function ChartLegendsAPI() {
             // flexBasis: "70px"
         },
         combobox: {
-            color: appTheme.ForegroundColor,
-            backgroundColor: "Transparent",
+            color: appTheme.Background,
+            backgroundColor: appTheme.ForegroundColor,
             margin: "10"
         },
         chartElement: {
@@ -222,7 +222,7 @@ export default function ChartLegendsAPI() {
                         </label>
                     </div>
                     {/*The chart will be located here*/}
-                    <div style={{flex: "auto", background: "Red"}}>
+                    <div style={{flex: "auto"}}>
                         <div id={divElementId} style={{width: "100%", height: "100%"}} />
                     </div>
                 </div>
