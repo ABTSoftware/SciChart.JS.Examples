@@ -16,12 +16,13 @@ const examplePagesKeys = Object.keys(EXAMPLES_PAGES);
 export default function AppRouter(props: TProps) {
     const { currentExample, isIFrame = false } = props;
     if (isIFrame) {
-        const ExampleComponent = () => <div className={classes.ExampleWrapperIFrame}>{getExampleComponent(currentExample.id)()}</div>;
+        const ExampleComponent = getExampleComponent(currentExample.id)
+        const renderIFrameExample = () => <div className={classes.ExampleWrapperIFrame}><ExampleComponent /></div>;
         return (
             <Switch>
                 {examplePagesKeys.map(key => {
                     const exPage = EXAMPLES_PAGES[key];
-                    return <Route key={key} path={`/iframe${exPage.path}`} component={ExampleComponent} />;
+                    return <Route key={key} path={`/iframe${exPage.path}`} render={renderIFrameExample} />;
                 })}
             </Switch>
         );
