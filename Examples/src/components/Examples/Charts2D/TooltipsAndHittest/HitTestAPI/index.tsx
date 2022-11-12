@@ -20,151 +20,152 @@ import classes from "../../../../Examples/Examples.module.scss";
 import Box from "../../../../../helpers/shared/Helpers/Box/Box";
 import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
 import { translateFromCanvasToSeriesViewRect } from "scichart/utils/translate";
+import {FadeAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
+import {easing} from "scichart/Core/Animations/EasingFunctions";
+import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {LineAnnotation} from "scichart/Charting/Visuals/Annotations/LineAnnotation";
+import {DoubleAnimator} from "scichart/Core/Animations/DoubleAnimator";
+import {GenericAnimation} from "scichart/Core/Animations/GenericAnimation";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
-const HIT_TEST_RADIUS = 10;
 
-const drawExample = async (setHitTestsList: (hitTestsList: HitTestInfo[]) => void) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
-    const xAxis = new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Top });
-    xAxis.visibleRange = new NumberRange(-0.5, 8.5);
-    sciChartSurface.xAxes.add(xAxis);
-
-    const yAxis = new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Left });
-    yAxis.visibleRange = new NumberRange(0, 6);
-    sciChartSurface.yAxes.add(yAxis);
-
-    // Candlestick series
-    const xOhlcValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    const openValues = [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0];
-    const highValues = [3.7, 3.8, 4.0, 5.3, 5.9, 5.7, 5.0, 4.3, 3.2];
-    const lowValues = [2.2, 3.4, 3.3, 3.8, 5.0, 4.8, 3.5, 3.0, 1.8];
-    const closeValues = [3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0, 2.0];
-    const candlestickSeries = new FastCandlestickRenderableSeries(wasmContext, {
-        dataPointWidth: 0.3,
-        strokeThickness: 2,
-        dataSeries: new OhlcDataSeries(wasmContext, {
-            xValues: xOhlcValues,
-            openValues,
-            highValues,
-            lowValues,
-            closeValues
-        })
+const drawExample = async () => {
+    // Create a SciChartSurface with theme
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+            theme: appTheme.SciChartJsTheme
     });
-    sciChartSurface.renderableSeries.add(candlestickSeries);
+    // Create an X,Y Axis. For this example we put y-axis on the left to demonstrate offsetting the mouse-point when hit-testing
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        axisAlignment: EAxisAlignment.Left,
+        growBy: new NumberRange(0.1, 0.1)
+    }));
 
-    // Bubble series
-    const xBubbleValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    const yBubbleValues = [0.5, 1.0, 1.8, 2.9, 3.5, 3.0, 2.7, 2.4, 1.7];
-    const zBubbleValues = [24, 12, 13, 16, 12, 15, 12, 19, 12];
-    const bubbleSeries = new FastBubbleRenderableSeries(wasmContext, {
-        pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 24,
-            height: 24,
-            fill: "white",
-            strokeThickness: 2,
-            stroke: "#368BC1"
-        }),
-        dataSeries: new XyzDataSeries(wasmContext, {
-            xValues: xBubbleValues,
-            yValues: yBubbleValues,
-            zValues: zBubbleValues
-        })
-    });
-    sciChartSurface.renderableSeries.add(bubbleSeries);
-
-    // Line series
-    const xLineValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    const yLineValues = [0, 0.5, 1.3, 2.4, 3, 2.5, 2.2, 1.9, 1.2];
+    // Create a Line Series with XyDataSeries and some data
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
-        stroke: "#368BC1",
         strokeThickness: 3,
-        dataSeries: new XyDataSeries(wasmContext, { xValues: xLineValues, yValues: yLineValues })
+        stroke: appTheme.VividSkyBlue,
+        dataSeries: new XyDataSeries(wasmContext, {
+            dataSeriesName: "Line Series",
+            xValues: [0,1,2,3,4,5,6,7,8,9],
+            yValues: [0,1,5,1,20,5,1,8,9,3],
+        }),
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            stroke: appTheme.VividSkyBlue,
+            fill: appTheme.VividSkyBlue + "33",
+            width: 11,
+            height: 11,
+        }),
     });
+
+    // Add the line series to the SciChartSurface
     sciChartSurface.renderableSeries.add(lineSeries);
 
-    // Column series
-    const xColumnValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    const yColumnValues = [0, 0.2, 1, 2.0, 2.5, 1.9, 1.9, 1.5, 1.2];
-    const columnSeries = new FastColumnRenderableSeries(wasmContext, {
-        fill: "rgba(255,255,255,0.9)",
-        dataPointWidth: 0.5,
-        dataSeries: new XyDataSeries(wasmContext, {
-            xValues: xColumnValues,
-            yValues: yColumnValues
-        })
-    });
-    sciChartSurface.renderableSeries.add(columnSeries);
+    // add an event listener for mouse down. You can access the actual SciChartSurface canvas as
+    // follows, or find element by ID=divElementId in the dom
+    sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent) => {
 
-    const svgAnnotation = new CustomAnnotation({
-        svgString: '<svg width="8" height="8"><circle cx="50%" cy="50%" r="4" fill="#368BC1"/></svg>',
-        isHidden: true,
-        xCoordShift: -4,
-        yCoordShift: -4
-    });
-    sciChartSurface.annotations.add(svgAnnotation);
-    sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent: MouseEvent) => {
-        const newHitTestsList: HitTestInfo[] = [];
-        const dpiScaledPoint = new Point(
-            mouseEvent.offsetX * DpiHelper.PIXEL_RATIO,
-            mouseEvent.offsetY * DpiHelper.PIXEL_RATIO
+        // Translate the point to the series viewrect before hit-testing
+        // Attention!
+        // We need to multiply it by DpiHelper.PIXEL_RATIO
+        // DpiHelper.PIXEL_RATIO is used for High DPI and Retina screen support and also for the browser scaling
+        const mousePointX = mouseEvent.offsetX * DpiHelper.PIXEL_RATIO;
+        const mousePointY = mouseEvent.offsetY * DpiHelper.PIXEL_RATIO;
+        // const translatedPoint = translateFromCanvasToSeriesViewRect(mousePoint, sciChartSurface.seriesViewRect);
+        const HIT_TEST_RADIUS = 10 * DpiHelper.PIXEL_RATIO;
+
+        // call renderableSeries.hitTestProvider.hitTest passing in the mouse point
+        // other parameters determine the type of hit-test operation to perform
+        // here we use IHitTestProvider.hitTestDataPoint method which finds the nearest point on the 2D surface
+        const hitTestInfo = lineSeries.hitTestProvider.hitTestDataPoint(
+            mousePointX,
+            mousePointY,
+            HIT_TEST_RADIUS
         );
-        const dpiScaledRadius = HIT_TEST_RADIUS * DpiHelper.PIXEL_RATIO;
-        const clickInSeriesViewRect = translateFromCanvasToSeriesViewRect(
-            dpiScaledPoint,
-            sciChartSurface.seriesViewRect
+
+        // Log the result to console. HitTestInfo contains information about the hit-test operation
+        console.log(`${hitTestInfo.dataSeriesName} hit test result:\r\n` +
+            ` MouseCoord=(${mousePointX}, ${mousePointY})\r\n` +
+            // ` TranslatedCoord=(${translatedPoint.x}, ${translatedPoint.y})\r\n` +
+            ` Hit-Test Coord=(${hitTestInfo.xCoord}, ${hitTestInfo.yCoord})\r\n` +
+            ` IsHit? ${hitTestInfo.isHit}\r\n` +
+            ` Result=(${hitTestInfo.xValue}, ${hitTestInfo.yValue}) `
         );
-        if (clickInSeriesViewRect) {
-            sciChartSurface.renderableSeries.asArray().forEach(rs => {
-                // Interpolation is used for LineSeries to test hit on the line
-                // for CandlestickSeries to test hit on the candle
-                // for ColumnSeries to test hit on the column
-                if (rs.hitTestProvider) {
-                    const hitTestInfo = rs.hitTestProvider.hitTest(dpiScaledPoint.x, dpiScaledPoint.y, dpiScaledRadius);
-                    svgAnnotation.isHidden = false;
-                    svgAnnotation.x1 = hitTestInfo.hitTestPointValues.x;
-                    svgAnnotation.y1 = hitTestInfo.hitTestPointValues.y;
-                    if (!hitTestInfo.isEmpty) {
-                        newHitTestsList.push(hitTestInfo);
-                    }
-                }
-            });
-            setHitTestsList(newHitTestsList);
-        }
+        showHitTestPoint(sciChartSurface, hitTestInfo, 1000);
     });
 
-    return { wasmContext, sciChartSurface };
-};
+    return { sciChartSurface, wasmContext };
+}
 
-let scs: SciChartSurface;
+function showHitTestPoint(sciChartSurface: SciChartSurface, hitTestInfo: HitTestInfo, timeout: number) {
+    sciChartSurface.annotations.clear();
+
+    // Use a scatter series to temporarily render a single point at the hitTestInfo.x/yValue
+    const fill = hitTestInfo.isHit ? appTheme.VividGreen : appTheme.VividRed;
+    const series = new XyScatterRenderableSeries(sciChartSurface.webAssemblyContext2D, {
+        animation: new FadeAnimation({ duration: timeout, ease: (t) => 1-t }),
+        opacity: 1,
+        dataSeries: new XyDataSeries(sciChartSurface.webAssemblyContext2D, { xValues: [hitTestInfo.xValue], yValues: [hitTestInfo.yValue] }),
+        pointMarker: new EllipsePointMarker(sciChartSurface.webAssemblyContext2D, { width: 25, height: 25, strokeThickness: 0, fill})
+    });
+    sciChartSurface.renderableSeries.add(series);
+    const hitOrMissLabel = new TextAnnotation({
+        x1: hitTestInfo.xValue + 0.1,
+        y1: hitTestInfo.yValue,
+        fontSize: 20,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        text: hitTestInfo.isHit ? "Hit!" : "miss...",
+        textColor: appTheme.ForegroundColor
+    });
+    sciChartSurface.annotations.add(hitOrMissLabel);
+
+    const hitTestLine = new LineAnnotation( {
+        x1: hitTestInfo.xValue,
+        y1: hitTestInfo.yValue,
+        x2: hitTestInfo.hitTestPointValues.x,
+        y2: hitTestInfo.hitTestPointValues.y,
+        strokeThickness: 2,
+        stroke: fill,
+    });
+    sciChartSurface.annotations.add(hitTestLine);
+
+    sciChartSurface.addAnimation(new GenericAnimation({
+        from: 1,
+        to: 0,
+        // Progress animates from 0..1. We want to reverse the opacity so we use 1-progress
+        onAnimate: (from, to, progress: number) => {
+            hitTestLine.opacity = 1 - progress;
+            hitOrMissLabel.opacity = 1 - progress;
+        },
+        onCompleted: () => {
+            sciChartSurface.renderableSeries.remove(series);
+            sciChartSurface.annotations.remove(hitOrMissLabel);
+            sciChartSurface.annotations.remove(hitTestLine);
+            series.delete();
+            hitOrMissLabel.delete();
+            hitTestLine.delete();
+        }, ease: easing.linear
+    }));
+}
+
 
 export default function HitTestAPI() {
-    const [hitTestsList, setHitTestsList] = React.useState<HitTestInfo[]>([]);
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
     React.useEffect(() => {
         (async () => {
-            const res = await drawExample(setHitTestsList);
-            scs = res.sciChartSurface;
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => scs?.delete();
+        return () => sciChartSurface?.delete();
     }, []);
 
     return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
-            <Box mt={20}>
-                {hitTestsList.map((ht, index) => (
-                    <Alert key={index} style={{ marginTop: "16px" }}>
-                        <AlertTitle>{ht.dataSeriesName}</AlertTitle>
-                        Mouse Coord: {ht.hitTestPoint.x.toFixed(2)}, {ht.hitTestPoint.y.toFixed(2)}; Is Hit:{" "}
-                        {ht.isHit && <span style={{ color: "red" }}>true</span>}
-                        {!ht.isHit ? "false" : ""}, Index: {ht.dataSeriesIndex}, Radius: {ht.hitTestRadius}; Nearest
-                        Data Coord: {ht.xCoord.toFixed(2)}, {ht.yCoord.toFixed(2)}; Nearest Data Value:{" "}
-                        {ht.xValue.toFixed(2)}, {ht.yValue.toFixed(2)}
-                    </Alert>
-                ))}
-            </Box>
-        </div>
+        <div id={divElementId} className={classes.ChartWrapper} />
     );
 }
