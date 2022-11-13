@@ -179,12 +179,14 @@ function showHitTestPoint(sciChartSurface: SciChartSurface, hitTestInfo: HitTest
     sciChartSurface.annotations.add(hitOrMissLabel);
 
     const hitTestLine = new LineAnnotation( {
-        strokeThickness: 5,
+        strokeThickness: 2,
         stroke: fill,
     });
     // Depending on the hitTestMethod, we want to position the lineAnnotation to show whats going on
     if (hitTestMethod === HIT_TEST_DATAPOINT) {
         // Draw from mouse-click point to nearest datapoint
+        hitTestLine.strokeThickness = 2;
+        series.isVisible = true;
         hitTestLine.x1 = hitTestInfo.xValue;
         hitTestLine.y1 = hitTestInfo.yValue;
         hitTestLine.x2 = hitTestInfo.hitTestPointValues.x;
@@ -192,6 +194,8 @@ function showHitTestPoint(sciChartSurface: SciChartSurface, hitTestInfo: HitTest
     }
     if (hitTestMethod === HIT_TEST_X_SLICE) {
         // Draw from mouse-click point to top/bottom of the viewport
+        hitTestLine.strokeThickness = 2;
+        series.isVisible = true;
         hitTestLine.x1 = hitTestInfo.hitTestPointValues.x;
         hitTestLine.y1 = 0;
         hitTestLine.x2 = hitTestInfo.hitTestPointValues.x;
@@ -199,6 +203,8 @@ function showHitTestPoint(sciChartSurface: SciChartSurface, hitTestInfo: HitTest
     }
     if (hitTestMethod === HIT_TEST) {
         // Draw over the line-segment selected
+        hitTestLine.strokeThickness = 5;
+        series.isVisible = false;
         hitTestLine.x1 = hitTestInfo.xValue; // x,y value hit
         hitTestLine.y1 = hitTestInfo.yValue;
         hitTestLine.x2 = hitTestInfo.point2xValue; // next x,y value in the line segment
