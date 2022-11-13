@@ -29,6 +29,8 @@ import {LineAnnotation} from "scichart/Charting/Visuals/Annotations/LineAnnotati
 import {DoubleAnimator} from "scichart/Core/Animations/DoubleAnimator";
 import {GenericAnimation} from "scichart/Core/Animations/GenericAnimation";
 import {appTheme} from "../../../theme";
+import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
+import {makeStyles} from "@material-ui/core/styles";
 
 const divElementId = "chart";
 
@@ -100,6 +102,7 @@ const drawExample = async () => {
     return { sciChartSurface, wasmContext };
 }
 
+// Helper function to show where the user clicked on the chart
 function showHitTestPoint(sciChartSurface: SciChartSurface, hitTestInfo: HitTestInfo, timeout: number) {
     sciChartSurface.annotations.clear();
 
@@ -152,6 +155,25 @@ function showHitTestPoint(sciChartSurface: SciChartSurface, hitTestInfo: HitTest
     }));
 }
 
+const useStyles = makeStyles(theme => ({
+    flexOuterContainer: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        background: appTheme.DarkIndigo
+    },
+    toolbarRow: {
+        display: "flex",
+        // flex: "auto",
+        flexBasis: "70px",
+        padding: 10,
+        width: "100%"
+    },
+    chartArea: {
+        flex: 1,
+    }
+}));
 
 export default function HitTestAPI() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
@@ -165,7 +187,29 @@ export default function HitTestAPI() {
         return () => sciChartSurface?.delete();
     }, []);
 
+    const localClasses = useStyles();
     return (
-        <div id={divElementId} className={classes.ChartWrapper} />
+        <div className={classes.ChartWrapper}>
+            <div className={localClasses.flexOuterContainer}>
+                <ToggleButtonGroup
+                    className={localClasses.toolbarRow}
+                    exclusive
+                    // value={preset}
+                    // onChange={handlePreset}
+                    size="small" color="primary" aria-label="small outlined button group">
+                    <ToggleButton value={0} style={{color: appTheme.ForegroundColor}}>
+                        Hit-Test Datapoint
+                    </ToggleButton>
+                    <ToggleButton value={1} style={{color: appTheme.ForegroundColor}}>
+                        Hit-Test X-Slice
+                    </ToggleButton>
+                    <ToggleButton value={2} style={{color: appTheme.ForegroundColor}}>
+                        Hit-Test 2-Dimensions
+                    </ToggleButton>
+                </ToggleButtonGroup>
+                <div id={divElementId} className={localClasses.chartArea} />
+            </div>
+        </div>
+
     );
 }
