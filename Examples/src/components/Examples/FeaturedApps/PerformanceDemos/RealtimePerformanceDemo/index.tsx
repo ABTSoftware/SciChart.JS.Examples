@@ -1,20 +1,22 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
-import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragModifier";
-import { EDragMode } from "scichart/types/DragMode";
-import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { Button } from "@material-ui/core";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {EAutoRange} from "scichart/types/AutoRange";
+import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";
+import {EDragMode} from "scichart/types/DragMode";
+import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {Button} from "@material-ui/core";
 import classes from "../../../../Examples/Examples.module.scss";
-
-const AMPLITUDE = 200;
+import {appTheme} from "../../../theme";
+import {makeStyles} from "@material-ui/core/styles";
+import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
+import {DpiHelper} from "scichart/Charting/Visuals/TextureManager/DpiHelper";
 
 const divElementId = "chart";
 let timerId: NodeJS.Timeout;
@@ -26,12 +28,14 @@ const drawExample = async () => {
     const maxPoints = 1e6; // max points for a single series before the demo stops
 
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId);
+    const {wasmContext, sciChartSurface} = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
-    // Create an XAxis and YAxis
-    const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
+    // Create an XAxis and YAxis with autoRange=Always
+    const xAxis = new NumericAxis(wasmContext, {autoRange: EAutoRange.Always});
     sciChartSurface.xAxes.add(xAxis);
-    const yAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
+    const yAxis = new NumericAxis(wasmContext, {autoRange: EAutoRange.Always});
     sciChartSurface.yAxes.add(yAxis);
 
     // Create some DataSeries
@@ -41,7 +45,7 @@ const drawExample = async () => {
         new XyDataSeries(wasmContext)
     ];
 
-    const seriesColors = ["#4083B7", "#FFA500", "#E13219"];
+    const seriesColors = [appTheme.VividSkyBlue, appTheme.VividOrange, appTheme.VividPink];
 
     // Create some FastLineRenderableSeries bound to each dataSeries and add to the chart
     dataSeries.map((ds, index) => {
@@ -59,8 +63,8 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(
         new RubberBandXyZoomModifier(),
         new MouseWheelZoomModifier(),
-        new XAxisDragModifier({ dragMode: EDragMode.Panning }),
-        new YAxisDragModifier({ dragMode: EDragMode.Panning }),
+        new XAxisDragModifier({dragMode: EDragMode.Panning}),
+        new YAxisDragModifier({dragMode: EDragMode.Panning}),
         new ZoomExtentsModifier()
     );
 
@@ -95,7 +99,7 @@ const drawExample = async () => {
 
             randomWalkGenerators.forEach((randomWalk, index) => {
                 // Get the next N random walk x,y values
-                const { xValues, yValues } = randomWalk.getRandomWalkSeries(numberOfPointsPerTimerTick);
+                const {xValues, yValues} = randomWalk.getRandomWalkSeries(numberOfPointsPerTimerTick);
 
                 // Append these to the dataSeries. This will cause the chart to redraw
                 dataSeries[index].appendRange(xValues, yValues);
@@ -112,21 +116,45 @@ const drawExample = async () => {
         timerId = setTimeout(updateFunc, timerInterval);
     };
 
-    return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo } };
+    return {wasmContext, sciChartSurface, controls: {startDemo, stopDemo}};
 };
 
 let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
+const useStyles = makeStyles(theme => ({
+    flexOuterContainer: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        background: appTheme.DarkIndigo
+    },
+    toolbarRow: {
+        display: "flex",
+        // flex: "auto",
+        flexBasis: "70px",
+        padding: 10,
+        width: "100%"
+    },
+    chartArea: {
+        flex: 1,
+    }
+}));
+
 export default function RealtimePerformanceDemo() {
-    const [controls, setControls] = React.useState({ startDemo: () => {}, stopDemo: () => {} });
+    const [controls, setControls] = React.useState({
+        startDemo: () => {
+        }, stopDemo: () => {
+        }
+    });
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
             scs = res.sciChartSurface;
             setControls(res.controls);
-            autoStartTimerId = setTimeout(res.controls.startDemo, 3000);
+            autoStartTimerId = setTimeout(res.controls.startDemo, 0);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
@@ -137,14 +165,18 @@ export default function RealtimePerformanceDemo() {
         };
     }, []);
 
+    const localClasses = useStyles();
+
     return (
         <React.Fragment>
-            <div id={divElementId} className={classes.ChartWrapper} />
-
-            <div className={classes.ButtonsWrapper}>
-                <Button onClick={controls.startDemo}>Start</Button>
-
-                <Button onClick={controls.stopDemo}>Stop</Button>
+            <div className={classes.ChartWrapper}>
+                <div className={localClasses.flexOuterContainer}>
+                    <div className={localClasses.toolbarRow}>
+                        <Button onClick={controls.startDemo}>Start</Button>
+                        <Button onClick={controls.stopDemo}>Stop</Button>
+                    </div>
+                    <div id={divElementId} className={localClasses.chartArea} />
+                </div>
             </div>
         </React.Fragment>
     );
