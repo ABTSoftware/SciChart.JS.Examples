@@ -142,11 +142,5 @@ export default function BuilderCustomTypes() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return (
-        <>
-            <div className={classes.ChartWrapper}>
-                <div id={divElementId} />
-            </div>
-        </>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
