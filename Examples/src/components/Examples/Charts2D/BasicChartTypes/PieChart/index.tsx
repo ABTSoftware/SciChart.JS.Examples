@@ -1,19 +1,15 @@
 import * as React from "react";
-import {
-    EPieType,
-    SciChartPieSurface
-} from "scichart/Charting/Visuals/SciChartPieSurface/SciChartPieSurface";
-import {PieSegment} from "scichart/Charting/Visuals/SciChartPieSurface/PieSegment/PieSegment";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {Point} from "scichart/Core/Point";
+import { EPieType, SciChartPieSurface } from "scichart/Charting/Visuals/SciChartPieSurface/SciChartPieSurface";
+import { PieSegment } from "scichart/Charting/Visuals/SciChartPieSurface/PieSegment/PieSegment";
+import { GradientParams } from "scichart/Core/GradientParams";
+import { Point } from "scichart/Core/Point";
 import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
-import {ELegendOrientation, ELegendPlacement} from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
+import { appTheme } from "../../../theme";
+import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 
 export const divElementId1 = "chart1";
 
 export const drawExample = async () => {
-
     // Create the pie chart
     const sciChartPieSurface = await SciChartPieSurface.create(divElementId1, {
         theme: appTheme.SciChartJsTheme,
@@ -22,7 +18,7 @@ export const drawExample = async () => {
         seriesSpacing: 15,
         showLegend: true,
         showLegendSeriesMarkers: true,
-        animateLegend: true,
+        animateLegend: true
     });
     // Optional placement of legend
     sciChartPieSurface.legend.orientation = ELegendOrientation.Horizontal;
@@ -45,7 +41,7 @@ export const drawExample = async () => {
         { name: "Tecno", percent: 1.09 },
         { name: "Infinix", percent: 0.96 },
         { name: "Google", percent: 0.77 },
-        { name: "Nokia", percent: 0.45 },
+        { name: "Nokia", percent: 0.45 }
     ];
 
     // Colors are just hex strings, supporting #FFFFFF (RBG) or 8-digit with RGBA or CSS color strings e.g. rgba()
@@ -64,13 +60,11 @@ export const drawExample = async () => {
         { color1: appTheme.PaleTeal },
         { color1: appTheme.PaleBlue },
         { color1: appTheme.PaleOrange },
-        { color1: appTheme.PalePink },
+        { color1: appTheme.PalePink }
     ];
 
     // Optional Relative radius adjustment per segment
-    const radiusSize = [
-        0.8,0.8,0.8,0.8,0.85,0.85,0.85,0.9,0.9,0.9,0.95,0.95,0.95,0.95,0.95
-    ];
+    const radiusSize = [0.8, 0.8, 0.8, 0.8, 0.85, 0.85, 0.85, 0.9, 0.9, 0.9, 0.95, 0.95, 0.95, 0.95, 0.95];
 
     const toPieSegment = (name: string, value: number, radiusAdjustment: number, color1: string, color2?: string) => {
         return new PieSegment({
@@ -82,9 +76,9 @@ export const drawExample = async () => {
             colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: color1, offset: 0 },
                 { color: color2 ?? color1 + "77", offset: 1 }
-            ]),
+            ])
         });
-    }
+    };
 
     // Transform the data to pie segment and add to scichart
     const pieSegments = dataset.map((row, index) =>
@@ -110,10 +104,18 @@ export default function PieChart() {
 
     return (
         <div className={classes.ChartWrapper}>
-            <div id={divElementId1} style={{ width: "100%", height: "100%", float: "left" }}/>
+            <div id={divElementId1} style={{ width: "100%", height: "100%", float: "left" }} />
             {/*Placeholder until we have a proper chart title (soon!)*/}
-            <span style={{color: appTheme.ForegroundColor, fontSize: 20,
-                position: "absolute", left: "50%", top: "20px", transform: "translate(-50%)"}}>
+            <span
+                style={{
+                    color: appTheme.ForegroundColor,
+                    fontSize: 20,
+                    position: "absolute",
+                    left: "50%",
+                    top: "20px",
+                    transform: "translate(-50%)"
+                }}
+            >
                 Market share of Mobile Phone Manufacturers (2022)
             </span>
         </div>
