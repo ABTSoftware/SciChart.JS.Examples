@@ -18,10 +18,11 @@ import classes from "../../../Examples.module.scss";
 import {makeStyles} from "@material-ui/core/styles";
 import {appTheme} from "../../../theme";
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
 
 export const divElementId = "chart";
 
@@ -142,6 +143,22 @@ export const drawExample = async (usePercentage: boolean) => {
             yCoordinateMode: ECoordinateMode.Relative
         })
     );
+
+    // Add a watermark annotation
+    const watermarkText = usePercentage ? "Percentage Changed" : "Original Data";
+    sciChartSurface.annotations.add(new TextAnnotation({
+        text: watermarkText,
+        fontSize: 32,
+        textColor: appTheme.ForegroundColor,
+        x1: 0.5,
+        y1: 0.5,
+        opacity: 0.23,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+        annotationLayer: EAnnotationLayer.BelowChart
+    }));
 
     return {sciChartSurface, wasmContext};
 };
