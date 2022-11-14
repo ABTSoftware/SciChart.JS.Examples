@@ -624,7 +624,7 @@ export default function LineChart() {
     const localClasses = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={classes.ChartWrapper} style={{ aspectRatio: "3 / 2" }}>
             <div className={localClasses.flexOuterContainer}>
                 <div className={localClasses.flexContainerRow}>
                     <div id={divElementId1} className={localClasses.item} />

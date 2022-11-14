@@ -171,13 +171,11 @@ export default function ContourChart() {
 
     return (
         <div className={classes.ChartWrapper}>
-            <div style={{ position: "relative", height: "100%", width: "100%" }}>
-                <div id={divElementId} style={{ position: "absolute", height: "100%", width: "100%" }}></div>
-                <div
-                    id={divHeatmapLegend}
-                    style={{ position: "absolute", height: "92%", width: "100px", right: "70px", margin: "20" }}
-                ></div>
-            </div>
+            <div id={divElementId} style={{ width: "100%", height: "100%" }}></div>
+            <div
+                id={divHeatmapLegend}
+                style={{ position: "absolute", height: "92%", width: "100px", top: 0, right: "70px", margin: "20px" }}
+            ></div>
         </div>
     );
 }
