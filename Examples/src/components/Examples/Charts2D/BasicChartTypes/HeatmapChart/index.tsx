@@ -10,8 +10,8 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { zeroArray2D } from "scichart/utils/zeroArray2D";
 import classes from "../../../../Examples/Examples.module.scss";
 import { Button } from "@material-ui/core";
-import {appTheme} from "../../../theme";
-import {HeatmapLegend} from "scichart/Charting/Visuals/HeatmapLegend";
+import { appTheme } from "../../../theme";
+import { HeatmapLegend } from "scichart/Charting/Visuals/HeatmapLegend";
 
 const divElementId = "chart";
 const divHeatmapLegend = "heatmapLegend";
@@ -49,13 +49,13 @@ const drawExample = async () => {
             minimum: 0,
             maximum: 200,
             gradientStops: [
-                {offset: 1, color: appTheme.VividPink},
-                {offset: 0.9, color: appTheme.VividOrange},
-                {offset: 0.7, color: appTheme.MutedRed},
-                {offset: 0.5, color: appTheme.VividGreen},
-                {offset: 0.3, color: appTheme.VividSkyBlue},
-                {offset: 0.2, color: appTheme.Indigo},
-                {offset: 0, color: appTheme.DarkIndigo}
+                { offset: 1, color: appTheme.VividPink },
+                { offset: 0.9, color: appTheme.VividOrange },
+                { offset: 0.7, color: appTheme.MutedRed },
+                { offset: 0.5, color: appTheme.VividGreen },
+                { offset: 0.3, color: appTheme.VividSkyBlue },
+                { offset: 0.2, color: appTheme.Indigo },
+                { offset: 0, color: appTheme.DarkIndigo }
             ]
         })
     });
@@ -76,7 +76,7 @@ const drawHeatmapLegend = async () => {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB"
         },
         yAxisOptions: {
             axisBorder: {
@@ -86,36 +86,42 @@ const drawHeatmapLegend = async () => {
             majorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 6,
-                strokeThickness: 1,
+                strokeThickness: 1
             },
             minorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
-                strokeThickness: 1,
+                strokeThickness: 1
             }
         },
         colorMap: {
             minimum: 0,
             maximum: 200,
             gradientStops: [
-                {offset: 1, color: appTheme.VividPink},
-                {offset: 0.9, color: appTheme.VividOrange},
-                {offset: 0.7, color: appTheme.MutedRed},
-                {offset: 0.5, color: appTheme.VividGreen},
-                {offset: 0.3, color: appTheme.VividSkyBlue},
-                {offset: 0.2, color: appTheme.Indigo},
-                {offset: 0, color: appTheme.DarkIndigo}
-            ],
+                { offset: 1, color: appTheme.VividPink },
+                { offset: 0.9, color: appTheme.VividOrange },
+                { offset: 0.7, color: appTheme.MutedRed },
+                { offset: 0.5, color: appTheme.VividGreen },
+                { offset: 0.3, color: appTheme.VividSkyBlue },
+                { offset: 0.2, color: appTheme.Indigo },
+                { offset: 0, color: appTheme.DarkIndigo }
+            ]
         }
     });
 
     return heatmapLegend;
-}
+};
 
 // This function generates data for the heatmap series example
 // because data-generation is not trivial, we generate once before the example starts
 // so you can see the speed & power of SciChart.js
-function generateExampleData(width: number, height: number, cpMax: number, index: number, maxIndex: number): number[][] {
+function generateExampleData(
+    width: number,
+    height: number,
+    cpMax: number,
+    index: number,
+    maxIndex: number
+): number[][] {
     const zValues = zeroArray2D([height, width]);
     // math.round but to X digits
     function roundTo(number: number, digits: number) {
@@ -139,7 +145,6 @@ function generateExampleData(width: number, height: number, cpMax: number, index
     }
     return zValues;
 }
-
 
 let timerId: NodeJS.Timeout;
 let updateIndex: number = 0;
@@ -187,21 +192,20 @@ export default function HeatmapChart() {
             handleStop();
             sciChartSurface?.delete();
             heatmapLegend?.delete();
-        }
+        };
     }, []);
 
     return (
         <div className={classes.ChartWrapper}>
-
-            <div style={{position: "relative", height: "100%", width: "100%" }}>
-                <div id={divElementId} style={{position: "absolute", height: "100%", width: "100%"}}></div>
-                <div id={divHeatmapLegend} style={{position: "absolute", height: "95%", width: "100px", right: "75px", margin: "20"}}>
-                </div>
-                <div style={{position: "absolute", left: "10px", top: "10px", margin: "20"}}>
-                    <div className={classes.ButtonsWrapper}>
-                        <Button onClick={heatmapDataSeries && handleStart}>Start</Button>
-                        <Button onClick={heatmapDataSeries && handleStop}>Stop</Button>
-                    </div>
+            <div id={divElementId} style={{ width: "100%", height: "100%" }}></div>
+            <div
+                id={divHeatmapLegend}
+                style={{ position: "absolute", height: "95%", width: "100px", top: 0, right: "75px", margin: "20" }}
+            ></div>
+            <div style={{ position: "absolute", left: "10px", top: "10px", margin: "20" }}>
+                <div className={classes.ButtonsWrapper}>
+                    <Button onClick={heatmapDataSeries && handleStart}>Start</Button>
+                    <Button onClick={heatmapDataSeries && handleStop}>Stop</Button>
                 </div>
             </div>
         </div>

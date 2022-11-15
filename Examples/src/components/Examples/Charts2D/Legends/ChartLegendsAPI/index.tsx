@@ -1,17 +1,17 @@
 import * as React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {ELegendOrientation, ELegendPlacement} from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
-import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
-import {ENumericFormat} from "scichart/types/NumericFormat";
+import { SciChartSurface } from "scichart";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
+import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
+import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {makeStyles} from "@material-ui/core/styles";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { appTheme } from "../../../theme";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
+import { NumberRange } from "scichart/Core/NumberRange";
+import { makeStyles } from "@material-ui/core/styles";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 
 const divElementId = "chart";
 
@@ -21,47 +21,75 @@ const drawExample = async () => {
     });
 
     // Add an X, Y Axis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        labelFormat: ENumericFormat.Decimal,
-        labelPrecision: 2
-    }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        labelFormat: ENumericFormat.Decimal,
-        labelPrecision: 2,
-        growBy: new NumberRange(0.1, 0.1)
-    }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            labelFormat: ENumericFormat.Decimal,
+            labelPrecision: 2
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            labelFormat: ENumericFormat.Decimal,
+            labelPrecision: 2,
+            growBy: new NumberRange(0.1, 0.1)
+        })
+    );
 
     // Add some data
     const data0 = ExampleDataProvider.getFourierSeriesZoomed(1.0, 0.1, 5.0, 5.15);
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data0.xValues, yValues: data0.yValues, dataSeriesName: "First Line Series" }),
-        strokeThickness: 3,
-        stroke: "auto"
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: data0.xValues,
+                yValues: data0.yValues,
+                dataSeriesName: "First Line Series"
+            }),
+            strokeThickness: 3,
+            stroke: "auto"
+        })
+    );
 
     const data1 = ExampleDataProvider.getFourierSeriesZoomed(0.6, 0.13, 5.0, 5.15);
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues, dataSeriesName: "Second Line Series" }),
-        strokeThickness: 3,
-        stroke: "auto"
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: data1.xValues,
+                yValues: data1.yValues,
+                dataSeriesName: "Second Line Series"
+            }),
+            strokeThickness: 3,
+            stroke: "auto"
+        })
+    );
 
     const data2 = ExampleDataProvider.getFourierSeriesZoomed(0.5, 0.12, 5.0, 5.15);
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data2.xValues, yValues: data2.yValues, dataSeriesName: "Third Line Series" }),
-        strokeThickness: 3,
-        stroke: "auto"
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: data2.xValues,
+                yValues: data2.yValues,
+                dataSeriesName: "Third Line Series"
+            }),
+            strokeThickness: 3,
+            stroke: "auto"
+        })
+    );
 
     const data3 = ExampleDataProvider.getFourierSeriesZoomed(0.4, 0.11, 5.0, 5.15);
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data3.xValues, yValues: data3.yValues, dataSeriesName: "Fourth Line Series" }),
-        strokeThickness: 3,
-        stroke: "auto"
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: data3.xValues,
+                yValues: data3.yValues,
+                dataSeriesName: "Fourth Line Series"
+            }),
+            strokeThickness: 3,
+            stroke: "auto"
+        })
+    );
 
     // add the legend modifier and show legend in the top left
-    const legendModifier = new LegendModifier( {
+    const legendModifier = new LegendModifier({
         showLegend: true,
         placement: ELegendPlacement.TopLeft,
         orientation: ELegendOrientation.Vertical,
@@ -142,14 +170,14 @@ export default function ChartLegendsAPI() {
             display: "flex",
             flexDirection: "column",
             height: "100%",
-            width: "100%",
+            width: "100%"
         },
         toolbar: {
             minHeight: "70px",
             padding: "10",
             color: appTheme.ForegroundColor,
             fontSize: "13px",
-            flex: "none",
+            flex: "none"
             // flexBasis: "70px"
         },
         combobox: {
@@ -171,31 +199,35 @@ export default function ChartLegendsAPI() {
                     {/*The toolbar is here*/}
                     <div className={localClasses.toolbar}>
                         Show Legend?
-                        <Checkbox checked={showLegendValue}
-                                  onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
-                                      if (chartReady) handleChangeShowLegend(e);
-                                  }}
+                        <Checkbox
+                            checked={showLegendValue}
+                            onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
+                                if (chartReady) handleChangeShowLegend(e);
+                            }}
                         />
                         Show Visibility Checkboxes?
-                        <Checkbox checked={showCheckboxesValue}
-                                  onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
-                                      if (chartReady) handleChangeShowCheckboxes(e);
-                                  }}
+                        <Checkbox
+                            checked={showCheckboxesValue}
+                            onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
+                                if (chartReady) handleChangeShowCheckboxes(e);
+                            }}
                         />
                         Show Series Markers?
-                        <Checkbox checked={showSeriesMarkersValue}
-                                  onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
-                                      if (chartReady) handleChangeShowSeriesMarkers(e);
-                                  }}
+                        <Checkbox
+                            checked={showSeriesMarkersValue}
+                            onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
+                                if (chartReady) handleChangeShowSeriesMarkers(e);
+                            }}
                         />
                         <label id="sciChartPlacement-label">
                             Legend Placement
-                            <select className={localClasses.combobox}
-                                    id="sciChartPlacement"
-                                    value={placementValue}
-                                    onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                                        if (chartReady) handleChangePlacement(e);
-                                    }}
+                            <select
+                                className={localClasses.combobox}
+                                id="sciChartPlacement"
+                                value={placementValue}
+                                onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                                    if (chartReady) handleChangePlacement(e);
+                                }}
                             >
                                 {placementSelect.map(el => (
                                     <option key={el.value} value={el.value}>
@@ -206,12 +238,13 @@ export default function ChartLegendsAPI() {
                         </label>
                         <label id="sciChartPlacement-label">
                             Legend Orientation
-                            <select className={localClasses.combobox}
-                                    id="sciChartOrientation"
-                                    value={orientationValue}
-                                    onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                                        if (chartReady) handleChangeOrientation(e);
-                                    }}
+                            <select
+                                className={localClasses.combobox}
+                                id="sciChartOrientation"
+                                value={orientationValue}
+                                onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
+                                    if (chartReady) handleChangeOrientation(e);
+                                }}
                             >
                                 {orientationSelect.map(el => (
                                     <option key={el.value} value={el.value}>
@@ -222,8 +255,8 @@ export default function ChartLegendsAPI() {
                         </label>
                     </div>
                     {/*The chart will be located here*/}
-                    <div style={{flex: "auto"}}>
-                        <div id={divElementId} style={{width: "100%", height: "100%"}} />
+                    <div style={{ flex: "auto" }}>
+                        <div id={divElementId} style={{ width: "100%", height: "100%" }} />
                     </div>
                 </div>
             </div>

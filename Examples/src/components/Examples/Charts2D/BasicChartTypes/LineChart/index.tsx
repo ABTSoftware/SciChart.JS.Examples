@@ -530,7 +530,7 @@ const drawExample = async () => {
                 strokeThickness: 3,
                 stroke: appTheme.VividOrange,
                 // paletteprovider allows per-point colouring
-                paletteProvider,
+                paletteProvider
                 // Datalabels may be shown using this property
                 // dataLabels: {
                 //     style: { fontFamily: "Arial", fontSize: 8 },
@@ -604,7 +604,7 @@ const useStyles = makeStyles(theme => ({
     },
     item: {
         flex: "auto",
-        height: "100%",
+        height: "100%"
     }
 }));
 
@@ -624,7 +624,7 @@ export default function LineChart() {
     const localClasses = useStyles();
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={classes.ChartWrapper} style={{ aspectRatio: "3 / 2" }}>
             <div className={localClasses.flexOuterContainer}>
                 <div className={localClasses.flexContainerRow}>
                     <div id={divElementId1} className={localClasses.item} />
