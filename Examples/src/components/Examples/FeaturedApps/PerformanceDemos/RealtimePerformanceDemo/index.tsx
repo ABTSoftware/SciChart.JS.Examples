@@ -15,8 +15,6 @@ import {Button} from "@material-ui/core";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
 import {makeStyles} from "@material-ui/core/styles";
-import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
-import {DpiHelper} from "scichart/Charting/Visuals/TextureManager/DpiHelper";
 
 const divElementId = "chart";
 let timerId: NodeJS.Timeout;
