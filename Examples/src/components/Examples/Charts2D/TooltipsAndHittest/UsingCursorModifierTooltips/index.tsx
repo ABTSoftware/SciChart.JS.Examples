@@ -10,7 +10,6 @@ import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWhee
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {SciChartSurface} from "scichart";
 import {CursorModifier} from "scichart/Charting/ChartModifiers/CursorModifier";
-import {EColor} from "scichart/types/Color";
 import {ENumericFormat} from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
@@ -22,7 +21,6 @@ const divElementId = "chart";
 
 
 const drawExample = async (): Promise<TWebAssemblyChart> => {
-    const colorsArr = [EColor.Green, EColor.LightGrey];
 
     // Create a SciChartSurface with X,Y Axis
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
