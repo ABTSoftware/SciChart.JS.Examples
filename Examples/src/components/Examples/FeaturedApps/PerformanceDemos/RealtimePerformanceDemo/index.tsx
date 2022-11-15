@@ -28,7 +28,9 @@ const drawExample = async () => {
     const maxPoints = 1e6; // max points for a single series before the demo stops
 
     // Create a SciChartSurface
-    const {wasmContext, sciChartSurface} = await SciChartSurface.create(divElementId, {
+    // Note create() uses shared WebGL canvas, createSingle() uses one WebGL per chart
+    // createSingle() = faster performance as doesn't require a copy-op, but limited by max-contexts in browser
+    const {wasmContext, sciChartSurface} = await SciChartSurface.createSingle(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -119,9 +121,6 @@ const drawExample = async () => {
     return {wasmContext, sciChartSurface, controls: {startDemo, stopDemo}};
 };
 
-let scs: SciChartSurface;
-let autoStartTimerId: NodeJS.Timeout;
-
 const useStyles = makeStyles(theme => ({
     flexOuterContainer: {
         width: "100%",
@@ -135,12 +134,16 @@ const useStyles = makeStyles(theme => ({
         // flex: "auto",
         flexBasis: "70px",
         padding: 10,
-        width: "100%"
+        width: "100%",
+        color: appTheme.ForegroundColor
     },
     chartArea: {
         flex: 1,
     }
 }));
+
+let scs: SciChartSurface;
+let autoStartTimerId: NodeJS.Timeout;
 
 export default function RealtimePerformanceDemo() {
     const [controls, setControls] = React.useState({
@@ -148,11 +151,23 @@ export default function RealtimePerformanceDemo() {
         }, stopDemo: () => {
         }
     });
+    const [stats, setStats] = React.useState({ numberPoints: 0, fps: 0 });
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
             scs = res.sciChartSurface;
+            let lastRendered = Date.now();
+            scs.rendered.subscribe(() => {
+                const currentTime = Date.now();
+                const timeDiffSeconds = new Date(currentTime - lastRendered).getTime() / 1000;
+                lastRendered = currentTime;
+                const fps = 1 / timeDiffSeconds;
+                setStats({
+                    numberPoints: scs.renderableSeries.size() * scs.renderableSeries.get(0).dataSeries.count(),
+                    fps,
+                });
+            });
             setControls(res.controls);
             autoStartTimerId = setTimeout(res.controls.startDemo, 0);
         })();
@@ -172,10 +187,12 @@ export default function RealtimePerformanceDemo() {
             <div className={classes.ChartWrapper}>
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
-                        <Button onClick={controls.startDemo}>Start</Button>
-                        <Button onClick={controls.stopDemo}>Stop</Button>
+                        <Button onClick={controls.startDemo} style={{color: appTheme.ForegroundColor}}>Start</Button>
+                        <Button onClick={controls.stopDemo} style={{color: appTheme.ForegroundColor}}>Stop</Button>
+                        <span style={{margin: 12, minWidth: "200px"}}># DataPoints: {stats.numberPoints.toLocaleString()}</span>
+                        <span style={{margin: 12}}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
-                    <div id={divElementId} className={localClasses.chartArea} />
+                    <div className={localClasses.chartArea} id={divElementId}></div>
                 </div>
             </div>
         </React.Fragment>

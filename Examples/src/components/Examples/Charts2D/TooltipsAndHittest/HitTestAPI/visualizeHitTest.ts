@@ -30,7 +30,7 @@ export function visualiseHitTestPoint(sciChartSurface: SciChartSurface, hitTestI
     //
 
     // Use a scatter series to temporarily render a single point at the hitTestInfo.x/yValue
-    const fill = hitTestInfo.isHit ? appTheme.VividGreen : appTheme.VividRed;
+    const fill = hitTestInfo.isHit ? appTheme.PaleTeal : appTheme.VividPink;
     const series = new XyScatterRenderableSeries(sciChartSurface.webAssemblyContext2D, {
         animation: new FadeAnimation({ duration: timeout, ease: (t) => 1-t }),
         opacity: 1,
