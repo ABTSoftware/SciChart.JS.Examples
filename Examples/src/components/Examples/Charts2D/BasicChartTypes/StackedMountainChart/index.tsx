@@ -13,6 +13,8 @@ import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/
 import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import classes from "../../../../Examples/Examples.module.scss";
 import { appTheme } from "../../../theme";
+import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
+import {makeStyles} from "@material-ui/core/styles";
 
 const divElementId = "chart";
 
@@ -80,10 +82,31 @@ const drawExample = async () => {
     return { wasmContext, sciChartSurface, stackedMountainCollection };
 };
 
+const useStyles = makeStyles(theme => ({
+    flexOuterContainer: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        background: appTheme.DarkIndigo
+    },
+    toolbarRow: {
+        display: "flex",
+        // flex: "auto",
+        flexBasis: "70px",
+        padding: 10,
+        width: "100%"
+    },
+    chartArea: {
+        flex: 1,
+    }
+}));
+
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function StackedMountainChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
     const [stackedMountainCollection, setStackedMountainCollection] = React.useState<StackedMountainCollection>();
 
     React.useEffect(() => {
@@ -96,21 +119,35 @@ export default function StackedMountainChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    const onChecked = () => {
-        stackedMountainCollection.isOneHundredPercent = !stackedMountainCollection.isOneHundredPercent;
-        sciChartSurface.zoomExtents(200);
+    const handleUsePercentage = (event: any, value: boolean) => {
+        if (value !== null) {
+            console.log(`100% stacked? ${value}`);
+            setUse100PercentStackedMode(value);
+            // Toggle 100% mode on click
+            stackedMountainCollection.isOneHundredPercent = value;
+            sciChartSurface.zoomExtents(200);
+        }
     };
 
-    return (<div className={classes.ChartWrapper}>
-        <div style={{position: "relative", width: "100%", height: "100%"}}>
-            <div id={divElementId} style={{position: "relative", width: "100%", height: "100%"}}/>
-            <label style={{position: "absolute", right: "100px", top: "50px",
-                border: `1px solid ${appTheme.Indigo}`,
-                color: appTheme.ForegroundColor, background: appTheme.Background, padding: "10"}}>
-                100% Stacked Mountain?&nbsp;
-                <input  type="checkbox" onChange={onChecked}/>
-            </label>
-
+    const localClasses = useStyles();
+    return (
+        <div className={classes.ChartWrapper}>
+            <div className={localClasses.flexOuterContainer}>
+                <ToggleButtonGroup
+                    className={localClasses.toolbarRow}
+                    exclusive
+                    value={use100PercentStackedMode}
+                    onChange={handleUsePercentage}
+                    size="small" color="primary" aria-label="small outlined button group">
+                    <ToggleButton value={false} style={{color: appTheme.ForegroundColor}}>
+                        Stacked mode
+                    </ToggleButton>
+                    <ToggleButton value={true} style={{color: appTheme.ForegroundColor}}>
+                        100% Stacked mode
+                    </ToggleButton>
+                </ToggleButtonGroup>
+                <div id={divElementId} className={localClasses.chartArea}/>
+            </div>
         </div>
-    </div>);
+    );
 }

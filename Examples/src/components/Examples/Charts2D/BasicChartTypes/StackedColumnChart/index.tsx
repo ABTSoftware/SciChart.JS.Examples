@@ -12,6 +12,10 @@ import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier"
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import {appTheme} from "../../../theme";
+import classes from "../../../Examples.module.scss";
+import {Button} from "@material-ui/core";
+import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
+import {makeStyles} from "@material-ui/core/styles";
 
 const divElementId = "chart";
 
@@ -123,10 +127,31 @@ const drawExample = async () => {
     return { wasmContext, sciChartSurface, stackedColumnCollection };
 };
 
+const useStyles = makeStyles(theme => ({
+    flexOuterContainer: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        background: appTheme.DarkIndigo
+    },
+    toolbarRow: {
+        display: "flex",
+        // flex: "auto",
+        flexBasis: "70px",
+        padding: 10,
+        width: "100%"
+    },
+    chartArea: {
+        flex: 1,
+    }
+}));
+
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function StackedColumnChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
     const [stackedColumnCollection, setStackedColumnCollection] = React.useState<StackedColumnCollection>();
 
     React.useEffect(() => {
@@ -139,21 +164,35 @@ export default function StackedColumnChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    const onChecked = () => {
-        // Toggle 100% mode on click
-        stackedColumnCollection.isOneHundredPercent = !stackedColumnCollection.isOneHundredPercent;
-        sciChartSurface.zoomExtents(200);
+    const handleUsePercentage = (event: any, value: boolean) => {
+        if (value !== null) {
+            console.log(`100% stacked? ${value}`);
+            setUse100PercentStackedMode(value);
+            // Toggle 100% mode on click
+            stackedColumnCollection.isOneHundredPercent = value;
+            sciChartSurface.zoomExtents(200);
+        }
     };
 
+    const localClasses = useStyles();
     return (
-        <div style={{position: "relative", width: "100%", height: "100%"}}>
-            <div id={divElementId} style={{position: "relative", width: "100%", height: "100%"}}/>
-            <label style={{position: "absolute", right: "100px", top: "50px",
-                border: `1px solid ${appTheme.Indigo}`,
-                color: appTheme.ForegroundColor, background: appTheme.Background, padding: "10"}}>
-                100% Stacked Column?&nbsp;
-                <input  type="checkbox" onChange={onChecked}/>
-            </label>
+        <div className={classes.ChartWrapper}>
+            <div className={localClasses.flexOuterContainer}>
+                <ToggleButtonGroup
+                    className={localClasses.toolbarRow}
+                    exclusive
+                    value={use100PercentStackedMode}
+                    onChange={handleUsePercentage}
+                    size="small" color="primary" aria-label="small outlined button group">
+                    <ToggleButton value={false} style={{color: appTheme.ForegroundColor}}>
+                        Stacked mode
+                    </ToggleButton>
+                    <ToggleButton value={true} style={{color: appTheme.ForegroundColor}}>
+                        100% Stacked mode
+                    </ToggleButton>
+                </ToggleButtonGroup>
+                <div id={divElementId} className={localClasses.chartArea}/>
+            </div>
         </div>
     );
 }

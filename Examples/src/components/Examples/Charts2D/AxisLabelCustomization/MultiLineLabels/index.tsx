@@ -62,6 +62,7 @@ const drawExample = async () => {
         labelStyle: {
             alignment: ELabelAlignment.Center,
             padding: new Thickness(2,1,2,1),
+            fontSize: 11,
         },
         // Ensure there can be 1 label per item in the dataset.
         // Also see major/minor delta in the docs
