@@ -14,8 +14,10 @@ import Alert from "@material-ui/lab/Alert";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {makeStyles} from "@material-ui/core/styles";
+import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
 
 const divElementId = "chart";
 
@@ -46,20 +48,42 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         axisTitle: "Y Axis",
     }));
 
+    const watermarkAnnotation = (text: string, offset: number = 0) => {
+        return new TextAnnotation({
+            text,
+            fontSize: 42,
+            fontWeight: "Bold",
+            textColor: appTheme.ForegroundColor,
+            x1: 0.5,
+            y1: 0.5,
+            yCoordShift: offset,
+            opacity: 0.43,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            annotationLayer: EAnnotationLayer.AboveChart,
+        });
+    }
     // add a title annotation
-    // Add title annotation
-    sciChartSurface.annotations.add(new TextAnnotation({
-        text: "SciChart.js Performance Demo: Draw 500 Series x 500 Points (250k Points total)",
-        fontSize: 16,
-        textColor: appTheme.ForegroundColor,
-        x1: 1,
-        y1: 0,
-        xCoordShift: -20,
-        opacity: 0.77,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
-    }));
+    sciChartSurface.annotations.add(watermarkAnnotation("SciChart.js Performance Demo", -52));
+    sciChartSurface.annotations.add(watermarkAnnotation(`${SERIES} Series x ${POINTS} Points per series`, 0));
+    sciChartSurface.annotations.add(watermarkAnnotation(`(${SERIES * POINTS / 1000}k DataPoints)`, 52));
+
+    // // add a title annotation
+    // // Add title annotation
+    // sciChartSurface.annotations.add(new TextAnnotation({
+    //     text: "SciChart.js Performance Demo: Draw 500 Series x 500 Points (250k Points total)",
+    //     fontSize: 16,
+    //     textColor: appTheme.ForegroundColor,
+    //     x1: 1,
+    //     y1: 0,
+    //     xCoordShift: -20,
+    //     opacity: 0.77,
+    //     horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
+    //     xCoordinateMode: ECoordinateMode.Relative,
+    //     yCoordinateMode: ECoordinateMode.Relative,
+    // }));
 
     // We pre-create N empty FastLineRenderableSeries for the performance test. Going to fill these with data below
     const dataSeriesArray: XyDataSeries[] = new Array<XyDataSeries>(SERIES);
@@ -162,6 +186,27 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
     return { wasmContext, sciChartSurface, loadPoints };
 };
 
+const useStyles = makeStyles(theme => ({
+    flexOuterContainer: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        background: appTheme.DarkIndigo
+    },
+    toolbarRow: {
+        display: "flex",
+        // flex: "auto",
+        flexBasis: "70px",
+        padding: 10,
+        width: "100%",
+        color: appTheme.ForegroundColor
+    },
+    chartArea: {
+        flex: 1,
+    }
+}));
+
 let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
@@ -186,21 +231,18 @@ export default function Load500By500() {
         };
     }, []);
 
+    const localClasses = useStyles();
+
     return (
-        <>
-            <div className={classes.ChartWrapper}>
-                <div id={divElementId} style={{width: "100%", height: "calc(100% - 200px)" }} />
-                <div style={{height: "200px", width: "100%", padding: "10", background: appTheme.ForegroundColor }}>
-                    <div>
-                        <div className={classes.FormControl}>
-                            <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                                <Button id="loadPoints">Reload Data</Button>
-                            </ButtonGroup>
-                        </div>
-                    </div>
-                    <div>
+        <div className={classes.ChartWrapper}>
+            <div className={localClasses.flexOuterContainer}>
+                <div className={localClasses.chartArea} id={divElementId}></div>
+                <div className={localClasses.toolbarRow} style={{minHeight: "140px"}}>
+                    <Button id="loadPoints" style={{color: appTheme.ForegroundColor}}>🗘 Reload Test</Button>
+                    <div style={{width: "100%", marginLeft: "10px"}}>
                         {timeSpans.length > 0 && (
-                            <Alert key="0" className={classes.Notification}>
+                            <Alert key="0" className={classes.Notification}
+                                   style={{backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor}}>
                                 <AlertTitle>Performance Results</AlertTitle>
                                 {timeSpans.map((ts, index) => (
                                     <div key={index}>
@@ -212,6 +254,6 @@ export default function Load500By500() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

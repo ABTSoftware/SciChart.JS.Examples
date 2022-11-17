@@ -18,9 +18,7 @@ import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotati
 import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import {makeStyles} from "@material-ui/core/styles";
-import {
-    EAnnotationLayer
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/IAnnotation";
+import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
 
 export type TTimeSpan = {
     title: string;
