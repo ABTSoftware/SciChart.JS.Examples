@@ -12,6 +12,7 @@ import classes from "../../../../Examples/Examples.module.scss";
 import { Button } from "@material-ui/core";
 import { appTheme } from "../../../theme";
 import { HeatmapLegend } from "scichart/Charting/Visuals/HeatmapLegend";
+import {makeStyles} from "@material-ui/core/styles";
 
 const divElementId = "chart";
 const divHeatmapLegend = "heatmapLegend";
@@ -146,6 +147,27 @@ function generateExampleData(
     return zValues;
 }
 
+const useStyles = makeStyles(theme => ({
+    flexOuterContainer: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        background: appTheme.DarkIndigo
+    },
+    toolbarRow: {
+        display: "flex",
+        // flex: "auto",
+        flexBasis: "70px",
+        padding: 10,
+        width: "100%",
+        color: appTheme.ForegroundColor
+    },
+    chartArea: {
+        flex: 1,
+    }
+}));
+
 let timerId: NodeJS.Timeout;
 let updateIndex: number = 0;
 let heatmapDataSeries: UniformHeatmapDataSeries;
@@ -155,6 +177,7 @@ let heatmapDataSeries: UniformHeatmapDataSeries;
 export default function HeatmapChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
+    const [stats, setStats] = React.useState({ xSize: 0, ySize: 0, fps: 0 });
 
     const updateChart = () => {
         // Cycle through pre-generated data on timer tick
@@ -185,6 +208,18 @@ export default function HeatmapChart() {
             setSciChartSurface(res.sciChartSurface);
             setHeatmapLegend(legend);
             heatmapDataSeries = res.heatmapDataSeries;
+            let lastRendered = Date.now();
+            res.sciChartSurface.rendered.subscribe(() => {
+                const currentTime = Date.now();
+                const timeDiffSeconds = new Date(currentTime - lastRendered).getTime() / 1000;
+                lastRendered = currentTime;
+                const fps = 1 / timeDiffSeconds;
+                setStats({
+                    xSize: heatmapDataSeries.arrayWidth,
+                    ySize: heatmapDataSeries.arrayHeight,
+                    fps,
+                });
+            });
             handleStart();
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
@@ -195,19 +230,25 @@ export default function HeatmapChart() {
         };
     }, []);
 
+    const localClasses = useStyles();
+
     return (
-        <div className={classes.ChartWrapper}>
-            <div id={divElementId} style={{ width: "100%", height: "100%" }}></div>
-            <div
-                id={divHeatmapLegend}
-                style={{ position: "absolute", height: "95%", width: "100px", top: 0, right: "75px", margin: "20" }}
-            ></div>
-            <div style={{ position: "absolute", left: "10px", top: "10px", margin: "20" }}>
-                <div className={classes.ButtonsWrapper}>
-                    <Button onClick={heatmapDataSeries && handleStart}>Start</Button>
-                    <Button onClick={heatmapDataSeries && handleStop}>Stop</Button>
+        <React.Fragment>
+            <div className={classes.ChartWrapper}>
+                <div className={localClasses.flexOuterContainer}>
+                    <div className={localClasses.toolbarRow}>
+                        <Button onClick={handleStart} style={{color: appTheme.ForegroundColor}}>Start</Button>
+                        <Button onClick={handleStop} style={{color: appTheme.ForegroundColor}}>Stop</Button>
+                        <span style={{margin: 12, minWidth: "200px"}}># Heatmap Size: {stats.xSize} x {stats.ySize}</span>
+                        <span style={{margin: 12}}>FPS: {stats.fps.toFixed(0)}</span>
+                    </div>
+                    <div className={localClasses.chartArea} style={{position: "relative"}}>
+                        <div id={divElementId} style={{width: "100%", height: "100%"}}></div>
+                        <div id={divHeatmapLegend}
+                             style={{ position: "absolute", height: "90%", width: "100px", top: 0, right: "75px", margin: "20" }}></div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </React.Fragment>
     );
 }
