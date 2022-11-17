@@ -204,8 +204,8 @@ export default function HeatmapChart() {
             ></div>
             <div style={{ position: "absolute", left: "10px", top: "10px", margin: "20" }}>
                 <div className={classes.ButtonsWrapper}>
-                    <Button onClick={heatmapDataSeries && handleStart}>Start</Button>
-                    <Button onClick={heatmapDataSeries && handleStop}>Stop</Button>
+                    <Button onClick={handleStart}>Start</Button>
+                    <Button onClick={handleStop}>Stop</Button>
                 </div>
             </div>
         </div>
