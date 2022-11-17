@@ -1,23 +1,26 @@
 import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { SciChartSurface } from "scichart";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {EAutoRange} from "scichart/types/AutoRange";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {SciChartSurface} from "scichart";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {makeStyles} from "@material-ui/core/styles";
+import {
+    EAnnotationLayer
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/IAnnotation";
 
 export type TTimeSpan = {
     title: string;
@@ -43,20 +46,26 @@ export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) =
         axisTitle: "Y Axis"
     }));
 
+    const watermarkAnnotation = (text: string, offset: number = 0) => {
+        return new TextAnnotation({
+            text,
+            fontSize: 42,
+            fontWeight: "Bold",
+            textColor: appTheme.ForegroundColor,
+            x1: 0.5,
+            y1: 0.5,
+            yCoordShift: offset,
+            opacity: 0.33,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            annotationLayer: EAnnotationLayer.BelowChart,
+        });
+    }
     // add a title annotation
-    // Add title annotation
-    sciChartSurface.annotations.add(new TextAnnotation({
-        text: "SciChart.js Performance Demo: Draw 1 Million Points instantly",
-        fontSize: 16,
-        textColor: appTheme.ForegroundColor,
-        x1: 1,
-        y1: 0,
-        xCoordShift: -20,
-        opacity: 0.77,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
-    }));
+    sciChartSurface.annotations.add(watermarkAnnotation("SciChart.js Performance Demo"));
+    sciChartSurface.annotations.add(watermarkAnnotation("1 Million Data-Points", 52));
 
     const dataSeries = new XyDataSeries(wasmContext);
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
@@ -79,8 +88,8 @@ export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) =
         const generateTimestamp = Date.now();
 
         const POINTS = 1_000_000;
-        const xValues = new Array(POINTS);
-        const yValues = new Array(POINTS);
+        const xValues = new Float64Array(POINTS);
+        const yValues = new Float64Array(POINTS);
         let prevYValue = 0;
         for (let i = 0; i < POINTS; i++) {
             const curYValue = Math.random() * 10 - 5;
@@ -141,6 +150,27 @@ export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) =
     return { wasmContext, sciChartSurface, loadPoints };
 };
 
+const useStyles = makeStyles(theme => ({
+    flexOuterContainer: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        background: appTheme.DarkIndigo
+    },
+    toolbarRow: {
+        display: "flex",
+        // flex: "auto",
+        flexBasis: "70px",
+        padding: 10,
+        width: "100%",
+        color: appTheme.ForegroundColor
+    },
+    chartArea: {
+        flex: 1,
+    }
+}));
+
 let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
@@ -162,28 +192,27 @@ export default function Load1MillionPointsChart() {
         };
     }, []);
 
+    const localClasses = useStyles();
+
     return (
         <div className={classes.ChartWrapper}>
-            <div id={divElementId} style={{width: "100%", height: "calc(100% - 200px)" }} />
-            <div style={{height: "200px", width: "100%", padding: "10", background: appTheme.ForegroundColor }}>
-                <div>
-                    <div className={classes.FormControl}>
-                        <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                            <Button id="loadPoints">Reload Data</Button>
-                        </ButtonGroup>
+            <div className={localClasses.flexOuterContainer}>
+                <div className={localClasses.chartArea} id={divElementId}></div>
+                <div className={localClasses.toolbarRow} style={{minHeight: "140px"}}>
+                    <Button id="loadPoints" style={{color: appTheme.ForegroundColor}}>🗘 Reload Test</Button>
+                    <div style={{width: "100%", marginLeft: "10px"}}>
+                        {timeSpans.length > 0 && (
+                            <Alert key="0" className={classes.Notification}
+                                   style={{backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor}}>
+                                <AlertTitle>Performance Results</AlertTitle>
+                                {timeSpans.map((ts, index) => (
+                                    <div key={index}>
+                                        {ts.title}: {ts.durationMs.toFixed(0)} ms
+                                    </div>
+                                ))}
+                            </Alert>
+                        )}
                     </div>
-                </div>
-                <div>
-                    {timeSpans.length > 0 && (
-                        <Alert key="0" className={classes.Notification}>
-                            <AlertTitle>Performance Results</AlertTitle>
-                            {timeSpans.map((ts, index) => (
-                                <div key={index}>
-                                    {ts.title}: {ts.durationMs.toFixed(0)} ms
-                                </div>
-                            ))}
-                        </Alert>
-                    )}
                 </div>
             </div>
         </div>
