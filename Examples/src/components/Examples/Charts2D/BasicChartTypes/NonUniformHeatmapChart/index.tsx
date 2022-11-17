@@ -68,8 +68,8 @@ const drawExample = async () => {
             style: {
                 fontFamily: "Arial",
                 fontSize: 16,
-                color: "black"
-            }
+            },
+            color: "black"
         }
     });
 
