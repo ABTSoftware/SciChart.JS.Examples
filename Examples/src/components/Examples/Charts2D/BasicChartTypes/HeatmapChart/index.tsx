@@ -16,11 +16,11 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const divElementId = "chart";
 const divHeatmapLegend = "heatmapLegend";
-const cachedHeatmapDataForExample: number[][][] = [];
 const MAX_SERIES = 100;
 const WIDTH = 300;
 const HEIGHT = 200;
 
+// Draws a Heatmap chart in real-time over the <div id={divElementId}>
 const drawExample = async () => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
@@ -69,9 +69,36 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
-    return { sciChartSurface, wasmContext, heatmapDataSeries };
+    // Functions for running the example in real-time
+    let timerId: NodeJS.Timeout;
+    let updateIndex: number = 0;
+
+    const updateChart = () => {
+        // Cycle through pre-generated data on timer tick
+        const newZValues = generateExampleData(WIDTH, HEIGHT, 200, updateIndex++, MAX_SERIES);
+        // Update the heatmap z-values
+        heatmapDataSeries.setZValues(newZValues);
+        if (updateIndex >= MAX_SERIES) {
+            updateIndex = 0;
+        }
+        timerId = setTimeout(updateChart, 20);
+    };
+
+    const startDemo = () => {
+        if (!timerId) {
+            updateChart();
+        }
+    };
+
+    const stopDemo = () => {
+        clearTimeout(timerId);
+        timerId = undefined;
+    };
+
+    return { sciChartSurface, wasmContext, heatmapDataSeries, controls: { startDemo, stopDemo } };
 };
 
+// Draws a Heatmap legend over the <div id={divHeatmapLegend}></div>
 const drawHeatmapLegend = async () => {
     const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
         theme: {
@@ -147,6 +174,7 @@ function generateExampleData(
     return zValues;
 }
 
+// Styles for layout of the toolbar / chart area
 const useStyles = makeStyles(theme => ({
     flexOuterContainer: {
         width: "100%",
@@ -168,38 +196,13 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-let timerId: NodeJS.Timeout;
-let updateIndex: number = 0;
-let heatmapDataSeries: UniformHeatmapDataSeries;
-
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function HeatmapChart() {
+    const [controls, setControls] = React.useState({ startDemo: () => {}, stopDemo: () => {}});
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
     const [stats, setStats] = React.useState({ xSize: 0, ySize: 0, fps: 0 });
-
-    const updateChart = () => {
-        // Cycle through pre-generated data on timer tick
-        const newZValues = generateExampleData(WIDTH, HEIGHT, 200, updateIndex++, MAX_SERIES);
-        // Update the heatmap z-values
-        heatmapDataSeries.setZValues(newZValues);
-        if (updateIndex >= MAX_SERIES) {
-            updateIndex = 0;
-        }
-        timerId = setTimeout(updateChart, 20);
-    };
-
-    const handleStart = () => {
-        if (!timerId) {
-            updateChart();
-        }
-    };
-
-    const handleStop = () => {
-        clearTimeout(timerId);
-        timerId = undefined;
-    };
 
     React.useEffect(() => {
         (async () => {
@@ -207,7 +210,9 @@ export default function HeatmapChart() {
             const legend = await drawHeatmapLegend();
             setSciChartSurface(res.sciChartSurface);
             setHeatmapLegend(legend);
-            heatmapDataSeries = res.heatmapDataSeries;
+            setControls(res.controls);
+
+            // Handle drawing/updating FPS
             let lastRendered = Date.now();
             res.sciChartSurface.rendered.subscribe(() => {
                 const currentTime = Date.now();
@@ -215,16 +220,16 @@ export default function HeatmapChart() {
                 lastRendered = currentTime;
                 const fps = 1 / timeDiffSeconds;
                 setStats({
-                    xSize: heatmapDataSeries.arrayWidth,
-                    ySize: heatmapDataSeries.arrayHeight,
+                    xSize: res.heatmapDataSeries.arrayWidth,
+                    ySize: res.heatmapDataSeries.arrayHeight,
                     fps,
                 });
             });
-            handleStart();
+            res.controls.startDemo();
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            handleStop();
+            controls.stopDemo();
             sciChartSurface?.delete();
             heatmapLegend?.delete();
         };
@@ -237,8 +242,8 @@ export default function HeatmapChart() {
             <div className={classes.ChartWrapper}>
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
-                        <Button onClick={handleStart} style={{color: appTheme.ForegroundColor}}>Start</Button>
-                        <Button onClick={handleStop} style={{color: appTheme.ForegroundColor}}>Stop</Button>
+                        <Button onClick={controls.startDemo} style={{color: appTheme.ForegroundColor}}>Start</Button>
+                        <Button onClick={controls.stopDemo} style={{color: appTheme.ForegroundColor}}>Stop</Button>
                         <span style={{margin: 12, minWidth: "200px"}}># Heatmap Size: {stats.xSize} x {stats.ySize}</span>
                         <span style={{margin: 12}}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
