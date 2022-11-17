@@ -17,6 +17,7 @@ import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSe
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import {ELabelProviderType} from "scichart/types/LabelProviderType";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
@@ -68,7 +69,7 @@ const drawExample = async () => {
             xValues: [0, 1, 2, 3],
             yValues: [2, 3.5, 3.0, 5]
         }),
-        stroke: "#FFF",
+        stroke: appTheme.VividSkyBlue,
         strokeThickness: 3,
         animation: new SweepAnimation({ duration: 500 })
     }));
@@ -84,8 +85,8 @@ const drawExample = async () => {
             width: 64,
             height: 64,
             strokeThickness: 2,
-            stroke: "#FFFFFF77",
-            fill: "#ffffff33"
+            stroke: appTheme.PaleSkyBlue,
+            fill: appTheme.VividSkyBlue + "33",
         }),
         animation: new SweepAnimation({ delay: 200, duration: 500, fadeEffect: true }),
     }));
@@ -96,10 +97,11 @@ const drawExample = async () => {
             xValues: [0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3],
             yValues: [0.8, 1, 1, 1.1, 1.2, 5.2, 2.8, 2.7, 2.6, 2.6, 2.5, 2.5, 2.5, 2.6, 3.2, 4],
         }),
-        stroke: "#FFFFFF77",
-        fill: "#ffffff33",
+        stroke: appTheme.MutedSkyBlue,
+        fill: appTheme.VividSkyBlue + "33",
         strokeThickness: 2,
         dataPointWidth: 0.57,
+        cornerRadius: 10,
         animation: new WaveAnimation({ delay: 400, duration: 600, fadeEffect: true })
     }));
 
@@ -126,7 +128,7 @@ export default function TransparentBackground() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return (<div style={{backgroundImage: `url(${BackgroundImage})`, backgroundSize: "cover"}}>
+    return (<div style={{backgroundImage: `url(${BackgroundImage})`, backgroundSize: "100% 100%"}}>
         <div id={divElementId} className={classes.ChartWrapper}/>
     </div>);
 }
