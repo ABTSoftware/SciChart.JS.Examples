@@ -30,10 +30,6 @@ const drawExample = async () => {
         theme: appTheme.SciChartJsTheme
     });
 
-    // Create an X and Y Axis
-    const yAxis1 = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
-    const xAxis1 = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
-
     // Optional parameters to control exact placement of the axis
     // Below: These are defaults, but we specify them for completeness of the example
     // Relative coordinate mode and 0.5 means 'place half way'
@@ -47,36 +43,40 @@ const drawExample = async () => {
     // Control the placement of the axis by specifying CentralAxesLayoutManager
     // and isInnerAxis property
     sciChartSurface.layoutManager = new CentralAxesLayoutManager(options);
-    xAxis1.isInnerAxis = true;
-    yAxis1.isInnerAxis = true;
 
-    // Add additional axis props
-    // xAxis.Alignment and yAxis.Alignment are required to ensure axis crosses at zero
-    // the rest of the props are aesthetic
-    xAxis1.visibleRange = new NumberRange(-5, 5);
-    xAxis1.axisAlignment = EAxisAlignment.Top;
-    xAxis1.majorTickLineStyle.strokeThickness = 2;
-    xAxis1.majorTickLineStyle.color = appTheme.PaleSkyBlue;
-    xAxis1.labelStyle.color = appTheme.PaleSkyBlue;
-    xAxis1.axisBorder.borderTop = 2;
-    xAxis1.axisBorder.color = appTheme.PaleSkyBlue;
-    sciChartSurface.xAxes.add(xAxis1);
+    // Configure x,y axis with central layout - oscilloscope style
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        visibleRange: new NumberRange(-5, 5),
+        isInnerAxis: true, // required for central axis
+        axisAlignment: EAxisAlignment.Top,
+        labelStyle: {
+            color: appTheme.PaleSkyBlue,
+        },
+        axisBorder: {
+            borderTop: 1,
+            color: appTheme.VividSkyBlue
+        }
+    }));
 
-    yAxis1.visibleRange = new NumberRange(-5, 5);
-    yAxis1.majorTickLineStyle.strokeThickness = 2;
-    yAxis1.axisAlignment = EAxisAlignment.Left;
-    yAxis1.majorTickLineStyle.color = appTheme.PaleSkyBlue;
-    yAxis1.labelStyle.color = appTheme.PaleSkyBlue;
-    yAxis1.axisBorder.borderLeft = 2;
-    yAxis1.axisBorder.color = appTheme.PaleSkyBlue;
-    sciChartSurface.yAxes.add(yAxis1);
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        visibleRange: new NumberRange(-5, 5),
+        isInnerAxis: true, // required for central axis
+        axisAlignment: EAxisAlignment.Left,
+        labelStyle: {
+            color: appTheme.PaleSkyBlue,
+        },
+        axisBorder: {
+            borderLeft: 1,
+            color: appTheme.VividSkyBlue
+        }
+    }));
 
     // Add a line series
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
         drawNaNAs: ELineDrawMode.PolyLine,
         dataSeries: getButterflyCurve(wasmContext, 20000),
         isDigitalLine: false,
-        stroke: appTheme.VividOrange,
+        stroke: appTheme.VividTeal,
         animation: { type: EAnimationType.Fade, options: { duration: 500 }}
     }));
 
