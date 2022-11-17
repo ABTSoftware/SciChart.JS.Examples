@@ -11,6 +11,7 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import classes from "../../../../Examples/Examples.module.scss";
 import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
+import {appTheme} from "../../../theme";
 
 // tslint:disable:no-empty
 
@@ -18,7 +19,7 @@ const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
     // Create X,Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -37,8 +38,7 @@ const drawExample = async () => {
             width: 14,
             height: 14,
             strokeThickness: 0,
-            fill: "steelblue",
-            stroke: "LightSteelBlue",
+            fill: appTheme.VividSkyBlue,
         }),
         opacity: 0.67,
         animation: new SweepAnimation({ duration: 600, fadeEffect: true })
@@ -50,9 +50,8 @@ const drawExample = async () => {
         pointMarker: new TrianglePointMarker(wasmContext, {
             width: 15,
             height: 15,
-            fill: "#FF6600",
-            stroke: "#FFF",
             strokeThickness: 0,
+            fill: appTheme.VividOrange,
         }),
         opacity: 0.77,
         animation: new SweepAnimation({ duration: 600, fadeEffect: true, delay: 200 })

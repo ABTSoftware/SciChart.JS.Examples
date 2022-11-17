@@ -37,7 +37,7 @@
     "react-router-dom": "^5.2.0",
     "react-transition-group": "^4.4.1",
     "request": "^2.88.2",
-    "scichart": "^2.2.2407",
+    "scichart": "^2.3.0-alpha.178",
     "socket.io": "^3.0.4"
   },
   "devDependencies": {
@@ -78,7 +78,7 @@
     "ts-loader": "^8.0.1",
     "ts-node": "^8.10.2",
     "tslint": "^6.1.2",
-    "typescript": "^3.9.7",
+    "typescript": "4.4.4",
     "url-loader": "^4.1.1",
     "webpack": "^4.44.0",
     "webpack-bundle-analyzer": "^3.9.0",

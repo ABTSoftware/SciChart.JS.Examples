@@ -27,7 +27,6 @@ const ExamplesRoot: React.FC<TProps> = props => {
 
     const myRef = React.useRef(null);
     const executeScroll = () => myRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
-
     const ExampleComponent = getExampleComponent(examplePage.id);
 
     const titleText = examplePage ? examplePage.title : ExampleStrings.siteHomeTitle;

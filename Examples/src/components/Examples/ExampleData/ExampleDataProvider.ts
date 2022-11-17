@@ -115,22 +115,31 @@ export class ExampleDataProvider {
         return {xValues, yValues};
     }
 
-    public static getTradingData(maxPoints?: number): IOhlcvValues {
+    public static getTradingData(startPoints?: number, maxPoints?: number): IOhlcvValues {
         const {dateValues, openValues, highValues, lowValues, closeValues, volumeValues} = multiPaneData;
 
         if (maxPoints !== undefined) {
             return {
-                dateValues: dateValues.slice(0, maxPoints),
-                openValues: openValues.slice(0, maxPoints),
-                highValues: highValues.slice(0, maxPoints),
-                lowValues: lowValues.slice(0, maxPoints),
-                closeValues: closeValues.slice(0, maxPoints),
-                volumeValues: volumeValues.slice(0, maxPoints),
+                dateValues: dateValues.slice(startPoints, startPoints + maxPoints),
+                openValues: openValues.slice(startPoints, startPoints + maxPoints),
+                highValues: highValues.slice(startPoints, startPoints + maxPoints),
+                lowValues: lowValues.slice(startPoints, startPoints + maxPoints),
+                closeValues: closeValues.slice(startPoints, startPoints + maxPoints),
+                volumeValues: volumeValues.slice(startPoints, startPoints + maxPoints),
             };
         }
 
         return {dateValues, openValues, highValues, lowValues, closeValues, volumeValues};
     }
 
-
+    public static getExponentialCurve(power: number, pointCount: number): IXyValues {
+        const xValues: number[] = [];
+        const yValues: number[] = [];
+        for (let i = 0; i < pointCount; i++) {
+            const y = Math.pow(i + 1, power);
+            xValues.push(i + 1);
+            yValues.push(y);
+        }
+        return { xValues, yValues };
+    }
 }

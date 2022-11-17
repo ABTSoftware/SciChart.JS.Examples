@@ -3,6 +3,11 @@ const webpackClientConfig = require("./webpack.client.config.js");
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const tq3080_DSM_2M = require("./src/server/Data/tq3080_DSM_2M");
+const { candlesADAUSDT } = require("./src/server/BinanceData/candlesADAUSDT");
+const { candlesBTCUSDT } = require("./src/server/BinanceData/candlesBTCUSDT");
+const { candlesDOGEUSDT } = require("./src/server/BinanceData/candlesDOGEUSDT");
+const { candlesETHUSDT } = require("./src/server/BinanceData/candlesETHUSDT");
+const { candlesXRPUSDT } = require("./src/server/BinanceData/candlesXRPUSDT");
 
 // LICENSING //
 // Set your license code here to license the SciChart.js Examples app
@@ -22,6 +27,13 @@ const betaTrialKey = "";
 module.exports = {
     ...webpackClientConfig,
     mode: "development",
+    node: {
+        child_process: "empty",
+        fs: "empty",
+        crypto: "empty",
+        net: "empty",
+        tls: "empty"
+    },
     devtool: "inline-source-map",
     watch: true,
     module: {
@@ -99,6 +111,28 @@ module.exports = {
             });
             app.get("/api/lidarData", function(req, res) {
                 res.send(tq3080_DSM_2M.tq3080_DSM_2M);
+            });
+            app.get("/api/get-binance-candles", function(req, res) {
+                const params = req.query;
+                let data;
+                switch (params.symbol) {
+                    case "ADAUSDT":
+                        data = candlesADAUSDT;
+                        break;
+                    case "BTCUSDT":
+                        data = candlesBTCUSDT;
+                        break;
+                    case "DOGEUSDT":
+                        data = candlesDOGEUSDT;
+                        break;
+                    case "ETHUSDT":
+                        data = candlesETHUSDT;
+                        break;
+                    case "XRPUSDT":
+                        data = candlesXRPUSDT;
+                        break;
+                }
+                res.send(data);
             });
         }
     }

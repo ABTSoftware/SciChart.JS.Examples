@@ -3,63 +3,121 @@ import { EPieType, SciChartPieSurface } from "scichart/Charting/Visuals/SciChart
 import { PieSegment } from "scichart/Charting/Visuals/SciChartPieSurface/PieSegment/PieSegment";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";
-import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 import classes from "../../../../Examples/Examples.module.scss";
+import { appTheme } from "../../../theme";
+import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 
-export const divElementId = "chart";
+export const divElementId1 = "chart1";
 
 export const drawExample = async () => {
-    const sciChartPieSurface = await SciChartPieSurface.create(divElementId);
-    sciChartPieSurface.pieType = EPieType.Pie;
-    sciChartPieSurface.holeRadius = 0.6;
-    sciChartPieSurface.animate = true;
-    sciChartPieSurface.legend.showLegend = true;
-    sciChartPieSurface.legend.showCheckboxes = true;
-    sciChartPieSurface.legend.animate = true;
-    sciChartPieSurface.legend.placement = ELegendPlacement.TopRight;
-    sciChartPieSurface.legend.orientation = ELegendOrientation.Vertical;
-    const pieSegment1 = new PieSegment({
-        color: "#228B22",
-        value: 40,
-        text: "Green",
-        colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-            { color: "#1D976C", offset: 0 },
-            { color: "#93F9B9", offset: 1 }
-        ])
+    // Create the pie chart
+    const sciChartPieSurface = await SciChartPieSurface.create(divElementId1, {
+        theme: appTheme.SciChartJsTheme,
+        pieType: EPieType.Pie,
+        animate: true,
+        seriesSpacing: 15,
+        showLegend: true,
+        showLegendSeriesMarkers: true,
+        animateLegend: true
     });
-    const pieSegment2 = new PieSegment({
-        value: 10,
-        text: "Red",
-        colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-            { color: "#DD5E89", offset: 0 },
-            { color: "#F7BB97", offset: 1 }
-        ])
-    });
-    const pieSegment3 = new PieSegment({
-        value: 20,
-        text: "Blue",
-        colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-            { color: "#1FA2FF", offset: 0 },
-            { color: "#12D8FA", offset: 0.5 },
-            { color: "#A6FFCB", offset: 1 }
-        ])
-    });
-    const pieSegment4 = new PieSegment({
-        value: 15,
-        text: "Yellow",
-        colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-            { color: "#F09819", offset: 0 },
-            { color: "#EDDE5D", offset: 1 }
-        ])
-    });
-    sciChartPieSurface.pieSegments.add(pieSegment1, pieSegment2, pieSegment3, pieSegment4);
+    // Optional placement of legend
+    sciChartPieSurface.legend.orientation = ELegendOrientation.Horizontal;
+    sciChartPieSurface.legend.placement = ELegendPlacement.BottomLeft;
+
+    // SciChart.js expects a list of PieSegment, however data is often formatted like this
+    // Dataset = 'percentage market share of phones, 2022'
+    const dataset = [
+        { name: "Apple", percent: 28.41 },
+        { name: "Samsung", percent: 28.21 },
+        { name: "Xiaomi", percent: 12.73 },
+        { name: "Huawei", percent: 5.27 },
+        { name: "Oppo", percent: 5.53 },
+        { name: "Vivo", percent: 4.31 },
+        { name: "Realme", percent: 3.16 },
+        { name: "Motorola", percent: 2.33 },
+        { name: "Unknown", percent: 2.19 },
+        { name: "LG", percent: 0.85 },
+        { name: "OnePlus", percent: 1.11 },
+        { name: "Tecno", percent: 1.09 },
+        { name: "Infinix", percent: 0.96 },
+        { name: "Google", percent: 0.77 },
+        { name: "Nokia", percent: 0.45 }
+    ];
+
+    // Colors are just hex strings, supporting #FFFFFF (RBG) or 8-digit with RGBA or CSS color strings e.g. rgba()
+    const colors = [
+        { color1: appTheme.VividOrange, color2: appTheme.MutedOrange },
+        { color1: appTheme.Indigo, color2: appTheme.VividBlue },
+        { color1: appTheme.MutedSkyBlue, color2: appTheme.MutedTeal },
+        { color1: appTheme.MutedTeal, color2: appTheme.PaleTeal },
+        { color1: appTheme.VividSkyBlue, color2: appTheme.MutedSkyBlue },
+        { color1: appTheme.MutedRed },
+        { color1: appTheme.MutedPink },
+        { color1: appTheme.VividPink },
+        { color1: appTheme.VividPurple },
+        { color1: appTheme.MutedOrange },
+        { color1: appTheme.VividOrange },
+        { color1: appTheme.PaleTeal },
+        { color1: appTheme.PaleBlue },
+        { color1: appTheme.PaleOrange },
+        { color1: appTheme.PalePink }
+    ];
+
+    // Optional Relative radius adjustment per segment
+    const radiusSize = [0.8, 0.8, 0.8, 0.8, 0.85, 0.85, 0.85, 0.9, 0.9, 0.9, 0.95, 0.95, 0.95, 0.95, 0.95];
+
+    const toPieSegment = (name: string, value: number, radiusAdjustment: number, color1: string, color2?: string) => {
+        return new PieSegment({
+            value,
+            text: name,
+            labelStyle: { color: appTheme.ForegroundColor },
+            radiusAdjustment,
+            showLabel: value > 2,
+            colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                { color: color1, offset: 0 },
+                { color: color2 ?? color1 + "77", offset: 1 }
+            ])
+        });
+    };
+
+    // Transform the data to pie segment and add to scichart
+    const pieSegments = dataset.map((row, index) =>
+        toPieSegment(row.name, row.percent, radiusSize[index], colors[index].color1, colors[index].color2)
+    );
+
+    sciChartPieSurface.pieSegments.add(...pieSegments);
+
     return sciChartPieSurface;
 };
 
 export default function PieChart() {
+    const [chart, setChart] = React.useState<SciChartPieSurface>();
+
     React.useEffect(() => {
-        drawExample();
+        (async () => {
+            const res = await drawExample();
+            setChart(res);
+        })();
+        // Deleting sciChartSurface to prevent memory leak
+        return () => chart?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return (
+        <div className={classes.ChartWrapper}>
+            <div id={divElementId1} style={{ width: "100%", height: "100%", float: "left" }} />
+            {/*Placeholder until we have a proper chart title (soon!)*/}
+            <span
+                style={{
+                    color: appTheme.ForegroundColor,
+                    fontSize: 20,
+                    position: "absolute",
+                    left: "50%",
+                    top: "20px",
+                    transform: "translate(-50%)"
+                }}
+            >
+                Market share of Mobile Phone Manufacturers (2022)
+            </span>
+        </div>
+    );
 }

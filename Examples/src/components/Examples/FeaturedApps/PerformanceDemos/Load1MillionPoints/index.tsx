@@ -1,21 +1,26 @@
 import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { SciChartSurface } from "scichart";
-import { ENumericFormat } from "scichart/types/NumericFormat";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {EAutoRange} from "scichart/types/AutoRange";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {SciChartSurface} from "scichart";
 import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme} from "../../../theme";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {makeStyles} from "@material-ui/core/styles";
+import {
+    EAnnotationLayer
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/IAnnotation";
 
 export type TTimeSpan = {
     title: string;
@@ -26,29 +31,48 @@ export const divElementId = "chart";
 
 export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        widthAspect: 3,
-        heightAspect: 2,
+        theme: appTheme.SciChartJsTheme
     });
-    sciChartSurface.applyTheme(new SciChartJSDarkTheme());
-    const xAxis = new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Top,
+
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        axisTitle: "X Axis",
         visibleRange: new NumberRange(0, 1000000),
         autoRange: EAutoRange.Never
-    });
-    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
-    sciChartSurface.xAxes.add(xAxis);
-    const yAxis = new NumericAxis(wasmContext, {
+    }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Left,
         visibleRange: new NumberRange(-5000, 5000),
-        autoRange: EAutoRange.Never
-    });
-    yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
-    sciChartSurface.yAxes.add(yAxis);
+        autoRange: EAutoRange.Never,
+        axisTitle: "Y Axis"
+    }));
+
+    const watermarkAnnotation = (text: string, offset: number = 0) => {
+        return new TextAnnotation({
+            text,
+            fontSize: 42,
+            fontWeight: "Bold",
+            textColor: appTheme.ForegroundColor,
+            x1: 0.5,
+            y1: 0.5,
+            yCoordShift: offset,
+            opacity: 0.33,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            annotationLayer: EAnnotationLayer.BelowChart,
+        });
+    }
+    // add a title annotation
+    sciChartSurface.annotations.add(watermarkAnnotation("SciChart.js Performance Demo"));
+    sciChartSurface.annotations.add(watermarkAnnotation("1 Million Data-Points", 52));
 
     const dataSeries = new XyDataSeries(wasmContext);
-    const rendSeries = new FastLineRenderableSeries(wasmContext, { dataSeries, strokeThickness: 2 });
-    sciChartSurface.renderableSeries.add(rendSeries);
-    rendSeries.stroke = "#99EE99FF";
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries,
+        stroke: appTheme.VividSkyBlue,
+        strokeThickness: 2
+    }));
 
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
@@ -63,9 +87,9 @@ export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) =
         // Start clouting Points generation time
         const generateTimestamp = Date.now();
 
-        const POINTS = 1000000;
-        const xValues = new Array(POINTS);
-        const yValues = new Array(POINTS);
+        const POINTS = 1_000_000;
+        const xValues = new Float64Array(POINTS);
+        const yValues = new Float64Array(POINTS);
         let prevYValue = 0;
         for (let i = 0; i < POINTS; i++) {
             const curYValue = Math.random() * 10 - 5;
@@ -126,6 +150,27 @@ export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) =
     return { wasmContext, sciChartSurface, loadPoints };
 };
 
+const useStyles = makeStyles(theme => ({
+    flexOuterContainer: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        background: appTheme.DarkIndigo
+    },
+    toolbarRow: {
+        display: "flex",
+        // flex: "auto",
+        flexBasis: "70px",
+        padding: 10,
+        width: "100%",
+        color: appTheme.ForegroundColor
+    },
+    chartArea: {
+        flex: 1,
+    }
+}));
+
 let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
@@ -138,7 +183,7 @@ export default function Load1MillionPointsChart() {
                 setTimeSpans([...newTimeSpans]);
             });
             scs = res.sciChartSurface;
-            autoStartTimerId = setTimeout(res.loadPoints, 3000);
+            autoStartTimerId = setTimeout(res.loadPoints, 0);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
@@ -147,27 +192,29 @@ export default function Load1MillionPointsChart() {
         };
     }, []);
 
+    const localClasses = useStyles();
+
     return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
-            <div>
-                <div className={classes.FormControl}>
-                    <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                        <Button id="loadPoints">Load</Button>
-                    </ButtonGroup>
+        <div className={classes.ChartWrapper}>
+            <div className={localClasses.flexOuterContainer}>
+                <div className={localClasses.chartArea} id={divElementId}></div>
+                <div className={localClasses.toolbarRow} style={{minHeight: "140px"}}>
+                    <Button id="loadPoints" style={{color: appTheme.ForegroundColor}}>🗘 Reload Test</Button>
+                    <div style={{width: "100%", marginLeft: "10px"}}>
+                        {timeSpans.length > 0 && (
+                            <Alert key="0" className={classes.Notification}
+                                   style={{backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor}}>
+                                <AlertTitle>Performance Results</AlertTitle>
+                                {timeSpans.map((ts, index) => (
+                                    <div key={index}>
+                                        {ts.title}: {ts.durationMs.toFixed(0)} ms
+                                    </div>
+                                ))}
+                            </Alert>
+                        )}
+                    </div>
                 </div>
             </div>
-
-            {timeSpans.length > 0 && (
-                <Alert key="0" severity="info" className={classes.Notification}>
-                    {timeSpans.map((ts, index) => (
-                        <div key={index}>
-                            <AlertTitle>{ts.title}</AlertTitle>
-                            Time: {ts.durationMs.toFixed(0)} ms
-                        </div>
-                    ))}
-                </Alert>
-            )}
         </div>
     );
 }

@@ -1,126 +1,143 @@
 import * as React from "react";
-import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { SciChartSurface } from "scichart";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {SciChartSurface} from "scichart";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {
     EDrawMeshAs,
+    EMeshPaletteMode,
     SurfaceMeshRenderableSeries3D
 } from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/SurfaceMeshRenderableSeries3D";
-import { zeroArray2D } from "scichart/utils/zeroArray2D";
-import { UniformGridDataSeries3D } from "scichart/Charting3D/Model/DataSeries/UniformGridDataSeries3D";
-import { GradientColorPalette } from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
-import { OrbitModifier3D } from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
-import { NumericAxis3D } from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
-import { MouseWheelZoomModifier3D } from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
-import { CameraController } from "scichart/Charting3D/CameraController";
-import { Vector3 } from "scichart/Charting3D/Vector3";
-import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
-import { EColor } from "scichart/types/Color";
-import { getTenorCurveData } from "./TenorCurveData";
-import { IDeletable } from "scichart/Core/IDeletable";
+import {UniformGridDataSeries3D} from "scichart/Charting3D/Model/DataSeries/UniformGridDataSeries3D";
+import {GradientColorPalette} from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
+import {OrbitModifier3D} from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
+import {NumericAxis3D} from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
+import {MouseWheelZoomModifier3D} from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
+import {CameraController} from "scichart/Charting3D/CameraController";
+import {Vector3} from "scichart/Charting3D/Vector3";
+import {SciChart3DSurface} from "scichart/Charting3D/Visuals/SciChart3DSurface";
+import {getTenorCurveData} from "./TenorCurveData";
+import {IDeletable} from "scichart/Core/IDeletable";
 import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme} from "../../../theme";
+import {Point} from "scichart/Core/Point";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {ResetCamera3DModifier} from "scichart/Charting3D/ChartModifiers/ResetCamera3DModifier";
+import {HeatmapLegend} from "scichart/Charting/Visuals/HeatmapLegend";
 
-export const divElementId1 = "sciChart1";
-export const divElementId2 = "sciChart2";
-export const divElementId3 = "sciChart3";
+export const div3DChart = "div3DChart";
+export const div2DChart1 = "div2DChart1";
+export const div2DChart2 = "div2DChart2";
+export const div3DChartLegend = "div3DChartLegend";
 
 const X_DATA_SIZE = 25;
 const Z_DATA_SIZE = 25;
 
-export const drawChart1 = async () => {
-    const { sciChart3DSurface, wasmContext } = 
-        await SciChart3DSurface.create(divElementId1, { widthAspect: 1, heightAspect: 1});
+export const draw3DChart = async () => {
 
+    // Create the 3d chart
+    const {
+        sciChart3DSurface,
+        wasmContext
+    } = await SciChart3DSurface.create(div3DChart, {theme: appTheme.SciChartJsTheme});
+
+    // Create camerea, position, field of view
     sciChart3DSurface.camera = new CameraController(wasmContext, {
-        position: new Vector3(-280, 250, -280),
+        position: new Vector3(-225, 300, -225),
         target: new Vector3(0, 50, 0)
     });
     sciChart3DSurface.camera.aspectRatio = 1.333;
     sciChart3DSurface.camera.fieldOfView = 45;
 
-    sciChart3DSurface.worldDimensions = new Vector3(200, 100, 200);
+    // World dimensions specifies size of the axis cube box
+    sciChart3DSurface.worldDimensions = new Vector3(200, 200, 200);
 
+    // Add X.Y,Z axis
+    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {axisTitle: "X Axis"});
+    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {axisTitle: "Y Axis"});
+    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {axisTitle: "Z Axis"});
+
+    // Add optional interaction modifiers (mousewheel and orbit via mouse drag)
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
+    sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
 
-    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis" });
-    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, { axisTitle: "Y Axis" });
-    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Axis" });
-
-    const heightmapArray = zeroArray2D([Z_DATA_SIZE, X_DATA_SIZE]);
+    // returns data for the example. UniformGridDataSeries3D expects number[][] 2D Array
+    // filled with values. The values are heights (y-values) on the 3d chart and
+    // are mapped to colors via a colorMap
     const tenorCurvesData = getTenorCurveData(X_DATA_SIZE, Z_DATA_SIZE);
-    for (let z = 0; z < Z_DATA_SIZE; z++) {
-        for (let x = 0; x < X_DATA_SIZE; x++) {
-            heightmapArray[x][z] = tenorCurvesData[x][z];
-        }
-    }
 
+    // Create the DataSeries for the 3d chart
     const dataSeries = new UniformGridDataSeries3D(wasmContext, {
-        yValues: heightmapArray,
+        yValues: tenorCurvesData,
         xStep: 1,
         zStep: 1,
         dataSeriesName: "Uniform Surface Mesh"
     });
 
+    // Create a color map. Color at offset=0 is mapped to y-value at SurfaceMeshRenderableSeries3D.minimum
+    // color at offset = 1 is mapped to y-value at SurfaceMeshRenderableSeries3D.maximum
     const colorMap = new GradientColorPalette(wasmContext, {
         gradientStops: [
-            { offset: 1, color: "#8B0000" },
-            { offset: 0.9, color: "#FF0000" },
-            { offset: 0.7, color: "#FFFF00" },
-            { offset: 0.5, color: "#ADFF2F" },
-            { offset: 0.3, color: "#00FFFF" },
-            { offset: 0.1, color: "#0000FF" },
-            { offset: 0, color: "#1D2C6B" }
+            {offset: 1, color: appTheme.VividPink},
+            {offset: 0.9, color: appTheme.VividOrange},
+            {offset: 0.7, color: appTheme.MutedRed},
+            {offset: 0.5, color: appTheme.VividGreen},
+            {offset: 0.3, color: appTheme.VividSkyBlue},
+            {offset: 0.2, color: appTheme.Indigo},
+            {offset: 0, color: appTheme.DarkIndigo}
         ]
     });
 
     const series = new SurfaceMeshRenderableSeries3D(wasmContext, {
         dataSeries,
         minimum: 1,
-        maximum: 2.69,
-        opacity: 0.8,
-        cellHardnessFactor: 1.0,
+        maximum: 100,
+        opacity: 1.0,
+        cellHardnessFactor: 1,
         shininess: 0,
         lightingFactor: 0.8,
-        highlight: 1.0,
-        stroke: "rgba(24,139,34,0.5)",
-        strokeThickness: 2.0,
-        contourStroke: "rgba(24,139,34,0.5)",
-        contourInterval: 2,
-        contourOffset: 0,
-        contourStrokeThickness: 2,
+        highlight: 0.05,
+        stroke: appTheme.VividSkyBlue + "33",
+        strokeThickness: 1.5,
         drawSkirt: false,
         drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME,
+        meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_INTERPOLATED,
         meshColorPalette: colorMap,
-        isVisible: true
     });
-
     sciChart3DSurface.renderableSeries.add(series);
 
     return sciChart3DSurface;
 };
 
-export const drawChart2 = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId2, {
-            widthAspect: 1, heightAspect: 1
-    });
+export const drawLineChart1 = async () => {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(div2DChart1, {theme: appTheme.SciChartJsTheme});
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
-    const yAxis = new NumericAxis(wasmContext);
-    sciChartSurface.yAxes.add(yAxis);
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05)}));
 
-    const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke: "#E6E6FA" });
-    lineSeries.strokeThickness = 3;
-    lineSeries.pointMarker = new EllipsePointMarker(wasmContext, {
-        width: 5,
-        height: 5,
-        fill: EColor.White
+    const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
+        stroke: appTheme.VividSkyBlue,
+        strokeThickness: 3,
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 9,
+            height: 9,
+            stroke: appTheme.VividSkyBlue,
+            strokeThickness: 2,
+            fill: appTheme.ForegroundColor
+        }),
+        fillLinearGradient: {
+            startPoint: new Point(0,0),
+            endPoint: new Point(0,1),
+            gradientStops: [
+                { offset: 0, color: appTheme.VividSkyBlue },
+                { offset: 1, color: "Transparent" },
+            ]
+        },
     });
-    sciChartSurface.renderableSeries.add(lineSeries);
+    sciChartSurface.renderableSeries.add(mountainSeries);
 
     const dataSeries = new XyDataSeries(wasmContext);
     const tenorCurvesData = getTenorCurveData(X_DATA_SIZE, Z_DATA_SIZE);
@@ -132,27 +149,36 @@ export const drawChart2 = async () => {
         }
         dataSeries.append(z, average / X_DATA_SIZE);
     }
-    lineSeries.dataSeries = dataSeries;
+    mountainSeries.dataSeries = dataSeries;
 
     return sciChartSurface;
 };
 
-export const drawChart3 = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId3, {
-        widthAspect: 1,
-        heightAspect: 1
-    });
-    const xAxis = new NumericAxis(wasmContext);
-    sciChartSurface.xAxes.add(xAxis);
+export const drawLineChart2 = async () => {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(div2DChart2, {theme: appTheme.SciChartJsTheme});
 
-    const yAxis = new NumericAxis(wasmContext);
-    sciChartSurface.yAxes.add(yAxis);
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05)}));
 
     const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
-        stroke: "#FFC9A8AA",
-        strokeThickness: 2
+        stroke: appTheme.PaleSkyBlue,
+        strokeThickness: 5,
+        fillLinearGradient: {
+            startPoint: new Point(0,0),
+            endPoint: new Point(0,1),
+            gradientStops: [
+                { offset: 0, color: appTheme.VividTeal},
+                { offset: 1, color: "Transparent"}
+            ]
+        },
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 9,
+            height: 9,
+            stroke: appTheme.PaleSkyBlue,
+            strokeThickness: 2,
+            fill: appTheme.ForegroundColor
+        }),
     });
-    mountainSeries.strokeThickness = 3;
     sciChartSurface.renderableSeries.add(mountainSeries);
 
     const dataSeries = new XyDataSeries(wasmContext);
@@ -166,13 +192,59 @@ export const drawChart3 = async () => {
     return sciChartSurface;
 };
 
+export const draw3DChartLegend = async () => {
+    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(div3DChartLegend, {
+        theme: {
+            ...appTheme.SciChartJsTheme,
+            sciChartBackground: appTheme.DarkIndigo + "BB",
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
+        },
+        yAxisOptions: {
+            axisBorder: {
+                borderLeft: 1,
+                color: appTheme.ForegroundColor + "77"
+            },
+            majorTickLineStyle: {
+                color: appTheme.ForegroundColor,
+                tickSize: 6,
+                strokeThickness: 1,
+            },
+            minorTickLineStyle: {
+                color: appTheme.ForegroundColor,
+                tickSize: 3,
+                strokeThickness: 1,
+            }
+        },
+        colorMap: {
+            minimum: 0,
+            maximum: 100,
+            gradientStops: [
+                {offset: 1, color: appTheme.VividPink},
+                {offset: 0.9, color: appTheme.VividOrange},
+                {offset: 0.7, color: appTheme.MutedRed},
+                {offset: 0.5, color: appTheme.VividGreen},
+                {offset: 0.3, color: appTheme.VividSkyBlue},
+                {offset: 0.2, color: appTheme.Indigo},
+                {offset: 0, color: appTheme.DarkIndigo}
+            ],
+        }
+    });
+
+    return heatmapLegend;
+}
+
 let surfaces: IDeletable[] = [];
 
 export default function TenorCurves3DChart() {
     // const [sciChart3DSurface, setSciChart3DSurface] = React.useState<SciChart3DSurface>();
     React.useEffect(() => {
         (async () => {
-            surfaces = await Promise.all([drawChart1(), drawChart2(), drawChart3()]);
+            surfaces = await Promise.all([
+                draw3DChart(),
+                draw3DChartLegend(),
+                drawLineChart1(),
+                drawLineChart2()
+            ]);
         })();
 
         // Delete sciChartSurface on unmount component to prevent memory leak
@@ -181,11 +253,15 @@ export default function TenorCurves3DChart() {
 
     return (
         <React.Fragment>
-            <div className={classes.ExampleWrapperCompicated}>
-                <div id={divElementId1} className={classes.ExampleWrapperCompicatedMain}></div>
-                <div className={classes.ExampleWrapperCompicatedSub}>
-                    <div id={divElementId2} />
-                    <div id={divElementId3} />
+            <div className={classes.ChartWrapper}>
+                <div style={{float: "left", width: "50%", height: "100%", position: "relative" }}>
+                    <div id={div3DChart} style={{position: "absolute", height: "100%", width: "100%"}}></div>
+                    <div id={div3DChartLegend} style={{position: "absolute", height: "95%", width: "100px", right: "0", margin: "20"}}>
+                    </div>
+                </div>
+                <div style={{position: "relative", left: "50%", width: "50%", height: "100%"}}>
+                    <div id={div2DChart1} style={{position: "relative", height: "50%"}}></div>
+                    <div id={div2DChart2} style={{height: "50%"}}></div>
                 </div>
             </div>
         </React.Fragment>

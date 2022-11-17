@@ -1,30 +1,43 @@
 import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
-import { EFillPaletteMode, IFillPaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
+import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {XyzDataSeries} from "scichart/Charting/Model/XyzDataSeries";
+import {
+    EFillPaletteMode,
+    EStrokePaletteMode,
+    IPointMarkerPaletteProvider,
+    TPointMarkerArgb
+} from "scichart/Charting/Model/IPaletteProvider";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
 import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 
 import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme} from "../../../theme";
+import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
+import {
+    SplineLineRenderableSeries
+} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
 
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface with X,Y Axis
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const {
+        sciChartSurface,
+        wasmContext
+    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.05, 0.05)}));
 
     // Create some data
     const xValues = [];
@@ -43,26 +56,27 @@ const drawExample = async () => {
     }
 
     // Create and add a line series to the chart
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-        stroke: "#FFFFFF",
-        strokeThickness: 2,
-        animation: new SweepAnimation({ duration: 500 })
+    sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
+        stroke: appTheme.PaleSkyBlue,
+        strokeThickness: 3,
+        animation: new SweepAnimation({duration: 500})
     }));
 
     // Create and add a Bubble series to the chart
     // The Bubble series requires a special dataseries type called XyzDataSeries with X,Y and Z (size) values
     sciChartSurface.renderableSeries.add(new FastBubbleRenderableSeries(wasmContext, {
-        dataSeries: new XyzDataSeries(wasmContext, { xValues, yValues, zValues }),
+        dataSeries: new XyzDataSeries(wasmContext, {xValues, yValues, zValues}),
+        // Pointmarker defines the marker shown per-bubble point. This will be scaled according to z-value
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 64,
             height: 64,
             strokeThickness: 0,
-            fill: "#4682b477"
+            fill: appTheme.VividSkyBlue + "77"
         }),
         // Optional: Allows per-point colouring of bubble stroke
-        paletteProvider: new BubblePaletteProvider(),
-        animation: new SweepAnimation({ delay: 200, duration: 500, fadeEffect: true })
+        paletteProvider: new BubblePaletteProvider(appTheme.VividOrange),
+        animation: new SweepAnimation({delay: 200, duration: 500, fadeEffect: true})
     }));
 
     // Add some zooming and panning behaviour
@@ -71,27 +85,31 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 /**
- * Optional: An example PaletteProvider which implements IFillPaletteProvider
+ * Optional: An example PaletteProvider which implements IPointMarkerPaletteProvider
  * This can be attached to Scatter or Bubble series to change the stroke or fill
  * of the series point-markers conditionally
  */
-class BubblePaletteProvider implements IFillPaletteProvider {
-    /**
-     * This property chooses how fill colors are blended when they change.
-     * Bubble Series, however, supports solid color interpolation only.
-     */
+class BubblePaletteProvider implements IPointMarkerPaletteProvider {
     public readonly fillPaletteMode = EFillPaletteMode.SOLID;
-    private fill: number = parseColorToUIntArgb("red");
+    public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
+    private readonly fillArgb: number;
 
-    public onAttached(parentSeries: IRenderableSeries): void {}
-    public onDetached(): void {}
+    constructor(fillHexString: string) {
+        this.fillArgb = parseColorToUIntArgb(fillHexString);
+    }
 
-    public overrideFillArgb(xValue: number, yValue: number, index: number): number {
-        return xValue >= 10 && xValue <= 12 ? this.fill : undefined;
+    public onAttached(parentSeries: IRenderableSeries): void {
+    }
+
+    public onDetached(): void {
+    }
+
+    public overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): TPointMarkerArgb {
+        return xValue >= 8 && xValue <= 12 ? { fill: this.fillArgb, stroke: this.fillArgb } : undefined;
     }
 }
 
@@ -108,5 +126,5 @@ export default function BubbleChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

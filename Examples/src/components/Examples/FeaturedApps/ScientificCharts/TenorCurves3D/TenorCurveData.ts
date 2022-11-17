@@ -1,11 +1,13 @@
 // Function which creates some dummy data as a 2D array for the Tenor Curves example
+
+import { zeroArray2D } from "scichart/utils/zeroArray2D";
+
 export function getTenorCurveData(xSize: number, zSize: number): number[][] {
-    const data: number[][] = new Array<number[]>(xSize);
+    // Creates a 2 dimnsational array of size [zSize][xSize]
+    const data: number[][] = zeroArray2D([xSize, zSize]);
 
     let step: number;
     for (let x = 0; x < xSize; x++) {
-        data[x] = new Array<number>(zSize);
-
         switch (x) {
             case 5:
             case 10:
@@ -42,7 +44,13 @@ export function getTenorCurveData(xSize: number, zSize: number): number[][] {
         for (let z = 0; z < zSize; z++) {
             const y = z !== 0 ? Math.pow(z + Math.random(), step) : Math.pow(z + 1, 0.3);
 
-            data[x][z] = y;
+            // Compute 3d parabola function
+            const nX = x - xSize / 2;
+            const nZ = z - zSize / 2;
+            const parabola = nX * nX + nZ * nZ;
+
+            // Set the data
+            data[z][x] = y * (parabola + 50) * 0.1;
         }
     }
 

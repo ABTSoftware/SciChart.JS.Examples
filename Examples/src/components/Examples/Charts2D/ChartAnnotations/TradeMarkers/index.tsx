@@ -15,6 +15,7 @@ import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/Annotatio
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
 import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
@@ -22,7 +23,7 @@ const divElementId = "chart";
 // tslint:disable:max-line-length
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
     // Add an XAxis, YAxis
     const xAxis = new CategoryAxis(wasmContext);
@@ -30,11 +31,14 @@ const drawExample = async () => {
     xAxis.labelProvider = new SmartDateLabelProvider();
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1), labelFormat: ENumericFormat.Decimal })
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.1, 0.1),
+            labelFormat: ENumericFormat.Decimal
+        })
     );
 
     // Add a Candlestick series with some values to the chart
-    const { dateValues, openValues, highValues, lowValues, closeValues } = ExampleDataProvider.getTradingData(200);
+    const { dateValues, openValues, highValues, lowValues, closeValues } = ExampleDataProvider.getTradingData(775, 100);
 
     sciChartSurface.renderableSeries.add(
         new FastCandlestickRenderableSeries(wasmContext, {
@@ -44,7 +48,11 @@ const drawExample = async () => {
                 highValues,
                 lowValues,
                 closeValues
-            })
+            }),
+            strokeUp: appTheme.VividSkyBlue,
+            strokeDown: appTheme.VividSkyBlue,
+            brushUp: appTheme.VividSkyBlue,
+            brushDown: "Transparent",
         })
     );
 
@@ -59,7 +67,7 @@ const drawExample = async () => {
             sciChartSurface.annotations.add(sellMarkerAnnotation(i, highValues[i]));
         }
         // Every 25th bar, add a news bullet
-        if (i % 25 === 0) {
+        if (i % 20 === 0) {
             sciChartSurface.annotations.add(newsBulletAnnotation(i));
         }
     }
@@ -81,13 +89,13 @@ const buyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         svgString:
-            '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
-            '<g transform="translate(-53.867218,-75.091687)">' +
-            '<path style="fill:#1cb61c;fill-opacity:0.34117647;stroke:#00b400;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
-            'd="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,-7.408333 7.158904,-7.408333 l 7.158906,7.408333 H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"' +
-            "/>" +
-            "</g>" +
-            "</svg>"
+            `<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(-54.867218,-75.091687)">
+                    <path style="fill:${appTheme.VividGreen};fill-opacity:0.77;stroke:${appTheme.VividGreen};stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                        d="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,-7.408333 7.158904,-7.408333 l 7.158906,7.408333 H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"
+                    "/>
+                </g>
+            </svg>`
     });
 };
 
@@ -100,13 +108,13 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         svgString:
-            '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
-            '<g transform="translate(-54.616083,-75.548914)">' +
-            '<path style="fill:#b22020;fill-opacity:0.34117648;stroke:#990000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"' +
-            'd="m 55.47431,87.025547 c 7.158904,7.408333 7.158904,7.408333 7.158904,7.408333 L 69.79212,87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"' +
-            "/>" +
-            "</g>" +
-            "</svg>"
+            `<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(-54.616083,-75.548914)">
+                    <path style="fill:${appTheme.VividRed};fill-opacity:0.77;stroke:${appTheme.VividRed};stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 55.47431,87.025547 c 7.158904,7.408333 7.158904,7.408333 7.158904,7.408333 L 69.79212,87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"
+                    />
+                </g>
+            </svg>`
     });
 };
 
@@ -118,34 +126,34 @@ const newsBulletAnnotation = (x1: number): CustomAnnotation => {
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         svgString:
-            '<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">' +
-            "  <g" +
-            '     inkscape:label="Layer 1"' +
-            '     inkscape:groupmode="layer"' +
-            '     id="layer1"' +
-            '     transform="translate(-55.430212,-77.263552)">' +
-            "    <rect" +
-            '       style="fill:#C0D4EE;fill-opacity:1;stroke:#333333;stroke-width:0.26458332;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.66666667"' +
-            '       id="rect4528"' +
-            '       width="13.229166"' +
-            '       height="15.875"' +
-            '       x="55.562504"' +
-            '       y="77.395844"' +
-            '       rx="2"' +
-            '       ry="2" />' +
-            "    <text" +
-            '       xml:space="preserve"' +
-            '       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.26458332"' +
-            '       x="57.688622"' +
-            '       y="89.160347"' +
-            '       id="text4540"><tspan' +
-            '         sodipodi:role="line"' +
-            '         id="tspan4538"' +
-            '         x="57.688622"' +
-            '         y="89.160347"' +
-            "         style=\"font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#333333;fill-opacity:1;stroke-width:0.26458332\">N</tspan></text>" +
-            "  </g>" +
-            "</svg>"
+            `<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">
+              <g
+                 inkscape:label="Layer 1"
+                 inkscape:groupmode="layer"
+                 id="layer1"
+                 transform="translate(-55.430212,-77.263552)">
+                <rect
+                   style="fill:${appTheme.ForegroundColor};fill-opacity:1;stroke:${appTheme.Background};stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.66666667"
+                   id="rect4528"
+                   width="50"
+                   height="18"
+                   x="55.562504"
+                   y="77.395844"
+                   rx="2"
+                   ry="2" />
+                <text
+                   xml:space="preserve"
+                   style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:${appTheme.Background};fill-opacity:1;stroke:none;stroke-width:0.26458332"
+                   x="59.688622"
+                   y="91.160347"
+                   id="text4540"><tspan
+                     sodipodi:role="line"
+                     id="tspan4538"
+                     x="57.688622"
+                     y="89.160347"
+                     style=\"font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:${appTheme.Background};fill-opacity:1;stroke-width:0.26458332\">Dividend</tspan></text>
+              </g>
+            </svg>`
     });
 };
 

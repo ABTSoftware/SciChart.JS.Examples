@@ -1,7 +1,5 @@
 import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { vitalSignsEcgData } from "./data/vitalSignsEcgData";
 import { SciChartSurface } from "scichart";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
@@ -9,21 +7,14 @@ import { EAutoRange } from "scichart/types/AutoRange";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { GlowEffect } from "scichart/Charting/Visuals/RenderableSeries/GlowEffect";
-import { Point } from "scichart/Core/Point";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import greyImg from "./img/greyImg.png";
-import yellowImg from "./img/yellowImg.png";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../../helpers/shared/Helpers/Box/Box";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
-const COLOR_GREEN = "#00FF00";
-const COLOR_YELLOW = "#FFFF00";
-const COLOR_GREY = "#F5FFFA";
-const COLOR_BLUE = "#1E90FF";
 const STEP = 10;
 const TIMER_TIMEOUT_MS = 20;
 const STROKE_THICKNESS = 4;
@@ -92,9 +83,7 @@ const drawExample = async (
     setInfoBloodVolume: React.Dispatch<React.SetStateAction<number>>,
     setInfoBloodOxygenation: React.Dispatch<React.SetStateAction<number>>
 ) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(divElementId, {
-        widthAspect: 600, heightAspect: 600
-    });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
     const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Once, isVisible: false });
     sciChartSurface.xAxes.add(xAxis);
 
@@ -123,36 +112,36 @@ const drawExample = async (
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             strokeThickness: STROKE_THICKNESS,
-            stroke: COLOR_GREEN,
+            stroke: appTheme.VividOrange,
             dataSeries: dataSeries1,
-            effect
+            // effect
         })
     );
 
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             strokeThickness: STROKE_THICKNESS,
-            stroke: COLOR_YELLOW,
+            stroke: appTheme.VividSkyBlue,
             dataSeries: dataSeries2,
-            effect
+            // effect
         })
     );
 
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             strokeThickness: STROKE_THICKNESS,
-            stroke: COLOR_GREY,
+            stroke: appTheme.VividPink,
             dataSeries: dataSeries3,
-            effect
+            // effect
         })
     );
 
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             strokeThickness: STROKE_THICKNESS,
-            stroke: COLOR_BLUE,
+            stroke: appTheme.VividTeal,
             dataSeries: dataSeries4,
-            effect
+            // effect
         })
     );
 
@@ -161,11 +150,11 @@ const drawExample = async (
     sciChartSurface.renderableSeries.add(
         new XyScatterRenderableSeries(wasmContext, {
             pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 5,
-                height: 5,
+                width: 10,
+                height: 10,
                 strokeThickness: 2,
-                fill: "white",
-                stroke: "white"
+                fill: appTheme.ForegroundColor,
+                stroke: appTheme.ForegroundColor,
             }),
             dataSeries: leadingDotDataSeries,
             effect
@@ -229,9 +218,6 @@ const drawExample = async (
     return { sciChartSurface, wasmContext, controls: { handleStart, handleStop } };
 };
 
-// STYLES
-const useStyles = makeStyles(theme => ({}));
-
 let currentPoint = 0;
 let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
@@ -256,7 +242,7 @@ export default function VitalSignsMonitorDemo() {
             );
             scs = res.sciChartSurface;
             setControls(res.controls);
-            autoStartTimerId = setTimeout(res.controls.handleStart, 3000);
+            autoStartTimerId = setTimeout(res.controls.handleStart, 0);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
@@ -268,11 +254,11 @@ export default function VitalSignsMonitorDemo() {
     }, []);
 
     return (
-        <div>
+        <div className={classes.ChartWrapper}>
             <div className={classes.ChartContainer}>
                 <div id={divElementId} className={classes.VitalSigns} />
                 <div className={classes.InfoBoxContainer}>
-                    <div className={classes.InfoBox} style={{ color: COLOR_GREEN }}>
+                    <div className={classes.InfoBox} style={{ color: appTheme.VividOrange, background: appTheme.Background }}>
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>ECG</div>
                         </div>
@@ -289,7 +275,7 @@ export default function VitalSignsMonitorDemo() {
                             </div>
                         </div>
                     </div>
-                    <div className={classes.InfoBox} style={{ color: COLOR_YELLOW }}>
+                    <div className={classes.InfoBox} style={{ color: appTheme.VividSkyBlue, background: appTheme.Background }}>
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>NIBP</div>
                             <div className={classes.IbRow1Col2}>
@@ -299,11 +285,6 @@ export default function VitalSignsMonitorDemo() {
                             </div>
                         </div>
                         <div className={classes.IbRow2}>
-                            <div className={classes.IbRow2Col1}>
-                                <div>
-                                    <img src={yellowImg} />
-                                </div>
-                            </div>
                             <div className={classes.IbRow2Col2}>
                                 <div>
                                     {infoBloodPressure1}/{infoBloodPressure2}
@@ -311,7 +292,7 @@ export default function VitalSignsMonitorDemo() {
                             </div>
                         </div>
                     </div>
-                    <div className={classes.InfoBox} style={{ color: COLOR_GREY }}>
+                    <div className={classes.InfoBox} style={{ color: appTheme.VividPink, background: appTheme.Background }}>
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>SV</div>
                             <div className={classes.IbRow1Col2}>
@@ -321,17 +302,12 @@ export default function VitalSignsMonitorDemo() {
                             </div>
                         </div>
                         <div className={classes.IbRow2}>
-                            <div className={classes.IbRow2Col1}>
-                                <div>
-                                    <img src={greyImg} />
-                                </div>
-                            </div>
                             <div className={classes.IbRow2Col2}>
                                 <div>{infoBloodVolume.toFixed(1)}</div>
                             </div>
                         </div>
                     </div>
-                    <div className={classes.InfoBox} style={{ color: COLOR_BLUE }}>
+                    <div className={classes.InfoBox} style={{ color: appTheme.VividTeal, background: appTheme.Background }}>
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>
                                 SPO<span style={{ fontSize: 12 }}>2</span>
@@ -351,20 +327,6 @@ export default function VitalSignsMonitorDemo() {
                     </div>
                 </div>
             </div>
-            <Box mt={20}>If viewed from a mobile device use horizontal scroll</Box>
-            <ButtonGroup
-                style={{ marginTop: 20 }}
-                size="medium"
-                color="primary"
-                aria-label="small outlined button group"
-            >
-                <Button id="startAnimation" onClick={controls.handleStart}>
-                    Start
-                </Button>
-                <Button id="stopAnimation" onClick={controls.handleStop}>
-                    Stop
-                </Button>
-            </ButtonGroup>
         </div>
     );
 }

@@ -93,6 +93,9 @@ import DatapointSelection from "../Examples/Charts2D/TooltipsAndHittest/Datapoin
 import Overview from "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier";
 import ErrorBarsChart from "../Examples/Charts2D/BasicChartTypes/ErrorBarsChart";
 import NonUniformHeatmapChart from "../Examples/Charts2D/BasicChartTypes/NonUniformHeatmapChart";
+import FeatureAxisTypes from "../Examples/FeaturedApps/FeatureDemos/AxisTypes";
+import SubChartStockCharts from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts";
+import FeatureAxisLayout from "../Examples/FeaturedApps/FeatureDemos/AxisLayout";
 
 export type TMenuItem = {
     item: {
@@ -148,7 +151,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         item: { id: "chart2D_createStockCharts", name: "Create Stock Charts" },
         submenu: [
             EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
-            EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts
+            EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts,
+            EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts
         ]
     },
     {
@@ -259,7 +263,14 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     {
         item: { id: "featuredApps_medicalCharts", name: "Medical Charts" },
         submenu: [EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo]
-    }
+    },
+    {
+        item: { id: "featuredApps_featureDemos", name: "Feature Demos" },
+        submenu: [
+            EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes,
+            EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout
+        ]
+    },
 ];
 
 export const MENU_ITEMS_WHATSNEW_ID = "MENU_ITEMS_WHATSNEW_ID";
@@ -450,6 +461,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return MultiPaneStockCharts;
         case EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts.id:
             return RealtimeTickingStockCharts;
+        case EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts.id:
+            return SubChartStockCharts;
         case EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.id:
             return ChartLegendsAPI;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes.id:
@@ -530,6 +543,10 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return AudioAnalyzer;
         case EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.id:
             return TenorCurves3DChart;
+        case EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes.id:
+            return FeatureAxisTypes;
+        case EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout.id:
+            return FeatureAxisLayout;
         case EXAMPLES_PAGES.builderApi_simplechart.id:
             return BuilderSimpleChart;
         case EXAMPLES_PAGES.builderApi_fullchart.id:

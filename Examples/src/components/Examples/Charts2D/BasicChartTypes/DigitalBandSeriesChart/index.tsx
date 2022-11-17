@@ -9,16 +9,21 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
-    // Add an XAxis, YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.4, 0.4) }));
+    // Create an XAxis and YAxis
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis" }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.4, 0.4),
+            axisTitle: "Y Axis",
+        })
+    );
 
     // Create some data for the example. We need X, Y and Y1 values
     const xValues = [];
@@ -37,11 +42,11 @@ const drawExample = async () => {
     // The bandseries requires a special dataseries type called XyyDataSeries with X,Y and Y1 values
     sciChartSurface.renderableSeries.add(new FastBandRenderableSeries(wasmContext, {
         dataSeries: new XyyDataSeries(wasmContext, { xValues, yValues, y1Values }),
-        strokeThickness: 2,
-        fill: "#279B2733",
-        fillY1: "#FF191933",
-        stroke: "#FF1919FF",
-        strokeY1: "#279B27FF",
+        strokeThickness: 3,
+        fill: appTheme.VividOrange + "33",
+        fillY1: appTheme.VividSkyBlue + "33",
+        stroke: appTheme.VividOrange,
+        strokeY1: appTheme.VividSkyBlue,
         isDigitalLine: true,
         animation: new SweepAnimation({ duration: 800 })
     }));
@@ -52,7 +57,6 @@ const drawExample = async () => {
         new ZoomPanModifier(),
         new MouseWheelZoomModifier());
 
-    sciChartSurface.zoomExtents();
     return { wasmContext, sciChartSurface };
 };
 

@@ -82,6 +82,9 @@ import { overviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/Over
 import { genericAnimationExampleInfo } from "../Examples/Charts2D/Animations/GenericAnimation/exampleInfo";
 import { drawBehindAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes/exampleInfo";
 import { nonUniformHeatmapExampleInfo } from "../Examples/Charts2D/BasicChartTypes/NonUniformHeatmapChart/exampleInfo";
+import { axisTypesExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisTypes/exampleInfo";
+import { subChartStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts/exampleInfo";
+import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisLayout/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -261,6 +264,10 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart2D_createStockCharts_RealtimeTickingStockCharts",
         ...realtimeTickingStockChartsExampleInfo
     },
+    chart2D_createStockCharts_SubchartStockCharts: {
+        id: "chart2D_createStockCharts_SubchartStockCharts",
+        ...subChartStockChartsExampleInfo
+    },
     chart2D_legends_ChartLegendsAPI: {
         id: "chart2D_legends_ChartLegendsAPI",
         ...chartLegendsAPIExampleInfo
@@ -416,6 +423,14 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_medicalCharts_VitalSignsMonitorDemo: {
         id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
         ...vitalSignsMonitorDemoExampleInfo
+    },
+    featuredApps_featureDemos_axisTypes: {
+        id: "featuredApps_featureDemos_axisTypes",
+        ...axisTypesExampleInfo
+    },
+    featuredApps_featureDemos_axisLayout: {
+        id: "featuredApps_featureDemos_axisLayout",
+        ...axisLayoutExampleInfo
     },
     featuredApps_scientificCharts_Lidar3DPointCloudDemo: {
         id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",

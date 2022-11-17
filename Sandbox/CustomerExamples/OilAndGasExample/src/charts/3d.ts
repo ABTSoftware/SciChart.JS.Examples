@@ -1,18 +1,19 @@
-import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import { CameraController } from "scichart/Charting3D/CameraController";
 import { MouseWheelZoomModifier3D } from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
 import { OrbitModifier3D } from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
 import { XyzDataSeries3D } from "scichart/Charting3D/Model/DataSeries/XyzDataSeries3D";
 import { Vector3 } from "scichart/Charting3D/Vector3";
 import { NumericAxis3D } from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
-import { BasePointMarker3D } from "scichart/Charting3D/Visuals/PointMarkers/BasePointMarker3D";
-import { EllipsePointMarker3D, QuadPointMarker, SpherePointMarker3D } from "scichart/Charting3D/Visuals/PointMarkers/DefaultPointMarkers";
+import { QuadPointMarker, SpherePointMarker3D } from "scichart/Charting3D/Visuals/PointMarkers/DefaultPointMarkers";
 import { ScatterRenderableSeries3D } from "scichart/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
 import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
 import { TSciChart3D } from "scichart/types/TSciChart3D";
+import { appTheme } from "../theme";
+import { parseColorToUIntArgb } from "SciChart/utils/parseColor";
 
 export default async function init3dChart(id: string) {
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(id);
+
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(id, { theme: appTheme.SciChartJsTheme });
 
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(300, 300, 300),
@@ -50,19 +51,30 @@ function getData(wasmContext: TSciChart3D) {
     const xyzDataSeriesY = new XyzDataSeries3D(wasmContext);
     const xyzDataSeriesZ = new XyzDataSeries3D(wasmContext);
     const count = 1000;
+
+    const fixedColor = parseColorToUIntArgb(appTheme.Chart3DScatterFill);
+    const colorRange = [
+        parseColorToUIntArgb(appTheme.Chart3DColor1),
+        parseColorToUIntArgb(appTheme.Chart3DColor2),
+        parseColorToUIntArgb(appTheme.Chart3DColor3),
+        parseColorToUIntArgb(appTheme.Chart3DColor4),
+        parseColorToUIntArgb(appTheme.Chart3DColor5),
+        parseColorToUIntArgb(appTheme.Chart3DColor6),
+        parseColorToUIntArgb(appTheme.Chart3DColor7)
+    ];
+
     for (let i = 0; i < count; i++) {
         const x = getGaussianRandom(200, 40);
         const y = getGaussianRandom(200, 40);
         const z = getGaussianRandom(200, 40);
 
         const scale = (Math.random() + 0.5) * 0.5;
-        const randomColor = Math.floor(Math.random() * 0xffffff) + 0xff000000;
         // To declare scale and colour, add an optional PointMetadata3D type as the w (fourth) parameter.
         // The PointMetadata3D type also has other properties defining the behaviour of the XYZ point
-        xyzDataSeries.append(x, y, z, { vertexColorAbgr: 0xffa88d32, pointScale: scale });
-        xyzDataSeriesX.append(0, y, z, { vertexColorAbgr: getColor(y), pointScale: scale });
-        xyzDataSeriesY.append(x, 0, z, { vertexColorAbgr: getColor(z), pointScale: scale });
-        xyzDataSeriesZ.append(x, y, 0, { vertexColorAbgr: getColor(y), pointScale: scale });
+        xyzDataSeries.append(x, y, z, { vertexColorAbgr: fixedColor, pointScale: scale });
+        xyzDataSeriesX.append(0, y, z, { vertexColorAbgr: getColor(colorRange, y), pointScale: scale });
+        xyzDataSeriesY.append(x, 0, z, { vertexColorAbgr: getColor(colorRange, z), pointScale: scale });
+        xyzDataSeriesZ.append(x, y, 0, { vertexColorAbgr: getColor(colorRange, y), pointScale: scale });
     }
 
     return {
@@ -73,8 +85,8 @@ function getData(wasmContext: TSciChart3D) {
     };
 }
 
-function getColor(coord: number): number {
-    const colors = [0xff0a0aae, 0xff2964ba, 0xff36e15a, 0xfff7e24d, 0xffb8e946, 0xffdd8037, 0xffa81d09];        
+function getColor(colors: number[], coord: number): number {
+
     const divider = 350 / 7;
     const index = Math.ceil(coord / divider) - 1;
     return colors[index];
