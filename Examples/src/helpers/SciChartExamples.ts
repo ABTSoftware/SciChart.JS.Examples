@@ -21,6 +21,7 @@ import errorBarsImg from "../components/Examples/Charts2D/BasicChartTypes/ErrorB
 import impulseChartImg from "../components/Examples/Charts2D/BasicChartTypes/ImpulseChart/javascript-impulse-chart.jpg";
 import fanChartImg from "../components/Examples/Charts2D/BasicChartTypes/FanChart/javascript-fan-chart.jpg";
 import heatmapImg from "../components/Examples/Charts2D/BasicChartTypes/HeatmapChart/javascript-heatmap-chart.jpg";
+import nonUniformHeatmapImg from "../components/Examples/Charts2D/BasicChartTypes/NonUniformHeatmapChart/javascript-non-uniform-heatmap-chart.jpg";
 import contourImg from "../components/Examples/Charts2D/BasicChartTypes/ContoursChart/javascript-contours-chart.jpg";
 import mountainImg from "../components/Examples/Charts2D/BasicChartTypes/MountainChart/javascript-mountain-chart.jpg";
 import digitalMountainImg from "../components/Examples/Charts2D/BasicChartTypes/DigitalMountainChart/javascript-digital-mountain-chart.jpg";
@@ -239,6 +240,12 @@ export const sciChartExamples: GalleryItem[] = [
                 title: ExampleStrings.titleHeatmapChart,
                 seoTitle: "JavaScript Heatmap Chart Example",
                 examplePath: EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart.path
+            },
+            {
+                imgPath: nonUniformHeatmapImg,
+                title: ExampleStrings.titleNonUniformHeatmapChart,
+                seoTitle: "JavaScript Non Uniform Heatmap Chart Example",
+                examplePath: EXAMPLES_PAGES.chart2D_basicCharts_NonUniformHeatmapChart.path
             },
             {
                 imgPath: contourImg,
