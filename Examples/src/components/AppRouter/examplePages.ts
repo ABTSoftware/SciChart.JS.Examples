@@ -81,6 +81,7 @@ import { dataPointSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndH
 import { overviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/OverviewModifier/exampleInfo";
 import { genericAnimationExampleInfo } from "../Examples/Charts2D/Animations/GenericAnimation/exampleInfo";
 import { drawBehindAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes/exampleInfo";
+import { nonUniformHeatmapExampleInfo } from "../Examples/Charts2D/BasicChartTypes/NonUniformHeatmapChart/exampleInfo";
 import { axisTypesExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisTypes/exampleInfo";
 import { subChartStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts/exampleInfo";
 import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisLayout/exampleInfo";
@@ -182,6 +183,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_basicCharts_HeatmapChart: {
         id: "chart2D_basicCharts_HeatmapChart",
         ...heatmapChartExampleInfo
+    },
+    chart2D_basicCharts_NonUniformHeatmapChart: {
+        id: "chart2D_basicCharts_NonUniformHeatmapChart",
+        ...nonUniformHeatmapExampleInfo
     },
     chart2D_basicCharts_ContourChart: {
         id: "chart2D_basicCharts_ContourChart",

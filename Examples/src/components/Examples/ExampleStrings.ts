@@ -318,6 +318,17 @@ export const ExampleStrings = {
         "The specific page for the JavaScript Heatmap Chart documentation will help you to get started",
     imgHeatMapChart: "images/javascript-heatmap-chart.jpg",
 
+    // NonUniform Heatmap Chart
+    urlNonUniformHeatmapChart: "/javascript-non-uniform-heatmap-chart",
+    urlTitleNonUniformHeatmapChart: "The Non Uniform Heatmap Chart example in SciChart.js",
+    titleNonUniformHeatmapChart: "JavaScript Non Uniform Heatmap Chart",
+    pageTitleNonUniformHeatmapChart: "JavaScript Non Uniform Heatmap Chart | JavaScript Chart Library Examples",
+    urlNonUniformHeatmapChartDocumentation:
+        "https://www.scichart.com/documentation/js/current/The%20Non%20Uniform%20Heatmap%20Series%20Type.html",
+    urlTitleNonUniformHeatmapChartDocumentation:
+        "The specific page for the JavaScript Non Uniform Heatmap Chart documentation will help you to get started",
+    imgNonUniformHeatMapChart: "images/javascript-non-uniform-heatmap-chart.jpg",
+
     // Contours chart
     urlTitleContourChartDocumentation:
         "The specific page for the JavaScript Contours Chart documentation will help you to get started",
