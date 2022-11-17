@@ -57,7 +57,7 @@ const drawExample = async () => {
         // Color map defines how heatmap cells map to colours between minimum & maximum
         colorMap: new HeatmapColorMap({
             minimum: 0,
-            maximum: 60,
+            maximum: 100,
             gradientStops: [
                 { offset: 0, color: appTheme.DarkIndigo },
                 { offset: 0.2, color: appTheme.Indigo },
