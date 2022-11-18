@@ -8,7 +8,6 @@ import classes from "../../../../Examples/Examples.module.scss";
 import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 import {ScaleAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
 import {FadeAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
@@ -20,18 +19,17 @@ import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {XyzDataSeries} from "scichart/Charting/Model/XyzDataSeries";
 import {GenericAnimation} from "scichart/Core/Animations/GenericAnimation";
 import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import {SeriesAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SeriesAnimation";
 
 const divElementId = "chart";
 
-const waveAnimation = new WaveAnimation({
-    zeroLine: 0,
-    pointDurationFraction: 0.5,
-    duration: 1000,
-    fadeEffect: true,
-});
+// Four Series Animations are defined below. We apply these to the chart sequentially
+const waveAnimation = new WaveAnimation({zeroLine: 0, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true });
 const sweepAnimation = new SweepAnimation({ duration: 1000 });
 const scaleAnimation = new ScaleAnimation({ duration: 1000, zeroLine: 0 });
 const fadeAnimation = new FadeAnimation({ duration: 1000 });
+
+// generic animation to create typewritter effect on the watermark
 const typeWriterAnimation = (textAnnotation: TextAnnotation, finalText: string) => new GenericAnimation<string>({
     from: "",
     to: finalText,
@@ -42,6 +40,8 @@ const typeWriterAnimation = (textAnnotation: TextAnnotation, finalText: string) 
     duration: 1000,
     setInitialValueImmediately: true,
 });
+
+// Setup the example & chart
 const drawExample = async () => {
 
     // Create a SciChartSurface with theme
@@ -121,29 +121,31 @@ const drawExample = async () => {
     // Loop forever and update animations
     let animationState = 0;
     const updateAnimation = () => {
-        const allSeries = sciChartSurface.renderableSeries.asArray();
+        let currentAnimation: SeriesAnimation;
         switch(animationState){
             case 0:
-                allSeries.forEach(rs => rs.enqueueAnimation(waveAnimation));
+                currentAnimation = waveAnimation;
                 sciChartSurface.addAnimation(typeWriterAnimation(watermark, "Wave Animation"));
                 animationState++;
                 break;
             case 1:
-                allSeries.forEach(rs => rs.enqueueAnimation(sweepAnimation));
+                currentAnimation = sweepAnimation;
                 sciChartSurface.addAnimation(typeWriterAnimation(watermark, "Sweep Animation"));
                 animationState++;
                 break;
             case 2:
-                allSeries.forEach(rs => rs.enqueueAnimation(scaleAnimation));
+                currentAnimation = scaleAnimation;
                 sciChartSurface.addAnimation(typeWriterAnimation(watermark, "Scale Animation"));
                 animationState++;
                 break;
             case 3:
-                allSeries.forEach(rs => rs.enqueueAnimation(fadeAnimation));
+                currentAnimation = fadeAnimation;
                 sciChartSurface.addAnimation(typeWriterAnimation(watermark, "Fade Animation"));
                 animationState = 0;
                 break;
         }
+        lineSeries.enqueueAnimation(currentAnimation);
+        bubbleSeries.enqueueAnimation(currentAnimation);
         // Loop forever while SciChartSurface is not deleted (see React Component unmount)
         if (!sciChartSurface.isDeleted)
             setTimeout(updateAnimation, 2000);
@@ -168,30 +170,8 @@ export default function StartupAnimation() {
             scs = res.sciChartSurface;
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            scs?.delete();
-        }
+        return () => { scs?.delete();}
     }, []);
-
-    // const handleChangeAnimationType = (event: React.ChangeEvent<{ value: unknown }>) => {
-    //     const newAnimationType = event.target.value as EAnimationType;
-    //     setAnimationType(newAnimationType);
-    //     const allRs = scs.renderableSeries.asArray();
-    //     switch (newAnimationType) {
-    //         case EAnimationType.Wave:
-    //             allRs.forEach(rs => rs.enqueueAnimation(waveAnimation));
-    //             break;
-    //         case EAnimationType.Sweep:
-    //             allRs.forEach(rs => rs.enqueueAnimation(sweepAnimation));
-    //             break;
-    //         case EAnimationType.Scale:
-    //             allRs.forEach(rs => rs.enqueueAnimation(scaleAnimation));
-    //             break;
-    //         case EAnimationType.Fade:
-    //             allRs.forEach(rs => rs.enqueueAnimation(fadeAnimation));
-    //             break;
-    //     }
-    // };
 
     return (
         <div id={divElementId} className={classes.ChartWrapper} />
