@@ -110,7 +110,7 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
     lineSeries.dataLabelProvider = dataLabelProvider;
 
     // 3. Via cursors and tooltips
-    lineSeries.rolloverModifierProps.markerColor = appTheme.VividTeal;
+    lineSeries.rolloverModifierProps.markerColor = appTheme.DarkIndigo;
     lineSeries.rolloverModifierProps.tooltipColor = appTheme.Indigo;
     lineSeries.rolloverModifierProps.tooltipDataTemplate = (seriesInfo: XySeriesInfo): string[] => {
         const valuesWithLabels: string[] = [];
