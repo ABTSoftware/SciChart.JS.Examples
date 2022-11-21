@@ -7,15 +7,23 @@ import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsM
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {SciChartSurface} from "scichart";
 import {NumberRange} from "scichart/Core/NumberRange";
-
 import classes from "../../../../Examples/Examples.module.scss";
 import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import {appTheme} from "../../../theme";
+import {GradientParams} from "scichart/Core/GradientParams";
+import {Point} from "scichart/Core/Point";
+import {
+    EHorizontalTextPosition,
+    EVerticalTextPosition
+} from "scichart/types/TextPosition";
+import {PaletteFactory} from "scichart/Charting/Model/PaletteFactory";
+import {Thickness} from "scichart/Core/Thickness";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId);
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     // Add an X, Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -27,11 +35,31 @@ const drawExample = async () => {
     // Create an add a column series
     sciChartSurface.renderableSeries.add(new FastColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
-        fill: "rgba(150, 182, 221, 0.77)",
-        stroke: "rgba(206, 216, 246, 1)",
-        strokeThickness: 2,
+        // Fill & stroke support Hex strings and rgba()
+        fill: appTheme.PaleSkyBlue + "77",
+        stroke: appTheme.PaleSkyBlue,
+        strokeThickness: 3,
         dataPointWidth: 0.7,
-        animation: new WaveAnimation({duration: 1000})
+        cornerRadius: 10,
+        // Optional datalabels on series. To enable set a style and position
+        dataLabels: {
+            horizontalTextPosition: EHorizontalTextPosition.Center,
+            verticalTextPosition: EVerticalTextPosition.Top,
+            style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0,0,20,0) },
+            color: appTheme.ForegroundColor,
+        },
+        // Optional series animation executed when series shows
+        animation: new WaveAnimation({duration: 1000}),
+        // Horizontal gradient in X. For Y gradient choose fillLinearGradient property
+        paletteProvider: PaletteFactory.createGradient(
+            wasmContext,
+            new GradientParams(new Point(0, 0), new Point(1, 1), [
+                {offset: 0, color: appTheme.VividOrange },
+                {offset: 0.67, color: appTheme.VividSkyBlue },
+                {offset: 1.0, color: appTheme.VividTeal }
+            ]),
+            { enableFill: true }
+        )
     }));
 
     // Optional: Add some interactivity modifiers

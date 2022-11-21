@@ -30,18 +30,12 @@ import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { ELabelAlignment } from "scichart/types/LabelAlignment";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import { getBinanceCandles } from "../../../../../utils/binanceApi";
 import classes from "../../../Examples.module.scss";
+import { TBinanceCandleData } from "../../../../../commonTypes/TBinanceCandleData";
 
 const divElementId = "chart";
 
-const colorStrings = [
-    "4FBEE6",
-    "AD3D8D",
-    "6BBDAE",
-    "E76E63",
-    "2C4B92"
-];
+const colorStrings = ["4FBEE6", "AD3D8D", "6BBDAE", "E76E63", "2C4B92"];
 const colors = colorStrings.map(c => parseColorToUIntArgb(c + "AA"));
 
 const drawExample = async () => {
@@ -49,13 +43,7 @@ const drawExample = async () => {
     sciChartSurface.applyTheme(new SciChartJSLightTheme());
     const xAxis = new CategoryAxis(wasmContext, { id: "XCategory" });
     const labelProvider = new TextLabelProvider({
-        labels: [
-            "Bitcoin",
-            "Ethereum",
-            "XRP",
-            "Cardano",
-            "Dogecoin"
-        ]
+        labels: ["Bitcoin", "Ethereum", "XRP", "Cardano", "Dogecoin"]
     });
     xAxis.labelProvider = labelProvider;
     xAxis.labelStyle.fontSize = 18;
@@ -77,7 +65,7 @@ const drawExample = async () => {
         labelPostfix: "B",
         labelPrecision: 0,
         axisAlignment: EAxisAlignment.Left,
-        labelStyle: { fontSize: 18 } 
+        labelStyle: { fontSize: 18 }
     });
     // Pass array to axisTitle to make it multiline
     yAxis.axisTitle = ["Market Cap - Numeric Axis", "formatting using prefix and postfix"];
@@ -95,17 +83,14 @@ const drawExample = async () => {
     sciChartSurface.renderableSeries.add(columnSeries);
 
     const dataSeries = new XyDataSeries(wasmContext);
-    dataSeries.appendRange(
-        [0, 1, 2, 3, 4],
-        [380.9, 162.1, 23.87, 14.56, 8.372]
-    );
+    dataSeries.appendRange([0, 1, 2, 3, 4], [380.9, 162.1, 23.87, 14.56, 8.372]);
     columnSeries.dataSeries = dataSeries;
     const endDate = new Date(2022, 10, 5);
-    const startTime = (endDate.getTime() / 1000) - 500 * 7 * 24 * 60 * 60;
+    const startTime = endDate.getTime() / 1000 - 500 * 7 * 24 * 60 * 60;
     const dateXAxis = new DateTimeNumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Top,
         id: "XDate",
-        labelStyle: { fontSize: 18 } ,
+        labelStyle: { fontSize: 18 },
         axisTitle: ["Date Axis", "Auto formats based on the date range"],
         axisTitleStyle: { fontSize: 18 },
         visibleRangeLimit: new NumberRange(startTime, endDate.getTime() / 1000)
@@ -119,21 +104,21 @@ const drawExample = async () => {
         axisAlignment: EAxisAlignment.Right,
         labelStyle: { fontSize: 18 },
         axisTitle: ["Price - Logarithmic Axis", "base 2, labelFormat: SignificantFigures"],
-        axisTitleStyle: { fontSize: 18 } 
+        axisTitleStyle: { fontSize: 18 }
     });
     sciChartSurface.yAxes.add(logYAxis);
 
     const symbols = ["BTCUSDT", "ETHUSDT", "XRPUSDT", "ADAUSDT", "DOGEUSDT"];
     for (let index = 0; index < symbols.length; index++) {
         const symbol = symbols[index];
-        const priceDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: symbol })
+        const priceDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: symbol });
         const series = new FastLineRenderableSeries(wasmContext, {
             id: symbol,
             strokeThickness: 3,
             xAxisId: dateXAxis.id,
             yAxisId: logYAxis.id,
             stroke: colorStrings[index],
-            dataSeries: priceDataSeries,
+            dataSeries: priceDataSeries
         });
         // const shadowSeries = new FastLineRenderableSeries(wasmContext, {
         //     strokeThickness: 5,
@@ -143,16 +128,20 @@ const drawExample = async () => {
         //     dataSeries: priceDataSeries,
         // });
         sciChartSurface.renderableSeries.add(series);
-        // Do this async
-        getBinanceCandles(symbol, "1w", undefined, endDate).then( data => {
+
+        (async () => {
+            const response = await fetch(
+                \`/api/get-binance-candles?interval=1w&symbol=\${symbol}&limit=500&endTime=\${endDate}\`
+            );
+            const data: TBinanceCandleData = await response.json();
             priceDataSeries.appendRange(data.xValues, data.closeValues);
             sciChartSurface.zoomExtents();
-        });
+        })();
     }
 
     sciChartSurface.chartModifiers.add(
-        new ZoomPanModifier( { includedXAxisIds: [dateXAxis.id], includedYAxisIds: [logYAxis.id] }),
-        new MouseWheelZoomModifier( { includedXAxisIds: [dateXAxis.id], includedYAxisIds: [logYAxis.id] }),
+        new ZoomPanModifier({ includedXAxisIds: [dateXAxis.id], includedYAxisIds: [logYAxis.id] }),
+        new MouseWheelZoomModifier({ includedXAxisIds: [dateXAxis.id], includedYAxisIds: [logYAxis.id] }),
         new ZoomExtentsModifier()
     );
     return { sciChartSurface, wasmContext, labelProvider };

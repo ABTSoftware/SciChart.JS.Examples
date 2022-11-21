@@ -1,0 +1,596 @@
+import { ceil } from "lodash";
+import * as socketIOClient from "socket.io-client";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { LayoutManager } from "scichart/Charting/LayoutManager/LayoutManager";
+import { RightAlignedOuterVerticallyStackedAxisLayoutStrategy } from "scichart/Charting/LayoutManager/RightAlignedOuterVerticallyStackedAxisLayoutStrategy";
+import { BaseDataSeries, IBaseDataSeriesOptions } from "scichart/Charting/Model/BaseDataSeries";
+import { XyCustomFilter } from "scichart/Charting/Model/Filters/XyCustomFilter";
+import { EDataSeriesField } from "scichart/Charting/Model/Filters/XyFilterBase";
+import { EDataSeriesType } from "scichart/Charting/Model/IDataSeries";
+import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
+import { PaletteFactory } from "scichart/Charting/Model/PaletteFactory";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { XyTextDataSeries } from "scichart/Charting/Model/XyTextDataSeries";
+import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
+import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
+import { AUTO_COLOR } from "scichart/Charting/Themes/IThemeProvider";
+import { SciChartJsNavyTheme } from "scichart/Charting/Themes/SciChartJsNavyTheme";
+import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
+import { INumericAxisOptions, NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { BaseRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/BaseRenderableSeries";
+import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
+import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
+import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
+import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import { FastTextRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastTextRenderableSeries";
+import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import { StackedColumnCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnCollection";
+import { StackedColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnRenderableSeries";
+import { StackedMountainCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainCollection";
+import { StackedMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainRenderableSeries";
+import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
+import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { ENumericFormat } from "scichart/types/NumericFormat";
+import { ESeriesType } from "scichart/types/SeriesType";
+import { TSciChart } from "scichart/types/TSciChart";
+
+export type TMessage = {
+    title: string;
+    detail: string;
+};
+
+export interface ISettings {
+    seriesCount?: number;
+    pointsOnChart?: number;
+    pointsPerUpdate?: number;
+    sendEvery?: number;
+    initialPoints?: number;
+}
+
+export const divElementId = "chart";
+
+let loadCount: number = 0;
+let loadTimes: number[];
+let avgLoadTime: number = 0;
+let avgRenderTime: number = 0;
+
+function GetRandomData(xValues: number[], positive: boolean) {
+    let prevYValue = Math.random();
+    const yValues: number[] = [];
+    // tslint:disable-next-line: prefer-for-of
+    for (let j = 0; j < xValues.length; j++) {
+        const change = Math.random() * 10 - 5;
+        prevYValue = positive ? Math.abs(prevYValue + change) : prevYValue + change;
+        yValues.push(prevYValue);
+    }
+    return yValues;
+}
+
+const extendRandom = (val: number, max: number) => val + Math.random() * max;
+
+const generateCandleData = (xValues: number[]) => {
+    let open = 10;
+    const openValues = [];
+    const highValues = [];
+    const lowValues = [];
+    const closeValues = [];
+
+    for (let i = 0; i < xValues.length; i++) {
+        const close = open + Math.random() * 10 - 5;
+        const high = Math.max(open, close);
+        highValues.push(extendRandom(high, 5));
+        const low = Math.min(open, close);
+        lowValues.push(extendRandom(low, -5));
+        closeValues.push(close);
+        openValues.push(open);
+        open = close;
+    }
+    return { openValues, highValues, lowValues, closeValues };
+};
+
+const generateCandleDataForAppendRange = (open: number, closeValues: number[]) => {
+    const openValues = [];
+    const highValues = [];
+    const lowValues = [];
+    for (const close of closeValues) {
+        openValues.push(open);
+        const high = Math.max(open, close);
+        highValues.push(extendRandom(high, 5));
+        const low = Math.min(open, close);
+        lowValues.push(extendRandom(low, -5));
+        open = close;
+    }
+    return { openValues, highValues, lowValues, closeValues };
+};
+
+const dsOptions: IBaseDataSeriesOptions = {
+    isSorted: true,
+    containsNaN: false
+};
+
+const createRenderableSeries = (
+    wasmContext: TSciChart,
+    seriesType: ESeriesType
+): { dataSeries: BaseDataSeries; rendSeries: BaseRenderableSeries } => {
+    if (seriesType === ESeriesType.LineSeries) {
+        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext, dsOptions);
+        const rendSeries: FastLineRenderableSeries = new FastLineRenderableSeries(wasmContext, {
+            dataSeries,
+            stroke: AUTO_COLOR,
+            strokeThickness: 3,
+            opacity: 0.8
+        });
+        return { dataSeries, rendSeries };
+    } else if (seriesType === ESeriesType.BubbleSeries) {
+        const dataSeries: XyzDataSeries = new XyzDataSeries(wasmContext, dsOptions);
+        const stroke = AUTO_COLOR;
+        const rendSeries: FastBubbleRenderableSeries = new FastBubbleRenderableSeries(wasmContext, {
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 32,
+                height: 32,
+                strokeThickness: 0,
+                fill: stroke
+            }),
+            opacity: 0.5,
+            dataSeries
+        });
+        return { dataSeries, rendSeries };
+    } else if (seriesType === ESeriesType.BandSeries) {
+        const dataSeries: XyyDataSeries = new XyyDataSeries(wasmContext, dsOptions);
+        const rendSeries: FastBandRenderableSeries = new FastBandRenderableSeries(wasmContext, {
+            stroke: AUTO_COLOR,
+            strokeY1: AUTO_COLOR,
+            fill: AUTO_COLOR,
+            fillY1: AUTO_COLOR,
+            dataSeries,
+            strokeThickness: 2,
+            opacity: 0.8
+        });
+        return { dataSeries, rendSeries };
+    } else if (seriesType === ESeriesType.StackedColumnSeries) {
+        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext, dsOptions);
+        const rendSeries: StackedColumnRenderableSeries = new StackedColumnRenderableSeries(wasmContext, {
+            stroke: AUTO_COLOR,
+            fill: AUTO_COLOR,
+            dataSeries,
+            strokeThickness: 0,
+            spacing: 0
+        });
+        return { dataSeries, rendSeries };
+    } else if (seriesType === ESeriesType.ColumnSeries) {
+        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext, dsOptions);
+        const rendSeries: FastColumnRenderableSeries = new FastColumnRenderableSeries(wasmContext, {
+            fill: AUTO_COLOR,
+            stroke: AUTO_COLOR,
+            dataSeries,
+            strokeThickness: 1
+        });
+        return { dataSeries, rendSeries };
+    } else if (seriesType === ESeriesType.StackedMountainSeries) {
+        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext, dsOptions);
+        const rendSeries: StackedMountainRenderableSeries = new StackedMountainRenderableSeries(wasmContext, {
+            stroke: AUTO_COLOR,
+            fill: AUTO_COLOR,
+            dataSeries
+        });
+        return { dataSeries, rendSeries };
+    } else if (seriesType === ESeriesType.ScatterSeries) {
+        const dataSeries: XyyDataSeries = new XyyDataSeries(wasmContext, { containsNaN: false });
+        // Use Y and Y1 as X and Y for scatter
+        const filteredSeries: XyDataSeries = new XyCustomFilter(dataSeries, {
+            xField: EDataSeriesField.Y,
+            field: EDataSeriesField.Y1
+        });
+        const rendSeries: XyScatterRenderableSeries = new XyScatterRenderableSeries(wasmContext, {
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 9,
+                height: 9,
+                strokeThickness: 2,
+                fill: AUTO_COLOR,
+                stroke: AUTO_COLOR,
+                opacity: 0.8
+            }),
+            dataSeries: filteredSeries
+        });
+        // return the unfiltered xyy series as that is the one we want to append to
+        return { dataSeries, rendSeries };
+    } else if (seriesType === ESeriesType.CandlestickSeries) {
+        const dataSeries: OhlcDataSeries = new OhlcDataSeries(wasmContext, dsOptions);
+        const rendSeries: FastCandlestickRenderableSeries = new FastCandlestickRenderableSeries(wasmContext, {
+            strokeThickness: 1,
+            dataSeries,
+            dataPointWidth: 0.9,
+            opacity: 0.75,
+            strokeUp: AUTO_COLOR,
+            brushUp: AUTO_COLOR,
+            strokeDown: AUTO_COLOR,
+            brushDown: AUTO_COLOR
+        });
+        return { dataSeries, rendSeries };
+    } else if (seriesType === ESeriesType.TextSeries) {
+        const dataSeries: XyTextDataSeries = new XyTextDataSeries(wasmContext, dsOptions);
+        const rendSeries: FastTextRenderableSeries = new FastTextRenderableSeries(wasmContext, {
+            dataSeries,
+            dataLabels: {
+                style: {
+                    fontFamily: "Arial",
+                    fontSize: 6
+                },
+                color: AUTO_COLOR,
+                calculateTextBounds: false
+            }
+        });
+        return { dataSeries, rendSeries };
+    }
+    return { dataSeries: undefined, rendSeries: undefined };
+};
+
+const prePopulateData = (
+    dataSeries: BaseDataSeries,
+    dataSeriesType: EDataSeriesType,
+    xValues: number[],
+    positive: boolean
+) => {
+    const yValues: number[] = GetRandomData(xValues, positive);
+    switch (dataSeriesType) {
+        case EDataSeriesType.Xy:
+            (dataSeries as XyDataSeries).appendRange(xValues, yValues);
+            break;
+        case EDataSeriesType.Xyy:
+            (dataSeries as XyyDataSeries).appendRange(xValues, yValues, GetRandomData(xValues, positive));
+            break;
+        case EDataSeriesType.Xyz:
+            (dataSeries as XyzDataSeries).appendRange(
+                xValues,
+                yValues,
+                GetRandomData(xValues, positive).map(z => Math.abs(z / 5))
+            );
+            break;
+        case EDataSeriesType.Ohlc:
+            const { openValues, highValues, lowValues, closeValues } = generateCandleData(xValues);
+            (dataSeries as OhlcDataSeries).appendRange(xValues, openValues, highValues, lowValues, closeValues);
+            break;
+        case EDataSeriesType.XyText:
+            (dataSeries as XyTextDataSeries).appendRange(
+                xValues,
+                yValues,
+                yValues.map(textval => textval.toFixed())
+            );
+            break;
+        default:
+            break;
+    }
+};
+
+const appendData = (
+    dataSeries: BaseDataSeries,
+    dataSeriesType: EDataSeriesType,
+    index: number,
+    xValues: number[],
+    yArray: number[][],
+    pointsOnChart: number,
+    pointsPerUpdate: number
+) => {
+    switch (dataSeriesType) {
+        case EDataSeriesType.Xy:
+            const xySeries = dataSeries as XyDataSeries;
+            xySeries.appendRange(xValues, yArray[index]);
+            if (xySeries.count() > pointsOnChart) {
+                xySeries.removeRange(0, pointsPerUpdate);
+            }
+            break;
+        case EDataSeriesType.Xyy:
+            const xyySeries = dataSeries as XyyDataSeries;
+            xyySeries.appendRange(xValues, yArray[2 * index], yArray[2 * index + 1]);
+            if (xyySeries.count() > pointsOnChart) {
+                xyySeries.removeRange(0, pointsPerUpdate);
+            }
+            break;
+        case EDataSeriesType.Xyz:
+            const xyzSeries = dataSeries as XyzDataSeries;
+            xyzSeries.appendRange(
+                xValues,
+                yArray[2 * index],
+                yArray[2 * index + 1].map(z => Math.abs(z / 5))
+            );
+            if (xyzSeries.count() > pointsOnChart) {
+                xyzSeries.removeRange(0, pointsPerUpdate);
+            }
+            break;
+        case EDataSeriesType.Ohlc:
+            const ohlcSeries = dataSeries as OhlcDataSeries;
+            const { openValues, highValues, lowValues, closeValues } = generateCandleDataForAppendRange(
+                ohlcSeries.getNativeCloseValues().get(ohlcSeries.count() - 1),
+                yArray[index]
+            );
+            ohlcSeries.appendRange(xValues, openValues, highValues, lowValues, closeValues);
+            if (ohlcSeries.count() > pointsOnChart) {
+                ohlcSeries.removeRange(0, pointsPerUpdate);
+            }
+            break;
+        case EDataSeriesType.XyText:
+            const xytextSeries = dataSeries as XyTextDataSeries;
+            xytextSeries.appendRange(
+                xValues,
+                yArray[index],
+                yArray[index].map(obj => obj.toFixed())
+            );
+            if (xytextSeries.count() > pointsOnChart) {
+                xytextSeries.removeRange(0, pointsPerUpdate);
+            }
+            break;
+        default:
+            break;
+    }
+};
+
+const axisOptions: INumericAxisOptions = {
+    drawMajorBands: false,
+    drawMinorGridLines: false,
+    drawMinorTickLines: false,
+    labelFormat: ENumericFormat.Decimal,
+    labelPrecision: 0
+};
+
+export const drawExample = async (updateMessages: (newMessages: TMessage[]) => void, seriesType: ESeriesType) => {
+    let seriesCount = 10;
+    let pointsOnChart = 1000;
+    let pointsPerUpdate = 100;
+    let sendEvery = 30;
+    let initialPoints: number = 0;
+
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+    const theme = new SciChartJSLightTheme();
+    theme.strokePalette = ["#274b92", "#47bde6", "#ae418d", "#e97064", "#68bcae", "#634e96"];
+    theme.fillPalette = ["#274b9288", "#47bde688", "#ae418d88", "#e9706488", "#68bcae88", "#634e9688"];
+    theme.sciChartBackground = "white";
+    theme.axisBandsFill = "#f2f3f4";
+    theme.majorGridLineBrush = "#d6dee8";
+    sciChartSurface.applyTheme(theme);
+    const xAxis = new NumericAxis(wasmContext, axisOptions);
+    sciChartSurface.xAxes.add(xAxis);
+    let yAxis = new NumericAxis(wasmContext, { ...axisOptions });
+    sciChartSurface.yAxes.add(yAxis);
+    let dataSeriesArray: BaseDataSeries[];
+    let dataSeriesType = EDataSeriesType.Xy;
+    if (seriesType === ESeriesType.BubbleSeries) {
+        dataSeriesType = EDataSeriesType.Xyz;
+    } else if (seriesType === ESeriesType.BandSeries || seriesType === ESeriesType.ScatterSeries) {
+        dataSeriesType = EDataSeriesType.Xyy;
+    } else if (seriesType === ESeriesType.CandlestickSeries) {
+        dataSeriesType = EDataSeriesType.Ohlc;
+    } else if (seriesType === ESeriesType.TextSeries) {
+        dataSeriesType = EDataSeriesType.XyText;
+    }
+
+    const initChart = () => {
+        sciChartSurface.renderableSeries.asArray().forEach(rs => rs.delete());
+        sciChartSurface.renderableSeries.clear();
+        sciChartSurface.chartModifiers.asArray().forEach(cm => cm.delete());
+        sciChartSurface.chartModifiers.clear();
+        sciChartSurface.yAxes.asArray().forEach(ya => ya.delete());
+        sciChartSurface.yAxes.clear();
+        sciChartSurface.layoutManager = new LayoutManager();
+        yAxis = new NumericAxis(wasmContext, { ...axisOptions });
+        sciChartSurface.yAxes.add(yAxis);
+        dataSeriesArray = new Array<BaseDataSeries>(seriesCount);
+        let stackedCollection: IRenderableSeries;
+        let xValues: number[];
+        const positive = [ESeriesType.StackedColumnSeries, ESeriesType.StackedMountainSeries].includes(seriesType);
+        for (let i = 0; i < seriesCount; i++) {
+            const { dataSeries, rendSeries } = createRenderableSeries(wasmContext, seriesType);
+            dataSeriesArray[i] = dataSeries;
+            if (seriesType === ESeriesType.StackedColumnSeries) {
+                if (i === 0) {
+                    stackedCollection = new StackedColumnCollection(wasmContext, { dataPointWidth: 1 });
+                    sciChartSurface.renderableSeries.add(stackedCollection);
+                }
+                (rendSeries as StackedColumnRenderableSeries).stackedGroupId = i.toString();
+                (stackedCollection as StackedColumnCollection).add(rendSeries as StackedColumnRenderableSeries);
+            } else if (seriesType === ESeriesType.StackedMountainSeries) {
+                if (i === 0) {
+                    stackedCollection = new StackedMountainCollection(wasmContext);
+                    sciChartSurface.renderableSeries.add(stackedCollection);
+                }
+                (stackedCollection as StackedMountainCollection).add(rendSeries as StackedMountainRenderableSeries);
+            } else if (seriesType === ESeriesType.ColumnSeries) {
+                // create stacked y axis
+                if (i === 0) {
+                    // tslint:disable-next-line: max-line-length
+                    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
+                        new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
+                    yAxis.id = "0";
+                } else {
+                    sciChartSurface.yAxes.add(
+                        new NumericAxis(wasmContext, {
+                            id: i.toString(),
+                            ...axisOptions
+                        })
+                    );
+                }
+                rendSeries.yAxisId = i.toString();
+                sciChartSurface.renderableSeries.add(rendSeries);
+            } else {
+                sciChartSurface.renderableSeries.add(rendSeries);
+            }
+
+            if (i === 0) {
+                xValues = Array.from(Array(initialPoints).keys());
+            }
+            // Generate points
+            prePopulateData(dataSeries, dataSeriesType, xValues, positive);
+            sciChartSurface.zoomExtents(0);
+        }
+        return positive;
+    };
+
+    const dataBuffer: { x: number[]; ys: number[][]; sendTime: number }[] = [];
+    let isRunning: boolean = false;
+    const newMessages: TMessage[] = [];
+    let loadStart = 0;
+
+    const loadData = (data: { x: number[]; ys: number[][]; sendTime: number }) => {
+        loadStart = new Date().getTime();
+        const loadTime = loadStart - data.sendTime;
+        loadTimes.push(loadTime);
+        if (loadCount < 20) {
+            avgLoadTime = (avgLoadTime * loadCount + loadTime) / (loadCount + 1);
+            loadCount++;
+        } else {
+            const firstTime = loadTimes.shift();
+            avgLoadTime = (avgLoadTime * loadCount + loadTime - firstTime) / loadCount;
+        }
+        for (let i = 0; i < seriesCount; i++) {
+            appendData(dataSeriesArray[i], dataSeriesType, i, data.x, data.ys, pointsOnChart, pointsPerUpdate);
+        }
+        sciChartSurface.zoomExtents(0);
+    };
+
+    sciChartSurface.rendered.subscribe(() => {
+        if (!isRunning || loadStart === 0) return;
+        const reDrawTime = new Date().getTime() - loadStart;
+        avgRenderTime = (avgRenderTime * loadCount + reDrawTime) / (loadCount + 1);
+        newMessages.push({
+            title: `Average Load delay`,
+            detail: `${avgLoadTime.toFixed(2)} ms`
+        });
+        newMessages.push({
+            title: `Average Render Time `,
+            detail: `${avgRenderTime.toFixed(2)} ms`
+        });
+        newMessages.push({
+            title: `Max FPS `,
+            detail: `${Math.min(60, 1000 / avgRenderTime).toFixed(1)}`
+        });
+        updateMessages(newMessages);
+        newMessages.length = 0;
+    });
+
+    const loadFromBuffer = () => {
+        if (dataBuffer.length > 0) {
+            const x: number[] = dataBuffer[0].x;
+            const ys: number[][] = dataBuffer[0].ys;
+            const sendTime = dataBuffer[0].sendTime;
+            for (let i = 1; i < dataBuffer.length; i++) {
+                const el = dataBuffer[i];
+                x.push(...el.x);
+                for (let y = 0; y < el.ys.length; y++) {
+                    ys[y].push(...el.ys[y]);
+                }
+            }
+            loadData({ x, ys, sendTime });
+            dataBuffer.length = 0;
+        }
+        if (isRunning) {
+            setTimeout(loadFromBuffer, 1);
+        }
+    };
+
+    let socket: socketIOClient.Socket;
+
+    const initWebSocket = (positive: boolean) => {
+        if (socket) {
+            socket.disconnect();
+            socket.connect();
+        } else {
+            if (window.location.hostname === "localhost" && parseInt(window.location.port) > 8000) {
+                socket = socketIOClient.io("http://localhost:3000");
+            } else {
+                socket = socketIOClient.io();
+            }
+            socket.on("data", (message: any) => {
+                dataBuffer.push(message);
+            });
+            socket.on("finished", () => {
+                socket.disconnect();
+            });
+        }
+
+        // If initial data has been generated, this should be an array of the last y values of each series
+        const index = dataSeriesArray[0].count() - 1;
+        let series: number[];
+        if (
+            dataSeriesType === EDataSeriesType.Xy ||
+            dataSeriesType === EDataSeriesType.Ohlc ||
+            dataSeriesType === EDataSeriesType.XyText
+        ) {
+            if (index >= 0) {
+                series = dataSeriesArray.map(d => d.getNativeYValues().get(index));
+            } else {
+                series = Array.from(Array(seriesCount)).fill(0);
+            }
+        } else if (dataSeriesType === EDataSeriesType.Xyy) {
+            if (index >= 0) {
+                series = [];
+                for (const dataSeries of dataSeriesArray) {
+                    const xyy = dataSeries as XyyDataSeries;
+                    series.push(xyy.getNativeYValues().get(index));
+                    series.push(xyy.getNativeY1Values().get(index));
+                }
+            } else {
+                series = Array.from(Array(seriesCount * 2)).fill(0);
+            }
+        } else if (dataSeriesType === EDataSeriesType.Xyz) {
+            if (index >= 0) {
+                series = [];
+                for (const dataSeries of dataSeriesArray) {
+                    const xyy = dataSeries as XyzDataSeries;
+                    series.push(xyy.getNativeYValues().get(index));
+                    series.push(xyy.getNativeZValues().get(index));
+                }
+            } else {
+                series = Array.from(Array(seriesCount * 2)).fill(0);
+            }
+        }
+        socket.emit("getData", { series, startX: index + 1, pointsPerUpdate, sendEvery, positive, scale: 10 });
+        isRunning = true;
+        loadFromBuffer();
+    };
+
+    const settings = {
+        seriesCount: 10,
+        pointsOnChart: 5000,
+        pointsPerUpdate: 10,
+        sendEvery: 100,
+        initialPoints: 5000
+    };
+
+    const updateSettings = (newValues: ISettings) => {
+        Object.assign(settings, newValues);
+    };
+
+    // Buttons for chart
+    const startStreaming = () => {
+        console.log("start streaming");
+        loadCount = 0;
+        avgLoadTime = 0;
+        avgRenderTime = 0;
+        loadTimes = [];
+        loadStart = 0;
+        seriesCount = settings.seriesCount;
+        initialPoints = settings.initialPoints;
+        pointsOnChart = settings.pointsOnChart;
+        pointsPerUpdate = settings.pointsPerUpdate;
+        sendEvery = settings.sendEvery;
+        const positive = initChart();
+        initWebSocket(positive);
+    };
+
+    const stopStreaming = () => {
+        console.log("stop streaming");
+        socket?.disconnect();
+        isRunning = false;
+        if (sciChartSurface.chartModifiers.size() === 0) {
+            sciChartSurface.chartModifiers.add(
+                new MouseWheelZoomModifier(),
+                new ZoomPanModifier(),
+                new ZoomExtentsModifier()
+            );
+        }
+    };
+    return { wasmContext, sciChartSurface, controls: { startStreaming, stopStreaming, updateSettings } };
+};

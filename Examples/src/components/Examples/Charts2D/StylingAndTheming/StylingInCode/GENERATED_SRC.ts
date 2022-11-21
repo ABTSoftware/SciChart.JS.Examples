@@ -5,55 +5,74 @@ import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWh
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import classes from "../../../../Examples/Examples.module.scss";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
+
+    // Demonstrates how to colour chart parts in code
+    // This is better done by themes, where you can also style the loader pre-scichart initialisation
+    //
+    const chartBackgroundColor = "#E4F5FC";
+    const axisBandsFill = "#1F3D6805";
+    const axisTitleColor = "#1F3D68";
+    const majorGridLineColor = "#264B9355";
+    const minorGridLineColor = "#264B9322";
+    const axisLabelColor = "#1F3D68";
+    const axisBackgroundFill = "#00000000";
+    const borderColor = "#1F3D68";
+
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    sciChartSurface.background = "#FFCA75";
+    sciChartSurface.background = chartBackgroundColor;
 
     // Create and style xAxis
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "X Axis",
             drawMajorBands: true,
-            axisBandsFill: "#FF665555",
+            axisBandsFill,
             axisTitleStyle: {
-                fontSize: 16,
-                fontFamily: "Arial",
-                color: "#4682b4",
+                fontSize: 25,
+                fontFamily: "Montserrat",
                 fontWeight: "bold",
-                fontStyle: "italic"
+                fontStyle: "italic",
+                color: axisTitleColor
             },
             majorGridLineStyle: {
                 strokeThickness: 1,
-                color: "#ADFF2F",
+                color: majorGridLineColor,
                 strokeDashArray: [10, 5]
             },
             minorGridLineStyle: {
                 strokeThickness: 1,
-                color: "#EE82EE",
+                color: minorGridLineColor,
                 strokeDashArray: [2, 2]
             },
             majorTickLineStyle: {
                 strokeThickness: 1,
-                color: "Blue",
+                color: majorGridLineColor,
                 tickSize: 8
             },
             minorTickLineStyle: {
                 strokeThickness: 1,
-                color: "Red",
+                color: minorGridLineColor,
                 tickSize: 4
             },
             labelStyle: {
                 fontSize: 16,
                 fontWeight: "bold",
                 fontStyle: "Italic",
-                color: "#4682b4",
+                color: axisLabelColor,
                 fontFamily: "Arial"
             },
-            // @ts-ignore
-            backgroundColor: 'rgba(70, 130, 180, .5)'
+            backgroundColor: axisBackgroundFill,
+            axisBorder: {
+                borderTop: 1,
+                color: borderColor
+            }
         })
     );
 
@@ -61,41 +80,47 @@ const drawExample = async () => {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisAlignment: EAxisAlignment.Left,
-            axisBandsFill: "#FF665555",
+            axisBandsFill,
             axisTitle: "Left Y Axis",
             axisTitleStyle: {
                 fontSize: 25,
                 fontFamily: "Montserrat",
                 fontWeight: "bold",
-                color: "#DC143C"
+                fontStyle: "italic",
+                color: axisTitleColor
             },
             majorGridLineStyle: {
                 strokeThickness: 1,
-                color: "#ADFF2F",
+                color: majorGridLineColor,
                 strokeDashArray: [10, 5]
             },
             minorGridLineStyle: {
                 strokeThickness: 1,
-                color: "#EE82EE",
+                color: minorGridLineColor,
                 strokeDashArray: [2, 2]
             },
             majorTickLineStyle: {
                 strokeThickness: 1,
-                color: "#ADFF2F",
+                color: majorGridLineColor,
                 tickSize: 8
             },
             minorTickLineStyle: {
                 strokeThickness: 1,
-                color: "#EE82EE",
+                color: minorGridLineColor,
                 tickSize: 4
             },
             labelStyle: {
-                fontSize: 15,
-                color: "#DC143C",
+                fontSize: 16,
+                fontWeight: "bold",
+                fontStyle: "Italic",
+                color: axisLabelColor,
                 fontFamily: "Arial"
             },
-            // @ts-ignore
-            backgroundColor: 'rgba(220, 20, 60, .5)'
+            backgroundColor: axisBackgroundFill,
+            axisBorder: {
+                borderRight: 1,
+                color: borderColor
+            }
         })
     );
 
@@ -104,38 +129,61 @@ const drawExample = async () => {
         new NumericAxis(wasmContext, {
             axisTitle: "Right Y Axis",
             axisTitleStyle: {
-                fontSize: 18,
-                fontFamily: "Arial",
-                color: "#ADFF2F"
+                fontSize: 25,
+                fontFamily: "Montserrat",
+                fontWeight: "bold",
+                fontStyle: "italic",
+                color: axisTitleColor
             },
             axisAlignment: EAxisAlignment.Right,
             majorGridLineStyle: {
                 strokeThickness: 1,
-                color: "#ADFF2F",
+                color:majorGridLineColor,
                 strokeDashArray: [10, 5]
             },
             minorGridLineStyle: {
                 strokeThickness: 1,
-                color: "#EE82EE",
+                color: minorGridLineColor,
                 strokeDashArray: [2, 2]
             },
             majorTickLineStyle: {
                 strokeThickness: 1,
-                color: "#ADFF2F",
+                color: majorGridLineColor,
                 tickSize: 8
             },
             minorTickLineStyle: {
                 strokeThickness: 1,
-                color: "#EE82EE",
+                color: minorGridLineColor,
                 tickSize: 4
             },
             labelStyle: {
-                fontSize: 14,
-                color: "#ADFF2F",
+                fontSize: 16,
+                fontWeight: "bold",
+                fontStyle: "Italic",
+                color: axisLabelColor,
                 fontFamily: "Arial"
             },
-            // @ts-ignore
-            backgroundColor: 'rgba(173, 255, 47, .5)'
+            backgroundColor: axisBackgroundFill,
+            axisBorder: {
+                borderLeft: 1,
+                color: borderColor
+            }
+        })
+    );
+
+    // Add title annotation
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: "Chart with custom style applied in code",
+            fontSize: 20,
+            fontWeight: "Bold",
+            textColor: axisLabelColor,
+            x1: 0.5,
+            y1: 0,
+            opacity: 0.77,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative
         })
     );
 

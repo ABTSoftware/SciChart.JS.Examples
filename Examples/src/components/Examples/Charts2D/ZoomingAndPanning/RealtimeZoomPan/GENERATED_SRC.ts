@@ -11,6 +11,11 @@ import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/Ellip
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import classes from "../../../../Examples/Examples.module.scss";
+import Button from "@material-ui/core/Button";
+import {appTheme} from "../../../theme";
+import Alert from "@material-ui/lab/Alert";
+import AlertTitle from "@material-ui/lab/AlertTitle";
+import {makeStyles} from "@material-ui/core/styles";
 
 export const divElementId = "chart";
 
@@ -82,6 +87,28 @@ export const drawExample = async () => {
     return sciChartSurface;
 };
 
+const useStyles = makeStyles(theme => ({
+    flexOuterContainer: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        background: appTheme.DarkIndigo
+    },
+    toolbarRow: {
+        display: "flex",
+        // flex: "auto",
+        flexBasis: "70px",
+        padding: 10,
+        width: "100%",
+        color: appTheme.ForegroundColor
+    },
+    chartArea: {
+        flex: 1,
+    }
+}));
+
+
 let scs: SciChartSurface;
 
 export default function RealtimeZoomPan() {
@@ -96,6 +123,15 @@ export default function RealtimeZoomPan() {
         };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    const localClasses = useStyles();
+
+    return (
+        <div className={classes.ChartWrapper}>
+            <div className={localClasses.flexOuterContainer}>
+                <div className={localClasses.toolbarRow} style={{minHeight: "140px"}}></div>
+                <div className={localClasses.chartArea} id={divElementId}></div>
+            </div>
+        </div>
+    );
 }
 `;

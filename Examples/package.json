@@ -37,8 +37,9 @@
     "react-router-dom": "^5.2.0",
     "react-transition-group": "^4.4.1",
     "request": "^2.88.2",
-    "scichart": "^2.3.0-alpha.178",
-    "socket.io": "^3.0.4"
+    "scichart": "^2.3.0-alpha.185",
+    "socket.io": "^4.5.2",
+    "socket.io-client": "^4.5.2"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",

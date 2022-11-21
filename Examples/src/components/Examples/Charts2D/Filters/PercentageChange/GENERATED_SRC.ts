@@ -1,97 +1,30 @@
-export const code = `import { ButtonGroup } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+export const code = `import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { SeriesInfo } from "scichart/Charting/Model/ChartData/SeriesInfo";
-import { XySeriesInfo } from "scichart/Charting/Model/ChartData/XySeriesInfo";
-import { XyScaleOffsetFilter } from "scichart/Charting/Model/Filters/XyScaleOffsetFilter";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { formatNumber } from "scichart/utils/number";
+import {SciChartSurface} from "scichart";
+import {RolloverModifier} from "scichart/Charting/ChartModifiers/RolloverModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {SeriesInfo} from "scichart/Charting/Model/ChartData/SeriesInfo";
+import {XySeriesInfo} from "scichart/Charting/Model/ChartData/XySeriesInfo";
+import {XyScaleOffsetFilter} from "scichart/Charting/Model/Filters/XyScaleOffsetFilter";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {HitTestInfo} from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
+import {EAutoRange} from "scichart/types/AutoRange";
+import {ENumericFormat} from "scichart/types/NumericFormat";
+import {formatNumber} from "scichart/utils/number";
 import classes from "../../../Examples.module.scss";
+import {makeStyles} from "@material-ui/core/styles";
+import {appTheme} from "../../../theme";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
 
 export const divElementId = "chart";
-
-const getRandomData = (start: number, scale: number, count: number) => {
-    const data: number[] = [];
-    let y = start;
-    for (let i = 0; i < count; i++) {
-        y = y + Math.random() * scale - scale / 2;
-        data.push(y);
-    }
-    return data;
-};
-
-const y1Data = getRandomData(100, 6, 200);
-const y2Data = getRandomData(20, 1, 200);
-
-export const drawExample = async (usePercentage: boolean) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    const xAxis = new NumericAxis(wasmContext);
-    sciChartSurface.xAxes.add(xAxis);
-
-    const yAxis = new NumericAxis(wasmContext, {
-        autoRange: EAutoRange.Always,
-        labelPostfix: usePercentage ? "%" : "",
-        labelPrecision: usePercentage ? 0 : 1
-    });
-    // Override the formatting of the cursor label as we don't want it to show the % postfix, since we're showing original data
-    yAxis.labelProvider.formatCursorLabel = (value: number) => formatNumber(value, ENumericFormat.Decimal, 1);
-
-    sciChartSurface.yAxes.add(yAxis);
-
-    const lineSeries = new TransformedSeries(wasmContext, {
-        strokeThickness: 3,
-        stroke: "white"
-    });
-    sciChartSurface.renderableSeries.add(lineSeries);
-
-    const xValues = Array.apply(null, Array(y1Data.length)).map((x, i) => i);
-
-    const dataSeries1 = new XyDataSeries(wasmContext, { xValues, yValues: y1Data });
-
-    const transform1 = new XyScaleOffsetFilter(dataSeries1, { offset: -100 });
-    xAxis.visibleRangeChanged.subscribe(args => (transform1.scale = getScaleValue(dataSeries1, args.visibleRange.min)));
-    if (usePercentage) {
-        lineSeries.dataSeries = transform1;
-        lineSeries.originalSeries = dataSeries1;
-    } else {
-        lineSeries.dataSeries = dataSeries1;
-    }
-
-    const lineSeries2 = new TransformedSeries(wasmContext, {
-        strokeThickness: 3,
-        stroke: "green"
-    });
-    sciChartSurface.renderableSeries.add(lineSeries2);
-
-    const dataSeries2 = new XyDataSeries(wasmContext, { xValues, yValues: y2Data });
-
-    const transform2 = new XyScaleOffsetFilter(dataSeries2, { offset: -100 });
-    xAxis.visibleRangeChanged.subscribe(args => (transform2.scale = getScaleValue(dataSeries2, args.visibleRange.min)));
-
-    if (usePercentage) {
-        lineSeries2.dataSeries = transform2;
-        lineSeries2.originalSeries = dataSeries2;
-    } else {
-        lineSeries2.dataSeries = dataSeries2;
-    }
-
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new RolloverModifier());
-
-    sciChartSurface.zoomExtents();
-    return { sciChartSurface, wasmContext, dataSeries1, dataSeries2 };
-};
 
 const getScaleValue = (dataSeries: XyDataSeries, zeroXValue: number) => {
     const dataLength = dataSeries.count();
@@ -122,62 +55,175 @@ class TransformedSeries extends FastLineRenderableSeries {
     }
 }
 
-let scs: SciChartSurface;
-let dataSeries1: XyDataSeries;
-let dataSeries2: XyDataSeries;
+export const drawExample = async (usePercentage: boolean) => {
+
+    // Create the SciChartSurface with Theme
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
+
+    // Create an X and Y Axis
+    const xAxis = new NumericAxis(wasmContext);
+    sciChartSurface.xAxes.add(xAxis);
+
+    const yAxis = new NumericAxis(wasmContext, {
+        autoRange: EAutoRange.Always,
+        labelPostfix: usePercentage ? "%" : "",
+        labelPrecision: usePercentage ? 0 : 1,
+        growBy: new NumberRange(0.1, 0.1)
+    });
+    // Override the formatting of the cursor label as we don't want it to show the % postfix, since we're showing original data
+    yAxis.labelProvider.formatCursorLabel = (value: number) => formatNumber(value, ENumericFormat.Decimal, 1);
+    sciChartSurface.yAxes.add(yAxis);
+
+    // Create a TransformedSeries which handles percentage changed. See above for definition.
+    const lineSeries = new TransformedSeries(wasmContext, {
+        strokeThickness: 3,
+        stroke: appTheme.VividSkyBlue
+    });
+    sciChartSurface.renderableSeries.add(lineSeries);
+
+    // Generate some data to plot
+    const data0 = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(100);
+    const dataSeries1 = new XyDataSeries(wasmContext, {xValues: data0.xValues, yValues: data0.yValues});
+
+    // Offset the data by -100
+    const transform1 = new XyScaleOffsetFilter(dataSeries1, {offset: -100});
+
+    // Update the scale of the data when the chart xAxis range changes
+    xAxis.visibleRangeChanged.subscribe(args => (transform1.scale = getScaleValue(dataSeries1, args.visibleRange.min)));
+
+    // When use percentage changed mode, we use the transformed series above
+    if (usePercentage) {
+        lineSeries.dataSeries = transform1;
+        lineSeries.originalSeries = dataSeries1;
+        // Else we use the original data
+    } else {
+        lineSeries.dataSeries = dataSeries1;
+    }
+
+    // Repeat for the second series
+    const lineSeries2 = new TransformedSeries(wasmContext, {
+        strokeThickness: 3,
+        stroke: appTheme.VividOrange
+    });
+    sciChartSurface.renderableSeries.add(lineSeries2);
+
+    // Generate data and create transform
+    const data1 = new RandomWalkGenerator().Seed(0).getRandomWalkSeries(100);
+    const dataSeries2 = new XyDataSeries(wasmContext, {xValues: data1.xValues, yValues: data1.yValues});
+
+    const transform2 = new XyScaleOffsetFilter(dataSeries2, {offset: -100});
+    xAxis.visibleRangeChanged.subscribe(args => (transform2.scale = getScaleValue(dataSeries2, args.visibleRange.min)));
+
+    // Choose which dataseries to use when percentage mode is enabled
+    if (usePercentage) {
+        lineSeries2.dataSeries = transform2;
+        lineSeries2.originalSeries = dataSeries2;
+    } else {
+        lineSeries2.dataSeries = dataSeries2;
+    }
+
+    // Add some interactivity modifiers
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+    sciChartSurface.chartModifiers.add(new RolloverModifier({rolloverLineStroke: appTheme.VividTeal}));
+
+    // Add title annotation
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: "Toggle between original data & Percentage Changed on chart",
+            fontSize: 16,
+            textColor: appTheme.ForegroundColor,
+            x1: 0.5,
+            y1: 0,
+            opacity: 0.77,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative
+        })
+    );
+
+    // Add a watermark annotation
+    const watermarkText = usePercentage ? "Percentage Changed" : "Original Data";
+    sciChartSurface.annotations.add(new TextAnnotation({
+        text: watermarkText,
+        fontSize: 32,
+        textColor: appTheme.ForegroundColor,
+        x1: 0.5,
+        y1: 0.5,
+        opacity: 0.23,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+        annotationLayer: EAnnotationLayer.BelowChart
+    }));
+
+    return {sciChartSurface, wasmContext};
+};
+
+
+const useStyles = makeStyles(theme => ({
+    flexOuterContainer: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        background: appTheme.DarkIndigo
+    },
+    toolbarRow: {
+        display: "flex",
+        // flex: "auto",
+        flexBasis: "70px",
+        padding: 10,
+        width: "100%"
+    },
+    chartArea: {
+        flex: 1,
+    }
+}));
 
 export default function PercentageChange() {
     const [usePercentage, setUsePercentage] = React.useState(true);
+    const [scs, setSciChartSurface] = React.useState<SciChartSurface>();
+
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample(usePercentage);
-            scs = res.sciChartSurface;
-            dataSeries1 = res.dataSeries1;
-            dataSeries2 = res.dataSeries2;
+            setSciChartSurface(res.sciChartSurface);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
             scs?.delete();
         };
-    }, [usePercentage, y2Data]);
+    }, [usePercentage]);
 
     const handleUsePercentage = () => {
         const newValue = !usePercentage;
         setUsePercentage(newValue);
     };
 
-    const handleAddData = () => {
-        const xValues = Array.apply(null, Array(100)).map((x, i) => i + dataSeries1.count());
-        const lasty1 = dataSeries1.getNativeYValues().get(dataSeries1.count() - 1);
-        dataSeries1.appendRange(xValues, getRandomData(lasty1, 4, 100));
-
-        const lasty2 = dataSeries2.getNativeYValues().get(dataSeries2.count() - 1);
-        dataSeries2.appendRange(xValues, getRandomData(lasty2, 2, 100));
-    };
-
+    const localClasses = useStyles();
     return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
-            
-            <div className={classes.ButtonsWrapper}>
-                <ToggleButtonGroup 
-                    exclusive 
+        <div className={classes.ChartWrapper}>
+            <div className={localClasses.flexOuterContainer}>
+                <ToggleButtonGroup
+                    className={localClasses.toolbarRow}
+                    exclusive
                     value={usePercentage}
                     onChange={handleUsePercentage}
-                    size="medium" color="primary" aria-label="small outlined button group">
-                    <ToggleButton value={true} >
+                    size="small" color="primary" aria-label="small outlined button group">
+                    <ToggleButton value={true} style={{color: appTheme.ForegroundColor}}>
                         Percentage Change
                     </ToggleButton>
-                    <ToggleButton value={false} >
+                    <ToggleButton value={false} style={{color: appTheme.ForegroundColor}}>
                         Original Data
                     </ToggleButton>
                 </ToggleButtonGroup>
-
-                    <Button className={classes.ButtonsText} size="medium" onClick={handleAddData}>
-                            Add Data
-                    </Button>
-                </div>
+                <div id={divElementId} className={localClasses.chartArea}/>
+            </div>
         </div>
     );
 }

@@ -1,5 +1,4 @@
-export const code = `import { Typography } from "@material-ui/core";
-import * as React from "react";
+export const code = `import * as React from "react";
 import { chartBuilder } from "scichart/Builder/chartBuilder";
 import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
 import {
@@ -10,7 +9,10 @@ import {
 } from "scichart/Charting/Model/IPaletteProvider";
 import { EDraggingGripPoint } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
-import { HorizontalLineAnnotation, IHVLineAnnotationOptions } from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
+import {
+    HorizontalLineAnnotation,
+    IHVLineAnnotationOptions
+} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
 import { I2DSubSurfaceOptions } from "scichart/Charting/Visuals/I2DSurfaceOptions";
 import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
@@ -28,9 +30,10 @@ import { EXyDirection } from "scichart/types/XyDirection";
 import { calcAverageForArray } from "scichart/utils/calcAverage";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { multiPaneData } from "../../../ExampleData/multiPaneData";
-import { SciChartJS2022Theme } from "../../../Theme2022";
 import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
 import { BasePaletteProvider } from "scichart/Charting/Model/BasePaletteProvider";
+import {appTheme} from "../../../theme";
+import classes from "../../../../Examples/Examples.module.scss";
 
 export const mainChartWrapper = "cc_chart";
 export const mainChartWrapper2 = "cc_chart2";
@@ -91,12 +94,11 @@ export const drawExample = async () => {
     const { rsiArray } = getDataForThirdPane(xValues, closeValues);
 
     const axisAlignment = EAxisAlignment.Right;
-    const theme = new SciChartJS2022Theme();
 
     const commonSubChartSurfaceOptions: I2DSubSurfaceOptions = {
         subChartPadding: Thickness.fromNumber(10),
         isTransparent: false,
-        theme
+        theme: appTheme.SciChartJsTheme
     };
 
     const subChartModifiers = [
@@ -113,7 +115,7 @@ export const drawExample = async () => {
     const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(mainChartWrapper2, {
         surface: {
             id: "mainSurface",
-            theme
+            theme: appTheme.SciChartJsTheme
         },
         xAxes: {
             type: EAxisType.NumericAxis,
@@ -147,7 +149,7 @@ export const drawExample = async () => {
                     options: {
                         drawLabels: false,
                         autoRange: EAutoRange.Once,
-                        //maxAutoTicks: 20,
+                        // maxAutoTicks: 20,
                         useNativeText: false,
                         minorsPerMajor: 3
                     }
@@ -398,7 +400,6 @@ export const drawExample = async () => {
     // Resizing Logic
     const firstDividerElement = document.getElementById(dividerId1);
     const secondDividerElement = document.getElementById(dividerId2);
-    firstDividerElement.style;
     let isDraggingFirst = false;
     let isDraggingSecond = false;
     let dragStartPosition: number;
@@ -492,35 +493,6 @@ export const drawExample = async () => {
 
     return { sciChartSurface: mainSurface, wasmContext };
 };
-
-interface ICustomHVLineAnnotationOptions extends IHVLineAnnotationOptions {
-    dragThreshold?: NumberRange;
-}
-
-class CustomHorizontalLineAnnotation extends HorizontalLineAnnotation {
-    public dragThreshold: NumberRange = new NumberRange(0, 1);
-
-    constructor(options?: ICustomHVLineAnnotationOptions) {
-        super(options);
-        this.dragThreshold = options?.dragThreshold ?? this.dragThreshold;
-    }
-
-    public calcDragDistance(xyValues: Point) {
-        if (this.adornerDraggingPoint === EDraggingGripPoint.Body) {
-            if (!this.prevValue) {
-                this.prevValue = xyValues;
-                return;
-            }
-
-            const xDelta = this.prevValue.x - xyValues.x;
-            const yDelta = this.prevValue.y - xyValues.y;
-            const newExpectedY1Value = this.y1 - yDelta;
-            if (newExpectedY1Value >= this.dragThreshold.min && newExpectedY1Value <= this.dragThreshold.max) {
-                super.calcDragDistance(xyValues);
-            }
-        }
-    }
-}
 
 /**
  * An example PaletteProvider applied to the volume column series. It will return green / red
@@ -616,7 +588,7 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
     });
 };
 
-let charts: TWebAssemblyChart[];
+const charts: TWebAssemblyChart[] = [];
 
 export default function SubChartStockCharts() {
     React.useEffect(() => {
@@ -631,21 +603,14 @@ export default function SubChartStockCharts() {
     }, []);
 
     return (
-        <div>
-            <div style={{ maxWidth: 800, marginBottom: 20 }}>
-                <Typography variant="body1" style={{ color: "blue" }}>
-                    Multipane created using SubCharts API and BuilderAPI
-                </Typography>
-            </div>
-            <div
-                id={containerId2}
-                style={{
-                    position: "relative",
-                    maxWidth: 900,
-                    maxHeight: 1000,
-                    touchAction: "none"
-                }}
-            >
+        <div className={classes.ChartsWrapper}                id={containerId2}
+        style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            touchAction: "none"
+        }}>
+
                 <div
                     id={subChartWrapper1}
                     style={{
@@ -656,12 +621,15 @@ export default function SubChartStockCharts() {
                     id={dividerId1}
                     style={{
                         width: "100%",
-                        height: "2px",
+                        height: "6px",
                         backgroundColor: "#2B2D70",
+                        cursor: "row-resize",
                         position: "absolute",
                         zIndex: 1
                     }}
-                />
+                >
+                    <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
+                </div>
                 <div
                     id={subChartWrapper2}
                     style={{
@@ -672,12 +640,15 @@ export default function SubChartStockCharts() {
                     id={dividerId2}
                     style={{
                         width: "100%",
-                        height: "2px",
+                        height: "6px",
                         backgroundColor: "#2B2D70",
+                        cursor: "row-resize",
                         position: "absolute",
                         zIndex: 1
                     }}
-                />
+                >
+                    <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
+                </div>
                 <div
                     id={subChartWrapper3}
                     style={{
@@ -695,7 +666,6 @@ export default function SubChartStockCharts() {
                         height: "100%"
                     }}
                 ></div>
-            </div>
         </div>
     );
 }

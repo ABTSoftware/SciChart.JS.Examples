@@ -13,6 +13,7 @@ import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/Anc
 import { RandomWalkGenerator } from "../../../../../../../Sandbox/CustomerExamples/AnimateXyValuesOnSeries/src/RandomWalkGenerator";
 import classes from "../../../../Examples/Examples.module.scss";
 import { AnimationToken } from "scichart/Core/AnimationToken";
+import {appTheme} from "../../../theme";
 
 export const divElementId = "chart";
 
@@ -23,16 +24,9 @@ export const drawExample = async () => {
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
     // instance must be passed to other types that exist on the same surface.
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-
-    //this is only for nice looking source code
-    const svgString = [
-        '<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">',
-        '<rect x="0" y="0" width="100%" height="100%"',
-        'fill="transparent"/><circle cx="20" cy="20" fill="steelblue" r="1" stroke="steelblue"><animate attributeName="r" from="0" to="20" dur="1s"',
-        'begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" from="1" to="0" dur="1s"',
-        'begin="0s" repeatCount="indefinite"/></circle><circle cx="20" cy="20" fill="steelblue" r="5"/></svg>'
-    ].join("");
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
@@ -54,14 +48,24 @@ export const drawExample = async () => {
         new FastMountainRenderableSeries(wasmContext, {
             dataSeries,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: "rgba(70,130,180,1)", offset: 0 },
-                { color: "rgba(70,130,180,0.2)", offset: 1 }
+                { color: appTheme.VividSkyBlue + "77", offset: 0 },
+                { color: "Transparent", offset: 1 }
             ]),
-            stroke: "SteelBlue",
-            strokeThickness: 5
+            stroke: appTheme.VividSkyBlue,
+            strokeThickness: 4
         })
     );
 
+    // The animated pulsing dot at the end of the chart is rendered with this SVG annotation
+    const svgString =
+        \`<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="100%" height="100%" fill="transparent"/>
+            <circle cx="25" cy="25" fill="\${appTheme.VividTeal}" r="5" stroke="\${appTheme.VividTeal}">
+                <animate attributeName="r" from="5" to="25" dur="1s" begin="0s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" from="1" to="0" dur="1s" begin="0s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="25" cy="25" fill="\${appTheme.VividSkyBlue}" r="5"/>
+        </svg>\`;
     const pulsingDotAnnotation = new CustomAnnotation({
         x1: initialValues.xValues[initialValues.xValues.length - 1],
         y1: initialValues.yValues[initialValues.yValues.length - 1],
@@ -69,7 +73,7 @@ export const drawExample = async () => {
         yCoordShift: 0,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        svgString: svgString
+        svgString
     });
 
     sciChartSurface.annotations.add(pulsingDotAnnotation);

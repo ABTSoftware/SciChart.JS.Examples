@@ -16,6 +16,7 @@ import { Point } from "scichart/Core/Point";
 import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
 import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
 import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme} from "../../../theme";
 
 // tslint:disable:no-empty
 // tslint:disable:max-classes-per-file
@@ -23,7 +24,7 @@ import classes from "../../../../Examples/Examples.module.scss";
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
     // Create XAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Decimal, labelPrecision: 2 }));
@@ -40,8 +41,8 @@ const drawExample = async () => {
         new FastMountainRenderableSeries(wasmContext, {
             stroke: "SteelBlue",
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: "rgba(70,130,180,0.4)", offset: 0 },
-                { color: "rgba(70,130,180,0.0)", offset: 0.5 }
+                { color: appTheme.VividSkyBlue + "77", offset: 0 },
+                { color: "Transparent", offset: 0.5 }
             ]),
             strokeThickness: 3,
             dataSeries: createLineData(wasmContext, 2),
@@ -53,22 +54,22 @@ const drawExample = async () => {
     // Create a line series with a dotted line
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
-            stroke: "SteelBlue",
+            stroke:appTheme.VividSkyBlue,
             strokeThickness: 2,
             dataSeries: createLineData(wasmContext, 1),
-            // Strokedash array defines the stroke dash. [3,3] means draw for 3pts, gap for 3pts
-            strokeDashArray: [3, 3]
+            // Strokedash array defines the stroke dash. [5,5] means draw for 5pts, gap for 5pts
+            strokeDashArray: [5, 5]
         })
     );
 
     // Create a line series a dotted line
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
-            stroke: "SteelBlue",
+            stroke: appTheme.VividSkyBlue,
             strokeThickness: 2,
             dataSeries: createLineData(wasmContext, 0),
-            // Strokedash array defines the stroke dash. [2,2] means draw for 2pt, gap for 2pt
-            strokeDashArray: [2, 2]
+            // Strokedash array defines the stroke dash. [3,3] means draw for 3pt, gap for 3pt
+            strokeDashArray: [3, 3]
         })
     );
 
@@ -77,10 +78,10 @@ const drawExample = async () => {
         new FastBandRenderableSeries(wasmContext, {
             dataSeries: createBandData(wasmContext),
             strokeThickness: 2,
-            fill: "rgba(70,130,180,0.2)",
-            fillY1: "rgba(70,130,180,0.2)",
-            stroke: "SteelBlue",
-            strokeY1: "SteelBlue"
+            fill: appTheme.VividSkyBlue + "33",
+            fillY1: appTheme.VividSkyBlue + "33",
+            stroke: appTheme.VividSkyBlue,
+            strokeY1: appTheme.VividSkyBlue
             // strokeDashArray: [10, 10],
             // strokeY1DashArray: [3, 3]
         })

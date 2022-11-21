@@ -2,14 +2,28 @@ import * as http from "http";
 import * as socketIo from "socket.io";
 
 type TSubscription = {
-    seriesCount: number,
-    pointsPerUpdate: number,
-    sendEvery: number
+    series: number[];
+    startX: number;
+    pointsPerUpdate: number;
+    sendEvery: number;
+    positive: boolean;
+    scale: number;
 };
 
-const sendData = (socket: any, series: number[], nextx: number, pointsPerUpdate: number, sendEvery: number): void => {
-    if (!socket.wantsData) { return; }
-    
+const sendData = (
+    socket: any,
+    series: number[],
+    nextx: number,
+    pointsPerUpdate: number,
+    sendEvery: number,
+    stopX: number,
+    positive: boolean,
+    scale: number
+): void => {
+    if (!socket.wantsData) {
+        return;
+    }
+
     console.log(`Creating ${pointsPerUpdate} points for ${series.length} series starting at x=${nextx}`);
 
     const x: number[] = [];
@@ -18,17 +32,24 @@ const sendData = (socket: any, series: number[], nextx: number, pointsPerUpdate:
         x.push(nextx);
         nextx++;
         for (let s = 0; s < series.length; s++) {
-            if (i === 0) { ys[s] = []; }
-            const nextY = series[s] + Math.random() * 10 - 5;
+            if (i === 0) {
+                ys[s] = [];
+            }
+            let nextY = series[s] + Math.random() * scale - scale / 2;
+            if (positive) {
+                nextY = Math.abs(nextY);
+            }
             ys[s].push(nextY);
             series[s] = nextY;
         }
     }
-    socket.emit("data", {x, ys, sendTime: new Date().getTime()});
-    if (nextx < 1000 * pointsPerUpdate) {
+    socket.emit("data", { x, ys, sendTime: new Date().getTime() });
+    if (nextx < stopX) {
         setTimeout(() => {
-            sendData(socket, series, nextx, pointsPerUpdate, sendEvery);
+            sendData(socket, series, nextx, pointsPerUpdate, sendEvery, stopX, positive, scale);
         }, sendEvery);
+    } else {
+        socket.emit("finished");
     }
 };
 
@@ -47,14 +68,24 @@ export const createSocketServer = (server: http.Server): void => {
         console.log("New user connected, socket.id", socket.id);
 
         socket.on("getData", (message: TSubscription) => {
-            console.log( "subscribe from ", socket.id, message);
+            console.log("subscribe from ", socket.id, message);
+            // @ts-ignore
             socket.wantsData = true;
-            const series: number[] = new Array(message.seriesCount).fill(0);
-            sendData(socket, series, 0, message.pointsPerUpdate, message.sendEvery);
+            sendData(
+                socket,
+                message.series,
+                message.startX,
+                message.pointsPerUpdate,
+                message.sendEvery,
+                message.startX + 1000 * message.pointsPerUpdate,
+                message.positive,
+                message.scale
+            );
         });
 
         // Disconnect
         socket.on("disconnect", () => {
+            // @ts-ignore
             socket.wantsData = false;
             console.log("disconnect, socket.id", socket.id);
         });

@@ -13,6 +13,7 @@ import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier"
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
 import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import {appTheme} from "../../../theme";
 
 const xValues = [1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003];
 const tomatoesData = [7, 30, 27, 24, 21, 15, 17, 26, 22, 28, 21, 22];
@@ -23,7 +24,9 @@ const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Create XAxis, YAxis
     sciChartSurface.xAxes.add(
@@ -35,13 +38,14 @@ const drawExample = async () => {
             minorDelta: 1,
             drawMajorGridLines: false,
             drawMinorGridLines: false,
-            drawMajorBands: false
+            drawMajorBands: false,
+            axisTitle: "Year"
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            growBy: new NumberRange(0, 0.2),
-            labelPrecision: 0
+            labelPrecision: 0,
+            axisTitle: "Produce sold (Tonnes)"
         })
     );
 
@@ -49,25 +53,25 @@ const drawExample = async () => {
     // Notice the stackedGroupId. This defines if series are stacked (same), or grouped side by side (different)
     const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: tomatoesData, dataSeriesName: "Tomato" }),
-        fill: "#dc443f",
-        stroke: "black",
-        strokeThickness: 1,
+        fill: appTheme.VividPink,
+        stroke: appTheme.DarkIndigo,
+        strokeThickness: 2,
         stackedGroupId: "Group0"
     });
 
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: cucumberData, dataSeriesName: "Cucumber" }),
-        fill: "#aad34f",
-        stroke: "black",
-        strokeThickness: 1,
+        fill: appTheme.VividSkyBlue,
+        stroke: appTheme.DarkIndigo,
+        strokeThickness: 2,
         stackedGroupId: "Group1"
     });
 
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: pepperData, dataSeriesName: "Pepper" }),
-        fill: "#8562b4",
-        stroke: "black",
-        strokeThickness: 1,
+        fill: appTheme.VividOrange,
+        stroke: appTheme.DarkIndigo,
+        strokeThickness: 2,
         stackedGroupId: "Group2"
     });
 

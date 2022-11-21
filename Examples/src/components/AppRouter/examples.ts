@@ -96,6 +96,7 @@ import NonUniformHeatmapChart from "../Examples/Charts2D/BasicChartTypes/NonUnif
 import FeatureAxisTypes from "../Examples/FeaturedApps/FeatureDemos/AxisTypes";
 import SubChartStockCharts from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts";
 import FeatureAxisLayout from "../Examples/FeaturedApps/FeatureDemos/AxisLayout";
+import RealtimeBigDataShowcase from "../Examples/FeaturedApps/ShowCases/RealtimeBigData";
 
 export type TMenuItem = {
     item: {
@@ -269,6 +270,12 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes,
             EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout
+        ]
+    },
+    {
+        item: { id: "featuredApps_Showcases", name: "Showcases" },
+        submenu: [
+            EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata,
         ]
     },
 ];
@@ -547,6 +554,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return FeatureAxisTypes;
         case EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout.id:
             return FeatureAxisLayout;
+        case EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata.id:
+            return RealtimeBigDataShowcase;
         case EXAMPLES_PAGES.builderApi_simplechart.id:
             return BuilderSimpleChart;
         case EXAMPLES_PAGES.builderApi_fullchart.id:

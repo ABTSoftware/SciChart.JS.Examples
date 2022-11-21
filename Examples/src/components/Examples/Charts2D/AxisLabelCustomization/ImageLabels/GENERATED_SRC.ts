@@ -1,7 +1,6 @@
 export const code = `import * as React from "react";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { TTextStyle } from "scichart/Charting/Visuals/Axis/AxisCore";
-import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
@@ -10,40 +9,93 @@ import { EAutoRange } from "scichart/types/AutoRange";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { createImagesArrayAsync } from "scichart/utils/imageUtil";
 import classes from "../../../Examples.module.scss";
-import { EmojiPaletteProvider } from "../MultiLineLabels";
-import emojiUrl1 from "./emojies/e1-face-with-tears-of-joy.png";
-import emojiUrl10 from "./emojies/e10-smiling-face-with-smiling-eyes.png";
-import emojiUrl2 from "./emojies/e2-loudly-crying-face.png";
-import emojiUrl3 from "./emojies/e3-pleading-face.png";
-import emojiUrl4 from "./emojies/e4-red-heart_2764.png";
-import emojiUrl5 from "./emojies/e5-rolling-on-the-floor-laughing.png";
-import emojiUrl6 from "./emojies/e6-sparkles.png";
-import emojiUrl7 from "./emojies/e7-smiling-face-with-heart-eyes.png";
-import emojiUrl8 from "./emojies/e8-folded-hands.png";
-import emojiUrl9 from "./emojies/e9-smiling-face-with-hearts.png";
+import appleLogo from "./images/apple.png";
+import samsungLogo from "./images/samsung.png";
+import xiaomiLogo from "./images/xiaomi.png";
+import huaweiLogo from "./images/Huawei.png";
+import oppoLogo from "./images/oppo.png";
+import vivoLogo from "./images/vivo.png";
+import realmeLogo from "./images/realme.png";
+import motorolaLogo from "./images/motorola.png";
+import unknownLogo from "./images/question.png";
+import lgLogo from "./images/Lg.png";
+import oneplusLogo from "./images/oneplus.png";
+import tecnoLogo from "./images/tecno.png";
+import infinixLogo from "./images/infinix.png";
+import googleLogo from "./images/google.png";
+import nokiaLogo from "./images/nokia.png";
+import {
+    EFillPaletteMode,
+    EStrokePaletteMode, IFillPaletteProvider,
+    IStrokePaletteProvider
+} from "scichart/Charting/Model/IPaletteProvider";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
+import {appTheme} from "../../../theme";
+import {PaletteFactory} from "scichart/Charting/Model/PaletteFactory";
+import {GradientParams} from "scichart/Core/GradientParams";
+import {Point} from "scichart/Core/Point";
+import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    const xAxis = new CategoryAxis(wasmContext);
+
+    // Dataset = 'percentage market share of phones, 2022'
+    const dataset = [
+        { name: "Apple", percent: 28.41 },
+        { name: "Samsung", percent: 28.21 },
+        { name: "Xiaomi", percent: 12.73 },
+        { name: "Huawei", percent: 5.27 },
+        { name: "Oppo", percent: 5.53 },
+        { name: "Vivo", percent: 4.31 },
+        { name: "Realme", percent: 3.16 },
+        { name: "Motorola", percent: 2.33 },
+        { name: "Unknown", percent: 2.19 },
+        { name: "LG", percent: 0.85 },
+        { name: "OnePlus", percent: 1.11 },
+        { name: "Tecno", percent: 1.09 },
+        { name: "Infinix", percent: 0.96 },
+        { name: "Google", percent: 0.77 },
+        { name: "Nokia", percent: 0.45 },
+    ];
+    // Create the SciChartSurface with theme
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+
+    const xAxis = new NumericAxis(wasmContext, {
+        // Ensure there can be 1 label per item in the dataset.
+        // Also see major/minor delta in the docs
+        maxAutoTicks: 15,
+        axisTitle: "Mobile phone manufacturer",
+    });
     // We need the data value as plain text
     xAxis.labelProvider.numericFormat = ENumericFormat.NoFormat;
 
     // SciChart utility function to create HtmlImage elements from urls
     const emojies = await createImagesArrayAsync([
-        emojiUrl1,
-        emojiUrl2,
-        emojiUrl3,
-        emojiUrl4,
-        emojiUrl5,
-        emojiUrl6,
-        emojiUrl7,
-        emojiUrl8,
-        emojiUrl9,
-        emojiUrl10
+        appleLogo,
+        samsungLogo,
+        xiaomiLogo,
+        huaweiLogo,
+        oppoLogo,
+        vivoLogo,
+        realmeLogo,
+        motorolaLogo,
+        unknownLogo,
+        lgLogo,
+        oneplusLogo,
+        tecnoLogo,
+        infinixLogo,
+        googleLogo,
+        nokiaLogo
     ]);
 
+    // Override labelProvider.getLabelTexture() to return animage
     const getLabelTexture = (
         labelText: string,
         textureManager: TextureManager,
@@ -72,22 +124,59 @@ const drawExample = async () => {
 
     sciChartSurface.xAxes.add(xAxis);
 
-    const yAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
-    // Pass array to axisTitle to make it multiline
-    yAxis.axisTitle = ["Number of tweets that contained", "at least one emoji per ten thousand tweets"];
-    yAxis.axisTitleStyle.fontSize = 14;
-    sciChartSurface.yAxes.add(yAxis);
+    // Create a Y-Axis with standard properties
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        autoRange: EAutoRange.Always,
+        axisTitle: "Market Share (%)",
+        growBy: new NumberRange(0, 0.1),
+        labelPostfix: " %"
+    }));
 
-    const columnSeries = new FastColumnRenderableSeries(wasmContext, {
+    // Add a column series.
+    sciChartSurface.renderableSeries.add(new FastColumnRenderableSeries(wasmContext, {
+        // Name index to xvalue for category axis
+        // Map percentage to yvalue
+        // store the manufacturer name in the metadata (used to generate colors)
+        dataSeries: new XyDataSeries(wasmContext, {
+            xValues: dataset.map((row, index) => index),
+            yValues: dataset.map(row => row.percent),
+        }),
         strokeThickness: 0,
+        // // Optional datalabels on series. To enable set a style and position
+        // dataLabels: {
+        //     horizontalTextPosition: EHorizontalTextPosition.Center,
+        //     verticalTextPosition: EVerticalTextPosition.Top,
+        //     style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0,0,20,0) },
+        //     color: appTheme.ForegroundColor,
+        // },
+        // each column occupies 50% of available space
         dataPointWidth: 0.5,
-        paletteProvider: new EmojiPaletteProvider()
-    });
-    sciChartSurface.renderableSeries.add(columnSeries);
+        // add a gradient fill in X (why not?)
+        paletteProvider: PaletteFactory.createGradient(wasmContext, new GradientParams(new Point(0,0), new Point(1,1), [
+            {offset: 0, color: appTheme.VividPink },
+            {offset: 0.2, color: appTheme.VividOrange},
+            {offset: 0.3, color: appTheme.MutedRed},
+            {offset: 0.5, color: appTheme.VividGreen},
+            {offset: 0.7, color: appTheme.VividSkyBlue},
+            {offset: 0.9, color: appTheme.Indigo},
+            {offset: 1, color: appTheme.DarkIndigo},
+        ]), { enableFill: true, enableStroke: true }),
+        // Bit more eye candy ;)
+        animation: new WaveAnimation({ duration: 1000 })
+    }));
 
-    const dataSeries = new XyDataSeries(wasmContext);
-    dataSeries.appendRange([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [220, 170, 105, 85, 80, 75, 60, 50, 45, 45]);
-    columnSeries.dataSeries = dataSeries;
+    // Add title annotation
+    sciChartSurface.annotations.add(new TextAnnotation({
+        text: "Mobile Phone manufacturer market share (2022)",
+        fontSize: 20,
+        textColor: appTheme.ForegroundColor,
+        x1: 0.5,
+        y1: 0,
+        opacity: 0.77,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+    }));
 
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
@@ -107,5 +196,47 @@ export default function ImageLabels() {
     }, []);
 
     return <div id={divElementId} className={classes.ChartWrapper} />;
+}
+
+export class EmojiPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
+    public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
+    public readonly fillPaletteMode = EFillPaletteMode.SOLID;
+    private readonly pfYellow = parseColorToUIntArgb("FFCC4D");
+    private readonly pfBlue = parseColorToUIntArgb("5DADEC");
+    private readonly pfOrange = parseColorToUIntArgb("F58E01");
+    private readonly pfRed = parseColorToUIntArgb("DE2A43");
+    private readonly pfPink = parseColorToUIntArgb("FE7891");
+
+    // tslint:disable-next-line:no-empty
+    public onAttached(parentSeries: IRenderableSeries): void {}
+
+    // tslint:disable-next-line:no-empty
+    public onDetached(): void {}
+
+    public overrideFillArgb(xValue: number, yValue: number, index: number): number {
+        if (xValue === 0 || xValue === 4 || xValue === 8) {
+            return this.pfYellow;
+        } else if (xValue === 1 || xValue === 7) {
+            return this.pfBlue;
+        } else if (xValue === 2 || xValue === 5) {
+            return this.pfOrange;
+        } else if (xValue === 3 || xValue === 6) {
+            return this.pfRed;
+        } else if (xValue === 9) {
+            return this.pfPink;
+        } else {
+            return undefined;
+        }
+    }
+
+    public overrideStrokeArgb(
+        xValue: number,
+        yValue: number,
+        index: number,
+        opacity?: number,
+        metadata?: IPointMetadata
+    ): number {
+        return undefined;
+    }
 }
 `;

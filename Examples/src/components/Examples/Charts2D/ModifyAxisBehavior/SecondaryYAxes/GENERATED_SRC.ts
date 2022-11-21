@@ -1,124 +1,117 @@
 export const code = `import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
-import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ENumericFormat } from "scichart/types/NumericFormat";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
+import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {ENumericFormat} from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-import { ELabelAlignment } from "scichart/types/LabelAlignment";
+import {ELabelAlignment} from "scichart/types/LabelAlignment";
+import {appTheme} from "../../../theme";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 
 const divElementId = "chart1";
 
+const ID_Y_AXIS_2 = "yAxis2";
+
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    const ID_Y_AXIS_2 = "yAxis2";
+    // Create the SciChartSurface with theme
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
-    // FIRST CHART
-    const titleStyle1 = {
-        color: "#228B22",
-        fontSize: 30,
-        fontFamily: "Courier New"
-    };
-    const labelStyle1 = {
-        color: "#228B22"
-    };
-    const setXAxis1 = () => {
-        const xAxis = new NumericAxis(wasmContext);
-        xAxis.axisBorder = {
+    // Add a primary X,Y Axis pair
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        axisAlignment: EAxisAlignment.Bottom,
+        axisTitle: "Shared X Axis",
+        axisTitleStyle: {
+            color: appTheme.VividGreen,
+            fontSize: 30,
+        },
+        labelStyle: {
+            color: appTheme.VividGreen
+        },
+        backgroundColor: appTheme.VividGreen + "22",
+        axisBorder: {
             borderTop: 1,
-            color: "#EEEEEE"
-        };
-        xAxis.axisAlignment = EAxisAlignment.Bottom;
-        xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
-        xAxis.labelProvider.precision = 0;
-        sciChartSurface.xAxes.add(xAxis);
-    };
-    setXAxis1();
+            color: appTheme.VividGreen
+        },
+    }));
 
-    const setYAxis1 = () => {
-        const yAxis = new NumericAxis(wasmContext);
-        yAxis.axisAlignment = EAxisAlignment.Left;
-        yAxis.axisTitle = "Left Axis";
-        yAxis.axisTitleStyle = titleStyle1;
-        yAxis.labelStyle = labelStyle1;
-        yAxis.axisBorder = {
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        axisAlignment: EAxisAlignment.Left,
+        axisTitle: "Y Axis Left",
+        axisTitleStyle: {
+            color: appTheme.VividSkyBlue,
+            fontSize: 30,
+        },
+        labelStyle: {
+            color: appTheme.VividSkyBlue
+        },
+        growBy: new NumberRange(0.2, 0.2),
+        backgroundColor: appTheme.VividSkyBlue + "22",
+        axisBorder: {
             borderRight: 1,
-            color: "#228B22"
-        };
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
-        yAxis.labelProvider.precision = 0;
-        sciChartSurface.yAxes.add(yAxis);
-    };
-    setYAxis1();
-
-    const setSeries1 = () => {
-        const lineData = new XyDataSeries(wasmContext);
-        const iStep = 20;
-        const fAmpltude = 100.0;
-        const fFrequency = 1.0;
-        for (let i = 0; i < 500 + iStep; i += iStep) {
-            lineData.append(i, Math.sin((fFrequency * i * Math.PI) / 180.0) * fAmpltude);
+            color: appTheme.VividSkyBlue
         }
-        const lineSeries = new FastLineRenderableSeries(wasmContext, {
-            stroke: "#228B22",
-            strokeThickness: 3,
-            dataSeries: lineData
-        });
-        sciChartSurface.renderableSeries.add(lineSeries);
-    };
-    setSeries1();
+    }));
 
-    // SECOND CHART
-    const titleStyle2 = {
-        color: "#368BC1",
-        fontSize: 30,
-        fontFamily: "Courier New"
-    };
-    const labelStyle2 = {
-        color: "#368BC1",
-        alignment: ELabelAlignment.Right
-    };
+    // generate some data
+    let data = new RandomWalkGenerator().Seed(7331).getRandomWalkSeries(100);
 
-    const setYAxis2 = () => {
-        const yAxis = new NumericAxis(wasmContext);
-        yAxis.id = ID_Y_AXIS_2;
-        yAxis.axisTitleStyle = titleStyle2;
-        yAxis.labelStyle = labelStyle2;
-        yAxis.axisAlignment = EAxisAlignment.Right;
-        yAxis.axisTitle = "Right Axis";
-        yAxis.axisBorder = {
+    // Add the first line series on the primary X,Y axis
+    // This occurs be default as FastLineRenderableSeries XAxisId and YAxisId are set to a default value
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        stroke: appTheme.VividSkyBlue,
+        strokeThickness: 3,
+        dataSeries: new XyDataSeries(wasmContext, {xValues: data.xValues, yValues: data.yValues}),
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 5, height: 5, fill: appTheme.VividGreen, stroke: appTheme.VividGreen })
+    }));
+
+    // Add a secondary Y Axis
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        id: ID_Y_AXIS_2,
+        axisTitleStyle: {
+            color: appTheme.VividOrange,
+            fontSize: 30,
+        },
+        labelStyle: {
+            color: appTheme.VividOrange,
+            alignment: ELabelAlignment.Right
+        },
+        axisAlignment:  EAxisAlignment.Right,
+        axisTitle:  "Y Axis Right",
+        labelFormat: ENumericFormat.Decimal,
+        labelPrecision: 2,
+        growBy: new NumberRange(0.2, 0.2),
+        backgroundColor: appTheme.VividOrange + "22",
+        axisBorder: {
             borderLeft: 1,
-            color: "#368BC1"
-        };
-        yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
-        yAxis.labelProvider.precision = 2;
-        sciChartSurface.yAxes.add(yAxis);
-    };
-    setYAxis2();
-
-    const setSeries2 = () => {
-        const lineData = new XyDataSeries(wasmContext);
-        const iStep = 10;
-        const fAmpltude = 0.1;
-        const fFrequency = 1.5;
-        for (let i = 0; i < 500 + iStep; i += iStep) {
-            lineData.append(i, Math.sin((fFrequency * (i - 100) * Math.PI) / 180.0) * fAmpltude);
+            color: appTheme.VividOrange
         }
-        const lineSeries = new FastLineRenderableSeries(wasmContext, {
-            stroke: "#368BC1",
-            yAxisId: ID_Y_AXIS_2,
-            strokeThickness: 3,
-            dataSeries: lineData
-        });
-        sciChartSurface.renderableSeries.add(lineSeries);
-    };
-    setSeries2();
+    }));
+
+    // Create some data & series for that axis
+    data = new RandomWalkGenerator().Seed(1209).getRandomWalkSeries(100);
+
+    // The second line series we specify X/Y axis ids to bind this to the correct axis
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        stroke: appTheme.VividOrange,
+        strokeThickness: 3,
+        dataSeries: new XyDataSeries(wasmContext, {xValues: data.xValues, yValues: data.yValues}),
+        yAxisId: ID_Y_AXIS_2,
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 5, height: 5, fill: appTheme.VividOrange, stroke: appTheme.VividOrange })
+    }));
 
     // Optional: Add some interactivity modifiers to enable zooming and panning
     sciChartSurface.chartModifiers.add(
@@ -128,6 +121,42 @@ const drawExample = async () => {
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier()
     );
+
+    // Add a title over the chart with information
+    sciChartSurface.annotations.add(new TextAnnotation({
+        x1: 0,
+        y1: 0,
+        yCoordShift: 20,
+        xCoordShift: 20,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        fontSize: 18,
+        opacity: .55,
+        textColor: appTheme.ForegroundColor,
+        text: "SciChart.js supports unlimited X,Y axis. Drag an axis to see the series scale"
+    }));
+
+    sciChartSurface.annotations.add(new TextAnnotation({
+        x1: 30,
+        y1: 1.1,
+        fontSize: 18,
+        textColor: appTheme.VividSkyBlue,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
+        text: "Blue series is bound to the Shared X-Axis, and Left Y-Axis",
+    }));
+
+    // Note annotations need X,Y Axis ID as well in multi-axis scenarios
+    sciChartSurface.annotations.add(new TextAnnotation({
+        x1: 26,
+        y1: -1,
+        fontSize: 18,
+        textColor: appTheme.VividOrange,
+        yAxisId: ID_Y_AXIS_2,
+        text: "Orange series is bound to the Shared X-Axis, and Right Y-Axis",
+    }));
 
     return { sciChartSurface, wasmContext };
 };

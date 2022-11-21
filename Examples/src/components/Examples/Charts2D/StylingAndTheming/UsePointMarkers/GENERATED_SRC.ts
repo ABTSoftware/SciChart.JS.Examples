@@ -1,22 +1,25 @@
 export const code = `import * as React from "react";
-import { TSciChart } from "scichart/types/TSciChart";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { SquarePointMarker } from "scichart/Charting/Visuals/PointMarkers/SquarePointMarker";
-import { CrossPointMarker } from "scichart/Charting/Visuals/PointMarkers/CrossPointMarker";
-import { SpritePointMarker } from "scichart/Charting/Visuals/PointMarkers/SpritePointMarker";
-import { TrianglePointMarker } from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
-import { createImageAsync } from "scichart/utils/imageUtil";
+import {TSciChart} from "scichart/types/TSciChart";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {SquarePointMarker} from "scichart/Charting/Visuals/PointMarkers/SquarePointMarker";
+import {CrossPointMarker} from "scichart/Charting/Visuals/PointMarkers/CrossPointMarker";
+import {SpritePointMarker} from "scichart/Charting/Visuals/PointMarkers/SpritePointMarker";
+import {TrianglePointMarker} from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
+import {createImageAsync} from "scichart/utils/imageUtil";
 import customPointImage from "./img/CustomMarkerImage.png";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
+import {ELegendOrientation, ELegendPlacement} from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 
 import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
@@ -49,23 +52,26 @@ function createData(wasmContext: TSciChart) {
 }
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId,{
+        theme: appTheme.SciChartJsTheme
+    });
 
     const dataSeriesArr = createData(wasmContext);
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
 
     // Add a line series with EllipsePointMarker
     sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "LightSteelBlue",
+        new SplineLineRenderableSeries(wasmContext, {
+            stroke: appTheme.VividSkyBlue,
+            strokeThickness: 3,
             pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 9,
-                height: 9,
+                width: 13,
+                height: 13,
                 strokeThickness: 2,
-                fill: "#0077FF99",
-                stroke: "LightSteelBlue"
+                fill: appTheme.VividSkyBlue,
+                stroke: appTheme.ForegroundColor
             }),
             dataSeries: dataSeriesArr[0]
         })
@@ -73,14 +79,15 @@ const drawExample = async () => {
 
     // Add a scatter series with SquarePointMarker
     sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "Red",
+        new SplineLineRenderableSeries(wasmContext, {
+            stroke: appTheme.VividPink,
+            strokeThickness: 3,
             pointMarker: new SquarePointMarker(wasmContext, {
-                width: 9,
-                height: 9,
+                width: 11,
+                height: 11,
                 strokeThickness: 2,
-                fill: "#FF000099",
-                stroke: "Red"
+                fill: appTheme.MutedPink,
+                stroke: appTheme.VividPink
             }),
             dataSeries: dataSeriesArr[1]
         })
@@ -88,14 +95,15 @@ const drawExample = async () => {
 
     // Add a scatter series with TrianglePointMarker
     sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "#FF6600",
+        new SplineLineRenderableSeries(wasmContext, {
+            stroke:  appTheme.VividOrange,
+            strokeThickness: 3,
             pointMarker: new TrianglePointMarker(wasmContext, {
-                width: 9,
-                height: 9,
+                width: 13,
+                height: 13,
                 strokeThickness: 2,
-                fill: "#FFDD00",
-                stroke: "#FF6600"
+                fill: appTheme.VividOrange,
+                stroke: appTheme.VividOrange,
             }),
             dataSeries: dataSeriesArr[2]
         })
@@ -103,13 +111,14 @@ const drawExample = async () => {
 
     // Add a scatter series with CrossPointMarker
     sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "#FF00FF",
+        new SplineLineRenderableSeries(wasmContext, {
+            stroke: appTheme.VividPurple,
+            strokeThickness: 3,
             pointMarker: new CrossPointMarker(wasmContext, {
-                width: 9,
-                height: 9,
-                strokeThickness: 2,
-                stroke: "#FF00FF"
+                width: 13,
+                height: 13,
+                strokeThickness: 3,
+                stroke: appTheme.VividPurple,
             }),
             dataSeries: dataSeriesArr[3]
         })
@@ -119,8 +128,9 @@ const drawExample = async () => {
     const imageBitmap = await createImageAsync(customPointImage);
 
     sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            stroke: "#F5DEB3",
+        new SplineLineRenderableSeries(wasmContext, {
+            stroke: appTheme.MutedOrange,
+            strokeThickness: 2,
             pointMarker: new SpritePointMarker(wasmContext, {
                 image: imageBitmap
             }),
@@ -132,6 +142,11 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
 
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(new LegendModifier({
+        orientation: ELegendOrientation.Horizontal,
+        placement: ELegendPlacement.TopLeft
+    }));
+
     sciChartSurface.zoomExtents();
 
     return { sciChartSurface, wasmContext };

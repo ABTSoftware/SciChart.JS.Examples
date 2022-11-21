@@ -630,6 +630,12 @@ export const ExampleStrings = {
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
     imgTenorCurves: "images/javascript-3d-surface-mesh-tenor-curve-example.jpg",
 
+    // Showcases RealtimeBigData Demo
+    urlRealtimeBigDataJavaScriptChartDemo: "/javascript-chart-realtime-bigdata-demo",
+    urlTitleRealtimeBigDataJavaScriptChartDemo: "JavaScript Chart Realtime Big Data Demo",
+    titleRealtimeBigDataJavaScriptChartDemo: "Realtime Big Data Showcase",
+    imgRealtimeBigDataJavaScriptChart: "images/javascript-chart-realtime-bigdata-demo.jpg",
+
     // BuilderApi, Simple Chart
     urlBuilderSimpleChart: "/javascript-builder-simple",
     titleBuilderSimpleChart: "Simple Chart using Builder API",

@@ -1,11 +1,9 @@
-export const code = `import Button from "@material-ui/core/Button";
-import * as React from "react";
+export const code = `import * as React from "react";
 import { SciChartSurface } from "scichart";
 import { BaseDataSeries } from "scichart/Charting/Model/BaseDataSeries";
 import { XyCustomFilter } from "scichart/Charting/Model/Filters/XyCustomFilter";
 import { XyFilterBase } from "scichart/Charting/Model/Filters/XyFilterBase";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
@@ -15,6 +13,9 @@ import { EAutoRange } from "scichart/types/AutoRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import classes from "../../../Examples.module.scss";
 import { ELabelAlignment } from "scichart/types/LabelAlignment";
+import {appTheme} from "../../../theme";
+import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 
 export const divElementId = "chart";
 let timerId: NodeJS.Timeout;
@@ -24,8 +25,8 @@ class AggregationFilter extends XyFilterBase {
     private bins: Map<number, number> = new Map<number, number>();
     private binWidthProperty = 1;
 
-    constructor(originalSeries: BaseDataSeries, binWidth: number) {
-        super(originalSeries);
+    constructor(originalSeries: BaseDataSeries, binWidth: number, dataSeriesName: string) {
+        super(originalSeries, { dataSeriesName });
         this.binWidthProperty = binWidth;
         this.filterAll();
     }
@@ -93,10 +94,11 @@ export const drawExample = async () => {
     // Define some constants
     const numberOfPointsPerTimerTick = 500; // 1,000 points every timer tick
     const timerInterval = 10; // timer tick every 10 milliseconds
-    const maxPoints = 100000; // max points for a single series before the demo stops
+    const maxPoints = 100_000; // max points for a single series before the demo stops
 
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    sciChartSurface.applyTheme(new SciChartJSLightTheme());
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
     const rawXAxis = new NumericAxis(wasmContext, { id: "rawX", isVisible: false, autoRange: EAutoRange.Always });
     const aggXAxis = new NumericAxis(wasmContext, {
         id: "aggX",
@@ -108,12 +110,13 @@ export const drawExample = async () => {
 
     const rawYAxis = new NumericAxis(wasmContext, {
         autoRange: EAutoRange.Always,
+        axisTitle: "Raw Data",
         id: "rawY",
         labelPrecision: 0,
         labelStyle: { alignment: ELabelAlignment.Right }
     });
     const aggYAxis = new NumericAxis(wasmContext, {
-        axisTitle: "Frequency",
+        axisTitle: "Frequency (Aggregated)",
         id: "aggY",
         autoRange: EAutoRange.Always,
         axisAlignment: EAxisAlignment.Left,
@@ -122,47 +125,57 @@ export const drawExample = async () => {
     });
     sciChartSurface.yAxes.add(aggYAxis, rawYAxis);
 
-    const dataSeries = new XyDataSeries(wasmContext);
+    const dataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "Original Data" });
 
     // Create a simple custom filter.  We just have to specify the filter function and this will be applied efficiently to data changes
-    const gaussFilter = new XyCustomFilter(dataSeries);
+    const gaussFilter = new XyCustomFilter(dataSeries, { dataSeriesName: "Custom Filter: Original x Gaussian Random"});
     // This function exploits the central limit theorem to approximate a normal distribution
     const gaussianRand = () => {
         let rand = 0;
         for (let i = 0; i < 6; i += 1) {
-            rand += Math.random();
+            rand += Math.random() + 0.5;
         }
         return rand / 6;
     };
     gaussFilter.filterFunction = (i, y) => y * gaussianRand();
 
-    // Create a scatter series to show the randomised data
-    const pointSeries = new XyScatterRenderableSeries(wasmContext, {
+    // Add the randomised data using a custom filter which takes original data * random value
+    sciChartSurface.renderableSeries.add(new XyScatterRenderableSeries(wasmContext, {
         pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 1,
-            height: 1,
+            width: 3,
+            height: 3,
             strokeThickness: 0,
-            fill: "#5555ff"
+            fill: appTheme.VividOrange,
+            opacity: 0.77,
         }),
-        opacity: 0.2,
+        stroke: appTheme.VividOrange,
         dataSeries: gaussFilter,
         xAxisId: "rawX",
         yAxisId: "rawY"
-    });
+    }));
+
+    // Add the original data to the chart
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries,
+        stroke: appTheme.VividTeal,
+        strokeThickness: 3,
+        xAxisId: "rawX",
+        yAxisId: "rawY"
+    }));
 
     // Pass the randomised data into the aggregation filter.
-    const aggFilter = new AggregationFilter(gaussFilter, 5);
-    const colSeries = new FastColumnRenderableSeries(wasmContext, {
+    const aggFilter = new AggregationFilter(gaussFilter, 5, "Custom Filter: Aggregation");
+
+    // Plot the aggregation filter as a column chart
+    sciChartSurface.renderableSeries.add(new FastColumnRenderableSeries(wasmContext, {
         id: "col",
-        fill: "#cc6600",
-        stroke: "#cc9933",
-        opacity: 0.5,
+        fill: appTheme.VividSkyBlue + "33",
+        stroke: appTheme.MutedSkyBlue,
         dataSeries: aggFilter,
         xAxisId: "aggX",
-        yAxisId: "aggY"
-    });
-
-    sciChartSurface.renderableSeries.add(pointSeries, colSeries);
+        yAxisId: "aggY",
+        cornerRadius: 10,
+    }));
 
     // Function called when the user clicks stopDemo button
     const stopDemo = () => {
@@ -196,6 +209,8 @@ export const drawExample = async () => {
         timerId = setTimeout(updateFunc, timerInterval);
     };
 
+    sciChartSurface.chartModifiers.add(new LegendModifier());
+
     return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo } };
 };
 
@@ -210,7 +225,7 @@ export default function CustomFilters() {
             const res = await drawExample();
             scs = res.sciChartSurface;
             setControls(res.controls);
-            autoStartTimerId = setTimeout(res.controls.startDemo, 1000);
+            autoStartTimerId = setTimeout(res.controls.startDemo, 0);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
@@ -222,14 +237,7 @@ export default function CustomFilters() {
     }, []);
 
     return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
-            <div className={classes.ButtonsWrapper}>
-                <Button onClick={controls.startDemo}>Start</Button>
-
-                <Button onClick={controls.stopDemo}>Stop</Button>
-            </div>
-        </div>
+        <div id={divElementId} className={classes.ChartWrapper} />
     );
 }
 `;

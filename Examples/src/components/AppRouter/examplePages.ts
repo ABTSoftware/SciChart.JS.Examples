@@ -85,6 +85,7 @@ import { nonUniformHeatmapExampleInfo } from "../Examples/Charts2D/BasicChartTyp
 import { axisTypesExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisTypes/exampleInfo";
 import { subChartStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts/exampleInfo";
 import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisLayout/exampleInfo";
+import { realtimeBigDataDemoExampleInfo } from "../Examples/FeaturedApps/ShowCases/RealtimeBigData/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -443,6 +444,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_scientificCharts_TenorCurvesDemo: {
         id: "featuredApps_scientificCharts_TenorCurvesDemo",
         ...tenorCurvesExampleInfo
+    },
+    featuredApps_showcases_realtimebigdata : {
+        id: "featuredApps_showcases_realtimebigdata",
+        ...realtimeBigDataDemoExampleInfo
     },
     builderApi_simplechart: {
         id: "builderApi_simplechart",

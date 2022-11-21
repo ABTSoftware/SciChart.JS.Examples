@@ -7,11 +7,15 @@ import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { getVarianceData } from "./data";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import { appTheme } from "../../../theme";
+import { SplineLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import { EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
+import { SplineBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineBandRenderableSeries";
 
 // tslint:disable:max-line-length
 
@@ -20,7 +24,9 @@ const animation = new WaveAnimation({ duration: 700, fadeEffect: true });
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Add an XAxis, YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Date_DDMMYYYY }));
@@ -66,38 +72,41 @@ const drawExample = async () => {
     );
 
     // Add a line series with the Xy data (the actual data)
+    // Note use FastLineRenderableSeries for non-spline version
     sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
+        new SplineLineRenderableSeries(wasmContext, {
+            strokeThickness: 2,
             dataSeries: actualDataSeries,
-            stroke: "Red",
+            stroke: appTheme.VividPink,
             animation
         })
     );
 
     // Add band series with progressively higher opacity for the fan variance data
+    // Note use FastBandRenderableSeries for non-spline version
     sciChartSurface.renderableSeries.add(
-        new FastBandRenderableSeries(wasmContext, {
+        new SplineBandRenderableSeries(wasmContext, {
             dataSeries: variance3DataSeries,
             opacity: 0.15,
-            fill: "Red",
+            fill: appTheme.VividPink,
             strokeY1: "#00000000",
             animation
         })
     );
     sciChartSurface.renderableSeries.add(
-        new FastBandRenderableSeries(wasmContext, {
+        new SplineBandRenderableSeries(wasmContext, {
             dataSeries: variance2DataSeries,
             opacity: 0.33,
-            fill: "Red",
+            fill: appTheme.VividPink,
             strokeY1: "#00000000",
             animation
         })
     );
     sciChartSurface.renderableSeries.add(
-        new FastBandRenderableSeries(wasmContext, {
+        new SplineBandRenderableSeries(wasmContext, {
             dataSeries: variance1DataSeries,
             opacity: 0.5,
-            fill: "Red",
+            fill: appTheme.VividPink,
             strokeY1: "#00000000",
             animation
         })
@@ -109,6 +118,31 @@ const drawExample = async () => {
         new ZoomPanModifier(),
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier()
+    );
+
+    // Optional: Add some annotations (text) to show detail
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            x1: varianceData[0].date,
+            y1: varianceData[0].actual,
+            verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
+            yCoordShift: -50,
+            text: "Actual data",
+            opacity: 0.45,
+            textColor: appTheme.ForegroundColor
+        })
+    );
+
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            x1: varianceData[5].date,
+            y1: varianceData[5].actual,
+            text: "Forecast Variance",
+            verticalAnchorPoint: EVerticalAnchorPoint.Top,
+            yCoordShift: 50,
+            opacity: 0.45,
+            textColor: appTheme.ForegroundColor
+        })
     );
 
     sciChartSurface.zoomExtents();

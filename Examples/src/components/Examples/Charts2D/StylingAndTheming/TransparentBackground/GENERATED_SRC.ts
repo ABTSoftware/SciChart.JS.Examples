@@ -11,16 +11,13 @@ import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSe
 import {XyzDataSeries} from "scichart/Charting/Model/XyzDataSeries";
 import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {NumberRange} from "scichart/Core/NumberRange";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
 import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
-import {FadeAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
-import {duration} from "@material-ui/core";
 import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
-import {ShadowEffect} from "scichart/Charting/Visuals/RenderableSeries/ShadowEffect";
-import {Point} from "scichart/Core/Point";
+import {ELabelProviderType} from "scichart/types/LabelProviderType";
+import {appTheme} from "../../../theme";
 
 const divElementId = "chart";
 
@@ -34,9 +31,10 @@ const drawExample = async () => {
 
     const axisOptionsCommon = {
         axisBandsFill: "#33333311",
-        drawMinorGridLines: false,
-        majorGridLineStyle: {color: "#FFF"},
-        labelStyle: {color: "#EEE"}
+        majorGridLineStyle: {color: "#FFFFFF55"},
+        minorGridLineStyle: {color: "#FFFFFF22"},
+        labelStyle: {color: "#EEE"},
+        axisTitleStyle: {color: "#EEE"},
     };
 
     // Add X,Y axis. Note that Axis.axisBandsFill must be modified to show the background through.
@@ -45,11 +43,21 @@ const drawExample = async () => {
         ...axisOptionsCommon,
         axisBorder: {borderTop: 1, color: "#ccc"},
         growBy: new NumberRange(0.1, 0.1),
+        axisTitle: "Quarter (Year)",
+        labelProvider: {
+            type: ELabelProviderType.Text,
+            options: {
+                labels: [
+                    "Q1 (2020)", "Q1 (2021)", "Q1 (2022)", "Q1 (2023)",
+                ]
+            }
+        }
     }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
         ...axisOptionsCommon,
         axisBorder: {borderLeft: 1, color: "#ccc"},
         growBy: new NumberRange(0.0, 0.1),
+        axisTitle: "Sales \$(Billions)"
     }));
 
     // Add some series
@@ -61,7 +69,7 @@ const drawExample = async () => {
             xValues: [0, 1, 2, 3],
             yValues: [2, 3.5, 3.0, 5]
         }),
-        stroke: "#FFF",
+        stroke: appTheme.VividSkyBlue,
         strokeThickness: 3,
         animation: new SweepAnimation({ duration: 500 })
     }));
@@ -77,8 +85,8 @@ const drawExample = async () => {
             width: 64,
             height: 64,
             strokeThickness: 2,
-            stroke: "#FFFFFF77",
-            fill: "#ffffff33"
+            stroke: appTheme.PaleSkyBlue,
+            fill: appTheme.VividSkyBlue + "33",
         }),
         animation: new SweepAnimation({ delay: 200, duration: 500, fadeEffect: true }),
     }));
@@ -89,10 +97,11 @@ const drawExample = async () => {
             xValues: [0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3],
             yValues: [0.8, 1, 1, 1.1, 1.2, 5.2, 2.8, 2.7, 2.6, 2.6, 2.5, 2.5, 2.5, 2.6, 3.2, 4],
         }),
-        fill: "#FFFFFF33",
-        stroke: "#EEEEEE77",
+        stroke: appTheme.MutedSkyBlue,
+        fill: appTheme.VividSkyBlue + "33",
         strokeThickness: 2,
         dataPointWidth: 0.57,
+        cornerRadius: 10,
         animation: new WaveAnimation({ delay: 400, duration: 600, fadeEffect: true })
     }));
 
@@ -101,6 +110,8 @@ const drawExample = async () => {
         new ZoomPanModifier(),
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier());
+
+    sciChartSurface.zoomExtents();
 
     return {sciChartSurface, wasmContext};
 };
@@ -117,7 +128,7 @@ export default function TransparentBackground() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return (<div style={{backgroundImage: \`url(\${BackgroundImage})\`}}>
+    return (<div style={{backgroundImage: \`url(\${BackgroundImage})\`, backgroundSize: "100% 100%"}}>
         <div id={divElementId} className={classes.ChartWrapper}/>
     </div>);
 }

@@ -15,47 +15,43 @@ import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/Annotatio
 import { ELabelPlacement } from "scichart/types/LabelPlacement";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import classes from "../../../../Examples/Examples.module.scss";
-import scichartImage from "./scichart-logo-white.png";
-import customPointImage from "./CustomMarkerImage.png";
-import { createImageAsync } from "scichart/utils/imageUtil";
-import { AxisMarkerAnnotation } from "scichart/Charting/Visuals/Annotations/AxisMarkerAnnotation";
+import {appTheme} from "../../../theme";
+import SciChartImage from "./scichart-logo-white.jpg";
 
 const divElementId = "chart";
 
+const getImageAnnotation = (x1: number, y1: number, image: any, width: number, height: number): CustomAnnotation => {
+    return new CustomAnnotation({
+        x1,
+        y1,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        svgString: \`<svg width="\${width}" height="\${height}" xmlns="http://www.w3.org/2000/svg" style="background-color:transparent">
+                        <image href="\${image}" height="\${height}" width="\${width}"/>
+                    </svg>\`
+    });
+};
+
 export const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
-    const xAxis = new NumericAxis(wasmContext);
-    xAxis.visibleRange = new NumberRange(0, 10);
+    // Create an X,Y axis
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        visibleRange: new NumberRange(0, 10)
+    }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        visibleRange: new NumberRange(0, 10)
+    }));
 
-    sciChartSurface.xAxes.add(xAxis);
+    const textColor = appTheme.ForegroundColor;
 
-    const yAxis = new NumericAxis(wasmContext);
-    yAxis.visibleRange = new NumberRange(0, 10);
-
-    sciChartSurface.yAxes.add(yAxis);
-
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    const customSvgStringSciChart = [
-        ' <svg width="50" height="50"',
-        ' xmlns="http://www.w3.org/2000/svg">',
-        '<rect width="100%" height="100%" style="fill:#39603D">',
-        '<animate attributeName="rx" values="0;25;0"',
-        ' dur="2s" repeatCount="indefinite" color="#ffffff" /></rect></svg>'
-    ].join("");
-    const customSvgString1 = [
-        ' <svg width="200" height="200"',
-        'xmlns="http://www.w3.org/2000/svg" style="background-color:green">',
-        '<image href="',
-        scichartImage,
-        '" height="100" width="200"/>',
-        "</svg>"
-    ].join("");
+    const text1 = new TextAnnotation({ text: "Editable Chart Annotations", fontSize: 24, x1: 0.3, y1: 9.7, textColor });
+    const text2 = new TextAnnotation({ text: "Click, Drag and Resize annotations with the mouse", fontSize: 18, x1: 0.5, y1: 9, textColor });
 
     const horizontalLineAnnotation1 = new HorizontalLineAnnotation({
-        stroke: "#FF6600",
+        stroke: appTheme.VividOrange,
         strokeThickness: 3,
         y1: 5,
         x1: 5,
@@ -64,39 +60,43 @@ export const drawExample = async () => {
         labelValue: "Not Editable"
     });
     const horizontalLineAnnotation2 = new HorizontalLineAnnotation({
-        stroke: "#FF6600",
+        stroke: appTheme.VividSkyBlue,
         strokeThickness: 3,
         y1: 4,
-        x1: 5,
         showLabel: true,
-        labelPlacement: ELabelPlacement.TopLeft,
-        labelValue: "Editable",
+        labelPlacement: ELabelPlacement.TopRight,
+        labelValue: "Draggable HorizontalLineAnnotation",
+        axisLabelFill: appTheme.VividSkyBlue,
+        axisLabelStroke: appTheme.ForegroundColor,
         isEditable: true
     });
 
     const verticalLineAnnotation = new VerticalLineAnnotation({
-        stroke: "#FF6600",
+        stroke: appTheme.VividSkyBlue,
         strokeThickness: 3,
         x1: 9,
-        y1: 3,
         showLabel: true,
+        labelPlacement: ELabelPlacement.TopRight,
+        labelValue: "Draggable VerticalLineAnnotation",
+        axisLabelFill: appTheme.VividSkyBlue,
+        axisLabelStroke: appTheme.ForegroundColor,
         isEditable: true
     });
 
     const lineAnnotation = new LineAnnotation({
-        stroke: "#B73225",
+        stroke: appTheme.VividOrange,
         strokeThickness: 3,
-        x1: 1.0,
-        x2: 4.0,
-        y1: 9.0,
-        y2: 8.0,
+        x1: 5.5,
+        x2: 7.0,
+        y1: 6.0,
+        y2: 9.0,
         isEditable: true
     });
 
     const boxAnnotation = new BoxAnnotation({
-        stroke: "#4DA8DA",
+        stroke: appTheme.VividSkyBlue,
         strokeThickness: 1,
-        fill: "#007CC766",
+        fill: appTheme.VividSkyBlue + "33",
         x1: 1.0,
         x2: 4.0,
         y1: 5.0,
@@ -104,27 +104,8 @@ export const drawExample = async () => {
         isEditable: true
     });
 
-    const customAnnotation = new CustomAnnotation({
-        x1: 7,
-        y1: 7,
-        xCoordShift: 0,
-        yCoordShift: 0,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        svgString: customSvgString1,
-        isEditable: true
-    });
-
-    const customAnnotationSciChart = new CustomAnnotation({
-        x1: 5,
-        y1: 9,
-        xCoordShift: 0,
-        yCoordShift: 0,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        svgString: customSvgStringSciChart,
-        isEditable: true
-    });
+    const imageAnnotation = getImageAnnotation(7, 7, SciChartImage, 241, 62);
+    imageAnnotation.isEditable = true;
 
     const textAnnotation = new TextAnnotation({
         x1: 1,
@@ -133,9 +114,9 @@ export const drawExample = async () => {
         yCoordinateMode: ECoordinateMode.DataValue,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        textColor: "#F1B24A",
+        textColor,
         fontSize: 26,
-        fontFamily: "Times New Roman",
+        fontFamily: "Arial",
         text: "Unmovable text",
         isEditable: false
     });
@@ -147,37 +128,29 @@ export const drawExample = async () => {
         yCoordinateMode: ECoordinateMode.DataValue,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        textColor: "#F1B24A",
+        textColor,
         fontSize: 26,
-        fontFamily: "Times New Roman",
-        text: "SciChart is the best library",
+        fontFamily: "Arial",
+        text: "Moveable TextAnnotation",
         isEditable: true
     });
 
-    const imageBitmap = await createImageAsync(customPointImage);
-    const customAxisMarkerAnnotation = new AxisMarkerAnnotation({
-        color: "#efefef",
-        backgroundColor: "steelblue",
-        formattedValue: "Moveable Axis Marker X",
-        x1: 2.5,
-        isEditable: true,
-        image: imageBitmap
-        // imageWidth: 30,
-        // imageHeight: 30
-    });
-
     sciChartSurface.annotations.add(
+        text1,
+        text2,
         horizontalLineAnnotation1,
         horizontalLineAnnotation2,
         verticalLineAnnotation,
         lineAnnotation,
         boxAnnotation,
-        customAnnotation,
-        customAnnotationSciChart,
+        imageAnnotation,
         textAnnotation,
         textAnnotationSciChart,
-        customAxisMarkerAnnotation
     );
+
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     return { sciChartSurface, wasmContext };
 };

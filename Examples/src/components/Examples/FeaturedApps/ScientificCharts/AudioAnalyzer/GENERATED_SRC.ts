@@ -1,28 +1,47 @@
 export const code = `import * as React from "react";
-import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
-import { UniformHeatmapRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { AudioDataProvider } from "./AudioDataProvider";
-import { Radix2FFT } from "./Radix2FFT";
-import classes from "../../../../Examples/Examples.module.scss";
+import {UniformHeatmapDataSeries} from "scichart/Charting/Model/UniformHeatmapDataSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {HeatmapColorMap} from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
+import {
+    UniformHeatmapRenderableSeries
+} from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
+import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {EAutoRange} from "scichart/types/AutoRange";
+import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import {AudioDataProvider} from "./AudioDataProvider";
+import {Radix2FFT} from "./Radix2FFT";
+import {appTheme} from "../../../theme";
+import {
+    LogarithmicAxis
+} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
+import {ENumericFormat} from "scichart/types/NumericFormat";
+import {GradientParams} from "scichart/Core/GradientParams";
+import {PaletteFactory} from "scichart/Charting/Model/PaletteFactory";
+import {Point} from "scichart/Core/Point";
+import {
+    FastMountainRenderableSeries
+} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import {
+    EllipsePointMarker
+} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import classes from "../../../Examples.module.scss";
+import {
+    TextAnnotation
+} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {
+    ECoordinateMode
+} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint
+} from "scichart/types/AnchorPoint";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";
 export const divElementIdChart3 = "sciChart3";
-
-export const TOP_CHART_WIDTH = 600;
-export const TOP_CHART_HEIGHT = 600;
-export const BOTTOM_CHART_WIDTH = 288;
-export const BOTTOM_CHART_HEIGHT = 289;
-export const CHART_MARGIN = 14;
 
 const AUDIO_STREAM_BUFFER_SIZE = 2048;
 
@@ -40,12 +59,13 @@ export const drawExample = async () => {
 
     const hzPerDataPoint = sampleRate / bufferSize;
     const fftSize = fft.fftSize;
-    const fftCount = BOTTOM_CHART_HEIGHT;
+    const fftCount = 200;
 
     let fftXValues: number[];
     let spectrogramValues: number[][];
 
     let audioDS: XyDataSeries;
+    let historyDS: XyDataSeries;
     let fftDS: XyDataSeries;
     let spectrogramDS: UniformHeatmapDataSeries;
 
@@ -67,7 +87,14 @@ export const drawExample = async () => {
         audioDS.removeRange(0, audioData.pointsCount);
         audioDS.appendRange(audioData.xData, audioData.yData);
 
-        // Perfrom FFT
+        // Update History
+        const maxLength = fftCount * audioData.pointsCount;
+        historyDS.appendRange(audioData.xData, audioData.yData);
+        if (historyDS.count() > maxLength) {
+            historyDS.removeRange(0, historyDS.count() - maxLength);
+        }
+
+        // Perform FFT
         const fftData = fft.run(audioData.yData);
 
         // Update FFT Chart
@@ -82,27 +109,45 @@ export const drawExample = async () => {
 
     // AUDIO CHART
     const initAudioChart = async () => {
-        const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-            divElementIdAudioChart,
-            {
-                widthAspect: TOP_CHART_WIDTH,
-                heightAspect: TOP_CHART_HEIGHT
-            }
-        );
+        // Create a chart for the audio
+        const {
+            sciChartSurface,
+            wasmContext
+        } = await SciChartSurface.create(divElementIdAudioChart, {theme: appTheme.SciChartJsTheme});
+
+        // Create an XAxis for the live audio
         const xAxis = new NumericAxis(wasmContext, {
+            id: "audio",
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
+            drawMajorTickLines: false,
+            drawMajorBands: false,
+            drawMinorGridLines: false,
+            drawMajorGridLines: false
         });
         sciChartSurface.xAxes.add(xAxis);
 
+        // Create an XAxis for the history of the audio on the same chart
+        const xhistAxis = new NumericAxis(wasmContext, {
+            id: "history",
+            autoRange: EAutoRange.Always,
+            drawLabels: false,
+            drawMinorGridLines: false,
+            drawMajorTickLines: false
+        });
+        sciChartSurface.xAxes.add(xhistAxis);
+
+        // Create a YAxis for the audio data
         const yAxis = new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Never,
-            visibleRange: new NumberRange(-32768, 32767), // [short.MIN. short.MAX]
+            visibleRange: new NumberRange(-32768 * 0.8, 32767 * 0.8), // [short.MIN. short.MAX]
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
+            drawMajorTickLines: false,
+            drawMajorBands: false,
+            drawMinorGridLines: false,
+            drawMajorGridLines: false
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -113,54 +158,103 @@ export const drawExample = async () => {
             audioDS.append(0, 0);
         }
 
+        // Add a line series for the live audio data
+        // using XAxisId=audio for the live audio trace scaling
         const rs = new FastLineRenderableSeries(wasmContext, {
-            stroke: "#808080",
-            strokeThickness: 1,
+            xAxisId: "audio",
+            stroke: "#4FBEE6",
+            strokeThickness: 2,
             dataSeries: audioDS
         });
 
         sciChartSurface.renderableSeries.add(rs);
+
+        historyDS = new XyDataSeries(wasmContext);
+        for (let i = 0; i < AUDIO_STREAM_BUFFER_SIZE * fftCount; i++) {
+            historyDS.append(0, 0);
+        }
+
+        // Add a line series for the historical audio data
+        // using the XAxisId=history for separate scaling for this trace
+        const histrs = new FastLineRenderableSeries(wasmContext, {
+            stroke: "#208EAD33",
+            strokeThickness: 1,
+            opacity: 0.5,
+            xAxisId: "history",
+            dataSeries: historyDS
+        });
+        sciChartSurface.renderableSeries.add(histrs);
+
+        // Add instructions
+        sciChartSurface.annotations.add(new TextAnnotation({
+            x1: 0,
+            y1: 0,
+            xAxisId: "history",
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+            verticalAnchorPoint: EVerticalAnchorPoint.Top,
+            text: "This example uses your microphone to generate waveforms. Say something!",
+            textColor: "#FFFFFF44"
+        }));
 
         return sciChartSurface;
     };
 
     // FFT CHART
     const initFftChart = async () => {
-        const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-            divElementIdFttChart,
-            {
-                widthAspect: BOTTOM_CHART_WIDTH,
-                heightAspect: BOTTOM_CHART_HEIGHT
-            }
-        );
-        const xAxis = new NumericAxis(wasmContext, {
-            drawMajorTickLines: false,
+        const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementIdFttChart, { theme: appTheme.SciChartJsTheme });
+        const xAxis = new LogarithmicAxis(wasmContext, {
+            logBase: 10,
+            labelFormat: ENumericFormat.SignificantFigures,
             maxAutoTicks: 5,
-            axisAlignment: EAxisAlignment.Top
+            axisTitleStyle: {fontSize: 10},
+            drawMinorGridLines: false,
+            drawMinorTickLines: false,
+            drawMajorTickLines: false
         });
         sciChartSurface.xAxes.add(xAxis);
 
         const yAxis = new NumericAxis(wasmContext, {
-            axisAlignment: EAxisAlignment.Right,
-            visibleRange: new NumberRange(-30, 70),
+            axisAlignment: EAxisAlignment.Left,
+            visibleRange: new NumberRange(0, 80),
             growBy: new NumberRange(0.1, 0.1),
+            drawMinorGridLines: false,
             drawMinorTickLines: false,
             drawMajorTickLines: false,
-            maxAutoTicks: 5
+            labelPrecision: 0,
+            axisTitleStyle: {fontSize: 10}
         });
         sciChartSurface.yAxes.add(yAxis);
 
         fftDS = new XyDataSeries(wasmContext);
         fftXValues = new Array<number>(fftSize);
         for (let i = 0; i < fftSize; i++) {
-            fftXValues[i] = i * hzPerDataPoint;
+            fftXValues[i] = (i + 1) * hzPerDataPoint;
         }
 
-        const rs = new FastColumnRenderableSeries(wasmContext, {
-            stroke: "#E6E6FA",
+        // Make a column chart with a gradient palette on the stroke only
+        const rs = new FastMountainRenderableSeries(wasmContext, {
             dataSeries: fftDS,
-            // TODO: paletteProvider = new FFTPaletteProvider(),
-            zeroLineY: -30
+            pointMarker: new EllipsePointMarker(wasmContext, {width: 9, height: 9}),
+            strokeThickness: 3,
+            paletteProvider: PaletteFactory.createGradient(
+                wasmContext,
+                new GradientParams(new Point(0, 0), new Point(1, 1), [
+                    {offset: 0, color: "#36B8E6"},
+                    {offset: 0.001, color: "#5D8CC2"},
+                    {offset: 0.01, color: "#8166A2"},
+                    {offset: 0.1, color: "#AE418C"},
+                    {offset: 1.0, color: "#CA5B79"}
+                ]),
+                {
+                    enableStroke: true,
+                    enableFill: true,
+                    enablePointMarkers: true,
+                    fillOpacity: 0.17,
+                    pointMarkerOpacity: 0.37
+                }
+            )
         });
         sciChartSurface.renderableSeries.add(rs);
 
@@ -177,24 +271,13 @@ export const drawExample = async () => {
             }
         }
 
-        const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-            divElementIdChart3,
-            {
-                widthAspect: BOTTOM_CHART_WIDTH,
-                heightAspect: BOTTOM_CHART_HEIGHT
-            }
-        );
+        const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementIdChart3, { theme: appTheme.SciChartJsTheme });
 
         const xAxis = new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
             drawMajorTickLines: false
-            // TODO: drawMajorBands: false,
-            // TODO: drawMinorGridLines: false,
-            // TODO: drawMajorGridLines: false,
-            // TODO: axisAlignment: EAxisAlignment.Left
-            // TODO: flipCoordinates: true
         });
         sciChartSurface.xAxes.add(xAxis);
 
@@ -203,11 +286,6 @@ export const drawExample = async () => {
             drawLabels: false,
             drawMinorTickLines: false,
             drawMajorTickLines: false
-            // TODO: drawMajorBands: false,
-            // TODO: drawMinorGridLines: false,
-            // TODO: drawMajorGridLines: false,
-            // TODO: axisAlignment: EAxisAlignment.Bottom
-            // TODO: flipCoordinates: true
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -222,15 +300,14 @@ export const drawExample = async () => {
         const rs = new UniformHeatmapRenderableSeries(wasmContext, {
             dataSeries: spectrogramDS,
             colorMap: new HeatmapColorMap({
-                minimum: -30,
+                minimum: 0,
                 maximum: 70,
                 gradientStops: [
-                    { offset: 0, color: "#000000" },
-                    { offset: 0.0001, color: "#00008B" },
-                    { offset: 0.25, color: "#800080" },
-                    { offset: 0.5, color: "#FF0000" },
-                    { offset: 0.75, color: "#FFFF00" },
-                    { offset: 1, color: "#FFFFFF" }
+                    {offset: 0, color: "#000000"},
+                    {offset: 0.25, color: "#800080"},
+                    {offset: 0.5, color: "#FF0000"},
+                    {offset: 0.75, color: "#FFFF00"},
+                    {offset: 1, color: "#FFFFFF"}
                 ]
             })
         });
@@ -240,10 +317,7 @@ export const drawExample = async () => {
     };
 
     // DRAW CHARTS
-    const charts = [];
-    charts.push(await initAudioChart());
-    charts.push(await initFftChart());
-    charts.push(await initSpectogramChart());
+    const charts = await Promise.all([initAudioChart(), initFftChart(), initSpectogramChart()]);
 
     // INIT AUDIO
     await initAudio();
@@ -259,7 +333,7 @@ export const drawExample = async () => {
     };
     updateChart();
 
-    return { charts, dataProvider };
+    return {charts, dataProvider};
 };
 
 export default function AudioAnalyzer() {
@@ -281,11 +355,17 @@ export default function AudioAnalyzer() {
 
     return (
         <React.Fragment>
-            <div className={classes.ExampleWrapperCompicated}>
-                <div id={divElementIdAudioChart} className={classes.ExampleWrapperCompicatedMain} />
-                <div className={classes.ExampleWrapperCompicatedSub}>
-                    <div id={divElementIdFttChart} />
-                    <div id={divElementIdChart3} />
+            <div style={{background: appTheme.Background}} className={classes.ChartWrapper}>
+                <div style={{width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    background: appTheme.DarkIndigo}}>
+                    <div id={divElementIdAudioChart} style={{ flexBasis: "50%" }}/>
+                    <div style={{display: "flex", flex: 1 }}>
+                        <div id={divElementIdFttChart} style={{flex: 1 }}/>
+                        <div id={divElementIdChart3} style={{flex: 1 }}/>
+                    </div>
                 </div>
             </div>
         </React.Fragment>

@@ -2,13 +2,16 @@ export const code = `import * as React from "react";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
-import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import { ScatterAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScatterAnimation";
 import { easing } from "scichart/Core/Animations/EasingFunctions";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import classes from "../../../../Examples/Examples.module.scss";
+import { appTheme } from "../../../theme";
+import {PaletteFactory} from "scichart/Charting/Model/PaletteFactory";
+import {GradientParams} from "scichart/Core/GradientParams";
+import {Point} from "scichart/Core/Point";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 
 const divElementId = "chart";
 let timerId: NodeJS.Timeout;
@@ -16,31 +19,50 @@ let timerId: NodeJS.Timeout;
 const drawExample = async () => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJSLightTheme()
+        theme: appTheme.SciChartJsTheme
     });
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5) }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-0.5, 5.5) }));
+    const length = 120;
+
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        visibleRange: new NumberRange(0, length),
+        growBy: new NumberRange(0.1, 0.1)
+    }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        visibleRange: new NumberRange(0, length),
+        growBy: new NumberRange(0.1, 0.1)
+    }));
+
+    let xValues = Array.from(Array(length).keys());
+    let yValues = Array.from({ length }, () => 0.5 * length);
 
     // Create a scatter series with some initial data
-    const scatterSeries = new XyScatterRenderableSeries(wasmContext, {
+    const scatterSeries = new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
-            xValues: [1, 2, 3, 4, 5],
-            yValues: [1.3, 2.3, 4, 3.3, 4.5]
+            xValues,
+            yValues
         }),
+        strokeThickness: 2,
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 11,
             height: 11,
-            fill: "#FF3333BB",
-            strokeThickness: 0
-        })
+            fill: appTheme.VividSkyBlue,
+            strokeThickness: 0,
+        }),
+        paletteProvider: PaletteFactory.createGradient(wasmContext, new GradientParams(new Point(0, 0), new Point(1, 1), [
+            { offset: 0, color: "#36B8E6" },
+            { offset: 0.2, color: "#5D8CC2" },
+            { offset: 0.4, color: "#8166A2" },
+            { offset: 0.6, color: "#AE418C" },
+            { offset: 1.0, color: "#CA5B79" }
+        ]), { enableStroke: true, enablePointMarkers: true, strokeOpacity: 0.67 })
     });
     sciChartSurface.renderableSeries.add(scatterSeries);
 
     // Update data using data animations
     const animateData = () => {
-        const xValues = Array.from({ length: 5 }, () => Math.random() * 5);
-        const yValues = Array.from({ length: 5 }, () => Math.random() * 5);
+        xValues = Array.from({ length }, () => Math.random() * length);
+        yValues = Array.from({ length }, () => Math.random() * length);
 
         scatterSeries.runAnimation(
             new ScatterAnimation({
