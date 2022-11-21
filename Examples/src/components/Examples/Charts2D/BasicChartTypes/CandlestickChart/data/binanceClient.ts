@@ -1,19 +1,14 @@
-export type TBinanceCandleData = {
-    xValues: number[];
-    openValues: number[];
-    highValues: number[];
-    lowValues: number[];
-    closeValues: number[];
-    volumeValues: number[];
-};
+export type TPriceBar = {
+    date: number;
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+    volume: number;
+}
 
-const parseCandles = (candles: any[]): TBinanceCandleData => {
-    const xValues: number[] = [];
-    const openValues: number[] = [];
-    const highValues: number[] = [];
-    const lowValues: number[] = [];
-    const closeValues: number[] = [];
-    const volumeValues: number[] = [];
+const parseCandles = (candles: any[]): TPriceBar[] => {
+    const priceBars: TPriceBar[] = [];
 
     candles.forEach((candle: any) => {
         const [timestamp, open, high, low, close, volume] = candle;
@@ -23,15 +18,17 @@ const parseCandles = (candles: any[]): TBinanceCandleData => {
         const closeValue = parseFloat(close);
         const volumeValue = parseFloat(volume);
 
-        xValues.push(timestamp / 1000);
-        openValues.push(openValue);
-        highValues.push(highValue);
-        lowValues.push(lowValue);
-        closeValues.push(closeValue);
-        volumeValues.push(volumeValue);
+        priceBars.push({
+            date: timestamp / 1000,
+            open: openValue,
+            high: highValue,
+            low: lowValue,
+            close: closeValue,
+            volume: volumeValue
+        });
     });
 
-    return { xValues, openValues, highValues, lowValues, closeValues, volumeValues };
+    return priceBars;
 };
 
 const getCandles = async (
@@ -40,7 +37,7 @@ const getCandles = async (
     startTime?: Date,
     endTime?: Date,
     limit: number = 500
-): Promise<TBinanceCandleData> => {
+): Promise<TPriceBar[]> => {
     let url = `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}`;
     if (startTime) {
         url += `&startTime=${startTime.getTime()}`;
@@ -58,7 +55,7 @@ const getCandles = async (
         return parseCandles(data);
     } catch (err) {
         console.error(err);
-        return { xValues: [], openValues: [], highValues: [], lowValues: [], closeValues: [], volumeValues: [] };
+        return [];
     }
 };
 
