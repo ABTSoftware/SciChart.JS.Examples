@@ -1,152 +1,164 @@
 import * as React from "react";
-import Button from "@material-ui/core/Button";
-import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { RolloverModifier, TRolloverTooltipDataTemplate } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { TSciChart } from "scichart/types/TSciChart";
-import { IXyDataSeriesOptions, XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { XySeriesInfo } from "scichart/Charting/Model/ChartData/XySeriesInfo";
-import { SciChartSurface } from "scichart";
-import { ENumericFormat } from "scichart/types/NumericFormat";
+import {TWebAssemblyChart} from "scichart/Charting/Visuals/SciChartSurface";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {RolloverModifier} from "scichart/Charting/ChartModifiers/RolloverModifier";
+import {TSciChart} from "scichart/types/TSciChart";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {XySeriesInfo} from "scichart/Charting/Model/ChartData/XySeriesInfo";
+import {SciChartSurface} from "scichart";
 import classes from "../../../../Examples/Examples.module.scss";
-import { IPointMetadata } from "scichart/Charting/Model/IPointMetadata";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import { TCursorTooltipDataTemplate } from "scichart/Charting/ChartModifiers/CursorModifier";
-import { SeriesInfo } from "scichart/Charting/Model/ChartData/SeriesInfo";
-import { EStrokePaletteMode, IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import {
+    EStrokePaletteMode,
+    IPointMarkerPaletteProvider,
+    TPointMarkerArgb
+} from "scichart/Charting/Model/IPaletteProvider";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {appTheme} from "../../../theme";
+import { SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import { LineSeriesDataLabelProvider} from "scichart/Charting/Visuals/RenderableSeries/DataLabels/LineSeriesDataLabelProvider";
+import {Thickness} from "scichart/Core/Thickness";
+import { TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
+import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 
 const divElementId = "chart";
 
-// Metadata must implement IPointMetadata
-// This one has a text field, and also holds the previous data value
-class MyMetadata implements IPointMetadata {
-    public static create(title: string, previousValue?: number, isSelected?: boolean) {
-        const md = new MyMetadata();
-        md.title = title;
-        md.previousValue = previousValue ?? md.previousValue;
-        md.isSelected = isSelected ?? md.isSelected;
-        return md;
-    }
-
-    public isSelected: boolean = false;
-    public title: string;
-    public previousValue: number;
-    public palettedStrokeRed: number = parseColorToUIntArgb("red");
-    public palettedStrokeGreen: number = parseColorToUIntArgb("green");
-
-    private constructor() {}
-}
-
-// This function returns the text that will appear in the rollover tooltip
-const tooltipDataTemplateRS: TRolloverTooltipDataTemplate = (seriesInfo: XySeriesInfo): string[] => {
-    const valuesWithLabels: string[] = [];
-    // Line Series
-    const xySeriesInfo = seriesInfo as XySeriesInfo;
-
-    if (seriesInfo.pointMetadata) {
-        const testMd = seriesInfo.pointMetadata as MyMetadata;
-        valuesWithLabels.push(testMd.title + " Previous: " + testMd.previousValue.toFixed(1));
-    }
-    valuesWithLabels.push("X: " + xySeriesInfo.formattedXValue + " Y: " + xySeriesInfo.formattedYValue);
-    return valuesWithLabels;
-};
-
-// A PaletteProvider that will color the line differently depending on whether it is rising or falling.
-// tslint:disable-next-line: max-classes-per-file
-class LinePaletteProvider implements IStrokePaletteProvider {
-    public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
-
-    // tslint:disable-next-line:no-empty
-    public onAttached(parentSeries: IRenderableSeries): void {}
-
-    // tslint:disable-next-line:no-empty
-    public onDetached(): void {}
-
-    public overrideStrokeArgb(
-        xValue: number,
-        yValue: number,
-        index: number,
-        opacity: number,
-        metadata: IPointMetadata
-    ): number {
-        const md = metadata as MyMetadata;
-        if (md) {
-            if (yValue < md.previousValue) {
-                return md.palettedStrokeRed;
-            }
-            if (yValue > md.previousValue) {
-                return md.palettedStrokeGreen;
-            }
-        }
-        return undefined;
-    }
-}
-
-const color = "#368BC1";
-
 const drawExample = async (): Promise<TWebAssemblyChart> => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    const xAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) });
-    xAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
-    xAxis.labelProvider.precision = 0;
-    sciChartSurface.xAxes.add(xAxis);
 
-    const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
-    sciChartSurface.yAxes.add(yAxis);
-
-    const firstSeriesData = createDataSeries(wasmContext, 0, { dataSeriesName: "Sinewave A" });
-
-    const renderableSeries1 = new FastLineRenderableSeries(wasmContext, {
-        stroke: color,
-        strokeThickness: 3,
-        dataSeries: firstSeriesData,
-        pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 5,
-            height: 5,
-            strokeThickness: 2,
-            fill: "white",
-            stroke: color
-        }),
-        paletteProvider: new LinePaletteProvider(),
+    // Create a chart with X, Y axis
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
     });
-    renderableSeries1.rolloverModifierProps.markerColor = color;
-    renderableSeries1.rolloverModifierProps.tooltipColor = color;
-    sciChartSurface.renderableSeries.add(renderableSeries1);
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.2, 0.2) }));
 
-    renderableSeries1.rolloverModifierProps.tooltipDataTemplate = tooltipDataTemplateRS;
+    // Given a dataset with X, Y but also additional values in the form of an object of any kind
+    const dataValues = [
+        { x: 0, y: 50, anObject: { label: "", pointColor: "#F48420", isSelected: false }},
+        { x: 1, y: 35, anObject: { label: "Orange Point", pointColor: "#F48420", isSelected: false }},
+        { x: 2, y: 68, anObject: { label: "Highest Point", pointColor: "#7BCAAB", isSelected: false }},
+        { x: 3, y: 58, anObject: { label: "Selected Point", pointColor: "#F48420", isSelected: true }},
+        { x: 4, y: 50, anObject: { label: "Orange Point", pointColor: "#F48420", isSelected: false }},
+        { x: 5, y: 50, anObject: { label: "", pointColor: "#F48420", isSelected: false }},
+        { x: 6, y: 40, anObject: { label: "Blue Point", pointColor: "#50C7E0", isSelected: false }},
+        { x: 7, y: 53, anObject: { label: "Selected Point", pointColor: "#F48420", isSelected: true }},
+        { x: 8, y: 55, anObject: { label: "", pointColor: "#F48420", isSelected: false }},
+        { x: 9, y: 23, anObject: { label: "Blue Point", pointColor: "#50C7E0", isSelected: false }},
+        { x: 10, y: 45, anObject: { label: "Selected Point", pointColor: "#F48420", isSelected: true }},
+        { x: 11, y: 12, anObject: { label: "Lowest Point", pointColor: "#EC0F6C", isSelected: false }},
+        { x: 12, y: 59, anObject: { label: "", pointColor: "#F48420", isSelected: false }},
+        { x: 13, y: 60, anObject: { label: "", pointColor: "#F48420", isSelected: false }},
+    ];
 
-    sciChartSurface.chartModifiers.add(new RolloverModifier());
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+    // You can create a dataseries with these object values as metadata
+    const xyDataSeriesWithMetadata = new XyDataSeries(wasmContext, {
+        xValues: dataValues.map(row => row.x),
+        yValues: dataValues.map(row => row.y),
+        metadata: dataValues.map(row => row.anObject) // put any javascript object here
+    });
+
+    // You can assign this dataseries to a RenderableSeries in SciChart
+    const lineSeries = new SplineLineRenderableSeries(wasmContext, {
+        dataSeries: xyDataSeriesWithMetadata,
+        stroke: appTheme.VividSkyBlue,
+        strokeThickness: 3,
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 15,
+            height: 15,
+            strokeThickness: 0,
+        }),
+    });
+
+    // Now you can consume metadata in the following ways
+    // - Colouring points
+    // - Labelling points
+    // - Custom data for tooltips
+    // - Tagging datapoints with the objects for later use
+    //
+
+    // 1. via paletteprovider (colour points or segments based on metadata values)
+
+    const pointPaletteProvider: IPointMarkerPaletteProvider = {
+        strokePaletteMode: EStrokePaletteMode.SOLID,
+        onAttached(parentSeries: IRenderableSeries): void {},
+        onDetached(): void {},
+        overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): TPointMarkerArgb {
+            // Metadata values can be used in paletteprovider overrides
+            if (metadata) {
+                // @ts-ignore
+                const pointColorArgb = parseColorToUIntArgb(metadata.pointColor);
+                const selectedColorArgb = 0xFFFFFFFF;
+                const fill = metadata.isSelected ? selectedColorArgb : pointColorArgb;
+                return { stroke: fill, fill }
+            }
+            return undefined; // means use default colour
+        }
+    };
+    lineSeries.paletteProvider = pointPaletteProvider;
+
+    // 2. Via DataLabel provider
+    const dataLabelProvider = new LineSeriesDataLabelProvider({
+        // @ts-ignore
+        metaDataSelector: (metadata) => metadata.label,
+        style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(5, 5, 5, 5) },
+        color: appTheme.ForegroundColor,
+    });
+    lineSeries.dataLabelProvider = dataLabelProvider;
+
+    // 3. Via cursors and tooltips
+    lineSeries.rolloverModifierProps.markerColor = appTheme.VividTeal;
+    lineSeries.rolloverModifierProps.tooltipColor = appTheme.Indigo;
+    lineSeries.rolloverModifierProps.tooltipDataTemplate = (seriesInfo: XySeriesInfo): string[] => {
+        const valuesWithLabels: string[] = [];
+        // Line Series
+        const xySeriesInfo = seriesInfo as XySeriesInfo;
+
+        valuesWithLabels.push("X Value: " + xySeriesInfo.formattedXValue);
+        valuesWithLabels.push("Y Value: " + xySeriesInfo.formattedYValue);
+
+        valuesWithLabels.push(" ");
+        if (seriesInfo.pointMetadata) {
+            // @ts-ignore
+            let label = seriesInfo.pointMetadata.label;
+            label = label === "" ? "..." : label;
+            valuesWithLabels.push(`Metadata Label: "${label}"`);
+            // @ts-ignore
+            valuesWithLabels.push("Metadata Selected: " + seriesInfo.pointMetadata.isSelected);
+        }
+        return valuesWithLabels;
+    };
+
+    sciChartSurface.renderableSeries.add(lineSeries);
+
+    // Add a RolloverModifier for tooltips
+    sciChartSurface.chartModifiers.add(new RolloverModifier( {
+        showRolloverLine: false,
+        showTooltip: true,
+    }));
+
+    // Add title annotation
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: "Line Chart with Metadata (Objects per data-point)",
+            fontSize: 18,
+            textColor: appTheme.ForegroundColor,
+            x1: 0.5,
+            y1: 0,
+            opacity: 0.77,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative
+        })
+    );
 
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
 };
 
-// Generate some data, including metadata
-const createDataSeries = (wasmContext: TSciChart, index: number, options?: IXyDataSeriesOptions) => {
-    const sigma = Math.pow(0.6, index);
-    const dataSeries = new XyDataSeries(wasmContext, options);
-    let prev = 0;
-    for (let i = 0; i < 100; i++) {
-        const grow = 1 + i / 99;
-        const metadata = i > 0 ? MyMetadata.create("Metadata " + i.toString() , prev) : undefined;
-        const y = Math.sin((Math.PI * i) / 15) * grow * sigma;
-        // metadata is an optional parameter on all data manipulation methods on dataseries,
-        // so it can also be added as an array eg dataSeries.appendRange(xValues, yValues, metadataArray);
-        dataSeries.append(i, y, metadata);
-        prev = y;
-    }
-    return dataSeries;
-};
 
 export default function UsingMetaData() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
@@ -163,8 +175,6 @@ export default function UsingMetaData() {
     }, []);
 
     return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
-        </div>
+        <div id={divElementId} className={classes.ChartWrapper} />
     );
 }
