@@ -18,7 +18,9 @@ import {EAutoRange} from "scichart/types/AutoRange";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {ENumericFormat} from "scichart/types/NumericFormat";
-import {FastCandlestickRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
+import {
+    FastCandlestickRenderableSeries
+} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
 import {FastOhlcRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastOhlcRenderableSeries";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {XyMovingAverageFilter} from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
@@ -29,7 +31,11 @@ import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier"
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {CursorModifier} from "scichart/Charting/ChartModifiers/CursorModifier";
 import {SciChartOverview} from "scichart/Charting/Visuals/SciChartOverview";
-import {simpleBinanceClient, TPriceBar} from "../../BasicChartTypes/CandlestickChart/data/binanceClient";
+import {TPriceBar} from "../../BasicChartTypes/CandlestickChart/data/binanceClient";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 
 export const createCandlestickChart = async (divChartId: string, divOverviewId: string) => {
     // Create a SciChartSurface
@@ -40,10 +46,8 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
     // Add an XAxis of type DateTimeAxis
     // Note for crypto data this is fine, but for stocks/forex you will need to use CategoryAxis which collapses gaps at weekends
     // In future we have a hybrid IndexDateAxis which 'magically' solves problems of different # of points in stock market datasetd with gaps
-    const xAxis = new DateTimeNumericAxis(wasmContext, {
-        // autoRange.never as we're setting visibleRange explicitly below. If you dont do this, leave this flag default
-        autoRange: EAutoRange.Never
-    });
+    const xAxis = new DateTimeNumericAxis(wasmContext);
+    xAxis.labelProvider.useCache = false;
     sciChartSurface.xAxes.add(xAxis);
 
     // Create a NumericAxis on the YAxis with 2 Decimal Places
@@ -152,8 +156,25 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         transformRenderableSeries: getOverviewSeries
     });
 
+    // Add a watermark annotation, updated in setData() function
+    const watermarkAnnotation = new TextAnnotation({
+        x1: 0.5,
+        y1: 0.5,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        opacity: 0.23,
+        textColor: appTheme.ForegroundColor,
+        fontSize: 36,
+        fontWeight: "Bold",
+        text: "",
+        annotationLayer: EAnnotationLayer.BelowChart
+    });
+    sciChartSurface.annotations.add(watermarkAnnotation);
+
     // Setup functions to return to caller to control the candlestick chart
-    const setData = (symbolName: string, priceBars: TPriceBar[]) => {
+    const setData = (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => {
 
         // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
         const xValues: number[] = [];
@@ -173,10 +194,15 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
 
         // Clear the dataseries and re-add data
         candleDataSeries.clear();
-        candleDataSeries.dataSeriesName = symbolName;
         candleDataSeries.appendRange(xValues, openValues, highValues, lowValues, closeValues);
         volumeDataSeries.clear();
         volumeDataSeries.appendRange(xValues, volumeValues);
+
+        // Set the candle data series name (used by tooltips / legends)
+        candleDataSeries.dataSeriesName = symbolName;
+
+        // Update the watermark text
+        watermarkAnnotation.text = watermarkText;
     };
 
     const updatePriceBar = (priceBar: TPriceBar) => {

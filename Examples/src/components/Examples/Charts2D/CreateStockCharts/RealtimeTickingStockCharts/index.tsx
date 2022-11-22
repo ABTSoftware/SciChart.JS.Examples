@@ -15,19 +15,20 @@ const drawExample = async () => {
     // Create the candlestick chart example. Contains Candlestick series, tooltips, volume, zooming panning behaviour and more
     const { sciChartSurface, sciChartOverview, controls } = await createCandlestickChart(divElementId, divOverviewId);
 
-    // Fetch data from now to 300 1 minute candles ago from Binance exchange
+    // Fetch data Binance exchange: 500 1-minute candles
     const endDate = new Date(Date.now());
     const startDate = new Date();
-    startDate.setMinutes(endDate.getMinutes() - 300);
+    startDate.setMinutes(endDate.getMinutes() - 500);
 
     const priceBars = await simpleBinanceClient.getCandles("BTCUSDT", "1m", startDate, endDate);
 
-    // Append the data to the primary data series
-    controls.setData("BTC/USD", priceBars);
+    // Set the candles data on the chart
+    controls.setData("BTC/USD", "Bitcoin / US Dollar - 1 Minute Chart", priceBars);
 
     // Zoom to the latest 100 candles
     const startViewportRange = new Date();
     startViewportRange.setMinutes(endDate.getMinutes() - 100);
+    endDate.setMinutes(endDate.getMinutes() + 10);
     controls.setXRange(startViewportRange, endDate);
 
     // Here - I want to open a websocket and update the data
@@ -42,7 +43,7 @@ export default function RealtimeTickingStockCharts() {
     const itemsToDelete: IDeletable[] = [];
     const [preset, setPreset] = React.useState<number>(0);
     const [chartControls, setControls] = React.useState( {
-        setData: (symbolName: string, priceBars: TPriceBar[]) => {},
+        setData: (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => {},
         updatePriceBar: (priceBar: TPriceBar) => {},
         setXRange: (startDate: Date, endDate: Date) => {},
         enableCandlestick: () => {},
