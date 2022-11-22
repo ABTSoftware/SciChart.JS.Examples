@@ -24,6 +24,9 @@ import {Thickness} from "scichart/Core/Thickness";
 import { TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
 import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {
+    DataLabelState
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/DataLabels/DataLabelState";
 
 const divElementId = "chart";
 
@@ -82,6 +85,15 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
 
     // 1. via paletteprovider (colour points or segments based on metadata values)
 
+    // @ts-ignore
+    const getColorFromMetadata = (metadata) => {
+        // @ts-ignore
+        const pointColorArgb = parseColorToUIntArgb(metadata.pointColor);
+        const selectedColorArgb = 0xFFFFFFFF;
+        const fill = metadata.isSelected ? selectedColorArgb : pointColorArgb;
+        return fill;
+    };
+
     const pointPaletteProvider: IPointMarkerPaletteProvider = {
         strokePaletteMode: EStrokePaletteMode.SOLID,
         onAttached(parentSeries: IRenderableSeries): void {},
@@ -89,10 +101,7 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
         overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): TPointMarkerArgb {
             // Metadata values can be used in paletteprovider overrides
             if (metadata) {
-                // @ts-ignore
-                const pointColorArgb = parseColorToUIntArgb(metadata.pointColor);
-                const selectedColorArgb = 0xFFFFFFFF;
-                const fill = metadata.isSelected ? selectedColorArgb : pointColorArgb;
+                const fill = getColorFromMetadata(metadata);
                 return { stroke: fill, fill }
             }
             return undefined; // means use default colour
@@ -103,11 +112,16 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
     // 2. Via DataLabel provider
     const dataLabelProvider = new LineSeriesDataLabelProvider({
         // @ts-ignore
-        metaDataSelector: (metadata) => metadata.label,
+        metaDataSelector: (metadata) => metadata.label, // This is how you route a label (string) from metadata to data-labels in scichart
         style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(5, 5, 5, 5) },
         color: appTheme.ForegroundColor,
     });
     lineSeries.dataLabelProvider = dataLabelProvider;
+    // This is how you override colors of labels on a per-label basis, which can also come from metadata
+    dataLabelProvider.getColor = (state: DataLabelState, label: string) => {
+        const metadata = state.getMetaData();
+        return getColorFromMetadata(metadata);
+    };
 
     // 3. Via cursors and tooltips
     lineSeries.rolloverModifierProps.markerColor = appTheme.DarkIndigo;
