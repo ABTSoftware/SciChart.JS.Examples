@@ -83,12 +83,20 @@ const drawExample = async () => {
     const priceBars = await simpleBinanceClient.getCandles("BTCUSDT", "1h", startDate, endDate);
 
     // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
-    const xValues = priceBars.map(bar => bar.date);
-    const openValues = priceBars.map(bar => bar.open);
-    const highValues = priceBars.map(bar => bar.high);
-    const lowValues = priceBars.map(bar => bar.low);
-    const closeValues = priceBars.map(bar => bar.close);
-    const volumeValues = priceBars.map(bar => bar.volume);
+    const xValues: number[] = [];
+    const openValues: number[] = [];
+    const highValues: number[] = [];
+    const lowValues: number[] = [];
+    const closeValues: number[] = [];
+    const volumeValues: number[] = [];
+    priceBars.forEach((priceBar: any) => {
+        xValues.push(priceBar.date);
+        openValues.push(priceBar.open);
+        highValues.push(priceBar.high);
+        lowValues.push(priceBar.low);
+        closeValues.push(priceBar.close);
+        volumeValues.push(priceBar.volume);
+    });
 
     // Zoom to the latest 100 candles
     const startViewportRange = new Date();
