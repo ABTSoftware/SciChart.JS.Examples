@@ -4,7 +4,9 @@ import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { appTheme } from "../../../theme";
 import classes from "../../../../Examples/Examples.module.scss";
 import {createCandlestickChart} from "./createCandlestickChart";
-import {simpleBinanceClient, TPriceBar} from "../../BasicChartTypes/CandlestickChart/data/binanceClient";
+import {simpleBinanceRestClient,TPriceBar} from "../../BasicChartTypes/CandlestickChart/data/binanceRestClient";
+import {binanceSocketClient} from "./binanceSocketClient";
+import {Subscription} from "rxjs";
 
 const divElementId = "chart";
 const divOverviewId = "overview";
@@ -15,15 +17,15 @@ const drawExample = async () => {
     // Create the candlestick chart example. Contains Candlestick series, tooltips, volume, zooming panning behaviour and more
     const { sciChartSurface, sciChartOverview, controls } = await createCandlestickChart(divElementId, divOverviewId);
 
-    // Fetch data Binance exchange: 500 1-minute candles
     const endDate = new Date(Date.now());
     const startDate = new Date();
     startDate.setMinutes(endDate.getMinutes() - 500);
 
-    const priceBars = await simpleBinanceClient.getCandles("BTCUSDT", "1m", startDate, endDate);
+    // Fetch data Binance exchange: 500 1-minute candles
+    const priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1m", startDate, endDate);
 
     // Set the candles data on the chart
-    controls.setData("BTC/USD", "Bitcoin / US Dollar - 1 Minute Chart", priceBars);
+    controls.setData("BTC/USDT", "Bitcoin / US Dollar - 1 Minute", priceBars);
 
     // Zoom to the latest 100 candles
     const startViewportRange = new Date();
@@ -31,9 +33,20 @@ const drawExample = async () => {
     endDate.setMinutes(endDate.getMinutes() + 10);
     controls.setXRange(startViewportRange, endDate);
 
-    // Here - I want to open a websocket and update the data
+    // Susbscribe to price updates from the exchange
+    const subscription = binanceSocketClient.getRealtimeCandleStream("BTCUSDT", "1m").subscribe(pb => {
+        controls.updatePriceBar(
+            {
+                date: pb.openTime,
+                open: pb.open,
+                high: pb.high,
+                low: pb.low,
+                close: pb.close,
+                volume: pb.volume
+            });
+    });
 
-    return { sciChartSurface, sciChartOverview, controls };
+    return { sciChartSurface, sciChartOverview, subscription, controls };
 }
 
 
@@ -41,6 +54,7 @@ const drawExample = async () => {
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function RealtimeTickingStockCharts() {
     const itemsToDelete: IDeletable[] = [];
+    let websocketSubcription: Subscription;
     const [preset, setPreset] = React.useState<number>(0);
     const [chartControls, setControls] = React.useState( {
         setData: (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => {},
@@ -52,12 +66,14 @@ export default function RealtimeTickingStockCharts() {
 
     React.useEffect(() => {
         (async () => {
-            const { sciChartSurface, sciChartOverview, controls } = await drawExample();
+            const { sciChartSurface, sciChartOverview, subscription, controls } = await drawExample();
             setControls(controls);
+            websocketSubcription = subscription;
             itemsToDelete.push(sciChartSurface, sciChartOverview);
         })();
         return () => {
             itemsToDelete.forEach(item => item.delete());
+            websocketSubcription?.unsubscribe();
         };
     }, []);
 

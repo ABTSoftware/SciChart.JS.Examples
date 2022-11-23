@@ -18,9 +18,7 @@ import {EAutoRange} from "scichart/types/AutoRange";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {ENumericFormat} from "scichart/types/NumericFormat";
-import {
-    FastCandlestickRenderableSeries
-} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
+import {FastCandlestickRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
 import {FastOhlcRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastOhlcRenderableSeries";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {XyMovingAverageFilter} from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
@@ -31,7 +29,7 @@ import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier"
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {CursorModifier} from "scichart/Charting/ChartModifiers/CursorModifier";
 import {SciChartOverview} from "scichart/Charting/Visuals/SciChartOverview";
-import {TPriceBar} from "../../BasicChartTypes/CandlestickChart/data/binanceClient";
+import {TPriceBar} from "../../BasicChartTypes/CandlestickChart/data/binanceRestClient";
 import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
@@ -164,9 +162,9 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         yCoordinateMode: ECoordinateMode.Relative,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        opacity: 0.23,
+        opacity: 0.2,
         textColor: appTheme.ForegroundColor,
-        fontSize: 36,
+        fontSize: 48,
         fontWeight: "Bold",
         text: "",
         annotationLayer: EAnnotationLayer.BelowChart
@@ -175,6 +173,8 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
 
     // Setup functions to return to caller to control the candlestick chart
     const setData = (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => {
+
+        console.log(`createCandlestickChart(): Setting data for ${symbolName}, ${priceBars.length} candles`);
 
         // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
         const xValues: number[] = [];
@@ -206,11 +206,27 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
     };
 
     const updatePriceBar = (priceBar: TPriceBar) => {
-        // TODO: Update or tick the latest price bar
+        // On new price bar from the exchange, we want to append or update the existing one (based on time)
+        const currentIndex = candleDataSeries.count() - 1;
+        const getLatestCandleDate = candleDataSeries.getNativeXValues().get(currentIndex);
+        if (priceBar.date / 1000 === getLatestCandleDate) {
+            // Case where the exchange sends a candle which is already on the chart, update it
+            candleDataSeries.update(currentIndex, priceBar.open, priceBar.high, priceBar.low, priceBar.close);
+            volumeDataSeries.update(currentIndex, priceBar.volume);
+        } else {
+            // Case where the exchange sends a new candle, append it
+            candleDataSeries.append(priceBar.date / 1000, priceBar.open, priceBar.high, priceBar.low, priceBar.close);
+            volumeDataSeries.append(priceBar.date / 1000, priceBar.volume);
+
+
+            // const shiftedRange = new NumberRange(xAxis.visibleRange.min + 1, xAxis.visibleRange.max + 1);
+            // // Shift the XAxis by the latest point
+            // xAxis.animateVisibleRange(shiftedRange, 250, easing.inOutQuad);
+        }
     };
 
     const setXRange = (startDate: Date, endDate: Date) => {
-        console.log(`Setting chart range to ${startDate} - ${endDate}`)
+        console.log(`createCandlestickChart(): Setting chart range to ${startDate} - ${endDate}`)
         xAxis.visibleRange = new NumberRange(startDate.getTime() / 1000, endDate.getTime() / 1000);
     };
 

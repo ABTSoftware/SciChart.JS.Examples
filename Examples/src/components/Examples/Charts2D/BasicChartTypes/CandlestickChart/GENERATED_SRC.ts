@@ -9,7 +9,7 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { DateTimeNumericAxis } from "scichart/Charting/Visuals/Axis/DateTimeNumericAxis";
-import { simpleBinanceClient } from "./data/binanceClient";
+import { simpleBinanceClient } from "./binanceRestClient";
 import { EAutoRange } from "scichart/types/AutoRange";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { XyMovingAverageFilter } from "scichart/Charting/Model/Filters/XyMovingAverageFilter";

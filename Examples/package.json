@@ -39,7 +39,9 @@
     "request": "^2.88.2",
     "scichart": "^2.3.0-alpha.185",
     "socket.io": "^4.5.2",
-    "socket.io-client": "^4.5.2"
+    "socket.io-client": "^4.5.2",
+    "rxjs": "^7.5.6",
+    "websocket-ts": "^1.1.1"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",

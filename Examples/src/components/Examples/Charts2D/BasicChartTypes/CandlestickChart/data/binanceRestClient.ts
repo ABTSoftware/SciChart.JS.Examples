@@ -1,3 +1,6 @@
+/**
+ * Defines a price bar with Open, High, Low, Close and Date encoded as number
+ */
 export type TPriceBar = {
     date: number;
     open: number;
@@ -7,6 +10,10 @@ export type TPriceBar = {
     volume: number;
 }
 
+/**
+ * Parses JSON candles into TPriceBar array
+ * @param candles
+ */
 const parseCandles = (candles: any[]): TPriceBar[] => {
     const priceBars: TPriceBar[] = [];
 
@@ -31,6 +38,9 @@ const parseCandles = (candles: any[]): TPriceBar[] => {
     return priceBars;
 };
 
+/**
+ * Fetches candles from Binance Rest API
+ */
 const getCandles = async (
     symbol: string,
     interval: string,
@@ -59,6 +69,6 @@ const getCandles = async (
     }
 };
 
-export const simpleBinanceClient = {
+export const simpleBinanceRestClient = {
     getCandles
 };
