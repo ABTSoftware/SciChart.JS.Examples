@@ -34,6 +34,8 @@ import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationB
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
 import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import { easing } from "scichart/Core/Animations/EasingFunctions";
+import {HorizontalLineAnnotation} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
 
 export const createCandlestickChart = async (divChartId: string, divOverviewId: string) => {
     // Create a SciChartSurface
@@ -171,6 +173,25 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
     });
     sciChartSurface.annotations.add(watermarkAnnotation);
 
+    // Add a vertical line annotation at the latest price
+    const latestPriceAnnotation = new HorizontalLineAnnotation({
+        isHidden: true,
+        strokeDashArray: [2, 2],
+        strokeThickness: 1,
+        axisFontSize: 13,
+        axisLabelStroke: appTheme.ForegroundColor,
+        showLabel: true,
+    });
+    sciChartSurface.annotations.add(latestPriceAnnotation);
+
+    // Update the latest price annotation position & colour
+    const updateLatestPriceAnnotation = (priceBar: TPriceBar) => {
+        latestPriceAnnotation.isHidden = false;
+        latestPriceAnnotation.y1 = priceBar.close;
+        latestPriceAnnotation.stroke = priceBar.close > priceBar.open ? appTheme.VividGreen : appTheme.MutedRed;
+        latestPriceAnnotation.axisLabelFill = latestPriceAnnotation.stroke;
+    };
+
     // Setup functions to return to caller to control the candlestick chart
     const setData = (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => {
 
@@ -201,8 +222,9 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         // Set the candle data series name (used by tooltips / legends)
         candleDataSeries.dataSeriesName = symbolName;
 
-        // Update the watermark text
+        // Update the watermark text & priceBarAnnotation
         watermarkAnnotation.text = watermarkText;
+        updateLatestPriceAnnotation(priceBars[priceBars.length - 1]);
     };
 
     const updatePriceBar = (priceBar: TPriceBar) => {
@@ -218,11 +240,15 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
             candleDataSeries.append(priceBar.date / 1000, priceBar.open, priceBar.high, priceBar.low, priceBar.close);
             volumeDataSeries.append(priceBar.date / 1000, priceBar.volume);
 
-
-            // const shiftedRange = new NumberRange(xAxis.visibleRange.min + 1, xAxis.visibleRange.max + 1);
-            // // Shift the XAxis by the latest point
-            // xAxis.animateVisibleRange(shiftedRange, 250, easing.inOutQuad);
+            // Is the latest candle in the viewport?
+            if (xAxis.visibleRange.max > getLatestCandleDate) {
+                // If so, shift the xAxis by one candle
+                const dateDifference = priceBar.date / 1000 - getLatestCandleDate;
+                const shiftedRange = new NumberRange(xAxis.visibleRange.min + dateDifference, xAxis.visibleRange.max + dateDifference);
+                xAxis.animateVisibleRange(shiftedRange, 250, easing.inOutQuad);
+            }
         }
+        updateLatestPriceAnnotation(priceBar);
     };
 
     const setXRange = (startDate: Date, endDate: Date) => {
