@@ -271,9 +271,8 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         // Update the large trades displaying trades > $LARGE_TRADE_THRESHOLD in value
         const tradeValue = tradeSize * priceBar.close;
         if (tradeValue > LARGE_TRADE_THRESHOLD) {
-            const tradeValueNormalised = 5 + Math.log2(tradeValue);
-            const side = lastTradeBuyOrSell ? "+" : "-";
-            console.log(`Large trade: ${new Date(priceBar.date)}, price ${priceBar.close}, size ${side}$${tradeValue.toFixed(2)}`);
+            const tradeValueNormalised = 20 * Math.log10(tradeValue) - 70;
+            console.log(`Large trade: ${new Date(priceBar.date)}, price ${priceBar.close}, size ${lastTradeBuyOrSell ? "+" : "-"}$${tradeValue.toFixed(2)}`);
             // @ts-ignore
             largeTradesDataSeries.append(priceBar.date / 1000, priceBar.close, tradeValueNormalised, { isSelected: false, lastTradeBuyOrSell });
         }
