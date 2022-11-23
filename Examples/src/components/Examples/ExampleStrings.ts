@@ -718,6 +718,10 @@ export const ExampleStrings = {
     titleOverview: "Zoom and Pan with Overview Chart",
     imgOverview: "images/javascript-overview-chart.jpg",
     urlOverviewDocumentation: "https://www.scichart.com/documentation/js/current/SciChartOverview.html",
-    urlTitleOverviewDocumentation:
-        "This specific page in the JavaScript ChartModifiers Api documentation will help you to get started",
+    urlTitleOverviewDocumentation: "This specific page in the JavaScript ChartModifiers Api documentation will help you to get started",
+
+    // Oil & Gas Demo
+    titleOilAndGasExplorerDashboard: "Oil &amp; Gas Explorer Dashboard",
+    urlOilAndGasExplorerDashboard: "/javascript-oil-and-gas-dashboard-showcase"
+
 };
