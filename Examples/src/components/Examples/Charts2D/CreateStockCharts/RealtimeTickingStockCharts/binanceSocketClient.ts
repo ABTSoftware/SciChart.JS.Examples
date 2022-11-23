@@ -79,7 +79,7 @@ export const parseTrade = (trade: any) => {
         symbol: trade.s,
         eventTime: trade.E,
         price: parseFloat(trade.p),
-        quantity: parseInt(trade.q),
+        quantity: parseFloat(trade.q),
         maker: false,
         isBuyerMaker: trade.m,
         tradeId: trade.a
