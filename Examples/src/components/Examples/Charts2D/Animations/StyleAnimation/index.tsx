@@ -109,6 +109,9 @@ const drawExample = async () => {
     // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
+    setTimeout(() => animateChartStyle(false), 1000);
+    setTimeout(() => animateChartStyle(true), 3000);
+
     sciChartSurface.zoomExtents();
 
     return { wasmContext, sciChartSurface, controls: { animateChartStyle } };
