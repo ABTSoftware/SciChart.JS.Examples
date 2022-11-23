@@ -48,7 +48,7 @@ import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/Ellipse
 import {VolumePaletteProvider} from "./VolumePaletteProvider";
 
 // Trades over this size will be rendered as bubbles on the chart
-const LARGE_TRADE_THRESHOLD = 10_000;
+const LARGE_TRADE_THRESHOLD = 100_000;
 
 export const createCandlestickChart = async (divChartId: string, divOverviewId: string) => {
     // Create a SciChartSurface
