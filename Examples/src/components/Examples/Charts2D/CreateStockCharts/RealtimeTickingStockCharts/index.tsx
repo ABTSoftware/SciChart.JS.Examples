@@ -19,9 +19,9 @@ const drawExample = async () => {
 
     const endDate = new Date(Date.now());
     const startDate = new Date();
-    startDate.setMinutes(endDate.getMinutes() - 500);
+    startDate.setMinutes(endDate.getMinutes() - 300);
 
-    // Fetch data Binance exchange: 500 1-minute candles
+    // Fetch data Binance exchange: 300 1-minute candles
     const priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1m", startDate, endDate);
 
     // Set the candles data on the chart
