@@ -13,8 +13,10 @@ export type TRealtimePriceBar = {
     high: number;
     low: number;
     close: number;
-    volume: number;
+    volume: number; // Total volume
     closeTime: number;
+    lastTradeSize: number; // Last trade size
+    lastTradeBuyOrSell: boolean; // When true, buy, else sell
 };
 
 export type TTrade = {
@@ -31,11 +33,12 @@ export const tradeToCandle = (candle: TRealtimePriceBar, curr: { trade: TTrade; 
     candle = candle ?? curr.firstCandle;
     const trade = curr.trade;
     const price = trade.price;
-    const quantity = trade.quantity;
+    candle.lastTradeSize = trade.quantity;
+    candle.lastTradeBuyOrSell = trade.isBuyerMaker;
     if (candle.closeTime > trade.eventTime) {
         // update existing candle
         candle.close = price;
-        candle.volume += quantity;
+        candle.volume += candle.lastTradeSize;
         if (price > candle.high) {
             candle.high = price;
         }
@@ -55,7 +58,9 @@ export const tradeToCandle = (candle: TRealtimePriceBar, curr: { trade: TTrade; 
             high: price,
             low: price,
             close: price,
-            volume: quantity
+            volume: candle.lastTradeSize,
+            lastTradeSize: candle.lastTradeSize,
+            lastTradeBuyOrSell: candle.lastTradeBuyOrSell
         };
     }
     return candle;
@@ -122,7 +127,9 @@ const parseKline = (kline: any) => {
         low: parseFloat(kline.k.l),
         close: parseFloat(kline.k.c),
         volume: parseFloat(kline.k.v),
-        closeTime: kline.k.T
+        closeTime: kline.k.T,
+        lastTradeSize: parseFloat(kline.k.v),
+        lastTradeBuyOrSell: undefined,
     };
     return pb;
 };

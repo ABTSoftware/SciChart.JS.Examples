@@ -1,4 +1,8 @@
-import {EFillPaletteMode, IFillPaletteProvider} from "scichart/Charting/Model/IPaletteProvider";
+import {
+    EStrokePaletteMode,
+    IPointMarkerPaletteProvider,
+    TPointMarkerArgb
+} from "scichart/Charting/Model/IPaletteProvider";
 import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
 import {parseColorToUIntArgb} from "scichart/utils/parseColor";
 import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
@@ -18,7 +22,9 @@ import {EAutoRange} from "scichart/types/AutoRange";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {ENumericFormat} from "scichart/types/NumericFormat";
-import {FastCandlestickRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
+import {
+    FastCandlestickRenderableSeries
+} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
 import {FastOhlcRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastOhlcRenderableSeries";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {XyMovingAverageFilter} from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
@@ -34,8 +40,15 @@ import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationB
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
 import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import { easing } from "scichart/Core/Animations/EasingFunctions";
+import {easing} from "scichart/Core/Animations/EasingFunctions";
 import {HorizontalLineAnnotation} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
+import {XyzDataSeries} from "scichart/Charting/Model/XyzDataSeries";
+import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {VolumePaletteProvider} from "./VolumePaletteProvider";
+
+// Trades over this size will be rendered as bubbles on the chart
+const LARGE_TRADE_THRESHOLD = 25000;
 
 export const createCandlestickChart = async (divChartId: string, divOverviewId: string) => {
     // Create a SciChartSurface
@@ -129,11 +142,18 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
             // This is how we get volume to scale - on a hidden YAxis
             yAxisId: Y_AXIS_VOLUME_ID,
             // This is how we colour volume bars red or green
-            paletteProvider: new VolumePaletteProvider(
-                candleDataSeries,
-                appTheme.VividGreen + "77",
-                appTheme.MutedRed + "77"
-            )
+            paletteProvider: new VolumePaletteProvider(candleDataSeries, appTheme.VividGreen + "77", appTheme.MutedRed + "77")
+        })
+    );
+
+    // Add large trades data to the chart
+    const largeTradesDataSeries = new XyzDataSeries(wasmContext, { dataSeriesName: `Trades Size > $${LARGE_TRADE_THRESHOLD.toLocaleString()}`});
+    sciChartSurface.renderableSeries.add(
+        new FastBubbleRenderableSeries(wasmContext, {
+            dataSeries: largeTradesDataSeries,
+            stroke: appTheme.VividGreen,
+            pointMarker: new EllipsePointMarker(wasmContext, { width: 64, height: 64, opacity: 0.23, strokeThickness: 2 }),
+            paletteProvider: new LargeTradesPaletteProvider(appTheme.VividGreen, appTheme.MutedRed)
         })
     );
 
@@ -227,7 +247,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         updateLatestPriceAnnotation(priceBars[priceBars.length - 1]);
     };
 
-    const updatePriceBar = (priceBar: TPriceBar) => {
+    const onNewTrade = (priceBar: TPriceBar, tradeSize: number, lastTradeBuyOrSell: boolean) => {
         // On new price bar from the exchange, we want to append or update the existing one (based on time)
         const currentIndex = candleDataSeries.count() - 1;
         const getLatestCandleDate = candleDataSeries.getNativeXValues().get(currentIndex);
@@ -248,6 +268,16 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
                 xAxis.animateVisibleRange(shiftedRange, 250, easing.inOutQuad);
             }
         }
+        // Update the large trades displaying trades > $LARGE_TRADE_THRESHOLD in value
+        const tradeValue = tradeSize * priceBar.close;
+        if (tradeValue > LARGE_TRADE_THRESHOLD) {
+            const tradeValueNormalised = 5 + Math.log2(tradeValue);
+            const side = lastTradeBuyOrSell ? "+" : "-";
+            console.log(`Large trade: ${new Date(priceBar.date)}, price ${priceBar.close}, size ${side}$${tradeValue.toFixed(2)}`);
+            // @ts-ignore
+            largeTradesDataSeries.append(priceBar.date / 1000, priceBar.close, tradeValueNormalised, { isSelected: false, lastTradeBuyOrSell });
+        }
+        // Update the latest price line annotation
         updateLatestPriceAnnotation(priceBar);
     };
 
@@ -266,7 +296,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         ohlcSeries.isVisible = true;
     };
 
-    return { sciChartSurface, sciChartOverview, controls: { setData, updatePriceBar, setXRange, enableCandlestick, enableOhlc } };
+    return { sciChartSurface, sciChartOverview, controls: { setData, onNewTrade, setXRange, enableCandlestick, enableOhlc } };
 };
 // Override the Renderableseries to display on the scichart overview
 const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
@@ -294,12 +324,17 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
         const y = 20 + index * 20;
         const textColor = seriesInfo.stroke;
         let legendText = seriesInfo.formattedYValue;
+        let separator = ":"
         if (seriesInfo.dataSeriesType === EDataSeriesType.Ohlc) {
             const o = seriesInfo as OhlcSeriesInfo;
             legendText = `Open=${o.formattedOpenValue} High=${o.formattedHighValue} Low=${o.formattedLowValue} Close=${o.formattedCloseValue}`;
         }
+        if (seriesInfo.dataSeriesType === EDataSeriesType.Xyz) {
+            legendText = "";
+            separator = "";
+        }
         outputSvgString += `<text x="8" y="${y}" font-size="13" font-family="Verdana" fill="${textColor}">
-            ${seriesInfo.seriesName}: ${legendText}
+            ${seriesInfo.seriesName}${separator} ${legendText}
         </text>`;
     });
 
@@ -308,31 +343,22 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
             </svg>`;
 };
 
-class VolumePaletteProvider implements IFillPaletteProvider {
-    fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
-    private ohlcDataSeries: OhlcDataSeries;
-    private upColorArgb: number;
-    private downColorArgb: number;
 
-    constructor(masterData: OhlcDataSeries, upColor: string, downColor: string) {
+// Class which manages red/green fill colouring on Large Trades depending on if the trade is buy or sell
+class LargeTradesPaletteProvider implements IPointMarkerPaletteProvider {
+    private readonly upColorArgb: number;
+    private readonly downColorArgb: number;
+    constructor(upColor: string, downColor: string) {
         this.upColorArgb = parseColorToUIntArgb(upColor);
         this.downColorArgb = parseColorToUIntArgb(downColor);
-        this.ohlcDataSeries = masterData;
     }
+    // Return up or down color for the large trades depending on if last trade was buy or sell
+    overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): TPointMarkerArgb {
+        // @ts-ignore
+        const tradeColor = metadata?.lastTradeBuyOrSell ? this.upColorArgb : this.downColorArgb;
+        return {fill: tradeColor, stroke: tradeColor};
+    }
+    strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
     onAttached(parentSeries: IRenderableSeries): void {}
     onDetached(): void {}
-
-    // Return up or down color for the volume bars depending on Ohlc data
-    overrideFillArgb(
-        xValue: number,
-        yValue: number,
-        index: number,
-        opacity?: number,
-        metadata?: IPointMetadata
-    ): number {
-        const isUpCandle =
-            this.ohlcDataSeries.getNativeOpenValues().get(index) >=
-            this.ohlcDataSeries.getNativeCloseValues().get(index);
-        return isUpCandle ? this.upColorArgb : this.downColorArgb;
-    }
 }

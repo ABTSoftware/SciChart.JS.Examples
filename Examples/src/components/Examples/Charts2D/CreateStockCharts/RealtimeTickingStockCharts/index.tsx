@@ -35,15 +35,8 @@ const drawExample = async () => {
 
     // Susbscribe to price updates from the exchange
     const subscription = binanceSocketClient.getRealtimeCandleStream("BTCUSDT", "1m").subscribe(pb => {
-        controls.updatePriceBar(
-            {
-                date: pb.openTime,
-                open: pb.open,
-                high: pb.high,
-                low: pb.low,
-                close: pb.close,
-                volume: pb.volume
-            });
+        const priceBar = { date: pb.openTime, open: pb.open, high: pb.high, low: pb.low, close: pb.close, volume: pb.volume };
+        controls.onNewTrade(priceBar, pb.lastTradeSize, pb.lastTradeBuyOrSell);
     });
 
     return { sciChartSurface, sciChartOverview, subscription, controls };
@@ -58,7 +51,7 @@ export default function RealtimeTickingStockCharts() {
     const [preset, setPreset] = React.useState<number>(0);
     const [chartControls, setControls] = React.useState( {
         setData: (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => {},
-        updatePriceBar: (priceBar: TPriceBar) => {},
+        onNewTrade: (priceBar: TPriceBar, tradeSize: number, lastTradeBuyOrSell: boolean) => {},
         setXRange: (startDate: Date, endDate: Date) => {},
         enableCandlestick: () => {},
         enableOhlc: () => {},
