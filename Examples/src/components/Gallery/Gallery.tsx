@@ -10,9 +10,9 @@ type TProps = {
 };
 
 const Gallery: React.FC<TProps & WithWidth> = props => {
-    let slidersWidth = 3;
+    let slidersWidth = 5;
     if (props.width === "sm") {
-        slidersWidth = 2;
+        slidersWidth = 3;
     } else if (props.width === "xs") {
         slidersWidth = 1;
     }

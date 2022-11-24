@@ -81,6 +81,7 @@
     display: flex;
     flex-direction: row;
     overflow: hidden;
+    flex-wrap: wrap;
 
     @include xs {
         align-items: center;
@@ -88,7 +89,7 @@
     }
 
     .GalleryItem {
-        transition: all 1.2s;
+        transition: all 0.8s;
 
         padding: 10px;
 
