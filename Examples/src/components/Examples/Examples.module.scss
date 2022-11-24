@@ -126,11 +126,9 @@
         justify-content: space-between;
 
         .ExampleRootDescriptionLink {
-            color: $color-main-green !important;
-            &:hover,
-            &:active,
-            &:visited {
-                color: $color-main-green !important;
+            color: $color-link-text !important;
+            &:hover {
+                color: $color-link-text-hover !important;
             }
         }
         @include md {
@@ -169,7 +167,10 @@
         font-size: 1rem;
         line-height: 30px;
         a {
-            color: $color-main-green;
+            color: $color-link-text;
+        }
+        a:hover {
+            color: $color-link-text-hover;
         }
     }
     .TextGreen {
@@ -365,9 +366,9 @@
 }
 
 //Common
-.OrangeButton {
-    background: linear-gradient(114.95deg, #febc48 0%, #e97502 100%);
-    border-radius: 4px;
+.PurpleButton {
+    background: $gradient-btn-dark;
+    border-radius: 14px;
     margin: 10px;
     span {
         font-weight: bold;
@@ -377,3 +378,10 @@
         white-space: nowrap;
     }
 }
+
+.PurpleButton:hover {
+    background-size: 200% 100%;
+    background-position: 0 100%;
+}
+
+

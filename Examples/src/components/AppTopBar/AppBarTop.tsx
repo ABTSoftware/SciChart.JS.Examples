@@ -24,10 +24,13 @@ const AppBarTop: React.FC<TProps> = props => {
                 </a>
                 <Search />
                 <div className={classes.FlexPlaceholder} />
-                <Button className={classes.DownloadTrialButton} href="https://www.scichart.com/downloads/" target="_blank">
-                    Download Trial
+                <Button className={classes.BlueButton} href="https://www.scichart.com/getting-started/scichart-javascript/" target="_blank" title="Start a trial or community license">
+                    Get Started
                 </Button>
-                <a className={classes.GitHubLink} href="https://github.com/ABTSoftware/SciChart.JS.Examples" title="SciChart on GitHub">
+                <Button className={classes.PurpleButton} href="https://www.scichart.com/javascript-chart-documentation/" target="_blank" title="Go to SciChart.js Documentation">
+                    Documentation
+                </Button>
+                <a className={classes.GitHubLink} href="https://github.com/ABTSoftware/SciChart.JS.Examples" target="_blank" title="SciChart.js on GitHub">
                     <GitHubIcon fontSize="small" />
                 </a>
                 <IconButton

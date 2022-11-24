@@ -74,29 +74,23 @@ const ExamplesRoot: React.FC<TProps> = props => {
                 <div className={classes.ColMain}>
                     <ComponentWrapper>
                         <div className={classes.ExampleRootDescription}>
-                            <h5>All SciChart.js Examples</h5>
+                            <h5>SciChart.js Demo</h5>
 
                             <p className={classes.ExampleDescriptionText}>
-                                View the{" "}
+                                {" "}
                                 <a className={classes.ExampleRootDescriptionLink}
                                    target="_blank"
                                    href={`https://wordpress-314780-2873630.cloudwaysapps.com/example/javascript-chart${exampleUrl}`}
                                    title={titleText}>
                                     {titleText}
-                                </a>{" "} over at the main SciChart website. To clone the repo for our demo app, visit our{" "}
+                                </a>{" "} is part of the SciChart.js demo app. To clone the repo for this demo, visit {" "}
                                 <a className={classes.ExampleRootDescriptionLink}
                                    target="_blank"
                                    href="https://github.com/abtsoftware/scichart.js.examples"
                                    title={titleText}>
-                                    Github Repo
-                                </a>.<br/>Or, to get started, hit the button on the right!
+                                    SciChart's Github
+                                </a>. For getting-started &amp; docs, see above!
                             </p>
-                            <div className={classes.OrangeButton}>
-                                <Button href="https://wordpress-314780-2873630.cloudwaysapps.com/getting-started/scichart-javascript/" target="_blank"
-                                        title="Get Started with SciChart.js">
-                                    Get Started
-                                </Button>
-                            </div>
                         </div>
                     </ComponentWrapper>
 
@@ -112,7 +106,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                     description={description}
                                     previewDescription={previewDescription}
                                 />
-                            </div>ppBar
+                            </div>
                             <div className={classes.Example}>
                                 <ExampleComponent />
                                 <div className={classes.ButtonsWrapper}>

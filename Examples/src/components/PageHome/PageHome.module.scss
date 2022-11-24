@@ -27,17 +27,17 @@
 }
 
 .PageHomeWrapper {
-    background-color: $color-dark;
+    background: $gradient-header;
     .PageHomeContent {
-        max-width: 1600;
-        background: url("../../assets//images/Chart.png");
-        background-size: auto;
-        background-repeat: no-repeat;
-        background-position: 150% 50%;
-        margin: auto;
+        //max-width: 1600;
+        //background: url("../../assets//images/Chart.png");
+        //background-size: auto;
+        //background-repeat: no-repeat;
+        //background-position: 150% 50%;
+        //margin: auto;
 
         .PageHomeHeader {
-            padding: $default-spacing * 18.75 $default-spacing * 3;
+            padding: $default-spacing * 12.75 $default-spacing * 5;
             @extend %Container;
 
             margin: auto;
@@ -75,17 +75,20 @@
                     font-size: 1rem;
                     font-weight: 400;
                     line-height: 2;
-                    color: $color-primary-grey;
-                    width: 80%;
+                    color: $color-primary-white;
+                    width: 100%;
                     @include sm {
                         width: 100%;
                     }
                     a {
-                        color: #5cb85c;
+                        color: $color-link-text;
+                    }
+                    a:hover {
+                        color: $color-link-text-hover;
                     }
                 }
                 .PageHomeTitle {
-                    color: $color-font-green;
+                    color: $color-primary-white;
                     font-size: 3.25rem;
 
                     font-weight: 600;

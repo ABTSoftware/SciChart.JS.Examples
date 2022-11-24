@@ -28,32 +28,34 @@ export default function PageHome() {
                 <div className={classes.PageHomeHeader}>
                     <div className={classes.PageHomeHeaderText}>
                         <h1 className={classes.PageHomeTitle}>
-                            High Performance
-                            <span>Realtime Javascript Charts</span>
+                            SciChart.js Demo
                         </h1>
                         <h3 className={classes.PageHomeAboutText}>
-                            With our cutting-edge, award-winning graphics engine in WebAssembly & WebGL, SciChart.js
-                            brings you the world's fastest <a href="https://www.scichart.com/javascript-chart/" target="_blank" title="JavaScript Chart Library">JavaScript Chart Library</a>. Plot millions of data-points in
-                            realtime, create next-generation streaming, updating financial, medical, scientific and
-                            big-data business applications.
+                            The SciChart.js Demo app is where we host our showcases and demos for SciChart's{" "}
+                            <a href="https://www.scichart.com/javascript-chart/" target="_blank" title="JavaScript Chart Library">
+                                JavaScript Chart Library
+                            </a>. All demos can be viewed at the main SciChart website, over at{" "}
+                            <a href="https://www.scichart.com/examples/javascript-chart/" target="_blank" title="JavaScript Chart Examples">
+                                scichart.com/examples/javascript-chart
+                            </a>
                         </h3>
-                        <div className={classes.ButtonWrapper}>
-                            <Button href="https://www.scichart.com/downloads/" target="_blank">
-                                DOWNLOAD TRIAL
-                            </Button>
-                        </div>
+                        {/*<div className={classes.ButtonWrapper}>*/}
+                        {/*    <Button href="https://www.scichart.com/downloads/" target="_blank">*/}
+                        {/*        DOWNLOAD TRIAL*/}
+                        {/*    </Button>*/}
+                        {/*</div>*/}
                     </div>
-                    <div className={classes.PageHomeHeaderImages}>
-                        <div className={classes.Blur}></div>
-                        <div className={classes.PageHomeHeaderImage1}>
-                            <div className={classes.SmallBox}></div>
-                            <img className={classes.PageHomeHeaderImage1} src={multiPaneStockImg} />
-                            <div className={classes.BigBox}></div>
-                        </div>
-                        <ImageHeaderComponent timeOut={1000} interval={5500} className={classes.PageHomeHeaderImage2} />
+                    {/*<div className={classes.PageHomeHeaderImages}>*/}
+                    {/*    <div className={classes.Blur}></div>*/}
+                    {/*    <div className={classes.PageHomeHeaderImage1}>*/}
+                    {/*        <div className={classes.SmallBox}></div>*/}
+                    {/*        <img className={classes.PageHomeHeaderImage1} src={multiPaneStockImg} />*/}
+                    {/*        <div className={classes.BigBox}></div>*/}
+                    {/*    </div>*/}
+                    {/*    <ImageHeaderComponent timeOut={1000} interval={5500} className={classes.PageHomeHeaderImage2} />*/}
 
-                        <ImageHeaderComponent timeOut={1000} interval={6500} className={classes.PageHomeHeaderImage3} />
-                    </div>
+                    {/*    <ImageHeaderComponent timeOut={1000} interval={6500} className={classes.PageHomeHeaderImage3} />*/}
+                    {/*</div>*/}
                 </div>
             </div>
         </div>

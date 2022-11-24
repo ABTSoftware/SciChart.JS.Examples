@@ -6,6 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { searchItems, TSearchItem } from "./searchItems";
 import classes from "./Search.module.scss";
+import {makeStyles} from "@material-ui/core/styles";
 
 export default function Search() {
     const history = useHistory();

@@ -2,7 +2,7 @@
 
 .AppBar {
     height: $app-bar-height;
-    
+
     .ToolBar {
         position: fixed;
         right: 0;
@@ -15,8 +15,8 @@
         z-index: 1200;
 
         .Logo {
-            width: 152px;
-            height: 30px;
+            height: 60px;
+            margin-top: 5px;
             margin-right: $default-spacing * 2;
         }
 
@@ -42,20 +42,20 @@
             padding: 12px 12px;
             margin-left: 12px;
             border-radius: 4px;
-            background-color: $color-dark-blue;
+            background-color: $color-medium-blue;
             color: $color-lightest-green;
             text-decoration: none;
         }
 
-        .DownloadTrialButton {
+        .PurpleButton {
             display: flex;
             flex: none;
             width: 170px;
             height: 100%;
-            margin-left: 12px;
+            margin-left: 10px;
             padding: $default-spacing * 2 $default-spacing * 2;
-            border-radius: 4px;
-            background: $color-dark-green;
+            border-radius: 14px;
+            background: $gradient-btn-dark;
 
             @include sm {
                 display: none;
@@ -71,6 +71,29 @@
                 text-transform: uppercase;
                 text-decoration-thickness: auto;
             }
+        }
+
+        .PurpleButton:hover {
+            background-size: 200% 100%;
+            background-position: 0 100%;
+        }
+
+        .BlueButton {
+            background: $gradient-blue;
+            border-radius: 14px;
+            margin-left: 10px;
+            span {
+                font-weight: bold;
+                padding: 6px 15px;
+                color: white !important;
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+        }
+
+        .BlueButton:hover {
+            background-size: 200% 100%;
+            background-position: 0 100%;
         }
     }
 }
