@@ -74,20 +74,27 @@ const ExamplesRoot: React.FC<TProps> = props => {
                 <div className={classes.ColMain}>
                     <ComponentWrapper>
                         <div className={classes.ExampleRootDescription}>
-                            <h5>JavaScript Chart Examples</h5>
+                            <h5>All SciChart.js Examples</h5>
 
                             <p className={classes.ExampleDescriptionText}>
-                                SciChart.js ships with over 80{" "}
-                                <a className={classes.ExampleRootDescriptionLink} href="https://demo.scichart.com" title="SciChart.js Examples">
-                                    JavaScript Chart demos
-                                </a>{" "}
-                                which you can browse, view the source code and see related documentation.{" "}
-                                Build incredible complex dashboards with SciChart.js, our High Performance{" "}
-                                JavaScript Chart Library.
+                                View the{" "}
+                                <a className={classes.ExampleRootDescriptionLink}
+                                   target="_blank"
+                                   href={`https://wordpress-314780-2873630.cloudwaysapps.com/example/javascript-chart${exampleUrl}`}
+                                   title={titleText}>
+                                    {titleText}
+                                </a>{" "} over at the main SciChart website. To clone the repo for our demo app, visit our{" "}
+                                <a className={classes.ExampleRootDescriptionLink}
+                                   target="_blank"
+                                   href="https://github.com/abtsoftware/scichart.js.examples"
+                                   title={titleText}>
+                                    Github Repo
+                                </a>.<br/>Or, to get started, hit the button on the right!
                             </p>
                             <div className={classes.OrangeButton}>
-                                <Button href="https://www.scichart.com/downloads/" target="_blank" title="Download SciChart.js">
-                                    Free Trial
+                                <Button href="https://wordpress-314780-2873630.cloudwaysapps.com/getting-started/scichart-javascript/" target="_blank"
+                                        title="Get Started with SciChart.js">
+                                    Get Started
                                 </Button>
                             </div>
                         </div>
@@ -97,21 +104,30 @@ const ExamplesRoot: React.FC<TProps> = props => {
                         <h1 className={classes.Title}>{titleText} </h1>
 
                         <div className={classes.ExampleWrapper}>
+                            <div className={classes.ExampleDescription}>
+                                <div className={classes.Subtitle}>{subtitleText}</div>
+                                <ExampleDescription
+                                    documentationLinks={documentationLinks}
+                                    tips={tips}
+                                    description={description}
+                                    previewDescription={previewDescription}
+                                />
+                            </div>ppBar
                             <div className={classes.Example}>
                                 <ExampleComponent />
                                 <div className={classes.ButtonsWrapper}>
-                                    <Button
-                                        onClick={() => {
-                                            setShowSource(!showSource);
-                                            setFirstRender(false);
-                                            if (!showSource) {
-                                                executeScroll();
-                                            }
-                                        }}
-                                    >
-                                        <CodeIcon />
-                                        <span className={classes.ButtonsText}>VIEW SOURCE CODE</span>
-                                    </Button>
+                                    {/*<Button*/}
+                                    {/*    onClick={() => {*/}
+                                    {/*        setShowSource(!showSource);*/}
+                                    {/*        setFirstRender(false);*/}
+                                    {/*        if (!showSource) {*/}
+                                    {/*            executeScroll();*/}
+                                    {/*        }*/}
+                                    {/*    }}*/}
+                                    {/*>*/}
+                                    {/*    <CodeIcon />*/}
+                                    {/*    <span className={classes.ButtonsText}>VIEW SOURCE CODE</span>*/}
+                                    {/*</Button>*/}
                                     <Button
                                         onClick={() => {
                                             setShowSource(!showSource);
@@ -123,16 +139,6 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                         </a>
                                     </Button>
                                 </div>
-                            </div>
-
-                            <div className={classes.ExampleDescription}>
-                                <div className={classes.Subtitle}>{subtitleText}</div>
-                                <ExampleDescription
-                                    documentationLinks={documentationLinks}
-                                    tips={tips}
-                                    description={description}
-                                    previewDescription={previewDescription}
-                                />
                             </div>
                         </div>
                     </ComponentWrapper>
