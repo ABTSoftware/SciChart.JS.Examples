@@ -26,7 +26,7 @@ import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
 import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import {
     DataLabelState
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/DataLabels/DataLabelState";
+} from "scichart/Charting/Visuals/RenderableSeries/DataLabels/DataLabelState";
 
 const divElementId = "chart";
 
