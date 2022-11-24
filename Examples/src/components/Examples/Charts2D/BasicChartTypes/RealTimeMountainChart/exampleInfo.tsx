@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-realtime-mountain-chart.jpg";
 
 const description = `This variation on Mountain or Area charts in SciChart.js uses dynamic updates to show how easy it is to achieve
     animated realtime charts with our library.`;
@@ -68,5 +69,5 @@ export const realTimeMountainChartExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "JavaScript Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",
     metaKeywords: "mountain, chart, realtime, animated, javascript, canvas",
-    thumbnailImage: ExampleStrings.imgRealtimeMountainChart
+    thumbnailImage: exampleImage
 };

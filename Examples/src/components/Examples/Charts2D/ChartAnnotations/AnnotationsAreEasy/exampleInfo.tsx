@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-annotations.jpg";
 
 const previewDescription = `An introduction to the Annotations API in SciChart.js, which allows SVG elements or custom WebGL rendered
 elements to be placed over the chart at specific X,Y data-values.`;
@@ -103,5 +104,5 @@ export const annotationsAreEasyExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates how to place Annotations (lines, arrows, markers, text) over a JavaScript Chart using SciChart.js Annotations API",
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-annotations.jpg"
+    thumbnailImage: exampleImage
 };

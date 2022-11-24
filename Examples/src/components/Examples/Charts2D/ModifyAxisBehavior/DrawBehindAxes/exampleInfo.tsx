@@ -5,6 +5,7 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-draw-behind-axes.jpg";
 
 const description = `Demonstrates a chart where the series can draw into the axes area.`;
 const tips = [`You can also draw axes over the chart area, and in other positions, buy using Inner Axes`];
@@ -71,5 +72,5 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates the option of the transparent Axes customization on a JavaScript Chart using SciChart.js.",
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-draw-behind-axes.png"
+    thumbnailImage: exampleImage
 };

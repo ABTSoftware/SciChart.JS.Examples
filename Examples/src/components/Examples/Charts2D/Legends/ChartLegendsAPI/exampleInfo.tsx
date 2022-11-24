@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-legends.jpg";
 
 const previewDescription = `Demonstrates how to add a Legend to a JavaScript Line Chart using SciChart.js. The legend is created when
 you add a LegendModifier type to the sciChartSurface.chartModifiers collection.`;
@@ -84,5 +85,5 @@ export const chartLegendsAPIExampleInfo: TExampleInfo = {
         "Demonstrates how to add a Legends to a JavaScript Line Chart using SciChart.js. The legend is created when you add " +
         "a LegendModifier type to the sciChartSurface.chartModifiers collection.",
     metaKeywords: "legend, api, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-legends.jpg"
+    thumbnailImage: exampleImage
 };

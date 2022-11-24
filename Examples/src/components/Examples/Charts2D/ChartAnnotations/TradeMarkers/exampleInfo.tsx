@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-stock-chart-buy-sell-markers.jpg";
 
 const previewDescription = `The Trade Markers demo uses the Annotations API to place CustomAnnotations rendering buy and sell or news
 bullet markers over a simulated price chart.`;
@@ -108,5 +109,5 @@ export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates how to place Buy/Sell arrow markers on a JavaScript Stock Chart using SciChart.js - Annotations API",
     metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-stock-chart-buy-sell-markers.jpg"
+    thumbnailImage: exampleImage
 };

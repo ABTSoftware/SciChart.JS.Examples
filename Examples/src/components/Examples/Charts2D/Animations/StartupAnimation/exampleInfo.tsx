@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-startup-animations.jpg";
 
 const previewDescription = ``;//`Demonstrates how to run startup animations for a JavaScript Chart.`;
 const description = `Startup animations run on start and decorate charts`;
@@ -82,5 +83,5 @@ export const startupAnimationExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates how to run Startup Animations with JavaScript.",
     metaKeywords: "startup, on-start, animation, javascript",
-    thumbnailImage: "javascript-startup-animation.png"
+    thumbnailImage: exampleImage
 };

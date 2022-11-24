@@ -4,7 +4,7 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
-
+import exampleImage from "./javascript-spline-band-chart.jpg";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
 const previewDescription = `Band Charts fill a polygon between two high and low lines. The colour of the polygon changes depending on which line Y1 or Y2 is higher.`;
@@ -100,5 +100,5 @@ export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     metaDescription:
         "SciChart's JavaScript Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.",
     metaKeywords: "band, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-band-chart.jpg"
+    thumbnailImage: exampleImage
 };

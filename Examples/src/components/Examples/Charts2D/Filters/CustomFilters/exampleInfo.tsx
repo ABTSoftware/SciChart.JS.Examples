@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-custom-filters.jpg";
 
 const previewDescription = `This uses a simple custom filter to apply random noise to a line, then an advanced aggregation filter calculates the frequency distribution`;
 const description = `Simple Custom Filters are great if you just want to apply some function to each y value.  Just create an XyCustomFilter and set your function.
@@ -89,5 +90,5 @@ export const customFiltersExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
     metaKeywords: "real-time, filter, transform, updating, aggregation, custom, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-custom-filters.jpg"
+    thumbnailImage: exampleImage
 };

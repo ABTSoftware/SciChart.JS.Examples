@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
+import exampleImage from "./javascript-stacked-column-chart.jpg";
 
 const description = `Stacked Column Charts can be created in JavaScript using SciChart.js. An column or rectangle is rendered from the
     Y-value of each stacked column series to the Y-value of the next.
@@ -85,5 +86,5 @@ export const stackedColumnChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Discover how to create a JavaScript Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!",
     metaKeywords: "stacked, column, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-stacked-column-chart.png"
+    thumbnailImage: exampleImage
 };

@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
+import exampleImage from "./javascript-chart-realtime-performance-demo.jpg";
 
 const Subtitle = () => (
     <p>
@@ -88,5 +89,5 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     metaDescription:
         "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-realtime-performance-demo.jpg"
+    thumbnailImage: exampleImage
 };

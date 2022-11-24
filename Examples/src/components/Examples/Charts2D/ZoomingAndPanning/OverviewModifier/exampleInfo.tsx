@@ -5,6 +5,7 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
+import exampleImage from "./javascript-overview-chart.jpg";
 
 const previewDescription = `This examples shows how use SciChartOverview to quickly create an overview chart
  that contains a draggable box that controls the visible range of another chart`;
@@ -91,5 +92,5 @@ export const overviewExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates how to zoom and pan with an Overview Chart",
     metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",
-    thumbnailImage: "javascript-overview-chart.jpg"
+    thumbnailImage: exampleImage
 };

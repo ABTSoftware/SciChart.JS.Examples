@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-vertical-charts.jpg";
 
 const description = `Demonstrates a vertical chart with XAxis on the Left and YAxis on the Top. SciChart.js supports unlimited X
 and Y axis and allows placement of any axis on the Left, Right, Top, Bottom of the chart.`;
@@ -75,5 +76,5 @@ export const verticalChartsExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
     metaKeywords: "vertical, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-vertical-charts.jpg"
+    thumbnailImage: exampleImage
 };

@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-candlestick-chart.jpg";
 
 const previewDescription = `SciChart.js supports Candlestick Charts or OHLC with custom colours per bar and Date X-Axis.`;
 const description = `Candlestick charts can be animated, dynamically updated for real trading apps or combined with other series types to draw technical indicators or shapes.`;
@@ -99,5 +100,5 @@ export const candlestickChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Discover how to create a JavaScript Candlestick Chart or Stock Chart using SciChart.js. For high Performance JavaScript Charts, get your free demo now.",
     metaKeywords: "candlestick, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-candlestick-chart.jpg"
+    thumbnailImage: exampleImage
 };

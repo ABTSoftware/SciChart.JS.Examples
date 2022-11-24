@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-performance-load-one-million-points.jpg";
 
 const seeAlso: GalleryItem[] = [
     {
@@ -84,5 +85,5 @@ export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.`,
     metaKeywords: "performance, loading, million, points, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-performance-one-million-points.jpg"
+    thumbnailImage: exampleImage
 };

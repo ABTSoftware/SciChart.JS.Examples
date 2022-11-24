@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-column-chart.jpg";
 
 const description = `Columns in SciChart.js are rendered with a stroke and fill, and
 support gradient fill and paletteproviders for more custom coloring options.`;
@@ -86,5 +87,5 @@ export const columnChartExampleInfo: TExampleInfo = {
     metaDescription:
         "JavaScript Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
     metaKeywords: "column, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-column-chart.jpg"
+    thumbnailImage: exampleImage
 };

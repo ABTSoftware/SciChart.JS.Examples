@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-pie-chart.jpg";
 
 const description = `Pie Charts in SciChart.js support selection, legends, different text labels, animated updates,
     gradient or solid fills and more.`;
@@ -85,5 +86,5 @@ export const pieChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Easily create and customise a high performance JavaScript Pie Chart with 5-star rated SciChart.js. Get your free trial now to access the whole library. ",
     metaKeywords: "pie, chart, javascript, canvas",
-    thumbnailImage: "javascript-pie-chart.jpg"
+    thumbnailImage: exampleImage
 };

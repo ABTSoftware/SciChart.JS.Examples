@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-scatter-chart.jpg";
 
 const previewDescription = `Scatter Charts in SciChart.js can render a number of pre-defined point types (Circle, Square, Triangle, Cross). Custom shapes are also possible.`;
 const description = `Each Scatter-chart point can have varying color using our PaletteProvider API. Varying sizes are also possible with the Bubble Chart type.`;
@@ -80,5 +81,5 @@ export const scatterChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Create JavaScript Scatter Chart with high performance SciChart.js. Easily render pre-defined point types. Supports custom shapes. Get your free trial now. ",
     metaKeywords: "scatter, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-scatter-chart.jpg"
+    thumbnailImage: exampleImage
 };

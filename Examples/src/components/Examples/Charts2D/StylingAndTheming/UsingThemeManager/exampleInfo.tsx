@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-themes.jpg";
 
 const description = `SciChart.js ships with a light and a dark theme, which you can switch by calling the
 SciChartSurface.applyTheme() function.`;
@@ -67,5 +68,5 @@ export const usingThemeManagerExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates our Light and Dark Themes for JavaScript Charts with SciChart.js ThemeManager API",
     metaKeywords: "theme, provider, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-themes.png"
+    thumbnailImage: exampleImage
 };

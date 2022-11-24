@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-mountain-chart.jpg";
 
 const description = `A mountain or area chart draws a line with polygon underneath. In SciChart.js the Zero line of the mountain is configurable, so it can be zero or a specific value. The fill color can be solid or gradient as well!`;
 const tips = [
@@ -85,5 +86,5 @@ export const mountainChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Create JavaScript Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",
     metaKeywords: "mountain, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-spline-mountain-chart.jpg"
+    thumbnailImage: exampleImage
 };

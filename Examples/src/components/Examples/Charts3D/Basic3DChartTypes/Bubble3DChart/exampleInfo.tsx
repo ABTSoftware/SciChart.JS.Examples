@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-3d-bubble-chart.jpg";
 
 const description = `JavaScript 3D Bubble Charts can be created using SciChart.js.
     Large datasets up to a million points can be drawn, enabling point-clouds or visualisation of large statistical datsets in a browser.`;
@@ -74,5 +75,5 @@ export const bubble3DChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Create detailed JavaScript 3D Bubble Chart using SciChart's 5-star rated JavaScript chart library. Supports large datasets. Get your free demo now.",
     metaKeywords: "3d, bubble, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-3d-bubble-chart.jpg"
+    thumbnailImage: exampleImage
 };

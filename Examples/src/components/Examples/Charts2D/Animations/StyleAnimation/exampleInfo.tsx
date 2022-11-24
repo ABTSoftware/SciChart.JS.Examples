@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-style-animation.jpg"
 
 const previewDescription = ``;// `Demonstrates how to run style and data animations simultaneously for a JavaScript Chart.`;
 const description = `By clicking the buttons the chart styles and data transform from one value to another`;
@@ -82,5 +83,5 @@ export const styleAnimationExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
     metaKeywords: "style, animation, javascript, webgl, canvas",
-    thumbnailImage: "javascript-style-animation.png"
+    thumbnailImage: exampleImage
 };

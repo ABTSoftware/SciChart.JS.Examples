@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-multi-pane-stock-charts.jpg";
 
 const previewDescription = `An example which demonstrates creating static multi-pane stock charts in JavaScript with Price data as
 Candlesticks, Volume bars behind the chart, Moving averages, plus how to link several charts together to
@@ -86,5 +87,5 @@ export const subChartStockChartsExampleInfo: TExampleInfo = {
     metaDescription:
         "Create a JavaScript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
     metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-multi-pane-stock-charts.jpg"
+    thumbnailImage: exampleImage
 };

@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-percentage-change.jpg";
 
 const Subtitle = () => (
     <p>
@@ -82,5 +83,5 @@ export const percentageChangeExampleInfo: TExampleInfo = {
     metaDescription:
         "How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan",
     metaKeywords: "real-time, updating, percentage, transform, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-percentage-change.jpg"
+    thumbnailImage: exampleImage
 };

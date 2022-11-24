@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-vital-signs-ecg-medical-chart-example.jpg";
 
 const previewDescription = `In this example we are simulating four channels of data showing that SciChart.js can be used to draw
 real-time ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate,
@@ -81,5 +82,5 @@ export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
         ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood
         oxygen, volumetric flow and more.`,
     metaKeywords: "ecg, ekg, realtime, medical, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-vital-signs-ecg-medical-chart-example.jpg"
+    thumbnailImage: exampleImage
 };

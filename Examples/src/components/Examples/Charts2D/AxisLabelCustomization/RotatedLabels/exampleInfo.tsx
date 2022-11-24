@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-rotated-labels-chart.jpg";
 
 const previewDescription = `This example uses rotation to create vertical labels so as to fit more onto a x axis.
 Y axis uses right aligned labels so decimals are nicely aligned.`;
@@ -84,5 +85,5 @@ export const rotatedLabelsExampleInfo: TExampleInfo = {
     metaDescription:
         "Rotate to create vertical axis labels and fit more on an axis",
     metaKeywords: "Axis, label, rotated, vertical, javascript, webgl, canvas",
-    thumbnailImage: "javascript-rotated-labels.jpg"
+    thumbnailImage: exampleImage
 };

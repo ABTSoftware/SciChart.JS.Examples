@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-realtime-ghosted-traces-oscilloscope-chart.jpg";
 
 const description = `This real-time performance demo shows persistence of old traces giving a ‘ghosted’ effect. As new series are
 drawn older series are made increasingly transparent until they become invisible.`;
@@ -84,5 +85,5 @@ export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     metaDescription:
         "This demo showcases the realtime performance of our JavaScript Chart by animating several series with thousands of data-points at 60 FPS",
     metaKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-realtime-ghosted-traces-chart.jpg"
+    thumbnailImage: exampleImage
 };

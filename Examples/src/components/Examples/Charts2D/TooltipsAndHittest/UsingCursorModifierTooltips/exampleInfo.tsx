@@ -5,6 +5,7 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-cursormodifier-crosshairs.jpg";
 
 const previewDescription = `Demonstrates using the CursorModifier, part of the ChartModifier API, to add a cursor and tooltips which
 tracks the mouse.`;
@@ -93,5 +94,6 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription: "Demonstrates adding a Cursor (Crosshair) to a JavaScript Chart with SciChart.js CursorModifier",
-    metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas"
+    metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas",
+    thumbnailImage: exampleImage
 };

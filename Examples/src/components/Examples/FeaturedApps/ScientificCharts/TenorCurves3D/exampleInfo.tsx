@@ -5,6 +5,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-2d-3d-chart-tenor-curves-example.jpg";
 
 const description = `Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. An example
 like this could be used to visualize Tenor curves in a financial setting, or other 2D/3D data combined on a
@@ -74,5 +75,5 @@ export const tenorCurvesExampleInfo: TExampleInfo = {
         "An example like this could be used to visualize Tenor curves in a financial setting, " +
         "or other 2D/3D data combined on a single screen.",
     metaKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-3d-surface-mesh-tenor-curve-example.jpg"
+    thumbnailImage: exampleImage
 };

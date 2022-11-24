@@ -5,6 +5,7 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
+import exampleImage from "./javascript-chart-rollovermodifier-tooltips.jpg";
 
 const previewDescription = `Demonstrates using the RolloverModifier, part of the ChartModifier API, to add mouse-over feedback of
 data-points on time-series to the user.`;
@@ -89,5 +90,5 @@ export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates adding Tooltips on mouse-move to a JavaScript Chart with SciChart.js RolloverModifier",
     metaKeywords: "rollover, modifier, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-rollovermodifier-tooltips.jpg"
+    thumbnailImage: exampleImage
 };

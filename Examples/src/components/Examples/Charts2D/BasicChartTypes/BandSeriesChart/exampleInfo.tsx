@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-band-chart.jpg";
 
 const previewDescription = `Band Charts fill a polygon between two high and low lines. The colour of the polygon changes depending on which line Y1 or Y2 is higher.`;
 const description = `This JavaScript chart type can be used to draw thresholds, a fill between two lines or areas of interest on a chart.`;
@@ -93,5 +94,5 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Easily create a JavaScript Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.",
     metaKeywords: "band, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-band-chart.jpg"
+    thumbnailImage: exampleImage
 };

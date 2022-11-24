@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-donut-chart.jpg";
 
 const description = `Donut Charts in SciChart.js support selection, legends, different text labels, animated updates,
     gradient or solid fills and more.`;
@@ -84,5 +85,5 @@ export const donutChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Create JavaScript Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
     metaKeywords: "donut, chart, javascript, canvas",
-    thumbnailImage: "javascript-donut-chart.jpg"
+    thumbnailImage: exampleImage
 };

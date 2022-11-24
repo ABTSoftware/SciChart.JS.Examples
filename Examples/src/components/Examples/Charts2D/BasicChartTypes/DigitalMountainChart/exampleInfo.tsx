@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-digital-mountain-chart.jpg";
 
 const description = `A mountain or area chart draws a polygon from a line to configurable zero value.
     This variation on Mountain Charts in SciChart.js uses the IsDigitalLine property to achieve a stepped-line visual effect!`;
@@ -86,5 +87,5 @@ export const digitalMountainChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Create JavaScript Digital Mountain Chart with a stepped-line visual effect. Get your free trial of SciChart's 5-star rated JavaScript Chart Component now.",
     metaKeywords: "digital, mountain, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-digital-mountain-chart.jpg"
+    thumbnailImage: exampleImage
 };

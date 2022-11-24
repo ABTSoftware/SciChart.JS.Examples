@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-dashed-line-chart.jpg";
 
 const description = `Demonstrates the Line series, Mountain series and Band series StrokeDashArray property which can be used to
 style a dashed line, dotted line or solid line.`;
@@ -73,5 +74,5 @@ export const dashedLineStylingExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates dashed line series in JavaScript charts with SciChart.js",
     metaKeywords: "dash, dashed, dotted, line, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-dashed-dotted-lines.jpg"
+    thumbnailImage: exampleImage
 };

@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-image-labels.jpg";
 
 const previewDescription = `SciChart JS v2 allows you to use anything as an axis label, even an image.`;
 const description = `By default, the LabelProvider uses the size of the texture for layout, so we do not need to override the measurement functions here.
@@ -82,5 +83,5 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates how to use Images as Axis Labels",
     metaKeywords: "image, axis, label, javascript, webgl, canvas",
-    thumbnailImage: "javascript-image-labels.jpg"
+    thumbnailImage: exampleImage
 };

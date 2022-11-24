@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-logarithmic-axis.jpg";
 
 const description = `Demonstrates how to create Logarithmic X or Y axis in a JavaScript Chart.
 SciChart supports axis with Logarithmic scale and scientific or engineering notation.
@@ -68,5 +69,5 @@ export const logarithmicAxisExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates Logarithmic Axis on a JavaScript Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values",
     metaKeywords: "logarithmic, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-with-logarithmic-axis.jpg"
+    thumbnailImage: exampleImage
 };

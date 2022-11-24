@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-line-chart.jpg";
 
 const Subtitle = () => (
     <p>
@@ -95,5 +96,5 @@ export const lineChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Discover how to create a high performance JavaScript Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",
     metaKeywords: "line, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-line-chart.jpg"
+    thumbnailImage: exampleImage
 };

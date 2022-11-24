@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-hit-test-on-click.jpg";
 
 const previewDescription = `Demonstrates the Hit Test API, which can be used to get feedback about clicks on data-points or lines and
 enable selection, of showing of context menus. Click on the data-point and see hit test info on the right.`;
@@ -90,5 +91,5 @@ export const hitTestApiExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates Hit-Testing a JavaScript Chart - point and click on the chart and get feedback about what data-points were clicked",
     metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-hit-test-on-click.png"
+    thumbnailImage: exampleImage
 };

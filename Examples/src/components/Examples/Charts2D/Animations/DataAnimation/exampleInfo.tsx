@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-data-animation.jpg";
 
 const previewDescription = ``;//`Demonstrates how to run data animation for a JavaScript Chart.`;
 const description = `Every second new random values are generated for the scatter series and transition from one state to another is animated`;
@@ -82,5 +83,5 @@ export const dataAnimationExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
     metaKeywords: "data, dataset, animation, webgl, canvas",
-    thumbnailImage: "javascript-data-animation.png"
+    thumbnailImage: exampleImage
 };

@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-realtime-ticking-stock-charts.jpg";
 
 const previewDescription = `An example which demonstrates real-time ticking / updating stock charts in JavaScript with Price data as
 Candlesticks or Ohlc and Moving average indicators on the chart.`;
@@ -80,5 +81,5 @@ export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     metaDescription:
         "Create a JavaScript Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
     metaKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-realtime-ticking-stock-charts.jpg"
+    thumbnailImage: exampleImage
 };

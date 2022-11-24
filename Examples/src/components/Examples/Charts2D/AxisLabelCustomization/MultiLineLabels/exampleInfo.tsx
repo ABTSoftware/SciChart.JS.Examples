@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-multiline-labels.jpg";
 
 const previewDescription = `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider.
 Click the buttons below the chart to see different arrangements.`;
@@ -83,5 +84,5 @@ export const multiLineLabelsExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
     metaKeywords: "text, axis, label, wrap, javascript, webgl, canvas",
-    thumbnailImage: "javascript-multiline-labels.jpg"
+    thumbnailImage: exampleImage
 };

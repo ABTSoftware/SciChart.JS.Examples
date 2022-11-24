@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-generic-animation.jpg";
 
 const previewDescription = ``; //`Demonstrates how to run Generic Animation for a JavaScript Chart.`;
 const description = `Generic Animation gives an opportunity to build complex animations and control progress of each animation separately`;
@@ -82,5 +83,5 @@ export const genericAnimationExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
     metaKeywords: "generic, animation, javascript",
-    thumbnailImage: "javascript-generic-animation.jpg"
+    thumbnailImage: exampleImage
 };

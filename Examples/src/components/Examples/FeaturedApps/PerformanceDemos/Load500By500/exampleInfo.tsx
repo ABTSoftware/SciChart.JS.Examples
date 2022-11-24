@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
+import exampleImage from "./javascript-chart-load-500-series-by-500-points.jpg";
 
 const seeAlso: GalleryItem[] = [
     {
@@ -82,5 +83,5 @@ export const load500By500ExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!`,
     metaKeywords: "performance, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-load-500-series-by-500-points.jpg"
+    thumbnailImage: exampleImage
 };

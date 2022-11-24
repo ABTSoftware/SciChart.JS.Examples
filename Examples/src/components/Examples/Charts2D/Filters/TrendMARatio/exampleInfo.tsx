@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-trend-ma-ratio.jpg";
 
 const previewDescription = `Ratio Filter divides the original dataseries by the divisor series.  Moving Average and Linear Trend fitlers are then applied to the resulting ratio`;
 const description = `Click 'Add Data' to see how the filters automatically recalculate when data changes`;
@@ -85,5 +86,5 @@ export const trendMARatioExampleInfo: TExampleInfo = {
     metaDescription:
         "Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining",
     metaKeywords: "trend, line, moving, average, ratio, transform, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-javascript-trend-ma-ratio.jpg"
+    thumbnailImage: exampleImage
 };

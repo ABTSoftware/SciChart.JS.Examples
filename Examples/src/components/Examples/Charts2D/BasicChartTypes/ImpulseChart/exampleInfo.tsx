@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-impulse-chart.jpg";
 
 const description = `An Impulse Chart (otherwise known as Stem Chart, Lollipop Chart) displays a single point at the top of a thin stem.
     In SciChart.js these can be customised with different color points or shapes.`;
@@ -84,5 +85,5 @@ export const impulseChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Easily create JavaScript Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. ",
     metaKeywords: "impulse, lollipop, javascript, webgl, canvas",
-    thumbnailImage: "javascript-impulse-chart.jpg"
+    thumbnailImage: exampleImage
 };

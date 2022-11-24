@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-series-selection.jpg";
 
 const previewDescription = `Demonstrates the Hover and Selection Apu, which can be used to get feedback about clicks or hover on data-points or lines. Click or hover on the data-point and see the result.`;
 const description = `Click or hover anywhere on the chart to call BaseRenderableSeries.hitTestProvider. hitTest. The HitTest functionCHANGE CHANGE CHANGE CHANGE
@@ -84,5 +85,5 @@ export const seriesSelectionExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates Hit-Testing a JavaScript Chart - point and click on the chart and get feedback about what data-points were clicked",
     metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-hit-test-on-click.png"
+    thumbnailImage: exampleImage
 };

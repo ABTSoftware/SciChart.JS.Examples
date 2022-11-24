@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
+import exampleImage from "./javascript-digital-line-chart.jpg";
 
 const previewDescription = `Step Lines or Digital Lines are created in SciChart.js using the FastLineRenderableSeries. By setting the property IsDigitalLine=true the line is drawn as a step function.`;
 const description = `In SciChart.js lines can be stepped, continuous or spline interpolated (smoothed) using our flexible JS Chart Library.`;
@@ -93,5 +94,5 @@ export const digitalLineChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Discover how to create a JavaScript Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
     metaKeywords: "digital, line, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-digital-line-chart.jpg"
+    thumbnailImage: exampleImage
 };

@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-metadata.jpg";
 
 const previewDescription = `Demonstrates the Metadata API, which allows you to associate custom data to each point,
 which can be displayed using cursor or rollover modifiers, or used to drive a palletprovider.`;
@@ -89,5 +90,5 @@ export const metaDataExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates using MetaData in a JavaScript Chart - add custom data to points for display or to drive visual customisation",
     metaKeywords: "metaData, api, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-metaData.png"
+    thumbnailImage: exampleImage
 };

@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-heatmap-chart.jpg";
 
 const description = `Our Heatmap is highly dynamic and enables display of Sonar, MRI/medical imagery, Spectrograms or Audio/Radio analysis in JavaScript.
     The entire heatmap is represented by a 2D array and is color-mapped to a numeric value.
@@ -88,5 +89,5 @@ export const heatmapChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Easily create a high performance JavaScript Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
     metaKeywords: "heatmap, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-heatmap-chart.jpg"
+    thumbnailImage: exampleImage
 };

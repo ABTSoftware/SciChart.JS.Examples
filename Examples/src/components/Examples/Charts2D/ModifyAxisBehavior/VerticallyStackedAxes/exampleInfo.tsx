@@ -5,6 +5,7 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-vertically-stacked-axes.jpg";
 
 const description = `Stacked axes allow data to be drawn in different sections of the chart but still overlap.
 Zoom vertically using the mouse wheel, or by dragging individual axes.  Right-click and drag to zoom horizontally.  Double click to Reset`;
@@ -73,5 +74,5 @@ export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates Vertically Stacked Axes on a JavaScript Chart using SciChart.js, allowing data to overlap",
     metaKeywords: "multiple, stacked, overlap, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-with-multiple-x-axis.jpg"
+    thumbnailImage: exampleImage
 };
