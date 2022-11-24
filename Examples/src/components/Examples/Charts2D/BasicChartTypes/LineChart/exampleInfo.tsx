@@ -8,11 +8,10 @@ import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescript
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Line Chart</strong> using{" "}
+        Demonstrates all the permutations of JavaScript Line Chart using{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
             SciChart.js
-        </a>,{" "}
-        High Performance JavaScript Charts.
+        </a>, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.
     </p>
 );
 
