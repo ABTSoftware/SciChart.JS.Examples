@@ -47,34 +47,21 @@
 
 .ExampleWrapper {
     display: flex;
-
-    flex-direction: row;
     justify-content: space-between;
-    @include md {
-        flex-direction: column;
-    }
+    flex-direction: column;
     .Example {
         display: flex;
         flex-direction: column;
-        margin-right: 30px;
         flex: 1;
-        max-width: 70%;
-        @include md {
-            max-width: 100%;
-
-            margin-right: 0;
-            margin-bottom: 20px;
-        }
+        max-width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
     }
     .ExampleDescription {
         display: flex;
         flex-direction: column;
-        min-width: 300px;
-        width: 25%;
-        @include md {
-            width: 100%;
-            min-width: 0;
-        }
+        width: 100%;
+        min-width: 0;
     }
 }
 
