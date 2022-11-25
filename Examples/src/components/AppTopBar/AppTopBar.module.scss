@@ -24,8 +24,9 @@
             display: none;
             margin-left: 12px;
             padding: 9px;
-            color: $color-dark-green;
-            border: 1px solid $color-grey;
+            color: $color-primary-white;
+            border: 1px solid $color-medium-blue;
+            background: $color-primary-white-alpha;
             border-radius: 4px;
 
             @include md {
