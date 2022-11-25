@@ -111,16 +111,16 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     {
         item: { id: "featuredApps_performanceDemos", name: "Performance Demos" },
         submenu: [
+            EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo,
             EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500,
             EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints,
-            EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo,
             EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
             EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata,
         ]
     },
     {
-        item: { id: "featuredApps_scientificCharts", name: "Scientific &amp; Medical Charts" },
+        item: { id: "featuredApps_scientificCharts", name: "Scientific & Medical Charts" },
         submenu: [
             EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
@@ -282,6 +282,8 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
         ]
     }
 ];
+
+export const ALL_MENU_ITEMS = [...MENU_ITEMS_FEATURED_APPS, ...MENU_ITEMS_2D, ...MENU_ITEMS_3D];
 
 export const getParentMenuIds = (exampleId: string): string[] => {
     const getSubmenuLevelIds = (menuItemsArr: TMenuItem[], id: string): string[] => {

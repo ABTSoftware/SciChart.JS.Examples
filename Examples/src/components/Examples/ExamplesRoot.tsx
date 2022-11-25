@@ -2,7 +2,7 @@ import * as React from "react";
 import SeoTags from "../SeoTags/SeoTags";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
-import { getExampleComponent } from "../AppRouter/examples";
+import {ALL_MENU_ITEMS, getExampleComponent} from "../AppRouter/examples";
 import Button from "@material-ui/core/Button";
 import { ExampleStrings } from "./ExampleStrings";
 import classes from "./Examples.module.scss";
@@ -14,14 +14,17 @@ import { CSSTransition, SwitchTransition } from "react-transition-group";
 import Gallery from "../Gallery/Gallery";
 import { GalleryItem } from "../../helpers/types/types";
 import ExampleDescription from "../ExampleDescription/ExampleDescription";
+import {Simulate} from "react-dom/test-utils";
+import submit = Simulate.submit;
 type TProps = {
     // example: () => JSX.Element;
     examplePage: TExamplePage;
+    seeAlso: GalleryItem[];
 };
 
 const ExamplesRoot: React.FC<TProps> = props => {
     const [render, setRender] = React.useState(false);
-    const { examplePage } = props;
+    const { examplePage, seeAlso } = props;
     const [showSource, setShowSource] = React.useState(false);
     const [firstRender, setFirstRender] = React.useState(true);
 
@@ -38,7 +41,6 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const previewDescription = examplePage ? examplePage.previewDescription : undefined;
     const description = examplePage ? examplePage.description : undefined;
 
-    const seeAlso: GalleryItem[] = examplePage?.seeAlso;
     const codeStr = examplePage ? examplePage.code : "";
     const githubUrl = examplePage ? examplePage.githubUrl : "";
     const seoDescription = examplePage ? examplePage.metaDescription : "";

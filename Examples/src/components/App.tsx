@@ -5,6 +5,7 @@ import Drawer from "@material-ui/core/Drawer";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppRouter from "./AppRouter/AppRouter";
 import {
+    ALL_MENU_ITEMS,
     getParentMenuIds,
     MENU_ITEMS_2D,
     MENU_ITEMS_3D,
@@ -20,7 +21,8 @@ import classes from "./App.module.scss";
 import "./index.scss";
 import Gallery from "./Gallery/Gallery";
 import { PAGES } from "./AppRouter/pages";
-import { sciChartExamples } from "../helpers/SciChartExamples";
+import {GalleryItem} from "../helpers/types/types";
+import {allGalleryItems, getSeeAlsoGalleryItems} from "../helpers/SciChartExamples";
 
 export default function App() {
     const location = useLocation();
@@ -53,6 +55,14 @@ export default function App() {
     const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     const currentExampleId = currentExample?.id;
+    const seeAlso: GalleryItem[] = getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample);
+
+    // // Find the example category
+    // const exampleCategory = ALL_MENU_ITEMS.find(menuItem => {
+    //     return menuItem.submenu.find(subMenu => subMenu.id === examplePage.id) !== undefined;
+    // });
+    // // Generate the seeAlso gallery items
+    // const seeAlso: GalleryItem[] = examplePage?.seeAlso;
 
     const setOpenedMenuItem = (id: string, value: boolean = true) => {
         setOpenedMenuItems({ ...openedMenuItems, [id]: value });
@@ -85,7 +95,7 @@ export default function App() {
     }, [currentExampleId]);
 
     if (isIFrame) {
-        return <AppRouter currentExample={currentExample} isIFrame={true}/>
+        return <AppRouter currentExample={currentExample} seeAlso={seeAlso} isIFrame={true}/>
     }
 
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
@@ -107,7 +117,7 @@ export default function App() {
             </Drawer>
             <div className={classes.MainAppContent}>
                 <AppBarTop toggleDrawer={toggleDrawer} />
-                {PAGES.homapage.path === location.pathname && <AppRouter currentExample={currentExample} />}
+                {PAGES.homapage.path === location.pathname && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
                 <div className={classes.MainAppWrapper}>
                     <div className={classes.DrawerDesktop}>
@@ -119,10 +129,10 @@ export default function App() {
                     </div>
                     {PAGES.homapage.path === location.pathname ? (
                         <div className={classes.GalleryAppWrapper}>
-                            <Gallery examples={sciChartExamples} />
+                            <Gallery examples={allGalleryItems} />
                         </div>
                     ) : (
-                        <AppRouter currentExample={currentExample} />
+                        <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
                     )}
                 </div>
 

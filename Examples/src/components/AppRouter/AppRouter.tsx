@@ -6,15 +6,17 @@ import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import ExamplesRoot from "../Examples/ExamplesRoot";
 import { getExampleComponent } from "./examples";
 import classes from "../Examples/Examples.module.scss";
+import {GalleryItem} from "../../helpers/types/types";
 type TProps = {
     currentExample: TExamplePage;
     isIFrame?: boolean;
+    seeAlso: GalleryItem[]
 };
 
 const examplePagesKeys = Object.keys(EXAMPLES_PAGES);
 
 export default function AppRouter(props: TProps) {
-    const { currentExample, isIFrame = false } = props;
+    const { currentExample, seeAlso, isIFrame = false } = props;
     if (isIFrame) {
         const ExampleComponent = getExampleComponent(currentExample.id)
         const renderIFrameExample = () => <div className={classes.ExampleWrapperIFrame}><ExampleComponent /></div>;
@@ -35,7 +37,7 @@ export default function AppRouter(props: TProps) {
                         <Route
                             key={key}
                             path={exPage.path}
-                            render={() => <ExamplesRoot examplePage={currentExample} />}
+                            render={() => <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso}  />}
                         />
                     );
                 })}
