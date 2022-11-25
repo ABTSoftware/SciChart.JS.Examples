@@ -110,13 +110,14 @@ export type TMenuItem = {
 export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
 export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
     {
-        item: { id: "featuredApps_performanceDemos", name: "Performance Demos" },
+        item: { id: "featuredApps_performanceDemos", name: "Performance Demos & Showcases" },
         submenu: [
             EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo,
             EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500,
             EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints,
             EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
+            EXAMPLES_PAGES.featuredApps_showcases_oilandgasdashboard,
             EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata,
         ]
     },
@@ -128,7 +129,6 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
-            EXAMPLES_PAGES.featuredApps_showcases_oilandgasdashboard,
         ]
     },
     {

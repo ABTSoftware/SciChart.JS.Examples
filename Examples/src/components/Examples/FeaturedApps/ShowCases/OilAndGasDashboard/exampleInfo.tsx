@@ -4,20 +4,13 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import { GalleryItem } from "../../../../../helpers/types/types";
+import exampleImage from "./javascript-oil-gas-explorer-dashboard-charts.jpg";
 
 const Subtitle = () => (
     <p>
         TODO Subtitle
     </p>
 );
-
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: []
-    }
-];
 
 const previewDescription = ``;
 const description = `Todo description`;
@@ -50,10 +43,9 @@ export const oilAndGasExplorerDashboard: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "Todo meta",
     metaKeywords: "Todo keywords",
-    thumbnailImage: "javascript-chart-oil-and-gas-explorer-dashboard.jpg"
+    thumbnailImage: exampleImage
 };

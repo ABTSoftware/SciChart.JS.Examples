@@ -721,7 +721,7 @@ export const ExampleStrings = {
     urlTitleOverviewDocumentation: "This specific page in the JavaScript ChartModifiers Api documentation will help you to get started",
 
     // Oil & Gas Demo
-    titleOilAndGasExplorerDashboard: "Oil &amp; Gas Explorer Dashboard",
+    titleOilAndGasExplorerDashboard: "Oil & Gas Explorer Dashboard",
     urlOilAndGasExplorerDashboard: "/javascript-oil-and-gas-dashboard-showcase"
 
 };
