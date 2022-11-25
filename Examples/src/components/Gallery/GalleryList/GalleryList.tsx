@@ -39,19 +39,19 @@ export default function GalleryList(props: TProps) {
             <div className={classes.ChartGroupHeader}>
                 <div className={classes.ChartGroupTitle}>
                     <h6>{props.example.chartGroupTitle}</h6>
-                    <span>{props.example.items.length} charts</span>
+                    <span>{props.example.items.length} Demos</span>
                 </div>
 
-                {props.slidersNumber < props.example.items.length && (
-                    <div className={classes.CarouselButtons}>
-                        <button className={classes.ButtonArrow} onClick={moveL}>
-                            <ArrowBackIcon />
-                        </button>
-                        <button className={classes.ButtonArrow} onClick={moveR}>
-                            <ArrowForwardIcon />
-                        </button>
-                    </div>
-                )}
+                {/*{props.slidersNumber < props.example.items.length && (*/}
+                {/*    <div className={classes.CarouselButtons}>*/}
+                {/*        <button className={classes.ButtonArrow} onClick={moveL}>*/}
+                {/*            <ArrowBackIcon />*/}
+                {/*        </button>*/}
+                {/*        <button className={classes.ButtonArrow} onClick={moveR}>*/}
+                {/*            <ArrowForwardIcon />*/}
+                {/*        </button>*/}
+                {/*    </div>*/}
+                {/*)}*/}
             </div>
             <ul className={classes.Gallery}>
                 {props.example.items.map((item, itemIndex) => {
