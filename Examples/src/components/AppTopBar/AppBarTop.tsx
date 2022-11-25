@@ -9,6 +9,7 @@ import Search from "../Search/Search";
 import classes from './AppTopBar.module.scss';
 import Logo from "../../images/scichart-logo-app-bar.svg";
 import {TExamplePage} from "../AppRouter/examplePages";
+import npm from "./npm.svg";
 
 type TProps = {
     toggleDrawer: () => void;
@@ -41,6 +42,9 @@ const AppBarTop: React.FC<TProps> = props => {
                 </Button>
                 <a className={classes.GitHubLink} href={contextualGithub} title={contextualGithubTitle} target="_blank" >
                     <GitHubIcon fontSize="small" />
+                </a>
+                <a className={classes.NpmLink} href="https://www.npmjs.com/package/scichart" title="npmjs / SciChart" target="_blank" >
+                    <img src={npm} alt="Npm Logo" width={32} height={32} />
                 </a>
                 <IconButton
                     onClick={toggleDrawer}

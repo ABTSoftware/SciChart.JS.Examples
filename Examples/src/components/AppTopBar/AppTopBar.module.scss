@@ -47,6 +47,16 @@
             text-decoration: none;
         }
 
+        .NpmLink {
+            display: flex;
+            padding: 6px 6px;
+            margin-left: 12px;
+            border-radius: 4px;
+            background-color: $color-red;
+            color: $color-primary-white;
+            text-decoration: none;
+        }
+
         .PurpleButton {
             display: flex;
             flex: none;
