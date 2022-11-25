@@ -262,6 +262,16 @@
             margin-right: 10px;
         }
     }
+    .GitHubLink {
+        border: 1px $color-medium-blue solid;
+        border-radius: 4px;
+        background-color: $color-lightest-green;
+        color: $color-medium-blue;
+        text-decoration: none;
+        a {
+            color: $color-medium-blue;
+        }
+    }
     .ButtonsText {
         margin-left: 10px;
         color: $color-main-green;

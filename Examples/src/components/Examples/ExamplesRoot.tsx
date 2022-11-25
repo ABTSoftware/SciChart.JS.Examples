@@ -82,7 +82,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                 {" "}
                                 <a className={classes.ExampleRootDescriptionLink}
                                    target="_blank"
-                                   href={`https://wordpress-314780-2873630.cloudwaysapps.com/example/javascript-chart${exampleUrl}`}
+                                   href={`https://scichart.com/example/javascript-chart${exampleUrl}`}
                                    title={titleText}>
                                     {titleText}
                                 </a>{" "} is part of the SciChart.js demo app. To clone the repo for this demo, visit {" "}
@@ -124,14 +124,10 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                     {/*    <CodeIcon />*/}
                                     {/*    <span className={classes.ButtonsText}>VIEW SOURCE CODE</span>*/}
                                     {/*</Button>*/}
-                                    <Button
-                                        onClick={() => {
-                                            setShowSource(!showSource);
-                                        }}
-                                    >
+                                    <Button className={classes.GitHubLink}>
                                         <GitHubIcon />
-                                        <a href={fullGithubUrl} target="_blank" className={classes.ButtonsText}>
-                                            VIEW IN GITHUB
+                                        <a href={fullGithubUrl} title={fullGithubUrl} target="_blank" className={classes.ButtonsText}>
+                                            VIEW {examplePage.title} IN GITHUB
                                         </a>
                                     </Button>
                                 </div>
