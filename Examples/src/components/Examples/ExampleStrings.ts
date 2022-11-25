@@ -409,7 +409,6 @@ export const ExampleStrings = {
     titleDragAxisToScale: "Drag Axis to Scale or Pan",
     urlDragAxisToScale: "/javascript-chart-drag-axis-to-scale-pan",
 
-
     // Draw Behind Axes
     titleDrawBehindAxes: "Draw Behind Axis",
     urlDrawBehindAxes: "/javascript-draw-behind-axes",
@@ -417,6 +416,10 @@ export const ExampleStrings = {
     urlTitleInnerAxes: "JavaScript Inner Axes",
     urlInnerAxes:
 "https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Layout%20-%20Inside%20and%20Central%20Axis.html",
+
+    // Axis Layout
+    titleAxisLayout: "Axis Layout Options",
+    urlAxisLayout: "/javascript-chart-axis-layout-options",
 
     // Realtime Zoom Pan
     titleRealtimeZoomPan: "Zoom and Pan a Realtime JavaScript Chart",

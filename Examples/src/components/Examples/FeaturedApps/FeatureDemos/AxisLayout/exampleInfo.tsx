@@ -33,18 +33,15 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes,{" "}
+        and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.
     </p>
 );
 
 export const axisLayoutExampleInfo: TExampleInfo = {
-    title: "Axis Layout",
-    pageTitle: "Axis Layout" + ExampleStrings.exampleGenericTitleSuffix,
-    path: "/javascript-axis-layout",
+    title: ExampleStrings.titleAxisLayout,
+    pageTitle: ExampleStrings.titleAxisLayout + ExampleStrings.exampleGenericTitleSuffix,
+    path: ExampleStrings.urlAxisLayout,
     subtitle: Subtitle,
     documentationLinks,
     tips,
@@ -53,7 +50,7 @@ export const axisLayoutExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "Demonstratesouter, inner, central and stacked axes, and use of axis alignment to create vertical charts",
+        "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
     metaKeywords: "stacked, axis, layout, alignment, vertical, javascript, webgl, canvas",
     thumbnailImage: exampleImage
 };
