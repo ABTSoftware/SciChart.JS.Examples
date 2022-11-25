@@ -38,11 +38,6 @@ const DrawerContent: React.FC<TProps> = props => {
                     <CloseIcon />
                 </IconButton>
             </div>
-            <div className={classes.DrawerContentDownloadTrialButton}>
-                <Button href="https://www.scichart.com/downloads/" target="_blank">
-                    Download Trial
-                </Button>
-            </div>
             <Divider />
             <Navigation testIsOpened={testIsOpened} onExpandClick={toggleOpenedMenuItem} toggleDrawer={toggleDrawer} />
         </div>
