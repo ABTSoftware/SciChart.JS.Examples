@@ -16,6 +16,8 @@ import { GalleryItem } from "../../helpers/types/types";
 import ExampleDescription from "../ExampleDescription/ExampleDescription";
 import {Simulate} from "react-dom/test-utils";
 import submit = Simulate.submit;
+import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
+import {SubdirectoryArrowRight} from "@material-ui/icons";
 type TProps = {
     // example: () => JSX.Element;
     examplePage: TExamplePage;
@@ -127,7 +129,14 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                     <Button className={classes.GitHubLink}>
                                         <GitHubIcon />
                                         <a href={fullGithubUrl} title={fullGithubUrl} target="_blank" className={classes.ButtonsText}>
-                                            VIEW {examplePage.title} IN GITHUB
+                                            VIEW SOURCE IN GITHUB
+                                        </a>
+                                    </Button>
+                                    <Button className={classes.GitHubLink}>
+                                        <SubdirectoryArrowRight />
+                                        <a href={`/iframe${examplePage.path}`} title="View this example in Full Screen"
+                                           target="_blank" className={classes.ButtonsText}>
+                                            VIEW Full Screen
                                         </a>
                                     </Button>
                                 </div>
