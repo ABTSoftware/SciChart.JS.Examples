@@ -1,4 +1,4 @@
-import green from "@material-ui/core/colors/green";
+import themeColor from "@material-ui/core/colors/cyan";
 import { createTheme } from "@material-ui/core/styles";
 
 export const customTheme = createTheme({
@@ -27,6 +27,6 @@ export const customTheme = createTheme({
         ].join(",")
     },
     palette: {
-        primary: green
+        primary: themeColor
     }
 });
