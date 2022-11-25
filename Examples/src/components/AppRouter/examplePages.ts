@@ -86,6 +86,7 @@ import { axisTypesExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/Axis
 import { subChartStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts/exampleInfo";
 import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisLayout/exampleInfo";
 import { realtimeBigDataDemoExampleInfo } from "../Examples/FeaturedApps/ShowCases/RealtimeBigData/exampleInfo";
+import {TDocumentationLink} from "../../helpers/types/ExampleDescriptionTypes";
 
 
 export type TExampleInfo = {
@@ -98,7 +99,7 @@ export type TExampleInfo = {
      */
     pageTitle: string;
     path: string;
-    documentationLinks: any;
+    documentationLinks: TDocumentationLink[];
     tips?: any;
     description: any;
     previewDescription?: any;

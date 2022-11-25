@@ -117,7 +117,7 @@ export default function App() {
                 />
             </Drawer>
             <div className={classes.MainAppContent}>
-                <AppBarTop toggleDrawer={toggleDrawer} />
+                <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
                 {PAGES.homapage.path === location.pathname && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
                 <div className={classes.MainAppWrapper}>

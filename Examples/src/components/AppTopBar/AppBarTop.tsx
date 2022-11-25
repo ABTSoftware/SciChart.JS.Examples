@@ -8,13 +8,22 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import Search from "../Search/Search";
 import classes from './AppTopBar.module.scss';
 import Logo from "../../images/scichart-logo-app-bar.svg";
+import {TExamplePage} from "../AppRouter/examplePages";
 
 type TProps = {
     toggleDrawer: () => void;
+    currentExample?: TExamplePage;
 };
 
 const AppBarTop: React.FC<TProps> = props => {
-    const { toggleDrawer } = props;
+    const { toggleDrawer, currentExample } = props;
+
+    const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
+    const contextualGithub = currentExample?.githubUrl !== undefined ? baseGithubPath + currentExample.githubUrl : "https://github.com/ABTSoftware/SciChart.JS.Examples";
+    const contextualGithubTitle = currentExample !== undefined ? `View source for ${currentExample.title} on Github` : "Clone SciChart.js.examples on GitHub";
+    const docLinks = currentExample?.documentationLinks;
+    const contextualDocUrl = docLinks !== undefined && docLinks.length > 0 ? docLinks[0].href : "https://www.scichart.com/javascript-chart-documentation";
+    const contextualDocTitle = docLinks !== undefined && docLinks.length > 0 ? docLinks[0].title : "SciChart.js Documentation Home";
 
     return (
         <AppBar position="sticky" className={classes.AppBar}>
@@ -27,10 +36,10 @@ const AppBarTop: React.FC<TProps> = props => {
                 <Button className={classes.BlueButton} href="https://www.scichart.com/getting-started/scichart-javascript/" target="_blank" title="Start a trial or community license">
                     Get Started
                 </Button>
-                <Button className={classes.PurpleButton} href="https://www.scichart.com/javascript-chart-documentation/" target="_blank" title="Go to SciChart.js Documentation">
+                <Button className={classes.PurpleButton} href={contextualDocUrl} title={contextualDocTitle} target="_blank" >
                     Documentation
                 </Button>
-                <a className={classes.GitHubLink} href="https://github.com/ABTSoftware/SciChart.JS.Examples" target="_blank" title="SciChart.js on GitHub">
+                <a className={classes.GitHubLink} href={contextualGithub} title={contextualGithubTitle} target="_blank" >
                     <GitHubIcon fontSize="small" />
                 </a>
                 <IconButton
