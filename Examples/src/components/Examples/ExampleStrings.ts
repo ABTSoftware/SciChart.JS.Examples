@@ -621,7 +621,7 @@ export const ExampleStrings = {
     imgVitalSigns: "images/javascript-vital-signs-ecg-medical-chart-example.jpg",
 
     // Featured Apps Audio Analyzer
-    titleAudioAnalyzerFeaturedApp: "Audio Analyzer Demo",
+    titleAudioAnalyzerFeaturedApp: "Realtime Audio Analyzer Demo",
     urlAudioAnalyzerFeaturedApp: "/javascript-audio-analyzer-fft-example",
     imgAudioAnalyzer: "images/javascript-realtime-audio-analyzer.jpg",
 
