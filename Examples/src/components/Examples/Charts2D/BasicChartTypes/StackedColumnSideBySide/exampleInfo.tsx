@@ -37,50 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgStackedMountainChart,
-                title: ExampleStrings.titleStackedMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
-            },
-            {
-                imgPath: ExampleStrings.imgColumnChart,
-                title: ExampleStrings.titleColumnChart,
-                seoTitle: ExampleStrings.urlTitleColumnChart,
-                examplePath: ExampleStrings.urlColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgStackedColumnChart,
-                title: ExampleStrings.titleStackedColumnChart,
-                seoTitle: ExampleStrings.urlTitleStackedColumnChart,
-                examplePath: ExampleStrings.urlStackedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgGroupedColumnChart,
-                title: ExampleStrings.titleGroupedColumnChart,
-                seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
-                examplePath: ExampleStrings.urlGroupedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgLineChart,
-                title: ExampleStrings.titleLineChart,
-                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
-                examplePath: ExampleStrings.urlLineChart
-            },
-            {
-                imgPath: ExampleStrings.imgDonutChart,
-                title: ExampleStrings.titleDonutChart,
-                seoTitle: ExampleStrings.urlTitleDonutChartDocumentation,
-                examplePath: ExampleStrings.urlDonutChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         We have created a simple example that shows you how to create a{" "}
@@ -99,7 +55,6 @@ export const stackedColumnSideBySideExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

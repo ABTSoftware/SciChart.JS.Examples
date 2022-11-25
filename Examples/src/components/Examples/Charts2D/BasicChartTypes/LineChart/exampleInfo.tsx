@@ -49,38 +49,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgScatterChart,
-                title: ExampleStrings.titleScatterChart,
-                seoTitle: ExampleStrings.urlTitleScatterChart,
-                examplePath: ExampleStrings.urlScatterChart
-            },
-            {
-                imgPath: ExampleStrings.imgPointMarkers,
-                title: ExampleStrings.titlePointMarkers,
-                seoTitle: ExampleStrings.urlTitlePointMarkers,
-                examplePath: ExampleStrings.urlPointMarkers
-            },
-            {
-                imgPath: ExampleStrings.imgStackedMountainChart,
-                title: ExampleStrings.titleStackedMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
-            },
-            {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
-            }
-        ]
-    }
-];
-
 export const lineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLineChart,
     pageTitle: ExampleStrings.pageTitleLineChart,
@@ -90,7 +58,6 @@ export const lineChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

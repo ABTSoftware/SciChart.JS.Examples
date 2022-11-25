@@ -3,7 +3,7 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
+import exampleImage from "./drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
 const description = `Demonstrates how to add behaviour to scale, zoom or pan a chart by dragging the X or Y Axis on the chart.
@@ -20,32 +20,6 @@ const documentationLinks: TDocumentationLink[] = [
         href: ExampleStrings.urlTutorialsHome,
         title: ExampleStrings.titleTutorialsHome,
         linkTitle: "SciChart.js Tutorials"
-    }
-];
-
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgSecondaryYAxis,
-                title: ExampleStrings.titleSecondaryYAxis,
-                seoTitle: ExampleStrings.urlTitleSecondaryYAxis,
-                examplePath: ExampleStrings.urlSecondaryYAxis
-            },
-            {
-                imgPath: ExampleStrings.imgVerticalCharts,
-                title: ExampleStrings.titleVerticalCharts,
-                seoTitle: ExampleStrings.urlTitleVerticalCharts,
-                examplePath: ExampleStrings.urlVerticalCharts
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            }
-        ]
     }
 ];
 
@@ -67,12 +41,10 @@ export const dragAxisToScaleExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates how to Zoom, Scale or Pan individual Axis on a JavaScript Chart with SciChart.js AxisDragModifiers",
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
-    thumbnailImage: "drag-axis-on-javascript-charts-to-scale-or-pan.jpg"
+    thumbnailImage: exampleImage
 };

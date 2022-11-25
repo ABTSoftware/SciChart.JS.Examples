@@ -34,32 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgStyleAnimation,
-                title: ExampleStrings.titleStyleAnimation,
-                seoTitle: ExampleStrings.urlTitleStyleAnimation,
-                examplePath: ExampleStrings.urlStyleAnimation
-            },
-            {
-                imgPath: ExampleStrings.imgStartupAnimation,
-                title: ExampleStrings.titleStartupAnimation,
-                seoTitle: ExampleStrings.urlTitleStartupAnimation,
-                examplePath: ExampleStrings.urlStartupAnimation
-            },
-            {
-                imgPath: ExampleStrings.imgGenericAnimation,
-                title: ExampleStrings.titleGenericAnimation,
-                seoTitle: ExampleStrings.urlTitleGenericAnimation,
-                examplePath: ExampleStrings.urlGenericAnimation
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to run <strong>Dataset Animations</strong> using SciChart.js, High Performance{" "}
@@ -78,7 +52,6 @@ export const dataAnimationExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",

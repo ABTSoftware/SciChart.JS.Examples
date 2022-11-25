@@ -32,20 +32,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgMountainChart,
-                title: ExampleStrings.titleMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         This example demonstrates how create a <strong>JavaScript Mountain Chart</strong>{" "}
@@ -64,7 +50,6 @@ export const realTimeMountainChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "JavaScript Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",

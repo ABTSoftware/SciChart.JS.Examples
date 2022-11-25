@@ -28,26 +28,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgSecondaryYAxis,
-                title: ExampleStrings.titleSecondaryYAxis,
-                seoTitle: ExampleStrings.urlTitleSecondaryYAxis,
-                examplePath: ExampleStrings.urlSecondaryYAxis
-            },
-            {
-                imgPath: ExampleStrings.imgCentralAxes,
-                title: ExampleStrings.titleCentralAxes,
-                seoTitle: ExampleStrings.urlTitleCentralAxes,
-                examplePath: ExampleStrings.urlCentralAxes
-            },
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Chart with transparent axes</strong> using SciChart.js, High
@@ -66,7 +46,6 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

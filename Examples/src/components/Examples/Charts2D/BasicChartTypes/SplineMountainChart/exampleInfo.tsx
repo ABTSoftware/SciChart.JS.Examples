@@ -38,44 +38,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgStackedMountainChart,
-                title: ExampleStrings.titleStackedMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
-            },
-            {
-                imgPath: ExampleStrings.imgGroupedColumnChart,
-                title: ExampleStrings.titleGroupedColumnChart,
-                seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
-                examplePath: ExampleStrings.urlGroupedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgLineChart,
-                title: ExampleStrings.titleLineChart,
-                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
-                examplePath: ExampleStrings.urlLineChart
-            },
-            {
-                imgPath: ExampleStrings.imgDonutChart,
-                title: ExampleStrings.titleDonutChart,
-                seoTitle: ExampleStrings.urlTitleDonutChartDocumentation,
-                examplePath: ExampleStrings.urlDonutChart
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         This example showcases how to create a <strong>JavaScript Spline Mountain Chart</strong> using{" "}
@@ -95,7 +57,6 @@ export const splineMountainChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

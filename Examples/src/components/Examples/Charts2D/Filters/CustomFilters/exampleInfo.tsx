@@ -33,38 +33,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgPercentageChange,
-                title: ExampleStrings.titlePercentageChange,
-                seoTitle: ExampleStrings.titlePercentageChange,
-                examplePath: ExampleStrings.urlPercentageChange
-            },
-            {
-                imgPath: ExampleStrings.imgTrendMARatio,
-                title: ExampleStrings.titleTrendMARatio,
-                seoTitle: ExampleStrings.titleTrendMARatio,
-                examplePath: ExampleStrings.urlTrendMARatio
-            },
-            {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
-            },
-            {
-                imgPath: ExampleStrings.imgScatterChart,
-                title: ExampleStrings.titleScatterChart,
-                seoTitle: ExampleStrings.urlTitleScatterChart,
-                examplePath: ExampleStrings.urlScatterChart
-            },
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates simple and advanced <strong>Custom Filters</strong>, with realtime updates
@@ -84,7 +52,6 @@ export const customFiltersExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

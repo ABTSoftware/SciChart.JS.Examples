@@ -7,37 +7,6 @@ import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-performance-load-one-million-points.jpg";
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgRealtimeJavaScriptChart,
-                title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
-                seoTitle: ExampleStrings.urlTitleRealtimeJavaScriptChartDemo,
-                examplePath: ExampleStrings.urlRealtimeJavaScriptChartDemo
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeGhostedTracesChart,
-                title: ExampleStrings.titleRealtimeGhostedTraces,
-                seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
-                examplePath: ExampleStrings.urlRealtimeGhostedTraces
-            },
-            {
-                imgPath: ExampleStrings.imgLoad500by500Charts,
-                title: ExampleStrings.titleLoad500By500,
-                seoTitle: ExampleStrings.urlTitleLoad500By500,
-                examplePath: ExampleStrings.urlLoad500By500
-            },
-            {
-                imgPath: ExampleStrings.imgLidarFeaturedApp,
-                title: ExampleStrings.titleLidarFeaturedApp,
-                seoTitle: ExampleStrings.titleLidarFeaturedApp,
-                examplePath: ExampleStrings.urlLidarFeaturedApp
-            }
-        ]
-    }
-];
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
@@ -80,7 +49,6 @@ export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.`,

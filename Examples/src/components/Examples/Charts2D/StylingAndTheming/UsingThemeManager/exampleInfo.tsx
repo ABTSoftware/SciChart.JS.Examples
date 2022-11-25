@@ -32,20 +32,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgStylingInCode,
-                title: ExampleStrings.titleStylingInCode,
-                seoTitle: ExampleStrings.urlTitleStylingInCode,
-                examplePath: ExampleStrings.urlStylingInCode
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates the <strong>light and dark theme</strong> in SciChart.js, High Performance{" "}
@@ -63,7 +49,6 @@ export const usingThemeManagerExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "Demonstrates our Light and Dark Themes for JavaScript Charts with SciChart.js ThemeManager API",

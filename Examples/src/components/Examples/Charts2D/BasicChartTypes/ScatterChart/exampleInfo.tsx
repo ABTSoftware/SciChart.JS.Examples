@@ -37,26 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgBubbleChart,
-                title: ExampleStrings.titleBubbleChart,
-                seoTitle: ExampleStrings.urlTitleBubbleChart,
-                examplePath: ExampleStrings.urlBubbleChart
-            },
-            {
-                imgPath: ExampleStrings.imgPointMarkers,
-                title: ExampleStrings.titlePointMarkers,
-                seoTitle: ExampleStrings.urlTitlePointMarkers,
-                examplePath: ExampleStrings.urlPointMarkers
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         We have created an example that demonstrates how to create a <strong>JavaScript Scatter Chart</strong> using{" "}
@@ -75,7 +55,6 @@ export const scatterChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

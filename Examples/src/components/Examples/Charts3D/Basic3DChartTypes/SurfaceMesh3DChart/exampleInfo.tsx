@@ -33,26 +33,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgBubble3DChart,
-                title: ExampleStrings.titleBubble3DChart,
-                seoTitle: ExampleStrings.titleBubble3DChart,
-                examplePath: ExampleStrings.urlBubble3DChart
-            },
-            {
-                imgPath: ExampleStrings.imgLidarFeaturedApp,
-                title: ExampleStrings.titleLidarFeaturedApp,
-                seoTitle: ExampleStrings.urlTitleLidarFeaturedApp,
-                examplePath: ExampleStrings.urlLidarFeaturedApp
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Learn how to create a detailed <strong>JavaScript 3D Surface Mesh Chart</strong> using SciChart.js, and our {" "}
@@ -70,7 +50,6 @@ export const surfaceMesh3DChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

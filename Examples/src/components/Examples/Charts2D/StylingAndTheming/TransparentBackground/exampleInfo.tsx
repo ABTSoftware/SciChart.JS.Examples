@@ -29,20 +29,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgThemeManagerChart,
-                title: ExampleStrings.titleThemeManager,
-                seoTitle: ExampleStrings.urlTitleThemeManager,
-                examplePath: ExampleStrings.urlThemeManager
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>Chart with Transparent Background</strong>
@@ -62,7 +48,6 @@ export const transparentBackgroundExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "Demonstrates how to create a JavaScript Chart with background image using transparency in SciChart.js",

@@ -47,44 +47,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgLineChart,
-                title: ExampleStrings.titleLineChart,
-                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
-                examplePath: ExampleStrings.urlLineChart
-            },
-            {
-                imgPath: ExampleStrings.imgGroupedColumnChart,
-                title: ExampleStrings.titleGroupedColumnChart,
-                seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
-                examplePath: ExampleStrings.urlGroupedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgDonutChart,
-                title: ExampleStrings.titleDonutChart,
-                seoTitle: ExampleStrings.urlTitleDonutChartDocumentation,
-                examplePath: ExampleStrings.urlDonutChart
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            },
-            {
-                imgPath: ExampleStrings.imgScatterChart,
-                title: ExampleStrings.titleScatterChart,
-                seoTitle: ExampleStrings.urlTitleScatterChart,
-                examplePath: ExampleStrings.urlScatterChart
-            }
-        ]
-    }
-];
-
 export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineBandChart,
     pageTitle: ExampleStrings.pageTitleSplineBandChart,
@@ -94,7 +56,6 @@ export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

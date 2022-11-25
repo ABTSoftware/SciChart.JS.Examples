@@ -37,32 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgStackedColumnChart,
-                title: ExampleStrings.titleStackedColumnChart,
-                seoTitle: ExampleStrings.urlTitleStackedColumnChart,
-                examplePath: ExampleStrings.urlStackedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgGroupedColumnChart,
-                title: ExampleStrings.titleGroupedColumnChart,
-                seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
-                examplePath: ExampleStrings.urlGroupedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgImpulseChart,
-                title: ExampleStrings.titleImpulseChart,
-                seoTitle: ExampleStrings.urlTitleImpulseChart,
-                examplePath: ExampleStrings.urlImpulseChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         View information on how to create a <strong>JavaScript Column Chart</strong> using SciChart.js, a High Performance{" "}
@@ -81,7 +55,6 @@ export const columnChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

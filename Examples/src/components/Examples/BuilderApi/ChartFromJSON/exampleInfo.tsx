@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../ExampleStrings";
-import { GalleryItem } from "../../../../helpers/types/types";
+import exampleImage from "./javascript-chart-from-json.jpg";
 import { TDocumentationLink } from "../../../../helpers/types/ExampleDescriptionTypes";
 
 const Subtitle = () => (
@@ -46,38 +46,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgBuilderSimpleChart,
-                title: ExampleStrings.titleBuilderSimpleChart,
-                seoTitle: ExampleStrings.titleBuilderSimpleChart,
-                examplePath: ExampleStrings.urlBuilderSimpleChart
-            },
-            {
-                imgPath: ExampleStrings.imgBuilderFullChart,
-                title: ExampleStrings.titleBuilderFullChart,
-                seoTitle: ExampleStrings.titleBuilderFullChart,
-                examplePath: ExampleStrings.urlBuilderFullChart
-            },
-            {
-                imgPath: ExampleStrings.imgCustomTypes,
-                title: ExampleStrings.titleCustomTypes,
-                seoTitle: ExampleStrings.titleCustomTypes,
-                examplePath: ExampleStrings.urlCustomTypes
-            },
-            {
-                imgPath: ExampleStrings.imgSharedData,
-                title: ExampleStrings.titleSharedData,
-                seoTitle: ExampleStrings.titleSharedData,
-                examplePath: ExampleStrings.urlSharedData
-            },
-        ]
-    }
-];
-
 export const chartFromJSONExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleChartFromJSON,
     pageTitle: ExampleStrings.titleChartFromJSON + ExampleStrings.exampleGenericTitleSuffix,
@@ -87,11 +55,10 @@ export const chartFromJSONExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates how to create a JavaScript Chart from JSON using the builder API. ",
     metaKeywords: "json, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-from-json.jpg"
+    thumbnailImage: exampleImage
 };

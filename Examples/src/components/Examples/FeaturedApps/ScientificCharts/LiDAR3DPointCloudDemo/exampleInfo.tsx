@@ -34,38 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgBubble3DChart,
-                title: ExampleStrings.titleBubble3DChart,
-                seoTitle: ExampleStrings.titleBubble3DChart,
-                examplePath: ExampleStrings.urlBubble3DChart
-            },
-            {
-                imgPath: ExampleStrings.imgTenorCurves,
-                title: ExampleStrings.titleTenorCurvesFeaturedApp,
-                seoTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
-                examplePath: ExampleStrings.urlTenorCurvesFeaturedApp
-            },
-            {
-                imgPath: ExampleStrings.imgAudioAnalyzer,
-                title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
-                seoTitle: ExampleStrings.titleAudioAnalyzerFeaturedApp,
-                examplePath: ExampleStrings.urlAudioAnalyzerFeaturedApp
-            },
-            {
-                imgPath: ExampleStrings.imgSurfaceMeash3D,
-                title: ExampleStrings.titleSurfaceMesh3D,
-                seoTitle: ExampleStrings.urlTitleSurfaceMesh3D,
-                examplePath: ExampleStrings.urlSurfaceMesh3D
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to visualize <strong>250k points of LiDAR Data</strong> using SciChart.js, High Performance{" "}
@@ -83,7 +51,6 @@ export const lidar3DPointCloudExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

@@ -36,26 +36,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgRealtimeGhostedTracesChart,
-                title: ExampleStrings.titleRealtimeGhostedTraces,
-                seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
-                examplePath: ExampleStrings.urlRealtimeGhostedTraces
-            },
-            {
-                imgPath: ExampleStrings.imgLoad500by500Charts,
-                title: ExampleStrings.titleLoad500By500,
-                seoTitle: ExampleStrings.urlTitleLoad500By500,
-                examplePath: ExampleStrings.urlLoad500By500
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Showcases how SciChart.js can be used in a <strong>Medical context</strong>, drawing ECGs with our High
@@ -75,7 +55,6 @@ export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: `In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time

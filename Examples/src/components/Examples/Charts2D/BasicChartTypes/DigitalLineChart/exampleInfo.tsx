@@ -38,38 +38,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgScatterChart,
-                title: ExampleStrings.titleScatterChart,
-                seoTitle: ExampleStrings.urlTitleScatterChart,
-                examplePath: ExampleStrings.urlScatterChart
-            },
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
-            },
-            {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
-            },
-            {
-                imgPath: ExampleStrings.imgFanChart,
-                title: ExampleStrings.titleFanChart,
-                seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
-                examplePath: ExampleStrings.urlFanChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Digital Line Chart</strong> using SciChart.js, our powerful{" "}
@@ -88,7 +56,6 @@ export const digitalLineChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

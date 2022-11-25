@@ -37,38 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
-            },
-            {
-                imgPath: ExampleStrings.imgFanChart,
-                title: ExampleStrings.titleFanChart,
-                seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
-                examplePath: ExampleStrings.urlFanChart
-            },
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
-            },
-            {
-                imgPath: ExampleStrings.imgContourChart,
-                title: ExampleStrings.titleContourChart,
-                seoTitle: ExampleStrings.urlTitleContourChartDocumentation,
-                examplePath: ExampleStrings.urlContourChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Digital Band Chart</strong> or High-Low Fill using SciChart.js.{" "}
@@ -88,7 +56,6 @@ export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

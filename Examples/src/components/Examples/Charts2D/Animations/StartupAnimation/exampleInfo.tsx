@@ -34,32 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgDataAnimation,
-                title: ExampleStrings.titleDataAnimation,
-                seoTitle: ExampleStrings.urlTitleDataAnimation,
-                examplePath: ExampleStrings.urlDataAnimation
-            },
-            {
-                imgPath: ExampleStrings.imgStyleAnimation,
-                title: ExampleStrings.titleStyleAnimation,
-                seoTitle: ExampleStrings.urlTitleStyleAnimation,
-                examplePath: ExampleStrings.urlStyleAnimation
-            },
-            {
-                imgPath: ExampleStrings.imgGenericAnimation,
-                title: ExampleStrings.titleGenericAnimation,
-                seoTitle: ExampleStrings.urlTitleGenericAnimation,
-                examplePath: ExampleStrings.urlGenericAnimation
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to run <strong>Startup Animations</strong> using SciChart.js, High Performance{" "}
@@ -78,7 +52,6 @@ export const startupAnimationExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "Demonstrates how to run Startup Animations with JavaScript.",

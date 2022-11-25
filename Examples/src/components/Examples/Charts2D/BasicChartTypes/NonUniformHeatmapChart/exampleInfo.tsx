@@ -37,32 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
-            },
-            {
-                imgPath: ExampleStrings.imgFanChart,
-                title: ExampleStrings.titleFanChart,
-                seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
-                examplePath: ExampleStrings.urlFanChart
-            },
-            {
-                imgPath: ExampleStrings.imgGroupedColumnChart,
-                title: ExampleStrings.titleGroupedColumnChart,
-                seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
-                examplePath: ExampleStrings.urlGroupedColumnChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         This SciChart demo demonstrates how to create a <strong>JavaScript Non Uniform Heatmap Chart</strong> using{" "}
@@ -81,7 +55,6 @@ export const nonUniformHeatmapExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

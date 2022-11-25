@@ -32,26 +32,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgStylingInCode,
-                title: ExampleStrings.titleStylingInCode,
-                seoTitle: ExampleStrings.urlTitleStylingInCode,
-                examplePath: ExampleStrings.urlStylingInCode
-            },
-            {
-                imgPath: ExampleStrings.imgLineChart,
-                title: ExampleStrings.titleLineChart,
-                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
-                examplePath: ExampleStrings.urlLineChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how create <strong>JavaScript Charts with dashed lines</strong> using SciChart.js, High Performance{" "}
@@ -69,7 +49,6 @@ export const dashedLineStylingExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "Demonstrates dashed line series in JavaScript charts with SciChart.js",

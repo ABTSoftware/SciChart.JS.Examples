@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../ExampleStrings";
-import { GalleryItem } from "../../../../helpers/types/types";
+import exampleImage from "./javascript-builder-full.jpg";
 import { TDocumentationLink } from "../../../../helpers/types/ExampleDescriptionTypes";
 
 const Subtitle = () => (
@@ -41,38 +41,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgChartFromJSON,
-                title: ExampleStrings.titleChartFromJSON,
-                seoTitle: ExampleStrings.titleChartFromJSON,
-                examplePath: ExampleStrings.urlChartFromJSON
-            },
-            {
-                imgPath: ExampleStrings.imgCustomTypes,
-                title: ExampleStrings.titleCustomTypes,
-                seoTitle: ExampleStrings.titleCustomTypes,
-                examplePath: ExampleStrings.urlCustomTypes
-            },
-            {
-                imgPath: ExampleStrings.imgSharedData,
-                title: ExampleStrings.titleSharedData,
-                seoTitle: ExampleStrings.titleSharedData,
-                examplePath: ExampleStrings.urlSharedData
-            },
-            {
-                imgPath: ExampleStrings.imgBuilderSimpleChart,
-                title: ExampleStrings.titleBuilderSimpleChart,
-                seoTitle: ExampleStrings.titleBuilderSimpleChart,
-                examplePath: ExampleStrings.urlBuilderSimpleChart
-            }
-        ]
-    }
-];
-
 export const fullChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBuilderFullChart,
     pageTitle: ExampleStrings.titleBuilderFullChart + ExampleStrings.exampleGenericTitleSuffix,
@@ -82,12 +50,11 @@ export const fullChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates how to use the Builder Api to configure axes, series, annotations and modifiers using a definition object. " +
         "The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
     metaKeywords: "definition, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-builder-full.jpg"
+    thumbnailImage: exampleImage
 };

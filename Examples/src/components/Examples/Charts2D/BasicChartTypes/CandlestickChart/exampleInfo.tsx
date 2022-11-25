@@ -36,44 +36,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
-            },
-            {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgFanChart,
-                title: ExampleStrings.titleFanChart,
-                seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
-                examplePath: ExampleStrings.urlFanChart
-            },
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         This{" "}
@@ -94,7 +56,6 @@ export const candlestickChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

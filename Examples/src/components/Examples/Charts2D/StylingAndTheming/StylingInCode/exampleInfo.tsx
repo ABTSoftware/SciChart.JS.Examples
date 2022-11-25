@@ -30,20 +30,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgThemeManagerChart,
-                title: ExampleStrings.titleThemeManager,
-                seoTitle: ExampleStrings.urlTitleThemeManager,
-                examplePath: ExampleStrings.urlThemeManager
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to <strong>style or theme a JavaScript Chart</strong> using SciChart.js, High Performance{" "}
@@ -62,7 +48,6 @@ export const stylingInCodeExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "Demonstrates how to style a JavaScript Chart entirely in code with SciChart.js themeing API",

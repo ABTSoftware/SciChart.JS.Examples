@@ -31,37 +31,7 @@ const documentationLinks: TDocumentationLink[] = [
         linkTitle: "SciChart.js Performance Tips and Tricks"
     }
 ];
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgLoad500by500Charts,
-                title: ExampleStrings.titleLoad500By500,
-                seoTitle: ExampleStrings.urlTitleLoad500By500,
-                examplePath: ExampleStrings.urlLoad500By500
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeJavaScriptChart,
-                title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
-                seoTitle: ExampleStrings.urlTitleRealtimeJavaScriptChartDemo,
-                examplePath: ExampleStrings.urlRealtimeJavaScriptChartDemo
-            },
-            {
-                imgPath: ExampleStrings.imgTenorCurves,
-                title: ExampleStrings.titleTenorCurvesFeaturedApp,
-                seoTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
-                examplePath: ExampleStrings.urlTenorCurvesFeaturedApp
-            },
-            {
-                imgPath: ExampleStrings.imgLoadOneMillionPointsChart,
-                title: ExampleStrings.titleLoadOneMillionPoints,
-                seoTitle: ExampleStrings.titleLoadOneMillionPoints,
-                examplePath: ExampleStrings.urlLoadOneMillionPoints
-            }
-        ]
-    }
-];
+
 const Subtitle = () => (
     <p>
         Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance{" "}
@@ -79,7 +49,6 @@ export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

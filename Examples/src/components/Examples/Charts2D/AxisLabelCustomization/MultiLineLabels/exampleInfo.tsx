@@ -33,32 +33,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgRotatedLabels,
-                title: ExampleStrings.titleRotatedLabels,
-                seoTitle: ExampleStrings.titleRotatedLabels,
-                examplePath: ExampleStrings.urlRotatedLabels
-            },
-            {
-                imgPath: ExampleStrings.imgImageLabels,
-                title: ExampleStrings.titleImageLabels,
-                seoTitle: ExampleStrings.titleImageLabels,
-                examplePath: ExampleStrings.urlImageLabels
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to use <strong>Multi-Line Text</strong> for axis labels using SciChart.js, High
@@ -78,7 +52,6 @@ export const multiLineLabelsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

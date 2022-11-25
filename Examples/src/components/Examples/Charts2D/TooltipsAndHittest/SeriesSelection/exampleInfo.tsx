@@ -28,38 +28,6 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
-            },
-            {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to add <strong>Series Selection</strong> to a chart using SciChart.js, High
@@ -79,7 +47,6 @@ export const seriesSelectionExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

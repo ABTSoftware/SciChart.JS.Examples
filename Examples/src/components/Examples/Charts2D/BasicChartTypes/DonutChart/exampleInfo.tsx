@@ -37,31 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgPieChart,
-                title: ExampleStrings.titlePieChart,
-                seoTitle: ExampleStrings.urlTitlePieChart,
-                examplePath: ExampleStrings.urlPieChart
-            }, {
-                imgPath: ExampleStrings.imgStackedMountainChart,
-                title: ExampleStrings.titleStackedMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
-            },
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         This demo demonstrates how create a <strong>JavaScript Donut Chart</strong> with our powerful JavaScript library,{" "}
@@ -79,7 +54,6 @@ export const donutChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

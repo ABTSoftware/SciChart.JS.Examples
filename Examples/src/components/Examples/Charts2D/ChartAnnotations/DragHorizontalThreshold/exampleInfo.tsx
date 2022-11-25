@@ -31,32 +31,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgEditableAnnotation,
-                title: ExampleStrings.titleEditableAnnotations,
-                seoTitle: ExampleStrings.urlTitleEditableAnnotations,
-                examplePath: ExampleStrings.urlEditableAnnotations
-            },
-            {
-                imgPath: ExampleStrings.imgAnnotationsAreEasyChart,
-                title: ExampleStrings.titleAnnotationsAreEasy,
-                seoTitle: ExampleStrings.urlTitleAnnotationsDocumentation,
-                examplePath: ExampleStrings.urlAnnotationsAreEasy
-            },
-            {
-                imgPath: ExampleStrings.imgTradeMarkers,
-                title: ExampleStrings.titleTradeMarkers,
-                seoTitle: ExampleStrings.urlTitleTradeMarkers,
-                examplePath: ExampleStrings.urlTradeMarkers
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates interaction by dragging vertical and horizontal line thresholds.{" "}
@@ -73,7 +47,6 @@ export const dragHorizontalThresholdExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

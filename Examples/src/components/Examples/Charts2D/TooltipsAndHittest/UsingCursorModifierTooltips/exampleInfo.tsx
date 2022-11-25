@@ -34,44 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgHitTestApiChart,
-                title: ExampleStrings.titleHitTestApi,
-                seoTitle: ExampleStrings.urlTitleHitTestDocumentation,
-                examplePath: ExampleStrings.urlHitTestApi
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
-            },
-            {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create <strong>crosshairs on mouseover</strong> using SciChart.js, High Performance{" "}
@@ -90,7 +52,6 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "Demonstrates adding a Cursor (Crosshair) to a JavaScript Chart with SciChart.js CursorModifier",

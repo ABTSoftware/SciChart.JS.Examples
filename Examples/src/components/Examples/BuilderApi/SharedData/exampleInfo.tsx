@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../AppRouter/examplePages";
 import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../ExampleStrings";
-import { GalleryItem } from "../../../../helpers/types/types";
+import exampleImage from "./javascript-shared-data.jpg";
 import { TDocumentationLink } from "../../../../helpers/types/ExampleDescriptionTypes";
 
 const Subtitle = () => (
@@ -42,38 +42,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgChartFromJSON,
-                title: ExampleStrings.titleChartFromJSON,
-                seoTitle: ExampleStrings.titleChartFromJSON,
-                examplePath: ExampleStrings.urlChartFromJSON
-            },
-            {
-                imgPath: ExampleStrings.imgCustomTypes,
-                title: ExampleStrings.titleCustomTypes,
-                seoTitle: ExampleStrings.titleCustomTypes,
-                examplePath: ExampleStrings.urlCustomTypes
-            },
-            {
-                imgPath: ExampleStrings.imgBuilderFullChart,
-                title: ExampleStrings.titleBuilderFullChart,
-                seoTitle: ExampleStrings.titleBuilderFullChart,
-                examplePath: ExampleStrings.urlBuilderFullChart
-            },
-            {
-                imgPath: ExampleStrings.imgBuilderSimpleChart,
-                title: ExampleStrings.titleBuilderSimpleChart,
-                seoTitle: ExampleStrings.titleBuilderSimpleChart,
-                examplePath: ExampleStrings.urlBuilderSimpleChart
-            }
-        ]
-    }
-];
-
 export const sharedDataExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSharedData,
     pageTitle: ExampleStrings.titleSharedData + ExampleStrings.exampleGenericTitleSuffix,
@@ -83,12 +51,11 @@ export const sharedDataExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates how to use the Builder Api to create Reusable Chart Templates." +
         "Data can be easily integrated into a definition and shared between series",
     metaKeywords: "template, chart, javascript, data, reuse",
-    thumbnailImage: "javascript-shared-data.jpg"
+    thumbnailImage: exampleImage
 };

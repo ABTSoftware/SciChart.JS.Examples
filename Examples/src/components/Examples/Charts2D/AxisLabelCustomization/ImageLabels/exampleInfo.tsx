@@ -32,32 +32,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgMultiLineLabels,
-                title: ExampleStrings.titleMultiLineLabels,
-                seoTitle: ExampleStrings.titleMultiLineLabels,
-                examplePath: ExampleStrings.urlMultiLineLabels
-            },
-            {
-                imgPath: ExampleStrings.imgRotatedLabels,
-                title: ExampleStrings.titleRotatedLabels,
-                seoTitle: ExampleStrings.titleRotatedLabels,
-                examplePath: ExampleStrings.urlRotatedLabels
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to use <strong>Images as Labels</strong> using SciChart.js, High
@@ -77,7 +51,6 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

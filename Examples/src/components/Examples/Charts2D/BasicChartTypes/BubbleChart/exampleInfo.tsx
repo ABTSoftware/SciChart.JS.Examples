@@ -37,32 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgScatterChart,
-                title: ExampleStrings.titleScatterChart,
-                seoTitle: ExampleStrings.urlTitleScatterChart,
-                examplePath: ExampleStrings.urlScatterChart
-            },
-            {
-                imgPath: ExampleStrings.imgLineChart,
-                title: ExampleStrings.titleLineChart,
-                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
-                examplePath: ExampleStrings.urlLineChart
-            },
-            {
-                imgPath: ExampleStrings.imgPointMarkers,
-                title: ExampleStrings.titlePointMarkers,
-                seoTitle: ExampleStrings.urlTitlePointMarkers,
-                examplePath: ExampleStrings.urlPointMarkers
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Bubble Chart</strong>{" "}
@@ -83,7 +57,6 @@ export const bubbleChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

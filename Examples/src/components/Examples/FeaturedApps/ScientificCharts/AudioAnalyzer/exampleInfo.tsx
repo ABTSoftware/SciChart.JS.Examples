@@ -37,32 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
-            },
-            {
-                imgPath: ExampleStrings.imgTenorCurves,
-                title: ExampleStrings.titleTenorCurvesFeaturedApp,
-                seoTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
-                examplePath: ExampleStrings.urlTenorCurvesFeaturedApp
-            },
-            {
-                imgPath: ExampleStrings.imgColumnChart,
-                title: ExampleStrings.titleColumnChart,
-                seoTitle: ExampleStrings.urlTitleColumnChart,
-                examplePath: ExampleStrings.urlColumnChart
-            }
-        ]
-    }
-];
-
 // tslint:disable-next-line:max-line-length
 const Subtitle = () => (
     <p>
@@ -86,7 +60,6 @@ export const audioAnalyzerExampleInfo: TExampleInfo = {
     tips,
     description,
     subtitle: Subtitle,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

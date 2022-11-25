@@ -32,26 +32,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgSurfaceMeash3D,
-                title: ExampleStrings.titleSurfaceMesh3D,
-                seoTitle: ExampleStrings.urlTitleSurfaceMesh3D,
-                examplePath: ExampleStrings.urlSurfaceMesh3D
-            },
-            {
-                imgPath: ExampleStrings.imgLidarFeaturedApp,
-                title: ExampleStrings.titleLidarFeaturedApp,
-                seoTitle: ExampleStrings.urlTitleLidarFeaturedApp,
-                examplePath: ExampleStrings.urlLidarFeaturedApp
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Our team demonstrates how to create a <strong>JavaScript 3D Bubble Chart</strong> using SciChart.js, capable of creating detailed{" "}
@@ -69,7 +49,6 @@ export const bubble3DChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

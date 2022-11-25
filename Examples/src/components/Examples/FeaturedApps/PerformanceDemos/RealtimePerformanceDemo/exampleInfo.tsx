@@ -16,38 +16,6 @@ const Subtitle = () => (
     </p>
 );
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgLoad500by500Charts,
-                title: ExampleStrings.titleLoad500By500,
-                seoTitle: ExampleStrings.urlTitleLoad500By500,
-                examplePath: ExampleStrings.urlLoad500By500
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeGhostedTracesChart,
-                title: ExampleStrings.titleRealtimeGhostedTraces,
-                seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
-                examplePath: ExampleStrings.urlRealtimeGhostedTraces
-            },
-            {
-                imgPath: ExampleStrings.imgLoadOneMillionPointsChart,
-                title: ExampleStrings.titleLoadOneMillionPoints,
-                seoTitle: ExampleStrings.urlTitleLoad500By500,
-                examplePath: ExampleStrings.urlLoadOneMillionPoints
-            },
-            {
-                imgPath: ExampleStrings.imgTenorCurves,
-                title: ExampleStrings.titleTenorCurvesFeaturedApp,
-                seoTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
-                examplePath: ExampleStrings.urlTenorCurvesFeaturedApp
-            }
-        ]
-    }
-];
-
 const previewDescription = ``;
 const description = `Demonstrates the speed and power of SciChart.js in a real-time example. Creates a timer and pushes 1,000
 points every 10ms to 3 line series on the chart (300k points per second). The point count quickly rises into
@@ -83,7 +51,6 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

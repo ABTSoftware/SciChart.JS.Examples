@@ -38,38 +38,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgScatterChart,
-                title: ExampleStrings.titleScatterChart,
-                seoTitle: ExampleStrings.urlTitleScatterChart,
-                examplePath: ExampleStrings.urlScatterChart
-            },
-            {
-                imgPath: ExampleStrings.imgPointMarkers,
-                title: ExampleStrings.titlePointMarkers,
-                seoTitle: ExampleStrings.urlTitlePointMarkers,
-                examplePath: ExampleStrings.urlPointMarkers
-            },
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Our Contours Chart example demonstrates how to create a <strong>JavaScript Contour-map Chart</strong> using our{" "}
@@ -87,7 +55,6 @@ export const contourChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

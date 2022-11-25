@@ -25,26 +25,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgMultipleXAxis,
-                title: ExampleStrings.titleMultipleXAxis,
-                seoTitle: ExampleStrings.urlTitleMultipleXAxis,
-                examplePath: ExampleStrings.urlMultipleXAxis
-            },
-            {
-                imgPath: ExampleStrings.imgVerticalCharts,
-                title: ExampleStrings.titleVerticalCharts,
-                seoTitle: ExampleStrings.urlTitleVerticalCharts,
-                examplePath: ExampleStrings.urlVerticalCharts
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Chart with Secondary Y axis</strong> using SciChart.js, High
@@ -63,7 +43,6 @@ export const secondaryYAxesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

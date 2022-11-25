@@ -35,44 +35,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            },
-            {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgScatterChart,
-                title: ExampleStrings.titleScatterChart,
-                seoTitle: ExampleStrings.urlTitleScatterChart,
-                examplePath: ExampleStrings.urlScatterChart
-            },
-            {
-                imgPath: ExampleStrings.imgPointMarkers,
-                title: ExampleStrings.titlePointMarkers,
-                seoTitle: ExampleStrings.urlTitlePointMarkers,
-                examplePath: ExampleStrings.urlPointMarkers
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         For this example, we demonstrate how to create a <strong>JavaScript OHLC Chart</strong>{" "}
@@ -92,7 +54,6 @@ export const ohlcChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

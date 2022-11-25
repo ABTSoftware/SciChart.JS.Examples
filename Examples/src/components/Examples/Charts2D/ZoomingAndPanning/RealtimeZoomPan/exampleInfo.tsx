@@ -4,7 +4,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import { GalleryItem } from "../../../../../helpers/types/types";
+import exampleImage from "./zoom-and-pan-a-realtime-javascript-chart.jpg";
 
 const previewDescription = `This examples shows how to add zooming and panning behaviour to a realtime JavaScript Chart.`;
 const description = `When you use AutoRanging in a SciChart.js chart, the chart will always automatically range to fit the data.
@@ -29,38 +29,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgSecondaryYAxis,
-                title: ExampleStrings.titleSecondaryYAxis,
-                seoTitle: ExampleStrings.urlTitleSecondaryYAxis,
-                examplePath: ExampleStrings.urlSecondaryYAxis
-            },
-            {
-                imgPath: ExampleStrings.imgDragAxisToScale,
-                title: ExampleStrings.titleDragAxisToScale,
-                seoTitle: ExampleStrings.titleDragAxisToScale,
-                examplePath: ExampleStrings.urlDragAxisToScale
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgVerticalCharts,
-                title: ExampleStrings.titleVerticalCharts,
-                seoTitle: ExampleStrings.urlTitleVerticalCharts,
-                examplePath: ExampleStrings.urlVerticalCharts
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Zoom the real-time chart below by dragging on the surface. Then double-click to reset zoom and start
@@ -77,11 +45,10 @@ export const realtimeZoomPanExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates how to zoom and pan a realtime JavaScript Chart while it is updating, with SciChart.js ZoomState API",
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
-    thumbnailImage: "zoom-and-pan-a-realtime-javascript-chart.jpg"
+    thumbnailImage: exampleImage
 };

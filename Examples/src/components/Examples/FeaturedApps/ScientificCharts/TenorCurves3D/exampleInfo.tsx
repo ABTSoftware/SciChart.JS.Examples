@@ -35,20 +35,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgSurfaceMeash3D,
-                title: ExampleStrings.titleSurfaceMesh3D,
-                seoTitle: ExampleStrings.urlTitleSurfaceMesh3D,
-                examplePath: ExampleStrings.urlSurfaceMesh3D
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to visualize <strong>2-dimensional arrays as a height-map</strong> using SciChart.js, High
@@ -67,7 +53,6 @@ export const tenorCurvesExampleInfo: TExampleInfo = {
     tips,
     description,
     subtitle: Subtitle,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

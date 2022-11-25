@@ -37,32 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgBandChart,
-                title: ExampleStrings.titleBandChart,
-                seoTitle: ExampleStrings.urlTitleBandChart,
-                examplePath: ExampleStrings.urlBandChart
-            },
-            {
-                imgPath: ExampleStrings.imgStackedMountainChart,
-                title: ExampleStrings.titleStackedMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
-            },
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Here we demonstrate how to create a <strong>JavaScript Fan Chart</strong> using SciChart.js.{" "}
@@ -81,7 +55,6 @@ export const fanChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

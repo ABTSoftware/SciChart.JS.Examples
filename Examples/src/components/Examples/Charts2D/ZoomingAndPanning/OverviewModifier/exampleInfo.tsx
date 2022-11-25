@@ -35,38 +35,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgZoomPanWithMultipleChartModifiers,
-                title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
-                seoTitle: ExampleStrings.urlZoomPanWithMultipleChartModifiers,
-                examplePath: ExampleStrings.urlZoomPanWithMultipleChartModifiers
-            },
-            {
-                imgPath: ExampleStrings.imgDragAxisToScale,
-                title: ExampleStrings.titleDragAxisToScale,
-                seoTitle: ExampleStrings.titleDragAxisToScale,
-                examplePath: ExampleStrings.urlDragAxisToScale
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeZoomPan,
-                title: ExampleStrings.titleRealtimeZoomPan,
-                seoTitle: ExampleStrings.titleRealtimeZoomPan,
-                examplePath: ExampleStrings.urlRealtimeZoomPan
-            },
-            {
-                imgPath: ExampleStrings.imgVerticalCharts,
-                title: ExampleStrings.titleVerticalCharts,
-                seoTitle: ExampleStrings.urlTitleVerticalCharts,
-                examplePath: ExampleStrings.urlVerticalCharts
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to zoom and pan with an <strong>Overview Chart</strong> using SciChart.js, High
@@ -86,7 +54,6 @@ export const overviewExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

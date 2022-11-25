@@ -30,26 +30,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgSecondaryYAxis,
-                title: ExampleStrings.titleSecondaryYAxis,
-                seoTitle: ExampleStrings.urlTitleSecondaryYAxis,
-                examplePath: ExampleStrings.urlSecondaryYAxis
-            },
-            {
-                imgPath: ExampleStrings.imgCentralAxes,
-                title: ExampleStrings.titleCentralAxes,
-                seoTitle: ExampleStrings.urlTitleCentralAxes,
-                examplePath: ExampleStrings.urlCentralAxes
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Chart with Vertically Stacked Y axis</strong> using SciChart.js, High
@@ -68,7 +48,6 @@ export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

@@ -38,56 +38,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgMountainChart,
-                title: ExampleStrings.titleMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlMountainChart
-            },
-            {
-                imgPath: ExampleStrings.imgStackedColumnChart,
-                title: ExampleStrings.titleStackedColumnChart,
-                seoTitle: ExampleStrings.urlTitleStackedColumnChart,
-                examplePath: ExampleStrings.urlStackedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgGroupedColumnChart,
-                title: ExampleStrings.titleGroupedColumnChart,
-                seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
-                examplePath: ExampleStrings.urlGroupedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgStackedMountainChart,
-                title: ExampleStrings.titleStackedMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
-            },
-            {
-                imgPath: ExampleStrings.imgColumnChart,
-                title: ExampleStrings.titleColumnChart,
-                seoTitle: ExampleStrings.urlTitleColumnChart,
-                examplePath: ExampleStrings.urlColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgLineChart,
-                title: ExampleStrings.titleLineChart,
-                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
-                examplePath: ExampleStrings.urlLineChart
-            },
-            {
-                imgPath: ExampleStrings.imgDonutChart,
-                title: ExampleStrings.titleDonutChart,
-                seoTitle: ExampleStrings.urlTitleDonutChartDocumentation,
-                examplePath: ExampleStrings.urlDonutChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Learn how to make a <strong>JavaScript Stacked Mountain Chart</strong> using with SciChart's{" "}
@@ -106,7 +56,6 @@ export const stackedMountainChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

@@ -34,38 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgContourChart,
-                title: ExampleStrings.titleContourChart,
-                seoTitle: ExampleStrings.urlTitleContourChartDocumentation,
-                examplePath: ExampleStrings.urlContourChart
-            },
-            {
-                imgPath: ExampleStrings.imgStackedMountainChart,
-                title: ExampleStrings.titleStackedMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
-            },
-            {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
-            },
-            {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         If you want to learn about heatmaps. this demo shows you how to create a <strong>JavaScript Heatmap Chart</strong>{" "}
@@ -83,7 +51,6 @@ export const heatmapChartExampleInfo: TExampleInfo = {
     subtitle: Subtitle,
     documentationLinks,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

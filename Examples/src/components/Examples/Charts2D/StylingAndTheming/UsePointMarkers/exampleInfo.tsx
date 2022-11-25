@@ -30,26 +30,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgScatterChart,
-                title: ExampleStrings.titleScatterChart,
-                seoTitle: ExampleStrings.urlTitleScatterChart,
-                examplePath: ExampleStrings.urlScatterChart
-            },
-            {
-                imgPath: ExampleStrings.imgBubbleChart,
-                title: ExampleStrings.urlTitleBubbleChart,
-                seoTitle: ExampleStrings.titleBubbleChart,
-                examplePath: ExampleStrings.urlBubbleChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create <strong>custom data-point markers</strong> using SciChart.js, High Performance{" "}
@@ -67,7 +47,6 @@ export const usePointMarkersExampleInfo: TExampleInfo = {
     documentationLinks,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

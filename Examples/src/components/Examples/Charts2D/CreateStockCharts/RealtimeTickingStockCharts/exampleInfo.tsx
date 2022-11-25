@@ -30,32 +30,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
-            },
-            {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Get the code view our example to learn how create a <strong>JavaScript Stock Chart</strong>{" "}
@@ -75,7 +49,6 @@ export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

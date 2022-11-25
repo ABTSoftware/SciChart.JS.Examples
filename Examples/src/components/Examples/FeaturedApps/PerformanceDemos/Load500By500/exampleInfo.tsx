@@ -7,32 +7,6 @@ import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescript
 import { GalleryItem } from "../../../../../helpers/types/types";
 import exampleImage from "./javascript-chart-load-500-series-by-500-points.jpg";
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgRealtimeJavaScriptChart,
-                title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
-                seoTitle: ExampleStrings.urlTitleRealtimeJavaScriptChartDemo,
-                examplePath: ExampleStrings.urlRealtimeJavaScriptChartDemo
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeGhostedTracesChart,
-                title: ExampleStrings.titleRealtimeGhostedTraces,
-                seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
-                examplePath: ExampleStrings.urlRealtimeGhostedTraces
-            },
-            {
-                imgPath: ExampleStrings.imgLoadOneMillionPointsChart,
-                title: ExampleStrings.titleLoadOneMillionPoints,
-                seoTitle: "Load One Million Points in a JavaScript Chart Performance Demo",
-                examplePath: ExampleStrings.urlLoadOneMillionPoints
-            }
-        ]
-    }
-];
-
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
@@ -78,7 +52,6 @@ export const load500By500ExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!`,

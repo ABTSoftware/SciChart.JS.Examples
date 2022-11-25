@@ -36,32 +36,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgColumnChart,
-                title: ExampleStrings.titleColumnChart,
-                seoTitle: ExampleStrings.urlTitleColumnChart,
-                examplePath: ExampleStrings.urlColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgStackedColumnChart,
-                title: ExampleStrings.titleStackedColumnChart,
-                seoTitle: ExampleStrings.urlTitleStackedColumnChart,
-                examplePath: ExampleStrings.urlStackedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgGroupedColumnChart,
-                title: ExampleStrings.titleGroupedColumnChart,
-                seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
-                examplePath: ExampleStrings.urlGroupedColumnChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Use this demonstration to learn how to create a <strong>JavaScript Impulse Chart</strong> using SciChart.js, our own High Performance{" "}
@@ -79,7 +53,6 @@ export const impulseChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

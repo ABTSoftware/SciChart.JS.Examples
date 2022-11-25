@@ -32,38 +32,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgHitTestApiChart,
-                title: ExampleStrings.titleHitTestApi,
-                seoTitle: ExampleStrings.titleHitTestApi,
-                examplePath: ExampleStrings.urlHitTestApi
-            },
-            {
-                imgPath: ExampleStrings.imgSeriesSelectionChart,
-                title: ExampleStrings.titleSeriesSelection,
-                seoTitle: ExampleStrings.titleSeriesSelection,
-                examplePath: ExampleStrings.urlSeriesSelection
-            },
-            {
-                imgPath: ExampleStrings.imgMetaDataChart,
-                title: ExampleStrings.titleMetaData,
-                seoTitle: ExampleStrings.titleMetaData,
-                examplePath: ExampleStrings.urlMetaData
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to <strong>Select Data Points</strong> on a chart using SciChart.js, High
@@ -83,7 +51,6 @@ export const dataPointSelectionExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

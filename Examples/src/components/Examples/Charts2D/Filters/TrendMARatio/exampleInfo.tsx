@@ -29,38 +29,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgPercentageChange,
-                title: ExampleStrings.titlePercentageChange,
-                seoTitle: ExampleStrings.titlePercentageChange,
-                examplePath: ExampleStrings.urlPercentageChange
-            },
-            {
-                imgPath: ExampleStrings.imgCustomFilters,
-                title: ExampleStrings.titleCustomFilters,
-                seoTitle: ExampleStrings.titleCustomFilters,
-                examplePath: ExampleStrings.urlCustomFilters
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgLineChart,
-                title: ExampleStrings.titleLineChart,
-                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
-                examplePath: ExampleStrings.urlLineChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how use <strong>Linear Trend, Moving Average and Ratio Filters</strong> with filter chaining,
@@ -80,7 +48,6 @@ export const trendMARatioExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

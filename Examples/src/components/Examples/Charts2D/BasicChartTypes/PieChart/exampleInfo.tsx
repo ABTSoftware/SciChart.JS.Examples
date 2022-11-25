@@ -37,32 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgDonutChart,
-                title: ExampleStrings.titleDonutChart,
-                seoTitle: ExampleStrings.urlTitleDonutChartDocumentation,
-                examplePath: ExampleStrings.urlDonutChart
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            },
-            {
-                imgPath: ExampleStrings.imgScatterChart,
-                title: ExampleStrings.titleScatterChart,
-                seoTitle: ExampleStrings.urlTitleScatterChart,
-                examplePath: ExampleStrings.urlScatterChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         For an example that demonstrates how create a <strong>JavaScript Pie Chart</strong>, our demo code teaches you how to do this with SciChart's{" "}
@@ -80,7 +54,6 @@ export const pieChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

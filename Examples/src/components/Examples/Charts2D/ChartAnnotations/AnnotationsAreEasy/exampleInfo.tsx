@@ -35,50 +35,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgTradeMarkers,
-                title: ExampleStrings.titleTradeMarkers,
-                seoTitle: ExampleStrings.urlTitleTradeMarkers,
-                examplePath: ExampleStrings.urlTradeMarkers
-            },
-            {
-                imgPath: ExampleStrings.imgEditableAnnotation,
-                title: ExampleStrings.titleEditableAnnotations,
-                seoTitle: ExampleStrings.urlTitleEditableAnnotations,
-                examplePath: ExampleStrings.urlEditableAnnotations
-            },
-            {
-                imgPath: ExampleStrings.imgStackedColumnChart,
-                title: ExampleStrings.titleStackedColumnChart,
-                seoTitle: ExampleStrings.urlTitleStackedColumnChart,
-                examplePath: ExampleStrings.urlStackedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to add Annotations (shapes, boxes, lines, text) to a <strong>JavaScript Chart</strong> using
@@ -98,7 +54,6 @@ export const annotationsAreEasyExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

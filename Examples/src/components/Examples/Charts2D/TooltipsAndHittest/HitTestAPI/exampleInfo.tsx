@@ -34,38 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgDataPointSelection,
-                title: ExampleStrings.titleDataPointSelection,
-                seoTitle: ExampleStrings.titleDataPointSelection,
-                examplePath: ExampleStrings.urlDataPointSelection
-            },
-            {
-                imgPath: ExampleStrings.imgSeriesSelectionChart,
-                title: ExampleStrings.titleSeriesSelection,
-                seoTitle: ExampleStrings.titleSeriesSelection,
-                examplePath: ExampleStrings.urlSeriesSelection
-            },
-            {
-                imgPath: ExampleStrings.imgMetaDataChart,
-                title: ExampleStrings.titleMetaData,
-                seoTitle: ExampleStrings.titleMetaData,
-                examplePath: ExampleStrings.urlMetaData
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to add <strong>Hit-Test on click behavior</strong> to a chart using SciChart.js, High
@@ -85,7 +53,6 @@ export const hitTestApiExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-multi-pane-stock-charts.jpg";
 
 const previewDescription = `An example which demonstrates creating static multi-pane stock charts in JavaScript with Price data as
 Candlesticks, Volume bars behind the chart, Moving averages, plus how to link several charts together to
@@ -16,6 +17,7 @@ const tips = [
     applications. Including Candlestick/OHLC charts, Band Series for bollinger bands, multi-panes, plus
     incredible real-time performance.`
 ];
+
 
 const documentationLinks: TDocumentationLink[] = [
     {
@@ -32,32 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
         href: ExampleStrings.urlCandlestickChartDocumentation,
         title: ExampleStrings.urlTitleCandlestickChartDocumentation,
         linkTitle: "JavaScript Candlestick Chart Documentation"
-    }
-];
-
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
-        ]
     }
 ];
 
@@ -80,11 +56,10 @@ export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Create a JavaScript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
     metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-multi-pane-stock-charts.jpg"
+    thumbnailImage: exampleImage
 };

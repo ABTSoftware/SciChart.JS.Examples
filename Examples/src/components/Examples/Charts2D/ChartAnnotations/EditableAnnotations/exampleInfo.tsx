@@ -31,62 +31,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgTradeMarkers,
-                title: ExampleStrings.titleTradeMarkers,
-                seoTitle: ExampleStrings.urlTitleTradeMarkers,
-                examplePath: ExampleStrings.urlTradeMarkers
-            },
-            {
-                imgPath: ExampleStrings.imgAnnotationsAreEasyChart,
-                title: ExampleStrings.titleAnnotationsAreEasy,
-                seoTitle: ExampleStrings.urlTitleAnnotationsDocumentation,
-                examplePath: ExampleStrings.urlAnnotationsAreEasy
-            },
-            {
-                imgPath: ExampleStrings.imgDragHorizontalThreshold,
-                title: ExampleStrings.titleDragHorizontalThreshold,
-                seoTitle: ExampleStrings.urlTitleDragHorizontalThreshold,
-                examplePath: ExampleStrings.urlDragHorizontalThreshold
-            },
-            {
-                imgPath: ExampleStrings.imgEditableAnnotation,
-                title: ExampleStrings.titleEditableAnnotations,
-                seoTitle: ExampleStrings.urlTitleEditableAnnotations,
-                examplePath: ExampleStrings.urlEditableAnnotations
-            },
-            {
-                imgPath: ExampleStrings.imgStackedColumnChart,
-                title: ExampleStrings.titleStackedColumnChart,
-                seoTitle: ExampleStrings.urlTitleStackedColumnChart,
-                examplePath: ExampleStrings.urlStackedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a{" "}
@@ -106,7 +50,6 @@ export const editableAnnotationsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
