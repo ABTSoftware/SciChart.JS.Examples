@@ -40,14 +40,10 @@ const documentationLinks: TDocumentationLink[] = [
 // tslint:disable-next-line:max-line-length
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Audio Analyzer</strong> with Fourier Transform using
-        SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript 3D Charts
-        </a>
-        .{" "}
+        Demonstrates how to create a <strong>JavaScript Frequency / Audio Analyzer</strong> with Fourier Transform (Frequency spectra){" "}
+        and a real-time frequency history using heatmaps.{" "}
         <em>
-            <strong>Note: </strong>this example requires microphone permissions to run.
+            <strong>Note: this example requires microphone permissions to run.</strong>
         </em>
     </p>
 );

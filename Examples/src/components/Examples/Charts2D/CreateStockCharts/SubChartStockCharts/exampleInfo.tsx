@@ -37,11 +37,8 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        Here we are demonstrating how create a multi-pane JavaScript Stock Chart with indicator panels,{" "}
-        synchronized zooming, panning and cursors, using our{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="powerful and feature rich JavaScript Charting Library">
-            powerful and feature rich JavaScript Charting Library
-        </a>.
+        Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface.{" "}
+        This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts.{" "}
     </p>
 );
 

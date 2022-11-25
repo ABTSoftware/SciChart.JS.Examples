@@ -3,7 +3,6 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-2d-3d-chart-tenor-curves-example.jpg";
 
@@ -37,11 +36,8 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to visualize <strong>2-dimensional arrays as a height-map</strong> using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript 3D Charts
-        </a>
+        In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves.{" "}
+        This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.
     </p>
 );
 

@@ -38,12 +38,9 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        This{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart">
-            JavaScript Chart
-        </a>{" "}
-        demo shows you how to create a <strong>JavaScript Candlestick Chart</strong> or Stock Chart using SciChart.js,{" "}
-        High Performance JavaScript Charts
+        This demo shows you how to create a <strong>JavaScript Candlestick Chart</strong> or Stock Chart using SciChart.js.{" "}
+        Data is fetched from Binance and placed on the chart. Two moving averages are added. Zooming, panning and tooltips as well.{" "}
+        Switch between Candlestick or Ohlc, or see the <strong>Realtime Ticking Stock Charts</strong> demo which shows how to add live updates.
     </p>
 );
 

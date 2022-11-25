@@ -32,11 +32,8 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Chart with Vertically Stacked Y axis</strong> using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Vertically-Stacked Axis in SciChart.js allows several traces with independent Y-axis to be placed on the same chart,{" "}
+        stacking the Y-Axis and enabling an ECG/EEG-style trace. Great for neurological apps, medical apps, earthquake monitoring.
     </p>
 );
 

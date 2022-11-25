@@ -36,10 +36,9 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to visualize <strong>250k points of LiDAR Data</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript 3D Charts
-        </a>
+        Demonstrates how to visualize <strong>LiDAR UAV Data</strong> from the Defra survey using SciChart.js.{" "}
+        A 1km x 1km slice of London is visualised as a 3D point-cloud with contour map overlaid.{" "}
+        A heatmap legend on the right indicates the heightmap.
     </p>
 );
 

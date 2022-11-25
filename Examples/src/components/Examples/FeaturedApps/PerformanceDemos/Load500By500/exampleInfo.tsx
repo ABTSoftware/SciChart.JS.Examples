@@ -36,10 +36,8 @@ const tips = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates loading <strong>250k points instantly</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Demonstrates loading <strong>500 series, each with 500 points (250k points total) instantly</strong>.{" "}
+        Click the <strong>Reload</strong> button at the bottom of the demo to see the chart draw again.
     </p>
 );
 

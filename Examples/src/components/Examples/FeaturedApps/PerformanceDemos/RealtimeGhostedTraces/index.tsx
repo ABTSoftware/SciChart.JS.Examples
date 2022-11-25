@@ -178,7 +178,7 @@ export default function RealtimeGhostedTraces() {
                 });
             });
             setControls(res.controls);
-            autoStartTimerId = setTimeout(res.controls.startAnimation, 3000);
+            autoStartTimerId = setTimeout(res.controls.startAnimation, 0);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {

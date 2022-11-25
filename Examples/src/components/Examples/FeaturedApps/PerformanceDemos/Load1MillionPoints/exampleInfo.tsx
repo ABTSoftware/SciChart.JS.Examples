@@ -33,11 +33,8 @@ const tips = [
 
 const Subtitle = () => (
     <p>
-        Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds, making our{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>{" "}
-        the fastest in the world!
+        Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds.{" "}
+        Click the <strong>Reload</strong> button at the bottom of the demo to see the chart draw again.
     </p>
 );
 

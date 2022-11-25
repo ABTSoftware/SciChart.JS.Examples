@@ -39,11 +39,8 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        View information on how to create a <strong>JavaScript Column Chart</strong> using SciChart.js, a High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
-            JavaScript Chart Library
-        </a>{" "}
-        by SciChart.
+        Creates a <strong>JavaScript Column Chart</strong> using SciChart.js, with the following features:{" "}
+        DataLabels, Rounded corners, Gradient-palette fill, startup animations.
     </p>
 );
 

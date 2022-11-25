@@ -24,9 +24,7 @@ import {Thickness} from "scichart/Core/Thickness";
 import { TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
 import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {
-    DataLabelState
-} from "scichart/Charting/Visuals/RenderableSeries/DataLabels/DataLabelState";
+import { DataLabelState } from "scichart/Charting/Visuals/RenderableSeries/DataLabels/DataLabelState";
 
 const divElementId = "chart";
 

@@ -6,6 +6,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-realtime-ticking-stock-charts.jpg";
+import {LARGE_TRADE_THRESHOLD} from "./createCandlestickChart";
 
 const previewDescription = `An example which demonstrates real-time ticking / updating stock charts in JavaScript with Price data as
 Candlesticks or Ohlc and Moving average indicators on the chart.`;
@@ -32,11 +33,9 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        Get the code view our example to learn how create a <strong>JavaScript Stock Chart</strong>{" "}
-        with live real-time ticking and updating, using SciChart.js, our range of{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="High Performance JavaScript Charts">
-            High Performance JavaScript Charts
-        </a>.
+        Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens to candles & trades.{" "}
+        Candles are updated in realtime. You can zoom, pan the example or use tooltips.{" "}
+        <strong><em>Large trades &gt; ${LARGE_TRADE_THRESHOLD.toLocaleString()} size are plotted as bubbles.</em></strong>
     </p>
 );
 
