@@ -53,7 +53,7 @@ const AppBarTop: React.FC<TProps> = props => {
                     color="inherit"
                     aria-label="menu"
                 >
-                    <MenuIcon />
+                    <MenuIcon htmlColor="White"/>
                 </IconButton>
             </Toolbar>
         </AppBar>
