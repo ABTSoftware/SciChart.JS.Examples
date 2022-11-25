@@ -86,6 +86,7 @@ import { axisTypesExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/Axis
 import { subChartStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts/exampleInfo";
 import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisLayout/exampleInfo";
 import { realtimeBigDataDemoExampleInfo } from "../Examples/FeaturedApps/ShowCases/RealtimeBigData/exampleInfo";
+import {oilAndGasExplorerDashboard} from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard/exampleInfo";
 import {TDocumentationLink} from "../../helpers/types/ExampleDescriptionTypes";
 
 
@@ -453,6 +454,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_showcases_realtimebigdata : {
         id: "featuredApps_showcases_realtimebigdata",
         ...realtimeBigDataDemoExampleInfo
+    },
+    featuredApps_showcases_oilandgasdashboard : {
+        id: "featuredApps_showcases_oilandgasdashboard",
+        ...oilAndGasExplorerDashboard
     },
     builderApi_simplechart: {
         id: "builderApi_simplechart",

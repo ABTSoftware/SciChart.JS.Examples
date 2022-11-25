@@ -97,6 +97,7 @@ import FeatureAxisTypes from "../Examples/FeaturedApps/FeatureDemos/AxisTypes";
 import SubChartStockCharts from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts";
 import FeatureAxisLayout from "../Examples/FeaturedApps/FeatureDemos/AxisLayout";
 import RealtimeBigDataShowcase from "../Examples/FeaturedApps/ShowCases/RealtimeBigData";
+import OilAndGasDashboardShowcase from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard";
 
 export type TMenuItem = {
     item: {
@@ -127,6 +128,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
+            EXAMPLES_PAGES.featuredApps_showcases_oilandgasdashboard,
         ]
     },
     {
@@ -481,6 +483,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return FeatureAxisLayout;
         case EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata.id:
             return RealtimeBigDataShowcase;
+        case EXAMPLES_PAGES.featuredApps_showcases_oilandgasdashboard.id:
+            return OilAndGasDashboardShowcase;
         case EXAMPLES_PAGES.builderApi_simplechart.id:
             return BuilderSimpleChart;
         case EXAMPLES_PAGES.builderApi_fullchart.id:
