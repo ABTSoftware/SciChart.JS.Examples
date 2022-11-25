@@ -3,7 +3,6 @@ import {
     MENU_ITEMS_2D,
     MENU_ITEMS_3D,
     MENU_ITEMS_FEATURED_APPS,
-    MENU_ITEMS_WHATSNEW,
     TMenuItem,
 } from "../components/AppRouter/examples";
 

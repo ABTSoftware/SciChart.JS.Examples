@@ -9,7 +9,6 @@ import {
     MENU_ITEMS_2D,
     MENU_ITEMS_3D,
     MENU_ITEMS_FEATURED_APPS,
-    MENU_ITEMS_WHATSNEW
 } from "./AppRouter/examples";
 import AppBarTop from "./AppTopBar/AppBarTop";
 import DrawerContent from "./DrawerContent/DrawerContent";
@@ -35,12 +34,8 @@ export default function App() {
         MENU_ITEMS_FEATURED_APPS_ID: true,
         MENU_ITEMS_3D_ID: true,
         MENU_ITEMS_2D_ID: true,
-        MENU_ITEMS_WHATSNEW_ID: false
     };
 
-    MENU_ITEMS_WHATSNEW.forEach(item => {
-        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
-    });
     MENU_ITEMS_FEATURED_APPS.forEach(item => {
         initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
     });

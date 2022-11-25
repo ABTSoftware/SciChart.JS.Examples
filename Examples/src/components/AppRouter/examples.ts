@@ -106,6 +106,41 @@ export type TMenuItem = {
     submenu: TExamplePage[];
 };
 
+export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
+export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
+    {
+        item: { id: "featuredApps_performanceDemos", name: "Performance Demos" },
+        submenu: [
+            EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500,
+            EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints,
+            EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo,
+            EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
+            EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata,
+        ]
+    },
+    {
+        item: { id: "featuredApps_scientificCharts", name: "Scientific &amp; Medical Charts" },
+        submenu: [
+            EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
+        ]
+    },
+    {
+        item: { id: "featuredApps_financialCharts", name: "Financial Charts" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
+            EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts,
+            EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
+            EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
+        ]
+    },
+];
+
 export const MENU_ITEMS_2D_ID = "MENU_ITEMS_2D_ID";
 export const MENU_ITEMS_2D: TMenuItem[] = [
     {
@@ -130,30 +165,22 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_SplineMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DigitalMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_RealtimeMountainChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ScatterChart,
             EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart,
             EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide,
             EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_PieChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_DonutChart
+            EXAMPLES_PAGES.chart2D_basicCharts_DonutChart,
         ]
     },
     {
         item: { id: "chart2D_chartAnnotations", name: "Chart Annotations" },
         submenu: [
             EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy,
-            EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
             EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers,
-            EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold
-        ]
-    },
-    {
-        item: { id: "chart2D_createStockCharts", name: "Create Stock Charts" },
-        submenu: [
-            EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
-            EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts,
-            EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts
+            EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations,
         ]
     },
     {
@@ -169,7 +196,9 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes,
+            EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes,
+            EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout,
         ]
     },
     {
@@ -183,13 +212,12 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
     {
         item: { id: "chart2D_stylingAndTheming", name: "Styling and Theming" },
         submenu: [
-            EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager,
-            EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTheme,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling,
-            EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground
         ]
     },
     {
@@ -198,15 +226,16 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection,
-            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData
         ]
     },
     {
         item: { id: "chart2D_zoomingAndPanning", name: "Zoom and Pan a Chart" },
         submenu: [
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview
@@ -215,9 +244,9 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
     {
         item: { id: "chart2D_filters", name: "Transforming Data with Filters" },
         submenu: [
-            EXAMPLES_PAGES.chart2D_filters_PercentageChange,
             EXAMPLES_PAGES.chart2D_filters_TrendMARatio,
-            EXAMPLES_PAGES.chart2D_filters_CustomFilters
+            EXAMPLES_PAGES.chart2D_filters_CustomFilters,
+            EXAMPLES_PAGES.chart2D_filters_PercentageChange,
         ]
     },
     {
@@ -228,62 +257,9 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_Animations_StartupAnimation,
             EXAMPLES_PAGES.chart2D_Animations_GenericAnimation
         ]
-    }
-];
-
-export const MENU_ITEMS_3D_ID = "MENU_ITEMS_3D_ID";
-export const MENU_ITEMS_3D: TMenuItem[] = [
-    {
-        item: { id: "chart3D_Basic3DChartTypes", name: "JavaScript 3D Chart Types" },
-        submenu: [
-            EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart,
-            EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart
-        ]
-    }
-];
-
-export const MENU_ITEMS_FEATURED_APPS_ID = "MENU_ITEMS_FEATURED_APPS_ID";
-export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
-    {
-        item: { id: "featuredApps_performanceDemos", name: "Performance Demos" },
-        submenu: [
-            EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500,
-            EXAMPLES_PAGES.featuredApps_performanceDemos_LoadOneMillionPoints,
-            EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo,
-            EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces
-        ]
     },
     {
-        item: { id: "featuredApps_scientificCharts", name: "Scientific Charts" },
-        submenu: [
-            EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
-            EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
-            EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo
-        ]
-    },
-    {
-        item: { id: "featuredApps_medicalCharts", name: "Medical Charts" },
-        submenu: [EXAMPLES_PAGES.featuredApps_medicalCharts_VitalSignsMonitorDemo]
-    },
-    {
-        item: { id: "featuredApps_featureDemos", name: "Feature Demos" },
-        submenu: [
-            EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes,
-            EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout
-        ]
-    },
-    {
-        item: { id: "featuredApps_Showcases", name: "Showcases" },
-        submenu: [
-            EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata,
-        ]
-    },
-];
-
-export const MENU_ITEMS_WHATSNEW_ID = "MENU_ITEMS_WHATSNEW_ID";
-export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
-    {
-        item: { id: "builderApi", name: "Builder API" },
+        item: { id: "builderApi", name: "Builder (JSON / JS Objects) API" },
         submenu: [
             EXAMPLES_PAGES.builderApi_simplechart,
             EXAMPLES_PAGES.builderApi_fullchart,
@@ -292,66 +268,19 @@ export const MENU_ITEMS_WHATSNEW: TMenuItem[] = [
             EXAMPLES_PAGES.builderApi_CustomTypes
         ]
     },
+];
+
+export const MENU_ITEMS_3D_ID = "MENU_ITEMS_3D_ID";
+export const MENU_ITEMS_3D: TMenuItem[] = [
     {
-        item: { id: "animationApi", name: "Animation API" },
+        item: { id: "chart3D_Basic3DChartTypes", name: "JavaScript 3D Chart Types" },
         submenu: [
-            EXAMPLES_PAGES.chart2D_Animations_DataAnimation,
-            EXAMPLES_PAGES.chart2D_Animations_StyleAnimation,
-            EXAMPLES_PAGES.chart2D_Animations_StartupAnimation,
-            EXAMPLES_PAGES.chart2D_Animations_GenericAnimation
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
         ]
-    },
-    {
-        item: { id: "new_modifyAxisBehavior", name: "Chart Axis APIs" },
-        submenu: [
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
-            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes
-        ]
-    },
-    {
-        item: { id: "chart2D_axisLabelCustomization", name: "Axis Label Customization" },
-        submenu: [
-            EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels,
-            EXAMPLES_PAGES.chart2D_axisLabelCustomization_ImageLabels,
-            EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels
-        ]
-    },
-    {
-        item: { id: "chart2D_tooltipsAndHittest", name: "Tooltips and Hit-Test" },
-        submenu: [
-            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection,
-            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection,
-            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData
-        ]
-    },
-    {
-        item: { id: "chart2D_filters", name: "Transforming Data with Filters" },
-        submenu: [
-            EXAMPLES_PAGES.chart2D_filters_PercentageChange,
-            EXAMPLES_PAGES.chart2D_filters_TrendMARatio,
-            EXAMPLES_PAGES.chart2D_filters_CustomFilters
-        ]
-    },
-    {
-        item: { id: "chart2D_stylingAndTheming", name: "Styling and Theming" },
-        submenu: [EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground]
-    },
-    {
-        item: { id: "chart2D_zoomingAndPanning", name: "Zoom and Pan a Chart" },
-        submenu: [
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview
-        ]
-    },
-    {
-        item: { id: "chart2D_newChartTypes", name: "New Chart Types" },
-        submenu: [
-            EXAMPLES_PAGES.chart2D_basicCharts_ErrorBarsChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_NonUniformHeatmapChart,
-        ]
-    },
+    }
 ];
 
 export const getParentMenuIds = (exampleId: string): string[] => {
@@ -384,17 +313,11 @@ export const getParentMenuIds = (exampleId: string): string[] => {
         resMenuLevel.push(MENU_ITEMS_FEATURED_APPS_ID);
     }
 
-    const resSubmenuLevelWhatsNew = getSubmenuLevelIds(MENU_ITEMS_WHATSNEW, exampleId);
-    if (resSubmenuLevelFeaturedApps.length > 0) {
-        resMenuLevel.push(MENU_ITEMS_WHATSNEW_ID);
-    }
-
     return [
         ...resMenuLevel,
         ...resSubmenuLevel2D,
         ...resSubmenuLevel3D,
         ...resSubmenuLevelFeaturedApps,
-        ...resSubmenuLevelWhatsNew
     ];
 };
 
