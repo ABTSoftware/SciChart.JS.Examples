@@ -7,7 +7,7 @@ export const ExampleStrings = {
         "Examples for SciChart.js: High Performance JavaScript Charts. Featuring 2D & 3D JavaScript Chart types, performance demos, JavaScript stock charts, Heatmaps, Bubble charts",
     siteHomeMetaImage:
         "https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-javascript-chart-collage-1485.jpg",
-    exampleGenericTitleSuffix: " | JavaScript Chart Examples",
+    exampleGenericTitleSuffix: " | SciChart.js Demo",
 
     // Documentation links and link tooltips
     //
