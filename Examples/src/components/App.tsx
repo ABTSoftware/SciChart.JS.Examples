@@ -55,7 +55,8 @@ export default function App() {
     const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     const currentExampleId = currentExample?.id;
-    const seeAlso: GalleryItem[] = getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample);
+    // SeeAlso is now optional on exampleInfo. Return this if provided else auto-generate from menu
+    const seeAlso: GalleryItem[] = currentExample?.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample);
 
     // // Find the example category
     // const exampleCategory = ALL_MENU_ITEMS.find(menuItem => {
