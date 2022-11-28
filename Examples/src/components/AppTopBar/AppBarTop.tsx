@@ -33,7 +33,7 @@ const AppBarTop: React.FC<TProps> = props => {
                     <img className={classes.Logo} src={Logo} alt="scichart-logo" />
                 </a>
                 <Search />
-                <div className={classes.FlexPlaceholder} />
+                <div className={classes.FlexPlaceholder} ></div>
                 <Button className={classes.BlueButton} href="https://www.scichart.com/getting-started/scichart-javascript/" target="_blank" title="Start a trial or community license">
                     Get Started
                 </Button>
