@@ -33,7 +33,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates the Numeric, category, Date and Logarithmic axis types available SciChart.js, High
+        Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High
         Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts

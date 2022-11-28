@@ -20,10 +20,8 @@ import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { ShadowEffect } from "scichart/Charting/Visuals/RenderableSeries/ShadowEffect";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { Point } from "scichart/Core/Point";
 import { Thickness } from "scichart/Core/Thickness";
 import { EAutoRange } from "scichart/types/AutoRange";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
@@ -32,15 +30,21 @@ import { ENumericFormat } from "scichart/types/NumericFormat";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import classes from "../../../Examples.module.scss";
 import { TBinanceCandleData } from "../../../../../commonTypes/TBinanceCandleData";
+import {appTheme} from "../../../theme";
+import {makeStyles} from "@material-ui/core/styles";
 
 const divElementId = "chart";
 
-const colorStrings = ["4FBEE6", "AD3D8D", "6BBDAE", "E76E63", "2C4B92"];
+const colorStrings = [appTheme.VividSkyBlue, appTheme.VividPink, appTheme.MutedTeal, appTheme.VividOrange, appTheme.VividBlue];
 const colors = colorStrings.map(c => parseColorToUIntArgb(c + "AA"));
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
-    sciChartSurface.applyTheme(new SciChartJSLightTheme());
+    // Create a SciChartSurface with Theme
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
+
+    // Category Axis - measures using index not value.
     const xAxis = new CategoryAxis(wasmContext, { id: "XCategory" });
     const labelProvider = new TextLabelProvider({
         labels: ["Bitcoin", "Ethereum", "XRP", "Cardano", "Dogecoin"]
@@ -58,6 +62,7 @@ const drawExample = async () => {
 
     sciChartSurface.xAxes.add(xAxis);
 
+    // Numeric Y-Axis. measures using value
     const yAxis = new NumericAxis(wasmContext, {
         id: "YNumeric",
         autoRange: EAutoRange.Always,
@@ -96,6 +101,8 @@ const drawExample = async () => {
         visibleRangeLimit: new NumberRange(startTime, endDate.getTime() / 1000)
     });
     sciChartSurface.xAxes.add(dateXAxis);
+
+    // Logarithmic Y Axis - measures on log scale using value
     const logYAxis = new LogarithmicAxis(wasmContext, {
         id: "YLog",
         logBase: 2,
@@ -120,13 +127,6 @@ const drawExample = async () => {
             stroke: colorStrings[index],
             dataSeries: priceDataSeries
         });
-        // const shadowSeries = new FastLineRenderableSeries(wasmContext, {
-        //     strokeThickness: 5,
-        //     xAxisId: dateXAxis.id,
-        //     yAxisId: logYAxis.id,
-        //     stroke: "444444",
-        //     dataSeries: priceDataSeries,
-        // });
         sciChartSurface.renderableSeries.add(series);
 
         (async () => {
@@ -146,6 +146,27 @@ const drawExample = async () => {
     );
     return { sciChartSurface, wasmContext, labelProvider };
 };
+
+const useStyles = makeStyles(theme => ({
+    flexOuterContainer: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        background: appTheme.DarkIndigo
+    },
+    toolbarRow: {
+        display: "flex",
+        // flex: "auto",
+        flexBasis: "70px",
+        padding: 10,
+        width: "100%",
+        color: appTheme.ForegroundColor
+    },
+    chartArea: {
+        flex: 1,
+    }
+}));
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -186,21 +207,27 @@ export default function FeatureAxisTypes() {
         }
     };
 
+    const localClasses = useStyles();
+
     return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
-            <ToggleButtonGroup
-                exclusive
-                value={preset}
-                onChange={handlePreset}
-                size="medium"
-                color="primary"
-                aria-label="small outlined button group"
-            >
-                <ToggleButton value={0}>Multi-Line</ToggleButton>
-                <ToggleButton value={1}>Single Line Rotated</ToggleButton>
-                <ToggleButton value={2}>Multi-Line Rotated</ToggleButton>
-            </ToggleButtonGroup>
+        <div className={classes.ChartWrapper}>
+            <div className={localClasses.flexOuterContainer}>
+                <div className={localClasses.toolbarRow}>
+                    <ToggleButtonGroup
+                        exclusive
+                        value={preset}
+                        onChange={handlePreset}
+                        size="medium"
+                        color="primary"
+                        aria-label="small outlined button group"
+                    >
+                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>Multi-Line</ToggleButton>
+                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>Single Line Rotated</ToggleButton>
+                        <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>Multi-Line Rotated</ToggleButton>
+                    </ToggleButtonGroup>
+                </div>
+                <div className={localClasses.chartArea} id={divElementId}></div>
+            </div>
         </div>
     );
 }
