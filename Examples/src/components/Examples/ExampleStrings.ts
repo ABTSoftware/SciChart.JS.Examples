@@ -342,7 +342,7 @@ export const ExampleStrings = {
     urlMultiPaneStockChart: "/javascript-multi-pane-stock-charts-old-technique",
     urlTitleMultiPaneStockChart:
 "The Multi-Pane stock chart example demonstrates multiple-series types in a realistic stock chart application",
-    titleMultiPaneStockChart: "JavaScript Multi-Pane Stock Charts (Old Technique)",
+    titleMultiPaneStockChart: "JavaScript Multi-Pane Stock Charts using Sync Multi-Chart",
     pageTitleMultiPaneStockChart: "JavaScript Multi-Pane Stock Chart | View JavaScript Charts",
 
     // SubChart Stock Charts

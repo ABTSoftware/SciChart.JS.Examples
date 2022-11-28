@@ -7,16 +7,10 @@ import {
     IFillPaletteProvider,
     IStrokePaletteProvider
 } from "scichart/Charting/Model/IPaletteProvider";
-import { EDraggingGripPoint } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
-import {
-    HorizontalLineAnnotation,
-    IHVLineAnnotationOptions
-} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
 import { I2DSubSurfaceOptions } from "scichart/Charting/Visuals/I2DSurfaceOptions";
 import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
-import { Point } from "scichart/Core/Point";
 import { Rect } from "scichart/Core/Rect";
 import { Thickness } from "scichart/Core/Thickness";
 import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
@@ -108,8 +102,8 @@ export const drawExample = async () => {
         { type: EChart2DModifierType.MouseWheelZoom, options: { xyDirection: EXyDirection.XDirection } }
     ];
 
-    const upCol = "6BBDAE";
-    const downCol = "E76E63";
+    const upCol = appTheme.VividGreen;
+    const downCol = appTheme.MutedRed;
     const opacity = "AA";
 
     const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(mainChartWrapper2, {
@@ -133,7 +127,7 @@ export const drawExample = async () => {
             type: EChart2DModifierType.Custom,
             customType: FinChartLegendModifier.customType,
             options: {
-                crosshairStroke: "#E0FDFF"
+                crosshairStroke: appTheme.ForegroundColor
             } as IFinanceLegendModifierOptions
         },
         subCharts: [
@@ -209,7 +203,7 @@ export const drawExample = async () => {
                             }
                         },
                         options: {
-                            stroke: "#4FBEE6",
+                            stroke: appTheme.VividSkyBlue,
                             strokeThickness: 2
                         }
                     },
@@ -227,7 +221,7 @@ export const drawExample = async () => {
                             }
                         },
                         options: {
-                            stroke: "AE418D",
+                            stroke: appTheme.VividPink,
                             strokeThickness: 2
                         }
                     },
@@ -352,7 +346,7 @@ export const drawExample = async () => {
                     type: ESeriesType.LineSeries,
                     xyData: { dataSeriesName: "RSI", xValues, yValues: rsiArray },
                     options: {
-                        stroke: "#4FBEE6",
+                        stroke: appTheme.VividSkyBlue,
                         strokeThickness: 2
                     }
                 },

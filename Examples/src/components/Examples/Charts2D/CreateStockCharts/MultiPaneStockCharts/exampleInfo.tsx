@@ -41,6 +41,7 @@ const Subtitle = () => (
     <p>
         Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels.{" "}
         Zooming, panning, cursors are synchronised between the charts.{" "}
+        This is a simpler way to create charts than subcharts, but will have a performance hit on some browsers.
     </p>
 );
 
