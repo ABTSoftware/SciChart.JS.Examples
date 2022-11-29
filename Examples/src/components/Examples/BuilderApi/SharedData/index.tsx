@@ -6,6 +6,16 @@ import { ESeriesType } from "scichart/types/SeriesType";
 import { ISciChart2DDefinition } from "scichart/Builder/buildSurface";
 import { TSharedDataDefinition } from "scichart/Builder/buildDataSeries";
 import {appTheme} from "../../theme";
+import {
+    EAnnotationType
+} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/IAnnotation";
+import {
+    ECoordinateMode
+} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/AnnotationBase";
+import {
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint
+} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/AnchorPoint";
 
 const divElementId = "chart";
 
@@ -33,7 +43,42 @@ const drawExample = async () => {
                 },
                 xyyData: { xDataId: "x", yDataId: "col", y1DataId: "line" }
             }
-        ]
+        ],
+        // Add annotations
+        annotations: [
+            {
+                type: EAnnotationType.SVGTextAnnotation,
+                options: {
+                    text: "Builder API Demo",
+                    x1: 0.5,
+                    y1: 0.5,
+                    opacity: 0.33,
+                    yCoordShift: -52,
+                    xCoordinateMode: ECoordinateMode.Relative,
+                    yCoordinateMode: ECoordinateMode.Relative,
+                    horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+                    verticalAnchorPoint: EVerticalAnchorPoint.Center,
+                    fontSize: 42,
+                    fontWeight: "Bold"
+                }
+            },
+            {
+                type: EAnnotationType.SVGTextAnnotation,
+                options: {
+                    text: "Create SciChart templates with JSON Objects",
+                    x1: 0.5,
+                    y1: 0.5,
+                    yCoordShift: 0,
+                    opacity: 0.33,
+                    xCoordinateMode: ECoordinateMode.Relative,
+                    yCoordinateMode: ECoordinateMode.Relative,
+                    horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+                    verticalAnchorPoint: EVerticalAnchorPoint.Center,
+                    fontSize: 28,
+                    fontWeight: "Bold"
+                }
+            }
+        ],
     };
 
     // When you want to add data for the chart later
@@ -61,10 +106,6 @@ export default function BuilderSharedData() {
     }, []);
 
     return (
-        <>
-            <div className={classes.ChartWrapper}>
-                <div id={divElementId} />
-            </div>
-        </>
+        <div className={classes.ChartWrapper} id={divElementId}></div>
     );
 }
