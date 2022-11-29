@@ -24,6 +24,8 @@ type TLink = {
 
 const basePath = "https://demo.scichart.com";
 
+console.log("Generating sitemap...");
+
 (async () => {
     // An array with your links
     // const links = [{ url: "/page-1/", changefreq: "daily", priority: 0.3 }];

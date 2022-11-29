@@ -2,6 +2,8 @@ import * as fs from "fs";
 import { EXAMPLES_PAGES } from "./src/components/AppRouter/examplePages";
 import { TFooterlink } from "./src/components/AppFooter/AppFooter";
 
+console.log("Generating footer links...");
+
 (async () => {
     const links: TFooterlink[] = [];
 
