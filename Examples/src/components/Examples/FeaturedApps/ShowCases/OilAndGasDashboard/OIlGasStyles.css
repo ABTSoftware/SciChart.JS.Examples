@@ -121,10 +121,10 @@ main {
     overflow-y: hidden;
 }
 
-*::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-}
+/**::-webkit-scrollbar {*/
+/*    -webkit-appearance: none;*/
+/*    width: 7px;*/
+/*}*/
 
 *::-webkit-scrollbar-thumb {
     border-radius: 8px;
