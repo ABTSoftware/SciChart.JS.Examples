@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-donut-chart.jpg";
 
 const description = `Donut Charts in SciChart.js support selection, legends, different text labels, animated updates,
     gradient or solid fills and more.`;
@@ -36,31 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgPieChart,
-                title: ExampleStrings.titlePieChart,
-                seoTitle: ExampleStrings.urlTitlePieChart,
-                examplePath: ExampleStrings.urlPieChart
-            }, {
-                imgPath: ExampleStrings.imgStackedMountainChart,
-                title: ExampleStrings.titleStackedMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
-            },
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         This demo demonstrates how create a <strong>JavaScript Donut Chart</strong> with our powerful JavaScript library,{" "}
@@ -78,11 +54,10 @@ export const donutChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Create JavaScript Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
     metaKeywords: "donut, chart, javascript, canvas",
-    thumbnailImage: "javascript-donut-chart.jpg"
+    thumbnailImage: exampleImage
 };

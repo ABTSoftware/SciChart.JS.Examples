@@ -29,7 +29,8 @@ const SeoTags: React.FC<TProps> = props => {
             <meta name="twitter:image" content={image} />
             <meta name="twitter:image:alt" content={title} />
             <meta name="twitter:domain" content={baseUrl} />
-            <meta property="twitter:url" content={exampleUrl}/>
+            <meta property="twitter:url" content={exampleUrl} />
+            <link rel="canonical" href={`https://www.scichart.com/example/javascript-chart${url}`} />
         </Helmet>
     );
 };

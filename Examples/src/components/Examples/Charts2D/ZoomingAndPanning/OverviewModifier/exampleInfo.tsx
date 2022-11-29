@@ -5,6 +5,7 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
+import exampleImage from "./javascript-overview-chart.jpg";
 
 const previewDescription = `This examples shows how use SciChartOverview to quickly create an overview chart
  that contains a draggable box that controls the visible range of another chart`;
@@ -34,38 +35,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgZoomPanWithMultipleChartModifiers,
-                title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
-                seoTitle: ExampleStrings.urlZoomPanWithMultipleChartModifiers,
-                examplePath: ExampleStrings.urlZoomPanWithMultipleChartModifiers
-            },
-            {
-                imgPath: ExampleStrings.imgDragAxisToScale,
-                title: ExampleStrings.titleDragAxisToScale,
-                seoTitle: ExampleStrings.titleDragAxisToScale,
-                examplePath: ExampleStrings.urlDragAxisToScale
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeZoomPan,
-                title: ExampleStrings.titleRealtimeZoomPan,
-                seoTitle: ExampleStrings.titleRealtimeZoomPan,
-                examplePath: ExampleStrings.urlRealtimeZoomPan
-            },
-            {
-                imgPath: ExampleStrings.imgVerticalCharts,
-                title: ExampleStrings.titleVerticalCharts,
-                seoTitle: ExampleStrings.urlTitleVerticalCharts,
-                examplePath: ExampleStrings.urlVerticalCharts
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to zoom and pan with an <strong>Overview Chart</strong> using SciChart.js, High
@@ -85,11 +54,10 @@ export const overviewExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates how to zoom and pan with an Overview Chart",
     metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",
-    thumbnailImage: "javascript-overview-chart.jpg"
+    thumbnailImage: exampleImage
 };

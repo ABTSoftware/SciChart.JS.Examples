@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-vital-signs-ecg-medical-chart-example.jpg";
 
 const previewDescription = `In this example we are simulating four channels of data showing that SciChart.js can be used to draw
 real-time ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate,
@@ -35,26 +36,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgRealtimeGhostedTracesChart,
-                title: ExampleStrings.titleRealtimeGhostedTraces,
-                seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
-                examplePath: ExampleStrings.urlRealtimeGhostedTraces
-            },
-            {
-                imgPath: ExampleStrings.imgLoad500by500Charts,
-                title: ExampleStrings.titleLoad500By500,
-                seoTitle: ExampleStrings.urlTitleLoad500By500,
-                examplePath: ExampleStrings.urlLoad500By500
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Showcases how SciChart.js can be used in a <strong>Medical context</strong>, drawing ECGs with our High
@@ -74,12 +55,11 @@ export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: `In this example we are simulating four channels of data showing that SciChart.js can be used to draw real-time
         ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood
         oxygen, volumetric flow and more.`,
     metaKeywords: "ecg, ekg, realtime, medical, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-vital-signs-ecg-medical-chart-example.jpg"
+    thumbnailImage: exampleImage
 };

@@ -5,6 +5,7 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-with-multiple-x-axis.jpg";
 
 const description = `Demonstrates a line chart with four series and multiple top / bottom X-Axis and left / right Y-Axis.
 SciChart supports multiple top or bottom X-Axes and multiple left and right Y-Axes. This example shows in a
@@ -21,26 +22,6 @@ const documentationLinks: TDocumentationLink[] = [
         href: ExampleStrings.urlTutorialsHome,
         title: ExampleStrings.titleTutorialsHome,
         linkTitle: "SciChart.js Tutorials"
-    }
-];
-
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgSecondaryYAxis,
-                title: ExampleStrings.titleSecondaryYAxis,
-                seoTitle: ExampleStrings.urlTitleSecondaryYAxis,
-                examplePath: ExampleStrings.urlSecondaryYAxis
-            },
-            {
-                imgPath: ExampleStrings.imgVerticalCharts,
-                title: ExampleStrings.titleVerticalCharts,
-                seoTitle: ExampleStrings.urlTitleVerticalCharts,
-                examplePath: ExampleStrings.urlVerticalCharts
-            }
-        ]
     }
 ];
 
@@ -62,11 +43,10 @@ export const multipleXAxesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates Multiple X & Y Axis on a JavaScript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-with-multiple-x-axis.jpg"
+    thumbnailImage: exampleImage
 };

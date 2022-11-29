@@ -80,7 +80,7 @@ export class AudioDataProvider {
     }
 
     public closeAudio() {
-        this.audioContext.close();
+        this.audioContext?.close();
         this.audioContext = null;
         this.inputPoint = null;
         this.streamSource = null;

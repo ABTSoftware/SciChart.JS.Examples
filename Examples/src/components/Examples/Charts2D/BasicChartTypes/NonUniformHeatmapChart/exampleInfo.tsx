@@ -5,13 +5,14 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-non-uniform-heatmap-chart.jpg";
 
 const description = `Non-uniform heatmaps should be used if you want to specify independent sizes for heat cells.`;
 const tips = [
     `To specify the sizes of the cells, use the xCellOffsets and yCellOffsets params.`,
     `It is possible to specify offsets as arrays or mapping functions.`,
     `Updating data with setZValues method recalcula tes the mapped offsets.`,
-]; 
+];
 
 const documentationLinks: TDocumentationLink[] = [
     {
@@ -36,32 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
-            },
-            {
-                imgPath: ExampleStrings.imgFanChart,
-                title: ExampleStrings.titleFanChart,
-                seoTitle: ExampleStrings.urlTitleFanChartDocumentation,
-                examplePath: ExampleStrings.urlFanChart
-            },
-            {
-                imgPath: ExampleStrings.imgGroupedColumnChart,
-                title: ExampleStrings.titleGroupedColumnChart,
-                seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
-                examplePath: ExampleStrings.urlGroupedColumnChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         This SciChart demo demonstrates how to create a <strong>JavaScript Non Uniform Heatmap Chart</strong> using{" "}
@@ -80,11 +55,10 @@ export const nonUniformHeatmapExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Create JavaScript Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.",
     metaKeywords: "error, bars, javascript, webgl, canvas",
-    thumbnailImage: "javascript-non-uniform-heatmap-chart.jpg"
+    thumbnailImage: exampleImage
 };

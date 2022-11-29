@@ -5,6 +5,7 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-draw-behind-axes.jpg";
 
 const description = `Demonstrates a chart where the series can draw into the axes area.`;
 const tips = [`You can also draw axes over the chart area, and in other positions, buy using Inner Axes`];
@@ -27,26 +28,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgSecondaryYAxis,
-                title: ExampleStrings.titleSecondaryYAxis,
-                seoTitle: ExampleStrings.urlTitleSecondaryYAxis,
-                examplePath: ExampleStrings.urlSecondaryYAxis
-            },
-            {
-                imgPath: ExampleStrings.imgCentralAxes,
-                title: ExampleStrings.titleCentralAxes,
-                seoTitle: ExampleStrings.urlTitleCentralAxes,
-                examplePath: ExampleStrings.urlCentralAxes
-            },
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>JavaScript Chart with transparent axes</strong> using SciChart.js, High
@@ -65,11 +46,10 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates the option of the transparent Axes customization on a JavaScript Chart using SciChart.js.",
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-draw-behind-axes.png"
+    thumbnailImage: exampleImage
 };

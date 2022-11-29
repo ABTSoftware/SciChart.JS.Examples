@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-legends.jpg";
 
 const previewDescription = `Demonstrates how to add a Legend to a JavaScript Line Chart using SciChart.js. The legend is created when
 you add a LegendModifier type to the sciChartSurface.chartModifiers collection.`;
@@ -33,32 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            },
-            {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to add a legend to a <strong>JavaScript Chart</strong> using SciChart.js, High Performance{" "}
@@ -77,12 +52,11 @@ export const chartLegendsAPIExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates how to add a Legends to a JavaScript Line Chart using SciChart.js. The legend is created when you add " +
         "a LegendModifier type to the sciChartSurface.chartModifiers collection.",
     metaKeywords: "legend, api, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-legends.jpg"
+    thumbnailImage: exampleImage
 };

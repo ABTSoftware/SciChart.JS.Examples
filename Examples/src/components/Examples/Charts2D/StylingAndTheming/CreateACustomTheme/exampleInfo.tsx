@@ -28,26 +28,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgThemeManagerChart,
-                title: ExampleStrings.titleThemeManager,
-                seoTitle: ExampleStrings.urlTitleThemeManager,
-                examplePath: ExampleStrings.urlThemeManager
-            },
-            {
-                imgPath: ExampleStrings.imgStylingInCode,
-                title: ExampleStrings.titleStylingInCode,
-                seoTitle: ExampleStrings.urlTitleThemeManager,
-                examplePath: ExampleStrings.urlStylingInCode
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to create a <strong>Custom Theme</strong> for SciChart.js, High Performance{" "}
@@ -65,7 +45,6 @@ export const createACustomThemeExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:

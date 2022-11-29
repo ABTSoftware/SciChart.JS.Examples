@@ -19,7 +19,6 @@ import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
 import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
 import { EXyDirection } from "scichart/types/XyDirection";
-import { SciChartJSDarkTheme } from "scichart/Charting/Themes/SciChartJSDarkTheme";
 import {
     EFillPaletteMode,
     EStrokePaletteMode,
@@ -36,12 +35,18 @@ import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProv
 import { XyMovingAverageFilter } from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
 import { EDataSeriesField } from "scichart/Charting/Model/Filters/XyFilterBase";
 import { ELabelAlignment } from "scichart/types/LabelAlignment";
+import {appTheme} from "../../../theme";
+import {
+    CursorModifier
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/ChartModifiers/CursorModifier";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
 const divElementId3 = "cc_chart_3_3";
 
 const drawExample = async () => {
+
+    // We can group together charts using VerticalChartGroup type
     const verticalGroup = new SciChartVerticalGroup();
     const {
         dateValues,
@@ -51,20 +56,21 @@ const drawExample = async () => {
         closeValues,
         volumeValues
     } = ExampleDataProvider.getTradingData();
-    const darkTheme = new SciChartJSDarkTheme();
 
     let chart1XAxis: CategoryAxis;
     let chart2XAxis: CategoryAxis;
     let chart3XAxis: CategoryAxis;
     const axisAlignment = EAxisAlignment.Right;
 
+    const upCol = appTheme.VividGreen;
+    const downCol = appTheme.MutedRed;
+    const opacity = "AA";
+
     // CHART 1
-    const drawChart1 = async () => {
+    const drawPriceChart = async () => {
         const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId1, {
-            widthAspect: 900,
-            heightAspect: 400
+            theme: appTheme.SciChartJsTheme
         });
-        sciChartSurface.applyTheme(darkTheme);
 
         chart1XAxis = new CategoryAxis(wasmContext, {
             drawLabels: false,
@@ -92,7 +98,11 @@ const drawExample = async () => {
             closeValues
         });
         const fcRendSeries = new FastCandlestickRenderableSeries(wasmContext, {
-            dataSeries: usdDataSeries
+            dataSeries: usdDataSeries,
+            brushUp: upCol + "77",
+            brushDown: downCol + "77",
+            strokeUp: upCol,
+            strokeDown: downCol
         });
         sciChartSurface.renderableSeries.add(fcRendSeries);
 
@@ -108,7 +118,7 @@ const drawExample = async () => {
         sciChartSurface.renderableSeries.add(maLowRenderableSeries);
         maLowRenderableSeries.rolloverModifierProps.tooltipColor = "red";
         maLowRenderableSeries.rolloverModifierProps.markerColor = "red";
-        maLowRenderableSeries.stroke = "#ff0000";
+        maLowRenderableSeries.stroke = appTheme.VividPink;
         maLowRenderableSeries.strokeThickness = 2;
 
         // MA2 SERIES
@@ -121,7 +131,7 @@ const drawExample = async () => {
             dataSeries: maHighDataSeries
         });
         sciChartSurface.renderableSeries.add(maHighRenderableSeries);
-        maHighRenderableSeries.stroke = "#228B22";
+        maHighRenderableSeries.stroke = appTheme.VividSkyBlue;
         maHighRenderableSeries.strokeThickness = 2;
 
         // VOLUME SERIES
@@ -142,7 +152,10 @@ const drawExample = async () => {
             }),
             dataPointWidth: 0.5,
             strokeThickness: 1,
-            paletteProvider: new VolumePaletteProvider(usdDataSeries, "#50FF50B2", "#FF5050B2")
+            paletteProvider: new VolumePaletteProvider(usdDataSeries,
+                upCol + opacity,
+                downCol + opacity
+            )
         });
         sciChartSurface.renderableSeries.add(volumeRenderableSeries);
 
@@ -150,20 +163,18 @@ const drawExample = async () => {
         sciChartSurface.chartModifiers.add(new ZoomPanModifier());
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "first" }));
+        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "cursorGroup", showTooltip: false }));
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
 
         return { wasmContext, sciChartSurface };
     };
 
-    // CHART 2
-    const drawChart2 = async () => {
+    // CHART 2 - MACD
+    const drawMacdChart = async () => {
         const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId2, {
-            widthAspect: 900,
-            heightAspect: 150
+            theme: appTheme.SciChartJsTheme
         });
-        sciChartSurface.applyTheme(darkTheme);
 
         chart2XAxis = new CategoryAxis(wasmContext, {
             drawLabels: false,
@@ -201,8 +212,12 @@ const drawExample = async () => {
                 dataSeriesName: "MACD",
                 xValues: dateValues,
                 yValues: signalArray,
-                y1Values: macdArray
-            })
+                y1Values: macdArray,
+            }),
+            stroke: downCol,
+            strokeY1: upCol,
+            fill: upCol + "77",
+            fillY1: downCol + "77"
         });
         sciChartSurface.renderableSeries.add(bandSeries);
 
@@ -212,29 +227,26 @@ const drawExample = async () => {
                 xValues: dateValues,
                 yValues: divergenceArray
             }),
-            paletteProvider: new MacdHistogramPaletteProvider("#50FF50B2", "#FF5050B2"),
+            paletteProvider: new MacdHistogramPaletteProvider(upCol + "AA", downCol + "AA"),
             dataPointWidth: 0.5
         });
         sciChartSurface.renderableSeries.add(columnSeries);
 
         sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
-        // XDirection for ZoomExtendsModifier does not work
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "first", showTooltip: false }));
+        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "cursorGroup", showTooltip: false }));
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
 
         return { wasmContext, sciChartSurface };
     };
 
-    // CHART 3
-    const drawChart3 = async () => {
+    // CHART 3 - RSI
+    const drawRsiChart = async () => {
         const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId3, {
-            widthAspect: 900,
-            heightAspect: 150
+            theme: appTheme.SciChartJsTheme
         });
-        sciChartSurface.applyTheme(darkTheme);
 
         chart3XAxis = new CategoryAxis(wasmContext, { autoRange: EAutoRange.Once });
         chart3XAxis.labelProvider = new SmartDateLabelProvider();
@@ -269,18 +281,17 @@ const drawExample = async () => {
             const rsi = 100 - 100 / (1 + relativeStrength);
             rsiArray.push(rsi);
         }
-        const macdRenderableSeries = new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { dataSeriesName: "RSI", xValues: dateValues, yValues: rsiArray })
+        const rsiRenderableSeries = new FastLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, { dataSeriesName: "RSI", xValues: dateValues, yValues: rsiArray }),
+            stroke: appTheme.MutedBlue,
+            strokeThickness: 2
         });
-        sciChartSurface.renderableSeries.add(macdRenderableSeries);
-        macdRenderableSeries.stroke = "#c3e4fe";
-        macdRenderableSeries.strokeThickness = 2;
+        sciChartSurface.renderableSeries.add(rsiRenderableSeries);
 
         sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
-        // XDirection for ZoomExtendsModifier does not work
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "first" }));
+        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "cursorGroup", showTooltip: false }));
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
 
@@ -288,7 +299,7 @@ const drawExample = async () => {
     };
 
     // DRAW CHARTS
-    const res = await Promise.all([drawChart1(), drawChart2(), drawChart3()]);
+    const res = await Promise.all([drawPriceChart(), drawMacdChart(), drawRsiChart()]);
 
     // SYNCHRONIZE VISIBLE RANGES
     chart1XAxis.visibleRangeChanged.subscribe(data1 => {
@@ -303,6 +314,7 @@ const drawExample = async () => {
         chart1XAxis.visibleRange = data1.visibleRange;
         chart2XAxis.visibleRange = data1.visibleRange;
     });
+
 
     return res;
 };
@@ -340,6 +352,7 @@ class VolumePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvi
     }
 }
 
+// tslint:disable-next-line:max-classes-per-file
 class MacdHistogramPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
     public readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
     public readonly fillPaletteMode: EFillPaletteMode = EFillPaletteMode.SOLID;
@@ -379,9 +392,13 @@ export default function MultiPaneStockCharts() {
 
     return (
         <div className={classes.ChartWrapper}>
-            <div id={divElementId1} />
-            <div id={divElementId2} />
-            <div id={divElementId3} />
+            <div style={{display: "flex", flexDirection: "column", height: "100%" }}>
+                {/*The panel hosting the price chart*/}
+                <div id={divElementId1} style={{flexBasis: 400, flexGrow: 1, flexShrink: 1}}/>
+                {/*Panels hosting the Macd and RSI Indicator charts*/}
+                <div id={divElementId2} style={{flexBasis: 100, flexGrow: 1, flexShrink: 1}}/>
+                <div id={divElementId3} style={{flexBasis: 100, flexGrow: 1, flexShrink: 1}}/>
+            </div>
         </div>
     );
 }

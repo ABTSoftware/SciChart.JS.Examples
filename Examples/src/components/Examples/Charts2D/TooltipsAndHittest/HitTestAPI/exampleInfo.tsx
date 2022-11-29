@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-hit-test-on-click.jpg";
 
 const previewDescription = `Demonstrates the Hit Test API, which can be used to get feedback about clicks on data-points or lines and
 enable selection, of showing of context menus. Click on the data-point and see hit test info on the right.`;
@@ -33,38 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgDataPointSelection,
-                title: ExampleStrings.titleDataPointSelection,
-                seoTitle: ExampleStrings.titleDataPointSelection,
-                examplePath: ExampleStrings.urlDataPointSelection
-            },
-            {
-                imgPath: ExampleStrings.imgSeriesSelectionChart,
-                title: ExampleStrings.titleSeriesSelection,
-                seoTitle: ExampleStrings.titleSeriesSelection,
-                examplePath: ExampleStrings.urlSeriesSelection
-            },
-            {
-                imgPath: ExampleStrings.imgMetaDataChart,
-                title: ExampleStrings.titleMetaData,
-                seoTitle: ExampleStrings.titleMetaData,
-                examplePath: ExampleStrings.urlMetaData
-            },
-            {
-                imgPath: ExampleStrings.imgCandleStickChart,
-                title: ExampleStrings.titleCandlestickChart,
-                seoTitle: ExampleStrings.urlTitleCandlestickChart,
-                examplePath: ExampleStrings.urlCandlestickChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to add <strong>Hit-Test on click behavior</strong> to a chart using SciChart.js, High
@@ -84,11 +53,10 @@ export const hitTestApiExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates Hit-Testing a JavaScript Chart - point and click on the chart and get feedback about what data-points were clicked",
     metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-hit-test-on-click.png"
+    thumbnailImage: exampleImage
 };

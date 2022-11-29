@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-column-chart.jpg";
 
 const description = `Columns in SciChart.js are rendered with a stroke and fill, and
 support gradient fill and paletteproviders for more custom coloring options.`;
@@ -36,39 +37,10 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgStackedColumnChart,
-                title: ExampleStrings.titleStackedColumnChart,
-                seoTitle: ExampleStrings.urlTitleStackedColumnChart,
-                examplePath: ExampleStrings.urlStackedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgGroupedColumnChart,
-                title: ExampleStrings.titleGroupedColumnChart,
-                seoTitle: ExampleStrings.urlTitleGroupedColumnChart,
-                examplePath: ExampleStrings.urlGroupedColumnChart
-            },
-            {
-                imgPath: ExampleStrings.imgImpulseChart,
-                title: ExampleStrings.titleImpulseChart,
-                seoTitle: ExampleStrings.urlTitleImpulseChart,
-                examplePath: ExampleStrings.urlImpulseChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
-        View information on how to create a <strong>JavaScript Column Chart</strong> using SciChart.js, a High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
-            JavaScript Chart Library
-        </a>{" "}
-        by SciChart.
+        Creates a <strong>JavaScript Column Chart</strong> using SciChart.js, with the following features:{" "}
+        DataLabels, Rounded corners, Gradient-palette fill, startup animations.
     </p>
 );
 
@@ -80,11 +52,10 @@ export const columnChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "JavaScript Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
     metaKeywords: "column, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-column-chart.jpg"
+    thumbnailImage: exampleImage
 };

@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-drag-horizontal-threshold.jpg";
 
 const previewDescription = `Drag Threshold demo shows how to add draggable vertical and horizontal thresholds to the chart and change chart series colour based on the threshold value.`;
 const description = `The Drag Threshold demo shows how to add draggable vertical and horizontal thresholds to a JavaScript chart and change chart series colour based on the threshold value.`;
@@ -30,32 +31,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgEditableAnnotation,
-                title: ExampleStrings.titleEditableAnnotations,
-                seoTitle: ExampleStrings.urlTitleEditableAnnotations,
-                examplePath: ExampleStrings.urlEditableAnnotations
-            },
-            {
-                imgPath: ExampleStrings.imgAnnotationsAreEasyChart,
-                title: ExampleStrings.titleAnnotationsAreEasy,
-                seoTitle: ExampleStrings.urlTitleAnnotationsDocumentation,
-                examplePath: ExampleStrings.urlAnnotationsAreEasy
-            },
-            {
-                imgPath: ExampleStrings.imgTradeMarkers,
-                title: ExampleStrings.titleTradeMarkers,
-                seoTitle: ExampleStrings.urlTitleTradeMarkers,
-                examplePath: ExampleStrings.urlTradeMarkers
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates interaction by dragging vertical and horizontal line thresholds.{" "}
@@ -72,11 +47,10 @@ export const dragHorizontalThresholdExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js",
     metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-drag-horizontal-threshold.jpg"
+    thumbnailImage: exampleImage
 };

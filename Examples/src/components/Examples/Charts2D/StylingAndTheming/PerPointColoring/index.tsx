@@ -26,6 +26,9 @@ import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation
 import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {Thickness} from "scichart/Core/Thickness";
+import {
+    AnnotationDragDeltaEventArgs
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/AnnotationDragDeltaEventArgs";
 
 const divElementId = "chart";
 
@@ -42,8 +45,8 @@ const drawExample = async () => {
 
     const { xValues, yValues } = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(50);
 
-    const THRESHOLD_HIGH_LEVEL = 0;
-    const THRESHOLD_LOW_LEVEL = -2;
+    let THRESHOLD_HIGH_LEVEL = 0;
+    let THRESHOLD_LOW_LEVEL = -2;
     // For performance reasons PaletteProviders require colors as Argb numbers e.g. 0xFFFF0000 = red
     const THRESHOLD_LOW_COLOR_ARGB = parseColorToUIntArgb(appTheme.VividPink);
     const THRESHOLD_HIGH_COLOR_ARGB = parseColorToUIntArgb(appTheme.VividTeal);
@@ -102,8 +105,25 @@ const drawExample = async () => {
         paletteProvider: pointPaletteProvider
     }));
 
+    // Add annotations to fill the threshold areas
+    const boxHighAnnotation = new BoxAnnotation({
+        x1: 0, x2: 1,
+        y1: THRESHOLD_LOW_LEVEL, y2: -9999,
+        fill: appTheme.VividPink + "11",
+        strokeThickness: 0,
+        xCoordinateMode: ECoordinateMode.Relative
+    })
+    sciChartSurface.annotations.add(boxHighAnnotation);
+    const boxLowAnnotation = new BoxAnnotation({
+        x1: 0, x2: 1,
+        y1: THRESHOLD_HIGH_LEVEL, y2: 9999,
+        fill: appTheme.VividTeal + "11",
+        strokeThickness: 0,
+        xCoordinateMode: ECoordinateMode.Relative
+    });
+    sciChartSurface.annotations.add(boxLowAnnotation);
     // Add annotations to show the thresholds
-    sciChartSurface.annotations.add(new HorizontalLineAnnotation( {
+    const thresholdHighAnnotation = new HorizontalLineAnnotation( {
         stroke: appTheme.VividTeal,
         strokeThickness: 2,
         strokeDashArray: [3, 3],
@@ -113,8 +133,17 @@ const drawExample = async () => {
         axisLabelFill: appTheme.VividTeal,
         axisFontSize: 16,
         showLabel: true,
-    }));
-    sciChartSurface.annotations.add(new HorizontalLineAnnotation( {
+        isEditable: true,
+        onDrag: (args) => {
+            // When the vertical line is dragged, update the
+            // threshold palette and redraw the SciChartSurface
+            THRESHOLD_HIGH_LEVEL = thresholdHighAnnotation.y1;
+            boxLowAnnotation.y1 = thresholdHighAnnotation.y1;
+            sciChartSurface.invalidateElement();
+        },
+    });
+    sciChartSurface.annotations.add(thresholdHighAnnotation);
+    const thresholdLowAnnotation = new HorizontalLineAnnotation( {
         stroke: appTheme.VividPink,
         strokeThickness: 2,
         strokeDashArray: [3, 3],
@@ -124,22 +153,16 @@ const drawExample = async () => {
         axisLabelFill: appTheme.VividPink,
         axisFontSize: 16,
         showLabel: true,
-    }));
-    // Add annotations to fill the threshold areas
-    sciChartSurface.annotations.add(new BoxAnnotation({
-        x1: 0, x2: 1,
-        y1: -2, y2: -9999,
-        fill: appTheme.VividPink + "11",
-        strokeThickness: 0,
-        xCoordinateMode: ECoordinateMode.Relative
-    }));
-    sciChartSurface.annotations.add(new BoxAnnotation({
-        x1: 0, x2: 1,
-        y1: 0, y2: 9999,
-        fill: appTheme.VividTeal + "11",
-        strokeThickness: 0,
-        xCoordinateMode: ECoordinateMode.Relative
-    }));
+        isEditable: true,
+        onDrag: (args) => {
+            // When the vertical line is dragged, update the
+            // threshold palette and redraw the SciChartSurface
+            THRESHOLD_LOW_LEVEL = thresholdLowAnnotation.y1;
+            boxHighAnnotation.y1 = THRESHOLD_LOW_LEVEL;
+            sciChartSurface.invalidateElement();
+        },
+    });
+    sciChartSurface.annotations.add(thresholdLowAnnotation);
     // Add title annotation
     sciChartSurface.annotations.add(new TextAnnotation({
         text: "Per point colouring in SciChart.js. Can be applied to lines, areas, scatter points and bubbles",

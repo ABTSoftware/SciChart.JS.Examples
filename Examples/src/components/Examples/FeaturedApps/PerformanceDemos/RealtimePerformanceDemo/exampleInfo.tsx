@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
+import exampleImage from "./javascript-chart-realtime-performance-demo.jpg";
 
 const Subtitle = () => (
     <p>
@@ -14,38 +15,6 @@ const Subtitle = () => (
         </a>
     </p>
 );
-
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgLoad500by500Charts,
-                title: ExampleStrings.titleLoad500By500,
-                seoTitle: ExampleStrings.urlTitleLoad500By500,
-                examplePath: ExampleStrings.urlLoad500By500
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeGhostedTracesChart,
-                title: ExampleStrings.titleRealtimeGhostedTraces,
-                seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
-                examplePath: ExampleStrings.urlRealtimeGhostedTraces
-            },
-            {
-                imgPath: ExampleStrings.imgLoadOneMillionPointsChart,
-                title: ExampleStrings.titleLoadOneMillionPoints,
-                seoTitle: ExampleStrings.urlTitleLoad500By500,
-                examplePath: ExampleStrings.urlLoadOneMillionPoints
-            },
-            {
-                imgPath: ExampleStrings.imgTenorCurves,
-                title: ExampleStrings.titleTenorCurvesFeaturedApp,
-                seoTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
-                examplePath: ExampleStrings.urlTenorCurvesFeaturedApp
-            }
-        ]
-    }
-];
 
 const previewDescription = ``;
 const description = `Demonstrates the speed and power of SciChart.js in a real-time example. Creates a timer and pushes 1,000
@@ -82,11 +51,10 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-realtime-performance-demo.jpg"
+    thumbnailImage: exampleImage
 };

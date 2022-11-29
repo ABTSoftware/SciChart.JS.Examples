@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-style-animation.jpg"
 
 const previewDescription = ``;// `Demonstrates how to run style and data animations simultaneously for a JavaScript Chart.`;
 const description = `By clicking the buttons the chart styles and data transform from one value to another`;
@@ -33,32 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgDataAnimation,
-                title: ExampleStrings.titleDataAnimation,
-                seoTitle: ExampleStrings.urlTitleDataAnimation,
-                examplePath: ExampleStrings.urlDataAnimation
-            },
-            {
-                imgPath: ExampleStrings.imgStartupAnimation,
-                title: ExampleStrings.titleStartupAnimation,
-                seoTitle: ExampleStrings.urlTitleStartupAnimation,
-                examplePath: ExampleStrings.urlStartupAnimation
-            },
-            {
-                imgPath: ExampleStrings.imgGenericAnimation,
-                title: ExampleStrings.titleGenericAnimation,
-                seoTitle: ExampleStrings.urlTitleGenericAnimation,
-                examplePath: ExampleStrings.urlGenericAnimation
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to run <strong>Style Transition Animations</strong> using SciChart.js, High Performance{" "}
@@ -77,10 +52,9 @@ export const styleAnimationExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
     metaKeywords: "style, animation, javascript, webgl, canvas",
-    thumbnailImage: "javascript-style-animation.png"
+    thumbnailImage: exampleImage
 };

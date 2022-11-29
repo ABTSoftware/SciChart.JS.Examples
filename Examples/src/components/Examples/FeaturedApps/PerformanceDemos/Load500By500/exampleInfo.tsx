@@ -5,32 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
-
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgRealtimeJavaScriptChart,
-                title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
-                seoTitle: ExampleStrings.urlTitleRealtimeJavaScriptChartDemo,
-                examplePath: ExampleStrings.urlRealtimeJavaScriptChartDemo
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeGhostedTracesChart,
-                title: ExampleStrings.titleRealtimeGhostedTraces,
-                seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
-                examplePath: ExampleStrings.urlRealtimeGhostedTraces
-            },
-            {
-                imgPath: ExampleStrings.imgLoadOneMillionPointsChart,
-                title: ExampleStrings.titleLoadOneMillionPoints,
-                seoTitle: "Load One Million Points in a JavaScript Chart Performance Demo",
-                examplePath: ExampleStrings.urlLoadOneMillionPoints
-            }
-        ]
-    }
-];
+import exampleImage from "./javascript-chart-load-500-series-by-500-points.jpg";
 
 const documentationLinks: TDocumentationLink[] = [
     {
@@ -61,10 +36,8 @@ const tips = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates loading <strong>250k points instantly</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Demonstrates loading <strong>500 series, each with 500 points (250k points total) instantly</strong>.{" "}
+        Click the <strong>Reload</strong> button at the bottom of the demo to see the chart draw again.
     </p>
 );
 
@@ -77,10 +50,9 @@ export const load500By500ExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!`,
     metaKeywords: "performance, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-load-500-series-by-500-points.jpg"
+    thumbnailImage: exampleImage
 };

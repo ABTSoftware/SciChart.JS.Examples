@@ -5,6 +5,7 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-central-axes.jpg";
 
 const description = `Demonstrates a chart with axes being placed centrally.
 SciChart supports customization of axes placement. This example shows how to use inner axes and set a layout strategy.`;
@@ -20,20 +21,6 @@ const documentationLinks: TDocumentationLink[] = [
         href: ExampleStrings.urlTutorialsHome,
         title: ExampleStrings.titleTutorialsHome,
         linkTitle: "SciChart.js Tutorials"
-    }
-];
-
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgSecondaryYAxis,
-                title: ExampleStrings.titleSecondaryYAxis,
-                seoTitle: ExampleStrings.urlTitleSecondaryYAxis,
-                examplePath: ExampleStrings.urlSecondaryYAxis
-            },
-        ]
     }
 ];
 
@@ -55,11 +42,10 @@ export const centralAxesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates Central Axes on a JavaScript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout",
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-central-axes.png"
+    thumbnailImage: exampleImage
 };

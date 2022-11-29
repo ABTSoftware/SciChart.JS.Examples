@@ -11,15 +11,13 @@
             display: block;
         }
     }
-    .ChartContainer {
-        height: 100%;
-    }
 }
 
 .ChartWrapper {
     overflow: hidden;
     position: relative;
     touch-action: none;
+    aspect-ratio: 1.3333;
     img {
         display: block;
     }
@@ -47,34 +45,21 @@
 
 .ExampleWrapper {
     display: flex;
-
-    flex-direction: row;
     justify-content: space-between;
-    @include md {
-        flex-direction: column;
-    }
+    flex-direction: column;
     .Example {
         display: flex;
         flex-direction: column;
-        margin-right: 30px;
         flex: 1;
-        max-width: 70%;
-        @include md {
-            max-width: 100%;
-
-            margin-right: 0;
-            margin-bottom: 20px;
-        }
+        max-width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
     }
     .ExampleDescription {
         display: flex;
         flex-direction: column;
-        min-width: 300px;
-        width: 25%;
-        @include md {
-            width: 100%;
-            min-width: 0;
-        }
+        width: 100%;
+        min-width: 0;
     }
 }
 
@@ -139,11 +124,9 @@
         justify-content: space-between;
 
         .ExampleRootDescriptionLink {
-            color: $color-main-green !important;
-            &:hover,
-            &:active,
-            &:visited {
-                color: $color-main-green !important;
+            color: $color-link-text !important;
+            &:hover {
+                color: $color-link-text-hover !important;
             }
         }
         @include md {
@@ -182,7 +165,10 @@
         font-size: 1rem;
         line-height: 30px;
         a {
-            color: $color-main-green;
+            color: $color-link-text;
+        }
+        a:hover {
+            color: $color-link-text-hover;
         }
     }
     .TextGreen {
@@ -272,6 +258,16 @@
         text-align: center;
         &:not(:last-child) {
             margin-right: 10px;
+        }
+    }
+    .GitHubLink {
+        border: 1px $color-medium-blue solid;
+        border-radius: 4px;
+        background-color: $color-lightest-green;
+        color: $color-medium-blue;
+        text-decoration: none;
+        a {
+            color: $color-medium-blue;
         }
     }
     .ButtonsText {
@@ -378,9 +374,9 @@
 }
 
 //Common
-.OrangeButton {
-    background: linear-gradient(114.95deg, #febc48 0%, #e97502 100%);
-    border-radius: 4px;
+.PurpleButton {
+    background: $gradient-btn-dark;
+    border-radius: 14px;
     margin: 10px;
     span {
         font-weight: bold;
@@ -390,3 +386,10 @@
         white-space: nowrap;
     }
 }
+
+.PurpleButton:hover {
+    background-size: 200% 100%;
+    background-position: 0 100%;
+}
+
+

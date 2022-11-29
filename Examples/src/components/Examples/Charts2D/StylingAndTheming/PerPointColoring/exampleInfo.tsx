@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-color-points-individually-with-paletteprovider.jpg";
 
 const description = `Demonstrates how to use the PaletteProvider API to color lines, points and fills individually based on a
 rule. Using this API you can color individual data-points of the following chart series: Line, Column,
@@ -39,26 +40,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgThemeManagerChart,
-                title: ExampleStrings.titleThemeManager,
-                seoTitle: ExampleStrings.urlTitleThemeManager,
-                examplePath: ExampleStrings.urlThemeManager
-            },
-            {
-                imgPath: ExampleStrings.imgScatterChart,
-                title: ExampleStrings.titleScatterChart,
-                seoTitle: ExampleStrings.urlTitleScatterChartDocumentation,
-                examplePath: ExampleStrings.urlScatterChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how create <strong>JavaScript Charts with per-point coloring</strong> using SciChart.js, High
@@ -77,10 +58,9 @@ export const perPointColoringExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
     metaKeywords: "palette, provider, api, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-color-points-individually-with-paletteprovider.jpg"
+    thumbnailImage: exampleImage
 };

@@ -3,8 +3,8 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-2d-3d-chart-tenor-curves-example.jpg";
 
 const description = `Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. An example
 like this could be used to visualize Tenor curves in a financial setting, or other 2D/3D data combined on a
@@ -34,27 +34,10 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgSurfaceMeash3D,
-                title: ExampleStrings.titleSurfaceMesh3D,
-                seoTitle: ExampleStrings.urlTitleSurfaceMesh3D,
-                examplePath: ExampleStrings.urlSurfaceMesh3D
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
-        Demonstrates how to visualize <strong>2-dimensional arrays as a height-map</strong> using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript 3D Charts
-        </a>
+        In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves.{" "}
+        This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.
     </p>
 );
 
@@ -66,7 +49,6 @@ export const tenorCurvesExampleInfo: TExampleInfo = {
     tips,
     description,
     subtitle: Subtitle,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
@@ -74,5 +56,5 @@ export const tenorCurvesExampleInfo: TExampleInfo = {
         "An example like this could be used to visualize Tenor curves in a financial setting, " +
         "or other 2D/3D data combined on a single screen.",
     metaKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-3d-surface-mesh-tenor-curve-example.jpg"
+    thumbnailImage: exampleImage
 };

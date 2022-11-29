@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-fan-chart.jpg";
 
 const description = `Fan charts can be used for visualizing, forecasting
 or estimation figures and can be achieved in SciChart.js using several Band Series overlaid with varying
@@ -36,32 +37,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgBandChart,
-                title: ExampleStrings.titleBandChart,
-                seoTitle: ExampleStrings.urlTitleBandChart,
-                examplePath: ExampleStrings.urlBandChart
-            },
-            {
-                imgPath: ExampleStrings.imgStackedMountainChart,
-                title: ExampleStrings.titleStackedMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
-            },
-            {
-                imgPath: ExampleStrings.imgHeatMapChart,
-                title: ExampleStrings.titleHeatmapChart,
-                seoTitle: ExampleStrings.urlTitleHeatmapChart,
-                examplePath: ExampleStrings.urlHeatmapChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Here we demonstrate how to create a <strong>JavaScript Fan Chart</strong> using SciChart.js.{" "}
@@ -80,11 +55,10 @@ export const fanChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Discover how to create JavaScript Fan Chart with SciChart. Zoom in to see the detail you can go to using our JavaScript Charts. Get your free demo today. ",
     metaKeywords: "fan, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-fan-chart.jpg"
+    thumbnailImage: exampleImage
 };

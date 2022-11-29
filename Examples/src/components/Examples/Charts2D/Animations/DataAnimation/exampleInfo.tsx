@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-data-animation.jpg";
 
 const previewDescription = ``;//`Demonstrates how to run data animation for a JavaScript Chart.`;
 const description = `Every second new random values are generated for the scatter series and transition from one state to another is animated`;
@@ -33,32 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgStyleAnimation,
-                title: ExampleStrings.titleStyleAnimation,
-                seoTitle: ExampleStrings.urlTitleStyleAnimation,
-                examplePath: ExampleStrings.urlStyleAnimation
-            },
-            {
-                imgPath: ExampleStrings.imgStartupAnimation,
-                title: ExampleStrings.titleStartupAnimation,
-                seoTitle: ExampleStrings.urlTitleStartupAnimation,
-                examplePath: ExampleStrings.urlStartupAnimation
-            },
-            {
-                imgPath: ExampleStrings.imgGenericAnimation,
-                title: ExampleStrings.titleGenericAnimation,
-                seoTitle: ExampleStrings.urlTitleGenericAnimation,
-                examplePath: ExampleStrings.urlGenericAnimation
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to run <strong>Dataset Animations</strong> using SciChart.js, High Performance{" "}
@@ -77,10 +52,9 @@ export const dataAnimationExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
     metaKeywords: "data, dataset, animation, webgl, canvas",
-    thumbnailImage: "javascript-data-animation.png"
+    thumbnailImage: exampleImage
 };

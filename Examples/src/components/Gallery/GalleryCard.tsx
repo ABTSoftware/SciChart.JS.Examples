@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useHistory, Link } from "react-router-dom";
 import classes from "./Gallery.module.scss";
-import {LazyLoadImage} from "react-lazy-load-image-component";
+import { Tooltip } from "@material-ui/core";
 
 type TProps = {
     imgPath: string;
@@ -17,8 +17,10 @@ const GalleryCard: React.FC<TProps> = props => {
 
     return (
         <div className={classes.GalleryItemCard}>
-            <Link className={classes.GalleryItemCardImage} to={examplePath} title={seoTitle}>
-                <LazyLoadImage src={imgPath} title={seoTitle} alt={title}/>
+            <Link className={classes.GalleryItemCardImage} to={examplePath}>
+                <Tooltip title={<img src={imgPath} width={600} height={600} alt={seoTitle} />} >
+                    <img src={imgPath} data-title={seoTitle} alt={seoTitle} />
+                </Tooltip>
                 <h5 className={classes.GalleryItemTitle}>{title}</h5>
             </Link>
         </div>

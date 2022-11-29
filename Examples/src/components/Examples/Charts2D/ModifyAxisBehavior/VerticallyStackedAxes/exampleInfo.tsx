@@ -5,6 +5,7 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-vertically-stacked-axes.jpg";
 
 const description = `Stacked axes allow data to be drawn in different sections of the chart but still overlap.
 Zoom vertically using the mouse wheel, or by dragging individual axes.  Right-click and drag to zoom horizontally.  Double click to Reset`;
@@ -29,33 +30,10 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgSecondaryYAxis,
-                title: ExampleStrings.titleSecondaryYAxis,
-                seoTitle: ExampleStrings.urlTitleSecondaryYAxis,
-                examplePath: ExampleStrings.urlSecondaryYAxis
-            },
-            {
-                imgPath: ExampleStrings.imgCentralAxes,
-                title: ExampleStrings.titleCentralAxes,
-                seoTitle: ExampleStrings.urlTitleCentralAxes,
-                examplePath: ExampleStrings.urlCentralAxes
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Chart with Vertically Stacked Y axis</strong> using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Vertically-Stacked Axis in SciChart.js allows several traces with independent Y-axis to be placed on the same chart,{" "}
+        stacking the Y-Axis and enabling an ECG/EEG-style trace. Great for neurological apps, medical apps, earthquake monitoring.
     </p>
 );
 
@@ -67,11 +45,10 @@ export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates Vertically Stacked Axes on a JavaScript Chart using SciChart.js, allowing data to overlap",
     metaKeywords: "multiple, stacked, overlap, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-with-multiple-x-axis.jpg"
+    thumbnailImage: exampleImage
 };

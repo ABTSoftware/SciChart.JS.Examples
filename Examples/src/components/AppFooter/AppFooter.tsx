@@ -10,7 +10,6 @@ import {
 import FooterGrid from "./FooterGrid";
 import { useHistory } from "react-router-dom";
 import classes from "./AppFooter.module.scss";
-import Box from "../../helpers/shared/Helpers/Box/Box";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';

@@ -9,7 +9,7 @@
   left: 0;
   width: 30px;
   height: 3px;
-  background-color: $color-dark-green;
+  background-color: $color-medium-blue;
 }
 
 %CommonLinkStyles {
@@ -33,12 +33,12 @@
 %CommonFooterGridConfigs {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-      
+
   @include sm{
       grid-template-columns: repeat(2, 1fr);
   }
-      
+
   @include xs{
       grid-template-columns: 1fr;
   }
-} 
+}

@@ -5,38 +5,8 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-performance-load-one-million-points.jpg";
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgRealtimeJavaScriptChart,
-                title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
-                seoTitle: ExampleStrings.urlTitleRealtimeJavaScriptChartDemo,
-                examplePath: ExampleStrings.urlRealtimeJavaScriptChartDemo
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeGhostedTracesChart,
-                title: ExampleStrings.titleRealtimeGhostedTraces,
-                seoTitle: ExampleStrings.urlTitleRealtimeGhostedTraces,
-                examplePath: ExampleStrings.urlRealtimeGhostedTraces
-            },
-            {
-                imgPath: ExampleStrings.imgLoad500by500Charts,
-                title: ExampleStrings.titleLoad500By500,
-                seoTitle: ExampleStrings.urlTitleLoad500By500,
-                examplePath: ExampleStrings.urlLoad500By500
-            },
-            {
-                imgPath: ExampleStrings.imgLidarFeaturedApp,
-                title: ExampleStrings.titleLidarFeaturedApp,
-                seoTitle: ExampleStrings.titleLidarFeaturedApp,
-                examplePath: ExampleStrings.urlLidarFeaturedApp
-            }
-        ]
-    }
-];
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
@@ -63,11 +33,8 @@ const tips = [
 
 const Subtitle = () => (
     <p>
-        Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds, making our{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>{" "}
-        the fastest in the world!
+        Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds.{" "}
+        Click the <strong>Reload</strong> button at the bottom of the demo to see the chart draw again.
     </p>
 );
 
@@ -79,10 +46,9 @@ export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.`,
     metaKeywords: "performance, loading, million, points, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-chart-performance-one-million-points.jpg"
+    thumbnailImage: exampleImage
 };

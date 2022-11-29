@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-heatmap-chart.jpg";
 
 const description = `Our Heatmap is highly dynamic and enables display of Sonar, MRI/medical imagery, Spectrograms or Audio/Radio analysis in JavaScript.
     The entire heatmap is represented by a 2D array and is color-mapped to a numeric value.
@@ -33,38 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgContourChart,
-                title: ExampleStrings.titleContourChart,
-                seoTitle: ExampleStrings.urlTitleContourChartDocumentation,
-                examplePath: ExampleStrings.urlContourChart
-            },
-            {
-                imgPath: ExampleStrings.imgStackedMountainChart,
-                title: ExampleStrings.titleStackedMountainChart,
-                seoTitle: ExampleStrings.urlTitleStackedMountainChart,
-                examplePath: ExampleStrings.urlStackedMountainChart
-            },
-            {
-                imgPath: ExampleStrings.imgOhlcChart,
-                title: ExampleStrings.titleOhlcChart,
-                seoTitle: ExampleStrings.urlTitleOhlcChart,
-                examplePath: ExampleStrings.urlOhlcChart
-            },
-            {
-                imgPath: ExampleStrings.imgMultiPaneStockChart,
-                title: ExampleStrings.titleMultiPaneStockChart,
-                seoTitle: ExampleStrings.urlTitleMultiPaneStockChart,
-                examplePath: ExampleStrings.urlMultiPaneStockChart
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         If you want to learn about heatmaps. this demo shows you how to create a <strong>JavaScript Heatmap Chart</strong>{" "}
@@ -82,11 +51,10 @@ export const heatmapChartExampleInfo: TExampleInfo = {
     subtitle: Subtitle,
     documentationLinks,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Easily create a high performance JavaScript Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
     metaKeywords: "heatmap, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-heatmap-chart.jpg"
+    thumbnailImage: exampleImage
 };

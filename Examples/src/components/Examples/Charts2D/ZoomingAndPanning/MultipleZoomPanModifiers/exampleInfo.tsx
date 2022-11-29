@@ -3,7 +3,7 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
+import exampleImage from "./zoom-pan-multiple-modifiers.jpg";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
 const description = `Scroll Middle Mouse button to zoom in/zoom out. Use Right Mouse Button to select an area on the chart with RubberBandXyZoomModifier. Try it out on touch devices: use pinch zoom gesture to scale.`;
@@ -26,20 +26,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgDragAxisToScale,
-                title: ExampleStrings.titleDragAxisToScale,
-                seoTitle: ExampleStrings.urlDragAxisToScale,
-                examplePath: ExampleStrings.urlDragAxisToScale
-            },
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates different <strong>Zoom and Pan Modifiers on a JavaScript Chart</strong> using SciChart.js, High
@@ -58,11 +44,10 @@ export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates how to use multiple Zoom and Pan Modifiers on a JavaScript Chart with SciChart.js",
     metaKeywords: "zoom, pan, pinch, touch, scale, javascript, webgl, canvas",
-    thumbnailImage: "zoom-pan-javascript-charts-with-multiple-modifiers.jpg"
+    thumbnailImage: exampleImage
 };

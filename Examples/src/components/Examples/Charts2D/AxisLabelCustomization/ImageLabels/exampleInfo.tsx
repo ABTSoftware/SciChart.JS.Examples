@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-image-labels.jpg";
 
 const previewDescription = `SciChart JS v2 allows you to use anything as an axis label, even an image.`;
 const description = `By default, the LabelProvider uses the size of the texture for layout, so we do not need to override the measurement functions here.
@@ -31,32 +32,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgMultiLineLabels,
-                title: ExampleStrings.titleMultiLineLabels,
-                seoTitle: ExampleStrings.titleMultiLineLabels,
-                examplePath: ExampleStrings.urlMultiLineLabels
-            },
-            {
-                imgPath: ExampleStrings.imgRotatedLabels,
-                title: ExampleStrings.titleRotatedLabels,
-                seoTitle: ExampleStrings.titleRotatedLabels,
-                examplePath: ExampleStrings.urlRotatedLabels
-            },
-            {
-                imgPath: ExampleStrings.imgRealtimeTickingStockCharts,
-                title: ExampleStrings.titleRealtimeTickingStockCharts,
-                seoTitle: ExampleStrings.urlTitleRealtimeTickingStockCharts,
-                examplePath: ExampleStrings.urlRealtimeTickingStockCharts
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to use <strong>Images as Labels</strong> using SciChart.js, High
@@ -76,11 +51,10 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrates how to use Images as Axis Labels",
     metaKeywords: "image, axis, label, javascript, webgl, canvas",
-    thumbnailImage: "javascript-image-labels.jpg"
+    thumbnailImage: exampleImage
 };

@@ -87,6 +87,7 @@ import { subChartStockChartsExampleInfo } from "../Examples/Charts2D/CreateStock
 import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisLayout/exampleInfo";
 import { realtimeBigDataDemoExampleInfo } from "../Examples/FeaturedApps/ShowCases/RealtimeBigData/exampleInfo";
 import {oilAndGasExplorerDashboard} from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard/exampleInfo";
+import {TDocumentationLink} from "../../helpers/types/ExampleDescriptionTypes";
 
 
 export type TExampleInfo = {
@@ -99,12 +100,16 @@ export type TExampleInfo = {
      */
     pageTitle: string;
     path: string;
-    documentationLinks: any;
+    documentationLinks: TDocumentationLink[];
     tips?: any;
     description: any;
     previewDescription?: any;
     subtitle: () => JSX.Element;
 
+    /**
+     * OPTIONAL: If provided, use these items as a See Also. If not, they will be auto-generated from similar items
+     * in the top level menu. See {@link getSeeAlsoGalleryItems}
+     */
     seeAlso?: GalleryItem[];
     code: string;
     githubUrl: string;

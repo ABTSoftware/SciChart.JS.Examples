@@ -4,7 +4,7 @@
 .AppFooter {
     padding: 40px;
     overflow: hidden;
-    background: #1e252b !important;
+    background: $color-dark !important;
     color: white;
 
     @include sm {
@@ -38,10 +38,10 @@
         h5 {
             font-size: 20px;
             line-height: 24px;
-    
-    
+
+
         }
-    
+
         h6 {
             font-size: 16px;
             line-height: 20px;
@@ -55,7 +55,7 @@
             padding: 40px 16px 0 16px;
         }
 
-        
+
         P {
             margin: 40px 0;
             color: $color-primary-grey;
@@ -76,7 +76,7 @@
         width: 170px;
         padding: $default-spacing * 2 $default-spacing * 2;
         border-radius: 4px;
-        background: $color-dark-green;
+        background: $color-link-text;
         margin: 30px 0;
 
         span {

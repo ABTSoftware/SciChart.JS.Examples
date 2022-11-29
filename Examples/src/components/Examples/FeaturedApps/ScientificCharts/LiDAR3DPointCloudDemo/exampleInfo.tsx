@@ -5,6 +5,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-3d-lidar-visualization.jpg";
 
 const description = `Demonstrating the capability of SciChart.js to create JavaScript 3D Point Cloud charts and visualize LiDAR
 data from the UK Defra Survey.`;
@@ -33,44 +34,11 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgBubble3DChart,
-                title: ExampleStrings.titleBubble3DChart,
-                seoTitle: ExampleStrings.titleBubble3DChart,
-                examplePath: ExampleStrings.urlBubble3DChart
-            },
-            {
-                imgPath: ExampleStrings.imgTenorCurves,
-                title: ExampleStrings.titleTenorCurvesFeaturedApp,
-                seoTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
-                examplePath: ExampleStrings.urlTenorCurvesFeaturedApp
-            },
-            {
-                imgPath: ExampleStrings.imgAudioAnalyzer,
-                title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
-                seoTitle: ExampleStrings.titleAudioAnalyzerFeaturedApp,
-                examplePath: ExampleStrings.urlAudioAnalyzerFeaturedApp
-            },
-            {
-                imgPath: ExampleStrings.imgSurfaceMeash3D,
-                title: ExampleStrings.titleSurfaceMesh3D,
-                seoTitle: ExampleStrings.urlTitleSurfaceMesh3D,
-                examplePath: ExampleStrings.urlSurfaceMesh3D
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
-        Demonstrates how to visualize <strong>250k points of LiDAR Data</strong> using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript 3D Charts
-        </a>
+        Demonstrates how to visualize <strong>LiDAR UAV Data</strong> from the Defra survey using SciChart.js.{" "}
+        A 1km x 1km slice of London is visualised as a 3D point-cloud with contour map overlaid.{" "}
+        A heatmap legend on the right indicates the heightmap.
     </p>
 );
 
@@ -82,12 +50,11 @@ export const lidar3DPointCloudExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "Demonstrating the capability of SciChart.js to create JavaScript 3D Point Cloud charts and visualize LiDAR data " +
         "from the UK Defra Survey.",
     metaKeywords: "lidar, 3d, point, cloud, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-3d-lidar-visualization.jpg"
+    thumbnailImage: exampleImage
 };

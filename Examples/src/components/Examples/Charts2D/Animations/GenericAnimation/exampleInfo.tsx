@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-generic-animation.jpg";
 
 const previewDescription = ``; //`Demonstrates how to run Generic Animation for a JavaScript Chart.`;
 const description = `Generic Animation gives an opportunity to build complex animations and control progress of each animation separately`;
@@ -33,32 +34,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgDataAnimation,
-                title: ExampleStrings.titleDataAnimation,
-                seoTitle: ExampleStrings.urlTitleDataAnimation,
-                examplePath: ExampleStrings.urlDataAnimation
-            },
-            {
-                imgPath: ExampleStrings.imgStyleAnimation,
-                title: ExampleStrings.titleStyleAnimation,
-                seoTitle: ExampleStrings.urlTitleStyleAnimation,
-                examplePath: ExampleStrings.urlStyleAnimation
-            },
-            {
-                imgPath: ExampleStrings.imgStartupAnimation,
-                title: ExampleStrings.titleStartupAnimation,
-                seoTitle: ExampleStrings.urlTitleStartupAnimation,
-                examplePath: ExampleStrings.urlStartupAnimation
-            }
-        ]
-    }
-];
-
 const Subtitle = () => (
     <p>
         Demonstrates how to run <strong>Generic Animation</strong> using SciChart.js, High Performance{" "}
@@ -77,10 +52,9 @@ export const genericAnimationExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
     metaKeywords: "generic, animation, javascript",
-    thumbnailImage: "javascript-generic-animation.jpg"
+    thumbnailImage: exampleImage
 };

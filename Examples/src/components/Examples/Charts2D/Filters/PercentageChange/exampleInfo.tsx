@@ -5,6 +5,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-percentage-change.jpg";
 
 const Subtitle = () => (
     <p>
@@ -41,32 +42,6 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-const seeAlso: GalleryItem[] = [
-    {
-        chartGroupTitle: "See also",
-        items: [
-            {
-                imgPath: ExampleStrings.imgTrendMARatio,
-                title: ExampleStrings.titleTrendMARatio,
-                seoTitle: ExampleStrings.titleTrendMARatio,
-                examplePath: ExampleStrings.urlTrendMARatio
-            },
-            {
-                imgPath: ExampleStrings.imgCustomFilters,
-                title: ExampleStrings.titleCustomFilters,
-                seoTitle: ExampleStrings.titleCustomFilters,
-                examplePath: ExampleStrings.urlCustomFilters
-            },
-            {
-                imgPath: ExampleStrings.imgLineChart,
-                title: ExampleStrings.titleLineChart,
-                seoTitle: ExampleStrings.urlTitleLineChartDocumentation,
-                examplePath: ExampleStrings.urlLineChart
-            },
-        ]
-    }
-];
-
 export const percentageChangeExampleInfo: TExampleInfo = {
     title: ExampleStrings.titlePercentageChange,
     pageTitle: ExampleStrings.titlePercentageChange + ExampleStrings.exampleGenericTitleSuffix,
@@ -76,11 +51,10 @@ export const percentageChangeExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    seeAlso,
     code,
     githubUrl,
     metaDescription:
         "How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan",
     metaKeywords: "real-time, updating, percentage, transform, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-percentage-change.jpg"
+    thumbnailImage: exampleImage
 };
