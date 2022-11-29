@@ -1,48 +1,78 @@
 import * as React from "react";
-import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
-import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { SciChartSurface } from "scichart";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
-import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { calcAverageForArray } from "scichart/utils/calcAverage";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
-import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { EXyDirection } from "scichart/types/XyDirection";
+import {SciChartVerticalGroup} from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
+import {CategoryAxis} from "scichart/Charting/Visuals/Axis/CategoryAxis";
+import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import {SciChartSurface} from "scichart";
+import {EAutoRange} from "scichart/types/AutoRange";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
+import {
+    FastCandlestickRenderableSeries
+} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {calcAverageForArray} from "scichart/utils/calcAverage";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {RolloverModifier} from "scichart/Charting/ChartModifiers/RolloverModifier";
+import {FastBandRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
+import {XyyDataSeries} from "scichart/Charting/Model/XyyDataSeries";
+import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import {EXyDirection} from "scichart/types/XyDirection";
 import {
     EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider,
     IStrokePaletteProvider
 } from "scichart/Charting/Model/IPaletteProvider";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
-import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
-import { ENumericFormat } from "scichart/types/NumericFormat";
+import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
+import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+import {TWebAssemblyChart} from "scichart/Charting/Visuals/SciChartSurface";
+import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
+import {ENumericFormat} from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
-import { XyMovingAverageFilter } from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
-import { EDataSeriesField } from "scichart/Charting/Model/Filters/XyFilterBase";
-import { ELabelAlignment } from "scichart/types/LabelAlignment";
+import {SmartDateLabelProvider} from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
+import {XyMovingAverageFilter} from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
+import {EDataSeriesField} from "scichart/Charting/Model/Filters/XyFilterBase";
+import {ELabelAlignment} from "scichart/types/LabelAlignment";
 import {appTheme} from "../../../theme";
+import {SeriesInfo} from "scichart/Charting/Model/ChartData/SeriesInfo";
+import {EDataSeriesType} from "scichart/Charting/Model/IDataSeries";
+import {OhlcSeriesInfo} from "scichart/Charting/Model/ChartData/OhlcSeriesInfo";
+import {RolloverLegendSvgAnnotation} from "scichart/Charting/Visuals/Annotations/RolloverLegendSvgAnnotation";
 import {
-    CursorModifier
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/ChartModifiers/CursorModifier";
+    SciChartOverview
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/SciChartOverview";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
 const divElementId3 = "cc_chart_3_3";
+const divOverviewId = "cc_overview";
+
+// Override the standard legend displayed by RolloverModifier
+const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: RolloverLegendSvgAnnotation) => {
+    let outputSvgString = "";
+
+    // Foreach series there will be a seriesInfo supplied by SciChart. This contains info about the series under the house
+    seriesInfos.forEach((seriesInfo, index) => {
+        const y = 20 + index * 20;
+        const textColor = seriesInfo.stroke;
+        let legendText = seriesInfo.formattedYValue;
+        if (seriesInfo.dataSeriesType === EDataSeriesType.Ohlc) {
+            const o = seriesInfo as OhlcSeriesInfo;
+            legendText = `Open=${o.formattedOpenValue} High=${o.formattedHighValue} Low=${o.formattedLowValue} Close=${o.formattedCloseValue}`;
+        }
+        outputSvgString += `<text x="8" y="${y}" font-size="13" font-family="Verdana" fill="${textColor}">
+            ${seriesInfo.seriesName}: ${legendText}
+        </text>`;
+    });
+
+    return `<svg width="100%" height="100%">
+                ${outputSvgString}
+            </svg>`;
+};
 
 const drawExample = async () => {
 
@@ -83,14 +113,18 @@ const drawExample = async () => {
             maxAutoTicks: 5,
             autoRange: EAutoRange.Always,
             growBy: new NumberRange(0.3, 0.11),
-            axisAlignment
+            labelFormat: ENumericFormat.Decimal,
+            labelPrecision: 4,
+            cursorLabelFormat: ENumericFormat.Decimal,
+            cursorLabelPrecision: 4,
+            labelPrefix: "$",
+            axisAlignment,
         });
-        yAxis.labelProvider.formatLabel = (dataValue: number) => "$" + dataValue.toFixed(4);
         sciChartSurface.yAxes.add(yAxis);
 
         // OHLC DATA SERIES
         const usdDataSeries = new OhlcDataSeries(wasmContext, {
-            dataSeriesName: "OHLC Close",
+            dataSeriesName: "EUR/USD",
             xValues: dateValues,
             openValues,
             highValues,
@@ -99,6 +133,7 @@ const drawExample = async () => {
         });
         const fcRendSeries = new FastCandlestickRenderableSeries(wasmContext, {
             dataSeries: usdDataSeries,
+            stroke: appTheme.ForegroundColor, // Used for legend template
             brushUp: upCol + "77",
             brushDown: downCol + "77",
             strokeUp: upCol,
@@ -163,7 +198,8 @@ const drawExample = async () => {
         sciChartSurface.chartModifiers.add(new ZoomPanModifier());
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "cursorGroup", showTooltip: false }));
+        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "cursorGroup", showTooltip: false,
+            tooltipLegendTemplate: getTooltipLegendTemplate }));
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
 
@@ -235,7 +271,8 @@ const drawExample = async () => {
         sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "cursorGroup", showTooltip: false }));
+        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "cursorGroup", showTooltip: false,
+            tooltipLegendTemplate: getTooltipLegendTemplate }));
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
 
@@ -291,7 +328,8 @@ const drawExample = async () => {
         sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "cursorGroup", showTooltip: false }));
+        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "cursorGroup", showTooltip: false,
+            tooltipLegendTemplate: getTooltipLegendTemplate }));
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
 
@@ -300,6 +338,11 @@ const drawExample = async () => {
 
     // DRAW CHARTS
     const res = await Promise.all([drawPriceChart(), drawMacdChart(), drawRsiChart()]);
+
+    // DRAW OVERVIEW
+    // Must be done after main chart creation
+    const mainPriceChart = res[0].sciChartSurface;
+    // const overview =  await SciChartOverview.create(mainPriceChart, divOverviewId);
 
     // SYNCHRONIZE VISIBLE RANGES
     chart1XAxis.visibleRangeChanged.subscribe(data1 => {
@@ -315,8 +358,7 @@ const drawExample = async () => {
         chart2XAxis.visibleRange = data1.visibleRange;
     });
 
-
-    return res;
+    return { res, };//overview };
 };
 
 /**
@@ -377,16 +419,20 @@ class MacdHistogramPaletteProvider implements IStrokePaletteProvider, IFillPalet
     }
 }
 
-let charts: TWebAssemblyChart[];
 
 export default function MultiPaneStockCharts() {
     React.useEffect(() => {
+        let allCharts: TWebAssemblyChart[];
+        // let sciChartOverview: SciChartOverview;
         (async () => {
-            charts = await drawExample();
+            const { res } = await drawExample();
+            allCharts = res;
+            // sciChartOverview = overview;
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            charts.forEach(el => el?.sciChartSurface?.delete());
+            allCharts.forEach(el => el?.sciChartSurface?.delete());
+            // sciChartOverview?.delete();
         };
     }, []);
 
@@ -398,6 +444,8 @@ export default function MultiPaneStockCharts() {
                 {/*Panels hosting the Macd and RSI Indicator charts*/}
                 <div id={divElementId2} style={{flexBasis: 100, flexGrow: 1, flexShrink: 1}}/>
                 <div id={divElementId3} style={{flexBasis: 100, flexGrow: 1, flexShrink: 1}}/>
+                {/*Panel hosting the overview control*/}
+                <div id={divOverviewId} style={{ flexBasis: "70px", background: "Red" }} />
             </div>
         </div>
     );
