@@ -8,11 +8,8 @@ import { TDocumentationLink } from "../../../../helpers/types/ExampleDescription
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to use the Builder Api to create a <strong>Chart from JSON</strong>
-         using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Demonstrates how to use the Builder Api to create a <strong>Chart from JSON</strong> using SciChart.js.{" "}
+        Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.
     </p>
 );
 
