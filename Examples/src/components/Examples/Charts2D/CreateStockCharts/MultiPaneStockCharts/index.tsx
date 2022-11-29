@@ -42,9 +42,7 @@ import {SeriesInfo} from "scichart/Charting/Model/ChartData/SeriesInfo";
 import {EDataSeriesType} from "scichart/Charting/Model/IDataSeries";
 import {OhlcSeriesInfo} from "scichart/Charting/Model/ChartData/OhlcSeriesInfo";
 import {RolloverLegendSvgAnnotation} from "scichart/Charting/Visuals/Annotations/RolloverLegendSvgAnnotation";
-import {
-    SciChartOverview
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/SciChartOverview";
+import {SciChartOverview} from "scichart/Charting/Visuals/SciChartOverview";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
@@ -342,7 +340,7 @@ const drawExample = async () => {
     // DRAW OVERVIEW
     // Must be done after main chart creation
     const mainPriceChart = res[0].sciChartSurface;
-    // const overview =  await SciChartOverview.create(mainPriceChart, divOverviewId);
+    const overview =  await SciChartOverview.create(mainPriceChart, divOverviewId);
 
     // SYNCHRONIZE VISIBLE RANGES
     chart1XAxis.visibleRangeChanged.subscribe(data1 => {
@@ -358,7 +356,7 @@ const drawExample = async () => {
         chart2XAxis.visibleRange = data1.visibleRange;
     });
 
-    return { res, };//overview };
+    return { res, overview };
 };
 
 /**
@@ -423,16 +421,16 @@ class MacdHistogramPaletteProvider implements IStrokePaletteProvider, IFillPalet
 export default function MultiPaneStockCharts() {
     React.useEffect(() => {
         let allCharts: TWebAssemblyChart[];
-        // let sciChartOverview: SciChartOverview;
+        let sciChartOverview: SciChartOverview;
         (async () => {
-            const { res } = await drawExample();
+            const { res, overview } = await drawExample();
             allCharts = res;
-            // sciChartOverview = overview;
+            sciChartOverview = overview;
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
             allCharts.forEach(el => el?.sciChartSurface?.delete());
-            // sciChartOverview?.delete();
+            sciChartOverview?.delete();
         };
     }, []);
 
