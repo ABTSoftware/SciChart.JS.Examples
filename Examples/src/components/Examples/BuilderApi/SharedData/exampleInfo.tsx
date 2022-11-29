@@ -8,11 +8,8 @@ import { TDocumentationLink } from "../../../../helpers/types/ExampleDescription
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to use the Builder Api to create <strong>Reusable Chart Templates</strong>
-         using SciChart.js, High Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Demonstrates how to use the Builder Api to create <strong>Reusable Chart Templates</strong>{" "}
+        using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.
     </p>
 );
 
