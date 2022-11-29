@@ -28,11 +28,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates different <strong>Zoom and Pan Modifiers on a JavaScript Chart</strong> using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Demonstrates different <strong>Zoom and Pan Modifiers on a JavaScript Chart</strong> including Mousewheel, Pinchzoom, Rubber-band zoom.
     </p>
 );
 
