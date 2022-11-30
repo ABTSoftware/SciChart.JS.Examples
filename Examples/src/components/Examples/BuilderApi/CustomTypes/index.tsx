@@ -20,9 +20,16 @@ import { EBaseType } from "scichart/types/BaseType";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { NumberRange } from "scichart/Core/NumberRange";
 import {appTheme} from "../../theme";
-import {EAnnotationType} from "scichart/Charting/Visuals/Annotations/IAnnotation";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {
+    EAnnotationType
+} from "scichart/Charting/Visuals/Annotations/IAnnotation";
+import {
+    ECoordinateMode
+} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint
+} from "scichart/types/AnchorPoint";
 
 const divElementId = "chart";
 
