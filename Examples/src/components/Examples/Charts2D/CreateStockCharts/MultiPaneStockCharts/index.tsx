@@ -43,6 +43,12 @@ import {EDataSeriesType} from "scichart/Charting/Model/IDataSeries";
 import {OhlcSeriesInfo} from "scichart/Charting/Model/ChartData/OhlcSeriesInfo";
 import {RolloverLegendSvgAnnotation} from "scichart/Charting/Visuals/Annotations/RolloverLegendSvgAnnotation";
 import {SciChartOverview} from "scichart/Charting/Visuals/SciChartOverview";
+import {ESeriesType} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/SeriesType";
+import {
+    FastMountainRenderableSeries
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import {GradientParams} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/GradientParams";
+import {Point} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/Point";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
@@ -72,6 +78,23 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Roll
             </svg>`;
 };
 
+// Override the Renderableseries to display on the scichart overview
+const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
+    if (defaultSeries.type === ESeriesType.CandlestickSeries) {
+        // Swap the default candlestick series on the overview chart for a mountain series. Same data
+        return new FastMountainRenderableSeries(defaultSeries.parentSurface.webAssemblyContext2D, {
+            dataSeries: defaultSeries.dataSeries,
+            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                { color: appTheme.VividSkyBlue + "77", offset: 0 },
+                { color: "Transparent", offset: 1 }
+            ]),
+            stroke: appTheme.VividSkyBlue
+        });
+    }
+    // hide all other series
+    return undefined;
+};
+
 const drawExample = async () => {
 
     // We can group together charts using VerticalChartGroup type
@@ -96,7 +119,7 @@ const drawExample = async () => {
 
     // CHART 1
     const drawPriceChart = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId1, {
+        const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId1, {
             theme: appTheme.SciChartJsTheme
         });
 
@@ -206,7 +229,7 @@ const drawExample = async () => {
 
     // CHART 2 - MACD
     const drawMacdChart = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId2, {
+        const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId2, {
             theme: appTheme.SciChartJsTheme
         });
 
@@ -279,7 +302,7 @@ const drawExample = async () => {
 
     // CHART 3 - RSI
     const drawRsiChart = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId3, {
+        const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId3, {
             theme: appTheme.SciChartJsTheme
         });
 
@@ -340,7 +363,10 @@ const drawExample = async () => {
     // DRAW OVERVIEW
     // Must be done after main chart creation
     const mainPriceChart = res[0].sciChartSurface;
-    const overview =  await SciChartOverview.create(mainPriceChart, divOverviewId);
+    const overview =  await SciChartOverview.create(mainPriceChart, divOverviewId, {
+        theme: appTheme.SciChartJsTheme,
+        transformRenderableSeries: getOverviewSeries
+    });
 
     // SYNCHRONIZE VISIBLE RANGES
     chart1XAxis.visibleRangeChanged.subscribe(data1 => {
@@ -355,6 +381,12 @@ const drawExample = async () => {
         chart1XAxis.visibleRange = data1.visibleRange;
         chart2XAxis.visibleRange = data1.visibleRange;
     });
+
+    // Force showing the latest 200 bars
+    const oneDay = 600; // One day in javascript Date() has a value of 600
+    const twoHundredDays = 600 * 200; // 200 days in JS date
+    const twoHundredDaysSciChartFormat = twoHundredDays / 1000; // SciChart expects date.getTime() / 1000
+    chart1XAxis.visibleRange = new NumberRange(chart1XAxis.visibleRange.max - twoHundredDaysSciChartFormat, chart1XAxis.visibleRange.max);
 
     return { res, overview };
 };
@@ -443,7 +475,7 @@ export default function MultiPaneStockCharts() {
                 <div id={divElementId2} style={{flexBasis: 100, flexGrow: 1, flexShrink: 1}}/>
                 <div id={divElementId3} style={{flexBasis: 100, flexGrow: 1, flexShrink: 1}}/>
                 {/*Panel hosting the overview control*/}
-                <div id={divOverviewId} style={{ flexBasis: "70px", background: "Red" }} />
+                <div id={divOverviewId} style={{ flexBasis: "70px" }} />
             </div>
         </div>
     );
