@@ -43,12 +43,14 @@ import {EDataSeriesType} from "scichart/Charting/Model/IDataSeries";
 import {OhlcSeriesInfo} from "scichart/Charting/Model/ChartData/OhlcSeriesInfo";
 import {RolloverLegendSvgAnnotation} from "scichart/Charting/Visuals/Annotations/RolloverLegendSvgAnnotation";
 import {SciChartOverview} from "scichart/Charting/Visuals/SciChartOverview";
-import {ESeriesType} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/SeriesType";
-import {
-    FastMountainRenderableSeries
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import {GradientParams} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/GradientParams";
-import {Point} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Core/Point";
+import {ESeriesType} from "scichart/types/SeriesType";
+import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
+import {GradientParams} from "scichart/Core/GradientParams";
+import {Point} from "scichart/Core/Point";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
@@ -215,6 +217,23 @@ const drawExample = async () => {
         });
         sciChartSurface.renderableSeries.add(volumeRenderableSeries);
 
+        // Add a watermark annotation
+        const watermarkAnnotation = new TextAnnotation({
+            x1: 0.5,
+            y1: 0.5,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            opacity: 0.17,
+            textColor: appTheme.ForegroundColor,
+            fontSize: 48,
+            fontWeight: "Bold",
+            text: "Euro / U.S. Dollar - Daily",
+            annotationLayer: EAnnotationLayer.BelowChart
+        });
+        sciChartSurface.annotations.add(watermarkAnnotation);
+
         // MODIFIERS
         sciChartSurface.chartModifiers.add(new ZoomPanModifier());
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
@@ -241,10 +260,11 @@ const drawExample = async () => {
         sciChartSurface.xAxes.add(chart2XAxis);
 
         const yAxis = new NumericAxis(wasmContext, {
-            maxAutoTicks: 4,
             autoRange: EAutoRange.Always,
             growBy: new NumberRange(0.1, 0.1),
             axisAlignment,
+            labelPrecision: 2,
+            cursorLabelPrecision: 2,
             labelStyle: { alignment: ELabelAlignment.Right }
         });
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
@@ -311,9 +331,10 @@ const drawExample = async () => {
         sciChartSurface.xAxes.add(chart3XAxis);
 
         const yAxis = new NumericAxis(wasmContext, {
-            maxAutoTicks: 4,
             autoRange: EAutoRange.Always,
             growBy: new NumberRange(0.1, 0.1),
+            labelPrecision: 0,
+            cursorLabelPrecision: 0,
             axisAlignment,
             labelStyle: { alignment: ELabelAlignment.Right }
         });
