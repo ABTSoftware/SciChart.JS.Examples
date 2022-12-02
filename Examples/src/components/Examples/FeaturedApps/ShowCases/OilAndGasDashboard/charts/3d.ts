@@ -9,7 +9,7 @@ import { ScatterRenderableSeries3D } from "scichart/Charting3D/Visuals/Renderabl
 import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
 import { TSciChart3D } from "scichart/types/TSciChart3D";
 import { appTheme } from "../theme";
-import { parseColorToUIntArgb } from "SciChart/utils/parseColor";
+import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 
 export default async function init3dChart(id: string) {
 
