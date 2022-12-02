@@ -4,7 +4,6 @@ import { chartBuilder } from "scichart/Builder/chartBuilder";
 import classes from "../../../Examples/Examples.module.scss";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { EAxisType } from "scichart/types/AxisType";
-import { ELabelProviderType } from "scichart/types/LabelProviderType";
 import { ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { EAnimationType } from "scichart/types/AnimationType";
@@ -21,16 +20,9 @@ import { EBaseType } from "scichart/types/BaseType";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { NumberRange } from "scichart/Core/NumberRange";
 import {appTheme} from "../../theme";
-import {
-    EAnnotationType
-} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/IAnnotation";
-import {
-    ECoordinateMode
-} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/AnnotationBase";
-import {
-    EHorizontalAnchorPoint,
-    EVerticalAnchorPoint
-} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/AnchorPoint";
+import {EAnnotationType} from "scichart/Charting/Visuals/Annotations/IAnnotation";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 
 const divElementId = "chart";
 
