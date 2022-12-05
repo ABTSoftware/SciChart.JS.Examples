@@ -26,9 +26,6 @@ import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation
 import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {Thickness} from "scichart/Core/Thickness";
-import {
-    AnnotationDragDeltaEventArgs
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/AnnotationDragDeltaEventArgs";
 
 const divElementId = "chart";
 

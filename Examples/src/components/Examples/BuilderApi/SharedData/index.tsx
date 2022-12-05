@@ -6,16 +6,9 @@ import { ESeriesType } from "scichart/types/SeriesType";
 import { ISciChart2DDefinition } from "scichart/Builder/buildSurface";
 import { TSharedDataDefinition } from "scichart/Builder/buildDataSeries";
 import {appTheme} from "../../theme";
-import {
-    EAnnotationType
-} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/IAnnotation";
-import {
-    ECoordinateMode
-} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/AnnotationBase";
-import {
-    EHorizontalAnchorPoint,
-    EVerticalAnchorPoint
-} from "../../../../../../../scichart.dev/Web/src/SciChart/lib/types/AnchorPoint";
+import {EAnnotationType} from "scichart/Charting/Visuals/Annotations/IAnnotation";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 
 const divElementId = "chart";
 
