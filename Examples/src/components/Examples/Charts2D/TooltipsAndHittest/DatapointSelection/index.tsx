@@ -25,102 +25,160 @@ import { DataPointSelectionChangedArgs } from "scichart/Charting/ChartModifiers/
 import { DataPointInfo } from "scichart/Charting/ChartModifiers/DataPointInfo";
 import { DataPointSelectionPaletteProvider } from "scichart/Charting/Model/DataPointSelectionPaletteProvider";
 import { CSSProperties } from "react";
+import {appTheme} from "../../../theme";
+import {
+    SeriesSelectionModifier
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/ChartModifiers/SeriesSelectionModifier";
+import {
+    SplineLineRenderableSeries
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import {EPointMarkerType} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/PointMarkerType";
+import {AUTO_COLOR} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/IThemeProvider";
+import {
+    TextAnnotation
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/AnchorPoint";
+import {
+    ECoordinateMode
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/AnnotationBase";
+import {
+    LegendModifier
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/ChartModifiers/LegendModifier";
+import {
+    DataLabelProvider
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/DataLabels/DataLabelProvider";
+import {
+    LineSeriesDataLabelProvider
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/DataLabels/LineSeriesDataLabelProvider";
+import {
+    DataLabelState
+} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/DataLabels/DataLabelState";
 
 const divElementId = "chart";
 const HIT_TEST_RADIUS = 10;
 
+// Generate some data for the example
+const dataSize = 30;
+const xValues: number[] = [];
+const yValues: number[] = [];
+const y1Values: number[] = [];
+const y2Values: number[] = [];
+const y3Values: number[] = [];
+const y4Values: number[] = [];
+for (let i = 0; i < dataSize; i++) {
+    xValues.push(i);
+    y4Values.push(Math.random());
+    y3Values.push(Math.random() + 1);
+    y2Values.push(Math.random() + 1.8);
+    y1Values.push(Math.random() + 2.5);
+    yValues.push(Math.random() + 3.6);
+}
+
 const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) => void) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
-    const xAxis = new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Top });
-    xAxis.visibleRange = new NumberRange(-0.5, 8.5);
-    sciChartSurface.xAxes.add(xAxis);
-
-    const yAxis = new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Left });
-    yAxis.visibleRange = new NumberRange(0, 6);
-    sciChartSurface.yAxes.add(yAxis);
-
-    // Candlestick series
-    const xOhlcValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    const openValues = [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0];
-    const highValues = [3.7, 3.8, 4.0, 5.3, 5.9, 5.7, 5.0, 4.3, 3.2];
-    const lowValues = [2.2, 3.4, 3.3, 3.8, 5.0, 4.8, 3.5, 3.0, 1.8];
-    const closeValues = [3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0, 2.0];
-    const candlestickSeries = new FastCandlestickRenderableSeries(wasmContext, {
-        dataPointWidth: 0.3,
-        strokeThickness: 2,
-        dataSeries: new OhlcDataSeries(wasmContext, {
-            dataSeriesName: "Candlestick",
-            xValues: xOhlcValues,
-            openValues,
-            highValues,
-            lowValues,
-            closeValues
-        }),
-        paletteProvider: new DataPointSelectionPaletteProvider({ stroke: "#eb7d34", fill: "#1890b5" })
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme,
     });
-    sciChartSurface.renderableSeries.add(candlestickSeries);
 
-    // Bubble series
-    const xBubbleValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    const yBubbleValues = [0.5, 1.0, 1.8, 2.9, 3.5, 3.0, 2.7, 2.4, 1.7];
-    const zBubbleValues = [24, 12, 13, 16, 12, 15, 12, 19, 12];
-    const bubbleSeries = new FastBubbleRenderableSeries(wasmContext, {
-        pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 36,
-            height: 36,
-            fill: "#D36582",
-            strokeThickness: 0
-        }),
-        dataSeries: new XyzDataSeries(wasmContext, {
-            dataSeriesName: "Bubble",
-            xValues: xBubbleValues,
-            yValues: yBubbleValues,
-            zValues: zBubbleValues
-        }),
-        paletteProvider: new DataPointSelectionPaletteProvider({ stroke: "#eb7d34", fill: "#1890b5" })
-    });
-    sciChartSurface.renderableSeries.add(bubbleSeries);
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.1, 0.1),
+        })
+    );
 
-    // Line series
-    const xLineValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    const yLineValues = [0, 0.5, 1.3, 2.4, 3, 2.5, 2.2, 1.9, 1.2];
-    const lineSeries = new FastLineRenderableSeries(wasmContext, {
-        stroke: "#368BC1",
+    sciChartSurface.chartModifiers.add(new SeriesSelectionModifier({
+        enableHover: true,
+        enableSelection: true
+    }));
+
+    // Stroke/fill for selected points
+    const stroke = appTheme.ForegroundColor;
+    const fill: string = appTheme.PaleSkyBlue + "77";
+
+    // Optional: show datalabels but only for selected points
+    const getDataLabelProvider = () => {
+        const dataLabelProvider = new LineSeriesDataLabelProvider()
+        dataLabelProvider.style = {fontFamily: "Arial", fontSize: 13};
+        dataLabelProvider.color = appTheme.ForegroundColor;
+        dataLabelProvider.getText = (state: DataLabelState) => {
+            return state.getMetaData()?.isSelected ? `x,y [${state.xValues.get(state.index).toFixed(1)}, ` +
+                `${state.yValues.get(state.index).toFixed(1)}] selected`
+                : "";
+        };
+        return dataLabelProvider;
+    }
+
+    // Add some series onto the chart for selection
+    sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
+        id: "Series1",
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: "First Series"}),
+        pointMarker: { type: EPointMarkerType.Ellipse, options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 } },
         strokeThickness: 3,
-        pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 14,
-            height: 14,
-            fill: "#00000000",
-            stroke: "#00000000",
-            strokeThickness: 2
-        }),
-        dataSeries: new XyDataSeries(wasmContext, {
-            dataSeriesName: "Line",
-            xValues: xLineValues,
-            yValues: yLineValues
-        }),
-        paletteProvider: new DataPointSelectionPaletteProvider({ stroke: "#eb7d34", fill: "#1890b5" })
-    });
-    sciChartSurface.renderableSeries.add(lineSeries);
+        // Optional visual feedback for selected points can be provided by the DataPointSelectionPaletteProvider
+        // When dataSeries.metadata[i].isSelected, this still is applied
+        paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
+        // Optional: show datalabels but only for selected points
+        dataLabelProvider: getDataLabelProvider()
+    }));
 
-    // Column series
-    const xColumnValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    const yColumnValues = [0, 0.2, 1, 2.0, 2.5, 1.9, 1.9, 1.5, 1.2];
-    const columnSeries = new FastColumnRenderableSeries(wasmContext, {
-        fill: "#057530",
-        stroke: "#61cf8b",
-        dataPointWidth: 0.5,
-        dataSeries: new XyDataSeries(wasmContext, {
-            dataSeriesName: "Column",
-            xValues: xColumnValues,
-            yValues: yColumnValues
-        }),
-        paletteProvider: new DataPointSelectionPaletteProvider({ stroke: "#eb7d34", fill: "#1890b5" })
-    });
-    sciChartSurface.renderableSeries.add(columnSeries);
+    sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
+        id: "Series2",
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Second Series"}),
+        pointMarker: { type: EPointMarkerType.Ellipse, options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 } },
+        strokeThickness: 3,
+        // Optional visual feedback for selected points
+        paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
+        // Optional: show datalabels but only for selected points
+        dataLabelProvider: getDataLabelProvider()
+    }));
 
+    sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
+        id: "Series3",
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Third Series"}),
+        pointMarker: { type: EPointMarkerType.Ellipse, options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 } },
+        strokeThickness: 3,
+        // Optional visual feedback for selected points
+        paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
+        // Optional: show datalabels but only for selected points
+        dataLabelProvider: getDataLabelProvider()
+    }));
+
+    sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
+        id: "Series4",
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Fourth Series"}),
+        pointMarker: { type: EPointMarkerType.Ellipse, options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 } },
+        strokeThickness: 3,
+        // Optional visual feedback for selected points
+        paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
+        // Optional: show datalabels but only for selected points
+        dataLabelProvider: getDataLabelProvider()
+    }));
+
+    // Todo: Show how to programmatically set points. Requires some changes in scichart.js API
+
+    // Add title annotation
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: "Click & Drag Select points. Output is shown in the table below",
+            fontSize: 20,
+            textColor: appTheme.ForegroundColor,
+            x1: 0.5,
+            y1: 0,
+            opacity: 0.77,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative
+        })
+    );
+
+    // Add a legend to the chart
+    sciChartSurface.chartModifiers.add(new LegendModifier());
+
+    // Add the DataPointSelectonModifier to the chart.
+    // selectionChanged event / callback has the selected points in the arguments
     const dataPointSelection = new DataPointSelectionModifier();
     dataPointSelection.selectionChanged.subscribe((data: DataPointSelectionChangedArgs) => {
+        // When points are selected, set them - we render the selected points to a table below the chart
         setSelectedPoints(data.selectedDataPoints);
     });
     sciChartSurface.chartModifiers.add(dataPointSelection);
@@ -147,32 +205,58 @@ export default function DatapointSelection() {
         display: "flex"
     };
 
+    const pointsBoxStyle: CSSProperties = {
+        flexBasis: 100, flexGrow: 1, flexShrink: 1,
+        color: appTheme.PaleSkyBlue,
+        background: appTheme.DarkIndigo
+    };
+
+    const chartStyle: CSSProperties = {
+        flexBasis: 400, flexGrow: 1, flexShrink: 1
+    };
+
     const columnItemStyle: CSSProperties = {
         flex: "auto",
         width: "100px",
-        border: "solid 1px black",
+        borderRight: `solid 1px ${appTheme.MutedSkyBlue}`,
+        borderBottom: `solid 1px ${appTheme.MutedSkyBlue}`,
         textAlign: "center"
+    };
+    const columnItemStyleRight: CSSProperties = {
+        flex: "auto",
+        width: "100px",
+        borderBottom: `solid 1px ${appTheme.MutedSkyBlue}`,
+        textAlign: "center"
+    };
+
+    const scrollbarStyle: CSSProperties = {
+        height: "120px",
+        overflow: "scroll",
+        overflowX: "hidden"
     };
 
     return (
         <div className={classes.FullHeightChartWrapper}>
-            <div id={divElementId} />
-            <Box mt={20}>
-                {/* <div style={{width: "200px", height: "500px", display: "flex", flexDirection: "column"}}> */}
-                <div style={rowStyle}>
-                    <div style={columnItemStyle}>Series Name</div>
-                    <div style={columnItemStyle}>X Value</div>
-                    <div style={columnItemStyle}>Y Value</div>
-                </div>
-                {selectedPoints.map((dp, index) => (
-                    <div style={rowStyle}>
-                        <div style={columnItemStyle}>{dp.seriesName}</div>
-                        <div style={columnItemStyle}>{dp.xValue.toFixed(2)}</div>
-                        <div style={columnItemStyle}>{dp.yValue.toFixed(2)}</div>
+            <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                <div id={divElementId} style={chartStyle} />
+                <div style={pointsBoxStyle}>
+                    <h3 style={{color: appTheme.PaleSkyBlue, margin: 5}}>Selected Points</h3>
+                    <div style={{...rowStyle, marginRight: "17px"}}>
+                        <div style={columnItemStyle}>Series Name</div>
+                        <div style={columnItemStyle}>X Value</div>
+                        <div style={columnItemStyleRight}>Y Value</div>
                     </div>
-                ))}
-                {/* </div> */}
-            </Box>
+                    <div style={scrollbarStyle}>
+                        {selectedPoints.map((dp, index) => (
+                            <div style={rowStyle}>
+                                <div style={columnItemStyle}>{dp.seriesName}</div>
+                                <div style={columnItemStyle}>{dp.xValue.toFixed(2)}</div>
+                                <div style={columnItemStyleRight}>{dp.yValue.toFixed(2)}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
