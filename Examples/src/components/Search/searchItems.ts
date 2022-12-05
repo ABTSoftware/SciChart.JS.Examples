@@ -11,12 +11,14 @@ const generateSearchItems = (allMenuItems: TMenuItem[]) => {
     const searchItemsList: TSearchItem[] = [];
     allMenuItems.forEach(menuItem => {
         menuItem.submenu.forEach(smItem => {
-            searchItemsList.push({
-                category: menuItem.item.name,
-                title: smItem.title,
-                link: smItem.path,
-                keywords: smItem.metaKeywords,
-           });
+            if (!searchItemsList.find(i => i.title === smItem.title)) {
+                searchItemsList.push({
+                    category: menuItem.item.name,
+                    title: smItem.title,
+                    link: smItem.path,
+                    keywords: smItem.metaKeywords,
+            });
+            }
         });
     });
     return searchItemsList;

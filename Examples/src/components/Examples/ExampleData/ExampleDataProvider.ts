@@ -79,11 +79,11 @@ export class ExampleDataProvider {
         const fourierData = this.getFourierSeries(amplitude, phaseShift, count);
 
         let index0 = 0;
-        let index1 = 0;
+        let index1 = count;
         for (let i = 0; i < count; i++) {
             if (fourierData.xValues[i] > xStart && index0 === 0)
                 index0 = i;
-            if (fourierData.xValues[i] > xEnd && index1 === 0){
+            if (fourierData.xValues[i] > xEnd && index1 === count){
                 index1 = i;
                 break;
             }
@@ -142,4 +142,30 @@ export class ExampleDataProvider {
         }
         return { xValues, yValues };
     }
+
+    public static getSpectrumData(shift: number, points: number, harmonics = 20, scaling = 50, randomFactor = 0.5) {
+        const xValues = Array.from(Array(points).keys());
+        const arr = Array(harmonics).fill(1);
+        const yValues = ExampleDataProvider.getSpectrum(
+            points,
+            arr.map((_, i) => i / scaling + (i / scaling) * Math.random() * randomFactor),
+            arr,
+            shift
+        );
+        return { xValues, yValues };
+    }
+
+    static getSpectrum = (points: number, frequencies: number[], amplitudes: number[], shift: number) => {
+        const values: number[] = [];
+        for (let x = 0; x < points; x++) {
+            let y = 0;
+            for (let i = 0; i < frequencies.length; i++) {
+                y = y + amplitudes[i] * Math.sin((x + shift) * frequencies[i]);
+            }
+            values.push(y);
+        }
+        return values;
+    }
 }
+
+

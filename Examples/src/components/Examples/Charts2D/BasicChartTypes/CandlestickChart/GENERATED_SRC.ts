@@ -9,7 +9,7 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { DateTimeNumericAxis } from "scichart/Charting/Visuals/Axis/DateTimeNumericAxis";
-import { simpleBinanceClient } from "./binanceRestClient";
+import { simpleBinanceRestClient } from "./data/binanceRestClient";
 import { EAutoRange } from "scichart/types/AutoRange";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { XyMovingAverageFilter } from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
@@ -80,14 +80,23 @@ const drawExample = async () => {
     const endDate = new Date(Date.now());
     const startDate = new Date();
     startDate.setHours(endDate.getHours() - 300);
-    const {
-        xValues,
-        openValues,
-        highValues,
-        lowValues,
-        closeValues,
-        volumeValues
-    } = await simpleBinanceClient.getCandles("BTCUSDT", "1h", startDate, endDate);
+    const priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1h", startDate, endDate);
+
+    // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
+    const xValues: number[] = [];
+    const openValues: number[] = [];
+    const highValues: number[] = [];
+    const lowValues: number[] = [];
+    const closeValues: number[] = [];
+    const volumeValues: number[] = [];
+    priceBars.forEach((priceBar: any) => {
+        xValues.push(priceBar.date);
+        openValues.push(priceBar.open);
+        highValues.push(priceBar.high);
+        lowValues.push(priceBar.low);
+        closeValues.push(priceBar.close);
+        volumeValues.push(priceBar.volume);
+    });
 
     // Zoom to the latest 100 candles
     const startViewportRange = new Date();

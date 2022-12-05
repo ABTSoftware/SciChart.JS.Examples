@@ -31,6 +31,7 @@ import { HorizontalLineAnnotation } from "scichart/Charting/Visuals/Annotations/
 import { ELabelPlacement } from "scichart/types/LabelPlacement";
 import { EDataLabelSkipMode } from "scichart/types/DataLabelSkipMode";
 import { EVerticalTextPosition } from "scichart/types/TextPosition";
+import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
 
 const divElementId1 = "chart1";
 const divElementId2 = "chart2";
@@ -192,7 +193,8 @@ const drawExample = async () => {
                 rolloverLineStrokeDashArray: [2, 2]
             })
         );
-
+        // FOR DEMO PURPOSE ONLY - fake a mouse event so the tooltip shows without rollover.
+        sciChartSurface.mouseManager.modifierMouseMove({ mousePoint: new Point(sciChartSurface.renderSurface.viewportSize.width * 2 / 3, 10)} as ModifierMouseArgs);
         return sciChartSurface;
     };
 

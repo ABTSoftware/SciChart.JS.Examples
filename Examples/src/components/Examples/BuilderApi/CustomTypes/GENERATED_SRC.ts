@@ -20,6 +20,17 @@ import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IR
 import { EBaseType } from "scichart/types/BaseType";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import { NumberRange } from "scichart/Core/NumberRange";
+import {appTheme} from "../../theme";
+import {
+    EAnnotationType
+} from "scichart/Charting/Visuals/Annotations/IAnnotation";
+import {
+    ECoordinateMode
+} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint
+} from "scichart/types/AnchorPoint";
 
 const divElementId = "chart";
 
@@ -81,10 +92,44 @@ chartBuilder.registerType(
 const drawExample = async () => {
     // Build the surface
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, {
+        surface: { theme: appTheme.SciChartJsTheme },
         yAxes: {
             type: EAxisType.NumericAxis,
             options: { axisAlignment: EAxisAlignment.Left, visibleRange: new NumberRange(0, 1) }
-        }
+        },
+        // Add annotations
+        annotations: [{
+            type: EAnnotationType.SVGTextAnnotation,
+            options: {
+                text: "Builder API Demo",
+                x1: 0.5,
+                y1: 0.5,
+                opacity: 0.33,
+                yCoordShift: -26,
+                xCoordinateMode: ECoordinateMode.Relative,
+                yCoordinateMode: ECoordinateMode.Relative,
+                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+                verticalAnchorPoint: EVerticalAnchorPoint.Center,
+                fontSize: 42,
+                fontWeight: "Bold"
+            }
+        },
+            {
+                type: EAnnotationType.SVGTextAnnotation,
+                options: {
+                    text: "Create SciChart charts with JSON Objects",
+                    x1: 0.5,
+                    y1: 0.5,
+                    yCoordShift: 26,
+                    opacity: 0.33,
+                    xCoordinateMode: ECoordinateMode.Relative,
+                    yCoordinateMode: ECoordinateMode.Relative,
+                    horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+                    verticalAnchorPoint: EVerticalAnchorPoint.Center,
+                    fontSize: 36,
+                    fontWeight: "Bold"
+                }
+            }]
     });
     // Build the series.
     // By doing this separately we can easily get the reference to the series so we can add generated data to it
@@ -94,16 +139,18 @@ const drawExample = async () => {
             paletteProvider: {
                 type: EPaletteProviderType.Custom,
                 customType: ExampleMountainPaletteProvider.Name,
-                options: { stroke: "lime", fill: "yellow" }
+                options: { stroke: appTheme.MutedRed, fill: appTheme.VividOrange }
             },
             fillLinearGradient: {
                 startPoint: { x: 0, y: 0 },
                 endPoint: { x: 0, y: 1 },
                 gradientStops: [
-                    { color: "rgba(70,130,180,1)", offset: 0 },
-                    { color: "rgba(70,130,180,0.2)", offset: 1 }
+                    { color: appTheme.VividBlue, offset: 0 },
+                    { color: "Transparent", offset: 1 }
                 ]
             },
+            stroke: appTheme.PaleSkyBlue,
+            strokeThickness: 3,
             drawNaNAs: ELineDrawMode.PolyLine,
             animation: { type: EAnimationType.Scale, options: { ease: "cubic" } }
         }

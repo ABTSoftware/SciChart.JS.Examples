@@ -255,7 +255,7 @@ export default function VitalSignsMonitorDemo() {
 
     return (
         <div className={classes.ChartWrapper}>
-            <div className={classes.ChartContainer}>
+            <div style={{display: "flex", height: "100%"}}>
                 <div id={divElementId} className={classes.VitalSigns} />
                 <div className={classes.InfoBoxContainer}>
                     <div className={classes.InfoBox} style={{ color: appTheme.VividOrange, background: appTheme.Background }}>

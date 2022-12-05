@@ -645,10 +645,17 @@ export const ExampleStrings = {
     urlOverview: "/javascript-overview",
     titleOverview: "Zoom and Pan with Overview Chart",
     urlOverviewDocumentation: "https://www.scichart.com/documentation/js/current/SciChartOverview.html",
-    urlTitleOverviewDocumentation: "This specific page in the JavaScript ChartModifiers Api documentation will help you to get started",
+    urlTitleOverviewDocumentation: "This specific page in the JavaScript SciChartOverview Api documentation will help you to get started",
 
     // Oil & Gas Demo
     titleOilAndGasExplorerDashboard: "Oil & Gas Explorer Dashboard",
-    urlOilAndGasExplorerDashboard: "/javascript-oil-and-gas-dashboard-showcase"
+    urlOilAndGasExplorerDashboard: "/javascript-oil-and-gas-dashboard-showcase",
+
+    // Datalabels
+    urlDatalabels: "/javascript-datalabels",
+    titleDatalabels: "Data Labels",
+    pageTitleDatalabels: "Data Labels | JavaScript Chart Library Examples",
+    urlDatalabelsDocumentation: "https://www.scichart.com/documentation/js/current/DataLabels.html",
+    urlTitleDatalabelsDocumentation: "This specific page in the JavaScript DataLabels Api documentation will help you to get started",
 
 };
