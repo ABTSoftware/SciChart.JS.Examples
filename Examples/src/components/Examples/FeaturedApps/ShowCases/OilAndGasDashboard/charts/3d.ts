@@ -12,7 +12,6 @@ import { appTheme } from "../theme";
 import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 
 export default async function init3dChart(id: string) {
-
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(id, { theme: appTheme.SciChartJsTheme });
 
     sciChart3DSurface.camera = new CameraController(wasmContext, {
@@ -42,7 +41,7 @@ export default async function init3dChart(id: string) {
     sciChart3DSurface.renderableSeries.add(seriesY);
     sciChart3DSurface.renderableSeries.add(seriesZ);
 
-    return { sciChart3DSurface, wasmContext };
+    return sciChart3DSurface;
 }
 // HELPER FUNCTIONS FOR DATA GENERATION
 function getData(wasmContext: TSciChart3D) {
