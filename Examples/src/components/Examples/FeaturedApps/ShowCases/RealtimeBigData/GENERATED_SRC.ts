@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export default function SSStreaming() {
+export default function RealtimeBigDataShowcase() {
     const [seriesType, setSeriesType] = React.useState<ESeriesType>(ESeriesType.LineSeries);
     const [isDirty, setIsDirty] = React.useState<boolean>(false);
     const [settings, setSettings] = React.useState<ISettings>({
@@ -147,6 +147,7 @@ export default function SSStreaming() {
             const base = Math.pow(10, i);
             marks.push(...[2, 5, 10].map(m => m * base));
         }
+        console.log(maxPower, marks);
         return marks.map(m => ({ value: Math.log10(m) })) as Mark[];
     };
 
@@ -156,17 +157,6 @@ export default function SSStreaming() {
 
     return (
         <div>
-            <Typography variant="h5" gutterBottom>
-                SciChart can handle realtime data, and lots of it!.  Pick a chart type and use the sliders to adjust the data volume and see how SciChart is able to keep up.
-                Data is streamed from the server via websocket and buffered locally so it keeps up with the data even if the render time is more than the update interval.
-                Stop the updates then zoom with the mousewheel to see all the data is really there.
-            </Typography>
-            {/* <Typography variant="h6" gutterBottom hidden={value==="column" ? false : true}>
-                Ensure the server is running using npm start
-            </Typography> */}
-            <div style={{ marginBottom: 20 }}>
-                <Typography variant="body1" style={{ color: "red" }}></Typography>
-            </div>
             <div style={{ display: "flex", maxWidth: 1200 }}>
                 <div id={divElementId} style={{ height: 600, flexBasis: 600, flexGrow: 1, flexShrink: 1 }} />
                 <div className={classes.notificationsBlock} style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }}>

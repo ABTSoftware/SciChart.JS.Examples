@@ -98,6 +98,7 @@ import SubChartStockCharts from "../Examples/Charts2D/CreateStockCharts/SubChart
 import FeatureAxisLayout from "../Examples/FeaturedApps/FeatureDemos/AxisLayout";
 import RealtimeBigDataShowcase from "../Examples/FeaturedApps/ShowCases/RealtimeBigData";
 import OilAndGasDashboardShowcase from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard";
+import DataLabelsExample from "../Examples/Charts2D/StylingAndTheming/DataLabels";
 
 export type TMenuItem = {
     item: {
@@ -220,6 +221,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_DataLabels
         ]
     },
     {
@@ -433,6 +435,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return DashedLineStyling;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground.id:
             return TransparentBackground;
+        case EXAMPLES_PAGES.chart2D_stylingAndTheming_DataLabels.id:
+            return DataLabelsExample;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi.id:
             return HitTestAPI;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips.id:

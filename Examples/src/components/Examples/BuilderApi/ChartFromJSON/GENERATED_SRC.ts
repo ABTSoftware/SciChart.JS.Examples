@@ -7,11 +7,13 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 import { EBaseType } from "scichart/types/BaseType";
 import { IThemeProvider } from "scichart/Charting/Themes/IThemeProvider";
 import { ISciChartLoader } from "scichart/Charting/Visuals/loader";
+import {appTheme} from "../../theme";
 
 const divElementId = "chart";
 
 const drawExample = async (json: string, setErrors: (error: any)=> void): Promise<TWebAssemblyChart> => {
     try {
+        // Build the SciChartSurface from Json passed in
         const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, json);
 
         return { sciChartSurface, wasmContext };
@@ -23,11 +25,26 @@ const drawExample = async (json: string, setErrors: (error: any)=> void): Promis
 };
 
 const defaultJSON = \`{
-    "series": { "type": "SplineLineSeries", 
-        "options": { "stroke": "red" }, 
-        "xyData": { "xValues": [1,3,4,7,9], "yValues": [10,6,7,2,16] } 
+    "surface": { "theme": { "type": "Navy" }},
+    "series": { "type": "SplineLineSeries",
+        "options": { "stroke": "red" },
+        "xyData": { "xValues": [1,3,4,7,9], "yValues": [10,6,7,2,16] }
     },
-    "yAxes": { "type": "NumericAxis", "options": { "visibleRange": {"min": 0, "max": 20} } }
+    "yAxes": { "type": "NumericAxis", "options": { "visibleRange": {"min": 0, "max": 20} } },
+    "annotations": [{
+        "type": "SVGTextAnnotation", "options": { "text": "Builder API Demo", "x1": 0.5, "y1": 0.5, "opacity": 0.33,
+              "yCoordShift": -26, "xCoordinateMode": "Relative", "yCoordinateMode": "Relative",
+              "horizontalAnchorPoint": "Center", "verticalAnchorPoint": "Center",
+              "fontSize": 42, "fontWeight": "Bold"
+            }
+        },
+        {
+            "type": "SVGTextAnnotation", "options": { "text": "Create SciChart charts from JSON", "x1": 0.5, "y1": 0.5, "opacity": 0.33,
+                "yCoordShift": 26, "xCoordinateMode": "Relative", "yCoordinateMode": "Relative",
+                "horizontalAnchorPoint": "Center", "verticalAnchorPoint": "Center",
+                "fontSize": 36, "fontWeight": "Bold"
+            }
+        }]
 }\`;
 
 // React component needed as our examples app is react.
@@ -71,7 +88,7 @@ export default function ChartFromJSON() {
         setJSON(\`{
             "surface": {
                 "theme": {
-                    "type": "Light",
+                    "type": "Navy",
                     "axisTitleColor": "#1d4e8f"
                 }
             },
@@ -176,7 +193,7 @@ export default function ChartFromJSON() {
             spiralY.push(Math.cos(i) - Math.sin(i / 20));
         }
         setJSON(\`{
-            "surface": { "layoutManager": { "type": "CentralAxes" } },
+            "surface": { "layoutManager": { "type": "CentralAxes" }, "theme": { "type": "Navy" }},
             "series": {
                 "type": "ScatterSeries",
                 "options": { "pointMarker": { "type": "Ellipse", "options": { "fill": "white" } } },
@@ -201,45 +218,45 @@ export default function ChartFromJSON() {
     };
 
     return (
-        <>
-            <div className={classes.ChartWrapper}>
-                <div id={divElementId} />
-            </div>
-            <div>
-                <div className={classes.FormControl}>
+        <div className={classes.ChartWrapper}>
+            <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                <div id={divElementId} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }} />
+                <div style={{ position: "absolute", left: 20, top: 20, }} >
+                    {errors && (
+                        <Alert key="0" severity="error">
+                            <AlertTitle>Errors</AlertTitle>
+                            {errors}
+                        </Alert>
+                    )}
+                </div>
+                <div style={{ flexBasis: "50px"}} >
+                    <div className={classes.FormControl}>
+                        <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                            <Button id="eg1" onClick={loadMinimal}>Simple example</Button>
+                            <Button id="eg2" onClick={loadFull}>Full example</Button>
+                            <Button id="eg3" onClick={loadCentral}>Central Axes</Button>
+                        </ButtonGroup>
+                    </div>
+                </div>
+                <div style={{ flexBasis: "200px"}} >
+                    <TextField
+                        id="chartDef"
+                        type="text"
+                        fullWidth={true}
+                        multiline={true}
+                        rows="10"
+                        variant="outlined"
+                        value={json}
+                        onChange={handleChangeJSON}
+                    />
+                </div>
+                <div className={[classes.FormControl, classes.AlignRight].join(' ')} style={{ flexBasis: "50px" }} >
                     <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                        <Button id="eg1" onClick={loadMinimal}>Simple example</Button>
-                        <Button id="eg2" onClick={loadFull}>Full example</Button>
-                        <Button id="eg3" onClick={loadCentral}>Central Axes</Button>
+                        <Button className={classes.ButtonFilled} id="buildChart" onClick={handleBuild}>Apply</Button>
                     </ButtonGroup>
                 </div>
             </div>
-            <div>
-                {errors && (
-                    <Alert key="0" severity="error">
-                        <AlertTitle>Errors</AlertTitle>
-                        {errors}
-                    </Alert>
-                )}
-            </div>
-            <div>
-                <TextField
-                    id="chartDef"
-                    type="text"
-                    fullWidth={true}
-                    multiline={true}
-                    rows="10"
-                    variant="outlined"
-                    value={json}
-                    onChange={handleChangeJSON}
-                />
-            </div>
-            <div className={[classes.FormControl, classes.AlignRight].join(' ')}>
-                <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                    <Button className={classes.ButtonFilled} id="buildChart" onClick={handleBuild}>Apply</Button>
-                </ButtonGroup>
-            </div>
-        </>
+        </div>
     );
 }
 `;

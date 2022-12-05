@@ -18,6 +18,7 @@ import {UniformGridDataSeries3D} from "scichart/Charting3D/Model/DataSeries/Unif
 import {GradientColorPalette} from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
 import {zeroArray2D} from "scichart/utils/zeroArray2D";
 import {HeatmapLegend} from "scichart/Charting/Visuals/HeatmapLegend";
+import {Button} from "@material-ui/core";
 
 const div3DChart = "chart";
 const div3DChartLegend = "heatmapLegend";
@@ -216,10 +217,10 @@ export default function LiDAR3DPointCloudDemo() {
 
     return (
         <div className={classes.ChartWrapper}>
-            <div style={{float: "left", width: "100%", height: "100%", position: "relative" }}>
-                <div id={div3DChart} style={{position: "absolute", height: "100%", width: "100%"}}></div>
-                <div id={div3DChartLegend} style={{position: "absolute", height: "95%", width: "100px", right: "0", margin: "20"}}>
-                </div>
+            <div style={{position: "relative"}}>
+                <div id={div3DChart} style={{width: "100%", height: "100%"}}></div>
+                <div id={div3DChartLegend}
+                     style={{ position: "absolute", height: "90%", width: "100px", top: 0, right: "75px", margin: "20" }}></div>
             </div>
         </div>
     );
