@@ -1,61 +1,26 @@
 import * as React from "react";
-import Alert from "@material-ui/lab/Alert";
-import AlertTitle from "@material-ui/lab/AlertTitle";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
-import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
-import { Point } from "scichart/Core/Point";
-import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
+import {CSSProperties} from "react";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import classes from "../../../../Examples/Examples.module.scss";
-import Box from "../../../../../helpers/shared/Helpers/Box/Box";
-import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
-import { translateFromCanvasToSeriesViewRect } from "scichart/utils/translate";
-import { DataPointSelectionModifier } from "scichart/Charting/ChartModifiers/DataPointSelectionModifier";
-import { DataPointSelectionChangedArgs } from "scichart/Charting/ChartModifiers/DataPointSelectionChangedArgs";
-import { DataPointInfo } from "scichart/Charting/ChartModifiers/DataPointInfo";
-import { DataPointSelectionPaletteProvider } from "scichart/Charting/Model/DataPointSelectionPaletteProvider";
-import { CSSProperties } from "react";
+import {DataPointSelectionModifier} from "scichart/Charting/ChartModifiers/DataPointSelectionModifier";
+import {DataPointSelectionChangedArgs} from "scichart/Charting/ChartModifiers/DataPointSelectionChangedArgs";
+import {DataPointInfo} from "scichart/Charting/ChartModifiers/DataPointInfo";
+import {DataPointSelectionPaletteProvider} from "scichart/Charting/Model/DataPointSelectionPaletteProvider";
 import {appTheme} from "../../../theme";
-import {
-    SeriesSelectionModifier
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/ChartModifiers/SeriesSelectionModifier";
-import {
-    SplineLineRenderableSeries
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
-import {EPointMarkerType} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/PointMarkerType";
-import {AUTO_COLOR} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Themes/IThemeProvider";
-import {
-    TextAnnotation
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/types/AnchorPoint";
-import {
-    ECoordinateMode
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/Annotations/AnnotationBase";
-import {
-    LegendModifier
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/ChartModifiers/LegendModifier";
-import {
-    DataLabelProvider
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/DataLabels/DataLabelProvider";
-import {
-    LineSeriesDataLabelProvider
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/DataLabels/LineSeriesDataLabelProvider";
-import {
-    DataLabelState
-} from "../../../../../../../../scichart.dev/Web/src/SciChart/lib/Charting/Visuals/RenderableSeries/DataLabels/DataLabelState";
+import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import {EPointMarkerType} from "scichart/types/PointMarkerType";
+import {AUTO_COLOR} from "scichart/Charting/Themes/IThemeProvider";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
+import {LineSeriesDataLabelProvider} from "scichart/Charting/Visuals/RenderableSeries/DataLabels/LineSeriesDataLabelProvider";
+import {DataLabelState} from "scichart/Charting/Visuals/RenderableSeries/DataLabels/DataLabelState";
 
 const divElementId = "chart";
-const HIT_TEST_RADIUS = 10;
 
 // Generate some data for the example
 const dataSize = 30;
@@ -85,11 +50,6 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
             growBy: new NumberRange(0.1, 0.1),
         })
     );
-
-    sciChartSurface.chartModifiers.add(new SeriesSelectionModifier({
-        enableHover: true,
-        enableSelection: true
-    }));
 
     // Stroke/fill for selected points
     const stroke = appTheme.ForegroundColor;
@@ -156,14 +116,27 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
 
     // Todo: Show how to programmatically set points. Requires some changes in scichart.js API
 
-    // Add title annotation
+    // Add title annotations
     sciChartSurface.annotations.add(
         new TextAnnotation({
-            text: "Click & Drag Select points. Output is shown in the table below",
+            text: "Click & Drag Select points",
             fontSize: 20,
             textColor: appTheme.ForegroundColor,
             x1: 0.5,
-            y1: 0,
+            opacity: 0.77,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative
+        })
+    );
+
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: "Try single click, CTRL+CLICK & Drag to select",
+            fontSize: 16,
+            textColor: appTheme.ForegroundColor,
+            x1: 0.5,
+            yCoordShift: 40,
             opacity: 0.77,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
@@ -206,9 +179,9 @@ export default function DatapointSelection() {
     };
 
     const pointsBoxStyle: CSSProperties = {
-        flexBasis: 100, flexGrow: 1, flexShrink: 1,
+        flexBasis: 70, flexGrow: 1, flexShrink: 1,
         color: appTheme.PaleSkyBlue,
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     };
 
     const chartStyle: CSSProperties = {
@@ -220,24 +193,26 @@ export default function DatapointSelection() {
         width: "100px",
         borderRight: `solid 1px ${appTheme.MutedSkyBlue}`,
         borderBottom: `solid 1px ${appTheme.MutedSkyBlue}`,
-        textAlign: "center"
+        textAlign: "center",
+        fontSize: 14
     };
     const columnItemStyleRight: CSSProperties = {
         flex: "auto",
         width: "100px",
         borderBottom: `solid 1px ${appTheme.MutedSkyBlue}`,
-        textAlign: "center"
+        textAlign: "center",
+        fontSize: 14
     };
 
     const scrollbarStyle: CSSProperties = {
-        height: "120px",
+        height: "100%",
         overflow: "scroll",
-        overflowX: "hidden"
+        overflowX: "hidden",
     };
 
     return (
         <div className={classes.FullHeightChartWrapper}>
-            <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+            <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
                 <div id={divElementId} style={chartStyle} />
                 <div style={pointsBoxStyle}>
                     <h3 style={{color: appTheme.PaleSkyBlue, margin: 5}}>Selected Points</h3>
