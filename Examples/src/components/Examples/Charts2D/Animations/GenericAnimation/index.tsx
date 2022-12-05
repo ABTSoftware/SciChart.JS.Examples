@@ -1,182 +1,198 @@
 import * as React from "react";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
 import classes from "../../../../Examples/Examples.module.scss";
-import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { ILineAnnotationOptions, LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
-import { CustomAnnotation, ICustomAnnotationOptions } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { IAnnotation } from "scichart/Charting/Visuals/Annotations/IAnnotation";
-import { GenericAnimation } from "scichart/Core/Animations/GenericAnimation";
-import { easing } from "scichart/Core/Animations/EasingFunctions";
-import Button from "@material-ui/core/Button/Button";
-import { NumberRange } from "scichart/Core/NumberRange";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {populationData} from "../../../Charts3D/Basic3DChartTypes/Bubble3DChart/data/PopulationData";
+import {appTheme} from "../../../theme";
+import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
+import {XyzDataSeries} from "scichart/Charting/Model/XyzDataSeries";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {GenericAnimation} from "scichart/Core/Animations/GenericAnimation";
+import {LineAnnotation} from "scichart/Charting/Visuals/Annotations/LineAnnotation";
 
 const divElementId = "chart";
 
-const getChartData = () => {
-    const xValues: number[] = [];
-    const yValues: number[] = [];
-    const y1Values: number[] = [];
-
-    for (let i = 0; i <= 1000; i++) {
-        const x = 0.1 * i;
-        xValues.push(x);
-        yValues.push(Math.sin(x * 0.09));
-        y1Values.push(Math.cos(x * 0.05) + 2);
-    }
-    return {
-        xValues,
-        yValues,
-        y1Values
-    };
-};
-
 export const drawExample = async () => {
-    const { xValues, yValues, y1Values } = getChartData();
 
+    // Create a SciChartSurface with bubble chart
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJSLightTheme()
+        theme: appTheme.SciChartJsTheme
     });
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-1.0, 100.0) }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-2.0, 3.5) }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        axisTitle: "Year",
+        labelPrecision: 0
+    }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        axisTitle: "Life Expectancy (years)",
+        labelPrecision: 0,
+        growBy: new NumberRange(0, 0.2)
+    }));
 
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-            strokeThickness: 4,
-            stroke: "#05445E"
-        })
-    );
+    // Population dataset from gapminderdata
+    // data format example = [
+    //    { country: "Afghanistan", year: 1952, population: 8425333, continent: "Asia", lifeExpectancy: 28.801, gdpPerCapita: 779.4453145 },
+    // ]
+    const year = populationData.map(item => item.year);
+    const lifeExpectancy = populationData.map(item => item.lifeExpectancy);
+    const gdpPerCapita = populationData.map(item => item.gdpPerCapita);
+    const population = populationData.map(item => item.population);
 
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            strokeThickness: 4,
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values }),
-            stroke: "#189AB4"
-        })
-    );
-
-    const { animatedAnnotation, pointSinAnnotation, pointCosAnnotation } = buildAnnotations(xValues, yValues, y1Values);
-    sciChartSurface.annotations.add(animatedAnnotation, pointSinAnnotation, pointCosAnnotation);
-
-    const { animation, animationSinPoint, animationCosPoint } = buildGenericAnimations(
-        { xValues, yValues, y1Values },
-        { animatedAnnotation, pointSinAnnotation, pointCosAnnotation }
-    );
-
-    const startAnimation = () => {
-        sciChartSurface.addAnimation(animation);
-        sciChartSurface.addAnimation(animationSinPoint);
-        sciChartSurface.addAnimation(animationCosPoint);
-    }
-
-    return { sciChartSurface, animations: { animation, animationSinPoint, animationCosPoint }, startAnimation };
-};
-
-const buildAnnotations = (xValues: number[], yValues: number[], y1Values: number[]) => {
-    const svg = '<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20" heigh="20" xml:space="preserve"><circle cx="10" cy="10" r="10" fill="#145DA0"/></svg>';
-
-    const animatedAnnotation = new LineAnnotation({
-        x1: xValues[0],
-        y1: yValues[0],
-        x2: xValues[0],
-        y2: y1Values[0],
-        stroke: "#145DA0",
-        strokeThickness: 3
+    const bubbleSeries0 = new FastBubbleRenderableSeries(wasmContext, {
+        dataSeries: new XyzDataSeries(wasmContext, {xValues: year, yValues: lifeExpectancy, zValues: gdpPerCapita }),
+        opacity: 0.3,
+        // Set the default pointmarker size
+        pointMarker: new EllipsePointMarker(wasmContext, { fill: appTheme.VividSkyBlue, opacity: 0.3, width: 64, height: 64, strokeThickness: 0 }),
+        // z sizes are pixels so normalize these until the largest value in gdpPerCapita = 100px
+        zMultiplier: 100 / Math.max(...gdpPerCapita),
     });
+    sciChartSurface.renderableSeries.add(bubbleSeries0);
 
-    const pointSinAnnotation = new CustomAnnotation({
-        x1: xValues[0],
-        y1: yValues[0],
+    // Add a title
+    const titleAnnotation = new TextAnnotation({
+        text: "In SciChart.js you can animate anything",
+        x1: 0.5,
+        y1: 0,
+        opacity: 0.77,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        svgString: svg
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        fontSize: 24,
+        textColor: appTheme.ForegroundColor,
     });
+    sciChartSurface.annotations.add(titleAnnotation);
 
-    const pointCosAnnotation = new CustomAnnotation({
-        x1: xValues[0],
-        y1: y1Values[0],
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        svgString: svg
+    // add a label & line
+    const labelAnnotation1 = new TextAnnotation({
+        x1: 1955,
+        y1: 82,
+        text: "In this dataset life expectancy increases with time (years). Bubble size is GDP/capita",
+        fontSize: 18,
+        opacity: 0, // initially hidden
+        textColor: appTheme.PaleSkyBlue,
+        verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
     });
-    return { animatedAnnotation, pointSinAnnotation, pointCosAnnotation };
+    sciChartSurface.annotations.add(labelAnnotation1);
+    const lineAnnotation = new LineAnnotation({
+        x1: 1960,
+        y1: 81.5,
+        x2: 1966,
+        y2: 76,
+        opacity: 0, // initially hidden
+        stroke: appTheme.PaleSkyBlue,
+        strokeThickness: 2,
+    });
+    sciChartSurface.annotations.add(lineAnnotation);
+
+    // Add some animations using genericAnimation
+    //
+
+    // From 0..2 seconds typewrite the title
+    sciChartSurface.addAnimation(addTypewriterEffect(2000, 0, titleAnnotation));
+
+    // From 2..4 seconds animate the label on the data
+    sciChartSurface.addAnimation(new GenericAnimation({
+        from: 0, to: 1,
+        onAnimate: (from: number, to: number, progress: number) => {
+            labelAnnotation1.opacity = to * progress;
+            lineAnnotation.opacity = to * progress;
+        },
+        duration: 2000,
+        delay: 2000,
+    }));
+
+    // From 5..8s change the data and relabel
+    //
+    const bubbleSeries1 = new FastBubbleRenderableSeries(wasmContext, {
+        dataSeries: new XyzDataSeries(wasmContext, {xValues: gdpPerCapita, yValues: lifeExpectancy, zValues: population }),
+        opacity: 0.3,
+        // Set the default pointmarker size
+        pointMarker: new EllipsePointMarker(wasmContext, { fill: appTheme.VividSkyBlue, opacity: 0.3, width: 64, height: 64, strokeThickness: 0 }),
+        // z sizes are pixels so normalize these until the largest value in population = 100px
+        zMultiplier: 100 / Math.max(...population),
+        // initially hidden
+        isVisible: false
+    });
+    sciChartSurface.renderableSeries.add(bubbleSeries1);
+
+    // Animate the new data
+    sciChartSurface.addAnimation(new GenericAnimation({
+        from: 0, to: 0.3,
+        onAnimate: (from: number, to: number, progress: number) => {
+            bubbleSeries1.isVisible = true;
+            bubbleSeries1.pointMarker.opacity = to * progress;
+            bubbleSeries0.pointMarker.opacity = 0.3 * (1 - progress)
+            labelAnnotation1.opacity = (1 - progress);
+            lineAnnotation.opacity = (1 - progress);
+        },
+        onCompleted: () => {
+            bubbleSeries0.isVisible = false;
+            // When the data has changed, now zoom to fit new data
+            sciChartSurface.xAxes.get(0).animateVisibleRange(new NumberRange(0, 50000), 1000);
+            sciChartSurface.xAxes.get(0).axisTitle = "GDP per capita";
+        },
+        duration: 3000,
+        delay: 5000,
+    }));
+
+    // add a second label & line from 7..9s
+    const labelAnnotation2 = new TextAnnotation({
+        x1: 10000,
+        y1: 50,
+        yCoordShift: 20,
+        text: "Let's swap the axis to GDP vs. Life Expectancy using GenericAnimation. Bubble size is Population",
+        fontSize: 18,
+        opacity: 0, // initially hidden
+        textColor: appTheme.PaleSkyBlue,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+    });
+    sciChartSurface.annotations.add(labelAnnotation2);
+    const lineAnnotation2 = new LineAnnotation({
+        x1: 10000,
+        y1: 60,
+        x2: 20000,
+        y2: 50,
+        opacity: 0, // initially hidden
+        stroke: appTheme.PaleSkyBlue,
+        strokeThickness: 2,
+    });
+    sciChartSurface.annotations.add(lineAnnotation2);
+
+    // Animate the 2nd label and line
+    sciChartSurface.addAnimation(new GenericAnimation({
+        from: 0, to: 1,
+        onAnimate: (from: number, to: number, progress: number) => {
+            labelAnnotation2.opacity = to * progress;
+            lineAnnotation2.opacity = to * progress;
+        },
+        duration: 2000,
+        delay: 7000,
+    }));
+
+
+    return { sciChartSurface };
 };
 
-const buildGenericAnimations = (
-    data: { xValues: number[]; yValues: number[]; y1Values: number[] },
-    annotations: { animatedAnnotation: IAnnotation; pointSinAnnotation: IAnnotation; pointCosAnnotation: IAnnotation }
-) => {
-    const ANIMATION_DURATION: number = 3000;
-    let random: number = Math.random();
 
-    let isAdditionalAnnotationDrawed: boolean = false;
-    const animation = new GenericAnimation<ILineAnnotationOptions>({
-        from: { x1: data.xValues[0], y1: data.yValues[0], x2: data.xValues[0], y2: data.y1Values[0] },
-        to: {
-            x1: data.xValues[data.xValues.length - 1],
-            y1: data.yValues[data.yValues.length - 1],
-            x2: data.xValues[data.xValues.length - 1],
-            y2: data.y1Values[data.y1Values.length - 1]
+const addTypewriterEffect = (duration: number, delay: number, textAnnotation: TextAnnotation) => {
+    return new GenericAnimation<string>({
+        from: "",
+        to: textAnnotation.text,
+        onAnimate: (from: string, to: string, progress: number) => {
+            const length = Math.floor(to.length * progress);
+            textAnnotation.text = to.substring(0, length);
         },
-        duration: ANIMATION_DURATION,
-        ease: easing.inOutSine,
-        onAnimate: (from, to, progress) => {
-            const point = Math.floor(data.xValues.length * progress);
-            annotations.animatedAnnotation.x1 = data.xValues[point];
-            annotations.animatedAnnotation.y1 = data.yValues[point];
-            annotations.animatedAnnotation.x2 = data.xValues[point];
-            annotations.animatedAnnotation.y2 = data.y1Values[point];
-        },
-        onCompleted: () => {
-            isAdditionalAnnotationDrawed = false;
-            random = Math.random();
-            animation.reset();
-        }
+        duration,
+        delay,
+        setInitialValueImmediately: true
     });
-
-    const animationSinPoint = new GenericAnimation<ICustomAnnotationOptions>({
-        from: { x1: data.xValues[0], y1: data.yValues[0] },
-        to: { x1: data.xValues[data.xValues.length - 1], y1: data.yValues[data.yValues.length - 1] },
-        duration: ANIMATION_DURATION,
-        ease: easing.inOutSine,
-        onAnimate: (from, to, progress) => {
-            const point = Math.floor(data.xValues.length * progress);
-            annotations.pointSinAnnotation.x1 = data.xValues[point];
-            annotations.pointSinAnnotation.y1 = data.yValues[point];
-        },
-        onCompleted: () => {
-            animationSinPoint.reset();
-        }
-    });
-
-    const animationCosPoint = new GenericAnimation<ICustomAnnotationOptions>({
-        from: { x1: data.xValues[0], y1: data.y1Values[0] },
-        to: { x1: data.xValues[data.xValues.length - 1], y1: data.y1Values[data.y1Values.length - 1] },
-        duration: ANIMATION_DURATION,
-        ease: easing.inOutSine,
-        onAnimate: (from, to, progress) => {
-            const point = Math.floor(data.xValues.length * progress);
-            annotations.pointCosAnnotation.x1 = data.xValues[point];
-            annotations.pointCosAnnotation.y1 = data.y1Values[point];
-        },
-        onCompleted: () => {
-            animationCosPoint.reset();
-        }
-    });
-
-    return { animation, animationSinPoint, animationCosPoint };
-};
-
+}
 let scs: SciChartSurface;
-let animation: GenericAnimation<ILineAnnotationOptions>;
-let animationSinPoint: GenericAnimation<ICustomAnnotationOptions>;
-let animationCosPoint: GenericAnimation<ICustomAnnotationOptions>;
-let startAnimation: () => void;
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -187,56 +203,13 @@ export default function GenericAnimations() {
         (async () => {
             const res = await drawExample();
             scs = res.sciChartSurface;
-            animation = res.animations.animation;
-            animationSinPoint = res.animations.animationSinPoint;
-            animationCosPoint = res.animations.animationCosPoint;
-            startAnimation = res.startAnimation;
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => scs?.delete();
     }, []);
 
-    const handleStartClick = () => {
-        setStarted(true);
-        startAnimation();
-    }
-
-    const handleRestartClick = () => {
-        cancelAnimations();
-        startAnimation();
-        animation?.reset();
-        animationCosPoint?.reset();
-        animationSinPoint?.reset();
-        setStarted(true);
-        setCanceled(false);
-    };
-
-    const handleCancelClick = () => {
-        cancelAnimations();
-        setStarted(false);
-        setCanceled(true);
-    };
-
-    const cancelAnimations = () => {
-        animation?.cancel();
-        animationCosPoint?.cancel();
-        animationSinPoint?.cancel();
-    }
 
     return (
-        <>
-            <div id={divElementId} className={classes.ChartWrapper} />
-            <div className={classes.ButtonsWrapper}>
-                <Button className={classes.ButtonsText} size="medium" onClick={handleStartClick} disabled={isStarted || isCanceled}>
-                    start
-                </Button>
-                <Button className={classes.ButtonsText} size="medium" onClick={handleCancelClick} disabled={!isStarted || isCanceled}>
-                    cancel
-                </Button>
-                <Button className={classes.ButtonsText} size="medium" onClick={handleRestartClick} disabled={!isCanceled}>
-                    restart
-                </Button>
-            </div>
-        </>
+        <div id={divElementId} className={classes.ChartWrapper} />
     );
 }
