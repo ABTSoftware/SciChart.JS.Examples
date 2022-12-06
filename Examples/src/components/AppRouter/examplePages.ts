@@ -89,6 +89,7 @@ import { realtimeBigDataDemoExampleInfo } from "../Examples/FeaturedApps/ShowCas
 import {oilAndGasExplorerDashboard} from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard/exampleInfo";
 import {TDocumentationLink} from "../../helpers/types/ExampleDescriptionTypes";
 import { datalabelsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/DataLabels/exampleInfo";
+import { virtualizedDataOverviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -403,6 +404,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_zoomAndPanAChart_Overview: {
         id: "chart2D_zoomAndPanAChart_Overview",
         ...overviewExampleInfo
+    },
+    chart2D_zoomAndPanAChart_VirtualizedDataOverview: {
+        id: "chart2D_zoomAndPanAChart_VirtualizedDataOverview",
+        ...virtualizedDataOverviewExampleInfo
     },
     chart2D_filters_PercentageChange: {
         id: "chart2D_filters_PercentageChange",

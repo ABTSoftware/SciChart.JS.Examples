@@ -7,11 +7,9 @@ import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-datalabels-chart.jpg";
 
-const description = `Columns in SciChart.js are rendered with a stroke and fill, and
-support gradient fill and paletteproviders for more custom coloring options.`;
+const description = `Shows how to add and customise data labels for series using SciChart.js`;
 const tips = [
-    `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much
-    space the column takes up.`
+    ``
 ];
 
 const documentationLinks: TDocumentationLink[] = [
@@ -40,7 +38,7 @@ const Subtitle = () => (
 
 export const datalabelsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDatalabels,
-    pageTitle: ExampleStrings.pageTitleDatalabels,
+    pageTitle: ExampleStrings.titleDatalabels + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDatalabels,
     subtitle: Subtitle,
     documentationLinks,
@@ -49,7 +47,7 @@ export const datalabelsExampleInfo: TExampleInfo = {
     code,
     githubUrl,
     metaDescription:
-        "JavaScript Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
-    metaKeywords: "column, chart, javascript, webgl, canvas",
+        "Show data labels on javascript chart. Get your free demo now.",
+    metaKeywords: "data labels, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage
 };

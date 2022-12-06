@@ -103,14 +103,6 @@ module.exports = {
     devServer: {
         disableHostCheck: true,
         historyApiFallback: true,
-        proxy: {
-            "/api/thevirustracker": {
-                target: "https://thevirustracker.com",
-                pathRewrite: { "^/api/thevirustracker": "" },
-                secure: false,
-                changeOrigin: true
-            }
-        },
         before: function(app, server, compiler) {
             app.get("/api/license", function(req, res) {
                 res.send(betaTrialKey);

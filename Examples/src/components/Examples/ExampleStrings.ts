@@ -654,8 +654,10 @@ export const ExampleStrings = {
     // Datalabels
     urlDatalabels: "/javascript-datalabels",
     titleDatalabels: "Data Labels",
-    pageTitleDatalabels: "Data Labels | JavaScript Chart Library Examples",
     urlDatalabelsDocumentation: "https://www.scichart.com/documentation/js/current/DataLabels.html",
     urlTitleDatalabelsDocumentation: "This specific page in the JavaScript DataLabels Api documentation will help you to get started",
+
+    urlVirtualizedData: "/javascript-virtualized-data",
+    titleVirtualizedData: "Load Data on Zoom/Pan",
 
 };

@@ -23,6 +23,7 @@ import { ENumericFormat } from "scichart/types/NumericFormat";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { XyScaleOffsetFilter } from "scichart/Charting/Model/Filters/XyScaleOffsetFilter";
 import { EXyDirection } from "scichart/types/XyDirection";
+import { IPointMetadata } from "scichart/Charting/Model/IPointMetadata";
 
 const divElementId = "chart";
 
@@ -35,8 +36,9 @@ const drawExample = async () => {
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)}));
 
     // normal labels
+    const data1 = ExampleDataProvider.getSpectrumData(0, 20, 10, 1, 0.01);
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, ExampleDataProvider.getSpectrumData(0, 20, 10, 1, 0.01)),
+        dataSeries: new XyDataSeries(wasmContext, data1),
         stroke: appTheme.VividOrange,
         strokeThickness: 3,
         dataLabels: {
@@ -45,6 +47,21 @@ const drawExample = async () => {
             color: appTheme.ForegroundColor,
             // Normal label format and precision options are supported
             precision: 2,
+        },
+    }));
+
+    const labels = ["Data", "Labels", "can", "come", "from", "values", "in", "metadata"]
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues.map(y => y + 5), 
+            metadata: labels.map(l => ({ isSelected: false, text: l } as IPointMetadata))}),
+        stroke: appTheme.VividSkyBlue,
+        strokeThickness: 3,
+        dataLabels: {
+            // To enable datalabels, set fontFamily and size
+            style: { fontFamily: "Arial", fontSize: 16 },
+            color: appTheme.ForegroundColor,
+            // @ts-ignore
+            metaDataSelector: (md) => md.text
         },
     }));
 

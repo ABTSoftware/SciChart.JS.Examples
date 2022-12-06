@@ -99,6 +99,7 @@ import FeatureAxisLayout from "../Examples/FeaturedApps/FeatureDemos/AxisLayout"
 import RealtimeBigDataShowcase from "../Examples/FeaturedApps/ShowCases/RealtimeBigData";
 import OilAndGasDashboardShowcase from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard";
 import DataLabelsExample from "../Examples/Charts2D/StylingAndTheming/DataLabels";
+import VirtualizedDataOverview from "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview";
 
 export type TMenuItem = {
     item: {
@@ -242,7 +243,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers,
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_VirtualizedDataOverview
         ]
     },
     {
@@ -457,6 +459,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return MultipleZoomPanModifiers;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview.id:
             return Overview;
+        case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_VirtualizedDataOverview.id:
+            return VirtualizedDataOverview;
         case EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.id:
             return MultiLineLabels;
         case EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.id:

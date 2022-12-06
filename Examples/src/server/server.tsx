@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as compression from "compression";
 import { Request, Response, NextFunction } from "express";
-import * as request from "request";
+
 import * as chalk from "chalk";
 import * as cors from "cors";
 import * as React from "react";
@@ -15,14 +15,7 @@ import { customTheme } from "../theme";
 import { renderIndexHtml } from "./renderIndexHtml";
 import * as http from "http";
 import { createSocketServer } from "./websockets";
-import { tq3080_DSM_2M } from "./Data/tq3080_DSM_2M";
-import { candlesADAUSDT } from "./BinanceData/candlesADAUSDT";
-import { TBinanceQueryParams } from "./types/TBinanceQueryParams";
-import { candlesBTCUSDT } from "./BinanceData/candlesBTCUSDT";
-import { TBinanceCandleData } from "../commonTypes/TBinanceCandleData";
-import { candlesDOGEUSDT } from "./BinanceData/candlesDOGEUSDT";
-import { candlesETHUSDT } from "./BinanceData/candlesETHUSDT";
-import { candlesXRPUSDT } from "./BinanceData/candlesXRPUSDT";
+import { api } from "./api";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
@@ -56,6 +49,7 @@ function handleRender(req: Request, res: Response) {
 const app = express();
 app.use(cors());
 app.use(compression({ filter: shouldCompress }));
+
 const server = http.createServer(app);
 const io = createSocketServer(server);
 
@@ -76,46 +70,7 @@ app.use(
         maxAge: 0
     })
 );
-
-app.get("/api/license", (req, res) => {
-    const domainLicense = process.env.SCLICENSE;
-    console.log("returning license: " + domainLicense);
-    res.send(domainLicense);
-});
-
-app.get("/api/lidarData", (req, res) => {
-    console.log("returning lidar data");
-    res.send(tq3080_DSM_2M);
-});
-
-app.get("/api/get-binance-candles", (req, res) => {
-    const params = req.query as TBinanceQueryParams;
-    let data: TBinanceCandleData;
-    switch (params.symbol) {
-        case "ADAUSDT":
-            data = candlesADAUSDT;
-            break;
-        case "BTCUSDT":
-            data = candlesBTCUSDT;
-            break;
-        case "DOGEUSDT":
-            data = candlesDOGEUSDT;
-            break;
-        case "ETHUSDT":
-            data = candlesETHUSDT;
-            break;
-        case "XRPUSDT":
-            data = candlesXRPUSDT;
-            break;
-    }
-    res.send(data);
-});
-
-app.use("/api/thevirustracker", (req: Request, res: Response) => {
-    const apiUrl = "https://thevirustracker.com";
-    const url = apiUrl + req.url;
-    req.pipe(request(url)).pipe(res);
-});
+app.use("/api", api);
 
 app.get("*", (req: Request, res: Response) => {
     handleRender(req, res);
