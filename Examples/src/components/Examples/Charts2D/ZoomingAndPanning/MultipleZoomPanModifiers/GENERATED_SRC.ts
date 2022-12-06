@@ -1,64 +1,77 @@
 export const code = `import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
-import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
-import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { PinchZoomModifier } from "scichart/Charting/ChartModifiers/PinchZoomModifier";
-import { EExecuteOn } from "scichart/types/ExecuteOn";
-import { easing } from "scichart/Core/Animations/EasingFunctions";
+import {SciChartSurface} from "scichart";
+import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {NumberRange} from "scichart/Core/NumberRange";
+import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
+import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import {PinchZoomModifier} from "scichart/Charting/ChartModifiers/PinchZoomModifier";
+import {EExecuteOn} from "scichart/types/ExecuteOn";
+import {easing} from "scichart/Core/Animations/EasingFunctions";
 import classes from "../../../../Examples/Examples.module.scss";
-import { ELabelAlignment } from "scichart/types/LabelAlignment";
+import {appTheme} from "../../../theme";
+import {ENumericFormat} from "scichart/types/NumericFormat";
+import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
+import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";
+import {EDragMode} from "scichart/types/DragMode";
+import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
-    // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+    // Create a SciChartSurface with X,Y Axis
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
-    // Add an XAxis, YAxis
-    sciChartSurface.xAxes.add(
-        new NumericAxis(wasmContext, {
-            visibleRange: new NumberRange(-8000, 8000),
-            labelPrecision: 0
-        })
-    );
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
-            visibleRange: new NumberRange(-8000, 8000),
-            labelPrecision: 0,
-            labelStyle: { alignment: ELabelAlignment.Right }
-        })
-    );
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        growBy: new NumberRange(0.05, 0.05),
+        labelFormat: ENumericFormat.Decimal,
+        labelPrecision: 4
+    }));
 
-    const dataSeries = new XyyDataSeries(wasmContext);
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        growBy: new NumberRange(0.1, 0.1),
+        labelFormat: ENumericFormat.Decimal,
+        labelPrecision: 4
+    }));
 
-    const centerX = 0;
-    const centerY = 0;
-    const a = 1;
-    const b = 1.5;
-    for (let i = 0; i < 1000; ++i) {
-        const angle = 0.1 * i;
-        const x = centerX + (a + b * angle) * Math.cos(angle) * i;
-        const y1 = centerY + (a + b * angle) * Math.sin(angle) * i;
-        const y2 = centerY + (a + b * angle + 3) * Math.sin(angle) * i;
-        dataSeries.append(x, y1, y2);
-    }
+    // Add some data
+    const data1 = ExampleDataProvider.getFourierSeriesZoomed(0.6, 0.13, 5.0, 5.15);
+    const lineSeries0 = new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues, dataSeriesName: "First Line Series" }),
+        strokeThickness: 3,
+        stroke: appTheme.VividSkyBlue,
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, strokeThickness: 0, fill: appTheme.VividSkyBlue })
+    });
+    sciChartSurface.renderableSeries.add(lineSeries0);
 
-    // Create the band series and add to the chart
-    const rendSeries = new FastBandRenderableSeries(wasmContext, { dataSeries, strokeThickness: 2 });
-    rendSeries.fill = "rgba(53, 73, 170, 0.47)";
-    rendSeries.fillY1 = "rgba(202, 73, 94, 0.6)";
-    rendSeries.stroke = "#FF1919FF";
-    rendSeries.strokeY1 = "#279B27FF";
-    rendSeries.animation = new SweepAnimation({ duration: 1500 });
-    sciChartSurface.renderableSeries.add(rendSeries);
+    const data2 = ExampleDataProvider.getFourierSeriesZoomed(0.5, 0.12, 5.0, 5.15);
+    const lineSeries1  =new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues: data2.xValues, yValues: data2.yValues, dataSeriesName: "Second Line Series" }),
+        strokeThickness: 3,
+        stroke: appTheme.VividOrange,
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, strokeThickness: 0, fill: appTheme.VividOrange })
+    });
+    sciChartSurface.renderableSeries.add(lineSeries1);
 
-    // Optional: Add some interactivity modifiers
+    const data3 = ExampleDataProvider.getFourierSeriesZoomed(0.4, 0.11, 5.0, 5.15);
+    const lineSeries2 = new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues: data3.xValues, yValues: data3.yValues, dataSeriesName: "Third Line Series" }),
+        strokeThickness: 3,
+        stroke: appTheme.MutedPink,
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, strokeThickness: 0, fill: appTheme.MutedPink }),
+    });
+    sciChartSurface.renderableSeries.add(lineSeries2);
+
+    // Here is where we add the zoom, pan behaviour
     sciChartSurface.chartModifiers.add(
         // use RubberBandXyZoomModifier with Right Mouse Button
         // use easingFunction to animate zoom
@@ -66,9 +79,40 @@ const drawExample = async () => {
         new ZoomPanModifier(),
         new MouseWheelZoomModifier(),
         // use PinchZoomModifier to allow zooming with pinch gesture on touch devices
-        new PinchZoomModifier()
+        new PinchZoomModifier(),
+        // Zoom extents on double click
+        new ZoomExtentsModifier( { easingFunction: easing.elastic })
     );
 
+    // Add annotations to tell the user what to do
+    sciChartSurface.annotations.add(new TextAnnotation({
+        text: "Zoom Pan Modifiers Demo",
+        x1: 0.5, y1: 0.5,
+        yCoordShift: -50,
+        xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center, verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        opacity: 0.33,
+        fontSize: 48,
+        fontWeight: "Bold"
+    }));
+    sciChartSurface.annotations.add(new TextAnnotation({
+        text: "Multiple zoom, pan behaviours enabled on a single chart",
+        x1: 0.5, y1: 0.5,
+        yCoordShift: 0,
+        xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center, verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        opacity: 0.38,
+        fontSize: 28,
+    }));
+    sciChartSurface.annotations.add(new TextAnnotation({
+        text: "Try mouse-wheel, left/right mouse drag, mousewheel on axis, pinch zoom, double-click to zoom to fit etc...",
+        x1: 0.5, y1: 0.5,
+        yCoordShift: 50,
+        xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center, verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        opacity: 0.45,
+        fontSize: 17,
+    }));
     return { wasmContext, sciChartSurface };
 };
 

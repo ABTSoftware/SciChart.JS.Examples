@@ -24,6 +24,7 @@ import { DataPointSelectionModifier } from "scichart/Charting/ChartModifiers/Dat
 import { DataPointSelectionChangedArgs } from "scichart/Charting/ChartModifiers/DataPointSelectionChangedArgs";
 import { DataPointInfo } from "scichart/Charting/ChartModifiers/DataPointInfo";
 import { DataPointSelectionPaletteProvider } from "scichart/Charting/Model/DataPointSelectionPaletteProvider";
+import { CSSProperties } from "react";
 
 const divElementId = "chart";
 const HIT_TEST_RADIUS = 10;
@@ -55,7 +56,7 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
             lowValues,
             closeValues
         }),
-        paletteProvider: new DataPointSelectionPaletteProvider({ stroke: "#eb7d34", fill: "#1890b5"})
+        paletteProvider: new DataPointSelectionPaletteProvider({ stroke: "#eb7d34", fill: "#1890b5" })
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
 
@@ -76,7 +77,7 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
             yValues: yBubbleValues,
             zValues: zBubbleValues
         }),
-        paletteProvider: new DataPointSelectionPaletteProvider({ stroke: "#eb7d34", fill: "#1890b5"})
+        paletteProvider: new DataPointSelectionPaletteProvider({ stroke: "#eb7d34", fill: "#1890b5" })
     });
     sciChartSurface.renderableSeries.add(bubbleSeries);
 
@@ -91,13 +92,14 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
             height: 14,
             fill: "#00000000",
             stroke: "#00000000",
-            strokeThickness: 2,
+            strokeThickness: 2
         }),
-        dataSeries: new XyDataSeries(wasmContext, { 
+        dataSeries: new XyDataSeries(wasmContext, {
             dataSeriesName: "Line",
-            xValues: xLineValues, yValues: yLineValues 
+            xValues: xLineValues,
+            yValues: yLineValues
         }),
-        paletteProvider: new DataPointSelectionPaletteProvider({ stroke: "#eb7d34", fill: "#1890b5"})
+        paletteProvider: new DataPointSelectionPaletteProvider({ stroke: "#eb7d34", fill: "#1890b5" })
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -113,7 +115,7 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
             xValues: xColumnValues,
             yValues: yColumnValues
         }),
-        paletteProvider: new DataPointSelectionPaletteProvider({ stroke: "#eb7d34", fill: "#1890b5"})
+        paletteProvider: new DataPointSelectionPaletteProvider({ stroke: "#eb7d34", fill: "#1890b5" })
     });
     sciChartSurface.renderableSeries.add(columnSeries);
 
@@ -140,16 +142,36 @@ export default function DatapointSelection() {
         return () => scs?.delete();
     }, []);
 
+    const rowStyle = {
+        height: "30px",
+        display: "flex"
+    };
+
+    const columnItemStyle: CSSProperties = {
+        flex: "auto",
+        width: "100px",
+        border: "solid 1px black",
+        textAlign: "center"
+    };
+
     return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
+        <div className={classes.FullHeightChartWrapper}>
+            <div id={divElementId} />
             <Box mt={20}>
+                {/* <div style={{width: "200px", height: "500px", display: "flex", flexDirection: "column"}}> */}
+                <div style={rowStyle}>
+                    <div style={columnItemStyle}>Series Name</div>
+                    <div style={columnItemStyle}>X Value</div>
+                    <div style={columnItemStyle}>Y Value</div>
+                </div>
                 {selectedPoints.map((dp, index) => (
-                    <Alert key={index} style={{ marginTop: "16px" }}>
-                        <AlertTitle>{dp.seriesName}</AlertTitle>
-                        Data Value: {dp.xValue.toFixed(2)}, {dp.yValue.toFixed(2)};
-                    </Alert>
+                    <div style={rowStyle}>
+                        <div style={columnItemStyle}>{dp.seriesName}</div>
+                        <div style={columnItemStyle}>{dp.xValue.toFixed(2)}</div>
+                        <div style={columnItemStyle}>{dp.yValue.toFixed(2)}</div>
+                    </div>
                 ))}
+                {/* </div> */}
             </Box>
         </div>
     );

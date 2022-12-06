@@ -88,6 +88,7 @@ import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/Axi
 import { realtimeBigDataDemoExampleInfo } from "../Examples/FeaturedApps/ShowCases/RealtimeBigData/exampleInfo";
 import {oilAndGasExplorerDashboard} from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard/exampleInfo";
 import {TDocumentationLink} from "../../helpers/types/ExampleDescriptionTypes";
+import { datalabelsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/DataLabels/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -358,6 +359,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_stylingAndTheming_TransparentBackground: {
         id: "chart2D_stylingAndTheming_TransparentBackground",
         ...transparentBackgroundExampleInfo
+    },
+    chart2D_stylingAndTheming_DataLabels: {
+        id: "chart2D_stylingAndTheming_DataLabels",
+        ...datalabelsExampleInfo
     },
     chart2D_tooltipsAndHittest_HitTestApi: {
         id: "chart2D_tooltipsAndHittest_HitTestApi",

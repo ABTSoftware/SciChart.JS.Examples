@@ -1,286 +1,150 @@
-export const code = `import { Checkbox, Input, InputLabel, Mark, MenuItem, Select, Slider, TextField } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import FormControl from "@material-ui/core/FormControl";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Alert from "@material-ui/lab/Alert";
-import AlertTitle from "@material-ui/lab/AlertTitle";
-import * as React from "react";
-import { ESeriesType } from "scichart/types/SeriesType";
-import { divElementId, drawExample, ISettings, TMessage } from "./drawExample";
+export const code = `import * as React from "react";
+import classes from "../../../../Examples/Examples.module.scss";
+import './OIlGasStyles.css';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 142
-        },
-        notificationsBlock: {
-            flexBasis: 320,
-            flexGrow: 0,
-            flexShrink: 0,
-            marginLeft: 24
-        },
-        notification: {
-            marginBottom: 16
-        },
-        description: {
-            width: 800,
-            marginBottom: 20
-        }
-    })
-);
 
-export default function SSStreaming() {
-    const [seriesType, setSeriesType] = React.useState<ESeriesType>(ESeriesType.LineSeries);
-    const [isDirty, setIsDirty] = React.useState<boolean>(false);
-    const [settings, setSettings] = React.useState<ISettings>({
-        seriesCount: 10,
-        pointsOnChart: 4, // 10000
-        pointsPerUpdate: 1, // 10
-        sendEvery: 100,
-        initialPoints: 4 // 10000
-    });
-    const [maxSettings, setMaxSettings] = React.useState<ISettings>({
-        seriesCount: 100,
-        pointsOnChart: 6, // 1000000
-        pointsPerUpdate: 4, //10000
-        sendEvery: 5, // Minimum
-        initialPoints: 6 // 1000000
-    });
-    const maxPoints = 10000000;
-    const classes = useStyles();
+export const drawExample = async () => {
 
-    const [results, setResults] = React.useState({
-        dimensions: null,
-        measures: null,
-        dataset: null,
-        startDate: null,
-        endDate: null
-    });
+};
 
-    const [messages, setMessages] = React.useState<TMessage[]>([]);
-    const [controls, setControls] = React.useState({
-        startStreaming: () => {},
-        stopStreaming: () => {},
-        updateSettings: (newValues: ISettings) => {}
-    });
 
-    const changeChart = (e: any) => {
-        controls?.stopStreaming();
-        setSeriesType(e.target.value);
-    };
+export default function OilAndGasDashboardShowcase() {
 
     React.useEffect(() => {
         (async () => {
-            const res = await drawExample((newMessages: TMessage[]) => {
-                setMessages([...newMessages]);
-            }, seriesType);
-            setControls(res.controls);
-            res.controls.updateSettings({
-                ...settings,
-                initialPoints: logScale(settings.initialPoints),
-                pointsOnChart: logScale(settings.pointsOnChart),
-                pointsPerUpdate: logScale(settings.pointsPerUpdate)
-            });
-            return () => {
-                controls.stopStreaming();
-                res.sciChartSurface?.delete();
-            };
+            // drawExample
         })();
-    }, [seriesType]);
-
-    const handleSeriesCount = (event: any, newValue: any) => {
-        const seriesCount = Number(newValue);
-        const newMax = Math.log10(Math.min(1000000, maxPoints / seriesCount));
-        setMaxSettings({ ...maxSettings, pointsOnChart: newMax, initialPoints: newMax });
-        const pointsOnChart = Math.min(settings.pointsOnChart, newMax);
-        const initialPoints = Math.min(settings.initialPoints, newMax);
-        setSettings({ ...settings, seriesCount, pointsOnChart, initialPoints });
-        controls.updateSettings({
-            seriesCount,
-            pointsOnChart: logScale(pointsOnChart),
-            initialPoints: logScale(initialPoints)
-        });
-        setIsDirty(true);
-    };
-    const handleInitialPoints = (event: any, newValue: any) => {
-        const initialPoints = Math.min(Number(newValue), settings.pointsOnChart);
-        controls.updateSettings({ initialPoints: logScale(initialPoints) });
-        setSettings({ ...settings, initialPoints });
-        setIsDirty(true);
-    };
-    const handlePointsPerUpdate = (event: any, newValue: any) => {
-        controls.updateSettings({ pointsPerUpdate: logScale(Number(newValue)) });
-        setSettings({ ...settings, pointsPerUpdate: Number(newValue) });
-        setIsDirty(true);
-    };
-    const handleSendEvery = (event: any, newValue: any) => {
-        setSettings({ ...settings, sendEvery: Number(newValue) });
-        controls.updateSettings({ sendEvery: Number(newValue) });
-        setIsDirty(true);
-    };
-    const handlePointsOnChart = (event: any, newValue: any) => {
-        const pointsOnChart = Number(newValue);
-        const initialPoints = Math.min(settings.initialPoints, pointsOnChart);
-        const newMaxSeries = Math.min(100, Math.floor(maxPoints / logScale(pointsOnChart)));
-        setMaxSettings({ ...maxSettings, seriesCount: newMaxSeries });
-        const seriesCount = Math.min(settings.seriesCount, newMaxSeries);
-        setSettings({ ...settings, seriesCount, pointsOnChart, initialPoints });
-        controls.updateSettings({
-            seriesCount,
-            pointsOnChart: logScale(pointsOnChart),
-            initialPoints: logScale(initialPoints)
-        });
-        setIsDirty(true);
-    };
-
-    const handleStartStreaming = () => {
-        setIsDirty(false);
-        controls.startStreaming();
-    };
-
-    const getLogMarks = (maxPower: number) => {
-        const marks: number[] = [1, 2, 5, 10];
-        for (let i = 1; i <= maxPower; i++) {
-            const base = Math.pow(10, i);
-            marks.push(...[2, 5, 10].map(m => m * base));
-        }
-        return marks.map(m => ({ value: Math.log10(m) })) as Mark[];
-    };
-
-    const logScale = (value: number) => {
-        return Math.round(10 ** value);
-    };
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => {
+            // delete
+        };
+    }, []);
 
     return (
-        <div>
-            <Typography variant="h5" gutterBottom>
-                SciChart can handle realtime data, and lots of it!.  Pick a chart type and use the sliders to adjust the data volume and see how SciChart is able to keep up.
-                Data is streamed from the server via websocket and buffered locally so it keeps up with the data even if the render time is more than the update interval.
-                Stop the updates then zoom with the mousewheel to see all the data is really there.
-            </Typography>
-            {/* <Typography variant="h6" gutterBottom hidden={value==="column" ? false : true}>
-                Ensure the server is running using npm start
-            </Typography> */}
-            <div style={{ marginBottom: 20 }}>
-                <Typography variant="body1" style={{ color: "red" }}></Typography>
+        <div className={classes.ChartWrapper}>
+            <div className="sidebar-charts">
+                <div id="sidebar-charts-2d" className="sidebar-charts-2d">
+                    <div className="sidebar-charts-2d-item sidebar-charts-2d-item-small">
+                        <div className="sidebar-charts-2d-title">GR</div>
+                        <div className="sidebar-charts-2d-line" style={{position: "relative", top: "15px"}}>
+                            <span>0</span>
+                            <span style={{paddingLeft: "12px"}}>(GAP)</span>
+                            <span>200</span>
+                        </div>
+                    </div>
+                    <div className="sidebar-charts-2d-item sidebar-charts-2d-item-small">
+                        <div className="sidebar-charts-2d-title">RHDB</div>
+                        <div className="sidebar-charts-2d-line" style={{position: "relative", top: "15px"}}>
+                            <span>100</span>
+                            <span>(RCI)</span>
+                            <span>206</span>
+                        </div>
+                    </div>
+                    <div className="sidebar-charts-2d-item sidebar-charts-2d-item-small">
+                        <div className="sidebar-charts-2d-title">NPHI</div>
+                        <div className="sidebar-charts-2d-line" style={{position: "relative", top: "15px"}}>
+                            <span>0.45</span>
+                            <span>(VIV)</span>
+                            <span>4.11</span>
+                        </div>
+                    </div>
+                    <div className="sidebar-charts-2d-item">
+                        <div id="scichart-2d-first" style={{width: "100%", height: "100px", position: "relative"}}></div>
+                    </div>
+                    <div className="sidebar-charts-2d-item">
+                        <div id="scichart-2d-second" style={{width: "100%", height: "100px", position: "relative"}}></div>
+                    </div>
+                    <div className="sidebar-charts-2d-item">
+                        <div id="scichart-2d-third" style={{width: "100%", height: "100px", position: "relative"}}></div>
+                    </div>
+                    <div className="sidebar-charts-2d-item">
+                        <div id="scichart-2d-fourth" style={{width: "100%", height: "100px", position: "relative"}}></div>
+                    </div>
+                    <div className="sidebar-charts-2d-item">
+                        <div id="scichart-2d-fifth" style={{width: "100%", height: "100px", position: "relative"}}></div>
+                    </div>
+                    <div className="sidebar-charts-2d-item">
+                        <div id="scichart-2d-sixth" style={{width: "100%", height: "100px", position: "relative"}}></div>
+                    </div>
+                    <div className="sidebar-charts-2d-item">
+                        <div id="scichart-2d-seventh" style={{width: "100%", height: "100px", position: "relative"}}></div>
+                    </div>
+                    <div className="sidebar-charts-2d-item">
+                        <div id="scichart-2d-eighth" style={{width: "100%", height: "100px", position: "relative"}}></div>
+                    </div>
+                    <div className="sidebar-charts-2d-item">
+                        <div id="scichart-2d-ninth" style={{width: "100%", height: "100px", position: "relative"}}></div>
+                    </div>
+                    <div className="sidebar-charts-2d-item sidebar-charts-2d-item-small"
+                         style={{position: "relative", bottom: "15px"}}>
+                        <div className="sidebar-charts-2d-line" style={{marginBottom: "20px"}}>
+                            <span>0</span>
+                            <span style={{paddingLeft: "12px"}}>(GAP)</span>
+                            <span>200</span>
+                        </div>
+                        <div className="sidebar-charts-2d-title">GR</div>
+                    </div>
+                    <div className="sidebar-charts-2d-item sidebar-charts-2d-item-small"
+                         style={{position: "relative", bottom: "15px"}}>
+                        <div className="sidebar-charts-2d-line" style={{marginBottom: "20px"}}>
+                            <span>100</span>
+                            <span>(RCI)</span>
+                            <span>206</span>
+                        </div>
+                        <div className="sidebar-charts-2d-title">RHDB</div>
+                    </div>
+                    <div className="sidebar-charts-2d-item sidebar-charts-2d-item-small" style={{position: "relative", bottom: "15px"}}>
+                        <div className="sidebar-charts-2d-line" style={{marginBottom: "20px"}}>
+                            <span>0.45</span>
+                            <span>(VIV)</span>
+                            <span>4.11</span>
+                        </div>
+                        <div className="sidebar-charts-2d-title">NPHI</div>
+                    </div>
+                </div>
+                <div className="sidebar-charts-3d">
+                    <div id="scichart-3d" style={{position: "relative", height: "100%", width: "100%"}}></div>
+                </div>
             </div>
-            <div style={{ display: "flex", maxWidth: 1200 }}>
-                <div id={divElementId} style={{ height: 600, flexBasis: 600, flexGrow: 1, flexShrink: 1 }} />
-                <div className={classes.notificationsBlock} style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }}>
-                    <div>
-                        <FormControl variant="filled" className={classes.formControl}>
-                            <InputLabel id="is100Percent-label">Select Chart</InputLabel>
-                            <Select
-                                labelId="is100Percent-label"
-                                id="is100Percent"
-                                value={seriesType}
-                                onChange={changeChart}
-                            >
-                                <MenuItem value={ESeriesType.LineSeries}>Line Chart</MenuItem>
-                                <MenuItem value={ESeriesType.BubbleSeries}>Bubble Chart</MenuItem>
-                                <MenuItem value={ESeriesType.StackedColumnSeries}>Stacked Column Chart</MenuItem>
-                                <MenuItem value={ESeriesType.ColumnSeries}>Column Chart with Stacked Axes</MenuItem>
-                                <MenuItem value={ESeriesType.StackedMountainSeries}>Stacked Mountain Chart</MenuItem>
-                                <MenuItem value={ESeriesType.BandSeries}>Band Chart</MenuItem>
-                                <MenuItem value={ESeriesType.ScatterSeries}>Scatter Chart</MenuItem>
-                                <MenuItem value={ESeriesType.CandlestickSeries}>Candle Stick Chart</MenuItem>
-                                <MenuItem value={ESeriesType.TextSeries}>Text</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <div className={classes.formControl}>
-                            <Typography variant="body1">Number of Series {settings.seriesCount}</Typography>
-                            <Slider
-                                id="seriesCount"
-                                onChange={handleSeriesCount}
-                                step={1}
-                                min={1}
-                                max={maxSettings.seriesCount}
-                                value={settings.seriesCount}
-                                valueLabelDisplay="off"
-                            />
+            <div className="main-container">
+                <div id="main-charts">
+                    <div className="chart-container">
+                        <div id="shale-legend" className="legend-root"></div>
+                        <div id="shale-chart-background" className="chart-root">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                                <defs>
+                                    <pattern id="grid1" patternUnits="userSpaceOnUse" width="10" height="10">
+                                        <line x1="0" y1="0" x2="10" y2="10" stroke="#474747"/>
+                                    </pattern>
+                                    <pattern id="grid2" patternUnits="userSpaceOnUse" width="10" height="10">
+                                        <line x1="0" y1="10" x2="10" y2="0" stroke="#474747"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="100%" height="100%" fill="url(#grid1)"/>
+                                <rect width="100%" height="100%" fill="url(#grid2)"/>
+                            </svg>
                         </div>
-                        <div className={classes.formControl}>
-                            <Typography variant="body1">Initial Points {logScale(settings.initialPoints)}</Typography>
-                            <Slider
-                                id="InitialPoints"
-                                onChange={handleInitialPoints}
-                                step={null}
-                                min={0.1}
-                                scale={logScale}
-                                marks={getLogMarks(maxSettings.initialPoints)}
-                                max={maxSettings.initialPoints}
-                                value={settings.initialPoints}
-                                valueLabelDisplay="off"
-                            />
-                        </div>
-                        <div className={classes.formControl}>
-                            <Typography variant="body1">
-                                Max Points On Chart {logScale(settings.pointsOnChart)}
-                            </Typography>
-                            <Slider
-                                id="pointsOnChart"
-                                onChange={handlePointsOnChart}
-                                step={null}
-                                min={0.1}
-                                scale={logScale}
-                                marks={getLogMarks(maxSettings.pointsOnChart)}
-                                max={maxSettings.pointsOnChart}
-                                value={settings.pointsOnChart}
-                                valueLabelDisplay="off"
-                            />
-                        </div>
-                        <div className={classes.formControl}>
-                            <Typography variant="body1">
-                                Points Per Update {logScale(settings.pointsPerUpdate)}
-                            </Typography>
-                            <Slider
-                                id="pointsPerUpdate"
-                                onChange={handlePointsPerUpdate}
-                                step={null}
-                                min={0.1}
-                                scale={logScale}
-                                marks={getLogMarks(maxSettings.pointsPerUpdate)}
-                                max={maxSettings.pointsPerUpdate}
-                                value={settings.pointsPerUpdate}
-                                valueLabelDisplay="off"
-                            />
-                        </div>
-                        <div className={classes.formControl}>
-                            <Typography variant="body1">Send Data Interval {settings.sendEvery} ms</Typography>
-                            <Slider
-                                id="sendEvery"
-                                onChange={handleSendEvery}
-                                step={1}
-                                min={maxSettings.sendEvery}
-                                max={500}
-                                value={settings.sendEvery}
-                                valueLabelDisplay="off"
-                            />
-                        </div>
-
-                        <FormControl className={classes.formControl}>
-                            <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                                <Button id="startStreaming" onClick={handleStartStreaming}>
-                                    {isDirty ? "ReStart" : "Start"}
-                                </Button>
-                                <Button id="stopStreaming" onClick={controls.stopStreaming}>
-                                    Stop
-                                </Button>
-                            </ButtonGroup>
-                        </FormControl>
-                        {messages.length > 0 && (
-                            <Alert key="0" severity="info" className={classes.notification}>
-                                {messages.map((msg, index) => (
-                                    <div key={index}>
-                                        <AlertTitle>{msg.title}</AlertTitle>
-                                        {msg.detail}
-                                    </div>
-                                ))}
-                            </Alert>
-                        )}
+                        <div id="shale-chart" className="chart-root"></div>
+                    </div>
+                    <div className="chart-container">
+                        <div id="density-legend" className="legend-root"></div>
+                        <div id="density-chart" className="chart-root"></div>
+                    </div>
+                    <div className="chart-container">
+                        <div id="resistivity-legend" className="legend-root"></div>
+                        <div id="resistivity-chart" className="chart-root"></div>
+                    </div>
+                    <div className="chart-container">
+                        <div id="pore-space-legend" className="legend-root"></div>
+                        <div id="pore-space-chart" className="chart-root"></div>
+                    </div>
+                    <div className="chart-container">
+                        <div id="sonic-legend" className="legend-root"></div>
+                        <div id="sonic-chart" className="chart-root"></div>
+                    </div>
+                    <div className="chart-container">
+                        <div id="texture-legend" className="legend-root"></div>
+                        <div id="texture-chart" className="chart-root"></div>
                     </div>
                 </div>
             </div>
