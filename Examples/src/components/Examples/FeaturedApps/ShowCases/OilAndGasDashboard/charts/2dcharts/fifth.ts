@@ -47,4 +47,6 @@ export default async function init2dFifthChart(id: string) {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
+
+    return sciChartSurface;
 }

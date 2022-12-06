@@ -3,7 +3,7 @@
 }
 
 body {
-    font-family: 'Arial';
+    font-family: "Arial";
     margin: 0;
     padding: 0;
 }
@@ -20,8 +20,15 @@ main {
     flex-direction: column;
 }
 
-#sidebar-charts-2d {
+.sidebar-charts-2d {
+    display: flex;
+    flex-direction: column;
     height: 50%;
+}
+
+.sidebar-charts-2d-title-container {
+    display: flex;
+    justify-content: space-around;
 }
 
 .sidebar-charts-2d-item-small {
@@ -29,10 +36,12 @@ main {
 }
 
 .sidebar-charts-2d-item {
-    width: 33.33%;
     text-align: center;
-    padding: 10px;
-    float: left;
+    margin: 2%;
+}
+
+.sidebar-charts-2d-title-item {
+    flex: auto;
 }
 
 .sidebar-charts-2d-line {
@@ -41,8 +50,19 @@ main {
     font-size: 10px;
 }
 
+.sidebar-charts-2d-line > div {
+    flex: auto;
+}
+
 .sidebar-charts-2d-title {
     margin-bottom: 5px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    flex: auto;
 }
 
 .sidebar-charts-3d {
@@ -132,7 +152,7 @@ main {
     box-shadow: 0 0 1px rgba(255, 255, 255, 1);
 }
 
-.scichart__legend>div {
+.scichart__legend > div {
     margin: 0 !important;
     border-radius: 0 !important;
     padding: 0 !important;
@@ -223,7 +243,7 @@ main {
     min-height: calc(100% - 115px - 25px);
 }
 
-#shale-chart-background>svg {
+#shale-chart-background > svg {
     position: absolute;
     min-height: 100%;
 }

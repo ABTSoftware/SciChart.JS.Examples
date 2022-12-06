@@ -49,6 +49,8 @@ export default async function init2dSecondChart(id: string) {
             }
         });
     });
+
+    return sciChartSurface;
 }
 
 function generateData(wasmContext: TSciChart, color: string, xValues: number[], yValues: []) {

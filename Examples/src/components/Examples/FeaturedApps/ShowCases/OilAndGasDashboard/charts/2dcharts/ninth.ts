@@ -49,4 +49,6 @@ export default async function init2dNinthChart(id: string) {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
+
+    return sciChartSurface;
 }

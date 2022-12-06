@@ -1,110 +1,165 @@
 import * as React from "react";
 import classes from "../../../../Examples/Examples.module.scss";
-import './OIlGasStyles.css';
+import "./OIlGasStyles.css";
 
+import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
+import { NumberRange } from "scichart/Core/NumberRange";
+import init3dChart from "./charts/3d";
+import init2dFirstChart from "./charts/2dcharts/first";
+import init2dSecondChart from "./charts/2dcharts/second";
+import init2dThirdChart from "./charts/2dcharts/third";
+import init2dFourthChart from "./charts/2dcharts/fourth";
+import init2dFifthChart from "./charts/2dcharts/fifth";
+import init2dSixthChart from "./charts/2dcharts/sixth";
+import init2dSeventhChart from "./charts/2dcharts/seventh";
+import init2dEighthChart from "./charts/2dcharts/eighth";
+import init2dNinthChart from "./charts/2dcharts/ninth";
+import { appTheme } from "./theme";
+import { SciChartSurfaceBase } from "scichart/Charting/Visuals/SciChartSurfaceBase";
+import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
+import { drawDensityChart } from "./charts/VerticalCharts/DensityChart";
+import { drawPoreSpaceChart } from "./charts/VerticalCharts/PoreSpaceChart";
+import { drawResistivityChart } from "./charts/VerticalCharts/ResistivityChart";
+import { drawShaleChart } from "./charts/VerticalCharts/ShaleChart";
+import { drawSonicChart } from "./charts/VerticalCharts/SonicChart";
+import { drawTextureChart } from "./charts/VerticalCharts/TextureChart";
 
-export const drawExample = async () => {
+const drawExample = async () => {
+    const charts = {
+        gr: "scichart-gr",
+        rhdb: "scichart-rhdb",
+        nphi: "scichart-nphi",
+        dt: "scichart-dt",
+        lld: "scichart-lld",
+        vsh: "scichart-vsh",
+        "3d": "scichart-3d",
+        "2dFirst": "scichart-2d-first",
+        "2dSecond": "scichart-2d-second",
+        "2dThird": "scichart-2d-third",
+        "2dFourth": "scichart-2d-fourth",
+        "2dFifth": "scichart-2d-fifth",
+        "2dSixth": "scichart-2d-sixth",
+        "2dSeventh": "scichart-2d-seventh",
+        "2dEighth": "scichart-2d-eighth",
+        "2dNinth": "scichart-2d-ninth"
+    };
 
+    const sidebar2d = document.getElementById("sidebar-charts-2d");
+    sidebar2d.style.background = appTheme.SidebarBackground;
+    sidebar2d.style.color = appTheme.SidebarTextColor;
+
+    const mainCharts = document.getElementById("main-charts");
+    mainCharts.style.background = appTheme.SidebarBackground;
+    mainCharts.style.color = appTheme.SidebarTextColor;
+
+    const shaleChartBackground = document.getElementById("shale-chart-background");
+    shaleChartBackground.style.backgroundColor = appTheme.ShaleBackgroundColor;
+
+    const initSideBarCharts = async () =>
+        Promise.all([
+            init2dFirstChart(charts["2dFirst"]),
+            init2dSecondChart(charts["2dSecond"]),
+            init2dThirdChart(charts["2dThird"]),
+            init2dFourthChart(charts["2dFourth"]),
+            init2dFifthChart(charts["2dFifth"]),
+            init2dSixthChart(charts["2dSixth"]),
+            init2dSeventhChart(charts["2dSeventh"]),
+            init2dEighthChart(charts["2dEighth"]),
+            init2dNinthChart(charts["2dNinth"]),
+            init3dChart(charts["3d"])
+        ]);
+
+    const surfaceGroup = new SciChartVerticalGroup();
+
+    const initVerticalCharts = () =>
+        Promise.all([
+            drawShaleChart(),
+            drawDensityChart(),
+            drawResistivityChart(),
+            drawPoreSpaceChart(),
+            drawSonicChart(),
+            drawTextureChart()
+        ]).then(surfaces => {
+            surfaces.forEach(surface => {
+                surfaceGroup.addSurfaceToGroup(surface);
+                surface.chartModifiers.add(
+                    new RolloverModifier({
+                        modifierGroup: "VerticalChartsGroup",
+                        rolloverLineStroke: appTheme.RolloverLineColor
+                    })
+                );
+                // surface.renderableSeries.asArray().forEach(rs => {
+                //     rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
+                //     rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
+                // });
+            });
+
+            return surfaces;
+        });
+
+    const [verticalCharts, sidebarCharts] = await Promise.all([initSideBarCharts(), initVerticalCharts()]);
+
+    return [...verticalCharts, ...sidebarCharts];
 };
 
-
 export default function OilAndGasDashboardShowcase() {
+    const surfacesRef = React.useRef<SciChartSurfaceBase[]>();
 
     React.useEffect(() => {
-        (async () => {
-            // drawExample
-        })();
+        const initChartsPromise = drawExample();
+        initChartsPromise.then(surfaces => (surfacesRef.current = surfaces));
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            // delete
+            initChartsPromise.then(surfaces => surfaces.forEach(scs => scs.delete()));
+            surfacesRef.current = null;
         };
     }, []);
 
     return (
-        <div className={classes.ChartWrapper}>
+        <div className={classes.ChartWrapper} style={{ display: "flex" }}>
             <div className="sidebar-charts">
                 <div id="sidebar-charts-2d" className="sidebar-charts-2d">
-                    <div className="sidebar-charts-2d-item sidebar-charts-2d-item-small">
-                        <div className="sidebar-charts-2d-title">GR</div>
-                        <div className="sidebar-charts-2d-line" style={{position: "relative", top: "15px"}}>
-                            <span>0</span>
-                            <span style={{paddingLeft: "12px"}}>(GAP)</span>
-                            <span>200</span>
+                    <div className="sidebar-charts-2d-title-container">
+                        <div className="sidebar-charts-2d-title-item sidebar-charts-2d-item sidebar-charts-2d-item-small">
+                            <div className="sidebar-charts-2d-title">GR</div>
+                            <div className="sidebar-charts-2d-line">
+                                <div>0</div>
+                                <div>(GAP)</div>
+                                <div>200</div>
+                            </div>
+                        </div>
+                        <div className="sidebar-charts-2d-title-item sidebar-charts-2d-item sidebar-charts-2d-item-small">
+                            <div className="sidebar-charts-2d-title">RHDB</div>
+                            <div className="sidebar-charts-2d-line">
+                                <div>100</div>
+                                <div>(RCI)</div>
+                                <div>206</div>
+                            </div>
+                        </div>
+                        <div className="sidebar-charts-2d-title-item sidebar-charts-2d-item sidebar-charts-2d-item-small">
+                            <div className="sidebar-charts-2d-title">NPHI</div>
+                            <div className="sidebar-charts-2d-line">
+                                <div>0.45</div>
+                                <div>(VIV)</div>
+                                <div>4.11</div>
+                            </div>
                         </div>
                     </div>
-                    <div className="sidebar-charts-2d-item sidebar-charts-2d-item-small">
-                        <div className="sidebar-charts-2d-title">RHDB</div>
-                        <div className="sidebar-charts-2d-line" style={{position: "relative", top: "15px"}}>
-                            <span>100</span>
-                            <span>(RCI)</span>
-                            <span>206</span>
-                        </div>
-                    </div>
-                    <div className="sidebar-charts-2d-item sidebar-charts-2d-item-small">
-                        <div className="sidebar-charts-2d-title">NPHI</div>
-                        <div className="sidebar-charts-2d-line" style={{position: "relative", top: "15px"}}>
-                            <span>0.45</span>
-                            <span>(VIV)</span>
-                            <span>4.11</span>
-                        </div>
-                    </div>
-                    <div className="sidebar-charts-2d-item">
-                        <div id="scichart-2d-first" style={{width: "100%", height: "100px", position: "relative"}}></div>
-                    </div>
-                    <div className="sidebar-charts-2d-item">
-                        <div id="scichart-2d-second" style={{width: "100%", height: "100px", position: "relative"}}></div>
-                    </div>
-                    <div className="sidebar-charts-2d-item">
-                        <div id="scichart-2d-third" style={{width: "100%", height: "100px", position: "relative"}}></div>
-                    </div>
-                    <div className="sidebar-charts-2d-item">
-                        <div id="scichart-2d-fourth" style={{width: "100%", height: "100px", position: "relative"}}></div>
-                    </div>
-                    <div className="sidebar-charts-2d-item">
-                        <div id="scichart-2d-fifth" style={{width: "100%", height: "100px", position: "relative"}}></div>
-                    </div>
-                    <div className="sidebar-charts-2d-item">
-                        <div id="scichart-2d-sixth" style={{width: "100%", height: "100px", position: "relative"}}></div>
-                    </div>
-                    <div className="sidebar-charts-2d-item">
-                        <div id="scichart-2d-seventh" style={{width: "100%", height: "100px", position: "relative"}}></div>
-                    </div>
-                    <div className="sidebar-charts-2d-item">
-                        <div id="scichart-2d-eighth" style={{width: "100%", height: "100px", position: "relative"}}></div>
-                    </div>
-                    <div className="sidebar-charts-2d-item">
-                        <div id="scichart-2d-ninth" style={{width: "100%", height: "100px", position: "relative"}}></div>
-                    </div>
-                    <div className="sidebar-charts-2d-item sidebar-charts-2d-item-small"
-                         style={{position: "relative", bottom: "15px"}}>
-                        <div className="sidebar-charts-2d-line" style={{marginBottom: "20px"}}>
-                            <span>0</span>
-                            <span style={{paddingLeft: "12px"}}>(GAP)</span>
-                            <span>200</span>
-                        </div>
-                        <div className="sidebar-charts-2d-title">GR</div>
-                    </div>
-                    <div className="sidebar-charts-2d-item sidebar-charts-2d-item-small"
-                         style={{position: "relative", bottom: "15px"}}>
-                        <div className="sidebar-charts-2d-line" style={{marginBottom: "20px"}}>
-                            <span>100</span>
-                            <span>(RCI)</span>
-                            <span>206</span>
-                        </div>
-                        <div className="sidebar-charts-2d-title">RHDB</div>
-                    </div>
-                    <div className="sidebar-charts-2d-item sidebar-charts-2d-item-small" style={{position: "relative", bottom: "15px"}}>
-                        <div className="sidebar-charts-2d-line" style={{marginBottom: "20px"}}>
-                            <span>0.45</span>
-                            <span>(VIV)</span>
-                            <span>4.11</span>
-                        </div>
-                        <div className="sidebar-charts-2d-title">NPHI</div>
+
+                    <div className="grid-container">
+                        <div className="sidebar-charts-2d-item" id="scichart-2d-first"></div>
+                        <div className="sidebar-charts-2d-item" id="scichart-2d-second"></div>
+                        <div className="sidebar-charts-2d-item" id="scichart-2d-third"></div>
+                        <div className="sidebar-charts-2d-item" id="scichart-2d-fourth"></div>
+                        <div className="sidebar-charts-2d-item" id="scichart-2d-fifth"></div>
+                        <div className="sidebar-charts-2d-item" id="scichart-2d-sixth"></div>
+                        <div className="sidebar-charts-2d-item" id="scichart-2d-seventh"></div>
+                        <div className="sidebar-charts-2d-item" id="scichart-2d-eighth"></div>
+                        <div className="sidebar-charts-2d-item" id="scichart-2d-ninth"></div>
                     </div>
                 </div>
-                <div className="sidebar-charts-3d">
-                    <div id="scichart-3d" style={{position: "relative", height: "100%", width: "100%"}}></div>
-                </div>
+                <div className="sidebar-charts-3d" id="scichart-3d"></div>
             </div>
             <div className="main-container">
                 <div id="main-charts">
@@ -114,14 +169,14 @@ export default function OilAndGasDashboardShowcase() {
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                                 <defs>
                                     <pattern id="grid1" patternUnits="userSpaceOnUse" width="10" height="10">
-                                        <line x1="0" y1="0" x2="10" y2="10" stroke="#474747"/>
+                                        <line x1="0" y1="0" x2="10" y2="10" stroke="#474747" />
                                     </pattern>
                                     <pattern id="grid2" patternUnits="userSpaceOnUse" width="10" height="10">
-                                        <line x1="0" y1="10" x2="10" y2="0" stroke="#474747"/>
+                                        <line x1="0" y1="10" x2="10" y2="0" stroke="#474747" />
                                     </pattern>
                                 </defs>
-                                <rect width="100%" height="100%" fill="url(#grid1)"/>
-                                <rect width="100%" height="100%" fill="url(#grid2)"/>
+                                <rect width="100%" height="100%" fill="url(#grid1)" />
+                                <rect width="100%" height="100%" fill="url(#grid2)" />
                             </svg>
                         </div>
                         <div id="shale-chart" className="chart-root"></div>

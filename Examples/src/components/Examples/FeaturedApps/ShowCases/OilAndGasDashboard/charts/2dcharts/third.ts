@@ -22,6 +22,8 @@ export default async function init2dThirdChart(id: string) {
     sciChartSurface.renderableSeries.add(scatterSeriesG);
     sciChartSurface.renderableSeries.add(scatterSeriesB);
     sciChartSurface.renderableSeries.add(scatterSeriesR);
+
+    return sciChartSurface;
 }
 
 function generateData(wasmContext: TSciChart, color: string, xValues: number[], yValues: []) {
