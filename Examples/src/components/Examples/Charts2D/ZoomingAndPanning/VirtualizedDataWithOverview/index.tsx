@@ -18,6 +18,9 @@ import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { EXyDirection } from "scichart/types/XyDirection";
 import { easing } from "scichart/Core/Animations/EasingFunctions";
 import { appTheme } from "../../../theme";
+import { EWrapTo, NativeTextAnnotation } from "scichart/Charting/Visuals/Annotations/NativeTextAnnotation";
+import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
 
 
 export const divElementId = "chart";
@@ -72,7 +75,7 @@ export const drawExample = async () => {
             // Update the y axis
             const yRange = yAxis.getWindowedYRange(null);
             yAxis.animateVisibleRange(yRange, 250, easing.outExpo);
-        });
+        }).catch(err => showError(sciChartSurface, "Server data is unavailable.  Please do npm run build, then npm start and access the site at localhost:3000"));
     });
 
     const overview = await createOverview(xAxis);
@@ -82,9 +85,9 @@ export const drawExample = async () => {
         () => {
             sciChartSurface.zoomExtents();
         }
-    );
+    ).catch(err => showError(sciChartSurface, "Server data is unavailable.  Please do npm run build, then npm start and access the site at localhost:3000"));
 
-    return [sciChartSurface, overview];
+    return [sciChartSurface]; //, overview];
 };
 
 const loadPoints = async (xFrom: number, xTo: number, chartWidth: number, dataSeries: XyDataSeries) => {
@@ -96,6 +99,25 @@ const loadPoints = async (xFrom: number, xTo: number, chartWidth: number, dataSe
     dataSeries.clear();
     dataSeries.appendRange(data.x, data.y);
 };
+
+const showError = (sciChartSurface: SciChartSurface, message: string) => {
+    if (!sciChartSurface.annotations.getById("error")) {
+        sciChartSurface.annotations.add(new NativeTextAnnotation({
+            id: "error",
+            text: message,
+            x1: 0.5,
+            y1: 0.5,
+            textColor: "red",
+            fontSize: 24,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            lineSpacing: 5,
+            wrapTo: EWrapTo.ViewRect,
+        }));
+    }
+}
 
 const createOverview = async (originalMainAxis: AxisBase2D) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divOverviewId, {theme: appTheme.SciChartJsTheme});
@@ -151,7 +173,7 @@ const createOverview = async (originalMainAxis: AxisBase2D) => {
     sciChartSurface.chartModifiers.add(rangeSelectionModifier);
 
     // Load the full dataSet
-    loadPoints(0, 10000000, sciChartSurface.domCanvas2D.width, dataSeries);
+    loadPoints(0, 10000000, sciChartSurface.domCanvas2D.width, dataSeries).catch(err => {});
 
     return sciChartSurface;
 };
