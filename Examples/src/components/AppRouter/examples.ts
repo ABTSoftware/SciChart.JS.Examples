@@ -100,6 +100,7 @@ import RealtimeBigDataShowcase from "../Examples/FeaturedApps/ShowCases/Websocke
 import OilAndGasDashboardShowcase from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard";
 import DataLabelsExample from "../Examples/Charts2D/StylingAndTheming/DataLabels";
 import VirtualizedDataOverview from "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview";
+import HeatmapInteractions from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions";
 
 export type TMenuItem = {
     item: {
@@ -121,6 +122,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
             EXAMPLES_PAGES.featuredApps_showcases_oilandgasdashboard,
             EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata,
+            EXAMPLES_PAGES.featuredApps_showcases_richInteractions
         ]
     },
     {
@@ -493,6 +495,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return RealtimeBigDataShowcase;
         case EXAMPLES_PAGES.featuredApps_showcases_oilandgasdashboard.id:
             return OilAndGasDashboardShowcase;
+        case EXAMPLES_PAGES.featuredApps_showcases_richInteractions.id:
+            return HeatmapInteractions;
         case EXAMPLES_PAGES.builderApi_simplechart.id:
             return BuilderSimpleChart;
         case EXAMPLES_PAGES.builderApi_fullchart.id:

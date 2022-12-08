@@ -659,4 +659,6 @@ export const ExampleStrings = {
     urlVirtualizedData: "/javascript-virtualized-data",
     titleVirtualizedData: "Load Data on Zoom/Pan",
 
+    urlHeatmapInteractionsData: "/javascript-heatmap-interactions",
+    titleHeatmapInteractionsData: "Rich Interactions Showcase",
 };

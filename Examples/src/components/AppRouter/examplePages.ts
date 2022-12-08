@@ -90,6 +90,7 @@ import {oilAndGasExplorerDashboard} from "../Examples/FeaturedApps/ShowCases/Oil
 import {TDocumentationLink} from "../../helpers/types/ExampleDescriptionTypes";
 import { datalabelsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/DataLabels/exampleInfo";
 import { virtualizedDataOverviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview/exampleInfo";
+import { heatmapInteractionsExampleInfo } from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -468,6 +469,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_showcases_oilandgasdashboard : {
         id: "featuredApps_showcases_oilandgasdashboard",
         ...oilAndGasExplorerDashboard
+    },
+    featuredApps_showcases_richInteractions : {
+        id: "featuredApps_showcases_richInteractions",
+        ...heatmapInteractionsExampleInfo
     },
     builderApi_simplechart: {
         id: "builderApi_simplechart",
