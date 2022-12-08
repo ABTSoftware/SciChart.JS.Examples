@@ -41,7 +41,7 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-export const realtimeBigDataDemoExampleInfo: TExampleInfo = {
+export const websocketBigDataDemoExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo,
     pageTitle: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeBigDataJavaScriptChartDemo,

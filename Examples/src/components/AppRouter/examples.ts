@@ -96,7 +96,7 @@ import NonUniformHeatmapChart from "../Examples/Charts2D/BasicChartTypes/NonUnif
 import FeatureAxisTypes from "../Examples/FeaturedApps/FeatureDemos/AxisTypes";
 import SubChartStockCharts from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts";
 import FeatureAxisLayout from "../Examples/FeaturedApps/FeatureDemos/AxisLayout";
-import RealtimeBigDataShowcase from "../Examples/FeaturedApps/ShowCases/RealtimeBigData";
+import RealtimeBigDataShowcase from "../Examples/FeaturedApps/ShowCases/WebsocketBigData";
 import OilAndGasDashboardShowcase from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard";
 import DataLabelsExample from "../Examples/Charts2D/StylingAndTheming/DataLabels";
 import VirtualizedDataOverview from "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview";

@@ -1,36 +1,37 @@
-import { Checkbox, Input, InputLabel, Mark, MenuItem, Select, Slider, TextField } from "@material-ui/core";
+import { FormControlLabel, FormLabel, InputLabel, Mark, MenuItem, Radio, RadioGroup, Select, Slider} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import FormControl from "@material-ui/core/FormControl";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
+import classes from "../../../../Examples/Examples.module.scss";
 import Typography from "@material-ui/core/Typography";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
 import { ESeriesType } from "scichart/types/SeriesType";
+import { appTheme } from "../../../theme";
 import { divElementId, drawExample, ISettings, TMessage } from "./drawExample";
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 142
-        },
-        notificationsBlock: {
-            flexBasis: 320,
-            flexGrow: 0,
-            flexShrink: 0,
-            marginLeft: 24
-        },
-        notification: {
-            marginBottom: 16
-        },
-        description: {
-            width: 800,
-            marginBottom: 20
-        }
-    })
-);
+const useStyles = makeStyles(theme => ({
+    flexOuterContainer: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "row",
+        background: appTheme.DarkIndigo
+    },
+    toolbarRow: {
+        display: "flex",
+        // flex: "auto",
+        flexBasis: "70px",
+        padding: 10,
+        width: "100%",
+        color: appTheme.ForegroundColor
+    },
+    chartArea: {
+        flex: 1,
+    }
+}));
 
 export default function RealtimeBigDataShowcase() {
     const [seriesType, setSeriesType] = React.useState<ESeriesType>(ESeriesType.LineSeries);
@@ -45,12 +46,12 @@ export default function RealtimeBigDataShowcase() {
     const [maxSettings, setMaxSettings] = React.useState<ISettings>({
         seriesCount: 100,
         pointsOnChart: 6, // 1000000
-        pointsPerUpdate: 4, //10000
+        pointsPerUpdate: 4, // 10000
         sendEvery: 5, // Minimum
         initialPoints: 6 // 1000000
     });
     const maxPoints = 10000000;
-    const classes = useStyles();
+    const localClasses = useStyles();
 
     const [results, setResults] = React.useState({
         dimensions: null,
@@ -147,7 +148,6 @@ export default function RealtimeBigDataShowcase() {
             const base = Math.pow(10, i);
             marks.push(...[2, 5, 10].map(m => m * base));
         }
-        console.log(maxPower, marks);
         return marks.map(m => ({ value: Math.log10(m) })) as Mark[];
     };
 
@@ -156,31 +156,36 @@ export default function RealtimeBigDataShowcase() {
     };
 
     return (
-        <div>
-            <div style={{ display: "flex", maxWidth: 1200 }}>
-                <div id={divElementId} style={{ height: 600, flexBasis: 600, flexGrow: 1, flexShrink: 1 }} />
-                <div className={classes.notificationsBlock} style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }}>
-                    <div>
-                        <FormControl variant="filled" className={classes.formControl}>
-                            <InputLabel id="is100Percent-label">Select Chart</InputLabel>
-                            <Select
-                                labelId="is100Percent-label"
-                                id="is100Percent"
+        <div className={classes.ChartWrapper}>
+            <div className={localClasses.flexOuterContainer}>
+                <div id={divElementId} className={localClasses.chartArea} style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1 }} />
+                <div className={classes.notificationsBlock} style={{ margin: "10 10 0 10", color: appTheme.ForegroundColor, flexBasis: 100, flexGrow: 1, flexShrink: 1 }}>
+                        <div>
+                        <FormControl className={classes.formControl} >
+                            <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
+                                <Button id="startStreaming" onClick={handleStartStreaming}>
+                                    {isDirty ? "ReStart" : "Start"}
+                                </Button>
+                                <Button id="stopStreaming" onClick={controls.stopStreaming}>
+                                    Stop
+                                </Button>
+                            </ButtonGroup>
+                        </FormControl>
+                        </div>
+                        <FormControl className={classes.formControl} >
+                            <RadioGroup
+                                id="chartType"
                                 value={seriesType}
                                 onChange={changeChart}
                             >
-                                <MenuItem value={ESeriesType.LineSeries}>Line Chart</MenuItem>
-                                <MenuItem value={ESeriesType.BubbleSeries}>Bubble Chart</MenuItem>
-                                <MenuItem value={ESeriesType.StackedColumnSeries}>Stacked Column Chart</MenuItem>
-                                <MenuItem value={ESeriesType.ColumnSeries}>Column Chart with Stacked Axes</MenuItem>
-                                <MenuItem value={ESeriesType.StackedMountainSeries}>Stacked Mountain Chart</MenuItem>
-                                <MenuItem value={ESeriesType.BandSeries}>Band Chart</MenuItem>
-                                <MenuItem value={ESeriesType.ScatterSeries}>Scatter Chart</MenuItem>
-                                <MenuItem value={ESeriesType.CandlestickSeries}>Candle Stick Chart</MenuItem>
-                                <MenuItem value={ESeriesType.TextSeries}>Text</MenuItem>
-                            </Select>
+                                <FormControlLabel value={ESeriesType.LineSeries} control={<Radio />} label="Line Chart" />
+                                <FormControlLabel value={ESeriesType.ColumnSeries} control={<Radio />} label="Column Chart with Stacked Axes" />
+                                <FormControlLabel value={ESeriesType.StackedMountainSeries} control={<Radio />} label="Stacked Mountain Chart" />
+                                <FormControlLabel value={ESeriesType.BandSeries} control={<Radio />} label="Band Chart" />
+                                <FormControlLabel value={ESeriesType.ScatterSeries} control={<Radio />} label="Scatter Chart" />
+                                <FormControlLabel value={ESeriesType.CandlestickSeries} control={<Radio />} label="Candlestick Chart" />
+                            </RadioGroup>
                         </FormControl>
-                        <div className={classes.formControl}>
                             <Typography variant="body1">Number of Series {settings.seriesCount}</Typography>
                             <Slider
                                 id="seriesCount"
@@ -191,8 +196,6 @@ export default function RealtimeBigDataShowcase() {
                                 value={settings.seriesCount}
                                 valueLabelDisplay="off"
                             />
-                        </div>
-                        <div className={classes.formControl}>
                             <Typography variant="body1">Initial Points {logScale(settings.initialPoints)}</Typography>
                             <Slider
                                 id="InitialPoints"
@@ -205,8 +208,6 @@ export default function RealtimeBigDataShowcase() {
                                 value={settings.initialPoints}
                                 valueLabelDisplay="off"
                             />
-                        </div>
-                        <div className={classes.formControl}>
                             <Typography variant="body1">
                                 Max Points On Chart {logScale(settings.pointsOnChart)}
                             </Typography>
@@ -221,8 +222,6 @@ export default function RealtimeBigDataShowcase() {
                                 value={settings.pointsOnChart}
                                 valueLabelDisplay="off"
                             />
-                        </div>
-                        <div className={classes.formControl}>
                             <Typography variant="body1">
                                 Points Per Update {logScale(settings.pointsPerUpdate)}
                             </Typography>
@@ -237,8 +236,6 @@ export default function RealtimeBigDataShowcase() {
                                 value={settings.pointsPerUpdate}
                                 valueLabelDisplay="off"
                             />
-                        </div>
-                        <div className={classes.formControl}>
                             <Typography variant="body1">Send Data Interval {settings.sendEvery} ms</Typography>
                             <Slider
                                 id="sendEvery"
@@ -249,29 +246,16 @@ export default function RealtimeBigDataShowcase() {
                                 value={settings.sendEvery}
                                 valueLabelDisplay="off"
                             />
-                        </div>
-
-                        <FormControl className={classes.formControl}>
-                            <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                                <Button id="startStreaming" onClick={handleStartStreaming}>
-                                    {isDirty ? "ReStart" : "Start"}
-                                </Button>
-                                <Button id="stopStreaming" onClick={controls.stopStreaming}>
-                                    Stop
-                                </Button>
-                            </ButtonGroup>
-                        </FormControl>
                         {messages.length > 0 && (
                             <Alert key="0" severity="info" className={classes.notification}>
                                 {messages.map((msg, index) => (
-                                    <div key={index}>
-                                        <AlertTitle>{msg.title}</AlertTitle>
+                                    <div key={index} style={{ paddingBottom: 10 }}>
+                                        <AlertTitle style={{ lineHeight: 1}}>{msg.title}</AlertTitle>
                                         {msg.detail}
                                     </div>
                                 ))}
                             </Alert>
                         )}
-                    </div>
                 </div>
             </div>
         </div>
