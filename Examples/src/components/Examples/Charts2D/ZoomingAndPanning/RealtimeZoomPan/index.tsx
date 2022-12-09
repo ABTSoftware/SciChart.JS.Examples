@@ -16,6 +16,8 @@ import {appTheme} from "../../../theme";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import {makeStyles} from "@material-ui/core/styles";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { EExecuteOn } from "scichart/types/ExecuteOn";
 
 export const divElementId = "chart";
 
@@ -25,7 +27,7 @@ export const drawExample = async () => {
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
     // instance must be passed to other types that exist on the same surface.
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
 
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, { labelPrecision: 0 });
@@ -47,8 +49,8 @@ export const drawExample = async () => {
     const lineData = new XyDataSeries(wasmContext, { dataSeriesName: "Sin(x)" });
 
     for (let i = 0; i < 1000; i++) {
-        lineData.append(i, Math.sin(i * 0.1));
-        scatterData.append(i, Math.cos(i * 0.1));
+        lineData.append(i, Math.sin(i * 0.05));
+        scatterData.append(i, Math.cos(i * 0.05));
     }
 
     // Assign these dataseries to the line/scatter renderableseries
@@ -60,7 +62,7 @@ export const drawExample = async () => {
     // Realtime zooming example
     sciChartSurface.chartModifiers.add(new RubberBandXyZoomModifier());
     // Realtime panning example
-    // sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ executeOn: EExecuteOn.MouseRightButton }));
 
     // Part 2: Appending data in realtime
     //
@@ -68,8 +70,8 @@ export const drawExample = async () => {
         // Append another data-point to the chart. We use dataSeries.count()
         // to determine the current length before appending
         const i = lineData.count();
-        lineData.append(i, Math.sin(i * 0.1));
-        scatterData.append(i, Math.cos(i * 0.1));
+        lineData.append(i, Math.sin(i * 0.05));
+        scatterData.append(i, Math.cos(i * 0.05));
 
         // If the zoomState is not UserZooming, then we are viewing the extents of the data
         // In this case, we want to scroll the chart by setting visibleRange = NumberRange(i-1000, i)
@@ -94,14 +96,6 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         flexDirection: "column",
         background: appTheme.DarkIndigo
-    },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-        color: appTheme.ForegroundColor
     },
     chartArea: {
         flex: 1,
@@ -128,7 +122,6 @@ export default function RealtimeZoomPan() {
     return (
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow} style={{minHeight: "140px"}}></div>
                 <div className={localClasses.chartArea} id={divElementId}></div>
             </div>
         </div>

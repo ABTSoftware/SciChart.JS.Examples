@@ -12,7 +12,7 @@ type TProps = {
 const SourceCode: React.FC<TProps> = props => {
     const code = `${props.code}`;
     React.useEffect(() => {
-        window.Prism.highlightAll();
+        window.Prism?.highlightAll();
     }, []);
     return (
         <div className={classes.SourceCode}>

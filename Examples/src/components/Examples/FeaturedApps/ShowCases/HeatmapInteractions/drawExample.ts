@@ -47,8 +47,8 @@ export const divInput = "input";
 export const divHistory = "history";
 
 const gradientStops = [
-    { offset: 0, color: "#17243d" },
-    { offset: 0.3, color: "#274b92" },
+    { offset: 0, color: "#942B96" },
+    { offset: 0.3, color: "#3C2D91" },
     { offset: 0.45, color: "#47bde6" },
     { offset: 0.5, color: appTheme.DarkIndigo },
     { offset: 0.55, color: "#68bcae" },
@@ -57,8 +57,8 @@ const gradientStops = [
 ];
 
 const csGradientStops = [
-    { offset: 0, color: "#17243d" },
-    { offset: 0.3, color: "#274b92" },
+    { offset: 0, color: "#942B96" },
+    { offset: 0.3, color: "#3C2D91" },
     { offset: 0.45, color: "#47bde6" },
     { offset: 0.5, color: "#45AEC3" },
     { offset: 0.55, color: "#68bcae" },
@@ -511,6 +511,7 @@ export const inputChart = async () => {
             isEditable: true,
             formattedValue: "Frequency"
         });
+        frequencyMarker.stepSize = 250;
         // hack to disable selection box while dragging
         // @ts-ignore
         frequencyMarker.updateAdornerInner = () => {}
