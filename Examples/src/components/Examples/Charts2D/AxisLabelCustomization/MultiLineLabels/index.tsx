@@ -52,7 +52,7 @@ const drawExample = async () => {
     // Create the XAxis labelprovider (maps x-value to axis label)
     const labelProvider = new TextLabelProvider({
         labels: dataset.map(row => "Manufacturer " + row.name + " (2022)"),
-        maxLength: dataset.length
+        maxLength: 12
     });
 
     // Create an XAxis
@@ -123,11 +123,6 @@ const drawExample = async () => {
         // Bit more eye candy ;)
         animation: new WaveAnimation({ duration: 1000 })
     }));
-
-    // Add some interaction
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
 
     // Add title annotation
     sciChartSurface.annotations.add(new TextAnnotation({
