@@ -35,6 +35,7 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { TSciChart } from "scichart/types/TSciChart";
+import { appTheme } from "../../../theme";
 
 export type TMessage = {
     title: string;
@@ -123,20 +124,6 @@ const createRenderableSeries = (
             opacity: 0.8
         });
         return { dataSeries, rendSeries };
-    } else if (seriesType === ESeriesType.BubbleSeries) {
-        const dataSeries: XyzDataSeries = new XyzDataSeries(wasmContext, dsOptions);
-        const stroke = AUTO_COLOR;
-        const rendSeries: FastBubbleRenderableSeries = new FastBubbleRenderableSeries(wasmContext, {
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 32,
-                height: 32,
-                strokeThickness: 0,
-                fill: stroke
-            }),
-            opacity: 0.5,
-            dataSeries
-        });
-        return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.BandSeries) {
         const dataSeries: XyyDataSeries = new XyyDataSeries(wasmContext, dsOptions);
         const rendSeries: FastBandRenderableSeries = new FastBandRenderableSeries(wasmContext, {
@@ -147,16 +134,6 @@ const createRenderableSeries = (
             dataSeries,
             strokeThickness: 2,
             opacity: 0.8
-        });
-        return { dataSeries, rendSeries };
-    } else if (seriesType === ESeriesType.StackedColumnSeries) {
-        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext, dsOptions);
-        const rendSeries: StackedColumnRenderableSeries = new StackedColumnRenderableSeries(wasmContext, {
-            stroke: AUTO_COLOR,
-            fill: AUTO_COLOR,
-            dataSeries,
-            strokeThickness: 0,
-            spacing: 0
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.ColumnSeries) {
@@ -341,14 +318,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
     let sendEvery = 30;
     let initialPoints: number = 0;
 
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
-    const theme = new SciChartJSLightTheme();
-    theme.strokePalette = ["#274b92", "#47bde6", "#ae418d", "#e97064", "#68bcae", "#634e96"];
-    theme.fillPalette = ["#274b9288", "#47bde688", "#ae418d88", "#e9706488", "#68bcae88", "#634e9688"];
-    theme.sciChartBackground = "white";
-    theme.axisBandsFill = "#f2f3f4";
-    theme.majorGridLineBrush = "#d6dee8";
-    sciChartSurface.applyTheme(theme);
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
     const xAxis = new NumericAxis(wasmContext, axisOptions);
     sciChartSurface.xAxes.add(xAxis);
     let yAxis = new NumericAxis(wasmContext, { ...axisOptions });
@@ -497,8 +467,10 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
         } else {
             if (window.location.hostname === "localhost" && parseInt(window.location.port) > 8000) {
                 socket = socketIOClient.io("http://localhost:3000");
+                console.log("3000");
             } else {
                 socket = socketIOClient.io();
+                console.log("local");
             }
             socket.on("data", (message: any) => {
                 dataBuffer.push(message);
@@ -507,7 +479,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
                 socket.disconnect();
             });
         }
-
+        
         // If initial data has been generated, this should be an array of the last y values of each series
         const index = dataSeriesArray[0].count() - 1;
         let series: number[];

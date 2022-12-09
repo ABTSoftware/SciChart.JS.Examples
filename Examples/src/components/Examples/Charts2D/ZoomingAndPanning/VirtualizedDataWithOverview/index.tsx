@@ -125,9 +125,9 @@ const createOverview = async (originalMainAxis: AxisBase2D) => {
         axisAlignment: EAxisAlignment.Bottom,
         visibleRange: new NumberRange(0, 10000000),
         autoRange: EAutoRange.Never,
-        labelPrecision: 0,
         drawMinorGridLines: false
     });
+    xAxis.labelProvider.formatLabel = (dataValue) => dataValue > 0 ? (dataValue / 1000000) + "M" : "0";
 
     sciChartSurface.xAxes.add(xAxis);
     const yAxis = new NumericAxis(wasmContext, {
@@ -198,5 +198,5 @@ export default function VirtualizedDataOverview() {
                 <div id={divOverviewId} style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }} />
             </div>
         </div>
-    );
+    )
 }

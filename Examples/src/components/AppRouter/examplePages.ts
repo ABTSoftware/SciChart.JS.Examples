@@ -85,11 +85,12 @@ import { nonUniformHeatmapExampleInfo } from "../Examples/Charts2D/BasicChartTyp
 import { axisTypesExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisTypes/exampleInfo";
 import { subChartStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts/exampleInfo";
 import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisLayout/exampleInfo";
-import { realtimeBigDataDemoExampleInfo } from "../Examples/FeaturedApps/ShowCases/RealtimeBigData/exampleInfo";
+import { websocketBigDataDemoExampleInfo } from "../Examples/FeaturedApps/ShowCases/WebsocketBigData/exampleInfo";
 import {oilAndGasExplorerDashboard} from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard/exampleInfo";
 import {TDocumentationLink} from "../../helpers/types/ExampleDescriptionTypes";
 import { datalabelsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/DataLabels/exampleInfo";
 import { virtualizedDataOverviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview/exampleInfo";
+import { heatmapInteractionsExampleInfo } from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -463,11 +464,15 @@ export const EXAMPLES_PAGES = asRecord({
     },
     featuredApps_showcases_realtimebigdata : {
         id: "featuredApps_showcases_realtimebigdata",
-        ...realtimeBigDataDemoExampleInfo
+        ...websocketBigDataDemoExampleInfo
     },
     featuredApps_showcases_oilandgasdashboard : {
         id: "featuredApps_showcases_oilandgasdashboard",
         ...oilAndGasExplorerDashboard
+    },
+    featuredApps_showcases_richInteractions : {
+        id: "featuredApps_showcases_richInteractions",
+        ...heatmapInteractionsExampleInfo
     },
     builderApi_simplechart: {
         id: "builderApi_simplechart",

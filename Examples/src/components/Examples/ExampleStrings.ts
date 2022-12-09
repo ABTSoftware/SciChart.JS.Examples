@@ -571,9 +571,8 @@ export const ExampleStrings = {
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
 
     // Showcases RealtimeBigData Demo
-    urlRealtimeBigDataJavaScriptChartDemo: "/javascript-chart-realtime-bigdata-demo",
-    urlTitleRealtimeBigDataJavaScriptChartDemo: "JavaScript Chart Realtime Big Data Demo",
-    titleRealtimeBigDataJavaScriptChartDemo: "Realtime Big Data Showcase",
+    urlRealtimeBigDataJavaScriptChartDemo: "/javascript-chart-websocket-bigdata-demo",
+    titleRealtimeBigDataJavaScriptChartDemo: "Client/Server Websocket Data Streaming",
 
     // BuilderApi, Simple Chart
     urlBuilderSimpleChart: "/javascript-builder-simple",
@@ -660,4 +659,6 @@ export const ExampleStrings = {
     urlVirtualizedData: "/javascript-virtualized-data",
     titleVirtualizedData: "Load Data on Zoom/Pan",
 
+    urlHeatmapInteractionsData: "/javascript-heatmap-interactions",
+    titleHeatmapInteractionsData: "Rich Interactions Showcase",
 };

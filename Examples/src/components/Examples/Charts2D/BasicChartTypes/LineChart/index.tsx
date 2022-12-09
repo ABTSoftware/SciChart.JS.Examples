@@ -532,13 +532,13 @@ const drawExample = async () => {
                 strokeThickness: 3,
                 stroke: appTheme.VividOrange,
                 // paletteprovider allows per-point colouring
-                paletteProvider
+                paletteProvider,
                 // Datalabels may be shown using this property
-                // dataLabels: {
-                //     style: { fontFamily: "Arial", fontSize: 8 },
-                //     color: appTheme.PaleSkyBlue,
-                //     skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious
-                // }
+                dataLabels: {
+                    style: { fontFamily: "Arial", fontSize: 8 },
+                    color: appTheme.PaleSkyBlue,
+                    skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious
+                }
             })
         );
 

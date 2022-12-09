@@ -4,11 +4,11 @@ import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-streaming-data-from-server-bigdata-performance.jpg";
+import exampleImage from "./javascript-heatmap-interactions.jpg";
 
 const Subtitle = () => (
     <p>
-        Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance{" "}
+        Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -41,10 +41,10 @@ const documentationLinks: TDocumentationLink[] = [
     }
 ];
 
-export const realtimeBigDataDemoExampleInfo: TExampleInfo = {
-    title: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo,
-    pageTitle: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo + ExampleStrings.exampleGenericTitleSuffix,
-    path: ExampleStrings.urlRealtimeBigDataJavaScriptChartDemo,
+export const heatmapInteractionsExampleInfo: TExampleInfo = {
+    title: ExampleStrings.titleHeatmapInteractionsData,
+    pageTitle: ExampleStrings.titleHeatmapInteractionsData + ExampleStrings.exampleGenericTitleSuffix,
+    path: ExampleStrings.urlHeatmapInteractionsData,
     subtitle: Subtitle,
     documentationLinks,
     tips,

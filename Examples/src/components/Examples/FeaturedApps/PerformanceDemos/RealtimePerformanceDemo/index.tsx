@@ -40,9 +40,9 @@ const drawExample = async () => {
 
     // Create some DataSeries
     const dataSeries: XyDataSeries[] = [
-        new XyDataSeries(wasmContext),
-        new XyDataSeries(wasmContext),
-        new XyDataSeries(wasmContext)
+        new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true }),
+        new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true }),
+        new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true })
     ];
 
     const seriesColors = [appTheme.VividSkyBlue, appTheme.VividOrange, appTheme.VividPink];
