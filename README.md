@@ -65,6 +65,10 @@ Further instructions can be found in **[/Tutorials/Readme.md](Tutorials)**
 
 Contains a number of boilerplate examples to help you get started fast using SciChart.js.
 
+Here you can find boilerplates for React, Vue.js, Angular, Next.js, Nuxt.js, Electron and more. 
+
+Further details can be found in [/Sandbox/Readme.md](Sandbox)
+
 
 
 
