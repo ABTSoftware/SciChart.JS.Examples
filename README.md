@@ -53,13 +53,13 @@ npm run build
 npm start // run in prod mode
 ```
 
-Further instructions can be found in **[/Examples/Readme.md](Examples/Readme.md)**
+Further instructions can be found in **[/Examples/Readme.md](Examples)**
 
 # [/Tutorials Folder](Tutorials)
 
 Contains Tutorials for 2D & 3D Charts using npm & webpack, or vanilla js (no bundler). Video tutorials are also available online.
 
-Further instructions can be found in **[/Tutorials/Readme.md](Tutorials/Readme.md)**
+Further instructions can be found in **[/Tutorials/Readme.md](Tutorials)**
 
 # [/Sandbox Folder](Sandbox)
 
