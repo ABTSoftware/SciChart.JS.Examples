@@ -37,5 +37,13 @@ module.exports = {
         { from: "src/img/svg_animation_ext.svg", to: "" }
       ]
     })
-  ]
+  ],
+  devServer: {
+    client: {
+        overlay: {
+            warnings: false,
+            errors: true
+        }
+    }
+  }
 };
