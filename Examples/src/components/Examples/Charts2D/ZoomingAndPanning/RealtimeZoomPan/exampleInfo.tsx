@@ -31,7 +31,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        Zoom the real-time chart below by dragging on the surface. Then double-click to reset zoom and start
+        Zoom the real-time chart below by dragging on the surface. Right click and drag to pan.  Then double-click to reset zoom and start
         automatically scrolling again.
     </p>
 );

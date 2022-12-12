@@ -54,7 +54,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
     React.useEffect(() => {
         updateGoogleTagManagerPage();
         window.scrollTo(0, 0);
-        window.Prism.highlightAll();
+        window.Prism?.highlightAll();
     }, []);
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const fullGithubUrl = baseGithubPath + githubUrl;

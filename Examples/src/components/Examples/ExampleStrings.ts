@@ -5,7 +5,7 @@ export const ExampleStrings = {
     siteKeywords: "performance, demo, chart, javascript, webgl, canvas",
     siteHomeDescription:
         "Examples for SciChart.js: High Performance JavaScript Charts. Featuring 2D & 3D JavaScript Chart types, performance demos, JavaScript stock charts, Heatmaps, Bubble charts",
-    siteHomeMetaImage: "https://www.scichart.com/wp-content/uploads/2020/10/scichart-js-javascript-chart-collage-1485.jpg",
+    siteHomeMetaImage: "https://www.scichart.com/wp-content/uploads/2022/12/javascript-chart-collage-2022.jpg",
     exampleGenericTitleSuffix: " | SciChart.js Demo",
 
     // Documentation links and link tooltips
@@ -571,9 +571,8 @@ export const ExampleStrings = {
     urlTenorCurvesFeaturedApp: "/javascript-2d-3d-chart-tenor-curves-example",
 
     // Showcases RealtimeBigData Demo
-    urlRealtimeBigDataJavaScriptChartDemo: "/javascript-chart-realtime-bigdata-demo",
-    urlTitleRealtimeBigDataJavaScriptChartDemo: "JavaScript Chart Realtime Big Data Demo",
-    titleRealtimeBigDataJavaScriptChartDemo: "Realtime Big Data Showcase",
+    urlRealtimeBigDataJavaScriptChartDemo: "/javascript-chart-websocket-bigdata-demo",
+    titleRealtimeBigDataJavaScriptChartDemo: "Client/Server Websocket Data Streaming",
 
     // BuilderApi, Simple Chart
     urlBuilderSimpleChart: "/javascript-builder-simple",
@@ -660,4 +659,6 @@ export const ExampleStrings = {
     urlVirtualizedData: "/javascript-virtualized-data",
     titleVirtualizedData: "Load Data on Zoom/Pan",
 
+    urlHeatmapInteractionsData: "/javascript-heatmap-interactions",
+    titleHeatmapInteractionsData: "Rich Interactions Showcase",
 };
