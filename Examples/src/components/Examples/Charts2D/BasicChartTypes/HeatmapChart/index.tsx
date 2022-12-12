@@ -34,9 +34,9 @@ const drawExample = async () => {
     // Create a Heatmap Data-series. Pass heatValues as a number[][] to the UniformHeatmapDataSeries
     const initialZValues: number[][] = generateExampleData(WIDTH, HEIGHT, 200, 20, MAX_SERIES);
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
-        xStart: 100,
+        xStart: 0,
         xStep: 1,
-        yStart: 100,
+        yStart: 0,
         yStep: 1,
         zValues: initialZValues
     });
@@ -150,6 +150,7 @@ function generateExampleData(
     index: number,
     maxIndex: number
 ): number[][] {
+    // Returns a 2-dimensional javascript array [height (y)] [width (x)] size
     const zValues = zeroArray2D([height, width]);
     // math.round but to X digits
     function roundTo(number: number, digits: number) {
@@ -158,8 +159,10 @@ function generateExampleData(
     }
     const angle = roundTo(Math.PI * 2 * index, 3) / maxIndex;
 
-    for (let x = 0; x < width; x++) {
-        for (let y = 0; y < height; y++) {
+    // When appending data to a 2D Array for the heatmap, the order of appending (X,Y) does not matter
+    // but when accessing the zValues[][] array, we set data [y] then [x]
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
             const v =
                 (1 + roundTo(Math.sin(x * 0.04 + angle), 3)) * 50 +
                 (1 + roundTo(Math.sin(y * 0.1 + angle), 3)) * 50 * (1 + roundTo(Math.sin(angle * 2), 3));

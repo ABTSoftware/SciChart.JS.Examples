@@ -36,7 +36,7 @@ const drawExample = async () => {
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
     sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
 
-    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "Life Expectancy", visibleRange: new NumberRange(40, 85) });
+    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "Life Expectancy", visibleRange: new NumberRange(30, 85) });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, { axisTitle: "Gdp Per Capita", visibleRange: new NumberRange(0, 50000) });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Year",

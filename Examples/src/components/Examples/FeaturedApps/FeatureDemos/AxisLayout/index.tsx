@@ -59,12 +59,11 @@ const drawExample = async () => {
             color: "white"
         },
         axisBorder: {
-            border: 2, // TODO fix bug
+            border: 2, 
             color: "white"
         },
         labelStyle: {
             fontSize: 14,
-            //fontWeight: "900"
         }
     };
 
@@ -176,13 +175,12 @@ const drawExample = async () => {
         xAxis.axisTitleStyle.color = primaryColors[index];
         yAxis.axisTitleStyle.color = primaryColors[index];
 
-        xAxis.majorTickLineStyle.color = primaryColors[index];
-        yAxis.majorTickLineStyle.color = primaryColors[index];
+        xAxis.majorTickLineStyle = { color: primaryColors[index] };
+        yAxis.majorTickLineStyle = { color: primaryColors[index] };
 
         xAxis.labelStyle.color = primaryColors[index];
         yAxis.labelStyle.color = primaryColors[index];
 
-        // TODO investigate bug
         xAxis.axisBorder.borderTop = 2;
         xAxis.axisBorder.borderBottom = 2;
         xAxis.axisBorder.borderRight = 2;

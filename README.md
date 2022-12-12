@@ -1,201 +1,79 @@
-# SciChart.js JavaScript Chart Examples Suite
+# SciChart.js Demo, Examples, Tutorials and Boilerplates
 
-> **Getting Started / Licensing and Trials**  
-> With the [full release of SciChart.js](https://www.scichart.com/scichart-js-javascript-charts-official-v1-0-released/) we've created a [getting-started guide](https://www.scichart.com/getting-started-scichart-js/) which shows you how to start a trial and compile the examples, tutorials, where to find documentation and more. Find out more below:
+## What's in this repo?
+
+1. The source code for [demo.scichart.com](https://demo.scichart.com) found under the **[/Examples](Examples)** folder
+2. Source code for **tutorials** for SciChart.js, found under the **[/Tutorials](Tutorials)** folder
+3. **Sandbox examples**, including boilerplates for React, Angular, Vue, Electron, Next.js and Nuxt.js plus several useful examples found under the **[/Sandbox](Sandbox)** folder
+
+> **Scroll down for how to compile the demo app, find tutorials and boilerplate examples**
+
+## License
+
+> [SciChart.js](https://scichart.com/javascript-chart-features) is commercial software with a free trial, but we are planning a free community edition soon!
+>
+> Anything in [this Repository](https://github.com/abtsoftware/scichart.js.examples) is covered by MIT license - meaning you can freely use our example/demo/tutorial code in your applications.
 > 
-> * **[Getting Started SciChart.js](https://www.scichart.com/getting-started-scichart-js/)** 
-> * **[Licensing SciChart.js](https://www.scichart.com/licensing-scichart-js/)**
-
-### Examples, showcase applications and tutorials for **SciChart.js: Ultra High Performance Realtime [JavaScript Chart Library](https://www.scichart.com/javascript-chart-features/)**.
-
-[![SciChart.js Ultra High Performance Realtime JavaScript Chart library](Sandbox/scichart-js-javascript-chart-collage-1485.jpg)](https://www.scichart.com/javascript-chart-features)
-
-[SciChart](https://www.scichart.com) has the _**only viable solution for mission-critical charting applications**_, with our ultra-fast 2D/3D graphics technology codenamed _Visual Xccelerator&reg;_ now ported to JavaScript/TypeScript using WebGL and WebAssembly. We have cross-platform technology and provide solutions to enterprise around the world for Windows, Mobile, macOS and now JavaScript apps.
+> **SciChart.js Licensing Links**
+>
+> - [Read about SciChart's **license terms** here](https://www.scichart.com/scichart-eula)
+> - [**Start a trial** by following steps here](https://scichart.com/getting-started/scichart-javascript)
+> - [**Purchase commercial licenses** here](https://store.scichart.com)
+> - Academic usage, universities and schools qualify for a free for a free license. Read more about this [here](https://www.scichart.com/educational-discount-programme).
 
 
-## Insane performance
+## Useful links
 
-[SciChart's](https://www.scichart.com) Ultra High performance [JavaScript Charts](https://www.scichart.com/javascript-chart-features/) can draw many millions of data-points, allowing you to zoom, pan, or browse big-data sets with ease. [SciChart](https://www.scichart.com) enables next-generation JavaScript &amp; TypeScript chart applications by allowing previously impossible datarates and update-rates. After all, we make 'Impossible projects possible'!
+> We've prepared a short [Getting Started guide](https://scichart.com/getting-started/scichart-javascript) for SciChart.js here.
+>
+> This will walk you through the entire process of starting a trial and show you where tutorials and documentation are and examples.
+> 
+> Other useful links below:
+> - [Video Tutorials](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2001%20-%20Setting%20up%20a%20Project%20with%20SciChart.js.html)
+> - [SciChart.js Documentation](https://www.scichart.com/documentation/js/current/webframe.html)
+> - [SciChart Community forums](https://scichart.com/questions)
+> - [SciChart Stackoverflow tag](https://stackoverflow.com/tags/scichart)
+> - [Contact Us (Technical support or sales)](https://scichart.com/contact-us)
 
-## Online Demo
+# Using the SciChart.Js.Examples Repository
+## [/Examples Folder](Examples)
 
-An online demo version of scichart.js.examples can be seen at https://demo.scichart.com. 
+Contains the source for the demo app for SciChart.js.Viewable online at [demo.scichart.com](https://demo.scichart.com).
 
-**Check out the demos below:**
+[![SciChart.js Demo - JavaScript Chart library](https://www.scichart.com/wp-content/uploads/2022/12/scichart-js-demo-home-scaled.jpg)](https://demo.scichart.com)
 
-#### [JavaScript Chart - Load 500 Series x 500 Points Performance Demo](https://demo.scichart.com/javascript-chart-load-500-series-by-500-points)
+After cloning the repo, open the [/Examples](Examples) folder in WebStorm or VSCode. 
 
-Click **Load** in the demo to create 500 series, each with 500 points (250,000 points total) and watch the JavaScript Chart draw instantly!
-
-[![Javascript Chart Performance Demo](Sandbox/scichart-js-javascript-chart-performance-demo500.jpg)](https://demo.scichart.com/javascript-chart-load-500-series-by-500-points)
-
-#### [Realtime JavaScript Chart Performance Demo](https://demo.scichart.com/javascript-chart-realtime-performance-demo)
-
-Click **Start** in the demo to create three series and append 100k points per second to each, with a total point count in the millions.
-
-[![Javascript Chart Performance Demo](Sandbox/scichart-js-javascript-chart-performance-demomillions.jpg)](https://demo.scichart.com/javascript-chart-realtime-performance-demo)
-
-#### [Realtime Ghosted Traces](https://demo.scichart.com/javascript-realtime-ghosted-traces-chart)
-
-Click **Start** to watch 10 series with thousands of points animating, while applying a glow WebGL Shader effect.
-
-[![Javascript Chart Performance Demo](Sandbox/scichart-js-javascript-chart-performance-demoghosted.jpg)](https://demo.scichart.com/javascript-realtime-ghosted-traces-chart)
-
-#### [JavaScript Chart Types](https://demo.scichart.com/javascript-bubble-chart)
-
-The demo includes many JavaScript Chart Types including [JavaScript Bubble Chart](https://demo.scichart.com/javascript-bubble-chart), a real-time [JavaScript heatmap chart](https://demo.scichart.com/javascript-heatmap-chart), a [JavaScript Candlestick Chart](https://demo.scichart.com/javascript-candlestick-chart) and many more!
-
-SciChart.js also includes 3D Charts, and has a [JavaScript UAV LiDAR 3D Point-Cloud demo](https://demo.scichart.com/javascript-3d-lidar-visualization), a [JavaScript 3D Bubble Chart](https://demo.scichart.com/javascript-3d-bubble-chart) and a [JavaScript 3D Surface Mesh Chart](https://demo.scichart.com/javascript-3d-surface-mesh-chart).   
-
-## Documentation
-
-We've taken the time to create hundreds of documentation pages for our JavaScript Charts, which you can find over at https://www.scichart.com/javascript-chart-documentation. Take a look here for tutorials, getting-started guides, API Docs (TypeDoc) and more.
-
-[![JavaScript Chart Documentation](Sandbox/scichart-js-javascript-chart-documentation.PNG)](https://www.scichart.com/javascript-chart-documentation).
-
-## Developer Quick-Start
-
-### Getting Started Guide
-
-We've prepared a Getting-Started guide at [www.scichart.com/getting-started-scichart-js](https://www.scichart.com/getting-started-scichart-js]). Start here if you wish to know how to get started with our JavaScript Chart Library.
-
-### Licensing the application 
-
-1. Get a trial license key from [www.scichart.com/licensing-scichart-js/](https://www.scichart.com/licensing-scichart-js/) by installing and running the **[licensing wizard](https://www.scichart.com/licensing-scichart-js/)**.
-2. Purchased license keys can be viewed at [www.scichart.com/profile](https://www.scichart.com/profile) and activated by following the steps at [licensing scichart JS](https://www.scichart.com/licensing-scichart-js/) 
-
-**Licensing a host for production**
-
-In order to deploy an app to a public host
-* Set the full hostname for you license on the website [www.scichart.com/profile](https://www.scichart.com/profile)
-* Copy runtime key from the **licensing wizard**
-* Set the runtime key in your app before calling SciChartSurface.create. The runtime key should be set once! 
-```
-import {SciChartSurface} from "scichart/charting/Visuals/SciChartSurface";
-
-SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
+```shell
+cd examples
+npm install 
+npm run dev // run in dev mode
+..
+npm run build
+npm start // run in prod mode
 ```
 
-### Run application in dev mode
+Further instructions can be found in **[/Examples/Readme.md](Examples)**
 
-To start the application locally you will need to `npm install` and `npm run dev` and also to have the licensing wizard running. This will run a development server locally and you should be able to view the examples in browser at http://localhost:8080
+# [/Tutorials Folder](Tutorials)
 
-> Note: Make sure the licensing wizard is running!
+Contains Tutorials for 2D & 3D Charts using npm & webpack, or vanilla js (no bundler). Video tutorials are also available online.
 
-> `cd Examples`   
-> `npm install`   
-> `npm run dev`
+Further instructions can be found in **[/Tutorials/Readme.md](Tutorials)**
 
-### Run application in production mode
+# [/Sandbox Folder](Sandbox)
 
-To start the application in production mode, run the following scripts. Note in production mode google analytics will be enabled.
+Contains a number of boilerplate examples to help you get started fast using SciChart.js.
 
-> `cd Examples`  
-> `npm run build`  
-> `npm start`
+Here you can find boilerplates for React, Vue.js, Angular, Next.js, Nuxt.js, Electron and more. 
 
-## Simple Code Examples
+Further details can be found in [/Sandbox/Readme.md](Sandbox)
 
-### Creating a SciChartSurface with X,Y Axis 
 
-A SciChartSurface can be created by calling the function SciChartSurface.create(). You will need to add an X/Y axis to see the chart.
 
-```javascript
-// Create the SciChartSurface in the div 'scichart-root'
-// The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
-// instance must be passed to other types that exist on the same surface.
-const {sciChartSurface, wasmContext} = await SciChartSurface.create("scichart-root");
 
-// Create an X,Y Axis and add to the chart
-const xAxis = new NumericAxis(wasmContext);
-const yAxis = new NumericAxis(wasmContext);
 
-sciChartSurface.xAxes.add(xAxis);
-sciChartSurface.yAxes.add(yAxis);
-```
 
-### Adding Series and Data
-
-SciChart has multiple chart-types out of the box. To add a series and some data, use code like this:
-
-```javascript
-// Create the SciChartSurface in the div 'scichart-root'
-// The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
-// instance must be passed to other types that exist on the same surface.
-const {sciChartSurface, wasmContext} = await SciChartSurface.create("scichart-root");
-
-// Create an X,Y Axis and add to the chart
-const xAxis = new NumericAxis(wasmContext);
-const yAxis = new NumericAxis(wasmContext);
-
-sciChartSurface.xAxes.add(xAxis);
-sciChartSurface.yAxes.add(yAxis);    
-
-// Create 100 dataseries, each with 10k points
-for (let seriesCount = 0; seriesCount < 100; seriesCount++) {        
-	const xyDataSeries = new XyDataSeries(wasmContext);
-
-	const opacity = (1 - ((seriesCount / 120))).toFixed(2);
-
-	// Populate with some data
-	for(let i = 0; i < 10000; i++) {
-		xyDataSeries.append(i, Math.sin(i* 0.01) * Math.exp(i*(0.00001*(seriesCount+1))));
-	}
-
-	// Add and create a line series with this data to the chart
-	// Create a line series        
-	const lineSeries = new FastLineRenderableSeries(wasmContext, {
-		dataSeries: xyDataSeries, 
-		stroke: `rgba(176,196,222,${opacity})`,
-		strokeThickness:2
-	});
-	sciChartSurface.renderableSeries.add(lineSeries);
-}
-```
-
-### Zooming and Panning 
-
-Zooming and Panning is really easy in SciChart.js. We have a number of ChartModifiers out of the box which will add zoom, pan behaviors and more. 
-
-Try some code like this:
-
-```javascript
-// Add zoom, pan behaviours to the chart. Mousewheel zoom, panning and double-click to 
-// zoom to fit
-const mouseWheelZoomModifier = new MouseWheelZoomModifier();
-const zoomPanModifier = new ZoomPanModifier();    
-const rubberBandZoomModifier = new RubberBandXyZoomModifier();
-const zoomExtentsModifier = new ZoomExtentsModifier();    
-sciChartSurface.chartModifiers.add(zoomExtentsModifier);
-sciChartSurface.chartModifiers.add(zoomPanModifier);
-sciChartSurface.chartModifiers.add(rubberBandZoomModifier);
-sciChartSurface.chartModifiers.add(mouseWheelZoomModifier);    
-```
-
-### Tooltips and Legends 
-
-SciChart supports Tooltips and Legends via our ChartModifier API. [Check out documentation on our website here](https://www.scichart.com/documentation/js/current/webframe.html#RolloverModifier.html).
-
-### Adding Annotations 
-
-SciChart supports Annotations and Labels. [Check out documentation on our website here](https://www.scichart.com/documentation/js/current/webframe.html#The%20Annotations%20API%20Overview.html) 
-
-### Adding Multiple Axis 
-
-SciChart supports multiple axis, you can check out an example here: https://demo.scichart.com/javascript-chart-with-multiple-x-axis
-
-### Linking Multiple Charts
-
-SciChart allows linking multiple charts together to create composite applications. Check out this example: https://demo.scichart.com/javascript-multi-pane-stock-charts
-
-## Further resources to Get Started with SciChart 
-
-Further resources which you may find useful! 
-
-* [The SciChart.js hand-written Documentation](https://www.scichart.com/javascript-chart-documentation)
-* [The SciChart.js Video Tutorials](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2001%20-%20Setting%20up%20a%20Project%20with%20SciChart.js.html)
-* [The SciChart.js Examples Suite (online demo)](https://demo.scichart.com)
-* [Features and info about SciChart.js](http://scichart.com/javascript-chart-features) 
 
 
 

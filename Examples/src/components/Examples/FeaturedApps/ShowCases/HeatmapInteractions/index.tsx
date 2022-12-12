@@ -51,9 +51,9 @@ export default function HeatmapInteractions () {
                     <div className={localClasses.toolbarRow}>
                         <Button id="startAnimation" style={{color: appTheme.ForegroundColor}}>Start</Button>
                         <Button id="stopAnimation" style={{color: appTheme.ForegroundColor}}>Stop</Button>
-                        {/* <Button id="stopAnimation" style={{color: appTheme.ForegroundColor}}>Single Slit diffraction</Button>
-                        <Button id="stopAnimation" style={{color: appTheme.ForegroundColor}}>2 Point sources</Button>
-                        <Button id="stopAnimation" style={{color: appTheme.ForegroundColor}}>Show Help</Button> */}
+                        <Button id="twoSource" style={{color: appTheme.ForegroundColor}}>Load basic example</Button>
+                        <Button id="interference" style={{color: appTheme.ForegroundColor}}>Load double slit example</Button>
+                        <Button id="showHelp" style={{color: appTheme.ForegroundColor}}>Show Help</Button>
                     </div>
                     <div style={{ display: "flex", flexDirection: "row", flexBasis: 500 }}>
                         <div id={divElementId} style={{ flexBasis: 500, flexGrow: 1, flexShrink: 1 }} />

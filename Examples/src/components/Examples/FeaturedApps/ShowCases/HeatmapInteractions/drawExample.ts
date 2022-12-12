@@ -13,12 +13,14 @@ import { PaletteFactory } from "scichart/Charting/Model/PaletteFactory";
 import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
 import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
-import { EDraggingGripPoint } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { ECoordinateMode, EDraggingGripPoint } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import { AnnotationClickEventArgs } from "scichart/Charting/Visuals/Annotations/AnnotationClickEventArgs";
 import { AxisMarkerAnnotation } from "scichart/Charting/Visuals/Annotations/AxisMarkerAnnotation";
 import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
 import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
 import { HorizontalLineAnnotation } from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
+import { EAnnotationLayer } from "scichart/Charting/Visuals/Annotations/IAnnotation";
+import { EWrapTo, NativeTextAnnotation } from "scichart/Charting/Visuals/Annotations/NativeTextAnnotation";
 import { VerticalLineAnnotation } from "scichart/Charting/Visuals/Annotations/VerticalLineAnnotation";
 import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
@@ -28,10 +30,12 @@ import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IR
 import { SplineLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
 import { UniformHeatmapRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
 import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
+import { GenericAnimation, IGenericAnimation } from "scichart/Core/Animations/GenericAnimation";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
 import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { EExecuteOn } from "scichart/types/ExecuteOn";
+import { ELabelPlacement } from "scichart/types/LabelPlacement";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { TGradientStop } from "scichart/types/TGradientStop";
 import { TSciChart } from "scichart/types/TSciChart";
@@ -47,8 +51,8 @@ export const divInput = "input";
 export const divHistory = "history";
 
 const gradientStops = [
-    { offset: 0, color: "#17243d" },
-    { offset: 0.3, color: "#274b92" },
+    { offset: 0, color: "#942B96" },
+    { offset: 0.3, color: "#3C2D91" },
     { offset: 0.45, color: "#47bde6" },
     { offset: 0.5, color: appTheme.DarkIndigo },
     { offset: 0.55, color: "#68bcae" },
@@ -57,8 +61,8 @@ const gradientStops = [
 ];
 
 const csGradientStops = [
-    { offset: 0, color: "#17243d" },
-    { offset: 0.3, color: "#274b92" },
+    { offset: 0, color: "#942B96" },
+    { offset: 0.3, color: "#3C2D91" },
     { offset: 0.45, color: "#47bde6" },
     { offset: 0.5, color: "#45AEC3" },
     { offset: 0.55, color: "#68bcae" },
@@ -79,7 +83,7 @@ export const drawExample = async () => {
     width = Math.floor(sciChartSurface.domCanvas2D.width);
     height = Math.floor(sciChartSurface.domCanvas2D.height);
     let initialZValues = Array.from(Array(height), _ => Array(width).fill(0));
-    const velocities = Array.from(Array(height), _ => Array(width).fill(0));
+    let velocities = Array.from(Array(height), _ => Array(width).fill(0));
 
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
         xStart: 1,
@@ -96,9 +100,9 @@ export const drawExample = async () => {
         colorMap: new HeatmapColorMap({ minimum: -80, maximum: 80, gradientStops })
     });
 
-    const lineSurface = await createLineChart();
-    const lineDataSeries = lineSurface.renderableSeries.getById("h").dataSeries as XyDataSeries;
-    const vlineDataSeries = lineSurface.renderableSeries.getById("v").dataSeries as XyDataSeries;
+    const crossSectionSurface = await createCrossSectionChart();
+    const lineDataSeries = crossSectionSurface.renderableSeries.getById("h").dataSeries as XyDataSeries;
+    const vlineDataSeries = crossSectionSurface.renderableSeries.getById("v").dataSeries as XyDataSeries;
     const lineXValues = Array.from(Array(width)).map((_, i) => i);
     const vlineXValues = Array.from(Array(height)).map((_, i) => i);
 
@@ -107,6 +111,9 @@ export const drawExample = async () => {
         strokeThickness: 3,
         y1: height / 3,
         isEditable: true,
+        labelPlacement: ELabelPlacement.TopLeft,
+        axisLabelStroke: "#E97064",
+        showLabel: true,
         dragOnLabel: false,
         onDrag: () => {
             lineDataSeries.clear();
@@ -120,6 +127,9 @@ export const drawExample = async () => {
     const vline = new VerticalLineAnnotation({
         stroke: "#E97064",
         strokeThickness: 3,
+        labelPlacement: ELabelPlacement.BottomLeft,
+        axisLabelStroke: "#E97064",
+        showLabel: true,
         x1: width / 2,
         isEditable: true,
         onDrag: () => {
@@ -140,16 +150,29 @@ export const drawExample = async () => {
 
     const addIO = new AddIOModifier();
 
-    const addInput = (x: number, y: number) => {
+    const removeInput = (input: BoxAnnotation) => {
+        sciChartSurface.annotations.remove(input);
+        const inputSeries = inputSurface.renderableSeries.getById(input.id);
+        inputSurface.renderableSeries.remove(inputSeries);
+        inputSeries.delete();
+        const freqAnn = inputSurface.annotations.getById(input.id);
+        inputSurface.annotations.remove(freqAnn);
+        freqAnn?.delete();
+        inputColors.push(input.id);
+        inputs.splice(inputs.indexOf(input), 1);
+        input.delete();
+    }
+    const addInput = (x: number, y: number, w?: number, h?: number, freq?: number) => {
         if (inputColors.length === 0) return;
         const color = inputColors.shift();
-        const size = Math.round(width / 80);
+        w = w ?? Math.round(width / 80);
+        h = h ?? w;
         const boxInput = new BoxAnnotation({
             id: color,
-            x1: x - size,
-            x2: x + size,
-            y1: y - size,
-            y2: y + size,
+            x1: x - w,
+            x2: x + w,
+            y1: y - h,
+            y2: y + h,
             isEditable: true,
             strokeThickness: 3,
             stroke: color,
@@ -157,13 +180,7 @@ export const drawExample = async () => {
             dragPoints: [EDraggingGripPoint.Body, EDraggingGripPoint.x2y1],
             onClick: (args: AnnotationClickEventArgs) => {
                 if (args.mouseArgs.button !== EExecuteOn.MouseRightButton) return;
-                const input = args.sender as BoxAnnotation;
-                sciChartSurface.annotations.remove(input);
-                const inputSeries = inputSurface.renderableSeries.getById(input.id);
-                inputSurface.renderableSeries.remove(inputSeries);
-                inputColors.push(input.id);
-                inputs.splice(inputs.indexOf(input));
-                input.delete();
+                removeInput(boxInput);
             }
         });
 
@@ -179,14 +196,24 @@ export const drawExample = async () => {
 
         inputs.push(boxInput);
         sciChartSurface.annotations.add(boxInput);
-        addInputSeries(color);
+        addInputSeries(color, freq);
     };
-
-    addInput(width / 4, height / 2);
-    addInput((3 * width) / 4, height / 2);
 
     const { sciChartSurface: outputSurface, addOutputSeries } = await createHistoryChart();
 
+    const removeOutput = (output: CustomAnnotation) => {
+        sciChartSurface.annotations.remove(output);
+        const os = outputSurface.renderableSeries.getById(output.id);
+        outputSurface.renderableSeries.remove(os);
+        os?.delete();
+        // remove leading dot
+        const od = outputSurface.renderableSeries.getById(output.id + "dot");
+        outputSurface.renderableSeries.remove(od);
+        od.delete();
+        outputColors.push(output.id);
+        outputs.splice(outputs.indexOf(output), 1);
+        output.delete();
+    }
     const addOutput = (x: number, y: number) => {
         if (outputColors.length === 0) return;
         const color = outputColors.shift();
@@ -200,17 +227,8 @@ export const drawExample = async () => {
             isEditable: true,
             dragPoints: [EDraggingGripPoint.Body],
             onClick: (args: AnnotationClickEventArgs) => {
-                if (args.mouseArgs.button !== EExecuteOn.MouseRightButton) return;
-                const outputToRemove = args.sender as CustomAnnotation;
-                sciChartSurface.annotations.remove(outputToRemove);
-                outputSurface.renderableSeries.remove(outputSurface.renderableSeries.getById(outputToRemove.id));
-                // remove leading dot
-                outputSurface.renderableSeries.remove(
-                    outputSurface.renderableSeries.getById(outputToRemove.id + "dot")
-                );
-                outputColors.push(outputToRemove.id);
-                outputs.splice(outputs.indexOf(outputToRemove));
-                outputToRemove.delete();
+                if (args.mouseArgs.button !== EExecuteOn.MouseRightButton) return;    
+                removeOutput(output);           
             }
         });
         output.selectedChanged.subscribe((isSelected: boolean) => {
@@ -242,9 +260,6 @@ export const drawExample = async () => {
         addOutputSeries(color);
     };
 
-    addOutput((3 * width) / 4, (3 * height) / 4);
-    addOutput(width / 4, height / 4);
-
     sciChartSurface.annotations.add(hline, vline);
 
     // Add heatmap to the chart
@@ -265,6 +280,20 @@ export const drawExample = async () => {
     // @ts-ignore
     dampingMarker.updateAdornerInner = () => {}
     sciChartSurface.annotations.add(dampingMarker);
+
+    sciChartSurface.annotations.add(new NativeTextAnnotation({
+        x1: 0.5,
+        y1: 0.02,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        text: "2D Wave simulation",
+        fontSize: 18,
+        textColor: appTheme.ForegroundColor,
+        opacity: 0.5,
+        wrapTo: EWrapTo.ViewRect
+    }));
 
     let timerId: NodeJS.Timeout;
     const getValue = (r: number, c: number) => {
@@ -360,9 +389,121 @@ export const drawExample = async () => {
     };
     document.querySelector("#stopAnimation").addEventListener("click", stopAnimation);
 
-    startAnimation();
-    return [sciChartSurface, lineSurface, inputSurface];
+    const showHelp = () => {
+        const anim = getHelpAnnotation("This heatmap is running a 2D wave simulation.  Colours correspond to wave height. Drag the Damping marker to adjust how long the waves last.",
+        sciChartSurface);
+        sciChartSurface.addAnimation(anim.startAnim);
+        const anim2 = getHelpAnnotation("This shows the cross section of the waveforms at the horizontal and vertical orange lines on the heatmap.\nTry Dragging the orange lines.",
+        crossSectionSurface);
+        anim.next.onNext = () => sciChartSurface.addAnimation(anim2.startAnim);
+        const anim3 = getHelpAnnotation("The boxes are input locations.  Drag to move them around, or click, then drag in the white circle to resize.",
+        sciChartSurface);
+        anim2.next.onNext = () => sciChartSurface.addAnimation(anim3.startAnim);
+        const anim4 = getHelpAnnotation("These series drive the corresponding colored inputs.  Drag the frequency markers to set a regular driving input, or click and drag to edit the series directly.",
+        inputSurface);
+        anim3.next.onNext = () => sciChartSurface.addAnimation(anim4.startAnim);
+        const anim5 = getHelpAnnotation("This chart records the values over time at the coloured output circles on the heatmap.  You can drag those around too.  Click on one to highlight its associated series.",
+        outputSurface);
+        anim4.next.onNext = () => sciChartSurface.addAnimation(anim5.startAnim);
+        const anim6 = getHelpAnnotation("You can add additional inputs and outputs by left clicking on the heatmap and selecting one of the options.  This is all done with annotations and a custom modifier.  Right click on an input or output to remove it.",
+        sciChartSurface);
+        anim5.next.onNext = () => sciChartSurface.addAnimation(anim6.startAnim);
+    }
+    showHelp();
+
+    document.querySelector("#showHelp").addEventListener("click", showHelp);
+
+    const clearHeatmap = () => {
+        initialZValues = Array.from(Array(height), _ => Array(width).fill(0));
+        velocities = Array.from(Array(height), _ => Array(width).fill(0));
+        while (inputs.length > 0) {
+            const i = inputs[0];
+            removeInput(i);
+        }
+        while (outputs.length > 0) {
+            const o = outputs[0];
+            removeOutput(o);
+        }
+    }
+
+    const twoPoint = () => {
+        stopAnimation();
+        clearHeatmap();
+        addInput(width / 4, height / 2);
+        addInput((3 * width) / 4, height / 2);
+        addOutput((3 * width) / 4, (3 * height) / 4);
+        addOutput(width / 4, height / 4);
+        startAnimation();
+    }
+    document.querySelector("#twoSource").addEventListener("click", twoPoint);
+
+    const interference = () => {
+        stopAnimation();
+        clearHeatmap();
+        const sep = 20;
+        const gap = 10
+        const outer = (((height - sep) / 2) - gap) / 2;
+        addInput(width / 2, height / 2, 2, sep / 2, 0);
+        addInput(width / 2, outer, 2, outer, 0);
+        addInput(width / 2, height - outer, 2, outer, 0);
+        addInput(width / 3, height / 2, 4, height / 3, 25000);
+        addOutput((3 * width) / 4, height / 2);
+        addOutput((3 * width) / 4, height / 3);
+        addOutput((3 * width) / 4, height / 4);
+        vline.x1 = (3 * width) / 4;
+        startAnimation();
+    }
+    document.querySelector("#interference").addEventListener("click", interference);
+
+    twoPoint();
+    return [sciChartSurface, crossSectionSurface, inputSurface, outputSurface];
 };
+
+const getHelpAnnotation = (text: string, surface: SciChartSurface) => {
+    const ann = new NativeTextAnnotation({
+        x1: 0.5,
+        y1: 0.5,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        text,
+        opacity: 0,
+        fontSize: 18,
+        textColor: appTheme.ForegroundColor,
+        wrapTo: EWrapTo.ViewRect
+    });
+    const next = { onNext: () => {} };
+    const startAnim = new GenericAnimation<number>({
+        from: 0,
+        to: 1,
+        duration: 500,
+        onAnimate(from, to, progress) {
+            if (!surface.annotations.contains(ann)) {
+                surface.annotations.add(ann);
+            } else {
+                ann.opacity = progress;
+            }
+        },
+        onCompleted() {
+            surface.addAnimation(new GenericAnimation<number>({
+                delay: 4000,
+                duration: 500,
+                from: 1,
+                to: 0,
+                onAnimate(from, to, progress) {
+                    ann.opacity = 1 - progress;
+                },
+                onCompleted() {
+                    surface.annotations.remove(ann);
+                    if (next.onNext)
+                        next.onNext();
+                }
+            }));
+        },
+    });
+    return { startAnim, next };
+}
 
 class YPalette extends BasePaletteProvider implements IStrokePaletteProvider {
     public strokePaletteMode: EStrokePaletteMode.GRADIENT;
@@ -393,7 +534,7 @@ class YPalette extends BasePaletteProvider implements IStrokePaletteProvider {
     }
 }
 
-export const createLineChart = async () => {
+const createCrossSectionChart = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divCrossSection, { theme: appTheme.SciChartJsTheme });
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
@@ -466,6 +607,20 @@ export const createLineChart = async () => {
     });
     sciChartSurface.renderableSeries.add(lineSeriesv);
 
+    sciChartSurface.annotations.add(new NativeTextAnnotation({
+        x1: 0.5,
+        y1: 0.02,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        text: "Cross sections",
+        fontSize: 18,
+        textColor: appTheme.ForegroundColor,
+        opacity: 0.5,
+        wrapTo: EWrapTo.ViewRect
+    }));
+
     sciChartSurface.chartModifiers.add(
         new ZoomExtentsModifier(),
         new MouseWheelZoomModifier(),
@@ -476,7 +631,7 @@ export const createLineChart = async () => {
     return sciChartSurface;
 };
 
-export const inputChart = async () => {
+const inputChart = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divInput, { theme: appTheme.SciChartJsTheme });
     const xAxis = new NumericAxis(wasmContext, {
         drawMinorGridLines: false,
@@ -502,8 +657,8 @@ export const inputChart = async () => {
         return Array.from(Array(60)).map((_, i) => (Math.sin((frequency * 2 - 30000) * i * 2 * Math.PI / 60000) * 80))
     }
 
-    const addInputSeries = (color: string) => {
-        const freq = Math.floor(Math.random() * 30000 / 500) * 500;
+    const addInputSeries = (color: string, freq?: number) => {
+        freq = freq ?? Math.floor(Math.random() * 30000 / 500) * 500;
         const frequencyMarker = new DiscreteAxisMarker({
             id: color,
             x1: freq,
@@ -511,6 +666,7 @@ export const inputChart = async () => {
             isEditable: true,
             formattedValue: "Frequency"
         });
+        frequencyMarker.stepSize = 250;
         // hack to disable selection box while dragging
         // @ts-ignore
         frequencyMarker.updateAdornerInner = () => {}
@@ -551,6 +707,20 @@ export const inputChart = async () => {
     });
     sciChartSurface.annotations.add(timerLine);
 
+    sciChartSurface.annotations.add(new NativeTextAnnotation({
+        x1: 0.5,
+        y1: 0.02,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        text: "Input drivers",
+        fontSize: 18,
+        textColor: appTheme.ForegroundColor,
+        opacity: 0.5,
+        wrapTo: EWrapTo.ViewRect
+    }));
+
     sciChartSurface.chartModifiers.add(
         new PointDragModifier(),
         new ZoomPanModifier({ executeOn: EExecuteOn.MouseRightButton }),
@@ -559,7 +729,7 @@ export const inputChart = async () => {
     return { sciChartSurface, addInputSeries };
 };
 
-export const createHistoryChart = async () => {
+const createHistoryChart = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divHistory, { theme: appTheme.SciChartJsTheme });
     const xAxis = new NumericAxis(wasmContext, {
         visibleRange: new NumberRange(0, 30000),
@@ -622,6 +792,20 @@ export const createHistoryChart = async () => {
         });
         sciChartSurface.renderableSeries.add(lineSeries, leadingDot);
     };
+
+    sciChartSurface.annotations.add(new NativeTextAnnotation({
+        x1: 0.5,
+        y1: 0.02,
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        text: "Point outputs",
+        fontSize: 18,
+        textColor: appTheme.ForegroundColor,
+        opacity: 0.5,
+        wrapTo: EWrapTo.ViewRect
+    }));
 
     sciChartSurface.chartModifiers.add(
         new ZoomPanModifier(),
