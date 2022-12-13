@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
@@ -56,7 +55,6 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    code,
     githubUrl,
     metaDescription:
         "Easily create a JavaScript Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.",

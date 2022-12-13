@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
@@ -58,7 +57,6 @@ export const lineChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    code,
     githubUrl,
     metaDescription:
         "Discover how to create a high performance JavaScript Line Chart with SciChart - the leading JavaScript library. Get your free demo now.",

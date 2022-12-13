@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -51,7 +50,6 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    code,
     githubUrl,
     metaDescription:
         "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",

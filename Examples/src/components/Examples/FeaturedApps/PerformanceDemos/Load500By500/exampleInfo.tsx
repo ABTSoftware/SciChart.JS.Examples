@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -50,7 +49,6 @@ export const load500By500ExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    code,
     githubUrl,
     metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!`,
     metaKeywords: "performance, demo, chart, javascript, webgl, canvas",

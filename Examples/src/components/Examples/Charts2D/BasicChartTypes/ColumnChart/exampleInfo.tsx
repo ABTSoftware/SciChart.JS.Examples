@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
@@ -52,7 +51,6 @@ export const columnChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    code,
     githubUrl,
     metaDescription:
         "JavaScript Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",

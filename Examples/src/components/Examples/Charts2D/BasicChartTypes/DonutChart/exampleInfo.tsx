@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
@@ -54,7 +53,6 @@ export const donutChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    code,
     githubUrl,
     metaDescription:
         "Create JavaScript Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",

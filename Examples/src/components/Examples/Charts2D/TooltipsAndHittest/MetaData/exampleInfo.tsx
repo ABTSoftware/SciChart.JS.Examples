@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
@@ -52,7 +51,6 @@ export const metaDataExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    code,
     githubUrl,
     metaDescription:
         "Demonstrates using MetaData in a JavaScript Chart - add custom data to points for display or to drive visual customisation",

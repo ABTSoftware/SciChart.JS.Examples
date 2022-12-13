@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
@@ -53,7 +52,6 @@ export const impulseChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    code,
     githubUrl,
     metaDescription:
         "Easily create JavaScript Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. ",

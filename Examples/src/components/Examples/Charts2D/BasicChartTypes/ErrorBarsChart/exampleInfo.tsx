@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
@@ -56,7 +55,6 @@ export const errorBarsChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    code,
     githubUrl,
     metaDescription:
         "Create JavaScript Error Bars Chart using high performance SciChart.js. Display uncertainty or statistical confidence of a data-point. Get free demo now.",

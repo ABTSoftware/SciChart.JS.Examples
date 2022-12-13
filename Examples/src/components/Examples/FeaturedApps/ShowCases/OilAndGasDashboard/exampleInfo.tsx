@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -8,7 +7,7 @@ import exampleImage from "./javascript-oil-gas-explorer-dashboard-charts.jpg";
 
 const Subtitle = () => (
     <p>
-        TODO Subtitle
+        This is an example of the kind of complex, multi-chart dashboards used in the oil and gas industry.
     </p>
 );
 
@@ -43,7 +42,6 @@ export const oilAndGasExplorerDashboard: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    code,
     githubUrl,
     metaDescription: "Todo meta",
     metaKeywords: "Todo keywords",

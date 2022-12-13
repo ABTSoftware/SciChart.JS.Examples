@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -52,7 +51,6 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    code,
     githubUrl,
     metaDescription: "Demonstrates adding a Cursor (Crosshair) to a JavaScript Chart with SciChart.js CursorModifier",
     metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas",

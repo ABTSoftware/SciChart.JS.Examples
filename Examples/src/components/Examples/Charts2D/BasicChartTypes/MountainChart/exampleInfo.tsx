@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
@@ -55,7 +54,6 @@ export const mountainChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    code,
     githubUrl,
     metaDescription:
         "Create JavaScript Mountain Chart with SciChart.js. Zero line can be zero or a specific value. Fill color can be solid or gradient as well. Get a free demo now.",

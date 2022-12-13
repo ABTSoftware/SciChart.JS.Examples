@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -54,7 +53,6 @@ export const ohlcChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    code,
     githubUrl,
     metaDescription:
         "Easily create JavaScript OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",

@@ -43,7 +43,6 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const previewDescription = examplePage ? examplePage.previewDescription : undefined;
     const description = examplePage ? examplePage.description : undefined;
 
-    const codeStr = examplePage ? examplePage.code : "";
     const githubUrl = examplePage ? examplePage.githubUrl : "";
     const seoDescription = examplePage ? examplePage.metaDescription : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
@@ -143,22 +142,6 @@ const ExamplesRoot: React.FC<TProps> = props => {
                             </div>
                         </div>
                     </ComponentWrapper>
-
-                    <div ref={myRef}>
-                        <CSSTransition timeout={1000} unmountOnExit in={showSource} classNames="source-code">
-                            <ComponentWrapper>
-                                {examplePage && (
-                                    <SourceCode
-                                        onClose={() => {
-                                            setShowSource(false);
-                                        }}
-                                        code={codeStr}
-                                        githubUrl={githubUrl}
-                                    />
-                                )}
-                            </ComponentWrapper>
-                        </CSSTransition>
-                    </div>
 
                     {seeAlso && (
                         <div className={!showSource && !firstRender ? classes.Animation : ""}>

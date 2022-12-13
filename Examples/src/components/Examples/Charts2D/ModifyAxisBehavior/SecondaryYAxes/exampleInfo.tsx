@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
@@ -43,7 +42,6 @@ export const secondaryYAxesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    code,
     githubUrl,
     metaDescription:
         "Demonstrates Secondary Y Axis on a JavaScript Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",

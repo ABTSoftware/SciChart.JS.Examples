@@ -1,6 +1,5 @@
 import * as React from "react";
 import {TExampleInfo} from "../../../../AppRouter/examplePages";
-import {code} from "./GENERATED_SRC";
 import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
 import {GalleryItem} from "../../../../../helpers/types/types";
@@ -48,7 +47,6 @@ export const transparentBackgroundExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    code,
     githubUrl,
     metaDescription: "Demonstrates how to create a JavaScript Chart with background image using transparency in SciChart.js",
     metaKeywords: "styling, transparent, background, chart, javascript, webgl, canvas",

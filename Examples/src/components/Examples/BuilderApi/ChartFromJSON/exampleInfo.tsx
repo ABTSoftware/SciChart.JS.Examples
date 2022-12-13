@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../ExampleStrings";
 import exampleImage from "./javascript-chart-from-json.jpg";
@@ -52,7 +51,6 @@ export const chartFromJSONExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    code,
     githubUrl,
     metaDescription:
         "Demonstrates how to create a JavaScript Chart from JSON using the builder API. ",
