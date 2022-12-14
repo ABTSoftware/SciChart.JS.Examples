@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts/index.tsx";
+export const githubUrl = "/components/Examples/Charts2D/CreateStockCharts/DepthChart/index.tsx";
