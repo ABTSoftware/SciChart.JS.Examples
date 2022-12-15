@@ -37,5 +37,13 @@ module.exports = {
                 { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" }
             ]
         }),
-    ]
+    ],
+    devServer: {
+        client: {
+            overlay: {
+                warnings: false,
+                errors: true
+            }
+        }
+    }
 };
