@@ -27,13 +27,6 @@ function updateExample(targetFileDir, srcText, platform) {
         throw Error(`Platform ${platform} is not supported. Please run this script on Windows or macOS`);
     }
     const isWindows = platform === "win32";
-    const targetFileSrc = path.join(targetFileDir, "GENERATED_SRC.ts");
-    const replacedText = srcText.replace(/\`/g, "\\`")
-        .replace(/\$/g, "\\$");
-    fs.writeFileSync(
-        targetFileSrc,
-        `export const code = \`${replacedText}\`;`
-    );
 
     const targetFileGithubUrl = path.join(targetFileDir, "GENERATED_GITHUB_URL.ts");
     const targetFileDirUnix = isWindows ? targetFileDir.replace(/\\/g, "/") : targetFileDir;

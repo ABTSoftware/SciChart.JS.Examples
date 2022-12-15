@@ -1,5 +1,4 @@
 import * as React from "react";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -56,7 +55,6 @@ export const audioAnalyzerExampleInfo: TExampleInfo = {
     tips,
     description,
     subtitle: Subtitle,
-    code,
     githubUrl,
     metaDescription:
         "Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and " +

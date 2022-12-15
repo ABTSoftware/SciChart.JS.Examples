@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/FeaturedApps/ShowCases/RealtimeBigData/index.tsx";
+export const githubUrl = "/components/Examples/FeaturedApps/ShowCases/HeatmapInteractions/index.tsx";

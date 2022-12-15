@@ -6,7 +6,6 @@ import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { EAutoRange } from "scichart/types/AutoRange";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { GlowEffect } from "scichart/Charting/Visuals/RenderableSeries/GlowEffect";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
@@ -107,7 +106,6 @@ const drawExample = async (
         dataSeries4.append(i, NaN);
     }
 
-    const effect = new GlowEffect(wasmContext);
 
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
@@ -156,8 +154,7 @@ const drawExample = async (
                 fill: appTheme.ForegroundColor,
                 stroke: appTheme.ForegroundColor,
             }),
-            dataSeries: leadingDotDataSeries,
-            effect
+            dataSeries: leadingDotDataSeries
         })
     );
 

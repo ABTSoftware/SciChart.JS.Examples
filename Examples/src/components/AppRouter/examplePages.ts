@@ -91,6 +91,7 @@ import {TDocumentationLink} from "../../helpers/types/ExampleDescriptionTypes";
 import { datalabelsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/DataLabels/exampleInfo";
 import { virtualizedDataOverviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview/exampleInfo";
 import { heatmapInteractionsExampleInfo } from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions/exampleInfo";
+import { depthChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/DepthChart/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -114,7 +115,6 @@ export type TExampleInfo = {
      * in the top level menu. See {@link getSeeAlsoGalleryItems}
      */
     seeAlso?: GalleryItem[];
-    code: string;
     githubUrl: string;
     /**
      * Page meta description
@@ -277,6 +277,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_createStockCharts_SubchartStockCharts: {
         id: "chart2D_createStockCharts_SubchartStockCharts",
         ...subChartStockChartsExampleInfo
+    },
+    chart2D_createStockCharts_DepthChart: {
+        id: "chart2D_createStockCharts_DepthChart",
+        ...depthChartExampleInfo
     },
     chart2D_legends_ChartLegendsAPI: {
         id: "chart2D_legends_ChartLegendsAPI",
