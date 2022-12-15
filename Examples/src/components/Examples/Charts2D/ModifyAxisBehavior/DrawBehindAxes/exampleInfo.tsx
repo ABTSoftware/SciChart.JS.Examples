@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -46,7 +45,6 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    code,
     githubUrl,
     metaDescription:
         "Demonstrates the option of the transparent Axes customization on a JavaScript Chart using SciChart.js.",

@@ -2,6 +2,7 @@ import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModif
 import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
 import { ECoordinateMode, EDraggingGripPoint } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
 import { Point } from "scichart/Core/Point";
 import { EVerticalAnchorPoint, EHorizontalAnchorPoint } from "scichart/types/AnchorPoint";
 import { translateFromCanvasToSeriesViewRect } from "scichart/utils/translate";
@@ -55,11 +56,12 @@ export class AddIOModifier extends ChartModifierBase2D {
             false
         );
         if (!currentPoint) return;
-        this.addInputAnnotation.x1 = currentPoint.x;
-        this.addInputAnnotation.y1 = currentPoint.y;
+        const scaledPoint = new Point(currentPoint.x / DpiHelper.PIXEL_RATIO, currentPoint.y / DpiHelper.PIXEL_RATIO);
+        this.addInputAnnotation.x1 = scaledPoint.x;
+        this.addInputAnnotation.y1 = scaledPoint.y;
         this.addInputAnnotation.isHidden = false;
-        this.addOutputAnnotation.x1 = currentPoint.x;
-        this.addOutputAnnotation.y1 = currentPoint.y;
+        this.addOutputAnnotation.x1 = scaledPoint.x;
+        this.addOutputAnnotation.y1 = scaledPoint.y;
         this.addOutputAnnotation.isHidden = false;
         this.originalPoint = currentPoint;
 

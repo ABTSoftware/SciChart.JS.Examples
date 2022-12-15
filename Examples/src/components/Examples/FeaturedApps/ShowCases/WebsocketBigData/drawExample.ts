@@ -403,15 +403,6 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
 
     const loadData = (data: { x: number[]; ys: number[][]; sendTime: number }) => {
         loadStart = new Date().getTime();
-        const loadTime = loadStart - data.sendTime;
-        loadTimes.push(loadTime);
-        if (loadCount < 20) {
-            avgLoadTime = (avgLoadTime * loadCount + loadTime) / (loadCount + 1);
-            loadCount++;
-        } else {
-            const firstTime = loadTimes.shift();
-            avgLoadTime = (avgLoadTime * loadCount + loadTime - firstTime) / loadCount;
-        }
         for (let i = 0; i < seriesCount; i++) {
             appendData(dataSeriesArray[i], dataSeriesType, i, data.x, data.ys, pointsOnChart, pointsPerUpdate);
         }
@@ -422,10 +413,6 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
         if (!isRunning || loadStart === 0) return;
         const reDrawTime = new Date().getTime() - loadStart;
         avgRenderTime = (avgRenderTime * loadCount + reDrawTime) / (loadCount + 1);
-        newMessages.push({
-            title: `Average Load delay`,
-            detail: `${avgLoadTime.toFixed(2)} ms`
-        });
         newMessages.push({
             title: `Average Render Time `,
             detail: `${avgRenderTime.toFixed(2)} ms`

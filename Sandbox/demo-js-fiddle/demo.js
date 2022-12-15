@@ -19,9 +19,6 @@ async function initSciChart() {
 }
 
 // Required for jsfiddle. Configure where to load wasm files
-SciChart.SciChartSurface.configure({
-	wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.0-beta.40/_wasm/scichart2d.wasm",
-  dataUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.0-beta.40/_wasm/scichart2d.data"
-});
+SciChart.SciChartSurface.useWasmFromCDN();
 
 initSciChart();

@@ -359,6 +359,10 @@ export const ExampleStrings = {
     urlTitleRealtimeTickingStockCharts:
 "The Realtime Ticking Stock Chart example shows how to pipe realtime financial data into SciChart.js Candlestick and Ohlc Chart types",
 
+    // Depth chart
+    urlDepthChart: "/javascript-depth-chart",
+    titleDepthChart: "JavaScript Depth Chart",
+
     // Chart Legends
     urlChartLegends: "/javascript-chart-legends",
     titleChartLegends: "Chart Legends API",

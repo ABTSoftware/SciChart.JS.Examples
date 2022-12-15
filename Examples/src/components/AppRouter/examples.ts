@@ -101,6 +101,7 @@ import OilAndGasDashboardShowcase from "../Examples/FeaturedApps/ShowCases/OilAn
 import DataLabelsExample from "../Examples/Charts2D/StylingAndTheming/DataLabels";
 import VirtualizedDataOverview from "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview";
 import HeatmapInteractions from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions";
+import DepthChart from "../Examples/Charts2D/CreateStockCharts/DepthChart";
 
 export type TMenuItem = {
     item: {
@@ -143,6 +144,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts,
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
             EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
+            EXAMPLES_PAGES.chart2D_createStockCharts_DepthChart,
         ]
     },
 ];
@@ -403,6 +405,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return RealtimeTickingStockCharts;
         case EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts.id:
             return SubChartStockCharts;
+        case EXAMPLES_PAGES.chart2D_createStockCharts_DepthChart.id:
+            return DepthChart;
         case EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.id:
             return ChartLegendsAPI;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes.id:

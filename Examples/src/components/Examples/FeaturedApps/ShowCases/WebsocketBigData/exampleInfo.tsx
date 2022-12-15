@@ -1,10 +1,9 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-streaming-data-from-server-bigdata-performance.jpg";
+import exampleImage from "./javascript-streaming-data.jpg";
 
 const Subtitle = () => (
     <p>
@@ -50,7 +49,6 @@ export const websocketBigDataDemoExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    code,
     githubUrl,
     metaDescription:
         "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",

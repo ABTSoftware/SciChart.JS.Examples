@@ -12,7 +12,6 @@ To add an example to the SciChart.js Examples Suite, use the following steps:
 ```ts
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
@@ -73,7 +72,6 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     seeAlso,
-    code,
     githubUrl,
     seoDescription:
         "Demonstrates how to create a JavaScript Band Chart. This is a chart type which draws an area (polygon or fill) " +
@@ -82,7 +80,7 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
     thumbnailImage: "javascript-band-chart.jpg"
 };
 ```
-* **Generate GENERATED_SRC.ts, GENERATED_GITHUB_URL.ts files** - run `npm run generateExampleSrc` to generate `GENERATED_SRC.ts`. Note if you modify any of index.tsx in the examples folder, you also need to run the script.
+* **Generate GENERATED_GITHUB_URL.ts files** - run `npm run generateExampleSrc` to generate `GENERATED_GITHUB_URL.ts`.
 
 * **Add example to menu**
 

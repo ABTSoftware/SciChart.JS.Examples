@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../ExampleStrings";
 import exampleImage from "./javascript-shared-data.jpg";
@@ -48,7 +47,6 @@ export const sharedDataExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    code,
     githubUrl,
     metaDescription:
         "Demonstrates how to use the Builder Api to create Reusable Chart Templates." +

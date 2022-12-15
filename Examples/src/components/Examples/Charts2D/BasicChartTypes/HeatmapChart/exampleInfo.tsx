@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { code } from "./GENERATED_SRC";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
@@ -51,7 +50,6 @@ export const heatmapChartExampleInfo: TExampleInfo = {
     subtitle: Subtitle,
     documentationLinks,
     description,
-    code,
     githubUrl,
     metaDescription:
         "Easily create a high performance JavaScript Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
