@@ -30,7 +30,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-       How to create a depth chart using mountain series and a custom modifier
+       How to create a market depth (order book) chart using mountain series and a custom modifier
     </p>
 );
 

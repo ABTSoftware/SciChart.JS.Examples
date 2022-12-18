@@ -361,7 +361,7 @@ export const ExampleStrings = {
 
     // Depth chart
     urlDepthChart: "/javascript-depth-chart",
-    titleDepthChart: "JavaScript Depth Chart",
+    titleDepthChart: "JavaScript Market Depth Chart",
 
     // Chart Legends
     urlChartLegends: "/javascript-chart-legends",
