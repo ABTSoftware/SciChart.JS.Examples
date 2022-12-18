@@ -7,6 +7,7 @@ import ExamplesRoot from "../Examples/ExamplesRoot";
 import { getExampleComponent } from "./examples";
 import classes from "../Examples/Examples.module.scss";
 import {GalleryItem} from "../../helpers/types/types";
+import NoIndexTag from "../SeoTags/NoIndexTag";
 type TProps = {
     currentExample: TExamplePage;
     isIFrame?: boolean;
@@ -19,7 +20,7 @@ export default function AppRouter(props: TProps) {
     const { currentExample, seeAlso, isIFrame = false } = props;
     if (isIFrame) {
         const ExampleComponent = getExampleComponent(currentExample.id)
-        const renderIFrameExample = () => <div className={classes.ExampleWrapperIFrame}><ExampleComponent /></div>;
+        const renderIFrameExample = () => <div className={classes.ExampleWrapperIFrame}><NoIndexTag/><ExampleComponent /></div>;
         return (
             <Switch>
                 {examplePagesKeys.map(key => {
