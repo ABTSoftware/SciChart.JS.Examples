@@ -21,6 +21,7 @@ import { appTheme } from "../../../theme";
 import { EWrapTo, NativeTextAnnotation } from "scichart/Charting/Visuals/Annotations/NativeTextAnnotation";
 import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
+import { SciChartOverview } from "scichart/Charting/Visuals/SciChartOverview";
 
 
 export const divElementId = "chart";
@@ -78,7 +79,12 @@ export const drawExample = async () => {
         }).catch(err => showError(sciChartSurface, "Server data is unavailable.  Please do npm run build, then npm start and access the site at localhost:3000"));
     });
 
-    const overview = await createOverview(xAxis);
+    const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, {theme: appTheme.SciChartJsTheme});
+    const overviewData = new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true });
+    // Load the full dataSet
+    loadPoints(0, 10000000, overview.overviewSciChartSurface.domCanvas2D.width, overviewData).catch(err => {});
+    overview.overviewSciChartSurface.renderableSeries.get(0).dataSeries = overviewData;
+    overview.overviewSciChartSurface.zoomExtents();
 
     // Load initial data
     loadPoints(xAxis.visibleRange.min, xAxis.visibleRange.max, sciChartSurface.domCanvas2D.width, dataSeries).then(
@@ -87,7 +93,7 @@ export const drawExample = async () => {
         }
     ).catch(err => showError(sciChartSurface, "Server data is unavailable.  Please do npm run build, then npm start and access the site at localhost:3000"));
 
-    return [sciChartSurface]; //, overview];
+    return [sciChartSurface, overview.overviewSciChartSurface];
 };
 
 const loadPoints = async (xFrom: number, xTo: number, chartWidth: number, dataSeries: XyDataSeries) => {
@@ -118,65 +124,6 @@ const showError = (sciChartSurface: SciChartSurface, message: string) => {
         }));
     }
 }
-
-const createOverview = async (originalMainAxis: AxisBase2D) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divOverviewId, {theme: appTheme.SciChartJsTheme});
-    const xAxis = new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Bottom,
-        visibleRange: new NumberRange(0, 10000000),
-        autoRange: EAutoRange.Never,
-        drawMinorGridLines: false
-    });
-    xAxis.labelProvider.formatLabel = (dataValue) => dataValue > 0 ? (dataValue / 1000000) + "M" : "0";
-
-    sciChartSurface.xAxes.add(xAxis);
-    const yAxis = new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Right,
-        autoRange: EAutoRange.Once,
-        drawLabels: false,
-        drawMinorGridLines: false,
-        drawMinorTickLines: false
-    });
-    sciChartSurface.yAxes.add(yAxis);
-
-    const dataSeries = new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true });
-    const rendSeries = new FastLineRenderableSeries(wasmContext, { dataSeries, strokeThickness: 2, stroke: appTheme.VividOrange });
-    sciChartSurface.renderableSeries.add(rendSeries);
-
-    const rangeSelectionModifier = new OverviewRangeSelectionModifier();
-    // Bind the modifier range to the visible range of the main chart xAxis
-    rangeSelectionModifier.onSelectedAreaChanged = (selectedRange: NumberRange) => {
-        if (!selectedRange.equals(originalMainAxis.visibleRange)) {
-            originalMainAxis.visibleRange = selectedRange;
-        }
-    };
-
-    // Update the overview selected area when the range on the main chart changes
-    originalMainAxis.visibleRangeChanged.subscribe(({ visibleRange }) => {
-        const min = visibleRange.min > xAxis.visibleRange.min ? visibleRange.min : xAxis.visibleRange.min;
-        const max = visibleRange.max < xAxis.visibleRange.max ? visibleRange.max : xAxis.visibleRange.max;
-        const updatedSelectedRange = new NumberRange(min, max);
-        // Prevent circular updates
-        const shouldUpdateSelectedRange = !updatedSelectedRange.equals(rangeSelectionModifier.selectedArea);
-        if (shouldUpdateSelectedRange) {
-            rangeSelectionModifier.selectedArea = updatedSelectedRange;
-        }
-    });
-
-    // Set the inital range
-    rangeSelectionModifier.selectedArea = new NumberRange(
-        Math.max(xAxis.visibleRange.min, originalMainAxis.visibleRange.min),
-        Math.min(xAxis.visibleRange.max, originalMainAxis.visibleRange.max)
-    );
-
-    // Add the modifier to the surface
-    sciChartSurface.chartModifiers.add(rangeSelectionModifier);
-
-    // Load the full dataSet
-    loadPoints(0, 10000000, sciChartSurface.domCanvas2D.width, dataSeries).catch(err => {});
-
-    return sciChartSurface;
-};
 
 export default function VirtualizedDataOverview() {
     let charts: SciChartSurface[];

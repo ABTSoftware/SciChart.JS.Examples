@@ -17,8 +17,7 @@
     "generateAll": "npm run generateExampleSrc && ts-node before-generate.js && ts-node generate-sitemap.ts && ts-node generate-footer-links.ts && ts-node after-generate.js",
     "generateExampleSrc": "ts-node generate-example-src.js",
     "generateSitemap": "ts-node before-generate.js && ts-node generate-sitemap.ts && ts-node after-generate.js",
-    "generateFooterLinks": "ts-node before-generate.js && ts-node generate-footer-links.ts && ts-node after-generate.js",
-    "compressImages": "ts-node compress-images.ts"
+    "generateFooterLinks": "ts-node before-generate.js && ts-node generate-footer-links.ts && ts-node after-generate.js"
   },
   "author": "",
   "license": "ISC",
