@@ -4,7 +4,7 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from '@material-ui/icons/Close';
 import Navigation from "../Navigation/Navigation";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import classes from "./DrawerContent.module.scss";
 
 // tslint:disable-next-line:no-var-requires
@@ -17,7 +17,7 @@ type TProps = {
 };
 
 const DrawerContent: React.FC<TProps> = props => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const { testIsOpened, toggleOpenedMenuItem, toggleDrawer } = props;
 
@@ -25,7 +25,7 @@ const DrawerContent: React.FC<TProps> = props => {
         <div className={classes.DrawerContent}>
             <div className={classes.DrawerTopSection}>
                 <div className={classes.toolbar}>
-                    <h6 className={classes.homepageLink} onClick={() => history.push("/")}>
+                    <h6 className={classes.homepageLink} onClick={() => navigate("/")}>
                         SciChart.js
                     </h6>
                     <span className={classes.versionCaption}>{`v${APP_VERSION}`}</span>

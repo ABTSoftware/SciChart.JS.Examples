@@ -27,15 +27,17 @@ const betaTrialKey = "";
 module.exports = {
     ...webpackClientConfig,
     mode: "development",
-    node: {
-        child_process: "empty",
-        fs: "empty",
-        crypto: "empty",
-        net: "empty",
-        tls: "empty"
+    resolve: {
+        extensions: [".tsx", ".ts", ".js", ".css"],
+        fallback : {
+            child_process: false,
+            fs: false,
+            crypto: false,
+            net: false,
+            tls: false
+        }
     },
     devtool: "inline-source-map",
-    watch: true,
     module: {
         rules: [
             {
@@ -101,9 +103,15 @@ module.exports = {
         // })
     ],
     devServer: {
-        disableHostCheck: true,
+        client: {
+            progress: true,
+        },
+        // liveReload: true,
+        // hot: true,
+        allowedHosts: "all",
         historyApiFallback: true,
-        before: function(app, server, compiler) {
+        onBeforeSetupMiddleware: function(devServer) {
+            const { app } = devServer;
             app.get("/api/license", function(req, res) {
                 res.send(betaTrialKey);
             });

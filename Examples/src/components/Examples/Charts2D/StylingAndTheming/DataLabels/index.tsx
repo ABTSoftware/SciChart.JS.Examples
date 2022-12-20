@@ -28,7 +28,6 @@ import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnota
 import { DataLabelProvider } from "scichart/Charting/Visuals/RenderableSeries/DataLabels/DataLabelProvider";
 import { formatNumber } from "scichart/utils/number";
 import { EWrapTo, NativeTextAnnotation } from "scichart/Charting/Visuals/Annotations/NativeTextAnnotation";
-import { ColumnSeriesDataLabelProvider } from "scichart/Charting/Visuals/RenderableSeries/DataLabels/ColumnSeriesDataLabelProvider";
 import { parseColorToTArgb, parseColorToUIntArgb } from "scichart/utils/parseColor";
 
 const divElementId = "chart";

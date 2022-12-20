@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchIcon from "@material-ui/icons/Search";
@@ -8,12 +8,12 @@ import { searchItems, TSearchItem } from "./searchItems";
 import classes from "./Search.module.scss";
 
 export default function Search() {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleChange = (_e: any, value: TSearchItem | string) => {
         if (value && value.link) {
             const v = value as TSearchItem;
-            history.push(v.link);
+            navigate(v.link);
         }
     };
 
