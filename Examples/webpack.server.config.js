@@ -18,7 +18,7 @@ module.exports = {
         rules: [
             {
                 test: /\.css?$/,
-                loader: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+                use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
                 exclude: /node_modules/
             },
             {
@@ -42,7 +42,6 @@ module.exports = {
                 ],
                 exclude: /node_modules/
             },
-
             {
                 test: /\.tsx?$/,
                 use: "ts-loader",
