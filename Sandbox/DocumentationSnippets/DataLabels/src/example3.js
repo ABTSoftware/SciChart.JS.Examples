@@ -4,7 +4,7 @@ import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/Ellipse
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {NumberRange} from "scichart/Core/NumberRange";
-import {ENumericFormat} from "scichart/Types/NumericFormat";
+import {ENumericFormat} from "scichart/types/NumericFormat";
 
 export async function dataLabelsPrecisionExample(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);

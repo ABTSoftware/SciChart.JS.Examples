@@ -5,7 +5,7 @@ import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {EDataLabelSkipMode} from "scichart/Types/DataLabelSkipMode";
+import {EDataLabelSkipMode} from "scichart/types/DataLabelSkipMode";
 
 export async function dataLabelSkipModes(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);

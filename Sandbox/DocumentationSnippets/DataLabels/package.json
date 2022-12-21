@@ -1,7 +1,7 @@
 {
-  "name": "tutorial1",
+  "name": "datalabels-snippets",
   "version": "1.0.0",
-  "description": "First Tutorial with SciChart.js",
+  "description": "code snippets for data label documentation for SciChart.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "scichart": "^3.0.0-beta.224"
+    "scichart": "^3.0.0-beta.230"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^11.0.0",
