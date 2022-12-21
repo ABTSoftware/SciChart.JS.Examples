@@ -8,27 +8,20 @@ import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWhee
 import {SciChartSurface} from "scichart";
 import {NumberRange} from "scichart/Core/NumberRange";
 import classes from "../../../../Examples/Examples.module.scss";
-import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import {appTheme} from "../../../theme";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {
-    EHorizontalTextPosition,
-    EVerticalTextPosition
-} from "scichart/types/TextPosition";
-import {PaletteFactory} from "scichart/Charting/Model/PaletteFactory";
+import {EVerticalTextPosition} from "scichart/types/TextPosition";
 import {Thickness} from "scichart/Core/Thickness";
 import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
-import { XyScaleOffsetFilter } from "scichart/Charting/Model/Filters/XyScaleOffsetFilter";
 import { EXyDirection } from "scichart/types/XyDirection";
 import { IPointMetadata } from "scichart/Charting/Model/IPointMetadata";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import { DataLabelProvider } from "scichart/Charting/Visuals/RenderableSeries/DataLabels/DataLabelProvider";
 import { formatNumber } from "scichart/utils/number";
 import { EWrapTo, NativeTextAnnotation } from "scichart/Charting/Visuals/Annotations/NativeTextAnnotation";
-import { parseColorToTArgb, parseColorToUIntArgb } from "scichart/utils/parseColor";
+import { parseColorToUIntArgb } from "scichart/utils/parseColor";
+import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 
 const divElementId = "chart";
 
@@ -44,20 +37,20 @@ const drawExample = async () => {
     const data1 = ExampleDataProvider.getSpectrumData(0, 20, 5, 1, 0.01);
     const colSeries = new FastColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, data1),
+        fill: appTheme.VividOrange + "33",
         stroke: appTheme.VividOrange,
-        fill: appTheme.PaleOrange,
         dataPointWidth: 0.7,
         strokeThickness: 1,
         dataLabels: {
             // To enable datalabels, set fontFamily and size
-            style: { fontFamily: "Arial", fontSize: 14, padding: new Thickness(5,0,5,0) },
+            style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(5,0,5,0) },
             color: appTheme.VividOrange,
             // Normal label format and precision options are supported
             precision: 2
         },
     });
     const highCol = parseColorToUIntArgb(appTheme.VividGreen);
-    const lowCol = parseColorToUIntArgb(appTheme.VividRed);
+    const lowCol = parseColorToUIntArgb(appTheme.VividOrange);
     (colSeries.dataLabelProvider as DataLabelProvider).getColor = (state, text) => {
         if (state.yVal() > 0)
             return highCol;
@@ -67,11 +60,12 @@ const drawExample = async () => {
     sciChartSurface.renderableSeries.add(colSeries);
 
     const labels = ["Data", "Labels", "can", "come", "from", "values", "in", "metadata"]
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues.map(y => y * 0.8 + 4), 
+    sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues.map(y => y * 0.8 + 4),
             metadata: data1.xValues.map((x, i) => ({ isSelected: false, text: labels[(i-1)/2] } as IPointMetadata))}),
         stroke: appTheme.VividSkyBlue,
         strokeThickness: 3,
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, fill: appTheme.ForegroundColor, strokeThickness: 0}),
         dataLabels: {
             style: { fontFamily: "Arial", fontSize: 16 },
             color: appTheme.ForegroundColor,
@@ -118,7 +112,7 @@ const drawExample = async () => {
         textColor: appTheme.VividPink,
         wrapTo: EWrapTo.ViewRect
     }));
-    // Show labels when zoomed in 
+    // Show labels when zoomed in
     const data3 = ExampleDataProvider.getSpectrumData(0, 200, 10, 20, 0.02);
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues: data3.xValues.map(x=> x/10), yValues: data3.yValues.map(y=>y*0.3 + 12) } ),
