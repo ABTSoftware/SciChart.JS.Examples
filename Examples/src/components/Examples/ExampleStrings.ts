@@ -659,8 +659,8 @@ export const ExampleStrings = {
     urlDatalabelsDocumentation: "https://www.scichart.com/documentation/js/current/DataLabels.html",
     urlTitleDatalabelsDocumentation: "This specific page in the JavaScript DataLabels Api documentation will help you to get started",
 
-    urlVirtualizedData: "/javascript-virtualized-data",
-    titleVirtualizedData: "Load Data on Zoom/Pan",
+    urlVirtualizedData: "/javascript-chart-with-virtualized-data",
+    titleVirtualizedData: "Virtualized JS Charts: Load Data on Zoom/Pan",
 
     urlHeatmapInteractionsData: "/javascript-heatmap-interactions",
     titleHeatmapInteractionsData: "Rich Interactions Showcase",
