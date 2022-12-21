@@ -8,7 +8,7 @@ import * as React from "react";
 import { Helmet } from "react-helmet";
 import * as ReactDOMServer from "react-dom/server";
 import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";
-import { StaticRouter } from "react-router-dom";
+import { StaticRouter } from "react-router-dom/server";
 import * as defaultConfig from "../../config/default";
 import App from "../components/App";
 import { customTheme } from "../theme";
@@ -23,13 +23,12 @@ const targetDir = defaultConfig.buildConfig.targetDir;
 
 function handleRender(req: Request, res: Response) {
     const sheets = new ServerStyleSheets();
-    const context = {};
 
     // Render the component to a string.
     const html = ReactDOMServer.renderToString(
         sheets.collect(
             <ThemeProvider theme={customTheme}>
-                <StaticRouter location={req.url} context={context}>
+                <StaticRouter location={req.url}>
                     <App />
                 </StaticRouter>
             </ThemeProvider>

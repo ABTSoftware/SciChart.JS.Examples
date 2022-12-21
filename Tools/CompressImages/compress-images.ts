@@ -35,7 +35,7 @@ async function getFiles(pathUrl: string) {
 }
 
 (async () => {
-    const examplesPath = path.join(__dirname, "src", "components", "Examples");
+    const examplesPath = path.join(__dirname, "../../Examples/src", "components", "Examples");
     const files = await getFiles(examplesPath);
     const imageFiles = files.filter((f: TFileInfo) => {
         const isCorrectFileType = f.fileName?.includes(".jpg") || f.fileName?.includes(".png");

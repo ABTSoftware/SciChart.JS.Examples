@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import classes from "./Gallery.module.scss";
 import { Tooltip } from "@material-ui/core";
 
@@ -11,7 +11,7 @@ type TProps = {
 };
 
 const GalleryCard: React.FC<TProps> = props => {
-    const history = useHistory();
+    const history = useNavigate();
 
     const { imgPath, title, seoTitle, examplePath } = props;
 

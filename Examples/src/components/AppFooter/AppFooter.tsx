@@ -8,7 +8,7 @@ import {
     MENU_ITEMS_FEATURED_APPS_ID
 } from "../AppRouter/examples";
 import FooterGrid from "./FooterGrid";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import classes from "./AppFooter.module.scss";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import YouTubeIcon from '@material-ui/icons/YouTube';
@@ -22,11 +22,11 @@ export type TFooterlink = {
 };
 
 export default function AppFooter() {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const historyPushPath = (path: string) => {
         if (!path) return;
-        history.push(path);
+        navigate(path);
     };
 
     return (

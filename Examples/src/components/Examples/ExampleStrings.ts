@@ -339,7 +339,7 @@ export const ExampleStrings = {
 "The JavaScript Point-Markers example shows how to create different types of point-marker on Bubble and Scatter Series",
 
     // Multi Pane Stock Charts
-    urlMultiPaneStockChart: "/javascript-multi-pane-stock-charts-old-technique",
+    urlMultiPaneStockChart: "/javascript-multi-pane-stock-charts-sync-technique",
     urlTitleMultiPaneStockChart:
 "The Multi-Pane stock chart example demonstrates multiple-series types in a realistic stock chart application",
     titleMultiPaneStockChart: "JavaScript Multi-Pane Stock Charts using Sync Multi-Chart",
@@ -361,7 +361,7 @@ export const ExampleStrings = {
 
     // Depth chart
     urlDepthChart: "/javascript-depth-chart",
-    titleDepthChart: "JavaScript Depth Chart",
+    titleDepthChart: "JavaScript Market Depth Chart",
 
     // Chart Legends
     urlChartLegends: "/javascript-chart-legends",
@@ -541,9 +541,8 @@ export const ExampleStrings = {
 
     // Featured Apps Load 500x500
     titleLoad500By500: "Load 500 Series x 500 Points Performance Demo",
-    urlLoad500By500: "/performance/javascript-chart-load-500-series-by-500-points",
-    urlTitleLoad500By500:
-"This example demonstrates the performance of loading 500 series with 500 points on a JavaScript Chart",
+    urlLoad500By500: "/load-500-series-x-500-points-performance-demo",
+    urlTitleLoad500By500: "This example demonstrates the performance of loading 500 series with 500 points on a JavaScript Chart",
 
     // Featured Apps Load 1 Million Points
     titleLoadOneMillionPoints: "Load 1 Million Points Performance Demo",
@@ -600,7 +599,7 @@ export const ExampleStrings = {
     titleCustomTypes: "Custom Types with Builder API",
 
     // BuilderApi, Shared Data
-    urlSharedData: "/javascript-shared-data",
+    urlSharedData: "/reusable-templates-using-shared-data",
     titleSharedData: "Reusable Templates using Shared Data",
 
     urlTextLabelProviderDocumentation: "https://www.scichart.com/documentation/js/current/Axis%20Label%20Formatting%20-%20TextLabelProvider.html",
@@ -660,8 +659,8 @@ export const ExampleStrings = {
     urlDatalabelsDocumentation: "https://www.scichart.com/documentation/js/current/DataLabels.html",
     urlTitleDatalabelsDocumentation: "This specific page in the JavaScript DataLabels Api documentation will help you to get started",
 
-    urlVirtualizedData: "/javascript-virtualized-data",
-    titleVirtualizedData: "Load Data on Zoom/Pan",
+    urlVirtualizedData: "/javascript-chart-with-virtualized-data",
+    titleVirtualizedData: "Virtualized JS Charts: Load Data on Zoom/Pan",
 
     urlHeatmapInteractionsData: "/javascript-heatmap-interactions",
     titleHeatmapInteractionsData: "Rich Interactions Showcase",

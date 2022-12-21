@@ -46,7 +46,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const githubUrl = examplePage ? examplePage.githubUrl : "";
     const seoDescription = examplePage ? examplePage.metaDescription : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
-    const basePath = process.env.PUBLIC_URL ?? "https://demo.scichart.com";
+    const basePath = "https://demo.scichart.com";
     const exampleImage = examplePage ? `${basePath}/${examplePage.thumbnailImage}` : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";
 

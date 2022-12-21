@@ -2,7 +2,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import * as React from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
     MENU_ITEMS_2D,
     MENU_ITEMS_3D,
@@ -22,17 +22,17 @@ type TProps = {
 
 const Navigation: React.FC<TProps> = props => {
     const { onExpandClick, testIsOpened, toggleDrawer } = props;
-    const history = useHistory();
+    const navigate = useNavigate();
     const location = useLocation();
 
     const historyPushPath = (path: string) => {
         if (!path) return;
-        history.push(path);
+        navigate(path);
         toggleDrawer();
     };
 
     const historyPushHomepage = () => {
-        history.push("/");
+        navigate("/");
         toggleDrawer();
     };
 
