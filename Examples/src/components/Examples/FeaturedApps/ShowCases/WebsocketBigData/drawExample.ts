@@ -1,4 +1,3 @@
-import { ceil } from "lodash";
 import * as socketIOClient from "socket.io-client";
 import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
