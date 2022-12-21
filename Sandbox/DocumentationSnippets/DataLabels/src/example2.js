@@ -26,9 +26,9 @@ export async function dataLabelsBuilderAPIExample(divElementId) {
                 dataLabels: {
                     style: {
                         fontFamily: "Arial",
-                        fontSize: 16,
-                        color: "#EEE"
-                    }
+                        fontSize: 16
+                    },
+                    color: "#EEE"
                 }
             },
         }

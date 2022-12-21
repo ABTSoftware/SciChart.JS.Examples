@@ -1,5 +1,5 @@
 import {NumberRange} from "scichart/Core/NumberRange";
-import {EDataLabelSkipMode} from "scichart/Types/DataLabelSkipMode";
+import {EDataLabelSkipMode} from "scichart/types/DataLabelSkipMode";
 import {chartBuilder} from "scichart/Builder/chartBuilder";
 import {ESeriesType} from "scichart/types/SeriesType";
 import {EPointMarkerType} from "scichart/types/PointMarkerType";
