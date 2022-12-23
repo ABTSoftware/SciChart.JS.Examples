@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useLocation } from "react-router-dom";
+import {Navigate, useLocation} from "react-router-dom";
 import { Theme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -23,9 +23,17 @@ import Gallery from "./Gallery/Gallery";
 import { PAGES } from "./AppRouter/pages";
 import {GalleryItem} from "../helpers/types/types";
 import {allGalleryItems, getSeeAlsoGalleryItems} from "../helpers/SciChartExamples";
+import {REDIRECTION_RULES} from "./AppRouter/redirectionRules";
 
 export default function App() {
     const location = useLocation();
+
+    // Process redirection rules first
+    const pathWithoutSlash = location.pathname.endsWith("/") ? location.pathname.slice(0, -1) : location.pathname;
+    if (REDIRECTION_RULES.has(pathWithoutSlash)) {
+        return <Navigate  to={REDIRECTION_RULES.get(pathWithoutSlash)}/>
+    }
+
     // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
     const isIFrame = location.pathname.substring(1, 7) === 'iframe';
     const pathname = isIFrame ? location.pathname.substring(7) : location.pathname;
