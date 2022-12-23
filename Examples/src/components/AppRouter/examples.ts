@@ -3,7 +3,6 @@ import DigitalBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/Digital
 import FanChart from "../Examples/Charts2D/BasicChartTypes/FanChart";
 import BubbleChart from "../Examples/Charts2D/BasicChartTypes/BubbleChart";
 import CandlestickChart from "../Examples/Charts2D/BasicChartTypes/CandlestickChart";
-import OhlcChart from "../Examples/Charts2D/BasicChartTypes/OhlcChart";
 import ColumnChart from "../Examples/Charts2D/BasicChartTypes/ColumnChart";
 import ImpulseChart from "../Examples/Charts2D/BasicChartTypes/ImpulseChart";
 import HeatmapChart from "../Examples/Charts2D/BasicChartTypes/HeatmapChart";
@@ -355,8 +354,6 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return BubbleChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart.id:
             return CandlestickChart;
-        case EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart.id:
-            return OhlcChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart.id:
             return ColumnChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_ErrorBarsChart.id:
