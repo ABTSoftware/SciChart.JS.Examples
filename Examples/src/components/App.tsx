@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Navigate, useLocation} from "react-router-dom";
+import {Link, Navigate, Route, Routes, useLocation} from "react-router-dom";
 import { Theme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -24,6 +24,13 @@ import { PAGES } from "./AppRouter/pages";
 import {GalleryItem} from "../helpers/types/types";
 import {allGalleryItems, getSeeAlsoGalleryItems} from "../helpers/SciChartExamples";
 import {REDIRECTION_RULES} from "./AppRouter/redirectionRules";
+
+const NotFound = () => (
+    <div style={{ textAlign: "center", margin: 50 }}>
+        <h1 style={{ fontSize: "3em", margin: 50 }}>404 - Not Found!</h1>
+        <Link to="/">Go Home</Link>
+    </div>
+)
 
 export default function App() {
     const location = useLocation();
@@ -103,17 +110,41 @@ export default function App() {
         }
     }, [currentExampleId]);
 
-    if (isIFrame) {
+    const isHttp404 = PAGES.homapage.path !== location.pathname && currentExampleKey === undefined;
+
+    if (isIFrame && !isHttp404) {
         return <AppRouter currentExample={currentExample} seeAlso={seeAlso} isIFrame={true}/>
     }
 
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
+
+    const pageContent = <>{PAGES.homapage.path === location.pathname && <AppRouter currentExample={currentExample} seeAlso={[]}/>}
+        <div className={classes.MainAppWrapper}>
+            <div className={classes.DrawerDesktop}>
+                <DrawerContent
+                    testIsOpened={testIsOpened}
+                    toggleOpenedMenuItem={toggleOpenedMenuItem}
+                    toggleDrawer={() => {
+                    }}
+                />
+            </div>
+            {PAGES.homapage.path === location.pathname ? (
+                <div className={classes.GalleryAppWrapper}>
+                    <Gallery examples={allGalleryItems}/>
+                </div>
+            ) : (
+                <AppRouter currentExample={currentExample} seeAlso={seeAlso}/>
+            )}
+        </div>
+    </>;
+
+
     return (
         <div className={classes.App}>
             <Drawer
                 className={classes.DrawerMobile}
                 variant="temporary"
-                classes={{ paper: classes.DrawerPaper }}
+                classes={{paper: classes.DrawerPaper}}
                 anchor="right"
                 open={isMedium && isDrawerOpened}
                 onClose={toggleDrawer}
@@ -125,27 +156,9 @@ export default function App() {
                 />
             </Drawer>
             <div className={classes.MainAppContent}>
-                <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
-                {PAGES.homapage.path === location.pathname && <AppRouter currentExample={currentExample} seeAlso={[]} />}
-
-                <div className={classes.MainAppWrapper}>
-                    <div className={classes.DrawerDesktop}>
-                        <DrawerContent
-                            testIsOpened={testIsOpened}
-                            toggleOpenedMenuItem={toggleOpenedMenuItem}
-                            toggleDrawer={() => {}}
-                        />
-                    </div>
-                    {PAGES.homapage.path === location.pathname ? (
-                        <div className={classes.GalleryAppWrapper}>
-                            <Gallery examples={allGalleryItems} />
-                        </div>
-                    ) : (
-                        <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
-                    )}
-                </div>
-
-                <AppFooter />
+                <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample}/>
+                {isHttp404 ? <NotFound/> : pageContent}
+                <AppFooter/>
             </div>
         </div>
     );
