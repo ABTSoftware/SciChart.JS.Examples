@@ -20,19 +20,16 @@ export default function AppRouter(props: TProps) {
     const { currentExample, seeAlso, isIFrame = false } = props;
     if (isIFrame) {
         const ExampleComponent = getExampleComponent(currentExample.id);
-        const IFrameExample = () => (
-            <div className={classes.ExampleWrapperIFrame}>
-                <NoIndexTag/>
-                <ExampleComponent />
-            </div>
-        );
         return (
-            <Routes>
-                {examplePagesKeys.map(key => {
-                    const exPage = EXAMPLES_PAGES[key];
-                    return <Route key={key} path={`/iframe${exPage.path}`} element={<IFrameExample />} />;
-                })}
-            </Routes>
+            <div className={classes.ExampleWrapperIFrame}>
+                <NoIndexTag />
+                <Routes>
+                    {examplePagesKeys.map(key => {
+                        const exPage = EXAMPLES_PAGES[key];
+                        return <Route key={key} path={`/iframe${exPage.path}`} element={<ExampleComponent />} />;
+                    })}
+                </Routes>
+            </div>
         );
     } else {
         return (
