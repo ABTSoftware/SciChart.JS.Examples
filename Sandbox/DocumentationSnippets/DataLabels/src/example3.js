@@ -31,9 +31,9 @@ export async function dataLabelsPrecisionExample(divElementId) {
             precision: 4,
             style: {
                 fontFamily: "Arial",
-                fontSize: 16,
-                color: "#EEE"
-            }
+                fontSize: 16
+            },
+            color: "#EEE"
         }
     }));
 }

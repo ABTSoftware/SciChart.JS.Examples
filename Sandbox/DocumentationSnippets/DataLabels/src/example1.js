@@ -10,7 +10,6 @@ export async function dataLabelsConstructorOptionsExample() {
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
-
     // Create a chart with line series with a point-marker
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
         stroke: "SteelBlue",

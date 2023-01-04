@@ -1,9 +1,13 @@
 import { chartBuilder } from "scichart/Builder/chartBuilder";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { EPointMarkerType } from "scichart/types/PointMarkerType";
+import { EAxisType } from "scichart/types/AxisType";
+import { EAxisAlignment } from "scichart/types/AxisAlignment";
 
 export async function dataLabelsBuilderAPIExample(divElementId) {
     const { sciChartSurface, wasmContext } = await chartBuilder.buildChart(divElementId, {
+        xAxes: { type: EAxisType.NumericAxis, options: { axisAlignment: EAxisAlignment.Left, growBy: { min: 0.1, max: 0.1 } }},
+        yAxes: { type: EAxisType.NumericAxis, options: { axisAlignment: EAxisAlignment.Bottom, growBy: { min: 0.1, max: 0.1 } }},
         series: {
             type: ESeriesType.LineSeries,
             xyData: {

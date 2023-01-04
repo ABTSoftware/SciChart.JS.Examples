@@ -6,6 +6,9 @@ import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeri
 import {NumberRange} from "scichart/Core/NumberRange";
 import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {EDataLabelSkipMode} from "scichart/types/DataLabelSkipMode";
+import { ELineType } from "scichart/Charting/Visuals/RenderableSeries/BaseLineRenderableSeries";
+import { EHorizontalTextPosition, EVerticalTextPosition } from "scichart/types/TextPosition";
+import { Thickness } from "scichart/Core/Thickness";
 
 export async function dataLabelSkipModes(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
@@ -16,6 +19,7 @@ export async function dataLabelSkipModes(divElementId) {
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "SteelBlue",
         strokeThickness: 3,
+        lineType: ELineType.Digital,
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 10,
             height: 10,
@@ -24,17 +28,20 @@ export async function dataLabelSkipModes(divElementId) {
             fill: "LightSteelBlue"}),
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-            yValues: [4.3, 5, 5, 6, 6.3, 6.3, 7, 7.2, 7.8, 8, 8, 8],
+            yValues: [4.3, 5, 5, 6, 8, 6.8, 7, 7, 7.2, 6.5, 6.5, 7],
         }),
         // dataLabels style must be specified to show labels
         dataLabels: {
             skipMode: EDataLabelSkipMode.SkipIfSame,
-            skipNumber: 0,
+            aboveBelow: false,
+            verticalTextPosition: EVerticalTextPosition.Top,
+            horizontalTextPosition: EHorizontalTextPosition.Left,
             style: {
                 fontFamily: "Arial",
                 fontSize: 18,
-                color: "#EEE"
-            }
+                padding: new Thickness(0,5,5,0)
+            },
+            color: "#EEE"
         }
     });
 
