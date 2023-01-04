@@ -1,3 +1,4 @@
+import { dataLabelColumns } from "./ColumnLabels";
 import {dataLabelsConstructorOptionsExample} from "./example1";
 import {dataLabelsBuilderAPIExample} from "./example2";
 import {dataLabelsPrecisionExample} from "./example3";
@@ -17,3 +18,4 @@ dataLabelProviderGetText("scichart-div-id-6");
 dataLabelProviderGetTextBuilderApi("scichart-div-id-7");
 dataLabelSkipModes("scichart-div-id-8");
 dataLabelSkipModesBuilder("scichart-div-id-9");
+dataLabelColumns("scichart-div-id-10");

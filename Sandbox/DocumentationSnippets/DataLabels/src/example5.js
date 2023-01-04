@@ -41,9 +41,9 @@ export async function dataLabelsMetadataBuilderApiExample(divElementId) {
                     metaDataSelector: (metadata) => metadata.text,
                     style: {
                         fontFamily: "Arial",
-                        fontSize: 16,
-                        color: "#EEE"
-                    }
+                        fontSize: 16
+                    },
+                    color: "#EEE"
                 }
             },
         }

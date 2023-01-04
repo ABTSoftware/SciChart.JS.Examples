@@ -4,6 +4,7 @@ import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/Ellipse
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import {NumberRange} from "scichart/Core/NumberRange";
+import { EMultiLineAlignment } from "scichart/types/TextPosition";
 
 export async function dataLabelProviderGetText(divElementId) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
@@ -29,15 +30,17 @@ export async function dataLabelProviderGetText(divElementId) {
             style: {
                 fontFamily: "Arial",
                 fontSize: 16,
-                color: "#EEE"
-            }
+                lineSpacing: 4,
+                multiLineAlignment: EMultiLineAlignment.Left
+            },
+            color: "#EEE"
         }
     });
 
     // Override default dataLabelProvider.getText() function
     // See type DataLabelState for available data
     lineSeries.dataLabelProvider.getText = (dataLabelState) => {
-        return `[x: ${dataLabelState.xVal()}, y: ${dataLabelState.yVal()}]`;
+        return `x: ${dataLabelState.xVal()}\ny: ${dataLabelState.yVal()}`;
     };
 
     sciChartSurface.renderableSeries.add(lineSeries);
