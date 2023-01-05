@@ -3,13 +3,19 @@ const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 
 module.exports = {
-    mode: "production",
+    mode: "development",
     entry: "./src/index.js",
     module: {
-        rules: []
+        rules: [
+            {
+                test: /\.ts?$/,
+                use: "ts-loader",
+                exclude: /node_modules/
+            },
+        ]
     },
     resolve: {
-        extensions: [".js"]
+        extensions: [".js", ".ts"]
     },
     output: {
         filename: "bundle.js",

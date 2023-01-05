@@ -1,12 +1,11 @@
-import {dataLabelsConstructorOptionsExample} from "./example1";
-import {dataLabelsBuilderAPIExample} from "./example2";
-import {dataLabelsPrecisionExample} from "./example3";
-import {dataLabelsMetadataExample} from "./example4";
-import {dataLabelsMetadataBuilderApiExample} from "./example5";
-import {dataLabelProviderGetText} from "./example6";
-import {dataLabelProviderGetTextBuilderApi} from "./example7";
-import {dataLabelSkipModes} from "./example8";
-import {dataLabelSkipModesBuilder} from "./example9";
+import { dataLabelColumns } from "./ColumnLabels";
+import { dataLabelColoring, dataLabelColoringBuilderApi } from "./Coloring";
+import {dataLabelsConstructorOptionsExample, dataLabelsBuilderAPIExample} from "./ConstructorOptions";
+import {dataLabelsPrecisionExample} from "./Precision";
+import {dataLabelsMetadataExample, dataLabelsMetadataBuilderApiExample} from "./MetaData";
+import {dataLabelProviderGetText, dataLabelProviderGetTextBuilderApi} from "./GetText";
+import {dataLabelSkipModes, dataLabelSkipModesBuilder} from "./Positioning";
+import { dataLabelGlobalLayout } from "./GlobalLayout";
 
 dataLabelsConstructorOptionsExample();
 dataLabelsBuilderAPIExample("scichart-div-id-2");
@@ -17,3 +16,6 @@ dataLabelProviderGetText("scichart-div-id-6");
 dataLabelProviderGetTextBuilderApi("scichart-div-id-7");
 dataLabelSkipModes("scichart-div-id-8");
 dataLabelSkipModesBuilder("scichart-div-id-9");
+dataLabelColumns("scichart-div-id-10");
+dataLabelColoring("scichart-div-id-11");
+dataLabelGlobalLayout("scichart-div-id-12")
