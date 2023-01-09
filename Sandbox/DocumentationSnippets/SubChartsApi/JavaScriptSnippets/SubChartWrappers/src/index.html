@@ -1,0 +1,102 @@
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <title>SciChart.js Documentation Examples</title>
+        <script async type="text/javascript" src="bundle.js"></script>
+        <style>
+            body {
+                font-family: 'Arial';
+            }
+
+            .chart-container {
+                position: relative;
+                max-width: 1080px;
+                max-height: 720px;
+            }
+
+            .scichart-root-element {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+
+            .sub-chart-container {
+                position: absolute;
+            }
+
+            .chart-html-section {
+                pointer-events: all;
+                position: absolute;
+            }
+
+            .left-section {
+                width: 100px;
+                height: 100%;
+                background-color: rgba(212, 245, 66, 0.5);
+            }
+
+            .right-section {
+                top: 0;
+                right: 0;
+                width: 100px;
+                height: 100%;
+                background-color: rgba(226, 78, 14, 0.5);
+            }
+
+            .top-section {
+                top: 0;
+                width: calc(100% - 200px);
+                height: 50px;
+                position: absolute;
+                left: 100px;
+                background-color: rgba(236, 66, 245, 0.5);
+            }
+
+            .bottom-section {
+                bottom: 0;
+                width: calc(100% - 200px);
+                height: 50px;
+                position: absolute;
+                left: 100px;
+                background-color: rgba(66, 245, 224, 0.5);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>SubCharts API Documentation samples</h1>
+        <p>
+            Example from the SciChart.js documentation. See more at
+            <a href="https://www.scichart.com/javascript-chart-documentation"
+                >scichart.com/javascript-chart-documentation</a
+            >
+        </p>
+
+        <!--  Chart Wrapper Example -->
+        <div class="chart-container">
+            <!-- the Div where the SciChartSurface will reside -->
+            <div id="scichart-root-1" class="scichart-root-element"></div>
+            <!-- the div where a custom HTML elements could reside, its size and position will be managed by SciChartSurface -->
+            <div id="sub-chart-container-id-1" class="sub-chart-container">
+                <div class="chart-html-section left-section">A left section of the sub-chart.</div>
+                <div class="chart-html-section right-section">Right Section</div>
+                <div class="chart-html-section top-section">Top Section</div>
+                <div class="chart-html-section bottom-section">Bottom Section</div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="chart-container">
+            <!-- the Div where the SciChartSurface will reside -->
+            <div id="scichart-root-2" class="scichart-root-element"></div>
+            <!-- the div where a custom HTML elements could reside, its size and position will be managed by SciChartSurface -->
+            <div id="sub-chart-container-id-2" class="sub-chart-container">
+                <div class="chart-html-section left-section">A left section of the sub-chart.</div>
+                <div class="chart-html-section right-section">Right Section</div>
+                <div class="chart-html-section top-section">Top Section</div>
+                <div class="chart-html-section bottom-section">Bottom Section</div>
+            </div>
+        </div>
+    </body>
+</html>
