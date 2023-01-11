@@ -11,6 +11,7 @@ import { candlesDOGEUSDT } from "./BinanceData/candlesDOGEUSDT";
 import { candlesETHUSDT } from "./BinanceData/candlesETHUSDT";
 import { candlesXRPUSDT } from "./BinanceData/candlesXRPUSDT";
 import { tq3080_DSM_2M } from "./Data/tq3080_DSM_2M";
+import { TweetData } from "./Data/tweetData";
 import { TBinanceQueryParams } from "./types/TBinanceQueryParams";
 
 const router = express.Router();
@@ -60,6 +61,11 @@ router.get("/license", (req, res) => {
 router.get("/lidarData", (req, res) => {
     console.log("returning lidar data");
     res.send(tq3080_DSM_2M);
+});
+
+router.get("/tweetData", (req, res) => {
+    console.log("returning tweet data");
+    res.send(TweetData);
 });
 
 router.get("/get-binance-candles", (req, res) => {

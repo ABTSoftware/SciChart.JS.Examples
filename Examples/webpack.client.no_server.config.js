@@ -8,6 +8,7 @@ const { candlesBTCUSDT } = require("./src/server/BinanceData/candlesBTCUSDT");
 const { candlesDOGEUSDT } = require("./src/server/BinanceData/candlesDOGEUSDT");
 const { candlesETHUSDT } = require("./src/server/BinanceData/candlesETHUSDT");
 const { candlesXRPUSDT } = require("./src/server/BinanceData/candlesXRPUSDT");
+const TweetData = require("./src/server/Data/tweetData");
 
 // LICENSING //
 // Set your license code here to license the SciChart.js Examples app
@@ -117,6 +118,9 @@ module.exports = {
             });
             app.get("/api/lidarData", function(req, res) {
                 res.send(tq3080_DSM_2M.tq3080_DSM_2M);
+            });
+            app.get("/api/tweetData", function(req, res) {
+                res.send(TweetData);
             });
             app.get("/api/get-binance-candles", function(req, res) {
                 const params = req.query;

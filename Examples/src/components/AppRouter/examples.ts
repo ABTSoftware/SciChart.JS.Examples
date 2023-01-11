@@ -102,6 +102,7 @@ import DataLabelsExample from "../Examples/Charts2D/StylingAndTheming/DataLabels
 import VirtualizedDataOverview from "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview";
 import HeatmapInteractions from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions";
 import DepthChart from "../Examples/Charts2D/CreateStockCharts/DepthChart";
+import TextChart from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart";
 
 export type TMenuItem = {
     item: {
@@ -165,6 +166,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ErrorBarsChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_TextChart,
             EXAMPLES_PAGES.chart2D_basicCharts_FanChart,
             EXAMPLES_PAGES.chart2D_basicCharts_HeatmapChart,
             EXAMPLES_PAGES.chart2D_basicCharts_NonUniformHeatmapChart,
@@ -389,6 +391,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return DonutChart;
         case EXAMPLES_PAGES.chart2D_basicCharts_PieChart.id:
             return PieChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_TextChart.id:
+            return TextChart;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy.id:
             return AnnotationsAreEasy;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations.id:

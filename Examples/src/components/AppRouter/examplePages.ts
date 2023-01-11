@@ -92,6 +92,7 @@ import { datalabelsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/Da
 import { virtualizedDataOverviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview/exampleInfo";
 import { heatmapInteractionsExampleInfo } from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions/exampleInfo";
 import { depthChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/DepthChart/exampleInfo";
+import { textChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -241,6 +242,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_basicCharts_RealtimeMountainChart: {
         id: "chart2D_basicCharts_RealtimeMountainChart",
         ...realTimeMountainChartExampleInfo
+    },
+    chart2D_basicCharts_TextChart: {
+        id: "chart2D_basicCharts_TextChart",
+        ...textChartExampleInfo
     },
     chart2D_chartAnnotations_AnnotationsAreEasy: {
         id: "chart2D_chartAnnotations_AnnotationsAreEasy",

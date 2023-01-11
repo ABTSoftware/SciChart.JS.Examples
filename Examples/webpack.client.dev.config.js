@@ -15,7 +15,7 @@ module.exports = merge(webpackClientConfig, {
     devtool: "inline-source-map",
 
     devServer: {
-        disableHostCheck: true,
+        allowedHosts: "all",
         proxy: {
             "/": {
                 target: "http://localhost:3000"

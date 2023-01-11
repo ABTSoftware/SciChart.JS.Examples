@@ -664,4 +664,7 @@ export const ExampleStrings = {
 
     urlHeatmapInteractionsData: "/javascript-heatmap-interactions",
     titleHeatmapInteractionsData: "Rich Interactions Showcase",
+
+    urlTextChart: "/javascript-text-chart",
+    titleTextChart: "Javascript Text Chart",
 };
