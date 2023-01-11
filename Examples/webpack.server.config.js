@@ -1,14 +1,14 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const config = require("./config/default");
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     mode: "production",
     name: "server",
     target: "node",
-    externals: {
-        express: "commonjs2 express"
-    },
+    externalsPresets: { node: true }, // in order to ignore built-in modules like path, fs, etc.
+    externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
     entry: "./src/server/server.tsx",
     output: {
         filename: "server.js",
