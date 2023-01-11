@@ -7,6 +7,9 @@ module.exports = {
   performance: {
     hints: false
   },
+  devServer: {
+    disableHostCheck: true
+  },
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
