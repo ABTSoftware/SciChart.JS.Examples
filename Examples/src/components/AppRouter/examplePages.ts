@@ -85,6 +85,7 @@ import { nonUniformHeatmapExampleInfo } from "../Examples/Charts2D/BasicChartTyp
 import { axisTypesExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisTypes/exampleInfo";
 import { subChartStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts/exampleInfo";
 import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisLayout/exampleInfo";
+import { subchartsGridExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/SubChartsAPI/exampleInfo";
 import { websocketBigDataDemoExampleInfo } from "../Examples/FeaturedApps/ShowCases/WebsocketBigData/exampleInfo";
 import {oilAndGasExplorerDashboard} from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard/exampleInfo";
 import {TDocumentationLink} from "../../helpers/types/ExampleDescriptionTypes";
@@ -453,6 +454,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_featureDemos_axisLayout: {
         id: "featuredApps_featureDemos_axisLayout",
         ...axisLayoutExampleInfo
+    },
+    featuredApps_featureDemos_subchartsGrid: {
+        id: "featuredApps_featureDemos_subchartsGrid",
+        ...subchartsGridExampleInfo
     },
     featuredApps_scientificCharts_Lidar3DPointCloudDemo: {
         id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",
