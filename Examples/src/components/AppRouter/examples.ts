@@ -96,6 +96,7 @@ import NonUniformHeatmapChart from "../Examples/Charts2D/BasicChartTypes/NonUnif
 import FeatureAxisTypes from "../Examples/FeaturedApps/FeatureDemos/AxisTypes";
 import SubChartStockCharts from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts";
 import FeatureAxisLayout from "../Examples/FeaturedApps/FeatureDemos/AxisLayout";
+import SubchartsGrid from "../Examples/FeaturedApps/FeatureDemos/SubChartsAPI";
 import RealtimeBigDataShowcase from "../Examples/FeaturedApps/ShowCases/WebsocketBigData";
 import OilAndGasDashboardShowcase from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard";
 import DataLabelsExample from "../Examples/Charts2D/StylingAndTheming/DataLabels";
@@ -278,6 +279,12 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.builderApi_chartFromJSON,
             EXAMPLES_PAGES.builderApi_SharedData,
             EXAMPLES_PAGES.builderApi_CustomTypes
+        ]
+    },
+    {
+        item: { id: "subchartsApi", name: "Subcharts API" },
+        submenu: [
+            EXAMPLES_PAGES.featuredApps_featureDemos_subchartsGrid,
         ]
     },
 ];
@@ -499,6 +506,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return FeatureAxisTypes;
         case EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout.id:
             return FeatureAxisLayout;
+        case EXAMPLES_PAGES.featuredApps_featureDemos_subchartsGrid.id:
+            return SubchartsGrid;
         case EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata.id:
             return RealtimeBigDataShowcase;
         case EXAMPLES_PAGES.featuredApps_showcases_oilandgasdashboard.id:
