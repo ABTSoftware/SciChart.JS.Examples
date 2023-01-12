@@ -352,6 +352,13 @@ export const ExampleStrings = {
     titleSubChartStockChart: "JavaScript Multi-Pane Stock Charts using Subcharts",
     pageTitleSubChartStockChart: "JavaScript Multi-Pane Stock Chart using Subcharts | View JavaScript Charts",
 
+    // Subcharts Grid
+    urlSubChartsGrid: "/javascript-subcharts-grid",
+    urlTitleSubChartsGridChart:
+"The Subcharts grid chart example demonstrates different series types placed in a grid of small charts using the new Subcharts API",
+    titleSubChartsGridChart: "JavaScript Charts Grid using Subcharts",
+    pageTitleSubChartsGridChart: "JavaScript Charts Grid using Subcharts | View JavaScript Charts",
+
     // Realtime Ticking Stock Charts
     urlRealtimeTickingStockCharts: "/javascript-realtime-ticking-stock-charts",
     titleRealtimeTickingStockCharts: "JavaScript Realtime Ticking Stock Charts",
@@ -605,6 +612,12 @@ export const ExampleStrings = {
     urlTextLabelProviderDocumentation: "https://www.scichart.com/documentation/js/current/Axis%20Label%20Formatting%20-%20TextLabelProvider.html",
     urlTitleTextLabelProviderDocumentation:
 "This specific page in the JavaScript TextLabelProvider documentation will help you to get started",
+
+    // TODO add proper URLs
+    // SubCharts API
+    urlSubchartApiDocumentation: "https://www.scichart.com/documentation/js/current/Axis%20Label%20Formatting%20-%20TextLabelProvider.html",
+    urlTitleSubCharstApiDocumentation:
+"This specifics page in the JavaScript TextLabelProvider documentation will help you to get started",
 
     // Multi Line labels
     urlMultiLineLabels: "/javascript-multiline-labels",
