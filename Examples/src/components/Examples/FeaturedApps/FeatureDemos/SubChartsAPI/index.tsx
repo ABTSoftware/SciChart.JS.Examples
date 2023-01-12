@@ -70,13 +70,10 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
     const columnsNumber = 8;
     const rowsNumber = 8;
 
-    let currentPointsCounter = 0;
-
     const dataSettings = {
         seriesCount: 3,
-        pointsOnChart: 2000,
-        pointsPerUpdate: 400,
-        sendEvery: 0,
+        pointsOnChart: 5000,
+        sendEvery: 30,
         initialPoints: 20
     };
 
@@ -153,7 +150,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
 
     const subChartsMap: Map<
         SciChartSubSurface,
-        { dataSeriesType: EDataSeriesType; dataSeriesArray: BaseDataSeries[] }
+        { seriesType: ESeriesType, dataSeriesType: EDataSeriesType; dataSeriesArray: BaseDataSeries[] }
     > = new Map();
 
     const xValues = Array.from(new Array(dataSettings.initialPoints).keys());
@@ -259,7 +256,6 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
 
             // Generate points
             prePopulateData(dataSeries, dataSeriesType, xValues, positive);
-            currentPointsCounter = dataSeries.count();
 
             subChartSurface.zoomExtents(0);
         }
@@ -281,7 +277,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
 
         subChartSurface.annotations.add(titleAnnotation);
 
-        subChartsMap.set(subChartSurface, { dataSeriesType, dataSeriesArray });
+        subChartsMap.set(subChartSurface, { seriesType, dataSeriesType, dataSeriesArray });
 
         return positive;
     };
@@ -297,58 +293,28 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
     let newMessages: TMessage[] = [];
     let loadStart = 0;
     let loadCount: number = 0;
-    let loadTimes: number[];
-    let avgLoadTime: number = 0;
     let avgRenderTime: number = 0;
 
-    const loadData = (data: { x: number[]; ys: number[][]; sendTime: number }) => {
-        loadStart = new Date().getTime();
-        const loadTime = loadStart - data.sendTime;
-        loadTimes.push(loadTime);
-        if (loadCount < 20) {
-            avgLoadTime = (avgLoadTime * loadCount + loadTime) / (loadCount + 1);
-            loadCount++;
-        } else {
-            const firstTime = loadTimes.shift();
-            avgLoadTime = (avgLoadTime * loadCount + loadTime - firstTime) / loadCount;
-        }
-
-        subChartsMap.forEach(({ dataSeriesArray, dataSeriesType }) => {
-            for (let i = 0; i < dataSettings.seriesCount; i++) {
-                appendData(
-                    dataSeriesArray[i],
-                    dataSeriesType,
-                    i,
-                    data.x,
-                    data.ys,
-                    dataSettings.pointsOnChart,
-                    dataSettings.pointsPerUpdate
-                );
-            }
-        });
-    };
-
-    const loadFromBuffer = () => {
+    const updateCharts = () => {
         if (!isRunning) {
             return;
         }
+        loadStart = new Date().getTime();
+        subChartsMap.forEach(({ seriesType, dataSeriesArray, dataSeriesType }) => {
+            for (let i = 0; i < dataSettings.seriesCount; i++) {
+                const pointsToUpdate = Math.round(Math.max(1, dataSeriesArray[i].count() / 50));
+                appendData(
+                    seriesType,
+                    dataSeriesArray[i],
+                    dataSeriesType,
+                    i,
+                    dataSettings.pointsOnChart,
+                    pointsToUpdate
+                );
+            }
+        });
 
-        const sendTime = new Date().getTime();
-        // create subsequent xValues
-        const x = Array.from(Array(dataSettings.pointsPerUpdate).keys()).map(value => value + currentPointsCounter);
-
-        const ys: number[][] = [];
-        const yArraysMaxCount = dataSettings.seriesCount * 3;
-        for (let i = 0; i < yArraysMaxCount; ++i) {
-            // TODO replace hardcoded "positive" value
-            // replace randomizer function
-            ys.push(GetRandomData(x, false));
-        }
-
-        loadData({ x, ys, sendTime });
-        currentPointsCounter += dataSettings.pointsPerUpdate;
-
-        setTimeout(loadFromBuffer, dataSettings.sendEvery);
+        setTimeout(updateCharts, dataSettings.sendEvery);
     };
 
     // render time info calculation
@@ -356,6 +322,12 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
         if (!isRunning || loadStart === 0) return;
         const reDrawTime = new Date().getTime() - loadStart;
         avgRenderTime = (avgRenderTime * loadCount + reDrawTime) / (loadCount + 1);
+        const charts = Array.from(subChartsMap.values());
+        const totalPoints = charts[0].dataSeriesArray[0].count() * 3 * charts.length;
+        newMessages.push({
+            title: `Total Points `,
+            detail: `${totalPoints}`
+        });
         newMessages.push({
             title: `Average Render Time `,
             detail: `${avgRenderTime.toFixed(2)} ms`
@@ -372,12 +344,10 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
     const startStreaming = () => {
         console.log("start streaming");
         loadCount = 0;
-        avgLoadTime = 0;
         avgRenderTime = 0;
-        loadTimes = [];
         loadStart = 0;
         isRunning = true;
-        loadFromBuffer();
+        updateCharts();
     };
 
     const stopStreaming = () => {

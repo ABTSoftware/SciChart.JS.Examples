@@ -86,25 +86,30 @@ const generateCandleData = (xValues: number[]) => {
 };
 
 export const appendData = (
+    seriesType: ESeriesType,
     dataSeries: BaseDataSeries,
     dataSeriesType: EDataSeriesType,
     index: number,
-    xValues: number[],
-    yArray: number[][],
     pointsOnChart: number,
     pointsPerUpdate: number
 ) => {
+    const lastIndex = dataSeries.count() - 1;
+    const lastX = dataSeries.getNativeXValues().get(lastIndex);
+    const xValues = Array.from(Array(pointsPerUpdate)).map((_, i) => lastX + 1 + i);
+    const positive = [ESeriesType.StackedColumnSeries, ESeriesType.StackedMountainSeries].includes(seriesType);
     switch (dataSeriesType) {
         case EDataSeriesType.Xy:
             const xySeries = dataSeries as XyDataSeries;
-            xySeries.appendRange(xValues, yArray[index]);
+            xySeries.appendRange(xValues, GetRandomData(xValues, positive, xySeries.getNativeYValues().get(lastIndex)));
             if (xySeries.count() > pointsOnChart) {
                 xySeries.removeRange(0, pointsPerUpdate);
             }
             break;
         case EDataSeriesType.Xyy:
             const xyySeries = dataSeries as XyyDataSeries;
-            xyySeries.appendRange(xValues, yArray[2 * index], yArray[2 * index + 1]);
+            xyySeries.appendRange(xValues, 
+                GetRandomData(xValues, positive, xyySeries.getNativeYValues().get(lastIndex)), 
+                GetRandomData(xValues, positive, xyySeries.getNativeY1Values().get(lastIndex)));
             if (xyySeries.count() > pointsOnChart) {
                 xyySeries.removeRange(0, pointsPerUpdate);
             }
@@ -113,8 +118,8 @@ export const appendData = (
             const xyzSeries = dataSeries as XyzDataSeries;
             xyzSeries.appendRange(
                 xValues,
-                yArray[2 * index],
-                yArray[2 * index + 1].map(z => Math.abs(z / 5))
+                GetRandomData(xValues, positive, xyySeries.getNativeYValues().get(lastIndex)), 
+                GetRandomData(xValues, positive, xyySeries.getNativeY1Values().get(lastIndex)).map(z => Math.abs(z / 5))
             );
             if (xyzSeries.count() > pointsOnChart) {
                 xyzSeries.removeRange(0, pointsPerUpdate);
@@ -122,24 +127,14 @@ export const appendData = (
             break;
         case EDataSeriesType.Ohlc:
             const ohlcSeries = dataSeries as OhlcDataSeries;
+            const lastClose = ohlcSeries.getNativeCloseValues().get(ohlcSeries.count() - 1);
             const { openValues, highValues, lowValues, closeValues } = generateCandleDataForAppendRange(
-                ohlcSeries.getNativeCloseValues().get(ohlcSeries.count() - 1),
-                yArray[index]
+                lastClose,
+                GetRandomData(xValues, positive, lastClose)
             );
             ohlcSeries.appendRange(xValues, openValues, highValues, lowValues, closeValues);
             if (ohlcSeries.count() > pointsOnChart) {
                 ohlcSeries.removeRange(0, pointsPerUpdate);
-            }
-            break;
-        case EDataSeriesType.XyText:
-            const xytextSeries = dataSeries as XyTextDataSeries;
-            xytextSeries.appendRange(
-                xValues,
-                yArray[index],
-                yArray[index].map(obj => obj.toFixed())
-            );
-            if (xytextSeries.count() > pointsOnChart) {
-                xytextSeries.removeRange(0, pointsPerUpdate);
             }
             break;
         default:
@@ -147,8 +142,8 @@ export const appendData = (
     }
 };
 
-export function GetRandomData(xValues: number[], positive: boolean) {
-    let prevYValue = Math.random();
+export function GetRandomData(xValues: number[], positive: boolean, prevYValue?: number) {
+    prevYValue = prevYValue ?? Math.random();
     const yValues: number[] = [];
     // tslint:disable-next-line: prefer-for-of
     for (let j = 0; j < xValues.length; j++) {
@@ -166,9 +161,11 @@ export const prePopulateData = (
     positive: boolean
 ) => {
     const yValues: number[] = GetRandomData(xValues, positive);
+    const lastY: number[] = [];
     switch (dataSeriesType) {
         case EDataSeriesType.Xy:
             (dataSeries as XyDataSeries).appendRange(xValues, yValues);
+            lastY.push(yValues[yValues.length - 1]);
             break;
         case EDataSeriesType.Xyy:
             (dataSeries as XyyDataSeries).appendRange(xValues, yValues, GetRandomData(xValues, positive));
@@ -313,22 +310,6 @@ export const createRenderableSeries = (
             brushUp: AUTO_COLOR,
             strokeDown: AUTO_COLOR,
             brushDown: AUTO_COLOR
-        });
-        return { dataSeries, rendSeries };
-    } else if (seriesType === ESeriesType.TextSeries) {
-        const dataSeries: XyTextDataSeries = new XyTextDataSeries(wasmContext, dsOptions);
-        const rendSeries: FastTextRenderableSeries = new FastTextRenderableSeries(wasmContext, {
-            xAxisId,
-            yAxisId,
-            dataSeries,
-            dataLabels: {
-                style: {
-                    fontFamily: "Arial",
-                    fontSize: 6
-                },
-                color: AUTO_COLOR,
-                calculateTextBounds: false
-            }
         });
         return { dataSeries, rendSeries };
     }
