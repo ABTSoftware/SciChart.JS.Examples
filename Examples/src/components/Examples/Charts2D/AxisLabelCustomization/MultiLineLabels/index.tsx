@@ -102,7 +102,7 @@ const drawExample = async () => {
         // Optional datalabels on series. To enable set a style and position
         dataLabels: {
             horizontalTextPosition: EHorizontalTextPosition.Center,
-            verticalTextPosition: EVerticalTextPosition.Top,
+            verticalTextPosition: EVerticalTextPosition.Above,
             style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0,0,20,0) },
             color: appTheme.ForegroundColor,
         },

@@ -92,7 +92,7 @@ const drawExample = async () => {
             style: { fontFamily: "Arial", fontSize: 14, padding: new Thickness(0,0,3,0) },
             color: appTheme.ForegroundColor,
             aboveBelow: false,
-            verticalTextPosition: EVerticalTextPosition.Top,
+            verticalTextPosition: EVerticalTextPosition.Above,
         },
     });
     (series.dataLabelProvider as DataLabelProvider).getText = (state) => {
