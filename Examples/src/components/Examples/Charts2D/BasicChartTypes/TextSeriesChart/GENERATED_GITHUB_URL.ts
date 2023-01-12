@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/BasicChartTypes/ScatterChart/index.tsx";
+export const githubUrl = "/components/Examples/Charts2D/BasicChartTypes/TextSeriesChart/index.tsx";

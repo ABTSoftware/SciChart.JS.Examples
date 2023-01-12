@@ -160,7 +160,7 @@ const drawExample = async () => {
                     style: { fontFamily: "Arial", fontSize: 11, padding: new Thickness(5, 5, 5, 5) },
                     color: appTheme.ForegroundColor,
                     aboveBelow: false,
-                    verticalTextPosition: EVerticalTextPosition.Top
+                    verticalTextPosition: EVerticalTextPosition.Above
                 }
             })
         );

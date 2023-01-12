@@ -38,7 +38,7 @@ export async function dataLabelSkipModes(divElementId) {
         dataLabels: {
             skipMode: EDataLabelSkipMode.SkipIfSame,
             aboveBelow: false,
-            verticalTextPosition: EVerticalTextPosition.Top,
+            verticalTextPosition: EVerticalTextPosition.Above,
             horizontalTextPosition: EHorizontalTextPosition.Left,
             style: {
                 fontFamily: "Arial",
@@ -80,7 +80,7 @@ export async function dataLabelSkipModesBuilder(divElementId) {
                 dataLabels: {
                     skipMode: EDataLabelSkipMode.SkipIfSame,
                     aboveBelow: false,
-                    verticalTextPosition: EVerticalTextPosition.Top,
+                    verticalTextPosition: EVerticalTextPosition.Above,
                     horizontalTextPosition: EHorizontalTextPosition.Left,
                     style: {
                         fontFamily: "Arial",
