@@ -45,6 +45,11 @@ type TMessage = {
     detail: string;
 };
 
+type TDataSeriesEntry = {
+    dataSeriesType: EDataSeriesType;
+    dataSeriesArray: BaseDataSeries[];
+};
+
 export const divElementId = "chart";
 
 const axisOptions: INumericAxisOptions = {
@@ -151,10 +156,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
 
     const subChartPositioningCoordinateMode = ECoordinateMode.Relative;
 
-    const subChartsMap: Map<
-        SciChartSubSurface,
-        { dataSeriesType: EDataSeriesType; dataSeriesArray: BaseDataSeries[] }
-    > = new Map();
+    const subChartsMap: Map<SciChartSubSurface, TDataSeriesEntry> = new Map();
 
     const xValues = Array.from(new Array(dataSettings.initialPoints).keys());
 
@@ -313,12 +315,14 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
             avgLoadTime = (avgLoadTime * loadCount + loadTime - firstTime) / loadCount;
         }
 
-        subChartsMap.forEach(({ dataSeriesArray, dataSeriesType }) => {
+        const dataSeriesEntries = Array.from(subChartsMap.values());
+        dataSeriesEntries.forEach((entry: TDataSeriesEntry, subChartIndex: number) => {
+            const { dataSeriesArray, dataSeriesType } = entry;
             for (let i = 0; i < dataSettings.seriesCount; i++) {
                 appendData(
                     dataSeriesArray[i],
                     dataSeriesType,
-                    i,
+                    subChartIndex + i,
                     data.x,
                     data.ys,
                     dataSettings.pointsOnChart,
@@ -338,7 +342,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
         const x = Array.from(Array(dataSettings.pointsPerUpdate).keys()).map(value => value + currentPointsCounter);
 
         const ys: number[][] = [];
-        const yArraysMaxCount = dataSettings.seriesCount * 3;
+        const yArraysMaxCount = subChartsNumber * dataSettings.seriesCount * 3;
         for (let i = 0; i < yArraysMaxCount; ++i) {
             // TODO replace hardcoded "positive" value
             // replace randomizer function
