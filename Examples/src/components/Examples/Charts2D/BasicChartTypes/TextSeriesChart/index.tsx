@@ -46,7 +46,7 @@ const drawExample = async () => {
     // data is { xValues: number[], yValues: number[], textValues: string[] }
     const { TweetData } = await fetch("/api/tweetData").then(r => r.json());
     const series = new FastTextRenderableSeries(wasmContext, {
-        dataLabels: { style: { fontFamily: "arial", fontSize: 10 } },
+        dataLabels: { style: { fontFamily: "arial", fontSize: 10 }, calculateTextBounds: false },
         dataSeries: new XyTextDataSeries(wasmContext, TweetData)
     });
     sciChartSurface.renderableSeries.add(series);
