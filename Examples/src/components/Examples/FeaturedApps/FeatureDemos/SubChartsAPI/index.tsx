@@ -28,7 +28,7 @@ import { EMultiLineAlignment } from "scichart/types/TextPosition";
 import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import { EHorizontalAnchorPoint } from "scichart/types/AnchorPoint";
 import { EAnnotationLayer } from "scichart/Charting/Visuals/Annotations/IAnnotation";
-import { FormControl, InputLabel, Select, MenuItem, Typography, Slider, ButtonGroup, Button } from "@material-ui/core";
+import { FormControl, InputLabel, Select, MenuItem, Typography, Slider, ButtonGroup, Button, FormControlLabel, Checkbox } from "@material-ui/core";
 import {
     GetRandomData,
     appendData,
@@ -39,6 +39,7 @@ import {
 } from "./helpers";
 import { BaseDataSeries } from "scichart/Charting/Model/BaseDataSeries";
 import { ENumericFormat } from "scichart/types/NumericFormat";
+import { CheckBox } from "@material-ui/icons";
 
 type TMessage = {
     title: string;
@@ -48,11 +49,14 @@ type TMessage = {
 export const divElementId = "chart";
 
 const axisOptions: INumericAxisOptions = {
+    useNativeText: true,
     isVisible: false,
     drawMajorBands: false,
     drawMinorGridLines: false,
     drawMinorTickLines: false,
     drawMajorTickLines: false,
+    drawMajorGridLines: false,
+    labelStyle: { fontSize: 8 },
     labelFormat: ENumericFormat.Decimal,
     labelPrecision: 0,
     autoRange: EAutoRange.Always
@@ -98,29 +102,13 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
     });
 
     const mainXAxis = new NumericAxis(wasmContext, {
-        ...axisOptions,
-        // isVisible: true,
-        // drawLabels: false,
-        // drawMajorBands: false,
-        // drawMajorGridLines: true,
-        // drawMajorTickLines: false,
-        // drawMinorGridLines: true,
+        isVisible: false,
         id: "mainXAxis",
-        majorGridLineStyle: {
-            color: "#d6dee8",
-            strokeThickness: 1,
-            strokeDashArray: [1, 20]
-        },
-        minorGridLineStyle: {
-            color: "#d6dee8",
-            strokeThickness: 1,
-            strokeDashArray: [1, 20]
-        }
     });
 
     mainSurface.xAxes.add(mainXAxis);
     const mainYAxis = new NumericAxis(wasmContext, {
-        ...axisOptions,
+        isVisible: false,
         id: "mainYAxis"
     });
     mainSurface.yAxes.add(mainYAxis);
@@ -363,12 +351,20 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
         }
     };
 
+    const setLabels = (show: boolean) => {
+        subChartsMap.forEach((v, k) => {
+            k.xAxes.get(0).isVisible = show;
+            k.yAxes.asArray().forEach(y => y.isVisible = show);
+        });
+    }
+
     return {
         wasmContext,
         subChartSurface: mainSurface,
         controls: {
             startStreaming,
-            stopStreaming
+            stopStreaming,
+            setLabels
         }
     };
 };
@@ -412,7 +408,8 @@ export default function SubchartsGrid() {
     const [messages, setMessages] = React.useState<TMessage[]>([]);
     const [controls, setControls] = React.useState({
         startStreaming: () => {},
-        stopStreaming: () => {}
+        stopStreaming: () => {},
+        setLabels: (show: boolean) => {}
     });
 
     React.useEffect(() => {
@@ -440,6 +437,11 @@ export default function SubchartsGrid() {
         setIsDirty(false);
         controls.startStreaming();
     };
+
+    const handleLabelsChange = (ev: any, checked: boolean) => {
+        controls.setLabels(checked);
+    };
+
     return (
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
@@ -453,6 +455,9 @@ export default function SubchartsGrid() {
                                 Stop
                             </Button>
                         </ButtonGroup>
+                    </FormControl>
+                    <FormControl className={classes.formControl}>
+                        <FormControlLabel control={<Checkbox onChange={handleLabelsChange} />} label="Axis Labels" labelPlacement="start" />
                     </FormControl>
                     <div className={localClasses.infoBlock}>
                         {messages.map((msg, index) => (
