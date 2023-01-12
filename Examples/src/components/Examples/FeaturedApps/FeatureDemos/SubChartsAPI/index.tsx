@@ -93,7 +93,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
     };
     ///
 
-    const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.create(divElementId, {
+    const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.createSingle(divElementId, {
         theme
     });
 
