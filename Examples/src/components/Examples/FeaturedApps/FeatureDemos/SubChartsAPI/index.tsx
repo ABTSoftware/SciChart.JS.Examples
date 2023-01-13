@@ -64,10 +64,6 @@ const axisOptions: INumericAxisOptions = {
 
 // theme overrides
 const theme = appTheme.SciChartJsTheme;
-theme.strokePalette = ["#274b92", "#47bde6", "#ae418d", "#e97064", "#68bcae", "#634e96"];
-theme.fillPalette = ["#274b9288", "#47bde688", "#ae418d88", "#e9706488", "#68bcae88", "#634e9688"];
-theme.axisBandsFill = "#f2f3f4";
-theme.majorGridLineBrush = "#d6dee8";
 
 export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) => void) => {
     const subChartsNumber = 64;
@@ -340,7 +336,6 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
 
     const stopStreaming = () => {
         console.log("stop streaming");
-        // socket?.disconnect();
         isRunning = false;
         if (mainSurface.chartModifiers.size() === 0) {
             mainSurface.chartModifiers.add(
