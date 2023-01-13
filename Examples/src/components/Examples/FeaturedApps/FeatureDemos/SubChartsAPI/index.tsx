@@ -397,7 +397,7 @@ const useStyles = makeStyles(theme => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function SubchartsGrid() {
-    const [subChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const [isDirty, setIsDirty] = React.useState<boolean>(false);
 
     const [messages, setMessages] = React.useState<TMessage[]>([]);
@@ -413,17 +413,17 @@ export default function SubchartsGrid() {
                 setMessages([...newMessages]);
             });
 
-            setSciChartSurface(res.subChartSurface);
+            sciChartSurfaceRef.current = res.subChartSurface;
 
             setControls(res.controls);
-
-            return () => {
-                controls.stopStreaming();
-                res.subChartSurface?.delete();
-            };
         })();
+
         // Delete subChartSurface on unmount component to prevent memory leak
-        return () => subChartSurface?.delete();
+        return () => {
+            controls.stopStreaming();
+            sciChartSurfaceRef.current?.delete();
+            sciChartSurfaceRef.current = null;
+        };
     }, []);
 
     const localClasses = useStyles();
