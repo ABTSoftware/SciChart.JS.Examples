@@ -45,7 +45,6 @@ const drawExample = async () => {
 
     // data is { xValues: number[], yValues: number[], textValues: string[] }
     const data: { xValues: number[], yValues: number[], textValues: string[] } = await fetch("/api/tweetData").then(r => r.json());
-    console.log(data);
     const series = new FastTextRenderableSeries(wasmContext, {
         dataLabels: { style: { fontFamily: "arial", fontSize: 10 }, calculateTextBounds: false },
         dataSeries: new XyTextDataSeries(wasmContext, data)
