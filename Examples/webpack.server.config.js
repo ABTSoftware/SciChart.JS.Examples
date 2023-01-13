@@ -8,7 +8,10 @@ module.exports = {
     name: "server",
     target: "node",
     externalsPresets: { node: true }, // in order to ignore built-in modules like path, fs, etc.
-    externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
+    externals: {
+        express: "commonjs2 express",
+        ws: "commonjs2 ws",
+    },  
     entry: "./src/server/server.tsx",
     output: {
         filename: "server.js",
