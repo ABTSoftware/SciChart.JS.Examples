@@ -615,9 +615,9 @@ export const ExampleStrings = {
 
     // TODO add proper URLs
     // SubCharts API
-    urlSubchartApiDocumentation: "https://www.scichart.com/documentation/js/current/Axis%20Label%20Formatting%20-%20TextLabelProvider.html",
+    urlSubchartApiDocumentation: "https://www.scichart.com/documentation/js/current/WhatIsTheSubChartsAPI.html",
     urlTitleSubCharstApiDocumentation:
-"This specifics page in the JavaScript TextLabelProvider documentation will help you to get started",
+"This specifics page in the JavaScript SubCharts API documentation will help you to get started",
 
     // Multi Line labels
     urlMultiLineLabels: "/javascript-multiline-labels",

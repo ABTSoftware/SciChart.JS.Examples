@@ -5,7 +5,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-subcharts-grid.jpg";
 
-const previewDescription = `Demonstrates the usage of SubCharts API in Scichart.`;
+const previewDescription = `Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript`;
 const description = ``;
 const tips = [
     ``,
@@ -32,18 +32,14 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates the Subcharts API for drawing multiple charts and series using SciChart.js, High
-        Performance{" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
-            JavaScript Charts
-        </a>
+        Using the SubCharts API as part of <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">SciChart.js</a>, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.
     </p>
 );
 
 export const subchartsGridExampleInfo: TExampleInfo = {
-    title: "Subcharts Grid",
-    pageTitle: "Subcharts Grid" + ExampleStrings.exampleGenericTitleSuffix,
-    path: "/javascript-subcharts-grid",
+    title: "JavaScript 64-Chart Dashboard Performance Demo",
+    pageTitle: "JavaScript 64-Chart Dashboard Performance Demo" + ExampleStrings.exampleGenericTitleSuffix,
+    path: "/javascript-multiple-chart-dashboard-performance-demo",
     subtitle: Subtitle,
     documentationLinks,
     tips,
@@ -51,7 +47,7 @@ export const subchartsGridExampleInfo: TExampleInfo = {
     previewDescription,
     githubUrl,
     metaDescription:
-        "Demonstrates how to create a multi-chart grid, using the Subcharts API",
-    metaKeywords: "javascript, webgl, canvas",
+        "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
+    metaKeywords: "javascript, multichart, dashboard, performance, grid, realtime, webgl, canvas",
     thumbnailImage: exampleImage
 };
