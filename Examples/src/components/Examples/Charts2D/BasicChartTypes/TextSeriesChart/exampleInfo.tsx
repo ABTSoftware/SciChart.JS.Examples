@@ -36,8 +36,6 @@ const Subtitle = () => (
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
             SciChart.js
         </a>.  The dataset is an AI analysis of 2100 tweets, extracting the organisations mentioned and the sentiment of the tweet. 
-        For each of the top 200 mentioned organisations, we plot the number of tweets they are mentioned in against the average sentiment of those tweets.
-        Values around 0.5 have bree spread vertically very sloightly so you can see the individual labels if you zoom in.
     </p>
 );
 

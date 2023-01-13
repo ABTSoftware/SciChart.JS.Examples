@@ -120,7 +120,7 @@ module.exports = {
                 res.send(tq3080_DSM_2M.tq3080_DSM_2M);
             });
             app.get("/api/tweetData", function(req, res) {
-                res.send(TweetData);
+                res.send(TweetData.TweetData);
             });
             app.get("/api/get-binance-candles", function(req, res) {
                 const params = req.query;
