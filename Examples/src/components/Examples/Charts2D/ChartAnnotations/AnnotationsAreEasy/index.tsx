@@ -20,6 +20,8 @@ import {appTheme} from "../../../theme";
 import {GenericAnimation} from "scichart/Core/Animations/GenericAnimation";
 import CustomImage from "./scichart-logo-white.jpg";
 import {rocketSvg} from "./416398_exploration_fuel_nasa_rocket_space_icon";
+import { EWrapTo, NativeTextAnnotation } from "scichart/Charting/Visuals/Annotations/NativeTextAnnotation";
+import { DoubleAnimator } from "scichart/Core/Animations/DoubleAnimator";
 
 const divElementId = "chart";
 
@@ -49,6 +51,8 @@ const drawExample = async () => {
     //
     const text1 = new TextAnnotation({ text: "Chart Annotations are Powerful!", fontSize: 24, x1: 0.3, y1: 9.7, textColor });
     const text2 = new TextAnnotation({ text: "You can create text", fontSize: 18, x1: 2, y1: 9, textColor });
+
+    const nativeText = new NativeTextAnnotation({ text: "New! NativeText supports multi line with automatic wrapping, and rotation", fontSize: 18, x1: 7, x2: 10, y1: 9, textColor, wrapTo: EWrapTo.Annotation });
 
     // Add Dashed line and anchor text center/right/left annotations
     //
@@ -145,7 +149,7 @@ const drawExample = async () => {
     // });
 
 
-    const allAnnotations = [text1, text2, lineDash, textAlignLeft, textAlignRight, textAlignCenter, textCustomShapes, textWatermark,
+    const allAnnotations = [text1, text2, nativeText, lineDash, textAlignLeft, textAlignRight, textAlignCenter, textCustomShapes, textWatermark,
         textLines, line1, line2, textBoxes, box1, box2, box3,
         textImage, image,
         testCustomSvg, customSvgAnnotation,
@@ -166,6 +170,8 @@ const drawExample = async () => {
         addTypewriterEffect(duration, delay*3, textAlignCenter),
         addTypewriterEffect(duration, delay*4, textAlignLeft),
         addTypewriterEffect(duration, delay*5, textAlignRight),
+        addTypewriterEffect(duration, delay*2, nativeText),
+        addRotateEffect(duration, delay*4, nativeText),
         addFadeEffect(duration, delay*6, textWatermark),
         addFadeEffect(duration, delay*7, textLines, line1, line2),
         addFadeEffect(duration, delay*8, textBoxes, box1, box2, box3),
@@ -192,7 +198,7 @@ const addFadeEffect = (duration: number, delay: number, ...annotations: IAnnotat
     })
 };
 
-const addTypewriterEffect = (duration: number, delay: number, textAnnotation: TextAnnotation) => {
+const addTypewriterEffect = (duration: number, delay: number, textAnnotation: { text: string }) => {
      return new GenericAnimation<string>({
          from: "",
          to: textAnnotation.text,
@@ -204,6 +210,19 @@ const addTypewriterEffect = (duration: number, delay: number, textAnnotation: Te
          delay,
          setInitialValueImmediately: true
      });
+}
+
+const addRotateEffect = (duration: number, delay: number, textAnnotation: NativeTextAnnotation) => {
+    return new GenericAnimation<number>({
+        from: 0,
+        to: 30,
+        onAnimate: (from: number, to: number, progress: number) => {
+            const angle = to * progress;
+            textAnnotation.rotation = angle;
+        },
+        duration,
+        delay,
+    });
 }
 
 const getBuyMarkerAnnotationSvgString =

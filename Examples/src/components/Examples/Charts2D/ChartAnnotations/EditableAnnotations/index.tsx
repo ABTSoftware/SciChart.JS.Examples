@@ -17,6 +17,7 @@ import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtent
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
 import SciChartImage from "./scichart-logo-white.jpg";
+import { EWrapTo, NativeTextAnnotation } from "scichart/Charting/Visuals/Annotations/NativeTextAnnotation";
 
 const divElementId = "chart";
 
@@ -135,6 +136,38 @@ export const drawExample = async () => {
         isEditable: true
     });
 
+    const nativetextWrap = new NativeTextAnnotation({
+        x1: 5,
+        x2: 9,
+        y1: 3,
+        xCoordinateMode: ECoordinateMode.DataValue,
+        yCoordinateMode: ECoordinateMode.DataValue,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        textColor: appTheme.PalePurple,
+        fontSize: 24,
+        fontFamily: "Arial",
+        text: "Native Text Annotations support wordwrap.  Resize me!",
+        isEditable: true,
+        wrapTo: EWrapTo.Annotation
+    });
+
+    const nativetextScale = new NativeTextAnnotation({
+        x1: 5,
+        x2: 9,
+        y1: 2,
+        xCoordinateMode: ECoordinateMode.DataValue,
+        yCoordinateMode: ECoordinateMode.DataValue,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        textColor: appTheme.PalePurple,
+        fontSize: 24,
+        fontFamily: "Arial",
+        text: "Native Text Annotations can scale on resize.",
+        isEditable: true,
+        scaleOnResize: true
+    });
+
     sciChartSurface.annotations.add(
         text1,
         text2,
@@ -146,6 +179,8 @@ export const drawExample = async () => {
         imageAnnotation,
         textAnnotation,
         textAnnotationSciChart,
+        nativetextWrap,
+        nativetextScale
     );
 
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());

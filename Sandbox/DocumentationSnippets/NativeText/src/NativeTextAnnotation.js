@@ -2,8 +2,6 @@ import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {NumberRange} from "scichart/Core/NumberRange";
 import { chartBuilder } from "scichart/Builder/chartBuilder";
-import { EAxisType } from "scichart/types/AxisType";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import { EWrapTo, NativeTextAnnotation } from "scichart/Charting/Visuals/Annotations/NativeTextAnnotation";
 import { GenericAnimation } from "scichart/Core/Animations/GenericAnimation";
 import { EAnnotationType } from "scichart/Charting/Visuals/Annotations/IAnnotation";
@@ -13,13 +11,21 @@ export async function nativeTextAnnotationExample(divElementId) {
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 10) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 10) }));
+
+    const nativeTextHostedFont = new NativeTextAnnotation({
+        x1: 1,
+        y1: 1,
+        fontFamily: "jokerman",
+        text: "This text uses a hosted font",
+        fontSize: 18
+     });
+     sciChartSurface.annotations.add(nativeTextHostedFont);
     
     const nativeText1 = new NativeTextAnnotation({
         x1: 1,
         y1: 9,
-        text: "This text uses a locally served font",
-        fontFamily: "jokerman",
-        fontSize: 24
+        text: "The default font is Arial, which does not need to be hosted or registered",
+        fontSize: 18
      });
      sciChartSurface.annotations.add(nativeText1);
 
@@ -27,11 +33,15 @@ export async function nativeTextAnnotationExample(divElementId) {
         "notoserif",
         "https://raw.githubusercontent.com/google/fonts/main/ofl/notoserif/NotoSerif-Regular.ttf"
     );
+    await sciChartSurface.registerFont(
+        "notosansarabic",
+        "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansarabic/NotoSansArabic%5Bwdth%2Cwght%5D.ttf"
+    );
      const nativeText2 = new NativeTextAnnotation({
         x1: 3,
         y1: 7,
-        text: "This text uses a font from the internet",
-        fontFamily: "notoserif",
+        text: "له هغه ځايه",
+        fontFamily: "notosansarabic",
         fontSize: 24
      });
      sciChartSurface.annotations.add(nativeText2);
@@ -89,9 +99,8 @@ export async function nativeTextAnnotationBuilderAPIExample(divElementId) {
             { type: EAnnotationType.RenderContextNativeTextAnnotation, options: {
                 x1: 1,
                 y1: 9,
-                text: "This text uses a locally served font",
-                fontFamily: "jokerman",
-                fontSize: 24
+                text: "The default font is Arial, which does not need to be hosted or registered",
+                fontSize: 16
             }},
             { type: EAnnotationType.RenderContextNativeTextAnnotation, options: {
                 x1: 3,

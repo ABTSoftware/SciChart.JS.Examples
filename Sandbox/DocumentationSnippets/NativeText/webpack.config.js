@@ -12,11 +12,12 @@ module.exports = {
                 use: "ts-loader",
                 exclude: /node_modules/
             },
+            // Serve .ttf files
             {
                 test: /\.ttf$/,
                 use: {
                     loader: "url-loader",
-                    options: { limit: 10000, mimetype: "application/font-ttf" }
+                    options: { mimetype: "application/font-ttf" }
                 }
             }
         ]
@@ -32,6 +33,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: "src/index.html", to: "" },
+                // Copy the font to the root of the output location
                 { from: "src/jokerman.ttf", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" }
