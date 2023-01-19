@@ -128,7 +128,7 @@ export default function TransparentBackground() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return (<div style={{backgroundImage: `url(${BackgroundImage})`, backgroundSize: "100% 100%"}}>
-        <div id={divElementId} className={classes.ChartWrapper}/>
+    return (<div className={classes.ChartWrapper} style={{backgroundImage: `url(${BackgroundImage})`, backgroundSize: "100% 100%"}}>
+        <div id={divElementId} />
     </div>);
 }
