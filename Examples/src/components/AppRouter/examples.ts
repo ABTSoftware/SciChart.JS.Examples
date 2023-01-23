@@ -104,6 +104,7 @@ import VirtualizedDataOverview from "../Examples/Charts2D/ZoomingAndPanning/Virt
 import HeatmapInteractions from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions";
 import DepthChart from "../Examples/Charts2D/CreateStockCharts/DepthChart";
 import TextChart from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart";
+import DynamicAnnotaions from "../Examples/Charts2D/ChartAnnotations/DynamicAnnotations";
 
 export type TMenuItem = {
     item: {
@@ -125,7 +126,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
             EXAMPLES_PAGES.featuredApps_showcases_oilandgasdashboard,
             EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata,
-            EXAMPLES_PAGES.featuredApps_showcases_richInteractions
+            EXAMPLES_PAGES.featuredApps_showcases_richInteractions,
+            EXAMPLES_PAGES.featuredApps_featureDemos_subchartsGrid
         ]
     },
     {
@@ -192,6 +194,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers,
             EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold,
             EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_DynamicAnnotations
         ]
     },
     {
@@ -408,6 +411,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return TradeMarkers;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold.id:
             return DragHorizontalThreshold;
+        case EXAMPLES_PAGES.chart2D_chartAnnotations_DynamicAnnotations.id:
+            return DynamicAnnotaions;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.id:
             return RealtimeGhostedTraces;
         case EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.id:

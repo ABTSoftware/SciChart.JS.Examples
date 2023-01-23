@@ -122,7 +122,7 @@ export const drawExample = async () => {
         isEditable: false
     });
 
-    const textAnnotationSciChart = new TextAnnotation({
+    const textAnnotationDrag = new TextAnnotation({
         x1: 1,
         y1: 3,
         xCoordinateMode: ECoordinateMode.DataValue,
@@ -133,7 +133,10 @@ export const drawExample = async () => {
         fontSize: 26,
         fontFamily: "Arial",
         text: "Moveable TextAnnotation",
-        isEditable: true
+        isEditable: true,
+        onDrag: (args) => {
+            textAnnotationDrag.text = `I was dragged to ${textAnnotationDrag.x1.toFixed(2)}, ${textAnnotationDrag.y1.toFixed(2)}`
+        },
     });
 
     const nativetextWrap = new NativeTextAnnotation({
@@ -178,7 +181,7 @@ export const drawExample = async () => {
         boxAnnotation,
         imageAnnotation,
         textAnnotation,
-        textAnnotationSciChart,
+        textAnnotationDrag,
         nativetextWrap,
         nativetextScale
     );

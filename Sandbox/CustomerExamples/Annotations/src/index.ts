@@ -7,13 +7,13 @@ import { EAxisAlignment } from 'scichart/types/AxisAlignment';
 import { NumberRange } from 'scichart/Core/NumberRange';
 import { AxisMarkerAnnotation } from 'scichart/Charting/Visuals/Annotations/AxisMarkerAnnotation';
 import { MouseOverAnnotationModifier } from './MouseOverAnnotationModifier';
-import { CustomBoxAnnotation } from './CustomBoxAnnotation';
 import { createImageAsync } from 'scichart/utils/imageUtil';
 import { MouseOverAxisModifier } from './MouseOverAxisModifier';
 import { CustomAnnotation } from 'scichart/Charting/Visuals/Annotations/CustomAnnotation';
 import { AxisMarkerAnnotationWithoutGrips } from "./AxisMarkerAnnotationWithoutGrips";
 import { CappedLineAnnotation } from './CappedLineAnnotation';
 import { TextAnnotation } from 'scichart/Charting/Visuals/Annotations/TextAnnotation';
+import { BoxAnnotation } from 'scichart/Charting/Visuals/Annotations/BoxAnnotation';
 
 async function initSciChart() {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root');
@@ -72,7 +72,7 @@ async function initSciChart() {
         }
     };
 
-    const boxAnnotationGreen = new CustomBoxAnnotation(callWhenSelectionChanges, {
+    const boxAnnotationGreen = new BoxAnnotation({
         stroke: '#33FF33',
         strokeThickness: 1,
         fill: 'rgba(50, 255, 50, 0.3)',
@@ -80,8 +80,10 @@ async function initSciChart() {
         x2: 6.0,
         y1: 6.0,
         y2: 8.0,
-        isEditable: true,
+        isEditable: true
     });
+    boxAnnotationGreen.selectedChanged.subscribe(callWhenSelectionChanges);
+
     const svg = `<svg width="400" height="110">
     <rect width="100%" height="100%" style="fill:rgb(0,0,0, .5);stroke-width:3;stroke:rgb(0,0,0)" />
     <foreignObject x="10%" y="10%" width="80%" height="80%">
@@ -93,7 +95,7 @@ async function initSciChart() {
                 </div>
                 <div>
                     <label for="password">Password:</label>
-                    <input type="text" id="password" placeholder="Enter password" class="form-control" />
+                    <input type="password" id="password" placeholder="Enter password" class="form-control" />
                 </div>
                 <button id="send">Send</button>
             </form>

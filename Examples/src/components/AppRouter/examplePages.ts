@@ -94,6 +94,7 @@ import { virtualizedDataOverviewExampleInfo } from "../Examples/Charts2D/Zooming
 import { heatmapInteractionsExampleInfo } from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions/exampleInfo";
 import { depthChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/DepthChart/exampleInfo";
 import { textChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart/exampleInfo";
+import { dynamicAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/DynamicAnnotations/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -255,6 +256,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_chartAnnotations_EditableAnntations: {
         id: "chart2D_chartAnnotations_EditableAnntations",
         ...editableAnnotationsExampleInfo
+    },
+    chart2D_chartAnnotations_DynamicAnnotations: {
+        id: "chart2D_chartAnnotations_DynamicAnnotations",
+        ...dynamicAnnotationsExampleInfo
     },
     chart2D_chartAnnotations_TradeMarkers: {
         id: "chart2D_chartAnnotations_TradeMarkers",

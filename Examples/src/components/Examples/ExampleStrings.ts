@@ -332,6 +332,10 @@ export const ExampleStrings = {
     urlDragHorizontalThreshold: "/javascript-chart-drag-horizontal-threshold",
     urlTitleDragHorizontalThreshold: "This Javascript chart example shows you how to add a draggable threshold and change the chart colour depending on threshold value",
 
+    // Dynamic annotations
+    urlDynamicAnnotations: "/dynamic-annotations",
+    titleDynamicAnnotations: "JavaScript Chart Dynamic Annotations",
+
     // Use Pointmarkers
     urlPointMarkers: "/javascript-chart-custom-pointmarkers",
     titlePointMarkers: "JavaScript Point-Markers Chart",
