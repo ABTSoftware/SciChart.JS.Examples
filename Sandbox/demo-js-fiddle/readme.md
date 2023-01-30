@@ -45,4 +45,4 @@ async function initSciChart() {
 initSciChart();
 ```
 
-_**Note:** in v3.0.269 or below you'll need to call ```sciChartSurface.useWasmFromCDN();``` and also set a license key or have the SciChart Licensing Wizard open. However we are working to remove that restriction for JSFiddle, codepen and similar sandboxes._
+_**Note:** in v3.0.269 or below you'll need to call ```sciChartSurface.useWasmFromCDN();``` and also set a license key or have the SciChart Licensing Wizard open. However in v3.0.280 or above this restriction has been removed for JSFiddle, codepen and similar sandboxes._
