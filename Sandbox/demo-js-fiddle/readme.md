@@ -13,13 +13,13 @@ _**Note:** version number above is specific, you can see the latest version at [
 
 - Next, you are using the Browser Bundle version of scichart which works without npm, so there are no imports. To declare or get types from the SciChart library, you need to 'import' them like this:
 
-```
+```javascript
 const { SciChartSurface, NumericAxis, FastLineRenderableSeries } = SciChart;
 ```
 
 - Lastly declare your chart using the SciChart.js API. Here's a quick example
 
-```
+```javascript
 const { SciChartSurface, chartBuilder } = SciChart;
 
 async function initSciChart() {
