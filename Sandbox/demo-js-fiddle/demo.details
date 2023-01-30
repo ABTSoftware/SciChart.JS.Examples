@@ -1,12 +1,11 @@
-name: SciChart, Fiddler.js proof of concept
-description: Demonstrates the VerticalLineAnnotation type
-authors:
+---
+ name: SciChart.js + JSFiddle proof of concept
+ description: Simple SciChart.js chart loaded into jsfiddle
+ authors:
   - Andrew Burnett-Thompson
-alt_text: >-
- SciChart.js JavaScript Chart simple example proof of concept with js-fiddle
-normalize_css: no
-tags:
-  - SciChart
-categories: 
-  - Tutorials
-priority: 1
+ resources:
+  - https://cdn.jsdelivr.net/npm/scichart@3.0.269/_wasm/scichart.browser.js
+ normalize_css: no
+ panel_js: 0
+ panel_html: 0
+ panel_css: 0
