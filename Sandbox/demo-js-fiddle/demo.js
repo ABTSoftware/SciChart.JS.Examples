@@ -20,7 +20,4 @@ async function initSciChart() {
   // That's it! You now have a SciChartSurface!
 }
 
-// Required for jsfiddle. Configure where to load wasm files
-SciChartSurface.useWasmFromCDN();
-
 initSciChart();
