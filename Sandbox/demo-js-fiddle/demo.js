@@ -1,10 +1,12 @@
+const { SciChartSurface, chartBuilder } = SciChart;
+
 async function initSciChart() {
 
   // Create the SciChartSurface
   const {
 	sciChartSurface,
 	wasmContext
-  } = await SciChart.chartBuilder.build2DChart("scichart-root", {
+  } = await chartBuilder.build2DChart("scichart-root", {
 	series: {
 		type: "LineSeries", 
 		xyData: {
@@ -19,6 +21,6 @@ async function initSciChart() {
 }
 
 // Required for jsfiddle. Configure where to load wasm files
-SciChart.SciChartSurface.useWasmFromCDN();
+SciChartSurface.useWasmFromCDN();
 
 initSciChart();
