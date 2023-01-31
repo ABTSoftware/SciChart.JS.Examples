@@ -22,7 +22,13 @@
             "./src/types", "./node_modules/@types"],
         "esModuleInterop": false,
         "skipLibCheck": false,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+      "lib": [
+        "dom",
+        "es5",
+        "scripthost",
+        "es2015.collection"
+      ]
     },
     "include": [
         "src/**/*",

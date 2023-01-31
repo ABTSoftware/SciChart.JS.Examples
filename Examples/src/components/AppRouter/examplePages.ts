@@ -4,7 +4,6 @@ import { digitalBandSeriesChartExampleInfo } from "../Examples/Charts2D/BasicCha
 import { fanChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/FanChart/exampleInfo";
 import { bubbleChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/BubbleChart/exampleInfo";
 import { candlestickChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/CandlestickChart/exampleInfo";
-import { ohlcChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/OhlcChart/exampleInfo";
 import { columnChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ColumnChart/exampleInfo";
 import { impulseChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ImpulseChart/exampleInfo";
 import { errorBarsChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/ErrorBarsChart/exampleInfo";
@@ -175,10 +174,6 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_basicCharts_CandlestickChart: {
         id: "chart2D_basicCharts_CandlestickChart",
         ...candlestickChartExampleInfo
-    },
-    chart2D_basicCharts_OhlcChart: {
-        id: "chart2D_basicCharts_OhlcChart",
-        ...ohlcChartExampleInfo
     },
     chart2D_basicCharts_ErrorBarsChart: {
         id: "chart2D_basicCharts_ErrorBarsChart",
