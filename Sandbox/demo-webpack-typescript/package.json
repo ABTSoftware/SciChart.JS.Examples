@@ -1,0 +1,24 @@
+{
+  "name": "scichart-demo-webpack-typescript",
+  "version": "1.0.0",
+  "description": "SciChart demo with webpack and typescript",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "scichart": "^3.0.280"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "prettier": "^2.4.1",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.59.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
+}

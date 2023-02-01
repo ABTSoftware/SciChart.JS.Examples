@@ -4,6 +4,8 @@
 
 Boilerplates for popular JavaScript frameworks can be found here. If you are using one of the following frameworks, go straight to the appropriate folder to get started quickly. 
 
+- [webpack + SciChart.js](demo-simple-chart)
+- [webpack + typescript + SciChart.js](demo-webpack-typescript)
 - [Angular + SciChart.js](demo-angular-scichart)
 - [Blazor + SciChart.js](demo-blazor)
 - [Create-React-App + SciChart.js](demo-create-react-app-scichart)
