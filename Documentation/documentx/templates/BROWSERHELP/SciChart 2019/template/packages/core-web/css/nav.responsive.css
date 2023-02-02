@@ -1,0 +1,75 @@
+.i-header, .i-header.ui-state-active
+{
+	text-align: center;
+	background-color: #444444;
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #444444 /*{a-bup-background-start}*/ ), to( #2d2d2d /*{a-bup-background-end}*/ )); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient( #444444 /*{a-bup-background-start}*/, #2d2d2d /*{a-bup-background-end}*/ ); /* Chrome 10+, Saf5.1+ */
+	background-image: -moz-linear-gradient( #444444 /*{a-bup-background-start}*/, #2d2d2d /*{a-bup-background-end}*/ ); /* FF3.6 */
+	background-image: -ms-linear-gradient( #444444 /*{a-bup-background-start}*/, #2d2d2d /*{a-bup-background-end}*/ ); /* IE10 */
+	background-image: -o-linear-gradient( #444444 /*{a-bup-background-start}*/, #2d2d2d /*{a-bup-background-end}*/ ); /* Opera 11.10+ */
+	background-image: linear-gradient( #444444 /*{a-bup-background-start}*/, #2d2d2d /*{a-bup-background-end}*/ );
+
+}
+
+span.i-header-text
+{
+	line-height: 36px;
+}
+
+div.i-header img
+{
+	display: none;
+}
+
+#i-accordion, #i-tabstrip
+{
+	margin-right: 42px;
+}
+
+div#i-close-pane a
+{
+	height: 100%;
+	display: block;
+	border-radius: 0;
+	border-width: 0;
+	border-right: 1px solid #BBB;
+}
+
+a i[class^="i-icon-"]
+{
+	margin: auto;
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+div#i-close-pane
+{
+	width: 42px;
+	display: block;
+	height: 100%;
+	position: relative;
+	float: right;
+}
+
+div#i-close-pane > i.i-image
+{
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: 14px;
+    background-position: -432px -72px;
+    background-image: url("../images/glyphicons-halflings.png");
+}
+
+.i-tab-container>div {
+    padding: 0;
+}
+
+.i-tab-container>ul {
+    display: none;
+}

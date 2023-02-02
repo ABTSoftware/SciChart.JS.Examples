@@ -1,0 +1,55 @@
+div#i-results p
+{
+	display: none;
+}
+
+div#i-results a
+{
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+.i-result-list tr td:first-child
+{
+	display: none;
+}
+
+.i-result-list td.i-inner-row
+{
+	border: none;
+}
+
+div#i-operators
+{
+	display: none;
+}
+
+input#i-search
+{
+	height: 34px;
+}
+
+input#i-execute-search
+{
+	margin-top: 0px;
+    margin-right: 4px;	
+    background-color: transparent;
+}
+
+#i-search-container {
+    margin: 8px;
+}
+
+.btn {
+    background-image: none!important;
+    border-color: #ccc;
+    -webkit-box-shadow: none!important;
+    -moz-box-shadow: none!important;
+    box-shadow: none!important;  
+    text-shadow: none!important;  
+    -webkit-border-radius: 0!important;
+    -moz-border-radius: 0!important;
+    border-radius: 0!important;
+    white-space: normal;
+    padding: 6px 12px !important;
+}

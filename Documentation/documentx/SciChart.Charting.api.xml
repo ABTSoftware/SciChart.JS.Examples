@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Api>
+    <namespace name="com.scichart.charting">
+        <class name="com.scichart.charting.R" id="0bb21eab-c69f-4847-ad1a-4f9298396a05" inheritsFrom="java.lang.Object" inheritanceHierarchy="java.lang.Object|com.scichart.charting.R" isAbstract="false" isSealed="true" access="public">
+            <constructors>
+                <constructor id="c8865a54-47ed-404c-8a40-36c0ab85f42b" sig="R()" access="public" isStatic="false" isSealed="false"/>
+            </constructors>
+        </class>
+        <class name="com.scichart.charting.R+style" id="44c3a58b-b1b3-4214-96bf-97ed224fc408" inheritsFrom="java.lang.Object" inheritanceHierarchy="java.lang.Object|com.scichart.charting.R.style" isAbstract="false" isSealed="true" access="public">
+            <constructors>
+                <constructor id="9a505cad-710d-467a-bbe6-29ff80418771" sig="style()" access="public" isStatic="false" isSealed="false"/>
+            </constructors>
+            <fields>
+                <field name="SciChart_SciChartv4DarkStyle" id="0b408871-394c-49b7-8f27-25e427ba82fa" access="public" isTransient="false" isVolatile="false" isConstant="false" constantValue="0" returnType="int" returnTypeDimension=""/>
+            </fields>
+        </class>
+    </namespace>
+</Api>

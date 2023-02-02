@@ -1,0 +1,17 @@
+﻿<Derived master="master.html">
+
+    <ContentSection name="TitleTags">
+        <![CDATA[
+<!--DXMETADATA start type="Phrase" name="Glossary" Format="<title>%%Phrase%%</title>" BlankFormat="<title>Glossary</title>" --><!--DXMETADATA end-->
+<!--DXMETADATA start type="Phrase" name="Glossary" format="<meta name=""Title"" content=""%%Phrase%%""/>" --><!--DXMETADATA end-->    
+        ]]>
+    </ContentSection>
+
+    <ContentSection name="BodyContent">
+        <![CDATA[
+        <div class="i-glossary-letters-container"><!--DXMETADATA start type="FilteredItemList" scrap="GLOSSARYLETTERSHEADER" namespace="Glossary Letter" source="Item" filter="type=all" NoHeader="True" NoFooter="True" format="%%FilteredItemList%%"-->Glossary Header<!--DXMETADATA end--></div>
+        <div class="i-glossary-definitions-container"><!--DXMETADATA start type="FilteredItemList" scrap="GLOSSARYLETTERSLIST" namespace="Glossary Letter" source="Item" filter="type=populated" NoHeader="True" NoFooter="True" format="%%FilteredItemList%%"-->Glossary List<!--DXMETADATA end--></div>
+        ]]>
+    </ContentSection>
+
+</Derived>

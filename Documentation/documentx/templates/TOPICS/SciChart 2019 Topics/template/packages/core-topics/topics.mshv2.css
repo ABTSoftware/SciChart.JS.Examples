@@ -1,0 +1,59 @@
+﻿
+
+/* Standard url() references in stylesheets don't work in MSHV 2 so we have to use an alternate syntax 
+    in this stylesheet, which is loaded only when the content runs under MSHV 2 */
+
+.i-section-heading .i-section-heading-icon {
+    background-image: url("ms-xhelp:///?;/template/packages/core-topics/images/i-collapse.png");
+}
+
+.i-section-heading.i-section-heading-collapsed .i-section-heading-icon {
+    background-image: url("ms-xhelp:///?;/template/packages/core-topics/images/i-expand.png");
+}
+
+a.i-glossary-link,
+a.i-glossary-link:link,
+a.i-glossary-link:visited,
+a.i-glossary-link:hover {
+    background-image: none;
+}
+
+.i-is-new {
+    background-image: url("ms-xhelp:///?;/template/packages/core-topics/images/i-is-new.png");
+}
+
+.i-dropdown-heading {
+    background-image: url('ms-xhelp:///?;/template/packages/core-topics/images/i-content-collapsed.png');
+}
+
+.i-dropdown-heading-expanded {
+    background-image: url('ms-xhelp:///?;/template/packages/core-topics/images/i-content-expanded.png');
+}
+
+.i-no-glyph {
+    background-image: none;
+}
+
+div.OH_topic {
+    display: none;
+}
+
+#lbCloseLink {
+    background-image: url("ms-xhelp:///?;/template/packages/plugins-topics/images/i-slimbox-closelabel.png");
+}
+
+.i-copy-code {
+    background-image: url("ms-xhelp:///?;/template/packages/core-topics/images/i-copy-code.png");
+}
+
+.i-box-tip {
+    background-image:	url('ms-xhelp:///?;/template/packages/core-topics/images/i-tip.png');
+}
+
+.i-box-caution {
+    background-image:	url('ms-xhelp:///?;/template/packages/core-topics/images/i-caution.png');
+}
+
+.qtip-titlebar {
+    overflow: visible;
+}

@@ -1,0 +1,15 @@
+﻿<Derived master="master.html">
+
+    <ContentSection name="AfterHeaderContent" mode="Prepend">
+        <![CDATA[	
+            <!--DXMETADATA start type="Literal" condition="content:content=""%%IsGenerateTypeMemberPagesEnabled%%"",operator=""="",value=""True""" value="<a class=""i-page-link"" href=""%%itemqualifiedname%%_members%%OutputFileExtension%%"">$$Members$$</a>&nbsp;&nbsp;"-->Members link<!--DXMETADATA end-->
+        ]]>
+    </ContentSection>
+
+    <ContentSection name="AfterBodyContent">
+        <![CDATA[
+            <!--DXMETADATA start type="FilteredItemList" scrap="CATEGORIZED_LINKS" namespace="linkcategory" source="Item" filter="" NoHeader="True" NoFooter="True" format="%%replaceinquotes:value=false%%%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=seealso,caption=""$$See_Also$$%%designlist:tagidentifier=##SEEALSO,itemtype=See Also%%""%%%%filtereditemlist%%</div>"--><!--DXMETADATA end-->		
+        ]]>
+    </ContentSection>
+
+</Derived>

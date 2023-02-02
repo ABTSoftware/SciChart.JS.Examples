@@ -1,0 +1,36 @@
+﻿<Derived master="master.members.html">
+
+    <ContentSection name="MshvMetaTags" mode="Append">
+        <![CDATA[
+	<meta name="Microsoft.Help.TocOrder" content="30"/>
+		]]>
+    </ContentSection>
+
+    <ContentSection name="TitleTags">
+        <![CDATA[
+    <!--DXMETADATA start type="PageItemTitle" format="<title>%%PageItemTitle%% $$Methods$$</title>" -->&lt;Item Title&gt;<!--DXMETADATA end-->
+    <!--DXMETADATA start type="ItemTitle" format="<meta name=""Title"" content=""%%PageItemTitle%% $$Methods$$""/>" --><!--DXMETADATA end-->
+        ]]>
+    </ContentSection>
+
+    <ContentSection name="PageTitleContent">
+        <![CDATA[
+    <div class="i-page-title-text"><!--DXMETADATA start type="PageItemTitle" format="%%PageItemTitle%% $$Methods$$" --><!--DXMETADATA end--></div>
+        ]]>
+    </ContentSection>
+        
+    <ContentSection name="BodyContent">
+        <![CDATA[
+            <!--DXMETADATA start type="Scrap" name="_MEMBERS_LINK" format="<p>%%scrap%%</p>" -->Link to members page<!--DXMETADATA end -->
+
+            <a name="MethodsBookmark"></a>
+            <!--DXMETADATA start type="FilteredItemList" scrap="MEMBER_LIST" namespace="method" source="Item" filter="scope=public" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=publicMethods,caption=$$Public$$ $$Methods$$%%%%filtereditemlist%%<a href="#top">$$Top$$</a></div>" -->Public Instance Methods<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="MEMBER_LIST" namespace="method" source="Item" filter="scope=protected+friend" format="<div class=""ProtectedMember"">%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=protectedMethods,caption=$$Protected$$ $$Methods$$%%%%filtereditemlist%%<a href="#top">$$Top$$</a></div></div>" -->Protected Instance Methods<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="MEMBER_LIST" namespace="method" source="Item" filter="scope=private" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=privateMethods,caption=$$Private$$ $$Methods$$%%%%filtereditemlist%%<a href="#top">$$Top$$</a></div>" -->Private Instance Methods<!--DXMETADATA end -->
+
+            <a name="seealsobookmark"></a>
+            <!--DXMETADATA start type="FilteredItemList" scrap="CATEGORIZED_LINKS" namespace="linkcategory" source="Item" filter="type=members" NoHeader="True" NoFooter="True" format="%%replaceinquotes:value=false%%%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=seealso,caption=""$$See_Also$$%%designlist:tagidentifier=##SEEALSO,itemtype=See Also%%""%%%%filtereditemlist%%</div>"--><!--DXMETADATA end-->	        
+        ]]>
+    </ContentSection>
+    
+</Derived>

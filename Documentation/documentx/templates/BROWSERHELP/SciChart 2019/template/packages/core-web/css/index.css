@@ -1,0 +1,68 @@
+blockquote
+{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 16px;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    background: white;
+    font-size: 80%;
+}
+
+input#i-search
+{
+    width: 100%;
+    border: solid 1px #bbbbbb;
+    padding: 0px;
+    height: 28px;
+    clear: both;
+}
+
+div#i-index-body a
+{
+	color: #0069d9;
+    margin-top: 8px;
+    margin-bottom: 8px;
+	display: inline-block;
+    text-decoration: initial;
+	font-size: 1.25em;
+    line-height: 1.25em;
+}
+
+#i-index-header
+{
+    overflow: hidden;
+    padding: 5px;
+}
+
+#i-index-header, #i-index-body
+{
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+#i-index-header
+{
+    height: 40px;
+    top: 0;
+}
+
+#i-index-body
+{
+    border: none;
+    margin-left: 1px;
+    padding: 5px;
+    top: 40px;
+    bottom: 0px;
+    overflow-y: auto;
+}
+
+.i-selected {
+    background-color: #d0d0d0;    
+}

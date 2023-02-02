@@ -1,0 +1,21 @@
+﻿/* This StyleSheet contains custom styles for this project */
+
+
+.NewStyle
+{
+}
+.NewStyle2
+{
+    font-size: large;
+}
+.NewStyle3
+{
+    font-size: medium;
+}
+/* Template Override Style Rule
+   Name: Page Body Content
+   Description: Main content section including the body of the Topic
+*/
+.i-body-content
+{
+}

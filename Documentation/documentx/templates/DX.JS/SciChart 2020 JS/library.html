@@ -1,0 +1,28 @@
+﻿<Derived master="master.html">
+
+    <ContentSection name="TitleTags">
+        <![CDATA[
+    <!--DXMETADATA start type="ItemTitle" format="<title>%%ItemTitle%%</title>" -->Title<!--DXMETADATA end-->
+    <!--DXMETADATA start type="ItemTitle" format="<meta name=""Title"" content=""%%ItemTitleNoQuotes%%""/>" --><!--DXMETADATA end-->
+        ]]>
+    </ContentSection>
+    
+    <ContentSection name="PageTitleContent">
+        <![CDATA[
+            <div class="i-page-title-text"><!--DXMETADATA start type="ItemTitle" -->Title<!--DXMETADATA end--></div>
+        ]]>
+    </ContentSection>	
+
+    <ContentSection name="BodyContent">
+        <![CDATA[
+            <!--DXMETADATA start type="Diagram" source="Assembly" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=objectmodel,caption=$$Object_Model$$%%%%Diagram%%</div>" -->Object Model<!--DXMETADATA end -->
+            <!--DXMETADATA start type="Description" source="Item" format="<div class=""i-description-content"">%%description%%</div>" --><!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="NAMESPACE_LIST" namespace="jqueryplugin" source="Item" filter="" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=jqueryplugins,caption=$$JQuery_Plugins$$%%%%filtereditemlist%%</div>" -->jQuery Plugins<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="NAMESPACE_LIST" namespace="jquerywidget" source="Item" filter="" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=jquerywidgets,caption=$$JQuery_Widgets$$%%%%filtereditemlist%%</div>" -->jQuery Widgets<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="NAMESPACE_LIST" namespace="namespace" source="Item" filter="" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=namespaces,caption=$$Namespaces$$%%%%filtereditemlist%%</div>" -->Namespaces<!--DXMETADATA end -->
+            <!--DXMETADATA start type="TaggedComment" source="Item" id="##REMARKS" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=remarks,caption=$$Remarks$$%%%%comment%%</div>" -->Remarks<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="BROWSER_COMPATIBILITY_LIST" namespace="Browser Compatibility" source="Item" filter="" condition="content:content=""%%IncludeBrowserCompatibility%%"",operator=""="",value=""True""" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=browsercompatibility,caption=$$Browser_Compatibility$$%%%%filtereditemlist%%</div>" blankformat="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=browsercompatibility,caption=$$Browser_Compatibility$$%%%%filtereditemlist%%</div>"--><!--DXMETADATA end -->
+        ]]>
+    </ContentSection>
+
+</Derived>

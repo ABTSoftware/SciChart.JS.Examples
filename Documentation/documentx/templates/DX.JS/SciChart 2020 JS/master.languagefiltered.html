@@ -1,0 +1,20 @@
+﻿<Derived master="master.html">
+
+    <ContentSection name="AfterHeaderContent" mode="Append">
+        <![CDATA[	
+            <!-- Spacing --> <span class="i-language-filter i-popup-link" data-popup-contentsource="#i-language-options" data-popup-title='<!--DXMETADATA start type="Phrase" name="Language_Filter" --><!--DXMETADATA end -->'>
+                <label class="i-language-filter-all">
+                    <!--DXMETADATA start type="Phrase" name="Language_Filter_All" -->&lt;All&gt;<!--DXMETADATA end -->
+                </label>
+                <label class="i-language-filter-multiple" style="display: none;">
+                    <!--DXMETADATA start type="Phrase" name="Language_Filter_Multiple" -->&lt;Multiple&gt;<!--DXMETADATA end -->
+                </label>
+                <!--DXMETADATA start type="FilteredItemList" scrap="LANGUAGE_LABEL_LIST" namespace="language" filter="type=all" source="Item" format="" -->Language Label List<!--DXMETADATA end -->
+            </span>
+            <div class="i-popup-content" id="i-language-options">
+                <!--DXMETADATA start type="FilteredItemList" scrap="LANGUAGE_CHECKBOX_LIST" namespace="language" filter="type=all" source="Item" format="" --><!--DXMETADATA end -->
+            </div>
+        ]]>
+    </ContentSection>
+
+</Derived>

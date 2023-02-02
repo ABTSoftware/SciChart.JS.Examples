@@ -1,0 +1,163 @@
+body
+{
+	margin: 4px 8px 8px 2px;
+}
+
+ul#i-root.i-visible, 
+ul#i-root ul.i-visible
+{
+	display: block;
+}
+
+ul#i-root, 
+ul#i-root ul
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	display: none;
+}
+
+ul#i-root
+{
+	margin-left: -18px;
+}
+
+ul#i-root li
+{
+	display: block;
+	min-height: 18px;
+	line-height: 18px;
+	white-space: nowrap;
+	min-width: 18px;
+	padding: 0;
+	margin: 1px 0 0 18px;
+}
+
+ul#i-root a
+{
+	display: inline-block;
+	line-height: 28px;
+	height: 28px;
+	color: #333333;
+	white-space: nowrap;
+	text-decoration: none;
+	padding: 1px 2px;
+	cursor: pointer;
+	font-size: 1.15em;
+}
+
+ul#i-root a.i-selected
+{
+	background-color: #C6E7FF;
+	border: 1px solid #C6E7FF;
+	padding: 0 2px 0 1px;
+}
+
+ul#i-root a.i-hover
+{
+	background-color: #C6E7FF;
+	border: 1px solid #C6E7FF;
+	padding: 0 2px 0 1px;
+}
+
+ul#i-root li *,
+ul#i-root ul li *
+{
+	vertical-align: middle;
+}
+
+ul#i-root a > ins.i-icon
+{
+	/*display: inline-block;
+	text-decoration: none;
+    width: 24px;
+    height: 24px;
+    margin: 0px 6px 2px 2px;*/
+	display: none;
+	background-repeat: no-repeat;
+	background-color: transparent;
+}
+
+
+li ins.i-spacer
+{
+    width: 16px;
+    height: 24px;
+    margin: 2px 4px 2px 0;
+	display: inline-block;
+	padding: 0;
+}
+
+li ins.i-expandorcollapse
+{
+	background-repeat: no-repeat;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+li ins.i-expand
+{
+	background-image: url('../images/png/expand.png');
+    background-image: none, url('../images/svg/expand.svg');
+}
+
+li ins.i-collapse
+{
+    background-image: url('../images/png/collapse.png');
+	background-image: none, url('../images/svg/collapse.svg');
+}
+
+ul#i-root
+{
+	font-size: 10pt;
+	font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.i-icon-0 {background-image: url('../images/png/icon-00.png'); background-image: none, url('../images/svg/icon-00.svg'); }
+.i-icon-1 {background-image: url('../images/png/icon-01.png'); background-image: none, url('../images/svg/icon-01.svg'); }
+.i-icon-2 {background-image: url('../images/png/icon-02.png'); background-image: none, url('../images/svg/icon-02.svg'); }
+.i-icon-3 {background-image: url('../images/png/icon-03.png'); background-image: none, url('../images/svg/icon-03.svg'); }
+.i-icon-4 {background-image: url('../images/png/icon-04.png'); background-image: none, url('../images/svg/icon-04.svg'); }
+.i-icon-5 {background-image: url('../images/png/icon-05.png'); background-image: none, url('../images/svg/icon-05.svg'); }
+.i-icon-6 {background-image: url('../images/png/icon-06.png'); background-image: none, url('../images/svg/icon-06.svg'); }
+.i-icon-7 {background-image: url('../images/png/icon-07.png'); background-image: none, url('../images/svg/icon-07.svg'); }
+.i-icon-8 {background-image: url('../images/png/icon-08.png'); background-image: none, url('../images/svg/icon-08.svg'); }
+.i-icon-9 {background-image: url('../images/png/icon-09.png'); background-image: none, url('../images/svg/icon-09.svg'); }
+.i-icon-10 {background-image: url('../images/png/icon-10.png'); background-image: none, url('../images/svg/icon-10.svg'); }
+.i-icon-11 {background-image: url('../images/png/icon-11.png'); background-image: none, url('../images/svg/icon-11.svg'); }
+.i-icon-12 {background-image: url('../images/png/icon-12.png'); background-image: none, url('../images/svg/icon-12.svg'); }
+.i-icon-13 {background-image: url('../images/png/icon-13.png'); background-image: none, url('../images/svg/icon-13.svg'); }
+.i-icon-14 {background-image: url('../images/png/icon-14.png'); background-image: none, url('../images/svg/icon-14.svg'); }
+.i-icon-15 {background-image: url('../images/png/icon-15.png'); background-image: none, url('../images/svg/icon-15.svg'); }
+.i-icon-16 {background-image: url('../images/png/icon-16.png'); background-image: none, url('../images/svg/icon-16.svg'); }
+.i-icon-17 {background-image: url('../images/png/icon-17.png'); background-image: none, url('../images/svg/icon-17.svg'); }
+.i-icon-18 {background-image: url('../images/png/icon-18.png'); background-image: none, url('../images/svg/icon-18.svg'); }
+.i-icon-19 {background-image: url('../images/png/icon-19.png'); background-image: none, url('../images/svg/icon-19.svg'); }
+.i-icon-20 {background-image: url('../images/png/icon-20.png'); background-image: none, url('../images/svg/icon-20.svg'); }
+.i-icon-21 {background-image: url('../images/png/icon-21.png'); background-image: none, url('../images/svg/icon-21.svg'); }
+.i-icon-22 {background-image: url('../images/png/icon-22.png'); background-image: none, url('../images/svg/icon-22.svg'); }
+.i-icon-23 {background-image: url('../images/png/icon-23.png'); background-image: none, url('../images/svg/icon-23.svg'); }
+.i-icon-24 {background-image: url('../images/png/icon-24.png'); background-image: none, url('../images/svg/icon-24.svg'); }
+.i-icon-25 {background-image: url('../images/png/icon-25.png'); background-image: none, url('../images/svg/icon-25.svg'); }
+.i-icon-26 {background-image: url('../images/png/icon-26.png'); background-image: none, url('../images/svg/icon-26.svg'); }
+.i-icon-27 {background-image: url('../images/png/icon-27.png'); background-image: none, url('../images/svg/icon-27.svg'); }
+.i-icon-28 {background-image: url('../images/png/icon-28.png'); background-image: none, url('../images/svg/icon-28.svg'); }
+.i-icon-29 {background-image: url('../images/png/icon-29.png'); background-image: none, url('../images/svg/icon-29.svg'); }
+.i-icon-30 {background-image: url('../images/png/icon-30.png'); background-image: none, url('../images/svg/icon-30.svg'); }
+.i-icon-31 {background-image: url('../images/png/icon-31.png'); background-image: none, url('../images/svg/icon-31.svg'); }
+.i-icon-32 {background-image: url('../images/png/icon-32.png'); background-image: none, url('../images/svg/icon-32.svg'); }
+.i-icon-33 {background-image: url('../images/png/icon-33.png'); background-image: none, url('../images/svg/icon-33.svg'); }
+.i-icon-34 {background-image: url('../images/png/icon-34.png'); background-image: none, url('../images/svg/icon-34.svg'); }
+.i-icon-35 {background-image: url('../images/png/icon-35.png'); background-image: none, url('../images/svg/icon-35.svg'); }
+.i-icon-36 {background-image: url('../images/png/icon-36.png'); background-image: none, url('../images/svg/icon-36.svg'); }
+.i-icon-37 {background-image: url('../images/png/icon-37.png'); background-image: none, url('../images/svg/icon-37.svg'); }
+.i-icon-38 {background-image: url('../images/png/icon-38.png'); background-image: none, url('../images/svg/icon-38.svg'); }
+.i-icon-39 {background-image: url('../images/png/icon-39.png'); background-image: none, url('../images/svg/icon-39.svg'); }
+.i-icon-40 {background-image: url('../images/png/icon-40.png'); background-image: none, url('../images/svg/icon-40.svg'); }
+.i-icon-41 {background-image: url('../images/png/icon-41.png'); background-image: none, url('../images/svg/icon-41.svg'); }
+.i-icon-42 {background-image: url('../images/png/icon-42.png'); background-image: none, url('../images/svg/icon-42.svg'); }
+.i-icon-43 {background-image: url('../images/png/icon-43.png'); background-image: none, url('../images/svg/icon-43.svg'); }
+.i-icon-44 {background-image: url('../images/png/icon-44.png'); background-image: none, url('../images/svg/icon-44.svg'); }
+.i-icon-45 {background-image: url('../images/png/icon-45.png'); background-image: none, url('../images/svg/icon-45.svg'); }
+.i-icon-46 {background-image: url('../images/png/icon-46.png'); background-image: none, url('../images/svg/icon-46.svg'); }

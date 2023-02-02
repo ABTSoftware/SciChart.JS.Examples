@@ -1,0 +1,91 @@
+ blockquote
+{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 16px;
+}
+
+body
+{
+    font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 90%;
+    margin-left: 5px;
+    margin-top: 5px;
+    background: white;
+}
+
+input
+{
+    margin: 0;
+}
+
+div#i-search-what-container, div#i-highlight-container, div#i-operators
+{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+input#i-highlight
+{
+    margin-right: 8px;
+}
+
+.i-search-title
+{
+    font-size: 10pt;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.i-result-list
+{
+    margin-top: 0px;
+}
+
+.i-result-list td
+{
+    padding: 2 0 2 0;
+}
+
+    .i-result-list td.i-inner-row
+    {
+        border-top: 1px dotted darkgrey;
+    }
+
+.i-result-list a
+{
+    text-decoration: none;
+	color: #0069d9;    
+	font-size: 1.25em;
+    line-height: 1.25em;
+	display: inline-block;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+input#i-execute-search
+{
+	float: right;
+	width: 100px;
+}
+
+#i-search-input-container
+{
+	padding: 0 10px 0 0;
+	overflow: hidden;
+}
+
+#i-search-input-container input#i-search
+{
+	width: 100%;
+}
+
+hr 
+{
+    height: 1px;
+    border: 0;
+    padding:0;
+    margin: 8px 0 3px 0;
+    color: #ccc;
+    background-color: #ccc;
+}
