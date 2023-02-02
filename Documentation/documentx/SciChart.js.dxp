@@ -2364,9 +2364,9 @@ very needed to help users learn scichart!</Notes>
             <Caption m="2022-01-09T10:25:03.7513485Z">JS Webpack npm Tutorials</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="2247b20c-4be1-42cb-ad24-125310703f67" Status="New Topic" CreatedOn="2017-03-09T09:48:40.4008937Z" ModifiedOn="2022-01-09T10:24:17.1146644Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial 01 - Setting up a Project with SciChart.js" BuildFlags="">
+              <Topic Id="2247b20c-4be1-42cb-ad24-125310703f67" Status="New Topic" CreatedOn="2017-03-09T09:48:40.4008937Z" ModifiedOn="2023-02-02T16:00:48.4268272Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Tutorial 01 - Setting up a Project with SciChart.js" BuildFlags="">
                 <Title m="2022-01-09T10:24:17.1136681Z">Tutorial 01 - Setting up a npm Project with SciChart.js</Title>
-                <ContentsTitle />
+                <ContentsTitle m="2023-02-02T16:00:48.4268272Z">Tutorial 01 - Setting up a npm Project with SciChart.js</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
@@ -14056,7 +14056,7 @@ very needed to help users learn scichart!</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">303</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">271</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
@@ -14725,7 +14725,7 @@ very needed to help users learn scichart!</Notes>
         <EditionId></EditionId>
       </VersionsAndEditions>
       <Publishing />
-      <OutputDirectory>..\..\DocsOut</OutputDirectory>
+      <OutputDirectory>DocsOut</OutputDirectory>
     </ProjectProfile>
   </ProjectProfiles>
   <HelpContextIDHeaderFile></HelpContextIDHeaderFile>
