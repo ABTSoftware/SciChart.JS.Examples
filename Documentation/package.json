@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && npm run copySciChart",
+    "build": "tsc && npm run copySciChart && npm run gen",
     "copySciChart": "copy-files-from-to --config copy-files-from-to.json",
     "start": "node server/server.js",
     "dev": "ts-node server/server.ts",
-    "gen": "ts-node generateDemoFiles.ts"
+    "gen": "ts-node server/generateDemoFiles.ts"
   },
   "keywords": [],
   "author": "",

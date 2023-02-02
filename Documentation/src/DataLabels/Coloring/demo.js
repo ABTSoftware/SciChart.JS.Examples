@@ -7,6 +7,7 @@ const {
   NumberRange,
   EColumnDataLabelPosition,
   parseColorToUIntArgb,
+  Thickness
 } = SciChart;
 
 async function dataLabelColoring(divElementId) {

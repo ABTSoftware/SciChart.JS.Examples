@@ -14,14 +14,15 @@
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "module": "commonjs",
-        "target": "es5",
+        "target": "es2021",
         "jsx": "react",
         "allowJs": true,
         "typeRoots": [
             "src/**/types","./node_modules/@types"],
         "esModuleInterop": false,
         "skipLibCheck": false,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "lib": ["es2021", "dom"]
     },
     "include": [
         "server/*.ts",
