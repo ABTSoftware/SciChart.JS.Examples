@@ -200,11 +200,11 @@ export class DepthCursorModifier extends ChartModifierBase2D implements IRollove
     public getAnnotations() {
         return [
             this.xBuyLineAnnotation,
-            this.yBuyLineAnnotation, 
-            this.xSellLineAnnotation, 
-            this.ySellLineAnnotation, 
-            this.midLine, 
-            this.buyLabel, 
+            this.yBuyLineAnnotation,
+            this.xSellLineAnnotation,
+            this.ySellLineAnnotation,
+            this.midLine,
+            this.buyLabel,
             this.sellLabel,
             this.highlightBox
         ];

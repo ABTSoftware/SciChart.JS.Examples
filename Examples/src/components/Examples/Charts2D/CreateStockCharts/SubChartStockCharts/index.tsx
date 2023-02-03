@@ -1,33 +1,35 @@
 import * as React from "react";
-import { chartBuilder } from "scichart/Builder/chartBuilder";
-import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
-import {
-    EFillPaletteMode,
-    EStrokePaletteMode,
-    IFillPaletteProvider,
-    IStrokePaletteProvider
-} from "scichart/Charting/Model/IPaletteProvider";
-import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
-import { I2DSubSurfaceOptions } from "scichart/Charting/Visuals/I2DSurfaceOptions";
-import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { Rect } from "scichart/Core/Rect";
-import { Thickness } from "scichart/Core/Thickness";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { EAxisType } from "scichart/types/AxisType";
-import { EChart2DModifierType } from "scichart/types/ChartModifierType";
-import { EDataFilterType } from "scichart/types/DataFilterType";
-import { ESeriesType } from "scichart/types/SeriesType";
-import { EXyDirection } from "scichart/types/XyDirection";
-import { calcAverageForArray } from "scichart/utils/calcAverage";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import { multiPaneData } from "../../../ExampleData/multiPaneData";
-import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
-import { BasePaletteProvider } from "scichart/Charting/Model/BasePaletteProvider";
+import {FinChartLegendModifier, IFinanceLegendModifierOptions} from "./FinChartLegendModifier";
+import {multiPaneData} from "../../../ExampleData/multiPaneData";
 import {appTheme} from "../../../theme";
 import classes from "../../../../Examples/Examples.module.scss";
+
+import {
+    BasePaletteProvider,
+    chartBuilder,
+    calcAverageForArray,
+    parseColorToUIntArgb,
+    Rect,
+    Thickness,
+    CustomAnnotation,
+    EDataFilterType,
+    EAutoRange,
+    EHorizontalAnchorPoint,
+    ESeriesType,
+    EXyDirection,
+    IFillPaletteProvider,
+    IStrokePaletteProvider,
+    I2DSubSurfaceOptions,
+    EAxisType,
+    EAxisAlignment,
+    EChart2DModifierType,
+    EVerticalAnchorPoint,
+    EFillPaletteMode,
+    EStrokePaletteMode,
+    NumberRange,
+    SciChartVerticalGroup
+} from "scichart";
+import {TWebAssemblyChart} from "scichart/Charting/Visuals/SciChartSurface";
 
 export const mainChartWrapper = "cc_chart";
 export const mainChartWrapper2 = "cc_chart2";
@@ -54,7 +56,7 @@ const getDataForSecondPane = (xValues: number[], closeValues: number[]) => {
         divergenceArray.push(divergence);
     }
 
-    return { macdArray, signalArray, divergenceArray };
+    return {macdArray, signalArray, divergenceArray};
 };
 
 const getDataForThirdPane = (xValues: number[], closeValues: number[]) => {
@@ -78,14 +80,14 @@ const getDataForThirdPane = (xValues: number[], closeValues: number[]) => {
         rsiArray.push(rsi);
     }
 
-    return { rsiArray };
+    return {rsiArray};
 };
 
 export const drawExample = async () => {
     const verticalGroup = new SciChartVerticalGroup();
-    const { dateValues: xValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
-    const { macdArray, signalArray, divergenceArray } = getDataForSecondPane(xValues, closeValues);
-    const { rsiArray } = getDataForThirdPane(xValues, closeValues);
+    const {dateValues: xValues, openValues, highValues, lowValues, closeValues, volumeValues} = multiPaneData;
+    const {macdArray, signalArray, divergenceArray} = getDataForSecondPane(xValues, closeValues);
+    const {rsiArray} = getDataForThirdPane(xValues, closeValues);
 
     const axisAlignment = EAxisAlignment.Right;
 
@@ -96,17 +98,17 @@ export const drawExample = async () => {
     };
 
     const subChartModifiers = [
-        { type: EChart2DModifierType.ZoomPan, options: { xyDirection: EXyDirection.XDirection } },
-        { type: EChart2DModifierType.PinchZoom, options: { xyDirection: EXyDirection.XDirection } },
-        { type: EChart2DModifierType.ZoomExtents, options: { xyDirection: EXyDirection.XDirection } },
-        { type: EChart2DModifierType.MouseWheelZoom, options: { xyDirection: EXyDirection.XDirection } }
+        {type: EChart2DModifierType.ZoomPan, options: {xyDirection: EXyDirection.XDirection}},
+        {type: EChart2DModifierType.PinchZoom, options: {xyDirection: EXyDirection.XDirection}},
+        {type: EChart2DModifierType.ZoomExtents, options: {xyDirection: EXyDirection.XDirection}},
+        {type: EChart2DModifierType.MouseWheelZoom, options: {xyDirection: EXyDirection.XDirection}}
     ];
 
     const upCol = appTheme.VividGreen;
     const downCol = appTheme.MutedRed;
     const opacity = "AA";
 
-    const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(mainChartWrapper2, {
+    const {sciChartSurface: mainSurface, wasmContext} = await chartBuilder.build2DChart(mainChartWrapper2, {
         surface: {
             id: "mainSurface",
             theme: appTheme.SciChartJsTheme
@@ -344,7 +346,7 @@ export const drawExample = async () => {
                 },
                 series: {
                     type: ESeriesType.LineSeries,
-                    xyData: { dataSeriesName: "RSI", xValues, yValues: rsiArray },
+                    xyData: {dataSeriesName: "RSI", xValues, yValues: rsiArray},
                     options: {
                         stroke: appTheme.VividSkyBlue,
                         strokeThickness: 2
@@ -485,7 +487,7 @@ export const drawExample = async () => {
     firstDividerElement.style.top = `${subSurface1.subPosition.height * 100}%`;
     secondDividerElement.style.top = `${subSurface3.subPosition.y * 100}%`;
 
-    return { sciChartSurface: mainSurface, wasmContext };
+    return {sciChartSurface: mainSurface, wasmContext};
 };
 
 /**
@@ -597,69 +599,69 @@ export default function SubChartStockCharts() {
     }, []);
 
     return (
-        <div className={classes.ChartsWrapper}                id={containerId2}
-        style={{
-            position: "relative",
-            width: "100%",
-            height: "100%",
-            touchAction: "none"
-        }}>
+        <div className={classes.ChartsWrapper} id={containerId2}
+             style={{
+                 position: "relative",
+                 width: "100%",
+                 height: "100%",
+                 touchAction: "none"
+             }}>
 
-                <div
-                    id={subChartWrapper1}
-                    style={{
-                        position: "absolute" // important
-                    }}
-                />
-                <div
-                    id={dividerId1}
-                    style={{
-                        width: "100%",
-                        height: "6px",
-                        backgroundColor: "#2B2D70",
-                        cursor: "row-resize",
-                        position: "absolute",
-                        zIndex: 1
-                    }}
-                >
-                    <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
-                </div>
-                <div
-                    id={subChartWrapper2}
-                    style={{
-                        position: "absolute" // important
-                    }}
-                />
-                <div
-                    id={dividerId2}
-                    style={{
-                        width: "100%",
-                        height: "6px",
-                        backgroundColor: "#2B2D70",
-                        cursor: "row-resize",
-                        position: "absolute",
-                        zIndex: 1
-                    }}
-                >
-                    <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
-                </div>
-                <div
-                    id={subChartWrapper3}
-                    style={{
-                        position: "absolute" // important
-                    }}
-                />
-                <div
-                    id={mainChartWrapper2}
-                    style={{
-                        minWidth: "100%",
-                        maxWidth: "100%",
-                        width: "100%",
-                        minHeight: "100%",
-                        maxHeight: "100%",
-                        height: "100%"
-                    }}
-                ></div>
+            <div
+                id={subChartWrapper1}
+                style={{
+                    position: "absolute" // important
+                }}
+            />
+            <div
+                id={dividerId1}
+                style={{
+                    width: "100%",
+                    height: "6px",
+                    backgroundColor: "#2B2D70",
+                    cursor: "row-resize",
+                    position: "absolute",
+                    zIndex: 1
+                }}
+            >
+                <div style={{height: "4px", width: "100%", borderBottom: "2px dashed"}}></div>
+            </div>
+            <div
+                id={subChartWrapper2}
+                style={{
+                    position: "absolute" // important
+                }}
+            />
+            <div
+                id={dividerId2}
+                style={{
+                    width: "100%",
+                    height: "6px",
+                    backgroundColor: "#2B2D70",
+                    cursor: "row-resize",
+                    position: "absolute",
+                    zIndex: 1
+                }}
+            >
+                <div style={{height: "4px", width: "100%", borderBottom: "2px dashed"}}></div>
+            </div>
+            <div
+                id={subChartWrapper3}
+                style={{
+                    position: "absolute" // important
+                }}
+            />
+            <div
+                id={mainChartWrapper2}
+                style={{
+                    minWidth: "100%",
+                    maxWidth: "100%",
+                    width: "100%",
+                    minHeight: "100%",
+                    maxHeight: "100%",
+                    height: "100%"
+                }}
+            ></div>
         </div>
     );
 }

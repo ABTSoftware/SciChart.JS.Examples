@@ -1,22 +1,19 @@
 import * as React from "react";
-import Button from "@material-ui/core/Button";
-import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { SciChartSurface } from "scichart";
-import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
+
+import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
+import {
+    EllipsePointMarker,
+    ENumericFormat,
+    FastLineRenderableSeries, MouseWheelZoomModifier,
+    NumberRange,
+    NumericAxis, RolloverLegendSvgAnnotation, RolloverModifier,
+    SciChartSurface,
+    XyDataSeries, ZoomExtentsModifier, ZoomPanModifier
+} from "scichart";
 import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
 import {SeriesInfo} from "scichart/Charting/Model/ChartData/SeriesInfo";
-import {RolloverLegendSvgAnnotation} from "scichart/Charting/Visuals/Annotations/RolloverLegendSvgAnnotation";
 
 const divElementId = "chart";
 

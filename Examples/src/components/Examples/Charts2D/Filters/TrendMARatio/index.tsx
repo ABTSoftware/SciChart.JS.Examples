@@ -1,28 +1,29 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {XyMovingAverageFilter} from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
 import classes from "../../../Examples.module.scss";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
 import {appTheme} from "../../../theme";
 import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
-import {XyScaleOffsetFilter} from "scichart/Charting/Model/Filters/XyScaleOffsetFilter";
-import {XyLinearTrendFilter} from "scichart/Charting/Model/Filters/XyLinearTrendFilter";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import {XyRatioFilter} from "scichart/Charting/Model/Filters/XyRatioFilter";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import {
+    EAxisAlignment,
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
     ELegendOrientation,
-    ELegendPlacement
-} from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
+    ELegendPlacement,
+    NumberRange,
+    TextAnnotation,
+    FastLineRenderableSeries,
+    LegendModifier,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    SciChartSurface,
+    XyDataSeries,
+    XyLinearTrendFilter,
+    XyMovingAverageFilter,
+    XyRatioFilter,
+    XyScaleOffsetFilter,
+    ZoomExtentsModifier,
+    ZoomPanModifier
+} from "scichart";
 
 export const divElementId = "chart";
 

@@ -1,20 +1,23 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {SeriesSelectionModifier} from "scichart/Charting/ChartModifiers/SeriesSelectionModifier";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {NumberRange} from "scichart/Core/NumberRange";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {GenericAnimation} from "scichart/Core/Animations/GenericAnimation";
-import {EPointMarkerType} from "scichart/types/PointMarkerType";
-import {AUTO_COLOR} from "scichart/Charting/Themes/IThemeProvider";
-import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+
+import {
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    IRenderableSeries,
+    NumericAxis,
+    NumberRange,
+    SciChartSurface,
+    SplineLineRenderableSeries,
+    TextAnnotation,
+    XyDataSeries,
+    SeriesSelectionModifier,
+    AUTO_COLOR,
+    EPointMarkerType,
+    LegendModifier,
+    GenericAnimation
+} from "scichart";
 
 const divElementId = "chart";
 

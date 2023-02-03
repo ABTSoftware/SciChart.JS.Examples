@@ -1,23 +1,17 @@
-import Typography from "@material-ui/core/Typography";
 import * as React from "react";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EZoomState } from "scichart/types/ZoomState";
-import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { SciChartSurface } from "scichart";
-import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+
+import {
+    EExecuteOn,
+    EllipsePointMarker, EZoomState,
+    FastLineRenderableSeries, NumberRange,
+    NumericAxis, RubberBandXyZoomModifier,
+    SciChartSurface, XyDataSeries,
+    XyScatterRenderableSeries, ZoomExtentsModifier, ZoomPanModifier
+} from "scichart";
+
 import classes from "../../../../Examples/Examples.module.scss";
-import Button from "@material-ui/core/Button";
 import {appTheme} from "../../../theme";
-import Alert from "@material-ui/lab/Alert";
-import AlertTitle from "@material-ui/lab/AlertTitle";
 import {makeStyles} from "@material-ui/core/styles";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { EExecuteOn } from "scichart/types/ExecuteOn";
 
 export const divElementId = "chart";
 

@@ -1,27 +1,18 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {PinchZoomModifier} from "scichart/Charting/ChartModifiers/PinchZoomModifier";
-import {EExecuteOn} from "scichart/types/ExecuteOn";
-import {easing} from "scichart/Core/Animations/EasingFunctions";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {ENumericFormat} from "scichart/types/NumericFormat";
 import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";
-import {EDragMode} from "scichart/types/DragMode";
-import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
+
+import {
+    easing, EHorizontalAnchorPoint,
+    EllipsePointMarker,
+    ENumericFormat, EVerticalAnchorPoint,
+    FastLineRenderableSeries, MouseWheelZoomModifier,
+    NumberRange,
+    NumericAxis, PinchZoomModifier, RubberBandXyZoomModifier,
+    SciChartSurface,
+    XyDataSeries, ZoomExtentsModifier, ZoomPanModifier, EExecuteOn, TextAnnotation, ECoordinateMode
+} from "scichart";
 
 const divElementId = "chart";
 

@@ -1,21 +1,23 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { BaseDataSeries } from "scichart/Charting/Model/BaseDataSeries";
-import { XyCustomFilter } from "scichart/Charting/Model/Filters/XyCustomFilter";
-import { XyFilterBase } from "scichart/Charting/Model/Filters/XyFilterBase";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import classes from "../../../Examples.module.scss";
-import { ELabelAlignment } from "scichart/types/LabelAlignment";
 import {appTheme} from "../../../theme";
-import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {
+    BaseDataSeries,
+    NumericAxis,
+    EAutoRange,
+    EAxisAlignment,
+    ELabelAlignment,
+    FastColumnRenderableSeries,
+    FastLineRenderableSeries,
+    EllipsePointMarker,
+    LegendModifier,
+    NumberRange,
+    SciChartSurface,
+    XyCustomFilter,
+    XyDataSeries,
+    XyFilterBase,
+    XyScatterRenderableSeries
+} from "scichart";
 
 export const divElementId = "chart";
 let timerId: NodeJS.Timeout;
@@ -26,7 +28,7 @@ class AggregationFilter extends XyFilterBase {
     private binWidthProperty = 1;
 
     constructor(originalSeries: BaseDataSeries, binWidth: number, dataSeriesName: string) {
-        super(originalSeries, { dataSeriesName });
+        super(originalSeries, {dataSeriesName});
         this.binWidthProperty = binWidth;
         this.filterAll();
     }
@@ -45,6 +47,7 @@ class AggregationFilter extends XyFilterBase {
         this.bins.clear();
         this.filter(0, this.getOriginalCount());
     }
+
     protected filterOnAppend(count: number): void {
         // Overriding this so we do not have to reprocess the entire series on append
         this.filter(this.getOriginalCount() - count, count);
@@ -87,7 +90,7 @@ const getData = (n: number) => {
         yValues.push(50 + lastX / 1000);
         lastX++;
     }
-    return { xValues, yValues };
+    return {xValues, yValues};
 };
 
 export const drawExample = async () => {
@@ -96,10 +99,10 @@ export const drawExample = async () => {
     const timerInterval = 10; // timer tick every 10 milliseconds
     const maxPoints = 100_000; // max points for a single series before the demo stops
 
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
-    const rawXAxis = new NumericAxis(wasmContext, { id: "rawX", isVisible: false, autoRange: EAutoRange.Always });
+    const rawXAxis = new NumericAxis(wasmContext, {id: "rawX", isVisible: false, autoRange: EAutoRange.Always});
     const aggXAxis = new NumericAxis(wasmContext, {
         id: "aggX",
         axisTitle: "Value",
@@ -113,7 +116,7 @@ export const drawExample = async () => {
         axisTitle: "Raw Data",
         id: "rawY",
         labelPrecision: 0,
-        labelStyle: { alignment: ELabelAlignment.Right }
+        labelStyle: {alignment: ELabelAlignment.Right}
     });
     const aggYAxis = new NumericAxis(wasmContext, {
         axisTitle: "Frequency (Aggregated)",
@@ -125,10 +128,10 @@ export const drawExample = async () => {
     });
     sciChartSurface.yAxes.add(aggYAxis, rawYAxis);
 
-    const dataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "Original Data" });
+    const dataSeries = new XyDataSeries(wasmContext, {dataSeriesName: "Original Data"});
 
     // Create a simple custom filter.  We just have to specify the filter function and this will be applied efficiently to data changes
-    const gaussFilter = new XyCustomFilter(dataSeries, { dataSeriesName: "Custom Filter: Original x Gaussian Random"});
+    const gaussFilter = new XyCustomFilter(dataSeries, {dataSeriesName: "Custom Filter: Original x Gaussian Random"});
     // This function exploits the central limit theorem to approximate a normal distribution
     const gaussianRand = () => {
         let rand = 0;
@@ -197,7 +200,7 @@ export const drawExample = async () => {
             }
 
             // Get the next N random walk x,y values
-            const { xValues, yValues } = getData(numberOfPointsPerTimerTick);
+            const {xValues, yValues} = getData(numberOfPointsPerTimerTick);
             // Append these to the dataSeries. This will cause the chart to redraw
             dataSeries.appendRange(xValues, yValues);
 
@@ -211,14 +214,18 @@ export const drawExample = async () => {
 
     sciChartSurface.chartModifiers.add(new LegendModifier());
 
-    return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo } };
+    return {wasmContext, sciChartSurface, controls: {startDemo, stopDemo}};
 };
 
 let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
 export default function CustomFilters() {
-    const [controls, setControls] = React.useState({ startDemo: () => {}, stopDemo: () => {} });
+    const [controls, setControls] = React.useState({
+        startDemo: () => {
+        }, stopDemo: () => {
+        }
+    });
 
     React.useEffect(() => {
         (async () => {
@@ -237,6 +244,6 @@ export default function CustomFilters() {
     }, []);
 
     return (
-        <div id={divElementId} className={classes.ChartWrapper} />
+        <div id={divElementId} className={classes.ChartWrapper}/>
     );
 }

@@ -1,19 +1,21 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import classes from "../../../../Examples/Examples.module.scss";
-import { ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { PinchZoomModifier } from "scichart/Charting/ChartModifiers/PinchZoomModifier";
 import { appTheme } from "../../../theme";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { EHorizontalAnchorPoint } from "scichart/types/AnchorPoint";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import {
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    ELineDrawMode,
+    FastLineRenderableSeries,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    NumberRange,
+    PinchZoomModifier,
+    SciChartSurface,
+    TextAnnotation,
+    XyDataSeries,
+    ZoomPanModifier
+} from "scichart";
 
 const divElementId = "chart1";
 

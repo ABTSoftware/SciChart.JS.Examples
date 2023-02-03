@@ -1,46 +1,47 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {
-    EStrokePaletteMode,
-    IPointMarkerPaletteProvider,
-    IStrokePaletteProvider,
-    TPointMarkerArgb,
-} from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
-import {NumberRange} from "scichart/Core/NumberRange";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
 import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
-import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
-import {EDataLabelSkipMode} from "scichart/types/DataLabelSkipMode";
-import {HorizontalLineAnnotation} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
-import {ELabelPlacement} from "scichart/types/LabelPlacement";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {Thickness} from "scichart/Core/Thickness";
+
+import {
+    BoxAnnotation,
+    ECoordinateMode,
+    EDataLabelSkipMode,
+    EHorizontalAnchorPoint,
+    ELabelPlacement,
+    EStrokePaletteMode,
+    EllipsePointMarker,
+    FastLineRenderableSeries,
+    HorizontalLineAnnotation,
+    IStrokePaletteProvider,
+    IRenderableSeries,
+    IPointMarkerPaletteProvider,
+    IPointMetadata,
+    NumberRange,
+    NumericAxis,
+    parseColorToUIntArgb,
+    SciChartSurface,
+    Thickness,
+    TextAnnotation,
+    TPointMarkerArgb,
+    XyDataSeries,
+    XyScatterRenderableSeries,
+} from "scichart";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
 
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
     });
 
     // Create the X,Y Axis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { maxAutoTicks: 5}));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { maxAutoTicks: 5, growBy: new NumberRange(0.05, 0.2) }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {maxAutoTicks: 5}));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {maxAutoTicks: 5, growBy: new NumberRange(0.05, 0.2)}));
 
-    const { xValues, yValues } = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(50);
+    const {xValues, yValues} = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(50);
 
     let THRESHOLD_HIGH_LEVEL = 0;
     let THRESHOLD_LOW_LEVEL = -2;
@@ -62,8 +63,10 @@ const drawExample = async () => {
     // PaletteProvider API allows for per-point colouring, filling of points or areas based on a rule
     // see PaletteProvider API for more details
     const strokePaletteProvider: IStrokePaletteProvider = {
-        onAttached(parentSeries: IRenderableSeries): void {},
-        onDetached(): void {},
+        onAttached(parentSeries: IRenderableSeries): void {
+        },
+        onDetached(): void {
+        },
         strokePaletteMode: EStrokePaletteMode.GRADIENT,
         // This function called once per data-point for line stroke. Colors returned must be in ARGB format (uint) e.g. 0xFF0000FF is Red
         overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): number {
@@ -73,11 +76,11 @@ const drawExample = async () => {
 
     // Create a line series with threshold palette provider
     sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
         strokeThickness: 4,
         stroke: appTheme.VividOrange,
         dataLabels: {
-            style: { fontFamily: "Arial", fontSize: 13, padding: Thickness.fromNumber(5) },
+            style: {fontFamily: "Arial", fontSize: 13, padding: Thickness.fromNumber(5)},
             color: appTheme.PaleSkyBlue,
             skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious,
         },
@@ -86,19 +89,26 @@ const drawExample = async () => {
 
     const pointPaletteProvider: IPointMarkerPaletteProvider = {
         strokePaletteMode: EStrokePaletteMode.SOLID,
-        onAttached(parentSeries: IRenderableSeries): void {},
-        onDetached(): void {},
+        onAttached(parentSeries: IRenderableSeries): void {
+        },
+        onDetached(): void {
+        },
         // This function called once per data-point for scatter fill
         overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): TPointMarkerArgb {
             const color = getColor(yValue);
-            return { stroke: color, fill: color };
+            return {stroke: color, fill: color};
         }
     };
 
     // Create a scatter series with threshold paletteprovider
     sciChartSurface.renderableSeries.add(new XyScatterRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-        pointMarker: new EllipsePointMarker(wasmContext, {width: 7, height: 7, stroke: appTheme.VividOrange, fill: appTheme.VividOrange}),
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 7,
+            height: 7,
+            stroke: appTheme.VividOrange,
+            fill: appTheme.VividOrange
+        }),
         paletteProvider: pointPaletteProvider
     }));
 
@@ -120,7 +130,7 @@ const drawExample = async () => {
     });
     sciChartSurface.annotations.add(boxLowAnnotation);
     // Add annotations to show the thresholds
-    const thresholdHighAnnotation = new HorizontalLineAnnotation( {
+    const thresholdHighAnnotation = new HorizontalLineAnnotation({
         stroke: appTheme.VividTeal,
         strokeThickness: 2,
         strokeDashArray: [3, 3],
@@ -140,7 +150,7 @@ const drawExample = async () => {
         },
     });
     sciChartSurface.annotations.add(thresholdHighAnnotation);
-    const thresholdLowAnnotation = new HorizontalLineAnnotation( {
+    const thresholdLowAnnotation = new HorizontalLineAnnotation({
         stroke: appTheme.VividPink,
         strokeThickness: 2,
         strokeDashArray: [3, 3],
@@ -175,7 +185,7 @@ const drawExample = async () => {
         yCoordinateMode: ECoordinateMode.Relative,
     }));
 
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 export default function PerPointColoring() {
@@ -190,5 +200,5 @@ export default function PerPointColoring() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

@@ -1,24 +1,28 @@
 import * as React from "react";
 import {CSSProperties} from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import classes from "../../../../Examples/Examples.module.scss";
-import {DataPointSelectionModifier} from "scichart/Charting/ChartModifiers/DataPointSelectionModifier";
-import {DataPointSelectionChangedArgs} from "scichart/Charting/ChartModifiers/DataPointSelectionChangedArgs";
-import {DataPointInfo} from "scichart/Charting/ChartModifiers/DataPointInfo";
-import {DataPointSelectionPaletteProvider} from "scichart/Charting/Model/DataPointSelectionPaletteProvider";
 import {appTheme} from "../../../theme";
-import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
-import {EPointMarkerType} from "scichart/types/PointMarkerType";
-import {AUTO_COLOR} from "scichart/Charting/Themes/IThemeProvider";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
-import {LineSeriesDataLabelProvider} from "scichart/Charting/Visuals/RenderableSeries/DataLabels/LineSeriesDataLabelProvider";
-import {DataLabelState} from "scichart/Charting/Visuals/RenderableSeries/DataLabels/DataLabelState";
+
+import {
+    SciChartSurface,
+    NumericAxis,
+    NumberRange,
+    XyDataSeries,
+    DataPointSelectionModifier,
+    DataPointSelectionChangedArgs,
+    DataPointInfo,
+    DataPointSelectionPaletteProvider,
+    SplineLineRenderableSeries,
+    EPointMarkerType,
+    AUTO_COLOR,
+    TextAnnotation,
+    EHorizontalAnchorPoint,
+    ECoordinateMode,
+    LegendModifier,
+    LineSeriesDataLabelProvider,
+    DataLabelState
+} from "scichart";
+
 
 const divElementId = "chart";
 
@@ -40,7 +44,7 @@ for (let i = 0; i < dataSize; i++) {
 }
 
 const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) => void) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
     });
 
@@ -71,45 +75,57 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
     // Add some series onto the chart for selection
     sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
         id: "Series1",
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: "First Series"}),
-        pointMarker: { type: EPointMarkerType.Ellipse, options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 } },
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues, dataSeriesName: "First Series"}),
+        pointMarker: {
+            type: EPointMarkerType.Ellipse,
+            options: {fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20}
+        },
         strokeThickness: 3,
         // Optional visual feedback for selected points can be provided by the DataPointSelectionPaletteProvider
         // When dataSeries.metadata[i].isSelected, this still is applied
-        paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
+        paletteProvider: new DataPointSelectionPaletteProvider({stroke, fill}),
         // Optional: show datalabels but only for selected points
         dataLabelProvider: getDataLabelProvider()
     }));
 
     sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
         id: "Series2",
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Second Series"}),
-        pointMarker: { type: EPointMarkerType.Ellipse, options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 } },
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues: y1Values, dataSeriesName: "Second Series"}),
+        pointMarker: {
+            type: EPointMarkerType.Ellipse,
+            options: {fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20}
+        },
         strokeThickness: 3,
         // Optional visual feedback for selected points
-        paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
+        paletteProvider: new DataPointSelectionPaletteProvider({stroke, fill}),
         // Optional: show datalabels but only for selected points
         dataLabelProvider: getDataLabelProvider()
     }));
 
     sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
         id: "Series3",
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Third Series"}),
-        pointMarker: { type: EPointMarkerType.Ellipse, options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 } },
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues: y2Values, dataSeriesName: "Third Series"}),
+        pointMarker: {
+            type: EPointMarkerType.Ellipse,
+            options: {fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20}
+        },
         strokeThickness: 3,
         // Optional visual feedback for selected points
-        paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
+        paletteProvider: new DataPointSelectionPaletteProvider({stroke, fill}),
         // Optional: show datalabels but only for selected points
         dataLabelProvider: getDataLabelProvider()
     }));
 
     sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
         id: "Series4",
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Fourth Series"}),
-        pointMarker: { type: EPointMarkerType.Ellipse, options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 } },
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues: y3Values, dataSeriesName: "Fourth Series"}),
+        pointMarker: {
+            type: EPointMarkerType.Ellipse,
+            options: {fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20}
+        },
         strokeThickness: 3,
         // Optional visual feedback for selected points
-        paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
+        paletteProvider: new DataPointSelectionPaletteProvider({stroke, fill}),
         // Optional: show datalabels but only for selected points
         dataLabelProvider: getDataLabelProvider()
     }));
@@ -156,7 +172,7 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
     });
     sciChartSurface.chartModifiers.add(dataPointSelection);
 
-    return { wasmContext, sciChartSurface };
+    return {wasmContext, sciChartSurface};
 };
 
 let scs: SciChartSurface;
@@ -212,8 +228,8 @@ export default function DatapointSelection() {
 
     return (
         <div className={classes.FullHeightChartWrapper}>
-            <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
-                <div id={divElementId} style={chartStyle} />
+            <div style={{display: "flex", flexDirection: "row", height: "100%"}}>
+                <div id={divElementId} style={chartStyle}/>
                 <div style={pointsBoxStyle}>
                     <h3 style={{color: appTheme.PaleSkyBlue, margin: 5}}>Selected Points</h3>
                     <div style={{...rowStyle, marginRight: "17px"}}>
