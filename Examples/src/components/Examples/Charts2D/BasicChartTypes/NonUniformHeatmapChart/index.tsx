@@ -1,30 +1,31 @@
 import * as React from "react";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { SciChartSurface } from "scichart";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { NonUniformHeatmapDataSeries } from "scichart/Charting/Model/NonUniformHeatmapDataSeries";
-import { PinchZoomModifier } from "scichart/Charting/ChartModifiers/PinchZoomModifier";
-import { NonUniformHeatmapRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/NonUniformHeatmapRenderableSeries";
-import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
-
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
+import {
+    HeatmapColorMap,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    NonUniformHeatmapDataSeries,
+    NonUniformHeatmapRenderableSeries,
+    NumberRange,
+    PinchZoomModifier,
+    SciChartSurface,
+    ZoomExtentsModifier,
+    ZoomPanModifier
+} from "scichart";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
 
     // Create a SciChartSurface with Theme
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
     // Create an X, Y Axis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1)}));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1)}));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)}));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)}));
 
     // Create some data for the heatmap as a 2d array
     const heatmapWidth = 7;
@@ -53,19 +54,19 @@ const drawExample = async () => {
     // Create the NonUniform Heatmap Series
     const heatmapSeries = new NonUniformHeatmapRenderableSeries(wasmContext, {
         // DataSeries defines data. This contains zValues 2D array plus the x and y cell offsets
-        dataSeries: new NonUniformHeatmapDataSeries(wasmContext, { zValues, xCellOffsets, yCellOffsets }),
+        dataSeries: new NonUniformHeatmapDataSeries(wasmContext, {zValues, xCellOffsets, yCellOffsets}),
         // Color map defines how heatmap cells map to colours between minimum & maximum
         colorMap: new HeatmapColorMap({
             minimum: 0,
             maximum: 100,
             gradientStops: [
-                { offset: 0, color: appTheme.DarkIndigo },
-                { offset: 0.2, color: appTheme.Indigo },
-                { offset: 0.3, color: appTheme.VividSkyBlue },
-                { offset: 0.5, color: appTheme.VividGreen },
-                { offset: 0.7, color: appTheme.MutedRed },
-                { offset: 0.9, color: appTheme.VividOrange },
-                { offset: 1, color: appTheme.VividPink },
+                {offset: 0, color: appTheme.DarkIndigo},
+                {offset: 0.2, color: appTheme.Indigo},
+                {offset: 0.3, color: appTheme.VividSkyBlue},
+                {offset: 0.5, color: appTheme.VividGreen},
+                {offset: 0.7, color: appTheme.MutedRed},
+                {offset: 0.9, color: appTheme.VividOrange},
+                {offset: 1, color: appTheme.VividPink},
             ]
         }),
         // optional settings
@@ -87,7 +88,7 @@ const drawExample = async () => {
     // add some interactivity
     sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new PinchZoomModifier(), new ZoomExtentsModifier(), new MouseWheelZoomModifier());
 
-    return { sciChartSurface };
+    return {sciChartSurface};
 };
 
 // React component needed as our examples app is react.
@@ -103,6 +104,6 @@ export default function NonUniformHeatmapChart() {
     }, []);
 
     return (
-        <div id={divElementId} className={classes.ChartWrapper} />
+        <div id={divElementId} className={classes.ChartWrapper}/>
     );
 }

@@ -1,25 +1,27 @@
 import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
 import classes from "../../../../Examples/Examples.module.scss";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { SplineLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
-import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
-import { ELegendOrientation } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
-import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import {appTheme} from "../../../theme";
+import {
+    ELegendOrientation,
+    EllipsePointMarker,
+    FastLineRenderableSeries,
+    LegendModifier,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    NumberRange,
+    SciChartSurface,
+    SplineLineRenderableSeries,
+    WaveAnimation,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier
+} from "scichart";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -27,7 +29,7 @@ const drawExample = async () => {
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
-    const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.2) });
+    const yAxis = new NumericAxis(wasmContext, {growBy: new NumberRange(0.05, 0.2)});
     sciChartSurface.yAxes.add(yAxis);
 
     const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
@@ -52,7 +54,7 @@ const drawExample = async () => {
         stroke: appTheme.VividOrange,
         strokeThickness: 3,
         dataSeries: xyDataSeries,
-        animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true })
+        animation: new WaveAnimation({zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true})
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -67,7 +69,7 @@ const drawExample = async () => {
             stroke: appTheme.VividSkyBlue
         }),
         interpolationPoints: 10, // Set interpolation points to decide the amount of smoothing,
-        animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true })
+        animation: new WaveAnimation({zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true})
     });
     sciChartSurface.renderableSeries.add(splineSeries);
 
@@ -75,10 +77,10 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    sciChartSurface.chartModifiers.add(new LegendModifier({ orientation: ELegendOrientation.Horizontal }));
+    sciChartSurface.chartModifiers.add(new LegendModifier({orientation: ELegendOrientation.Horizontal}));
 
     sciChartSurface.zoomExtents();
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 let scs: SciChartSurface;
@@ -93,5 +95,5 @@ export default function SplineLineChart() {
         return () => scs?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

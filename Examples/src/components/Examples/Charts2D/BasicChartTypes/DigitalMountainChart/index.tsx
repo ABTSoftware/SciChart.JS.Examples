@@ -1,29 +1,32 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { GradientParams } from "scichart/Core/GradientParams";
-import { Point } from "scichart/Core/Point";
 import classes from "../../../../Examples/Examples.module.scss";
-import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import {appTheme} from "../../../theme";
 import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import {
+    SciChartSurface,
+    NumericAxis,
+    NumberRange,
+    FastMountainRenderableSeries,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    RubberBandXyZoomModifier,
+    MouseWheelZoomModifier,
+    GradientParams,
+    Point,
+    WaveAnimation
+} from "scichart";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const {
+        wasmContext,
+        sciChartSurface
+    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     // Create an XAxis and YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis" }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {axisTitle: "X Axis"}));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.05, 0.05),
             axisTitle: "Y Axis",
@@ -38,7 +41,7 @@ const drawExample = async () => {
 
     // Create a Mountain Series and add to the chart
     const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
         stroke: appTheme.VividOrange,
         strokeThickness: 3,
         zeroLineY: 0.0,
@@ -49,7 +52,7 @@ const drawExample = async () => {
             {color: "Transparent", offset: 1}
         ]),
         isDigitalLine: true,
-        animation: new WaveAnimation({ duration: 1000, fadeEffect: true, zeroLine: 0 })
+        animation: new WaveAnimation({duration: 1000, fadeEffect: true, zeroLine: 0})
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 
@@ -59,7 +62,7 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
-    return { wasmContext, sciChartSurface };
+    return {wasmContext, sciChartSurface};
 };
 
 // React component needed as our examples app is react.
@@ -76,5 +79,5 @@ export default function DigitalMountainChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

@@ -1,18 +1,20 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { closeValues, dateValues as xValues, highValues, lowValues, openValues } from "./data/data";
-import { FastOhlcRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastOhlcRenderableSeries";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 import classes from "../../../../Examples/Examples.module.scss";
-import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
-import {ENumericFormat} from "scichart/types/NumericFormat";
+import {closeValues, dateValues as xValues, highValues, lowValues, openValues} from "./data/data";
+import {
+    CategoryAxis,
+    ENumericFormat,
+    FastOhlcRenderableSeries,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    NumberRange,
+    OhlcDataSeries,
+    SciChartSurface,
+    SmartDateLabelProvider,
+    SweepAnimation,
+    ZoomExtentsModifier,
+    ZoomPanModifier
+} from "scichart";
 
 const divElementId = "chart";
 
@@ -20,7 +22,7 @@ const divElementId = "chart";
 const drawExample = async () => {
 
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId);
 
     // Add an XAxis of type CategoryAxis - which collapses gaps in stock market data
     // SmartLabelProvider returns useful labels for stock market data
@@ -39,12 +41,12 @@ const drawExample = async () => {
 
     // Create the Ohlc series and add to the chart
     sciChartSurface.renderableSeries.add(new FastOhlcRenderableSeries(wasmContext, {
-        dataSeries: new OhlcDataSeries(wasmContext, { xValues, openValues, highValues, lowValues, closeValues }),
+        dataSeries: new OhlcDataSeries(wasmContext, {xValues, openValues, highValues, lowValues, closeValues}),
         strokeThickness: 1,
         dataPointWidth: 0.7,
         strokeUp: "#50ff50",
         strokeDown: "#ff5050",
-        animation: new SweepAnimation({ duration: 800, fadeEffect: true })
+        animation: new SweepAnimation({duration: 800, fadeEffect: true})
     }));
 
     // Optional: Add some interactivity modifiers
@@ -54,7 +56,7 @@ const drawExample = async () => {
         new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 // React component needed as our examples app is react.
@@ -71,5 +73,5 @@ export default function OhlcChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

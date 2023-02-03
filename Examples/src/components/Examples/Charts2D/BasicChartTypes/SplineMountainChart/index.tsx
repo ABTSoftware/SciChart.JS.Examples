@@ -1,20 +1,20 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {Point} from "scichart/Core/Point";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import classes from "../../../../Examples/Examples.module.scss";
-import {
-    SplineMountainRenderableSeries
-} from "scichart/Charting/Visuals/RenderableSeries/SplineMountainRenderableSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import {appTheme} from "../../../theme";
+import {
+    EllipsePointMarker,
+    GradientParams,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    NumberRange,
+    Point,
+    RubberBandXyZoomModifier,
+    SciChartSurface,
+    SplineMountainRenderableSeries,
+    WaveAnimation,
+    XyDataSeries,
+    ZoomExtentsModifier
+} from "scichart";
 
 const divElementId = "chart";
 
