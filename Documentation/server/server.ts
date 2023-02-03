@@ -6,7 +6,6 @@ import * as fs from "fs";
 const app = express();
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
-const gitHubBranch = "NewDocumentation";
 
 app.use(express.static("src"));
 app.use(express.static("static"));
@@ -64,7 +63,7 @@ app.listen(port, () => {
 const renderIndexHtml = (html: string, showNav: boolean, url: string) => {
   const codePenLink = `http://${host}:${port}${url}?codepen=1`;
   const links = url ? `<div>
-  <a href="https://jsfiddle.net/gh/get/ABTSoftware/SciChart.JS.Examples/tree/master/Documentation/src${url}" target="_blank">Edit in jsFiddle</a></br>
+  <a href="https://jsfiddle.net/gh/get/library/pure/ABTSoftware/SciChart.JS.Examples/tree/master/Documentation/src${url}" target="_blank">Edit in jsFiddle</a></br>
   <a href="${codePenLink}" target="_blank">Edit in CodePen</a>
   </div>` : "";
   const body = showNav ? `
