@@ -10,6 +10,7 @@ class Entry {
         this.hasDetails = false;
         this.hasHtml = false;
         this.hasCss = false;
+        this.isTS = false;
         this.url = path.substring(baseDir.length).replaceAll("\\", "/");
         this.name = path.substring(path.lastIndexOf("\\") + 1);
     }
@@ -48,6 +49,9 @@ var walk = function (dir, done) {
                     else if (fileName === "demo.details") {
                         entry.hasDetails = true;
                     }
+                    else if (fileName === "demo.ts") {
+                        entry.isTS = true;
+                    }
                     if (!--pending)
                         done(null, entry);
                 }
@@ -55,10 +59,42 @@ var walk = function (dir, done) {
         });
     });
 };
+const makeDemoFiles = (entry) => {
+    if (!entry.isDemo)
+        return;
+    if (!entry.hasHtml) {
+        console.log("Writing demo.html for ", entry.url);
+        const htmlPath = path.join(baseDir, entry.url, "demo.html");
+        fs.promises.writeFile(htmlPath, `<div id="scichart" />`);
+    }
+    if (!entry.hasCss) {
+        console.log("Writing demo.css for ", entry.url);
+        const cssPath = path.join(baseDir, entry.url, "demo.css");
+        fs.promises.writeFile(cssPath, `body { margin: 0}`);
+    }
+    if (!entry.hasDetails) {
+        console.log("Writing demo.details for ", entry.url);
+        const detailsPath = path.join(baseDir, entry.url, "demo.details");
+        fs.promises.writeFile(detailsPath, `---
+name: SciChart.js ${entry.url} Documentation
+description: A Documentation for SciChart.js
+authors:
+    - SciChart Ltd
+resources:
+    - https://cdn.jsdelivr.net/npm/scichart/index.min.js
+normalize_css: no
+panel_js: 0
+panel_html: 0
+panel_css: 0`);
+    }
+};
 const makeNav = (entry) => {
+    if (entry.isDemo) {
+        makeDemoFiles(entry);
+    }
     let html = `<li><a href="${entry.url}">${entry.name}</a>
 `;
-    if (entry.entries.length > 0) {
+    if (!entry.isDemo && entry.entries.length > 0) {
         html += `<ul>
 `;
         for (const folder of entry.entries) {
@@ -74,6 +110,7 @@ const makeNav = (entry) => {
 walk(baseDir, (err, entry) => {
     if (!entry)
         return;
+    console.log(JSON.stringify(entry, undefined, 2));
     let html = `<ul>
 `;
     for (const folder of entry.entries) {
@@ -81,5 +118,6 @@ walk(baseDir, (err, entry) => {
     }
     html += `</ul>
 `;
-    console.log(html);
+    console.log("Updating nav html");
+    fs.promises.writeFile("server/nav.html", html);
 });
