@@ -1,20 +1,23 @@
 import * as React from "react";
-import { CameraController } from "scichart/Charting3D/CameraController";
-import { MouseWheelZoomModifier3D } from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
-import { OrbitModifier3D } from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
-import { Vector3 } from "scichart/Charting3D/Vector3";
-import { NumericAxis3D } from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
-import { SciChart3DSurface } from "scichart/Charting3D/Visuals/SciChart3DSurface";
-import { EDrawMeshAs, SurfaceMeshRenderableSeries3D } from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/SurfaceMeshRenderableSeries3D";
-import { GradientColorPalette } from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
-import { UniformGridDataSeries3D } from "scichart/Charting3D/Model/DataSeries/UniformGridDataSeries3D";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { zeroArray2D } from "scichart/utils/zeroArray2D";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {Button} from "@material-ui/core";
-import {HeatmapLegend} from "scichart/Charting/Visuals/HeatmapLegend";
-import {ResetCamera3DModifier} from "scichart/Charting3D/ChartModifiers/ResetCamera3DModifier";
+
+import {
+    SciChart3DSurface,
+    CameraController,
+    MouseWheelZoomModifier3D,
+    OrbitModifier3D,
+    Vector3,
+    NumericAxis3D,
+    EDrawMeshAs,
+    SurfaceMeshRenderableSeries3D,
+    GradientColorPalette,
+    UniformGridDataSeries3D,
+    NumberRange,
+    zeroArray2D,
+    HeatmapLegend,
+    ResetCamera3DModifier
+} from "scichart";
 
 const divElementId = "chart";
 const divHeatmapLegend = "heatmapLegend";
@@ -22,7 +25,10 @@ const divHeatmapLegend = "heatmapLegend";
 // SCICHART CODE
 const drawExample = async () => {
     // Create a SciChart3DSurface
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const {
+        sciChart3DSurface,
+        wasmContext
+    } = await SciChart3DSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     // Create and position the camera in the 3D world
     sciChart3DSurface.camera = new CameraController(wasmContext, {
@@ -33,12 +39,12 @@ const drawExample = async () => {
     sciChart3DSurface.worldDimensions = new Vector3(200, 100, 200);
 
     // Add an X,Y and Z Axis
-    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis" });
+    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {axisTitle: "X Axis"});
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Y Axis",
         visibleRange: new NumberRange(0, 0.3)
     });
-    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Axis" });
+    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {axisTitle: "Z Axis"});
 
     // Create a 2D array using the helper function zeroArray2D
     // and fill this with data
@@ -104,11 +110,11 @@ const drawExample = async () => {
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
     sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
 
-    return { sciChart3DSurface, wasmContext };
+    return {sciChart3DSurface, wasmContext};
 };
 
 const drawHeatmapLegend = async () => {
-    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
+    const {heatmapLegend, wasmContext} = await HeatmapLegend.create(divHeatmapLegend, {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
@@ -169,9 +175,10 @@ export default function SurfaceMesh3DChart() {
 
     return (
         <div className={classes.ChartWrapper}>
-            <div style={{position: "relative", height: "100%", width: "100%" }}>
+            <div style={{position: "relative", height: "100%", width: "100%"}}>
                 <div id={divElementId} style={{position: "absolute", height: "100%", width: "100%"}}></div>
-                <div id={divHeatmapLegend} style={{position: "absolute", height: "95%", width: "100px", right: "75px", margin: "20"}}>
+                <div id={divHeatmapLegend}
+                     style={{position: "absolute", height: "95%", width: "100px", right: "75px", margin: "20"}}>
                 </div>
             </div>
         </div>
