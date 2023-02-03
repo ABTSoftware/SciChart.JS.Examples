@@ -1,16 +1,20 @@
-import {IUniformHeatmapSeriesOptions, UniformHeatmapDataSeries} from "scichart/Charting/Model/UniformHeatmapDataSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
-import { UniformHeatmapRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { AudioDataProvider } from "./AudioDataProvider";
-import { Radix2FFT } from "./Radix2FFT";
+import {AudioDataProvider} from "./AudioDataProvider";
+import {Radix2FFT} from "./Radix2FFT";
+
+import {
+    EAutoRange,
+    EAxisAlignment,
+    FastColumnRenderableSeries,
+    FastLineRenderableSeries,
+    HeatmapColorMap,
+    NumericAxis,
+    NumberRange,
+    SciChartSurface,
+    UniformHeatmapDataSeries,
+    UniformHeatmapRenderableSeries,
+    XyDataSeries
+} from "scichart";
+
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";
@@ -80,7 +84,7 @@ export const drawExample = async () => {
 
     // AUDIO CHART
     const initAudioChart = async () => {
-        const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(
+        const {sciChartSurface, wasmContext} = await SciChartSurface.createSingle(
             divElementIdAudioChart,
             {
                 widthAspect: TOP_CHART_WIDTH,
@@ -128,7 +132,7 @@ export const drawExample = async () => {
 
     // FFT CHART
     const initFftChart = async () => {
-        const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(
+        const {sciChartSurface, wasmContext} = await SciChartSurface.createSingle(
             divElementIdFttChart,
             {
                 widthAspect: BOTTOM_CHART_WIDTH,
@@ -182,7 +186,7 @@ export const drawExample = async () => {
             }
         }
 
-        const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle(
+        const {sciChartSurface, wasmContext} = await SciChartSurface.createSingle(
             divElementIdChart3,
             {
                 widthAspect: BOTTOM_CHART_WIDTH,
@@ -230,12 +234,12 @@ export const drawExample = async () => {
                 minimum: -30,
                 maximum: 70,
                 gradientStops: [
-                    { offset: 0, color: "#000000" },
-                    { offset: 0.0001, color: "#00008B" },
-                    { offset: 0.25, color: "#800080" },
-                    { offset: 0.5, color: "#FF0000" },
-                    { offset: 0.75, color: "#FFFF00" },
-                    { offset: 1, color: "#FFFFFF" }
+                    {offset: 0, color: "#000000"},
+                    {offset: 0.0001, color: "#00008B"},
+                    {offset: 0.25, color: "#800080"},
+                    {offset: 0.5, color: "#FF0000"},
+                    {offset: 0.75, color: "#FFFF00"},
+                    {offset: 1, color: "#FFFFFF"}
                 ]
             })
         });

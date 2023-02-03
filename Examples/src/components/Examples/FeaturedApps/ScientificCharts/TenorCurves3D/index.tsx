@@ -1,30 +1,31 @@
 import * as React from "react";
-import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {SciChartSurface} from "scichart";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {
-    EDrawMeshAs,
-    EMeshPaletteMode,
-    SurfaceMeshRenderableSeries3D
-} from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/SurfaceMeshRenderableSeries3D";
-import {UniformGridDataSeries3D} from "scichart/Charting3D/Model/DataSeries/UniformGridDataSeries3D";
-import {GradientColorPalette} from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
-import {OrbitModifier3D} from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
-import {NumericAxis3D} from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
-import {MouseWheelZoomModifier3D} from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
-import {CameraController} from "scichart/Charting3D/CameraController";
-import {Vector3} from "scichart/Charting3D/Vector3";
-import {SciChart3DSurface} from "scichart/Charting3D/Visuals/SciChart3DSurface";
 import {getTenorCurveData} from "./TenorCurveData";
-import {IDeletable} from "scichart/Core/IDeletable";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {Point} from "scichart/Core/Point";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {ResetCamera3DModifier} from "scichart/Charting3D/ChartModifiers/ResetCamera3DModifier";
-import {HeatmapLegend} from "scichart/Charting/Visuals/HeatmapLegend";
+
+import {
+    EllipsePointMarker,
+    FastMountainRenderableSeries,
+    IDeletable,
+    NumericAxis,
+    NumberRange,
+    Point,
+    SciChartSurface,
+    XyDataSeries,
+    CameraController,
+    EDrawMeshAs,
+    EMeshPaletteMode,
+    GradientColorPalette,
+    HeatmapLegend,
+    MouseWheelZoomModifier3D,
+    NumericAxis3D,
+    OrbitModifier3D,
+    ResetCamera3DModifier,
+    SciChart3DSurface,
+    SurfaceMeshRenderableSeries3D,
+    UniformGridDataSeries3D,
+    Vector3
+} from "scichart";
 
 export const div3DChart = "div3DChart";
 export const div2DChart1 = "div2DChart1";

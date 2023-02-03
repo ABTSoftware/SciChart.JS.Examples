@@ -1,20 +1,23 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {EAutoRange} from "scichart/types/AutoRange";
 import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
-import {RubberBandXyZoomModifier} from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";
-import {EDragMode} from "scichart/types/DragMode";
-import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import {Button} from "@material-ui/core";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
 import {makeStyles} from "@material-ui/core/styles";
+
+import {
+    EAutoRange,
+    EDragMode,
+    FastLineRenderableSeries,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    RubberBandXyZoomModifier,
+    SciChartSurface,
+    XAxisDragModifier,
+    XyDataSeries,
+    YAxisDragModifier,
+    ZoomExtentsModifier
+} from "scichart";
 
 const divElementId = "chart";
 let timerId: NodeJS.Timeout;
@@ -40,9 +43,9 @@ const drawExample = async () => {
 
     // Create some DataSeries
     const dataSeries: XyDataSeries[] = [
-        new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true }),
-        new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true }),
-        new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true })
+        new XyDataSeries(wasmContext, {containsNaN: false, isSorted: true}),
+        new XyDataSeries(wasmContext, {containsNaN: false, isSorted: true}),
+        new XyDataSeries(wasmContext, {containsNaN: false, isSorted: true})
     ];
 
     const seriesColors = [appTheme.VividSkyBlue, appTheme.VividOrange, appTheme.VividPink];
@@ -149,7 +152,7 @@ export default function RealtimePerformanceDemo() {
         }, stopDemo: () => {
         }
     });
-    const [stats, setStats] = React.useState({ numberPoints: 0, fps: 0 });
+    const [stats, setStats] = React.useState({numberPoints: 0, fps: 0});
 
     React.useEffect(() => {
         (async () => {
@@ -187,7 +190,10 @@ export default function RealtimePerformanceDemo() {
                     <div className={localClasses.toolbarRow}>
                         <Button onClick={controls.startDemo} style={{color: appTheme.ForegroundColor}}>Start</Button>
                         <Button onClick={controls.stopDemo} style={{color: appTheme.ForegroundColor}}>Stop</Button>
-                        <span style={{margin: 12, minWidth: "200px"}}># DataPoints: {stats.numberPoints.toLocaleString()}</span>
+                        <span style={{
+                            margin: 12,
+                            minWidth: "200px"
+                        }}># DataPoints: {stats.numberPoints.toLocaleString()}</span>
                         <span style={{margin: 12}}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
                     <div className={localClasses.chartArea} id={divElementId}></div>

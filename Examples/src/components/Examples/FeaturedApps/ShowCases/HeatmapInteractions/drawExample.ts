@@ -1,49 +1,53 @@
+import {appTheme} from "../../../theme";
+import {AddIOModifier} from "./AddIOModifier";
+import {DiscreteAxisMarker} from "./DiscreteAxisMarker";
+import {PointDragModifier} from "./PointDragModifier";
 
-import { SciChartSurface } from "scichart";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { BasePaletteProvider } from "scichart/Charting/Model/BasePaletteProvider";
-import { EDataChangeType } from "scichart/Charting/Model/IDataSeries";
-import { IStrokePaletteProvider, EStrokePaletteMode } from "scichart/Charting/Model/IPaletteProvider";
-import { PaletteFactory } from "scichart/Charting/Model/PaletteFactory";
-import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
-import { ECoordinateMode, EDraggingGripPoint } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { AnnotationClickEventArgs } from "scichart/Charting/Visuals/Annotations/AnnotationClickEventArgs";
-import { AxisMarkerAnnotation } from "scichart/Charting/Visuals/Annotations/AxisMarkerAnnotation";
-import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
-import { HorizontalLineAnnotation } from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
-import { EAnnotationLayer } from "scichart/Charting/Visuals/Annotations/IAnnotation";
-import { EWrapTo, NativeTextAnnotation } from "scichart/Charting/Visuals/Annotations/NativeTextAnnotation";
-import { VerticalLineAnnotation } from "scichart/Charting/Visuals/Annotations/VerticalLineAnnotation";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { SplineLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
-import { UniformHeatmapRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
-import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import { GenericAnimation, IGenericAnimation } from "scichart/Core/Animations/GenericAnimation";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { EExecuteOn } from "scichart/types/ExecuteOn";
-import { ELabelPlacement } from "scichart/types/LabelPlacement";
-import { ESeriesType } from "scichart/types/SeriesType";
-import { TGradientStop } from "scichart/types/TGradientStop";
-import { TSciChart } from "scichart/types/TSciChart";
-import { formatNumber } from "scichart/utils/number";
-import { appTheme } from "../../../theme";
-import { AddIOModifier } from "./AddIOModifier";
-import { DiscreteAxisMarker } from "./DiscreteAxisMarker";
-import { PointDragModifier } from "./PointDragModifier";
+import {
+    AnnotationClickEventArgs,
+    AxisMarkerAnnotation,
+    BasePaletteProvider,
+    BoxAnnotation,
+    CustomAnnotation,
+    ECoordinateMode,
+    EDataChangeType,
+    EHorizontalAnchorPoint,
+    EStrokePaletteMode,
+    ESeriesType,
+    EAxisAlignment,
+    ELabelPlacement,
+    EExecuteOn,
+    EDraggingGripPoint,
+    EWrapTo,
+    FastLineRenderableSeries,
+    HeatmapColorMap,
+    HorizontalLineAnnotation,
+    IStrokePaletteProvider,
+    IRenderableSeries,
+    MouseWheelZoomModifier,
+    NativeTextAnnotation,
+    NumericAxis,
+    NumberRange,
+    PaletteFactory,
+    RolloverModifier,
+    RubberBandXyZoomModifier,
+    SciChartSurface,
+    SplineLineRenderableSeries,
+    TGradientStop,
+    TSciChart,
+    UniformHeatmapDataSeries,
+    UniformHeatmapRenderableSeries,
+    VerticalLineAnnotation,
+    XyDataSeries,
+    XyScatterRenderableSeries,
+    YAxisDragModifier,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
+    EVerticalAnchorPoint,
+    GenericAnimation,
+    formatNumber,
+    EllipsePointMarker
+} from "scichart";
 
 export const divElementId = "chart";
 export const divCrossSection = "crossSection";
@@ -51,33 +55,45 @@ export const divInput = "input";
 export const divHistory = "history";
 
 const gradientStops = [
-    { offset: 0, color: "#942B96" },
-    { offset: 0.3, color: "#3C2D91" },
-    { offset: 0.45, color: "#47bde6" },
-    { offset: 0.5, color: appTheme.DarkIndigo },
-    { offset: 0.55, color: "#68bcae" },
-    { offset: 0.7, color: "#e97064" },
-    { offset: 1.0, color: "#ae418d" }
+    {offset: 0, color: "#942B96"},
+    {offset: 0.3, color: "#3C2D91"},
+    {offset: 0.45, color: "#47bde6"},
+    {offset: 0.5, color: appTheme.DarkIndigo},
+    {offset: 0.55, color: "#68bcae"},
+    {offset: 0.7, color: "#e97064"},
+    {offset: 1.0, color: "#ae418d"}
 ];
 
 const csGradientStops = [
-    { offset: 0, color: "#942B96" },
-    { offset: 0.3, color: "#3C2D91" },
-    { offset: 0.45, color: "#47bde6" },
-    { offset: 0.5, color: "#45AEC3" },
-    { offset: 0.55, color: "#68bcae" },
-    { offset: 0.7, color: "#e97064" },
-    { offset: 1.0, color: "#ae418d" }
+    {offset: 0, color: "#942B96"},
+    {offset: 0.3, color: "#3C2D91"},
+    {offset: 0.45, color: "#47bde6"},
+    {offset: 0.5, color: "#45AEC3"},
+    {offset: 0.55, color: "#68bcae"},
+    {offset: 0.7, color: "#e97064"},
+    {offset: 1.0, color: "#ae418d"}
 ];
 
 let width = 700;
 let height = 500;
 
 export const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
-    const xAxis = new NumericAxis(wasmContext, { isVisible: false });
+    const {
+        sciChartSurface,
+        wasmContext
+    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const xAxis = new NumericAxis(wasmContext, {isVisible: false});
     sciChartSurface.xAxes.add(xAxis);
-    const yAxis = new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Left, isVisible: true, drawLabels: false, drawMajorGridLines: false, drawMajorBands: false, drawMajorTickLines: false, drawMinorTickLines: false, drawMinorGridLines: false });
+    const yAxis = new NumericAxis(wasmContext, {
+        axisAlignment: EAxisAlignment.Left,
+        isVisible: true,
+        drawLabels: false,
+        drawMajorGridLines: false,
+        drawMajorBands: false,
+        drawMajorTickLines: false,
+        drawMinorTickLines: false,
+        drawMinorGridLines: false
+    });
     sciChartSurface.yAxes.add(yAxis);
 
     width = Math.floor(sciChartSurface.domCanvas2D.width);
@@ -97,7 +113,7 @@ export const drawExample = async () => {
         opacity: 0.8,
         dataSeries: heatmapDataSeries,
         useLinearTextureFiltering: true,
-        colorMap: new HeatmapColorMap({ minimum: -80, maximum: 80, gradientStops })
+        colorMap: new HeatmapColorMap({minimum: -80, maximum: 80, gradientStops})
     });
 
     const crossSectionSurface = await createCrossSectionChart();
@@ -144,7 +160,7 @@ export const drawExample = async () => {
     const inputs: BoxAnnotation[] = [];
     const outputs: CustomAnnotation[] = [];
 
-    const { sciChartSurface: inputSurface, addInputSeries } = await inputChart();
+    const {sciChartSurface: inputSurface, addInputSeries} = await inputChart();
     const inputColors = ["#68bcae", "#e97064", "#47bde6", "#ae418d", "#274b92", "#634e96"];
     const outputColors = ["#0bf4cd", "#f4840b", "#0bdef4", "#f6086c", "#112cce", "#9002a1"];
 
@@ -199,7 +215,7 @@ export const drawExample = async () => {
         addInputSeries(color, freq);
     };
 
-    const { sciChartSurface: outputSurface, addOutputSeries } = await createHistoryChart();
+    const {sciChartSurface: outputSurface, addOutputSeries} = await createHistoryChart();
 
     const removeOutput = (output: CustomAnnotation) => {
         sciChartSurface.annotations.remove(output);
@@ -227,8 +243,8 @@ export const drawExample = async () => {
             isEditable: true,
             dragPoints: [EDraggingGripPoint.Body],
             onClick: (args: AnnotationClickEventArgs) => {
-                if (args.mouseArgs.button !== EExecuteOn.MouseRightButton) return;    
-                removeOutput(output);           
+                if (args.mouseArgs.button !== EExecuteOn.MouseRightButton) return;
+                removeOutput(output);
             }
         });
         output.selectedChanged.subscribe((isSelected: boolean) => {
@@ -248,7 +264,8 @@ export const drawExample = async () => {
             outputSurface.renderableSeries.getById(color).isSelected = isSelected;
         });
         // @ts-ignore
-        output.updateAdornerInner = () => {};
+        output.updateAdornerInner = () => {
+        };
         output.dragDelta.subscribe(data => {
             if (output.x1 < 1) output.x1 = 1;
             if (output.x1 >= width) output.x1 = width - 1;
@@ -278,7 +295,8 @@ export const drawExample = async () => {
     });
     // hack to disable selection box while dragging
     // @ts-ignore
-    dampingMarker.updateAdornerInner = () => {}
+    dampingMarker.updateAdornerInner = () => {
+    }
     sciChartSurface.annotations.add(dampingMarker);
 
     sciChartSurface.annotations.add(new NativeTextAnnotation({
@@ -391,22 +409,22 @@ export const drawExample = async () => {
 
     const showHelp = () => {
         const anim = getHelpAnnotation("This heatmap is running a 2D wave simulation.  Colours correspond to wave height. Drag the Damping marker to adjust how long the waves last.",
-        sciChartSurface);
+            sciChartSurface);
         sciChartSurface.addAnimation(anim.startAnim);
         const anim2 = getHelpAnnotation("This shows the cross section of the waveforms at the horizontal and vertical orange lines on the heatmap.\nTry Dragging the orange lines.",
-        crossSectionSurface);
+            crossSectionSurface);
         anim.next.onNext = () => sciChartSurface.addAnimation(anim2.startAnim);
-        const anim3 = getHelpAnnotation("The boxes are input locations.  Drag to move them around, or click, then drag in the white circle to resize.",
-        sciChartSurface);
+        const anim3 = getHelpAnnotation("The boxes are input locations. Drag to move them around, or click, then drag in the white circle to resize.",
+            sciChartSurface);
         anim2.next.onNext = () => sciChartSurface.addAnimation(anim3.startAnim);
         const anim4 = getHelpAnnotation("These series drive the corresponding colored inputs.  Drag the frequency markers to set a regular driving input, or click and drag to edit the series directly.",
-        inputSurface);
+            inputSurface);
         anim3.next.onNext = () => sciChartSurface.addAnimation(anim4.startAnim);
         const anim5 = getHelpAnnotation("This chart records the values over time at the coloured output circles on the heatmap.  You can drag those around too.  Click on one to highlight its associated series.",
-        outputSurface);
+            outputSurface);
         anim4.next.onNext = () => sciChartSurface.addAnimation(anim5.startAnim);
         const anim6 = getHelpAnnotation("You can add additional inputs and outputs by left clicking on the heatmap and selecting one of the options.  This is all done with annotations and a custom modifier.  Right click on an input or output to remove it.",
-        sciChartSurface);
+            sciChartSurface);
         anim5.next.onNext = () => sciChartSurface.addAnimation(anim6.startAnim);
     }
     showHelp();
@@ -473,7 +491,10 @@ const getHelpAnnotation = (text: string, surface: SciChartSurface) => {
         textColor: appTheme.ForegroundColor,
         wrapTo: EWrapTo.ViewRect
     });
-    const next = { onNext: () => {} };
+    const next = {
+        onNext: () => {
+        }
+    };
     const startAnim = new GenericAnimation<number>({
         from: 0,
         to: 1,
@@ -502,7 +523,7 @@ const getHelpAnnotation = (text: string, surface: SciChartSurface) => {
             }));
         },
     });
-    return { startAnim, next };
+    return {startAnim, next};
 }
 
 class YPalette extends BasePaletteProvider implements IStrokePaletteProvider {
@@ -511,16 +532,19 @@ class YPalette extends BasePaletteProvider implements IStrokePaletteProvider {
     private wasmContext: TSciChart;
     private colorData: number[];
 
-    constructor(wasmContext: TSciChart, gradientStops: TGradientStop[]) {
+    constructor(wasmContext: TSciChart, stops: TGradientStop[]) {
         super();
         this.wasmContext = wasmContext;
-        this.colorData = PaletteFactory.createColorMap(wasmContext, gradientStops);
+        this.colorData = PaletteFactory.createColorMap(wasmContext, stops);
     }
 
     public onAttached(parentSeries: IRenderableSeries): void {
         this.dataSeries = parentSeries.dataSeries as XyDataSeries;
     }
-    public onDetached(): void {}
+
+    public onDetached(): void {
+    }
+
     public overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
         const y = this.dataSeries.getNativeYValues().get(index);
         const lerpFactor = (y + 75) / 150;
@@ -535,7 +559,10 @@ class YPalette extends BasePaletteProvider implements IStrokePaletteProvider {
 }
 
 const createCrossSectionChart = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divCrossSection, { theme: appTheme.SciChartJsTheme });
+    const {
+        sciChartSurface,
+        wasmContext
+    } = await SciChartSurface.create(divCrossSection, {theme: appTheme.SciChartJsTheme});
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             id: "xh",
@@ -576,7 +603,7 @@ const createCrossSectionChart = async () => {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             id: "yv",
-            //isInnerAxis: true,
+            // isInnerAxis: true,
             visibleRange: new NumberRange(-50, 50),
             visibleRangeLimit: new NumberRange(-100, 100),
             axisAlignment: EAxisAlignment.Top,
@@ -590,7 +617,7 @@ const createCrossSectionChart = async () => {
         id: "h",
         strokeThickness: 3,
         stroke: "steelblue",
-        dataSeries: new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true }),
+        dataSeries: new XyDataSeries(wasmContext, {containsNaN: false, isSorted: true}),
         paletteProvider: new YPalette(wasmContext, csGradientStops),
         xAxisId: "xh",
         yAxisId: "yh"
@@ -600,7 +627,7 @@ const createCrossSectionChart = async () => {
         id: "v",
         strokeThickness: 3,
         stroke: "steelblue",
-        dataSeries: new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true }),
+        dataSeries: new XyDataSeries(wasmContext, {containsNaN: false, isSorted: true}),
         paletteProvider: new YPalette(wasmContext, csGradientStops),
         xAxisId: "xv",
         yAxisId: "yv"
@@ -624,7 +651,7 @@ const createCrossSectionChart = async () => {
     sciChartSurface.chartModifiers.add(
         new ZoomExtentsModifier(),
         new MouseWheelZoomModifier(),
-        new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton }),
+        new RubberBandXyZoomModifier({executeOn: EExecuteOn.MouseRightButton}),
         new YAxisDragModifier({})
     );
 
@@ -632,7 +659,7 @@ const createCrossSectionChart = async () => {
 };
 
 const inputChart = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divInput, { theme: appTheme.SciChartJsTheme });
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divInput, {theme: appTheme.SciChartJsTheme});
     const xAxis = new NumericAxis(wasmContext, {
         drawMinorGridLines: false,
         visibleRange: new NumberRange(0, 30000),
@@ -669,14 +696,15 @@ const inputChart = async () => {
         frequencyMarker.stepSize = 250;
         // hack to disable selection box while dragging
         // @ts-ignore
-        frequencyMarker.updateAdornerInner = () => {}
+        frequencyMarker.updateAdornerInner = () => {
+        }
         const dataSeries = new XyDataSeries(wasmContext, {
             containsNaN: false,
             isSorted: true,
             xValues,
             yValues: makeYValues(freq),
-            metadata: { isSelected: false }
-        }); 
+            metadata: {isSelected: false}
+        });
         const lineSeries = new SplineLineRenderableSeries(wasmContext, {
             id: color,
             stroke: color,
@@ -691,7 +719,7 @@ const inputChart = async () => {
                 lineSeries.strokeThickness = isSelected ? 4 : 2;
                 lineSeries.pointMarker.fill = isSelected ? "red" : color;
             }
-        });  
+        });
         frequencyMarker.dragDelta.subscribe((args) => {
             dataSeries.clear();
             dataSeries.appendRange(xValues, makeYValues(frequencyMarker.x1));
@@ -723,14 +751,14 @@ const inputChart = async () => {
 
     sciChartSurface.chartModifiers.add(
         new PointDragModifier(),
-        new ZoomPanModifier({ executeOn: EExecuteOn.MouseRightButton }),
+        new ZoomPanModifier({executeOn: EExecuteOn.MouseRightButton}),
         new MouseWheelZoomModifier()
     );
-    return { sciChartSurface, addInputSeries };
+    return {sciChartSurface, addInputSeries};
 };
 
 const createHistoryChart = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divHistory, { theme: appTheme.SciChartJsTheme });
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divHistory, {theme: appTheme.SciChartJsTheme});
     const xAxis = new NumericAxis(wasmContext, {
         visibleRange: new NumberRange(0, 30000),
         visibleRangeLimit: new NumberRange(0, 30000),
@@ -757,7 +785,7 @@ const createHistoryChart = async () => {
     sciChartSurface.chartModifiers.add(rollover);
 
     const addOutputSeries = (color: string) => {
-        const lineData = new XyDataSeries(wasmContext, { containsNaN: true, isSorted: true });
+        const lineData = new XyDataSeries(wasmContext, {containsNaN: true, isSorted: true});
         const xarr = Array.from(Array(1500)).map((_, i) => i * 20);
         const nanArr = xarr.map(x => NaN);
         lineData.appendRange(xarr, nanArr);
@@ -769,7 +797,7 @@ const createHistoryChart = async () => {
             opacity: 0.8
         });
 
-        const dotSeries = new XyDataSeries(wasmContext, { containsNaN: true, isSorted: true });
+        const dotSeries = new XyDataSeries(wasmContext, {containsNaN: true, isSorted: true});
         const leadingDot = new XyScatterRenderableSeries(wasmContext, {
             id: color + "dot",
             pointMarker: new EllipsePointMarker(wasmContext, {
@@ -811,8 +839,8 @@ const createHistoryChart = async () => {
         new ZoomPanModifier(),
         new ZoomExtentsModifier(),
         new MouseWheelZoomModifier(),
-        new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton })
+        new RubberBandXyZoomModifier({executeOn: EExecuteOn.MouseRightButton})
     );
 
-    return { sciChartSurface, addOutputSeries };
+    return {sciChartSurface, addOutputSeries};
 };

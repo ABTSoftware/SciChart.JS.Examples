@@ -1,18 +1,23 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {GlowEffect} from "scichart/Charting/Visuals/RenderableSeries/GlowEffect";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {fillNoisySinewave, getNoisySinewave} from "scichart/utils/math";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import classes from "../../../../Examples/Examples.module.scss";
 import {Button} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {appTheme} from "../../../theme";
-import {CentralAxesLayoutManager, ICentralAxesLayoutManagerOptions} from "scichart/Charting/LayoutManager/CentralAxesLayoutManager";
-import {EInnerAxisPlacementCoordinateMode} from "scichart/Charting/LayoutManager/EInnerAxisPlacementCoordinateMode";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
+
+import {
+    CentralAxesLayoutManager,
+    EInnerAxisPlacementCoordinateMode,
+    EAxisAlignment,
+    GlowEffect,
+    FastLineRenderableSeries,
+    ICentralAxesLayoutManagerOptions,
+    NumericAxis,
+    NumberRange,
+    SciChartSurface,
+    XyDataSeries,
+    getNoisySinewave,
+    fillNoisySinewave
+} from "scichart";
 
 const AMPLITUDE = 200;
 
@@ -21,7 +26,7 @@ const divElementId = "chart";
 let timerId: NodeJS.Timeout;
 
 const drawExample = async () => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+    const {wasmContext, sciChartSurface} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -72,12 +77,12 @@ const drawExample = async () => {
             range: 0,
             intensity: 0.5,
         });
-        const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke, effect });
+        const lineSeries = new FastLineRenderableSeries(wasmContext, {stroke, effect});
         lineSeries.strokeThickness = 3;
         lineSeries.opacity = opacity;
         sciChartSurface.renderableSeries.add(lineSeries);
         const [xValues, yValues] = getNoisySinewave(500, 900, 7, amplitude, 30);
-        lineSeries.dataSeries = new XyDataSeries(wasmContext, { xValues, yValues });
+        lineSeries.dataSeries = new XyDataSeries(wasmContext, {xValues, yValues});
         return lineSeries;
     };
 
@@ -130,7 +135,7 @@ const drawExample = async () => {
     };
     document.getElementById("startAnimation").addEventListener("click", startAnimation);
 
-    return { wasmContext, sciChartSurface, controls: { startAnimation, stopAnimation } };
+    return {wasmContext, sciChartSurface, controls: {startAnimation, stopAnimation}};
 };
 
 const useStyles = makeStyles(theme => ({
@@ -158,8 +163,12 @@ let scs: SciChartSurface;
 let autoStartTimerId: NodeJS.Timeout;
 
 export default function RealtimeGhostedTraces() {
-    const [controls, setControls] = React.useState({ startAnimation: () => {}, stopAnimation: () => {} });
-    const [stats, setStats] = React.useState({ numberSeries: 0, numberPoints: 0, fps: 0 });
+    const [controls, setControls] = React.useState({
+        startAnimation: () => {
+        }, stopAnimation: () => {
+        }
+    });
+    const [stats, setStats] = React.useState({numberSeries: 0, numberPoints: 0, fps: 0});
 
     React.useEffect(() => {
         (async () => {
@@ -199,7 +208,10 @@ export default function RealtimeGhostedTraces() {
                         <Button id="startAnimation" style={{color: appTheme.ForegroundColor}}>Start</Button>
                         <Button id="stopAnimation" style={{color: appTheme.ForegroundColor}}>Stop</Button>
                         <span style={{margin: 12}}># Series: {stats.numberSeries}</span>
-                        <span style={{margin: 12, minWidth: "200px"}}># DataPoints: {stats.numberPoints.toLocaleString()}</span>
+                        <span style={{
+                            margin: 12,
+                            minWidth: "200px"
+                        }}># DataPoints: {stats.numberPoints.toLocaleString()}</span>
                         <span style={{margin: 12}}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
                     <div className={localClasses.chartArea} id={divElementId}></div>

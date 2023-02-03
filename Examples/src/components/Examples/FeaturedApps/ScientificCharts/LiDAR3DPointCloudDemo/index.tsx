@@ -1,24 +1,30 @@
 import * as React from "react";
-import {SciChart3DSurface} from "scichart/Charting3D/Visuals/SciChart3DSurface";
-import {NumericAxis3D} from "scichart/Charting3D/Visuals/Axis/NumericAxis3D";
-import {CameraController} from "scichart/Charting3D/CameraController";
-import {Vector3} from "scichart/Charting3D/Vector3";
-import {MouseWheelZoomModifier3D} from "scichart/Charting3D/ChartModifiers/MouseWheelZoomModifier3D";
-import {OrbitModifier3D} from "scichart/Charting3D/ChartModifiers/OrbitModifier3D";
-import {PixelPointMarker3D} from "scichart/Charting3D/Visuals/PointMarkers/DefaultPointMarkers";
-import {ScatterRenderableSeries3D} from "scichart/Charting3D/Visuals/RenderableSeries/ScatterRenderableSeries3D";
-import {EColorMapMode, TLinearColorMap} from "scichart/types/TLinearColorMap";
-import {XyzDataSeries3D} from "scichart/Charting3D/Model/DataSeries/XyzDataSeries3D";
+
 import {AscData, AscReader} from "./AscReader";
-import {linearColorMapLerp} from "scichart/utils/colorUtil";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {EDrawMeshAs, EMeshPaletteMode, SurfaceMeshRenderableSeries3D} from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/SurfaceMeshRenderableSeries3D";
-import {UniformGridDataSeries3D} from "scichart/Charting3D/Model/DataSeries/UniformGridDataSeries3D";
-import {GradientColorPalette} from "scichart/Charting3D/Visuals/RenderableSeries/SurfaceMesh/GradientColorPalette";
-import {zeroArray2D} from "scichart/utils/zeroArray2D";
-import {HeatmapLegend} from "scichart/Charting/Visuals/HeatmapLegend";
-import {Button} from "@material-ui/core";
+
+import {
+    CameraController,
+    EColorMapMode,
+    EDrawMeshAs,
+    EMeshPaletteMode,
+    GradientColorPalette,
+    HeatmapLegend,
+    linearColorMapLerp,
+    MouseWheelZoomModifier3D,
+    NumericAxis3D,
+    OrbitModifier3D,
+    PixelPointMarker3D,
+    ScatterRenderableSeries3D,
+    SciChart3DSurface,
+    SurfaceMeshRenderableSeries3D,
+    TLinearColorMap,
+    UniformGridDataSeries3D,
+    Vector3,
+    XyzDataSeries3D,
+    zeroArray2D
+} from "scichart";
 
 const div3DChart = "chart";
 const div3DChartLegend = "heatmapLegend";
