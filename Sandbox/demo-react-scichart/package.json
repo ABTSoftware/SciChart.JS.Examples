@@ -23,6 +23,6 @@
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "scichart": "^2.2.2401"
+    "scichart": "^3.0.280"
   }
 }
