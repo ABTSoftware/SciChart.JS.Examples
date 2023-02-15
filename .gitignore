@@ -6,5 +6,4 @@
 **/artifacts
 .DS_Store
 Sandbox/demo-electron/dist/main/main.js
-Sandbox/**/package-lock.json
 !Sandbox/DocumentationSnippets/**/package-lock.json

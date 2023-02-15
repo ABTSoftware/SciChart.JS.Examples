@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "start": "webpack serve"
   },
   "keywords": [],
@@ -16,6 +17,6 @@
     "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
-    "scichart": "^2.2.2401"
+    "scichart": "^3.0.284"
   }
 }

@@ -45,6 +45,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-package-lock.json
 /src/scichart2d.data
 /src/scichart2d.wasm
