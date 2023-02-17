@@ -4,7 +4,7 @@ import {NumberRange} from "scichart/Core/NumberRange";
 import {RandomWalkGenerator} from "./RandomWalkGenerator";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
 import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import * as easing from "scichart";
+import { easing } from "scichart/Core/Animations/EasingFunctions";
 import {DoubleAnimator} from "scichart/Core/Animations/DoubleAnimator";
 import { GradientParams } from "scichart/Core/GradientParams";
 import { Point } from "scichart/Core/Point";

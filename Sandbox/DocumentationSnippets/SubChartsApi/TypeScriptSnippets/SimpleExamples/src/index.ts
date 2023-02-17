@@ -1,14 +1,5 @@
-import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
-import { ECoordinateMode } from 'scichart/Charting/Visuals/Annotations/AnnotationBase';
-import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
-import { FastLineRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries';
-import { SciChartSurface } from 'scichart/Charting/Visuals/SciChartSurface';
-import { NumberRange } from 'scichart/Core/NumberRange';
-import { Rect } from 'scichart/Core/Rect';
-import { chartBuilder } from 'scichart/Builder/chartBuilder';
-import { ESeriesType } from 'scichart/types/SeriesType';
-import { EAxisType } from 'scichart/types/AxisType';
-import { Thickness } from 'scichart/Core/Thickness';
+import { EAxisType, ECoordinateMode, ESeriesType, FastLineRenderableSeries, NumberRange, NumericAxis, Rect, SciChartSurface, Thickness, XyDataSeries, chartBuilder  } from "scichart";
+
 
 export async function simpleSubChart(divElementId: string) {
     // create a main (regular) surface which will contain a sub-chart

@@ -22,6 +22,5 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-package-lock.json
 scichart2d.data
 scichart2d.wasm
