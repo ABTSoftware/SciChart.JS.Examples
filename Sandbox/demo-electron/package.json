@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "First Tutorial with SciChart.js and Electron",
   "main": "main.js",
+    "engines" : {
+    "node" : ">=10.0.0 <18.0.0"
+  },
   "scripts": {
     "compile": "electron-webpack",
     "start": "electron-webpack dev",
@@ -31,14 +34,14 @@
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "babel-loader": "^8.1.0",
-    "copy-webpack-plugin": "^6.0.3",
     "copy-files-from-to": "^3.2.0",
-    "prettier": "^2.1.2",
-    "electron-builder": "^22.7.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "electron-builder": "22.10.5",
     "electron-rebuild": "^1.11.0",
     "electron-webpack": "^2.8.2",
+    "prettier": "^2.1.2",
     "ts-loader": "^7.0.5",
-    "typescript": "^4.0.5",
+    "typescript": "4.6.4",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
