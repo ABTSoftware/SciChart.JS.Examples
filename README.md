@@ -19,7 +19,7 @@
 > - [Read about SciChart's **license terms** here](https://www.scichart.com/scichart-eula)
 > - [**Start a trial** by following steps here](https://scichart.com/getting-started/scichart-javascript)
 > - [**Purchase commercial licenses** here](https://store.scichart.com)
-> - Academic usage, universities and schools qualify for a free for a free license. Read more about this [here](https://www.scichart.com/educational-discount-programme).
+> - Academic usage, universities and schools qualify for a free license. Read more about this [here](https://www.scichart.com/educational-discount-programme).
 
 
 ## Useful links
@@ -34,11 +34,11 @@
 > - [SciChart Community forums](https://scichart.com/questions)
 > - [SciChart Stackoverflow tag](https://stackoverflow.com/tags/scichart)
 > - [Contact Us (Technical support or sales)](https://scichart.com/contact-us)
-
+[readme.md](Examples%2Freadme.md)
 # Using the SciChart.Js.Examples Repository
 ## [/Examples Folder](Examples)
 
-Contains the source for the demo app for SciChart.js.Viewable online at [demo.scichart.com](https://demo.scichart.com).
+Contains the source for the demo app for SciChart.js viewable online at [demo.scichart.com](https://demo.scichart.com).
 
 [![SciChart.js Demo - JavaScript Chart library](https://www.scichart.com/wp-content/uploads/2022/12/scichart-js-demo-home-scaled.jpg)](https://demo.scichart.com)
 
