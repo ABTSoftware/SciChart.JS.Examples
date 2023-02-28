@@ -21,4 +21,4 @@ async function simpleLineChartWithBuilderApi(divElementId) {
   });
 };
 
-simpleLineChartWithBuilderApi("scichart");
+simpleLineChartWithBuilderApi("scichart-root");

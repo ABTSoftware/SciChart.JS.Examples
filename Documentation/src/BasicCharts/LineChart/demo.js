@@ -5,6 +5,8 @@ const {
   XyDataSeries,
 } = SciChart;
 
+// or, for npm, import { SciChartSurface, ... } from "scichart"
+
 async function simpleLineChart(divElementId) {
   const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -28,4 +30,4 @@ async function simpleLineChart(divElementId) {
 };
 
 
-simpleLineChart("scichart");
+simpleLineChart("scichart-root");

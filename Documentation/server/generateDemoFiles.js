@@ -65,12 +65,13 @@ const makeDemoFiles = (entry) => {
     if (!entry.hasHtml) {
         console.log("Writing demo.html for ", entry.url);
         const htmlPath = path.join(baseDir, entry.url, "demo.html");
-        fs.promises.writeFile(htmlPath, `<div id="scichart" />`);
+        fs.promises.writeFile(htmlPath, `<div id="scichart-root" ></div>`);
     }
     if (!entry.hasCss) {
         console.log("Writing demo.css for ", entry.url);
         const cssPath = path.join(baseDir, entry.url, "demo.css");
-        fs.promises.writeFile(cssPath, `body { margin: 0}`);
+        fs.promises.writeFile(cssPath, `body { margin: 0; }
+#scichart-root { width: 100%; height: 100vh; }`);
     }
     if (!entry.hasDetails) {
         console.log("Writing demo.details for ", entry.url);
