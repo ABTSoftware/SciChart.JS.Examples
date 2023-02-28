@@ -40,4 +40,4 @@ async function dataLabelsPrecision(divElementId) {
     }));
 }
 
-dataLabelsPrecision('scichart')
+dataLabelsPrecision('scichart-root')

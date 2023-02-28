@@ -29,4 +29,4 @@ async function dataLabelsConstructorOptions(divElementId) {
     }));
 }
 
-dataLabelsConstructorOptions('scichart')
+dataLabelsConstructorOptions('scichart-root')

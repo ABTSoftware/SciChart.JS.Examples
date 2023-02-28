@@ -34,4 +34,4 @@ async function dataLabelColumns(divElementId) {
         }
     });
 }
-dataLabelColumns('scichart')
+dataLabelColumns('scichart-root')

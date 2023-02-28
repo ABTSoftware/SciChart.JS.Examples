@@ -116,7 +116,7 @@ const renderIndexHtml = (html: string, css: string, showNav: boolean, url: strin
       ${body}  
     </body>
 </html>
-  `
+`
 }
 
 const getCodeSandBoxForm = (demoHtml: string, code: string) => {
@@ -146,7 +146,10 @@ const getCodeSandBoxForm = (demoHtml: string, code: string) => {
         }
       },
       "src/index.ts": {
-        content: `import * as SciChart from "scichart";
+        content: `
+// We are using npm in CodeSandbox, so we need this import.
+import * as SciChart from "scichart";
+// When importing scichart from npm, the default is to get the wasm from local files, but that is awkward with parcel in codeSandbox, 
 SciChart.SciChartSurface.useWasmFromCDN()
 ` + code,
         isBinary: false

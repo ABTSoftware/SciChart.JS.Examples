@@ -53,4 +53,4 @@ async function dataLabelColoring(divElementId) {
   };
 }
 
-dataLabelColoring("scichart");
+dataLabelColoring("scichart-root");

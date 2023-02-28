@@ -52,4 +52,4 @@ async function dataLabelsMetadata(divElementId) {
     }));
 }
 
-dataLabelsMetadata('scichart')
+dataLabelsMetadata('scichart-root')

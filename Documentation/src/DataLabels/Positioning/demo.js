@@ -4,6 +4,7 @@ const {
     FastLineRenderableSeries,
     EllipsePointMarker,
     XyDataSeries,
+    ELineType,
     NumberRange,
     EDataLabelSkipMode,
     EVerticalTextPosition,
@@ -50,4 +51,4 @@ async function dataLabelSkipModes(divElementId) {
     sciChartSurface.renderableSeries.add(lineSeries);
 }
 
-dataLabelSkipModes('scichart')
+dataLabelSkipModes('scichart-root')

@@ -89,4 +89,4 @@ async function dataLabelGlobalLayout(divElementId) {
     }
 }
 
-dataLabelGlobalLayout('scichart')
+dataLabelGlobalLayout('scichart-root')

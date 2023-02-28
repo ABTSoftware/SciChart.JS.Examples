@@ -40,4 +40,4 @@ async function dataLabelProviderGetText(divElementId) {
     sciChartSurface.renderableSeries.add(lineSeries);
 }
 
-dataLabelProviderGetText('scichart')
+dataLabelProviderGetText('scichart-root')
