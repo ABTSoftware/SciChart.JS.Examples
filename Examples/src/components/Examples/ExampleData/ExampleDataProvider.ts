@@ -1,3 +1,4 @@
+import { XyDataSeries } from "scichart";
 import {multiPaneData} from "./multiPaneData";
 
 export interface IXyValues {
@@ -61,18 +62,47 @@ export class ExampleDataProvider {
         return ExampleDataProvider.getDampedSinewave(0, amplitude, phase, 0.0, pointCount, frequency);
     }
 
-    public static getNoisySinewave(amplitude: number, phase: number, pointCount: number, noiseAmplitude: number)
+    public static getNoisySinewave(pointCount: number,
+        xMax: number,
+        frequency: number,
+        amplitude: number,
+        noiseAmplitude: number)
         : IXyValues {
 
-        const {xValues, yValues} = ExampleDataProvider.getSinewave(amplitude, phase, pointCount);
+        const {xValues, yValues} = ExampleDataProvider.getSinewave(amplitude, 0, pointCount, frequency);
 
         // Add some noise
         for (let i = 0; i < pointCount; i++) {
-            yValues[i] += Math.random() * noiseAmplitude - noiseAmplitude * 0.5;
+            yValues[i] += (Math.random() - 0.5) * noiseAmplitude;
         }
 
         return { xValues, yValues };
     }
+
+    public static fillNoisySinewave(
+        pointCount: number,
+        xMax: number,
+        frequency: number,
+        amplitude: number,
+        noiseAmplitude: number,
+        dataSeries: XyDataSeries
+    ) {
+        const phase = frequency / xMax;
+        const freq = 2 * Math.PI * phase;
+    
+        const xValues = dataSeries.getNativeXValues();
+        const yValues = dataSeries.getNativeYValues();
+        xValues.reserve(pointCount);
+        yValues.reserve(pointCount);
+    
+        for (let i = 0; i < pointCount; i++) {
+            const x = (i * xMax) / (pointCount - 1);
+            const y = amplitude * Math.sin(x * freq);
+            const yNoise = (Math.random() - 0.5) * noiseAmplitude;
+            xValues.push_back(x);
+            yValues.push_back(y + yNoise);
+        }
+    };
 
     public static getFourierSeriesZoomed(amplitude: number, phaseShift: number,
                                          xStart: number, xEnd: number, count: number = 5000): IXyValues {

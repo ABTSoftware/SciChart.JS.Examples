@@ -14,10 +14,9 @@ import {
     NumericAxis,
     NumberRange,
     SciChartSurface,
-    XyDataSeries,
-    getNoisySinewave,
-    fillNoisySinewave
+    XyDataSeries
 } from "scichart";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 const AMPLITUDE = 200;
 
@@ -81,7 +80,7 @@ const drawExample = async () => {
         lineSeries.strokeThickness = 3;
         lineSeries.opacity = opacity;
         sciChartSurface.renderableSeries.add(lineSeries);
-        const [xValues, yValues] = getNoisySinewave(500, 900, 7, amplitude, 30);
+        const {xValues, yValues} = ExampleDataProvider.getNoisySinewave(500, 900, 7, amplitude, 30);
         lineSeries.dataSeries = new XyDataSeries(wasmContext, {xValues, yValues});
         return lineSeries;
     };
@@ -112,7 +111,7 @@ const drawExample = async () => {
 
         const amplitude = Math.random() * AMPLITUDE;
         const dataSeries = new XyDataSeries(wasmContext);
-        fillNoisySinewave(500, 900, 7, amplitude, 30, dataSeries);
+        ExampleDataProvider.fillNoisySinewave(500, 900, 7, amplitude, 30, dataSeries);
         series1.dataSeries = dataSeries;
         // To prevent memory leak we should delete
         oldSeries.delete();
