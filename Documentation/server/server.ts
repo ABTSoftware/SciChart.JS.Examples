@@ -48,11 +48,17 @@ app.get("*", async (req: Request, res: Response) => {
         res.send(renderCodePenRedirect(json));
         return;
       }
+      const cssPath = path.join(basePath, "demo.css");
+      let demoCss = snippets.get(cssPath);
+      if (!demoCss) {
+        demoCss = await fs.promises.readFile(cssPath, "utf8");
+        snippets.set(cssPath, demoCss);
+      }
 
-      res.send(renderIndexHtml(demoHtml, !req.query["nav"], req.originalUrl));
+      res.send(renderIndexHtml(demoHtml, demoCss, !req.query["nav"], req.originalUrl));
     } catch (err) {
       console.log(err);
-      res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, true, undefined));
+      res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, "", true, undefined));
     }
 });
 
@@ -60,27 +66,25 @@ app.listen(port, () => {
   console.log(`Example app listening at http://${host}:${port}`);
 });
 
-const renderIndexHtml = (html: string, showNav: boolean, url: string) => {
+const renderIndexHtml = (html: string, css: string, showNav: boolean, url: string) => {
   const codePenLink = `http://${host}:${port}${url}?codepen=1`;
   const links = url ? `<div>
   <a href="https://jsfiddle.net/gh/get/library/pure/ABTSoftware/SciChart.JS.Examples/tree/master/Documentation/src${url}" target="_blank">Edit in jsFiddle</a></br>
   <a href="${codePenLink}" target="_blank">Edit in CodePen</a>
   </div>` : "";
+  const iframe = url === undefined ? "<p>Please select an example</p>" :
+      `<iframe style="width: 800px; height: 600px;" src="${url + `?nav=0`}"></iframe>`;
   const body = showNav ? `
   <div style="display: flex">
     <div style="flex-basis: 100px; border: 1;">
       ${navHtml}
     </div>
-    <div>
-      <div style="width: 800px; height: 600px;">
-        ${html}
-      </div>  
+    <div>      
+      ${iframe}        
       ${links}
     </div>
   </div>` : 
-  `<div style="height: 100vh;">
-    ${html}
-  </div>`;
+  `<div style="width: 100%; height: 100vh;">${html}</div>`;
   return `
   <html lang="en-us">
     <head>
@@ -92,7 +96,8 @@ const renderIndexHtml = (html: string, showNav: boolean, url: string) => {
 
         <script async type="text/javascript" src="demo.js" defer></script>
         <style>
-            body { font-family: 'Arial'; ${showNav === false ? `margin: 0;` : `` } }
+            iframe { border: 0; }
+            ${css}
         </style>
     </head>
     <body>
