@@ -72,9 +72,7 @@ const renderIndexHtml = (html, showNav, url) => {
     </div>
   </div>` :
         `<div style="height: 100vh;">
-    <div style="width: 100%; height: 100%; position: relative; overflow: hidden;">
-      ${html}
-    </div>
+    ${html}
   </div>`;
     return `
   <html lang="en-us">
@@ -89,6 +87,7 @@ const renderIndexHtml = (html, showNav, url) => {
         <style>
             body { font-family: 'Arial'}
         </style>
+        $css
     </head>
     <body>
       ${body}  

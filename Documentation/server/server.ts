@@ -79,9 +79,7 @@ const renderIndexHtml = (html: string, showNav: boolean, url: string) => {
     </div>
   </div>` : 
   `<div style="height: 100vh;">
-    <div style="width: 100%; height: 100%; position: relative; overflow: hidden;">
-      ${html}
-    </div>
+    ${html}
   </div>`;
   return `
   <html lang="en-us">
@@ -94,7 +92,7 @@ const renderIndexHtml = (html: string, showNav: boolean, url: string) => {
 
         <script async type="text/javascript" src="demo.js" defer></script>
         <style>
-            body { font-family: 'Arial'}
+            body { font-family: 'Arial'; ${showNav === false ? `margin: 0;` : `` } }
         </style>
     </head>
     <body>
