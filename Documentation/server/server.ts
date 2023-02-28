@@ -2,6 +2,7 @@ import * as express from "express";
 import { Request, Response } from "express";
 import * as path from "path";
 import * as fs from "fs";
+import { getParameters } from "codesandbox/lib/api/define";
 
 const app = express();
 const port = parseInt(process.env.PORT || "3000", 10);
@@ -38,10 +39,16 @@ app.get("*", async (req: Request, res: Response) => {
     }
     try {
       const htmlPath = path.join(basePath, "demo.html");
+      const jsPath = path.join(basePath, "demo.js");
       let demoHtml = snippets.get(htmlPath);
+      let demojs = snippets.get(jsPath);
       if (!demoHtml) {
         demoHtml = await fs.promises.readFile(htmlPath, "utf8");
         snippets.set(htmlPath, demoHtml);
+      }
+      if (!demojs) {
+        demojs = await fs.promises.readFile(jsPath, "utf8");
+        snippets.set(jsPath, demojs);
       }
       if (req.query["codepen"]) {
         const json = await makePen(basePath, demoHtml);
@@ -55,10 +62,10 @@ app.get("*", async (req: Request, res: Response) => {
         snippets.set(cssPath, demoCss);
       }
 
-      res.send(renderIndexHtml(demoHtml, demoCss, !req.query["nav"], req.originalUrl));
+      res.send(renderIndexHtml(demoHtml, demoCss, !req.query["nav"], req.originalUrl, demojs));
     } catch (err) {
       console.log(err);
-      res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, "", true, undefined));
+      res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, true, undefined, undefined));
     }
 });
 
@@ -66,25 +73,30 @@ app.listen(port, () => {
   console.log(`Example app listening at http://${host}:${port}`);
 });
 
-const renderIndexHtml = (html: string, css: string, showNav: boolean, url: string) => {
-  const codePenLink = `http://${host}:${port}${url}?codepen=1`;
-  const links = url ? `<div>
-  <a href="https://jsfiddle.net/gh/get/library/pure/ABTSoftware/SciChart.JS.Examples/tree/master/Documentation/src${url}" target="_blank">Edit in jsFiddle</a></br>
-  <a href="${codePenLink}" target="_blank">Edit in CodePen</a>
-  </div>` : "";
-  const iframe = url === undefined ? "<p>Please select an example</p>" :
-      `<iframe style="width: 800px; height: 600px;" src="${url + `?nav=0`}"></iframe>`;
-  const body = showNav ? `
-  <div style="display: flex">
-    <div style="flex-basis: 100px; border: 1;">
-      ${navHtml}
-    </div>
-    <div>      
-      ${iframe}        
-      ${links}
-    </div>
-  </div>` : 
-  `<div style="width: 100%; height: 100vh;">${html}</div>`;
+const renderIndexHtml = (html: string, css: string, showNav: boolean, url: string, code: string) => {
+  let body = "";
+  if (showNav) {
+    const codePenLink = `http://${host}:${port}${url}?codepen=1`;
+    const links = url ? `<div>
+    <a href="https://jsfiddle.net/gh/get/library/pure/ABTSoftware/SciChart.JS.Examples/tree/master/Documentation/src${url}" target="_blank">Edit in jsFiddle</a></br>
+    <a href="${codePenLink}" target="_blank">Edit in CodePen</a>
+    ${getCodeSandBoxForm(html, code)}
+    </div>` : "";
+    const iframe = url === undefined ? "<p>Please select an example</p>" :
+        `<iframe style="width: 800px; height: 600px;" src="${url + `?nav=0`}"></iframe>`;
+    body = `
+    <div style="display: flex">
+      <div style="flex-basis: 100px; border: 1;">
+        ${navHtml}
+      </div>
+      <div>      
+        ${iframe}        
+        ${links}
+      </div>
+    </div>`;
+  } else {
+    body = `<div style="width: 100%; height: 100vh;">${html}</div>`;
+  }
   return `
   <html lang="en-us">
     <head>
@@ -105,6 +117,80 @@ const renderIndexHtml = (html: string, css: string, showNav: boolean, url: strin
     </body>
 </html>
   `
+}
+
+const getCodeSandBoxForm = (demoHtml: string, code: string) => {
+  const parameters = getParameters({
+    files: {
+      "package.json": {
+        // @ts-ignore
+        content: {
+            "name": "SciChart.JS Documentation Snippet",
+            "version": "1.0.0",
+            "main": "index.html",
+            "scripts": {
+              "start": "parcel index.html --open",
+              "build": "parcel build index.html"
+            },
+            "dependencies": {
+              "parcel-bundler": "^1.6.1",
+              "scichart": "3.0.301"
+            },
+            "devDependencies": {
+              "@babel/core": "7.2.0",
+              "typescript": "4.4.4"
+            },
+            "resolutions": {
+              "@babel/preset-env": "7.13.8"
+            }
+        }
+      },
+      "src/index.ts": {
+        content: `import * as SciChart from "scichart";
+SciChart.SciChartSurface.useWasmFromCDN()
+` + code,
+        isBinary: false
+      },
+      "index.html": {
+        content:  `<html lang="en-us">
+  <head>
+      <meta charset="utf-8" />
+      <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+      <title>SciChart.js Documentation Example</title>
+      <script async type="text/javascript" src="src/index.ts" defer></script>
+  </head>
+  <body>
+    ${demoHtml}  
+  </body>
+</html>
+        `,
+        isBinary: false
+      },
+      "tsconfig.json": {
+        content: `{
+  "compilerOptions": {
+    "strict": true,
+    "module": "commonjs",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "rootDir": "src",
+    "moduleResolution": "node"
+  }
+}`,
+      isBinary: false
+      }
+    }
+  });
+  return `<form action="https://codesandbox.io/api/v1/sandboxes/define" method="POST" target="_blank">
+  <input type="hidden" name="parameters" value="${parameters}" />
+  <input type="submit" value="Open in sandbox" />
+</form>`
 }
 
 const renderCodePenRedirect = (json: any) => {

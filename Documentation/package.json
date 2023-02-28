@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "codesandbox": "^2.2.3",
     "express": "^4.17.1",
     "scichart": "^3.0.301"
   },
