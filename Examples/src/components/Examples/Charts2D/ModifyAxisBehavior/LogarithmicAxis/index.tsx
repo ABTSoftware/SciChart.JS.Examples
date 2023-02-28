@@ -1,26 +1,28 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { LogarithmicAxis } from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
-import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
-import { appTheme } from "../../../theme";
-import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {appTheme} from "../../../theme";
 import classes from "../../../Examples.module.scss";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import { AxisBase2D } from "scichart/Charting/Visuals/Axis/AxisBase2D";
-import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { EHorizontalAnchorPoint } from "scichart/types/AnchorPoint";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {Button} from "@material-ui/core";
+import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
 import {makeStyles} from "@material-ui/core/styles";
+import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
+import {
+    AxisBase2D,
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    ENumericFormat,
+    EllipsePointMarker,
+    FastLineRenderableSeries,
+    LegendModifier,
+    LogarithmicAxis,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    RubberBandXyZoomModifier,
+    SciChartSurface,
+    SweepAnimation,
+    TextAnnotation,
+    XyDataSeries,
+    ZoomExtentsModifier
+} from "scichart";
+
 const divElementId = "chart1";
 
 const Y_AXIS_LINEAR_ID = "Y_AXIS_LINEAR_ID";
@@ -28,7 +30,7 @@ const X_AXIS_LINEAR_ID = "X_AXIS_LINEAR_ID";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: {
             ...appTheme.SciChartJsTheme,
             majorGridLineBrush: appTheme.MutedSkyBlue + "55",
@@ -92,7 +94,7 @@ const drawExample = async () => {
                 fill: appTheme.VividSkyBlue,
                 strokeThickness: 0
             }),
-            animation: new SweepAnimation({ duration: 800, delay: 0 })
+            animation: new SweepAnimation({duration: 800, delay: 0})
         })
     );
 
@@ -111,7 +113,7 @@ const drawExample = async () => {
                 fill: appTheme.VividPink,
                 strokeThickness: 0
             }),
-            animation: new SweepAnimation({ duration: 800, delay: 0 })
+            animation: new SweepAnimation({duration: 800, delay: 0})
         })
     );
 
@@ -130,7 +132,7 @@ const drawExample = async () => {
                 fill: appTheme.VividOrange,
                 strokeThickness: 0
             }),
-            animation: new SweepAnimation({ duration: 800, delay: 0 })
+            animation: new SweepAnimation({duration: 800, delay: 0})
         })
     );
 
@@ -139,7 +141,7 @@ const drawExample = async () => {
         new RubberBandXyZoomModifier(),
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier(),
-        new LegendModifier({ showCheckboxes: false })
+        new LegendModifier({showCheckboxes: false})
     );
 
     // Add title annotation
@@ -277,13 +279,13 @@ export default function LogarithmicAxisExample() {
                         color="primary"
                         aria-label="small outlined button group"
                     >
-                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
+                        <ToggleButton value={0} style={{color: appTheme.ForegroundColor}}>
                             Logarithmic X &amp; Y Axis
                         </ToggleButton>
-                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
+                        <ToggleButton value={1} style={{color: appTheme.ForegroundColor}}>
                             Log X Axis, Linear Y Axis
                         </ToggleButton>
-                        <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>
+                        <ToggleButton value={2} style={{color: appTheme.ForegroundColor}}>
                             Linear X &amp; Y Axis
                         </ToggleButton>
                     </ToggleButtonGroup>

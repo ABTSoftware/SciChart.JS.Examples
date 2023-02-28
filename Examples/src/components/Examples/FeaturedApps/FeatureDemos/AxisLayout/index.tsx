@@ -1,43 +1,16 @@
-import { colors } from "@material-ui/core";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragModifier";
-import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
-import { EInnerAxisPlacementCoordinateMode } from "scichart/Charting/LayoutManager/EInnerAxisPlacementCoordinateMode";
-import {
-    EFillPaletteMode,
-    EStrokePaletteMode,
-    IFillPaletteProvider,
-    IStrokePaletteProvider
-} from "scichart/Charting/Model/IPaletteProvider";
-import { IPointMetadata } from "scichart/Charting/Model/IPointMetadata";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
-import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { DateTimeNumericAxis } from "scichart/Charting/Visuals/Axis/DateTimeNumericAxis";
-import { TextLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/TextLabelProvider";
-import { LogarithmicAxis } from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
-import { INumericAxisOptions, NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { ShadowEffect } from "scichart/Charting/Visuals/RenderableSeries/ShadowEffect";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { Point } from "scichart/Core/Point";
-import { Thickness } from "scichart/Core/Thickness";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { ELabelAlignment } from "scichart/types/LabelAlignment";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import { RightAlignedOuterVerticallyStackedAxisLayoutStrategy } from "scichart/Charting/LayoutManager/RightAlignedOuterVerticallyStackedAxisLayoutStrategy"
 import classes from "../../../Examples.module.scss";
 import { appTheme } from "../../../theme";
+
+import {
+    EAutoRange,
+    EAxisAlignment,
+    EInnerAxisPlacementCoordinateMode, ELabelAlignment, FastLineRenderableSeries,
+    INumericAxisOptions, NumberRange,
+    NumericAxis,
+    SciChartSurface, XAxisDragModifier, XyDataSeries, YAxisDragModifier, ZoomPanModifier,
+    RightAlignedOuterVerticallyStackedAxisLayoutStrategy
+} from "scichart";
 
 const divElementId = "chart";
 
@@ -59,7 +32,7 @@ const drawExample = async () => {
             color: "white"
         },
         axisBorder: {
-            border: 2, 
+            border: 2,
             color: "white"
         },
         labelStyle: {
@@ -204,7 +177,7 @@ const drawExample = async () => {
 
         const dataSeries = new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true });
         for (let i = 0; i < 100; i++) {
-            let y = Math.sin(i * 0.1) * i + 50;
+            const y = Math.sin(i * 0.1) * i + 50;
 
             dataSeries.append(i, y);
         }
@@ -247,9 +220,6 @@ const drawExample = async () => {
         (horizontalAxisPosition - yAxis1.visibleRange.max) * series4ScaleFactor,
         (horizontalAxisPosition - yAxis1.visibleRange.min) * series4ScaleFactor
     );
-
-    xAxis3;
-    yAxis2;
 
     xAxis2.visibleRangeChanged.subscribe(data => {
         xAxis3.visibleRange = data.visibleRange;

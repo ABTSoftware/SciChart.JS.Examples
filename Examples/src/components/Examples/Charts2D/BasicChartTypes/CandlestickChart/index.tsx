@@ -1,36 +1,39 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
-import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { DateTimeNumericAxis } from "scichart/Charting/Visuals/Axis/DateTimeNumericAxis";
+import {
+    SciChartSurface,
+    NumberRange,
+    NumericAxis,
+    OhlcDataSeries,
+    FastCandlestickRenderableSeries,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    MouseWheelZoomModifier,
+    ENumericFormat,
+    DateTimeNumericAxis,
+    EAutoRange,
+    FastLineRenderableSeries,
+    XyMovingAverageFilter,
+    IDeletable,
+    SciChartOverview,
+    CursorModifier,
+    CursorTooltipSvgAnnotation,
+    SeriesInfo,
+    EDataSeriesType,
+    ESeriesType,
+    IRenderableSeries,
+    FastMountainRenderableSeries,
+    GradientParams,
+    Point,
+    OhlcSeriesInfo,
+    FastColumnRenderableSeries,
+    XyDataSeries,
+    EFillPaletteMode,
+    IFillPaletteProvider,
+    IPointMetadata,
+    parseColorToUIntArgb,
+    FastOhlcRenderableSeries
+} from "scichart";
 import { simpleBinanceRestClient } from "./data/binanceRestClient";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyMovingAverageFilter } from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
-import { IDeletable } from "scichart/Core/IDeletable";
-import { SciChartOverview } from "scichart/Charting/Visuals/SciChartOverview";
-import { CursorModifier } from "scichart/Charting/ChartModifiers/CursorModifier";
-import { CursorTooltipSvgAnnotation } from "scichart/Charting/Visuals/Annotations/CursorTooltipSvgAnnotation";
-import { SeriesInfo } from "scichart/Charting/Model/ChartData/SeriesInfo";
-import { EDataSeriesType } from "scichart/Charting/Model/IDataSeries";
-import { ESeriesType } from "scichart/types/SeriesType";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import { GradientParams } from "scichart/Core/GradientParams";
-import { Point } from "scichart/Core/Point";
-import { OhlcSeriesInfo } from "scichart/Charting/Model/ChartData/OhlcSeriesInfo";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { EFillPaletteMode, IFillPaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
-import { IPointMetadata } from "scichart/Charting/Model/IPointMetadata";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import { FastOhlcRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastOhlcRenderableSeries";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { appTheme } from "../../../theme";
 import classes from "../../../../Examples/Examples.module.scss";

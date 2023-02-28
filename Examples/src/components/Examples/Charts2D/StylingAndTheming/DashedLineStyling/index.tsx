@@ -1,22 +1,25 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { TSciChart } from "scichart/types/TSciChart";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import { GradientParams } from "scichart/Core/GradientParams";
-import { Point } from "scichart/Core/Point";
-import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
-import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
+import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
+
+import {
+    ENumericFormat,
+    FastBandRenderableSeries,
+    FastLineRenderableSeries,
+    FastMountainRenderableSeries,
+    GradientParams,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    NumberRange,
+    Point,
+    SciChartSurface,
+    XyDataSeries,
+    XyyDataSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
+    TSciChart
+} from "scichart";
 
 // tslint:disable:no-empty
 // tslint:disable:max-classes-per-file
@@ -24,10 +27,13 @@ import {appTheme} from "../../../theme";
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const {
+        sciChartSurface,
+        wasmContext
+    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     // Create XAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Decimal, labelPrecision: 2 }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {labelFormat: ENumericFormat.Decimal, labelPrecision: 2}));
 
     // Create YAxis
     sciChartSurface.yAxes.add(
@@ -41,8 +47,8 @@ const drawExample = async () => {
         new FastMountainRenderableSeries(wasmContext, {
             stroke: "SteelBlue",
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: appTheme.VividSkyBlue + "77", offset: 0 },
-                { color: "Transparent", offset: 0.5 }
+                {color: appTheme.VividSkyBlue + "77", offset: 0},
+                {color: "Transparent", offset: 0.5}
             ]),
             strokeThickness: 3,
             dataSeries: createLineData(wasmContext, 2),
@@ -54,7 +60,7 @@ const drawExample = async () => {
     // Create a line series with a dotted line
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
-            stroke:appTheme.VividSkyBlue,
+            stroke: appTheme.VividSkyBlue,
             strokeThickness: 2,
             dataSeries: createLineData(wasmContext, 1),
             // Strokedash array defines the stroke dash. [5,5] means draw for 5pts, gap for 5pts
@@ -94,7 +100,7 @@ const drawExample = async () => {
 
     sciChartSurface.zoomExtents();
 
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 // Creates some dummy data and appends into an XyDataSeries for the example
@@ -129,5 +135,5 @@ export default function DashedLineStyling() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

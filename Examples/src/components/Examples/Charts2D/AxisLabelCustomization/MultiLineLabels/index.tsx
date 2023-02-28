@@ -1,27 +1,27 @@
 import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
 import * as React from "react";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {TextLabelProvider} from "scichart/Charting/Visuals/Axis/LabelProvider/TextLabelProvider";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {Thickness} from "scichart/Core/Thickness";
-import {EAutoRange} from "scichart/types/AutoRange";
-import {ELabelAlignment} from "scichart/types/LabelAlignment";
+import {
+    XyDataSeries,
+    TextLabelProvider,
+    NumericAxis,
+    FastColumnRenderableSeries,
+    SciChartSurface,
+    Thickness,
+    EAutoRange,
+    ELabelAlignment,
+    WaveAnimation,
+    NumberRange,
+    PaletteFactory,
+    Point,
+    GradientParams,
+    EHorizontalTextPosition,
+    EVerticalTextPosition,
+    TextAnnotation,
+    EHorizontalAnchorPoint,
+    ECoordinateMode
+} from "scichart";
 import classes from "../../../Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {PaletteFactory} from "scichart/Charting/Model/PaletteFactory";
-import {Point} from "scichart/Core/Point";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {EHorizontalTextPosition, EVerticalTextPosition} from "scichart/types/TextPosition";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 
 const divElementId = "chart";
 

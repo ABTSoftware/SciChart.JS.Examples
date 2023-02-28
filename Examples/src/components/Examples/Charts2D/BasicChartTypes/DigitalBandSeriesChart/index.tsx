@@ -1,13 +1,15 @@
 import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
+import {
+    MouseWheelZoomModifier,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
+    XyyDataSeries,
+    NumericAxis,
+    FastBandRenderableSeries,
+    SciChartSurface,
+    NumberRange,
+    SweepAnimation
+} from "scichart";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
 
@@ -15,10 +17,13 @@ const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const {
+        wasmContext,
+        sciChartSurface
+    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     // Create an XAxis and YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis" }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {axisTitle: "X Axis"}));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.4, 0.4),
             axisTitle: "Y Axis",
@@ -41,14 +46,14 @@ const drawExample = async () => {
     // Create the band series and add to the chart
     // The bandseries requires a special dataseries type called XyyDataSeries with X,Y and Y1 values
     sciChartSurface.renderableSeries.add(new FastBandRenderableSeries(wasmContext, {
-        dataSeries: new XyyDataSeries(wasmContext, { xValues, yValues, y1Values }),
+        dataSeries: new XyyDataSeries(wasmContext, {xValues, yValues, y1Values}),
         strokeThickness: 3,
         fill: appTheme.VividOrange + "33",
         fillY1: appTheme.VividSkyBlue + "33",
         stroke: appTheme.VividOrange,
         strokeY1: appTheme.VividSkyBlue,
         isDigitalLine: true,
-        animation: new SweepAnimation({ duration: 800 })
+        animation: new SweepAnimation({duration: 800})
     }));
 
     // Optional: Add some interactivity modifiers
@@ -57,7 +62,7 @@ const drawExample = async () => {
         new ZoomPanModifier(),
         new MouseWheelZoomModifier());
 
-    return { wasmContext, sciChartSurface };
+    return {wasmContext, sciChartSurface};
 };
 
 // React component needed as our examples app is react.
@@ -73,5 +78,5 @@ export default function DigitalBandSeriesChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

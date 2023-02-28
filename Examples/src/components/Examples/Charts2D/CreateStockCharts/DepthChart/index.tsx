@@ -1,32 +1,29 @@
 import * as React from "react";
-import { appTheme } from "../../../theme";
+import {appTheme} from "../../../theme";
 import classes from "../../../../Examples/Examples.module.scss";
-import { SciChartSurface } from "scichart";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
-import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import { GradientParams } from "scichart/Core/GradientParams";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { Point } from "scichart/Core/Point";
-import { CursorModifier } from "scichart/Charting/ChartModifiers/CursorModifier";
-import { DepthCursorModifier } from "./DepthCursorModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { EXyDirection } from "scichart/types/XyDirection";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { VerticalLineAnnotation } from "scichart/Charting/Visuals/Annotations/VerticalLineAnnotation";
-import { ELabelPlacement } from "scichart/types/LabelPlacement";
+import {
+    SciChartSurface,
+    MouseWheelZoomModifier,
+    ZoomExtentsModifier,
+    XyDataSeries,
+    NumericAxis,
+    FastMountainRenderableSeries,
+    NumberRange,
+    EAutoRange,
+    EXyDirection,
+    EAxisAlignment
+} from "scichart";
+import {DepthCursorModifier} from "./DepthCursorModifier";
 
 const divElementId = "chart";
 
 // SCICHART EXAMPLE
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const {
+        wasmContext,
+        sciChartSurface
+    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     const xAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Top,
@@ -44,50 +41,50 @@ const drawExample = async () => {
 
     const AAPL_data = {
         buy: [
-          { price: 132.79743, volume: 339 },
-          { price: 132.79742, volume: 713 },
-          { price: 132.79741, volume: 421 },
-          { price: 132.7974, volume: 853 },
-          { price: 132.79739, volume: 152 },
-          { price: 132.79738, volume: 243 },
-          { price: 132.79737, volume: 296 },
-          { price: 132.79736, volume: 123 },
-          { price: 132.79735, volume: 158 },
-          { price: 132.79734, volume: 238 },
-          { price: 132.79733, volume: 164 },
-          { price: 132.79732, volume: 273 },
-          { price: 132.79731, volume: 35 },
-          { price: 132.79729, volume: 30 },
-          { price: 132.79726, volume: 29 },
-          { price: 132.79722, volume: 484 },
-          { price: 132.79721, volume: 458 },
-          { price: 132.7972, volume: 244 },
-          { price: 132.79719, volume: 10 },
-          { price: 132.79698, volume: 124 }
+            {price: 132.79743, volume: 339},
+            {price: 132.79742, volume: 713},
+            {price: 132.79741, volume: 421},
+            {price: 132.7974, volume: 853},
+            {price: 132.79739, volume: 152},
+            {price: 132.79738, volume: 243},
+            {price: 132.79737, volume: 296},
+            {price: 132.79736, volume: 123},
+            {price: 132.79735, volume: 158},
+            {price: 132.79734, volume: 238},
+            {price: 132.79733, volume: 164},
+            {price: 132.79732, volume: 273},
+            {price: 132.79731, volume: 35},
+            {price: 132.79729, volume: 30},
+            {price: 132.79726, volume: 29},
+            {price: 132.79722, volume: 484},
+            {price: 132.79721, volume: 458},
+            {price: 132.7972, volume: 244},
+            {price: 132.79719, volume: 10},
+            {price: 132.79698, volume: 124}
         ],
         sell: [
-          { price: 132.79744, volume: 847 },
-          { price: 132.79745, volume: 2412 },
-          { price: 132.79746, volume: 635 },
-          { price: 132.79747, volume: 323 },
-          { price: 132.79748, volume: 828 },
-          { price: 132.79749, volume: 322 },
-          { price: 132.7975, volume: 268 },
-          { price: 132.79751, volume: 92 },
-          { price: 132.79752, volume: 249 },
-          { price: 132.79753, volume: 189 },
-          { price: 132.79754, volume: 179 },
-          { price: 132.79755, volume: 122 },
-          { price: 132.79756, volume: 28 },
-          { price: 132.7976, volume: 114 },
-          { price: 132.79764, volume: 27 },
-          { price: 132.79767, volume: 10 },
-          { price: 132.79772, volume: 31 },
-          { price: 132.79785, volume: 484 },
-          { price: 132.79786, volume: 364 },
-          { price: 132.79787, volume: 244 }
+            {price: 132.79744, volume: 847},
+            {price: 132.79745, volume: 2412},
+            {price: 132.79746, volume: 635},
+            {price: 132.79747, volume: 323},
+            {price: 132.79748, volume: 828},
+            {price: 132.79749, volume: 322},
+            {price: 132.7975, volume: 268},
+            {price: 132.79751, volume: 92},
+            {price: 132.79752, volume: 249},
+            {price: 132.79753, volume: 189},
+            {price: 132.79754, volume: 179},
+            {price: 132.79755, volume: 122},
+            {price: 132.79756, volume: 28},
+            {price: 132.7976, volume: 114},
+            {price: 132.79764, volume: 27},
+            {price: 132.79767, volume: 10},
+            {price: 132.79772, volume: 31},
+            {price: 132.79785, volume: 484},
+            {price: 132.79786, volume: 364},
+            {price: 132.79787, volume: 244}
         ]
-      };
+    };
 
     const buyValues: number[] = [];
     let totalVol = 0;
@@ -103,14 +100,14 @@ const drawExample = async () => {
     }
 
     const buySeries = new FastMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: AAPL_data.buy.map(v => v.price), yValues: buyValues}),
+        dataSeries: new XyDataSeries(wasmContext, {xValues: AAPL_data.buy.map(v => v.price), yValues: buyValues}),
         stroke: "green",
         fill: "00890033",
         strokeThickness: 2,
         isDigitalLine: true,
     });
     const sellSeries = new FastMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: AAPL_data.sell.map(v => v.price), yValues: sellValues}),
+        dataSeries: new XyDataSeries(wasmContext, {xValues: AAPL_data.sell.map(v => v.price), yValues: sellValues}),
         stroke: "red",
         fill: "89000033",
         strokeThickness: 2,
@@ -141,24 +138,24 @@ const drawExample = async () => {
             }
             lastY = y;
         }
-        return ticks.sort((a,b) => a - b);
+        return ticks.sort((a, b) => a - b);
     };
 
-    const depthModifier = new DepthCursorModifier({ 
-        buySeries, sellSeries, 
-        crosshairStrokeDashArray: [3,2], crosshairStrokeThickness: 3,
+    const depthModifier = new DepthCursorModifier({
+        buySeries, sellSeries,
+        crosshairStrokeDashArray: [3, 2], crosshairStrokeThickness: 3,
         axisLabelFill: "transparent"
     });
     depthModifier.highlightColor = appTheme.DarkIndigo;
     // Optional: Add some interactivity to the chart
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(),
-        new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection}),
+        new MouseWheelZoomModifier({xyDirection: EXyDirection.XDirection}),
         depthModifier);
 
     sciChartSurface.zoomExtents();
     xAxis.visibleRangeLimit = xAxis.visibleRange;
     yAxis.visibleRangeLimit = yAxis.visibleRange;
-    return { sciChartSurface };
+    return {sciChartSurface};
 }
 
 

@@ -1,39 +1,39 @@
 import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
-import { ShadowEffect } from "scichart/Charting/Visuals/RenderableSeries/ShadowEffect";
-import { Point } from "scichart/Core/Point";
 import classes from "../../../../Examples/Examples.module.scss";
-import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
-import { appTheme } from "../../../theme";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import {appTheme} from "../../../theme";
+import {
+    MouseWheelZoomModifier,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
+    XyDataSeries,
+    NumericAxis,
+    FastLineRenderableSeries,
+    SciChartSurface,
+    NumberRange,
+    ScaleAnimation,
+    EllipsePointMarker
+} from "scichart";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
     // Create the X,Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.05, 0.05)}));
 
     // Create some xValues, yValues arrays
-    const { xValues, yValues } = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(25);
+    const {xValues, yValues} = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(25);
 
     // Create and add a line series to the chart
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+            dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
             stroke: appTheme.VividPink,
             strokeThickness: 3,
             // Flag isDigitalLine turns a normal line series into a digital line series
@@ -45,7 +45,7 @@ const drawExample = async () => {
                 stroke: appTheme.PaleSkyBlue,
                 strokeThickness: 2
             }),
-            animation: new ScaleAnimation({ zeroLine: -1, duration: 500, fadeEffect: true })
+            animation: new ScaleAnimation({zeroLine: -1, duration: 500, fadeEffect: true})
         })
     );
 
@@ -57,7 +57,7 @@ const drawExample = async () => {
     // Zoom to fit
     sciChartSurface.zoomExtents();
 
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 // React component needed as our examples app is react.
@@ -73,5 +73,5 @@ export default function DigitalLineChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

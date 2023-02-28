@@ -1,22 +1,18 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {TrianglePointMarker} from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import classes from "../../../../Examples/Examples.module.scss";
-import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 import {appTheme} from "../../../theme";
-import { LogarithmicAxis } from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { IXyTextDataSeriesOptions, XyTextDataSeries } from "scichart/Charting/Model/XyTextDataSeries";
-import { FastTextRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastTextRenderableSeries";
-import { xValues } from "../StackedMountainChart/data/stackedMountainChartData";
+import {
+    SciChartSurface,
+    NumericAxis,
+    NumberRange,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    MouseWheelZoomModifier,
+    LogarithmicAxis,
+    ENumericFormat,
+    XyTextDataSeries,
+    FastTextRenderableSeries
+} from "scichart";
 
 // tslint:disable:no-empty
 
@@ -24,7 +20,7 @@ const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
     const xAxis = new LogarithmicAxis(wasmContext, {
@@ -46,7 +42,7 @@ const drawExample = async () => {
     // data is { xValues: number[], yValues: number[], textValues: string[] }
     const data: { xValues: number[], yValues: number[], textValues: string[] } = await fetch("/api/tweetData").then(r => r.json());
     const series = new FastTextRenderableSeries(wasmContext, {
-        dataLabels: { style: { fontFamily: "arial", fontSize: 10 }, calculateTextBounds: false },
+        dataLabels: {style: {fontFamily: "arial", fontSize: 10}, calculateTextBounds: false},
         dataSeries: new XyTextDataSeries(wasmContext, data)
     });
     sciChartSurface.renderableSeries.add(series);
@@ -57,7 +53,7 @@ const drawExample = async () => {
         new MouseWheelZoomModifier()
     );
 
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 // React component needed as our examples app is react.
@@ -73,5 +69,5 @@ export default function TextChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

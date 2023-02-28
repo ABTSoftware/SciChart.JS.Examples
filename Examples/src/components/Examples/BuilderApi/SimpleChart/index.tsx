@@ -1,15 +1,18 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import {
+    SciChartSurface,
+    ESeriesType,
+    EAxisType,
+    EAnimationType,
+    NumberRange,
+    EAnnotationType,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    ECoordinateMode
+} from "scichart";
 import {chartBuilder} from "scichart/Builder/chartBuilder";
 import classes from "../../../Examples/Examples.module.scss";
-import {ESeriesType} from "scichart/types/SeriesType";
 import {appTheme} from "../../theme";
-import {EAxisType} from "scichart/types/AxisType";
-import {EAnimationType} from "scichart/types/AnimationType";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {EAnnotationType} from "scichart/Charting/Visuals/Annotations/IAnnotation";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 
 const divElementId = "chart";
 
@@ -19,11 +22,11 @@ const drawExample = async () => {
     // with javascript-objects or JSON
     return await chartBuilder.build2DChart(divElementId, {
         // Set theme
-        surface: { theme: appTheme.SciChartJsTheme },
+        surface: {theme: appTheme.SciChartJsTheme},
         // Add xAxis
-        xAxes: { type: EAxisType.NumericAxis, options: { growBy: new NumberRange(0.1, 0.1)}},
+        xAxes: {type: EAxisType.NumericAxis, options: {growBy: new NumberRange(0.1, 0.1)}},
         // Add yAxis
-        yAxes: { type: EAxisType.NumericAxis, options: { growBy: new NumberRange(0.1, 0.1)}},
+        yAxes: {type: EAxisType.NumericAxis, options: {growBy: new NumberRange(0.1, 0.1)}},
         // Add series. More than one can be set in an array
         series: [{
             // each series has type, options in the builder-API
@@ -32,27 +35,29 @@ const drawExample = async () => {
                 strokeThickness: 5,
                 interpolationPoints: 20,
                 stroke: appTheme.VividTeal,
-                animation: { type: EAnimationType.Sweep, options: { duration: 500 } } },
-                xyData: { xValues: [1, 3, 4, 7, 9], yValues: [10, 6, 7, 2, 16],
+                animation: {type: EAnimationType.Sweep, options: {duration: 500}}
+            },
+            xyData: {
+                xValues: [1, 3, 4, 7, 9], yValues: [10, 6, 7, 2, 16],
             }
         }],
         // Add annotations
         annotations: [{
-                type: EAnnotationType.SVGTextAnnotation,
-                options: {
-                    text: "Builder API Demo",
-                    x1: 0.5,
-                    y1: 0.5,
-                    opacity: 0.33,
-                    yCoordShift: -26,
-                    xCoordinateMode: ECoordinateMode.Relative,
-                    yCoordinateMode: ECoordinateMode.Relative,
-                    horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-                    verticalAnchorPoint: EVerticalAnchorPoint.Center,
-                    fontSize: 42,
-                    fontWeight: "Bold"
-                }
-            },
+            type: EAnnotationType.SVGTextAnnotation,
+            options: {
+                text: "Builder API Demo",
+                x1: 0.5,
+                y1: 0.5,
+                opacity: 0.33,
+                yCoordShift: -26,
+                xCoordinateMode: ECoordinateMode.Relative,
+                yCoordinateMode: ECoordinateMode.Relative,
+                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+                verticalAnchorPoint: EVerticalAnchorPoint.Center,
+                fontSize: 42,
+                fontWeight: "Bold"
+            }
+        },
             {
                 type: EAnnotationType.SVGTextAnnotation,
                 options: {

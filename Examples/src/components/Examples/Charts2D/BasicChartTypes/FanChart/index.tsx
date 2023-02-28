@@ -1,22 +1,22 @@
 import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { getVarianceData } from "./data";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
-import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import { appTheme } from "../../../theme";
-import { SplineLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { SplineBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineBandRenderableSeries";
-
+import {
+    MouseWheelZoomModifier,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
+    XyyDataSeries,
+    NumericAxis,
+    SciChartSurface,
+    XyDataSeries,
+    ENumericFormat,
+    WaveAnimation,
+    SplineLineRenderableSeries,
+    TextAnnotation,
+    EVerticalAnchorPoint,
+    SplineBandRenderableSeries
+} from "scichart";
 // tslint:disable:max-line-length
 
 const divElementId = "chart";

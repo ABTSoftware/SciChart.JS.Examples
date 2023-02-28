@@ -1,27 +1,20 @@
 import * as React from "react";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { SciChartSurface } from "scichart";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+
+import { appTheme } from "../../../theme";
 import classes from "../../../../Examples/Examples.module.scss";
 import { Subject, debounceTime } from "rxjs";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { OverviewRangeSelectionModifier } from "scichart/Charting/ChartModifiers/OverviewRangeSelectionModifier";
-import { XAxisDragModifier } from "scichart/Charting/ChartModifiers/XAxisDragModifier";
-import { YAxisDragModifier } from "scichart/Charting/ChartModifiers/YAxisDragModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { AxisBase2D } from "scichart/Charting/Visuals/Axis/AxisBase2D";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { EXyDirection } from "scichart/types/XyDirection";
-import { easing } from "scichart/Core/Animations/EasingFunctions";
-import { appTheme } from "../../../theme";
-import { EWrapTo, NativeTextAnnotation } from "scichart/Charting/Visuals/Annotations/NativeTextAnnotation";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { SciChartOverview } from "scichart/Charting/Visuals/SciChartOverview";
+
+import {
+    easing,
+    EAutoRange,
+    EAxisAlignment, EHorizontalAnchorPoint, EVerticalAnchorPoint, EWrapTo, EXyDirection,
+    FastLineRenderableSeries, MouseWheelZoomModifier, NativeTextAnnotation,
+    NumberRange,
+    NumericAxis, SciChartOverview,
+    SciChartSurface, XAxisDragModifier,
+    XyDataSeries, YAxisDragModifier, ZoomExtentsModifier, ZoomPanModifier,
+    ECoordinateMode
+} from "scichart";
 
 
 export const divElementId = "chart";

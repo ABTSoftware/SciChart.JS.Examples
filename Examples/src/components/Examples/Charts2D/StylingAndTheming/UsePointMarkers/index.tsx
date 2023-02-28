@@ -1,35 +1,38 @@
 import * as React from "react";
-import {TSciChart} from "scichart/types/TSciChart";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {SquarePointMarker} from "scichart/Charting/Visuals/PointMarkers/SquarePointMarker";
-import {CrossPointMarker} from "scichart/Charting/Visuals/PointMarkers/CrossPointMarker";
-import {SpritePointMarker} from "scichart/Charting/Visuals/PointMarkers/SpritePointMarker";
-import {TrianglePointMarker} from "scichart/Charting/Visuals/PointMarkers/TrianglePointMarker";
-import {createImageAsync} from "scichart/utils/imageUtil";
 import customPointImage from "./img/CustomMarkerImage.png";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
-import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
-import {ELegendOrientation, ELegendPlacement} from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
-
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
+
+import {
+    SciChartSurface,
+    XyDataSeries,
+    NumericAxis,
+    NumberRange,
+    EllipsePointMarker,
+    SquarePointMarker,
+    CrossPointMarker,
+    SpritePointMarker,
+    TrianglePointMarker,
+    createImageAsync,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    MouseWheelZoomModifier,
+    SplineLineRenderableSeries,
+    LegendModifier,
+    ELegendOrientation,
+    ELegendPlacement,
+    TSciChart,
+} from "scichart";
 
 const divElementId = "chart";
 
 function createData(wasmContext: TSciChart) {
     // Create some dataseries
-    const dataSeries1 = new XyDataSeries(wasmContext, { dataSeriesName: "Ellipse Marker" });
-    const dataSeries2 = new XyDataSeries(wasmContext, { dataSeriesName: "Square Marker" });
-    const dataSeries3 = new XyDataSeries(wasmContext, { dataSeriesName: "Triangle Marker" });
-    const dataSeries4 = new XyDataSeries(wasmContext, { dataSeriesName: "Cross Marker" });
-    const dataSeries5 = new XyDataSeries(wasmContext, { dataSeriesName: "Custom Marker" });
+    const dataSeries1 = new XyDataSeries(wasmContext, {dataSeriesName: "Ellipse Marker"});
+    const dataSeries2 = new XyDataSeries(wasmContext, {dataSeriesName: "Square Marker"});
+    const dataSeries3 = new XyDataSeries(wasmContext, {dataSeriesName: "Triangle Marker"});
+    const dataSeries4 = new XyDataSeries(wasmContext, {dataSeriesName: "Cross Marker"});
+    const dataSeries5 = new XyDataSeries(wasmContext, {dataSeriesName: "Custom Marker"});
 
     // Append values
     const dataSize = 30;
@@ -52,14 +55,14 @@ function createData(wasmContext: TSciChart) {
 }
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId,{
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
     const dataSeriesArr = createData(wasmContext);
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)}));
 
     // Add a line series with EllipsePointMarker
     sciChartSurface.renderableSeries.add(
@@ -96,7 +99,7 @@ const drawExample = async () => {
     // Add a scatter series with TrianglePointMarker
     sciChartSurface.renderableSeries.add(
         new SplineLineRenderableSeries(wasmContext, {
-            stroke:  appTheme.VividOrange,
+            stroke: appTheme.VividOrange,
             strokeThickness: 3,
             pointMarker: new TrianglePointMarker(wasmContext, {
                 width: 13,
@@ -149,7 +152,7 @@ const drawExample = async () => {
 
     sciChartSurface.zoomExtents();
 
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 // React component needed as our examples app is react.
@@ -166,5 +169,5 @@ export default function UsePointMarkers() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

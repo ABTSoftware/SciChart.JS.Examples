@@ -1,56 +1,55 @@
 import * as React from "react";
-import {SciChartVerticalGroup} from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
-import {CategoryAxis} from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {SciChartSurface} from "scichart";
-import {EAutoRange} from "scichart/types/AutoRange";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
+import {appTheme} from "../../../theme";
+import classes from "../../../../Examples/Examples.module.scss";
 import {
-    FastCandlestickRenderableSeries
-} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {calcAverageForArray} from "scichart/utils/calcAverage";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {RolloverModifier} from "scichart/Charting/ChartModifiers/RolloverModifier";
-import {FastBandRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
-import {XyyDataSeries} from "scichart/Charting/Model/XyyDataSeries";
-import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import {EXyDirection} from "scichart/types/XyDirection";
-import {
+    SciChartVerticalGroup,
+    CategoryAxis,
+    EAxisAlignment,
+    SciChartSurface,
+    EAutoRange,
+    NumberRange,
+    NumericAxis,
+    OhlcDataSeries,
+    FastCandlestickRenderableSeries,
+    XyDataSeries,
+    calcAverageForArray,
+    FastLineRenderableSeries,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    MouseWheelZoomModifier,
+    RolloverModifier,
+    FastBandRenderableSeries,
+    XyyDataSeries,
+    FastColumnRenderableSeries,
+    EXyDirection,
     EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider,
-    IStrokePaletteProvider
-} from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
+    IStrokePaletteProvider,
+    IRenderableSeries,
+    parseColorToUIntArgb,
+    ENumericFormat,
+    SmartDateLabelProvider,
+    XyMovingAverageFilter,
+    EDataSeriesField,
+    ELabelAlignment,
+    SeriesInfo,
+    EDataSeriesType,
+    OhlcSeriesInfo,
+    RolloverLegendSvgAnnotation,
+    SciChartOverview,
+    ESeriesType,
+    FastMountainRenderableSeries,
+    GradientParams,
+    Point,
+    TextAnnotation,
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    EAnnotationLayer
+} from "scichart";
 import {TWebAssemblyChart} from "scichart/Charting/Visuals/SciChartSurface";
 import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
-import {ENumericFormat} from "scichart/types/NumericFormat";
-import classes from "../../../../Examples/Examples.module.scss";
-import {SmartDateLabelProvider} from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
-import {XyMovingAverageFilter} from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
-import {EDataSeriesField} from "scichart/Charting/Model/Filters/XyFilterBase";
-import {ELabelAlignment} from "scichart/types/LabelAlignment";
-import {appTheme} from "../../../theme";
-import {SeriesInfo} from "scichart/Charting/Model/ChartData/SeriesInfo";
-import {EDataSeriesType} from "scichart/Charting/Model/IDataSeries";
-import {OhlcSeriesInfo} from "scichart/Charting/Model/ChartData/OhlcSeriesInfo";
-import {RolloverLegendSvgAnnotation} from "scichart/Charting/Visuals/Annotations/RolloverLegendSvgAnnotation";
-import {SciChartOverview} from "scichart/Charting/Visuals/SciChartOverview";
-import {ESeriesType} from "scichart/types/SeriesType";
-import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {Point} from "scichart/Core/Point";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
@@ -87,8 +86,8 @@ const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
         return new FastMountainRenderableSeries(defaultSeries.parentSurface.webAssemblyContext2D, {
             dataSeries: defaultSeries.dataSeries,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: appTheme.VividSkyBlue + "77", offset: 0 },
-                { color: "Transparent", offset: 1 }
+                {color: appTheme.VividSkyBlue + "77", offset: 0},
+                {color: "Transparent", offset: 1}
             ]),
             stroke: appTheme.VividSkyBlue
         });
@@ -121,7 +120,7 @@ const drawExample = async () => {
 
     // CHART 1
     const drawPriceChart = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId1, {
+        const {wasmContext, sciChartSurface} = await SciChartSurface.create(divElementId1, {
             theme: appTheme.SciChartJsTheme
         });
 
@@ -238,17 +237,19 @@ const drawExample = async () => {
         sciChartSurface.chartModifiers.add(new ZoomPanModifier());
         sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
         sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "cursorGroup", showTooltip: false,
-            tooltipLegendTemplate: getTooltipLegendTemplate }));
+        sciChartSurface.chartModifiers.add(new RolloverModifier({
+            modifierGroup: "cursorGroup", showTooltip: false,
+            tooltipLegendTemplate: getTooltipLegendTemplate
+        }));
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
 
-        return { wasmContext, sciChartSurface };
+        return {wasmContext, sciChartSurface};
     };
 
     // CHART 2 - MACD
     const drawMacdChart = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId2, {
+        const {wasmContext, sciChartSurface} = await SciChartSurface.create(divElementId2, {
             theme: appTheme.SciChartJsTheme
         });
 
@@ -265,7 +266,7 @@ const drawExample = async () => {
             axisAlignment,
             labelPrecision: 2,
             cursorLabelPrecision: 2,
-            labelStyle: { alignment: ELabelAlignment.Right }
+            labelStyle: {alignment: ELabelAlignment.Right}
         });
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
@@ -309,24 +310,26 @@ const drawExample = async () => {
         });
         sciChartSurface.renderableSeries.add(columnSeries);
 
-        sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "cursorGroup", showTooltip: false,
-            tooltipLegendTemplate: getTooltipLegendTemplate }));
+        sciChartSurface.chartModifiers.add(new ZoomPanModifier({xyDirection: EXyDirection.XDirection}));
+        sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({xyDirection: EXyDirection.XDirection}));
+        sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({xyDirection: EXyDirection.XDirection}));
+        sciChartSurface.chartModifiers.add(new RolloverModifier({
+            modifierGroup: "cursorGroup", showTooltip: false,
+            tooltipLegendTemplate: getTooltipLegendTemplate
+        }));
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
 
-        return { wasmContext, sciChartSurface };
+        return {wasmContext, sciChartSurface};
     };
 
     // CHART 3 - RSI
     const drawRsiChart = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId3, {
+        const {wasmContext, sciChartSurface} = await SciChartSurface.create(divElementId3, {
             theme: appTheme.SciChartJsTheme
         });
 
-        chart3XAxis = new CategoryAxis(wasmContext, { autoRange: EAutoRange.Once });
+        chart3XAxis = new CategoryAxis(wasmContext, {autoRange: EAutoRange.Once});
         chart3XAxis.labelProvider = new SmartDateLabelProvider();
         sciChartSurface.xAxes.add(chart3XAxis);
 
@@ -336,7 +339,7 @@ const drawExample = async () => {
             labelPrecision: 0,
             cursorLabelPrecision: 0,
             axisAlignment,
-            labelStyle: { alignment: ELabelAlignment.Right }
+            labelStyle: {alignment: ELabelAlignment.Right}
         });
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
@@ -361,21 +364,23 @@ const drawExample = async () => {
             rsiArray.push(rsi);
         }
         const rsiRenderableSeries = new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { dataSeriesName: "RSI", xValues: dateValues, yValues: rsiArray }),
+            dataSeries: new XyDataSeries(wasmContext, {dataSeriesName: "RSI", xValues: dateValues, yValues: rsiArray}),
             stroke: appTheme.MutedBlue,
             strokeThickness: 2
         });
         sciChartSurface.renderableSeries.add(rsiRenderableSeries);
 
-        sciChartSurface.chartModifiers.add(new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }));
-        sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "cursorGroup", showTooltip: false,
-            tooltipLegendTemplate: getTooltipLegendTemplate }));
+        sciChartSurface.chartModifiers.add(new ZoomPanModifier({xyDirection: EXyDirection.XDirection}));
+        sciChartSurface.chartModifiers.add(new ZoomExtentsModifier({xyDirection: EXyDirection.XDirection}));
+        sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier({xyDirection: EXyDirection.XDirection}));
+        sciChartSurface.chartModifiers.add(new RolloverModifier({
+            modifierGroup: "cursorGroup", showTooltip: false,
+            tooltipLegendTemplate: getTooltipLegendTemplate
+        }));
 
         verticalGroup.addSurfaceToGroup(sciChartSurface);
 
-        return { wasmContext, sciChartSurface };
+        return {wasmContext, sciChartSurface};
     };
 
     // DRAW CHARTS
@@ -384,7 +389,7 @@ const drawExample = async () => {
     // DRAW OVERVIEW
     // Must be done after main chart creation
     const mainPriceChart = res[0].sciChartSurface;
-    const overview =  await SciChartOverview.create(mainPriceChart, divOverviewId, {
+    const overview = await SciChartOverview.create(mainPriceChart, divOverviewId, {
         theme: appTheme.SciChartJsTheme,
         transformRenderableSeries: getOverviewSeries
     });
@@ -409,7 +414,7 @@ const drawExample = async () => {
     const twoHundredDaysSciChartFormat = twoHundredDays / 1000; // SciChart expects date.getTime() / 1000
     chart1XAxis.visibleRange = new NumberRange(chart1XAxis.visibleRange.max - twoHundredDaysSciChartFormat, chart1XAxis.visibleRange.max);
 
-    return { res, overview };
+    return {res, overview};
 };
 
 /**
@@ -429,9 +434,11 @@ class VolumePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvi
         this.volumnDownArgb = parseColorToUIntArgb(volumeDownColor);
     }
 
-    onAttached(parentSeries: IRenderableSeries): void { }
+    onAttached(parentSeries: IRenderableSeries): void {
+    }
 
-    onDetached(): void { }
+    onDetached(): void {
+    }
 
     overrideFillArgb(xValue: number, yValue: number, index: number): number {
         const open = this.priceData.getNativeOpenValues().get(index);
@@ -457,9 +464,11 @@ class MacdHistogramPaletteProvider implements IStrokePaletteProvider, IFillPalet
         this.belowZeroArgb = parseColorToUIntArgb(belowZeroColor);
     }
 
-    onAttached(parentSeries: IRenderableSeries): void { }
+    onAttached(parentSeries: IRenderableSeries): void {
+    }
 
-    onDetached(): void { }
+    onDetached(): void {
+    }
 
     overrideFillArgb(xValue: number, yValue: number, index: number): number {
         return yValue >= 0 ? this.aboveZeroArgb : this.belowZeroArgb;
@@ -476,7 +485,7 @@ export default function MultiPaneStockCharts() {
         let allCharts: TWebAssemblyChart[];
         let sciChartOverview: SciChartOverview;
         (async () => {
-            const { res, overview } = await drawExample();
+            const {res, overview} = await drawExample();
             allCharts = res;
             sciChartOverview = overview;
         })();
@@ -489,14 +498,14 @@ export default function MultiPaneStockCharts() {
 
     return (
         <div className={classes.ChartWrapper}>
-            <div style={{display: "flex", flexDirection: "column", height: "100%" }}>
+            <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
                 {/*The panel hosting the price chart*/}
                 <div id={divElementId1} style={{flexBasis: 400, flexGrow: 1, flexShrink: 1}}/>
                 {/*Panels hosting the Macd and RSI Indicator charts*/}
                 <div id={divElementId2} style={{flexBasis: 100, flexGrow: 1, flexShrink: 1}}/>
                 <div id={divElementId3} style={{flexBasis: 100, flexGrow: 1, flexShrink: 1}}/>
                 {/*Panel hosting the overview control*/}
-                <div id={divOverviewId} style={{ flexBasis: "70px" }} />
+                <div id={divOverviewId} style={{flexBasis: "70px"}}/>
             </div>
         </div>
     );

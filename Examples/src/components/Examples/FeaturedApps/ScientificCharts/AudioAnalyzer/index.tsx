@@ -1,43 +1,27 @@
 import * as React from "react";
-import {UniformHeatmapDataSeries} from "scichart/Charting/Model/UniformHeatmapDataSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {HeatmapColorMap} from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
+import classes from "../../../Examples.module.scss";
+
 import {
-    UniformHeatmapRenderableSeries
-} from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {EAutoRange} from "scichart/types/AutoRange";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
+    EAutoRange,
+    EAxisAlignment,
+    FastLineRenderableSeries,
+    HeatmapColorMap,
+    NumericAxis,
+    NumberRange,
+    SciChartSurface,
+    UniformHeatmapDataSeries,
+    UniformHeatmapRenderableSeries,
+    XyDataSeries,
+    EHorizontalAnchorPoint,
+    LogarithmicAxis,
+    ENumericFormat,
+    FastMountainRenderableSeries,
+    EllipsePointMarker, PaletteFactory, GradientParams, EVerticalAnchorPoint, ECoordinateMode, TextAnnotation, Point
+} from "scichart";
+
 import {AudioDataProvider} from "./AudioDataProvider";
 import {Radix2FFT} from "./Radix2FFT";
 import {appTheme} from "../../../theme";
-import {
-    LogarithmicAxis
-} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
-import {ENumericFormat} from "scichart/types/NumericFormat";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {PaletteFactory} from "scichart/Charting/Model/PaletteFactory";
-import {Point} from "scichart/Core/Point";
-import {
-    FastMountainRenderableSeries
-} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import {
-    EllipsePointMarker
-} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import classes from "../../../Examples.module.scss";
-import {
-    TextAnnotation
-} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {
-    ECoordinateMode
-} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {
-    EHorizontalAnchorPoint,
-    EVerticalAnchorPoint
-} from "scichart/types/AnchorPoint";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";

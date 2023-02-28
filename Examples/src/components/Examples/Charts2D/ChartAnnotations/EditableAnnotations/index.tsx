@@ -1,23 +1,28 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
-import { HorizontalLineAnnotation } from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
-import { VerticalLineAnnotation } from "scichart/Charting/Visuals/Annotations/VerticalLineAnnotation";
-import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { ELabelPlacement } from "scichart/types/LabelPlacement";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
 import SciChartImage from "./scichart-logo-white.jpg";
-import { EWrapTo, NativeTextAnnotation } from "scichart/Charting/Visuals/Annotations/NativeTextAnnotation";
+import {
+    SciChartSurface,
+    NumericAxis,
+    NumberRange,
+    ZoomPanModifier,
+    MouseWheelZoomModifier,
+    LineAnnotation,
+    HorizontalLineAnnotation,
+    VerticalLineAnnotation,
+    BoxAnnotation,
+    CustomAnnotation,
+    TextAnnotation,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    ECoordinateMode,
+    ELabelPlacement,
+    ZoomExtentsModifier,
+    EWrapTo,
+    NativeTextAnnotation
+} from "scichart";
+
 
 const divElementId = "chart";
 
@@ -34,7 +39,7 @@ const getImageAnnotation = (x1: number, y1: number, image: any, width: number, h
 };
 
 export const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -48,8 +53,14 @@ export const drawExample = async () => {
 
     const textColor = appTheme.ForegroundColor;
 
-    const text1 = new TextAnnotation({ text: "Editable Chart Annotations", fontSize: 24, x1: 0.3, y1: 9.7, textColor });
-    const text2 = new TextAnnotation({ text: "Click, Drag and Resize annotations with the mouse", fontSize: 18, x1: 0.5, y1: 9, textColor });
+    const text1 = new TextAnnotation({text: "Editable Chart Annotations", fontSize: 24, x1: 0.3, y1: 9.7, textColor});
+    const text2 = new TextAnnotation({
+        text: "Click, Drag and Resize annotations with the mouse",
+        fontSize: 18,
+        x1: 0.5,
+        y1: 9,
+        textColor
+    });
 
     const horizontalLineAnnotation1 = new HorizontalLineAnnotation({
         stroke: appTheme.VividOrange,
@@ -187,7 +198,7 @@ export const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 export default function EditableAnnotaions() {
@@ -202,5 +213,5 @@ export default function EditableAnnotaions() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

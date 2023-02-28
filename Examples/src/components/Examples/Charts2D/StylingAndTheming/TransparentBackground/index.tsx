@@ -1,23 +1,26 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import classes from "../../../../Examples/Examples.module.scss";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import BackgroundImage from "./BackgroundGradient.jpg";
-import {SciChartJSLightTheme} from "scichart/Charting/Themes/SciChartJSLightTheme";
-import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import {XyzDataSeries} from "scichart/Charting/Model/XyzDataSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
-import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
-import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
-import {ELabelProviderType} from "scichart/types/LabelProviderType";
 import {appTheme} from "../../../theme";
+import BackgroundImage from "./BackgroundGradient.jpg";
+
+import {
+    SciChartSurface,
+    NumericAxis,
+    MouseWheelZoomModifier,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
+    SciChartJSLightTheme,
+    FastBubbleRenderableSeries,
+    XyzDataSeries,
+    EllipsePointMarker,
+    NumberRange,
+    SplineLineRenderableSeries,
+    SweepAnimation,
+    FastColumnRenderableSeries,
+    XyDataSeries,
+    WaveAnimation,
+    ELabelProviderType
+} from "scichart";
 
 const divElementId = "chart";
 
@@ -71,7 +74,7 @@ const drawExample = async () => {
         }),
         stroke: appTheme.VividSkyBlue,
         strokeThickness: 3,
-        animation: new SweepAnimation({ duration: 500 })
+        animation: new SweepAnimation({duration: 500})
     }));
 
     // Bubble series
@@ -88,7 +91,7 @@ const drawExample = async () => {
             stroke: appTheme.PaleSkyBlue,
             fill: appTheme.VividSkyBlue + "33",
         }),
-        animation: new SweepAnimation({ delay: 200, duration: 500, fadeEffect: true }),
+        animation: new SweepAnimation({delay: 200, duration: 500, fadeEffect: true}),
     }));
 
     // Column series
@@ -102,7 +105,7 @@ const drawExample = async () => {
         strokeThickness: 2,
         dataPointWidth: 0.57,
         cornerRadius: 10,
-        animation: new WaveAnimation({ delay: 400, duration: 600, fadeEffect: true })
+        animation: new WaveAnimation({delay: 400, duration: 600, fadeEffect: true})
     }));
 
     // Add some interactivity modifiers
@@ -128,7 +131,8 @@ export default function TransparentBackground() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return (<div className={classes.ChartWrapper} style={{backgroundImage: `url(${BackgroundImage})`, backgroundSize: "100% 100%"}}>
-        <div id={divElementId} />
+    return (<div className={classes.ChartWrapper}
+                 style={{backgroundImage: `url(${BackgroundImage})`, backgroundSize: "100% 100%"}}>
+        <div id={divElementId}/>
     </div>);
 }

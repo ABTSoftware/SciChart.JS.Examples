@@ -1,23 +1,27 @@
 import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAutoRange } from "scichart/types/AutoRange";
 import { AlertTitle } from "@material-ui/lab";
-import { Button, ButtonGroup, FormControl } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import {makeStyles} from "@material-ui/core/styles";
-import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
+
+import {
+    EAutoRange,
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    EAnnotationLayer,
+    EVerticalAnchorPoint,
+    FastLineRenderableSeries,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    NumberRange,
+    SciChartSurface,
+    TextAnnotation,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier
+} from "scichart";
 
 const divElementId = "chart";
 

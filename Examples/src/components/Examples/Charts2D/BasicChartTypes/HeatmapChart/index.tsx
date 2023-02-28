@@ -1,18 +1,20 @@
 import * as React from "react";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { SciChartSurface } from "scichart";
-import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
-import { UniformHeatmapRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
-import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { zeroArray2D } from "scichart/utils/zeroArray2D";
 import classes from "../../../../Examples/Examples.module.scss";
-import { Button } from "@material-ui/core";
-import { appTheme } from "../../../theme";
-import { HeatmapLegend } from "scichart/Charting/Visuals/HeatmapLegend";
+import {Button} from "@material-ui/core";
+import {appTheme} from "../../../theme";
 import {makeStyles} from "@material-ui/core/styles";
+import {
+    NumericAxis,
+    SciChartSurface,
+    UniformHeatmapDataSeries,
+    UniformHeatmapRenderableSeries,
+    HeatmapColorMap,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    MouseWheelZoomModifier,
+    zeroArray2D,
+    HeatmapLegend
+} from "scichart";
 
 const divElementId = "chart";
 const divHeatmapLegend = "heatmapLegend";
@@ -23,7 +25,7 @@ const HEIGHT = 200;
 // Draws a Heatmap chart in real-time over the <div id={divElementId}>
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -50,13 +52,13 @@ const drawExample = async () => {
             minimum: 0,
             maximum: 200,
             gradientStops: [
-                { offset: 1, color: appTheme.VividPink },
-                { offset: 0.9, color: appTheme.VividOrange },
-                { offset: 0.7, color: appTheme.MutedRed },
-                { offset: 0.5, color: appTheme.VividGreen },
-                { offset: 0.3, color: appTheme.VividSkyBlue },
-                { offset: 0.2, color: appTheme.Indigo },
-                { offset: 0, color: appTheme.DarkIndigo }
+                {offset: 1, color: appTheme.VividPink},
+                {offset: 0.9, color: appTheme.VividOrange},
+                {offset: 0.7, color: appTheme.MutedRed},
+                {offset: 0.5, color: appTheme.VividGreen},
+                {offset: 0.3, color: appTheme.VividSkyBlue},
+                {offset: 0.2, color: appTheme.Indigo},
+                {offset: 0, color: appTheme.DarkIndigo}
             ]
         })
     });
@@ -95,12 +97,12 @@ const drawExample = async () => {
         timerId = undefined;
     };
 
-    return { sciChartSurface, wasmContext, heatmapDataSeries, controls: { startDemo, stopDemo } };
+    return {sciChartSurface, wasmContext, heatmapDataSeries, controls: {startDemo, stopDemo}};
 };
 
 // Draws a Heatmap legend over the <div id={divHeatmapLegend}></div>
 const drawHeatmapLegend = async () => {
-    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
+    const {heatmapLegend, wasmContext} = await HeatmapLegend.create(divHeatmapLegend, {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
@@ -126,13 +128,13 @@ const drawHeatmapLegend = async () => {
             minimum: 0,
             maximum: 200,
             gradientStops: [
-                { offset: 1, color: appTheme.VividPink },
-                { offset: 0.9, color: appTheme.VividOrange },
-                { offset: 0.7, color: appTheme.MutedRed },
-                { offset: 0.5, color: appTheme.VividGreen },
-                { offset: 0.3, color: appTheme.VividSkyBlue },
-                { offset: 0.2, color: appTheme.Indigo },
-                { offset: 0, color: appTheme.DarkIndigo }
+                {offset: 1, color: appTheme.VividPink},
+                {offset: 0.9, color: appTheme.VividOrange},
+                {offset: 0.7, color: appTheme.MutedRed},
+                {offset: 0.5, color: appTheme.VividGreen},
+                {offset: 0.3, color: appTheme.VividSkyBlue},
+                {offset: 0.2, color: appTheme.Indigo},
+                {offset: 0, color: appTheme.DarkIndigo}
             ]
         }
     });
@@ -152,11 +154,13 @@ function generateExampleData(
 ): number[][] {
     // Returns a 2-dimensional javascript array [height (y)] [width (x)] size
     const zValues = zeroArray2D([height, width]);
+
     // math.round but to X digits
     function roundTo(number: number, digits: number) {
         return number;
         // return parseFloat(number.toFixed(digits));
     }
+
     const angle = roundTo(Math.PI * 2 * index, 3) / maxIndex;
 
     // When appending data to a 2D Array for the heatmap, the order of appending (X,Y) does not matter
@@ -202,10 +206,14 @@ const useStyles = makeStyles(theme => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function HeatmapChart() {
-    const [controls, setControls] = React.useState({ startDemo: () => {}, stopDemo: () => {}});
+    const [controls, setControls] = React.useState({
+        startDemo: () => {
+        }, stopDemo: () => {
+        }
+    });
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
-    const [stats, setStats] = React.useState({ xSize: 0, ySize: 0, fps: 0 });
+    const [stats, setStats] = React.useState({xSize: 0, ySize: 0, fps: 0});
 
     React.useEffect(() => {
         (async () => {
@@ -247,13 +255,21 @@ export default function HeatmapChart() {
                     <div className={localClasses.toolbarRow}>
                         <Button onClick={controls.startDemo} style={{color: appTheme.ForegroundColor}}>Start</Button>
                         <Button onClick={controls.stopDemo} style={{color: appTheme.ForegroundColor}}>Stop</Button>
-                        <span style={{margin: 12, minWidth: "200px"}}># Heatmap Size: {stats.xSize} x {stats.ySize}</span>
+                        <span
+                            style={{margin: 12, minWidth: "200px"}}># Heatmap Size: {stats.xSize} x {stats.ySize}</span>
                         <span style={{margin: 12}}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
                     <div className={localClasses.chartArea} style={{position: "relative"}}>
                         <div id={divElementId} style={{width: "100%", height: "100%"}}></div>
                         <div id={divHeatmapLegend}
-                             style={{ position: "absolute", height: "90%", width: "100px", top: 0, right: "75px", margin: "20" }}></div>
+                             style={{
+                                 position: "absolute",
+                                 height: "90%",
+                                 width: "100px",
+                                 top: 0,
+                                 right: "75px",
+                                 margin: "20"
+                             }}></div>
                     </div>
                 </div>
             </div>

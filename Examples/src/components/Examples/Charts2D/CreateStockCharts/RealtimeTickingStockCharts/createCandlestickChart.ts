@@ -1,58 +1,57 @@
 import {
+    EAutoRange,
+    easing,
+    ECoordinateMode,
+    EDataSeriesType,
+    EHorizontalAnchorPoint,
+    EAnnotationLayer,
     EStrokePaletteMode,
+    ESeriesType,
+    ENumericFormat,
+    EVerticalAnchorPoint,
+    CursorModifier,
+    CursorTooltipSvgAnnotation,
+    DateTimeNumericAxis,
+    EllipsePointMarker,
+    FastBubbleRenderableSeries,
+    FastCandlestickRenderableSeries,
+    FastColumnRenderableSeries,
+    FastLineRenderableSeries,
+    FastMountainRenderableSeries,
+    FastOhlcRenderableSeries,
+    GradientParams,
+    HorizontalLineAnnotation,
     IPointMarkerPaletteProvider,
-    TPointMarkerArgb
-} from "scichart/Charting/Model/IPaletteProvider";
-import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
-import {SeriesInfo} from "scichart/Charting/Model/ChartData/SeriesInfo";
-import {CursorTooltipSvgAnnotation} from "scichart/Charting/Visuals/Annotations/CursorTooltipSvgAnnotation";
-import {EDataSeriesType} from "scichart/Charting/Model/IDataSeries";
-import {OhlcSeriesInfo} from "scichart/Charting/Model/ChartData/OhlcSeriesInfo";
-import {ESeriesType} from "scichart/types/SeriesType";
-import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {Point} from "scichart/Core/Point";
-import {appTheme} from "../../../theme";
-import {SciChartSurface} from "scichart";
-import {DateTimeNumericAxis} from "scichart/Charting/Visuals/Axis/DateTimeNumericAxis";
-import {EAutoRange} from "scichart/types/AutoRange";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {ENumericFormat} from "scichart/types/NumericFormat";
-import {
-    FastCandlestickRenderableSeries
-} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import {FastOhlcRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastOhlcRenderableSeries";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyMovingAverageFilter} from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
-import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {CursorModifier} from "scichart/Charting/ChartModifiers/CursorModifier";
-import {SciChartOverview} from "scichart/Charting/Visuals/SciChartOverview";
-import {TPriceBar} from "../../BasicChartTypes/CandlestickChart/data/binanceRestClient";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import {easing} from "scichart/Core/Animations/EasingFunctions";
-import {HorizontalLineAnnotation} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
-import {XyzDataSeries} from "scichart/Charting/Model/XyzDataSeries";
-import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+    IPointMetadata,
+    IRenderableSeries,
+    MouseWheelZoomModifier,
+    NumberRange,
+    NumericAxis,
+    OhlcDataSeries,
+    OhlcSeriesInfo,
+    parseColorToUIntArgb,
+    Point,
+    SeriesInfo,
+    SciChartOverview,
+    SciChartSurface,
+    TextAnnotation,
+    TPointMarkerArgb,
+    XyzDataSeries,
+    XyDataSeries,
+    XyMovingAverageFilter,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
+} from "scichart";
 import {VolumePaletteProvider} from "./VolumePaletteProvider";
+import {appTheme} from "../../../theme";
+import {TPriceBar} from "../../BasicChartTypes/CandlestickChart/data/binanceRestClient";
 
 // Trades over this size will be rendered as bubbles on the chart
 export const LARGE_TRADE_THRESHOLD = 25_000;
 
 export const createCandlestickChart = async (divChartId: string, divOverviewId: string) => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divChartId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divChartId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -134,7 +133,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
     );
 
     // Add volume data onto the chart
-    const volumeDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "Volume" });
+    const volumeDataSeries = new XyDataSeries(wasmContext, {dataSeriesName: "Volume"});
     sciChartSurface.renderableSeries.add(
         new FastColumnRenderableSeries(wasmContext, {
             dataSeries: volumeDataSeries,
@@ -147,12 +146,17 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
     );
 
     // Add large trades data to the chart
-    const largeTradesDataSeries = new XyzDataSeries(wasmContext, { dataSeriesName: `Trades Size > $${LARGE_TRADE_THRESHOLD.toLocaleString()}`});
+    const largeTradesDataSeries = new XyzDataSeries(wasmContext, {dataSeriesName: `Trades Size > $${LARGE_TRADE_THRESHOLD.toLocaleString()}`});
     sciChartSurface.renderableSeries.add(
         new FastBubbleRenderableSeries(wasmContext, {
             dataSeries: largeTradesDataSeries,
             stroke: appTheme.VividGreen,
-            pointMarker: new EllipsePointMarker(wasmContext, { width: 64, height: 64, opacity: 0.23, strokeThickness: 2 }),
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 64,
+                height: 64,
+                opacity: 0.23,
+                strokeThickness: 2
+            }),
             paletteProvider: new LargeTradesPaletteProvider(appTheme.VividGreen, appTheme.MutedRed)
         })
     );
@@ -295,7 +299,11 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         ohlcSeries.isVisible = true;
     };
 
-    return { sciChartSurface, sciChartOverview, controls: { setData, onNewTrade, setXRange, enableCandlestick, enableOhlc } };
+    return {
+        sciChartSurface,
+        sciChartOverview,
+        controls: {setData, onNewTrade, setXRange, enableCandlestick, enableOhlc}
+    };
 };
 // Override the Renderableseries to display on the scichart overview
 const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
@@ -304,8 +312,8 @@ const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
         return new FastMountainRenderableSeries(defaultSeries.parentSurface.webAssemblyContext2D, {
             dataSeries: defaultSeries.dataSeries,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: appTheme.VividSkyBlue + "77", offset: 0 },
-                { color: "Transparent", offset: 1 }
+                {color: appTheme.VividSkyBlue + "77", offset: 0},
+                {color: "Transparent", offset: 1}
             ]),
             stroke: appTheme.VividSkyBlue
         });
@@ -347,17 +355,24 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
 class LargeTradesPaletteProvider implements IPointMarkerPaletteProvider {
     private readonly upColorArgb: number;
     private readonly downColorArgb: number;
+
     constructor(upColor: string, downColor: string) {
         this.upColorArgb = parseColorToUIntArgb(upColor);
         this.downColorArgb = parseColorToUIntArgb(downColor);
     }
+
     // Return up or down color for the large trades depending on if last trade was buy or sell
     overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): TPointMarkerArgb {
         // @ts-ignore
         const tradeColor = metadata?.lastTradeBuyOrSell ? this.upColorArgb : this.downColorArgb;
         return {fill: tradeColor, stroke: tradeColor};
     }
+
     strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
-    onAttached(parentSeries: IRenderableSeries): void {}
-    onDetached(): void {}
+
+    onAttached(parentSeries: IRenderableSeries): void {
+    }
+
+    onDetached(): void {
+    }
 }

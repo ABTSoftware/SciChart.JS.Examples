@@ -1,20 +1,23 @@
 import * as React from "react";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
 import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import {
+    EAxisAlignment,
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    NumberRange,
+    NumericAxis,
+    SciChartSurface,
+    TextAnnotation,
+    XyDataSeries,
+    EllipsePointMarker,
+    MouseWheelZoomModifier,
+    SplineLineRenderableSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier
+} from "scichart";
 
 const divElementId2 = "chart2";
 

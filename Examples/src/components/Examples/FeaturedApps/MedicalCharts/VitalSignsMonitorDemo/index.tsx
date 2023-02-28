@@ -1,17 +1,17 @@
 import * as React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { vitalSignsEcgData } from "./data/vitalSignsEcgData";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
+
+import {
+    EAutoRange, EllipsePointMarker,
+    ENumericFormat,
+    FastLineRenderableSeries,
+    NumberRange,
+    NumericAxis,
+    SciChartSurface,
+    XyDataSeries, XyScatterRenderableSeries
+} from "scichart";
 
 const divElementId = "chart";
 const STEP = 10;

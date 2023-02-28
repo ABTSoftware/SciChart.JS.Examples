@@ -1,17 +1,20 @@
 import * as React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
-import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
-import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
 import { appTheme } from "../../../theme";
-import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
-import { NumberRange } from "scichart/Core/NumberRange";
 import { makeStyles } from "@material-ui/core/styles";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
+import {
+    ELegendOrientation,
+    ELegendPlacement,
+    ENumericFormat,
+    FastLineRenderableSeries,
+    LegendModifier,
+    NumericAxis,
+    NumberRange,
+    SciChartSurface,
+    XyDataSeries
+} from "scichart";
 
 const divElementId = "chart";
 

@@ -1,24 +1,28 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {YAxisDragModifier} from "scichart/Charting/ChartModifiers/YAxisDragModifier";
-import {XAxisDragModifier} from "scichart/Charting/ChartModifiers/XAxisDragModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ENumericFormat} from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-import {ELabelAlignment} from "scichart/types/LabelAlignment";
 import {appTheme} from "../../../theme";
-import {NumberRange} from "scichart/Core/NumberRange";
 import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
+import {
+    AxisBase2D,
+    ECoordinateMode,
+    EAxisAlignment,
+    EHorizontalAnchorPoint,
+    ELabelAlignment,
+    ENumericFormat,
+    EVerticalAnchorPoint,
+    FastLineRenderableSeries,
+    EllipsePointMarker,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    NumberRange,
+    SciChartSurface,
+    TextAnnotation,
+    XAxisDragModifier,
+    XyDataSeries,
+    YAxisDragModifier,
+    ZoomExtentsModifier,
+    ZoomPanModifier
+} from "scichart";
 
 const divElementId = "chart1";
 
@@ -44,7 +48,7 @@ const ID_Y_AXIS_2 = "yAxis2";
 const drawExample = async () => {
 
     // Create the SciChartSurface with theme
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -91,10 +95,10 @@ const drawExample = async () => {
 
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
         id: ID_Y_AXIS_2,
-        axisTitleStyle:  titleStyle2,
-        labelStyle:  labelStyle2,
-        axisAlignment:  EAxisAlignment.Right,
-        axisTitle:  "Y Axis Right",
+        axisTitleStyle: titleStyle2,
+        labelStyle: labelStyle2,
+        axisAlignment: EAxisAlignment.Right,
+        axisTitle: "Y Axis Right",
         labelFormat: ENumericFormat.Decimal,
         labelPrecision: 2,
         growBy: new NumberRange(0.1, 0.1),
@@ -114,7 +118,12 @@ const drawExample = async () => {
         stroke: appTheme.VividSkyBlue,
         strokeThickness: 3,
         dataSeries: new XyDataSeries(wasmContext, {xValues: data.xValues, yValues: data.yValues}),
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 5, height: 5, fill: appTheme.VividSkyBlue, stroke: appTheme.VividSkyBlue })
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 5,
+            height: 5,
+            fill: appTheme.VividSkyBlue,
+            stroke: appTheme.VividSkyBlue
+        })
     }));
 
     data = new RandomWalkGenerator().Seed(90210).getRandomWalkSeries(100);
@@ -126,7 +135,12 @@ const drawExample = async () => {
         dataSeries: new XyDataSeries(wasmContext, {xValues: data.xValues, yValues: data.yValues}),
         xAxisId: ID_X_AXIS_2,
         yAxisId: ID_Y_AXIS_2,
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 5, height: 5, fill: appTheme.VividOrange, stroke: appTheme.VividOrange })
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 5,
+            height: 5,
+            fill: appTheme.VividOrange,
+            stroke: appTheme.VividOrange
+        })
     }));
 
     // Optional: Add some interactivity modifiers to enable zooming and panning
@@ -174,7 +188,7 @@ const drawExample = async () => {
         text: "Orange series is bound to the Top, Right axis",
     }));
 
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 export default function MultipleXAxes() {
@@ -189,5 +203,5 @@ export default function MultipleXAxes() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

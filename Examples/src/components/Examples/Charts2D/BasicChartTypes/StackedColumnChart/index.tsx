@@ -1,27 +1,32 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { StackedColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnRenderableSeries";
-import { StackedColumnCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnCollection";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ELegendOrientation, ELegendPlacement } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
-import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import {appTheme} from "../../../theme";
 import classes from "../../../Examples.module.scss";
-import {Button} from "@material-ui/core";
 import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
 import {makeStyles} from "@material-ui/core/styles";
+import {
+    ELegendOrientation,
+    ELegendPlacement,
+    ENumericFormat,
+    LegendModifier,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    SciChartSurface,
+    StackedColumnCollection,
+    StackedColumnRenderableSeries,
+    WaveAnimation,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
+} from "scichart";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const {
+        wasmContext,
+        sciChartSurface
+    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     // Create XAxis, YAxis
     sciChartSurface.xAxes.add(
@@ -55,7 +60,7 @@ const drawExample = async () => {
     // Create some RenderableSeries - for each part of the stacked column
     // Notice the stackedGroupId. This defines if series are stacked (same), or grouped side by side (different)
     const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues1, dataSeriesName: "EU" }),
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues: yValues1, dataSeriesName: "EU"}),
         fill: appTheme.VividPurple,
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
@@ -64,7 +69,7 @@ const drawExample = async () => {
     });
 
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues2, dataSeriesName: "Asia" }),
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues: yValues2, dataSeriesName: "Asia"}),
         fill: appTheme.VividPink,
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
@@ -73,7 +78,7 @@ const drawExample = async () => {
     });
 
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues3, dataSeriesName: "USA" }),
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues: yValues3, dataSeriesName: "USA"}),
         fill: appTheme.VividOrange,
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
@@ -82,7 +87,7 @@ const drawExample = async () => {
     });
 
     const rendSeries4 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues4, dataSeriesName: "UK" }),
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues: yValues4, dataSeriesName: "UK"}),
         fill: appTheme.VividSkyBlue,
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
@@ -91,7 +96,7 @@ const drawExample = async () => {
     });
 
     const rendSeries5 = new StackedColumnRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues5, dataSeriesName: "Latam" }),
+        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues: yValues5, dataSeriesName: "Latam"}),
         fill: appTheme.VividTeal,
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
@@ -103,7 +108,7 @@ const drawExample = async () => {
     const stackedColumnCollection = new StackedColumnCollection(wasmContext);
     stackedColumnCollection.dataPointWidth = 0.6;
     stackedColumnCollection.add(rendSeries1, rendSeries2, rendSeries3, rendSeries4, rendSeries5);
-    stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
+    stackedColumnCollection.animation = new WaveAnimation({duration: 1000, fadeEffect: true});
 
     // Add the Stacked Column collection to the chart
     sciChartSurface.renderableSeries.add(stackedColumnCollection);
@@ -124,7 +129,7 @@ const drawExample = async () => {
 
     sciChartSurface.zoomExtents();
 
-    return { wasmContext, sciChartSurface, stackedColumnCollection };
+    return {wasmContext, sciChartSurface, stackedColumnCollection};
 };
 
 const useStyles = makeStyles(theme => ({

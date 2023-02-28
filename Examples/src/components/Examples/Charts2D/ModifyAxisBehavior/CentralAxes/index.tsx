@@ -1,27 +1,27 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
 import classes from "../../../../Examples/Examples.module.scss";
-import {TSciChart} from "scichart/types/TSciChart";
-import {ELineDrawMode} from "scichart/Charting/Drawing/WebGlRenderContext2D";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {PinchZoomModifier} from "scichart/Charting/ChartModifiers/PinchZoomModifier";
+import {appTheme} from "../../../theme";
 import {
     CentralAxesLayoutManager,
-    ICentralAxesLayoutManagerOptions
-} from "scichart/Charting/LayoutManager/CentralAxesLayoutManager";
-import {EInnerAxisPlacementCoordinateMode} from "scichart/Charting/LayoutManager/EInnerAxisPlacementCoordinateMode";
-import {appTheme} from "../../../theme";
-import {EAnimationType} from "scichart/types/AnimationType";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+    EAnimationType,
+    EAxisAlignment,
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    EInnerAxisPlacementCoordinateMode,
+    ELineDrawMode,
+    FastLineRenderableSeries,
+    ICentralAxesLayoutManagerOptions,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    NumberRange,
+    PinchZoomModifier,
+    SciChartSurface,
+    TextAnnotation,
+    TSciChart,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier
+} from "scichart";
 
 const divElementId = "chart1";
 

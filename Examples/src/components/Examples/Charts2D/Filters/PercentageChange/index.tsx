@@ -1,28 +1,31 @@
 import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {RolloverModifier} from "scichart/Charting/ChartModifiers/RolloverModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {SeriesInfo} from "scichart/Charting/Model/ChartData/SeriesInfo";
-import {XySeriesInfo} from "scichart/Charting/Model/ChartData/XySeriesInfo";
-import {XyScaleOffsetFilter} from "scichart/Charting/Model/Filters/XyScaleOffsetFilter";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {HitTestInfo} from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
-import {EAutoRange} from "scichart/types/AutoRange";
-import {ENumericFormat} from "scichart/types/NumericFormat";
-import {formatNumber} from "scichart/utils/number";
 import classes from "../../../Examples.module.scss";
 import {makeStyles} from "@material-ui/core/styles";
 import {appTheme} from "../../../theme";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {NumberRange} from "scichart/Core/NumberRange";
 import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
-import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
+import {
+    EAutoRange,
+    EAnnotationLayer,
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    ENumericFormat,
+    EVerticalAnchorPoint,
+    FastLineRenderableSeries,
+    formatNumber,
+    HitTestInfo,
+    NumericAxis,
+    NumberRange,
+    RolloverModifier,
+    SciChartSurface,
+    SeriesInfo,
+    TextAnnotation,
+    XyDataSeries,
+    XyScaleOffsetFilter,
+    XySeriesInfo,
+    ZoomExtentsModifier,
+    ZoomPanModifier
+} from "scichart";
 
 export const divElementId = "chart";
 

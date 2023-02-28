@@ -1,8 +1,11 @@
-import {EFillPaletteMode, IFillPaletteProvider} from "scichart/Charting/Model/IPaletteProvider";
-import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
+import {
+    OhlcDataSeries,
+    IRenderableSeries,
+    IPointMetadata,
+    parseColorToUIntArgb,
+    EFillPaletteMode,
+    IFillPaletteProvider
+} from "scichart";
 
 // Class which manages red/green fill colouring on Volume column series depending on if the candle is up or down
 export class VolumePaletteProvider implements IFillPaletteProvider {
@@ -16,8 +19,12 @@ export class VolumePaletteProvider implements IFillPaletteProvider {
         this.downColorArgb = parseColorToUIntArgb(downColor);
         this.ohlcDataSeries = masterData;
     }
-    onAttached(parentSeries: IRenderableSeries): void {}
-    onDetached(): void {}
+
+    onAttached(parentSeries: IRenderableSeries): void {
+    }
+
+    onDetached(): void {
+    }
 
     // Return up or down color for the volume bars depending on Ohlc data
     overrideFillArgb(

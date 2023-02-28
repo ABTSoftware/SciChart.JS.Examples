@@ -1,19 +1,24 @@
 import * as React from "react";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {Point} from "scichart/Core/Point";
+import {
+    XyDataSeries,
+    NumericAxis,
+    WaveAnimation,
+    SciChartSurface,
+    GradientParams,
+    Point,
+    SplineMountainRenderableSeries,
+    ENumericFormat
+} from "scichart";
 import classes from "../../../Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {SplineMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineMountainRenderableSeries";
-import {ENumericFormat} from "scichart/types/NumericFormat";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const {
+        sciChartSurface,
+        wasmContext
+    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     // Add an X Axis
     const xAxis = new NumericAxis(wasmContext, {
@@ -32,11 +37,11 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(xAxis);
 
     // Add a Y Axis
-    const yAxis = new NumericAxis(wasmContext, { axisTitle: "Y Axis", labelStyle: { fontSize: 16 } });
+    const yAxis = new NumericAxis(wasmContext, {axisTitle: "Y Axis", labelStyle: {fontSize: 16}});
     sciChartSurface.yAxes.add(yAxis);
 
     // Generate some data
-    const startTime = new Date(2020,0,1).getTime() / 1000;
+    const startTime = new Date(2020, 0, 1).getTime() / 1000;
     let y = 110;
     const xValues: number[] = [];
     const yValues: number[] = [];
@@ -50,21 +55,21 @@ const drawExample = async () => {
     // Add a Spline Mountain series
     const mountainSeries = new SplineMountainRenderableSeries(wasmContext,
         {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+            dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
             stroke: appTheme.VividSkyBlue,
             strokeThickness: 3,
             zeroLineY: 0.0,
             fill: "rgba(176, 196, 222, 0.7)", // when a solid color is required, use fill
             // when a gradient is required, use fillLinearGradient
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: appTheme.VividTeal + "77", offset: 0 },
-                { color: "Transparent", offset: 1 }
+                {color: appTheme.VividTeal + "77", offset: 0},
+                {color: "Transparent", offset: 1}
             ]),
-            animation: new WaveAnimation({ duration: 1000, fadeEffect: true, zeroLine: 0 })
+            animation: new WaveAnimation({duration: 1000, fadeEffect: true, zeroLine: 0})
         });
     sciChartSurface.renderableSeries.add(mountainSeries);
 
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 // React component needed as our examples app is react.
@@ -80,5 +85,5 @@ export default function RotatedLabels() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

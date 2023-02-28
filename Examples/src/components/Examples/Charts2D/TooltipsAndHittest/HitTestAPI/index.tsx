@@ -1,22 +1,26 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {EAxisAlignment} from "scichart/types/AxisAlignment";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {HitTestInfo} from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
 import classes from "../../../../Examples/Examples.module.scss";
-import {DpiHelper} from "scichart/Charting/Visuals/TextureManager/DpiHelper";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
 import {appTheme} from "../../../theme";
+import {visualiseHitTestPoint} from "./visualizeHitTest";
 import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
 import {makeStyles} from "@material-ui/core/styles";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {visualiseHitTestPoint} from "./visualizeHitTest";
-import {EAnnotationLayer} from "scichart/Charting/Visuals/Annotations/IAnnotation";
+
+import {
+    SciChartSurface,
+    NumericAxis,
+    EAxisAlignment,
+    NumberRange,
+    FastLineRenderableSeries,
+    XyDataSeries,
+    EllipsePointMarker,
+    HitTestInfo,
+    DpiHelper,
+    TextAnnotation,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    ECoordinateMode,
+    EAnnotationLayer
+} from "scichart";
 
 const divElementId = "chart";
 
@@ -33,8 +37,8 @@ const drawExample = async () => {
     let whichHitTestMethod = HIT_TEST_DATAPOINT;
 
     // Create a SciChartSurface with theme
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-            theme: appTheme.SciChartJsTheme
+    const {wasmContext, sciChartSurface} = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
     });
 
     // add an event listener for mouse down. You can access the actual SciChartSurface canvas as
@@ -81,7 +85,7 @@ const drawExample = async () => {
     //
 
     // Create an X,Y Axis. For this example we put y-axis on the left to demonstrate offsetting the mouse-point when hit-testing
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)}));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Left,
         growBy: new NumberRange(0.1, 0.1)
@@ -93,8 +97,8 @@ const drawExample = async () => {
         stroke: appTheme.VividSkyBlue,
         dataSeries: new XyDataSeries(wasmContext, {
             dataSeriesName: "Line Series",
-            xValues: [0,1,2,3,4,5,6,7,8,9],
-            yValues: [0,1,5,1,20,5,1,8,9,3],
+            xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+            yValues: [0, 1, 5, 1, 20, 5, 1, 8, 9, 3],
         }),
         pointMarker: new EllipsePointMarker(wasmContext, {
             stroke: appTheme.VividSkyBlue,
@@ -152,7 +156,7 @@ const drawExample = async () => {
         theWatermark.text = "METHOD: " + hitTestMethod + "()";
     };
 
-    return { sciChartSurface, wasmContext, updateHitTestMethod };
+    return {sciChartSurface, wasmContext, updateHitTestMethod};
 }
 
 const useStyles = makeStyles(theme => ({
@@ -177,7 +181,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function HitTestAPI() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
-    const [updateFunc, setUpdateHitTestMethod] = React.useState<(hitTestMethod: string) => void>(() => {});
+    const [updateFunc, setUpdateHitTestMethod] = React.useState<(hitTestMethod: string) => void>(() => {
+    });
     const [preset, setPreset] = React.useState<string>(HIT_TEST_DATAPOINT);
 
     React.useEffect(() => {
@@ -219,7 +224,7 @@ export default function HitTestAPI() {
                         Hit-Test Series Body
                     </ToggleButton>
                 </ToggleButtonGroup>
-                <div id={divElementId} className={localClasses.chartArea} />
+                <div id={divElementId} className={localClasses.chartArea}/>
             </div>
         </div>
 

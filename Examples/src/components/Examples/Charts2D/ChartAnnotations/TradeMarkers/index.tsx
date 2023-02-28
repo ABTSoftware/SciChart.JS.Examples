@@ -1,21 +1,24 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
-import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
-import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { ENumericFormat } from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
-import { SmartDateLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
 import {appTheme} from "../../../theme";
+import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
+import {
+    SciChartSurface,
+    NumericAxis,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    MouseWheelZoomModifier,
+    FastCandlestickRenderableSeries,
+    OhlcDataSeries,
+    CategoryAxis,
+    NumberRange,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    CustomAnnotation,
+    ECoordinateMode,
+    ENumericFormat,
+    SmartDateLabelProvider
+} from "scichart";
 
 const divElementId = "chart";
 
@@ -23,7 +26,10 @@ const divElementId = "chart";
 // tslint:disable:max-line-length
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const {
+        sciChartSurface,
+        wasmContext
+    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     // Add an XAxis, YAxis
     const xAxis = new CategoryAxis(wasmContext);
@@ -38,7 +44,7 @@ const drawExample = async () => {
     );
 
     // Add a Candlestick series with some values to the chart
-    const { dateValues, openValues, highValues, lowValues, closeValues } = ExampleDataProvider.getTradingData(775, 100);
+    const {dateValues, openValues, highValues, lowValues, closeValues} = ExampleDataProvider.getTradingData(775, 100);
 
     sciChartSurface.renderableSeries.add(
         new FastCandlestickRenderableSeries(wasmContext, {
@@ -77,7 +83,7 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 // Returns a CustomAnnotation that represents a buy marker arrow
@@ -169,5 +175,5 @@ export default function TradeMarkers() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

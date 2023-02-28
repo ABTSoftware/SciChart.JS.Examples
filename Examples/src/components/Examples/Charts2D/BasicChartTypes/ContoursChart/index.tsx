@@ -1,17 +1,19 @@
 import * as React from "react";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { SciChartSurface } from "scichart";
-import { UniformHeatmapDataSeries } from "scichart/Charting/Model/UniformHeatmapDataSeries";
-import { UniformHeatmapRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
-import { HeatmapColorMap } from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { zeroArray2D } from "scichart/utils/zeroArray2D";
-import { UniformContoursRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/UniformContoursRenderableSeries";
+import {
+    NumericAxis,
+    SciChartSurface,
+    UniformHeatmapDataSeries,
+    UniformHeatmapRenderableSeries,
+    HeatmapColorMap,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    MouseWheelZoomModifier,
+    zeroArray2D,
+    UniformContoursRenderableSeries,
+    HeatmapLegend
+} from "scichart";
 import classes from "../../../../Examples/Examples.module.scss";
 import { appTheme } from "../../../theme";
-import { HeatmapLegend } from "scichart/Charting/Visuals/HeatmapLegend";
 
 const divElementId = "chart";
 const divHeatmapLegend = "heatmapLegend";

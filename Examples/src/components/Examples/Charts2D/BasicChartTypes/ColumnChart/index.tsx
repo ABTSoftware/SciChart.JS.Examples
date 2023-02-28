@@ -1,29 +1,32 @@
 import * as React from "react";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {SciChartSurface} from "scichart";
-import {NumberRange} from "scichart/Core/NumberRange";
-import classes from "../../../../Examples/Examples.module.scss";
-import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import {appTheme} from "../../../theme";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {Point} from "scichart/Core/Point";
 import {
+    NumericAxis,
+    FastColumnRenderableSeries,
+    XyDataSeries,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    MouseWheelZoomModifier,
+    SciChartSurface,
+    NumberRange,
+    WaveAnimation,
+    GradientParams,
+    Point,
     EHorizontalTextPosition,
-    EVerticalTextPosition
-} from "scichart/types/TextPosition";
-import {PaletteFactory} from "scichart/Charting/Model/PaletteFactory";
-import {Thickness} from "scichart/Core/Thickness";
+    EVerticalTextPosition,
+    PaletteFactory,
+    Thickness
+} from "scichart";
+import classes from "../../../../Examples/Examples.module.scss";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const {
+        sciChartSurface,
+        wasmContext
+    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     // Add an X, Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -45,7 +48,7 @@ const drawExample = async () => {
         dataLabels: {
             horizontalTextPosition: EHorizontalTextPosition.Center,
             verticalTextPosition: EVerticalTextPosition.Above,
-            style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0,0,20,0) },
+            style: {fontFamily: "Arial", fontSize: 16, padding: new Thickness(0, 0, 20, 0)},
             color: appTheme.ForegroundColor,
         },
         // Optional series animation executed when series shows
@@ -54,11 +57,11 @@ const drawExample = async () => {
         paletteProvider: PaletteFactory.createGradient(
             wasmContext,
             new GradientParams(new Point(0, 0), new Point(1, 1), [
-                {offset: 0, color: appTheme.VividOrange },
-                {offset: 0.67, color: appTheme.VividSkyBlue },
-                {offset: 1.0, color: appTheme.VividTeal }
+                {offset: 0, color: appTheme.VividOrange},
+                {offset: 0.67, color: appTheme.VividSkyBlue},
+                {offset: 1.0, color: appTheme.VividTeal}
             ]),
-            { enableFill: true }
+            {enableFill: true}
         )
     }));
 

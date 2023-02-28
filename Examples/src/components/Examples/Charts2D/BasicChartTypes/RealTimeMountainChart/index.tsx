@@ -1,19 +1,25 @@
 import * as React from "react";
-import { CustomAnnotation } from "scichart/Charting/Visuals/Annotations/CustomAnnotation";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { FastMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import { DoubleAnimator } from "scichart/Core/Animations/DoubleAnimator";
-import { GradientParams } from "scichart/Core/GradientParams";
-import { Point } from "scichart/Core/Point";
-import { easing, TEasingFn } from "scichart/Core/Animations/EasingFunctions";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { RandomWalkGenerator } from "../../../../../../../Sandbox/CustomerExamples/AnimateXyValuesOnSeries/src/RandomWalkGenerator";
+import {
+    RandomWalkGenerator
+} from "../../../../../../../Sandbox/CustomerExamples/AnimateXyValuesOnSeries/src/RandomWalkGenerator";
 import classes from "../../../../Examples/Examples.module.scss";
-import { AnimationToken } from "scichart/Core/AnimationToken";
 import {appTheme} from "../../../theme";
+import {
+    AnimationToken,
+    CustomAnnotation,
+    DoubleAnimator,
+    easing,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    FastMountainRenderableSeries,
+    GradientParams,
+    NumericAxis,
+    NumberRange,
+    Point,
+    TEasingFn,
+    SciChartSurface,
+    XyDataSeries
+} from "scichart";
 
 export const divElementId = "chart";
 
@@ -24,13 +30,13 @@ export const drawExample = async () => {
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
     // instance must be passed to other types that exist on the same surface.
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
     // Create an X,Y Axis and add to the chart
-    const xAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
-    const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
+    const xAxis = new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)});
+    const yAxis = new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)});
 
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis);
@@ -48,8 +54,8 @@ export const drawExample = async () => {
         new FastMountainRenderableSeries(wasmContext, {
             dataSeries,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: appTheme.VividSkyBlue + "77", offset: 0 },
-                { color: "Transparent", offset: 1 }
+                {color: appTheme.VividSkyBlue + "77", offset: 0},
+                {color: "Transparent", offset: 1}
             ]),
             stroke: appTheme.VividSkyBlue,
             strokeThickness: 4
@@ -81,7 +87,7 @@ export const drawExample = async () => {
     // This function performs animation on any XyDataSeries, animating the latest point only
     // Be careful of reentrancy, e.g. calling animateXy more than once before previous animation has finished
     // might require special handling
-    const animateXy = (xyDataSeries: XyDataSeries, endX: number, endY: number, duration: number, easing: TEasingFn) => {
+    const animateXy = (xyDataSeries: XyDataSeries, endX: number, endY: number, duration: number, ease: TEasingFn) => {
         const count = xyDataSeries.count();
         const startX = xyDataSeries.getNativeXValues().get(count - 1);
         const startY = xyDataSeries.getNativeYValues().get(count - 1);
@@ -113,7 +119,7 @@ export const drawExample = async () => {
                 // Animation complete, append the point
                 xyDataSeries.append(endX, endY);
             },
-            easing
+            ease
         );
     };
 
@@ -136,7 +142,7 @@ export const drawExample = async () => {
         runAddDataOnTimeout();
     };
 
-    return { sciChartSurface, wasmContext, controls: { handleStart, handleStop } };
+    return {sciChartSurface, wasmContext, controls: {handleStart, handleStop}};
 };
 
 const handleStop = () => {
@@ -162,5 +168,5 @@ export default function RealtimeMountainChart() {
         };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }
