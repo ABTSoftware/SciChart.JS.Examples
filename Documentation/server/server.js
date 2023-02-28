@@ -68,7 +68,11 @@ app.listen(port, () => {
 });
 const renderIndexHtml = (html, css, showNav, url, code) => {
     let body = "";
+    let scripts = `<script type="text/javascript" src="/scichart.browser.js"></script>
+<script type="text/javascript" src="/common.js"></script>
+<script async type="text/javascript" src="demo.js" defer></script>`;
     if (showNav) {
+        scripts = "";
         const codePenLink = `http://${host}:${port}${url}?codepen=1`;
         const links = url ? `<div>
     <a href="https://jsfiddle.net/gh/get/library/pure/ABTSoftware/SciChart.JS.Examples/tree/master/Documentation/src${url}" target="_blank">Edit in jsFiddle</a></br>
@@ -97,10 +101,7 @@ const renderIndexHtml = (html, css, showNav, url, code) => {
         <meta charset="utf-8" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
         <title>SciChart.js Documentation Examples</title>
-        <script type="text/javascript" src="/scichart.browser.js"></script>
-        <script type="text/javascript" src="/common.js"></script>
-
-        <script async type="text/javascript" src="demo.js" defer></script>
+        ${scripts}
         <style>
             iframe { border: 0; }
             ${css}
@@ -110,7 +111,7 @@ const renderIndexHtml = (html, css, showNav, url, code) => {
       ${body}  
     </body>
 </html>
-  `;
+`;
 };
 const getCodeSandBoxForm = (demoHtml, code) => {
     const parameters = (0, define_1.getParameters)({
@@ -139,7 +140,10 @@ const getCodeSandBoxForm = (demoHtml, code) => {
                 }
             },
             "src/index.ts": {
-                content: `import * as SciChart from "scichart";
+                content: `
+// We are using npm in CodeSandbox, so we need this import.
+import * as SciChart from "scichart";
+// When importing scichart from npm, the default is to get the wasm from local files, but that is awkward with parcel in codeSandbox, 
 SciChart.SciChartSurface.useWasmFromCDN()
 ` + code,
                 isBinary: false

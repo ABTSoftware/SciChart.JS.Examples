@@ -75,7 +75,11 @@ app.listen(port, () => {
 
 const renderIndexHtml = (html: string, css: string, showNav: boolean, url: string, code: string) => {
   let body = "";
+  let scripts = `<script type="text/javascript" src="/scichart.browser.js"></script>
+<script type="text/javascript" src="/common.js"></script>
+<script async type="text/javascript" src="demo.js" defer></script>`;
   if (showNav) {
+    scripts = "";
     const codePenLink = `http://${host}:${port}${url}?codepen=1`;
     const links = url ? `<div>
     <a href="https://jsfiddle.net/gh/get/library/pure/ABTSoftware/SciChart.JS.Examples/tree/master/Documentation/src${url}" target="_blank">Edit in jsFiddle</a></br>
@@ -103,10 +107,7 @@ const renderIndexHtml = (html: string, css: string, showNav: boolean, url: strin
         <meta charset="utf-8" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
         <title>SciChart.js Documentation Examples</title>
-        <script type="text/javascript" src="/scichart.browser.js"></script>
-        <script type="text/javascript" src="/common.js"></script>
-
-        <script async type="text/javascript" src="demo.js" defer></script>
+        ${scripts}
         <style>
             iframe { border: 0; }
             ${css}
