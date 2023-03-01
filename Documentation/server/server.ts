@@ -58,10 +58,11 @@ app.get("*", async (req: Request, res: Response) => {
         res.send(renderCodePenRedirect(json));
         return;
       }
-      res.send(renderIndexHtml(demoHtml, demoCss, req.originalUrl, demojs, !req.query["nav"], !!req.query["embed"], parseInt(req.query["height"].toString())));
+      const embedHeight = req.query["height"] ? parseInt(req.query["height"].toString()) : 400;
+      res.send(renderIndexHtml(demoHtml, demoCss, req.originalUrl, demojs, !req.query["nav"], !!req.query["embed"], embedHeight));
     } catch (err) {
       console.log(err);
-      res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, undefined, undefined, true, false));
+      res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, undefined, undefined, true, false, 0));
     }
 });
 
@@ -69,10 +70,10 @@ app.listen(port, () => {
   console.log(`Example app listening at http://${host}:${port}`);
 });
 
-const renderIndexHtml = (html: string, css: string, url: string, code: string, showNav: boolean, embed: boolean, embedHeight: number = 400) => {
+const renderIndexHtml = (html: string, css: string, url: string, code: string, showNav: boolean, embed: boolean, embedHeight: number) => {
   let body = "";
   let scripts = "";
-  const queryChar =  url.includes("?") ? "&" : "?";
+  const queryChar = url && url.includes("?") ? "&" : "?";
   if (showNav) {
     const codePenLink = `http://${host}:${port}${url}?codepen=1`;
     const embedLink = embed ? `<a href="${url.replace("embed=1", "")}">Show Result</a></br>`
@@ -224,7 +225,7 @@ const renderCodePenRedirect = (json: any) => {
 </html>`
 }
 
-const renderCodePenEmbed = (html: string, js: string, css: string, height: number = 400) => {
+const renderCodePenEmbed = (html: string, js: string, css: string, height: number) => {
   return `<div 
   class="codepen" 
   data-prefill='{
