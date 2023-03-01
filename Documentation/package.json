@@ -16,6 +16,7 @@
   "dependencies": {
     "codesandbox": "^2.2.3",
     "express": "^4.17.1",
+    "html-entities": "^2.3.3",
     "scichart": "^3.0.301"
   },
   "devDependencies": {

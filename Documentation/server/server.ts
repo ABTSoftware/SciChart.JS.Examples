@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import * as path from "path";
 import * as fs from "fs";
 import { getParameters } from "codesandbox/lib/api/define";
+import {encode} from 'html-entities';
 
 const app = express();
 const port = parseInt(process.env.PORT || "3000", 10);
@@ -15,11 +16,7 @@ const navHtml = fs.readFileSync("server/nav.html", "utf8");
 
 const snippets = new Map<string,string>();
 
-const makePen = async (basePath: string, html: string) => {
-  const jsPath = path.join(basePath, "demo.js");
-  const js = await fs.promises.readFile(jsPath, "utf8");
-  const cssPath = path.join(basePath, "demo.css");
-  const css = await fs.promises.readFile(cssPath, "utf8");
+const makePen = async (html: string, js: string, css: string) => {
   const json = {
     title: "SciChart.js Documentation Snippet",
     html,
@@ -50,22 +47,21 @@ app.get("*", async (req: Request, res: Response) => {
         demojs = await fs.promises.readFile(jsPath, "utf8");
         snippets.set(jsPath, demojs);
       }
-      if (req.query["codepen"]) {
-        const json = await makePen(basePath, demoHtml);
-        res.send(renderCodePenRedirect(json));
-        return;
-      }
       const cssPath = path.join(basePath, "demo.css");
       let demoCss = snippets.get(cssPath);
       if (!demoCss) {
         demoCss = await fs.promises.readFile(cssPath, "utf8");
         snippets.set(cssPath, demoCss);
       }
-
-      res.send(renderIndexHtml(demoHtml, demoCss, !req.query["nav"], req.originalUrl, demojs));
+      if (req.query["codepen"]) {
+        const json = await makePen(demoHtml, demojs, demoCss);
+        res.send(renderCodePenRedirect(json));
+        return;
+      }
+      res.send(renderIndexHtml(demoHtml, demoCss, req.originalUrl, demojs, !req.query["nav"], !!req.query["embed"], parseInt(req.query["height"].toString())));
     } catch (err) {
       console.log(err);
-      res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, true, undefined, undefined));
+      res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, undefined, undefined, true, false));
     }
 });
 
@@ -73,21 +69,23 @@ app.listen(port, () => {
   console.log(`Example app listening at http://${host}:${port}`);
 });
 
-const renderIndexHtml = (html: string, css: string, showNav: boolean, url: string, code: string) => {
+const renderIndexHtml = (html: string, css: string, url: string, code: string, showNav: boolean, embed: boolean, embedHeight: number = 400) => {
   let body = "";
-  let scripts = `<script type="text/javascript" src="/scichart.browser.js"></script>
-<script type="text/javascript" src="/common.js"></script>
-<script async type="text/javascript" src="demo.js" defer></script>`;
+  let scripts = "";
+  const queryChar =  url.includes("?") ? "&" : "?";
   if (showNav) {
-    scripts = "";
     const codePenLink = `http://${host}:${port}${url}?codepen=1`;
+    const embedLink = embed ? `<a href="${url.replace("embed=1", "")}">Show Result</a></br>`
+     : `<a href="${url + queryChar}embed=1">Show as Embed</a></br>`;
     const links = url ? `<div>
     <a href="https://jsfiddle.net/gh/get/library/pure/ABTSoftware/SciChart.JS.Examples/tree/master/Documentation/src${url}" target="_blank">Edit in jsFiddle</a></br>
-    <a href="${codePenLink}" target="_blank">Edit in CodePen</a>
+    <a href="${codePenLink}" target="_blank">Edit in CodePen</a></br>
+    ${embedLink}
+    <a href="${url + queryChar}nav=0">View full screen</a></br>
     ${getCodeSandBoxForm(html, code)}
     </div>` : "";
     const iframe = url === undefined ? "<p>Please select an example</p>" :
-        `<iframe style="width: 800px; height: 600px;" src="${url + `?nav=0`}"></iframe>`;
+        `<iframe style="width: 800px; height: 600px;" src="${url + queryChar}nav=0"></iframe>`;
     body = `
     <div style="display: flex">
       <div style="flex-basis: 100px; border: 1;">
@@ -98,7 +96,12 @@ const renderIndexHtml = (html: string, css: string, showNav: boolean, url: strin
         ${links}
       </div>
     </div>`;
+  } else if (embed) {
+    body = `<div style="width: 100%; height: 100vh;">${renderCodePenEmbed(html, code, css, embedHeight)}</div>`;
   } else {
+    scripts = `<script type="text/javascript" src="/scichart.browser.js"></script>
+<script type="text/javascript" src="/common.js"></script>
+<script async type="text/javascript" src="demo.js" defer></script>`;
     body = `<div style="width: 100%; height: 100vh;">${html}</div>`;
   }
   return `
@@ -219,4 +222,33 @@ const renderCodePenRedirect = (json: any) => {
       </script>
     </body>
 </html>`
+}
+
+const renderCodePenEmbed = (html: string, js: string, css: string, height: number = 400) => {
+  return `<div 
+  class="codepen" 
+  data-prefill='{
+    "title": "SciChart Documentation Example",
+    "tags": ["scichart"],
+    "head": "&lt;meta name=&#x27;viewport&#x27; content=&#x27;width=device-width, initial-scale=1&#x27;&gt;",
+    "scripts": ["https://cdn.jsdelivr.net/npm/scichart/index.min.js"]
+  }'
+  style="height: 100%; overflow: auto;"
+  data-height=${height}
+  data-theme-id="light"
+  data-default-tab="js,result" 
+  data-editable="true"     
+>
+  <pre data-lang="html">
+${encode(html)}
+  </pre>
+  <pre data-lang="css">
+${encode(css)}
+  </pre>
+  <pre data-lang="js">
+${encode(js)}
+  </pre>
+</div>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+`;
 }
