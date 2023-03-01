@@ -15,8 +15,9 @@ npm start
 
 ## Options
 nav=0 to show full screen.
-embed=1 to show a codepen embed.  height=500 to control the height of the embed.
-codepen=1 to redirect to codepen
+embed=1 to show a codepen embed.
+codepen=1 to redirect to codepen.
+builder=1 to call the builderExample function.
 
 ## Adding a snippet
 1. Add a folder containing a demo.js file.
