@@ -57,6 +57,15 @@ var walk = function(dir: string, done: (err: any, entry?: Entry)=> void) {
 
 const makeDemoFiles = (entry: Entry) => {
     if (!entry.isDemo) return;
+    if (entry.isTS) {
+        const jsPath = path.join(baseDir, entry.url, "demo.js");
+        console.log("Fixing js for ", entry.url);
+        fs.promises.readFile(jsPath, "utf8").then(js => {
+            js = js.replace('Object.defineProperty(exports, "__esModule", { value: true });', "");
+            js = js.replace('const scichart_1 = require("scichart");', "const scichart_1 = SciChart;");
+            fs.promises.writeFile(jsPath, js);
+        });
+    }
     if (!entry.hasHtml) {
         console.log("Writing demo.html for ", entry.url);
         const htmlPath = path.join(baseDir, entry.url, "demo.html");
@@ -107,7 +116,7 @@ const makeNav = (entry: Entry) => {
 
 walk(baseDir, (err, entry) => {
     if (!entry) return;
-    console.log(JSON.stringify(entry, undefined, 2));
+    //console.log(JSON.stringify(entry, undefined, 2));
     let html = `<ul>
 `;
     for (const folder of entry.entries) {

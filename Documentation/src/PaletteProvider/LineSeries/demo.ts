@@ -1,19 +1,19 @@
 import {
-  EStrokePaletteMode,
   IStrokePaletteProvider,
-  IRenderableSeries,
-  parseColorToUIntArgb,
   IPointMetadata,
+  IRenderableSeries,
+  EStrokePaletteMode,
+  parseColorToUIntArgb,
   SciChartSurface,
   FastLineRenderableSeries,
   NumericAxis,
   XyDataSeries,
-  makeIncArray
+  makeIncArray,
 } from "scichart";
 
 // Custom PaletteProvider for line series
 class LinePaletteProvider implements IStrokePaletteProvider {
-  readonly strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
+  readonly strokePaletteMode = EStrokePaletteMode.SOLID;
   private stroke: number;
   private rule: (yValue: number) => boolean;
   constructor(stroke: string, rule: (yValue: number) => boolean) {
@@ -39,7 +39,7 @@ class LinePaletteProvider implements IStrokePaletteProvider {
 
 async function lineChartWithPaletteProvider(divElementId: string) {
   const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-    "scichart-div-id"
+    divElementId
   );
   // Create XAxis
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -47,8 +47,8 @@ async function lineChartWithPaletteProvider(divElementId: string) {
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
   const xValues = makeIncArray(250);
-  const yValues = makeIncArray(250, 1, (y => Math.sin(y * 0.05)));
-  // Create a line series with your custom PaletteProvider 
+  const yValues = makeIncArray(250, 1, (y) => Math.sin(y * 0.05));
+  // Create a line series with your custom PaletteProvider
   sciChartSurface.renderableSeries.add(
     new FastLineRenderableSeries(wasmContext, {
       stroke: "SteelBlue",

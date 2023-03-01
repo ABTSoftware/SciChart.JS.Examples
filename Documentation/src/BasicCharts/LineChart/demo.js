@@ -37,7 +37,7 @@ const {
   ESeriesType,
 } = SciChart;
 
-async function simpleLineChartWithBuilderApi(divElementId) {
+async function builderExample(divElementId) {
   console.log("builder");
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
     series: [
@@ -56,6 +56,5 @@ async function simpleLineChartWithBuilderApi(divElementId) {
   });
 };
 
-if (location.search.includes("builder=1")) {
-    simpleLineChartWithBuilderApi("scichart-root");
-}
+if (location.search.includes("builder=1")) 
+builderExample("scichart-root");

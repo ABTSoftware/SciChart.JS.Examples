@@ -13,7 +13,7 @@
         "noUnusedParameters": false,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
-        "module": "commonjs",
+        "module": "CommonJS",
         "target": "es2021",
         "jsx": "react",
         "allowJs": true,
@@ -22,7 +22,7 @@
         "esModuleInterop": false,
         "skipLibCheck": false,
         "forceConsistentCasingInFileNames": true,
-        "lib": ["es2021", "dom"]
+        "lib": ["es2021", "dom"],   
     },
     "include": [
         "server/*.ts",

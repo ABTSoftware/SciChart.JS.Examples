@@ -1,6 +1,6 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const scichart_1 = require("scichart");
+
+const scichart_1 = SciChart;
 // Custom PaletteProvider for line series
 class LinePaletteProvider {
     constructor(stroke, rule) {
@@ -18,14 +18,14 @@ class LinePaletteProvider {
     }
 }
 async function lineChartWithPaletteProvider(divElementId) {
-    const { sciChartSurface, wasmContext } = await scichart_1.SciChartSurface.create("scichart-div-id");
+    const { sciChartSurface, wasmContext } = await scichart_1.SciChartSurface.create(divElementId);
     // Create XAxis
     sciChartSurface.xAxes.add(new scichart_1.NumericAxis(wasmContext));
     // Create YAxis
     sciChartSurface.yAxes.add(new scichart_1.NumericAxis(wasmContext));
     const xValues = (0, scichart_1.makeIncArray)(250);
-    const yValues = (0, scichart_1.makeIncArray)(250, 1, (y => Math.sin(y * 0.05)));
-    // Create a line series with your custom PaletteProvider 
+    const yValues = (0, scichart_1.makeIncArray)(250, 1, (y) => Math.sin(y * 0.05));
+    // Create a line series with your custom PaletteProvider
     sciChartSurface.renderableSeries.add(new scichart_1.FastLineRenderableSeries(wasmContext, {
         stroke: "SteelBlue",
         strokeThickness: 5,

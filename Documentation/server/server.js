@@ -31,16 +31,33 @@ app.get("*", async (req, res) => {
     }
     try {
         const htmlPath = path.join(basePath, "demo.html");
+        const tsPath = path.join(basePath, "demo.ts");
         const jsPath = path.join(basePath, "demo.js");
+        let isTs = true;
         let demoHtml = snippets.get(htmlPath);
-        let demojs = snippets.get(jsPath);
+        let demojs = snippets.get(tsPath);
         if (!demoHtml) {
             demoHtml = await fs.promises.readFile(htmlPath, "utf8");
             snippets.set(htmlPath, demoHtml);
         }
         if (!demojs) {
-            demojs = await fs.promises.readFile(jsPath, "utf8");
-            snippets.set(jsPath, demojs);
+            demojs = snippets.get(jsPath);
+            if (!demojs) {
+                try {
+                    await fs.promises.access(tsPath);
+                    demojs = await fs.promises.readFile(tsPath, "utf8");
+                    snippets.set(tsPath, demojs);
+                    isTs = true;
+                }
+                catch (err) {
+                    demojs = await fs.promises.readFile(jsPath, "utf8");
+                    snippets.set(jsPath, demojs);
+                    isTs = false;
+                }
+            }
+            else {
+                isTs = false;
+            }
         }
         const cssPath = path.join(basePath, "demo.css");
         let demoCss = snippets.get(cssPath);
@@ -53,30 +70,31 @@ app.get("*", async (req, res) => {
             res.send(renderCodePenRedirect(json));
             return;
         }
-        res.send(renderIndexHtml(demoHtml, demoCss, req.originalUrl, demojs, !req.query["nav"], !!req.query["embed"], parseInt(req.query["height"].toString())));
+        const embedHeight = req.query["height"] ? parseInt(req.query["height"].toString()) : 400;
+        res.send(renderIndexHtml(demoHtml, demoCss, req.originalUrl, demojs, !req.query["nav"], !!req.query["embed"], embedHeight, isTs));
     }
     catch (err) {
         console.log(err);
-        res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, undefined, undefined, true, false));
+        res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, undefined, undefined, true, false, 0, false));
     }
 });
 app.listen(port, () => {
     console.log(`Example app listening at http://${host}:${port}`);
 });
-const renderIndexHtml = (html, css, url, code, showNav, embed, embedHeight = 400) => {
+const renderIndexHtml = (html, css, url, code, showNav, embed, embedHeight, isTS) => {
     let body = "";
     let scripts = "";
-    const queryChar = url.includes("?") ? "&" : "?";
+    const queryChar = url && url.includes("?") ? "&" : "?";
     if (showNav) {
-        const codePenLink = `http://${host}:${port}${url}?codepen=1`;
+        const codePenLink = !isTS ? `<a href="http://${host}:${port}${url}?codepen=1" target="_blank">Edit in CodePen</a></br>` : "";
         const embedLink = embed ? `<a href="${url.replace("embed=1", "")}">Show Result</a></br>`
             : `<a href="${url + queryChar}embed=1">Show as Embed</a></br>`;
         const links = url ? `<div>
     <a href="https://jsfiddle.net/gh/get/library/pure/ABTSoftware/SciChart.JS.Examples/tree/master/Documentation/src${url}" target="_blank">Edit in jsFiddle</a></br>
-    <a href="${codePenLink}" target="_blank">Edit in CodePen</a></br>
+    ${codePenLink}
     ${embedLink}
     <a href="${url + queryChar}nav=0">View full screen</a></br>
-    ${getCodeSandBoxForm(html, code)}
+    ${getCodeSandBoxForm(html, css, code, isTS)}
     </div>` : "";
         const iframe = url === undefined ? "<p>Please select an example</p>" :
             `<iframe style="width: 800px; height: 600px;" src="${url + queryChar}nav=0"></iframe>`;
@@ -118,7 +136,20 @@ const renderIndexHtml = (html, css, url, code, showNav, embed, embedHeight = 400
 </html>
 `;
 };
-const getCodeSandBoxForm = (demoHtml, code) => {
+const getCodeSandBoxForm = (demoHtml, css, code, isTS) => {
+    if (!isTS) {
+        code = `
+    // We are using npm in CodeSandbox, so we need this import.
+    import * as SciChart from "scichart";
+    // When importing scichart from npm, the default is to get the wasm from local files, but that is awkward with parcel in codeSandbox, 
+    SciChart.SciChartSurface.useWasmFromCDN();
+    ` + code;
+    }
+    else {
+        code = code.replace('from "scichart";', `from "scichart";
+// When importing scichart from npm, the default is to get the wasm from local files, but that is awkward with parcel in codeSandbox,     
+SciChartSurface.useWasmFromCDN();`);
+    }
     const parameters = (0, define_1.getParameters)({
         files: {
             "package.json": {
@@ -145,12 +176,7 @@ const getCodeSandBoxForm = (demoHtml, code) => {
                 }
             },
             "src/index.ts": {
-                content: `
-// We are using npm in CodeSandbox, so we need this import.
-import * as SciChart from "scichart";
-// When importing scichart from npm, the default is to get the wasm from local files, but that is awkward with parcel in codeSandbox, 
-SciChart.SciChartSurface.useWasmFromCDN()
-` + code,
+                content: code,
                 isBinary: false
             },
             "index.html": {
@@ -160,6 +186,9 @@ SciChart.SciChartSurface.useWasmFromCDN()
       <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
       <title>SciChart.js Documentation Example</title>
       <script async type="text/javascript" src="src/index.ts" defer></script>
+      <style>
+        ${css}
+      </style>
   </head>
   <body>
     ${demoHtml}  
@@ -217,7 +246,7 @@ const renderCodePenRedirect = (json) => {
     </body>
 </html>`;
 };
-const renderCodePenEmbed = (html, js, css, height = 400) => {
+const renderCodePenEmbed = (html, js, css, height) => {
     return `<div 
   class="codepen" 
   data-prefill='{

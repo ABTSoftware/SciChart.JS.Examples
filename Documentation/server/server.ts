@@ -17,6 +17,8 @@ const navHtml = fs.readFileSync("server/nav.html", "utf8");
 const snippets = new Map<string,string>();
 
 const makePen = async (html: string, js: string, css: string) => {
+  js = js.replace('if (location.search.includes("builder=1"))', '// Uncomment this to use the builder example');
+  js = js.replace('builderExample("scichart-root");', '//builderExample("scichart-root");');
   const json = {
     title: "SciChart.js Documentation Snippet",
     html,
@@ -36,16 +38,31 @@ app.get("*", async (req: Request, res: Response) => {
     }
     try {
       const htmlPath = path.join(basePath, "demo.html");
-      const jsPath = path.join(basePath, "demo.js");
+      const tsPath = path.join(basePath, "demo.ts");
+      const jsPath = path.join(basePath, "demo.js")
+      let isTs = true;
       let demoHtml = snippets.get(htmlPath);
-      let demojs = snippets.get(jsPath);
+      let demojs = snippets.get(tsPath);
       if (!demoHtml) {
         demoHtml = await fs.promises.readFile(htmlPath, "utf8");
         snippets.set(htmlPath, demoHtml);
       }
       if (!demojs) {
-        demojs = await fs.promises.readFile(jsPath, "utf8");
-        snippets.set(jsPath, demojs);
+        demojs = snippets.get(jsPath);
+        if (!demojs) {
+          try {
+            await fs.promises.access(tsPath);
+            demojs = await fs.promises.readFile(tsPath, "utf8");
+            snippets.set(tsPath, demojs);
+            isTs = true;
+          } catch (err) {
+            demojs = await fs.promises.readFile(jsPath, "utf8");
+            snippets.set(jsPath, demojs);
+            isTs = false;
+          }
+        } else {
+          isTs = false;
+        }
       }
       const cssPath = path.join(basePath, "demo.css");
       let demoCss = snippets.get(cssPath);
@@ -58,11 +75,10 @@ app.get("*", async (req: Request, res: Response) => {
         res.send(renderCodePenRedirect(json));
         return;
       }
-      const embedHeight = req.query["height"] ? parseInt(req.query["height"].toString()) : 400;
-      res.send(renderIndexHtml(demoHtml, demoCss, req.originalUrl, demojs, !req.query["nav"], !!req.query["embed"], embedHeight));
+      res.send(renderIndexHtml(demoHtml, demoCss, req.originalUrl, demojs, !req.query["nav"], !!req.query["embed"], isTs));
     } catch (err) {
       console.log(err);
-      res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, undefined, undefined, true, false, 0));
+      res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, undefined, undefined, true, false, false));
     }
 });
 
@@ -70,20 +86,20 @@ app.listen(port, () => {
   console.log(`Example app listening at http://${host}:${port}`);
 });
 
-const renderIndexHtml = (html: string, css: string, url: string, code: string, showNav: boolean, embed: boolean, embedHeight: number) => {
+const renderIndexHtml = (html: string, css: string, url: string, code: string, showNav: boolean, embed: boolean, isTS: boolean) => {
   let body = "";
   let scripts = "";
   const queryChar = url && url.includes("?") ? "&" : "?";
   if (showNav) {
-    const codePenLink = `http://${host}:${port}${url}?codepen=1`;
+    const codePenLink = !isTS ? `<a href="http://${host}:${port}${url}?codepen=1" target="_blank">Edit in CodePen</a></br>` : "";
     const embedLink = embed ? `<a href="${url.replace("embed=1", "")}">Show Result</a></br>`
      : `<a href="${url + queryChar}embed=1">Show as Embed</a></br>`;
     const links = url ? `<div>
     <a href="https://jsfiddle.net/gh/get/library/pure/ABTSoftware/SciChart.JS.Examples/tree/master/Documentation/src${url}" target="_blank">Edit in jsFiddle</a></br>
-    <a href="${codePenLink}" target="_blank">Edit in CodePen</a></br>
+    ${codePenLink}
     ${embedLink}
     <a href="${url + queryChar}nav=0">View full screen</a></br>
-    ${getCodeSandBoxForm(html, code)}
+    ${getCodeSandBoxForm(html, css, code, isTS)}
     </div>` : "";
     const iframe = url === undefined ? "<p>Please select an example</p>" :
         `<iframe style="width: 800px; height: 600px;" src="${url + queryChar}nav=0"></iframe>`;
@@ -98,11 +114,11 @@ const renderIndexHtml = (html: string, css: string, url: string, code: string, s
       </div>
     </div>`;
   } else if (embed) {
-    body = `<div style="width: 100%; height: 100vh;">${renderCodePenEmbed(html, code, css, embedHeight)}</div>`;
+    body = `<div style="width: 100%; height: 100vh;">${renderCodePenEmbed(html, code, css)}</div>`;
   } else {
     scripts = `<script type="text/javascript" src="/scichart.browser.js"></script>
 <script type="text/javascript" src="/common.js"></script>
-<script async type="text/javascript" src="demo.js" defer></script>`;
+<script async type="text/javascript" src="demo.js"></script>`;
     body = `<div style="width: 100%; height: 100vh;">${html}</div>`;
   }
   return `
@@ -124,7 +140,21 @@ const renderIndexHtml = (html: string, css: string, url: string, code: string, s
 `
 }
 
-const getCodeSandBoxForm = (demoHtml: string, code: string) => {
+const getCodeSandBoxForm = (demoHtml: string, css: string, code: string, isTS: boolean) => {
+  if (!isTS) {
+    code = `
+// We are using npm in CodeSandbox, so we need this import.
+import * as SciChart from "scichart";
+// When importing scichart from npm, the default is to get the wasm from local files, but that is awkward with parcel in codeSandbox, 
+SciChart.SciChartSurface.useWasmFromCDN();
+` + code
+  } else {
+    code = code.replace('from "scichart";', `from "scichart";
+// When importing scichart from npm, the default is to get the wasm from local files, but that is awkward with parcel in codeSandbox,     
+SciChartSurface.useWasmFromCDN();`);
+  }
+  code = code.replace('if (location.search.includes("builder=1"))', '// Uncomment this to use the builder example');
+  code = code.replace('builderExample("scichart-root");', '//builderExample("scichart-root");');
   const parameters = getParameters({
     files: {
       "package.json": {
@@ -151,12 +181,7 @@ const getCodeSandBoxForm = (demoHtml: string, code: string) => {
         }
       },
       "src/index.ts": {
-        content: `
-// We are using npm in CodeSandbox, so we need this import.
-import * as SciChart from "scichart";
-// When importing scichart from npm, the default is to get the wasm from local files, but that is awkward with parcel in codeSandbox, 
-SciChart.SciChartSurface.useWasmFromCDN()
-` + code,
+        content: code,
         isBinary: false
       },
       "index.html": {
@@ -166,6 +191,9 @@ SciChart.SciChartSurface.useWasmFromCDN()
       <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
       <title>SciChart.js Documentation Example</title>
       <script async type="text/javascript" src="src/index.ts" defer></script>
+      <style>
+        ${css}
+      </style>
   </head>
   <body>
     ${demoHtml}  
@@ -225,7 +253,9 @@ const renderCodePenRedirect = (json: any) => {
 </html>`
 }
 
-const renderCodePenEmbed = (html: string, js: string, css: string, height: number) => {
+const renderCodePenEmbed = (html: string, js: string, css: string) => {
+  js = js.replace('if (location.search.includes("builder=1"))', '// Uncomment this to use the builder example');
+  js = js.replace('builderExample("scichart-root");', '//builderExample("scichart-root");');
   return `<div 
   class="codepen" 
   data-prefill='{
@@ -235,9 +265,9 @@ const renderCodePenEmbed = (html: string, js: string, css: string, height: numbe
     "scripts": ["https://cdn.jsdelivr.net/npm/scichart/index.min.js"]
   }'
   style="height: 100%; overflow: auto;"
-  data-height=${height}
-  data-theme-id="light"
-  data-default-tab="js,result" 
+  data-height=100%
+  data-theme-id="44333"
+  data-default-tab="result" 
   data-editable="true"     
 >
   <pre data-lang="html">

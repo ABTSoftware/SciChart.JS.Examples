@@ -22,3 +22,11 @@ codepen=1 to redirect to codepen
 1. Add a folder containing a demo.js file.
 2. Run `npm run gen` which will generate the html, css and details files.  If you edit these files, they will not be overwritten.
 3. Restart the server to pick up changes to the navigation html
+4. If adding a typescript example, call it demo.ts.  import { whatever } from 'scichart' as normal.  You must do `npm run build` for it to work.
+
+## Builder Api support
+Add the builder api version within the demo.js.  The function must be call builderExample.
+Add the following at the end of the file.
+```if (location.search.includes("builder=1")) 
+builderExample("scichart-root");
+```
