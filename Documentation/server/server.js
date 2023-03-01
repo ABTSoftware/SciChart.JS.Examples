@@ -13,6 +13,8 @@ app.use(express.static("static"));
 const navHtml = fs.readFileSync("server/nav.html", "utf8");
 const snippets = new Map();
 const makePen = async (html, js, css) => {
+    js = js.replace('if (location.search.includes("builder=1"))', '// Uncomment this to use the builder example');
+    js = js.replace('builderExample("scichart-root");', '//builderExample("scichart-root");');
     const json = {
         title: "SciChart.js Documentation Snippet",
         html,
@@ -70,18 +72,17 @@ app.get("*", async (req, res) => {
             res.send(renderCodePenRedirect(json));
             return;
         }
-        const embedHeight = req.query["height"] ? parseInt(req.query["height"].toString()) : 400;
-        res.send(renderIndexHtml(demoHtml, demoCss, req.originalUrl, demojs, !req.query["nav"], !!req.query["embed"], embedHeight, isTs));
+        res.send(renderIndexHtml(demoHtml, demoCss, req.originalUrl, demojs, !req.query["nav"], !!req.query["embed"], isTs));
     }
     catch (err) {
         console.log(err);
-        res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, undefined, undefined, true, false, 0, false));
+        res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, undefined, undefined, true, false, false));
     }
 });
 app.listen(port, () => {
     console.log(`Example app listening at http://${host}:${port}`);
 });
-const renderIndexHtml = (html, css, url, code, showNav, embed, embedHeight, isTS) => {
+const renderIndexHtml = (html, css, url, code, showNav, embed, isTS) => {
     let body = "";
     let scripts = "";
     const queryChar = url && url.includes("?") ? "&" : "?";
@@ -110,12 +111,12 @@ const renderIndexHtml = (html, css, url, code, showNav, embed, embedHeight, isTS
     </div>`;
     }
     else if (embed) {
-        body = `<div style="width: 100%; height: 100vh;">${renderCodePenEmbed(html, code, css, embedHeight)}</div>`;
+        body = `<div style="width: 100%; height: 100vh;">${renderCodePenEmbed(html, code, css)}</div>`;
     }
     else {
         scripts = `<script type="text/javascript" src="/scichart.browser.js"></script>
 <script type="text/javascript" src="/common.js"></script>
-<script async type="text/javascript" src="demo.js" defer></script>`;
+<script async type="text/javascript" src="demo.js"></script>`;
         body = `<div style="width: 100%; height: 100vh;">${html}</div>`;
     }
     return `
@@ -139,17 +140,19 @@ const renderIndexHtml = (html, css, url, code, showNav, embed, embedHeight, isTS
 const getCodeSandBoxForm = (demoHtml, css, code, isTS) => {
     if (!isTS) {
         code = `
-    // We are using npm in CodeSandbox, so we need this import.
-    import * as SciChart from "scichart";
-    // When importing scichart from npm, the default is to get the wasm from local files, but that is awkward with parcel in codeSandbox, 
-    SciChart.SciChartSurface.useWasmFromCDN();
-    ` + code;
+// We are using npm in CodeSandbox, so we need this import.
+import * as SciChart from "scichart";
+// When importing scichart from npm, the default is to get the wasm from local files, but that is awkward with parcel in codeSandbox, 
+SciChart.SciChartSurface.useWasmFromCDN();
+` + code;
     }
     else {
         code = code.replace('from "scichart";', `from "scichart";
 // When importing scichart from npm, the default is to get the wasm from local files, but that is awkward with parcel in codeSandbox,     
 SciChartSurface.useWasmFromCDN();`);
     }
+    code = code.replace('if (location.search.includes("builder=1"))', '// Uncomment this to use the builder example');
+    code = code.replace('builderExample("scichart-root");', '//builderExample("scichart-root");');
     const parameters = (0, define_1.getParameters)({
         files: {
             "package.json": {
@@ -246,7 +249,9 @@ const renderCodePenRedirect = (json) => {
     </body>
 </html>`;
 };
-const renderCodePenEmbed = (html, js, css, height) => {
+const renderCodePenEmbed = (html, js, css) => {
+    js = js.replace('if (location.search.includes("builder=1"))', '// Uncomment this to use the builder example');
+    js = js.replace('builderExample("scichart-root");', '//builderExample("scichart-root");');
     return `<div 
   class="codepen" 
   data-prefill='{
@@ -256,9 +261,9 @@ const renderCodePenEmbed = (html, js, css, height) => {
     "scripts": ["https://cdn.jsdelivr.net/npm/scichart/index.min.js"]
   }'
   style="height: 100%; overflow: auto;"
-  data-height=${height}
-  data-theme-id="light"
-  data-default-tab="js,result" 
+  data-height=100%
+  data-theme-id="44333"
+  data-default-tab="result" 
   data-editable="true"     
 >
   <pre data-lang="html">

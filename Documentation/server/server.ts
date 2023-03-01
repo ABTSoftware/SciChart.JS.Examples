@@ -16,7 +16,11 @@ const navHtml = fs.readFileSync("server/nav.html", "utf8");
 
 const snippets = new Map<string,string>();
 
-const makePen = async (html: string, js: string, css: string) => {
+const makePen = async (html: string, js: string, css: string, isTS: boolean) => {
+  if (isTS) {
+    js = js.replace("import", "const");
+    js = js.replace('from "scichart";', "= SciChart;");
+  }
   js = js.replace('if (location.search.includes("builder=1"))', '// Uncomment this to use the builder example');
   js = js.replace('builderExample("scichart-root");', '//builderExample("scichart-root");');
   const json = {
@@ -26,6 +30,7 @@ const makePen = async (html: string, js: string, css: string) => {
     css,
     layout: "left",
     editors: "001",
+    js_pre_processor: isTS ? "typescript" : "none",
     js_external: "https://cdn.jsdelivr.net/npm/scichart/index.min.js"
   }
   return json;
@@ -71,7 +76,7 @@ app.get("*", async (req: Request, res: Response) => {
         snippets.set(cssPath, demoCss);
       }
       if (req.query["codepen"]) {
-        const json = await makePen(demoHtml, demojs, demoCss);
+        const json = await makePen(demoHtml, demojs, demoCss, isTs);
         res.send(renderCodePenRedirect(json));
         return;
       }
@@ -91,7 +96,7 @@ const renderIndexHtml = (html: string, css: string, url: string, code: string, s
   let scripts = "";
   const queryChar = url && url.includes("?") ? "&" : "?";
   if (showNav) {
-    const codePenLink = !isTS ? `<a href="http://${host}:${port}${url}?codepen=1" target="_blank">Edit in CodePen</a></br>` : "";
+    const codePenLink = `<a href="http://${host}:${port}${url + queryChar}codepen=1" target="_blank">Edit in CodePen</a></br>`;
     const embedLink = embed ? `<a href="${url.replace("embed=1", "")}">Show Result</a></br>`
      : `<a href="${url + queryChar}embed=1">Show as Embed</a></br>`;
     const links = url ? `<div>
@@ -114,7 +119,7 @@ const renderIndexHtml = (html: string, css: string, url: string, code: string, s
       </div>
     </div>`;
   } else if (embed) {
-    body = `<div style="width: 100%; height: 100vh;">${renderCodePenEmbed(html, code, css)}</div>`;
+    body = `<div style="width: 100%; height: 100vh;">${renderCodePenEmbed(html, code, css, isTS)}</div>`;
   } else {
     scripts = `<script type="text/javascript" src="/scichart.browser.js"></script>
 <script type="text/javascript" src="/common.js"></script>
@@ -134,7 +139,7 @@ const renderIndexHtml = (html: string, css: string, url: string, code: string, s
         </style>
     </head>
     <body>
-      ${body}  
+      ${body}
     </body>
 </html>
 `
@@ -253,7 +258,11 @@ const renderCodePenRedirect = (json: any) => {
 </html>`
 }
 
-const renderCodePenEmbed = (html: string, js: string, css: string) => {
+const renderCodePenEmbed = (html: string, js: string, css: string, isTS: boolean) => {
+  if (isTS) {
+    js = js.replace("import", "const");
+    js = js.replace('from "scichart";', "= SciChart;");
+  }
   js = js.replace('if (location.search.includes("builder=1"))', '// Uncomment this to use the builder example');
   js = js.replace('builderExample("scichart-root");', '//builderExample("scichart-root");');
   return `<div 
@@ -268,7 +277,7 @@ const renderCodePenEmbed = (html: string, js: string, css: string) => {
   data-height=100%
   data-theme-id="44333"
   data-default-tab="result" 
-  data-editable="true"     
+  data-editable="true"
 >
   <pre data-lang="html">
 ${encode(html)}
@@ -276,7 +285,7 @@ ${encode(html)}
   <pre data-lang="css">
 ${encode(css)}
   </pre>
-  <pre data-lang="js">
+  <pre data-lang="${isTS ? "typescript" : "js"}">
 ${encode(js)}
   </pre>
 </div>
