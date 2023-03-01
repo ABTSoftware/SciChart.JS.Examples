@@ -1,27 +1,31 @@
-const {
-  SciChartSurface,
-  NumericAxis,
-  FastLineRenderableSeries,
-  XyDataSeries,
-  EllipsePointMarker
-} = SciChart;
-
-
-// Demonstrates how to create a line chart with pointmarkers using SciChart.js
 async function drawLineChartWithPointMarkers(divElementId) {
-  // #region Code-API
-  const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+  // #region ExampleA
+  // Demonstrates how to create a line chart with pointmarkers using SciChart.js
+  const {
+    SciChartSurface,
+    NumericAxis,
+    FastLineRenderableSeries,
+    XyDataSeries,
+    EllipsePointMarker,
+    SciChartJsNavyTheme
+  } = SciChart;
+
+  // or, for npm, import { SciChartSurface, ... } from "scichart"
+
+  const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+    theme: new SciChartJsNavyTheme()
+  });
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
   const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   const yValues = [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0];
-
   const xyDataSeries = new XyDataSeries(wasmContext, {
     xValues,
     yValues,
   });
 
+  // Pointmarkers may be applied to most series types. Just declare a marker and pass in options
   const lineSeries = new FastLineRenderableSeries(wasmContext, {
     stroke: "#FF6600",
     strokeThickness: 5,
@@ -39,16 +43,27 @@ async function drawLineChartWithPointMarkers(divElementId) {
   // #endregion
 };
 
-const {
-  chartBuilder,
-  ESeriesType,
-  EPointMarkerType
-} = SciChart;
+drawLineChartWithPointMarkers("scichart-root");
+
+
+
+
+
 
 // Demonstrates the alternative Builder-API to create a line chart with gaps
-async function drawLineChartWithPointMarkersBuilderApi(divElementId) {
-  // #region Builder-API
+async function builderExample(divElementId) {
+  // #region ExampleB
+  const {
+    chartBuilder,
+    ESeriesType,
+    EPointMarkerType,
+    EThemeProviderType
+  } = SciChart;
+
+  // or, for npm, import { SciChartSurface, ... } from "scichart"
+
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
+    surface: { theme: { type: EThemeProviderType.Navy } },
     series: [
       {
         type: ESeriesType.LineSeries,
@@ -59,6 +74,7 @@ async function drawLineChartWithPointMarkersBuilderApi(divElementId) {
         options: {
           stroke: "#FF6600",
           strokeThickness: 5,
+          // With the Builder API, PointMarkers may be declared only using javascript-objects
           pointMarker: {
             type: EPointMarkerType.Ellipse,
             options: {
@@ -77,5 +93,5 @@ async function drawLineChartWithPointMarkersBuilderApi(divElementId) {
 };
 
 
-drawLineChartWithPointMarkers("scichart-root");
-// drawLineChartWithPointMarkersBuilderApi("scichart-root"); // uncomment to choose this version
+if (location.search.includes("builder=1"))
+builderExample("scichart-root");

@@ -1,14 +1,12 @@
+// #region ExampleA
 const {
-  SciChartSurface,
-  NumericAxis,
-  XyDataSeries,
-  FastLineRenderableSeries,
   DefaultPaletteProvider,
   EStrokePaletteMode,
   parseColorToUIntArgb
 } = SciChart;
 
-// #region PaletteProvider
+// or, for npm, import { DefaultPaletteProvider, ... } from "scichart"
+
 // Custom PaletteProvider for line series which colours datapoints above a threshold
 class ThresholdLinePaletteProvider extends DefaultPaletteProvider {
 
@@ -28,10 +26,22 @@ class ThresholdLinePaletteProvider extends DefaultPaletteProvider {
 }
 // #endregion
 
-// Demonstrates how to create a line chart with paletteprovider using SciChart.js
 async function drawLineChartWithPalette(divElementId) {
-  // #region Usage-in-code
-  const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+  // #region ExampleB
+  // Demonstrates how to create a line chart with PaletteProvider using SciChart.js
+  const {
+    SciChartSurface,
+    NumericAxis,
+    FastLineRenderableSeries,
+    XyDataSeries,
+    SciChartJsNavyTheme
+  } = SciChart;
+
+  // or, for npm, import { SciChartSurface, ... } from "scichart"
+
+  const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+    theme: new SciChartJsNavyTheme()
+  });
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
@@ -43,6 +53,7 @@ async function drawLineChartWithPalette(divElementId) {
     yValues,
   });
 
+  // The ThresholdLinePaletteProvider we created before is applied to a FastLineRenderableSeries
   const lineSeries = new FastLineRenderableSeries(wasmContext, {
     stroke: "#FF6600",
     strokeThickness: 5,
@@ -54,16 +65,32 @@ async function drawLineChartWithPalette(divElementId) {
   // #endregion
 };
 
-// #region Usage-with-Builder-Api
-// Demonstrates how to do the same thing, using the builder API
-const { chartBuilder, EBaseType, ESeriesType, EPaletteProviderType } = SciChart;
+drawLineChartWithPalette("scichart-root");
 
-// Register the custom ThresholdLinePaletteProvider with the chartBuilder
-chartBuilder.registerType(EBaseType.PaletteProvider, "ThresholdLinePaletteProvider",
-    (options) => new ThresholdLinePaletteProvider(options.stroke, options.rule));
 
-async function drawLineChartWithPaletteBuilderApi (divElementId) {
+
+
+async function builderExample(divElementId) {
+  // #region ExampleC
+
+  // Demonstrates how to create a chart with a custom PaletteProvider, using the builder API
+  const {
+    chartBuilder,
+    EBaseType,
+    ESeriesType,
+    EPaletteProviderType,
+    EThemeProviderType,
+  } = SciChart;
+
+  // or, for npm, import { chartBuilder, ... } from "scichart"
+
+  // Register the custom ThresholdLinePaletteProvider with the chartBuilder
+  chartBuilder.registerType(EBaseType.PaletteProvider, "ThresholdLinePaletteProvider",
+      (options) => new ThresholdLinePaletteProvider(options.stroke, options.rule));
+
+  // Now use the Builder-API to build the chart
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
+    surface: { theme: { type: EThemeProviderType.Navy } },
     series: [
       {
         type: ESeriesType.LineSeries,
@@ -89,8 +116,11 @@ async function drawLineChartWithPaletteBuilderApi (divElementId) {
       }
     ]
   });
+  // #endregion
 };
-// #endregion
 
-drawLineChartWithPalette("scichart-root");
-// drawLineChartWithPaletteBuilderApi("scichart-root");
+
+
+
+if (location.search.includes("builder=1"))
+builderExample("scichart-root");

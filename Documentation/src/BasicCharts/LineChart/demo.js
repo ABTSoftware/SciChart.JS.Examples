@@ -1,15 +1,19 @@
-const {
-  SciChartSurface,
-  NumericAxis,
-  FastLineRenderableSeries,
-  XyDataSeries,
-} = SciChart;
-
-// or, for npm, import { SciChartSurface, ... } from "scichart"
-
 async function simpleLineChart(divElementId) {
-  console.log("code");
-  const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId);
+  // #region ExampleA
+  // Demonstrates how to create a line chart with SciChart.js
+  const {
+    SciChartSurface,
+    NumericAxis,
+    FastLineRenderableSeries,
+    XyDataSeries,
+    SciChartJsNavyTheme
+  } = SciChart;
+
+  // or, for npm, import { SciChartSurface, ... } from "scichart"
+
+  const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+    theme: new SciChartJsNavyTheme()
+  });
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
@@ -28,18 +32,28 @@ async function simpleLineChart(divElementId) {
   });
 
   sciChartSurface.renderableSeries.add(lineSeries);
+  // #endregion
 };
 
 simpleLineChart("scichart-root");
 
-const {
-  chartBuilder,
-  ESeriesType,
-} = SciChart;
+
+
+
 
 async function builderExample(divElementId) {
-  console.log("builder");
+  // #region ExampleB
+  // Demonstrates how to create a line chart with SciChart.js using the Builder API
+  const {
+    chartBuilder,
+    ESeriesType,
+    EThemeProviderType
+  } = SciChart;
+
+  // or, for npm, import { chartBuilder, ... } from "scichart"
+
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
+    surface: { theme: { type: EThemeProviderType.Navy } },
     series: [
       {
         type: ESeriesType.LineSeries,
@@ -54,7 +68,10 @@ async function builderExample(divElementId) {
       }
     ]
   });
+  // #endregion
 };
 
-if (location.search.includes("builder=1")) 
+
+
+if (location.search.includes("builder=1"))
 builderExample("scichart-root");
