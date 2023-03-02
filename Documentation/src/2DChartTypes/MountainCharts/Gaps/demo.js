@@ -1,6 +1,5 @@
-async function simpleMountainChart(divElementId) {
-  // #region ExampleA
-  // Demonstrates how to create a Mountain (Area) chart with SciChart.js
+async function drawMountainChartsWithGaps(divElementId) {
+  // Demonstrates how to create a line chart with gaps using SciChart.js
   const {
     SciChartSurface,
     NumericAxis,
@@ -19,7 +18,8 @@ async function simpleMountainChart(divElementId) {
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
-  // Create some data
+  // #region ExampleA
+  // Create some data with Y=NAN gaps
   let yLast = 100.0;
   const xValues = [];
   const yValues = [];
@@ -27,10 +27,10 @@ async function simpleMountainChart(divElementId) {
     const y = yLast + (Math.random() - 0.48);
     yLast = y;
     xValues.push(i);
-    yValues.push(y);
+    yValues.push(i % 50 < 15 ? NaN : y);
   }
 
-  // Create a mountain series & add to the chart
+  // Create a mountain series
   const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
     dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
     stroke: "#4682b4",
@@ -44,29 +44,30 @@ async function simpleMountainChart(divElementId) {
       { color: "rgba(70,130,180,0.0)", offset: 1 },
     ]),
   });
+  // #endregion
 
   sciChartSurface.renderableSeries.add(mountainSeries);
-  // #endregion
 };
 
-simpleMountainChart("scichart-root");
+drawMountainChartsWithGaps("scichart-root");
 
 
 
 
 
 async function builderExample(divElementId) {
-  // #region ExampleB
-  // Demonstrates how to create a line chart with SciChart.js using the Builder API
+  // Demonstrates how to create a line chart with gaps in SciChart.js using the Builder API
   const {
     chartBuilder,
     ESeriesType,
+    ELineDrawMode,
     EThemeProviderType
   } = SciChart;
 
-  // or, for npm, import { chartBuilder, ... } from "scichart"
+  // or, for npm, import { SciChartSurface, ... } from "scichart"
 
-  // Create some data
+  // #region ExampleB
+  // Create some data with Y=NAN gaps
   let yLast = 100.0;
   const xValues = [];
   const yValues = [];
@@ -74,7 +75,7 @@ async function builderExample(divElementId) {
     const y = yLast + (Math.random() - 0.48);
     yLast = y;
     xValues.push(i);
-    yValues.push(y);
+    yValues.push(i % 50 < 15 ? NaN : y);
   }
 
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
@@ -84,7 +85,7 @@ async function builderExample(divElementId) {
         type: ESeriesType.MountainSeries,
         xyData: {
           xValues,
-          yValues,
+          yValues
         },
         options: {
           stroke: "#4682b4",

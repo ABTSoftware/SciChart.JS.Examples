@@ -1,4 +1,4 @@
-async function simpleMountainChart(divElementId) {
+async function simpleMountainChartWithPointMarkers(divElementId) {
   // #region ExampleA
   // Demonstrates how to create a Mountain (Area) chart with SciChart.js
   const {
@@ -8,6 +8,7 @@ async function simpleMountainChart(divElementId) {
     GradientParams,
     XyDataSeries,
     Point,
+    EllipsePointMarker,
     SciChartJsNavyTheme
   } = SciChart;
 
@@ -23,7 +24,7 @@ async function simpleMountainChart(divElementId) {
   let yLast = 100.0;
   const xValues = [];
   const yValues = [];
-  for (let i = 0; i <= 250; i++) {
+  for (let i = 0; i <= 125; i++) {
     const y = yLast + (Math.random() - 0.48);
     yLast = y;
     xValues.push(i);
@@ -43,13 +44,20 @@ async function simpleMountainChart(divElementId) {
       { color: "rgba(70,130,180,0.77)", offset: 0 },
       { color: "rgba(70,130,180,0.0)", offset: 1 },
     ]),
+    pointMarker: new EllipsePointMarker(wasmContext, {
+      width: 7,
+      height: 7,
+      strokeThickness: 1,
+      fill: "rgba(176, 196, 222)",
+      stroke: "white"
+    })
   });
 
   sciChartSurface.renderableSeries.add(mountainSeries);
   // #endregion
 };
 
-simpleMountainChart("scichart-root");
+simpleMountainChartWithPointMarkers("scichart-root");
 
 
 
@@ -61,7 +69,8 @@ async function builderExample(divElementId) {
   const {
     chartBuilder,
     ESeriesType,
-    EThemeProviderType
+    EThemeProviderType,
+    EPointMarkerType
   } = SciChart;
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -70,7 +79,7 @@ async function builderExample(divElementId) {
   let yLast = 100.0;
   const xValues = [];
   const yValues = [];
-  for (let i = 0; i <= 250; i++) {
+  for (let i = 0; i <= 125; i++) {
     const y = yLast + (Math.random() - 0.48);
     yLast = y;
     xValues.push(i);
@@ -95,6 +104,15 @@ async function builderExample(divElementId) {
             gradientStops: [{ color:"rgba(70,130,180,0.77)",offset:0.0 },{ color: "rgba(70,130,180,0.0)", offset:1 }],
             startPoint: { x:0, y:0 },
             endPoint: { x:0, y:1}
+          },
+          pointMarker: {
+            type: EPointMarkerType.Ellipse, options: {
+              width: 7,
+              height: 7,
+              strokeThickness: 1,
+              stroke: "white",
+              fill: "rgba(176, 196, 222)",
+            }
           }
         }
       }
@@ -106,4 +124,4 @@ async function builderExample(divElementId) {
 
 
 if (location.search.includes("builder=1"))
-builderExample("scichart-root");
+  builderExample("scichart-root");

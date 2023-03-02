@@ -1,6 +1,41 @@
-async function simpleMountainChart(divElementId) {
-  // #region ExampleA
-  // Demonstrates how to create a Mountain (Area) chart with SciChart.js
+// #region ExampleA
+const {
+  DefaultPaletteProvider,
+  EStrokePaletteMode,
+  parseColorToUIntArgb
+} = SciChart;
+
+// or, for npm, import { DefaultPaletteProvider, ... } from "scichart"
+
+// Custom PaletteProvider for line series which colours datapoints above a threshold
+class MountainPaletteProvider extends DefaultPaletteProvider {
+
+  constructor(threshold) {
+    super();
+    this.strokePaletteMode = EStrokePaletteMode.SOLID;
+    this.threshold = threshold;
+    this.stroke = parseColorToUIntArgb("#FF0000");
+    this.fillColor = parseColorToUIntArgb("#FF000077");
+  }
+
+  // This function is called for every data-point.
+  // Return undefined to use the default color for the line,
+  // else, return a custom colour as an ARGB color code, e.g. 0xFFFF0000 is red
+  overrideStrokeArgb(xValue, yValue, index, opacity, metadata) {
+    return xValue > this.threshold ? this.fillColor : undefined;
+  }
+
+  // This function is called for every data-point
+  // Return undefined to use the default color for the fill, else, return
+  // a custom color as ARGB color code e.g. 0xFFFF0000 is red
+  overrideFillArgb(xValue, yValue, index, opacity, metadata) {
+    return xValue > this.threshold ? this.fillColor : undefined;
+  }
+}
+// #endregion
+
+async function drawMountainChartWithPalette(divElementId) {
+  // Demonstrates how to create a line chart with PaletteProvider using SciChart.js
   const {
     SciChartSurface,
     NumericAxis,
@@ -29,7 +64,9 @@ async function simpleMountainChart(divElementId) {
     xValues.push(i);
     yValues.push(y);
   }
-
+  
+  // #region ExampleB
+  const threshold = 200;
   // Create a mountain series & add to the chart
   const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
     dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
@@ -43,28 +80,36 @@ async function simpleMountainChart(divElementId) {
       { color: "rgba(70,130,180,0.77)", offset: 0 },
       { color: "rgba(70,130,180,0.0)", offset: 1 },
     ]),
+    // Apply the paletteprovider
+    paletteProvider: new MountainPaletteProvider(threshold)
   });
 
-  sciChartSurface.renderableSeries.add(mountainSeries);
+  sciChartSurface.renderableSeries.add(mountainSeries)
   // #endregion
 };
 
-simpleMountainChart("scichart-root");
-
+drawMountainChartWithPalette("scichart-root");
 
 
 
 
 async function builderExample(divElementId) {
-  // #region ExampleB
-  // Demonstrates how to create a line chart with SciChart.js using the Builder API
+  // #region ExampleC
+
+  // Demonstrates how to create a chart with a custom PaletteProvider, using the builder API
   const {
     chartBuilder,
+    EBaseType,
     ESeriesType,
-    EThemeProviderType
+    EPaletteProviderType,
+    EThemeProviderType,
   } = SciChart;
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
+
+  // Register the custom ThresholdLinePaletteProvider with the chartBuilder
+  chartBuilder.registerType(EBaseType.PaletteProvider, "MountainPaletteProvider",
+      (options) => new MountainPaletteProvider(options.threshold));
 
   // Create some data
   let yLast = 100.0;
@@ -77,6 +122,7 @@ async function builderExample(divElementId) {
     yValues.push(y);
   }
 
+  // Now use the Builder-API to build the chart
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
     surface: { theme: { type: EThemeProviderType.Dark } },
     series: [
@@ -84,7 +130,7 @@ async function builderExample(divElementId) {
         type: ESeriesType.MountainSeries,
         xyData: {
           xValues,
-          yValues,
+          yValues
         },
         options: {
           stroke: "#4682b4",
@@ -95,13 +141,24 @@ async function builderExample(divElementId) {
             gradientStops: [{ color:"rgba(70,130,180,0.77)",offset:0.0 },{ color: "rgba(70,130,180,0.0)", offset:1 }],
             startPoint: { x:0, y:0 },
             endPoint: { x:0, y:1}
+          },
+          // Now you can instantiate using parameters below
+          paletteProvider: {
+            type: EPaletteProviderType.Custom,
+            customType: "MountainPaletteProvider",
+            options: {
+              threshold: 200,
+            }
           }
+          // Note: Assigning an instance is also valid, e.g.
+          // paletteProvider: new ThresholdLinePaletteProvider("Green", yValue => yValue >= 4.0)
         }
       }
     ]
   });
   // #endregion
 };
+
 
 
 
