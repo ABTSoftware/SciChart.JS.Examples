@@ -8,32 +8,41 @@ const {
 // or, for npm, import { DefaultPaletteProvider, ... } from "scichart"
 
 // Custom PaletteProvider for line series which colours datapoints above a threshold
-class ThresholdLinePaletteProvider extends DefaultPaletteProvider {
+class ScatterPaletteProvider extends DefaultPaletteProvider {
 
-  constructor(stroke, rule) {
+  constructor(stroke, fill, rule) {
     super();
     this.strokePaletteMode = EStrokePaletteMode.SOLID;
     this.rule = rule;
-    this.stroke = parseColorToUIntArgb(stroke);
+    this.overrideStroke = parseColorToUIntArgb(stroke);
+    this.overrideFill = parseColorToUIntArgb(fill);
   }
 
   // This function is called for every data-point.
-  // Return undefined to use the default color for the line,
+  // Return undefined to use the default color for the pointmarker,
   // else, return a custom colour as an ARGB color code, e.g. 0xFFFF0000 is red
-  overrideStrokeArgb(xValue, yValue, index, opacity, metadata) {
-    return this.rule(yValue) ? this.stroke : undefined;
+  overridePointMarkerArgb(xValue, yValue, index, opacity, metadata) {
+    // Colour points outside the range +0.5, -0.5 red
+    if (this.rule(yValue)) {
+      return { stroke: this.overrideStroke, fill: this.overrideFill }
+    }
+    // Undefined means use default colors
+    return undefined;
   }
 }
 // #endregion
 
-async function drawDigitalLineChartWithPalette(divElementId) {
+async function drawScatterChartWithPalette(divElementId) {
   // Demonstrates how to create a line chart with PaletteProvider using SciChart.js
   const {
     SciChartSurface,
     NumericAxis,
-    FastLineRenderableSeries,
+    XyScatterRenderableSeries,
     XyDataSeries,
-    SciChartJsNavyTheme
+    EllipsePointMarker,
+    SciChartJsNavyTheme,
+    HorizontalLineAnnotation,
+    ELabelPlacement
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -51,26 +60,32 @@ async function drawDigitalLineChartWithPalette(divElementId) {
     yValues.push(Math.sin(i * 0.1));
   }
 
-  const xyDataSeries = new XyDataSeries(wasmContext, {
-    xValues,
-    yValues,
-  });
-
   // #region ExampleB
   // The ThresholdLinePaletteProvider we created before is applied to a FastLineRenderableSeries
-  const lineSeries = new FastLineRenderableSeries(wasmContext, {
-    stroke: "White",
-    strokeThickness: 5,
-    dataSeries: xyDataSeries,
-    isDigitalLine: true,
-    paletteProvider: new ThresholdLinePaletteProvider("Red", (yValue) => yValue > 0.0),
+  const scatterSeries = new XyScatterRenderableSeries(wasmContext, {
+    dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+    pointMarker: new EllipsePointMarker(wasmContext, {
+      width: 7,
+      height: 7,
+      strokeThickness: 1,
+      fill: "steelblue",
+      stroke: "LightSteelBlue",
+    }),
+    // Optional: PaletteProvider feature allows coloring per-point based on a rule
+    paletteProvider: new ScatterPaletteProvider("Red", "Purple", yValue => yValue > 0.0)
   });
 
-  sciChartSurface.renderableSeries.add(lineSeries);
+  sciChartSurface.renderableSeries.add(scatterSeries);
+
+  // Add this label & annotation to the chart
+  sciChartSurface.annotations.add(new HorizontalLineAnnotation({ y1: 0, stroke: "#EC0F6C",
+    axisLabelFill: "White",
+    labelPlacement: ELabelPlacement.BottomRight, labelValue: "Values above this line are red",
+    showLabel: true}));
   // #endregion
 };
 
-drawDigitalLineChartWithPalette("scichart-root");
+drawScatterChartWithPalette("scichart-root");
 
 
 
@@ -83,6 +98,9 @@ async function builderExample(divElementId) {
     ESeriesType,
     EPaletteProviderType,
     EThemeProviderType,
+    EPointMarkerType,
+    EAnnotationType,
+    ELabelPlacement
   } = SciChart;
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -94,17 +112,17 @@ async function builderExample(divElementId) {
     yValues.push(Math.sin(i * 0.1));
   }
 
-  // Register the custom ThresholdLinePaletteProvider with the chartBuilder
-  chartBuilder.registerType(EBaseType.PaletteProvider, "ThresholdLinePaletteProvider",
-      (options) => new ThresholdLinePaletteProvider(options.stroke, options.rule));
-
   // #region ExampleC
+  // Register the custom ThresholdLinePaletteProvider with the chartBuilder
+  chartBuilder.registerType(EBaseType.PaletteProvider, "ScatterPaletteProvider",
+      (options) => new ScatterPaletteProvider(options.stroke, options.fill, options.rule));
+
   // Use the Builder-API to build the chart and apply a paletteprovider
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
-    surface: { theme: { type: EThemeProviderType.Navy } },
+    surface: { theme: { type: EThemeProviderType.Dark } },
     series: [
       {
-        type: ESeriesType.LineSeries,
+        type: ESeriesType.ScatterSeries,
         xyData: {
           xValues,
           yValues,
@@ -112,18 +130,36 @@ async function builderExample(divElementId) {
         options: {
           stroke: "White",
           strokeThickness: 5,
-          isDigitalLine: true,
+          pointMarker: {
+            type: EPointMarkerType.Ellipse,
+            options: { width: 7,
+              height: 7,
+              strokeThickness: 1,
+              fill: "steelblue",
+              stroke: "LightSteelBlue"
+            }
+          },
           // Now you can instantiate using parameters below
           paletteProvider: {
             type: EPaletteProviderType.Custom,
-            customType: "ThresholdLinePaletteProvider",
+            customType: "ScatterPaletteProvider",
             options: {
               stroke: "Red",
+              fill: "Purple",
               rule: (yValue) => yValue >= 0.0,
             }
           }
           // Note: Assigning an instance is also valid, e.g.
-          // paletteProvider: new ThresholdLinePaletteProvider("Green", yValue => yValue >= 4.0)
+          // paletteProvider: new ScatterPaletteProvider("Green", "Red", yValue => yValue >= 4.0)
+        }
+      }
+    ],
+    annotations: [
+      { type: EAnnotationType.RenderContextHorizontalLineAnnotation, options: {
+          y1: 0, stroke: "#EC0F6C",
+          axisLabelFill: "White",
+          labelPlacement: ELabelPlacement.BottomRight, labelValue: "Values above this line are red",
+          showLabel: true
         }
       }
     ]

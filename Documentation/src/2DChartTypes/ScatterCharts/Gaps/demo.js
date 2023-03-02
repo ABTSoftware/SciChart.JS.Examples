@@ -1,12 +1,14 @@
-async function drawDigitalLineChartsWithGaps(divElementId) {
-  // Demonstrates how to create a line chart with gaps using SciChart.js
+async function simpleScatterChartWithGaps(divElementId) {
+  // Demonstrates how to create a scatter chart with SciChart.js with NAN Gaps
   const {
     SciChartSurface,
     NumericAxis,
-    FastLineRenderableSeries,
     XyDataSeries,
-    ELineDrawMode,
-    SciChartJsNavyTheme
+    XyScatterRenderableSeries,
+    EllipsePointMarker,
+    SciChartJsNavyTheme,
+    LineAnnotation,
+    TextAnnotation
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -18,66 +20,83 @@ async function drawDigitalLineChartsWithGaps(divElementId) {
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
   // #region ExampleA
-  // Gaps are realised by setting Y=NAN
   const xValues = [];
   const yValues = [];
   for(let i = 0; i < 100; i++) {
     xValues.push(i);
-    yValues.push(i % 10 === 0 ? NaN : Math.sin(i * 0.1));
+    yValues.push(i % 5 === 0 ? NaN : 0.2 * Math.sin(i*0.1) - Math.cos(i * 0.01));
   }
 
-  const lineSeries = new FastLineRenderableSeries(wasmContext, {
-    stroke: "#FF6600",
-    strokeThickness: 5,
+  const scatterSeries = new XyScatterRenderableSeries(wasmContext, {
     dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
-    isDigitalLine: true
+    pointMarker: new EllipsePointMarker(wasmContext, {
+      width: 7,
+      height: 7,
+      strokeThickness: 2,
+      fill: "steelblue",
+      stroke: "LightSteelBlue",
+    }),
   });
+
+  sciChartSurface.renderableSeries.add(scatterSeries);
   // #endregion
 
-  sciChartSurface.renderableSeries.add(lineSeries);
+  sciChartSurface.annotations.add(new LineAnnotation({ x1: 50, x2: 64, y1: -0.7, y2: -0.75, stroke: "LightSteelBlue", strokeThickness: 2 }));
+  sciChartSurface.annotations.add(new TextAnnotation({ x1: 30, y1: -0.65, text: "Gaps occur where Y = NaN", textColor: "LightSteelBlue", fontSize: 16 }));
 };
 
-drawDigitalLineChartsWithGaps("scichart-root");
+simpleScatterChartWithGaps("scichart-root");
 
 
 
 
 
 async function builderExample(divElementId) {
-  // Demonstrates how to create a line chart with gaps in SciChart.js using the Builder API
+  // Demonstrates how to create a scatter with SciChart.js using the Builder API
   const {
     chartBuilder,
     ESeriesType,
-    ELineDrawMode,
-    EThemeProviderType
+    EPointMarkerType,
+    EThemeProviderType,
+    EAnnotationType
   } = SciChart;
 
-  // or, for npm, import { SciChartSurface, ... } from "scichart"
+  // or, for npm, import { chartBuilder, ... } from "scichart"
 
   // #region ExampleB
-  // Gaps are realised by setting Y=NAN
   const xValues = [];
   const yValues = [];
-  for(let i = 0; i < 100; i++) {
+  for( let i = 0; i < 100; i++) {
     xValues.push(i);
-    yValues.push(i % 10 === 0 ? NaN : Math.sin(i * 0.1));
+    yValues.push(i % 5 === 0 ? NaN : 0.2 * Math.sin(i*0.1) - Math.cos(i * 0.01));
   }
 
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
-    surface: { theme: { type: EThemeProviderType.Navy } },
+    surface: { theme: { type: EThemeProviderType.Dark } },
     series: [
       {
-        type: ESeriesType.LineSeries,
+        type: ESeriesType.ScatterSeries,
         xyData: {
           xValues,
-          yValues,
+          yValues
         },
         options: {
-          stroke: "#FF6600",
-          strokeThickness: 5,
-          isDigitalLine: true
+          pointMarker: {
+            type: EPointMarkerType.Ellipse,
+            options: {
+              width: 7,
+              height: 7,
+              strokeThickness: 1,
+              fill: "steelblue",
+              stroke: "LightSteelBlue",
+            }
+          },
         }
       }
+    ],
+    annotations: [
+      { type: EAnnotationType.SVGTextAnnotation, options: { x1: 30, y1: -0.65, text: "Gaps occur where Y = NaN", textColor: "LightSteelBlue", fontSize: 16 }},
+      { type: EAnnotationType.RenderContextLineAnnotation, options: { x1: 50, x2: 64, y1: -0.7, y2: -0.75, stroke: "LightSteelBlue", strokeThickness: 2 }}
     ]
   });
   // #endregion
@@ -86,4 +105,4 @@ async function builderExample(divElementId) {
 
 
 if (location.search.includes("builder=1"))
-builderExample("scichart-root");
+  builderExample("scichart-root");
