@@ -3797,13 +3797,13 @@ very needed to help users learn scichart!</Notes>
             <Caption m="2016-08-04T09:00:32.249839Z">Axis APIs</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="e4489a79-987b-4a06-ac98-586190c47ec5" Status="New Topic" CreatedOn="2016-08-04T09:36:36.3649393Z" ModifiedOn="2022-05-19T12:07:15.7467174Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Types in SciChart.js" BuildFlags="">
+              <Topic Id="e4489a79-987b-4a06-ac98-586190c47ec5" Status="New Topic" CreatedOn="2016-08-04T09:36:36.3649393Z" ModifiedOn="2023-03-02T09:34:26.595035Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Types in SciChart.js" BuildFlags="">
                 <Title m="2020-08-25T17:34:09.5465291Z">Axis Types in SciChart.js</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2022-05-19T12:07:15.7467174Z">&lt;P&gt;There are several axis types&amp;nbsp;in SciChart.js. Although they all&amp;nbsp;differ in&amp;nbsp;types of data values&amp;nbsp;that can be rendered,&amp;nbsp;the most fundamental difference is in their&amp;nbsp;behavior. By that, the axes can be divided into two groups, Category and Value axis types. Please read the&amp;nbsp;&lt;A href="http://www.scichart.com/documentation/v4.x/Value%20Axis%20vs.%20Category%20Axis.html"&gt;Value Axis vs. Category Axis&lt;/A&gt; article&amp;nbsp;elaborating on what the difference is.&lt;/P&gt;
+                    <Content m="2023-03-02T09:34:26.595035Z">&lt;P&gt;There are several axis types&amp;nbsp;in SciChart.js. Although they all&amp;nbsp;differ in&amp;nbsp;types of data values&amp;nbsp;that can be rendered,&amp;nbsp;the most fundamental difference is in their&amp;nbsp;behavior. By that, the axes can be divided into two groups, Category and Value axis types. Please read the&amp;nbsp;&lt;A href="http://www.scichart.com/documentation/v4.x/Value%20Axis%20vs.%20Category%20Axis.html"&gt;Value Axis vs. Category Axis&lt;/A&gt; article&amp;nbsp;elaborating on what the difference is.&lt;/P&gt;
 &lt;P&gt;The axis types provided by SciChart Android are listed below:&lt;/P&gt;
 &lt;TABLE&gt;
 &lt;TBODY&gt;
@@ -3812,7 +3812,7 @@ very needed to help users learn scichart!</Notes>
 &lt;TD&gt;&lt;STRONG&gt;Value or Category Axis&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD&gt;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/numericaxis.html"&gt;NumericAxis&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
-&lt;TD&gt;Value Axis / Numeric Types &lt;/TD&gt;&lt;/TR&gt;
+&lt;TD&gt;Value Axis / Numeric Types&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD&gt;DateTimeNumericAxis&lt;/TD&gt;
 &lt;TD&gt;Value Axis with additional features for Dates and Times&lt;/TD&gt;&lt;/TR&gt;
@@ -3822,6 +3822,8 @@ very needed to help users learn scichart!</Notes>
 &lt;TR&gt;
 &lt;TD&gt;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/logarithmicaxis.html"&gt;LogarithmicAxis&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
 &lt;TD&gt;Logarithmic / Numeric Axis&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-axis-types&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above:&lt;/STRONG&gt; Axis Types example in SciChart.js demo. Viewable at&amp;nbsp;&lt;/EM&gt;&lt;A href="https://demo.scichart.com/javascript-axis-types" target=_blank&gt;&lt;EM&gt;demo.scichart.com/javascript-axis-types&lt;/EM&gt;&lt;/A&gt;&lt;EM&gt;&amp;nbsp;&lt;/EM&gt;&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;All the axis types in SciChart inherit from&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html"&gt;AxisCore&lt;/A&gt; - a common type shared across both 2D and 3D Charts - and all 2D Axis inherit&amp;nbsp;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html"&gt;AxisBase2D&lt;/A&gt;&lt;/STRONG&gt;.&lt;/P&gt;
 &lt;H2&gt;NumericAxis&lt;/H2&gt;
@@ -13978,7 +13980,7 @@ very needed to help users learn scichart!</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">1713</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">171</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
