@@ -61,6 +61,10 @@ app.get("*", async (req: Request, res: Response) => {
         res.send(renderCodePenRedirect(json));
         return;
       }
+      if (req.query["codesandbox"]) {
+        res.send(renderCodeSandBoxRedirect(demoHtml, demoCss, demojs, isTs, title));
+        return;
+      }
       res.send(renderIndexHtml(demoHtml, demoCss, req.originalUrl, demojs, !req.query["nav"], !!req.query["embed"], isTs, title));
     } catch (err) {
       console.log(err);
@@ -75,17 +79,18 @@ app.listen(port, () => {
 const renderIndexHtml = (html: string, css: string, url: string, code: string, showNav: boolean, embed: boolean, isTS: boolean, title: string) => {
   let body = "";
   let scripts = "";
-  const queryChar = url && url.includes("?") ? "&" : "?";
+  const queryChar = url && url.includes("?") ? (url.endsWith("?") ? "" : "&") : "?";
   if (showNav) {
     const codePenLink = `<a href="http://${host}:${port}${url + queryChar}codepen=1" target="_blank">Edit in CodePen</a></br>`;
+    const codeSandboxLink = `<a href="http://${host}:${port}${url + queryChar}codesandbox=1" target="_blank">Edit in CodeSandbox</a></br>`;
     const embedLink = embed ? `<a href="${url.replace("embed=1", "")}">Show Result</a></br>`
      : `<a href="${url + queryChar}embed=1">Show as Embed</a></br>`;
     const links = url ? `<div>
     <a href="https://jsfiddle.net/gh/get/library/pure/ABTSoftware/SciChart.JS.Examples/tree/master/Documentation/src${url}" target="_blank">Edit in jsFiddle</a></br>
     ${codePenLink}
     ${embedLink}
+    ${codeSandboxLink}
     <a href="${url + queryChar}nav=0">View full screen</a></br>
-    ${getCodeSandBoxForm(html, css, code, isTS, title)}
     </div>` : "";
     const iframe = url === undefined ? "<p>Please select an example</p>" :
         `<iframe style="width: 800px; height: 600px;" src="${url + queryChar}nav=0"></iframe>`;
@@ -175,7 +180,7 @@ SciChartSurface.useWasmFromCDN();`);
   <head>
       <meta charset="utf-8" />
       <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-      <title>SciChart.js Documentation Example</title>
+      <title>${title}</title>
       <script async type="text/javascript" src="src/index.ts" defer></script>
       <style>
         ${css}
@@ -209,10 +214,28 @@ SciChartSurface.useWasmFromCDN();`);
       }
     }
   });
-  return `<form action="https://codesandbox.io/api/v1/sandboxes/define" method="POST" target="_blank">
+  return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
   <input type="hidden" name="parameters" value="${parameters}" />
-  <input type="submit" value="Open in sandbox" />
 </form>`
+}
+
+const renderCodeSandBoxRedirect = (demoHtml: string, css: string, code: string, isTS: boolean, title: string) => {
+  const form = getCodeSandBoxForm(demoHtml, css, code, isTS, title);
+  return `
+  <html lang="en-us">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <title>SciChart.js Documentation Examples</title>
+    </head>
+    <body>
+      <p>Redirecting To codesandbox...</p>
+      ${form}
+      <script type="text/javascript">
+        document.querySelector("#codesandbox").submit();
+      </script>
+    </body>
+</html>`;
 }
 
 const makePen = async (html: string, js: string, css: string, isTS: boolean, title: string) => {
