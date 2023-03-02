@@ -1,0 +1,11 @@
+---
+name: SciChart.js /BasicCharts/DigitalLineChart-PaletteProviders
+description: Demonstrates how to create a digital chart with point-markers using SciChart.js
+authors:
+    - SciChart Ltd
+resources:
+    - https://cdn.jsdelivr.net/npm/scichart/index.min.js
+normalize_css: no
+panel_js: 0
+panel_html: 0
+panel_css: 0
