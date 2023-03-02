@@ -58,7 +58,7 @@ async function drawMountainChartWithPalette(divElementId) {
   let yLast = 100.0;
   const xValues = [];
   const yValues = [];
-  for (let i = 0; i <= 250; i++) {
+  for (let i = 0; i <= 100; i++) {
     const y = yLast + (Math.random() - 0.48);
     yLast = y;
     xValues.push(i);
@@ -66,7 +66,7 @@ async function drawMountainChartWithPalette(divElementId) {
   }
 
   // #region ExampleB
-  const threshold = 200;
+  const threshold = 75;
   // Create a mountain series & add to the chart
   const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
     dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
@@ -80,6 +80,7 @@ async function drawMountainChartWithPalette(divElementId) {
       { color: "rgba(70,130,180,0.77)", offset: 0 },
       { color: "rgba(70,130,180,0.0)", offset: 1 },
     ]),
+    isDigitalLine: true,
     // Apply the paletteprovider
     paletteProvider: new MountainPaletteProvider(threshold)
   });
@@ -115,7 +116,7 @@ async function builderExample(divElementId) {
   let yLast = 100.0;
   const xValues = [];
   const yValues = [];
-  for (let i = 0; i <= 250; i++) {
+  for (let i = 0; i <= 100; i++) {
     const y = yLast + (Math.random() - 0.48);
     yLast = y;
     xValues.push(i);
@@ -142,12 +143,13 @@ async function builderExample(divElementId) {
             startPoint: { x:0, y:0 },
             endPoint: { x:0, y:1}
           },
+          isDigitalLine: true,
           // Now you can instantiate using parameters below
           paletteProvider: {
             type: EPaletteProviderType.Custom,
             customType: "MountainPaletteProvider",
             options: {
-              threshold: 200,
+              threshold: 75,
             }
           }
           // Note: Assigning an instance is also valid, e.g.
