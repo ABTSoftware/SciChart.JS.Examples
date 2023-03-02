@@ -1,6 +1,6 @@
 ---
-name: SciChart.js /BasicCharts/LineChart-PointMarkers
-description: Demonstrates how to create a line chart with point-markers using SciChart.js
+name: SciChart.js documentation snippet for 2DChartTypes - LineCharts - LineChart-PointMarkers
+description: A documentation snippet for SciChart.JS from scichart.com/javascript-chart-documentation.  Find out more about SciChart at scichart.com/javascript-chart-features
 authors:
     - SciChart Ltd
 resources:

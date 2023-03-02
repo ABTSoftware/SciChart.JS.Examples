@@ -85,9 +85,10 @@ const makeDemoFiles = (entry) => {
     if (!entry.hasDetails) {
         console.log("Writing demo.details for ", entry.url);
         const detailsPath = path.join(baseDir, entry.url, "demo.details");
+        const title = "SciChart.js documentation snippet for " + entry.url.split("/").filter(v => v.length > 0).join(" - ");
         fs.promises.writeFile(detailsPath, `---
-name: SciChart.js ${entry.url} Documentation
-description: A Documentation for SciChart.js
+name: ${title}
+description: A documentation snippet for SciChart.JS from scichart.com/javascript-chart-documentation.  Find out more about SciChart at scichart.com/javascript-chart-features
 authors:
     - SciChart Ltd
 resources:

@@ -1,6 +1,6 @@
 ---
-name: SciChart.js /BasicCharts/LineChart
-description: Demonstrates how to create a simple line chart using SciChart.js
+name: SciChart.js documentation snippet for 2DChartTypes - LineCharts - LineChart
+description: A documentation snippet for SciChart.JS from scichart.com/javascript-chart-documentation.  Find out more about SciChart at scichart.com/javascript-chart-features
 authors:
     - SciChart Ltd
 resources:

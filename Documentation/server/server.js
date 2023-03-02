@@ -12,25 +12,6 @@ app.use(express.static("src"));
 app.use(express.static("static"));
 const navHtml = fs.readFileSync("server/nav.html", "utf8");
 const snippets = new Map();
-const makePen = async (html, js, css, isTS) => {
-    if (isTS) {
-        js = js.replace("import", "const");
-        js = js.replace('from "scichart";', "= SciChart;");
-    }
-    js = js.replace('if (location.search.includes("builder=1"))', '// Uncomment this to use the builder example');
-    js = js.replace('builderExample("scichart-root");', '//builderExample("scichart-root");');
-    const json = {
-        title: "SciChart.js Documentation Snippet",
-        html,
-        js,
-        css,
-        layout: "left",
-        editors: "001",
-        js_pre_processor: isTS ? "typescript" : "none",
-        js_external: "https://cdn.jsdelivr.net/npm/scichart/index.min.js"
-    };
-    return json;
-};
 app.get("*", async (req, res) => {
     let basePath = path.join(__dirname, "../src", req.path);
     if (req.path.endsWith("html")) {
@@ -43,6 +24,7 @@ app.get("*", async (req, res) => {
         let isTs = true;
         let demoHtml = snippets.get(htmlPath);
         let demojs = snippets.get(tsPath);
+        const title = "SciChart.js documentation snippet for " + req.path.split("/").filter(v => v.length > 0).join(" - ");
         if (!demoHtml) {
             demoHtml = await fs.promises.readFile(htmlPath, "utf8");
             snippets.set(htmlPath, demoHtml);
@@ -73,21 +55,21 @@ app.get("*", async (req, res) => {
             snippets.set(cssPath, demoCss);
         }
         if (req.query["codepen"]) {
-            const json = await makePen(demoHtml, demojs, demoCss, isTs);
+            const json = await makePen(demoHtml, demojs, demoCss, isTs, title);
             res.send(renderCodePenRedirect(json));
             return;
         }
-        res.send(renderIndexHtml(demoHtml, demoCss, req.originalUrl, demojs, !req.query["nav"], !!req.query["embed"], isTs));
+        res.send(renderIndexHtml(demoHtml, demoCss, req.originalUrl, demojs, !req.query["nav"], !!req.query["embed"], isTs, title));
     }
     catch (err) {
         console.log(err);
-        res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, undefined, undefined, true, false, false));
+        res.send(renderIndexHtml(`<div>No index.html or demo.html found</div>`, undefined, undefined, undefined, true, false, false, "SciChart.js doc snippets"));
     }
 });
 app.listen(port, () => {
     console.log(`Example app listening at http://${host}:${port}`);
 });
-const renderIndexHtml = (html, css, url, code, showNav, embed, isTS) => {
+const renderIndexHtml = (html, css, url, code, showNav, embed, isTS, title) => {
     let body = "";
     let scripts = "";
     const queryChar = url && url.includes("?") ? "&" : "?";
@@ -100,7 +82,7 @@ const renderIndexHtml = (html, css, url, code, showNav, embed, isTS) => {
     ${codePenLink}
     ${embedLink}
     <a href="${url + queryChar}nav=0">View full screen</a></br>
-    ${getCodeSandBoxForm(html, css, code, isTS)}
+    ${getCodeSandBoxForm(html, css, code, isTS, title)}
     </div>` : "";
         const iframe = url === undefined ? "<p>Please select an example</p>" :
             `<iframe style="width: 800px; height: 600px;" src="${url + queryChar}nav=0"></iframe>`;
@@ -116,7 +98,7 @@ const renderIndexHtml = (html, css, url, code, showNav, embed, isTS) => {
     </div>`;
     }
     else if (embed) {
-        body = `<div style="width: 100%; height: 100vh;">${renderCodePenEmbed(html, code, css, isTS)}</div>`;
+        body = `<div style="width: 100%; height: 100vh;">${renderCodePenEmbed(html, code, css, isTS, title)}</div>`;
     }
     else {
         scripts = `<script type="text/javascript" src="/scichart.browser.js"></script>
@@ -129,7 +111,7 @@ const renderIndexHtml = (html, css, url, code, showNav, embed, isTS) => {
     <head>
         <meta charset="utf-8" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-        <title>SciChart.js Documentation Examples</title>
+        <title>${title}</title>
         ${scripts}
         <style>
             iframe { border: 0; }
@@ -142,7 +124,7 @@ const renderIndexHtml = (html, css, url, code, showNav, embed, isTS) => {
 </html>
 `;
 };
-const getCodeSandBoxForm = (demoHtml, css, code, isTS) => {
+const getCodeSandBoxForm = (demoHtml, css, code, isTS, title) => {
     if (!isTS) {
         code = `
 // We are using npm in CodeSandbox, so we need this import.
@@ -163,7 +145,7 @@ SciChartSurface.useWasmFromCDN();`);
             "package.json": {
                 // @ts-ignore
                 content: {
-                    "name": "SciChart.JS Documentation Snippet",
+                    "name": title,
                     "version": "1.0.0",
                     "main": "index.html",
                     "scripts": {
@@ -231,6 +213,22 @@ SciChartSurface.useWasmFromCDN();`);
   <input type="submit" value="Open in sandbox" />
 </form>`;
 };
+const makePen = async (html, js, css, isTS, title) => {
+    js = fixCodepenJS(js, isTS);
+    const json = {
+        title,
+        description: "A documentation snippet for SciChart.js from scichart.com/javascript-chart-documentation.  Find out more about SciChart at scichart.com/javascript-chart-features",
+        html,
+        js,
+        css,
+        tags: ["scichart", "documentation"],
+        layout: "left",
+        editors: "001",
+        js_pre_processor: isTS ? "typescript" : "none",
+        js_external: "https://cdn.jsdelivr.net/npm/scichart/index.min.js"
+    };
+    return json;
+};
 const renderCodePenRedirect = (json) => {
     const JSONstring = JSON.stringify(json)
         .replace(/"/g, "&quot;")
@@ -254,18 +252,23 @@ const renderCodePenRedirect = (json) => {
     </body>
 </html>`;
 };
-const renderCodePenEmbed = (html, js, css, isTS) => {
+const fixCodepenJS = (js, isTS) => {
     if (isTS) {
         js = js.replace("import", "const");
         js = js.replace('from "scichart";', "= SciChart;");
     }
     js = js.replace('if (location.search.includes("builder=1"))', '// Uncomment this to use the builder example');
     js = js.replace('builderExample("scichart-root");', '//builderExample("scichart-root");');
+    return js;
+};
+const renderCodePenEmbed = (html, js, css, isTS, title) => {
+    js = fixCodepenJS(js, isTS);
     return `<div 
   class="codepen" 
   data-prefill='{
-    "title": "SciChart Documentation Example",
-    "tags": ["scichart"],
+    "title": "${title}",
+    "description": "A documentation snippet for SciChart.JS from scichart.com/javascript-chart-documentation.  Find out more about SciChart at scichart.com/javascript-chart-features"
+    "tags": ["scichart", "documentation"],
     "head": "&lt;meta name=&#x27;viewport&#x27; content=&#x27;width=device-width, initial-scale=1&#x27;&gt;",
     "scripts": ["https://cdn.jsdelivr.net/npm/scichart/index.min.js"]
   }'
