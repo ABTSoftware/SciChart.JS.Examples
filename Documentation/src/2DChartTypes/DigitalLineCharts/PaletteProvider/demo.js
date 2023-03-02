@@ -101,7 +101,7 @@ async function builderExample(divElementId) {
   // #region ExampleC
   // Use the Builder-API to build the chart and apply a paletteprovider
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
-    surface: { theme: { type: EThemeProviderType.Navy } },
+    surface: { theme: { type: EThemeProviderType.Dark } },
     series: [
       {
         type: ESeriesType.LineSeries,

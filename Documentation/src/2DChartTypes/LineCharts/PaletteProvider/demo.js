@@ -90,7 +90,7 @@ async function builderExample(divElementId) {
 
   // Now use the Builder-API to build the chart
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
-    surface: { theme: { type: EThemeProviderType.Navy } },
+    surface: { theme: { type: EThemeProviderType.Dark } },
     series: [
       {
         type: ESeriesType.LineSeries,

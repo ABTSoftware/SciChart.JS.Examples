@@ -1,11 +1,12 @@
-async function digitalLineChart(divElementId) {
+async function simpleScatterChart(divElementId) {
   // #region ExampleA
-  // Demonstrates how to create a digitral line chart with SciChart.js
+  // Demonstrates how to create a scatter chart with SciChart.js
   const {
     SciChartSurface,
     NumericAxis,
-    FastLineRenderableSeries,
     XyDataSeries,
+    XyScatterRenderableSeries,
+    EllipsePointMarker,
     SciChartJsNavyTheme
   } = SciChart;
 
@@ -21,7 +22,7 @@ async function digitalLineChart(divElementId) {
   const yValues = [];
   for(let i = 0; i < 100; i++) {
     xValues.push(i);
-    yValues.push(Math.sin(i * 0.1));
+    yValues.push(0.2 * Math.sin(i*0.1) - Math.cos(i * 0.01));
   }
 
   const xyDataSeries = new XyDataSeries(wasmContext, {
@@ -29,19 +30,23 @@ async function digitalLineChart(divElementId) {
     yValues,
   });
 
-  const lineSeries = new FastLineRenderableSeries(wasmContext, {
-    stroke: "#FF6600",
-    strokeThickness: 5,
+  const scatterSeries = new XyScatterRenderableSeries(wasmContext, {
     dataSeries: xyDataSeries,
-    // set flag isDigitalLine = true to enable a digital (step) line
-    isDigitalLine: true
+    pointMarker: new EllipsePointMarker(wasmContext, {
+      width: 7,
+      height: 7,
+      strokeThickness: 2,
+      fill: "steelblue",
+      stroke: "LightSteelBlue",
+    }),
   });
 
-  sciChartSurface.renderableSeries.add(lineSeries);
+  sciChartSurface.renderableSeries.add(scatterSeries);
+
   // #endregion
 };
 
-digitalLineChart("scichart-root");
+simpleScatterChart("scichart-root");
 
 
 
@@ -49,10 +54,11 @@ digitalLineChart("scichart-root");
 
 async function builderExample(divElementId) {
   // #region ExampleB
-  // Demonstrates how to create a digital line chart with SciChart.js using the Builder API
+  // Demonstrates how to create a scatter with SciChart.js using the Builder API
   const {
     chartBuilder,
     ESeriesType,
+    EPointMarkerType,
     EThemeProviderType
   } = SciChart;
 
@@ -60,25 +66,31 @@ async function builderExample(divElementId) {
 
   const xValues = [];
   const yValues = [];
-  for(let i = 0; i < 100; i++) {
+  for( let i = 0; i < 100; i++) {
     xValues.push(i);
-    yValues.push(Math.sin(i * 0.1));
+    yValues.push(0.2 * Math.sin(i*0.1) - Math.cos(i * 0.01));
   }
 
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
-    surface: { theme: { type: EThemeProviderType.Navy } },
+    surface: { theme: { type: EThemeProviderType.Dark } },
     series: [
       {
-        type: ESeriesType.LineSeries,
+        type: ESeriesType.ScatterSeries,
         xyData: {
           xValues,
           yValues
         },
         options: {
-          stroke: "#0066FF",
-          strokeThickness: 5,
-          // set flag isDigitalLine = true to enable a digital (step) line
-          isDigitalLine: true,
+          pointMarker: {
+            type: EPointMarkerType.Ellipse,
+            options: {
+              width: 7,
+              height: 7,
+              strokeThickness: 1,
+              fill: "steelblue",
+              stroke: "LightSteelBlue",
+            }
+          },
         }
       }
     ]
@@ -89,4 +101,4 @@ async function builderExample(divElementId) {
 
 
 if (location.search.includes("builder=1"))
-builderExample("scichart-root");
+  builderExample("scichart-root");

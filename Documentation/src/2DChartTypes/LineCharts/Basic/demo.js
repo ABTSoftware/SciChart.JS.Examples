@@ -53,7 +53,7 @@ async function builderExample(divElementId) {
   // or, for npm, import { chartBuilder, ... } from "scichart"
 
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
-    surface: { theme: { type: EThemeProviderType.Navy } },
+    surface: { theme: { type: EThemeProviderType.Dark } },
     series: [
       {
         type: ESeriesType.LineSeries,
