@@ -117,6 +117,7 @@ const renderIndexHtml = (html: string, css: string, url: string, code: string, s
     <head>
         <meta charset="utf-8" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta name='robots' content='noindex,follow' />
         <title>${title}</title>
         ${scripts}
         <style>
