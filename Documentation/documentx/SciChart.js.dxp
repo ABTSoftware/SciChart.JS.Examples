@@ -952,7 +952,7 @@ very needed to help users learn scichart!</Notes>
                       <TargetItemId>db2eb47f-739c-4d34-b8d1-49d5f1836842</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="2a4716fc-291b-4af8-84f6-3612c5f199d4" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="2a4716fc-291b-4af8-84f6-3612c5f199d4" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>1050b696-5965-441b-a60b-7743440dd66b</TargetItemId>
@@ -4963,18 +4963,20 @@ very needed to help users learn scichart!</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="1050b696-5965-441b-a60b-7743440dd66b" Status="New Topic" CreatedOn="2022-04-13T14:22:12.7971242Z" ModifiedOn="2023-03-02T19:10:27.1472068Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Series isVisible and isVisibleChanged API" BuildFlags="">
+                  <Topic Id="1050b696-5965-441b-a60b-7743440dd66b" Status="New Topic" CreatedOn="2022-04-13T14:22:12.7971242Z" ModifiedOn="2023-03-03T09:20:36.7075912Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Series isVisible and isVisibleChanged API" BuildFlags="">
                     <Title m="2022-04-13T14:22:27.4731286Z">Series isVisible and isVisibleChanged API</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-03-02T19:09:21.3824309Z">&lt;P&gt;Each RenderableSeries has an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#isvisible"&gt;isVisible&lt;/A&gt; property. This defines whether the series is included in rendering or not.&lt;/P&gt;
+                        <Content m="2023-03-03T09:20:36.7075912Z">&lt;P&gt;Each RenderableSeries has an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#isvisible"&gt;isVisible&lt;/A&gt; property. This defines whether the series is included in rendering or not.&lt;/P&gt;
 &lt;P&gt;isVisible can be set programmatically, or is also set by SciChart.js when checking or unchecking a Legend row checkbox (see&amp;nbsp;&lt;A href="84ac3103-a531-43bc-8546-f275d91be35b"&gt;LegendModifier API&lt;/A&gt;).&lt;/P&gt;
-&lt;P&gt;You can listen to isVisible changes via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#isvisiblechanged"&gt;BaseRenderableSeries.isVisibleChanged&lt;/A&gt; event. Listen to the event (get a callback) using the following code:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
-&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\2DChartTypes\Apis\isVisible\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;This can be used to get feedback about the current visibility state of a series, as in the following demo:&lt;/P&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;http://localhost:3000/2DChartTypes/Apis/isVisible/?embed=1&amp;amp;nav=0&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+&lt;P&gt;You can listen to isVisible changes via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#isvisiblechanged"&gt;BaseRenderableSeries.isVisibleChanged&lt;/A&gt; event. Listen to the event (get a callback) using the following code:&lt;/P&gt;&lt;innovasys:widget layout="block" type="Example Code Tab Strip"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code From File (Tab Style)"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\2DChartTypes\Apis\isVisible\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This can be used to get feedback about the current visibility state of a series, as in the following demo:&lt;/P&gt;&lt;innovasys:widget layout="block" type="iFrame"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;http://localhost:3000/2DChartTypes/Apis/isVisible/?embed=1&amp;amp;nav=0&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget layout="block" type="Tip Box"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;See the onIsVisibleChanged parameter in&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ibaserenderableseriesoptions.html#onisvisiblechanged"&gt;IBaseRenderableSeriesOptions.onIsVisibleChanged&lt;/A&gt; for type information.&lt;/P&gt;
+&lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#isvisiblechanged"&gt;BaseRenderableSeries.isVisibleChanged&lt;/A&gt; event handler also has args of type&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/seriesvisiblechangedargs.html"&gt;SeriesVisibleChangedArgs&lt;/A&gt;. In TypeScript, the code would look like this:&lt;/P&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Typescript isVisibleChanged&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;&amp;nbsp; series.isVisibleChanged.subscribe((args: SeriesVisibleChangedArgs) =&amp;gt; {&lt;BR&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp; console.log(`isVisibleChanged handler: Series ${args.sourceSeries.type} was set to isVisible=${args.isVisible}`);&lt;BR&gt;&amp;nbsp; });&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks>
@@ -13949,7 +13951,7 @@ very needed to help users learn scichart!</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">348</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>

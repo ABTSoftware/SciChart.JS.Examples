@@ -23,7 +23,7 @@ async function testIsVisibleOnChart(divElementId) {
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
   // Add instructions
-  const textAnnotation = new TextAnnotation({ x1: 0.5, y1: 0.1, text: "Click on the legend to show/hide the series", textColor: "White", fontSize: 16,
+  const textAnnotation = new TextAnnotation({ x1: 0.5, y1: 0.5, text: "Click on the legend to show/hide the series", textColor: "White", fontSize: 20,
     xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
     horizontalAnchorPoint: EHorizontalAnchorPoint.Center, verticalAnchorPoint: EVerticalAnchorPoint.Center})
   sciChartSurface.annotations.add(textAnnotation);
