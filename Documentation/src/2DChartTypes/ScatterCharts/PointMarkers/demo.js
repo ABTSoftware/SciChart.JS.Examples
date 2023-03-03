@@ -61,7 +61,7 @@ async function createScatterChartWithManyPointMarkers(divElementId) {
           fill: "#0077FF99",
           stroke: "LightSteelBlue"
         }),
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues1 })
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues1 })
       })
   );
 
@@ -73,7 +73,7 @@ async function createScatterChartWithManyPointMarkers(divElementId) {
           fill: "#FF000099",
           stroke: "Red"
         }),
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues2 })
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues2 })
       })
   );
 
@@ -85,7 +85,7 @@ async function createScatterChartWithManyPointMarkers(divElementId) {
           fill: "#FFDD00",
           stroke: "#FF6600"
         }),
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues3 })
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues3 })
       })
   );
 
@@ -96,7 +96,7 @@ async function createScatterChartWithManyPointMarkers(divElementId) {
           ...commonOptions,
           stroke: "#FF00FF"
         }),
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues4 })
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues4 })
       })
   );
 
@@ -108,7 +108,7 @@ async function createScatterChartWithManyPointMarkers(divElementId) {
         pointMarker: new SpritePointMarker(wasmContext, {
           image: imageBitmap
         }),
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues5 })
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues5 })
       })
   );
   // #endregion
