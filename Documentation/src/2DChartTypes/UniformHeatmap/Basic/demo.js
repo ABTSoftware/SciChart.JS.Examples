@@ -36,11 +36,9 @@ async function simpleHeatmapChart(divElementId) {
   zValues.forEach((row, index, collection) => {
     collection[index] = Array.from(Array(heatmapWidth));
   });
-  let maxValue = Number.MIN_VALUE;
   for (let x = 0; x < heatmapWidth; x++) {
     for (let y = 0; y < heatmapHeight; y++) {
       zValues[y][x] = 3.5 * ((heatmapHeight - y) * (heatmapWidth - x));
-      maxValue = Math.max(maxValue, zValues[y][x]);
     }
   }
   // #endregion

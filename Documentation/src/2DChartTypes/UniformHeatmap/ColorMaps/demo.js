@@ -105,7 +105,6 @@ heatmapColorMaps("scichart-root");
 async function heatmapLegend(divElementId) {
   // #region ExampleB
   const { HeatmapLegend, SciChartJsNavyTheme } = SciChart;
-  // #region ExampleB
   const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divElementId, {
     theme: {
       ...new SciChartJsNavyTheme(),
