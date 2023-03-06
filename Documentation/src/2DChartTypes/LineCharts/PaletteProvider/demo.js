@@ -34,7 +34,7 @@ async function drawLineChartWithPalette(divElementId) {
     NumericAxis,
     FastLineRenderableSeries,
     XyDataSeries,
-    SciChartJsNavyTheme
+    SciChartJsNavyTheme,
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -59,14 +59,24 @@ async function drawLineChartWithPalette(divElementId) {
 
   // The ThresholdLinePaletteProvider we created before is applied to a FastLineRenderableSeries
   const lineSeries = new FastLineRenderableSeries(wasmContext, {
-    stroke: "#FF6600",
+    stroke: "#F48420",
     strokeThickness: 5,
     dataSeries: xyDataSeries,
-    paletteProvider: new ThresholdLinePaletteProvider("Green", (yValue) => yValue > -0.8),
+    paletteProvider: new ThresholdLinePaletteProvider("#30BC9A", (yValue) => yValue > -0.8),
   });
 
   sciChartSurface.renderableSeries.add(lineSeries);
   // #endregion
+
+  const { HorizontalLineAnnotation, ELabelPlacement } = SciChart;
+
+  // Add this label & annotation to the chart
+  sciChartSurface.annotations.add(new HorizontalLineAnnotation({ y1: -0.8, stroke: "#30BC9A",
+    axisLabelFill: "White",
+    strokeThickness: 5,
+    opacity: 0.6,
+    labelPlacement: ELabelPlacement.BottomRight, labelValue: "Values above this line are green",
+    showLabel: true}));
 };
 
 drawLineChartWithPalette("scichart-root");

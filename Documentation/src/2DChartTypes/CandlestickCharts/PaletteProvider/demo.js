@@ -56,7 +56,13 @@ class CandlePaletteProvider extends DefaultPaletteProvider {
   // Return undefined to use the default color for the fill, else, return
   // a custom color as ARGB color code e.g. 0xFFFF0000 is red
   overrideFillArgb(xValue, yValue, index, opacity, metadata) {
-    const ohlcDataSeries = this.parentSeries.dataSeries;
+    return this.overrideColorAt(index, this.parentSeries.dataSeries);
+  }
+  overrideStrokeArgb(xValue, yValue, index, opacity, metadata) {
+    return this.overrideColorAt(index, this.parentSeries.dataSeries);
+  }
+
+  overrideColorAt(index, ohlcDataSeries) {
     // Get the open, close values
     const close = ohlcDataSeries.getNativeCloseValues().get(index);
     const open = ohlcDataSeries.getNativeOpenValues().get(index);
@@ -64,10 +70,6 @@ class CandlePaletteProvider extends DefaultPaletteProvider {
     if (Math.abs(1 - (open / close)) > 0.01) {
       return this.highlightColor;
     }
-    return undefined;
-  }
-  overrideStrokeArgb(xValue, yValue, index, opacity, metadata) {
-    // Always return default for strokes
     return undefined;
   }
 }
