@@ -60,7 +60,7 @@ simpleErrorBarsChart("scichart-root");
 
 async function builderExample(divElementId) {
   // #region ExampleB
-  // Demonstrates how to create a line chart with SciChart.js using the Builder API
+  // Demonstrates how to create a chart with error bars in SciChart.js using the Builder API
   const {
     chartBuilder,
     ESeriesType,
