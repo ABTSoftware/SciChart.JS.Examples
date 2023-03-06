@@ -45,8 +45,12 @@ async function drawLineChartWithPalette(divElementId) {
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
-  const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const yValues = [2.5, 3.5, 3.7, 3.9, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0];
+  const xValues = [];
+  const yValues = [];
+  for(let i = 0; i < 100; i++) {
+    xValues.push(i);
+    yValues.push(0.2 * Math.sin(i*0.1) - Math.cos(i * 0.01));
+  }
 
   const xyDataSeries = new XyDataSeries(wasmContext, {
     xValues,
@@ -58,7 +62,7 @@ async function drawLineChartWithPalette(divElementId) {
     stroke: "#FF6600",
     strokeThickness: 5,
     dataSeries: xyDataSeries,
-    paletteProvider: new ThresholdLinePaletteProvider("Green", (yValue) => yValue > 4.0),
+    paletteProvider: new ThresholdLinePaletteProvider("Green", (yValue) => yValue > -0.8),
   });
 
   sciChartSurface.renderableSeries.add(lineSeries);

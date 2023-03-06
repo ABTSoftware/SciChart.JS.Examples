@@ -1,3 +1,10 @@
+// Seeded random approximation (required for tests / data generation consistency)
+let randomSeed = 0;
+function random() {
+  const x = Math.sin(randomSeed++) * 10000;
+  return x - Math.floor(x);
+}
+
 async function drawMountainChartsWithGaps(divElementId) {
   // Demonstrates how to create a line chart with gaps using SciChart.js
   const {
@@ -7,7 +14,14 @@ async function drawMountainChartsWithGaps(divElementId) {
     GradientParams,
     XyDataSeries,
     Point,
-    SciChartJsNavyTheme
+    SciChartJsNavyTheme,
+    TextAnnotation,
+    LineAnnotation,
+    MouseWheelZoomModifier,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -23,11 +37,14 @@ async function drawMountainChartsWithGaps(divElementId) {
   let yLast = 100.0;
   const xValues = [];
   const yValues = [];
-  for (let i = 0; i <= 100; i++) {
-    const y = yLast + (Math.random() - 0.48);
+  const yValuesInv = [];
+  for (let i = 0; i <= 250; i++) {
+    const y = yLast + (random() - 0.48);
     yLast = y;
     xValues.push(i);
-    yValues.push(i % 25 < 5 ? NaN : y);
+    const isThisDataNull = i % 50 < 15;
+    yValues.push(isThisDataNull ? NaN : y);
+    yValuesInv.push(isThisDataNull ? y : NaN);
   }
 
   // Create a mountain series
@@ -43,11 +60,34 @@ async function drawMountainChartsWithGaps(divElementId) {
       { color: "rgba(70,130,180,0.77)", offset: 0 },
       { color: "rgba(70,130,180,0.0)", offset: 1 },
     ]),
-    isDigitalLine: true
   });
+
+  // Create the 'alternative style' mountain series which renders yValuesInv
+  const altStyleMountainSeries = new FastMountainRenderableSeries(wasmContext, {
+    dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValuesInv }),
+    stroke: "#F4842077",
+    strokeDashArray: [2, 2],
+    strokeThickness: 3,
+    zeroLineY: 0.0,
+    // when a gradient is required, use fillLinearGradient
+    fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+      { color: "#F4842033", offset: 0 },
+      { color: "#F4842000", offset: 1 },
+    ]),
+  });
+
   // #endregion
 
   sciChartSurface.renderableSeries.add(mountainSeries);
+  sciChartSurface.renderableSeries.add(altStyleMountainSeries);
+
+  // add labels
+  sciChartSurface.annotations.add(new TextAnnotation({ x1: 75, y1: 104.1, text: "Render alternate style here", textColor: "LightSteelBlue", fontSize: 16,
+    horizontalAnchorPoint: EHorizontalAnchorPoint.Right, verticalAnchorPoint: EVerticalAnchorPoint.Bottom}));
+  sciChartSurface.annotations.add(new LineAnnotation({ x1: 70, x2: 105, y1: 104, y2: 102, stroke: "LightSteelBlue", strokeThickness: 2 }));
+
+  // add interaction for demo
+  sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(), new ZoomPanModifier, new ZoomExtentsModifier());
 };
 
 drawMountainChartsWithGaps("scichart-root");
@@ -62,7 +102,10 @@ async function builderExample(divElementId) {
     chartBuilder,
     ESeriesType,
     ELineDrawMode,
-    EThemeProviderType
+    EThemeProviderType,
+    EAnnotationType,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -72,11 +115,11 @@ async function builderExample(divElementId) {
   let yLast = 100.0;
   const xValues = [];
   const yValues = [];
-  for (let i = 0; i <= 100; i++) {
-    const y = yLast + (Math.random() - 0.48);
+  for (let i = 0; i <= 250; i++) {
+    const y = yLast + (random() - 0.48);
     yLast = y;
     xValues.push(i);
-    yValues.push(i % 25 < 5 ? NaN : y);
+    yValues.push(i % 50 < 15 ? NaN : y);
   }
 
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
@@ -92,15 +135,20 @@ async function builderExample(divElementId) {
           stroke: "#4682b4",
           strokeThickness: 3,
           zeroLineY: 0.0,
+          drawNaNAs: ELineDrawMode.DiscontinuousLine,
           fill: "rgba(176, 196, 222, 0.7)", // when a solid color is required, use fill
           fillLinearGradient: {
             gradientStops: [{ color:"rgba(70,130,180,0.77)",offset:0.0 },{ color: "rgba(70,130,180,0.0)", offset:1 }],
             startPoint: { x:0, y:0 },
             endPoint: { x:0, y:1}
-          },
-          isDigitalLine: true
+          }
         }
       }
+    ],
+    annotations: [
+      { type: EAnnotationType.SVGTextAnnotation, options: { x1: 75, y1: 104.1, text: "Gaps occur where Y = NaN", textColor: "LightSteelBlue", fontSize: 16,
+          horizontalAnchorPoint: EHorizontalAnchorPoint.Right, verticalAnchorPoint: EVerticalAnchorPoint.Bottom }},
+      { type: EAnnotationType.RenderContextLineAnnotation, options: { x1: 70, x2: 105, y1: 104, y2: 102, stroke: "LightSteelBlue", strokeThickness: 2 }}
     ]
   });
   // #endregion
