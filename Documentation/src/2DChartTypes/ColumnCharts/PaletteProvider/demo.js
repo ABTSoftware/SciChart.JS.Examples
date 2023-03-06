@@ -91,7 +91,7 @@ async function builderExample(divElementId) {
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
 
-  // Register the custom ThresholdLinePaletteProvider with the chartBuilder
+  // Register the custom ColumnPaletteProvider with the chartBuilder
   chartBuilder.registerType(EBaseType.PaletteProvider, "ColumnPaletteProvider",
       (options) => new ColumnPaletteProvider(options.threshold));
 
