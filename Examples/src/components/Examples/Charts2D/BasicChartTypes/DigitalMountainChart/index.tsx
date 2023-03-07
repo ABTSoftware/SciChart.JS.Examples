@@ -1,35 +1,33 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
-import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
 import {
-    SciChartSurface,
-    NumericAxis,
-    NumberRange,
     FastMountainRenderableSeries,
-    XyDataSeries,
-    ZoomExtentsModifier,
-    RubberBandXyZoomModifier,
-    MouseWheelZoomModifier,
     GradientParams,
+    MouseWheelZoomModifier,
+    NumberRange,
+    NumericAxis,
     Point,
-    WaveAnimation
+    RubberBandXyZoomModifier,
+    SciChartSurface,
+    WaveAnimation,
+    XyDataSeries,
+    ZoomExtentsModifier
 } from "scichart";
+import { appTheme, classes, RandomWalkGenerator } from "scichart-example-dependencies";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {
-        wasmContext,
-        sciChartSurface
-    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Create an XAxis and YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {axisTitle: "X Axis"}));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis" }));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.05, 0.05),
-            axisTitle: "Y Axis",
+            axisTitle: "Y Axis"
         })
     );
 
@@ -41,18 +39,18 @@ const drawExample = async () => {
 
     // Create a Mountain Series and add to the chart
     const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
         stroke: appTheme.VividOrange,
         strokeThickness: 3,
         zeroLineY: 0.0,
         fill: appTheme.VividOrange, // when a solid color is required, use fill
         // when a gradient is required, use fillLinearGradient
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-            {color: appTheme.MutedOrange, offset: 0},
-            {color: "Transparent", offset: 1}
+            { color: appTheme.MutedOrange, offset: 0 },
+            { color: "Transparent", offset: 1 }
         ]),
         isDigitalLine: true,
-        animation: new WaveAnimation({duration: 1000, fadeEffect: true, zeroLine: 0})
+        animation: new WaveAnimation({ duration: 1000, fadeEffect: true, zeroLine: 0 })
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 
@@ -62,7 +60,7 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
-    return {wasmContext, sciChartSurface};
+    return { wasmContext, sciChartSurface };
 };
 
 // React component needed as our examples app is react.
@@ -79,5 +77,5 @@ export default function DigitalMountainChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

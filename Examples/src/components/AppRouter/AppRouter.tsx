@@ -5,7 +5,7 @@ import { PAGES } from "./pages";
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import ExamplesRoot from "../Examples/ExamplesRoot";
 import { getExampleComponent } from "./examples";
-import classes from "../Examples/Examples.module.scss";
+import { classes } from "scichart-example-dependencies";
 import { GalleryItem } from "../../helpers/types/types";
 import NoIndexTag from "../SeoTags/NoIndexTag";
 type TProps = {

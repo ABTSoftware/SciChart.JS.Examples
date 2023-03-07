@@ -1,7 +1,7 @@
 import * as React from "react";
 import { vitalSignsEcgData } from "./data/vitalSignsEcgData";
-import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
+import {classes} from "scichart-example-dependencies";
+import {appTheme} from "scichart-example-dependencies";
 
 import {
     EAutoRange, EllipsePointMarker,

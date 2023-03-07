@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../../Examples.module.scss";
+import { classes } from "scichart-example-dependencies";
 
 import {
     EAutoRange,
@@ -21,7 +21,7 @@ import {
 
 import {AudioDataProvider} from "./AudioDataProvider";
 import {Radix2FFT} from "./Radix2FFT";
-import {appTheme} from "../../../theme";
+import {appTheme} from "scichart-example-dependencies";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";

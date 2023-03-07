@@ -1,5 +1,5 @@
 import * as React from "react";
-import {appTheme} from "../../../theme";
+import {appTheme} from "scichart-example-dependencies";
 import {
     NumericAxis,
     FastColumnRenderableSeries,
@@ -17,7 +17,7 @@ import {
     PaletteFactory,
     Thickness
 } from "scichart";
-import classes from "../../../../Examples/Examples.module.scss";
+import {classes} from "scichart-example-dependencies";
 
 const divElementId = "chart";
 

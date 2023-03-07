@@ -11,8 +11,7 @@ import {
     ECoordinateMode
 } from "scichart";
 import {chartBuilder} from "scichart/Builder/chartBuilder";
-import classes from "../../../Examples/Examples.module.scss";
-import {appTheme} from "../../theme";
+import {appTheme, classes} from "scichart-example-dependencies";
 
 const divElementId = "chart";
 

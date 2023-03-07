@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
+import {classes} from "scichart-example-dependencies";
 
 import {
     SciChartSurface,

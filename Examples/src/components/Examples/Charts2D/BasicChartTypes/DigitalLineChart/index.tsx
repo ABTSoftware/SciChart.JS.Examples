@@ -1,39 +1,37 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
-import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
-import {appTheme} from "../../../theme";
 import {
-    MouseWheelZoomModifier,
-    ZoomExtentsModifier,
-    ZoomPanModifier,
-    XyDataSeries,
-    NumericAxis,
+    EllipsePointMarker,
     FastLineRenderableSeries,
-    SciChartSurface,
+    MouseWheelZoomModifier,
     NumberRange,
+    NumericAxis,
     ScaleAnimation,
-    EllipsePointMarker
+    SciChartSurface,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier
 } from "scichart";
+import { appTheme, classes, RandomWalkGenerator } from "scichart-example-dependencies";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
     // Create the X,Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.05, 0.05)}));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
 
     // Create some xValues, yValues arrays
-    const {xValues, yValues} = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(25);
+    const { xValues, yValues } = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(25);
 
     // Create and add a line series to the chart
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
             stroke: appTheme.VividPink,
             strokeThickness: 3,
             // Flag isDigitalLine turns a normal line series into a digital line series
@@ -45,7 +43,7 @@ const drawExample = async () => {
                 stroke: appTheme.PaleSkyBlue,
                 strokeThickness: 2
             }),
-            animation: new ScaleAnimation({zeroLine: -1, duration: 500, fadeEffect: true})
+            animation: new ScaleAnimation({ zeroLine: -1, duration: 500, fadeEffect: true })
         })
     );
 
@@ -57,7 +55,7 @@ const drawExample = async () => {
     // Zoom to fit
     sciChartSurface.zoomExtents();
 
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 // React component needed as our examples app is react.
@@ -73,5 +71,5 @@ export default function DigitalLineChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

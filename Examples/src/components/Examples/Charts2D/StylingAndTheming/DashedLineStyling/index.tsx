@@ -1,7 +1,5 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
+import { appTheme, classes, ExampleDataProvider } from "scichart-example-dependencies";
 
 import {
     ENumericFormat,
@@ -9,16 +7,11 @@ import {
     FastLineRenderableSeries,
     FastMountainRenderableSeries,
     GradientParams,
-    MouseWheelZoomModifier,
-    NumericAxis,
-    NumberRange,
-    Point,
-    SciChartSurface,
-    XyDataSeries,
+    MouseWheelZoomModifier, NumberRange, NumericAxis, Point,
+    SciChartSurface, TSciChart, XyDataSeries,
     XyyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier,
-    TSciChart
+    ZoomPanModifier
 } from "scichart";
 
 // tslint:disable:no-empty

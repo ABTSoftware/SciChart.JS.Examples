@@ -1,35 +1,33 @@
 import * as React from "react";
-import {FinChartLegendModifier, IFinanceLegendModifierOptions} from "./FinChartLegendModifier";
-import {multiPaneData} from "../../../ExampleData/multiPaneData";
-import {appTheme} from "../../../theme";
-import classes from "../../../../Examples/Examples.module.scss";
+import { appTheme, classes, multiPaneData } from "scichart-example-dependencies";
+import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
 
 import {
     BasePaletteProvider,
-    chartBuilder,
     calcAverageForArray,
-    parseColorToUIntArgb,
-    Rect,
-    Thickness,
+    chartBuilder,
     CustomAnnotation,
-    EDataFilterType,
     EAutoRange,
+    EAxisAlignment,
+    EAxisType,
+    EChart2DModifierType,
+    EDataFilterType,
+    EFillPaletteMode,
     EHorizontalAnchorPoint,
     ESeriesType,
+    EStrokePaletteMode,
+    EVerticalAnchorPoint,
     EXyDirection,
+    I2DSubSurfaceOptions,
     IFillPaletteProvider,
     IStrokePaletteProvider,
-    I2DSubSurfaceOptions,
-    EAxisType,
-    EAxisAlignment,
-    EChart2DModifierType,
-    EVerticalAnchorPoint,
-    EFillPaletteMode,
-    EStrokePaletteMode,
     NumberRange,
-    SciChartVerticalGroup
+    parseColorToUIntArgb,
+    Rect,
+    SciChartVerticalGroup,
+    Thickness
 } from "scichart";
-import {TWebAssemblyChart} from "scichart/Charting/Visuals/SciChartSurface";
+import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 
 export const mainChartWrapper = "cc_chart";
 export const mainChartWrapper2 = "cc_chart2";
@@ -56,7 +54,7 @@ const getDataForSecondPane = (xValues: number[], closeValues: number[]) => {
         divergenceArray.push(divergence);
     }
 
-    return {macdArray, signalArray, divergenceArray};
+    return { macdArray, signalArray, divergenceArray };
 };
 
 const getDataForThirdPane = (xValues: number[], closeValues: number[]) => {
@@ -80,14 +78,14 @@ const getDataForThirdPane = (xValues: number[], closeValues: number[]) => {
         rsiArray.push(rsi);
     }
 
-    return {rsiArray};
+    return { rsiArray };
 };
 
 export const drawExample = async () => {
     const verticalGroup = new SciChartVerticalGroup();
-    const {dateValues: xValues, openValues, highValues, lowValues, closeValues, volumeValues} = multiPaneData;
-    const {macdArray, signalArray, divergenceArray} = getDataForSecondPane(xValues, closeValues);
-    const {rsiArray} = getDataForThirdPane(xValues, closeValues);
+    const { dateValues: xValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
+    const { macdArray, signalArray, divergenceArray } = getDataForSecondPane(xValues, closeValues);
+    const { rsiArray } = getDataForThirdPane(xValues, closeValues);
 
     const axisAlignment = EAxisAlignment.Right;
 
@@ -98,17 +96,17 @@ export const drawExample = async () => {
     };
 
     const subChartModifiers = [
-        {type: EChart2DModifierType.ZoomPan, options: {xyDirection: EXyDirection.XDirection}},
-        {type: EChart2DModifierType.PinchZoom, options: {xyDirection: EXyDirection.XDirection}},
-        {type: EChart2DModifierType.ZoomExtents, options: {xyDirection: EXyDirection.XDirection}},
-        {type: EChart2DModifierType.MouseWheelZoom, options: {xyDirection: EXyDirection.XDirection}}
+        { type: EChart2DModifierType.ZoomPan, options: { xyDirection: EXyDirection.XDirection } },
+        { type: EChart2DModifierType.PinchZoom, options: { xyDirection: EXyDirection.XDirection } },
+        { type: EChart2DModifierType.ZoomExtents, options: { xyDirection: EXyDirection.XDirection } },
+        { type: EChart2DModifierType.MouseWheelZoom, options: { xyDirection: EXyDirection.XDirection } }
     ];
 
     const upCol = appTheme.VividGreen;
     const downCol = appTheme.MutedRed;
     const opacity = "AA";
 
-    const {sciChartSurface: mainSurface, wasmContext} = await chartBuilder.build2DChart(mainChartWrapper2, {
+    const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(mainChartWrapper2, {
         surface: {
             id: "mainSurface",
             theme: appTheme.SciChartJsTheme
@@ -346,7 +344,7 @@ export const drawExample = async () => {
                 },
                 series: {
                     type: ESeriesType.LineSeries,
-                    xyData: {dataSeriesName: "RSI", xValues, yValues: rsiArray},
+                    xyData: { dataSeriesName: "RSI", xValues, yValues: rsiArray },
                     options: {
                         stroke: appTheme.VividSkyBlue,
                         strokeThickness: 2
@@ -487,7 +485,7 @@ export const drawExample = async () => {
     firstDividerElement.style.top = `${subSurface1.subPosition.height * 100}%`;
     secondDividerElement.style.top = `${subSurface3.subPosition.y * 100}%`;
 
-    return {sciChartSurface: mainSurface, wasmContext};
+    return { sciChartSurface: mainSurface, wasmContext };
 };
 
 /**
@@ -599,14 +597,16 @@ export default function SubChartStockCharts() {
     }, []);
 
     return (
-        <div className={classes.ChartsWrapper} id={containerId2}
-             style={{
-                 position: "relative",
-                 width: "100%",
-                 height: "100%",
-                 touchAction: "none"
-             }}>
-
+        <div
+            className={classes.ChartsWrapper}
+            id={containerId2}
+            style={{
+                position: "relative",
+                width: "100%",
+                height: "100%",
+                touchAction: "none"
+            }}
+        >
             <div
                 id={subChartWrapper1}
                 style={{
@@ -624,7 +624,7 @@ export default function SubChartStockCharts() {
                     zIndex: 1
                 }}
             >
-                <div style={{height: "4px", width: "100%", borderBottom: "2px dashed"}}></div>
+                <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
             </div>
             <div
                 id={subChartWrapper2}
@@ -643,7 +643,7 @@ export default function SubChartStockCharts() {
                     zIndex: 1
                 }}
             >
-                <div style={{height: "4px", width: "100%", borderBottom: "2px dashed"}}></div>
+                <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
             </div>
             <div
                 id={subChartWrapper3}

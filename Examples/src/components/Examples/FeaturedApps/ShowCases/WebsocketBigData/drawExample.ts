@@ -34,7 +34,7 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { TSciChart } from "scichart/types/TSciChart";
-import { appTheme } from "../../../theme";
+import {appTheme, classes} from "scichart-example-dependencies";
 
 export type TMessage = {
     title: string;

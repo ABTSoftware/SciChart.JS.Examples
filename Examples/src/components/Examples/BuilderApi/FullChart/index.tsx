@@ -16,8 +16,7 @@ import {
     EChart2DModifierType,
     Point
 } from "scichart";
-import classes from "../../../Examples/Examples.module.scss";
-import {appTheme} from "../../theme";
+import {appTheme, classes} from "scichart-example-dependencies";
 
 const divElementId = "chart";
 

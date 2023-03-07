@@ -1,7 +1,5 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
+import {classes,appTheme,ExampleDataProvider} from "scichart-example-dependencies";
 
 import {TWebAssemblyChart} from "scichart/Charting/Visuals/SciChartSurface";
 import {

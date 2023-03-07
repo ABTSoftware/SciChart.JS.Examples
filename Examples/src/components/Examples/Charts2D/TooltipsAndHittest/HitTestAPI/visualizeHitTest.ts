@@ -1,6 +1,6 @@
 import {SciChartSurface} from "scichart";
 import {HitTestInfo} from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
-import {appTheme} from "../../../theme";
+import {appTheme} from "scichart-example-dependencies";
 import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
 import {FadeAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
 import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";

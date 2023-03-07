@@ -3,13 +3,12 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/core/styles";
-import classes from "../../../../Examples/Examples.module.scss";
 import Typography from "@material-ui/core/Typography";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
 import { ESeriesType } from "scichart/types/SeriesType";
-import { appTheme } from "../../../theme";
+import {appTheme, classes} from "scichart-example-dependencies";
 import { divElementId, drawExample, ISettings, TMessage } from "./drawExample";
 
 const useStyles = makeStyles(theme => ({

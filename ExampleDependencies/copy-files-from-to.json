@@ -1,0 +1,11 @@
+{
+    "copyFilesSettings": {
+        "whenFileExists": "overwrite"
+    },
+    "copyFiles": [
+        {
+            "from": "src/styles/*.*",
+            "to": "lib/styles/"
+        }
+    ]
+}

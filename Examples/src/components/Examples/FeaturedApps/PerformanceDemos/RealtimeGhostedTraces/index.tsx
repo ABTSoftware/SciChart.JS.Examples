@@ -1,8 +1,7 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
+import {classes,appTheme,ExampleDataProvider} from "scichart-example-dependencies";
 import {Button} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-import {appTheme} from "../../../theme";
 
 import {
     CentralAxesLayoutManager,
@@ -16,7 +15,6 @@ import {
     SciChartSurface,
     XyDataSeries
 } from "scichart";
-import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 const AMPLITUDE = 200;
 

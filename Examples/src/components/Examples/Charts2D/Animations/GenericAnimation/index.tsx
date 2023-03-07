@@ -1,10 +1,10 @@
 import * as React from "react";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import classes from "../../../../Examples/Examples.module.scss";
+import {classes} from "scichart-example-dependencies";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {populationData} from "../../../Charts3D/Basic3DChartTypes/Bubble3DChart/data/PopulationData";
-import {appTheme} from "../../../theme";
+import {appTheme} from "scichart-example-dependencies";
 import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
 import {XyzDataSeries} from "scichart/Charting/Model/XyzDataSeries";
 import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";

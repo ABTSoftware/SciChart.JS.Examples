@@ -1,6 +1,5 @@
 import * as React from "react";
-import classes from "../../../Examples.module.scss";
-import { appTheme } from "../../../theme";
+import {appTheme, classes} from "scichart-example-dependencies";
 import { makeStyles } from "@material-ui/core/styles";
 import { FormControl, ButtonGroup, Button, FormControlLabel, Checkbox } from "@material-ui/core";
 import {

@@ -1,4 +1,4 @@
-import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import {RandomWalkGenerator} from "scichart-example-dependencies";
 
 export type TVarPoint = {
     date: number;

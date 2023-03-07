@@ -1,9 +1,7 @@
 import * as React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
-import classes from "../../../../Examples/Examples.module.scss";
-import { appTheme } from "../../../theme";
+import {appTheme, classes, ExampleDataProvider} from "scichart-example-dependencies";
 import { makeStyles } from "@material-ui/core/styles";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
 import {
     ELegendOrientation,
     ELegendPlacement,

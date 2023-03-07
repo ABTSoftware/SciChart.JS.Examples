@@ -1,6 +1,5 @@
 import * as React from "react";
-import {appTheme} from "../../../theme";
-import classes from "../../../../Examples/Examples.module.scss";
+import {classes, ExampleDataProvider, appTheme} from "scichart-example-dependencies";
 import {
     SciChartVerticalGroup,
     CategoryAxis,
@@ -49,7 +48,6 @@ import {
     EAnnotationLayer
 } from "scichart";
 import {TWebAssemblyChart} from "scichart/Charting/Visuals/SciChartSurface";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";

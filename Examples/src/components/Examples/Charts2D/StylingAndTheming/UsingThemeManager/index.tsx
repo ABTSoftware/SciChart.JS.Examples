@@ -1,23 +1,21 @@
+import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
-import {makeStyles} from "@material-ui/core/styles";
-import {appTheme} from "../../../theme";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
+import { appTheme, classes, ExampleDataProvider } from "scichart-example-dependencies";
 
 import {
-    SciChartSurface,
-    NumericAxis,
-    NumberRange,
-    FastLineRenderableSeries,
-    XyDataSeries,
-    SciChartJSLightTheme,
-    TextAnnotation,
-    EHorizontalAnchorPoint,
-    ECoordinateMode,
-    SciChartJSDarkv2Theme,
-    IThemeProvider,
     EAnimationType,
-    SciChartJsNavyTheme
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    FastLineRenderableSeries,
+    IThemeProvider,
+    NumberRange,
+    NumericAxis,
+    SciChartJSDarkv2Theme,
+    SciChartJSLightTheme,
+    SciChartJsNavyTheme,
+    SciChartSurface,
+    TextAnnotation,
+    XyDataSeries
 } from "scichart";
 
 const divElementId1 = "chart1";
@@ -26,7 +24,6 @@ const divElementId3 = "chart3";
 const divElementId4 = "chart4";
 
 const drawExample = async () => {
-
     const createLineData = (whichSeries: number) => {
         const data = ExampleDataProvider.getFourierSeriesZoomed(1.0, 0.1, 5.0, 5.15);
 
@@ -37,18 +34,20 @@ const drawExample = async () => {
     };
 
     const createThemedChart = async (divId: string, title: string, theme: IThemeProvider) => {
-
         // Create a SciChartSurface passing theme into constructor options
-        const {sciChartSurface, wasmContext} = await SciChartSurface.create(divId, {
-            theme,
+        const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId, {
+            theme
         });
 
         // Create the X,Y Axis
-        sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-            labelPrecision: 2,
-            maxAutoTicks: 8
-        }));
-        sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+        sciChartSurface.xAxes.add(
+            new NumericAxis(wasmContext, {
+                labelPrecision: 2,
+                maxAutoTicks: 8
+            })
+        );
+        sciChartSurface.yAxes.add(
+            new NumericAxis(wasmContext, {
                 labelPrecision: 2,
                 maxAutoTicks: 8,
                 growBy: new NumberRange(0.05, 0.2)
@@ -75,12 +74,12 @@ const drawExample = async () => {
         // Create and add a line series to the chart
         sciChartSurface.renderableSeries.add(
             new FastLineRenderableSeries(wasmContext, {
-                dataSeries: new XyDataSeries(wasmContext, {xValues: data.xValues, yValues: data.yValues}),
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
                 stroke: "auto",
                 strokeThickness: 3,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: {zeroLine: -1, pointDurationFraction: 0.5, duration: 500}
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
                 }
             })
         );
@@ -90,12 +89,12 @@ const drawExample = async () => {
         // Create and add a line series to the chart
         sciChartSurface.renderableSeries.add(
             new FastLineRenderableSeries(wasmContext, {
-                dataSeries: new XyDataSeries(wasmContext, {xValues: data.xValues, yValues: data.yValues}),
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
                 stroke: "auto",
                 strokeThickness: 3,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: {zeroLine: -1, pointDurationFraction: 0.5, duration: 500}
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
                 }
             })
         );
@@ -105,12 +104,12 @@ const drawExample = async () => {
         // Create and add a line series to the chart
         sciChartSurface.renderableSeries.add(
             new FastLineRenderableSeries(wasmContext, {
-                dataSeries: new XyDataSeries(wasmContext, {xValues: data.xValues, yValues: data.yValues}),
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
                 stroke: "auto",
                 strokeThickness: 3,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: {zeroLine: -1, pointDurationFraction: 0.5, duration: 500}
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
                 }
             })
         );
@@ -122,10 +121,10 @@ const drawExample = async () => {
         createThemedChart(divElementId1, "Navy Theme", new SciChartJsNavyTheme()),
         createThemedChart(divElementId2, "Light Theme", new SciChartJSLightTheme()),
         createThemedChart(divElementId3, "Dark Theme", new SciChartJSDarkv2Theme()),
-        createThemedChart(divElementId4, "Custom Theme", customTheme),
+        createThemedChart(divElementId4, "Custom Theme", customTheme)
     ]);
 
-    return {charts};
+    return { charts };
 };
 
 // Create a custom theme based on light theme + some modifications
@@ -144,7 +143,7 @@ const customTheme: IThemeProvider = {
     axisTitleColor: "#1F3D68",
     // auto / default colour palette for lines and fills
     strokePalette: ["#264B93", "#A16DAE", "#C52E60"],
-    fillPalette: ["#264B9333", "#A16DAE33", "#C52E6033"],
+    fillPalette: ["#264B9333", "#A16DAE33", "#C52E6033"]
 };
 
 // Styles for the 2x2 grid
@@ -169,7 +168,7 @@ const useStyles = makeStyles(theme => ({
     item: {
         flex: "auto",
         height: "100%",
-        marginRight: 10,
+        marginRight: 10
     }
 }));
 
@@ -191,12 +190,12 @@ export default function UsingThemeManager() {
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <div className={localClasses.flexContainerRow}>
-                    <div id={divElementId1} className={localClasses.item}/>
-                    <div id={divElementId2} className={localClasses.item}/>
+                    <div id={divElementId1} className={localClasses.item} />
+                    <div id={divElementId2} className={localClasses.item} />
                 </div>
                 <div className={localClasses.flexContainerRow}>
-                    <div id={divElementId3} className={localClasses.item}/>
-                    <div id={divElementId4} className={localClasses.item}/>
+                    <div id={divElementId3} className={localClasses.item} />
+                    <div id={divElementId4} className={localClasses.item} />
                 </div>
             </div>
         </div>

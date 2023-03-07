@@ -1,31 +1,18 @@
 import * as React from "react";
 
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
-import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
+import { appTheme, classes, ExampleDataProvider } from "scichart-example-dependencies";
 
 import {
-    DataLabelProvider,
-    ENumericFormat,
-    EVerticalTextPosition,
-    EXyDirection,
+    DataLabelProvider, EllipsePointMarker, ENumericFormat,
+    EVerticalTextPosition, EWrapTo, EXyDirection,
     FastColumnRenderableSeries,
-    FastLineRenderableSeries,
-    IPointMetadata,
-    NumericAxis,
-    NumberRange,
-    SciChartSurface,
+    FastLineRenderableSeries, formatNumber, IPointMetadata, MouseWheelZoomModifier,
+    NativeTextAnnotation, NumberRange, NumericAxis, parseColorToUIntArgb, SciChartSurface,
     SplineLineRenderableSeries,
     Thickness,
     XyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier,
-    formatNumber,
-    MouseWheelZoomModifier,
-    NativeTextAnnotation,
-    parseColorToUIntArgb,
-    EWrapTo,
-    EllipsePointMarker
+    ZoomPanModifier
 } from "scichart";
 
 const divElementId = "chart";

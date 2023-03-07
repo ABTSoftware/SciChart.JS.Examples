@@ -1,6 +1,5 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
-import { appTheme } from "../../../theme";
+import { appTheme, classes } from "scichart-example-dependencies";
 import { TSciChart } from "scichart/types/TSciChart";
 
 import {
@@ -11,10 +10,7 @@ import {
     EXyDirection,
     FastLineRenderableSeries,
     LeftAlignedOuterVerticallyStackedAxisLayoutStrategy,
-    MouseWheelZoomModifier,
-    NumericAxis,
-    NumberRange,
-    RubberBandXyZoomModifier,
+    MouseWheelZoomModifier, NumberRange, NumericAxis, RubberBandXyZoomModifier,
     SciChartSurface,
     TextAnnotation,
     XAxisDragModifier,

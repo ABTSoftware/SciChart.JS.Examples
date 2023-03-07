@@ -4,14 +4,14 @@ import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsM
 import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import classes from "../../../../Examples/Examples.module.scss";
+import {classes} from "scichart-example-dependencies";
 import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
 import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 import {ScaleAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
 import {FadeAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
-import {appTheme} from "../../../theme";
+import {appTheme} from "scichart-example-dependencies";
 import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
 import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
 import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";

@@ -1,7 +1,7 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
+import {classes} from "scichart-example-dependencies";
 import {Button} from "@material-ui/core";
-import {appTheme} from "../../../theme";
+import {appTheme} from "scichart-example-dependencies";
 import {makeStyles} from "@material-ui/core/styles";
 import {
     NumericAxis,

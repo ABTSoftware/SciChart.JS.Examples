@@ -1,7 +1,6 @@
 import * as React from "react";
 import { SciChartSurface, chartBuilder, TWebAssemblyChart } from "scichart";
-import {  } from "scichart/Builder/chartBuilder";
-import classes from "../../../Examples/Examples.module.scss";
+import { classes } from "scichart-example-dependencies";
 import { ButtonGroup, Button, TextField } from "@material-ui/core";
 import { Alert, AlertTitle } from "@material-ui/lab";
 

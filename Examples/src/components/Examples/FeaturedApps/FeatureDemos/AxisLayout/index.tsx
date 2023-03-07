@@ -1,6 +1,5 @@
 import * as React from "react";
-import classes from "../../../Examples.module.scss";
-import { appTheme } from "../../../theme";
+import {appTheme, classes} from "scichart-example-dependencies";
 
 import {
     EAutoRange,

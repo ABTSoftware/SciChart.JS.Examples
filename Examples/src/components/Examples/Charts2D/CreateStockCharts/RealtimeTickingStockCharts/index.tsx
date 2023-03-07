@@ -1,8 +1,7 @@
 import * as React from "react";
 import { IDeletable } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import { appTheme } from "../../../theme";
-import classes from "../../../../Examples/Examples.module.scss";
+import {appTheme, classes} from "scichart-example-dependencies";
 import {createCandlestickChart} from "./createCandlestickChart";
 import {simpleBinanceRestClient,TPriceBar} from "../../BasicChartTypes/CandlestickChart/data/binanceRestClient";
 import {binanceSocketClient} from "./binanceSocketClient";

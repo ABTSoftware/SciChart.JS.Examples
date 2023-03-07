@@ -1,8 +1,6 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
+import { appTheme, classes, ExampleDataProvider } from "scichart-example-dependencies";
 
-import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 import {
     EllipsePointMarker,
     ENumericFormat,
@@ -12,8 +10,8 @@ import {
     SciChartSurface,
     XyDataSeries, ZoomExtentsModifier, ZoomPanModifier
 } from "scichart";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
-import {SeriesInfo} from "scichart/Charting/Model/ChartData/SeriesInfo";
+import { SeriesInfo } from "scichart/Charting/Model/ChartData/SeriesInfo";
+import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 
 const divElementId = "chart";
 

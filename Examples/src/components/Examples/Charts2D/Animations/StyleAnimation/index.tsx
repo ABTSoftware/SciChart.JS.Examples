@@ -7,12 +7,12 @@ import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
-import classes from "../../../../Examples/Examples.module.scss";
+import {classes} from "scichart-example-dependencies";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { BandAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/BandAnimation";
 import {makeStyles} from "@material-ui/core/styles";
-import {appTheme} from "../../../theme";
+import {appTheme} from "scichart-example-dependencies";
 
 const divElementId = "chart";
 

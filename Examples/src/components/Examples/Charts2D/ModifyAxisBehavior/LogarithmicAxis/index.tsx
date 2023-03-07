@@ -1,9 +1,7 @@
 import * as React from "react";
-import {appTheme} from "../../../theme";
-import classes from "../../../Examples.module.scss";
+import {appTheme, ExampleDataProvider, classes} from "scichart-example-dependencies";
 import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
 import {makeStyles} from "@material-ui/core/styles";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
 import {
     AxisBase2D,
     ECoordinateMode,

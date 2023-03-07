@@ -1,21 +1,17 @@
-import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
-import { appTheme } from "../../../theme";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+import * as React from "react";
 import {
     ECoordinateMode,
     EHorizontalAnchorPoint,
     ELineDrawMode,
     FastLineRenderableSeries,
-    MouseWheelZoomModifier,
-    NumericAxis,
-    NumberRange,
-    PinchZoomModifier,
+    MouseWheelZoomModifier, NumberRange, NumericAxis, PinchZoomModifier,
     SciChartSurface,
     TextAnnotation,
     XyDataSeries,
     ZoomPanModifier
 } from "scichart";
+import { appTheme, classes } from "scichart-example-dependencies";
 
 const divElementId = "chart1";
 

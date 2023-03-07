@@ -1,32 +1,30 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
 import {
-    SciChartSurface,
-    NumericAxis,
-    ZoomPanModifier,
-    ZoomExtentsModifier,
-    MouseWheelZoomModifier,
-    NumberRange,
-    XyDataSeries,
-    HorizontalLineAnnotation,
-    ELabelPlacement,
-    EFillPaletteMode,
-    EStrokePaletteMode,
-    IFillPaletteProvider,
-    IStrokePaletteProvider,
-    IRenderableSeries,
-    parseColorToUIntArgb,
-    TextAnnotation,
-    EHorizontalAnchorPoint,
-    EVerticalAnchorPoint,
     ECoordinateMode,
+    EFillPaletteMode,
+    EHorizontalAnchorPoint,
+    ELabelPlacement,
+    EStrokePaletteMode,
+    EVerticalAnchorPoint,
     FastMountainRenderableSeries,
     GradientParams,
+    HorizontalLineAnnotation,
+    IFillPaletteProvider,
+    IRenderableSeries,
+    IStrokePaletteProvider,
+    MouseWheelZoomModifier,
+    NumberRange,
+    NumericAxis,
+    parseColorToUIntArgb,
     Point,
-    VerticalLineAnnotation
+    SciChartSurface,
+    TextAnnotation,
+    VerticalLineAnnotation,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier
 } from "scichart";
+import { appTheme, classes, ExampleDataProvider } from "scichart-example-dependencies";
 
 const divElementId = "chart";
 
@@ -34,24 +32,19 @@ const divElementId = "chart";
 // tslint:disable:max-line-length
 
 const drawExample = async () => {
-    const {
-        sciChartSurface,
-        wasmContext
-    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Add an XAxis, YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)})
-    );
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
 
     // Create a paletteprovider to colour the series depending on a threshold value
-    const thresholdPalette = new ThresholdPaletteProvider(
-        4, appTheme.MutedOrange,
-        8, appTheme.VividTeal);
+    const thresholdPalette = new ThresholdPaletteProvider(4, appTheme.MutedOrange, 8, appTheme.VividTeal);
 
     // Add a Column series with some values to the chart
-    const {xValues, yValues} = ExampleDataProvider.getDampedSinewave(0, 10, 0, 0.001, 3000, 10);
+    const { xValues, yValues } = ExampleDataProvider.getDampedSinewave(0, 10, 0, 0.001, 3000, 10);
 
     sciChartSurface.renderableSeries.add(
         new FastMountainRenderableSeries(wasmContext, {
@@ -63,10 +56,10 @@ const drawExample = async () => {
                 yValues
             }),
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                {color: appTheme.VividSkyBlue, offset: 0},
-                {color: appTheme.VividSkyBlue + "77", offset: 1}
+                { color: appTheme.VividSkyBlue, offset: 0 },
+                { color: appTheme.VividSkyBlue + "77", offset: 1 }
             ]),
-            paletteProvider: thresholdPalette,
+            paletteProvider: thresholdPalette
         })
     );
 
@@ -78,7 +71,7 @@ const drawExample = async () => {
         y1: 4.2,
         fontSize: 22,
         text: "Drag the lines!",
-        textColor: "White",
+        textColor: "White"
     });
     // Add a horizontal threshold at Y=5
     const horizontalLine = new HorizontalLineAnnotation({
@@ -90,13 +83,13 @@ const drawExample = async () => {
         axisLabelFill: appTheme.VividOrange,
         axisLabelStroke: appTheme.ForegroundColor,
         labelPlacement: ELabelPlacement.Axis,
-        onDrag: (args) => {
+        onDrag: args => {
             // When the horizontal line is dragged, update the
             // threshold palette and redraw the SciChartSurface
             thresholdPalette.yThresholdValue = horizontalLine.y1;
             textAnnotation.y1 = horizontalLine.y1 + 0.2;
             sciChartSurface.invalidateElement();
-        },
+        }
     });
     sciChartSurface.annotations.add(horizontalLine);
     sciChartSurface.annotations.add(textAnnotation);
@@ -111,34 +104,37 @@ const drawExample = async () => {
         axisLabelFill: appTheme.VividTeal,
         axisLabelStroke: appTheme.ForegroundColor,
         labelPlacement: ELabelPlacement.Axis,
-        onDrag: (args) => {
+        onDrag: args => {
             // When the vertical line is dragged, update the
             // threshold palette and redraw the SciChartSurface
             thresholdPalette.xThresholdValue = verticalLine.x1;
             sciChartSurface.invalidateElement();
-        },
+        }
     });
     sciChartSurface.annotations.add(verticalLine);
 
     // Add instructions
-    sciChartSurface.annotations.add(new TextAnnotation({
-        x1: 0,
-        y1: 0,
-        xAxisId: "history",
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top,
-        text: "SciChart.js supports editable, draggable annotations and dynamic color/fill rules. Drag a threshold line!",
-        textColor: appTheme.ForegroundColor + "77",
-    }))
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            x1: 0,
+            y1: 0,
+            xAxisId: "history",
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+            verticalAnchorPoint: EVerticalAnchorPoint.Top,
+            text:
+                "SciChart.js supports editable, draggable annotations and dynamic color/fill rules. Drag a threshold line!",
+            textColor: appTheme.ForegroundColor + "77"
+        })
+    );
 
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 /**
@@ -152,19 +148,16 @@ export class ThresholdPaletteProvider implements IFillPaletteProvider, IStrokePa
     private readonly yColor: number;
     private readonly xColor: number;
 
-    constructor(yThresholdValue: number, yColor: string,
-                xThresholdValue: number, xColor: string) {
+    constructor(yThresholdValue: number, yColor: string, xThresholdValue: number, xColor: string) {
         this.yThresholdValue = yThresholdValue;
         this.yColor = parseColorToUIntArgb(yColor);
         this.xThresholdValue = xThresholdValue;
         this.xColor = parseColorToUIntArgb(xColor);
     }
 
-    onAttached(parentSeries: IRenderableSeries): void {
-    }
+    onAttached(parentSeries: IRenderableSeries): void {}
 
-    onDetached(): void {
-    }
+    onDetached(): void {}
 
     overrideFillArgb(xValue: number, yValue: number, index: number, opacity?: number): number {
         // When the x-value of the series is greater than the x threshold
@@ -198,5 +191,5 @@ export default function DragHorizontalThreshold() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

@@ -25,7 +25,7 @@ import {
     EHorizontalAnchorPoint,
     ECoordinateMode
 } from "scichart";
-import classes from "../../../Examples.module.scss";
+import { classes } from "scichart-example-dependencies";
 import appleLogo from "./images/apple.png";
 import samsungLogo from "./images/samsung.png";
 import xiaomiLogo from "./images/xiaomi.png";
@@ -41,7 +41,7 @@ import tecnoLogo from "./images/tecno.png";
 import infinixLogo from "./images/infinix.png";
 import googleLogo from "./images/google.png";
 import nokiaLogo from "./images/nokia.png";
-import {appTheme} from "../../../theme";
+import {appTheme} from "scichart-example-dependencies";
 import {TTextureObject} from "scichart/Charting/Visuals/TextureManager/TextureManager";
 
 const divElementId = "chart";

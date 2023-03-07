@@ -1,13 +1,10 @@
 import * as React from "react";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
-import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
 import {
     EAxisAlignment,
     EllipsePointMarker,
     MouseWheelZoomModifier,
-    NumericAxis,
     NumberRange,
+    NumericAxis,
     ScaleAnimation,
     SciChartSurface,
     SplineBandRenderableSeries,
@@ -15,20 +12,20 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier
 } from "scichart";
+import { appTheme, classes, ExampleDataProvider } from "scichart-example-dependencies";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {
-        wasmContext,
-        sciChartSurface
-    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Add an XAxis, YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {axisAlignment: EAxisAlignment.Top}));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Top }));
     sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {axisAlignment: EAxisAlignment.Left, growBy: new NumberRange(0.2, 0.2)})
+        new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Left, growBy: new NumberRange(0.2, 0.2) })
     );
 
     // The spline bandseries requires a special dataseries type called XyyDataSeries
@@ -53,7 +50,7 @@ const drawExample = async () => {
             fill: appTheme.PaleSkyBlue,
             stroke: appTheme.VividSkyBlue
         }),
-        animation: new ScaleAnimation({duration: 800, zeroLine: 0, fadeEffect: true})
+        animation: new ScaleAnimation({ duration: 800, zeroLine: 0, fadeEffect: true })
     });
 
     rendSeries.fill = appTheme.VividOrange + "33";
@@ -66,7 +63,7 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
-    return {wasmContext, sciChartSurface};
+    return { wasmContext, sciChartSurface };
 };
 
 let scs: SciChartSurface;
@@ -81,5 +78,5 @@ export default function SplineBandSeriesChart() {
         return () => scs?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

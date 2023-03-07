@@ -1,31 +1,19 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
-import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import { appTheme, classes, RandomWalkGenerator } from "scichart-example-dependencies";
 
 import {
     BoxAnnotation,
     ECoordinateMode,
     EDataLabelSkipMode,
     EHorizontalAnchorPoint,
-    ELabelPlacement,
-    EStrokePaletteMode,
-    EllipsePointMarker,
-    FastLineRenderableSeries,
-    HorizontalLineAnnotation,
-    IStrokePaletteProvider,
-    IRenderableSeries,
-    IPointMarkerPaletteProvider,
-    IPointMetadata,
-    NumberRange,
+    ELabelPlacement, EllipsePointMarker, EStrokePaletteMode, FastLineRenderableSeries,
+    HorizontalLineAnnotation, IPointMarkerPaletteProvider,
+    IPointMetadata, IRenderableSeries, IStrokePaletteProvider, NumberRange,
     NumericAxis,
     parseColorToUIntArgb,
-    SciChartSurface,
-    Thickness,
-    TextAnnotation,
-    TPointMarkerArgb,
+    SciChartSurface, TextAnnotation, Thickness, TPointMarkerArgb,
     XyDataSeries,
-    XyScatterRenderableSeries,
+    XyScatterRenderableSeries
 } from "scichart";
 
 const divElementId = "chart";

@@ -2,9 +2,8 @@ import Button from "@material-ui/core/Button";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
 import {makeStyles} from "@material-ui/core/styles";
-import {appTheme} from "../../../theme";
+import {appTheme, classes} from "scichart-example-dependencies";
 
 import {
     EAxisAlignment,

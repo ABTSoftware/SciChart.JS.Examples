@@ -1,27 +1,15 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
-import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
 import {
     EAxisAlignment,
     ECoordinateMode,
     EHorizontalAnchorPoint,
-    ELabelAlignment,
-    ENumericFormat,
-    EVerticalAnchorPoint,
-    EllipsePointMarker,
-    FastLineRenderableSeries,
-    NumericAxis,
-    NumberRange,
-    SciChartSurface,
-    TextAnnotation,
-    XyDataSeries,
-    MouseWheelZoomModifier,
-    XAxisDragModifier,
-    YAxisDragModifier,
+    ELabelAlignment, EllipsePointMarker, ENumericFormat,
+    EVerticalAnchorPoint, FastLineRenderableSeries, MouseWheelZoomModifier, NumberRange, NumericAxis, SciChartSurface,
+    TextAnnotation, XAxisDragModifier, XyDataSeries, YAxisDragModifier,
     ZoomExtentsModifier,
     ZoomPanModifier
 } from "scichart";
+import { appTheme, classes, RandomWalkGenerator } from "scichart-example-dependencies";
 
 const divElementId = "chart1";
 

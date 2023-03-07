@@ -9,8 +9,7 @@ import {
     SplineMountainRenderableSeries,
     ENumericFormat
 } from "scichart";
-import classes from "../../../Examples.module.scss";
-import {appTheme} from "../../../theme";
+import {appTheme,classes} from "scichart-example-dependencies";
 
 const divElementId = "chart";
 

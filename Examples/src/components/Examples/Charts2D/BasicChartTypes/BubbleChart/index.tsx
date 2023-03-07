@@ -20,8 +20,8 @@ import {
     SplineLineRenderableSeries,
     SweepAnimation
 } from "scichart";
-import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
+import {classes} from "scichart-example-dependencies";
+import {appTheme} from "scichart-example-dependencies";
 
 
 const divElementId = "chart";

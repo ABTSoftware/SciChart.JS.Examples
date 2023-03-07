@@ -1,9 +1,7 @@
 import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
 import * as React from "react";
-import classes from "../../../Examples.module.scss";
 import {makeStyles} from "@material-ui/core/styles";
-import {appTheme} from "../../../theme";
-import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import {appTheme, RandomWalkGenerator,classes} from "scichart-example-dependencies";
 import {
     EAutoRange,
     EAnnotationLayer,

@@ -5,7 +5,7 @@ import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import {ALL_MENU_ITEMS, getExampleComponent} from "../AppRouter/examples";
 import Button from "@material-ui/core/Button";
 import { ExampleStrings } from "./ExampleStrings";
-import classes from "./Examples.module.scss";
+import { classes } from "scichart-example-dependencies";
 import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
 import SourceCode from "../SourceCode/SourceCode";
 import CodeIcon from "@material-ui/icons/Code";

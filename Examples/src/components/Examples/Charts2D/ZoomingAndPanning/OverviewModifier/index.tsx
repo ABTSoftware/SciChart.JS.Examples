@@ -1,16 +1,13 @@
 import * as React from "react";
-import classes from "../../../../Examples/Examples.module.scss";
-import {appTheme} from "../../../theme";
-import {RandomWalkGenerator} from "../../../ExampleData/RandomWalkGenerator";
+import { appTheme, classes, RandomWalkGenerator } from "scichart-example-dependencies";
 
 import {
-    EAutoRange, EHorizontalAnchorPoint, EllipsePointMarker, EVerticalAnchorPoint,
+    EAutoRange, ECoordinateMode, EExecuteOn, EHorizontalAnchorPoint, EllipsePointMarker, EVerticalAnchorPoint,
     FastLineRenderableSeries, IDeletable, MouseWheelZoomModifier,
     NumberRange,
     NumericAxis, RubberBandXyZoomModifier, SciChartOverview,
-    SciChartSurface,
-    XyDataSeries,
-    XyScatterRenderableSeries, ZoomExtentsModifier, ZoomPanModifier, TextAnnotation, ECoordinateMode, EExecuteOn
+    SciChartSurface, TextAnnotation, XyDataSeries,
+    XyScatterRenderableSeries, ZoomExtentsModifier, ZoomPanModifier
 } from "scichart";
 
 export const divElementId = "chart";
