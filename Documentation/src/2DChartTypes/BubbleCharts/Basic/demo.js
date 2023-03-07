@@ -45,8 +45,11 @@ async function simpleBubbleChart(divElementId) {
   });
 
   sciChartSurface.renderableSeries.add(bubbleSeries);
-
   // #endregion
+
+  // Optional: add zooming, panning for the example
+  const { MouseWheelZoomModifier, ZoomPanModifier, ZoomExtentsModifier } = SciChart;
+  sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(), new ZoomPanModifier, new ZoomExtentsModifier());
 };
 
 simpleBubbleChart("scichart-root");
