@@ -16,12 +16,17 @@ import { renderIndexHtml } from "./renderIndexHtml";
 import * as http from "http";
 import { createSocketServer } from "./websockets";
 import { api } from "./api";
+import { renderCodeSandBoxRedirect } from "./renderCodeSandboxRedirect";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
 const targetDir = defaultConfig.buildConfig.targetDir;
 
 function handleRender(req: Request, res: Response) {
+    if (req.query["codesandbox"]) {
+        if (renderCodeSandBoxRedirect(req, res))
+            return;
+    }
     const sheets = new ServerStyleSheets();
 
     // Render the component to a string.

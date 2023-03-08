@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const config = require("./config/default");
 const nodeExternals = require('webpack-node-externals');
@@ -63,6 +64,11 @@ module.exports = {
         extensions: [".tsx", ".ts", ".js"]
     },
     plugins: [
+        new CopyPlugin({
+            patterns: [
+                { from: "src/components/Examples/**/index.tsx", to: "Examples" },
+            ]
+        }),
         new MiniCssExtractPlugin({
             filename: "style.css"
         }),

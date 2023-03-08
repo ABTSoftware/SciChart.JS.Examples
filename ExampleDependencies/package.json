@@ -22,7 +22,8 @@
     "license": "https://www.scichart.com/scichart-eula",
     "devDependencies": {
         "@types/node": "^13.7.0",
-        "copy-files-from-to": "^2.1.0"
+        "copy-files-from-to": "^2.1.0",
+        "rimraf": "^3.0.2"
     },
     "dependencies": {
         "@material-ui/core": "^4.12.3",
