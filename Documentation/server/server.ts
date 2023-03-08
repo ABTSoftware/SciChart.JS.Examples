@@ -81,8 +81,8 @@ const renderIndexHtml = (html: string, css: string, url: string, code: string, s
   let scripts = "";
   const queryChar = url && url.includes("?") ? (url.endsWith("?") ? "" : "&") : "?";
   if (showNav) {
-    const codePenLink = `<a href="http://${host}:${port}${url + queryChar}codepen=1" target="_blank">Edit in CodePen</a></br>`;
-    const codeSandboxLink = `<a href="http://${host}:${port}${url + queryChar}codesandbox=1" target="_blank">Edit in CodeSandbox</a></br>`;
+    const codePenLink = `<a href="${url + queryChar}codepen=1" target="_blank">Edit in CodePen</a></br>`;
+    const codeSandboxLink = `<a href="${url + queryChar}codesandbox=1" target="_blank">Edit in CodeSandbox</a></br>`;
     const embedLink = embed ? `<a href="${url.replace("embed=1", "")}">Show Result</a></br>`
      : `<a href="${url + queryChar}embed=1">Show as Embed</a></br>`;
     const links = url ? `<div>
