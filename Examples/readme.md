@@ -1,6 +1,6 @@
 # SciChart.js Demo Application Source
 
-This folder contains the source for the demo app for SciChart.js.Viewable online at [demo.scichart.com](https://demo.scichart.com).
+This folder contains the source for the demo app for SciChart.js, viewable online at [demo.scichart.com](https://demo.scichart.com).
 
 [![SciChart.js Demo - JavaScript Chart library](https://www.scichart.com/wp-content/uploads/2022/12/scichart-js-demo-home-scaled.jpg)](https://demo.scichart.com)
 

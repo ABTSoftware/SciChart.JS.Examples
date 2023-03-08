@@ -7,9 +7,9 @@ SciChart.js can be loaded in https://jsfiddle.net using the browser bundle. This
 
 - You need to include the Browser bundle script served by JSDelivr into jsfiddle. 
 
-- Do this by clicking +Resources and adding this link: https://cdn.jsdelivr.net/npm/scichart@3.0.269/_wasm/scichart.browser.js 
+- Do this by clicking +Resources and adding this link: https://cdn.jsdelivr.net/npm/scichart/index.min.js 
 
-_**Note:** version number above is specific, you can see the latest version at [jsdelivr.com/package/npm/scichart](https://www.jsdelivr.com/package/npm/scichart). A list of historical versions is available at [npmjs.com/package/scichart](https://www.npmjs.com/package/scichart?activeTab=versions)_
+_**Note:** link above will always return the latest version.  For a specific version you can do https://cdn.jsdelivr.net/npm/scichart@3.0.280/index.min.js, or  https://cdn.jsdelivr.net/npm/scichart@3/index.min.js to get latest for version 3.  You can see the latest version at [jsdelivr.com/package/npm/scichart](https://www.jsdelivr.com/package/npm/scichart). A list of historical versions is available at [npmjs.com/package/scichart](https://www.npmjs.com/package/scichart?activeTab=versions)_
 
 - Next, you are using the Browser Bundle version of scichart which works without npm, so there are no imports. To declare or get types from the SciChart library, you need to 'import' them like this:
 

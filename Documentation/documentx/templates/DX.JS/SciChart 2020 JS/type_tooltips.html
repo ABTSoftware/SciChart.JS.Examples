@@ -1,0 +1,44 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+</HEAD>
+
+<BODY>
+
+<SCRIPT>
+signatures = new Array();
+<!--DXMETADATA start type="FilteredItemList" scrap="SIGNATURE_LIST" namespace="field" source="Item" filter="includeinherited=false" format="" -->Fields<!--DXMETADATA end -->
+<!--DXMETADATA start type="FilteredItemList" scrap="SIGNATURE_LIST" namespace="constructor" source="Item" filter="includeinherited=false,type=flattened" format="" -->Fields<!--DXMETADATA end -->
+<!--DXMETADATA start type="FilteredItemList" scrap="SIGNATURE_LIST" namespace="method" source="Item" filter="includeinherited=false,type=flattened" format="" -->Fields<!--DXMETADATA end -->
+
+bookmarkIndex = location.href.indexOf("#");
+if (bookmarkIndex != -1) {
+    var signature = location.href.substring(bookmarkIndex+1);
+	if (signatures[signature] != null) {
+		alert(signatures[signature]);
+		location.href = signatures[signature];			
+	}
+}
+</SCRIPT>
+
+<!-- ======== START OF CLASS DATA ======== -->
+<DL>
+</DL>
+
+<!--DXMETADATA start type="Description" source="Item" format="%%wrappeddescription%%<P><A HREF="%%relativetypelink%%">Full documentation</P>" --><!--DXMETADATA end -->
+
+<!-- =========== FIELD SUMMARY =========== -->
+
+<!-- ============ FIELD DETAIL =========== -->
+<!--DXMETADATA start type="FilteredItemList" scrap="TOOLTIP_MEMBER_LIST" namespace="field" source="Item" filter="includeinherited=false" format="" -->Fields<!--DXMETADATA end -->
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!--DXMETADATA start type="FilteredItemList" scrap="TOOLTIP_MEMBER_LIST" namespace="constructor" source="Item" filter="includeinherited=false,type=flattened" format="" -->Constructors<!--DXMETADATA end -->
+
+<!-- ============ METHOD DETAIL ========== -->
+<!--DXMETADATA start type="FilteredItemList" scrap="TOOLTIP_MEMBER_LIST" namespace="method" source="Item" filter="includeinherited=false,type=flattened" format="" -->Methods<!--DXMETADATA end -->
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+</BODY>
+</HTML>

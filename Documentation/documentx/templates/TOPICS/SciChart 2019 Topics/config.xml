@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Template Name="SciChart 2021 Topics" Description="Topic template using the windows Segoe UI font and a crisp, light layout" SupportedLanguages="" SortOrdinal="0" Version="2021.001" TemplateType="Core" OriginalTemplateName="" OriginalTemplateVersion="0" CorePackageName="core-topics">
+  <IsCustom>false</IsCustom>
+  <DefaultStyleSheet></DefaultStyleSheet>
+  <DefaultSingleItemTocLayoutId></DefaultSingleItemTocLayoutId>
+  <DefaultMultipleItemTocLayoutId></DefaultMultipleItemTocLayoutId>
+  <TemplateFeatures>
+    <TemplateFeature>Glossary</TemplateFeature>
+    <TemplateFeature>Logo Image</TemplateFeature>
+    <TemplateFeature>Microsoft Help Viewer Enabled</TemplateFeature>
+    <TemplateFeature>Custom Head Content</TemplateFeature>
+    <TemplateFeature>View with Navigation Tools Link</TemplateFeature>
+    <TemplateFeature>Core Script</TemplateFeature>
+    <TemplateFeature>Custom Package</TemplateFeature>
+    <TemplateFeature>Template Styles</TemplateFeature>
+    <TemplateFeature>Editions and Versions</TemplateFeature>
+  </TemplateFeatures>
+  <PageTypes>
+    <PageType FileName="master.base.html" FileNameTemplate="" ItemType="" PreviewItemType="topics:Topic" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="false" IsDesignerSupportFile="true" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="master.html" FileNameTemplate="" ItemType="" PreviewItemType="topics:Topic" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="false" IsDesignerSupportFile="true" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="standard.html" FileNameTemplate="" ItemType="topics:Topic" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="false" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="With language filter.html" FileNameTemplate="" ItemType="topics:Topic" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="false" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="glossary.html" FileNameTemplate="glossary.html" ItemType="glossary:Glossary" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="false" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="for include.html" FileNameTemplate="" ItemType="topics:Topic" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="false" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="No Headers and No Footer.html" FileNameTemplate="" ItemType="topics:Topic" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="false" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="No Headers.html" FileNameTemplate="" ItemType="topics:Topic" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="false" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+  </PageTypes>
+  <CustomTemplateStyles />
+  <TocLayouts />
+  <PropertyDefinitions>
+    <PropertyDefinition Id="08de2c63-c533-49c3-a1d7-52b3995b9bec" Name="CopyrightNotice" Description="Text to display at the footer of each generated page" PropertyType="Text" />
+    <PropertyDefinition Id="76de16a8-8dcb-462c-b636-b20ff0b3c3a1" Name="FeedbackLink" Description="HTML to display a feedback link at the top right of each generated page." PropertyType="Text" />
+    <PropertyDefinition Id="14c8048f-ef12-434f-8211-b6df7aaa9822" Name="AccentColor" Description="The color to use for the header area background and selected tab highlight. Choose a dark color to ensure text in those areas remains legible." PropertyType="Color" />
+  </PropertyDefinitions>
+  <PropertyDefinitionValues>
+    <PropertyDefinitionValue PropertyDefinitionId="3ca5beea-953a-4359-b3f2-afdc86dd580e">
+      <PropertyValue />
+    </PropertyDefinitionValue>
+    <PropertyDefinitionValue PropertyDefinitionId="692c2825-e722-4673-9fc7-380be9486566">
+      <PropertyValue />
+    </PropertyDefinitionValue>
+  </PropertyDefinitionValues>
+  <Scraps>
+    <Scrap Name="_BREADCRUMBS" Description="">%%replaceinquotes:value=False%%%%filtereditemlist:namespace=link,filter="type=breadcrumbs",Source=Item,scrap=BREADCRUMBITEMS,NoFooter=True,Format="%%filtereditemlist%% &gt; %%ItemTitle%%&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;"%%</Scrap>
+    <Scrap Name="_BREADCRUMBITEMS_HEADER" Description="">&lt;div class="i-breadcrumbs-container"&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;</Scrap>
+    <Scrap Name="_BREADCRUMBITEMS_BODY" Description="">%%breadcrumblink%%</Scrap>
+    <Scrap Name="_BREADCRUMBITEMS_SEPARATOR" Description=""> &gt; </Scrap>
+    <Scrap Name="_CATEGORISED_LINKS_BODY" Description="">%%replaceinquotes:value=false%%%%ItemName:format="&lt;h4 class=""i-see-also-sub-heading""&gt;%%ItemName%%&lt;/h4&gt;"%%%%filtereditemlist:scrap=LINK,Namespace=Link%%</Scrap>
+    <Scrap Name="_COLLAPSIBLE_HEADER" Description="">&lt;div class="i-section-heading" id="i-%%idprefix%%-section-heading"&gt;&lt;span class="i-section-heading-icon"&gt;&lt;!-- --&gt;&lt;/span&gt;&lt;span class="i-section-heading-text"&gt;%%caption%%&lt;/span&gt;&lt;/div&gt;&lt;div id="i-%%idprefix%%-section-content" class="i-section-content"&gt;</Scrap>
+    <Scrap Name="_DESIGN_ITEM" Description="">&lt;a class="i-design-item-edit" title="Edit this %%itemtype%%" href="designcommand:name=edit,id='%%tcid%%'"&gt;&lt;img src="%%designtimepath%%edit.png"/&gt;&lt;/a&gt;&amp;nbsp;&lt;a class="i-design-item-delete" title="Delete this %%itemtype%%" href="designcommand:name=delete,id='%%tcid%%'"&gt;&lt;img src="%%designtimepath%%delete.png" /&gt;&lt;/a&gt;</Scrap>
+    <Scrap Name="_DESIGN_LIST" Description="">&lt;a class="i-design-item-add" title="Add a new %%itemtype%%" href="designcommand:name=addnew,tc=%%tagidentifier%%"&gt;&lt;img src="%%designtimepath%%new.png"/&gt;&lt;/a&gt;</Scrap>
+    <Scrap Name="_GLOSSARYITEMSLIST_BODY" Description="">%%ReplaceInQuotes:Value=True%%&lt;p&gt;&lt;a name="%%GlossaryItemTerm%%"&gt;&lt;/a&gt;&lt;strong&gt;%%GlossaryItemTerm%%&lt;/strong&gt;&lt;br /&gt;%%crlf%%%%glossaryitemrawdefinition%%&lt;/p&gt;</Scrap>
+    <Scrap Name="_GLOSSARYLETTERSHEADER_BODY" Description="">%%GlossaryLetterLink%%</Scrap>
+    <Scrap Name="_GLOSSARYLETTERSHEADER_SEPARATOR" Description=""> | </Scrap>
+    <Scrap Name="_GLOSSARYLETTERSLIST_BODY" Description="">%%ReplaceInQuotes:Value=True%%&lt;h1&gt;&lt;a name="%%GlossaryLetter%%"&gt;&lt;/a&gt;%%GlossaryLetter%%&lt;/h1&gt;&lt;BLOCKQUOTE&gt;%%FilteredItemList:Scrap=GLOSSARYITEMSLIST,Namespace=Glossary Item%%&lt;/BLOCKQUOTE&gt;</Scrap>
+    <Scrap Name="_GLOSSARYLETTERSLIST_FOOTER" Description="">&lt;p&gt;&amp;nbsp;&lt;/p&gt;</Scrap>
+    <Scrap Name="_GLOSSARYREFERENCE" Description="">%%ReplaceInQuotes:Value=True%%&lt;a class="i-popup-link i-glossary-link" title="$$GLOSSARY_LINK_CAPTION$$" data-popup-classes="ui-tooltip-green qtip-green" data-popup-showevent="click mouseenter" data-popup-title="%%GlossaryItemTerm:ForScript=True%%" data-popup-content="%%GlossaryItemDefinition:ForScript=True%%"&gt;%%GlossaryItemReference%%&lt;/a&gt;</Scrap>
+    <Scrap Name="_LINK_BODY" Description="">&lt;div class="i-see-also-link"&gt;
+%%ReplaceInQuotes:Value=True%%&lt;a href="%%linktarget%%"%%replaceinquotes:value=False%%%%linktargetwindow:format= target="%%linktargetwindow%%"%%&gt;%%linktitle%%&lt;/a&gt;%%designitem%%&lt;/div&gt;</Scrap>
+    <Scrap Name="_LINK_SEPARATOR" Description=""></Scrap>
+    <Scrap Name="_LINKS_BODY" Description="">&lt;div class="i-see-also-links"&gt;%%filtereditemlist:scrap=LINK,Namespace=Link%%&lt;/div&gt;</Scrap>
+    <Scrap Name="_LANGUAGE_CHECKBOX_LIST_BODY" Description="">&lt;input data-languagename="%%ItemName%%" id="i-%%ItemName%%-language-checkbox" type="checkbox" class="i-toggle-language-checkbox" checked="true" data-toggleclass="i-filtered-content-%%ItemName%%"/&gt;%%crlf%%&lt;label class="i-language-filter" for="%%ItemName%%Checkbox"&gt;%%crlf%%%%LanguageSyntaxCaption%%%%crlf%%&lt;/label&gt;</Scrap>
+    <Scrap Name="_LANGUAGE_CHECKBOX_LIST_FOOTER" Description=""></Scrap>
+    <Scrap Name="_LANGUAGE_CHECKBOX_LIST_HEADER" Description=""></Scrap>
+    <Scrap Name="_LANGUAGE_CHECKBOX_LIST_SEPARATOR" Description="">&lt;br /&gt;</Scrap>
+    <Scrap Name="_LANGUAGE_LABEL_LIST_BODY" Description="">&lt;label class="i-%%ItemName%%-label" style="display: none;"&gt;%%Phrase:Name=Language_Filter%%: %%languagesyntaxcaption%%&lt;/label&gt;</Scrap>
+    <Scrap Name="_LANGUAGE_LABEL_LIST_FOOTER" Description=""></Scrap>
+    <Scrap Name="_LANGUAGE_LABEL_LIST_HEADER" Description=""></Scrap>
+  </Scraps>
+  <Phrases>
+    <PhraseCultureIds>
+      <PhraseCultureId>-</PhraseCultureId>
+      <PhraseCultureId>nl-NL</PhraseCultureId>
+      <PhraseCultureId>fr-FR</PhraseCultureId>
+      <PhraseCultureId>de-DE</PhraseCultureId>
+      <PhraseCultureId>it-IT</PhraseCultureId>
+      <PhraseCultureId>ja-JP</PhraseCultureId>
+      <PhraseCultureId>ru-RU</PhraseCultureId>
+      <PhraseCultureId>zh-CHS</PhraseCultureId>
+      <PhraseCultureId>es-ES</PhraseCultureId>
+    </PhraseCultureIds>
+    <Phrase Name="CLICK TO ENLARGE" Description="">
+      <Value m="" c="-">Click to Enlarge</Value>
+      <Value m="" c="nl-NL">Klik om te vergroten</Value>
+      <Value m="" c="fr-FR">Cliquez sur pour agrandir</Value>
+      <Value m="" c="de-DE">Klicken um zu vergrößern</Value>
+      <Value m="" c="it-IT">Scatti per ingrandire</Value>
+      <Value m="" c="ja-JP">拡大するためにかちりと鳴らしなさい</Value>
+      <Value m="" c="ru-RU">Увеличить</Value>
+      <Value m="" c="zh-CHS">点击扩大</Value>
+      <Value m="" c="es-ES">Haga clic aquí para Enlarge</Value>
+    </Phrase>
+    <Phrase Name="CLICK TO SHRINK" Description="">
+      <Value m="" c="-">Click to Shrink</Value>
+      <Value m="" c="nl-NL">Klik om te krimpen</Value>
+      <Value m="" c="fr-FR">Clic à rétrécir</Value>
+      <Value m="" c="de-DE">Klicken um zu verkleinern</Value>
+      <Value m="" c="it-IT">Scatto da ristringere</Value>
+      <Value m="" c="ja-JP">縮まるかちりと言う音</Value>
+      <Value m="" c="ru-RU">Нажмите, чтобы Усадочная</Value>
+      <Value m="" c="zh-CHS">收缩的点击</Value>
+      <Value m="" c="es-ES">Haga clic aquí para reducir</Value>
+    </Phrase>
+    <Phrase Name="COLLAPSE_ALL" Description="">
+      <Value m="" c="-">Collapse All</Value>
+      <Value m="" c="nl-NL">Volledig Inklappen</Value>
+      <Value m="" c="fr-FR">Tout fermer</Value>
+      <Value m="" c="de-DE">Alles zusammenklappen</Value>
+      <Value m="2015-10-05T10:40:34.9297536Z" c="it-IT">Nascondi tutto</Value>
+      <Value m="" c="ja-JP">すべて折りたたむ</Value>
+      <Value m="" c="ru-RU">Свернуть все</Value>
+      <Value m="" c="zh-CHS">全部折叠</Value>
+      <Value m="" c="es-ES">Contraer Todo</Value>
+    </Phrase>
+    <Phrase Name="COPYCODE" Description="">
+      <Value m="" c="-">Copy Code</Value>
+      <Value m="" c="nl-NL">Kopieer Code</Value>
+      <Value m="" c="fr-FR">Copier le code</Value>
+      <Value m="" c="de-DE">Kopiere Code</Value>
+      <Value m="" c="it-IT">Copy Code</Value>
+      <Value m="" c="ja-JP">コードのコピー</Value>
+      <Value m="" c="ru-RU">Скопировать код</Value>
+      <Value m="" c="zh-CHS">拷贝代码</Value>
+      <Value m="" c="es-ES">Copiar Código</Value>
+    </Phrase>
+    <Phrase Name="EXPAND_ALL" Description="">
+      <Value m="" c="-">Expand All</Value>
+      <Value m="" c="nl-NL">Volledig Uitklappen</Value>
+      <Value m="" c="fr-FR">Tout ouvrir</Value>
+      <Value m="" c="de-DE">Alles ausklappen</Value>
+      <Value m="2015-10-05T10:40:23.1906383Z" c="it-IT">Mostra tutto</Value>
+      <Value m="" c="ja-JP">全て展開</Value>
+      <Value m="" c="ru-RU">Развернуть всё</Value>
+      <Value m="" c="zh-CHS">全部展开</Value>
+      <Value m="" c="es-ES">Expandir Todo</Value>
+    </Phrase>
+    <Phrase Name="GLOSSARY" Description="">
+      <Value m="" c="-">Glossary</Value>
+      <Value m="" c="nl-NL">Verklarende woordenlijst</Value>
+      <Value m="" c="fr-FR">Glossaire</Value>
+      <Value m="" c="de-DE">Glossar</Value>
+      <Value m="" c="it-IT">Glossario</Value>
+      <Value m="" c="ja-JP">用語集</Value>
+      <Value m="" c="ru-RU">Глоссарий</Value>
+      <Value m="" c="zh-CHS">分类</Value>
+      <Value m="" c="es-ES">Glosario</Value>
+    </Phrase>
+    <Phrase Name="GLOSSARY_LINK_CAPTION" Description="">
+      <Value m="" c="-">Click to show a definition of this term</Value>
+      <Value m="" c="nl-NL">Click to show a definition of this term</Value>
+      <Value m="" c="fr-FR">Click to show a definition of this term</Value>
+      <Value m="" c="de-DE">Klicken um eine Erklärung für diesen Begriff anzuzeigen</Value>
+      <Value m="" c="it-IT">Click to show a definition of this term</Value>
+      <Value m="" c="ja-JP">Click to show a definition of this term</Value>
+      <Value m="" c="ru-RU">Click to show a definition of this term</Value>
+      <Value m="" c="zh-CHS">Click to show a definition of this term</Value>
+      <Value m="" c="es-ES">Click to show a definition of this term</Value>
+    </Phrase>
+    <Phrase Name="Hide All" Description="">
+      <Value m="" c="-">Hide All</Value>
+      <Value m="" c="nl-NL">Volledig Inklappen</Value>
+      <Value m="" c="fr-FR">Tout cacher</Value>
+      <Value m="" c="de-DE">Alles zusammenklappen</Value>
+      <Value m="" c="it-IT">Collapse All</Value>
+      <Value m="" c="ja-JP">すべて折りたたむ</Value>
+      <Value m="" c="ru-RU">Свернуть все</Value>
+      <Value m="" c="zh-CHS">全部折叠</Value>
+      <Value m="" c="es-ES">Contraer Todo</Value>
+    </Phrase>
+    <Phrase Name="SEEALSO" Description="">
+      <Value m="" c="-">See Also</Value>
+      <Value m="" c="nl-NL">Zie Ook</Value>
+      <Value m="" c="fr-FR">Voir Aussi</Value>
+      <Value m="" c="de-DE">Siehe auch</Value>
+      <Value m="" c="it-IT">Vedi Anche</Value>
+      <Value m="" c="ja-JP">関連トピック</Value>
+      <Value m="" c="ru-RU">Смотрите также</Value>
+      <Value m="" c="zh-CHS">查看其它</Value>
+      <Value m="" c="es-ES">Vea también</Value>
+    </Phrase>
+    <Phrase Name="Show All" Description="">
+      <Value m="" c="-">Show All</Value>
+      <Value m="" c="nl-NL">Volledig Uitklappen</Value>
+      <Value m="" c="fr-FR">Tout afficher</Value>
+      <Value m="" c="de-DE">Alle anzeigen</Value>
+      <Value m="" c="it-IT">Expand All</Value>
+      <Value m="" c="ja-JP">全て展開</Value>
+      <Value m="" c="ru-RU">Развернуть всё</Value>
+      <Value m="" c="zh-CHS">全部展开</Value>
+      <Value m="" c="es-ES">Expandir Todo</Value>
+    </Phrase>
+    <Phrase Name="LANGUAGE" Description="">
+      <Value m="" c="-">Language</Value>
+      <Value m="" c="nl-NL">Taal</Value>
+      <Value m="" c="fr-FR">Langage</Value>
+      <Value m="" c="de-DE">Sprache</Value>
+      <Value m="" c="it-IT">Linguaggio</Value>
+      <Value m="" c="ja-JP">(あなたの注意を見るために&lt;a alt='コミュニティーサインイン' href='#' onclick='ic_communitySignIn()'&gt;サインイン&lt;/a&gt;ください)</Value>
+      <Value m="" c="ru-RU">Язык</Value>
+      <Value m="" c="zh-CHS">语言</Value>
+      <Value m="" c="es-ES">Lenguaje</Value>
+    </Phrase>
+    <Phrase Name="LANGUAGE_FILTER" Description="">
+      <Value m="" c="-">Language Filter</Value>
+      <Value m="" c="nl-NL">Taal Filter</Value>
+      <Value m="" c="fr-FR">Filtre de langage</Value>
+      <Value m="" c="de-DE">Sprach-Filter</Value>
+      <Value m="" c="it-IT">Language Filter</Value>
+      <Value m="" c="ja-JP">言語のフィルタ</Value>
+      <Value m="" c="ru-RU">Языковой Фильтр</Value>
+      <Value m="" c="zh-CHS">语言筛选器</Value>
+      <Value m="" c="es-ES">Filtro de Lenguaje</Value>
+    </Phrase>
+    <Phrase Name="LANGUAGE_FILTER_ALL" Description="">
+      <Value m="" c="-">Language Filter: All</Value>
+      <Value m="" c="nl-NL">Taal Filter: Alles</Value>
+      <Value m="" c="fr-FR">Filtre de langage : Tous</Value>
+      <Value m="" c="de-DE">Sprach-Filter: Alle</Value>
+      <Value m="" c="it-IT">Language Filter: All</Value>
+      <Value m="" c="ja-JP">言語のフィルタ : すべて</Value>
+      <Value m="" c="ru-RU">Языковой Фильтр: Все</Value>
+      <Value m="" c="zh-CHS">语言筛选器: 全部</Value>
+      <Value m="" c="es-ES">Filtro de Lenguaje: Todos</Value>
+    </Phrase>
+    <Phrase Name="LANGUAGE_FILTER_MULTIPLE" Description="">
+      <Value m="" c="-">Language Filter: Multiple</Value>
+      <Value m="" c="nl-NL">Taal Filter: Verschillende</Value>
+      <Value m="" c="fr-FR">Filtre de langage : Multiple</Value>
+      <Value m="" c="de-DE">Sprach-Filter: Mehrfachauswahl</Value>
+      <Value m="" c="it-IT">Language Filter: Multiple</Value>
+      <Value m="" c="ja-JP">言語のフィルタ : 複数</Value>
+      <Value m="" c="ru-RU">Языковой Фильтр: Несколько</Value>
+      <Value m="" c="zh-CHS">语言筛选器: 多个</Value>
+      <Value m="" c="es-ES">Filtro de Lenguaje: Multiple</Value>
+    </Phrase>
+    <Phrase Name="LANGUAGE_VB_DECLARATION" Description="">
+      <Value m="" c="-">Visual Basic (Declaration)</Value>
+      <Value m="" c="nl-NL">Visual Basic (Declaratie)</Value>
+      <Value m="" c="fr-FR">Visual Basic (déclaration)</Value>
+      <Value m="" c="de-DE">Visual Basic (Deklaration)</Value>
+      <Value m="" c="it-IT">Visual Basic (Declaration)</Value>
+      <Value m="" c="ja-JP">Visual Basic (宣言)</Value>
+      <Value m="" c="ru-RU">Visual Basic (Декларация)</Value>
+      <Value m="" c="zh-CHS">Visual Basic (声明)</Value>
+      <Value m="" c="es-ES">Visual Basic (Declaración)</Value>
+    </Phrase>
+    <Phrase Name="LANGUAGE_VB_USAGE" Description="">
+      <Value m="" c="-">Visual Basic (Usage)</Value>
+      <Value m="" c="nl-NL">Visual Basic (Gebruik)</Value>
+      <Value m="" c="fr-FR">Visual Basic (utilisation)</Value>
+      <Value m="" c="de-DE">Visual Basic (Usage)</Value>
+      <Value m="" c="it-IT">Visual Basic (Usage)</Value>
+      <Value m="" c="ja-JP">Visual Basic (使用法)</Value>
+      <Value m="" c="ru-RU">Visual Basic (Использование)</Value>
+      <Value m="" c="zh-CHS">Visual Basic (用法)</Value>
+      <Value m="" c="es-ES">Visual Basic (Uso)</Value>
+    </Phrase>
+    <Phrase Name="LANGUAGE_VB" Description="">
+      <Value m="" c="-">Visual Basic</Value>
+      <Value m="" c="nl-NL">Visual Basic</Value>
+      <Value m="" c="fr-FR">Visual Basic</Value>
+      <Value m="" c="de-DE">Visual Basic</Value>
+      <Value m="" c="it-IT">Visual Basic</Value>
+      <Value m="" c="ja-JP">Visual Basic</Value>
+      <Value m="" c="ru-RU">Visual Basic</Value>
+      <Value m="" c="zh-CHS">Visual Basic</Value>
+      <Value m="" c="es-ES">Visual Basic</Value>
+    </Phrase>
+    <Phrase Name="IN_THIS_TOPIC" Description="">
+      <Value m="" c="-">In This Topic</Value>
+      <Value m="" c="nl-NL">In dit onderwerp</Value>
+      <Value m="" c="fr-FR">Dans cette rubrique</Value>
+      <Value m="" c="de-DE">In diesem Thema</Value>
+      <Value m="" c="it-IT">In questo argomento</Value>
+      <Value m="" c="ja-JP">このトピックで</Value>
+      <Value m="" c="ru-RU">В этом разделе</Value>
+      <Value m="" c="zh-CHS">本主题中</Value>
+      <Value m="" c="es-ES">En este tema</Value>
+    </Phrase>
+    <Phrase Name="VIEW_WITH_NAVIGATION_TOOLS_TEXT" Description="Text for the link that is visible when viewing a content page in browser help output without the ToC, Index, Search navigation tools.">
+      <Value m="2015-04-27T10:55:31.1113286Z" c="-">View with Navigation Tools</Value>
+      <Value m="2015-04-28T07:47:53.8712063Z" c="nl-NL">Bekijk met navigatie-instrumenten</Value>
+      <Value m="2015-04-28T07:48:04.5741335Z" c="fr-FR">Voir avec les outils de navigation</Value>
+      <Value m="2015-04-28T07:48:13.3022298Z" c="de-DE">Ansicht mit Navigationswerkzeuge</Value>
+      <Value m="2015-04-28T07:48:26.2018754Z" c="it-IT">Vista con gli strumenti di navigazione</Value>
+      <Value m="2015-04-28T07:48:36.6263973Z" c="ja-JP">ナビゲーションツールとビュー</Value>
+      <Value m="2015-04-28T07:48:50.8823006Z" c="ru-RU">Посмотреть со средствами навигации</Value>
+      <Value m="2015-04-28T07:49:00.3183464Z" c="zh-CHS">视图导航工具</Value>
+      <Value m="2015-04-28T07:49:07.6305556Z" c="es-ES">Ver con Herramientas de navegación</Value>
+    </Phrase>
+    <Phrase Name="VIEW_WITH_NAVIGATION_TOOLS_TIP" Description="Tip text for the link that is visible when viewing a content page in browser help output without the ToC, Index, Search navigation tools.">
+      <Value m="2015-04-27T10:55:12.0191987Z" c="-">Open this Topic in a view that includes Navigation tools (Table of Contents, Index, Search)</Value>
+      <Value m="2015-04-28T07:50:18.4382536Z" c="es-ES">Abre este tema en una vista que incluye herramientas de navegación (Tabla de Contenidos , Indice, Búsqueda)</Value>
+      <Value m="2015-04-28T07:50:59.4140018Z" c="nl-NL">Open deze topic in het oog dat de navigatie instrumenten bevat (Inhoudsopgave, Index, Zoeken)</Value>
+      <Value m="2015-04-28T07:51:36.1624622Z" c="fr-FR">Ouvrez ce sujet dans une vue qui inclut des outils de navigation (Table des Matières, Index, Recherche)</Value>
+      <Value m="2015-04-28T07:51:53.3575065Z" c="de-DE">Öffnen Sie dieses Thema in einer Ansicht, die Navigationswerkzeuge enthält (Inhaltsverzeichnis, Index, Suchen)</Value>
+      <Value m="2015-04-28T07:52:56.1030819Z" c="it-IT">Aprire questo argomento in una visione che comprende strumenti di navigazione (Sommario, Indice, Ricerca)</Value>
+      <Value m="2015-04-28T07:53:57.0937433Z" c="ja-JP">(目次、索引、検索)ナビゲーションツールを含むビューでこのトピックを開く</Value>
+      <Value m="2015-04-28T07:55:01.7466056Z" c="ru-RU">Откройте эту тему в свете , который включает навигационные инструменты (Содержание, Главная, Поиск)</Value>
+      <Value m="2015-04-28T07:56:31.5713994Z" c="zh-CHS">在视图包括导航工具(内容目录,索引,检索)打开这个主题</Value>
+    </Phrase>
+  </Phrases>
+  <TemplateComponentKeys>
+    <TemplateComponentKey CollectionName="Phrase" Id="CLICK TO ENLARGE" HashValue="P2Lih+Ct1p3uxF1neITUeQ==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="CLICK TO SHRINK" HashValue="RfNJaw+RnXJ4/4gFiGEjBA==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="COLLAPSE_ALL" HashValue="ijRaNKoDdVtOvzZwAFSzog==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="COPYCODE" HashValue="pfOgmoQ/Ji6i7B7iCL5LrA==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="EXPAND_ALL" HashValue="RBYswP03HHyGColIMojK7Q==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="GLOSSARY" HashValue="wRZ1XgKnY9cn8i2iYDPXbQ==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="GLOSSARY_LINK_CAPTION" HashValue="vzxJYyf6iGl03QZtQKfRpg==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="Hide All" HashValue="2N0kNsp38S82XdhSdtHA2g==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="SEEALSO" HashValue="Do3SfasthmbJg8a7QExyyg==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="Show All" HashValue="of9bsuD9FnUubyB/14Id0w==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="LANGUAGE" HashValue="D18OG5WqoWGEuNXgKe5PWg==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="LANGUAGE_FILTER" HashValue="tY20H04SBdHCGuJ4/mDRQA==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="LANGUAGE_FILTER_ALL" HashValue="WDTtI90sMxaWiOV0YpZNyw==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="LANGUAGE_FILTER_MULTIPLE" HashValue="FdT6G1n37MucccsGc2UfDQ==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="LANGUAGE_VB_DECLARATION" HashValue="X3zjx6FybwMjTyiUGBOLoA==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="LANGUAGE_VB_USAGE" HashValue="BN8YWazMMaqB13UcNk3qRg==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="LANGUAGE_VB" HashValue="VCXrVnM+PKvUb7Ql1Fuv8w==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="IN_THIS_TOPIC" HashValue="DsRBn0hWyGgxCfkN1hu37Q==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="VIEW_WITH_NAVIGATION_TOOLS_TEXT" HashValue="ea+tLh8iflKXRxd9NVDI2A==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="VIEW_WITH_NAVIGATION_TOOLS_TIP" HashValue="FTiEIsfcqbesSIa0NbQA6g==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_BREADCRUMBS" HashValue="EFxSlSFUTQI8UZ8tlSZCUQ==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_BREADCRUMBITEMS_HEADER" HashValue="pPgmmU71z1rzKRU489EIjQ==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_BREADCRUMBITEMS_BODY" HashValue="ja7h3lN8Z8xm1WLYRCQ/bw==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_BREADCRUMBITEMS_SEPARATOR" HashValue="26n7+45iTnezoTjc6SbB+g==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_CATEGORISED_LINKS_BODY" HashValue="KcPoUHwpjaKuNC1BqiRWFg==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_COLLAPSIBLE_HEADER" HashValue="TPtYJyIa27vGj6vrJnrpZQ==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_DESIGN_ITEM" HashValue="fO69eKCqMl2BzQ6TnodhdQ==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_DESIGN_LIST" HashValue="zlGOIFMo6Hs8+ZDWL3kAJg==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_GLOSSARYITEMSLIST_BODY" HashValue="zCn0eimthRINWsbdKzUFxg==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_GLOSSARYLETTERSHEADER_BODY" HashValue="ZpxK4yTkfbZ6KYRQXQTL3A==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_GLOSSARYLETTERSHEADER_SEPARATOR" HashValue="j2bKnXB2JqXi6wPyP5w4xQ==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_GLOSSARYLETTERSLIST_BODY" HashValue="mEMqlo0y+KP5Hq7pqwlk2Q==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_GLOSSARYLETTERSLIST_FOOTER" HashValue="NTD/E8gm9Kqfck6+0MYFZg==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_GLOSSARYREFERENCE" HashValue="d3CfpETKzPAFsyLRQ9ilcQ==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_LINK_BODY" HashValue="VLafcw+rIMWCFuM9RS0CTg==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_LINK_SEPARATOR" HashValue="O6ivKJMsHXRaeanleRBfCQ==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_LINKS_BODY" HashValue="S4+AN7fwGHPd/v40dBbPaw==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_LANGUAGE_CHECKBOX_LIST_BODY" HashValue="iZiDh0vTUpNJ3CaLEGp1ag==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_LANGUAGE_CHECKBOX_LIST_FOOTER" HashValue="iPVZi5hHfx8o+mhb5V0MRQ==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_LANGUAGE_CHECKBOX_LIST_HEADER" HashValue="9WhMt174KOVNG4I0r0sikg==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_LANGUAGE_CHECKBOX_LIST_SEPARATOR" HashValue="a2FV8G0llUbbOPotzs8I4w==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_LANGUAGE_LABEL_LIST_BODY" HashValue="KdTM0dXXthI94ywMfREAsQ==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_LANGUAGE_LABEL_LIST_FOOTER" HashValue="8Eyn1q7nIbXvzPqVKP2QoA==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_LANGUAGE_LABEL_LIST_HEADER" HashValue="mD/BxHTwIQA5gkY+//K+rA==" />
+    <TemplateComponentKey CollectionName="Feature" Id="Glossary" HashValue="+8BchSutLKDDr/KtIucLCg==" />
+    <TemplateComponentKey CollectionName="Feature" Id="Logo Image" HashValue="CU5TcTV39jbKWV9ZEfx+rA==" />
+    <TemplateComponentKey CollectionName="Feature" Id="Microsoft Help Viewer Enabled" HashValue="bcxJiwXIg8/MMZIDYnz/VA==" />
+    <TemplateComponentKey CollectionName="Feature" Id="Custom Head Content" HashValue="G6HckCpPVYbKxQpfyE/Y6g==" />
+    <TemplateComponentKey CollectionName="Feature" Id="View with Navigation Tools Link" HashValue="A4kKrKAqgPidXTNtFrYmRQ==" />
+    <TemplateComponentKey CollectionName="Feature" Id="Core Script" HashValue="aFppYEU2GM2lT8pWYCyL1w==" />
+    <TemplateComponentKey CollectionName="Feature" Id="Custom Package" HashValue="AtHs6/hKMNg2IR6mFZJpyw==" />
+    <TemplateComponentKey CollectionName="Feature" Id="Template Styles" HashValue="vsX0tC6pXRZUKgT7LVeqRQ==" />
+    <TemplateComponentKey CollectionName="Feature" Id="Editions and Versions" HashValue="So4PUR0y/h+ka1PON1/P4w==" />
+    <TemplateComponentKey CollectionName="PageType" Id="master.base.html" HashValue="EizHNGcJ9q/gbiB+i399Kg==" />
+    <TemplateComponentKey CollectionName="PageType" Id="master.html" HashValue="FNwivIswnyPzIekjplLqIQ==" />
+    <TemplateComponentKey CollectionName="PageType" Id="standard.html" HashValue="91/2i3WHGg16MkU+rIhSqg==" />
+    <TemplateComponentKey CollectionName="PageType" Id="With language filter.html" HashValue="bkCAFwHJCBG7A4g1diQFHA==" />
+    <TemplateComponentKey CollectionName="PageType" Id="glossary.html" HashValue="MqROKEup8Sq5ePCfKkh//A==" />
+    <TemplateComponentKey CollectionName="PageType" Id="for include.html" HashValue="7WC4kLOh9rn32iTkEEQ4ng==" />
+    <TemplateComponentKey CollectionName="PageType" Id="No Headers and No Footer.html" HashValue="dMV20z6RTAFMp+ECoc1hbQ==" />
+    <TemplateComponentKey CollectionName="PageType" Id="No Headers.html" HashValue="0kVsRojyoTTIaZBvz86h8g==" />
+    <TemplateComponentKey CollectionName="PropertyDefinition" Id="08de2c63-c533-49c3-a1d7-52b3995b9bec" HashValue="BaZFfwR+q7whyIj4c3TVSQ==" />
+    <TemplateComponentKey CollectionName="PropertyDefinition" Id="76de16a8-8dcb-462c-b636-b20ff0b3c3a1" HashValue="jt7ucboY+I5+HrvHG8be+g==" />
+    <TemplateComponentKey CollectionName="PropertyDefinition" Id="14c8048f-ef12-434f-8211-b6df7aaa9822" HashValue="/pjlU52FdiUCbRmfEOqPQw==" />
+    <TemplateComponentKey CollectionName="PropertyDefinitionValue" Id="3ca5beea-953a-4359-b3f2-afdc86dd580e" HashValue="wqqU90Wr9bTIl3JTB1GAPw==" />
+    <TemplateComponentKey CollectionName="PropertyDefinitionValue" Id="692c2825-e722-4673-9fc7-380be9486566" HashValue="DAnOeepWjUwHxMDdqqZaSQ==" />
+    <TemplateComponentKey CollectionName="File" Id="For Include.html" HashValue="WySJMpuEACPg/cqnPk50aQ==" />
+    <TemplateComponentKey CollectionName="File" Id="Glossary.html" HashValue="yGJkzS3V5TmZjIjH7zW42A==" />
+    <TemplateComponentKey CollectionName="File" Id="master.base.html" HashValue="Z+znjzJKc3jWQz9EL7SNlA==" />
+    <TemplateComponentKey CollectionName="File" Id="master.html" HashValue="95RKXgO5TFrW8F4lLwMRFg==" />
+    <TemplateComponentKey CollectionName="File" Id="No Headers and No Footer.html" HashValue="arMxywD7UsplCk38DmGgdw==" />
+    <TemplateComponentKey CollectionName="File" Id="No Headers.html" HashValue="v22ttp3Seh0j3nK+oXbNHw==" />
+    <TemplateComponentKey CollectionName="File" Id="Standard.html" HashValue="+MI5zvYVZg2tzkRZFWXzVw==" />
+    <TemplateComponentKey CollectionName="File" Id="With language filter.html" HashValue="OzBj0vPhtned08Is664HEQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\bootstrap\css\default\bootstrap.min.css" HashValue="cYTT7cAIwYkN6wpx5DSCZw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\bootstrap\css\default\debug\bootstrap.css" HashValue="6o4pxaLi5HBY840mGn/3+g==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\topics.mobile.css" HashValue="BlCKZjUdHjJy13VjEYp5Sw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\topics.mshv1.css" HashValue="XoKC1wkjzWEwDbixLW6lLA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\topics.mshv2.css" HashValue="Kjod4SjTjQur4PcMWH42jg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\topics.tablet.css" HashValue="DmNA2aQZGxpdhZXgPO6HZA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\css\topics.css" HashValue="Wf1WH3WMiZIeqOrp59RMzw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\images\glyphicons-halflings.png" HashValue="dLgB7YZEQJodFmu/M6w9lQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\images\i-caution.png" HashValue="QLWaknBsvkveI/+liii1GA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\images\i-collapse.png" HashValue="QoYxesdtqgfO1LoY1Kxfgw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\images\i-content-collapsed.png" HashValue="hZmlEvNtaGuptEVHW3H6yQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\images\i-content-expanded.png" HashValue="pSmB03eg4houRnGStrSvpg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\images\i-copy-code.png" HashValue="ZymKvkh2NP12f++3xWopFQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\images\i-dropdown.png" HashValue="tbHQvkEBv8wjosJd1R+i2g==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\images\i-expand.png" HashValue="sKVCSLSFRElbgHnCgq9oFA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\images\i-is-new.png" HashValue="k0jKa7OdWS6F6Z1DO7CHgg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\images\i-note.png" HashValue="Eh3Aj+lMM32AzFIDFsJXNA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\images\i-tip.png" HashValue="YaPj1/uofnwBNDMOUci9TA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\script\topics.min.js" HashValue="8ubvnswQNEC+nuNsQOrBkA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-topics\script\debug\topics.js" HashValue="R0Q/mKAdOLI0nTKVX5m+9g==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery\script\chm.mshc\jquery-1.7.2.min.js" HashValue="0y1vkCeHGz32sW43cbco+A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery\script\chm.mshc\debug\jquery-1.7.2.js" HashValue="gDuCKWCMI2D/vskKKmj3RQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery\script\default\jquery.min.js" HashValue="j7j+5PzDzIb/bHJBVMScQg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery\script\default\debug\jquery.js" HashValue="KEkjm5X1qaKuo/btlCC7iA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-ui\css\chm.mshc\jquery-ui-1.8.18.custom.css" HashValue="n8YFPbYK2oCtVOX6SM0oIA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-ui\css\default\jquery-ui.min.css" HashValue="IVB3AUFUMIvkFeEYGhRkbw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-ui\script\chm.mshc\jquery-ui-1.8.18.custom.min.js" HashValue="qlOxyoWWsO2DNa/zTIg11w==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-ui\script\chm.mshc\debug\jquery-ui-1.8.18.custom.js" HashValue="Xj8HNGiECDXZvNXtdBP3PQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-ui\script\default\jquery-ui.min.js" HashValue="wVsQCN7DyJZ+plenu0uq7A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-ui\script\default\debug\jquery-ui.js" HashValue="q1KE3l49Ih5TZH/TSOVkSw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-topics\css\chm.mshc\jquery-plugins.css" HashValue="OyckpEhF/pzN9d3JEJsvng==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-topics\css\default\jquery-plugins.css" HashValue="ipjuKFZKUCqVaxEpoZAI6A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-topics\images\i-loading.png" HashValue="ghMzqq+LrZwrMnzLKpJEdQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-topics\images\i-slimbox-closelabel.png" HashValue="9B/lsmCrNolNKoZJgyR0vw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-topics\images\i-slimbox-nextlabel.png" HashValue="SF2Jti969/DOlCe7mmNufg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-topics\images\i-slimbox-prevlabel.png" HashValue="2TX0rPVuC4Mhi721g15OIw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-topics\images\uiTabsArrow.png" HashValue="IuzDphIwpZP3VVVfjhYmAg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-topics\script\chm.mshc\jquery-plugins.min.js" HashValue="QU6WuCDjSt6QPO5ACScRFg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-topics\script\chm.mshc\debug\jquery-plugins.js" HashValue="1J9L6xcNlBe2PB21/ngcuw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-topics\script\default\jquery-plugins.min.js" HashValue="/K4Kb4j7Krtv6nPp6qtaJA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-topics\script\default\debug\jquery-plugins.js" HashValue="vZeF+nHuVxWn/XPa+Mc8YQ==" />
+    <TemplateComponentKey CollectionName="TemplateFileFeature" Id="RESPONSIVE" HashValue="WygOU35f/c1cyWG1/IemJQ==" />
+  </TemplateComponentKeys>
+  <CommonTemplateStyles>Core</CommonTemplateStyles>
+  <TemplateFileFeatures>
+    <Features>
+      <TemplateFileFeature Name="RESPONSIVE" SupportsDesignTime="false">
+        <Files />
+      </TemplateFileFeature>
+    </Features>
+  </TemplateFileFeatures>
+  <Widgets>
+    <RequiredWidgetPacks>41222309-CCFB-470C-AE40-06FC5FFBAF49</RequiredWidgetPacks>
+    <WidgetTypes Version="2011.1" />
+  </Widgets>
+</Template>

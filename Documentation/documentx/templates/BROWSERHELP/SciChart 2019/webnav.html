@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--DXMETADATA start type="IsTemplateFileFeatureEnabled" name="Responsive" format="<meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">" --><!--DXMETADATA end -->
+    <meta name="GENERATOR" content="Innovasys (www.innovasys.com)" />
+    <!--DXMETADATA start type="MarkOfTheWeb" --><!--DXMETADATA end-->
+    <!--DXMETADATA start type="MetaCharset" --><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><!--DXMETADATA end-->
+
+    <!--DXMETADATA start type="PackageLink" packagename="jquery" filetype="script"--><!--DXMETADATA end-->
+    <!--DXMETADATA start type="PackageLink" packagename="jquery-ui" filetype="script"--><!--DXMETADATA end-->
+    <!--DXMETADATA start type="PackageLink" packagename="jquery-ui" filetype="css"--><!--DXMETADATA end-->
+    <!--DXMETADATA start type="PackageLink" packagename="plugins-web" filetype="script"--><!--DXMETADATA end-->
+    <!--DXMETADATA start type="PackageLink" packagename="core-web" filetype="script"--><!--DXMETADATA end-->
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'></link>
+    
+    <link rel="stylesheet" href="template/packages/core-web/css/nav.css" type="text/css" data-responsive-tablet="template/packages/core-web/css/bootstrap.css,template/packages/core-web/css/nav.responsive.css" data-responsive-mobile="template/packages/core-web/css/bootstrap.css,template/packages/core-web/css/nav.responsive.css" />
+    
+    <!--DXMETADATA start type="IsTemplateFileFeatureEnabled" name="Navigation" format="<script type=""text/javascript"">setIsTocNavigationEnabled = true;</script>" --><!--DXMETADATA end-->    
+
+    <!--DXMETADATA start type="Variable" name="AccentColor" format="<style type=""text/css"">.ui-tabs .ui-tabs-nav li.ui-state-active { border-bottom-color: %%variable%% !important; } .i-tab-container .ui-state-active a { color: %%variable%%; }</style>" --><!--DXMETADATA end -->
+
+    <base target="i-content" />
+</head>
+<body id="i-navigation-container">
+    <div id="i-close-pane">
+        <a class="btn"></a>
+    </div>
+    <div id="i-tabstrip" class="i-tab-container">
+        <ul>
+            <li><a href="#i-toc-frame-container"><!--DXMETADATA start type="Phrase" name="TableOfContents" --><!--DXMETADATA end --></a></li>
+            <li><a href="#i-index-frame-container"><!--DXMETADATA start type="Phrase" name="Index" --><!--DXMETADATA end --></a></li>
+            <li><a href="#i-search-frame-container"><!--DXMETADATA start type="Phrase" name="Search" --><!--DXMETADATA end --></a></li>
+        </ul>
+        <div id="i-toc-frame-container">
+            <div class="i-frame-container">
+                <iframe id="i-toc" src="webtoc<!--DXMETADATA start type="outputfileextension" --><!--DXMETADATA end-->" frameBorder="0"></iframe>
+            </div>
+        </div>
+        <div id="i-index-frame-container">
+            <div class="i-frame-container">
+                <iframe id="i-index" src="webindex<!--DXMETADATA start type="outputfileextension" --><!--DXMETADATA end-->" frameBorder="0"></iframe>
+            </div>
+        </div>
+        <div id="i-search-frame-container">
+            <div class="i-frame-container">
+                <iframe id="i-search" src="websearch<!--DXMETADATA start type="outputfileextension" --><!--DXMETADATA end-->" frameBorder="0"></iframe>
+            </div>
+        </div>
+    </div>
+    <!--DXMETADATA start type="IsTemplateFileFeatureEnabled" name="Responsive" format="<script type=""text/javascript"">setIsResponsiveEnabled = true;</script>" --><!--DXMETADATA end-->
+    <script type="text/javascript">
+        $(function() {
+            var documentInstance = new Innovasys.Content.Document(document);
+            documentInstance.isContentDocument = false;
+            documentInstance.getFeatureByName("Navigation").isTocNavigationEnabled = !(typeof setIsTocNavigationEnabled === "undefined");            
+            documentInstance.isResponsiveEnabled = !(typeof setIsResponsiveEnabled === "undefined");
+            documentInstance.load();
+        });
+    </script>    
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿<Derived master="master.base.html">
+
+    <ContentSection name="TitleTags">
+        <![CDATA[
+    <!--DXMETADATA start type="PageItemTitle" format="<title>%%PageItemTitle%%</title>" -->Title<!--DXMETADATA end-->
+    <!--DXMETADATA start type="ItemTitleNoQuotes" format="<meta name=""Title"" content=""%%ItemTitleNoQuotes%%""/>" --><!--DXMETADATA end-->
+        ]]>
+    </ContentSection>
+
+    <ContentSection name="HeadTags">
+        <![CDATA[
+        <!--DXMETADATA start type="PackageLink" packagename="plugins-javascript" filetype="css"--><!--DXMETADATA end-->
+    <!--DXMETADATA start type="PackageLink" packagename="core-javascript" filetype="css" firstlinkattributes=" data-mshv2-stylesheet=""/template/packages/core-javascript/dx.javascript.mshv2.css"" data-mshv1-stylesheet=""/template/packages/core-javascript/dx.javascript.mshv1.css"" data-responsive-mobile=""template/packages/core-javascript/dx.javascript.mobile.css"" data-responsive-tablet=""template/packages/core-javascript/dx.javascript.tablet.css"""--><!--DXMETADATA end-->
+    <!--DXMETADATA start type="PackageLink" packagename="plugins-javascript" filetype="script"--><!--DXMETADATA end-->
+    <!--DXMETADATA start type="PackageLink" packagename="core-javascript" filetype="script"--><!--DXMETADATA end-->
+        ]]>
+    </ContentSection>
+
+    <ContentSection name="MshvMetaTags">
+        <![CDATA[
+    <!--DXMETADATA start type="TopicId" format="<meta name=""Microsoft.Help.Id"" content=""%%TopicId%%""/>" --><!--DXMETADATA end-->
+    <!--DXMETADATA start type="Synopsis" StripHtmlTags="True" MaxLength="250" format="<meta name=""Description"" content=""%%Synopsis%%"" />"--><!--DXMETADATA end-->
+    <!--DXMETADATA start type="TocParentId" format="<meta name=""Microsoft.Help.TocParent"" content=""%%TocParentId%%""/>" --><!--DXMETADATA end-->
+    <meta name="Microsoft.Help.ContentType" content="Reference" />
+    ]]>
+    </ContentSection>
+    
+    <ContentSection name="HeaderContent">
+        <![CDATA[
+            <div class="i-project-title"><!--DXMETADATA start type="ProjectTitle" -->Project Title<!--DXMETADATA end--></div>
+        ]]>
+    </ContentSection>
+    
+    <ContentSection name="PageTitleContent">
+        <![CDATA[
+            <div class="i-page-title-text"><!--DXMETADATA start type="PageItemTitle" -->Title<!--DXMETADATA end--></div>
+        ]]>
+    </ContentSection>	
+        
+    <ContentSection name="AfterHeaderContent">
+        <![CDATA[	
+            <!-- Spacing --> <span class="i-toggle-all-sections i-function-link">
+                <label class="i-collapse-all"><!--DXMETADATA start type="Phrase" name="COLLAPSE_ALL" -->Collapse All<!--DXMETADATA end--></label>
+                <label class="i-expand-all" style="display: none;"><!--DXMETADATA start type="Phrase" name="EXPAND_ALL" -->Expand All<!--DXMETADATA end--></label>
+            </span><!--DXMETADATA start type="Literal" condition="communityenabled" value="%%scrap:name=_COMMUNITY_DROPDOWN%%" --><!--DXMETADATA end -->
+        ]]>
+    </ContentSection>
+    
+    <ContentSection name="Breadcrumbs">
+        <![CDATA[
+<!--DXMETADATA start type="Breadcrumbs" scrap="_BREADCRUMBS" --><!--DXMETADATA end -->
+        ]]>
+    </ContentSection>		
+    
+    <ContentSection name="AfterBodyContent">
+        <![CDATA[
+            <!--DXMETADATA start type="FilteredItemList" scrap="CATEGORIZED_LINKS" namespace="linkcategory" source="Item" filter="" NoHeader="True" NoFooter="True" format="%%replaceinquotes:value=false%%%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=seealso,caption=""$$See_Also$$%%designlist:tagidentifier=##SEEALSO,itemtype=See Also%%""%%%%filtereditemlist%%</div>"--><!--DXMETADATA end-->
+        ]]>
+    </ContentSection>
+
+    <ContentSection name="FooterContent">
+        <![CDATA[
+<!--DXMETADATA start type="Scrap" condition="communityenabled" name="_COMMUNITY_FOOTER" --><!--DXMETADATA end -->
+<!--DXMETADATA start type="Variable" name="CopyrightNotice" format="<p>&nbsp;</p><p>&nbsp;</p><hr style=""height: 1px"" /><p>%%variable%%</p>" -->Copyright notice<!--DXMETADATA end -->
+<!--DXMETADATA start type="Variable" name="FeedbackLink" format="" --><!--DXMETADATA end-->
+        ]]>
+    </ContentSection>
+
+</Derived>

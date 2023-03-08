@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!--DXMETADATA start type="IsTemplateFileFeatureEnabled" name="Responsive" format="<meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">" --><!--DXMETADATA end -->
+    <!--DXMETADATA start type="MarkOfTheWeb" --><!--DXMETADATA end-->
+    <!--DXMETADATA start type="ProjectTitle" format="<title>%%ProjectTitle%%</title>" --><!--DXMETADATA end-->
+    
+    <link rel="stylesheet" href="template/packages/core-web/css/top.css" type="text/css" data-responsive-tablet="template/packages/core-web/css/top.responsive.css" data-responsive-mobile="template/packages/core-web/css/top.responsive.css" />
+    <link rel="stylesheet" href="template/packages/plugins-web/css/jquery.layout.css" type="text/css" />    
+    
+    <!--DXMETADATA start type="PackageLink" packagename="jquery" filetype="script"--><!--DXMETADATA end-->
+    <!--DXMETADATA start type="PackageLink" packagename="jquery-ui" filetype="script"--><!--DXMETADATA end-->
+    <!--DXMETADATA start type="PackageLink" packagename="plugins-web" filetype="script"--><!--DXMETADATA end-->
+
+    <script type="text/javascript">
+        Innovasys = {};
+        Innovasys.overrides = {
+            isHideBodyDuringLoadDisabled: true
+        }
+    </script>
+
+    <!--DXMETADATA start type="PackageLink" packagename="core-web" filetype="script"--><!--DXMETADATA end-->
+    
+    <!--DXMETADATA start type="DefaultTopic" format="<script lang=""javascript"">var defaultTopic=""%%DefaultTopic%%"";</script>"--><!--DXMETADATA end-->		
+    
+    <!--DXMETADATA start type="Variable" name="BrowserHelpBackgroundColor" format="<style type=text/css>frame#webcontent {border-left: 3px solid %%Variable%%;}</style>" blankformat="<style type=text/css>frame#webcontent {border-left: 3px solid buttonface;}</style>" --><!--DXMETADATA end -->
+    
+    <base target="i-content" />
+</head>
+<body class="i-layout-container" id="i-top-frame-container">
+    <div id="i-busy">&nbsp;</div>
+    <iframe class="ui-layout-center" style="padding: 0; position: relative;" id="i-content" name="i-content" frameBorder="0"></iframe>
+    <iframe class="ui-layout-west" src="webnav<!--DXMETADATA start type="outputfileextension" --><!--DXMETADATA end-->" id="i-nav" name="i-nav" frameBorder="0" style="padding: 0"></iframe>
+    <!--DXMETADATA start type="IsTemplateFileFeatureEnabled" name="Responsive" format="<script type=""text/javascript"">setIsResponsiveEnabled = true;</script>" --><!--DXMETADATA end-->
+    <script type="text/javascript">
+        $(function() {
+            var documentInstance = new Innovasys.Content.Document(document);
+            documentInstance.getFeatureByName("TopFrame").setForcedDisplayMode("TABLET");
+            documentInstance.getFeatureByName("TopFrame").defaultTopic = defaultTopic;
+            documentInstance.isContentDocument = false;
+            documentInstance.isResponsiveEnabled = !(typeof setIsResponsiveEnabled === "undefined");
+            documentInstance.load();
+        });
+    </script>
+</body>
+</html>

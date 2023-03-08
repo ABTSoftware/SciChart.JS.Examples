@@ -1,0 +1,35 @@
+﻿<Derived master="master.memberwithparameters.html">
+
+    <ContentSection name="MshvMetaTags" mode="Append">
+        <![CDATA[
+    <meta name="Microsoft.Help.TocOrder" content="10"/>
+        ]]>
+    </ContentSection>
+
+    <contentsection name="BeforeContent">
+        <![CDATA[
+        <!--DXMETADATA start type="FilteredItemList" scrap="PARAMETERS_BUBBLES" namespace="parameter" source="Item" --><!--DXMETADATA end -->
+        ]]>
+    </contentsection>
+
+    <ContentSection name="BodyContent">
+        <![CDATA[
+            <!--DXMETADATA start type="Description" source="Item" format="<div class=""i-description-content"">%%description%%</div>" --><!--DXMETADATA end -->
+            <!--DXMETADATA start type="TaggedComment" source="Item" id="##OVERLOADS" format="%%comment%%" -->Overloads Edit Placeholder<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="OVERLOAD_LIST" namespace="constructor" source="Item" filter="" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=overloadlist,caption=$$OverloadList$$%%%%filtereditemlist%%</div>" -->Overload List<!--DXMETADATA end -->
+            <!--DXMETADATA start type="SyntaxSection" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=syntax,caption=$$Syntax$$%%%%SyntaxSection%%" -->Syntax Section<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="PARAMETERS_LIST" namespace="parameter" source="Item" filter="" NoCr="True" format="<h4 class=dxh4>$$ParameterList$$</h4>%%filtereditemlist%%" -->Parameter List<!--DXMETADATA end -->
+            <!--DXMETADATA start type="TaggedComment" source="Item" id="##RETURNS" format="<h4 class=dxh4>$$Return_Type$$</h4><div class=""i-returns-content"">%%comment%%</div></div>" blankformat="</div>" -->Return Type<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="EXCEPTION_LIST" namespace="exception" source="Item" filter="" designtime="true" format="%%replaceinquotes:value=false%%%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=exceptions,caption=""$$Exceptions$$%%designlist:tagidentifier=##EXCEPTION,itemtype=Exception%%""%%%%filtereditemlist%%</div>" -->Exceptions List<!--DXMETADATA end -->
+
+            <a name="exampleBookmark"></a>
+            <!--DXMETADATA start type="TaggedComment" source="Item" id="##EXAMPLEINTRO" format="%%replaceinquotes:value=false%%%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=example,caption=""$$Example$$%%designlist:tagidentifier=##EXAMPLECODE,itemtype=Example%%""%%%%comment%%" -->Example Intro<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="EXAMPLEGROUP_LIST" namespace="ExampleGroup" source="Item" filter="type=inline" condition="content:content=""%%GroupExamples%%"",operator=""="",value=""True""" NoHeader="True" NoFooter="True" format="%%replaceinquotes:value=false%%%%taggedcomment:source=item,id=##EXAMPLEINTRO,blankformat=""%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=example,caption=$$Example$$%%"",format= %%%%filtereditemlist%%</div>" blankformat="%%taggedcomment:source=item,id=##EXAMPLEINTRO,format=</div>%%" -->Example Groups<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="INLINE_EXAMPLE" namespace="Example" source="Item" filter="type=inline" condition="content:content=""%%GroupExamples%%"",operator=""<>"",value=""True""" NoHeader="True" NoFooter="True" format="%%replaceinquotes:value=false%%%%taggedcomment:source=item,id=##EXAMPLEINTRO,blankformat=""%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=example,caption=$$Example$$%%"",format= %%%%filtereditemlist%%</div>" blankformat="%%taggedcomment:source=item,id=##EXAMPLEINTRO,format=</div>%%" -->Inline examples<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="MENU_LINK" namespace="example" source="Item" filter="" NoHeader="True" NoFooter="True" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=example,caption=$$Example$$%%%%filtereditemlist%%</div>" -->Example<!--DXMETADATA end -->
+            <!--DXMETADATA start type="TaggedComment" source="Item" id="##REMARKS" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=remarks,caption=$$Remarks$$%%%%comment%%</div>" -->Remarks<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="BROWSER_COMPATIBILITY_LIST" namespace="Browser Compatibility" source="Item" filter="" condition="content:content=""%%IncludeBrowserCompatibility%%"",operator=""="",value=""True""" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=browsercompatibility,caption=$$Browser_Compatibility$$%%%%filtereditemlist%%</div>" blankformat="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=browsercompatibility,caption=$$Browser_Compatibility$$%%%%filtereditemlist%%</div>"--><!--DXMETADATA end -->
+        ]]>
+    </ContentSection>
+
+</Derived>

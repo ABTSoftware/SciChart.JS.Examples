@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentFile Version="2010" Moniker="&lt;JavaProject ProjectName=&quot;SciChart.Charting&quot; JavaClassPath=&quot;C:\AndroidHome\platforms\android-29\android.jar;&quot; IncludePrivateTypes=&quot;false&quot; IncludePrivateMembers=&quot;false&quot;&gt;&#xD;&#xA;  &lt;PackageNames&gt;&#xD;&#xA;    &lt;PackageName IsRecursive=&quot;true&quot;&gt;com.scichart.charting&lt;/PackageName&gt;&#xD;&#xA;  &lt;/PackageNames&gt;&#xD;&#xA;  &lt;SourcePaths&gt;&#xD;&#xA;    &lt;SourcePath Directory=&quot;..\src\Examples\core\src\main\java&quot; /&gt;&#xD;&#xA;    &lt;SourcePath Directory=&quot;..\src\Examples\drawing\src\main\java&quot; /&gt;&#xD;&#xA;    &lt;SourcePath Directory=&quot;..\src\Examples\data\src\main\java&quot; /&gt;&#xD;&#xA;    &lt;SourcePath Directory=&quot;..\src\Examples\charting\src\main\java&quot; /&gt;&#xD;&#xA;    &lt;SourcePath Directory=&quot;src\java&quot; /&gt;&#xD;&#xA;  &lt;/SourcePaths&gt;&#xD;&#xA;&lt;/JavaProject&gt;" DocType="DX.JAVA" IsLocalizationDisabled="false">
+  <RelatedProject>SciChart.Android.dxp</RelatedProject>
+  <State>
+    <Attributes />
+  </State>
+  <LastSelectedItem></LastSelectedItem>
+  <Filters>
+    <CONTENTSTORECOMMON>
+      <IsIncludedItemsOnly>true</IsIncludedItemsOnly>
+    </CONTENTSTORECOMMON>
+    <CONTENTSTORELOCALIZATION>
+      <IsPrimaryLocaleContentPreviewEnabled>true</IsPrimaryLocaleContentPreviewEnabled>
+    </CONTENTSTORELOCALIZATION>
+    <DX.JAVACONTENTSTOREFILTER>
+      <ShowProtectedMembers>true</ShowProtectedMembers>
+      <ShowProtectedFriendMembers>true</ShowProtectedFriendMembers>
+      <ShowFriendMembers>false</ShowFriendMembers>
+      <ShowPrivateMembers>false</ShowPrivateMembers>
+      <ShowInheritedMembers>false</ShowInheritedMembers>
+      <IsSourceCodeContentVisible>true</IsSourceCodeContentVisible>
+    </DX.JAVACONTENTSTOREFILTER>
+  </Filters>
+</ContentFile>

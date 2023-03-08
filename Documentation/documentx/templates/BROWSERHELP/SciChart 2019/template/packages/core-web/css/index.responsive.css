@@ -1,0 +1,48 @@
+html, body, div#i-index-container, div#i-index-body
+{
+	height: auto;
+	overflow: visible;
+}
+
+#i-index-header, #i-index-body
+{
+    position: inherit;
+    left: auto;
+    right: auto;
+}
+
+#i-index-body
+{
+    top: auto;
+}
+
+#i-index-header
+{
+    height: auto;
+}
+
+.btn {
+    background-image: none!important;
+    border-color: #ccc;
+    -webkit-box-shadow: none!important;
+    -moz-box-shadow: none!important;
+    box-shadow: none!important;  
+    text-shadow: none!important;  
+    -webkit-border-radius: 0!important;
+    -moz-border-radius: 0!important;
+    border-radius: 0!important;
+    white-space: normal;
+    padding: 6px 12px !important;
+}
+
+input#i-search
+{
+	height: 34px;
+}
+
+blockquote {
+    border-left: none;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}

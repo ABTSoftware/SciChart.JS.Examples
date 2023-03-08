@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentFile Version="2010" Moniker="&lt;JavaProject ProjectName=&quot;SciChart.Core&quot; IncludePrivateTypes=&quot;false&quot; IncludePrivateMembers=&quot;false&quot;&gt;&#xD;&#xA;  &lt;PackageNames&gt;&#xD;&#xA;    &lt;PackageName IsRecursive=&quot;true&quot;&gt;com.scichart.core&lt;/PackageName&gt;&#xD;&#xA;  &lt;/PackageNames&gt;&#xD;&#xA;  &lt;SourcePaths&gt;&#xD;&#xA;    &lt;SourcePath Directory=&quot;..\src\Examples\core\src\main\java&quot; /&gt;&#xD;&#xA;  &lt;/SourcePaths&gt;&#xD;&#xA;&lt;/JavaProject&gt;" DocType="DX.JAVA" IsLocalizationDisabled="false">
+  <RelatedProject>SciChart.Android.dxp</RelatedProject>
+  <State>
+    <Attributes />
+  </State>
+  <LastSelectedItem />
+  <Filters />
+</ContentFile>

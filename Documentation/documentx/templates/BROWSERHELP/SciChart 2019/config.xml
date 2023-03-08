@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Template Name="SciChart 2021" Description="Web output template with a look and feel to match the Material content templates" SupportedLanguages="" SortOrdinal="0" Version="2021.001" TemplateType="Core" OriginalTemplateName="" OriginalTemplateVersion="0" CorePackageName="core-web">
+  <IsCustom>false</IsCustom>
+  <DefaultStyleSheet></DefaultStyleSheet>
+  <DefaultSingleItemTocLayoutId></DefaultSingleItemTocLayoutId>
+  <DefaultMultipleItemTocLayoutId></DefaultMultipleItemTocLayoutId>
+  <TemplateFeatures>
+    <TemplateFeature>Support</TemplateFeature>
+    <TemplateFeature>FullTextSearchPositions</TemplateFeature>
+    <TemplateFeature>FullTextSearchObjects</TemplateFeature>
+  </TemplateFeatures>
+  <PageTypes>
+    <PageType FileName="webframe.html" FileNameTemplate="" ItemType="" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="true" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="webframedesktop.html" FileNameTemplate="" ItemType="" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="true" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="webframemobile.html" FileNameTemplate="" ItemType="" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="true" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="webframetablet.html" FileNameTemplate="" ItemType="" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="true" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="webindex.html" FileNameTemplate="" ItemType="" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="true" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="webnav.html" FileNameTemplate="" ItemType="" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="true" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="webtoc.html" FileNameTemplate="" ItemType="" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="true" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+    <PageType FileName="websearch.html" FileNameTemplate="" ItemType="" PreviewItemType="" DependentCount="-1" DependentOnItemTypeName="" DependantOnItemTypeFilter="" StripMetadataByDefault="true" IsDesignerSupportFile="false" IsHiddenAtDesignTime="false">
+      <PageTypeKeywords />
+    </PageType>
+  </PageTypes>
+  <CustomTemplateStyles />
+  <TocLayouts />
+  <PropertyDefinitions>
+    <PropertyDefinition Id="14c8048f-ef12-434f-8211-b6df7aaa9821" Name="AccentColor" Description="The color to use for the header area background and selected tab highlight. Choose a dark color to ensure text in those areas remains legible." PropertyType="Color" />
+  </PropertyDefinitions>
+  <PropertyDefinitionValues />
+  <Scraps>
+    <Scrap Name="_INDEXCONTENT_ENTRY_WEB_BODY" Description="">%%ReplaceInQuotes:Value=False%%%%filtereditemlist:namespace=keyword jump,scrap=_INDEXCONTENT_ENTRYJUMP_WEB,NoHeader=True,NoFooter=True,blankformat="&lt;span&gt;%%Keyword%%&lt;/span&gt;"%%%%filtereditemlist:Namespace=Keyword,Scrap=_INDEXCONTENT_ENTRY_WEB,NoHeader=True,NoFooter=True,Format="&lt;blockquote&gt;%%FilteredItemList%%&lt;/blockquote&gt;",BlankFormat="&lt;br /&gt;"%%%%crlf%%</Scrap>
+    <Scrap Name="_INDEXCONTENT_ENTRYJUMP_WEB_BODY" Description="">%%ReplaceInQuotes:Value=True%%&lt;a target="i-content" href="%%KeywordTarget%%"&gt;%%Keyword%%&lt;/a&gt;</Scrap>
+    <Scrap Name="_INDEXCONTENT_ENTRYJUMP_WEB_SEPARATOR" Description="">&lt;br /&gt;%%crlf%%</Scrap>
+    <Scrap Name="_WEB_TOCNODE_PAGE" Description="">%%ReplaceInQuotes:Value=True%%&lt;li rel="%%icon%%" data-is-new="%%isnew%%"&gt;&lt;a href="%%nodetarget%%"&gt;%%nodecaption%%&lt;/a&gt;</Scrap>
+    <Scrap Name="_WEB_TOCNODE_TITLE" Description="">&lt;li rel="%%icon%%"&gt;&lt;a href="#"&gt;%%nodecaption%%&lt;/a&gt;</Scrap>
+    <Scrap Name="_SEARCH_SCRIPT_PREFIX" Description="">$(function () {
+    Innovasys.Content.Features.buildSearchFilesAndKeywords = function(f,s,c) {</Scrap>
+    <Scrap Name="_SEARCH_SCRIPT_SUFFIX" Description="">}
+});</Scrap>
+  </Scraps>
+  <Phrases>
+    <PhraseCultureIds>
+      <PhraseCultureId>-</PhraseCultureId>
+      <PhraseCultureId>nl-NL</PhraseCultureId>
+      <PhraseCultureId>fr-FR</PhraseCultureId>
+      <PhraseCultureId>de-DE</PhraseCultureId>
+      <PhraseCultureId>it-IT</PhraseCultureId>
+      <PhraseCultureId>ja-JP</PhraseCultureId>
+      <PhraseCultureId>ru-RU</PhraseCultureId>
+      <PhraseCultureId>zh-CHS</PhraseCultureId>
+      <PhraseCultureId>es-ES</PhraseCultureId>
+    </PhraseCultureIds>
+    <Phrase Name="INDEX" Description="">
+      <Value m="" c="-">Index</Value>
+      <Value m="" c="nl-NL">Index</Value>
+      <Value m="" c="fr-FR">Index</Value>
+      <Value m="" c="de-DE">Index</Value>
+      <Value m="" c="it-IT">Indice</Value>
+      <Value m="" c="ja-JP">索引</Value>
+      <Value m="" c="ru-RU">Главная</Value>
+      <Value m="" c="zh-CHS">索引</Value>
+      <Value m="" c="es-ES">Indice</Value>
+    </Phrase>
+    <Phrase Name="SEARCH" Description="">
+      <Value m="" c="-">Search</Value>
+      <Value m="" c="nl-NL">Zoeken</Value>
+      <Value m="" c="fr-FR">Recherche</Value>
+      <Value m="" c="de-DE">Suchen</Value>
+      <Value m="" c="it-IT">Ricerca</Value>
+      <Value m="" c="ja-JP">検索</Value>
+      <Value m="" c="ru-RU">Поиск</Value>
+      <Value m="" c="zh-CHS">检索</Value>
+      <Value m="" c="es-ES">Búsqueda</Value>
+    </Phrase>
+    <Phrase Name="TABLEOFCONTENTS" Description="">
+      <Value m="" c="-">Table of Contents</Value>
+      <Value m="" c="nl-NL">Inhoudsopgave</Value>
+      <Value m="" c="fr-FR">Table des Matières</Value>
+      <Value m="" c="de-DE">Inhaltsverzeichnis</Value>
+      <Value m="" c="it-IT">Sommario</Value>
+      <Value m="" c="ja-JP">目次</Value>
+      <Value m="" c="ru-RU">Содержание</Value>
+      <Value m="" c="zh-CHS">内容目录</Value>
+      <Value m="" c="es-ES">Tabla de Contenidos</Value>
+    </Phrase>
+    <Phrase Name="SEARCH_OPERATORTIP" Description="">
+      <Value m="" c="-">(Words can be combined using OR and AND)</Value>
+      <Value m="" c="nl-NL">(Woorden kunnen gecombineerd worden met OR en AND)</Value>
+      <Value m="" c="fr-FR">(Les mots peuvent être combinés en utilisant OR et AND)</Value>
+      <Value m="" c="de-DE">(Worte können mit Hilfe von OR und AND kombiniert werden)</Value>
+      <Value m="" c="it-IT">(Le parole possono essere combinate utilizzando OR e AND)</Value>
+      <Value m="" c="ja-JP">（言葉はORおよびANDを使用して組み合わせることができます）</Value>
+      <Value m="" c="ru-RU">(Слова могут быть объединены с помощью OR и AND)</Value>
+      <Value m="" c="zh-CHS">（字可以组合使用OR和AND）</Value>
+      <Value m="" c="es-ES">(Las palabras pueden ser combinadas con OR y AND)</Value>
+    </Phrase>
+    <Phrase Name="SEARCH_BUSYTEXT" Description="">
+      <Value m="" c="-">Searching...</Value>
+      <Value m="" c="nl-NL">Zoeken ...</Value>
+      <Value m="" c="fr-FR">Recherche ...</Value>
+      <Value m="" c="de-DE">Suchen ...</Value>
+      <Value m="" c="it-IT">Ricerca in corso ...</Value>
+      <Value m="" c="ja-JP">検索中...</Value>
+      <Value m="" c="ru-RU">Поиск ...</Value>
+      <Value m="" c="zh-CHS">搜索...</Value>
+      <Value m="" c="es-ES">Buscando ...</Value>
+    </Phrase>
+    <Phrase Name="SEARCH_BUTTONTEXT" Description="">
+      <Value m="" c="-">Search</Value>
+      <Value m="" c="nl-NL">Zoeken</Value>
+      <Value m="" c="fr-FR">Recherche</Value>
+      <Value m="" c="de-DE">Suchen</Value>
+      <Value m="" c="it-IT">Ricerca</Value>
+      <Value m="" c="ja-JP">検索</Value>
+      <Value m="" c="ru-RU">Поиск</Value>
+      <Value m="" c="zh-CHS">检索</Value>
+      <Value m="" c="es-ES">Búsqueda</Value>
+    </Phrase>
+    <Phrase Name="SEARCH_LOOKFOR" Description="">
+      <Value m="" c="-">Look for:</Value>
+      <Value m="" c="nl-NL">Kijk voor:</Value>
+      <Value m="" c="fr-FR">Rechercher pour:</Value>
+      <Value m="" c="de-DE">Suchen nach:</Value>
+      <Value m="" c="it-IT">Se vuoi inserire:</Value>
+      <Value m="" c="ja-JP">を探します：</Value>
+      <Value m="" c="ru-RU">Искать:</Value>
+      <Value m="" c="zh-CHS">查找：</Value>
+      <Value m="" c="es-ES">Puedes buscar:</Value>
+    </Phrase>
+    <Phrase Name="SEARCH_HIGHLIGHTSEARCHTERMS" Description="">
+      <Value m="" c="-">Highlight search terms</Value>
+      <Value m="" c="nl-NL">Accentueer zoektermen</Value>
+      <Value m="" c="fr-FR">Surligner les mots recherchés</Value>
+      <Value m="" c="de-DE">Hervorheben von Suchbegriffen</Value>
+      <Value m="" c="it-IT">Evidenziare i termini di ricerca</Value>
+      <Value m="" c="ja-JP">ハイライト検索用語</Value>
+      <Value m="" c="ru-RU">Выделить условия поиска</Value>
+      <Value m="" c="zh-CHS">标明搜索字词</Value>
+      <Value m="" c="es-ES">Resaltar los términos de búsqueda</Value>
+    </Phrase>
+    <Phrase Name="SEARCH_SEARCHRESULTS" Description="">
+      <Value m="" c="-">Search Results</Value>
+      <Value m="" c="nl-NL">Zoekresultaten</Value>
+      <Value m="" c="fr-FR">Résultats de la recherche</Value>
+      <Value m="" c="de-DE">Suchergebnisse</Value>
+      <Value m="" c="it-IT">Risultati della ricerca</Value>
+      <Value m="" c="ja-JP">検索結果</Value>
+      <Value m="" c="ru-RU">Результаты поиска</Value>
+      <Value m="" c="zh-CHS">搜索结果</Value>
+      <Value m="" c="es-ES">Resultados de la búsqueda</Value>
+    </Phrase>
+    <Phrase Name="SEARCH_RESULTCOUNT" Description="">
+      <Value m="" c="-">results found.</Value>
+      <Value m="" c="nl-NL">resultaten gevonden.</Value>
+      <Value m="" c="fr-FR">résultats trouvés.</Value>
+      <Value m="" c="de-DE">Ergebnisse.</Value>
+      <Value m="" c="it-IT">risultati.</Value>
+      <Value m="" c="ja-JP">のデータが見つかりました。</Value>
+      <Value m="" c="ru-RU">найдено.</Value>
+      <Value m="" c="zh-CHS">结果发现。</Value>
+      <Value m="" c="es-ES">resultados.</Value>
+    </Phrase>
+  </Phrases>
+  <TemplateComponentKeys>
+    <TemplateComponentKey CollectionName="Phrase" Id="INDEX" HashValue="ecfKTsdqBdspCrbEhNjHxA==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="SEARCH" HashValue="ESxKhkgxktHV8RbF3qG71A==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="TABLEOFCONTENTS" HashValue="f/Q6JbS9w2z4EA0t0jVo3Q==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="SEARCH_OPERATORTIP" HashValue="598EZVhhou1H5xf67bgq2w==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="SEARCH_BUSYTEXT" HashValue="58r2Jdvd8XlYHP7Pj5Z0fg==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="SEARCH_BUTTONTEXT" HashValue="Ysl4w5jPIeHm6rFWpVcxzA==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="SEARCH_LOOKFOR" HashValue="VJTmMsQCKTjaGte9HTa0tw==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="SEARCH_HIGHLIGHTSEARCHTERMS" HashValue="D5sS/SKHt6dER2o7jIriwg==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="SEARCH_SEARCHRESULTS" HashValue="2bEUZU1sbpAuieu8ZVw96w==" />
+    <TemplateComponentKey CollectionName="Phrase" Id="SEARCH_RESULTCOUNT" HashValue="b60dU7TpgDDl3TSsyHMIRg==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_INDEXCONTENT_ENTRY_WEB_BODY" HashValue="tgl6nBE9Dl2HD7UiPXgCIQ==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_INDEXCONTENT_ENTRYJUMP_WEB_BODY" HashValue="PwoYXwrFPCtLgmUc86pWIA==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_INDEXCONTENT_ENTRYJUMP_WEB_SEPARATOR" HashValue="E34H6BNnzxvw/7Od+SFCvg==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_WEB_TOCNODE_PAGE" HashValue="63ertWKbmxIUbHunSgcuvg==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_WEB_TOCNODE_TITLE" HashValue="qMSkyAdoAcIIfgsiKJl1kQ==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_SEARCH_SCRIPT_PREFIX" HashValue="g8suMIcFY1khxehGlSQliw==" />
+    <TemplateComponentKey CollectionName="Scrap" Id="_SEARCH_SCRIPT_SUFFIX" HashValue="/Mob63B+bWSepb8u0kyD+A==" />
+    <TemplateComponentKey CollectionName="Feature" Id="Support" HashValue="9t/VWeMjXNYCXrI7Ty9Ebg==" />
+    <TemplateComponentKey CollectionName="Feature" Id="FullTextSearchPositions" HashValue="wGesRcrI5YKVnLtVOVYtPQ==" />
+    <TemplateComponentKey CollectionName="Feature" Id="FullTextSearchObjects" HashValue="mFOFpHq9migJL1AH7c94jQ==" />
+    <TemplateComponentKey CollectionName="PageType" Id="webframe.html" HashValue="aGEDnMaUUb/VczlpASk6cQ==" />
+    <TemplateComponentKey CollectionName="PageType" Id="webframedesktop.html" HashValue="Gxg7QSIZ09RaClgHVg1/ow==" />
+    <TemplateComponentKey CollectionName="PageType" Id="webframemobile.html" HashValue="WZ8j6oIel3CNrfPa3toA2w==" />
+    <TemplateComponentKey CollectionName="PageType" Id="webframetablet.html" HashValue="14U6D/paUp+rMCztEDxwPg==" />
+    <TemplateComponentKey CollectionName="PageType" Id="webindex.html" HashValue="rO+ObNeH9aOlr/w5qC+K2Q==" />
+    <TemplateComponentKey CollectionName="PageType" Id="webnav.html" HashValue="tcR0YTDpol/DHcIBBQfXSw==" />
+    <TemplateComponentKey CollectionName="PageType" Id="webtoc.html" HashValue="0n21Nf1qEGMEGOJye+wSJg==" />
+    <TemplateComponentKey CollectionName="PageType" Id="websearch.html" HashValue="+DyBHWHK5k8ARM94Tifs3g==" />
+    <TemplateComponentKey CollectionName="PropertyDefinition" Id="14c8048f-ef12-434f-8211-b6df7aaa9821" HashValue="nJSkALwYCC1MuD+ZQAGr5Q==" />
+    <TemplateComponentKey CollectionName="File" Id="webframe.html" HashValue="+gmpOmVqnnIO3X6si4K3Ig==" />
+    <TemplateComponentKey CollectionName="File" Id="webframedesktop.html" HashValue="dZGOyhZc1Q6BcpgB4SgBSw==" />
+    <TemplateComponentKey CollectionName="File" Id="webframemobile.html" HashValue="U3I6y8C09D+rZ7R2Ww64ag==" />
+    <TemplateComponentKey CollectionName="File" Id="webframetablet.html" HashValue="V6KNB4IjWlxnU2706hmMaQ==" />
+    <TemplateComponentKey CollectionName="File" Id="webindex.html" HashValue="wXBIJsWEkA79wW9MF3K60Q==" />
+    <TemplateComponentKey CollectionName="File" Id="webnav.html" HashValue="htqJqCUWYSkWhG6NF83TPg==" />
+    <TemplateComponentKey CollectionName="File" Id="websearch.html" HashValue="UuoyRQQk1ndssfrEK6LN4w==" />
+    <TemplateComponentKey CollectionName="File" Id="webtoc.html" HashValue="56FhRLppPBU1qcZlnTPjkg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\css\bootstrap.css" HashValue="2xJg0tt5o1iqx1vhEtRbVA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\css\index.css" HashValue="iKF821aqDE9XBNlb4wZmkg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\css\index.responsive.css" HashValue="0ziLOQoJrWU6drrmfSt4PQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\css\nav.css" HashValue="/bJb5bQXsc4Zr0Rzaej5iw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\css\nav.responsive.css" HashValue="PvOwV9S/iD0OgotfONXajg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\css\search.css" HashValue="0O7BLlbyKNeAy10M0zkfyA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\css\search.responsive.css" HashValue="IotYoYTRLBNzxaq4rodULw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\css\toc.css" HashValue="tG7E6q4VN2LixDuqfQ6f+g==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\css\top.css" HashValue="6JqkbwTnPRR0PBWP+4QoCw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\css\top.responsive.css" HashValue="hXC30Qkmh1E53gUUqZq9kw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\glyphicons-halflings.png" HashValue="dLgB7YZEQJodFmu/M6w9lQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\header-index.png" HashValue="+rJazLahsNFKdxwPbFjzDw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\header-search.png" HashValue="9FMV0XOyL9IchtjIJa9IUA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\header-toc.png" HashValue="UrECkT+hNXGujlTQm/YFSQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\icons.png" HashValue="ux3VUTfF2n47roNJMgxPxA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\collapse.png" HashValue="ZgUxX140kKG15lbicDWHXQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\expand.png" HashValue="+iTscWewhAx65rvI46Jp9g==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-00.png" HashValue="ovZXRWkuiH3YaZEmOLR39A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-01.png" HashValue="74fgm92O9c96AuxHxEgrTw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-02.png" HashValue="ovZXRWkuiH3YaZEmOLR39A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-03.png" HashValue="s22ZnjJlpNA44yR9MULrOQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-04.png" HashValue="x/dcbC4y+pXCyISIX/FRTQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-05.png" HashValue="qMyaUEX0MzCRuif6Ko+f6A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-06.png" HashValue="7UpjDfwEwQEpp1iwWc7Yow==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-07.png" HashValue="O5mozU23+THTOy/LQpoBYA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-08.png" HashValue="Syox9XP8/pPmTcsj2oyOSQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-09.png" HashValue="zDBjCUHbML2IJQWP6crA0g==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-10.png" HashValue="9fGuDm/2qAa3JwZtyU8RIw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-11.png" HashValue="w8x8yye52a5vSpp2UC+drw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-12.png" HashValue="gydy6kmkiS0f8EV7URupuw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-13.png" HashValue="uRqWKJJ7BY8lWvJYxLZ/tg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-14.png" HashValue="jnDc4nPLPecJKSTfIXjq0w==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-15.png" HashValue="+EDsJQcAQ7GkbJ1rFzGgag==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-16.png" HashValue="FfPpGXmnGNM13PNx1of0PQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-17.png" HashValue="FcmQQa+SCh2v7a42VK5/hg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-18.png" HashValue="13CXNva0E6YxD2c63rxNgA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-19.png" HashValue="33svRcIzQuzq6VyHvrXLdQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-20.png" HashValue="Hssu+ZLSWpaUGJwC3mQE/w==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-21.png" HashValue="VxwYTGTA9xDzO6oxCYGRzg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-22.png" HashValue="VmHpm8PnNnDA0A+sKmuaAg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-23.png" HashValue="u4AwXeVVgpfnRw0pC7eGiA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-24.png" HashValue="UIk/CUHHzwpg4n8kidqZCw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-25.png" HashValue="RSatPKnX+42KZWgTDxcCRQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-26.png" HashValue="qpf7SvAeeSd7ostzoN4WuQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-27.png" HashValue="W2ky+drA0ND6KIthUKIDtA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-28.png" HashValue="tcMGEBZfPk51gXJbtFBuEg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-29.png" HashValue="pxagnxeWNrEZkUXk1MyeRQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-30.png" HashValue="MghFXYQqRU96vxNqCiQZEA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-31.png" HashValue="wkL7/qvQ/xNFcHl8ahiYDg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-32.png" HashValue="TScCgcONn2Wuo2hod6aQ2A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-33.png" HashValue="5JmUkBXSCP+ydP2zfnZrKw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-34.png" HashValue="liNHUe7vjS/Oiaf2kWY2HQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-35.png" HashValue="VFOXvPjPWbySEvtFfIDyRw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-36.png" HashValue="OkiHWu/2x7SMZ6nndv054g==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-37.png" HashValue="SksaSPv/EJxW+op2exnUsg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-38.png" HashValue="8RCIEK5/P+pvv7Gdrm2eXw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-39.png" HashValue="ed94LW5BxSLQ4LpItK0W9w==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-40.png" HashValue="LE8nYXm70zf6dUNNqM1UgA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-41.png" HashValue="4fR93Emim3cEB0rOSjBuKQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-42.png" HashValue="H98/hg7oVr3xn48SQvcFmw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-43.png" HashValue="4t7f3MyOAW62DBuhK/3PdQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-44.png" HashValue="ez4rDaLYn6Hcm0pgjdMk2A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-45.png" HashValue="rY96MYXVhRv+Hvx4TJRXsw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\png\icon-46.png" HashValue="nGTqs80OCdMkquDWhP6rsA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\collapse.svg" HashValue="QduxSDp9+FhjOudrPHpkZg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\expand.svg" HashValue="2d1wM2BXB+TLX/2BJR0QuQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-00.svg" HashValue="NanuRpc9b/j0Cck/faDORw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-01.svg" HashValue="iyMemOUFCOtom/R0K7WAPA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-02.svg" HashValue="NanuRpc9b/j0Cck/faDORw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-03.svg" HashValue="pzVF5zM5nOZLfGOMBQAQqw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-04.svg" HashValue="MsgZ+p/iXg9O6WA4BKmXkQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-05.svg" HashValue="LoLOIswGqJwQ5xEOWc1omQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-06.svg" HashValue="SFBVSXIhJM4eF3LN7tcMJA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-07.svg" HashValue="RyCoYmRezMIfUneJX2h04A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-08.svg" HashValue="8TCoixAWtV5VN2tMnh+46A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-09.svg" HashValue="Wpvjd6KuANaFFKENveq6Qw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-10.svg" HashValue="zCPvhQKzB+eMHYWOY2OU1A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-11.svg" HashValue="n6Uv+gWpsajFOx6yPqqnKg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-12.svg" HashValue="k/OORFgeOw1j9oDTtpsAzA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-13.svg" HashValue="buX+fWuAgOk/S01OqqfXOQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-14.svg" HashValue="NsPrXCu9LDem14Cuc5sE+g==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-15.svg" HashValue="inDoZe6q8zZiKrhdOXOXsg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-16.svg" HashValue="uT8Xy0mDTSNBdQfPhhFD6w==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-17.svg" HashValue="pnDX/neK4XHGWHEFtumJ3w==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-18.svg" HashValue="8gaBIKEX+QajGaAU/wL8cQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-19.svg" HashValue="NdzahWEJK5qZ6Ov9QEx22w==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-20.svg" HashValue="yTm0T4V1SrJAwUx82/DT9Q==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-21.svg" HashValue="Pa1ncS1OztnDLdm/uaUmpg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-22.svg" HashValue="2WV08da7vLKlNGwILsafUQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-23.svg" HashValue="eK3hSdFsq/8My05mzQX4kg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-24.svg" HashValue="6C7zLuCcNdMbSd9pd75D8w==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-25.svg" HashValue="YPyqtCt3S+gMOi7q9E+nPA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-26.svg" HashValue="VDN9whkItmd/ukJ5vssb3A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-27.svg" HashValue="PuaxCtdLDGe7H6v4zJXTUA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-28.svg" HashValue="SE9BfdZSErRslJeXAfpYqA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-29.svg" HashValue="vbFMmsyCneubgtW8hf3LsA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-30.svg" HashValue="29M5qYGXcPLd7Ekv0frkuQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-31.svg" HashValue="LMt7YLRkz46hCsq+D9+/7w==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-32.svg" HashValue="nnzumdfsO/h1Ej4H/ZTnjA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-33.svg" HashValue="6l1xENZL/YHlpx0wJy/IZQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-34.svg" HashValue="/0aYDRhdY1D5kaFx8vDi/Q==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-35.svg" HashValue="K+TwsLxDZbslUYRDsUgnYQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-36.svg" HashValue="M9m7I0ztKc9tbwlC10pC2A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-37.svg" HashValue="+wVTdmzpOPeG49vlqvW+Kg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-38.svg" HashValue="ee2cIEVoxR4T5EXyDU6g3g==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-39.svg" HashValue="fnGb0i65ScFAxscjUnVasw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-40.svg" HashValue="6+x0tdtnY7gr3sEQEDjzZg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-41.svg" HashValue="dQoV8o5s+Qnwy2zBrPEaNg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-42.svg" HashValue="n0O3uiEfga/WA1UEbJA2Aw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-43.svg" HashValue="rUhmqWxn6cZoRXO5c2rpsw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-44.svg" HashValue="tB1eNQGIV81z/iU/QUTPGQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-45.svg" HashValue="tszLIAjMtEr2nWkhHa2Ouw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\images\svg\icon-46.svg" HashValue="yr8B4uEii5vzAJ+TJYjiDw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\script\navigation.min.js" HashValue="lKenslzvFKakf2N3JrQJNg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\core-web\script\debug\navigation.js" HashValue="5Iqz7nfMJyFOl0OQiyquRg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery\script\default\jquery.min.js" HashValue="LeYohuaBxDmIMeK3u+NhHQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery\script\default\debug\jquery.js" HashValue="D96tFaKV12ICgsO9pA8M4Q==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-mobile\css\jquery.mobile-1.4.5.min.css" HashValue="0KG7qsJluiIc1kO+yMmxqA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-mobile\css\debug\jquery.mobile-1.4.5.css" HashValue="SI3s+jdI5Gi62lMlSgzIlA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-mobile\css\images\ajax-loader.gif" HashValue="j9fnGbBs0/cBx5GttivXpg==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-mobile\css\images\icons-png\arrow-l-white.png" HashValue="Q0Z15n2AcVhi24jHWn31dw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-mobile\css\images\icons-png\carat-r-white.png" HashValue="QcSrRzX2bdAHwmiah2lYYw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-mobile\script\jquery.mobile-1.4.5.min.js" HashValue="P6ClrOtHfVrjDhvtuPo6RQ==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-mobile\script\debug\jquery.mobile-1.4.5.js" HashValue="V1V54ESG4oLD4NOvNOvWIA==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-ui\css\default\jquery-ui.min.css" HashValue="IVB3AUFUMIvkFeEYGhRkbw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-ui\script\default\jquery-ui.min.js" HashValue="wVsQCN7DyJZ+plenu0uq7A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\jquery-ui\script\default\debug\jquery-ui.js" HashValue="q1KE3l49Ih5TZH/TSOVkSw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-web\css\jquery.layout.css" HashValue="d0FknxYWZZtFz+w6cnUC6A==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-web\script\default\jquery-plugins.min.js" HashValue="LAS7w0dPfgOrWbahBYRAsw==" />
+    <TemplateComponentKey CollectionName="File" Id="template\packages\plugins-web\script\default\debug\jquery-plugins.js" HashValue="iQCiugM6kGujEm6t1aWLJQ==" />
+    <TemplateComponentKey CollectionName="TemplateFileFeature" Id="RESPONSIVE" HashValue="WygOU35f/c1cyWG1/IemJQ==" />
+  </TemplateComponentKeys>
+  <CommonTemplateStyles></CommonTemplateStyles>
+  <TemplateFileFeatures>
+    <Features>
+      <TemplateFileFeature Name="RESPONSIVE" SupportsDesignTime="false">
+        <Files />
+      </TemplateFileFeature>
+    </Features>
+  </TemplateFileFeatures>
+  <Widgets>
+    <RequiredWidgetPacks>41222309-CCFB-470C-AE40-06FC5FFBAF49</RequiredWidgetPacks>
+    <WidgetTypes Version="2011.1" />
+  </Widgets>
+</Template>

@@ -1,0 +1,36 @@
+﻿<Derived master="master.html">
+
+    <ContentSection name="TitleTags">
+        <![CDATA[
+    <!--DXMETADATA start type="ItemTitle" format="<title>%%ItemTitle%%</title>" -->&lt;Title&gt;<!--DXMETADATA end-->
+    <!--DXMETADATA start type="ItemTitle" format="<meta name=""Title"" content=""%%ItemTitleNoQuotes%%""/>" --><!--DXMETADATA end-->
+        ]]>
+    </ContentSection>
+        
+    <ContentSection name="PageTitleContent">
+        <![CDATA[
+            <div class="i-page-title-text"><!--DXMETADATA start type="ItemTitle" -->Title<!--DXMETADATA end--></div>
+        ]]>
+    </ContentSection>	
+    
+    <ContentSection name="AfterHeaderContent" mode="Prepend">
+        <![CDATA[
+<!--DXMETADATA start type="Phrase" name="INHERITANCE_HIERARCHY" format="<a class=""i-page-link"" href=""%%itemqualifiedname%%_hierarchy%%OutputFileExtension%%"" alt=""%%Phrase%%"">%%Phrase%%</a>" --><!--DXMETADATA end -->
+        ]]>
+    </ContentSection>
+
+    <ContentSection name="BodyContent">
+        <![CDATA[
+            <!--DXMETADATA start type="Description" source="Item" format="<div class=""i-description-content"">%%description%%</div>" --><!--DXMETADATA end -->
+            <!--DXMETADATA start type="TaggedComment" source="Item" id="##AUTHOR" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=author,caption=$$Author$$%%%%comment%%</div>" -->Author<!--DXMETADATA end -->
+            <!--DXMETADATA start type="TaggedComment" source="Item" id="##SINCE" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=author,caption=$$Since$$%%%%comment%%</div>" -->Since<!--DXMETADATA end -->            
+            <!--DXMETADATA start type="FilteredItemList" scrap="ITEM_LIST_WITH_HEADER" namespace="class" source="Item" filter="" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=class,caption=$$Classes$$%%%%filtereditemlist%%</div>" -->Classes<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="ITEM_LIST_WITH_HEADER" namespace="interface" source="Item" filter="" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=interface,caption=$$Interfaces$$%%%%filtereditemlist%%</div>" -->Interfaces<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="ITEM_LIST_WITH_HEADER" namespace="structure" source="Item" filter="" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=structure,caption=$$Structures$$%%%%filtereditemlist%%</div>" -->Structures<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="ITEM_LIST_WITH_HEADER" namespace="enumeration" source="Item" filter="" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=enumeration,caption=$$Enumerations$$%%%%filtereditemlist%%</div>" -->Enumerations<!--DXMETADATA end -->
+            <!--DXMETADATA start type="TaggedComment" source="Item" id="##REMARKS" format="%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=remarks,caption=$$Remarks$$%%%%comment%%</div>" -->&lt;Remarks&gt;<!--DXMETADATA end -->
+            <!--DXMETADATA start type="FilteredItemList" scrap="CATEGORIZED_LINKS" namespace="linkcategory" source="Item" filter="" NoHeader="True" NoFooter="True" format="%%replaceinquotes:value=false%%%%scrap:name=_COLLAPSIBLE_HEADER,idprefix=seealso,caption=""$$See_Also$$%%designlist:tagidentifier=##SEEALSO,itemtype=See Also%%""%%%%filtereditemlist%%</div>"--><!--DXMETADATA end-->
+        ]]>
+    </ContentSection>
+    
+</Derived>
