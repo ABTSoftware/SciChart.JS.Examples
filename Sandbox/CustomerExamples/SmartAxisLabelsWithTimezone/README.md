@@ -5,6 +5,7 @@ This example showcases:
 * How to add Time Zones support
 * How to place axis labels nicely for the Date axis
 * How to customize labels format according to the Locale
+* How to customize labels for Cursor and Rollover chart modifiers
 
 ## Running the Example
 

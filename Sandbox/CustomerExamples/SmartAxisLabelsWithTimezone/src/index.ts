@@ -7,13 +7,14 @@ import {
     NumberRange,
     EAutoRange,
     EColor,
-    FastLineRenderableSeries
+    FastLineRenderableSeries,
+    CursorModifier
 } from 'scichart';
 import { axisLabelDateFormatter } from './axisLabelDateFormatter';
 import { DateTickProvider } from './DateTickProvider';
 import { SmartDateTZLabelProvider } from './SmartDateTZLabelProvider';
 import { createDateTzConverter } from './timezones';
-import {createDataSeries} from "./createDataSeries";
+import { createDataSeries } from './createDataSeries';
 
 async function initSciChart(timeZone: string, locale: string) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root');
@@ -37,9 +38,10 @@ async function initSciChart(timeZone: string, locale: string) {
     xAxis.labelProvider = new SmartDateTZLabelProvider(timeZone, locale);
 
     const dateTzConverter = createDateTzConverter(timeZone);
+
+    // This is needed for Cursor and Rollover chart modifiers
     xAxis.labelProvider.formatCursorLabel = timestamp =>
-        axisLabelDateFormatter.toFullDateTime(timestamp, dateTzConverter, locale, true);
-    // xAxis.labelProvider.formatCursorLabel = (val: number) =>
+        axisLabelDateFormatter.toFullDateTime(timestamp, dateTzConverter, locale);
     sciChartSurface.xAxes.add(xAxis);
 
     const yAxis1 = new NumericAxis(wasmContext, {
@@ -65,7 +67,7 @@ async function initSciChart(timeZone: string, locale: string) {
     });
     sciChartSurface.renderableSeries.add(renderableSeries1);
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier(), new CursorModifier());
 }
 
 initSciChart('Asia/Istanbul', 'de-DE');
