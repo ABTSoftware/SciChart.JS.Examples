@@ -2,7 +2,7 @@ import * as path from "path";
 import * as fs from "fs";
 import { Request, Response } from "express";
 import { getParameters } from "codesandbox/lib/api/define";
-import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
+import { EXAMPLES_PAGES, TExampleInfo } from "../components/AppRouter/examplePages";
 
 interface IFiles {
   [key: string]: {
@@ -11,16 +11,33 @@ interface IFiles {
   };
 }
 
-const getCodeSandBoxForm = async (folderPath: string, title: string) => {
-  const tsPath = path.join(folderPath, "index.tsx");
-  const code = await fs.promises.readFile(tsPath, "utf8");
-  const localImports = Array.from(code.matchAll(/import.*from "\.\/(.*)";/g));
+let csStyles: IFiles;
+const loadStyles = async (folderPath: string) => {
+  if (!csStyles) {
+    const basePath = path.join(folderPath, "styles", "_base.scss");
+    const base = await fs.promises.readFile(basePath, "utf8");
+    const mixinsPath = path.join(folderPath, "styles", "mixins.scss");
+    const mixins = await fs.promises.readFile(mixinsPath, "utf8");
+    const examplesPath = path.join(folderPath, "styles", "Examples.module.scss");
+    const examples = await fs.promises.readFile(examplesPath, "utf8");
+    csStyles = {
+      "src/styles/_base.scss" : { content: base, isBinary: false },
+      "src/styles/mixins.scss" : { content: mixins, isBinary: false },
+      "src/styles/Examples.module.scss" : { content: examples, isBinary: false },
+    }
+  }
+}
 
-  const files: IFiles = {
+const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
+  const tsPath = path.join(folderPath, "index.tsx");
+  let code = await fs.promises.readFile(tsPath, "utf8");
+  const localImports = Array.from(code.matchAll(/import.*from "\.\/(.*)";/g));
+  code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`)
+  let files: IFiles = {
     "package.json": {
       // @ts-ignore
       content: {
-          "name": title,
+          "name": currentExample.title,
           "version": "1.0.0",
           "main": "src/index.tsx",
           "scripts": {
@@ -36,7 +53,8 @@ const getCodeSandBoxForm = async (folderPath: string, title: string) => {
             "react-dom": "18.0.0",
             "react-scripts": "4.0.3",
             "scichart": "^3.0.301",
-            "scichart-example-dependencies": "^0.1.2"
+            "scichart-example-dependencies": "^0.1.3",
+            ...currentExample.extraDependencies
           },
           "devDependencies": {
             "@types/react": "18.0.25",
@@ -91,6 +109,15 @@ root.render(
       isBinary: false
     }
   };
+  files = {...files, ...csStyles };
+
+  if (currentExample.sandboxConfig) {
+    files["sandbox.config.json"] = { 
+      // @ts-ignore
+      content: currentExample.sandboxConfig,
+      isBinary: false
+    };
+  }
 
   for (const localImport of localImports) {
     if (localImport.length > 1) {
@@ -98,16 +125,22 @@ root.render(
       const csPath = "src/" + localImport[1] + ".ts";
       const content = await fs.promises.readFile(filepath, "utf8");
       files[csPath] = { content, isBinary: false };
+      const nestedImports = Array.from(content.matchAll(/import.*from "\.\/(.*)";/g));
+      if (nestedImports.length > 0) {
+        localImports.push(...nestedImports);
+      }
     }
   }
+
+
+
   const parameters = getParameters({ files });
     return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
     <input type="hidden" name="parameters" value="${parameters}" />
   </form>`
   }
   
-  const renderCodeSandBoxRedirectPage = async (folderPath: string, title: string) => {
-    const form = await getCodeSandBoxForm(folderPath, title);
+  const renderCodeSandBoxRedirectPage = (form: string) => {
     return `
     <html lang="en-us">
       <head>
@@ -126,7 +159,8 @@ root.render(
   }
 
 export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => {
-    let basePath = path.join(__dirname, "Examples");
+    const basePath = path.join(__dirname, "Examples");
+    await loadStyles(basePath);
     // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
     const isIFrame = req.path.substring(1, 7) === 'iframe';
     const pathname = isIFrame ? req.path.substring(7) : req.path;
@@ -134,7 +168,8 @@ export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => 
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     try {     
       const folderPath = path.join(basePath, currentExample.filepath);
-      const page = await renderCodeSandBoxRedirectPage(folderPath, currentExample.title);
+      const form = await getCodeSandBoxForm(folderPath, currentExample);
+      const page = renderCodeSandBoxRedirectPage(form);
       res.send(page);
       return true;
     } catch (err) {

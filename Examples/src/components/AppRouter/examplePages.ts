@@ -106,7 +106,7 @@ export type TExampleInfo = {
      */
     pageTitle: string;
     path: string;
-    filepath: string;
+
     documentationLinks: TDocumentationLink[];
     tips?: any;
     description: any;
@@ -128,6 +128,12 @@ export type TExampleInfo = {
      */
     metaKeywords: string;
     thumbnailImage?: string;
+    // path to actual folder for CodeSandbox
+    filepath: string;
+    // additional module dependencies
+    extraDependencies?: Record<string, string>;
+    codeSandBoxNotWorking?: boolean;
+    sandboxConfig?: Record<string, any>;
 };
 
 export type TExamplePage = TPage & TExampleInfo;

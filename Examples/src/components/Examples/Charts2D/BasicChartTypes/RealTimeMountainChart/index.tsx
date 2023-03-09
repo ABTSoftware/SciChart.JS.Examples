@@ -2,7 +2,7 @@ import * as React from "react";
 import {
     RandomWalkGenerator
 } from "../../../../../../../Sandbox/CustomerExamples/AnimateXyValuesOnSeries/src/RandomWalkGenerator";
-import classes from "scichart-example-dependencies/styles/Examples.module.scss";
+import classes from "../../../styles/Examples.module.scss";
 import {appTheme} from "scichart-example-dependencies";
 import {
     AnimationToken,

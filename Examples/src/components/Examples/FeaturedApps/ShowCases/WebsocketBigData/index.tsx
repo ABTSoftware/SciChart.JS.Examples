@@ -9,7 +9,7 @@ import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
 import { ESeriesType } from "scichart/types/SeriesType";
 import {appTheme} from "scichart-example-dependencies";
-import classes from "scichart-example-dependencies/styles/Examples.module.scss";
+import classes from "../../../styles/Examples.module.scss";
 import { divElementId, drawExample, ISettings, TMessage } from "./drawExample";
 
 const useStyles = makeStyles(theme => ({

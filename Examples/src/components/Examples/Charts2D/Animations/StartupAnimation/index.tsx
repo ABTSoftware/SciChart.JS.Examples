@@ -4,7 +4,7 @@ import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsM
 import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import classes from "scichart-example-dependencies/styles/Examples.module.scss";
+import classes from "../../../styles/Examples.module.scss";
 import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
 import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
 import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";

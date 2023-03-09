@@ -52,5 +52,6 @@ export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     metaDescription:
         "Create a JavaScript Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
     metaKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
+    extraDependencies: { "websocket-ts": "^1.1.1", "rxjs": "^7.5.6" }
 };

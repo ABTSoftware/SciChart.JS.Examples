@@ -1,7 +1,7 @@
 import * as React from "react";
 import { getVarianceData } from "./data";
 import {appTheme} from "scichart-example-dependencies";
-import classes from "scichart-example-dependencies/styles/Examples.module.scss";
+import classes from "../../../styles/Examples.module.scss";
 import {
     MouseWheelZoomModifier,
     ZoomExtentsModifier,

@@ -16,4 +16,4 @@ Documentation/static/scichart2d.wasm
 Documentation/static/scichart2d.data
 Documentation/static/scichart.browser.js
 Documentation/server/nav.html
-Documentation/server/server.js
+Documentation/server/*.js

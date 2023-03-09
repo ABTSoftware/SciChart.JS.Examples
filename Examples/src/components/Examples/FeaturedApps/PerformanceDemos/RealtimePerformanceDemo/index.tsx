@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
 import {appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
-import classes from "scichart-example-dependencies/styles/Examples.module.scss";
+import classes from "../../../styles/Examples.module.scss";
 
 import {
     EAutoRange,

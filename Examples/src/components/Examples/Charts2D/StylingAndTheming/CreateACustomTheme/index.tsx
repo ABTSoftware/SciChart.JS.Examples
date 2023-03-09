@@ -1,6 +1,6 @@
 import * as React from "react";
 import {closeValues, dateValues, highValues, lowValues, openValues} from "./data/themeing2dData";
-import classes from "scichart-example-dependencies/styles/Examples.module.scss";
+import classes from "../../../styles/Examples.module.scss";
 
 import {
     FastCandlestickRenderableSeries,

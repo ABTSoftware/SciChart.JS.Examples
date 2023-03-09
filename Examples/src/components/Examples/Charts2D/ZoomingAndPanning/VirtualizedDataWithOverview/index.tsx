@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import {appTheme} from "scichart-example-dependencies";
-import classes from "scichart-example-dependencies/styles/Examples.module.scss";
+import classes from "../../../styles/Examples.module.scss";
 import { Subject, debounceTime } from "rxjs";
 
 import {

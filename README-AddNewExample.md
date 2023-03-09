@@ -8,7 +8,7 @@ To add an example to the SciChart.js Examples Suite, use the following steps:
 * **Create folder** for your example, (e.g. `Examples/src/components/Examples/Charts2D/BasicChartTypes/BandSeriesChart/`)
 * **Place example code**. In the example folder create `index.tsx` file and put code for your example into it.
 * **Add image**. In the example folder create add image file with example.
-* **Add metadata**. In the example folder create metadata file `exampleInfo.ts` 
+* **Add metadata**. In the example folder create metadata file `exampleInfo.tsx` 
 ```ts
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
@@ -78,8 +78,11 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
         "between two lines. The Band series requires one X-point and two Y-points to draw the polygon",
     seoKeywords: "band, chart, javascript, webgl, canvas",
     thumbnailImage: "javascript-band-chart.jpg"
+    filepath: "Charts2D/BasicChartTypes/BandSeriesChart"
 };
 ```
+**filepath must point to the correct folder for the Open in CodeSandBox to work**
+
 * **Generate GENERATED_GITHUB_URL.ts files** - run `npm run generateExampleSrc` to generate `GENERATED_GITHUB_URL.ts`.
 
 * **Add example to menu**

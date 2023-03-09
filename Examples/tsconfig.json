@@ -27,7 +27,7 @@
     "include": [
         "src/**/*",
         "testUnit/**/*"
-    ],
+, "../ExampleDependencies/src/ExampleData/binanceRestClient.ts"    ],
     "exclude": [
         "node_modules",
         "src/static/*"

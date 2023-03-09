@@ -43,8 +43,7 @@ import {
     ZoomPanModifier,
 } from "scichart";
 import {VolumePaletteProvider} from "./VolumePaletteProvider";
-import {appTheme} from "scichart-example-dependencies";
-import {TPriceBar} from "../../BasicChartTypes/CandlestickChart/data/binanceRestClient";
+import {appTheme, TPriceBar} from "scichart-example-dependencies";
 
 // Trades over this size will be rendered as bubbles on the chart
 export const LARGE_TRADE_THRESHOLD = 25_000;
