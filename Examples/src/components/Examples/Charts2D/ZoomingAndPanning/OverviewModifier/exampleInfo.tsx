@@ -48,6 +48,7 @@ export const overviewExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleOverview,
     pageTitle: ExampleStrings.titleOverview + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlOverview,
+    filepath: "Charts2D/ZoomingAndPanning/OverviewModifier",
     subtitle: Subtitle,
     documentationLinks,
     tips,

@@ -41,6 +41,7 @@ export const axisLayoutExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleAxisLayout,
     pageTitle: ExampleStrings.titleAxisLayout + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlAxisLayout,
+    filepath: "FeaturedApps/FeatureDemos/AxisLayout",
     subtitle: Subtitle,
     documentationLinks,
     tips,

@@ -50,6 +50,7 @@ export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineBandChart,
     pageTitle: ExampleStrings.pageTitleSplineBandChart,
     path: ExampleStrings.urlSplineBandChart,
+    filepath: "Charts2D/BasicChartTypes/SimpleBandSeriesChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

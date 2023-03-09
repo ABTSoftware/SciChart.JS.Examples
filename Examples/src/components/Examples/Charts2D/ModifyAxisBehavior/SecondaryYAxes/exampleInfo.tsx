@@ -38,6 +38,7 @@ export const secondaryYAxesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSecondaryYAxis,
     pageTitle: ExampleStrings.titleSecondaryYAxis + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlSecondaryYAxis,
+    filepath: "Charts2D/ModifyAxisBehavior/SecondaryYAxes",
     subtitle: Subtitle,
     documentationLinks,
     tips,

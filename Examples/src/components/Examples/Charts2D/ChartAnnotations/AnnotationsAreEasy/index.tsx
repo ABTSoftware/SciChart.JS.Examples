@@ -1,5 +1,5 @@
 import * as React from "react";
-import {classes} from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 import {appTheme} from "scichart-example-dependencies";
 import CustomImage from "./scichart-logo-white.jpg";
 import {rocketSvg} from "./416398_exploration_fuel_nasa_rocket_space_icon";

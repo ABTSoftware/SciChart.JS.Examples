@@ -1,7 +1,7 @@
 import * as React from "react";
 import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
 import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {classes} from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 import {NumberRange} from "scichart/Core/NumberRange";
 import {populationData} from "../../../Charts3D/Basic3DChartTypes/Bubble3DChart/data/PopulationData";
 import {appTheme} from "scichart-example-dependencies";

@@ -1,7 +1,8 @@
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import * as React from "react";
 import { TBinanceCandleData } from "../../../../../commonTypes/TBinanceCandleData";
-import {appTheme, classes} from "scichart-example-dependencies";
+import {appTheme} from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 import {makeStyles} from "@material-ui/core/styles";
 
 import {

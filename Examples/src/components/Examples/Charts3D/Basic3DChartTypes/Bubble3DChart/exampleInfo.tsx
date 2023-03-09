@@ -44,6 +44,7 @@ export const bubble3DChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBubble3DChart,
     pageTitle: ExampleStrings.pageTitleBubble3DChart,
     path: ExampleStrings.urlBubble3DChart,
+    filepath: "Charts3D/Basic3DChartTypes/Bubble3DChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

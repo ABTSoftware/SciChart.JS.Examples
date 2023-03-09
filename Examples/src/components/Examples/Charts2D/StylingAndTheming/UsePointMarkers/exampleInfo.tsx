@@ -42,6 +42,7 @@ export const usePointMarkersExampleInfo: TExampleInfo = {
     title: ExampleStrings.titlePointMarkers,
     pageTitle: ExampleStrings.titlePointMarkers + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlPointMarkers,
+    filepath: "Charts2D/StylingAndTheming/UsePointMarkers",
     subtitle: Subtitle,
     documentationLinks,
     description,

@@ -39,6 +39,7 @@ export const datalabelsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDatalabels,
     pageTitle: ExampleStrings.titleDatalabels + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDatalabels,
+    filepath: "Charts2D/StylingAndTheming/DataLabels",
     subtitle: Subtitle,
     documentationLinks,
     tips,

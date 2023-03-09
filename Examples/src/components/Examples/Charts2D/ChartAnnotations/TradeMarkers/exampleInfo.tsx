@@ -47,6 +47,7 @@ export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleTradeMarkers,
     pageTitle: ExampleStrings.titleTradeMarkers + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTradeMarkers,
+    filepath: "Charts2D/ChartAnnotations/TradeMarkers",
     subtitle: Subtitle,
     documentationLinks,
     tips,

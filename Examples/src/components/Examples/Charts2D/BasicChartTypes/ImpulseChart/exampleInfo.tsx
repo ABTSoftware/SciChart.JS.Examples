@@ -48,6 +48,7 @@ export const impulseChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleImpulseChart,
     pageTitle: ExampleStrings.pageTitleImpulseChart,
     path: ExampleStrings.urlImpulseChart,
+    filepath: "Charts2D/BasicChartTypes/ImpulseChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

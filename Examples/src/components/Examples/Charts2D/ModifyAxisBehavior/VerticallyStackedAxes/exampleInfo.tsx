@@ -40,6 +40,7 @@ export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleVerticallyStackedAxes,
     pageTitle: ExampleStrings.titleVerticallyStackedAxes + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlVerticallyStackedAxes,
+    filepath: "Charts2D/ModifyAxisBehavior/VerticallyStackedAxes",
     subtitle: Subtitle,
     documentationLinks,
     tips,

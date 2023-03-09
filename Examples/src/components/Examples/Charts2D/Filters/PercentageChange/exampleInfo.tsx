@@ -45,6 +45,7 @@ export const percentageChangeExampleInfo: TExampleInfo = {
     title: ExampleStrings.titlePercentageChange,
     pageTitle: ExampleStrings.titlePercentageChange + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlPercentageChange,
+    filepath: "Charts2D/Filters/PercentageChange",
     subtitle: Subtitle,
     documentationLinks,
     tips,

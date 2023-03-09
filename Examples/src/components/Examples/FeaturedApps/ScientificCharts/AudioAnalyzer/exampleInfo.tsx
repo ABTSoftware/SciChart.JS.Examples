@@ -51,6 +51,7 @@ export const audioAnalyzerExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
     pageTitle: ExampleStrings.titleAudioAnalyzerFeaturedApp + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlAudioAnalyzerFeaturedApp,
+    filepath: "FeaturedApps/ScientificCharts/AudioAnalyzer",
     documentationLinks,
     tips,
     description,

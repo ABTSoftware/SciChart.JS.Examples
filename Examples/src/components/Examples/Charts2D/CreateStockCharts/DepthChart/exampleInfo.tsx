@@ -38,6 +38,7 @@ export const depthChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDepthChart,
     pageTitle: ExampleStrings.titleDepthChart + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDepthChart,
+    filepath: "Charts2D/CreateStockCharts/DepthChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

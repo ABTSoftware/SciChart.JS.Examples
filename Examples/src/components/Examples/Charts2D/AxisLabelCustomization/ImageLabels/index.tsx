@@ -25,7 +25,7 @@ import {
     EHorizontalAnchorPoint,
     ECoordinateMode
 } from "scichart";
-import { classes } from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 import appleLogo from "./images/apple.png";
 import samsungLogo from "./images/samsung.png";
 import xiaomiLogo from "./images/xiaomi.png";

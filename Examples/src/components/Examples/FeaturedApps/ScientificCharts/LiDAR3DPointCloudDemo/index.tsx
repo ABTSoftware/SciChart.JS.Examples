@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import {AscData, AscReader} from "./AscReader";
-import {classes} from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 import {appTheme} from "scichart-example-dependencies";
 
 import {

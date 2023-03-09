@@ -44,6 +44,7 @@ export const dashedLineStylingExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDashedLineStyling,
     pageTitle: ExampleStrings.titleDashedLineStyling + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDashedLineStyling,
+    filepath: "Charts2D/StylingAndTheming/DashedLineStyling",
     subtitle: Subtitle,
     documentationLinks,
     tips,

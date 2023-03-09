@@ -39,6 +39,7 @@ export const realtimeZoomPanExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeZoomPan,
     pageTitle: ExampleStrings.titleRealtimeZoomPan + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeZoomPan,
+    filepath: "Charts2D/ZoomingAndPanning/RealtimeZoomPan",
     subtitle: Subtitle,
     documentationLinks,
     tips,

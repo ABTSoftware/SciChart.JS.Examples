@@ -50,6 +50,7 @@ export const nonUniformHeatmapExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleNonUniformHeatmapChart,
     pageTitle: ExampleStrings.pageTitleNonUniformHeatmapChart,
     path: ExampleStrings.urlNonUniformHeatmapChart,
+    filepath: "Charts2D/BasicChartTypes/NonUniformHeatmapChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

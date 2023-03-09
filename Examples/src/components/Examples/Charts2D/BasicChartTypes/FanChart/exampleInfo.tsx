@@ -50,6 +50,7 @@ export const fanChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleFanChart,
     pageTitle: ExampleStrings.pageTitleFanChart,
     path: ExampleStrings.urlFanChart,
+    filepath: "Charts2D/BasicChartTypes/FanChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

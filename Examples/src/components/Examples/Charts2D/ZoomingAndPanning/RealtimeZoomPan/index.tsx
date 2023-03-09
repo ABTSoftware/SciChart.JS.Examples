@@ -9,7 +9,7 @@ import {
     XyScatterRenderableSeries, ZoomExtentsModifier, ZoomPanModifier
 } from "scichart";
 
-import {classes} from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 import {appTheme} from "scichart-example-dependencies";
 import {makeStyles} from "@material-ui/core/styles";
 

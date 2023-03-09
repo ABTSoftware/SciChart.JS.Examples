@@ -1,5 +1,6 @@
 import * as React from "react";
-import {appTheme, ExampleDataProvider, classes} from "scichart-example-dependencies";
+import {appTheme, ExampleDataProvider} from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
 import {makeStyles} from "@material-ui/core/styles";
 import {

@@ -37,6 +37,7 @@ export const oilAndGasExplorerDashboard: TExampleInfo = {
     title: ExampleStrings.titleOilAndGasExplorerDashboard,
     pageTitle: ExampleStrings.titleOilAndGasExplorerDashboard + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlOilAndGasExplorerDashboard,
+    filepath: "FeaturedApps/ShowCases/OilAndGasDashboard",
     subtitle: Subtitle,
     documentationLinks,
     tips,

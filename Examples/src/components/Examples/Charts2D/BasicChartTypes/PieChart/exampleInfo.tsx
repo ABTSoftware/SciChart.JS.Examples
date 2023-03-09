@@ -49,6 +49,7 @@ export const pieChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titlePieChart,
     pageTitle: ExampleStrings.pageTitlePieChart,
     path: ExampleStrings.urlPieChart,
+    filepath: "Charts2D/BasicChartTypes/PieChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

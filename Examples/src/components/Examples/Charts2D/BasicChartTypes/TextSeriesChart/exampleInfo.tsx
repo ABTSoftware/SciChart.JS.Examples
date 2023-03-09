@@ -43,6 +43,7 @@ export const textChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleTextChart,
     pageTitle: ExampleStrings.titleTextChart + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTextChart,
+    filepath: "Charts2D/BasicChartTypes/TextSeriesChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

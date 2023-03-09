@@ -44,6 +44,7 @@ export const heatmapInteractionsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleHeatmapInteractionsData,
     pageTitle: ExampleStrings.titleHeatmapInteractionsData + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlHeatmapInteractionsData,
+    filepath: "FeaturedApps/ShowCases/HeatmapInteractions",
     subtitle: Subtitle,
     documentationLinks,
     tips,

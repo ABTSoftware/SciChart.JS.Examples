@@ -42,6 +42,7 @@ export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeTickingStockCharts,
     pageTitle: ExampleStrings.pageTitleRealtimeTickingStockCharts,
     path: ExampleStrings.urlRealtimeTickingStockCharts,
+    filepath: "Charts2D/CreateStockCharts/RealtimeTickingStockCharts",
     subtitle: Subtitle,
     documentationLinks,
     tips,

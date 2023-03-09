@@ -2,7 +2,8 @@ import * as React from "react";
 import { AlertTitle } from "@material-ui/lab";
 import { Button } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import {classes,appTheme} from "scichart-example-dependencies";
+import {appTheme} from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 import {makeStyles} from "@material-ui/core/styles";
 
 import {

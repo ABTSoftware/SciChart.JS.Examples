@@ -45,6 +45,7 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
     pageTitle: ExampleStrings.titleRealtimeJavaScriptChartDemo + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeJavaScriptChartDemo,
+    filepath: "FeaturedApps/PerformanceDemos/RealtimePerformanceDemo",
     subtitle: Subtitle,
     documentationLinks,
     tips,

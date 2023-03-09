@@ -46,6 +46,7 @@ export const metaDataExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMetaData,
     pageTitle: ExampleStrings.titleMetaData + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlMetaData,
+    filepath: "Charts2D/TooltipsAndHittest/MetaData",
     subtitle: Subtitle,
     documentationLinks,
     tips,

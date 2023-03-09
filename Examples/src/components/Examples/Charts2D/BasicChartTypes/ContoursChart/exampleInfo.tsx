@@ -50,6 +50,7 @@ export const contourChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleContourChart,
     pageTitle: ExampleStrings.pageTitleContourChart,
     path: ExampleStrings.urlContourChart,
+    filepath: "Charts2D/BasicChartTypes/ContoursChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

@@ -44,6 +44,7 @@ export const fullChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBuilderFullChart,
     pageTitle: ExampleStrings.titleBuilderFullChart + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlBuilderFullChart,
+    filepath: "BuilderApi/FullChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

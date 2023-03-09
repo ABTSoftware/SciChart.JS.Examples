@@ -44,6 +44,7 @@ export const tenorCurvesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleTenorCurvesFeaturedApp,
     pageTitle: ExampleStrings.titleTenorCurvesFeaturedApp + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTenorCurvesFeaturedApp,
+    filepath: "FeaturedApps/ScientificCharts/TenorCurves3D",
     documentationLinks,
     tips,
     description,

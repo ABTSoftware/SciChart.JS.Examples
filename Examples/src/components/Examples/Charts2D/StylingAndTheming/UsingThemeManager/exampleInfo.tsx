@@ -44,6 +44,7 @@ export const usingThemeManagerExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleThemeManager,
     pageTitle: ExampleStrings.titleThemeManager + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlThemeManager,
+    filepath: "Charts2D/StylingAndTheming/UsingThemeManager",
     subtitle: Subtitle,
     documentationLinks,
     tips,

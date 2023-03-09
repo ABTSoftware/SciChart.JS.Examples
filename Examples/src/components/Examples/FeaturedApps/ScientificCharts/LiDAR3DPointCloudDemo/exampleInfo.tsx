@@ -45,6 +45,7 @@ export const lidar3DPointCloudExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLidarFeaturedApp,
     pageTitle: ExampleStrings.titleLidarFeaturedApp + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlLidarFeaturedApp,
+    filepath: "FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo",
     subtitle: Subtitle,
     documentationLinks,
     tips,

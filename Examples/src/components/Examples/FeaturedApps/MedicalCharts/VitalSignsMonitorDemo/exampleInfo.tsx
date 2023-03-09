@@ -49,6 +49,7 @@ export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleVitalSigns,
     pageTitle: ExampleStrings.titleVitalSigns + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlVitalSigns,
+    filepath: "FeaturedApps/MedicalCharts/VitalSignsMonitorDemo",
     subtitle: Subtitle,
     documentationLinks,
     tips,

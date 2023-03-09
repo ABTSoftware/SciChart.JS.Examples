@@ -46,6 +46,7 @@ export const genericAnimationExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleGenericAnimation,
     pageTitle: ExampleStrings.titleGenericAnimation + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlGenericAnimation,
+    filepath: "Charts2D/Animations/GenericAnimation",
     subtitle: Subtitle,
     documentationLinks,
     tips,

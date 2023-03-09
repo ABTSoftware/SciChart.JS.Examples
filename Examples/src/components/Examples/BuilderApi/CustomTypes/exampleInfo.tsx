@@ -44,6 +44,7 @@ export const customTypesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCustomTypes,
     pageTitle: ExampleStrings.titleCustomTypes + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCustomTypes,
+    filepath: "BuilderApi/CustomTypes",
     subtitle: Subtitle,
     documentationLinks,
     tips,

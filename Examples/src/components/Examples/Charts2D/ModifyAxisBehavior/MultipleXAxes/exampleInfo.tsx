@@ -38,6 +38,7 @@ export const multipleXAxesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMultipleXAxis,
     pageTitle: ExampleStrings.titleMultipleXAxis + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlMultipleXAxis,
+    filepath: "Charts2D/ModifyAxisBehavior/MultipleXAxes",
     subtitle: Subtitle,
     documentationLinks,
     tips,

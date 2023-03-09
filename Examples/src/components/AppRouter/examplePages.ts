@@ -106,6 +106,7 @@ export type TExampleInfo = {
      */
     pageTitle: string;
     path: string;
+    filepath: string;
     documentationLinks: TDocumentationLink[];
     tips?: any;
     description: any;

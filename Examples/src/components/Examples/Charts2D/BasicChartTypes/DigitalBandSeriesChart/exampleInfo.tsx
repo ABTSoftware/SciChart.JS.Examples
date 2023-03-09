@@ -50,6 +50,7 @@ export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDigitalBandChart,
     pageTitle: ExampleStrings.pageTitleDigitalBandChart,
     path: ExampleStrings.urlDigitalBandChart,
+    filepath: "Charts2D/BasicChartTypes/DigitalBandSeriesChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

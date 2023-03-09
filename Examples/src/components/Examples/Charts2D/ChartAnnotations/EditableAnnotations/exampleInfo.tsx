@@ -44,6 +44,7 @@ export const editableAnnotationsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleEditableAnnotations,
     pageTitle: ExampleStrings.titleEditableAnnotations + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlEditableAnnotations,
+    filepath: "Charts2D/ChartAnnotations/EditableAnnotations",
     subtitle: Subtitle,
     documentationLinks,
     tips,

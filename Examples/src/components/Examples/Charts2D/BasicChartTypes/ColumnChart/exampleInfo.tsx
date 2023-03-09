@@ -47,6 +47,7 @@ export const columnChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleColumnChart,
     pageTitle: ExampleStrings.pageTitleColumnChart,
     path: ExampleStrings.urlColumnChart,
+    filepath: "Charts2D/BasicChartTypes/ColumnChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

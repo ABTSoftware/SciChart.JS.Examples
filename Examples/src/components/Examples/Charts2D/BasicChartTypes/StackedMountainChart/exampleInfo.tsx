@@ -51,6 +51,7 @@ export const stackedMountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStackedMountainChart,
     pageTitle: ExampleStrings.pageTitleStackedMountainChart,
     path: ExampleStrings.urlStackedMountainChart,
+    filepath: "Charts2D/BasicChartTypes/StackedMountainChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

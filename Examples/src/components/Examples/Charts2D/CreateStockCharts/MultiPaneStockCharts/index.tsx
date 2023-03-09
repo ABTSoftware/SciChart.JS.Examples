@@ -1,5 +1,6 @@
 import * as React from "react";
-import {classes, ExampleDataProvider, appTheme} from "scichart-example-dependencies";
+import {ExampleDataProvider, appTheme} from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 import {
     SciChartVerticalGroup,
     CategoryAxis,

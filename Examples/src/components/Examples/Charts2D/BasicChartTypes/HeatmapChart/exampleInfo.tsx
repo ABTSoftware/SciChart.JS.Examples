@@ -47,6 +47,7 @@ export const heatmapChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleHeatmapChart,
     pageTitle: ExampleStrings.pageTitleHeatmapChart,
     path: ExampleStrings.urlHeatmapChart,
+    filepath: "Charts2D/BasicChartTypes/HeatmapChart",
     subtitle: Subtitle,
     documentationLinks,
     description,

@@ -35,7 +35,8 @@ import {
 } from "scichart";
 import { simpleBinanceRestClient } from "./data/binanceRestClient";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import {appTheme, classes} from "scichart-example-dependencies";
+import {appTheme} from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 
 const divElementId = "chart";
 const divOverviewId = "overview";

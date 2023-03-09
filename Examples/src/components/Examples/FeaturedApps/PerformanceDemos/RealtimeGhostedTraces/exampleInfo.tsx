@@ -44,6 +44,7 @@ export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeGhostedTraces,
     pageTitle: ExampleStrings.titleRealtimeGhostedTraces + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeGhostedTraces,
+    filepath: "FeaturedApps/PerformanceDemos/RealtimeGhostedTraces",
     subtitle: Subtitle,
     documentationLinks,
     tips,

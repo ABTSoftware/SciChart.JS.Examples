@@ -46,6 +46,7 @@ export const chartFromJSONExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleChartFromJSON,
     pageTitle: ExampleStrings.titleChartFromJSON + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlChartFromJSON,
+    filepath: "BuilderApi/ChartFromJSON",
     subtitle: Subtitle,
     documentationLinks,
     tips,

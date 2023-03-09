@@ -34,6 +34,7 @@ export const virtualizedDataOverviewExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleVirtualizedData,
     pageTitle: ExampleStrings.titleVirtualizedData + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlVirtualizedData,
+    filepath: "Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview",
     subtitle: Subtitle,
     documentationLinks,
     tips,

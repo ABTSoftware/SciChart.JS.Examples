@@ -45,6 +45,7 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleImageLabels,
     pageTitle: ExampleStrings.titleImageLabels + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlImageLabels,
+    filepath: "Charts2D/AxisLabelCustomization/ImageLabels",
     subtitle: Subtitle,
     documentationLinks,
     tips,

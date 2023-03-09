@@ -40,6 +40,7 @@ export const subchartsGridExampleInfo: TExampleInfo = {
     title: "JavaScript 64-Chart Dashboard Performance Demo",
     pageTitle: "JavaScript 64-Chart Dashboard Performance Demo" + ExampleStrings.exampleGenericTitleSuffix,
     path: "/javascript-multiple-chart-dashboard-performance-demo",
+    filepath: "FeaturedApps/FeatureDemos/SubChartsAPI",
     subtitle: Subtitle,
     documentationLinks,
     tips,

@@ -50,6 +50,7 @@ export const mountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMountainChart,
     pageTitle: ExampleStrings.pageTitleMountainChart,
     path: ExampleStrings.urlMountainChart,
+    filepath: "Charts2D/BasicChartTypes/MountainChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

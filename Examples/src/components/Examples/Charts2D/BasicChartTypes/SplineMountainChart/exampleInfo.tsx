@@ -51,6 +51,7 @@ export const splineMountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineMountainChart,
     pageTitle: ExampleStrings.pageTitleSplineMountainChart,
     path: ExampleStrings.urlSplineMountainChart,
+    filepath: "Charts2D/BasicChartTypes/SplineMountainChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

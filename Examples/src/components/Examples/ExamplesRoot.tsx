@@ -5,7 +5,7 @@ import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import {ALL_MENU_ITEMS, getExampleComponent} from "../AppRouter/examples";
 import Button from "@material-ui/core/Button";
 import { ExampleStrings } from "./ExampleStrings";
-import { classes } from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
 import SourceCode from "../SourceCode/SourceCode";
 import CodeIcon from "@material-ui/icons/Code";
@@ -92,7 +92,10 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                    href="https://github.com/abtsoftware/scichart.js.examples"
                                    title={titleText}>
                                     SciChart's Github
-                                </a>. For getting-started &amp; docs, see above!
+                                </a>. For getting-started &amp; docs, see above!{" "}
+                                <a className={classes.ExampleRootDescriptionLink}
+                                   target="_blank"
+                                   href={`${exampleUrl}?codesandbox=1`}>Open in CodeSandBox</a>
                             </p>
                         </div>
                     </ComponentWrapper>

@@ -51,6 +51,7 @@ export const errorBarsChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleErrorBarsChart,
     pageTitle: ExampleStrings.pageTitleErrorBarsChart,
     path: ExampleStrings.urlErrorBarsChart,
+    filepath: "Charts2D/BasicChartTypes/ErrorBarsChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

@@ -44,6 +44,7 @@ export const simpleChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBuilderSimpleChart,
     pageTitle: ExampleStrings.titleBuilderSimpleChart + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlBuilderSimpleChart,
+    filepath: "BuilderApi/SimpleChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

@@ -46,6 +46,7 @@ export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRolloverModifier,
     pageTitle: ExampleStrings.titleRolloverModifier + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRolloverModifier,
+    filepath: "Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips",
     subtitle: Subtitle,
     documentationLinks,
     tips,

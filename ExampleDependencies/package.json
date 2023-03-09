@@ -2,7 +2,7 @@
     "name": "scichart-example-dependencies",
     "description": "SciChart.JS Example Application Common Dependencies",
     "homepage": "https://www.scichart.com",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "keywords": [
@@ -15,14 +15,12 @@
     "bugs": "https://github.com/ABTSoftware/SciChart.JS.Examples/issues",
     "scripts": {
         "tsc": "tsc --watch",
-        "copyToLib": "copy-files-from-to --config copy-files-from-to.json",
-        "build": "rimraf lib/* && tsc && npm run copyToLib"
+        "build": "rimraf lib/* && tsc"
     },
     "author": "SciChart Ltd",
     "license": "https://www.scichart.com/scichart-eula",
     "devDependencies": {
         "@types/node": "^13.7.0",
-        "copy-files-from-to": "^2.1.0",
         "rimraf": "^3.0.2"
     },
     "dependencies": {
@@ -30,9 +28,10 @@
         "@material-ui/icons": "^4.9.1",
         "@material-ui/lab": "^4.0.0-alpha.56",
         "typescript": "4.8.4",
-        "scichart": "3.0.301"
+        "scichart": "^3.0.301"
     },
     "files": [
-        "lib/**/*"
+        "lib/**/*",
+        "styles/**/*"
     ]
 }

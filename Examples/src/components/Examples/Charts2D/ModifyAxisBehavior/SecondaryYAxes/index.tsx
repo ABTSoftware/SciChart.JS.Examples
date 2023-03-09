@@ -9,7 +9,8 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier
 } from "scichart";
-import { appTheme, classes, RandomWalkGenerator } from "scichart-example-dependencies";
+import {appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 
 const divElementId = "chart1";
 

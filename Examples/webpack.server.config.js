@@ -66,7 +66,14 @@ module.exports = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: "src/components/Examples/**/index.tsx", to: "Examples" },
+                { from: "Examples/**/*", 
+                  context: path.resolve(__dirname, "src", "components"),
+                  globOptions: {
+                    dot: true,
+                    gitignore: false,
+                    ignore: ["**/exampleInfo.*", "**/GENERATED_GITHUB_URL.ts", "**/*.jpg", "**/ExamplesRoot.tsx", "**/ExampleStrings.ts"],
+                  }
+                },
             ]
         }),
         new MiniCssExtractPlugin({

@@ -53,6 +53,7 @@ export const perPointColoringExampleInfo: TExampleInfo = {
     title: ExampleStrings.titlePaletteProvider,
     pageTitle: ExampleStrings.titlePaletteProvider + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlPaletteProvider,
+    filepath: "Charts2D/StylingAndTheming/PerPointColoring",
     subtitle: Subtitle,
     documentationLinks,
     tips,

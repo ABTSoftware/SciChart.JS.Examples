@@ -48,6 +48,7 @@ export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMultiPaneStockChart,
     pageTitle: ExampleStrings.pageTitleMultiPaneStockChart,
     path: ExampleStrings.urlMultiPaneStockChart,
+    filepath: "Charts2D/CreateStockCharts/MultiPaneStockCharts",
     subtitle: Subtitle,
     documentationLinks,
     tips,

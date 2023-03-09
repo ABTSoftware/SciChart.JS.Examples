@@ -46,6 +46,7 @@ export const dataAnimationExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDataAnimation,
     pageTitle: ExampleStrings.titleDataAnimation + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDataAnimation,
+    filepath: "Charts2D/Animations/DataAnimation",
     subtitle: Subtitle,
     documentationLinks,
     tips,

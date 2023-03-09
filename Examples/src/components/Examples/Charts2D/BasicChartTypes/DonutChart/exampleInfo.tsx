@@ -49,6 +49,7 @@ export const donutChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDonutChart,
     pageTitle: ExampleStrings.pageTitleDonutChart,
     path: ExampleStrings.urlDonutChart,
+    filepath: "Charts2D/BasicChartTypes/DonutChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

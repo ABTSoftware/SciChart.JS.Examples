@@ -35,6 +35,7 @@ export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
     pageTitle: ExampleStrings.titleZoomPanWithMultipleChartModifiers + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlZoomPanWithMultipleChartModifiers,
+    filepath: "Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers",
     subtitle: Subtitle,
     documentationLinks,
     tips,

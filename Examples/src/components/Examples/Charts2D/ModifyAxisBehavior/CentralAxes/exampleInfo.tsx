@@ -37,6 +37,7 @@ export const centralAxesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCentralAxes,
     pageTitle: ExampleStrings.titleCentralAxes + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCentralAxes,
+    filepath: "Charts2D/ModifyAxisBehavior/CentralAxes",
     subtitle: Subtitle,
     documentationLinks,
     tips,

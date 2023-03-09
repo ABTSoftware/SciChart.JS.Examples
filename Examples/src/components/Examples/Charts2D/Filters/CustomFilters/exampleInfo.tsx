@@ -46,6 +46,7 @@ export const customFiltersExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCustomFilters,
     pageTitle: ExampleStrings.titleCustomFilters + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCustomFilters,
+    filepath: "Charts2D/Filters/CustomFilters",
     subtitle: Subtitle,
     documentationLinks,
     tips,

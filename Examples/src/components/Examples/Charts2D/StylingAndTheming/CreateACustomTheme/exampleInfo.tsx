@@ -40,6 +40,7 @@ export const createACustomThemeExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCustomTheme,
     pageTitle: ExampleStrings.titleCustomTheme + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCustomTheme,
+    filepath: "Charts2D/StylingAndTheming/CreateACustomTheme",
     subtitle: Subtitle,
     documentationLinks,
     tips,

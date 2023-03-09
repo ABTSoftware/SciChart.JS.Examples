@@ -36,6 +36,7 @@ export const dragAxisToScaleExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDragAxisToScale,
     pageTitle: ExampleStrings.titleDragAxisToScale + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDragAxisToScale,
+    filepath: "Charts2D/ZoomingAndPanning/DragAxisToScale",
     subtitle: Subtitle,
     documentationLinks,
     tips,

@@ -42,6 +42,7 @@ export const sharedDataExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSharedData,
     pageTitle: ExampleStrings.titleSharedData + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlSharedData,
+    filepath: "BuilderApi/SharedData",
     subtitle: Subtitle,
     documentationLinks,
     tips,

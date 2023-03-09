@@ -42,6 +42,7 @@ export const trendMARatioExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleTrendMARatio,
     pageTitle: ExampleStrings.titleTrendMARatio + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTrendMARatio,
+    filepath: "Charts2D/Filters/TrendMARatio",
     subtitle: Subtitle,
     documentationLinks,
     tips,

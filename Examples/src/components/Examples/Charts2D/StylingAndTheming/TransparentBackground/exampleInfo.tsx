@@ -42,6 +42,7 @@ export const transparentBackgroundExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleTransparentBackground,
     pageTitle: ExampleStrings.titleTransparentBackground + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTransparentBackground,
+    filepath: "Charts2D/StylingAndTheming/TransparentBackground",
     subtitle: Subtitle,
     documentationLinks,
     tips,

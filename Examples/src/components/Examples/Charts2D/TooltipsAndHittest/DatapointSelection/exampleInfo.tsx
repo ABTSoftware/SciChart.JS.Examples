@@ -45,6 +45,7 @@ export const dataPointSelectionExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDataPointSelection,
     pageTitle: ExampleStrings.titleDataPointSelection + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDataPointSelection,
+    filepath: "Charts2D/TooltipsAndHittest/DatapointSelection",
     subtitle: Subtitle,
     documentationLinks,
     tips,

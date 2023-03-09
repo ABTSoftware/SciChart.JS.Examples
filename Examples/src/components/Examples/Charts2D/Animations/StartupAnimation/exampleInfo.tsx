@@ -46,6 +46,7 @@ export const startupAnimationExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStartupAnimation,
     pageTitle: ExampleStrings.titleStartupAnimation + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlStartupAnimation,
+    filepath: "Charts2D/Animations/StartupAnimation",
     subtitle: Subtitle,
     documentationLinks,
     tips,

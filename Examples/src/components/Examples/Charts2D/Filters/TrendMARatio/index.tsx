@@ -1,5 +1,6 @@
 import * as React from "react";
-import {appTheme, RandomWalkGenerator, classes} from "scichart-example-dependencies";
+import {appTheme, RandomWalkGenerator} from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 import {
     EAxisAlignment,
     ECoordinateMode,

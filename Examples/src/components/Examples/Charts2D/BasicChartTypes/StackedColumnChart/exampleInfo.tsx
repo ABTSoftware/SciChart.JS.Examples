@@ -49,6 +49,7 @@ export const stackedColumnChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStackedColumnChart,
     pageTitle: ExampleStrings.pageTitleStackedColumnChart,
     path: ExampleStrings.urlStackedColumnChart,
+    filepath: "Charts2D/BasicChartTypes/StackedColumnChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

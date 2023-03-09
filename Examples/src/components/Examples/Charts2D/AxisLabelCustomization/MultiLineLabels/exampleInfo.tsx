@@ -46,6 +46,7 @@ export const multiLineLabelsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMultiLineLabels,
     pageTitle: ExampleStrings.titleMultiLineLabels + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlMultiLineLabels,
+    filepath: "Charts2D/AxisLabelCustomization/MultiLineLabels",
     subtitle: Subtitle,
     documentationLinks,
     tips,

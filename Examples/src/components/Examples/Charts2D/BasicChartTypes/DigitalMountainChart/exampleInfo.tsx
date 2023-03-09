@@ -51,6 +51,7 @@ export const digitalMountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDigitalMountainChart,
     pageTitle: ExampleStrings.pageTitleDigitalMountainChart,
     path: ExampleStrings.urlDigitalMountainChart,
+    filepath: "Charts2D/BasicChartTypes/DigitalMountainChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

@@ -46,6 +46,7 @@ export const verticalChartsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleVerticalCharts,
     pageTitle: ExampleStrings.titleVerticalCharts + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlVerticalCharts,
+    filepath: "Charts2D/ModifyAxisBehavior/VerticalCharts",
     subtitle: Subtitle,
     documentationLinks,
     tips,

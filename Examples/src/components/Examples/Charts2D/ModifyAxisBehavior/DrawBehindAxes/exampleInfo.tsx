@@ -41,6 +41,7 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDrawBehindAxes,
     pageTitle: ExampleStrings.titleDrawBehindAxes + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDrawBehindAxes,
+    filepath: "Charts2D/ModifyAxisBehavior/DrawBehindAxes",
     subtitle: Subtitle,
     documentationLinks,
     tips,

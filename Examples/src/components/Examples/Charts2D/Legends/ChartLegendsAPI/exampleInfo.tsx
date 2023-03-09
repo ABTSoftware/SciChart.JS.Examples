@@ -46,6 +46,7 @@ export const chartLegendsAPIExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleChartLegends,
     pageTitle: ExampleStrings.titleChartLegends + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlChartLegends,
+    filepath: "Charts2D/Legends/ChartLegendsAPI",
     subtitle: Subtitle,
     documentationLinks,
     tips,

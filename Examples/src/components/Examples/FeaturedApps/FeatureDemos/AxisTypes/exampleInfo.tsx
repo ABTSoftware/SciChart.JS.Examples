@@ -44,6 +44,7 @@ export const axisTypesExampleInfo: TExampleInfo = {
     title: "Axis Types",
     pageTitle: "Axis Types" + ExampleStrings.exampleGenericTitleSuffix,
     path: "/javascript-axis-types",
+    filepath: "FeaturedApps/FeatureDemos/AxisTypes",
     subtitle: Subtitle,
     documentationLinks,
     tips,

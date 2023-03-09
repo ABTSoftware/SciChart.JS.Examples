@@ -44,6 +44,7 @@ export const load500By500ExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLoad500By500,
     pageTitle: ExampleStrings.titleLoad500By500 + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlLoad500By500,
+    filepath: "FeaturedApps/PerformanceDemos/Load500By500",
     subtitle: Subtitle,
     documentationLinks,
     tips,

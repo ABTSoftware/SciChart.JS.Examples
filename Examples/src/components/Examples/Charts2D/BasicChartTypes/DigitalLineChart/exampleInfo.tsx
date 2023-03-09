@@ -50,6 +50,7 @@ export const digitalLineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDigitalLineChart,
     pageTitle: ExampleStrings.pageTitleDigitalLineChart,
     path: ExampleStrings.urlDigitalLineChart,
+    filepath: "Charts2D/BasicChartTypes/DigitalLineChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

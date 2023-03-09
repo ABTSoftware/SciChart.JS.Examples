@@ -41,6 +41,7 @@ export const seriesSelectionExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSeriesSelection,
     pageTitle: ExampleStrings.titleSeriesSelection + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlSeriesSelection,
+    filepath: "Charts2D/TooltipsAndHittest/SeriesSelection",
     subtitle: Subtitle,
     documentationLinks,
     tips,

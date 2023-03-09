@@ -41,6 +41,7 @@ export const dragHorizontalThresholdExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleDragHorizontalThreshold,
     pageTitle: ExampleStrings.titleDragHorizontalThreshold + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDragHorizontalThreshold,
+    filepath: "Charts2D/ChartAnnotations/DragHorizontalThreshold",
     subtitle: Subtitle,
     documentationLinks,
     tips,

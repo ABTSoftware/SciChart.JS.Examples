@@ -17,7 +17,7 @@ import {
     PaletteFactory,
     Thickness
 } from "scichart";
-import {classes} from "scichart-example-dependencies";
+import classes from "scichart-example-dependencies/styles/Examples.module.scss";
 
 const divElementId = "chart";
 

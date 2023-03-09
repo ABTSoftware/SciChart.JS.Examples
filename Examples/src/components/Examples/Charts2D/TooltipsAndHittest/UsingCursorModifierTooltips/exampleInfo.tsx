@@ -46,6 +46,7 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCursorModifier,
     pageTitle: ExampleStrings.titleCursorModifier + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCursorModifier,
+    filepath: "Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips",
     subtitle: Subtitle,
     documentationLinks,
     tips,

@@ -44,6 +44,7 @@ export const websocketBigDataDemoExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo,
     pageTitle: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeBigDataJavaScriptChartDemo,
+    filepath: "FeaturedApps/ShowCases/WebsocketBigData",
     subtitle: Subtitle,
     documentationLinks,
     tips,

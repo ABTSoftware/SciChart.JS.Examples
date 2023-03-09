@@ -42,6 +42,7 @@ export const stylingInCodeExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStylingInCode,
     pageTitle: ExampleStrings.titleStylingInCode + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlStylingInCode,
+    filepath: "Charts2D/StylingAndTheming/StylingInCode",
     subtitle: Subtitle,
     documentationLinks,
     tips,

@@ -51,6 +51,7 @@ export const bubbleChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBubbleChart,
     pageTitle: ExampleStrings.pageTitleBubbleChart,
     path: ExampleStrings.urlBubbleChart,
+    filepath: "Charts2D/BasicChartTypes/BubbleChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

@@ -48,6 +48,7 @@ export const ohlcChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleOhlcChart,
     pageTitle: ExampleStrings.pageTitleOhlcChart,
     path: ExampleStrings.urlOhlcChart,
+    filepath: "Charts2D/BasicChartTypes/OhlcChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

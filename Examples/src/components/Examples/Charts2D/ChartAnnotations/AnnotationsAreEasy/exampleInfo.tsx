@@ -48,6 +48,7 @@ export const annotationsAreEasyExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleAnnotationsAreEasy,
     pageTitle: ExampleStrings.titleAnnotationsAreEasy + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlAnnotationsAreEasy,
+    filepath: "Charts2D/ChartAnnotations/AnnotationsAreEasy",
     subtitle: Subtitle,
     documentationLinks,
     tips,

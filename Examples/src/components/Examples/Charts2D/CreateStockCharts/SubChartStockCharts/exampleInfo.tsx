@@ -45,6 +45,7 @@ export const subChartStockChartsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSubChartStockChart,
     pageTitle: ExampleStrings.pageTitleSubChartStockChart,
     path: ExampleStrings.urluSubChartStockChart,
+    filepath: "Charts2D/CreateStockCharts/SubChartStockCharts",
     subtitle: Subtitle,
     documentationLinks,
     tips,

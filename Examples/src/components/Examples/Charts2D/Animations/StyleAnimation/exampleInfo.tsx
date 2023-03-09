@@ -46,6 +46,7 @@ export const styleAnimationExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleStyleAnimation,
     pageTitle: ExampleStrings.titleStyleAnimation + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlStyleAnimation,
+    filepath: "Charts2D/Animations/StyleAnimation",
     subtitle: Subtitle,
     documentationLinks,
     tips,

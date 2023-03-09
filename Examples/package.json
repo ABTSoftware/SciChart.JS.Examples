@@ -42,7 +42,8 @@
     "scichart": "^3.0.301",
     "socket.io": "^4.5.2",
     "socket.io-client": "^4.5.2",
-    "websocket-ts": "^1.1.1"
+    "websocket-ts": "^1.1.1",
+    "scichart-example-dependencies": "^0.1.2" 
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",

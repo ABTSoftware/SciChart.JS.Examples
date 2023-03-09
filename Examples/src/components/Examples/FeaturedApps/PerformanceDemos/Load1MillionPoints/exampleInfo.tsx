@@ -41,6 +41,7 @@ export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLoadOneMillionPoints,
     pageTitle: ExampleStrings.titleLoadOneMillionPoints + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlLoadOneMillionPoints,
+    filepath: "FeaturedApps/PerformanceDemos/Load1MillionPoints",
     subtitle: Subtitle,
     documentationLinks,
     tips,

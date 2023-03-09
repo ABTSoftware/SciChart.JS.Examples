@@ -51,6 +51,7 @@ export const splineLineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineLineChart,
     pageTitle: ExampleStrings.pageTitleSplineLineChart,
     path: ExampleStrings.urlSplineLineChart,
+    filepath: "Charts2D/BasicChartTypes/SplineLineChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

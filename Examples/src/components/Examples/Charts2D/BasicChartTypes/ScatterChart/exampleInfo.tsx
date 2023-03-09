@@ -49,6 +49,7 @@ export const scatterChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleScatterChart,
     pageTitle: ExampleStrings.pageTitleScatterChart,
     path: ExampleStrings.urlScatterChart,
+    filepath: "Charts2D/BasicChartTypes/ScatterChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

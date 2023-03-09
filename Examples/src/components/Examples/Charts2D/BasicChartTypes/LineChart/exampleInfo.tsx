@@ -52,6 +52,7 @@ export const lineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLineChart,
     pageTitle: ExampleStrings.pageTitleLineChart,
     path: ExampleStrings.urlLineChart,
+    filepath: "Charts2D/BasicChartTypes/LineChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

@@ -45,6 +45,7 @@ export const surfaceMesh3DChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSurfaceMesh3D,
     pageTitle: ExampleStrings.pageTitleSurfaceMesh3D,
     path: ExampleStrings.urlSurfaceMesh3D,
+    filepath: "Charts3D/Basic3DChartTypes/SurfaceMesh3DChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

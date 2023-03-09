@@ -45,6 +45,7 @@ export const realTimeMountainChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeMountainChart,
     pageTitle: ExampleStrings.pageTitleRealtimeMountainChart,
     path: ExampleStrings.urlRealtimeMountainChart,
+    filepath: "Charts2D/BasicChartTypes/RealTimeMountainChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,
