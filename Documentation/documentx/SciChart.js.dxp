@@ -931,7 +931,7 @@ very needed to help users learn scichart!</Notes>
             <TocNode Name="" Id="54d81eed-81f7-44d0-93da-c203a76c32e1" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
               <CaptionTemplate m="2016-09-28T13:42:29.5971947Z">2D Chart Types</CaptionTemplate>
               <ChildNodes>
-                <TocNode Name="" Id="7ee92da5-492c-4186-8a84-b0f04d326531" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="7ee92da5-492c-4186-8a84-b0f04d326531" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>172addbf-995e-4705-9f7d-535415ab322a</TargetItemId>
@@ -940,12 +940,6 @@ very needed to help users learn scichart!</Notes>
                 <TocNode Name="" Id="d7d4411c-078d-4890-941c-7239dc6636db" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
                   <CaptionTemplate m="2023-03-08T19:15:54.0053891Z">Common Series APIs</CaptionTemplate>
                   <ChildNodes>
-                    <TocNode Name="" Id="483e658d-e301-46cf-98dd-df0c2bf0ed65" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>6139d2e5-f098-4674-99e5-581141312bf5</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
                     <TocNode Name="" Id="2a4716fc-291b-4af8-84f6-3612c5f199d4" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
@@ -1281,7 +1275,7 @@ very needed to help users learn scichart!</Notes>
             <TocNode Name="" Id="0607610f-6611-4900-a626-869e53120459" IconIndex="1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
               <CaptionTemplate m="2016-09-02T09:08:48.9843746Z">Axis APIs</CaptionTemplate>
               <ChildNodes>
-                <TocNode Name="" Id="2fcd2b71-27c0-461c-8559-d95ed9033efd" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="2fcd2b71-27c0-461c-8559-d95ed9033efd" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>14ab8b3e-55c7-48b9-80e0-bb545387accb</TargetItemId>
@@ -4723,13 +4717,14 @@ very needed to help users learn scichart!</Notes>
                 <Caption m="2023-03-08T19:07:54.2107432Z">Axis Types</Caption>
                 <ChildTopicCategories />
                 <Topics>
-                  <Topic Id="e4489a79-987b-4a06-ac98-586190c47ec5" Status="New Topic" CreatedOn="2016-08-04T09:36:36.3649393Z" ModifiedOn="2023-03-02T09:34:26.595035Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Types in SciChart.js" BuildFlags="">
+                  <Topic Id="e4489a79-987b-4a06-ac98-586190c47ec5" Status="New Topic" CreatedOn="2016-08-04T09:36:36.3649393Z" ModifiedOn="2023-03-08T21:32:27.3013712Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Types in SciChart.js" BuildFlags="">
                     <Title m="2020-08-25T17:34:09.5465291Z">Axis Types in SciChart.js</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-03-02T09:34:26.595035Z">&lt;P&gt;There are several axis types&amp;nbsp;in SciChart.js. Although they all&amp;nbsp;differ in&amp;nbsp;types of data values&amp;nbsp;that can be rendered,&amp;nbsp;the most fundamental difference is in their&amp;nbsp;behavior. By that, the axes can be divided into two groups, Category and Value axis types. Please read the&amp;nbsp;&lt;A href="http://www.scichart.com/documentation/v4.x/Value%20Axis%20vs.%20Category%20Axis.html"&gt;Value Axis vs. Category Axis&lt;/A&gt; article&amp;nbsp;elaborating on what the difference is.&lt;/P&gt;
+                        <Content m="2023-03-08T21:32:27.3013712Z">&lt;P&gt;There are several axis types&amp;nbsp;in SciChart.js. Although they all&amp;nbsp;differ in&amp;nbsp;types of data values&amp;nbsp;that can be rendered,&amp;nbsp;the most fundamental difference is in their&amp;nbsp;behavior.&lt;/P&gt;
+&lt;P&gt;By that, the axes can be divided into two groups, Category and Value axis types. &lt;/P&gt;
 &lt;P&gt;The axis types provided by SciChart Android are listed below:&lt;/P&gt;
 &lt;TABLE&gt;
 &lt;TBODY&gt;
@@ -4740,11 +4735,11 @@ very needed to help users learn scichart!</Notes>
 &lt;TD&gt;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/numericaxis.html"&gt;NumericAxis&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
 &lt;TD&gt;Value Axis / Numeric Types&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
-&lt;TD&gt;DateTimeNumericAxis&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datetimenumericaxis.html#invalidateparentcallback.__type"&gt;&lt;STRONG&gt;DateTimeNumericAxis&lt;/STRONG&gt;&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;Value Axis with additional features for Dates and Times&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD&gt;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/categoryaxis.html"&gt;CategoryAxis&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
-&lt;TD&gt;Category Axis / Numeric Types or Dates&lt;/TD&gt;&lt;/TR&gt;
+&lt;TD&gt;Category Axis&amp;nbsp;- measures using index -&amp;nbsp;Numeric Types or Dates&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD&gt;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/logarithmicaxis.html"&gt;LogarithmicAxis&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
 &lt;TD&gt;Logarithmic / Numeric Axis&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
@@ -5016,17 +5011,167 @@ very needed to help users learn scichart!</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="172addbf-995e-4705-9f7d-535415ab322a" Status="New Topic" CreatedOn="2016-09-02T09:34:03.7440005Z" ModifiedOn="2023-03-08T19:36:02.2754508Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="What is a RenderableSeries" BuildFlags="">
+                  <Topic Id="172addbf-995e-4705-9f7d-535415ab322a" Status="New Topic" CreatedOn="2016-09-02T09:34:03.7440005Z" ModifiedOn="2023-03-09T15:07:29.0829413Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="What is a RenderableSeries" BuildFlags="">
                     <Title m="2023-03-08T19:36:02.2754508Z">Renderable Series - Start Here</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2020-10-08T17:44:13.8164027Z">&lt;P&gt;The&amp;nbsp;RenderableSeries&lt;SPAN class=Apple-converted-space&gt;&amp;nbsp;&lt;/SPAN&gt;in SciChart are visual representations of &lt;STRONG&gt;X,Y Numeric&lt;/STRONG&gt; or &lt;STRONG&gt;Date&lt;/STRONG&gt; data. Some RenderableSeries render simple X,Y values (2D points in space), while some render additional information (such as X,Y0,Y1 values, or X,Y,Z values).&lt;/P&gt;
-&lt;P&gt;RenderableSeries all inherit&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html"&gt;BaseRenderableSeries&lt;/A&gt;&lt;SPAN class=Apple-converted-space&gt;&amp;nbsp;&lt;/SPAN&gt;and are&amp;nbsp;added&amp;nbsp;to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#renderableseries"&gt;SciChartSurface.renderableSeries&lt;/A&gt; collection. This collection supports multiple RenderableSeries of differing types. Each RenderableSeries is rendered to the screen, displaying the data from an associated&amp;nbsp;&lt;A href="3425a202-cb28-4349-915f-ccf122d3a766"&gt;DataSeries&lt;/A&gt;.&lt;/P&gt;
-&lt;P&gt;To learn more about&amp;nbsp;the&amp;nbsp;features all RenderableSeries have in common, please read the&amp;nbsp;&lt;A href="6139d2e5-f098-4674-99e5-581141312bf5"&gt;Common RenderableSeries Features&lt;/A&gt; article. For specific&amp;nbsp;features of any RenderableSeries&amp;nbsp;please refer to&amp;nbsp;a corresponding article on this series type.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
-&lt;P&gt;To get an understanding about RenderableSeries / DataSeries quickly, try our&amp;nbsp;&lt;A href="30f7b8a6-e55b-49bb-909f-998d6d24112e"&gt;Tutorial on adding data to SciChart&lt;/A&gt;&lt;/P&gt;
-&lt;P&gt;Also, for more information about which DataSeries are used for which RenderableSeries, see the&amp;nbsp;&lt;A href="3425a202-cb28-4349-915f-ccf122d3a766"&gt;DataSeries Types&lt;/A&gt; page.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                        <Content m="2023-03-09T15:07:29.0829413Z">&lt;innovasys:widget type="In This Topic List" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Prefix"&gt;$$In_This_Topic$$&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Tag"&gt;H2&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The&amp;nbsp;RenderableSeries&lt;SPAN class=Apple-converted-space&gt;&amp;nbsp;&lt;/SPAN&gt;in SciChart are visual representations of &lt;STRONG&gt;X,Y Numeric&lt;/STRONG&gt; or &lt;STRONG&gt;Date&lt;/STRONG&gt; data. Other libraries call them 'Chart Types'.&lt;/P&gt;
+&lt;P&gt;Some RenderableSeries render simple X,Y values (2D points in space), while some render additional information (such as X,Y0,Y1 values, or X,Y,Z values).&lt;/P&gt;
+&lt;H2&gt;Chart Types in SciChart.js&lt;/H2&gt;
+&lt;P&gt;SciChart.js supports a number of 2D &amp;amp; 3D Chart types. These include:&lt;/P&gt;
+&lt;P&gt;&lt;IMG border=0 alt="" src="images/ExamplesSuite_DemoHome.jpg"&gt;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;TABLE&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="e280ed77-6cc5-49cd-84be-ecd143139ca6"&gt;Line Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="d53b2f8b-665d-4804-bb72-9e19b3c84ed0"&gt;Uniform Heatmap Series&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="7f5a6207-a081-4a74-add0-1fb3e36b2806"&gt;Digital (Step) Line Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="bfe9f9bd-2e26-4aac-bd61-e965fe38c8f6"&gt;Non-Uniform Heatmap Series&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="11646318-4795-4310-8650-231db20e9026"&gt;Spline Line Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="42243024-7b1e-4266-b3fe-bb8f64450b04"&gt;Heatmap Contours Series&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="e5693b2a-3d41-4603-b249-8594512d1604"&gt;Mountain (Area) Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="b2fc10ad-2614-414b-a173-bed16255aa6f"&gt;Candlestick Series&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="d792ff3f-5429-4186-8947-790b9d6bcee5"&gt;Digital (Step) Mountain Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="37dc17e0-10de-47a3-b255-dd7d6ad1cb0d"&gt;OHLC Series&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="2674e2d9-0998-4a1f-be8a-5d5bdec014aa"&gt;Spline Mountain Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="9433151a-2281-47ec-8919-d5e43d44731b"&gt;Lollipop (Impulse or Stem) Series&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="246d21d0-3b1b-4840-be7b-33bc0066e0e1"&gt;Column Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="e5bcd0f1-0a90-4c63-a9ec-dc43c1846fbe"&gt;Error Bars Series&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="121e373b-412a-4846-8fa8-862f0e716fa2"&gt;Stacked Column Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="e627d5a1-bbcc-4265-bd91-fcf1d9a5bcf0"&gt;Fan Charts&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="121e373b-412a-4846-8fa8-862f0e716fa2"&gt;Grouped Column Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="d9007373-3f18-4bbd-be21-86a97872b4ee"&gt;Pie Charts&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="121e373b-412a-4846-8fa8-862f0e716fa2"&gt;100% Stacked Column Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="9bbf7021-7ef1-49d7-9904-c28029ab9a48"&gt;Donut Charts&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="eb3d636b-673c-4f1b-a0cc-1fa8ff7242c1"&gt;Stacked Mountain Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="7cf91fa8-841d-4bb8-adbd-44a9dd73b238"&gt;Band (High-Low Fill) Series&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="eb3d636b-673c-4f1b-a0cc-1fa8ff7242c1"&gt;100% Stacked Mountain Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="537e0dce-c257-4348-bcc7-240f80714eac"&gt;Digital Band Series&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="f61a9e5c-34c5-40a5-b239-bdb8ffc15a7c"&gt;Scatter Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="a53bef2b-820c-45a3-9903-ad426d572aae"&gt;Bubble Series&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="e99914e3-6526-410c-a0fa-05c4f1d90573"&gt;Text Series&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Click on the links above to see documentation and live embedded code snippets for each of the chart types in SciChart.js&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Common&amp;nbsp;2D Chart&amp;nbsp;Features&lt;/H2&gt;
+&lt;P&gt;As well as just render 2D Data, a number of chart types support additional properties and features.&lt;/P&gt;
+&lt;P&gt;For example, most 2D Chart types in SciChart.js support:&lt;/P&gt;
+&lt;TABLE&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;SciChart.js Feature&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Description&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;Dynamic Data Updates&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;
+&lt;P&gt;All SciChart.js chart types support dynamic updates to data out of the box. Insert, append, update, delete - modify data and the chart updates FAST. See the&amp;nbsp;&lt;A href="3425a202-cb28-4349-915f-ccf122d3a766"&gt;DataSeries API documentation&lt;/A&gt; for more details.&lt;/P&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;Per-point coloring&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;
+&lt;P&gt;SciChart.js chart types support per-point coloring based on a rule. Xy values over/under a threshold, values with a property can be colored individually. See the&amp;nbsp;&lt;A href="3fb757b4-70d4-4a57-8c0d-97485cb8b722"&gt;PaletteProvider API&lt;/A&gt;&amp;nbsp;for more details.&lt;/P&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;Data-point markers&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;
+&lt;P&gt;SciChart.js chart types support adding a pointmarker (circle, square, triangle, cross marker) at data-points. See the&amp;nbsp;&lt;A href="e4122c58-e668-4ef5-8080-bb7655d289e3"&gt;PointMarkers documentation&lt;/A&gt; for more details.&lt;/P&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;Data-point Text Labels&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;
+&lt;P&gt;SciChart.js supports fast, WebGL based&amp;nbsp;text labels at datapoints, which can be customised. See the&amp;nbsp;&lt;A href="7ded97cf-3870-4fdf-b8b9-b6e74e1d8225"&gt;DataLabels API&lt;/A&gt; for more details.&lt;/P&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;Showing / hiding series&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;You can show/hide series in SciChart.js as well as be notified when a series is hidden. See the isVisibleChanged documentation for more details.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;Select series&lt;/TD&gt;
+&lt;TD&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;Select data-points&lt;/TD&gt;
+&lt;TD&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;The RenderableSeries Class&lt;/H2&gt;
+&lt;P&gt;All 2D Chart types in SciChart.js are derived from the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html"&gt;BaseRenderableSeries&lt;/A&gt;&lt;SPAN&gt;&amp;nbsp;&lt;/SPAN&gt;type. This is a JavaScript class which is added to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#renderableseries"&gt;sciChartSurface.renderableSeries&lt;/A&gt; collection and is rendered using our own proprietary&amp;nbsp;WebAssembly / WebGL&amp;nbsp;based rendering engine.&lt;/P&gt;
+&lt;P&gt;Each RenderableSeries is rendered to the screen, displaying the data from an associated&amp;nbsp;&lt;A href="3425a202-cb28-4349-915f-ccf122d3a766"&gt;DataSeries&lt;/A&gt;.&lt;/P&gt;
+&lt;H3&gt;Renderable Series Properties&lt;/H3&gt;
+&lt;P&gt;The properties common to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html"&gt;BaseRenderableSeries class&lt;/A&gt; are listed below.&lt;/P&gt;
+&lt;TABLE&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;BaseRenderableSeries&lt;/STRONG&gt;&lt;SPAN&gt;&amp;nbsp;&lt;STRONG&gt;property&lt;/STRONG&gt;&lt;/SPAN&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Description&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG style="COLOR: rgb(255,0,0)"&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#datalabelprovider"&gt;dataLabelProvider&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;New to SciChart.js v3.0! The dataLabelprovider allows creation of per &lt;STRONG&gt;data-point text labels&lt;/STRONG&gt;. Please see the&amp;nbsp;&lt;A href="7ded97cf-3870-4fdf-b8b9-b6e74e1d8225"&gt;Data Labels API&lt;/A&gt; section for a complete walk-through of text labels on chart series.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#dataseries"&gt;dataSeries&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;The DataSeries is the data-source for the RenderableSeries. Please see&amp;nbsp; &lt;A href="3425a202-cb28-4349-915f-ccf122d3a766"&gt;DataSeries API&lt;/A&gt; section for a complete walk-through of the DataSeries API&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#drawnanas"&gt;drawNanAs&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;How to treat NAN (Not a number) values in the input dataSeries. See&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/elinedrawmode.html"&gt;ELineDrawMode&lt;/A&gt; for a list of values.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#pointmarker"&gt;pointMarker&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;A&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/basepointmarker.html"&gt;PointMarker&lt;/A&gt; is used to draw an &lt;STRONG&gt;optional point-marker at each data-point&lt;/STRONG&gt;. Applicable to some series types only.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#stroke"&gt;stroke&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;A Stroke for lines, outlines and edges of this RenderableSeries.&amp;nbsp;Acceptable values include RGB format e.g. "#FF0000", RGBA format e.g. "#FF000077" and RGBA format e.g. "rgba(255,0,0,0.5)"&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#strokethickness"&gt;strokeThickness&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;The Stroke Thickness for lines, outlines and edges of this RenderableSeries&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/fastlinerenderableseries.html#strokedasharray"&gt;strokeDashArray&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Some chart types which support lines (e.g. Line series, Spline Line series, Mountain Series) support dashed lines. This property accepts an array which defines [dot, dash] length in pixels&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#opacity"&gt;opacity&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;An Opacity factor of the Series that controls its semi-transparency level, where value 1 means the Series is opaque; 0&amp;nbsp;means transparent.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#xaxisid"&gt;xAxisId&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;The XAxisId of the series allows you to attach a series to a specific axis. If you only have single X and Y Axis you can leave this default.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#yaxisid"&gt;yAxisId&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;The YAxisId of the series allows you to attach a series to a specific axis. If you only have single X and Y Axis you can leave this default.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#isvisible"&gt;isvisible&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;When true, the series is visible. To hide a series, set IsVisible = false.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#isvisiblechanged"&gt;isVisibleChanged&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;An&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/eventhandler.html"&gt;EventHandler&lt;/A&gt; allowing you to subscribe to isVisible changed callbacks&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD height=24&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#effect"&gt;effect&lt;/A&gt;&lt;/TD&gt;
+&lt;TD height=24&gt;An optional&amp;nbsp;&lt;A href="db2eb47f-739c-4d34-b8d1-49d5f1836842"&gt;ShaderEffect&lt;/A&gt; for modifying the render output of a RenderableSeries.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#paletteprovider"&gt;paletteProvider&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;The PaletteProvider API &lt;STRONG&gt;allows changing the color of a series on a per-point basis&lt;/STRONG&gt;. For more details about the PaletteProvider API see the individual examples for&amp;nbsp;&lt;A href="e280ed77-6cc5-49cd-84be-ecd143139ca6"&gt;Line Series&lt;/A&gt;,&amp;nbsp;&lt;A href="246d21d0-3b1b-4840-be7b-33bc0066e0e1"&gt;Column Series&lt;/A&gt; etc...&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#hittestprovider"&gt;hitTestProvider&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ihittestprovider.html"&gt;HitTestProvider&lt;/A&gt; exposes the&amp;nbsp;&lt;A href="bf7f5efa-0109-4ff3-aa52-1bf07c26c9f0"&gt;Hit-Test API&lt;/A&gt;, used to &lt;STRONG&gt;determine whether a series has been clicked on, hovered&lt;/STRONG&gt; or find the nearest Xy datapoint to a mouse coordinate.&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H3&gt;Constructor options on RenderableSeries&lt;/H3&gt;
+&lt;P&gt;Every RenderableSeries has a set of constructor options allowing for fast initialization and setup by passing in a javascript object. Each property reflected on the series has an optional constructor option parameter.&lt;/P&gt;
+&lt;P&gt;For example this code:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Setting properties of series&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;const lineSeries = new FastLineRenderableSeries(wasmContext);&lt;BR&gt;lineSeries.stroke = "Red";&lt;BR&gt;lineSeries.strokeThickness = 3;&lt;BR&gt;lineSeries.dataSeries = new XyDataSeries(wasmContext, {xValues, yValues});&lt;BR&gt;lineSeries.isVisible = true;&lt;BR&gt;lineSeries.opacity = 0.7;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;is equivalent to this:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Constructor parameters of series&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;const lineSeries = new FastLineRenderableSeries(wasmContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; stroke: "Red",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; strokeThickness: 3,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; isVisible: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; opacity: 0.7&lt;BR&gt;});&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Where Next?&lt;/H2&gt;
+&lt;P&gt;To learn about a specific chart type, and to find out how to configure them, visit the following pages:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="e280ed77-6cc5-49cd-84be-ecd143139ca6"&gt;The Line Series Type&lt;/A&gt;
+&lt;LI&gt;&lt;A href="f61a9e5c-34c5-40a5-b239-bdb8ffc15a7c"&gt;The Scatter Series Type&lt;/A&gt;
+&lt;LI&gt;&lt;A href="e5693b2a-3d41-4603-b249-8594512d1604"&gt;The Mountain Series Type&lt;/A&gt;&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;etc...&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks>
@@ -5063,84 +5208,13 @@ very needed to help users learn scichart!</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="6139d2e5-f098-4674-99e5-581141312bf5" Status="New Topic" CreatedOn="2016-09-02T09:36:54.0487028Z" ModifiedOn="2023-03-06T13:20:16.159624Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Common RenderableSeries Features" BuildFlags="">
+                  <Topic Id="6139d2e5-f098-4674-99e5-581141312bf5" Status="New Topic" CreatedOn="2016-09-02T09:36:54.0487028Z" ModifiedOn="2023-03-09T13:39:41.9040073Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Common RenderableSeries Features" BuildFlags="">
                     <Title m="2020-09-06T15:16:18.1704642Z">Common RenderableSeries Properties</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-03-06T13:20:16.159624Z">&lt;P style='BOX-SIZING: border-box; FONT-SIZE: 16px; FONT-FAMILY: Roboto, "Helvetica Neue", Helvetica, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(33,33,33); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 10px; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'&gt;All 2D Chart types in SciChart.js are derived from the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html"&gt;BaseRenderableSeries&lt;/A&gt;&lt;SPAN&gt;&amp;nbsp;&lt;/SPAN&gt;type. This is a TypeScript class which is added to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#renderableseries"&gt;sciChartSurface.renderableSeries&lt;/A&gt; collection and is rendered using our own proprietary&amp;nbsp;WebAssembly / WebGL&amp;nbsp;based rendering engine.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
-&lt;P&gt;To get an understanding about RenderableSeries / DataSeries quickly, try our&amp;nbsp;&lt;A href="30f7b8a6-e55b-49bb-909f-998d6d24112e"&gt;Tutorial on adding data to SciChart&lt;/A&gt;&lt;/P&gt;
-&lt;P&gt;Also, for more information about each chart type in SciChart.js, see the 'Series Types'&amp;nbsp;pages, e.g.&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;A href="e280ed77-6cc5-49cd-84be-ecd143139ca6"&gt;The Line Series Type&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="f61a9e5c-34c5-40a5-b239-bdb8ffc15a7c"&gt;The Scatter Series Type&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="e5693b2a-3d41-4603-b249-8594512d1604"&gt;The Mountain Series Type&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;etc...&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Common Properties on all RenderableSeries&lt;/H2&gt;
-&lt;P style='BOX-SIZING: border-box; FONT-SIZE: 16px; FONT-FAMILY: Roboto, "Helvetica Neue", Helvetica, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(33,33,33); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 10px; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'&gt;The common properties of the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html"&gt;BaseRenderableSeries class&lt;/A&gt; are listed below.&lt;/P&gt;
-&lt;P style='BOX-SIZING: border-box; FONT-SIZE: 16px; FONT-FAMILY: Roboto, "Helvetica Neue", Helvetica, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(33,33,33); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 10px; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'&gt;Specific series types (chart types) are detailed in the following sections.&lt;/P&gt;
-&lt;TABLE&gt;
-&lt;TBODY&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;STRONG&gt;BaseRenderableSeries&lt;/STRONG&gt;&lt;SPAN&gt;&amp;nbsp;&lt;STRONG&gt;property&lt;/STRONG&gt;&lt;/SPAN&gt;&lt;/TD&gt;
-&lt;TD&gt;&lt;STRONG&gt;Description&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;STRONG style="COLOR: rgb(255,0,0)"&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#datalabelprovider"&gt;dataLabelProvider&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
-&lt;TD&gt;New to SciChart.js v3.0! The dataLabelprovider allows creation of per data-point text labels. Please see the&amp;nbsp;&lt;A href="7ded97cf-3870-4fdf-b8b9-b6e74e1d8225"&gt;Data Labels API&lt;/A&gt; section for a complete walk-through of text labels on chart series.&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#dataseries"&gt;dataSeries&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;The DataSeries is the data-source for the RenderableSeries. Please see&amp;nbsp; &lt;A href="3425a202-cb28-4349-915f-ccf122d3a766"&gt;DataSeries API&lt;/A&gt; section for a complete walk-through of the DataSeries API&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#drawnanas"&gt;drawNanAs&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;How to treat NAN (Not a number) values in the input dataSeries. See&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/elinedrawmode.html"&gt;ELineDrawMode&lt;/A&gt; for a list of values.&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#pointmarker"&gt;pointMarker&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;A&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/basepointmarker.html"&gt;PointMarker&lt;/A&gt; is used to draw an optional point-marker at each data-point. Applicable to some series types only.&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#stroke"&gt;stroke&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;A Stroke for lines, outlines and edges of this RenderableSeries.&amp;nbsp;Acceptable values include RGB format e.g. "#FF0000", RGBA format e.g. "#FF000077" and RGBA format e.g. "rgba(255,0,0,0.5)"&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#strokethickness"&gt;strokeThickness&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;The Stroke Thickness for lines, outlines and edges of this RenderableSeries&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/fastlinerenderableseries.html#strokedasharray"&gt;strokeDashArray&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;Some chart types which support lines (e.g. Line series, Spline Line series, Mountain Series) support dashed lines. This property accepts an array which defines [dot, dash] length in pixels&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#opacity"&gt;opacity&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;An Opacity factor of the Series that controls its semi-transparency level, where value 1 means the Series is opaque; 0&amp;nbsp;means transparent.&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#xaxisid"&gt;xAxisId&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;The XAxisId of the series allows you to attach a series to a specific axis. If you only have single X and Y Axis you can leave this default.&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#yaxisid"&gt;yAxisId&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;The YAxisId of the series allows you to attach a series to a specific axis. If you only have single X and Y Axis you can leave this default.&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#isvisible"&gt;isvisible&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;When true, the series is visible. To hide a series, set IsVisible = false.&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#isvisiblechanged"&gt;isVisibleChanged&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;An&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/eventhandler.html"&gt;EventHandler&lt;/A&gt; allowing you to subscribe to isVisible changed callbacks&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD height=24&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#effect"&gt;effect&lt;/A&gt;&lt;/TD&gt;
-&lt;TD height=24&gt;An optional&amp;nbsp;&lt;A href="db2eb47f-739c-4d34-b8d1-49d5f1836842"&gt;ShaderEffect&lt;/A&gt; for modifying the render output of a RenderableSeries.&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#paletteprovider"&gt;paletteProvider&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;The PaletteProvider API allows changing the color of a series on a per-point basis. For more details about the PaletteProvider API see the individual examples for&amp;nbsp;&lt;A href="e280ed77-6cc5-49cd-84be-ecd143139ca6"&gt;Line Series&lt;/A&gt;,&amp;nbsp;&lt;A href="246d21d0-3b1b-4840-be7b-33bc0066e0e1"&gt;Column Series&lt;/A&gt; etc...&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#hittestprovider"&gt;hitTestProvider&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ihittestprovider.html"&gt;HitTestProvider&lt;/A&gt; exposes the&amp;nbsp;&lt;A href="bf7f5efa-0109-4ff3-aa52-1bf07c26c9f0"&gt;Hit-Test API&lt;/A&gt;, used to determine whether a series has been clicked on, hovered or find the nearest Xy datapoint to a mouse coordinate.&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;BR class=Apple-interchange-newline&gt;
-&lt;H2&gt;Constructor options on RenderableSeries&lt;/H2&gt;
-&lt;P&gt;Every RenderableSeries has a set of constructor options allowing for fast initialization and setup by passing in a javascript object. Each property reflected on the series has an optional constructor option parameter.&lt;/P&gt;
-&lt;P&gt;For example this code:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Setting properties of series&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;const lineSeries = new FastLineRenderableSeries(wasmContext);&lt;BR&gt;lineSeries.stroke = "Red";&lt;BR&gt;lineSeries.strokeThickness = 3;&lt;BR&gt;lineSeries.dataSeries = new XyDataSeries(wasmContext, {xValues, yValues});&lt;BR&gt;lineSeries.isVisible = true;&lt;BR&gt;lineSeries.opacity = 0.7;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;is equivalent to this:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Constructor parameters of series&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;const lineSeries = new FastLineRenderableSeries(wasmContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; stroke: "Red",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; strokeThickness: 3,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; isVisible: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; opacity: 0.7&lt;BR&gt;});&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Find out more how to configure each chart type on the following pages:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;A href="e280ed77-6cc5-49cd-84be-ecd143139ca6"&gt;The Line Series Type&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="f61a9e5c-34c5-40a5-b239-bdb8ffc15a7c"&gt;The Scatter Series Type&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="e5693b2a-3d41-4603-b249-8594512d1604"&gt;The Mountain Series Type&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;etc...&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                        <Content m="2023-03-09T13:39:41.9040073Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;This content has been moved&lt;BR&gt;&lt;BR&gt;Please see&amp;nbsp;&lt;A href="172addbf-995e-4705-9f7d-535415ab322a"&gt;RenderableSeries - Start Here&lt;/A&gt; for more information.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks>
@@ -13951,7 +14025,7 @@ very needed to help users learn scichart!</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">1394</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">1054</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>
