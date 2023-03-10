@@ -49,7 +49,6 @@ chartWithNumericAxisAndDates("scichart-root");
 
 
 async function builderExample(divElementId) {
-  // #region ExampleB
   // Demonstrates how to create a line chart with SciChart.js using the Builder API
   const {
     chartBuilder,
@@ -62,6 +61,7 @@ async function builderExample(divElementId) {
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
 
+  // #region ExampleB
   // If you want to show an XAxis with dates between 1st March 2023 and 10th March 2023
   const minDate = new Date("2023-03-1");
   const maxDate = new Date("2023-03-10");
@@ -80,6 +80,8 @@ async function builderExample(divElementId) {
         visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
       }
     },
+    // ... });
+    // #endregion
     yAxes: {
       type: EAxisType.NumericAxis,
       options: {
@@ -88,7 +90,6 @@ async function builderExample(divElementId) {
       }
     },
   });
-  // #endregion
 };
 
 
