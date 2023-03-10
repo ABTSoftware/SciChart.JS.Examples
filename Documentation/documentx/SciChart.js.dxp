@@ -1290,6 +1290,18 @@ very needed to help users learn scichart!</Notes>
                       <TargetItemId>e4489a79-987b-4a06-ac98-586190c47ec5</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
+                    <TocNode Name="" Id="26d5606a-37d6-41be-b848-9ba5adafa036" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>bf3b144b-2153-4d7c-ab74-152f839df85f</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="82959648-803d-4dbc-940b-99c097e3f628" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>e71de078-98d8-441a-9432-4289aa687270</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
                     <TocNode Name="" Id="1fcf3845-536f-492d-80f9-aa25a787a1e9" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
@@ -1304,43 +1316,25 @@ very needed to help users learn scichart!</Notes>
                     </TocNode>
                   </ChildNodes>
                 </TocNode>
-                <TocNode Name="" Id="83b64966-fcb3-4a15-9b85-7775af061105" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-                  <CaptionTemplate m="2023-03-08T19:24:38.9617527Z">Axis Configuration</CaptionTemplate>
+                <TocNode Name="" Id="dd937b8c-7691-4217-b013-6765d7dd2e6b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+                  <CaptionTemplate m="2023-03-08T19:28:05.9816468Z">Axis Ranging, Scaling</CaptionTemplate>
                   <ChildNodes>
-                    <TocNode Name="" Id="afa6ab89-0d1f-41ce-9e56-89ed655503e1" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="d9c22388-0f05-430f-9106-79a352825951" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
-                      <TargetItemId>2294a48f-459b-464f-9504-aed96c7fda2a</TargetItemId>
+                      <TargetItemId>f43a75da-4a63-41a6-8db9-ff0ea13a5198</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="c64cfc48-eab9-4af1-bb1a-575f2fdc6e3c" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="f5d5454a-0f35-4dfb-b0d1-5c94334ff161" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
-                      <TargetItemId>e00ca150-579a-4496-98b9-70c83ca9a7bb</TargetItemId>
+                      <TargetItemId>dfe50e75-c34a-4d96-98c7-9ce9855956cd</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="fe7bbb9a-e9b7-4a32-b45d-7dc3c16dffa2" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="5e06a20c-9183-41c0-886c-8001be11ea0f" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
-                      <TargetItemId>49949657-d7c3-48c7-93a2-2bb17f8dd8c1</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="b1a2b9d3-e5ce-41b4-a4f8-5e2ce879fbc3" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>0175a983-0786-4067-b718-206c8c41cd3b</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="3e9f7a7f-bd24-4725-b618-b8900d4b1181" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>af7dd07c-7746-4a9d-a9ea-1afc4bb95701</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="c013359a-6e46-4644-ae36-437c481cae3e" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>60612d56-74d4-46c1-bdff-f31e2fe22d57</TargetItemId>
+                      <TargetItemId>75091468-bbf7-49ad-9841-c5d935660429</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -1386,25 +1380,66 @@ very needed to help users learn scichart!</Notes>
                     </TocNode>
                   </ChildNodes>
                 </TocNode>
-                <TocNode Name="" Id="dd937b8c-7691-4217-b013-6765d7dd2e6b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-                  <CaptionTemplate m="2023-03-08T19:28:05.9816468Z">Axis Ranging, Scaling</CaptionTemplate>
+                <TocNode Name="" Id="83b64966-fcb3-4a15-9b85-7775af061105" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+                  <CaptionTemplate m="2023-03-09T17:41:17.7242546Z">Axis Layout</CaptionTemplate>
                   <ChildNodes>
-                    <TocNode Name="" Id="d9c22388-0f05-430f-9106-79a352825951" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="afa6ab89-0d1f-41ce-9e56-89ed655503e1" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
-                      <TargetItemId>f43a75da-4a63-41a6-8db9-ff0ea13a5198</TargetItemId>
+                      <TargetItemId>2294a48f-459b-464f-9504-aed96c7fda2a</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="f5d5454a-0f35-4dfb-b0d1-5c94334ff161" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="ddda82b0-59de-4561-b1cb-98c5506c3a66" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
-                      <TargetItemId>dfe50e75-c34a-4d96-98c7-9ce9855956cd</TargetItemId>
+                      <TargetItemId>6c9f837e-b20c-4538-bf9e-8736c42746c9</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="5e06a20c-9183-41c0-886c-8001be11ea0f" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="c64cfc48-eab9-4af1-bb1a-575f2fdc6e3c" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
-                      <TargetItemId>75091468-bbf7-49ad-9841-c5d935660429</TargetItemId>
+                      <TargetItemId>e00ca150-579a-4496-98b9-70c83ca9a7bb</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="fe7bbb9a-e9b7-4a32-b45d-7dc3c16dffa2" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>49949657-d7c3-48c7-93a2-2bb17f8dd8c1</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="b1a2b9d3-e5ce-41b4-a4f8-5e2ce879fbc3" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>0175a983-0786-4067-b718-206c8c41cd3b</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="3e9f7a7f-bd24-4725-b618-b8900d4b1181" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>af7dd07c-7746-4a9d-a9ea-1afc4bb95701</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="c013359a-6e46-4644-ae36-437c481cae3e" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>60612d56-74d4-46c1-bdff-f31e2fe22d57</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                  </ChildNodes>
+                </TocNode>
+                <TocNode Name="" Id="2c6f36a6-68cd-4912-bb79-0f3a32472a32" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+                  <CaptionTemplate m="2023-03-09T17:41:41.5222749Z">Axis Styling</CaptionTemplate>
+                  <ChildNodes>
+                    <TocNode Name="" Id="d424263b-c2ad-4987-ac61-46169988a2ca" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>522bb84c-264c-4919-aa66-5f8272a72610</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="2d51a7a3-e050-4e81-816e-8c458f3811b2" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>8deddadd-6171-496a-ab20-7332232c4c16</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -1844,18 +1879,6 @@ very needed to help users learn scichart!</Notes>
             <TocNode Name="" Id="d090de84-5217-4c28-bee4-7065a3acaa9d" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
               <CaptionTemplate m="2021-09-23T10:05:26.9141711Z">Styling and Theming</CaptionTemplate>
               <ChildNodes>
-                <TocNode Name="" Id="d424263b-c2ad-4987-ac61-46169988a2ca" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>522bb84c-264c-4919-aa66-5f8272a72610</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="2d51a7a3-e050-4e81-816e-8c458f3811b2" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>8deddadd-6171-496a-ab20-7332232c4c16</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
                 <TocNode Name="" Id="8bc1233f-bc92-45a4-90bf-cc0425fa2483" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
@@ -3896,8 +3919,8 @@ very needed to help users learn scichart!</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="6c9f837e-b20c-4538-bf9e-8736c42746c9" Status="New Topic" CreatedOn="2023-03-08T19:06:36.2929909Z" ModifiedOn="2023-03-08T19:06:41.2611739Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="SecondaryAxis" BuildFlags="">
-                    <Title />
+                  <Topic Id="6c9f837e-b20c-4538-bf9e-8736c42746c9" Status="New Topic" CreatedOn="2023-03-08T19:06:36.2929909Z" ModifiedOn="2023-03-09T17:05:08.5206286Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="SecondaryAxis" BuildFlags="">
+                    <Title m="2023-03-09T17:05:08.5196044Z">Secondary &amp; Multiple Axis</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
@@ -3924,8 +3947,8 @@ very needed to help users learn scichart!</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="e00ca150-579a-4496-98b9-70c83ca9a7bb" Status="New Topic" CreatedOn="2016-08-04T12:03:28.8688363Z" ModifiedOn="2022-08-03T11:47:04.7084333Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Alignment - Create a Vertical Chart" BuildFlags="">
-                    <Title />
+                  <Topic Id="e00ca150-579a-4496-98b9-70c83ca9a7bb" Status="New Topic" CreatedOn="2016-08-04T12:03:28.8688363Z" ModifiedOn="2023-03-09T17:05:24.9860205Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Alignment - Create a Vertical Chart" BuildFlags="">
+                    <Title m="2023-03-09T17:05:24.9854873Z">Vertical Charts (Rotate, Transpose Axis)</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
@@ -4039,8 +4062,8 @@ very needed to help users learn scichart!</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="49949657-d7c3-48c7-93a2-2bb17f8dd8c1" Status="New Topic" CreatedOn="2022-04-12T18:38:24.4093418Z" ModifiedOn="2022-04-12T19:12:56.3877816Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AxisLayout-DrawingSeriesBehindAxis" BuildFlags="">
-                    <Title />
+                  <Topic Id="49949657-d7c3-48c7-93a2-2bb17f8dd8c1" Status="New Topic" CreatedOn="2022-04-12T18:38:24.4093418Z" ModifiedOn="2023-03-09T17:05:37.6512307Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AxisLayout-DrawingSeriesBehindAxis" BuildFlags="">
+                    <Title m="2023-03-09T17:05:37.6512307Z">Axis Layout - Drawing Series Behind Axis</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
@@ -4717,36 +4740,22 @@ very needed to help users learn scichart!</Notes>
                 <Caption m="2023-03-08T19:07:54.2107432Z">Axis Types</Caption>
                 <ChildTopicCategories />
                 <Topics>
-                  <Topic Id="e4489a79-987b-4a06-ac98-586190c47ec5" Status="New Topic" CreatedOn="2016-08-04T09:36:36.3649393Z" ModifiedOn="2023-03-08T21:32:27.3013712Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Types in SciChart.js" BuildFlags="">
+                  <Topic Id="e4489a79-987b-4a06-ac98-586190c47ec5" Status="New Topic" CreatedOn="2016-08-04T09:36:36.3649393Z" ModifiedOn="2023-03-09T19:11:23.6893963Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Types in SciChart.js" BuildFlags="">
                     <Title m="2020-08-25T17:34:09.5465291Z">Axis Types in SciChart.js</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-03-08T21:32:27.3013712Z">&lt;P&gt;There are several axis types&amp;nbsp;in SciChart.js. Although they all&amp;nbsp;differ in&amp;nbsp;types of data values&amp;nbsp;that can be rendered,&amp;nbsp;the most fundamental difference is in their&amp;nbsp;behavior.&lt;/P&gt;
-&lt;P&gt;By that, the axes can be divided into two groups, Category and Value axis types. &lt;/P&gt;
-&lt;P&gt;The axis types provided by SciChart Android are listed below:&lt;/P&gt;
-&lt;TABLE&gt;
-&lt;TBODY&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;STRONG&gt;Axis Type&lt;/STRONG&gt;&lt;/TD&gt;
-&lt;TD&gt;&lt;STRONG&gt;Value or Category Axis&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/numericaxis.html"&gt;NumericAxis&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
-&lt;TD&gt;Value Axis / Numeric Types&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datetimenumericaxis.html#invalidateparentcallback.__type"&gt;&lt;STRONG&gt;DateTimeNumericAxis&lt;/STRONG&gt;&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;Value Axis with additional features for Dates and Times&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/categoryaxis.html"&gt;CategoryAxis&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
-&lt;TD&gt;Category Axis&amp;nbsp;- measures using index -&amp;nbsp;Numeric Types or Dates&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/logarithmicaxis.html"&gt;LogarithmicAxis&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
-&lt;TD&gt;Logarithmic / Numeric Axis&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-axis-types&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above:&lt;/STRONG&gt; Axis Types example in SciChart.js demo. Viewable at&amp;nbsp;&lt;/EM&gt;&lt;A href="https://demo.scichart.com/javascript-axis-types" target=_blank&gt;&lt;EM&gt;demo.scichart.com/javascript-axis-types&lt;/EM&gt;&lt;/A&gt;&lt;EM&gt;&amp;nbsp;&lt;/EM&gt;&lt;/P&gt;
+                        <Content m="2023-03-09T19:11:23.6893963Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;STRONG&gt;This content has been moved&lt;/STRONG&gt;&lt;BR&gt;&lt;BR&gt;Please see&amp;nbsp;&lt;A href="14ab8b3e-55c7-48b9-80e0-bb545387accb"&gt;Axis APIs - Start Here&lt;/A&gt; for more information.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P style="COLOR: rgb(255,0,0)"&gt;TODO REMOVE/REFACTOR OUT BELOW&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;The AxisBase Class&lt;/P&gt;
 &lt;P&gt;All the axis types in SciChart inherit from&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html"&gt;AxisCore&lt;/A&gt; - a common type shared across both 2D and 3D Charts - and all 2D Axis inherit&amp;nbsp;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html"&gt;AxisBase2D&lt;/A&gt;&lt;/STRONG&gt;.&lt;/P&gt;
+&lt;P&gt;The properties common to the AxisBase2D / AxisCore classes are listed below.&lt;/P&gt;
+&lt;P&gt;Where Next?&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;H2&gt;NumericAxis&lt;/H2&gt;
 &lt;P&gt;&lt;SPAN&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/numericaxis.html"&gt;NumericAxis&lt;/A&gt;&lt;/SPAN&gt;&lt;SPAN&gt;&amp;nbsp;is a Value axis and is suitable for X and Y Axis when the data on that axis is numeric (e.g. number in TypeScript). It is not suitable for non-numeric data types.&lt;/SPAN&gt;&lt;/P&gt;
 &lt;P&gt;&lt;SPAN&gt;To create and configure&amp;nbsp;a&amp;nbsp;NumericAxis, use the following code:&amp;nbsp;&lt;/SPAN&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;NumericAxis&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
@@ -4803,8 +4812,8 @@ very needed to help users learn scichart!</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="f602f5c0-2de4-4dd6-949d-e50ecce6b6e8" Status="New Topic" CreatedOn="2022-04-13T18:08:23.4605987Z" ModifiedOn="2022-05-19T11:56:46.4042084Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CategoryAxis" BuildFlags="">
-                    <Title m="2022-04-13T18:08:28.7369111Z">Category Axis</Title>
+                  <Topic Id="f602f5c0-2de4-4dd6-949d-e50ecce6b6e8" Status="New Topic" CreatedOn="2022-04-13T18:08:23.4605987Z" ModifiedOn="2023-03-09T17:52:50.5313296Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CategoryAxis" BuildFlags="">
+                    <Title m="2023-03-09T17:52:50.5313296Z">The Category Axis</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
@@ -4867,8 +4876,8 @@ very needed to help users learn scichart!</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="dbda6c22-a06d-4301-9b1d-d83b542d030f" Status="New Topic" CreatedOn="2021-10-05T14:59:02.4598929Z" ModifiedOn="2021-10-05T15:38:51.091796Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Logarithmic Axis" BuildFlags="">
-                    <Title m="2021-10-05T14:59:16.2017064Z">Logarithmic Axis</Title>
+                  <Topic Id="dbda6c22-a06d-4301-9b1d-d83b542d030f" Status="New Topic" CreatedOn="2021-10-05T14:59:02.4598929Z" ModifiedOn="2023-03-09T17:52:46.65006Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Logarithmic Axis" BuildFlags="">
+                    <Title m="2023-03-09T17:52:46.65006Z">The Logarithmic Axis</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
@@ -4912,60 +4921,110 @@ very needed to help users learn scichart!</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
+                  <Topic Id="bf3b144b-2153-4d7c-ab74-152f839df85f" Status="New Topic" CreatedOn="2023-03-09T17:52:18.6637476Z" ModifiedOn="2023-03-09T17:52:35.3286134Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="NumericAxis" BuildFlags="">
+                    <Title m="2023-03-09T17:52:35.3276177Z">The Numeric Axis</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2023-03-09T17:52:18.6637476Z">&lt;p&gt; &lt;/p&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="e71de078-98d8-441a-9432-4289aa687270" Status="New Topic" CreatedOn="2023-03-09T17:53:22.618449Z" ModifiedOn="2023-03-09T17:53:59.2047747Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DateTimeNumericAxis" BuildFlags="">
+                    <Title m="2023-03-09T17:53:36.7894876Z">The DateTimeNumericAxis</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2023-03-09T17:53:22.618449Z">&lt;p&gt; &lt;/p&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
                 </Topics>
               </TopicCategory>
             </ChildTopicCategories>
             <Topics>
-              <Topic Id="14ab8b3e-55c7-48b9-80e0-bb545387accb" Status="New Topic" CreatedOn="2023-03-08T19:14:48.9553709Z" ModifiedOn="2023-03-08T21:24:22.060331Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="StartHere-AxisOverview" BuildFlags="">
+              <Topic Id="14ab8b3e-55c7-48b9-80e0-bb545387accb" Status="New Topic" CreatedOn="2023-03-08T19:14:48.9553709Z" ModifiedOn="2023-03-10T10:26:27.5045273Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="StartHere-AxisOverview" BuildFlags="">
                 <Title m="2023-03-08T19:27:53.6712242Z">Start Here - Axis Overview in SciChart.js</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-03-08T21:24:22.060331Z">&lt;P&gt;SciChart.js has a rich and configurable axis API. We believe you won't find a JavaScript Chart in the world with as many options for axis as SciChart!&lt;/P&gt;
-&lt;P&gt;This page we're going to give you an overview of what the Axis APIs can do and then show you where to look next for more detail.&lt;/P&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-chart-axis-layout-options&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+                    <Content m="2023-03-10T10:26:27.5045273Z">&lt;innovasys:widget layout="block" type="In This Topic List"&gt;&lt;innovasys:widgetproperty layout="inline" name="Prefix"&gt;$$In_This_Topic$$&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Tag"&gt;H2&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;SciChart.js has a rich and configurable axis API. We believe you won't find a JavaScript Chart in the world with as many options for axis as SciChart!&lt;/P&gt;
+&lt;P&gt;This page we're going to give you an overview of what the Axis APIs can do and then show you where to look next for more detail.&lt;/P&gt;
+&lt;H1&gt;What can SciChart.js Do with Axis?&lt;/H1&gt;
+&lt;P&gt;Heres a quick list of what SciChart.js can do with axis configuration, and where to go next.&lt;/P&gt;&lt;innovasys:widget layout="block" type="iFrame"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-chart-axis-layout-options&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
 &lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above&lt;/STRONG&gt;: The&amp;nbsp;&lt;/EM&gt;&lt;A href="https://demo.scichart.com/javascript-chart-axis-layout-options" target=_blank&gt;&lt;EM&gt;JavaScript&amp;nbsp;Axis Layout Options&amp;nbsp;example&lt;/EM&gt;&lt;/A&gt; &lt;EM&gt;from the SciChart.js Demo, showing a variety of axis configurations in SciChart.js.&lt;/EM&gt;&lt;/P&gt;
-&lt;H2&gt;What can SciChart.js Do with Axis?&lt;/H2&gt;
-&lt;P&gt;Heres a quick list of what SciChart.js can do with axis configuration, and where to go next.&lt;/P&gt;
-&lt;H3&gt;1. Many Axis Types&lt;/H3&gt;
-&lt;P&gt;SciChart.js supports:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;Numeric Axis
-&lt;LI&gt;Date Axis including Date, Time formatting
-&lt;LI&gt;&lt;A href="f602f5c0-2de4-4dd6-949d-e50ecce6b6e8"&gt;Category Axis&lt;/A&gt; (Dates + using indexes not values)
-&lt;LI&gt;&lt;A href="dbda6c22-a06d-4301-9b1d-d83b542d030f"&gt;Logarithmic Axis&lt;/A&gt; including Base 2, Base E Base 10 with or without scientific notation&lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To learn more about the axis types see&amp;nbsp;&lt;A href="e4489a79-987b-4a06-ac98-586190c47ec5"&gt;Axis Types in SciChart.js&lt;/A&gt;&amp;nbsp;and related pages&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H3&gt;2. Axis Layout (Multiple Axis, Axis Alignment)&lt;/H3&gt;
+&lt;H2&gt;1. Many Axis Types&lt;/H2&gt;
+&lt;P&gt;There are several axis types&amp;nbsp;in SciChart.js. Although they all&amp;nbsp;differ in&amp;nbsp;types of data values&amp;nbsp;that can be rendered,&amp;nbsp;the most fundamental difference is in their&amp;nbsp;behavior.&lt;/P&gt;
+&lt;P&gt;By that, the axes can be divided into two groups, Category and Value axis types.&lt;/P&gt;
+&lt;P&gt;The axis types provided by SciChart.js are listed below:&lt;/P&gt;
+&lt;TABLE&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;Axis Type&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Value or Category Axis&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;&lt;A href="bf3b144b-2153-4d7c-ab74-152f839df85f"&gt;NumericAxis&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;Value Axis / Numeric Types&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="e71de078-98d8-441a-9432-4289aa687270"&gt;&lt;STRONG&gt;DateTimeNumericAxis&lt;/STRONG&gt;&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Value Axis with additional features for Dates and Time formatting&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;&lt;A href="f602f5c0-2de4-4dd6-949d-e50ecce6b6e8"&gt;CategoryAxis&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;Category Axis&amp;nbsp;- measures using index -&amp;nbsp;Numeric Types or Dates&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;&lt;A href="dbda6c22-a06d-4301-9b1d-d83b542d030f"&gt;LogarithmicAxis&lt;/A&gt;&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;Logarithmic Axis supporting Base2, BaseE, Base10 with or without scientific notation&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget layout="block" type="iFrame"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-axis-types&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
+&lt;P align=center&gt;&amp;nbsp;&lt;EM&gt;&lt;STRONG&gt;Above:&lt;/STRONG&gt; The&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-axis-types" target=_blank&gt;Axis Types example&lt;/A&gt; in SciChart.js demo.&lt;/EM&gt;&lt;/P&gt;&lt;innovasys:widget layout="block" type="Tip Box"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To learn more about the axis types, click one of the article links in the table above.&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;&lt;innovasys:widget layout="block" type="Tip Box"&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;2. Axis Layout (Multiple Axis, Axis Alignment)&lt;/H2&gt;
 &lt;P&gt;Many axis configurations are possible, including:&lt;/P&gt;
 &lt;UL&gt;
-&lt;LI&gt;&lt;A href="2294a48f-459b-464f-9504-aed96c7fda2a"&gt;Aligning Axis&lt;/A&gt; on the Left, Right
-&lt;LI&gt;&lt;A href="6c9f837e-b20c-4538-bf9e-8736c42746c9"&gt;Adding a Secondary Axis&lt;/A&gt;
-&lt;LI&gt;&lt;A href="7fe826d6-0131-4387-8ccc-75ad0290decc"&gt;Adding Multiple X and Y Axis&lt;/A&gt;
-&lt;LI&gt;&lt;A href="e00ca150-579a-4496-98b9-70c83ca9a7bb"&gt;Rotating a chart 90 degrees&lt;/A&gt; (Vertical charts)
-&lt;LI&gt;&lt;A href="49949657-d7c3-48c7-93a2-2bb17f8dd8c1"&gt;Drawing Series behind axis&lt;/A&gt;
-&lt;LI&gt;&lt;A href="0175a983-0786-4067-b718-206c8c41cd3b"&gt;Placing axis in the centre of a chart&lt;/A&gt;, or inside a chart surface
-&lt;LI&gt;&lt;A href="af7dd07c-7746-4a9d-a9ea-1afc4bb95701"&gt;Vertically Stacking Axis&lt;/A&gt; - to create complex layouts
-&lt;LI&gt;&lt;A href="60612d56-74d4-46c1-bdff-f31e2fe22d57"&gt;Horizontally Stacking Axis&lt;/A&gt;&amp;nbsp;- more complex layouts&lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To learn more about the axis configuration options see &lt;A href="2294a48f-459b-464f-9504-aed96c7fda2a"&gt;Axis Alighment&lt;/A&gt;&amp;nbsp;and related pages&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H3&gt;3. Axis Label Configuration&lt;/H3&gt;
+&lt;LI&gt;&lt;A href="2294a48f-459b-464f-9504-aed96c7fda2a"&gt;Aligning Axis&lt;/A&gt; on the Left, Right 
+&lt;LI&gt;&lt;A href="6c9f837e-b20c-4538-bf9e-8736c42746c9"&gt;Adding a Secondary Axis&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="7fe826d6-0131-4387-8ccc-75ad0290decc"&gt;Adding Multiple X and Y Axis&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="e00ca150-579a-4496-98b9-70c83ca9a7bb"&gt;Rotating a chart 90 degrees&lt;/A&gt; (Vertical charts) 
+&lt;LI&gt;&lt;A href="49949657-d7c3-48c7-93a2-2bb17f8dd8c1"&gt;Drawing Series behind axis&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="0175a983-0786-4067-b718-206c8c41cd3b"&gt;Placing axis in the centre of a chart&lt;/A&gt;, or inside a chart surface 
+&lt;LI&gt;&lt;A href="af7dd07c-7746-4a9d-a9ea-1afc4bb95701"&gt;Vertically Stacking Axis&lt;/A&gt; - to create complex layouts 
+&lt;LI&gt;&lt;A href="60612d56-74d4-46c1-bdff-f31e2fe22d57"&gt;Horizontally Stacking Axis&lt;/A&gt;&amp;nbsp;- more complex layouts &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget layout="block" type="iFrame"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-chart-with-multiple-x-axis&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
+&lt;P align=center&gt;&amp;nbsp;&lt;EM&gt;&lt;STRONG&gt;Above:&lt;/STRONG&gt; The&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-chart-with-multiple-x-axis" target=_blank&gt;Multiple X Axis example&lt;/A&gt; in SciChart.js demo.&lt;/EM&gt;&lt;/P&gt;&lt;innovasys:widget layout="block" type="Tip Box"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To learn more about the axis layout options see the pages in the list above.&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
+&lt;H2&gt;3. Axis Label Configuration&lt;/H2&gt;
 &lt;P&gt;SciChart.js has a number of label APIs, including:&lt;/P&gt;
 &lt;UL&gt;
-&lt;LI&gt;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Formatting labels the easy way&lt;/A&gt; (using built-in flags)
-&lt;LI&gt;&lt;A href="efc8de3f-7cbb-4577-9a42-9a4e5621156d"&gt;Formatting labels - using custom code&lt;/A&gt; (fine grained label format)
-&lt;LI&gt;&lt;A href="29f7d41d-5dae-4b16-9f75-a090b3f02630"&gt;Having a text axis&lt;/A&gt; e.g. "Apples" "Pears" "Oranges" not 1, 2, 3
-&lt;LI&gt;&lt;A href="3616f94c-1224-4896-8306-d6a17af11082"&gt;Turning native (WebGL) text labels on or off&lt;/A&gt;
-&lt;LI&gt;&lt;A href="463d136b-fe1f-4960-85ac-9cb15ceb1d21"&gt;Spacing gridlines and labels&lt;/A&gt; the easy way
-&lt;LI&gt;&lt;A href="31e819ca-a224-4e7a-8fa1-4c8301fb6108"&gt;Spacing gridlines and labels - using custom code&lt;/A&gt; (fine grained control)&lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To learn more about the axis labelling options see&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Axis Label Formatting&lt;/A&gt;&amp;nbsp;and related pages&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H3&gt;Axis Ranging and Scaling&lt;/H3&gt;
-&lt;P&gt;It's possible to programmatically control axis ranging, scaling and auto-fitting of data. &lt;/P&gt;
+&lt;LI&gt;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Formatting labels the easy way&lt;/A&gt; (using built-in flags) 
+&lt;LI&gt;&lt;A href="efc8de3f-7cbb-4577-9a42-9a4e5621156d"&gt;Formatting labels - using custom code&lt;/A&gt; (fine grained label format) 
+&lt;LI&gt;&lt;A href="29f7d41d-5dae-4b16-9f75-a090b3f02630"&gt;Having a text axis&lt;/A&gt; e.g. "Apples" "Pears" "Oranges" not 1, 2, 3 
+&lt;LI&gt;&lt;A href="3616f94c-1224-4896-8306-d6a17af11082"&gt;Turning native (WebGL) text labels on or off&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="463d136b-fe1f-4960-85ac-9cb15ceb1d21"&gt;Spacing gridlines and labels&lt;/A&gt; the easy way 
+&lt;LI&gt;&lt;A href="31e819ca-a224-4e7a-8fa1-4c8301fb6108"&gt;Spacing gridlines and labels - using custom code&lt;/A&gt; (fine grained control) 
+&lt;LI style="COLOR: rgb(255,0,0)"&gt;Rotating Labels &amp;amp; Multiline Labels TODO &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget layout="block" type="iFrame"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-multiline-labels&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
+&lt;P align=center&gt;&amp;nbsp;&lt;EM&gt;&lt;STRONG&gt;Above:&lt;/STRONG&gt; The&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-multiline-labels" target=_blank&gt;Multiline Axis Labels example&lt;/A&gt; in SciChart.js demo.q&lt;/EM&gt;&lt;/P&gt;&lt;innovasys:widget layout="block" type="Tip Box"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To learn more about the axis labelling options see&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Axis Label Formatting&lt;/A&gt;&amp;nbsp;and related pages&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
+&lt;H2&gt;4. Axis Ranging and Scaling&lt;/H2&gt;
+&lt;P&gt;It's possible to programmatically control axis ranging, scaling and auto-fitting of data.&lt;/P&gt;
 &lt;UL&gt;
-&lt;LI&gt;&lt;A href="f43a75da-4a63-41a6-8db9-ff0ea13a5198"&gt;AutoRange&lt;/A&gt; (auto fitting of data)
+&lt;LI&gt;&lt;A href="f43a75da-4a63-41a6-8db9-ff0ea13a5198"&gt;AutoRange&lt;/A&gt; (auto fitting of data) 
 &lt;LI&gt;&lt;A href="dfe50e75-c34a-4d96-98c7-9ce9855956cd"&gt;Setting/Getting range programatically&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="75091468-bbf7-49ad-9841-c5d935660429"&gt;Listening to axis range changes&lt;/A&gt; (callbacks on zoom)&lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To learn more about the axis labelling options see&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Axis Label Formatting&lt;/A&gt;&amp;nbsp;and related pages&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H3&gt;Axis Styling&lt;/H3&gt;
+&lt;LI&gt;&lt;A href="75091468-bbf7-49ad-9841-c5d935660429"&gt;Listening to axis range changes&lt;/A&gt; (callbacks on zoom) &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget layout="block" type="iFrame"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/zoom-pan-multiple-modifiers&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;&lt;innovasys:widget layout="block" type="Tip Box"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To learn more about the axis labelling options see&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Axis Label Formatting&lt;/A&gt;&amp;nbsp;and related pages&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;&lt;innovasys:widget layout="block" type="Note Box"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Zooming and panning of Axis (such as mouse-drag, or mousewheel zoom) is handled by the ChartModiifers. See sections in the&amp;nbsp;&lt;A href="ffe63a68-26a7-4dac-91d7-ea3e3ba97ef3"&gt;ChartModifier API&lt;/A&gt; for more details.&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
+&lt;H2&gt;5. Axis Styling&lt;/H2&gt;
 &lt;P&gt;Finally, SciChart.js supports Axis styling, including:&lt;/P&gt;
 &lt;UL&gt;
-&lt;LI&gt;&lt;A href="522bb84c-264c-4919-aa66-5f8272a72610"&gt;Styling of Gridlines, Labels, Titles and Bands&lt;/A&gt;
-&lt;LI&gt;&lt;A href="8deddadd-6171-496a-ab20-7332232c4c16"&gt;Styling of Axis Borders and Background&lt;/A&gt;
-&lt;LI&gt;Showing or Hiding of Axis parts&lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To learn more about the axis styling options see&amp;nbsp;&lt;A href="522bb84c-264c-4919-aa66-5f8272a72610"&gt;Axis Styling&lt;/A&gt;&amp;nbsp;and related pages&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;LI&gt;&lt;A href="522bb84c-264c-4919-aa66-5f8272a72610"&gt;Styling of Gridlines, Labels, Titles and Bands&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="8deddadd-6171-496a-ab20-7332232c4c16"&gt;Styling of Axis Borders and Background&lt;/A&gt; 
+&lt;LI&gt;Showing or Hiding of Axis parts &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget layout="block" type="iFrame"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-chart-styling-theming-in-code&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;&lt;innovasys:widget layout="block" type="Tip Box"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To learn more about the axis styling options see&amp;nbsp;&lt;A href="522bb84c-264c-4919-aa66-5f8272a72610"&gt;Axis Styling&lt;/A&gt;&amp;nbsp;and related pages&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
@@ -5011,8 +5070,8 @@ very needed to help users learn scichart!</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="172addbf-995e-4705-9f7d-535415ab322a" Status="New Topic" CreatedOn="2016-09-02T09:34:03.7440005Z" ModifiedOn="2023-03-09T16:00:38.5454348Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="What is a RenderableSeries" BuildFlags="">
-                    <Title m="2023-03-08T19:36:02.2754508Z">Renderable Series - Start Here</Title>
+                  <Topic Id="172addbf-995e-4705-9f7d-535415ab322a" Status="New Topic" CreatedOn="2016-09-02T09:34:03.7440005Z" ModifiedOn="2023-03-09T19:07:52.2471463Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="What is a RenderableSeries" BuildFlags="">
+                    <Title m="2023-03-09T19:07:52.246146Z">Start Here - RenderableSeries Overview</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
@@ -5214,13 +5273,13 @@ very needed to help users learn scichart!</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="6139d2e5-f098-4674-99e5-581141312bf5" Status="New Topic" CreatedOn="2016-09-02T09:36:54.0487028Z" ModifiedOn="2023-03-09T13:39:41.9040073Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Common RenderableSeries Features" BuildFlags="">
+                  <Topic Id="6139d2e5-f098-4674-99e5-581141312bf5" Status="New Topic" CreatedOn="2016-09-02T09:36:54.0487028Z" ModifiedOn="2023-03-09T19:08:03.1125978Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Common RenderableSeries Features" BuildFlags="">
                     <Title m="2020-09-06T15:16:18.1704642Z">Common RenderableSeries Properties</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-03-09T13:39:41.9040073Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;This content has been moved&lt;BR&gt;&lt;BR&gt;Please see&amp;nbsp;&lt;A href="172addbf-995e-4705-9f7d-535415ab322a"&gt;RenderableSeries - Start Here&lt;/A&gt; for more information.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                        <Content m="2023-03-09T19:08:03.1125978Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;STRONG&gt;This content has been moved&lt;/STRONG&gt;&lt;BR&gt;&lt;BR&gt;Please see&amp;nbsp;&lt;A href="172addbf-995e-4705-9f7d-535415ab322a"&gt;RenderableSeries - Start Here&lt;/A&gt; for more information.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks>
@@ -14031,7 +14090,7 @@ very needed to help users learn scichart!</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">2050</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>
