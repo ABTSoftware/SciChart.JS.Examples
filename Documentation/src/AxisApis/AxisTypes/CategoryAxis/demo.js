@@ -1,10 +1,9 @@
-async function chartWithDateTimeNumericAxis(divElementId) {
+async function chartWithCategoryAxis(divElementId) {
   // Demonstrates how to configure a DateTimeNumericAxis in SciChart.js
   const {
     SciChartSurface,
-    DateTimeNumericAxis,
+    CategoryAxis,
     SciChartJsNavyTheme,
-    NumberRange,
     EAxisAlignment,
     NumericAxis,
     ZoomPanModifier,
@@ -26,30 +25,39 @@ async function chartWithDateTimeNumericAxis(divElementId) {
   const minDate = new Date("2023-03-1");
   const maxDate = new Date("2023-03-10");
 
-  // Create the axis. SmartDateLabelProvider is automatically applied to labelProvider property
-  const xAxis = new DateTimeNumericAxis(wasmContext, {
-    axisTitle: "X Axis / DateTime",
-    // We need to specify some visibleRange to see these two dates
-    // SciChart.js expects linux timestamp / 1000
-    visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
-  });
+  // Unix Epoch for March 1st 2022 & March 2nd
+  const march1st2023 = new Date("2023-03-1");
+  const march2nd2023 = new Date("2023-03-10");
+  const oneDay = march2nd2023 - march1st2023;
 
-  // Add the xAxis to the chart
-  sciChartSurface.xAxes.add(xAxis);
-  // #endregion
+  // Creating a CategoryAxis as an XAxis on the bottom
+  sciChartSurface.xAxes.add(new CategoryAxis(wasmContext, {
+    // set Defaults so that category axis can draw. Once you add series and data these will be overridden
+    defaultXStart: march1st2023,
+    defaultXStep: oneDay,
+    // set other properties
+    drawMajorGridLines: true,
+    drawMinorGridLines: true,
+    axisTitle: "Category X Axis",
+    axisAlignment: EAxisAlignment.Bottom,
+    // set a date format for labels
+    labelFormat: ENumericFormat.Date_DDMMYYYY
+  }));
 
-  // Creating a NumericAxis as a YAxis on the left
+  // Create a YAxis on the left
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-    axisTitle: "Y Axis, Numeric",
+    axisTitle: "Numeric Y Axis",
     axisAlignment: EAxisAlignment.Left,
   }));
+
+  // #endregion
 
   // For the example, we add zooming, panning and an annotation so you can see how dates react on zoom.
   sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier());
 
   // Add annotations to tell the user what to do
   sciChartSurface.annotations.add(new TextAnnotation({
-    text: "DateTimeNumericAxis Demo",
+    text: "CategoryAxis Demo",
     x1: 0.5, y1: 0.5,
     yCoordShift: 0,
     xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
@@ -69,7 +77,7 @@ async function chartWithDateTimeNumericAxis(divElementId) {
   }));
 };
 
-chartWithDateTimeNumericAxis("scichart-root");
+chartWithCategoryAxis("scichart-root");
 
 
 

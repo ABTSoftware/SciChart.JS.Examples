@@ -712,6 +712,21 @@ very needed to help users learn scichart!</Notes>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>SmartDateLabelProvider seems a little rigid. How can users customise the date output?</Notes>
         </TaskItem>
+        <TaskItem Id="de8b6ba3-78e9-4da9-8236-c70038f57983" Priority="" AssignedTo="">
+          <Title>Multiline Labels, Titles, rotated labels</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-03-11T14:11:10.543631Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-03-11T14:11:31.608749Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes>xAxis.axisTitle = ["This is a very long axis title", "that has been split into multiple lines", "to demonstrate the new functionality"];
+ // Axis titles are 24px by default.  Multi-line ones may need to be smaller
+ xAxis.axisTitleStyle.fontSize = 16; 
+
+we need to add docs to show how to rotate labels, position titles and multiline labels &amp; titles. 
+image labels too </Notes>
+        </TaskItem>
       </TaskItems>
     </Tasks>
   </TasksProjectPlugin>
@@ -1294,12 +1309,6 @@ very needed to help users learn scichart!</Notes>
                 <TocNode Name="" Id="af4fcb39-bf3f-46e2-94d1-c2d91ced1afa" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
                   <CaptionTemplate m="2023-03-08T19:24:56.1908512Z">Axis Types</CaptionTemplate>
                   <ChildNodes>
-                    <TocNode Name="" Id="0dcacfe7-92c7-42b9-afe1-b9facd147024" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>e4489a79-987b-4a06-ac98-586190c47ec5</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
                     <TocNode Name="" Id="26d5606a-37d6-41be-b848-9ba5adafa036" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
@@ -4750,108 +4759,13 @@ very needed to help users learn scichart!</Notes>
                 <Caption m="2023-03-08T19:07:54.2107432Z">Axis Types</Caption>
                 <ChildTopicCategories />
                 <Topics>
-                  <Topic Id="e4489a79-987b-4a06-ac98-586190c47ec5" Status="New Topic" CreatedOn="2016-08-04T09:36:36.3649393Z" ModifiedOn="2023-03-11T11:05:41.698663Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Types in SciChart.js" BuildFlags="">
-                    <Title m="2020-08-25T17:34:09.5465291Z">Axis Types in SciChart.js</Title>
-                    <ContentsTitle m="2023-03-11T09:31:17.9875492Z">Axis Types in SciChart.js</ContentsTitle>
-                    <Notes></Notes>
-                    <TopicSections>
-                      <TopicSection Name="BodyText">
-                        <Content m="2023-03-11T11:05:41.698663Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;STRONG&gt;This content has been moved&lt;/STRONG&gt;&lt;BR&gt;&lt;BR&gt;Please see&amp;nbsp;&lt;A href="14ab8b3e-55c7-48b9-80e0-bb545387accb"&gt;Axis APIs - Start Here&lt;/A&gt; for more information.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P style="COLOR: rgb(255,0,0)"&gt;TODO REMOVE/REFACTOR OUT BELOW&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;H2&gt;CategoryAxis&lt;/H2&gt;
-&lt;P&gt;&lt;SPAN&gt;The&amp;nbsp;&lt;A href="f602f5c0-2de4-4dd6-949d-e50ecce6b6e8"&gt;CategoryAxis&lt;/A&gt; is a Category axis and is suitable for the XAxis only. It&amp;nbsp;is designed to&amp;nbsp;handle&amp;nbsp;a special case when &lt;STRONG&gt;data is discontinuous&lt;/STRONG&gt;&amp;nbsp;or contains breaks at regular intervals.&amp;nbsp;Unlike the&amp;nbsp;other axis types, it works with with&amp;nbsp;&lt;STRONG&gt;data indexes, not actual data values&lt;/STRONG&gt;.&amp;nbsp;It is not suitable for YAxis.&lt;/SPAN&gt;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Learn more about the&amp;nbsp;&lt;A href="f602f5c0-2de4-4dd6-949d-e50ecce6b6e8"&gt;CategoryAxis here&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;LogarithmicAxis&lt;/H2&gt;
-&lt;P&gt;&lt;SPAN&gt;The LogarithmicAxis&amp;nbsp;is a special numeric axis type which displays values in Logarithmic Scale. &lt;SPAN&gt;To create and configure&amp;nbsp;a&amp;nbsp;CategoryAxis, use the following code:&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;SPAN&gt;LogarithmicAxis&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;&lt;SPAN&gt;JavaScript&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&lt;SPAN&gt;import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";&lt;BR&gt;import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";&lt;BR&gt;import {EAxisAlignment} from "scichart/types/AxisAlignment";&lt;BR&gt;import {ENumericFormat} from "scichart/types/NumericFormat";&lt;BR&gt;import {LogarithmicAxis} from "scichart/Charting/Visuals/Axis/LogarithmicAxis";&lt;BR&gt;import {NumberRange} from "scichart/Core/NumberRange";&lt;/SPAN&gt;&lt;/P&gt;
-&lt;P&gt;&lt;SPAN&gt;export async function initLogAxis() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-div-4");&lt;/SPAN&gt;&lt;/P&gt;
-&lt;P&gt;&lt;SPAN&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Creating a Log(10) Axis for xAxis&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.xAxes.add(new LogarithmicAxis(wasmContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; axisTitle: "Log(10) Axis",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; axisAlignment: EAxisAlignment.Bottom,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; labelFormat: ENumericFormat.Scientific,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; logBase: 10,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; visibleRange: new NumberRange(1, 1E6)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }));&lt;/SPAN&gt;&lt;/P&gt;
-&lt;P&gt;&lt;SPAN&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Creating a Log(2) Axis on the YAxis&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; axisTitle: "Log(2) Axis",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; axisAlignment: EAxisAlignment.Left,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; labelFormat: ENumericFormat.Exponential,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; logBase: 2,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; visibleRange: new NumberRange(1, 512)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }));&lt;BR&gt;}&lt;BR&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;SPAN&gt;&lt;SPAN&gt;The LogarithmicAxis has it's own documentation page to go over all the options.&amp;nbsp;&lt;A href="dbda6c22-a06d-4301-9b1d-d83b542d030f"&gt;For more info see here&lt;/A&gt;&lt;STRONG&gt;.&lt;/STRONG&gt;&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;
-&lt;H2&gt;&lt;SPAN&gt;&lt;SPAN&gt;Multiline Axis Titles&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/H2&gt;
-&lt;P&gt;&amp;nbsp;SciChart.JS v2 allows multiline axis titles, by simply passing an array of lines as the axis title.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;SPAN&gt;Multiline Axis title&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;&lt;SPAN&gt;JavaScript&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&lt;SPAN&gt;xAxis.axisTitle = ["This is a very long axis title", "that has been split into multiple lines", "to demonstrate the new functionality"];&lt;BR&gt;// Axis titles are 24px by default.&amp;nbsp; Multi-line ones may need to be smaller&lt;BR&gt;xAxis.axisTitleStyle.fontSize = 16;&lt;/SPAN&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;&lt;SPAN&gt;&lt;SPAN&gt;See the Axis Types in Action&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/H2&gt;
-&lt;P&gt;Please take a look at the examples from the&amp;nbsp;&lt;A href="https://demo.scichart.com/" target=_blank&gt;SciChart.js Examples Suite&lt;/A&gt; listed&amp;nbsp;below&amp;nbsp;to see these axis types in action:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;Column Chart with NumericAxis&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-candlestick-chart" target=_blank&gt;Candlestick Chart with CategoryAxis&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;</Content>
-                      </TopicSection>
-                    </TopicSections>
-                    <TopicLinks>
-                      <TopicLink Id="da11a67f-4fff-4d5c-abe4-6d517da61e6c" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="1f42648d-b868-4793-8ab7-b44504f33f99" BuildFlags="">
-                        <Title />
-                        <Category />
-                      </TopicLink>
-                      <TopicLink Id="970b68ab-5753-4c39-b46c-de710af2e0bf" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="1d18444a-b912-4bcc-ae02-96bde1620a21" BuildFlags="">
-                        <Title />
-                        <Category />
-                      </TopicLink>
-                    </TopicLinks>
-                    <TopicKeywords />
-                    <PropertyDefinitionValues />
-                    <ExcludedOtherFiles />
-                  </Topic>
-                  <Topic Id="f602f5c0-2de4-4dd6-949d-e50ecce6b6e8" Status="New Topic" CreatedOn="2022-04-13T18:08:23.4605987Z" ModifiedOn="2023-03-09T17:52:50.5313296Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CategoryAxis" BuildFlags="">
+                  <Topic Id="f602f5c0-2de4-4dd6-949d-e50ecce6b6e8" Status="New Topic" CreatedOn="2022-04-13T18:08:23.4605987Z" ModifiedOn="2023-03-11T14:17:57.0084081Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CategoryAxis" BuildFlags="">
                     <Title m="2023-03-09T17:52:50.5313296Z">The Category Axis</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2022-05-19T11:56:46.4042084Z">&lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/logarithmicaxis.html"&gt;CategoryAxis&lt;/A&gt;&amp;nbsp;treats values a little differently. This is a special axis type which uses the X-Index not the X-Value to measure chart series.&lt;/P&gt;
-&lt;H2&gt;Difference between CategoryAxis and NumericAxis&lt;/H2&gt;
-&lt;P&gt;Imagine you want to plot the data:&lt;/P&gt;
-&lt;TABLE&gt;
-&lt;TBODY&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;STRONG&gt;Age (XAxis)&lt;/STRONG&gt;&lt;/TD&gt;
-&lt;TD&gt;&lt;STRONG&gt;Cats&lt;/STRONG&gt;&lt;/TD&gt;
-&lt;TD&gt;&lt;STRONG&gt;Dogs&lt;/STRONG&gt;&lt;/TD&gt;
-&lt;TD&gt;&lt;STRONG&gt;Fish&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;1&lt;/TD&gt;
-&lt;TD&gt;7&lt;/TD&gt;
-&lt;TD&gt;7&lt;/TD&gt;
-&lt;TD&gt;8&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;9&lt;/TD&gt;
-&lt;TD&gt;6&lt;/TD&gt;
-&lt;TD&gt;5&lt;/TD&gt;
-&lt;TD&gt;7&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;20&lt;/TD&gt;
-&lt;TD&gt;4&lt;/TD&gt;
-&lt;TD&gt;3&lt;/TD&gt;
-&lt;TD&gt;2&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;A standard&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/numericaxis.html"&gt;NumericAxis&lt;/A&gt; (which is a value-axis) and the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/categoryaxis.html"&gt;CategoryAxis&lt;/A&gt; would display the data differently.&lt;/P&gt;
-&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/AxisTypes_ValueAxis.png"&gt;&lt;IMG border=0 alt="" src="images/AxisTypes_CategoryAxis.png"&gt;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
-&lt;P&gt;Why is this important? &lt;STRONG&gt;In the case where you are plotting stock market data, you want to use a&amp;nbsp;&lt;/STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/logarithmicaxis.html"&gt;&lt;STRONG&gt;CategoryAxis&lt;/STRONG&gt;&lt;/A&gt;&lt;STRONG&gt;.&lt;/STRONG&gt;&lt;BR&gt;&lt;BR&gt;&lt;EM&gt;This is because&amp;nbsp;stock market data has gaps in it (consider the stock market has data on Monday, Tuesday, Wednesday, Thursday, Friday but not weekends). The&amp;nbsp;&lt;/EM&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/logarithmicaxis.html"&gt;&lt;EM&gt;CategoryAxis&lt;/EM&gt;&lt;/A&gt;&lt;EM&gt;&amp;nbsp;collapses the gaps and treats each datapoint as equidistant, ignoring the X-Value.&lt;/EM&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Using and Configuring a CategoryAxis&lt;/H2&gt;
-&lt;P&gt;The Category Axis won't draw without either:&lt;/P&gt;
-&lt;OL&gt;
-&lt;LI&gt;A series with some data on the chart, or 
-&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/categoryaxis.html#defaultxstart"&gt;CategoryAxis.defaultXStart&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/categoryaxis.html#defaultxstep"&gt;defaultXStep&lt;/A&gt;&amp;nbsp;which allow the axis to draw in absence of data &lt;/LI&gt;&lt;/OL&gt;
-&lt;P&gt;You can configure an axis with some defaults as follows:&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;CategoryAxis&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";&lt;BR&gt;import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";&lt;BR&gt;import {EAutoRange} from "scichart/types/AutoRange";&lt;BR&gt;import {EAxisAlignment} from "scichart/types/AxisAlignment";&lt;BR&gt;import {ENumericFormat} from "scichart/types/NumericFormat";&lt;BR&gt;import {CategoryAxis} from "scichart/Charting/Visuals/Axis/CategoryAxis";&lt;BR&gt;import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";&lt;BR&gt;import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";&lt;/P&gt;
-&lt;P&gt;export async function initCategoryAxis() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const {sciChartSurface, wasmContext} = await SciChartSurface.create("scichart-div-3");&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Unix Epoch for March 1st 2022 &amp;amp; March 2nd&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const March1st2022 = 1646092800;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const March2nd2022 = 1646179200;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const OneDay = March2nd2022 - March1st2022;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Creating a CategoryAxis as an XAxis on the bottom&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.xAxes.add(new CategoryAxis(wasmContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // set Defaults so that category axis can draw. Once you add series and data these will be overridden&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; defaultXStart: March1st2022,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; defaultXStep: OneDay,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // set other properties&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; drawMajorGridLines: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; drawMinorGridLines: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; axisTitle: "Category X Axis",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; axisAlignment: EAxisAlignment.Bottom,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; autoRange: EAutoRange.Once,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // set a date format for labels&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; labelFormat: ENumericFormat.Date_DDMMYYYY&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }));&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Creating a NumericAxis as a YAxis on the left,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // with title = 'Y Axis' and custom label format&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; drawMajorGridLines: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; drawMinorGridLines: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; axisTitle: "Numeric Y Axis",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; axisAlignment: EAxisAlignment.Left,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; autoRange: EAutoRange.Once,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }));&lt;BR&gt;}&lt;BR&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;This results in the following output:&lt;/P&gt;
-&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/AxisTypes_CategoryAxisExample.png"&gt;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;H2&gt;Adding Series to the CategoryAxis&lt;/H2&gt;
-&lt;P&gt;Once a CategoryAxis has been added to the chart, you can add series and data.&lt;/P&gt;
-&lt;P&gt;Take a look at the&amp;nbsp;&lt;A href="b2fc10ad-2614-414b-a173-bed16255aa6f"&gt;Candlestick Chart example&lt;/A&gt; which shows how to get a result like this:&lt;/P&gt;
-&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/RenderSeries_CandlestickChart.png"&gt;&lt;/P&gt;
-&lt;DIV align=left&gt;&lt;/DIV&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                        <Content m="2023-03-11T14:17:57.0084081Z">Doesnt work innit</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks />
@@ -14268,7 +14182,7 @@ very needed to help users learn scichart!</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">3688</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>
