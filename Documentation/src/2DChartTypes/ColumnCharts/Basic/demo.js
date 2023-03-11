@@ -6,7 +6,9 @@ async function simpleColumnChart(divElementId) {
     NumericAxis,
     FastColumnRenderableSeries,
     XyDataSeries,
-    SciChartJsNavyTheme
+    SciChartJsNavyTheme,
+    GradientParams,
+    Point
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -24,9 +26,18 @@ async function simpleColumnChart(divElementId) {
 
   // Create and add a column series
   const columnSeries = new FastColumnRenderableSeries(wasmContext, {
+    // When solid fill required, use fill
     fill: "rgba(176, 196, 222, 0.5)",
-    stroke: "rgba(176, 196, 222, 1)",
+    // When gradient fill required, use fillGradient
+    fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+      { color: "rgba(70,130,180,0.77)", offset: 0 },
+      { color: "rgba(70,130,180,0.0)", offset: 1 },
+    ]),
+    stroke: "#FFFFFF77",
     strokeThickness: 2,
+    // optional cornerradius. Experimental!
+    cornerRadius: 4,
+    // Defines the relative width between columns
     dataPointWidth: 0.7,
     dataSeries: new XyDataSeries(wasmContext, { xValues, yValues})
   });
