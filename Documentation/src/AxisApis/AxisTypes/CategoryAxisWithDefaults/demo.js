@@ -8,40 +8,39 @@ async function chartWithCategoryAxis(divElementId) {
     NumericAxis,
     ZoomPanModifier,
     MouseWheelZoomModifier,
+    CursorModifier,
     TextAnnotation,
     ECoordinateMode,
     EHorizontalAnchorPoint,
-    EVerticalAnchorPoint
+    EVerticalAnchorPoint,
+    ENumericFormat
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
 
+  // #region ExampleA
   const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
     theme: new SciChartJsNavyTheme()
   });
 
-  // #region ExampleA
-  // If you want to show an XAxis with dates between 1st March 2023 and 10th March 2023
-  const minDate = new Date("2023-03-1");
-  const maxDate = new Date("2023-03-10");
-
-  // Unix Epoch for March 1st 2022 & March 2nd
-  const march1st2023 = new Date("2023-03-1");
-  const march2nd2023 = new Date("2023-03-10");
-  const oneDay = march2nd2023 - march1st2023;
+  // Unix Epoch for March 1st 2023 & March 2nd 2023
+  const march1st2023 = new Date("2023-03-1").getTime(); // = 1677628800000 ms since 1/1/1970
+  const march2nd2023 = new Date("2023-03-2").getTime(); // = 1677715200000 ms since 1/1/1970
+  const oneDay = march2nd2023 - march1st2023; // = 86400000 milliseconds in one day
 
   // Creating a CategoryAxis as an XAxis on the bottom
   sciChartSurface.xAxes.add(new CategoryAxis(wasmContext, {
     // set Defaults so that category axis can draw. Once you add series and data these will be overridden
-    defaultXStart: march1st2023,
-    defaultXStep: oneDay,
+    // All Linux Timestamp properties in scichart.js must be divided by 1,000 to go from milliseconds to seconds
+    defaultXStart: march1st2023 / 1000,
+    defaultXStep: oneDay / 1000,
     // set other properties
     drawMajorGridLines: true,
     drawMinorGridLines: true,
     axisTitle: "Category X Axis",
     axisAlignment: EAxisAlignment.Bottom,
     // set a date format for labels
-    labelFormat: ENumericFormat.Date_DDMMYYYY
+    labelFormat: ENumericFormat.Date_DDMMYY
   }));
 
   // Create a YAxis on the left
@@ -49,11 +48,10 @@ async function chartWithCategoryAxis(divElementId) {
     axisTitle: "Numeric Y Axis",
     axisAlignment: EAxisAlignment.Left,
   }));
-
   // #endregion
 
   // For the example, we add zooming, panning and an annotation so you can see how dates react on zoom.
-  sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier());
+  sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier(), new CursorModifier());
 
   // Add annotations to tell the user what to do
   sciChartSurface.annotations.add(new TextAnnotation({
@@ -95,32 +93,40 @@ async function builderExample(divElementId) {
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
 
-  // #region ExampleB
-  // If you want to show an XAxis with dates between 1st March 2023 and 10th March 2023
-  const minDate = new Date("2023-03-1");
-  const maxDate = new Date("2023-03-10");
+// #region ExampleB
+  // Unix Epoch for March 1st 2023 & March 2nd 2023
+  const march1st2023 = new Date("2023-03-1").getTime(); // = 1677628800000 ms since 1/1/1970
+  const march2nd2023 = new Date("2023-03-2").getTime(); // = 1677715200000 ms since 1/1/1970
+  const oneDay = march2nd2023 - march1st2023; // = 86400000 milliseconds in one day
 
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
     surface: { theme: { type: EThemeProviderType.Dark } },
     xAxes: {
-      type: EAxisType.DateTimeNumericAxis,
+      type: EAxisType.CategoryAxis,
       options: {
-        axisTitle: "X Axis / DateTime",
-        // We need to specify some visibleRange to see these two dates
-        // SciChart.js expects linux timestamp / 1000
-        visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
+        // set Defaults so that category axis can draw. Once you add series and data these will be overridden
+        // All Linux Timestamp properties in scichart.js must be divided by 1,000 to go from milliseconds to seconds
+        defaultXStart: march1st2023 / 1000,
+        defaultXStep: oneDay / 1000,
+        // set other properties
+        drawMajorGridLines: true,
+        drawMinorGridLines: true,
+        axisTitle: "Category X Axis",
+        axisAlignment: EAxisAlignment.Bottom,
+        // set a date format for labels
+        labelFormat: ENumericFormat.Date_DDMMYY
       }
     },
-    // ... });
-    // #endregion
+
     yAxes: {
       type: EAxisType.NumericAxis,
       options: {
-        axisTitle: "Y Axis, Left, default formatting",
+        axisTitle: "Numeric Y Axis",
         axisAlignment: EAxisAlignment.Left,
       }
     },
   });
+// #endregion
 };
 
 
