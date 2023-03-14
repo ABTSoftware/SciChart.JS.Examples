@@ -14279,7 +14279,7 @@ image labels too </Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">2413</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">1819</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>
@@ -15094,7 +15094,19 @@ image labels too </Notes>
 &lt;meta name="twitter:description" content="JavaScript Chart Documentation for the SciChart JavaScript v3.x SDK. Featuring many JavaScript Chart Types, you can create rich JavaScript, React and TypeScript applications with our powerful API"/&gt;
 &lt;meta name="twitter:site" content="@scichart"/&gt;
 &lt;meta name="twitter:creator" content="@scichart"/&gt;
-</OtherHeadContent>
+&lt;!-- Script to embed codepens at runtime only --&gt;
+&lt;script&gt;
+	var isDesigner = location.protocol === 'about:';
+	if (!isDesigner) {
+	   	var head = document.getElementsByTagName('head')[0];
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = 'https://static.codepen.io/assets/embed/ei.js';
+		head.appendChild(script);
+		console.log("Inserted codepen script!");
+	}
+&lt;/script&gt;
+&lt;style&gt;.cp_embed_iframe { aspect-ratio:1.333 }&lt;/style&gt;</OtherHeadContent>
       </OtherFiles>
       <VersionsAndEditions>
         <EditionId></EditionId>
