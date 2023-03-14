@@ -5665,13 +5665,13 @@ image labels too </Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="f61a9e5c-34c5-40a5-b239-bdb8ffc15a7c" Status="New Topic" CreatedOn="2016-09-02T11:59:08.5079453Z" ModifiedOn="2023-03-07T19:46:26.277733Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The Scatter Series Type" BuildFlags="">
+              <Topic Id="f61a9e5c-34c5-40a5-b239-bdb8ffc15a7c" Status="New Topic" CreatedOn="2016-09-02T11:59:08.5079453Z" ModifiedOn="2023-03-14T17:36:36.4611793Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The Scatter Series Type" BuildFlags="">
                 <Title />
                 <ContentsTitle m="2023-03-02T17:14:05.5232176Z">The Scatter Series Type</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-03-07T19:46:26.277733Z">&lt;P&gt;Scatter Series can be created using the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xyscatterrenderableseries.html"&gt;XyScatterRenderableSeries&lt;/A&gt; type.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2023-03-14T17:36:36.4611793Z">&lt;P&gt;Scatter Series can be created using the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xyscatterrenderableseries.html"&gt;XyScatterRenderableSeries&lt;/A&gt; type.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;The &lt;A href="https://demo.scichart.com/javascript-scatter-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-scatter-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-scatter-chart" target=_blank&gt;JavaScript Scatter Chart Example&lt;/A&gt; can be found in the&amp;nbsp;&lt;A href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;SciChart.Js Examples Suite&lt;/A&gt;&amp;nbsp;on Github, or our live demo at&amp;nbsp;&lt;A href="https://demo.scichart.com/" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-scatter-chart" target=_blank&gt;demo.scichart.com&lt;/A&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameWidth"&gt;100%&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameHeight"&gt;500px&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-scatter-chart&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above&lt;/STRONG&gt;: The&amp;nbsp;&lt;/EM&gt;&lt;A href="https://demo.scichart.com/javascript-scatter-chart" target=_blank&gt;&lt;EM&gt;JavaScript Scatter Chart example&lt;/EM&gt;&lt;/A&gt; &lt;EM&gt;from the SciChart.js Demo.&lt;/EM&gt;&lt;/P&gt;
 &lt;H2&gt;Create a&amp;nbsp;Scatter Series&lt;/H2&gt;
@@ -5682,7 +5682,7 @@ image labels too </Notes>
 &lt;LI&gt;A&amp;nbsp;Scatter Series instance is created and added to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#renderableseries" target=_blank&gt;SciChartSurface.renderableSeries&lt;/A&gt; collection. 
 &lt;LI&gt;We set a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#pointmarker"&gt;PointMarker&lt;/A&gt;. Several types such as Ellipse, Triangle, Cross and Custom are available (&lt;A href="f61a9e5c-34c5-40a5-b239-bdb8ffc15a7c"&gt;see here for more info&lt;/A&gt;) 
 &lt;LI&gt;We assign a&amp;nbsp;&lt;A href="3425a202-cb28-4349-915f-ccf122d3a766"&gt;DataSeries&lt;/A&gt; - which stores the Xy data to render. &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;http://localhost:3000/2DChartTypes/ScatterCharts/Basic/?embed=1&amp;amp;nav=0&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/2DChartTypes/ScatterCharts/Basic/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Render&amp;nbsp;a Gap&amp;nbsp;in a Scatter Series&lt;/H2&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;It is possible to have null points or&amp;nbsp;gaps&amp;nbsp;in a&amp;nbsp;Scatter Series by passing a&amp;nbsp;data point with a &lt;STRONG&gt;NaN&lt;/STRONG&gt; value&amp;nbsp;as the &lt;STRONG&gt;Y&lt;/STRONG&gt; value.&amp;nbsp;Or, by simply skipping a point if using a value-axis. Please refer to the&amp;nbsp;&lt;A href="58603bb5-a47d-4f69-a142-2411ff2e762c"&gt;Common Series Features - Draw Gaps in Series&lt;/A&gt;&amp;nbsp;article for more details.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Different Point-Markers on a Scatter Series&lt;/H2&gt;
@@ -15025,6 +15025,53 @@ image labels too </Notes>
 &lt;/div&gt;</DesignTimeContent>
             <Caption m="2014-07-21T10:09:04.6435Z">Content from Web Page</Caption>
             <Description m="2014-07-21T10:31:43.6285842Z">Includes content from a Web Page</Description>
+            <Resources />
+            <ContentSourceName>WEBPAGE</ContentSourceName>
+            <Gestures />
+            <ResourcePath>widgets\resources</ResourcePath>
+          </WidgetType>
+          <WidgetType HasSeparateDesignTimeContent="true" ReplaceSelectedParagraph="false" IsResourceOnly="false" Name="Codepen Embed from Web Page" IsHidden="false" SupportsSpellCheck="false" IsSelectionCollapsedAfterInsertion="true" WidgetLayout="Block" Designer="CONTENTSOURCE">
+            <Content m="2023-03-13T18:30:29.6358945Z">&lt;script async="" src="https://static.codepen.io/assets/embed/ei.js" type="text/javascript"&gt;&lt;/script&gt;</Content>
+            <DesignTimeContent m="2014-07-21T10:34:07.1583545Z">&lt;div&gt;
+    &lt;div class="WidgetContainerBox" style="background-image: url(%%resourcepath%%/images/webpage.png);"&gt;
+        &lt;h2&gt;Content from Web Page&lt;/h2&gt;
+
+        &lt;p&gt;This Widget will be replaced with content from a Web Page in Preview and when building the generated output.&lt;/p&gt;
+
+        &lt;form&gt;
+            &lt;div style="DISPLAY: none"&gt;
+                &lt;span contenteditable="true"&gt;value&lt;/span&gt;
+            &lt;/div&gt;
+
+            &lt;div class="input-block" title=
+            "The fully qualified Uri of the Web Page from which the content will be sourced."&gt;
+            &lt;label style="width: 11em;"&gt;Source Uri:&lt;/label&gt;%%Uri:defaultvalue=,isused=true,input=text,style="width:60%"%%
+            &lt;/div&gt;
+			
+			&lt;div class="input-block" title=
+            "The tag name containing the content to use from the source uri. e.g. BODY. The tag name is not required if either an Element Id or Element Class value are specified."&gt;
+            &lt;label style="width: 11em;"&gt;Tag Name:&lt;/label&gt;%%RootTagName:defaultvalue=,isused=true,input=text%%
+            &lt;/div&gt;
+			
+			&lt;div class="input-block" title=
+            "If the desired content is contained in an element with a specific Id, specify it here."&gt;
+            &lt;label style="width: 11em;"&gt;Element Id (optional):&lt;/label&gt;%%ElementId:defaultvalue=,isused=true,input=text%%
+            &lt;/div&gt;
+
+			&lt;div class="input-block" title=
+            "If the desired content is contained in an element with a specific class name, specify it here."&gt;
+            &lt;label style="width: 11em;"&gt;Element Class (optional):&lt;/label&gt;%%ElementClassName:defaultvalue=,isused=true,input=text%%
+            &lt;/div&gt;
+			
+			&lt;div class="input-block" title="Enable this option to download and create local copies of remote images referenced by the source content, so that the page content is readable without the original image sources."&gt;
+                &lt;label style="width: 11em;"&gt;Create local images:&lt;/label&gt;%%CreateLocalImages:defaultvalue=false,isused=true,input=checkbox%%
+            &lt;/div&gt;
+
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</DesignTimeContent>
+            <Caption m="2023-03-13T18:30:12.3380141Z">Embed from Web Page</Caption>
+            <Description m="2023-03-13T18:30:18.7862876Z">Includes content from a Web Page with codepen script</Description>
             <Resources />
             <ContentSourceName>WEBPAGE</ContentSourceName>
             <Gestures />
