@@ -25,7 +25,7 @@ async function chartWithNumericAxis(divElementId) {
     drawMinorGridLines: true,
     drawLabels: true,
     // Set title, alignment and autorange
-    axisTitle: "X Axis, Bottom, 4 decimal places",
+    axisTitle: "X Axis, Bottom, 2 decimal places",
     axisAlignment: EAxisAlignment.Bottom,
     autoRange: EAutoRange.Once,
     // Enable decision labels with 4 significant figures
@@ -39,8 +39,13 @@ async function chartWithNumericAxis(divElementId) {
 
   // Creating a NumericAxis as a YAxis on the left
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-    axisTitle: "Y Axis, Left, default formatting",
+    axisTitle: "Y Axis, Left, 4 dp",
     axisAlignment: EAxisAlignment.Left,
+    labelFormat: ENumericFormat.Decimal,
+    cursorLabelFormat: ENumericFormat.Decimal,
+    labelPrecision: 4,
+    labelPrefix: "$",
+    labelPostfix: " USD"
   }));
   // #endregion
 
@@ -89,13 +94,13 @@ async function builderExample(divElementId) {
         drawMinorGridLines: true,
         drawLabels: true,
         // Set title, alignment and autorange
-        axisTitle: "X Axis, Bottom, 4 decimal places",
+        axisTitle: "X Axis, Bottom, 2 decimal places",
         axisAlignment: EAxisAlignment.Bottom,
         autoRange: EAutoRange.Once,
         // Enable decision labels with 4 significant figures
         labelFormat: ENumericFormat.Decimal,
         cursorLabelFormat: ENumericFormat.Decimal,
-        labelPrecision: 4,
+        labelPrecision: 2,
       }
     },
     yAxes: {
@@ -103,6 +108,13 @@ async function builderExample(divElementId) {
       options: {
         axisTitle: "Y Axis, Left, default formatting",
         axisAlignment: EAxisAlignment.Left,
+        axisTitle: "Y Axis, Left, 4 dp",
+        axisAlignment: EAxisAlignment.Left,
+        labelFormat: ENumericFormat.Decimal,
+        cursorLabelFormat: ENumericFormat.Decimal,
+        labelPrecision: 4,
+        labelPrefix: "$",
+        labelPostfix: " USD"
       }
     },
     series: [
