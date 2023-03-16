@@ -100,3 +100,4 @@ async function builderExample(divElementId) {
 
 if (location.search.includes("builder=1"))
   builderExample("scichart-root");
+
