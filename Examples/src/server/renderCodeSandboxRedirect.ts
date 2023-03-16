@@ -53,7 +53,7 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
             "react-dom": "18.0.0",
             "react-scripts": "4.0.3",
             "scichart": "^3.0.301",
-            "scichart-example-dependencies": "^0.1.3",
+            "scichart-example-dependencies": "^0.1.5",
             ...currentExample.extraDependencies
           },
           "devDependencies": {
@@ -76,13 +76,14 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
     "src/index.tsx": {
       content:  `import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { SciChartSurface } from "scichart";
+import { SciChartSurface, SciChart3DSurface } from "scichart";
 
 import App from "./App";
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement!);
 SciChartSurface.useWasmFromCDN();
+SciChart3DSurface.useWasmFromCDN();
 root.render(
   <StrictMode>
     <App />
