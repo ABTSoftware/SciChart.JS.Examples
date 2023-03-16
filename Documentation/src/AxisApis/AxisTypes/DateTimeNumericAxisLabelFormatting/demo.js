@@ -13,7 +13,8 @@ async function labelFormattingWithDateTimeNumericAxis(divElementId) {
     ECoordinateMode,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
-    ENumericFormat
+    ENumericFormat,
+    DateLabelProvider
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -23,28 +24,33 @@ async function labelFormattingWithDateTimeNumericAxis(divElementId) {
   });
 
   // #region ExampleA
-  // If you want to show an XAxis with dates between 1st March 2023 and 10th March 2023
+  // If you want to show an XAxis with custom label formats
   const minDate = new Date("2023-03-1");
-  const maxDate = new Date("2023-03-10");
+  const maxDate = new Date("2023-03-3");
 
   // Create the axis. SmartDateLabelProvider is automatically applied to labelProvider property
   const xAxis = new DateTimeNumericAxis(wasmContext, {
     axisTitle: "X Axis / DateTime",
-    // We need to specify some visibleRange to see these two dates
-    // SciChart.js expects linux timestamp / 1000
     visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
+    // Specify a DateLabelProvider with format to override the built-in behaviour
+    labelProvider: new DateLabelProvider({ labelFormat: ENumericFormat.Date_DDMMYYYY })
   });
 
-  // labelProvider is type SmartDateLabelProvider for this axis type
-  const labelProvider = xAxis.labelProvider;
+  // When zoomed in to less than one day, switch the date format
+  xAxis.visibleRangeChanged.subscribe((arg) => {
+    const SECONDS_IN_DAY = 86400;
+    const SECONDS_IN_HOUR = 3600;
+    if (arg.visibleRange.max - arg.visibleRange.min < SECONDS_IN_HOUR) {
+      xAxis.labelProvider.numericFormat = ENumericFormat.Date_HHMMSS;
+    } else if (arg.visibleRange.max - arg.visibleRange.min < SECONDS_IN_DAY) {
+      xAxis.labelProvider.numericFormat = ENumericFormat.Date_HHMM;
+    } else {
+      xAxis.labelProvider.numericFormat = ENumericFormat.Date_DDMMYYYY;
+    }
+  });
 
-  // when true first label should be formatted using the wider format (eg Month Day).
-  // when false the wider format will only be used when it changes (eg day/month boundary)
-  labelProvider.showWiderDateOnFirstLabel = false;
-
-  labelProvider.rotation = -45;
-
-  labelProvider.labelFormat
+  // Note other options include overriding labelProvider.formatLabel,
+  // or custom labelproviders
 
   // Add the xAxis to the chart
   sciChartSurface.xAxes.add(xAxis);
@@ -61,7 +67,7 @@ async function labelFormattingWithDateTimeNumericAxis(divElementId) {
 
   // Add annotations to tell the user what to do
   sciChartSurface.annotations.add(new TextAnnotation({
-    text: "Custom Date Formatting",
+    text: "Custom Date Format on Zoom",
     x1: 0.5, y1: 0.5,
     yCoordShift: 0,
     xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
@@ -71,7 +77,7 @@ async function labelFormattingWithDateTimeNumericAxis(divElementId) {
     fontWeight: "Bold"
   }));
   sciChartSurface.annotations.add(new TextAnnotation({
-    text: "Try mouse-wheel, left/right mouse drag and notice the dynamic X-Axis Labels",
+    text: "Zoom in using mousewheel to see the date format change",
     x1: 0.5, y1: 0.5,
     yCoordShift: 50,
     xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
@@ -95,16 +101,19 @@ async function builderExample(divElementId) {
     NumberRange,
     EAxisAlignment,
     EAxisType,
+    ENumericFormat,
+    ELabelProviderType,
+    EChart2DModifierType
   } = SciChart;
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
 
   // #region ExampleB
-  // If you want to show an XAxis with dates between 1st March 2023 and 10th March 2023
+  // If you want to show an XAxis with dates and dynamic label formats
   const minDate = new Date("2023-03-1");
-  const maxDate = new Date("2023-03-10");
+  const maxDate = new Date("2023-03-3");
 
-  const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
+  const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, {
     surface: { theme: { type: EThemeProviderType.Dark } },
     xAxes: {
       type: EAxisType.DateTimeNumericAxis,
@@ -113,10 +122,14 @@ async function builderExample(divElementId) {
         // We need to specify some visibleRange to see these two dates
         // SciChart.js expects linux timestamp / 1000
         visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
+        labelProvider: {
+          type: ELabelProviderType.Date,
+          options: {
+            labelFormat: ENumericFormat.Date_DDMMYYYY
+          }
+        }
       }
     },
-    // ... });
-    // #endregion
     yAxes: {
       type: EAxisType.NumericAxis,
       options: {
@@ -124,7 +137,25 @@ async function builderExample(divElementId) {
         axisAlignment: EAxisAlignment.Left,
       }
     },
+    modifiers: [
+      { type: EChart2DModifierType.MouseWheelZoom }
+    ]
   });
+
+  const xAxis = sciChartSurface.xAxes.get(0);
+  // When zoomed in to less than one day, switch the date format
+  xAxis.visibleRangeChanged.subscribe((arg) => {
+    const SECONDS_IN_DAY = 86400;
+    const SECONDS_IN_HOUR = 3600;
+    if (arg.visibleRange.max - arg.visibleRange.min < SECONDS_IN_HOUR) {
+      xAxis.labelProvider.numericFormat = ENumericFormat.Date_HHMMSS;
+    } else if (arg.visibleRange.max - arg.visibleRange.min < SECONDS_IN_DAY) {
+      xAxis.labelProvider.numericFormat = ENumericFormat.Date_HHMM;
+    } else {
+      xAxis.labelProvider.numericFormat = ENumericFormat.Date_DDMMYYYY;
+    }
+  });
+  // #endregion
 };
 
 

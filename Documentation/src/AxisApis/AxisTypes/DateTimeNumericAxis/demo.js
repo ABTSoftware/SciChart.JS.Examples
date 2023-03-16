@@ -12,16 +12,18 @@ async function chartWithDateTimeNumericAxis(divElementId) {
     TextAnnotation,
     ECoordinateMode,
     EHorizontalAnchorPoint,
-    EVerticalAnchorPoint
+    EVerticalAnchorPoint,
+    FastLineRenderableSeries,
+    XyDataSeries
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
 
+  // #region ExampleA
   const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
     theme: new SciChartJsNavyTheme()
   });
 
-  // #region ExampleA
   // If you want to show an XAxis with dates between 1st March 2023 and 10th March 2023
   const minDate = new Date("2023-03-1");
   const maxDate = new Date("2023-03-10");
@@ -36,13 +38,32 @@ async function chartWithDateTimeNumericAxis(divElementId) {
 
   // Add the xAxis to the chart
   sciChartSurface.xAxes.add(xAxis);
-  // #endregion
 
   // Creating a NumericAxis as a YAxis on the left
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
     axisTitle: "Y Axis, Numeric",
     axisAlignment: EAxisAlignment.Left,
   }));
+
+  // Add a series to the chart with X-data as dates using unix Timestamp / 1000
+  //
+  const xValues = [];
+  const yValues = []
+  let startDate = minDate.getTime() / 1000;
+  for (let i = 0; i <= 10; i++) {
+    xValues.push(startDate);
+    yValues.push(Math.random() * 0.1 + (i > 0 ? yValues[i-1] : 0));
+    startDate += 86400; // number of seconds in a day
+  }
+  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+    dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+    strokeThickness: 3,
+    stroke: "#50C7E0"
+  }));
+  // Note console log out xValues to see they are unix timestamps / 1000
+  console.log("xValues: " + xValues);
+  // #endregion
+
 
   // For the example, we add zooming, panning and an annotation so you can see how dates react on zoom.
   sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier());
@@ -83,6 +104,7 @@ async function builderExample(divElementId) {
     NumberRange,
     EAxisAlignment,
     EAxisType,
+    ESeriesType
   } = SciChart;
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -91,6 +113,16 @@ async function builderExample(divElementId) {
   // If you want to show an XAxis with dates between 1st March 2023 and 10th March 2023
   const minDate = new Date("2023-03-1");
   const maxDate = new Date("2023-03-10");
+
+  // Create data for the chart with X-data as dates using unix Timestamp / 1000
+  const xValues = [];
+  const yValues = []
+  let startDate = minDate.getTime() / 1000;
+  for (let i = 0; i <= 10; i++) {
+    xValues.push(startDate);
+    yValues.push(Math.random() * 0.1 + (i > 0 ? yValues[i-1] : 0));
+    startDate += 86400; // number of seconds in a day
+  }
 
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
     surface: { theme: { type: EThemeProviderType.Dark } },
@@ -103,8 +135,6 @@ async function builderExample(divElementId) {
         visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
       }
     },
-    // ... });
-    // #endregion
     yAxes: {
       type: EAxisType.NumericAxis,
       options: {
@@ -112,9 +142,19 @@ async function builderExample(divElementId) {
         axisAlignment: EAxisAlignment.Left,
       }
     },
+    series: [
+      {
+        type: ESeriesType.LineSeries,
+        options: {
+          strokeThickness: 3,
+          stroke: "#50C7E0"
+        },
+        xyData: { xValues, yValues }
+      }
+    ]
   });
+  // #endregion
 };
-
 
 
 if (location.search.includes("builder=1"))

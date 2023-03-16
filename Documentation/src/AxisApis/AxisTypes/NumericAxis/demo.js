@@ -69,7 +69,7 @@ chartWithNumericAxis("scichart-root");
 
 async function builderExample(divElementId) {
   // #region ExampleB
-  // Demonstrates how to create a line chart with SciChart.js using the Builder API
+  // Demonstrates how to configure a numeric axis in SciChart.js using the Builder API
   const {
     chartBuilder,
     ESeriesType,
