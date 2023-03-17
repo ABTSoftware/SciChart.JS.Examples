@@ -94,6 +94,7 @@ import { virtualizedDataOverviewExampleInfo } from "../Examples/Charts2D/Zooming
 import { heatmapInteractionsExampleInfo } from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions/exampleInfo";
 import { depthChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/DepthChart/exampleInfo";
 import { textChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart/exampleInfo";
+import { chartTitleExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/ChartTitle/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -459,6 +460,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_featureDemos_axisLayout: {
         id: "featuredApps_featureDemos_axisLayout",
         ...axisLayoutExampleInfo
+    },
+    featuredApps_featureDemos_chartTitle: {
+        id: "featuredApps_featureDemos_chartTitle",
+        ...chartTitleExampleInfo
     },
     featuredApps_featureDemos_subchartsGrid: {
         id: "featuredApps_featureDemos_subchartsGrid",
