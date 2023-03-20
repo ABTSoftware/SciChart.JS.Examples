@@ -1,4 +1,4 @@
-async function chartWithTextAxis(divElementId) {
+async function rotatingLabels(divElementId) {
   // Demonstrates how to configure a text axis in SciChart.js
   // using TextLabelProvider & NumericAxis
   const {
@@ -20,22 +20,7 @@ async function chartWithTextAxis(divElementId) {
   });
 
   // #region ExampleA
-  // Create the labelProvider
-  const labelProvider = new TextLabelProvider( {
-    labels: [
-      // Provide multiple lines directly
-      ["Apples","and Bananas"],
-      ["Strawberries","and Raspberries"],
-      ["Lemons, Limes", "and Oranges"],
-      // These will be auto-wrapped
-      "Apples and Bananas",
-      "Strawberries and Raspberries",
-      "Lemons Limes and Oranges",
-    ],
-    maxLength: 10
-  });
-
-  // Create an XAxis with a TextLabelProvider
+  // Create an XAxis with 90-degree rotated labels
   const xAxis = new NumericAxis(wasmContext, {
     labelProvider,
     maxAutoTicks: 3,
