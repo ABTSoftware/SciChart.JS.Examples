@@ -2,14 +2,17 @@
 const {
   NumericTickProvider
 } = SciChart;
-
 // or, for npm, import { NumericTickProvider, ... } from "scichart"
 
+// Custom TickProvider implementation
+//
 class CustomTickProvider extends NumericTickProvider {
   constructor(wasmContext) {
     super(wasmContext);
   }
 
+  // returns an array of minor gridline positions in data space
+  // Called once per draw. Can be dynamic
   getMinorTicks(minorDelta, majorDelta, visibleRange) {
     // Todo here: calculate your tick spacing based on axis minorDelta, majorDelta and visibleRange
     // Note we do not return major ticks here, so minor ticks exclude the majors
@@ -20,6 +23,8 @@ class CustomTickProvider extends NumericTickProvider {
       7.8, 8.2, 8.4, 8.6, 8.8, 9.0, 9.2, 9.4, 9.6, 9.8];
   }
 
+  // returns an array of major gridline positions in data space
+  // Called once per draw. Can be dynamic
   getMajorTicks(minorDelta, majorDelta, visibleRange) {
     // Todo here: calculate your tick spacing based on axis minorDelta, majorDelta and visibleRange
     // Note we return the major tick intervals and label intervals here
