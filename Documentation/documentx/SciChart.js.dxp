@@ -407,6 +407,7 @@
       <OtherFile Id="203695fb-1dfa-4b9d-b8d0-4ccbcdb1d829" FileName="images\AxisBase2D_InheritenceDiagram.png" SourceData="" BuildFlags="" />
       <OtherFile Id="beb87ef5-8978-4be4-b233-69169afd60eb" FileName="images\AxisLabelProviders_InheritenceDiagram.png" SourceData="" BuildFlags="" />
       <OtherFile Id="bb6bd614-72c0-4c42-b4fc-7db048eca2bf" FileName="images\TickProviders_InheritenceDiagram.png" SourceData="" BuildFlags="" />
+      <OtherFile Id="f9652dfe-5d80-4629-bb59-caacaabaeeaa" FileName="images\LayoutManager_UML.png" SourceData="" BuildFlags="" />
     </OtherFiles>
     <DefaultStylesheet>stylesheets\customstyles.css</DefaultStylesheet>
     <DefaultCaptureDirectory></DefaultCaptureDirectory>
@@ -1470,22 +1471,22 @@ image labels too </Notes>
                       <TargetItemId>2294a48f-459b-464f-9504-aed96c7fda2a</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="c64cfc48-eab9-4af1-bb1a-575f2fdc6e3c" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="c64cfc48-eab9-4af1-bb1a-575f2fdc6e3c" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>e00ca150-579a-4496-98b9-70c83ca9a7bb</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="fe7bbb9a-e9b7-4a32-b45d-7dc3c16dffa2" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>49949657-d7c3-48c7-93a2-2bb17f8dd8c1</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="b1a2b9d3-e5ce-41b4-a4f8-5e2ce879fbc3" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="b1a2b9d3-e5ce-41b4-a4f8-5e2ce879fbc3" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>0175a983-0786-4067-b718-206c8c41cd3b</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="0ad2da99-914a-4e88-93ac-48871c643c37" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>9dc14a09-9cff-46bc-939a-b03d6a9cb2ad</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                     <TocNode Name="" Id="3e9f7a7f-bd24-4725-b618-b8900d4b1181" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
@@ -1498,6 +1499,12 @@ image labels too </Notes>
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>60612d56-74d4-46c1-bdff-f31e2fe22d57</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="16b3d887-789e-468d-9b0a-916634842135" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>3a1fa3f5-6ae6-4819-8100-4a382d581587</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -4013,72 +4020,30 @@ image labels too </Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="0175a983-0786-4067-b718-206c8c41cd3b" Status="New Topic" CreatedOn="2021-09-16T16:43:43.3790216Z" ModifiedOn="2022-04-12T18:39:36.1162655Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Layout - Inside and Central Axis" BuildFlags="">
-                    <Title m="2021-10-05T13:26:15.3069664Z">Axis Layout - Inside and Central Axis</Title>
+                  <Topic Id="0175a983-0786-4067-b718-206c8c41cd3b" Status="New Topic" CreatedOn="2021-09-16T16:43:43.3790216Z" ModifiedOn="2023-03-22T12:12:08.28649Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Layout - Inside and Central Axis" BuildFlags="">
+                    <Title m="2023-03-22T11:41:41.2312464Z">Inner Axis Layout</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2022-04-12T18:39:36.1162655Z">&lt;P&gt;SciChart allows you to customize how axes are placed around and within the surface.&amp;nbsp; Axes can be placed:&lt;/P&gt;
+                        <Content m="2023-03-22T12:12:08.28649Z">&lt;P&gt;SciChart allows you to customize how axes are placed around and within the surface.&amp;nbsp; Axes can be placed:&lt;/P&gt;
 &lt;UL&gt;
-&lt;LI&gt;&lt;STRONG&gt;Outside the drawing area,&amp;nbsp;&lt;/STRONG&gt;called Outer Axes.&amp;nbsp; This is the default.&amp;nbsp; The drawing area is reduced to give space for the axes and their labels and titles. 
-&lt;LI&gt;&lt;STRONG&gt;Inside the drawing area&lt;/STRONG&gt;,&amp;nbsp;called Inner Axes.&amp;nbsp; The drawing area fills the entire space of the chart.&amp;nbsp; &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;STRONG&gt;Outside the drawing area,&amp;nbsp;&lt;/STRONG&gt;called Outer Axes.&amp;nbsp;This is the default.&amp;nbsp;The drawing area is reduced to give space for the axes and their labels and titles. 
+&lt;LI&gt;&lt;STRONG&gt;Inside the drawing area&lt;/STRONG&gt;,&amp;nbsp;called Inner Axes.&amp;nbsp;The drawing area fills the entire space of the chart.&amp;nbsp; &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Inner axes can either be around the edges of the area, or bound to a coordinate so they appear in the middle of the drawing area.&amp;nbsp;These are referred to as &lt;STRONG&gt;Central Axes&lt;/STRONG&gt;.&lt;/P&gt;
 &lt;H2&gt;Inner Axes&lt;/H2&gt;
-&lt;P&gt;To create an Inner axis simply set isInnerAxis: true on the axis options:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt; 
-&lt;P&gt;Inner Axis&amp;nbsp;Example&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;const xAxis = new NumericAxis(wasmContext, { isInnerAxis: true });&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // or&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // const xAxis = new NumericAxis(wasmContext);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // xAxis.isInnerAxis = true;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Now the x axis is an inner axis, while the y axis is the default outer axis.&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/AxisLayout_InnerAxis.png"&gt;&lt;/P&gt;
-&lt;H2&gt;Configuring&amp;nbsp;Inner Axis Position&lt;/H2&gt;
-&lt;P&gt;You can bind the position of&amp;nbsp;an inner&amp;nbsp;axis to a differend place using the&amp;nbsp;axisPosition property of the relevant LayoutStrategy on the LayoutManager.&amp;nbsp; These are:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;LayoutManager.leftInnerAxesLayoutStrategy 
-&lt;LI&gt;LayoutManager.rightInnerAxesLayoutStrategy 
-&lt;LI&gt;LayoutManager.topInnerAxesLayoutStrategy 
-&lt;LI&gt;LayoutManager.bottomInnerAxesLayoutStrategy &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;The&amp;nbsp;&amp;nbsp;coordinateMode&amp;nbsp;property is an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/einneraxisplacementcoordinatemode.html"&gt;EInnerAxisPlacementCoordinateMode&lt;/A&gt;&amp;nbsp;which is:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;STRONG&gt;DataValue&lt;/STRONG&gt; - axis will be placed at this data value on the orthogonal axis. 
-&lt;LI&gt;&lt;STRONG&gt;Pixel&lt;/STRONG&gt; - axis will be placed at that pixel coordinate, relative to the top/left of the chart 
-&lt;LI&gt;&lt;STRONG&gt;Relative&lt;/STRONG&gt; - a value between 0.0 and 1.0, where 0.o is the top/left and 1.0 is the bottom/right of the chart. &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;In the example below, note that the first x-Axis is Top aligned, so we need to set properties on topInnerAxesLayoutStrategy.&amp;nbsp; This axis will move vertically as the chart is panned as it is positioned by data value.&amp;nbsp; The second x-Axis is Bottom aligned, so we configure the bottomInnerAxesLayoutStrategy.&amp;nbsp; This uses Pixel coordinateMode, so it stays fixed as the chart is panned.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt; 
-&lt;P&gt;Positioning Inner Axis&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import { EInnerAxisPlacementCoordinateMode } from "scichart/Charting/LayoutManager/EInnerAxisPlacementCoordinateMode";&lt;/P&gt;
-&lt;P&gt;const xAxis = new NumericAxis(wasmContext, { isInnerAxis: true, axisAlignment: EAxisAlignment.Top, axisBorder: { borderTop: 2, color: "steelblue" } });&lt;BR&gt;sciChartSurface.layoutManager.topInnerAxesLayoutStrategy.coordinateMode = EInnerAxisPlacementCoordinateMode.DataValue;&lt;BR&gt;sciChartSurface.layoutManager.topInnerAxesLayoutStrategy.axisPosition = 7;&lt;/P&gt;
-&lt;P&gt;const xAxis2 = new NumericAxis(wasmContext, { isInnerAxis: true, axisAlignment: EAxisAlignment.Bottom, axisBorder: { borderBottom: 2, color: "white" } });&lt;BR&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.coordinateMode = EInnerAxisPlacementCoordinateMode.Pixel;&lt;BR&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.axisPosition = 300;&lt;/P&gt;
-&lt;P&gt;const yAxis = new NumericAxis(wasmContext);&lt;/P&gt;
-&lt;P&gt;sciChartSurface.xAxes.add(xAxis, xAxis2);&lt;BR&gt;sciChartSurface.yAxes.add(yAxis);&lt;BR&gt;sciChartSurface.chartModifiers.add(new ZoomPanModifier());&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Note also that&amp;nbsp;for the top aligned axis, inner axis labels are placed below the axis line, so we need to set borderTop, and the opposite for a bottom aligned axis.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/AxisLayout_InnerAxesPositioning.gif"&gt;&lt;/P&gt;
-&lt;H2&gt;Central Axes&lt;/H2&gt;
-&lt;P&gt;While it is possible to configure central axes using properties on the LayoutStrategies as above, for the standard case&amp;nbsp;it is easier to use the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/centralaxeslayoutmanager.html"&gt;CentralAxesLayoutManager&lt;/A&gt;.&amp;nbsp; This makes all axes inner, and places them at the centre of the chart.&amp;nbsp;Just this code...&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt; 
-&lt;P&gt;Central Axes&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import { CentralAxesLayoutManager } from "scichart/Charting/LayoutManager/CentralAxesLayoutManager";&lt;/P&gt;
-&lt;P&gt;const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);&lt;BR&gt;const xAxis = new NumericAxis(wasmContext, { isInnerAxis: true });&lt;BR&gt;const yAxis = new NumericAxis(wasmContext);&lt;BR&gt;sciChartSurface.xAxes.add(xAxis);&lt;BR&gt;sciChartSurface.yAxes.add(yAxis);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&amp;nbsp;Produces this:&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/AxisLayout_CentralAxes.png"&gt;&lt;/P&gt;
-&lt;P&gt;CentralAxesLayoutManager has some options you can use to configure the position of the horizontal and vertical axes, using the coordinateModes discussed above:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt; 
-&lt;P&gt;Configuring Central Axes&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import { CentralAxesLayoutManager } from "scichart/Charting/LayoutManager/CentralAxesLayoutManager";&lt;BR&gt;import { EInnerAxisPlacementCoordinateMode } from "scichart/Charting/LayoutManager/EInnerAxisPlacementCoordinateMode";&lt;/P&gt;
-&lt;P&gt;const options = {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.DataValue,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Pixel,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; horizontalAxisPosition: 3,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; verticalAxisPosition: 100,&lt;BR&gt;};&lt;BR&gt;sciChartSurface.layoutManager = new CentralAxesLayoutManager(options);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&amp;nbsp;&lt;IMG border=0 alt="" src="images/AxisLayout_CentralAxesConfigured.png"&gt;&lt;/P&gt;
-&lt;H2&gt;Handling Custom Axis Ids of Orthogonal Axes&lt;/H2&gt;
-&lt;P&gt;If there are multiple Y or X Axes used on the chart, you should provide them with specific distinct Ids. As a result you may need to pass custom ids to Layout Strategies as a hint for which X axis should be for calculating the position of the Y axis and vice versa.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt; 
-&lt;P&gt;Custom Axis Ids&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import { NumberRange } from "scichart/Core/NumberRange";&lt;/P&gt;
-&lt;P&gt;// ...&lt;/P&gt;
-&lt;P&gt;const ID_Y_AXIS_1 = "yAxis1";&lt;BR&gt;const ID_Y_AXIS_2 = "yAxis2";&lt;/P&gt;
-&lt;P&gt;const xAxis = new NumericAxis(wasmContext, { isInnerAxis: true });&lt;BR&gt;const yAxis1 = new NumericAxis(wasmContext, { id: ID_Y_AXIS_1 });&lt;BR&gt;const yAxis2 = new NumericAxis(wasmContext, { id: ID_Y_AXIS_2, visibleRange: new NumberRange(-5, 5) });&lt;/P&gt;
-&lt;P&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.orthogonalAxisId = ID_Y_AXIS_1;&lt;BR&gt;// the xAxis will be positioned accordingly to value on the yAxis1&lt;BR&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.coordinateMode = EInnerAxisPlacementCoordinateMode.DataValue;&lt;BR&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.axisPosition = 3;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/AxisLayout_AxisIds.png"&gt;&lt;/P&gt;</Content>
+&lt;P&gt;To create an Inner axis simply set&amp;nbsp;&lt;A href="https://scichart.com/documentation/js/current/typedoc/classes/numericaxis.html#isinneraxis"&gt;isInnerAxis: true&lt;/A&gt; on the axis options:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisLayout\InsideAxis\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisLayout\InsideAxis\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Now the x axis is an inner axis, while the y axis is the default outer axis.&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisLayout/InsideAxis/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;DrawSeriesBehindAxis property&lt;/H2&gt;
+&lt;P&gt;SciChart.js also allows you to draw all chart series behind axis by setting a single flag on the parent SciChartSurface.&lt;/P&gt;
+&lt;P&gt;The default behaviour is to draw axis on the outside of the chart area. If you need more space on the chart (if axis are taking up too much space), you can set a single flag to draw the series behind the axis and pull the axis areas inside the chart area:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisLayout\SeriesBehindAxis\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisLayout/SeriesBehindAxis/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks>
-                      <TopicLink Id="6806f392-cfcd-4cf5-be55-ea94f1ca8c13" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="e4489a79-987b-4a06-ac98-586190c47ec5" BuildFlags="">
-                        <Title />
-                        <Category />
-                      </TopicLink>
                       <TopicLink Id="7f464e73-8ce8-4e87-bad3-8ff794ba8ace" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="2294a48f-459b-464f-9504-aed96c7fda2a" BuildFlags="">
                         <Title />
                         <Category />
@@ -4096,24 +4061,13 @@ image labels too </Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="49949657-d7c3-48c7-93a2-2bb17f8dd8c1" Status="New Topic" CreatedOn="2022-04-12T18:38:24.4093418Z" ModifiedOn="2023-03-09T17:05:37.6512307Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AxisLayout-DrawingSeriesBehindAxis" BuildFlags="">
+                  <Topic Id="49949657-d7c3-48c7-93a2-2bb17f8dd8c1" Status="New Topic" CreatedOn="2022-04-12T18:38:24.4093418Z" ModifiedOn="2023-03-22T11:46:25.5276343Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AxisLayout-DrawingSeriesBehindAxis" BuildFlags="">
                     <Title m="2023-03-09T17:05:37.6512307Z">Axis Layout - Drawing Series Behind Axis</Title>
-                    <ContentsTitle />
+                    <ContentsTitle m="2023-03-22T11:43:33.6638582Z">Axis Layout - Drawing Series Behind Axis</ContentsTitle>
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2022-04-12T19:11:53.8159929Z">&lt;P&gt;SciChart.js v2.2 and above now allow you to draw series behgind axis by setting a single flag on the parent SciChartSurface. &lt;/P&gt;
-&lt;P&gt;The default behaviour is to draw axis on the outside of the chart area as follows.&lt;/P&gt;
-&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/AxisLayout_DrawSeriesBehindAxisFalse.png"&gt;
-&lt;DIV align=left&gt;&amp;nbsp;&lt;/DIV&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;P align=left&gt;If you need more space on the chart (if axis are taking up too much space), you can set a single flag to draw the series behind the axis and pull the axis areas inside the chart area:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt; 
-&lt;P&gt;Inner Axis&amp;nbsp;Example&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// When true, Series are drawn behind axis (Axis inside chart)&lt;BR&gt;sciChartSurface.drawSeriesBehindAxis = true;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;This results in the following output. &lt;/P&gt;
-&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/AxisLayout_DrawSeriesBehindAxis.png"&gt;
-&lt;DIV align=left&gt;&amp;nbsp;&lt;/DIV&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;For more complex axis layout options, see&amp;nbsp;&lt;A href="0175a983-0786-4067-b718-206c8c41cd3b"&gt;Axis Layout - Inside and Central Axis&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                        <Content m="2023-03-22T11:46:25.5276343Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;This content has been moved. Please see&amp;nbsp;&lt;A href="0175a983-0786-4067-b718-206c8c41cd3b"&gt;Inner Axis Layout&lt;/A&gt; for more details.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks>
@@ -4126,8 +4080,8 @@ image labels too </Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="60612d56-74d4-46c1-bdff-f31e2fe22d57" Status="New Topic" CreatedOn="2022-01-31T18:14:15.9210806Z" ModifiedOn="2022-04-12T19:12:40.403686Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Layout - Horizontally Stacked Axis" BuildFlags="">
-                    <Title m="2022-01-31T18:14:46.1252498Z">Axis Layout - Horizontally Stacked Axis</Title>
+                  <Topic Id="60612d56-74d4-46c1-bdff-f31e2fe22d57" Status="New Topic" CreatedOn="2022-01-31T18:14:15.9210806Z" ModifiedOn="2023-03-22T11:43:28.9370155Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Layout - Horizontally Stacked Axis" BuildFlags="">
+                    <Title m="2023-03-22T11:43:28.9360184Z">Horizontally Stacked Axis Layout</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
@@ -4187,8 +4141,8 @@ image labels too </Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="af7dd07c-7746-4a9d-a9ea-1afc4bb95701" Status="New Topic" CreatedOn="2021-09-16T16:43:20.4396916Z" ModifiedOn="2022-02-07T12:13:38.1418632Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Layout - Vertically Stacked Axis" BuildFlags="">
-                    <Title m="2021-10-05T14:17:07.425051Z">Axis Layout - Vertically Stacked Axis</Title>
+                  <Topic Id="af7dd07c-7746-4a9d-a9ea-1afc4bb95701" Status="New Topic" CreatedOn="2021-09-16T16:43:20.4396916Z" ModifiedOn="2023-03-22T11:43:25.2488303Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Layout - Vertically Stacked Axis" BuildFlags="">
+                    <Title m="2023-03-22T11:43:25.2474828Z">Vertically Stacked Axis Layout</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
@@ -4242,6 +4196,87 @@ image labels too </Notes>
                         <Category />
                       </TopicLink>
                     </TopicLinks>
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="3a1fa3f5-6ae6-4819-8100-4a382d581587" Status="New Topic" CreatedOn="2023-03-22T11:40:37.9981766Z" ModifiedOn="2023-03-22T12:11:21.9956054Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="LayoutManagers" BuildFlags="">
+                    <Title m="2023-03-22T11:43:14.5265238Z">Advanced Options - Layout Managers</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2023-03-22T12:11:21.9956054Z">&lt;H2&gt;Configuring&amp;nbsp;Inner Axis Position&lt;/H2&gt;
+&lt;P&gt;You can bind the position of&amp;nbsp;an inner&amp;nbsp;axis to a different place using the&amp;nbsp;axisPosition property of the relevant LayoutStrategy on the LayoutManager. Here's a quick diagram showing the relationship between SciChartSurface and LayoutManager, and the derived types.&lt;/P&gt;
+&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/LayoutManager_UML.png"&gt;&lt;/P&gt;
+&lt;DIV align=left&gt; &lt;/DIV&gt;
+&lt;P&gt;&lt;/P&gt;
+&lt;P&gt;Properties which affect the layout of axis are:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;LayoutManager.leftInnerAxesLayoutStrategy
+&lt;LI&gt;LayoutManager.rightInnerAxesLayoutStrategy
+&lt;LI&gt;LayoutManager.topInnerAxesLayoutStrategy
+&lt;LI&gt;LayoutManager.bottomInnerAxesLayoutStrategy&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;The&amp;nbsp;&amp;nbsp;coordinateMode&amp;nbsp;property is an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/einneraxisplacementcoordinatemode.html"&gt;EInnerAxisPlacementCoordinateMode&lt;/A&gt;&amp;nbsp;which is:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;STRONG&gt;DataValue&lt;/STRONG&gt; - axis will be placed at this data value on the orthogonal axis.
+&lt;LI&gt;&lt;STRONG&gt;Pixel&lt;/STRONG&gt; - axis will be placed at that pixel coordinate, relative to the top/left of the chart
+&lt;LI&gt;&lt;STRONG&gt;Relative&lt;/STRONG&gt; - a value between 0.0 and 1.0, where 0.o is the top/left and 1.0 is the bottom/right of the chart.&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;In the example below, note that the first x-Axis is Top aligned, so we need to set properties on topInnerAxesLayoutStrategy.&amp;nbsp; This axis will move vertically as the chart is panned as it is positioned by data value.&amp;nbsp; The second x-Axis is Bottom aligned, so we configure the bottomInnerAxesLayoutStrategy.&amp;nbsp; This uses Pixel coordinateMode, so it stays fixed as the chart is panned.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt; 
+&lt;P&gt;Positioning Inner Axis&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;import { EInnerAxisPlacementCoordinateMode } from "scichart/Charting/LayoutManager/EInnerAxisPlacementCoordinateMode";&lt;/P&gt;
+&lt;P&gt;const xAxis = new NumericAxis(wasmContext, { isInnerAxis: true, axisAlignment: EAxisAlignment.Top, axisBorder: { borderTop: 2, color: "steelblue" } });&lt;BR&gt;sciChartSurface.layoutManager.topInnerAxesLayoutStrategy.coordinateMode = EInnerAxisPlacementCoordinateMode.DataValue;&lt;BR&gt;sciChartSurface.layoutManager.topInnerAxesLayoutStrategy.axisPosition = 7;&lt;/P&gt;
+&lt;P&gt;const xAxis2 = new NumericAxis(wasmContext, { isInnerAxis: true, axisAlignment: EAxisAlignment.Bottom, axisBorder: { borderBottom: 2, color: "white" } });&lt;BR&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.coordinateMode = EInnerAxisPlacementCoordinateMode.Pixel;&lt;BR&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.axisPosition = 300;&lt;/P&gt;
+&lt;P&gt;const yAxis = new NumericAxis(wasmContext);&lt;/P&gt;
+&lt;P&gt;sciChartSurface.xAxes.add(xAxis, xAxis2);&lt;BR&gt;sciChartSurface.yAxes.add(yAxis);&lt;BR&gt;sciChartSurface.chartModifiers.add(new ZoomPanModifier());&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Note also that&amp;nbsp;for the top aligned axis, inner axis labels are placed below the axis line, so we need to set borderTop, and the opposite for a bottom aligned axis.&lt;/P&gt;
+&lt;P&gt;&lt;IMG border=0 alt="" src="images/AxisLayout_InnerAxesPositioning.gif"&gt;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Handling Custom Axis Ids of Orthogonal Axes&lt;/H2&gt;
+&lt;P&gt;If there are multiple Y or X Axes used on the chart, you should provide them with specific distinct Ids. As a result you may need to pass custom ids to Layout Strategies as a hint for which X axis should be for calculating the position of the Y axis and vice versa.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt; 
+&lt;P&gt;Custom Axis Ids&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;import { NumberRange } from "scichart/Core/NumberRange";&lt;/P&gt;
+&lt;P&gt;// ...&lt;/P&gt;
+&lt;P&gt;const ID_Y_AXIS_1 = "yAxis1";&lt;BR&gt;const ID_Y_AXIS_2 = "yAxis2";&lt;/P&gt;
+&lt;P&gt;const xAxis = new NumericAxis(wasmContext, { isInnerAxis: true });&lt;BR&gt;const yAxis1 = new NumericAxis(wasmContext, { id: ID_Y_AXIS_1 });&lt;BR&gt;const yAxis2 = new NumericAxis(wasmContext, { id: ID_Y_AXIS_2, visibleRange: new NumberRange(-5, 5) });&lt;/P&gt;
+&lt;P&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.orthogonalAxisId = ID_Y_AXIS_1;&lt;BR&gt;// the xAxis will be positioned accordingly to value on the yAxis1&lt;BR&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.coordinateMode = EInnerAxisPlacementCoordinateMode.DataValue;&lt;BR&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.axisPosition = 3;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&lt;IMG border=0 alt="" src="images/AxisLayout_AxisIds.png"&gt;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="9dc14a09-9cff-46bc-939a-b03d6a9cb2ad" Status="New Topic" CreatedOn="2023-03-22T11:41:13.3815637Z" ModifiedOn="2023-03-22T11:44:09.0827441Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CentralAxisLayout" BuildFlags="">
+                    <Title m="2023-03-22T11:41:21.3183218Z">Central Axis Layout</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2023-03-22T11:44:09.0827441Z">&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Central Axes&lt;/H2&gt;
+&lt;P&gt;While it is possible to configure central axes using properties on the LayoutStrategies as above, for the standard case&amp;nbsp;it is easier to use the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/centralaxeslayoutmanager.html"&gt;CentralAxesLayoutManager&lt;/A&gt;.&amp;nbsp; This makes all axes inner, and places them at the centre of the chart.&amp;nbsp;Just this code...&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt; 
+&lt;P&gt;Central Axes&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;import { CentralAxesLayoutManager } from "scichart/Charting/LayoutManager/CentralAxesLayoutManager";&lt;/P&gt;
+&lt;P&gt;const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);&lt;BR&gt;const xAxis = new NumericAxis(wasmContext, { isInnerAxis: true });&lt;BR&gt;const yAxis = new NumericAxis(wasmContext);&lt;BR&gt;sciChartSurface.xAxes.add(xAxis);&lt;BR&gt;sciChartSurface.yAxes.add(yAxis);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;Produces this:&lt;/P&gt;
+&lt;P&gt;&lt;IMG border=0 alt="" src="images/AxisLayout_CentralAxes.png"&gt;&lt;/P&gt;
+&lt;P&gt;CentralAxesLayoutManager has some options you can use to configure the position of the horizontal and vertical axes, using the coordinateModes discussed above:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt; 
+&lt;P&gt;Configuring Central Axes&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;import { CentralAxesLayoutManager } from "scichart/Charting/LayoutManager/CentralAxesLayoutManager";&lt;BR&gt;import { EInnerAxisPlacementCoordinateMode } from "scichart/Charting/LayoutManager/EInnerAxisPlacementCoordinateMode";&lt;/P&gt;
+&lt;P&gt;const options = {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.DataValue,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Pixel,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; horizontalAxisPosition: 3,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; verticalAxisPosition: 100,&lt;BR&gt;};&lt;BR&gt;sciChartSurface.layoutManager = new CentralAxesLayoutManager(options);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;IMG border=0 alt="" src="images/AxisLayout_CentralAxesConfigured.png"&gt;&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
                     <TopicKeywords />
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
@@ -14270,7 +14305,7 @@ image labels too </Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">906</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>
