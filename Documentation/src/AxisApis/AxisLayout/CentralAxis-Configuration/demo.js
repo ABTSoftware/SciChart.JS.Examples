@@ -1,11 +1,11 @@
-async function centralAxis(divElementId) {
-  // #region ExampleA
+async function centralAxisConfigure(divElementId) {
   // Demonstrates how to configure a central axis in SciChart.js
   const {
     SciChartSurface,
     NumericAxis,
     SciChartJsNavyTheme,
-    CentralAxesLayoutManager
+    CentralAxesLayoutManager,
+    EInnerAxisPlacementCoordinateMode
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -14,8 +14,17 @@ async function centralAxis(divElementId) {
     theme: new SciChartJsNavyTheme()
   });
 
+  // #region ExampleA
   // Apply the CentralAxesLayoutManager to the SciChartSurface
-  sciChartSurface.layoutManager = new CentralAxesLayoutManager();
+  sciChartSurface.layoutManager = new CentralAxesLayoutManager({
+    horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.DataValue,
+    verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Pixel,
+    horizontalAxisPosition: 3,
+    verticalAxisPosition: 100,
+  });
+
+  // Continue to add your X,Y axis as before
+  // #endregion
 
   // Add an X, Y Axis
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
@@ -34,32 +43,41 @@ async function centralAxis(divElementId) {
       color: "#F48420"
     }
   }));
-  // #endregion
 };
 
-centralAxis("scichart-root");
+centralAxisConfigure("scichart-root");
 
 
 
 
 
 async function builderExample(divElementId) {
-  // #region ExampleB
   // Demonstrates how to configure a central axis in SciChart.js using the Builder API
   const {
     chartBuilder,
     EThemeProviderType,
     EAxisType,
-    ELayoutManagerType
+    ELayoutManagerType,
+    EInnerAxisPlacementCoordinateMode
   } = SciChart;
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
 
+  // #region ExampleB
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
     surface: {
         theme: { type: EThemeProviderType.Dark },
-        layoutManager: { type: ELayoutManagerType.CentralAxes }
+        layoutManager: {
+          type: ELayoutManagerType.CentralAxes, options: {
+            horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.DataValue,
+            verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Pixel,
+            horizontalAxisPosition: 3,
+            verticalAxisPosition: 100,
+          }
+        }
     },
+    // etc...
+    // #endregion
     xAxes: {
       type: EAxisType.NumericAxis,
       options: {
@@ -83,7 +101,6 @@ async function builderExample(divElementId) {
       }
     },
   });
-  // #endregion
 };
 
 
