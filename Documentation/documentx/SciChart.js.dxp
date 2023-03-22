@@ -4141,13 +4141,13 @@ image labels too </Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="af7dd07c-7746-4a9d-a9ea-1afc4bb95701" Status="New Topic" CreatedOn="2021-09-16T16:43:20.4396916Z" ModifiedOn="2023-03-22T11:43:25.2488303Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Layout - Vertically Stacked Axis" BuildFlags="">
+                  <Topic Id="af7dd07c-7746-4a9d-a9ea-1afc4bb95701" Status="New Topic" CreatedOn="2021-09-16T16:43:20.4396916Z" ModifiedOn="2023-03-22T15:48:49.1188669Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Layout - Vertically Stacked Axis" BuildFlags="">
                     <Title m="2023-03-22T11:43:25.2474828Z">Vertically Stacked Axis Layout</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2022-02-07T12:13:38.1418632Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;See the Vertically Stacked Axis demo at&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-vertically-stacked-axes" target=_blank&gt;demo.scichart.com&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+                        <Content m="2023-03-22T15:48:49.1188669Z">&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;See the Vertically Stacked Axis demo at&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-vertically-stacked-axes" target=_blank&gt;demo.scichart.com&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;The Stacked Axis feature in SciChart allows you to specify the layout of the axis panel. Stacked axes allow you to have multiple series plotted&amp;nbsp;against different axes&amp;nbsp;on the same sciChartSurface, where only a portion of each axis is visible, but the series themselves can overlap.&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;This can be useful when creating complex charts with many traces, each&amp;nbsp;with its own space,&amp;nbsp;where you want the traces to overlap. For example:&lt;/P&gt;
 &lt;P&gt;&lt;IMG border=0 alt="" src="images/Axis_VerticallyStackedAxis.png"&gt;&lt;/P&gt;
