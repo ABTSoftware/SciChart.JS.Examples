@@ -38,7 +38,7 @@ export const logarithmicAxisExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLogarithmicAxis,
     pageTitle: ExampleStrings.titleLogarithmicAxis + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlLogarithmicAxis,
-    filepath: "Charts2D/ModifyAxisBehavior/LogarithmicAxes",
+    filepath: "Charts2D/ModifyAxisBehavior/LogarithmicAxis",
     subtitle: Subtitle,
     documentationLinks,
     tips,
