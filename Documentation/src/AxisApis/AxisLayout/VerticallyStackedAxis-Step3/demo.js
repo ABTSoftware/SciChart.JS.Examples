@@ -30,19 +30,32 @@ async function verticallyStackedAxis(divElementId) {
   // ...
 
   // Create several YAxis on the left using stackedAxisLength
-  const axisAlignment = EAxisAlignment.Left;
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { id: "YAxis0", axisAlignment, axisTitle: "25% Size", stackedAxisLength: "25%" }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { id: "YAxis1", axisAlignment, axisTitle: "Default" }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { id: "YAxis2", axisAlignment, axisTitle: "Default" }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { id: "YAxis3", axisAlignment, axisTitle: "Default" }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { id: "YAxis4", axisAlignment, axisTitle: "100 pixels", stackedAxisLength: 100 }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { id: "YAxis5", axisAlignment, axisTitle: "Default" }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { id: "YAxis6", axisAlignment, axisTitle: "Default" }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { id: "YAxis7", axisAlignment, axisTitle: "Default" }));
+  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+    id: "Y0",
+    axisAlignment: EAxisAlignment.Left,
+    axisTitle: "50% Size",
+    stackedAxisLength: "50%" // Occupy 50% of available viewport size
+  }));
+  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+    id: "Y1",
+    axisAlignment: EAxisAlignment.Left,
+    axisTitle: "Default"
+  }));
+  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+    id: "Y2",
+    axisAlignment: EAxisAlignment.Left,
+    axisTitle: "Default"
+  }));
+  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+    id: "Y3",
+    axisAlignment: EAxisAlignment.Left,
+    axisTitle: "200 pixels",
+    stackedAxisLength: 200 // Occupy exactly 200 pixels
+  }));
   // #endregion
 
   // To make it clearer what's happening, colour the axis backgrounds & borders
-  const axisColors = ["#50C7E0", "#EC0F6C", "#30BC9A", "#F48420", "#364BA0", "#882B91", "#67BDAF", "#C52E60"];
+  const axisColors = ["#50C7E0", "#EC0F6C", "#30BC9A", "#F48420" ];
   sciChartSurface.yAxes.asArray().forEach((yAxis, index) => {
     yAxis.backgroundColor = axisColors[index] + "22";
     yAxis.axisBorder = { color: axisColors[index], borderRight: 1 };
@@ -56,10 +69,10 @@ async function verticallyStackedAxis(divElementId) {
     const yValues = xValues.map(x => Math.sin(x * 0.4 + index));
 
     return {
-      yAxisId: `YAxis${index}`,
+      yAxisId: `Y${index}`,
       stroke: axisColors[index],
       strokeThickness: 2,
-      dataSeries: new XyDataSeries(wasmContext, {xValues, yValues })
+      dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
     };
   };
 
@@ -67,10 +80,6 @@ async function verticallyStackedAxis(divElementId) {
   sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(1)}));
   sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(2)}));
   sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(3)}));
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(4)}));
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(5)}));
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(6)}));
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(7)}));
 };
 
 verticallyStackedAxis("scichart-root");
