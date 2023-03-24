@@ -1,13 +1,11 @@
-async function chartWithNumericAxis(divElementId) {
+async function axisStyling(divElementId) {
   // #region ExampleA
-  // Demonstrates how to configure a numeric axis in SciChart.js
+  // Demonstrates how to style axis borders and background in SciChart.js
   const {
     SciChartSurface,
     NumericAxis,
     SciChartJsNavyTheme,
-    EAutoRange,
     EAxisAlignment,
-    ENumericFormat,
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -16,52 +14,44 @@ async function chartWithNumericAxis(divElementId) {
     theme: new SciChartJsNavyTheme()
   });
 
-  // Create an XAxis on the bottom
-  const xAxis = new NumericAxis(wasmContext, {
-    // All these properties are optional
-    // ...
-    // Enable flags like drawing gridlines
-    drawMajorGridLines: true,
-    drawMinorGridLines: true,
-    drawLabels: true,
-    // Set title, alignment and autorange
-    axisTitle: "X Axis, Bottom, 2 decimal places",
-    axisAlignment: EAxisAlignment.Bottom,
-    autoRange: EAutoRange.Once,
-    // Enable decision labels with 4 significant figures
-    labelFormat: ENumericFormat.Decimal,
-    cursorLabelFormat: ENumericFormat.Decimal,
-    labelPrecision: 4,
-  });
+    const yAxis = new NumericAxis(wasmContext, {
+        axisTitleStyle: { color: "#368BC1" },
+        id: "RightAxis",
+        axisTitle: "Right Axis",
+        axisBorder: {
+            borderLeft: 1,
+            color: "#368BC1" // Blue color
+        },
+        backgroundColor: "#368BC111"
+    });
 
-  // Add the xAxis to the chart
-  sciChartSurface.xAxes.add(xAxis);
+    const leftYAxis = new NumericAxis(wasmContext, {
+        axisAlignment: EAxisAlignment.Left,
+        axisTitleStyle: { color: "#228B22" },
+        axisTitle: "Left Axis",
+        axisBorder: {
+            borderRight: 1,
+            color: "#228B22" // Green color
+        },
+        backgroundColor: "#228B2222"
+    });
 
-  // Creating a NumericAxis as a YAxis on the left
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-    axisTitle: "Y Axis, Left, 4 dp",
-    axisAlignment: EAxisAlignment.Left,
-    labelFormat: ENumericFormat.Decimal,
-    cursorLabelFormat: ENumericFormat.Decimal,
-    labelPrecision: 4,
-    labelPrefix: "$",
-    labelPostfix: " USD"
-  }));
-  // #endregion
+    const xAxis = new NumericAxis(wasmContext, {
+        axisTitleStyle: { color: "#EEEEEE" },
+        axisTitle: "X Axis",
+        axisBorder: {
+            borderTop: 1,
+            color: "#EEEEEE" // Green color
+        },
+        backgroundColor: "#EEEEEE11"
+    });
 
-  // For the example - but not the documentation - show a line series
-  const { FastLineRenderableSeries, XyDataSeries } = SciChart;
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-    dataSeries: new XyDataSeries(wasmContext, {
-      xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      yValues: [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0]
-    }),
-    stroke: "#0066FF",
-    strokeThickness: 3,
-  }));
+    sciChartSurface.yAxes.add(yAxis, leftYAxis);
+    sciChartSurface.xAxes.add(xAxis);
+    // #endregion
 };
 
-chartWithNumericAxis("scichart-root");
+axisStyling("scichart-root");
 
 
 
@@ -69,14 +59,11 @@ chartWithNumericAxis("scichart-root");
 
 async function builderExample(divElementId) {
   // #region ExampleB
-  // Demonstrates how to configure a numeric axis in SciChart.js using the Builder API
+  // Demonstrates how to style a numeric axis in SciChart.js using the Builder API
   const {
     chartBuilder,
-    ESeriesType,
     EThemeProviderType,
-    EAutoRange,
     EAxisAlignment,
-    ENumericFormat,
     EAxisType,
   } = SciChart;
 
@@ -87,49 +74,41 @@ async function builderExample(divElementId) {
     xAxes: {
       type: EAxisType.NumericAxis,
       options: {
-        // All these properties are optional
-        // ...
-        // Enable flags like drawing gridlines
-        drawMajorGridLines: true,
-        drawMinorGridLines: true,
-        drawLabels: true,
-        // Set title, alignment and autorange
-        axisTitle: "X Axis, Bottom, 2 decimal places",
-        axisAlignment: EAxisAlignment.Bottom,
-        autoRange: EAutoRange.Once,
-        // Enable decision labels with 4 significant figures
-        labelFormat: ENumericFormat.Decimal,
-        cursorLabelFormat: ENumericFormat.Decimal,
-        labelPrecision: 2,
-      }
+          axisTitleStyle: { color: "#EEEEEE" },
+          axisTitle: "X Axis",
+          axisBorder: {
+              borderTop: 1,
+              color: "#EEEEEE" // Green color
+        },
+        backgroundColor: "#EEEEEE11"
+        }
     },
-    yAxes: {
+    yAxes: [{
       type: EAxisType.NumericAxis,
       options: {
-        axisTitle: "Y Axis, Left, default formatting",
-        axisAlignment: EAxisAlignment.Left,
-        axisTitle: "Y Axis, Left, 4 dp",
-        axisAlignment: EAxisAlignment.Left,
-        labelFormat: ENumericFormat.Decimal,
-        cursorLabelFormat: ENumericFormat.Decimal,
-        labelPrecision: 4,
-        labelPrefix: "$",
-        labelPostfix: " USD"
+          axisTitleStyle: { color: "#368BC1" },
+          id: "RightAxis",
+          axisTitle: "Right Axis",
+          axisBorder: {
+              borderLeft: 1,
+              color: "#368BC1" // Blue color
+          },
+          backgroundColor: "#368BC111"
       }
     },
-    series: [
-      {
-        type: ESeriesType.LineSeries,
-        xyData: {
-          xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-          yValues: [2.5, 3.5, 3.7, 4.0, 5.0, 5.5, 5.0, 4.0, 3.0]
-        },
-        options: {
-          stroke: "#0066FF",
-          strokeThickness: 5,
-        }
-      }
-    ]
+        {
+            type: EAxisType.NumericAxis,
+            options: {
+                axisAlignment: EAxisAlignment.Left,
+                axisTitleStyle: { color: "#228B22" },
+                axisTitle: "Left Axis",
+                axisBorder: {
+                    borderRight: 1,
+                    color: "#228B22" // Green color
+                },
+                backgroundColor: "#228B2222"
+            }
+        }]
   });
   // #endregion
 };
