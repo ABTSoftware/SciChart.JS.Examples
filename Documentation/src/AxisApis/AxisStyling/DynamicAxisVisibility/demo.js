@@ -108,7 +108,7 @@ async function axisVisibility(divElementId) {
 
   const textAnnotation = new TextAnnotation({ x1: 0.5, y1: 0.5, text: "Click the legend: Maximise Series with Hidden Axis",
     textColor: "#FFFFFF55", fontSize: 26,
-    xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinrateMode.Relative,
+    xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
     horizontalAnchorPoint: EHorizontalAnchorPoint.Center, verticalAnchorPoint: EVerticalAnchorPoint.Center})
   sciChartSurface.annotations.add(textAnnotation);
 };
