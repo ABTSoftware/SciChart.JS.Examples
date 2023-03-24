@@ -1536,6 +1536,12 @@ isPrimaryAxis switched depending on mouse over </Notes>
                       <TargetItemId>8deddadd-6171-496a-ab20-7332232c4c16</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
+                    <TocNode Name="" Id="db6fa60e-8d16-4980-b128-35bb1cc9588a" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>d66c2e84-028d-4bb7-930c-df91beb840db</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
                   </ChildNodes>
                 </TocNode>
                 <TocNode Name="" Id="70c296a4-a222-42a1-880c-0c258bfcb23b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
@@ -3979,7 +3985,7 @@ isPrimaryAxis switched depending on mouse over </Notes>
             <Caption m="2016-08-04T09:00:32.249839Z">Axis APIs</Caption>
             <ChildTopicCategories>
               <TopicCategory Id="6b28b463-7489-44c4-b330-f81127d7b7ca" AutoIndex="false">
-                <Caption m="2023-03-08T19:07:43.5653056Z">Axis Configuration</Caption>
+                <Caption m="2023-03-24T15:39:12.0890957Z">Axis Layout</Caption>
                 <ChildTopicCategories />
                 <Topics>
                   <Topic Id="2294a48f-459b-464f-9504-aed96c7fda2a" Status="New Topic" CreatedOn="2017-10-24T17:53:49.4781408Z" ModifiedOn="2023-03-21T20:00:59.4764054Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Alignment - Setting Axis Alignment" BuildFlags="">
@@ -5281,6 +5287,98 @@ isPrimaryAxis switched depending on mouse over </Notes>
 &lt;H3&gt;Further notes on Label Culling &amp;amp; Spacing&lt;/H3&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;The TextLabelProvider obeys other rules of axis tick spacing and label culling. Take a look at the section on&amp;nbsp;&lt;A href="463d136b-fe1f-4960-85ac-9cb15ceb1d21"&gt;Gridline and Label Spacing (Interval)&lt;/A&gt; for some more information how this works.&lt;/P&gt;
 &lt;P&gt;Finally, the property&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisrenderer.html#hideoverlappinglabels"&gt;axis.axisRenderer.hideOverlappingLabels&lt;/A&gt; may be set to false if you wish to disable culling of labels which overlap. This property may also be set via the axis constructor option&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/iaxisbase2doptions.html#hideoverlappinglabels"&gt;hideOverlappingLabels&lt;/A&gt;.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                </Topics>
+              </TopicCategory>
+              <TopicCategory Id="2b60466f-fbe0-4ea9-8737-922542d8e10d" AutoIndex="false">
+                <Caption m="2023-03-24T15:39:39.1596262Z">Axis Styling</Caption>
+                <ChildTopicCategories />
+                <Topics>
+                  <Topic Id="522bb84c-264c-4919-aa66-5f8272a72610" Status="New Topic" CreatedOn="2016-08-12T10:20:48.9449549Z" ModifiedOn="2023-03-24T15:37:59.8446771Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Styling - Title, Labels, Gridlines and Axis Bands" BuildFlags="">
+                    <Title m="2023-03-24T15:37:59.8446771Z">Title, Labels, Gridlines and Axis Band Style</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2023-03-24T14:21:33.5065765Z">&lt;P&gt;An Axis is responsible for drawing its labels, title but also the gridlines facing away from it. Gridlines are subdivided into four categories:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;Major Gridlines (aligned with labels) 
+&lt;LI&gt;Minor Gridlines (between labels) 
+&lt;LI&gt;Major Ticks (small marks, outside the axis, aligned with labels) 
+&lt;LI&gt;Minor Ticks (small marks, outside the axis, between labels) &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;In addition to this an axis has:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;Axis Labels (positioned at every major gridline) 
+&lt;LI&gt;Axis Title (positioned once, central on the axis) &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;IMG border=0 alt="" src="images/Axis_Styling2.png"&gt;&lt;/P&gt;
+&lt;P&gt;Every aspect of the axis can be styled, including major and minor gridlines, tick lines,&amp;nbsp;axis labels and the title. An outline of the chart parts can be found below:&lt;/P&gt;
+&lt;P&gt;&lt;IMG border=0 alt="" src="images/Axis_styling.png"&gt;&lt;/P&gt;
+&lt;H2&gt;Styling Axis Gridlines, Labels and Titles&lt;/H2&gt;
+&lt;P&gt;To recreate the image above, we can use the following code. We've chosen colours deliberately so you can see what parts are styled by which lines of code!&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;EM&gt;&lt;STRONG&gt;Note:&lt;/STRONG&gt; Gridlines support dashed line via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#majorgridlinestyleproperty.strokedasharray" target=_blank&gt;majorGridLineStyle.strokeDashArray&lt;/A&gt; and&amp;nbsp;&lt;/EM&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#minorgridlinestyleproperty.strokedasharray" target=_blank&gt;minorGridLineStyle.strokeDashArray&lt;/A&gt; &lt;EM&gt;property. For more info about stroke dash to create dotted or dashed line patterns, see&amp;nbsp;&lt;/EM&gt;&lt;A href="e23972b6-27ca-4b68-aded-d48c12aa1230"&gt;&lt;EM&gt;Series Styling - Dash Line Patterns&lt;/EM&gt;&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;EM&gt;&lt;STRONG&gt;Note:&lt;/STRONG&gt; All colors in SciChart.js are strings, which are HTML color codes. Supported values are 6-digit hex codes e.g. "#ADFF2F", 8-digit hex codes in RGBA format where the last two digits are opacity e.g. "#AAFF2F33" and rgba CSS color codes e.g. "rgba(173, 255, 47, 0.3)" as well as "Red", "White" etc...&lt;/EM&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisStyling\TitleGridlineAxisBands\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisStyling\TitleGridlineAxisBands\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisStyling/TitleGridlineAxisBands/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;Rotation on labels can be achieved by setting a property. For more info read&amp;nbsp;&lt;A href="43eff091-2936-4343-b875-8bf40d36b2c2"&gt;Rotating Axis Labels&lt;/A&gt;&lt;/P&gt;
+&lt;P&gt;At the current time you can't rotate an axis title, but we have it on our roadmap!&lt;/P&gt;
+&lt;P&gt;Finally, when using Axis NativeText for performance reasons, there are other considerations about fonts. Read the&amp;nbsp;&lt;A href="3616f94c-1224-4896-8306-d6a17af11082"&gt;Native Text article&lt;/A&gt; for more info.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks>
+                      <TopicLink Id="503601bb-13ba-48d2-814b-7564a65e6c17" CategoryId="" TopicLinkCategorySource="SpecificValue" Target="https://demo.scichart.com/javascript-chart-styling-theming-in-code" BuildFlags="">
+                        <Title m="2020-10-08T17:40:48.3699442Z">Styling a JavaScript Chart in code</Title>
+                        <Category />
+                      </TopicLink>
+                    </TopicLinks>
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="8deddadd-6171-496a-ab20-7332232c4c16" Status="New Topic" CreatedOn="2021-03-29T19:05:40.5473177Z" ModifiedOn="2023-03-24T15:38:04.6806897Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Styling - Axis Borders" BuildFlags="">
+                    <Title m="2023-03-24T15:38:04.6801818Z">Axis Borders and Background</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2023-03-24T15:36:54.3649854Z">&lt;P&gt;In SciChart.js we have properties to let you style the axis border and background. This is the line between the axis and the main SciChartSurface and the background area of the axis itself.&lt;/P&gt;
+&lt;P&gt;To style the axis border and background, use this code.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisStyling\BordersBackgrounds\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisStyling\BordersBackgrounds\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisStyling/BordersBackgrounds/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;EM&gt;&lt;STRONG&gt;Note:&lt;/STRONG&gt; All colors in SciChart.js are strings, which are HTML color codes. Supported values are 6-digit hex codes e.g. "#ADFF2F", 8-digit hex codes in RGBA format where the last two digits are opacity e.g. "#AAFF2F33" and rgba CSS color codes e.g. "rgba(173, 255, 47, 0.3)" as well as "Red" or "White"&lt;/EM&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;The Axis Background&lt;/H2&gt;
+&lt;P&gt;The background of the axis can also be set to a solid color using the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#backgroundcolor" target=_blank&gt;AxisBase2D.backgroundColor&lt;/A&gt; property. This supports an HTML color code as above.&lt;/P&gt;
+&lt;H2&gt;The TBorderType&lt;/H2&gt;
+&lt;P&gt;Axis Borders can be set on the Left, Right, Bottom or Top of the Axis. The thickness of the border can be set individually on each side of the axis. For more information, see the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#axisborder" target=_blank&gt;AxisBase2D.axisBorder&lt;/A&gt; property, which is type&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#tborder" target=_blank&gt;TBorder&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="d66c2e84-028d-4bb7-930c-df91beb840db" Status="New Topic" CreatedOn="2023-03-24T15:39:47.852384Z" ModifiedOn="2023-03-24T17:48:32.0835566Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AxisVisibility" BuildFlags="">
+                    <Title m="2023-03-24T15:40:10.1049312Z">Visibility of Axis Elements</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2023-03-24T17:48:32.0835566Z">&lt;P&gt;In SciChart.js all the elements of an axis may be hidden or shown invidually, with the following code:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisStyling\AxisVisibility\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisStyling\AxisVisibility\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisStyling/AxisVisibility/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;A hidden axis still behaves like an axis with all the scaling that comes with it, just without the visual elements like labels and gridlines.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Using Hidden Axis to Scale a Series to Viewport&lt;/H2&gt;
+&lt;P&gt;Other than styling, a hidden axis is very useful to scale a series to a viewport. &lt;/P&gt;
+&lt;P&gt;Say you had a chart with two series on the same Y-Axis, and with different amplitudes. You want to click a button to maximise a series to the viewport. You can do this with a hidden axis. &lt;/P&gt;
+&lt;P&gt;Here's a code sample below:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisStyling\DynamicAxisVisibility\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisStyling/DynamicAxisVisibility/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks />
@@ -9787,69 +9885,6 @@ isPrimaryAxis switched depending on mouse over </Notes>
             <Caption m="2016-09-08T12:06:18.271211Z">Styling and Theming</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="522bb84c-264c-4919-aa66-5f8272a72610" Status="New Topic" CreatedOn="2016-08-12T10:20:48.9449549Z" ModifiedOn="2023-03-24T15:37:59.8446771Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Styling - Title, Labels, Gridlines and Axis Bands" BuildFlags="">
-                <Title m="2023-03-24T15:37:59.8446771Z">Title, Labels, Gridlines and Axis Band Style</Title>
-                <ContentsTitle />
-                <Notes></Notes>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2023-03-24T14:21:33.5065765Z">&lt;P&gt;An Axis is responsible for drawing its labels, title but also the gridlines facing away from it. Gridlines are subdivided into four categories:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;Major Gridlines (aligned with labels) 
-&lt;LI&gt;Minor Gridlines (between labels) 
-&lt;LI&gt;Major Ticks (small marks, outside the axis, aligned with labels) 
-&lt;LI&gt;Minor Ticks (small marks, outside the axis, between labels) &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;In addition to this an axis has:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;Axis Labels (positioned at every major gridline) 
-&lt;LI&gt;Axis Title (positioned once, central on the axis) &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/Axis_Styling2.png"&gt;&lt;/P&gt;
-&lt;P&gt;Every aspect of the axis can be styled, including major and minor gridlines, tick lines,&amp;nbsp;axis labels and the title. An outline of the chart parts can be found below:&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/Axis_styling.png"&gt;&lt;/P&gt;
-&lt;H2&gt;Styling Axis Gridlines, Labels and Titles&lt;/H2&gt;
-&lt;P&gt;To recreate the image above, we can use the following code. We've chosen colours deliberately so you can see what parts are styled by which lines of code!&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;EM&gt;&lt;STRONG&gt;Note:&lt;/STRONG&gt; Gridlines support dashed line via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#majorgridlinestyleproperty.strokedasharray" target=_blank&gt;majorGridLineStyle.strokeDashArray&lt;/A&gt; and&amp;nbsp;&lt;/EM&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#minorgridlinestyleproperty.strokedasharray" target=_blank&gt;minorGridLineStyle.strokeDashArray&lt;/A&gt; &lt;EM&gt;property. For more info about stroke dash to create dotted or dashed line patterns, see&amp;nbsp;&lt;/EM&gt;&lt;A href="e23972b6-27ca-4b68-aded-d48c12aa1230"&gt;&lt;EM&gt;Series Styling - Dash Line Patterns&lt;/EM&gt;&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;EM&gt;&lt;STRONG&gt;Note:&lt;/STRONG&gt; All colors in SciChart.js are strings, which are HTML color codes. Supported values are 6-digit hex codes e.g. "#ADFF2F", 8-digit hex codes in RGBA format where the last two digits are opacity e.g. "#AAFF2F33" and rgba CSS color codes e.g. "rgba(173, 255, 47, 0.3)" as well as "Red", "White" etc...&lt;/EM&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
-&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisStyling\TitleGridlineAxisBands\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisStyling\TitleGridlineAxisBands\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisStyling/TitleGridlineAxisBands/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
-&lt;P&gt;Rotation on labels can be achieved by setting a property. For more info read&amp;nbsp;&lt;A href="43eff091-2936-4343-b875-8bf40d36b2c2"&gt;Rotating Axis Labels&lt;/A&gt;&lt;/P&gt;
-&lt;P&gt;At the current time you can't rotate an axis title, but we have it on our roadmap!&lt;/P&gt;
-&lt;P&gt;Finally, when using Axis NativeText for performance reasons, there are other considerations about fonts. Read the&amp;nbsp;&lt;A href="3616f94c-1224-4896-8306-d6a17af11082"&gt;Native Text article&lt;/A&gt; for more info.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks>
-                  <TopicLink Id="503601bb-13ba-48d2-814b-7564a65e6c17" CategoryId="" TopicLinkCategorySource="SpecificValue" Target="https://demo.scichart.com/javascript-chart-styling-theming-in-code" BuildFlags="">
-                    <Title m="2020-10-08T17:40:48.3699442Z">Styling a JavaScript Chart in code</Title>
-                    <Category />
-                  </TopicLink>
-                </TopicLinks>
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="8deddadd-6171-496a-ab20-7332232c4c16" Status="New Topic" CreatedOn="2021-03-29T19:05:40.5473177Z" ModifiedOn="2023-03-24T15:38:04.6806897Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Styling - Axis Borders" BuildFlags="">
-                <Title m="2023-03-24T15:38:04.6801818Z">Axis Borders and Background</Title>
-                <ContentsTitle />
-                <Notes></Notes>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2023-03-24T15:36:54.3649854Z">&lt;P&gt;In SciChart.js we have properties to let you style the axis border and background. This is the line between the axis and the main SciChartSurface and the background area of the axis itself.&lt;/P&gt;
-&lt;P&gt;To style the axis border and background, use this code.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
-&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisStyling\BordersBackgrounds\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisStyling\BordersBackgrounds\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisStyling/BordersBackgrounds/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;EM&gt;&lt;STRONG&gt;Note:&lt;/STRONG&gt; All colors in SciChart.js are strings, which are HTML color codes. Supported values are 6-digit hex codes e.g. "#ADFF2F", 8-digit hex codes in RGBA format where the last two digits are opacity e.g. "#AAFF2F33" and rgba CSS color codes e.g. "rgba(173, 255, 47, 0.3)" as well as "Red" or "White"&lt;/EM&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;H2&gt;The Axis Background&lt;/H2&gt;
-&lt;P&gt;The background of the axis can also be set to a solid color using the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#backgroundcolor" target=_blank&gt;AxisBase2D.backgroundColor&lt;/A&gt; property. This supports an HTML color code as above.&lt;/P&gt;
-&lt;H2&gt;The TBorderType&lt;/H2&gt;
-&lt;P&gt;Axis Borders can be set on the Left, Right, Bottom or Top of the Axis. The thickness of the border can be set individually on each side of the axis. For more information, see the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#axisborder" target=_blank&gt;AxisBase2D.axisBorder&lt;/A&gt; property, which is type&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#tborder" target=_blank&gt;TBorder&lt;/A&gt;.&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks />
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
               <Topic Id="5760011e-fce8-440b-bdb5-470621e85012" Status="New Topic" CreatedOn="2019-08-15T08:27:59.6295222Z" ModifiedOn="2023-01-07T10:56:40.7874038Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Chart Styling - ThemeManager API" BuildFlags="">
                 <Title />
                 <ContentsTitle />

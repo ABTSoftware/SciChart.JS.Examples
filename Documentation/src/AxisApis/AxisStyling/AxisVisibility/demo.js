@@ -1,133 +1,89 @@
 async function axisVisibility(divElementId) {
   // #region ExampleA
-  // Demonstrates how to style numeric axis in SciChart.js
+  // Demonstrates how to show/hide axis parts SciChart.js
   const {
     SciChartSurface,
     NumericAxis,
-    SciChartJsNavyTheme,
-    EAxisAlignment,
+    SciChartJSLightTheme,
+    TextAnnotation,
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
 
-  const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-    theme: new SciChartJsNavyTheme()
+  const {wasmContext, sciChartSurface} = await SciChartSurface.create(divElementId, {
+    // Choose a light theme to make this obvious
+    theme: new SciChartJSLightTheme()
   });
 
-  // Create a Y-Axis hiding elements
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        axisTitle: "X Axis",
-        drawMajorBands: true,
-        drawLabels: true,
-        drawMajorTicks: true,
-        drawMinorGridLines: true,
-        drawMinorGridlines: true,
-        drawMinorTicks: true,
+  // Create a X-Axis hiding elements
+  sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+      axisTitle: "X Axis (Hiding elements)",
+      // Show or hide individual elements of the axis
+      drawMajorBands: true,
+      drawLabels: false,
+      drawMinorGridLines: false,
+      drawMajorGridlines: true,
+      drawMinorTicks: true,
+      drawMajorTicks: false,
     })
-    );
+  );
 
-  // Create and style left YAxis
   sciChartSurface.yAxes.add(
-      new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Left,
-        axisBandsFill: "#FF665555",
-        axisTitle: "Left Y Axis",
-        axisTitleStyle: {
-          fontSize: 25,
-          fontFamily: "Montserrat",
-          fontWeight: "bold",
-          color: "#DC143C"
-        },
-        majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDasharray: [10, 5] },
-        minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDasharray: [2, 2] },
-        majorTickLineStyle: { strokeThickness: 1, color: "#ADFF2F", tickSize: 8 },
-        minorTickLineStyle: { strokeThickness: 1, color: "#EE82EE",  tickSize: 4 },
-        labelStyle: {
-          fontSize: 15,
-          color: "#DC143C",
-          fontFamily: "Arial"
-        }
-      })
+    new NumericAxis(wasmContext, {
+      // Hide the entire axis
+      isVisible: false
+    })
   );
   // #endregion
+  // Add instructions
+  const textAnnotation = new TextAnnotation({ x1: 0.5, y1: 0.5, text: "Y Axis is hidden. X Axis has some parts hidden", textColor: "#00000033", fontSize: 26,
+    xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
+    horizontalAnchorPoint: EHorizontalAnchorPoint.Center, verticalAnchorPoint: EVerticalAnchorPoint.Center})
+  sciChartSurface.annotations.add(textAnnotation);
 };
 
 axisVisibility("scichart-root");
 
 
-
-
-
 async function builderExample(divElementId) {
   // #region ExampleB
-  // Demonstrates how to style a numeric axis in SciChart.js using the Builder API
+  // Demonstrates how to show/hide axis parts SciChart.js
   const {
     chartBuilder,
-    ESeriesType,
     EThemeProviderType,
-    EAutoRange,
-    EAxisAlignment,
-    ENumericFormat,
     EAxisType,
   } = SciChart;
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
 
-  const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
-    surface: { theme: { type: EThemeProviderType.Dark } },
+  const {wasmContext, sciChartSurface} = await chartBuilder.build2DChart(divElementId, {
+    surface: {theme: {type: EThemeProviderType.Dark }},
     xAxes: {
       type: EAxisType.NumericAxis,
       options: {
-        axisTitle: "X Axis",
+        axisTitle: "X Axis (Hiding elements)",
+        // Show or hide individual elements of the axis
         drawMajorBands: true,
-        axisBandsFill: "#FF665555",
-        axisTitleStyle: {
-          fontSize: 16,
-          fontFamily: "Arial",
-          color: "#4682b4",
-          fontWeight: "bold",
-          fontStyle: "italic"
-        },
-        majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDasharray: [10, 5] },
-        minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDasharray: [2, 2] },
-        majorTickLineStyle: { strokeThickness: 1, color: "Blue", tickSize: 8 },
-        minorTickLineStyle: { strokeThickness: 1, color: "Red", tickSize: 4 },
-        labelStyle: {
-          fontSize: 16,
-          fontWeight: "bold",
-          fontStyle: "Italic",
-          color: "#4682b4",
-          fontFamily: "Arial"
-        }
+        drawLabels: false,
+        drawMinorGridLines: false,
+        drawMajorGridlines: true,
+        drawMinorTicks: true,
+        drawMajorTicks: false,
       }
     },
     yAxes: {
       type: EAxisType.NumericAxis,
       options: {
-        axisAlignment: EAxisAlignment.Left,
-        axisBandsFill: "#FF665555",
-        axisTitle: "Left Y Axis",
-        axisTitleStyle: {
-          fontSize: 25,
-          fontFamily: "Montserrat",
-          fontWeight: "bold",
-          color: "#DC143C"
-        },
-        majorGridLineStyle: { strokeThickness: 1, color: "#ADFF2F", strokeDasharray: [10, 5] },
-        minorGridLineStyle: { strokeThickness: 1, color: "#EE82EE", strokeDasharray: [2, 2] },
-        majorTickLineStyle: { strokeThickness: 1, color: "#ADFF2F", tickSize: 8 },
-        minorTickLineStyle: { strokeThickness: 1, color: "#EE82EE",  tickSize: 4 },
-        labelStyle: {
-          fontSize: 15,
-          color: "#DC143C",
-          fontFamily: "Arial"
-        }
+        // Hide the entire axis
+        isVisible: false
       }
     }
   });
   // #endregion
 };
-
 
 
 if (location.search.includes("builder=1"))
