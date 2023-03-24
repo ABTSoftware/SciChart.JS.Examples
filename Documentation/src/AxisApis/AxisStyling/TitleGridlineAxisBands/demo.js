@@ -17,7 +17,7 @@ async function axisStyling(divElementId) {
   // Create and style xAxis
   sciChartSurface.xAxes.add(
       new NumericAxis(wasmContext, {
-        axisTitle: "X Axis",
+        axisTitle: ["X Axis", "bold, italic, with multi-line title"],
         drawMajorBands: true,
         axisBandsFill: "#FF665555",
         axisTitleStyle: {

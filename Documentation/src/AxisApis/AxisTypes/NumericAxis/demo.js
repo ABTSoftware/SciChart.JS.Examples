@@ -24,8 +24,9 @@ async function chartWithNumericAxis(divElementId) {
     drawMajorGridLines: true,
     drawMinorGridLines: true,
     drawLabels: true,
-    // Set title, alignment and autorange
-    axisTitle: "X Axis, Bottom, 2 decimal places",
+    // Set multiline title
+    axisTitle: ["X Axis, Bottom", "2 decimal places"],
+    // Set the alignment and autoRange
     axisAlignment: EAxisAlignment.Bottom,
     autoRange: EAutoRange.Once,
     // Enable decision labels with 4 significant figures
