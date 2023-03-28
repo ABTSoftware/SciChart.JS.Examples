@@ -2,22 +2,21 @@ import * as React from "react";
 import SeoTags from "../SeoTags/SeoTags";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
-import {ALL_MENU_ITEMS, getExampleComponent} from "../AppRouter/examples";
+import { ALL_MENU_ITEMS, getExampleComponent } from "../AppRouter/examples";
 import Button from "@material-ui/core/Button";
 import { ExampleStrings } from "./ExampleStrings";
 import classes from "./styles/Examples.module.scss";
 import ComponentWrapper from "../ComponentWrapper/ComponentWrapper";
-import SourceCode from "../SourceCode/SourceCode";
-import CodeIcon from "@material-ui/icons/Code";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import { CSSTransition, SwitchTransition } from "react-transition-group";
 import Gallery from "../Gallery/Gallery";
 import { GalleryItem } from "../../helpers/types/types";
 import ExampleDescription from "../ExampleDescription/ExampleDescription";
-import {Simulate} from "react-dom/test-utils";
+import { Simulate } from "react-dom/test-utils";
 import submit = Simulate.submit;
-import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
-import {SubdirectoryArrowRight} from "@material-ui/icons";
+import { Radio, SubdirectoryArrowRight } from "@material-ui/icons";
+import { InfoToolbar } from "./Toolbar";
+import { baseGithubPath } from "../../constants";
+
 type TProps = {
     // example: () => JSX.Element;
     examplePage: TExamplePage;
@@ -33,6 +32,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
     const myRef = React.useRef(null);
     const executeScroll = () => myRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
     const ExampleComponent = getExampleComponent(examplePage.id);
+    // const ChartComponent = getExampleComponent(examplePage.id);
 
     const titleText = examplePage ? examplePage.title : ExampleStrings.siteHomeTitle;
     const seoTitleText = examplePage.pageTitle;
@@ -55,8 +55,16 @@ const ExamplesRoot: React.FC<TProps> = props => {
         window.scrollTo(0, 0);
         window.Prism?.highlightAll();
     }, []);
-    const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const fullGithubUrl = baseGithubPath + githubUrl;
+
+    // const ExampleComponent = () => {
+    //     return (
+    //         <div style={{ position: "relative" }}>
+    //             <InfoToolbar examplePage={examplePage}></InfoToolbar>
+    //             <ChartComponent></ChartComponent>
+    //         </div>
+    //     );
+    // };
 
     React.useEffect(() => {
         setRender(true);
@@ -81,21 +89,31 @@ const ExamplesRoot: React.FC<TProps> = props => {
 
                             <p className={classes.ExampleDescriptionText}>
                                 {" "}
-                                <a className={classes.ExampleRootDescriptionLink}
-                                   target="_blank"
-                                   href={`https://scichart.com/example/javascript-chart${exampleUrl}`}
-                                   title={titleText}>
+                                <a
+                                    className={classes.ExampleRootDescriptionLink}
+                                    target="_blank"
+                                    href={`https://scichart.com/example/javascript-chart${exampleUrl}`}
+                                    title={titleText}
+                                >
                                     {titleText}
-                                </a>{" "} is part of the SciChart.js demo app. To clone the repo for this demo, visit {" "}
-                                <a className={classes.ExampleRootDescriptionLink}
-                                   target="_blank"
-                                   href="https://github.com/abtsoftware/scichart.js.examples"
-                                   title={titleText}>
+                                </a>{" "}
+                                is part of the SciChart.js demo app. To clone the repo for this demo, visit{" "}
+                                <a
+                                    className={classes.ExampleRootDescriptionLink}
+                                    target="_blank"
+                                    href="https://github.com/abtsoftware/scichart.js.examples"
+                                    title={titleText}
+                                >
                                     SciChart's Github
-                                </a>. For getting-started &amp; docs, see above!{" "}
-                                <a className={classes.ExampleRootDescriptionLink}
-                                   target="_blank"
-                                   href={`${exampleUrl}?codesandbox=1`}>Open in CodeSandBox</a>
+                                </a>
+                                . For getting-started &amp; docs, see above!{" "}
+                                <a
+                                    className={classes.ExampleRootDescriptionLink}
+                                    target="_blank"
+                                    href={`${exampleUrl}?codesandbox=1`}
+                                >
+                                    Open in CodeSandBox
+                                </a>
                             </p>
                         </div>
                     </ComponentWrapper>
@@ -130,14 +148,23 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                     {/*</Button>*/}
                                     <Button className={classes.GitHubLink}>
                                         <GitHubIcon />
-                                        <a href={fullGithubUrl} title={fullGithubUrl} target="_blank" className={classes.ButtonsText}>
+                                        <a
+                                            href={fullGithubUrl}
+                                            title={fullGithubUrl}
+                                            target="_blank"
+                                            className={classes.ButtonsText}
+                                        >
                                             VIEW SOURCE IN GITHUB
                                         </a>
                                     </Button>
                                     <Button className={classes.GitHubLink}>
                                         <SubdirectoryArrowRight />
-                                        <a href={`/iframe${examplePage.path}`} title="View this example in Full Screen"
-                                           target="_blank" className={classes.ButtonsText}>
+                                        <a
+                                            href={`/iframe${examplePage.path}`}
+                                            title="View this example in Full Screen"
+                                            target="_blank"
+                                            className={classes.ButtonsText}
+                                        >
                                             VIEW Full Screen
                                         </a>
                                     </Button>

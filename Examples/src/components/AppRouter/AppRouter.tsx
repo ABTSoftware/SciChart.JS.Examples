@@ -8,6 +8,7 @@ import { getExampleComponent } from "./examples";
 import classes from "../Examples/styles/Examples.module.scss";
 import { GalleryItem } from "../../helpers/types/types";
 import NoIndexTag from "../SeoTags/NoIndexTag";
+import { InfoToolbar } from "../Examples/Toolbar";
 type TProps = {
     currentExample: TExamplePage;
     isIFrame?: boolean;
@@ -16,17 +17,37 @@ type TProps = {
 
 const examplePagesKeys = Object.keys(EXAMPLES_PAGES);
 
+const ExampleComponent = React.memo((props: { children: React.ReactNode; examplePage: TExamplePage }) => {
+    return (
+        <>
+            <InfoToolbar examplePage={props.examplePage} />
+            {props.children}
+        </>
+    );
+});
+
 export default function AppRouter(props: TProps) {
     const { currentExample, seeAlso, isIFrame = false } = props;
     if (isIFrame) {
-        const ExampleComponent = getExampleComponent(currentExample.id);
+        const ChartComponent = getExampleComponent(currentExample.id);
+
         return (
             <div className={classes.ExampleWrapperIFrame}>
                 <NoIndexTag />
                 <Routes>
                     {examplePagesKeys.map(key => {
                         const exPage = EXAMPLES_PAGES[key];
-                        return <Route key={key} path={`/iframe${exPage.path}`} element={<ExampleComponent />} />;
+                        return (
+                            <Route
+                                key={key}
+                                path={`/iframe${exPage.path}`}
+                                element={
+                                    <ExampleComponent examplePage={currentExample}>
+                                        <ChartComponent />
+                                    </ExampleComponent>
+                                }
+                            />
+                        );
                     })}
                 </Routes>
             </div>
