@@ -57,6 +57,9 @@ const useStyles = makeStyles((theme: Theme) =>
             opacity: 1
         },
         icon: {
+            position: "absolute",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
             "&:hover": {
                 opacity: 1
             }
