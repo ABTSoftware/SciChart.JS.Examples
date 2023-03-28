@@ -72,7 +72,8 @@ const drawExample = async () => {
         upBandSeriesLineColor: "white",
         upBodyBrush: "#6495EDA0",
         upWickColor: "#6495ED",
-        axisTitleColor: "#EEEEEE"
+        axisTitleColor: "#EEEEEE",
+        chartTitleColor: "#EEEEEE"
     });
 
     // Create the XAxis, YAxis

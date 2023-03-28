@@ -432,6 +432,10 @@ export const ExampleStrings = {
     titleAxisLayout: "Axis Layout Options",
     urlAxisLayout: "/javascript-chart-axis-layout-options",
 
+    // Chart Title
+    titleChartTitle: "Chart Title",
+    urlChartTitle: "/javascript-chart-title",
+
     // Realtime Zoom Pan
     titleRealtimeZoomPan: "Zoom and Pan a Realtime JavaScript Chart",
     urlRealtimeZoomPan: "/zoom-pan-realtime-javascript-chart",

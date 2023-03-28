@@ -23,6 +23,13 @@ export const drawExample = async () => {
         theme: appTheme.SciChartJsTheme
     });
 
+    sciChartSurface.title = "In SciChart.js you can animate anything";
+    sciChartSurface.titleStyle = {
+        placeWithinChart: true,
+        fontSize: 24,
+        color: appTheme.ForegroundColor + "C4",
+    }
+
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
         axisTitle: "Year",
         labelPrecision: 0
@@ -52,21 +59,6 @@ export const drawExample = async () => {
     });
     sciChartSurface.renderableSeries.add(bubbleSeries0);
 
-    // Add a title
-    const titleAnnotation = new TextAnnotation({
-        text: "In SciChart.js you can animate anything",
-        x1: 0.5,
-        y1: 0,
-        opacity: 0.77,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top,
-        fontSize: 24,
-        textColor: appTheme.ForegroundColor,
-    });
-    sciChartSurface.annotations.add(titleAnnotation);
-
     // add a label & line
     const labelAnnotation1 = new TextAnnotation({
         x1: 1955,
@@ -93,7 +85,7 @@ export const drawExample = async () => {
     //
 
     // From 0..2 seconds typewrite the title
-    sciChartSurface.addAnimation(addTypewriterEffect(2000, 0, titleAnnotation));
+    sciChartSurface.addAnimation(addTypewriterEffect(2000, 0, sciChartSurface));
 
     // From 2..4 seconds animate the label on the data
     sciChartSurface.addAnimation(new GenericAnimation({
@@ -179,13 +171,13 @@ export const drawExample = async () => {
 };
 
 
-const addTypewriterEffect = (duration: number, delay: number, textAnnotation: TextAnnotation) => {
+const addTypewriterEffect = (duration: number, delay: number, sciChartSurface: SciChartSurface) => {
     return new GenericAnimation<string>({
         from: "",
-        to: textAnnotation.text,
+        to: sciChartSurface.title as string,
         onAnimate: (from: string, to: string, progress: number) => {
             const length = Math.floor(to.length * progress);
-            textAnnotation.text = to.substring(0, length);
+            sciChartSurface.title = to.substring(0, length);
         },
         duration,
         delay,
