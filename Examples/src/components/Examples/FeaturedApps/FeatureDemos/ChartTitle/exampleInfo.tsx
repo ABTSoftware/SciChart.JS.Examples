@@ -32,8 +32,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = () => (
     <p>
-        The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes,{" "}
-        and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.
+        A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.
     </p>
 );
 

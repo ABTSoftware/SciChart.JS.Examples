@@ -1,10 +1,10 @@
 import * as React from "react";
-import { FormControl, FormControlLabel, Checkbox } from "@material-ui/core";
+import { FormControl, FormControlLabel, Checkbox, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import classes from "../../../Examples.module.scss";
 import { appTheme } from "../../../theme";
-import { NumericAxis, SciChartSurface, EMultiLineAlignment, ETextAlignment, ETitlePosition } from "scichart";
-import { Thickness } from "../../../../../../../../SciChart.Dev/Web/src/SciChart/lib";
+import { NumericAxis, SciChartSurface, EMultiLineAlignment, ETextAlignment, ETitlePosition, FastLineRenderableSeries, XyDataSeries, Thickness } from "scichart";
+import { RandomWalkGenerator } from "../../../../../../../Sandbox/CustomerExamples/AnimateXyValuesOnSeries/src/RandomWalkGenerator";
 
 const divElementId = "chart";
 
@@ -17,7 +17,7 @@ const drawExample = async () => {
     sciChartSurface.titleStyle = {
         color: appTheme.ForegroundColor,
         fontSize: 70,
-        padding: Thickness.fromString("2 0 4 0"),
+        padding: Thickness.fromString("4 0 4 0"),
         useNativeText: false,
         placeWithinChart: false,
         multilineAlignment: EMultiLineAlignment.Center,
@@ -25,8 +25,16 @@ const drawExample = async () => {
         position: ETitlePosition.Top,
     };
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
+    const xAxis = new NumericAxis(wasmContext, { axisTitle: "X Axis Title", axisTitleStyle: { fontSize: 16, color: appTheme.ForegroundColor } })
+    const yAxis = new NumericAxis(wasmContext, { axisTitle: "Y Axis", axisTitleStyle: { fontSize: 16, color: appTheme.ForegroundColor }})
+    sciChartSurface.xAxes.add(xAxis);
+    sciChartSurface.yAxes.add(yAxis);
+
+    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        strokeThickness: 3,
+        stroke: "auto",
+        dataSeries: new XyDataSeries(wasmContext, new RandomWalkGenerator().getRandomWalkSeries(30))
+    }));
 
     return { sciChartSurface, wasmContext };
 };
@@ -36,11 +44,17 @@ const drawExample = async () => {
 export default function FeatureChartTitle() {
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
+    const [titleText, setTitleText] = React.useState("Multiline\nChart Title");
     const [titlePosition, setTitlePosition] = React.useState(ETitlePosition.Top);
     const [titleAlignment, setTitleAlignment] = React.useState(ETextAlignment.Center);
     const [multilineAlignment, setMultilineAlignment] = React.useState(EMultiLineAlignment.Center);
     const [placeWithinChart, setPlaceWithinChart] = React.useState(false);
-    const [useNativeText, setUseNativeText] = React.useState(false);
+
+    const handleChangeTitleText = (event: React.ChangeEvent<{ value: string }>) => {
+        const newValue = event.target.value;
+        setTitleText(newValue);
+        sciChartSurfaceRef.current.title = newValue;
+    };
 
     const selectTitleTextPosition = (event: React.ChangeEvent<{ value: unknown }>) => {
         const { value } = event.target;
@@ -64,12 +78,6 @@ export default function FeatureChartTitle() {
         const newValue = event.target.checked;
         setPlaceWithinChart(newValue);
         sciChartSurfaceRef.current.titleStyle = { placeWithinChart: newValue };
-    };
-
-    const handleChangeUseNativeText = (event: React.ChangeEvent<{ checked: boolean }>) => {
-        const newValue = event.target.checked;
-        setUseNativeText(newValue);
-        sciChartSurfaceRef.current.titleStyle = { useNativeText: newValue };
     };
 
     React.useEffect(() => {
@@ -101,12 +109,19 @@ export default function FeatureChartTitle() {
             flex: "none"
         },
         checkbox: {
-            margin: "10"
+            margin: "10",
+            fontSize: "13px"
         },
         combobox: {
             color: appTheme.Background,
             backgroundColor: appTheme.ForegroundColor,
             margin: "10"
+        },
+        textarea: {
+            color: appTheme.Background,
+            backgroundColor: appTheme.ForegroundColor,
+            margin: "10",
+            verticalAlign: "middle"
         },
         chartElement: {
             width: "100%",
@@ -119,6 +134,15 @@ export default function FeatureChartTitle() {
         <div className={classes.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
             <div className={localClasses.flexContainer}>
                 <div className={localClasses.toolbar}>
+                    <label>
+                        Title text
+                        <textarea
+                            className={localClasses.textarea}
+                            value={titleText}
+                            onChange={handleChangeTitleText}
+                        >
+                    </textarea>
+                    </label>
                     <FormControlLabel
                         className={localClasses.checkbox}
                         control={
@@ -129,19 +153,11 @@ export default function FeatureChartTitle() {
                             />
                         }
                         labelPlacement="start"
-                        label="place Title within chart?"
-                    />
-                    <FormControlLabel
-                        className={localClasses.checkbox}
-                        control={
-                            <Checkbox checked={useNativeText} onChange={handleChangeUseNativeText} name="checkedB" />
-                        }
-                        labelPlacement="start"
-                        label="use Native Text?"
+                        label="Place Title within chart?"
                     />
 
                     <label>
-                        Title ALignment
+                        Title Alignment
                         <select
                             className={localClasses.combobox}
                             value={titleAlignment}
