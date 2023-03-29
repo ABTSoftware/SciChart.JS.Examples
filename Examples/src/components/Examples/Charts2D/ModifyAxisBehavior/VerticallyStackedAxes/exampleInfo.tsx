@@ -2,7 +2,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-vertically-stacked-axes.jpg";
 
@@ -11,23 +10,11 @@ Zoom vertically using the mouse wheel, or by dragging individual axes.  Right-cl
 const tips = [`Make sure data series and annotations are bound to the correct axis.`,
 `You can also Horizontally stack top and bottom axes`];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlVerticallyStackedAxesDocumentation,
-        title: ExampleStrings.urlTitleVerticallyStackedAxesDocumentation,
-        linkTitle: "SciChart.js Stacked Axes Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlVerticallyStackedAxesDocumentation,
+    title: ExampleStrings.urlTitleVerticallyStackedAxesDocumentation,
+    linkTitle: "SciChart.js Stacked Axes Documentation"
+}];
 
 const Subtitle = () => (
     <p>

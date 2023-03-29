@@ -13,23 +13,11 @@ const tips = [
     `You don't have to use DataPointSelectionPaletteProvider.  You can create your own and use the metadata.isSelected that is passed to the paletteProvider methods.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlDataPointSelectionDocumentation,
-        title: ExampleStrings.urlTitleDataPointSelectionDocumentation,
-        linkTitle: "DataPointSelectionModifier documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlDataPointSelectionDocumentation,
+    title: ExampleStrings.urlTitleDataPointSelectionDocumentation,
+    linkTitle: "DataPointSelectionModifier documentation"
+}];
 
 const Subtitle = () => (
     <p>

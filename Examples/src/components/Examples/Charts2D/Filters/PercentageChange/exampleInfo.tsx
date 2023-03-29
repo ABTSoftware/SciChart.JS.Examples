@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-percentage-change.jpg";
 
@@ -23,23 +22,11 @@ Click the Add Data button to see that data is automatically transformed when the
 A simple extention to the RenderableSeries allows us to show the original values for the transformed series in the rollover tooltip`;
 const tips = [`ScaleOffsetFilters are available for all DataSeries types, so you could do the same thing for a band or candlestick chart`];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlScaleOffsetDocumentation,
-        title: ExampleStrings.urlTitleFiltersApiDocumentation,
-        linkTitle: "SciChart.js ScaleOffsetFilter Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlScaleOffsetDocumentation,
+    title: ExampleStrings.urlTitleFiltersApiDocumentation,
+    linkTitle: "SciChart.js ScaleOffsetFilter Documentation"
+}];
 
 export const percentageChangeExampleInfo: TExampleInfo = {
     title: ExampleStrings.titlePercentageChange,

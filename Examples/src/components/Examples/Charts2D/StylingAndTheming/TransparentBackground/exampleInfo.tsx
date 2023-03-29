@@ -2,7 +2,6 @@ import * as React from "react";
 import {TExampleInfo} from "../../../../AppRouter/examplePages";
 import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
-import {GalleryItem} from "../../../../../helpers/types/types";
 import {TDocumentationLink} from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-transparent-background.jpg";
 
@@ -10,23 +9,11 @@ const previewDescription = `Demonstrates how to set a background image by settin
 const description = `SciChart.js v2.x now supports transparent backgrounds in all browsers, and will show through the DOM element underneath the chart. In this example we use a background image to demonstrate how to create a stunning styled chart.`;
 const tips = [`It's also possible to show DOM elements: Videos, Images, Gradient Backgrounds or an entire webpage behind charts!`];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlAxisStylingDocumentation,
-        title: ExampleStrings.urlTitleAxisStylingDocumentation,
-        linkTitle: "Custom Theme documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlTransparentBackgroundDocumentation,
+    title: ExampleStrings.urlTitleTransparentBackgroundDocumentation,
+    linkTitle: "Custom Theme documentation"
+}];
 
 const Subtitle = () => (
     <p>

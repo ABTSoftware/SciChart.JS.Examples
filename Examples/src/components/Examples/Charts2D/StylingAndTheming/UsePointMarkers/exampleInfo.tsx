@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-custom-pointmarkers.jpg";
 
@@ -11,23 +10,11 @@ WebGL-rendered data point markers to a line series.`;
 const description = `The Point-markers are created using the HTML Canvas or custom images, but applied to the line as a WebGL
 Texture, so it’s possible to render tens or hundreds of thousands of point-markers using this method.`;
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlPointMarkers,
-        title: ExampleStrings.urlTitlePointMarkers,
-        linkTitle: "Point-Markers API documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlPointMarkersDocumentation,
+    title: ExampleStrings.urlTitlePointMarkersDocumentation,
+    linkTitle: "Point-Markers API documentation"
+}];
 
 const Subtitle = () => (
     <p>

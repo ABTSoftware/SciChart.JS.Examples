@@ -19,28 +19,11 @@ const tips = [
     ` See the documentation links for the types and options you can specify.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlBuilderApiDocumentation,
-        title: ExampleStrings.urlTitleBuilderApiDocumentation,
-        linkTitle: "JavaScript Builder API Documentation"
-    },
-    {
-        href: ExampleStrings.urlDefinitionDocumentation,
-        title: ExampleStrings.urlTitleDefinitionDocumentation,
-        linkTitle: "ISciChart2DDefinition Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlBuilderApiDocumentation,
+    title: ExampleStrings.urlTitleBuilderApiDocumentation,
+    linkTitle: "JavaScript Builder API Documentation"
+}];
 
 export const chartFromJSONExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleChartFromJSON,

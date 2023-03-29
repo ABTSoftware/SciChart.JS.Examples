@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-styling-theming-in-code.jpg";
 
@@ -11,23 +10,11 @@ const description = `Almost any element in SciChart is stylable in code and most
 set background, grid-line, axis label, viewport background and chart series colors in JavaScript.`;
 const tips = [`It's also possible to style chart-parts in code!`];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlAxisStylingDocumentation,
-        title: ExampleStrings.urlTitleAxisStylingDocumentation,
-        linkTitle: "Custom Theme documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlStylingInCodeDocumentation,
+    title: ExampleStrings.urlTitleStylingInCodeDocumentation,
+    linkTitle: "Custom Theme documentation"
+}];
 
 const Subtitle = () => (
     <p>

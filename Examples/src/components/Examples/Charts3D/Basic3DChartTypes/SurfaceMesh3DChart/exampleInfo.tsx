@@ -14,23 +14,11 @@ const tips = [
     PointMetadata also allows you to tag individual bubbles with a business object of any type.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlBubble3DChartDocumentation,
-        title: ExampleStrings.urlTitleBubble3DChartDocumentation,
-        linkTitle: "JavaScript 3D Bubble Chart Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlSurfaceMesh3DChartDocumentation,
+    title: ExampleStrings.urlTitleSurfaceMesh3DChartDocumentation,
+    linkTitle: "JavaScript 3D Surface Mesh Documentation"
+}];
 
 const Subtitle = () => (
     <p>

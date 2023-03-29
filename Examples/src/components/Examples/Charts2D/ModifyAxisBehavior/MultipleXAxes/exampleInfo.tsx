@@ -2,7 +2,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-with-multiple-x-axis.jpg";
 
@@ -11,18 +10,11 @@ SciChart supports multiple top or bottom X-Axes and multiple left and right Y-Ax
 simple way how to register a line series on each axis.`;
 const tips = [`Try dragging an axis or the chart to zoom and pan around. Double clicking the chart resets the zoom!`];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlMultipleXAxisDocumentation,
+    title: ExampleStrings.urlTitleMultipleXAxisDocumentation,
+    linkTitle: "SciChart.js Documentation Home"
+}];
 
 const Subtitle = () => (
     <p>

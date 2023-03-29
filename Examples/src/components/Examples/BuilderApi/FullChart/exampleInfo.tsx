@@ -22,23 +22,11 @@ const tips = [
     `Use the new TextLabelProvider for easy configuration of text labels on a category axis`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlBuilderApiDocumentation,
-        title: ExampleStrings.urlTitleBuilderApiDocumentation,
-        linkTitle: "JavaScript Builder API Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlBuilderApiDocumentation,
+    title: ExampleStrings.urlTitleBuilderApiDocumentation,
+    linkTitle: "JavaScript Builder API Documentation"
+}];
 
 export const fullChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBuilderFullChart,

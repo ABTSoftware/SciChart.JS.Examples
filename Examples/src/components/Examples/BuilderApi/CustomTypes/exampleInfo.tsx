@@ -22,23 +22,11 @@ const tips = [
     ` Add a toJSON method to your custom type if you want it to be serialized`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlBuilderApiDocumentation,
-        title: ExampleStrings.urlTitleBuilderApiDocumentation,
-        linkTitle: "JavaScript Builder API Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlBuilderApiDocumentation,
+    title: ExampleStrings.urlTitleBuilderApiDocumentation,
+    linkTitle: "JavaScript Builder API Documentation"
+}];
 
 export const customTypesExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCustomTypes,

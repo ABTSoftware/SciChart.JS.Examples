@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-image-labels.jpg";
 
@@ -15,19 +14,9 @@ const tips = [
 
 const documentationLinks: TDocumentationLink[] = [
     {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlCustomLabelProviderDocumentation,
-        title: ExampleStrings.urlTitleCustomLabelProviderDocumentation,
-        linkTitle: "SciChart.js Custom LabelProvider Documentation"
+        href: ExampleStrings.urlImageLabelsDocumentation,
+        title: ExampleStrings.urlTitleImageLabelsDocumentation,
+        linkTitle: "SciChart.js Image Labels Documentation"
     }
 ];
 

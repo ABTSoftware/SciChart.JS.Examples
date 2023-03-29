@@ -12,18 +12,11 @@ const tips = [
     `Use CSS 'touch-action' property to override browser default touch behavior. e.g., 'touch-action: none'. `,
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlZoomPanModifierDocumentation,
+    title: ExampleStrings.urlTitleZoomPanModifierDocumentation,
+    linkTitle: "SciChart.js Zooming and Panning documentation"
+}];
 
 const Subtitle = () => (
     <p>

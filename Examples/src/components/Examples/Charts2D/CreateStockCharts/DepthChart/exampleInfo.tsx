@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-depth-chart.jpg";
 
@@ -10,23 +9,11 @@ const previewDescription = `An example which demonstrates a depth chart.`;
 const description = ``;
 const tips = [""];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlCandlestickChartDocumentation,
-        title: ExampleStrings.urlTitleCandlestickChartDocumentation,
-        linkTitle: "JavaScript Candlestick Chart Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlDocumentationHome,
+    title: ExampleStrings.titleDocumentationHome,
+    linkTitle: "SciChart.js Documentation Home"
+}];
 
 const Subtitle = () => (
     <p>

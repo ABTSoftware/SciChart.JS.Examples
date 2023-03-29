@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-realtime-mountain-chart.jpg";
 
@@ -13,23 +12,11 @@ const tips = [
     supports semi-transparent and linear gradient brush fills and looks great!.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlRenderSeriesPropertiesDocumentation,
-        title: ExampleStrings.urlTitleRenderSeriesProperties,
-        linkTitle: "Common RenderableSeries Properties"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlMountainChartDocumentation,
+    title: ExampleStrings.urlTitleMountainChart,
+    linkTitle: "Mountain (Area) Chart Documentation"
+}];
 
 const Subtitle = () => (
     <p>

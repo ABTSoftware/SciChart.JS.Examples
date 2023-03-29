@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-multiline-labels.jpg";
 
@@ -14,23 +13,11 @@ const tips = [
     `To see how padding affects label placement try setting sciChartSurface.debugRendering = true;`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlTextLabelProviderDocumentation,
-        title: ExampleStrings.urlTitleTextLabelProviderDocumentation,
-        linkTitle: "Scichart.js TextlabelProvider Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlTextLabelProviderDocumentation,
+    title: ExampleStrings.urlTitleTextLabelProviderDocumentation,
+    linkTitle: "Scichart.js TextlabelProvider Documentation"
+}];
 
 const Subtitle = () => (
     <p>

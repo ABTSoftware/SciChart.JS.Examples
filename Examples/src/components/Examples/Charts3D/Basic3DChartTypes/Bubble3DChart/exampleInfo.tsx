@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-3d-bubble-chart.jpg";
 
@@ -13,23 +12,11 @@ const tips = [
     PointMetadata also allows you to tag individual bubbles with a business object of any type.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlSurfaceMesh3DChartDocumentation,
-        title: ExampleStrings.urlTitleSurfaceMesh3DChartDocumentation,
-        linkTitle: "JavaScript 3D Surface Mesh Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlBubble3DChartDocumentation,
+    title: ExampleStrings.urlTitleBubble3DChartDocumentation,
+    linkTitle: "JavaScript 3D Bubble Chart Documentation"
+}];
 
 const Subtitle = () => (
     <p>

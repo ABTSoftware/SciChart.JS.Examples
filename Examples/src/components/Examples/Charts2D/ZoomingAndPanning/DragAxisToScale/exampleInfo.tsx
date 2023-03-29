@@ -9,18 +9,11 @@ const description = `Demonstrates how to add behaviour to scale, zoom or pan a c
 Try it out below! Drag an axis to watch the chart re-scale.`;
 const tips = [`Try dragging an axis to zoom or pan the axis. Double clicking the chart resets the zoom!`];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlDragAxisToScaleDocumentation,
+    title: ExampleStrings.urlTitleDragAxisToScaleDocumentation,
+    linkTitle: "SciChart.js Axis Drag documentation"
+}];
 
 const Subtitle = () => (
     <p>

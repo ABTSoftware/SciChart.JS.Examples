@@ -15,28 +15,11 @@ const tips = [
     same WebGL rendering as our Scatter Charts.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlSplineLineChartDocumentation,
-        title: ExampleStrings.titleSplineLineChart,
-        linkTitle: "JavaScript Spline Line Chart Documentation"
-    },
-    {
-        href: ExampleStrings.urlRenderSeriesPropertiesDocumentation,
-        title: ExampleStrings.urlTitleRenderSeriesProperties,
-        linkTitle: "Common RenderableSeries Properties"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlSplineLineChartDocumentation,
+    title: ExampleStrings.titleSplineLineChart,
+    linkTitle: "JavaScript Spline Line Chart Documentation"
+}];
 
 const Subtitle = () => (
     <p>

@@ -88,7 +88,7 @@ import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/Axi
 import { subchartsGridExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/SubChartsAPI/exampleInfo";
 import { websocketBigDataDemoExampleInfo } from "../Examples/FeaturedApps/ShowCases/WebsocketBigData/exampleInfo";
 import {oilAndGasExplorerDashboard} from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard/exampleInfo";
-import {TDocumentationLink} from "../../helpers/types/ExampleDescriptionTypes";
+import { TDocumentationLink } from "../../helpers/types/ExampleDescriptionTypes";
 import { datalabelsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/DataLabels/exampleInfo";
 import { virtualizedDataOverviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview/exampleInfo";
 import { heatmapInteractionsExampleInfo } from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions/exampleInfo";

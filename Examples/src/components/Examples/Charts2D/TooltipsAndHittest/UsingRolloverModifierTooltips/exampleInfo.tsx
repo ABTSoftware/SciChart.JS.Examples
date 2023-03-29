@@ -3,7 +3,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import exampleImage from "./javascript-chart-rollovermodifier-tooltips.jpg";
 
 const previewDescription = `Demonstrates using the RolloverModifier, part of the ChartModifier API, to add mouse-over feedback of
@@ -15,23 +14,11 @@ const tips = [
     for more info!`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlRolloverModifierDocumentation,
-        title: ExampleStrings.urlTitleRolloverModifierDocumentation,
-        linkTitle: "RolloverModifier documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlRolloverModifierDocumentation,
+    title: ExampleStrings.urlTitleRolloverModifierDocumentation,
+    linkTitle: "RolloverModifier documentation"
+}];
 
 const Subtitle = () => (
     <p>

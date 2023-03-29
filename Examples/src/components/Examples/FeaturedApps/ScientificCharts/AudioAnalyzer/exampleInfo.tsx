@@ -2,7 +2,6 @@ import * as React from "react";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-audio-analyzer-fft-example.jpg";
 
@@ -13,28 +12,11 @@ const tips = [
     FFT data, and a Heatmap series to render a spectrogram - a scrolling visualisation of frequency domain data.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorials3DHome,
-        title: ExampleStrings.titleTutorials3DHome,
-        linkTitle: "SciChart3D.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlColumnChartDocumentation,
-        title: ExampleStrings.urlTitleColumnChartDocumentation,
-        linkTitle: "JavaScript Column Chart Documentation"
-    },
-    {
-        href: ExampleStrings.urlHeatmapChartDocumentation,
-        title: ExampleStrings.urlTitleHeatmapChartDocumentation,
-        linkTitle: "JavaScript Heatmap Chart Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlDocumentationHome,
+    title: ExampleStrings.titleDocumentationHome,
+    linkTitle: "SciChart.js Documentation Home"
+}];
 
 // tslint:disable-next-line:max-line-length
 const Subtitle = () => (

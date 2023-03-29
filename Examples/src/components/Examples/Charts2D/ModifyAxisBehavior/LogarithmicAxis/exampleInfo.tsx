@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-logarithmic-axis.jpg";
 
@@ -11,18 +10,11 @@ SciChart supports axis with Logarithmic scale and scientific or engineering nota
 This example shows how to configure the logarithmic axis.`;
 const tips = [`Try dragging an axis or the chart to zoom and pan around. Double clicking the chart resets the zoom!`];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlLogarithmicAxisDocumentation,
+    title: ExampleStrings.urlTitleLogarithmicAxisDocumentation,
+    linkTitle: "SciChart.js Documentation Home"
+}];
 
 const Subtitle = () => (
     <p>

@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-spline-mountain-chart.jpg";
 
@@ -14,28 +13,11 @@ const tips = [
     supports semi-transparent and linear gradient brush fills and looks great!.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlMountainChartDocumentation,
-        title: ExampleStrings.titleMountainChart,
-        linkTitle: "JavaScript Mountain Chart Documentation"
-    },
-    {
-        href: ExampleStrings.urlRenderSeriesPropertiesDocumentation,
-        title: ExampleStrings.urlTitleRenderSeriesProperties,
-        linkTitle: "Common RenderableSeries Properties"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlSplineMountainChartDocumentation,
+    title: ExampleStrings.urlTitleSplineMountainChartDocumentation,
+    linkTitle: "JavaScript Mountain Chart Documentation"
+}];
 
 const Subtitle = () => (
     <p>

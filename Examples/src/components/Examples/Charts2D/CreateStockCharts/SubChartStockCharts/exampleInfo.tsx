@@ -16,23 +16,11 @@ const tips = [
     incredible real-time performance.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlCandlestickChartDocumentation,
-        title: ExampleStrings.urlTitleCandlestickChartDocumentation,
-        linkTitle: "JavaScript Candlestick Chart Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlDocumentationHome,
+    title: ExampleStrings.titleDocumentationHome,
+    linkTitle: "SciChart.js Documentation Home"
+}];
 
 const Subtitle = () => (
     <p>

@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-non-uniform-heatmap-chart.jpg";
 
@@ -13,28 +12,11 @@ const tips = [
     `Updating data with setZValues method recalcula tes the mapped offsets.`,
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlNonUniformHeatmapChartDocumentation,
-        title: ExampleStrings.urlTitleNonUniformHeatmapChartDocumentation,
-        linkTitle: "JavaScript Non Uniform Heatmap Chart Documentation"
-    },
-    {
-        href: ExampleStrings.urlRenderSeriesPropertiesDocumentation,
-        title: ExampleStrings.urlTitleRenderSeriesProperties,
-        linkTitle: "Common RenderableSeries Properties"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlNonUniformHeatmapChartDocumentation,
+    title: ExampleStrings.urlTitleNonUniformHeatmapChartDocumentation,
+    linkTitle: "JavaScript Non Uniform Heatmap Chart Documentation"
+}];
 
 const Subtitle = () => (
     <p>

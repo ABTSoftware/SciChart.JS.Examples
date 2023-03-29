@@ -12,23 +12,11 @@ const tips = [
     ``
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlSubchartApiDocumentation,
-        title: ExampleStrings.urlTitleSubCharstApiDocumentation,
-        linkTitle: "Scichart.js SubCharts API Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlSubchartApiDocumentation,
+    title: ExampleStrings.urlTitleSubCharstApiDocumentation,
+    linkTitle: "Scichart.js SubCharts API Documentation"
+}];
 
 const Subtitle = () => (
     <p>

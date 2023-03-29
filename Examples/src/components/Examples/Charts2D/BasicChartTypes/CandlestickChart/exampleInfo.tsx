@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-candlestick-chart.jpg";
 
@@ -12,28 +11,11 @@ const tips = [
     `Try dragging on the chart to pan or zoom it. Use the mousewheel to zoom and double-click to zoom to fit.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlCandlestickChartDocumentation,
-        title: ExampleStrings.urlTitleCandlestickChartDocumentation,
-        linkTitle: "JavaScript Candlestick Chart Documentation"
-    },
-    {
-        href: ExampleStrings.urlRenderSeriesPropertiesDocumentation,
-        title: ExampleStrings.urlTitleRenderSeriesProperties,
-        linkTitle: "Common RenderableSeries Properties"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlCandlestickChartDocumentation,
+    title: ExampleStrings.urlTitleCandlestickChartDocumentation,
+    linkTitle: "JavaScript Candlestick Chart Documentation"
+}];
 
 const Subtitle = () => (
     <p>

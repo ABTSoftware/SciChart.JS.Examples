@@ -2,7 +2,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-central-axes.jpg";
 
@@ -10,18 +9,11 @@ const description = `Demonstrates a chart with axes being placed centrally.
 SciChart supports customization of axes placement. This example shows how to use inner axes and set a layout strategy.`;
 const tips = [`You can create a custom Axis Layout Strategy!`];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlCentralAxesDocumentation,
+    title: ExampleStrings.urlTitleCentralAxesDocumentation,
+    linkTitle: "Central Axis documentation"
+}];
 
 const Subtitle = () => (
     <p>

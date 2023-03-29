@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-series-selection.jpg";
 
@@ -14,18 +13,11 @@ const tips = [
     for more info!`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlSeriesSelectionDocumentation,
+    title: ExampleStrings.urlTitleSeriesSelectionDocumentation,
+    linkTitle: "SciChart.js Series Selection Documentation"
+}];
 
 const Subtitle = () => (
     <p>

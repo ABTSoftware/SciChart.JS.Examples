@@ -2,7 +2,6 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-trend-ma-ratio.jpg";
 
@@ -10,23 +9,11 @@ const previewDescription = `Ratio Filter divides the original dataseries by the 
 const description = `Click 'Add Data' to see how the filters automatically recalculate when data changes`;
 const tips = [`Moving Average and Linear Trend filters can be applied to any kind of data series, and you can pick which field to filter`];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlFiltersDocumentation,
-        title: ExampleStrings.urlTitleFiltersApiDocumentation,
-        linkTitle: "JavaScript Filters Api Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlFiltersDocumentation,
+    title: ExampleStrings.urlTitleFiltersApiDocumentation,
+    linkTitle: "JavaScript Filters Api Documentation"
+}];
 
 const Subtitle = () => (
     <p>

@@ -3,7 +3,6 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import exampleImage from "./javascript-stacked-column-chart.jpg";
 
 const description = `Stacked Column Charts can be created in JavaScript using SciChart.js. An column or rectangle is rendered from the
@@ -13,28 +12,11 @@ const tips = [
     `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much space the column takes up.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlStackedColumnChartDocumentation,
-        title: ExampleStrings.urlTitleStackedColumnChartDocumentation,
-        linkTitle: "JavaScript Stacked Column Chart Documentation"
-    },
-    {
-        href: ExampleStrings.urlRenderSeriesPropertiesDocumentation,
-        title: ExampleStrings.urlTitleRenderSeriesProperties,
-        linkTitle: "Common RenderableSeries Properties"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlStackedColumnChartDocumentation,
+    title: ExampleStrings.urlTitleStackedColumnChartDocumentation,
+    linkTitle: "JavaScript Stacked Column Chart Documentation"
+}];
 
 const Subtitle = () => (
     <p>

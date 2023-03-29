@@ -2,27 +2,15 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-performance-load-one-million-points.jpg";
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlPerformanceTipsDocumentation,
-        title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
-        linkTitle: "SciChart.js Performance Tips and Tricks"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlPerformanceTipsDocumentation,
+    title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
+    linkTitle: "SciChart.js Performance Tips and Tricks"
+}];
+
 // const previewDescription = ``;
 const description = `This demo showcases the loading or startup time of SciChart.js with a million points. Click 'Load' to run the example and see SciChart load 1-million points instantly!`;
 const tips = [

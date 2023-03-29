@@ -20,23 +20,11 @@ const tips = [
     ` Data will be serialized to the individual series if the resulting chart is serialized`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlBuilderApiDocumentation,
-        title: ExampleStrings.urlTitleBuilderApiDocumentation,
-        linkTitle: "JavaScript Builder API Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlBuilderApiDocumentation,
+    title: ExampleStrings.urlTitleBuilderApiDocumentation,
+    linkTitle: "JavaScript Builder API Documentation"
+}];
 
 export const sharedDataExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSharedData,

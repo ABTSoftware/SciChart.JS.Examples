@@ -15,23 +15,11 @@ charts are shown on the same example to show that 2D & 3D charts can be combined
     the DrawMeshAs property.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorials3DHome,
-        title: ExampleStrings.titleTutorials3DHome,
-        linkTitle: "SciChart3D.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlSurfaceMesh3DChartDocumentation,
-        title: ExampleStrings.urlTitleSurfaceMesh3DChartDocumentation,
-        linkTitle: "JavaScript 3D Surface Mesh Chart Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlSurfaceMesh3DChartDocumentation,
+    title: ExampleStrings.urlTitleSurfaceMesh3DChartDocumentation,
+    linkTitle: "JavaScript 3D Surface Mesh Chart Documentation"
+}];
 
 const Subtitle = () => (
     <p>

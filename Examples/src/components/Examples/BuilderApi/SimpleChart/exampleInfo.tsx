@@ -22,23 +22,11 @@ const tips = [
     `You can combine the builder api and normal api to utilize the strengths of each`
 ];
 
-const documentationLinks: TDocumentationLink[] = [
-    {
-        href: ExampleStrings.urlDocumentationHome,
-        title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    },
-    {
-        href: ExampleStrings.urlTutorialsHome,
-        title: ExampleStrings.titleTutorialsHome,
-        linkTitle: "SciChart.js Tutorials"
-    },
-    {
-        href: ExampleStrings.urlBuilderApiDocumentation,
-        title: ExampleStrings.urlTitleBuilderApiDocumentation,
-        linkTitle: "JavaScript Builder API Documentation"
-    }
-];
+const documentationLinks: TDocumentationLink[] = [{
+    href: ExampleStrings.urlBuilderApiDocumentation,
+    title: ExampleStrings.urlTitleBuilderApiDocumentation,
+    linkTitle: "JavaScript Builder API Documentation"
+}];
 
 export const simpleChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBuilderSimpleChart,
