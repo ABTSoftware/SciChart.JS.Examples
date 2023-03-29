@@ -1,10 +1,9 @@
 import * as React from "react";
 import { FormControl, FormControlLabel, Checkbox, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import classes from "../../../Examples.module.scss";
-import { appTheme } from "../../../theme";
+import classes from "../../../styles/Examples.module.scss";
+import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
 import { NumericAxis, SciChartSurface, EMultiLineAlignment, ETextAlignment, ETitlePosition, FastLineRenderableSeries, XyDataSeries, Thickness } from "scichart";
-import { RandomWalkGenerator } from "../../../../../../../Sandbox/CustomerExamples/AnimateXyValuesOnSeries/src/RandomWalkGenerator";
 
 const divElementId = "chart";
 
