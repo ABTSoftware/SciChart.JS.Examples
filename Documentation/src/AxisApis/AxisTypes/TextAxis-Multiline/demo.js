@@ -22,8 +22,20 @@ async function rotatingLabels(divElementId) {
   // #region ExampleA
   // Create an XAxis with 90-degree rotated labels
   const xAxis = new NumericAxis(wasmContext, {
-    labelProvider,
-    maxAutoTicks: 3,
+    labelProvider:  new TextLabelProvider( {
+      // When passed as an object, x values will be mapped to fields
+      labels: [
+        // Provide multiple lines directly
+        ["Apples","and Bananas"],
+        ["Strawberries","and Raspberries"],
+        ["Lemons, Limes", "and Oranges"],
+        // These will be auto-wrapped
+        "Apples and Bananas",
+        "Strawberries and Raspberries",
+        "Lemons Limes and Oranges",
+      ],
+      maxLength: 7
+    }),
     labelStyle: {
       alignment: ELabelAlignment.Center
     }
@@ -49,7 +61,7 @@ async function rotatingLabels(divElementId) {
   }));
 };
 
-chartWithTextAxis("scichart-root");
+rotatingLabels("scichart-root");
 
 
 
@@ -86,6 +98,7 @@ async function builderExample(divElementId) {
               "Strawberries and Raspberries",
               "Lemons Limes and Oranges",
             ],
+            maxLength: 7
           }
         }
       }
