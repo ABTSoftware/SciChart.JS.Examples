@@ -1,26 +1,29 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { LogarithmicAxis } from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
-import { RubberBandXyZoomModifier } from "scichart/Charting/ChartModifiers/RubberBandXyZoomModifier";
-import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
 import { appTheme } from "../../../theme";
-import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import classes from "../../../Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import { AxisBase2D } from "scichart/Charting/Visuals/Axis/AxisBase2D";
-import { LegendModifier } from "scichart/Charting/ChartModifiers/LegendModifier";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { EHorizontalAnchorPoint } from "scichart/types/AnchorPoint";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {Button} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
+import {
+    AxisBase2D,
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    ENumericFormat,
+    EllipsePointMarker,
+    FastLineRenderableSeries,
+    LegendModifier,
+    LogarithmicAxis,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    RubberBandXyZoomModifier,
+    SciChartSurface,
+    SweepAnimation,
+    TextAnnotation,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    Thickness
+} from "scichart";
+
 const divElementId = "chart1";
 
 const Y_AXIS_LINEAR_ID = "Y_AXIS_LINEAR_ID";
@@ -33,6 +36,14 @@ const drawExample = async () => {
             ...appTheme.SciChartJsTheme,
             majorGridLineBrush: appTheme.MutedSkyBlue + "55",
             minorGridLineBrush: appTheme.MutedSkyBlue + "22"
+        },
+        title: "Logarithmic X & Y Axis",
+        titleStyle: {
+            fontSize: 20,
+            fontWeight: "Bold",
+            placeWithinChart: true,
+            color: appTheme.ForegroundColor + "C4",
+            padding: Thickness.fromString("10 0 4 0")
         }
     });
 
@@ -142,22 +153,6 @@ const drawExample = async () => {
         new LegendModifier({ showCheckboxes: false })
     );
 
-    // Add title annotation
-    const titleAnnotation = new TextAnnotation({
-        text: "Logarithmic X & Y Axis",
-        fontSize: 20,
-        fontWeight: "Bold",
-        textColor: appTheme.ForegroundColor,
-        x1: 0.5,
-        y1: 0,
-        yCoordShift: 10,
-        opacity: 0.77,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative
-    });
-    sciChartSurface.annotations.add(titleAnnotation);
-
     sciChartSurface.zoomExtents();
     return {
         sciChartSurface,
@@ -165,8 +160,7 @@ const drawExample = async () => {
         yAxisLogarithmic,
         yAxisLinear,
         xAxisLinear,
-        xAxisLogarithmic,
-        titleAnnotation
+        xAxisLogarithmic
     };
 };
 
@@ -187,7 +181,7 @@ const useStyles = makeStyles(theme => ({
         color: appTheme.ForegroundColor
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
@@ -199,7 +193,6 @@ export default function LogarithmicAxisExample() {
     const [logXAxis, setLogXAxis] = React.useState<LogarithmicAxis>();
     const [linearYAxis, setLinearYAxis] = React.useState<NumericAxis>();
     const [logYAxis, setLogYAxis] = React.useState<LogarithmicAxis>();
-    const [titleAnnotation, setTitleAnnotation] = React.useState<TextAnnotation>();
     const [preset, setPreset] = React.useState<number>(0);
 
     React.useEffect(() => {
@@ -211,7 +204,6 @@ export default function LogarithmicAxisExample() {
             setLogYAxis(res.yAxisLogarithmic);
             setLinearXAxis(res.xAxisLinear);
             setLinearYAxis(res.yAxisLinear);
-            setTitleAnnotation(res.titleAnnotation);
         })();
 
         // Delete sciChartSurface on unmount component to prevent memory leak
@@ -231,7 +223,7 @@ export default function LogarithmicAxisExample() {
                 toggleAxis(logYAxis, true);
                 toggleAxis(linearXAxis, false);
                 toggleAxis(linearYAxis, false);
-                titleAnnotation.text = "Logarithmic X & Y Axis";
+                sciChartSurface.title = "Logarithmic X & Y Axis";
                 break;
             case 1:
                 console.log(`Setting state to Logarithmic X, Linear Y Axis`);
@@ -239,7 +231,7 @@ export default function LogarithmicAxisExample() {
                 toggleAxis(logYAxis, false);
                 toggleAxis(linearXAxis, false);
                 toggleAxis(linearYAxis, true);
-                titleAnnotation.text = "Logarithmic X Axis, Linear Y Axis";
+                sciChartSurface.title = "Logarithmic X Axis, Linear Y Axis";
                 break;
             case 2:
                 console.log(`Setting state to Linear X & Y Axis`);
@@ -247,7 +239,7 @@ export default function LogarithmicAxisExample() {
                 toggleAxis(logYAxis, false);
                 toggleAxis(linearXAxis, true);
                 toggleAxis(linearYAxis, true);
-                titleAnnotation.text = "Linear X & Y Axis";
+                sciChartSurface.title = "Linear X & Y Axis";
                 break;
         }
 

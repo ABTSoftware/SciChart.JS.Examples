@@ -1,35 +1,29 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { chartBuilder } from "scichart/Builder/chartBuilder";
-import classes from "../../../Examples/Examples.module.scss";
-import { ESeriesType } from "scichart/types/SeriesType";
-import { EAxisType } from "scichart/types/AxisType";
-import { ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { EAnimationType } from "scichart/types/AnimationType";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { EPaletteProviderType } from "scichart/types/PaletteProviderType";
 import {
+    SciChartSurface,
+    chartBuilder,
+    ESeriesType,
+    EAxisType,
+    ELineDrawMode,
+    XyDataSeries,
+    EAnimationType,
+    EAxisAlignment,
+    EPaletteProviderType,
     EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider,
-    IStrokePaletteProvider
-} from "scichart/Charting/Model/IPaletteProvider";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { EBaseType } from "scichart/types/BaseType";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import { NumberRange } from "scichart/Core/NumberRange";
-import {appTheme} from "../../theme";
-import {
-    EAnnotationType
-} from "scichart/Charting/Visuals/Annotations/IAnnotation";
-import {
-    ECoordinateMode
-} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {
+    IStrokePaletteProvider,
+    IRenderableSeries,
+    EBaseType,
+    parseColorToUIntArgb,
+    NumberRange,
+    EAnnotationType,
+    ECoordinateMode,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint
-} from "scichart/types/AnchorPoint";
+} from "scichart";
+import classes from "../../../Examples/Examples.module.scss";
+import {appTheme} from "../../theme";
 
 const divElementId = "chart";
 
@@ -49,10 +43,12 @@ export class ExampleMountainPaletteProvider implements IStrokePaletteProvider, I
     }
 
     // tslint:disable-next-line:no-empty
-    public onAttached(parentSeries: IRenderableSeries): void {}
+    public onAttached(parentSeries: IRenderableSeries): void {
+    }
 
     // tslint:disable-next-line:no-empty
-    public onDetached(): void {}
+    public onDetached(): void {
+    }
 
     public overrideFillArgb(xValue: number, yValue: number, index: number): number {
         if (yValue > 0.5 && yValue < 0.75) {
@@ -90,11 +86,11 @@ chartBuilder.registerType(
 
 const drawExample = async () => {
     // Build the surface
-    const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, {
-        surface: { theme: appTheme.SciChartJsTheme },
+    const {sciChartSurface, wasmContext} = await chartBuilder.build2DChart(divElementId, {
+        surface: {theme: appTheme.SciChartJsTheme},
         yAxes: {
             type: EAxisType.NumericAxis,
-            options: { axisAlignment: EAxisAlignment.Left, visibleRange: new NumberRange(0, 1) }
+            options: {axisAlignment: EAxisAlignment.Left, visibleRange: new NumberRange(0, 1)}
         },
         // Add annotations
         annotations: [{
@@ -138,20 +134,20 @@ const drawExample = async () => {
             paletteProvider: {
                 type: EPaletteProviderType.Custom,
                 customType: ExampleMountainPaletteProvider.Name,
-                options: { stroke: appTheme.MutedRed, fill: appTheme.VividOrange }
+                options: {stroke: appTheme.MutedRed, fill: appTheme.VividOrange}
             },
             fillLinearGradient: {
-                startPoint: { x: 0, y: 0 },
-                endPoint: { x: 0, y: 1 },
+                startPoint: {x: 0, y: 0},
+                endPoint: {x: 0, y: 1},
                 gradientStops: [
-                    { color: appTheme.VividBlue, offset: 0 },
-                    { color: "Transparent", offset: 1 }
+                    {color: appTheme.VividBlue, offset: 0},
+                    {color: "Transparent", offset: 1}
                 ]
             },
             stroke: appTheme.PaleSkyBlue,
             strokeThickness: 3,
             drawNaNAs: ELineDrawMode.PolyLine,
-            animation: { type: EAnimationType.Scale, options: { ease: "cubic" } }
+            animation: {type: EAnimationType.Scale, options: {ease: "cubic"}}
         }
     });
 
@@ -171,7 +167,7 @@ const drawExample = async () => {
     // Since we built the series separately, we have to manually add it to the surface
     sciChartSurface.renderableSeries.add(mountainSeries);
 
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 // React component needed as our examples app is react.
@@ -188,5 +184,5 @@ export default function BuilderCustomTypes() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

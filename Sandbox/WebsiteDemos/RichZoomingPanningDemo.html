@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Include SciChart.js -->
   <script
-          src="https://cdn.jsdelivr.net/npm/scichart@2.1.0-beta.40/_wasm/scichart.browser.js"
+          src="https://cdn.jsdelivr.net/npm/scichart/index.min.js"
           crossorigin="anonymous"
   ></script>
   <title>Hello, SciChart.js world!</title>
@@ -24,10 +24,7 @@
 <script>
   async function initSciChart() {
     // In order to load data file from the CDN we need to set dataUrl
-    SciChart.SciChartSurface.configure({
-      dataUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.0-beta.40/_wasm/scichart2d.data",
-      wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.0-beta.40/_wasm/scichart2d.wasm"
-    });
+    SciChart.SciChartSurface.useWasmFromCDN();
 
     // Create the SciChartSurface
     const {

@@ -1,32 +1,32 @@
 import * as React from "react";
-import {SciChartSurface} from "scichart";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
-import {NumberRange} from "scichart/Core/NumberRange";
 import classes from "../../../../Examples/Examples.module.scss";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {HorizontalLineAnnotation} from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
-import {ELabelPlacement} from "scichart/types/LabelPlacement";
+import {appTheme} from "../../../theme";
+import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
 import {
+    SciChartSurface,
+    NumericAxis,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    MouseWheelZoomModifier,
+    NumberRange,
+    XyDataSeries,
+    HorizontalLineAnnotation,
+    ELabelPlacement,
     EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider,
-    IStrokePaletteProvider
-} from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {FastMountainRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastMountainRenderableSeries";
-import {GradientParams} from "scichart/Core/GradientParams";
-import {Point} from "scichart/Core/Point";
-import {VerticalLineAnnotation} from "scichart/Charting/Visuals/Annotations/VerticalLineAnnotation";
-import {BoxAnnotation} from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import {appTheme} from "../../../theme";
+    IStrokePaletteProvider,
+    IRenderableSeries,
+    parseColorToUIntArgb,
+    TextAnnotation,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    ECoordinateMode,
+    FastMountainRenderableSeries,
+    GradientParams,
+    Point,
+    VerticalLineAnnotation
+} from "scichart";
 
 const divElementId = "chart";
 
@@ -34,12 +34,15 @@ const divElementId = "chart";
 // tslint:disable:max-line-length
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const {
+        sciChartSurface,
+        wasmContext
+    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
 
     // Add an XAxis, YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) })
+        new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)})
     );
 
     // Create a paletteprovider to colour the series depending on a threshold value
@@ -48,7 +51,7 @@ const drawExample = async () => {
         8, appTheme.VividTeal);
 
     // Add a Column series with some values to the chart
-    const { xValues, yValues } = ExampleDataProvider.getDampedSinewave(0, 10, 0, 0.001, 3000, 10);
+    const {xValues, yValues} = ExampleDataProvider.getDampedSinewave(0, 10, 0, 0.001, 3000, 10);
 
     sciChartSurface.renderableSeries.add(
         new FastMountainRenderableSeries(wasmContext, {
@@ -60,8 +63,8 @@ const drawExample = async () => {
                 yValues
             }),
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: appTheme.VividSkyBlue, offset: 0 },
-                { color: appTheme.VividSkyBlue + "77", offset: 1 }
+                {color: appTheme.VividSkyBlue, offset: 0},
+                {color: appTheme.VividSkyBlue + "77", offset: 1}
             ]),
             paletteProvider: thresholdPalette,
         })
@@ -78,7 +81,7 @@ const drawExample = async () => {
         textColor: "White",
     });
     // Add a horizontal threshold at Y=5
-    const horizontalLine = new HorizontalLineAnnotation( {
+    const horizontalLine = new HorizontalLineAnnotation({
         y1: 4.0,
         isEditable: true,
         showLabel: true,
@@ -135,7 +138,7 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 /**
@@ -195,5 +198,5 @@ export default function DragHorizontalThreshold() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

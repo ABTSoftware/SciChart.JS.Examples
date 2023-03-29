@@ -1,10 +1,13 @@
-import { SciChartSurface } from "scichart";
-import { EDataSeriesType } from "scichart/Charting/Model/IDataSeries";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
-import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
-import { CoordinateCalculatorBase } from "scichart/Charting/Numerics/CoordinateCalculators/CoordinateCalculatorBase";
-import { EAnnotationType } from "scichart/Charting/Visuals/Annotations/IAnnotation";
-import { ISvgAnnotationBaseOptions, SvgAnnotationBase } from "scichart/Charting/Visuals/Annotations/SvgAnnotationBase";
+import {
+    SciChartSurface,
+    EDataSeriesType,
+    OhlcDataSeries,
+    XyyDataSeries,
+    CoordinateCalculatorBase,
+    EAnnotationType,
+    ISvgAnnotationBaseOptions,
+    SvgAnnotationBase
+} from "scichart";
 
 
 export type TFinanceLegendTemplate = (legendAnnotation: FinChartLegendAnnotation) => string;
@@ -53,6 +56,7 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
     public get template() {
         return this.templateProperty;
     }
+
     public set template(value) {
         this.templateProperty = value;
     }
@@ -60,6 +64,7 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
     public get xIndex() {
         return this.xIndexProperty;
     }
+
     public set xIndex(value) {
         this.xIndexProperty = value;
     }
@@ -67,6 +72,7 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
     public get paneId() {
         return this.paneIdProperty;
     }
+
     public set paneId(value) {
         this.paneIdProperty = value;
     }
@@ -74,6 +80,7 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
     public get offsetX() {
         return this.offsetXProperty;
     }
+
     public set offsetX(value) {
         this.offsetXProperty = value;
     }
@@ -81,6 +88,7 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
     public get offsetY() {
         return this.offsetYProperty;
     }
+
     public set offsetY(value) {
         this.offsetYProperty = value;
     }
@@ -88,6 +96,7 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
     public get activeSciChartSurface() {
         return this.activeSciChartSurfaceProperty;
     }
+
     public set activeSciChartSurface(value) {
         this.activeSciChartSurfaceProperty = value;
     }
@@ -95,6 +104,7 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
     public get title() {
         return this.titleProperty;
     }
+
     public set title(value) {
         this.titleProperty = value;
     }
@@ -131,7 +141,7 @@ const defaultFinanceLegendTemplate: TFinanceLegendTemplate = (la: FinChartLegend
     const outputStrings: string[] = [];
     const subSurface = la.sciFinanceChart.subCharts.find(study => study.id === la.paneId);
     let outputStr = "";
-    subSurface.renderableSeries.asArray().forEach(({ dataSeries }) => {
+    subSurface.renderableSeries.asArray().forEach(({dataSeries}) => {
         switch (dataSeries.type) {
             case EDataSeriesType.Ohlc: {
                 const openValues = (dataSeries as OhlcDataSeries).getNativeOpenValues();

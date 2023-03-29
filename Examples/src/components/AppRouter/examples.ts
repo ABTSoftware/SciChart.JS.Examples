@@ -96,6 +96,7 @@ import NonUniformHeatmapChart from "../Examples/Charts2D/BasicChartTypes/NonUnif
 import FeatureAxisTypes from "../Examples/FeaturedApps/FeatureDemos/AxisTypes";
 import SubChartStockCharts from "../Examples/Charts2D/CreateStockCharts/SubChartStockCharts";
 import FeatureAxisLayout from "../Examples/FeaturedApps/FeatureDemos/AxisLayout";
+import FeatureChartTitle from "../Examples/FeaturedApps/FeatureDemos/ChartTitle";
 import SubchartsGrid from "../Examples/FeaturedApps/FeatureDemos/SubChartsAPI";
 import RealtimeBigDataShowcase from "../Examples/FeaturedApps/ShowCases/WebsocketBigData";
 import OilAndGasDashboardShowcase from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard";
@@ -229,7 +230,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling,
-            EXAMPLES_PAGES.chart2D_stylingAndTheming_DataLabels
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_DataLabels,
+            EXAMPLES_PAGES.featuredApps_featureDemos_chartTitle
         ]
     },
     {
@@ -506,6 +508,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return FeatureAxisTypes;
         case EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout.id:
             return FeatureAxisLayout;
+        case EXAMPLES_PAGES.featuredApps_featureDemos_chartTitle.id:
+            return FeatureChartTitle;
         case EXAMPLES_PAGES.featuredApps_featureDemos_subchartsGrid.id:
             return SubchartsGrid;
         case EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata.id:

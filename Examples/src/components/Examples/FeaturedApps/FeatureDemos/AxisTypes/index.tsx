@@ -1,37 +1,37 @@
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {
-    EFillPaletteMode,
-    EStrokePaletteMode,
-    IFillPaletteProvider,
-    IStrokePaletteProvider
-} from "scichart/Charting/Model/IPaletteProvider";
-import { IPointMetadata } from "scichart/Charting/Model/IPointMetadata";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
-import { CategoryAxis } from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import { DateTimeNumericAxis } from "scichart/Charting/Visuals/Axis/DateTimeNumericAxis";
-import { TextLabelProvider } from "scichart/Charting/Visuals/Axis/LabelProvider/TextLabelProvider";
-import { LogarithmicAxis } from "scichart/Charting/Visuals/Axis/LogarithmicAxis";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { Thickness } from "scichart/Core/Thickness";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { ELabelAlignment } from "scichart/types/LabelAlignment";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
 import classes from "../../../Examples.module.scss";
 import { TBinanceCandleData } from "../../../../../commonTypes/TBinanceCandleData";
 import {appTheme} from "../../../theme";
 import {makeStyles} from "@material-ui/core/styles";
+
+import {
+    CategoryAxis,
+    DateTimeNumericAxis,
+    EFillPaletteMode,
+    EStrokePaletteMode,
+    EAutoRange,
+    EAxisAlignment,
+    ELabelAlignment,
+    ENumericFormat,
+    FastColumnRenderableSeries,
+    FastLineRenderableSeries,
+    IFillPaletteProvider,
+    IStrokePaletteProvider,
+    IPointMetadata,
+    IRenderableSeries,
+    LogarithmicAxis,
+    MouseWheelZoomModifier,
+    NumericAxis,
+    NumberRange,
+    parseColorToUIntArgb,
+    SciChartSurface,
+    TextLabelProvider,
+    Thickness,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier
+} from "scichart";
 
 const divElementId = "chart";
 

@@ -1,37 +1,40 @@
 import * as React from "react";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { EAnimationType } from "scichart/types/AnimationType";
-import classes from "../../../../Examples/Examples.module.scss";
-import { makeStyles } from "@material-ui/core/styles";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { appTheme } from "../../../theme";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { EHorizontalAnchorPoint } from "scichart/types/AnchorPoint";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { PaletteFactory } from "scichart/Charting/Model/PaletteFactory";
-import { GradientParams } from "scichart/Core/GradientParams";
-import { Point } from "scichart/Core/Point";
-import { Thickness } from "scichart/Core/Thickness";
-import { SeriesSelectionModifier } from "scichart/Charting/ChartModifiers/SeriesSelectionModifier";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { ELineDrawMode } from "scichart/Charting/Drawing/WebGlRenderContext2D";
-import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-import { EStrokePaletteMode, IStrokePaletteProvider } from "scichart/Charting/Model/IPaletteProvider";
-import { IPointMetadata } from "scichart/Charting/Model/IPointMetadata";
-import { parseColorToUIntArgb } from "scichart/utils/parseColor";
-import { HorizontalLineAnnotation } from "scichart/Charting/Visuals/Annotations/HorizontalLineAnnotation";
-import { ELabelPlacement } from "scichart/types/LabelPlacement";
-import { EDataLabelSkipMode } from "scichart/types/DataLabelSkipMode";
-import { EVerticalTextPosition } from "scichart/types/TextPosition";
-import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
+import classes from "../../../../Examples/Examples.module.scss";
+import { appTheme } from "../../../theme";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+    BoxAnnotation,
+    EAnimationType,
+    EAxisAlignment,
+    ECoordinateMode,
+    EDataLabelSkipMode,
+    EHorizontalAnchorPoint,
+    ELineDrawMode,
+    ELabelPlacement,
+    EllipsePointMarker,
+    EStrokePaletteMode,
+    EVerticalTextPosition,
+    FastLineRenderableSeries,
+    GradientParams,
+    HorizontalLineAnnotation,
+    IPointMetadata,
+    IRenderableSeries,
+    IStrokePaletteProvider,
+    NumericAxis,
+    NumberRange,
+    ModifierMouseArgs,
+    parseColorToUIntArgb,
+    Point,
+    PaletteFactory,
+    RolloverModifier,
+    SciChartSurface,
+    SeriesSelectionModifier,
+    TextAnnotation,
+    Thickness,
+    XyDataSeries
+} from "scichart";
 
 const divElementId1 = "chart1";
 const divElementId2 = "chart2";
@@ -48,7 +51,13 @@ const drawExample = async () => {
         // Create a SciChartSurface
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId, {
             theme: appTheme.SciChartJsTheme,
-            padding: new Thickness(5, 5, 5, 5)
+            padding: new Thickness(5, 5, 5, 5),
+            title,
+            titleStyle: {
+                placeWithinChart: true,
+                color: appTheme.ForegroundColor + "C4",
+                fontSize: 16
+            }
         });
 
         // Create the X,Y Axis
@@ -57,26 +66,7 @@ const drawExample = async () => {
             new NumericAxis(wasmContext, { maxAutoTicks: 5, growBy: new NumberRange(0.05, 0.25) })
         );
 
-        // Add title annotation
-        sciChartSurface.annotations.add(
-            new TextAnnotation({
-                text: title,
-                fontSize: 16,
-                textColor: appTheme.ForegroundColor,
-                x1: 0.5,
-                y1: 0,
-                opacity: 0.77,
-                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-                xCoordinateMode: ECoordinateMode.Relative,
-                yCoordinateMode: ECoordinateMode.Relative
-            })
-        );
-
         if (isVertical) {
-            // Only for vertical charts, annotation x,y coordinates are treated as swapped
-            const titleAnnotation = sciChartSurface.annotations.get(0);
-            titleAnnotation.x1 = 0;
-            titleAnnotation.y1 = 0.5;
             // We also want our padding on the xaxis at the start for vertical
             sciChartSurface.xAxes.get(0).growBy = new NumberRange(0.2, 0.05);
         }
@@ -194,7 +184,9 @@ const drawExample = async () => {
             })
         );
         // FOR DEMO PURPOSE ONLY - fake a mouse event so the tooltip shows without rollover.
-        sciChartSurface.mouseManager.modifierMouseMove({ mousePoint: new Point(sciChartSurface.renderSurface.viewportSize.width * 2 / 3, 10)} as ModifierMouseArgs);
+        sciChartSurface.mouseManager.modifierMouseMove({
+            mousePoint: new Point((sciChartSurface.renderSurface.viewportSize.width * 2) / 3, 10)
+        } as ModifierMouseArgs);
         return sciChartSurface;
     };
 

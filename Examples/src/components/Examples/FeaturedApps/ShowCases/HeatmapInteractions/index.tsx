@@ -1,8 +1,5 @@
 import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import FormControl from "@material-ui/core/FormControl";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
 import { SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";

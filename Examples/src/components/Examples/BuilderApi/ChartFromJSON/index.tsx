@@ -1,13 +1,9 @@
 import * as React from "react";
-import { SciChartSurface, TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
-import { chartBuilder } from "scichart/Builder/chartBuilder";
+import { SciChartSurface, chartBuilder, TWebAssemblyChart } from "scichart";
+import {  } from "scichart/Builder/chartBuilder";
 import classes from "../../../Examples/Examples.module.scss";
 import { ButtonGroup, Button, TextField } from "@material-ui/core";
 import { Alert, AlertTitle } from "@material-ui/lab";
-import { EBaseType } from "scichart/types/BaseType";
-import { IThemeProvider } from "scichart/Charting/Themes/IThemeProvider";
-import { ISciChartLoader } from "scichart/Charting/Visuals/loader";
-import {appTheme} from "../../theme";
 
 const divElementId = "chart";
 

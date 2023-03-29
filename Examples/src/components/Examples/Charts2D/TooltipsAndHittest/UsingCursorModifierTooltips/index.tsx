@@ -1,21 +1,23 @@
 import * as React from "react";
-import {TWebAssemblyChart} from "scichart/Charting/Visuals/SciChartSurface";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {SciChartSurface} from "scichart";
-import {CursorModifier} from "scichart/Charting/ChartModifiers/CursorModifier";
-import {ENumericFormat} from "scichart/types/NumericFormat";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {SeriesInfo} from "scichart/Charting/Model/ChartData/SeriesInfo";
-import {CursorTooltipSvgAnnotation} from "scichart/Charting/Visuals/Annotations/CursorTooltipSvgAnnotation";
 import {ExampleDataProvider} from "../../../ExampleData/ExampleDataProvider";
+
+import {TWebAssemblyChart} from "scichart/Charting/Visuals/SciChartSurface";
+import {
+    NumericAxis,
+    NumberRange,
+    SciChartSurface,
+    XyDataSeries,
+    ENumericFormat,
+    FastLineRenderableSeries,
+    EllipsePointMarker,
+    CursorModifier,
+    ZoomPanModifier,
+    ZoomExtentsModifier, MouseWheelZoomModifier,
+    SeriesInfo,
+    CursorTooltipSvgAnnotation
+} from "scichart";
 
 const divElementId = "chart";
 

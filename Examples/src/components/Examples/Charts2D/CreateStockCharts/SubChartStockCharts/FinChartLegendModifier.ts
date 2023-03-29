@@ -1,20 +1,23 @@
-
-import { SciChartSurface } from "scichart";
-import { EModifierType } from "scichart/Charting/ChartModifiers/ChartModifierBase";
-import { ChartModifierBase2D, IChartModifierBaseOptions } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
-import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
-import { SciChartSubSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { SciChartSurfaceBase } from "scichart/Charting/Visuals/SciChartSurfaceBase";
-import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
-import { Point } from "scichart/Core/Point";
-import { EBaseType } from "scichart/types/BaseType";
-import { EChart2DModifierType } from "scichart/types/ChartModifierType";
-import { EMousePosition } from "scichart/types/MousePosition";
-import { translateFromCanvasToSeriesViewRect, translateToNotScaled } from "scichart/utils/translate";
-import { TFinanceLegendTemplate, FinChartLegendAnnotation } from "./FinChartLegendAnnotation";
-import { registerType } from "scichart/Builder/classFactory";
+import {
+    ChartModifierBase2D,
+    DpiHelper,
+    ECoordinateMode,
+    EModifierType,
+    EBaseType,
+    EChart2DModifierType,
+    IChartModifierBaseOptions,
+    LineAnnotation,
+    ModifierMouseArgs,
+    Point,
+    SciChartSurface,
+    SciChartSurfaceBase,
+    SciChartSubSurface,
+    translateFromCanvasToSeriesViewRect,
+    translateToNotScaled,
+    registerType
+} from "scichart";
+import {TFinanceLegendTemplate, FinChartLegendAnnotation} from "./FinChartLegendAnnotation";
+import {EMousePosition} from "scichart/types/MousePosition";
 
 /**
  * Optional parameters used to configure a {@link CursorModifier} at construct time
@@ -105,6 +108,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
         this.addLineAnnotations(subChart.id);
         this.addLegendAnnotation(subChart.id);
     }
+
     public onDetachSubSurface(subChart: SciChartSubSurface): void {
         const paneModifier = this.paneModifiers.get(subChart);
         subChart.chartModifiers.remove(paneModifier);
@@ -119,6 +123,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
     public get legendOffsetX() {
         return this.legendOffsetXProperty;
     }
+
     public set legendOffsetX(value) {
         this.legendOffsetXProperty = value;
     }
@@ -126,6 +131,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
     public get legendOffsetY() {
         return this.legendOffsetYProperty;
     }
+
     public set legendOffsetY(value) {
         this.legendOffsetYProperty = value;
     }
@@ -133,6 +139,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
     public get legendTitle() {
         return this.legendTitleProperty;
     }
+
     public set legendTitle(value) {
         this.legendTitleProperty = value;
     }
@@ -171,7 +178,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
 
     private update() {
         if (this.mousePosition === EMousePosition.SeriesArea) {
-            const { x: scaledX, y: scaledY } = this.translatedMousePoint;
+            const {x: scaledX, y: scaledY} = this.translatedMousePoint;
             const x = translateToNotScaled(scaledX);
             const y = translateToNotScaled(scaledY);
 

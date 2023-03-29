@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IDeletable } from "scichart/Core/IDeletable";
+import { IDeletable } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { appTheme } from "../../../theme";
 import classes from "../../../../Examples/Examples.module.scss";

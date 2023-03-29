@@ -1,13 +1,16 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
 import classes from "../../../../Examples/Examples.module.scss";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+
+import {
+    SciChartSurface,
+    NumericAxis,
+    MouseWheelZoomModifier,
+    EAxisAlignment,
+    ZoomPanModifier,
+    TextAnnotation,
+    EHorizontalAnchorPoint,
+    ECoordinateMode
+} from "scichart";
 
 const divElementId = "chart";
 
@@ -25,7 +28,7 @@ const drawExample = async () => {
     const axisBackgroundFill = "#00000000";
     const borderColor = "#1F3D68";
 
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId);
     sciChartSurface.background = chartBackgroundColor;
 
     // Create and style xAxis
@@ -138,7 +141,7 @@ const drawExample = async () => {
             axisAlignment: EAxisAlignment.Right,
             majorGridLineStyle: {
                 strokeThickness: 1,
-                color:majorGridLineColor,
+                color: majorGridLineColor,
                 strokeDashArray: [10, 5]
             },
             minorGridLineStyle: {
@@ -193,7 +196,7 @@ const drawExample = async () => {
 
     sciChartSurface.zoomExtents();
 
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 export default function StylingInCode() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
@@ -207,5 +210,5 @@ export default function StylingInCode() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }

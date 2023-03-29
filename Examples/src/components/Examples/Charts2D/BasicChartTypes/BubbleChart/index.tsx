@@ -1,31 +1,27 @@
 import * as React from "react";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {XyzDataSeries} from "scichart/Charting/Model/XyzDataSeries";
 import {
+    XyDataSeries,
+    XyzDataSeries,
+    NumericAxis,
+    FastBubbleRenderableSeries,
+    SciChartSurface,
+    NumberRange,
+    EllipsePointMarker,
     EFillPaletteMode,
     EStrokePaletteMode,
     IPointMarkerPaletteProvider,
-    TPointMarkerArgb
-} from "scichart/Charting/Model/IPaletteProvider";
-import {IRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {parseColorToUIntArgb} from "scichart/utils/parseColor";
-import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
-
+    TPointMarkerArgb,
+    IRenderableSeries,
+    IPointMetadata,
+    MouseWheelZoomModifier,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
+    parseColorToUIntArgb,
+    SplineLineRenderableSeries,
+    SweepAnimation
+} from "scichart";
 import classes from "../../../../Examples/Examples.module.scss";
 import {appTheme} from "../../../theme";
-import {IPointMetadata} from "scichart/Charting/Model/IPointMetadata";
-import {
-    SplineLineRenderableSeries
-} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
 
 
 const divElementId = "chart";
@@ -109,7 +105,7 @@ class BubblePaletteProvider implements IPointMarkerPaletteProvider {
     }
 
     public overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): TPointMarkerArgb {
-        return xValue >= 8 && xValue <= 12 ? { fill: this.fillArgb, stroke: this.fillArgb } : undefined;
+        return xValue >= 8 && xValue <= 12 ? {fill: this.fillArgb, stroke: this.fillArgb} : undefined;
     }
 }
 

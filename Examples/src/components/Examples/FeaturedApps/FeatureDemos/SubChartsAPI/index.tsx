@@ -1,45 +1,46 @@
 import * as React from "react";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-
-import { INumericAxisOptions, NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { SciChartSubSurface, SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { Thickness } from "scichart/Core/Thickness";
-import { EAutoRange } from "scichart/types/AutoRange";
-import { EAxisAlignment } from "scichart/types/AxisAlignment";
 import classes from "../../../Examples.module.scss";
 import { appTheme } from "../../../theme";
 import { makeStyles } from "@material-ui/core/styles";
-import { RightAlignedOuterVerticallyStackedAxisLayoutStrategy } from "scichart/Charting/LayoutManager/RightAlignedOuterVerticallyStackedAxisLayoutStrategy";
-import { EDataSeriesType } from "scichart/Charting/Model/IDataSeries";
-import { StackedColumnCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnCollection";
-import { StackedColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnRenderableSeries";
-import { StackedMountainCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainCollection";
-import { StackedMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainRenderableSeries";
-import { ESeriesType } from "scichart/types/SeriesType";
-import { TSciChart } from "scichart/types/TSciChart";
-import { Rect } from "scichart/Core/Rect";
-import { I2DSubSurfaceOptions } from "scichart/Charting/Visuals/I2DSurfaceOptions";
-import { NativeTextAnnotation } from "scichart/Charting/Visuals/Annotations/NativeTextAnnotation";
-import { EMultiLineAlignment } from "scichart/types/TextPosition";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { EHorizontalAnchorPoint } from "scichart/types/AnchorPoint";
-import { EAnnotationLayer } from "scichart/Charting/Visuals/Annotations/IAnnotation";
-import { FormControl, InputLabel, Select, MenuItem, Typography, Slider, ButtonGroup, Button, FormControlLabel, Checkbox } from "@material-ui/core";
+import { FormControl, ButtonGroup, Button, FormControlLabel, Checkbox } from "@material-ui/core";
 import {
-    GetRandomData,
     appendData,
     createRenderableSeries,
     getDataSeriesTypeForRenderableSeries,
     getSubChartPositionIndexes,
     prePopulateData
 } from "./helpers";
-import { BaseDataSeries } from "scichart/Charting/Model/BaseDataSeries";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { CheckBox } from "@material-ui/icons";
+
+import {
+    BaseDataSeries,
+    EAnnotationLayer,
+    ECoordinateMode,
+    EDataSeriesType,
+    EAutoRange,
+    ENumericFormat,
+    EHorizontalAnchorPoint,
+    EMultiLineAlignment,
+    ESeriesType,
+    IRenderableSeries,
+    INumericAxisOptions,
+    I2DSubSurfaceOptions,
+    MouseWheelZoomModifier,
+    NativeTextAnnotation,
+    NumericAxis,
+    NumberRange,
+    Rect,
+    RightAlignedOuterVerticallyStackedAxisLayoutStrategy,
+    SciChartSubSurface,
+    SciChartSurface,
+    StackedColumnCollection,
+    StackedColumnRenderableSeries,
+    StackedMountainCollection,
+    StackedMountainRenderableSeries,
+    Thickness,
+    TSciChart,
+    ZoomExtentsModifier,
+    ZoomPanModifier
+} from "scichart";
 
 type TMessage = {
     title: string;
@@ -63,7 +64,7 @@ const axisOptions: INumericAxisOptions = {
 };
 
 // theme overrides
-const theme = appTheme.SciChartJsTheme;
+const sciChartTheme = appTheme.SciChartJsTheme;
 
 export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) => void) => {
     const subChartsNumber = 64;
@@ -77,29 +78,29 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
         initialPoints: 20
     };
 
-    const originalGetStrokeColor = theme.getStrokeColor;
+    const originalGetStrokeColor = sciChartTheme.getStrokeColor;
     let counter = 0;
-    theme.getStrokeColor = (index: number, max: number, wasmContext: TSciChart) => {
+    sciChartTheme.getStrokeColor = (index: number, max: number, context: TSciChart) => {
         const currentIndex = counter % subChartsNumber;
         counter += 3;
-        return originalGetStrokeColor.call(theme, currentIndex, subChartsNumber, wasmContext);
+        return originalGetStrokeColor.call(sciChartTheme, currentIndex, subChartsNumber, context);
     };
 
-    const originalGetFillColor = theme.getFillColor;
-    theme.getFillColor = (index: number, max: number, wasmContext: TSciChart) => {
+    const originalGetFillColor = sciChartTheme.getFillColor;
+    sciChartTheme.getFillColor = (index: number, max: number, context: TSciChart) => {
         const currentIndex = counter % subChartsNumber;
         counter += 3;
-        return originalGetFillColor.call(theme, currentIndex, subChartsNumber, wasmContext);
+        return originalGetFillColor.call(sciChartTheme, currentIndex, subChartsNumber, context);
     };
     ///
 
     const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.createSingle(divElementId, {
-        theme
+        theme: sciChartTheme
     });
 
     const mainXAxis = new NumericAxis(wasmContext, {
         isVisible: false,
-        id: "mainXAxis",
+        id: "mainXAxis"
     });
 
     mainSurface.xAxes.add(mainXAxis);
@@ -134,7 +135,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
 
     const subChartsMap: Map<
         SciChartSubSurface,
-        { seriesType: ESeriesType, dataSeriesType: EDataSeriesType; dataSeriesArray: BaseDataSeries[] }
+        { seriesType: ESeriesType; dataSeriesType: EDataSeriesType; dataSeriesArray: BaseDataSeries[] }
     > = new Map();
 
     const xValues = Array.from(new Array(dataSettings.initialPoints).keys());
@@ -150,7 +151,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
         // sub-surface configuration
         const subChartOptions: I2DSubSurfaceOptions = {
             id: `subChart-${subChartIndex}`,
-            theme,
+            theme: sciChartTheme,
             position,
             parentXAxisId: mainXAxis.id,
             parentYAxisId: mainYAxis.id,
@@ -159,6 +160,13 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
             viewportBorder: {
                 color: "rgba(150, 74, 148, 0.51)",
                 border: 2
+            },
+            title: seriesNamesMap[seriesType],
+            titleStyle: {
+                placeWithinChart: true,
+                fontSize: 12,
+                padding: Thickness.fromString("10 4 0 4"),
+                color: appTheme.ForegroundColor,
             }
         };
 
@@ -244,23 +252,6 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
             subChartSurface.zoomExtents(0);
         }
 
-        // add title to the sub-chart
-        const titleAnnotation = new NativeTextAnnotation({
-            xAxisId: subChartXAxis.id,
-            yAxisId: subChartYAxis.id,
-            multiLineAlignment: EMultiLineAlignment.Center,
-            xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Pixel,
-            x1: 0.5,
-            fontSize: 12,
-            y1: 10,
-            text: seriesNamesMap[seriesType],
-            annotationLayer: EAnnotationLayer.AboveChart,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center
-        });
-
-        subChartSurface.annotations.add(titleAnnotation);
-
         subChartsMap.set(subChartSurface, { seriesType, dataSeriesType, dataSeriesArray });
 
         return positive;
@@ -274,7 +265,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
 
     // setup for realtime updates
     let isRunning: boolean = false;
-    let newMessages: TMessage[] = [];
+    const newMessages: TMessage[] = [];
     let loadStart = 0;
     let loadCount: number = 0;
     let avgRenderTime: number = 0;
@@ -349,9 +340,9 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
     const setLabels = (show: boolean) => {
         subChartsMap.forEach((v, k) => {
             k.xAxes.get(0).isVisible = show;
-            k.yAxes.asArray().forEach(y => y.isVisible = show);
+            k.yAxes.asArray().forEach(y => (y.isVisible = show));
         });
-    }
+    };
 
     return {
         wasmContext,
@@ -452,7 +443,11 @@ export default function SubchartsGrid() {
                         </ButtonGroup>
                     </FormControl>
                     <FormControl className={classes.formControl}>
-                        <FormControlLabel control={<Checkbox onChange={handleLabelsChange} />} label="Axis Labels" labelPlacement="start" />
+                        <FormControlLabel
+                            control={<Checkbox onChange={handleLabelsChange} />}
+                            label="Axis Labels"
+                            labelPlacement="start"
+                        />
                     </FormControl>
                     <div className={localClasses.infoBlock}>
                         {messages.map((msg, index) => (

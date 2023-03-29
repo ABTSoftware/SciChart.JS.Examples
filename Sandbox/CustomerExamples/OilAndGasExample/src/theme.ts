@@ -6,8 +6,8 @@ import {
     SciChartJSLightTheme
 } from "scichart/Charting/Themes/SciChartJSLightTheme";
 import {
-    SciChartJS2022Theme
-} from "scichart/Charting/Themes/SciChartJS2022Theme";
+    SciChartJsNavyTheme
+} from "scichart/Charting/Themes/SciChartJsNavyTheme";
 
 
 export interface AppThemeBase {
@@ -82,7 +82,7 @@ export interface AppThemeBase {
 
 export class App2022BrandTheme implements AppThemeBase {
 
-    SciChartJsTheme = new SciChartJS2022Theme();
+    SciChartJsTheme = new SciChartJsNavyTheme();
 
     // general colours
     LegendTextColor = "LightGray";

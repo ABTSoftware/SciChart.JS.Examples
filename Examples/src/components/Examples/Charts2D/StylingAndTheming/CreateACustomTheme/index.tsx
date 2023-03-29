@@ -1,21 +1,24 @@
 import * as React from "react";
-import { SciChartSurface } from "scichart";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { NumberRange } from "scichart/Core/NumberRange";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
-import { closeValues, dateValues, highValues, lowValues, openValues } from "./data/themeing2dData";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
+import {closeValues, dateValues, highValues, lowValues, openValues} from "./data/themeing2dData";
 import classes from "../../../../Examples/Examples.module.scss";
+
+import {
+    FastCandlestickRenderableSeries,
+    FastColumnRenderableSeries,
+    FastLineRenderableSeries,
+    NumericAxis,
+    NumberRange,
+    OhlcDataSeries,
+    RolloverModifier,
+    SciChartSurface,
+    XyDataSeries
+} from "scichart";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId);
 
     // Create and apply your custom theme
     sciChartSurface.applyTheme({
@@ -29,9 +32,9 @@ const drawExample = async () => {
         columnLineColor: "white",
         cursorLineBrush: "#6495ED99",
         defaultColorMapBrush: [
-            { offset: 0, color: "DarkBlue" },
-            { offset: 0.5, color: "CornflowerBlue" },
-            { offset: 1, color: "#FF22AA" }
+            {offset: 0, color: "DarkBlue"},
+            {offset: 0.5, color: "CornflowerBlue"},
+            {offset: 1, color: "#FF22AA"}
         ],
         downBandSeriesFillColor: "#52CC5490",
         downBandSeriesLineColor: "#E26565FF",
@@ -69,7 +72,8 @@ const drawExample = async () => {
         upBandSeriesLineColor: "white",
         upBodyBrush: "#6495EDA0",
         upWickColor: "#6495ED",
-        axisTitleColor: "#EEEEEE"
+        axisTitleColor: "#EEEEEE",
+        chartTitleColor: "#EEEEEE"
     });
 
     // Create the XAxis, YAxis
@@ -120,7 +124,7 @@ const drawExample = async () => {
 
     // Create tootip behaviour
     sciChartSurface.chartModifiers.add(new RolloverModifier());
-    return { sciChartSurface, wasmContext };
+    return {sciChartSurface, wasmContext};
 };
 
 let scs: SciChartSurface;
@@ -135,5 +139,5 @@ export default function CustomTheme() {
         return () => scs?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
 }
