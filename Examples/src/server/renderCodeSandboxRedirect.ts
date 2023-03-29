@@ -3,6 +3,7 @@ import * as fs from "fs";
 import { Request, Response } from "express";
 import { getParameters } from "codesandbox/lib/api/define";
 import { EXAMPLES_PAGES, TExampleInfo } from "../components/AppRouter/examplePages";
+const pj = require('../../package.json')
 
 interface IFiles {
   [key: string]: {
@@ -52,8 +53,8 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
             "react": "18.0.0",
             "react-dom": "18.0.0",
             "react-scripts": "4.0.3",
-            "scichart": "^3.0.301",
-            "scichart-example-dependencies": "^0.1.5",
+            "scichart": pj.dependencies.scichart,
+            "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
             ...currentExample.extraDependencies
           },
           "devDependencies": {
@@ -98,7 +99,7 @@ root.render(
       "./src/**/*"
   ],
   "compilerOptions": {
-      "strict": true,
+      "strict": false,
       "esModuleInterop": true,
       "lib": [
           "dom",
