@@ -1,0 +1,23 @@
+body { margin:0; padding:0; }
+.container {
+        width: 100%;
+        height: 100vh;
+        background-color:#fff;
+        display:grid;
+        grid-template-columns: 50% 50%;
+        grid-row: auto auto;
+    .box{
+        background-color:#333;
+        margin: 20px 0px 0px 20px;
+        border: 1px solid red;
+        color:#fff;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:40px;
+        font-family:sans-serif;
+    }
+}
+.scichart__legend-item {
+    font-family: Arial;
+}

@@ -1,0 +1,29 @@
+body { margin: 0; font-family: Arial; }
+.container { width: 100%; height: 100vh; position: relative; }
+#scichart-root { width: 100%; height: 100%; }
+#update-chart-button {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    border: 1px solid #14233C;
+    background-color: #364BA0;
+    border-radius: 3px;
+    color: #FFFFFF;
+    padding: 15px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+#update-chart-button:hover {
+    background-color: #537ABD;
+}
+#update-range-label {
+    color: #FFFFFF77;
+    position: absolute;;
+    left: 25px;
+    top: 75px;
+}

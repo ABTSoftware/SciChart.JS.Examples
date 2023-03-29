@@ -19,7 +19,10 @@ import {
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
     ECoordinateMode,
-    EAnnotationLayer
+    EAnnotationLayer,
+    EMultiLineAlignment,
+    ETextAlignment,
+    Thickness
 } from "scichart";
 
 const divElementId = "chart";
@@ -32,19 +35,29 @@ const HIT_TEST_DATAPOINT = "hitTestDataPoint";
 const HIT_TEST_X_SLICE = "hitTestXSlice";
 
 const drawExample = async () => {
-
     // Which hit-test method are we using? See below for usage
     let whichHitTestMethod = HIT_TEST_DATAPOINT;
 
     // Create a SciChartSurface with theme
-    const {wasmContext, sciChartSurface} = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme,
+        title: [
+            "Click on the chart to demonstrate Hit-Test API",
+            "Change the Hit-Test method above to see the different behaviours"
+        ],
+        titleStyle: {
+            fontSize: 16,
+            placeWithinChart: true,
+            alignment: ETextAlignment.Left,
+            multilineAlignment: EMultiLineAlignment.Left,
+            color: appTheme.ForegroundColor + "C4",
+            padding: Thickness.fromString("13 4 0 9")
+        }
     });
 
     // add an event listener for mouse down. You can access the actual SciChartSurface canvas as
     // follows, or find element by ID=divElementId in the dom
-    sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent) => {
-
+    sciChartSurface.domCanvas2D.addEventListener("mousedown", mouseEvent => {
         // Translate the point to the series viewrect before hit-testing
         // Attention!
         // We need to multiply it by DpiHelper.PIXEL_RATIO
@@ -72,11 +85,12 @@ const drawExample = async () => {
         }
 
         // Log the result to console. HitTestInfo contains information about the hit-test operation
-        console.log(`${hitTestInfo.dataSeriesName} hit test result (${whichHitTestMethod}):\r\n` +
-            ` MouseCoord=(${mousePointX}, ${mousePointY})\r\n` +
-            ` Hit-Test Coord=(${hitTestInfo.xCoord}, ${hitTestInfo.yCoord})\r\n` +
-            ` IsHit? ${hitTestInfo.isHit}\r\n` +
-            ` Result=(${hitTestInfo.xValue}, ${hitTestInfo.yValue}) `
+        console.log(
+            `${hitTestInfo.dataSeriesName} hit test result (${whichHitTestMethod}):\r\n` +
+                ` MouseCoord=(${mousePointX}, ${mousePointY})\r\n` +
+                ` Hit-Test Coord=(${hitTestInfo.xCoord}, ${hitTestInfo.yCoord})\r\n` +
+                ` IsHit? ${hitTestInfo.isHit}\r\n` +
+                ` Result=(${hitTestInfo.xValue}, ${hitTestInfo.yValue}) `
         );
         visualiseHitTestPoint(sciChartSurface, hitTestInfo, whichHitTestMethod, 1000);
     });
@@ -85,11 +99,13 @@ const drawExample = async () => {
     //
 
     // Create an X,Y Axis. For this example we put y-axis on the left to demonstrate offsetting the mouse-point when hit-testing
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)}));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Left,
-        growBy: new NumberRange(0.1, 0.1)
-    }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            axisAlignment: EAxisAlignment.Left,
+            growBy: new NumberRange(0.1, 0.1)
+        })
+    );
 
     // Create a Line Series with XyDataSeries and some data
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
@@ -98,35 +114,19 @@ const drawExample = async () => {
         dataSeries: new XyDataSeries(wasmContext, {
             dataSeriesName: "Line Series",
             xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-            yValues: [0, 1, 5, 1, 20, 5, 1, 8, 9, 3],
+            yValues: [0, 1, 5, 1, 20, 5, 1, 8, 9, 3]
         }),
         pointMarker: new EllipsePointMarker(wasmContext, {
             stroke: appTheme.VividSkyBlue,
             fill: appTheme.VividSkyBlue + "33",
             width: 11,
-            height: 11,
-        }),
+            height: 11
+        })
     });
 
     // Add the line series to the SciChartSurface
     sciChartSurface.renderableSeries.add(lineSeries);
 
-    const titleAnnotation = (text: string, yOffset: number) => {
-        return new TextAnnotation({
-            text,
-            fontSize: 16,
-            textColor: appTheme.ForegroundColor,
-            x1: 0,
-            y1: 0,
-            xCoordShift: 10,
-            yCoordShift: 10 + yOffset,
-            opacity: 0.77,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-            verticalAnchorPoint: EVerticalAnchorPoint.Top,
-            xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative
-        });
-    };
     const watermarkAnnotation = (text: string = "") => {
         return new TextAnnotation({
             text,
@@ -140,11 +140,9 @@ const drawExample = async () => {
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
             annotationLayer: EAnnotationLayer.BelowChart
-        })
-    }
-    // Add a title annotation
-    sciChartSurface.annotations.add(titleAnnotation("Click on the chart to demonstrate Hit-Test API", 0));
-    sciChartSurface.annotations.add(titleAnnotation("Change the Hit-Test method above to see the different behaviours", 22));
+        });
+    };
+
     // Add a watermark
     const theWatermark = watermarkAnnotation("METHOD: " + whichHitTestMethod + "()");
     sciChartSurface.annotations.add(theWatermark);
@@ -156,8 +154,8 @@ const drawExample = async () => {
         theWatermark.text = "METHOD: " + hitTestMethod + "()";
     };
 
-    return {sciChartSurface, wasmContext, updateHitTestMethod};
-}
+    return { sciChartSurface, wasmContext, updateHitTestMethod };
+};
 
 const useStyles = makeStyles(theme => ({
     flexOuterContainer: {
@@ -175,14 +173,13 @@ const useStyles = makeStyles(theme => ({
         width: "100%"
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
 export default function HitTestAPI() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
-    const [updateFunc, setUpdateHitTestMethod] = React.useState<(hitTestMethod: string) => void>(() => {
-    });
+    const [updateFunc, setUpdateHitTestMethod] = React.useState<(hitTestMethod: string) => void>(() => {});
     const [preset, setPreset] = React.useState<string>(HIT_TEST_DATAPOINT);
 
     React.useEffect(() => {
@@ -213,20 +210,22 @@ export default function HitTestAPI() {
                     exclusive
                     value={preset}
                     onChange={handlePreset}
-                    size="small" color="primary" aria-label="small outlined button group">
-                    <ToggleButton value={HIT_TEST_DATAPOINT} style={{color: appTheme.ForegroundColor}}>
+                    size="small"
+                    color="primary"
+                    aria-label="small outlined button group"
+                >
+                    <ToggleButton value={HIT_TEST_DATAPOINT} style={{ color: appTheme.ForegroundColor }}>
                         Hit-Test Datapoint
                     </ToggleButton>
-                    <ToggleButton value={HIT_TEST_X_SLICE} style={{color: appTheme.ForegroundColor}}>
+                    <ToggleButton value={HIT_TEST_X_SLICE} style={{ color: appTheme.ForegroundColor }}>
                         Hit-Test X-Slice
                     </ToggleButton>
-                    <ToggleButton value={HIT_TEST} style={{color: appTheme.ForegroundColor}}>
+                    <ToggleButton value={HIT_TEST} style={{ color: appTheme.ForegroundColor }}>
                         Hit-Test Series Body
                     </ToggleButton>
                 </ToggleButtonGroup>
-                <div id={divElementId} className={localClasses.chartArea}/>
+                <div id={divElementId} className={localClasses.chartArea} />
             </div>
         </div>
-
     );
 }

@@ -100,7 +100,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
 
     const mainXAxis = new NumericAxis(wasmContext, {
         isVisible: false,
-        id: "mainXAxis",
+        id: "mainXAxis"
     });
 
     mainSurface.xAxes.add(mainXAxis);
@@ -135,7 +135,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
 
     const subChartsMap: Map<
         SciChartSubSurface,
-        { seriesType: ESeriesType, dataSeriesType: EDataSeriesType; dataSeriesArray: BaseDataSeries[] }
+        { seriesType: ESeriesType; dataSeriesType: EDataSeriesType; dataSeriesArray: BaseDataSeries[] }
     > = new Map();
 
     const xValues = Array.from(new Array(dataSettings.initialPoints).keys());
@@ -160,6 +160,13 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
             viewportBorder: {
                 color: "rgba(150, 74, 148, 0.51)",
                 border: 2
+            },
+            title: seriesNamesMap[seriesType],
+            titleStyle: {
+                placeWithinChart: true,
+                fontSize: 12,
+                padding: Thickness.fromString("10 4 0 4"),
+                color: appTheme.ForegroundColor,
             }
         };
 
@@ -244,23 +251,6 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
 
             subChartSurface.zoomExtents(0);
         }
-
-        // add title to the sub-chart
-        const titleAnnotation = new NativeTextAnnotation({
-            xAxisId: subChartXAxis.id,
-            yAxisId: subChartYAxis.id,
-            multiLineAlignment: EMultiLineAlignment.Center,
-            xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Pixel,
-            x1: 0.5,
-            fontSize: 12,
-            y1: 10,
-            text: seriesNamesMap[seriesType],
-            annotationLayer: EAnnotationLayer.AboveChart,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center
-        });
-
-        subChartSurface.annotations.add(titleAnnotation);
 
         subChartsMap.set(subChartSurface, { seriesType, dataSeriesType, dataSeriesArray });
 
@@ -350,9 +340,9 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
     const setLabels = (show: boolean) => {
         subChartsMap.forEach((v, k) => {
             k.xAxes.get(0).isVisible = show;
-            k.yAxes.asArray().forEach(y => y.isVisible = show);
+            k.yAxes.asArray().forEach(y => (y.isVisible = show));
         });
-    }
+    };
 
     return {
         wasmContext,
@@ -453,7 +443,11 @@ export default function SubchartsGrid() {
                         </ButtonGroup>
                     </FormControl>
                     <FormControl className={classes.formControl}>
-                        <FormControlLabel control={<Checkbox onChange={handleLabelsChange} />} label="Axis Labels" labelPlacement="start" />
+                        <FormControlLabel
+                            control={<Checkbox onChange={handleLabelsChange} />}
+                            label="Axis Labels"
+                            labelPlacement="start"
+                        />
                     </FormControl>
                     <div className={localClasses.infoBlock}>
                         {messages.map((msg, index) => (

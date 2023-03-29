@@ -1,3 +1,4 @@
+// Helper class to fetch candlestick data from Binance via Rest API
 const getCandles = async (
     symbol,
     interval,

@@ -49,7 +49,13 @@ const drawExample = async () => {
         // Create a SciChartSurface
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId, {
             theme: appTheme.SciChartJsTheme,
-            padding: new Thickness(5, 5, 5, 5)
+            padding: new Thickness(5, 5, 5, 5),
+            title,
+            titleStyle: {
+                placeWithinChart: true,
+                color: appTheme.ForegroundColor + "C4",
+                fontSize: 16
+            }
         });
 
         // Create the X,Y Axis
@@ -58,26 +64,7 @@ const drawExample = async () => {
             new NumericAxis(wasmContext, { maxAutoTicks: 5, growBy: new NumberRange(0.05, 0.25) })
         );
 
-        // Add title annotation
-        sciChartSurface.annotations.add(
-            new TextAnnotation({
-                text: title,
-                fontSize: 16,
-                textColor: appTheme.ForegroundColor,
-                x1: 0.5,
-                y1: 0,
-                opacity: 0.77,
-                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-                xCoordinateMode: ECoordinateMode.Relative,
-                yCoordinateMode: ECoordinateMode.Relative
-            })
-        );
-
         if (isVertical) {
-            // Only for vertical charts, annotation x,y coordinates are treated as swapped
-            const titleAnnotation = sciChartSurface.annotations.get(0);
-            titleAnnotation.x1 = 0;
-            titleAnnotation.y1 = 0.5;
             // We also want our padding on the xaxis at the start for vertical
             sciChartSurface.xAxes.get(0).growBy = new NumberRange(0.2, 0.05);
         }

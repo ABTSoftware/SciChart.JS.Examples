@@ -1,0 +1,14 @@
+body { margin: 0; }
+
+.chartContainer { width: 100%; height: 100vh; position: relative; }
+
+#scichart-root { width: 100%; height: 100%; }
+
+#legend-root {
+    position: absolute;
+    height: 90%;
+    width: 100px;
+    top: 0;
+    right: 75px;
+    margin: 20px
+}

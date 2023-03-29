@@ -1,0 +1,24 @@
+{
+  "name": "smart-axis-labels-with-timezone",
+  "version": "1.0.0",
+  "description": "Smart Axis Labels with Timezone support",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "scichart": "^3.0.301"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^9.0.1",
+    "prettier": "^2.4.1",
+    "ts-loader": "^9.2.6",
+    "webpack": "^5.59.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1"
+  }
+}
