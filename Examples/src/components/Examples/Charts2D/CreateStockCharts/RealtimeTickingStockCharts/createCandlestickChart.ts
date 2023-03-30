@@ -68,7 +68,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
             labelFormat: ENumericFormat.Decimal,
             labelPrecision: 2,
             labelPrefix: "$",
-            autoRange: EAutoRange.Once
+            autoRange: EAutoRange.Always
         })
     );
 
