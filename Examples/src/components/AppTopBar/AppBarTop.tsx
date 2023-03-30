@@ -5,6 +5,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import GitHubIcon from "@material-ui/icons/GitHub";
+import CodeIcon from "@material-ui/icons/Code";
+import BookIcon from "@material-ui/icons/Book";
 import Search from "../Search/Search";
 import classes from './AppTopBar.module.scss';
 import Logo from "../../images/scichart-logo-app-bar.svg";
@@ -38,8 +40,13 @@ const AppBarTop: React.FC<TProps> = props => {
                     Get Started
                 </Button>
                 <Button className={classes.PurpleButton} href={contextualDocUrl} title={contextualDocTitle} target="_blank" >
-                    Documentation
+                    <BookIcon fontSize="small"/>&nbsp;Docs
                 </Button>
+                { currentExample !== undefined &&
+                    <Button className={classes.PurpleButton} href={`${currentExample.path}?codesandbox=1`} title={`Edit ${currentExample.title} in CodeSandbox`} target="_blank" >
+                        <CodeIcon fontSize="small"/>{' '}&nbsp;Code Sandbox
+                    </Button>
+                }
                 <a className={classes.GitHubLink} href={contextualGithub} title={contextualGithubTitle} target="_blank" >
                     <GitHubIcon fontSize="small" />
                 </a>
