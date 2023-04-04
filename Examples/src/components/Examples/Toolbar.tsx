@@ -63,6 +63,9 @@ const useStyles = makeStyles((theme: Theme) =>
             "&:hover": {
                 opacity: 1
             }
+        },
+        actionLink: {
+            color: "inherit"
         }
     })
 );
@@ -130,12 +133,11 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
                         fab: classes.actionButtonFab
                     }}
                     key={action.name}
-                    icon={action.icon}
+                    icon={<a className={classes.actionLink} href={action.href} target="_blank">{action.icon}</a>}
                     tooltipTitle={action.name}
                     tooltipPlacement="bottom"
                     FabProps={{
-                        size: "small",
-                        href: action.href
+                        size: "small"
                     }}
                 />
             ))}
