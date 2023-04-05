@@ -8,6 +8,11 @@ This example was generated using [Electron Forge](https://www.electronjs.org/blo
 
 You will need to have the **[SciChart Licensing Wizard](https://www.scichart.com/licensing-scichart-js/)** running with a trial or activated license.
 
+__NOTE you may need to configure the security policy in dev mode to allow connection with the Licensing Wizard
+```javascript
+devContentSecurityPolicy: "connect-src 'self' * 'unsafe-eval'"
+```
+
 ## Runtime Licensing for Electron
 
 SciChart runtime licenses normally match the hostname, but for electron apps in runtime, there is no hostname (because the content for the mainWindow is loaded from a file, not a server).  Licenses for electon should use the app name, or appId instead.  You can add this to your license on the website [www.scichart.com/profile](https://www.scichart.com/profile)

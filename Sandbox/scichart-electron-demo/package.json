@@ -38,6 +38,6 @@
   "dependencies": {
     "copy-webpack-plugin": "^11.0.0",
     "electron-squirrel-startup": "^1.0.0",
-    "scichart": "^3.0.317"
+    "scichart": "latest"
   }
 }
