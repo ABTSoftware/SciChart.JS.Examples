@@ -1,18 +1,17 @@
 {
-  "name": "demo-nuxt-scichart",
-  "version": "1.0.0",
+  "name": "nuxt-app",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
+    "copyWasm": "copy-files-from-to --config copy-files-from-to.json",
+    "build": "npm run copyWasm && nuxt build",
+    "dev": "npm run copyWasm && nuxt dev",
     "generate": "nuxt generate",
-    "buildsci": "webpack",
-    "startsci": "webpack-dev-server"
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "core-js": "^3.15.1",
-    "nuxt": "^2.15.7",
-    "scichart": "^3.0.284"
+    "copy-files-from-to": "^3.8.0",
+    "nuxt": "^3.3.2",
+    "scichart": "latest"
   }
 }
