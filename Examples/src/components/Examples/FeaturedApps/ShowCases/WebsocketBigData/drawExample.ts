@@ -400,26 +400,38 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
     let isRunning: boolean = false;
     const newMessages: TMessage[] = [];
     let loadStart = 0;
+    let loadTime = 0;
+    let renderStart = 0;
+    let renderTime = 0;
 
     const loadData = (data: { x: number[]; ys: number[][]; sendTime: number }) => {
-        loadStart = new Date().getTime();
         for (let i = 0; i < seriesCount; i++) {
             appendData(dataSeriesArray[i], dataSeriesType, i, data.x, data.ys, pointsOnChart, pointsPerUpdate);
         }
         sciChartSurface.zoomExtents(0);
+        loadTime = new Date().getTime() - loadStart;
     };
+
+    sciChartSurface.preRender.subscribe(() => {
+        renderStart = new Date().getTime();
+    });
 
     sciChartSurface.rendered.subscribe(() => {
         if (!isRunning || loadStart === 0) return;
-        const reDrawTime = new Date().getTime() - loadStart;
-        avgRenderTime = (avgRenderTime * loadCount + reDrawTime) / (loadCount + 1);
+        avgLoadTime = (avgLoadTime * loadCount + loadTime) / (loadCount + 1);
+        renderTime = new Date().getTime() - renderStart;
+        avgRenderTime = (avgRenderTime * loadCount + renderTime) / (loadCount + 1);
+        newMessages.push({
+            title: `Average Load Time `,
+            detail: `${avgLoadTime.toFixed(2)} ms`
+        });
         newMessages.push({
             title: `Average Render Time `,
             detail: `${avgRenderTime.toFixed(2)} ms`
         });
         newMessages.push({
             title: `Max FPS `,
-            detail: `${Math.min(60, 1000 / avgRenderTime).toFixed(1)}`
+            detail: `${Math.min(60, 1000 / (avgLoadTime + avgRenderTime)).toFixed(1)}`
         });
         updateMessages(newMessages);
         newMessages.length = 0;
@@ -427,6 +439,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
 
     const loadFromBuffer = () => {
         if (dataBuffer.length > 0) {
+            loadStart = new Date().getTime();
             const x: number[] = dataBuffer[0].x;
             const ys: number[][] = dataBuffer[0].ys;
             const sendTime = dataBuffer[0].sendTime;
@@ -441,7 +454,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
             dataBuffer.length = 0;
         }
         if (isRunning) {
-            setTimeout(loadFromBuffer, 1);
+            setTimeout(loadFromBuffer, Math.min(1, 10 - renderTime));
         }
     };
 
