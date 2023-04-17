@@ -1,26 +1,30 @@
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {ENumericFormat} from "scichart/types/NumericFormat";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {EAutoRange} from "scichart/types/AutoRange";
-import {NumberRange} from "scichart/Core/NumberRange";
-import csvData from "raw-loader!./Data/Bitstamp_BTCUSD_2017_minute.csv";
-import {OhlcDataSeries} from "scichart/Charting/Model/OhlcDataSeries";
-import {FastCandlestickRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import {XyMovingAverageFilter} from "scichart/Charting/Model/Filters/XyMovingAverageFilter";
-import {FastLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {FastColumnRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
+import {
+  SciChartSurface,
+  NumericAxis,
+  ENumericFormat,
+  TextAnnotation,
+  ECoordinateMode,
+  EHorizontalAnchorPoint,
+  EVerticalAnchorPoint,
+  ZoomPanModifier,
+  ZoomExtentsModifier,
+  MouseWheelZoomModifier,
+  EAutoRange,
+  NumberRange,
+  OhlcDataSeries,
+  FastCandlestickRenderableSeries,
+  XyMovingAverageFilter,
+  FastLineRenderableSeries,
+  XyDataSeries,
+  FastColumnRenderableSeries,
+  LegendModifier,
+  SciChartDefaults,
+  CategoryAxis,
+  SmartDateLabelProvider,
+  SciChartJsNavyTheme
+} from "scichart";
+
 import Papa = require("papaparse");
-import {LegendModifier} from "scichart/Charting/ChartModifiers/LegendModifier";
-import {SciChartDefaults} from "scichart/Charting/Visuals/SciChartDefaults";
-import {CategoryAxis} from "scichart/Charting/Visuals/Axis/CategoryAxis";
-import {SmartDateLabelProvider} from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
 
 type priceBar = {
   date: number,
@@ -36,7 +40,10 @@ async function loadPriceData(): Promise<priceBar[]> {
     setTimeout(() => {
       const priceBars: priceBar[] = [];
       let rowCount = 0;
-      Papa.parse(csvData, {
+
+      // File copied in webpack.config.js
+      Papa.parse('./Bitstamp_BTCUSD_2017_minute.csv', {
+        download: true,
         step: function(row) {
           // Skip header rows
           // Row format: Array (9)
@@ -135,7 +142,7 @@ async function initSciChart() {
   // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
   // instance must be passed to other types that exist on the same surface.
   const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-    "scichart-root"
+    "scichart-root", { theme: new SciChartJsNavyTheme() }
   );
 
   // Create an X,Y Axis and add to the chart

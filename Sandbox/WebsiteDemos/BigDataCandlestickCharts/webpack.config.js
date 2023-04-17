@@ -36,6 +36,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "src/index.html", to: "" },
+        { from: "src/Data/Bitstamp_BTCUSD_2017_minute.csv", to: "Bitstamp_BTCUSD_2017_minute.csv" },
         { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
         { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
         { from: "node_modules/scichart/_wasm/scichart3d.data", to: "" },
