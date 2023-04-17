@@ -21,7 +21,7 @@ import {
   SciChartDefaults,
   CategoryAxis,
   SmartDateLabelProvider,
-  SciChartJsNavyTheme
+  SciChartJsNavyTheme, DateTimeNumericAxis
 } from "scichart";
 
 import Papa = require("papaparse");
@@ -110,15 +110,15 @@ async function runExample() {
   sciChartSurface.renderableSeries.add(new FastColumnRenderableSeries(wasmContext, { dataSeries: volumeSeries, yAxisId: "volumeYAxis", dataPointWidth: 0.1, strokeThickness: 0 }))
 
   // Add the candlestick series with highest z-index
-  sciChartSurface.renderableSeries.add(new FastCandlestickRenderableSeries(wasmContext, { dataSeries: ohlcDataSeries }));
+  sciChartSurface.renderableSeries.add(new FastCandlestickRenderableSeries(wasmContext, { dataSeries: ohlcDataSeries, strokeUp: "#67BDAF", strokeDown: "#DC7969", brushUp: "#67BDAF77", brushDown: "#DC796977"  }));
 
   // Add a moving average
   const movingAverage50Data = new XyMovingAverageFilter(ohlcDataSeries, { dataSeriesName: "MA (50)", length: 50 });
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, { dataSeries: movingAverage50Data, stroke: "SteelBlue" }));
+  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, { dataSeries: movingAverage50Data, stroke: "#50C7E0" }));
 
   // Add a second moving average
   const movingAverage200Data = new XyMovingAverageFilter(ohlcDataSeries, { dataSeriesName: "MA (200)", length: 200 });
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, { dataSeries: movingAverage200Data, stroke: "Crimson" }));
+  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, { dataSeries: movingAverage200Data, stroke: "#EC0F6C" }));
 
   // Clear loading notification
   sciChartSurface.annotations.clear();
@@ -146,7 +146,7 @@ async function initSciChart() {
   );
 
   // Create an X,Y Axis and add to the chart
-  const xAxis = new CategoryAxis(wasmContext, { labelProvider: new SmartDateLabelProvider() });
+  const xAxis = new DateTimeNumericAxis(wasmContext, { labelProvider: new SmartDateLabelProvider() });
   const yAxis = new NumericAxis(wasmContext, {
     labelFormat: ENumericFormat.Decimal,
     labelPrecision: 2,
