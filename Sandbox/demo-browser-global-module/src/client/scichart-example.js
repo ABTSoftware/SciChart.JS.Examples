@@ -1,9 +1,6 @@
 async function initSciChart() {
   // In order to load data file from the CDN we need to set dataUrl
-  SciChart.SciChartSurface.configure({
-    dataUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.data`,
-    wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.wasm`
-  });
+  SciChart.SciChartSurface.useWasmFromCDN();
   await SciChart.chartBuilder.buildChart("scichart-root", {
     series: {
       type: "LineSeries",
