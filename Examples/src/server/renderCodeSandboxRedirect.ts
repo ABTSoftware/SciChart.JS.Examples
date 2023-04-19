@@ -109,12 +109,20 @@ root.render(
   }
 }`,
       isBinary: false
-    }
+    },
+      "sandbox.config.json": {
+          content: `{
+    "infiniteLoopProtection": false,
+    "hardReloadOnChange": false,
+    "view": "browser"
+}`,
+          isBinary: false
+      },
   };
   files = {...files, ...csStyles };
 
   if (currentExample.sandboxConfig) {
-    files["sandbox.config.json"] = { 
+    files["sandbox.config.json"] = {
       // @ts-ignore
       content: currentExample.sandboxConfig,
       isBinary: false
@@ -141,7 +149,7 @@ root.render(
     <input type="hidden" name="parameters" value="${parameters}" />
   </form>`
   }
-  
+
   const renderCodeSandBoxRedirectPage = (form: string) => {
     return `
     <html lang="en-us">
@@ -168,7 +176,7 @@ export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => 
     const pathname = isIFrame ? req.path.substring(7) : req.path;
     const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
-    try {     
+    try {
       const folderPath = path.join(basePath, currentExample.filepath);
       const form = await getCodeSandBoxForm(folderPath, currentExample);
       const page = renderCodeSandBoxRedirectPage(form);
