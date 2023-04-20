@@ -7,10 +7,12 @@
 
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
+import {
+  SciChartSurface,
+  NumericAxis,
+  XyDataSeries,
+  FastLineRenderableSeries
+} from "scichart";
 
 async function initSciChart() {
   const { sciChartSurface, wasmContext } = await SciChartSurface.create(
