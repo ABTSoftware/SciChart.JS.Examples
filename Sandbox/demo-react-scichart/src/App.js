@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { SciChartSurface, NumericAxis } from "scichart";
 
 async function initSciChart() {
   // LICENSING //
