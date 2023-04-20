@@ -3,7 +3,16 @@ import { FormControl, FormControlLabel, Checkbox, TextField } from "@material-ui
 import { makeStyles } from "@material-ui/core/styles";
 import classes from "../../../styles/Examples.module.scss";
 import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
-import { NumericAxis, SciChartSurface, EMultiLineAlignment, ETextAlignment, ETitlePosition, FastLineRenderableSeries, XyDataSeries, Thickness } from "scichart";
+import {
+    NumericAxis,
+    SciChartSurface,
+    EMultiLineAlignment,
+    ETextAlignment,
+    ETitlePosition,
+    FastLineRenderableSeries,
+    XyDataSeries,
+    Thickness
+} from "scichart";
 
 const divElementId = "chart";
 
@@ -21,19 +30,27 @@ const drawExample = async () => {
         placeWithinChart: false,
         multilineAlignment: EMultiLineAlignment.Center,
         alignment: ETextAlignment.Center,
-        position: ETitlePosition.Top,
+        position: ETitlePosition.Top
     };
 
-    const xAxis = new NumericAxis(wasmContext, { axisTitle: "X Axis Title", axisTitleStyle: { fontSize: 16, color: appTheme.ForegroundColor } })
-    const yAxis = new NumericAxis(wasmContext, { axisTitle: "Y Axis", axisTitleStyle: { fontSize: 16, color: appTheme.ForegroundColor }})
+    const xAxis = new NumericAxis(wasmContext, {
+        axisTitle: "X Axis Title",
+        axisTitleStyle: { fontSize: 16, color: appTheme.ForegroundColor }
+    });
+    const yAxis = new NumericAxis(wasmContext, {
+        axisTitle: "Y Axis",
+        axisTitleStyle: { fontSize: 16, color: appTheme.ForegroundColor }
+    });
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis);
 
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        strokeThickness: 3,
-        stroke: "auto",
-        dataSeries: new XyDataSeries(wasmContext, new RandomWalkGenerator().getRandomWalkSeries(30))
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            strokeThickness: 3,
+            stroke: "auto",
+            dataSeries: new XyDataSeries(wasmContext, new RandomWalkGenerator().getRandomWalkSeries(30))
+        })
+    );
 
     return { sciChartSurface, wasmContext };
 };
@@ -102,24 +119,20 @@ export default function FeatureChartTitle() {
         },
         toolbar: {
             minHeight: "70px",
-            padding: "10",
+            padding: "10px",
             color: appTheme.ForegroundColor,
             fontSize: "13px",
             flex: "none"
         },
-        checkbox: {
-            margin: "10",
-            fontSize: "13px"
-        },
         combobox: {
-            color: appTheme.Background,
-            backgroundColor: appTheme.ForegroundColor,
-            margin: "10"
+            color: "black",
+            backgroundColor: appTheme.Background,
+            margin: "10px 20px 10px 10px"
         },
         textarea: {
-            color: appTheme.Background,
-            backgroundColor: appTheme.ForegroundColor,
-            margin: "10",
+            color: "black",
+            backgroundColor: appTheme.Background,
+            margin: "10px 20px 10px 10px",
             verticalAlign: "middle"
         },
         chartElement: {
@@ -133,17 +146,73 @@ export default function FeatureChartTitle() {
         <div className={classes.FullHeightChartWrapper} style={{ background: appTheme.DarkIndigo }}>
             <div className={localClasses.flexContainer}>
                 <div className={localClasses.toolbar}>
-                    <label>
-                        Title text
-                        <textarea
-                            className={localClasses.textarea}
-                            value={titleText}
-                            onChange={handleChangeTitleText}
-                        >
-                    </textarea>
-                    </label>
                     <FormControlLabel
-                        className={localClasses.checkbox}
+                        control={
+                            <textarea
+                                className={localClasses.textarea}
+                                value={titleText}
+                                onChange={handleChangeTitleText}
+                            ></textarea>
+                        }
+                        labelPlacement="start"
+                        label="Title text"
+                    />
+
+                    <FormControlLabel
+                        control={
+                            <select
+                                className={localClasses.combobox}
+                                value={titleAlignment}
+                                onChange={selectTitleTextAlignment}
+                            >
+                                {Object.values(ETextAlignment).map(value => (
+                                    <option key={value} value={value}>
+                                        {value}
+                                    </option>
+                                ))}
+                            </select>
+                        }
+                        labelPlacement="start"
+                        label="Title Alignment"
+                    />
+
+                    <FormControlLabel
+                        control={
+                            <select
+                                className={localClasses.combobox}
+                                value={titlePosition}
+                                onChange={selectTitleTextPosition}
+                            >
+                                {Object.values(ETitlePosition).map(value => (
+                                    <option key={value} value={value}>
+                                        {value}
+                                    </option>
+                                ))}
+                            </select>
+                        }
+                        labelPlacement="start"
+                        label="Title Position"
+                    />
+
+                    <FormControlLabel
+                        control={
+                            <select
+                                className={localClasses.combobox}
+                                value={multilineAlignment}
+                                onChange={selectTitleTextMultilineAlignment}
+                            >
+                                {Object.values(EMultiLineAlignment).map(value => (
+                                    <option key={value} value={value}>
+                                        {value}
+                                    </option>
+                                ))}
+                            </select>
+                        }
+                        labelPlacement="start"
+                        label="Multiline Text Alignment"
+                    />
+
+                    <FormControlLabel
                         control={
                             <Checkbox
                                 checked={placeWithinChart}
@@ -154,51 +223,6 @@ export default function FeatureChartTitle() {
                         labelPlacement="start"
                         label="Place Title within chart?"
                     />
-
-                    <label>
-                        Title Alignment
-                        <select
-                            className={localClasses.combobox}
-                            value={titleAlignment}
-                            onChange={selectTitleTextAlignment}
-                        >
-                            {Object.values(ETextAlignment).map(value => (
-                                <option key={value} value={value}>
-                                    {value}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-
-                    <label>
-                        Title Position
-                        <select
-                            className={localClasses.combobox}
-                            value={titlePosition}
-                            onChange={selectTitleTextPosition}
-                        >
-                            {Object.values(ETitlePosition).map(value => (
-                                <option key={value} value={value}>
-                                    {value}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-
-                    <label>
-                        Multiline Text Alignment
-                        <select
-                            className={localClasses.combobox}
-                            value={multilineAlignment}
-                            onChange={selectTitleTextMultilineAlignment}
-                        >
-                            {Object.values(EMultiLineAlignment).map(value => (
-                                <option key={value} value={value}>
-                                    {value}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
                 </div>
 
                 <div style={{ flex: "auto" }}>
