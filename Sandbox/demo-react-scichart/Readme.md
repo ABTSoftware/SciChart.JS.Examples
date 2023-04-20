@@ -22,12 +22,15 @@ React requires *.data and *.wasm file to be in the build output. This is done us
   ],
 ```
 
+> _**Note:** other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/current/webframe.html#Deploying%20Wasm%20or%20WebAssembly%20and%20Data%20Files%20with%20your%20app.html) are available to simplify getting started_
+
+## Rendering the chart
+
 After that, all you need is a ```<div>``` in your HTML and some JavaScript to call ```SciChartSurface.create("div-id")``` to display your first chart.
 
 ```javascript
 import React, { useEffect } from "react";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { SciChartSurface, NumericAxis } from "scichart";
 
 async function initSciChart() {
   // LICENSING //
