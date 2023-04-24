@@ -2033,6 +2033,12 @@ isPrimaryAxis switched depending on mouse over </Notes>
                   <TargetItemId>1a30b47b-3dfb-436a-adba-58db7b7b9aad</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
+                <TocNode Name="" Id="5ef0dca6-76d7-490b-bb45-8d771b0f3573" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>ebbbff3e-8993-4281-8791-6c8eaad5c318</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
               </ChildNodes>
             </TocNode>
             <TocNode Name="" Id="cd73663e-ef65-4123-afc8-4935f5bdcb93" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
@@ -10324,6 +10330,53 @@ isPrimaryAxis switched depending on mouse over </Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
+              <Topic Id="ebbbff3e-8993-4281-8791-6c8eaad5c318" Status="New Topic" CreatedOn="2023-04-24T18:51:51.0532322Z" ModifiedOn="2023-04-24T19:53:36.1751901Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="ChartTitles" BuildFlags="">
+                <Title m="2023-04-24T19:32:28.4751668Z">Chart Styling - Chart Titles</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2023-04-24T19:53:36.1751901Z">&lt;P&gt;New to SciChart.js v3.1, we've added a Chart Title property allowing for multi-line titles on the top, left, right, bottom of the chart and with various alignment options. &lt;/P&gt;
+&lt;P&gt;Adding a chart title is simple, you can do so with the following code:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\Styling\ChartTitles\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\Styling\ChartTitles\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/Styling/ChartTitles/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;For an example of multiline chart titles see the&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-chart-title" target=_blank&gt;Chart Title demo&lt;/A&gt; in our examples suite.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Title Styling and Positioning&lt;/H2&gt;
+&lt;P&gt;For styling and positioning a title we can use&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/i2dsurfaceoptions.html#titlestyle"&gt;I2DSurfaceOptions.titleStyle&lt;/A&gt; property in constructor options or a surface property&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#titlestyle"&gt;SciChartSurface.titleStyle&lt;/A&gt;. Available styling options are defined by&amp;nbsp;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#tcharttitlestyle"&gt;TChartTitleStyle&lt;/A&gt;&lt;/STRONG&gt; type.&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;STRONG&gt;Note: &lt;/STRONG&gt;When setting via a surface instance, titleStyle should be assigned to an object (or partial object) of type instead of directly setting individual properties. The object then will be merged with the current or default title style.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Text Styling&lt;/H3&gt;
+&lt;P&gt;Base text styling options for a chart title are:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;STRONG&gt;fontSize&lt;/STRONG&gt;
+&lt;LI&gt;&lt;STRONG&gt;fontFamily&lt;/STRONG&gt;
+&lt;LI&gt;&lt;STRONG&gt;color&lt;/STRONG&gt;&lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Text Styling&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;sciChartSurface.titleStyle = {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; fontSize: 30,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; fontFamily: "Arial",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; color: "#EC0F6C",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; fontWeight: "900",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; fontStyle: "italic",&lt;BR&gt;}&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Additionally we can set &lt;STRONG&gt;fontWeight&lt;/STRONG&gt; and &lt;STRONG&gt;fontStyle&lt;/STRONG&gt; for non-native text title. Find out more info about limitations in the &lt;STRONG&gt;Native Text section&lt;/STRONG&gt; of the docs below.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Title Positioning&lt;/H3&gt;
+&lt;P&gt;A title could be placed on different sides relative to the surface. The options are defined by&amp;nbsp;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/etitleposition.html"&gt;ETitlePosition&lt;/A&gt;&lt;/STRONG&gt; enum and are set by &lt;STRONG&gt;TChartTitleStyle.position&lt;/STRONG&gt;.&lt;/P&gt;
+&lt;P&gt;To specify an anchor for a title using &lt;STRONG&gt;TChartTitleStyle.alignment&lt;/STRONG&gt;, where options are defined in ETextAlignment enum. &lt;/P&gt;
+&lt;P&gt;Also it is possible to place a title within the series view area using&lt;STRONG&gt; TChartTitleStyle.placeWithinChart&lt;/STRONG&gt; flag. &lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Title Positioning&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;const {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // ...&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; ETitlePosition,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; ETextAlignment,&lt;BR&gt;} = SciChart;&lt;BR&gt;// or import { ETitlePosition, ETextAlignment } from "scichart";&lt;/P&gt;
+&lt;P&gt;sciChartSurface.titleStyle = {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; position: ETitlePosition.Left,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; alignment: ETextAlignment.Right,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; placeWithinChart: true,&lt;BR&gt;};&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Multiline Chart Titles&lt;/H2&gt;
+&lt;P&gt;To set multiline text as a title we can pass it as an array of lines or split lines with the new line character (\n). &lt;/P&gt;
+&lt;P&gt;Properties that could be applied to the multiline text are&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;STRONG&gt;TChartTitleStyle.multilineAlignment&lt;/STRONG&gt;
+&lt;LI&gt;&lt;STRONG&gt;TChartTitleStyle.lineSpacing&lt;/STRONG&gt;&lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;The multilineAlignment options are described in&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/emultilinealignment.html"&gt;EMultiLineAlignment&lt;/A&gt; enum. The lineSpacing is a multiple of the line height. &lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Multiline Chart Titles&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;const { EMultiLineAlignment } = SciChart;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Add multiline chart title&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.title = ["First line", "Second line", "Third line"]; // "Or 'FirstLine \n Second line'&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Modify multiline text related options for the title&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.titleStyle = {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; multilineAlignment: EMultiLineAlignment.Right,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; lineSpacing: 1.5&lt;BR&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;WebGL Native Text Titles&lt;/H2&gt;
+&lt;P&gt;It is possible to enable the Native Text Rendering for the Chart Title. This can improve the rendering performance and allows using custom fonts, but have some differences and limitations compared to the non-native text rendering (e.g. native text doesn't support fontWeight and fontStyle). Find more info about the&amp;nbsp;&lt;A href="e5a3627c-906d-4bb5-a81d-981df6e3e96b"&gt;Native Text API here&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;The Native Text Rendering for a chart title is set by &lt;STRONG&gt;TChartTitleStyle.useNativeText&lt;/STRONG&gt; flag or uses the default value defined in&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartdefaults.html#usenativetext"&gt;SciChartDefaults.useNativeText&lt;/A&gt;.&lt;/P&gt;
+&lt;H2&gt;Title Rendering Customisation&lt;/H2&gt;
+&lt;P&gt;For an advanced customization of the chart title rendering one may use a custom Chart Title Renderer. &lt;/P&gt;
+&lt;P&gt;The Chart Title renderer could be accessed or set with&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#charttitlerenderer"&gt;SciChartSurface.chartTitleRenderer&lt;/A&gt; property. &lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;STRONG&gt;Note: &lt;/STRONG&gt;The default Chart Title Renderer additionally provides a debug rendering and caching of non-native text which could be toggled with&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/charttitlerenderer.html#drawdebug"&gt;ChartTitleRenderer.drawDebug&lt;/A&gt; and&amp;nbsp;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/charttitlerenderer.html#usecache"&gt;ChartTitleRenderer.useCache&lt;/A&gt;&lt;/STRONG&gt; flags appropriately.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
             </Topics>
           </TopicCategory>
           <TopicCategory Id="d329ae80-72d7-48e9-b18d-b8307f5aa2c2" AutoIndex="false">
@@ -14455,7 +14508,7 @@ isPrimaryAxis switched depending on mouse over </Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">3510</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">924</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>
