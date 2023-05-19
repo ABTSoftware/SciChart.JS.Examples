@@ -36,7 +36,7 @@ export const chartTitleExampleInfo: TExampleInfo = {
     filepath: "FeaturedApps/FeatureDemos/ChartTitle",
     githubUrl,
     metaDescription:
-        "Demonstrates chart title wit different position and alignment options",
+        "Demonstrates chart title with different position and alignment options",
     metaKeywords: "title, text, alignment, multiline, javascript, webgl, canvas",
     thumbnailImage: exampleImage
 };
