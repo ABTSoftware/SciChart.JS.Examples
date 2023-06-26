@@ -53,13 +53,13 @@ class CustomNumericLabelProvider extends NumericLabelProvider {
     // Now we need to inject K, M, B, T into the label before the postfix
 
     // e.g. formatLabel(1000000) with prefix="$", postfix="USD" = "$1000000 USD" => "$1M USD"
-    if (dataValue > 1_000_000_000_000) {
+    if (dataValue >= 1_000_000_000_000) {
       result = super.formatLabel(dataValue / 1_000_000_000_000).replace(this.postfix, "T" + this.postfix);
-    } else if (dataValue > 1_000_000_000) {
+    } else if (dataValue >= 1_000_000_000) {
       result = super.formatLabel(dataValue / 1_000_000_000).replace(this.postfix, "B" + this.postfix);
-    } else if (dataValue > 1_000_000) {
+    } else if (dataValue >= 1_000_000) {
       result = super.formatLabel(dataValue / 1_000_000).replace(this.postfix, "M" + this.postfix);
-    } else if (dataValue > 1_000) {
+    } else if (dataValue >= 1_000) {
       result = super.formatLabel(dataValue / 1_000).replace(this.postfix, "K" + this.postfix);
     }
 
