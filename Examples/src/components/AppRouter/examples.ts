@@ -68,6 +68,7 @@ import LiDAR3DPointCloudDemo from "../Examples/FeaturedApps/ScientificCharts/LiD
 
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import AudioAnalyzer from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer";
+import WaterfallChart from "../Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart";
 import TenorCurves3DChart from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D";
 import Load1MillionPointsChart from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints";
 import DragAxisToScale from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale";
@@ -137,6 +138,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_WaterfallChartDemo,
         ]
     },
     {
@@ -502,6 +504,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return LiDAR3DPointCloudDemo;
         case EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.id:
             return AudioAnalyzer;
+        case EXAMPLES_PAGES.featuredApps_scientificCharts_WaterfallChartDemo.id:
+            return WaterfallChart;
         case EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.id:
             return TenorCurves3DChart;
         case EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes.id:
