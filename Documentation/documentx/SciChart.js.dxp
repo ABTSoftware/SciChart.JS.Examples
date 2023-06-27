@@ -744,20 +744,20 @@ image labels too </Notes>
         <TaskItem Id="46e2f848-a45b-4ecf-8dcf-a0153e33093c" Priority="" AssignedTo="">
           <Title>Size postfix on labelprovider e.g. K, M, Bn (billion) on yaxis</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-03-17T13:24:40.2178749Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-03-17T13:25:03.8771954Z</ModifiedOn>
+          <ModifiedOn>2023-06-26T18:00:35.4468805Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
         <TaskItem Id="7fec5ef4-1202-41a3-ab44-c344a08f50f7" Priority="" AssignedTo="">
           <Title>Formatting numerics with a comma e.g. 1,000,000</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-03-17T13:25:15.8205626Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-03-17T13:25:23.8452473Z</ModifiedOn>
+          <ModifiedOn>2023-06-26T18:00:27.3305679Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -1553,21 +1553,20 @@ isPrimaryAxis switched depending on mouse over </Notes>
                   <ChildNodes>
                     <TocNode Name="" Id="99fbad79-269f-4efd-9a35-fe2392190d78" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
-                      <ChildNodes>
-                        <TocNode Name="" Id="1f816952-43e1-440b-8f52-278c85d9a839" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                          <CaptionTemplate />
-                          <ChildNodes />
-                          <TargetItemId>2d75bc26-0de1-46c9-9af9-fd11696c4ee2</TargetItemId>
-                          <TargetItemBookmark></TargetItemBookmark>
-                        </TocNode>
-                        <TocNode Name="" Id="f61296b3-1615-45f2-a1f3-c0d61d4a4f2a" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                          <CaptionTemplate />
-                          <ChildNodes />
-                          <TargetItemId>e9747ecc-a3cd-456b-9180-c47daead66ef</TargetItemId>
-                          <TargetItemBookmark></TargetItemBookmark>
-                        </TocNode>
-                      </ChildNodes>
+                      <ChildNodes />
                       <TargetItemId>1325dcad-b236-42e7-8491-af7a8137d6e7</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="1f816952-43e1-440b-8f52-278c85d9a839" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>2d75bc26-0de1-46c9-9af9-fd11696c4ee2</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="f61296b3-1615-45f2-a1f3-c0d61d4a4f2a" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>e9747ecc-a3cd-456b-9180-c47daead66ef</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                     <TocNode Name="" Id="b09ee5bf-9123-49de-b82b-4c2ea3d7e067" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
@@ -4683,9 +4682,9 @@ isPrimaryAxis switched depending on mouse over </Notes>
                 <Caption m="2023-03-08T19:08:11.0073032Z">Axis Labels</Caption>
                 <ChildTopicCategories />
                 <Topics>
-                  <Topic Id="1325dcad-b236-42e7-8491-af7a8137d6e7" Status="New Topic" CreatedOn="2016-08-04T12:05:46.0398385Z" ModifiedOn="2023-06-25T14:44:16.8051235Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Label Formatting - LabelProvider API" BuildFlags="">
+                  <Topic Id="1325dcad-b236-42e7-8491-af7a8137d6e7" Status="New Topic" CreatedOn="2016-08-04T12:05:46.0398385Z" ModifiedOn="2023-06-26T20:19:33.9230956Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Label Formatting - LabelProvider API" BuildFlags="">
                     <Title m="2023-03-16T19:08:39.0084978Z">Axis LabelProviders</Title>
-                    <ContentsTitle m="2023-03-20T18:53:02.7715656Z">Axis LabelProviders (label Formatting)</ContentsTitle>
+                    <ContentsTitle m="2023-06-26T20:19:33.9218209Z">LabelProvider API Overview</ContentsTitle>
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
@@ -15002,7 +15001,7 @@ isPrimaryAxis switched depending on mouse over </Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">2956</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">967</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>

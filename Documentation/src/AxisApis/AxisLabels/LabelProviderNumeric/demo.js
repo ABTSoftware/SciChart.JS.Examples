@@ -130,8 +130,8 @@ async function labelProviderClass(divElementId) {
       customFormat: "KMBT",
       labelPrefix: "$",
       labelPostfix: " USD",
-      labelPrecision: 0,
-      labelFormat: ENumericFormat.Decimal
+      labelPrecision: 2,
+      labelFormat: ENumericFormat.SignificantFigures
     }),
     visibleRange: new NumberRange(1, 1e12)
   }));
@@ -157,6 +157,7 @@ labelProviderClass("scichart-root");
 async function builderExample(divElementId) {
   const {
     chartBuilder,
+    ENumericFormat,
     EThemeProviderType,
     NumberRange,
     EAxisType,
@@ -165,27 +166,36 @@ async function builderExample(divElementId) {
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
 
-  const minDate = new Date("2023-03-1");
-  const maxDate = new Date("2023-03-3");
-
   // #region ExampleC
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
     surface: { theme: { type: EThemeProviderType.Dark } },
+    yAxes: {
+      type: EAxisType.LogarithmicAxis,
+      options: {
+        axisTitle: "Y Axis with K,M,B,T abbreviations",
+        // Enable K,M,B,T abbreviations for large labels
+        labelProvider: new CustomNumericLabelProvider({
+          customFormat: "KMBT",
+          labelPrefix: "$",
+          labelPostfix: " USD",
+          labelPrecision: 2,
+          labelFormat: ENumericFormat.SignificantFigures
+        }),
+        visibleRange: new NumberRange(1, 1e12)
+      }
+    },
     xAxes: {
       type: EAxisType.NumericAxis,
       options: {
-        axisTitle: "X Axis with custom LabelProvider",
-        // Note see DateTimeNumericAxis docs about unix timestamps / 1000
-        visibleRange: new NumberRange(minDate.getTime() / 1000, maxDate.getTime() / 1000),
-        // Apply the custom labelprovider we created before
-        labelProvider: new DynamicDateLabelProvider()
+        axisTitle: "X Axis with comma separators",
+        // Enable comma formatting for large labels
+        labelProvider: new CustomNumericLabelProvider({ customFormat: "Commas", labelPrecision: 1 }),
+        visibleRange: new NumberRange(0, 1e10)
       }
     },
-    yAxes: {
-      type: EAxisType.NumericAxis,
-    },
     modifiers: [
-      { type: EChart2DModifierType.MouseWheelZoom }
+      { type: EChart2DModifierType.MouseWheelZoom },
+      { type: EChart2DModifierType.ZoomPan }
     ]
   });
   // #endregion
