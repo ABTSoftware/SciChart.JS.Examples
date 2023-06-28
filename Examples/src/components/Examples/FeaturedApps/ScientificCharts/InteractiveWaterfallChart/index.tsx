@@ -5,10 +5,9 @@ import classes from "../../../styles/Examples.module.scss";
 import {
     EAutoRange,
     EAxisAlignment,
-    EChart2DModifierType,
+    EXyDirection,
     FastLineRenderableSeries,
     IRenderableSeries,
-    libraryVersion,
     MouseWheelZoomModifier,
     NumberRange,
     NumericAxis,
@@ -28,14 +27,15 @@ export const divCrossSection1 = "sciChart2";
 export const divCrossSection2 = "sciChart3";
 
 // This function generates some spectral data for the waterfall chart
-const createSpectralData = () => {
+const createSpectralData = (n : number) => {
     const spectraSize = 1024;
     const timeData = new Array(spectraSize);
 
     // Generate some random data with spectral components
     for (let i = 0; i < spectraSize; i++) {
-        timeData[i] = 2.0 * Math.sin(2 * Math.PI * i / 20) +
-            5 * Math.sin(2 * Math.PI * i / 10) +
+        timeData[i] = 2.0 * Math.sin(2 * Math.PI * i / (20 + n * 0.2)) +
+            5 * Math.sin(2 * Math.PI * i / (10 + n * 0.01)) +
+            10 * Math.sin(2 * Math.PI * i / (5 + n * -0.002)) +
             2.0 * Math.random();
     }
 
@@ -117,7 +117,7 @@ const drawExample = async () => {
             (sciChartSurface.xAxes.get(i) as CustomOffsetAxis).customOffset = 2 * i;
 
             // Create some data for the example
-            const { xValues, yValues } = createSpectralData();
+            const { xValues, yValues } = createSpectralData(i);
 
             const lineSeries = new FastLineRenderableSeries(wasmContext, {
                 xAxisId: "X" + i,
@@ -134,9 +134,9 @@ const drawExample = async () => {
 
         // Add zooming behaviours
         sciChartSurface.chartModifiers.add(
-            new ZoomPanModifier(),
-            new MouseWheelZoomModifier(),
-            new ZoomExtentsModifier());
+            new ZoomPanModifier({ xyDirection: EXyDirection.XyDirection}),
+            new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection}),
+            new ZoomExtentsModifier( { xyDirection: EXyDirection.XDirection }));
 
         const updateSeriesSelectionState = (series: IRenderableSeries) => {
             series.stroke = series.isSelected ? "White": series.isHovered ? "#FFBE93" : "#64BAE4";
@@ -147,7 +147,7 @@ const drawExample = async () => {
         mainChartSelectionModifier = new SeriesSelectionModifier({
             enableHover: true,
             enableSelection: true,
-            hitTestRadius: 3,
+            hitTestRadius: 5,
             onSelectionChanged: args => {
                 args.allSeries.forEach(updateSeriesSelectionState);
             },
@@ -170,11 +170,15 @@ const drawExample = async () => {
             theme
         });
 
-        sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { autoRange: EAutoRange.Always }));
+        sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+            autoRange: EAutoRange.Always,
+            drawMinorGridLines: false,
+        }));
         sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Never,
             axisAlignment: EAxisAlignment.Left,
-            visibleRange: new NumberRange(-30, 5)
+            visibleRange: new NumberRange(-30, 5),
+            drawMinorGridLines: false,
         }));
 
         crossSectionSelectedSeries = new FastLineRenderableSeries(wasmContext, {
