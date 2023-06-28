@@ -25,7 +25,7 @@ const Subtitle = () => (
 );
 
 export const waterfallChartExampleInfo: TExampleInfo = {
-    title: "Interactive Waterfall Chart",
+    title: "Interactive Waterfall Spectral Chart",
     pageTitle: "Interactive Waterfall Chart" + ExampleStrings.exampleGenericTitleSuffix,
     path: "/javascript-interactive-waterfall-chart",
     filepath: "FeaturedApps/ScientificCharts/InteractiveWaterfallChart",
