@@ -11,11 +11,11 @@ import {
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
     EXyDirection,
-    FastLineRenderableSeries,
+    FastLineRenderableSeries, FastMountainRenderableSeries, GradientParams,
     IRenderableSeries,
     MouseWheelZoomModifier,
     NumberRange,
-    NumericAxis,
+    NumericAxis, Point,
     SciChartJsNavyTheme,
     SciChartSurface,
     SeriesSelectionModifier,
@@ -267,7 +267,11 @@ const drawExample = async () => {
 
     const initCrossSectionRight = async () => {
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(divCrossSection2, {
-            theme
+            theme,
+            title: "Cross Section Slice",
+            titleStyle: {
+                fontSize: 12,
+            }
         });
 
         sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
@@ -282,11 +286,16 @@ const drawExample = async () => {
         }));
 
         crossSectionSliceSeries = new XyDataSeries(wasmContext);
-        sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+        sciChartSurface.renderableSeries.add(new FastMountainRenderableSeries(wasmContext, {
             stroke: "#64BAE4",
             strokeDashArray: [2,2],
             strokeThickness: 2,
+            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                { color: "#64BAE433", offset: 0 },
+                { color: "#64BAE400", offset: 1 },
+            ]),
             dataSeries: crossSectionSliceSeries,
+            zeroLineY: -999,
         }));
 
         return sciChartSurface;
