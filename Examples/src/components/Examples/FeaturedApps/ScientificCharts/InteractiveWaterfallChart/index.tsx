@@ -8,17 +8,24 @@ import {
     DefaultPaletteProvider,
     EAutoRange,
     EAxisAlignment,
+    ECoordinateMode,
     EHorizontalAnchorPoint,
+    ELegendOrientation,
     EVerticalAnchorPoint,
     EXyDirection,
-    FastLineRenderableSeries, FastMountainRenderableSeries, GradientParams,
+    FastLineRenderableSeries,
+    FastMountainRenderableSeries,
+    GradientParams,
     IRenderableSeries,
+    LegendModifier,
+    libraryVersion,
     MouseWheelZoomModifier,
     NumberRange,
-    NumericAxis, Point,
+    NumericAxis,
+    Point,
     SciChartJsNavyTheme,
     SciChartSurface,
-    SeriesSelectionModifier,
+    SeriesSelectionModifier, Thickness,
     TSciChart,
     XyDataSeries,
     ZoomExtentsModifier,
@@ -99,6 +106,8 @@ const drawExample = async () => {
     let mainChartSelectionModifier: SeriesSelectionModifier;
     let dragMeAnnotation: CustomAnnotation;
 
+    console.log(`Waterfall Demo libraryVersion ${libraryVersion}`);
+
     // This function creates the main chart with waterfall series
     // To do this, we create N series, each with its own X,Y axis with a different X,Y offset
     // all axis other than the first are hidden
@@ -143,7 +152,7 @@ const drawExample = async () => {
                 yAxisId: "Y" + i,
                 stroke: "#64BAE4",
                 strokeThickness: 1,
-                dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+                dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: `Spectra ${i}` }),
                 paletteProvider: crossSectionPaletteProvider
             });
 
@@ -174,6 +183,31 @@ const drawExample = async () => {
             verticalAnchorPoint: EVerticalAnchorPoint.Top,
         });
         sciChartSurface.annotations.add(dragMeAnnotation);
+
+        // Place an annotation with further instructions in the top right of the chart
+        const promptAnnotation = new CustomAnnotation({
+           svgString: `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="82">
+              <g>
+                <line x1="5" y1="77" x2="40" y2="42" stroke="#ffffff" stroke-dasharray="2,2" />
+                <circle cx="5" cy="77" r="5" fill="#ffffff" />
+                <g>
+                  <rect x="20" y="2" width="98" height="40" rx="10" ry="10" fill="#64BAE433" stroke="#64BAE4" stroke-width="2" />
+                  <text x="68" y="24" fill="white" text-anchor="middle" alignment-baseline="middle" font-size="12">Hover/click chart</text>
+                </g>
+              </g>
+            </svg>`,
+            xAxisId: "X0",
+            yAxisId: "Y0",
+            isEditable: false,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
+            verticalAnchorPoint: EVerticalAnchorPoint.Top,
+            x1: 0.9,
+            y1: 0.1
+        });
+
+        sciChartSurface.annotations.add(promptAnnotation);
 
         // Add a function to update drawing the cross-selection when the drag annotation is dragged
         const updateDragAnnotation = () => {
@@ -208,7 +242,7 @@ const drawExample = async () => {
 
         const updateSeriesSelectionState = (series: IRenderableSeries) => {
             series.stroke = series.isSelected ? "White": series.isHovered ? "#FFBE93" : "#64BAE4";
-            series.strokeThickness = series.isSelected ? 3 : series.isHovered ? 2 : 1;
+            series.strokeThickness = (series.isSelected || series.isHovered) ? 3 : 1;
         };
 
         // Add selection behaviour
@@ -231,6 +265,7 @@ const drawExample = async () => {
     let crossSectionSelectedSeries: IRenderableSeries;
     let crossSectionHoveredSeries: IRenderableSeries;
     let crossSectionSliceSeries: XyDataSeries;
+    let crossSectionLegendModifier: LegendModifier;
 
     // In the bottom left chart, add two series to show the currently hovered/selected series on the main chart
     // These will be updated in the selection callback below
@@ -255,12 +290,26 @@ const drawExample = async () => {
             strokeThickness: 3,
         });
         sciChartSurface.renderableSeries.add(crossSectionSelectedSeries);
-        crossSectionHoveredSeries = new FastLineRenderableSeries(wasmContext, {
-            stroke: "#64BAE4",
-            opacity: 0.33,
-            strokeThickness: 2,
+        crossSectionHoveredSeries = new FastMountainRenderableSeries(wasmContext, {
+            stroke: "#64BAE477",
+            strokeThickness: 3,
+            strokeDashArray: [2, 2],
+            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                { color: "#64BAE455", offset: 0 },
+                { color: "#64BAE400", offset: 1 },
+            ]),
+            dataSeries: crossSectionSliceSeries,
+            zeroLineY: -999,
         });
         sciChartSurface.renderableSeries.add(crossSectionHoveredSeries);
+
+        // Add a legend to the bottom left chart
+        crossSectionLegendModifier = new LegendModifier({
+            showCheckboxes: false,
+            orientation: ELegendOrientation.Horizontal,
+        });
+        crossSectionLegendModifier.isEnabled = false;
+        sciChartSurface.chartModifiers.add(crossSectionLegendModifier);
 
         return sciChartSurface;
     };
@@ -270,7 +319,8 @@ const drawExample = async () => {
             theme,
             title: "Cross Section Slice",
             titleStyle: {
-                fontSize: 12,
+                fontSize: 13,
+                padding: Thickness.fromNumber(10),
             }
         });
 
@@ -288,11 +338,11 @@ const drawExample = async () => {
         crossSectionSliceSeries = new XyDataSeries(wasmContext);
         sciChartSurface.renderableSeries.add(new FastMountainRenderableSeries(wasmContext, {
             stroke: "#64BAE4",
+            strokeThickness: 3,
             strokeDashArray: [2,2],
-            strokeThickness: 2,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: "#64BAE433", offset: 0 },
-                { color: "#64BAE400", offset: 1 },
+                { color: "#64BAE477", offset: 0 },
+                { color: "#64BAE433", offset: 1 },
             ]),
             dataSeries: crossSectionSliceSeries,
             zeroLineY: -999,
@@ -307,10 +357,19 @@ const drawExample = async () => {
 
     // Link interactions together
     mainChartSelectionModifier.selectionChanged.subscribe(args => {
-        crossSectionSelectedSeries.dataSeries = args.selectedSeries[0]?.dataSeries;
+        const selectedSeries = args.selectedSeries[0]?.dataSeries;
+        if (selectedSeries) {
+            crossSectionSelectedSeries.dataSeries = selectedSeries;
+        }
+        crossSectionLegendModifier.isEnabled = true;
+        crossSectionLegendModifier.sciChartLegend?.invalidateLegend();
     });
     mainChartSelectionModifier.hoverChanged.subscribe(args => {
-        crossSectionHoveredSeries.dataSeries = args.hoveredSeries[0]?.dataSeries;
+        const hoveredSeries = args.hoveredSeries[0]?.dataSeries;
+        if (hoveredSeries) {
+            crossSectionHoveredSeries.dataSeries = hoveredSeries;
+        }
+        crossSectionLegendModifier.sciChartLegend?.invalidateLegend();
     });
     dragMeAnnotation.dragDelta.subscribe((args: AnnotationDragDeltaEventArgs) => {
         // Find the index to the x-values that the axis marker is on
