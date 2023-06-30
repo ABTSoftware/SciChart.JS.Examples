@@ -564,6 +564,13 @@ export const ExampleStrings = {
     urlSurfaceMesh3D: "/javascript-3d-surface-mesh-chart",
     urlTitleSurfaceMesh3D: "The Surface Mesh 3D Chart example shows how to create this 3D Chart type in SciChart.js",
 
+    // 3D Point Line
+    titlePointLine3DChart: "JavaScript Point Line 3D Chart",
+    pageTitlePointLine3DChart: "JavaScript 3D Point Line Chart | View 3D JavaScript Charts",
+    urlPointLine3DChart: "/javascript-3d-point-line-chart",
+    urlPointLine3DChartDocumentation: "https://www.scichart.com/documentation/js/current/webframe.html",
+    urlTitlePointLine3DChartDocumentation: "SciChart.js 3D Point Line Chart Documentation",
+
     // Featured Apps Lidar Example
     urlLidarFeaturedApp: "/javascript-3d-lidar-visualization",
     urlTitleLidarFeaturedApp: "LiDAR 3D Point Cloud of Geospatial Data",

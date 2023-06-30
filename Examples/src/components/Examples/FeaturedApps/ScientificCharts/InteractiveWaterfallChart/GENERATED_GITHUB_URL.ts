@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/FeaturedApps/FeatureDemos/ScientificCharts/index.tsx";
+export const githubUrl = "/components/Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/index.tsx";

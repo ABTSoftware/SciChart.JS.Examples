@@ -47,6 +47,7 @@ import { seriesSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndHitt
 import { usingCursorModifierTooltipsExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips/exampleInfo";
 import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo";
 import { surfaceMesh3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/exampleInfo";
+import { pointLine3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/PointLine3DChart/exampleInfo";
 import { load500By500ExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/Load500By500/exampleInfo";
 import { realtimePerformanceDemoExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo/exampleInfo";
 import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/exampleInfo";
@@ -448,6 +449,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart3D_basic3DChartTypes_SurfaceMesh3DChart: {
         id: "chart3D_basic3DChartTypes_SurfaceMesh3DChart",
         ...surfaceMesh3DChartExampleInfo
+    },
+    chart3D_basic3DChartTypes_PointLine3DChart: {
+        id: "chart3D_basic3DChartTypes_PointLine3DChart",
+        ...pointLine3DChartExampleInfo
     },
     featuredApps_performanceDemos_Load500By500: {
         id: "featuredApps_performanceDemos_Load500By500",

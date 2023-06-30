@@ -31,7 +31,7 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier
 } from "scichart";
-import {Radix2FFT} from "../../../../../../build/Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/Radix2FFT";
+import {Radix2FFT} from "../AudioAnalyzer/Radix2FFT";
 import {INumericAxisOptions} from "scichart/Charting/Visuals/Axis/NumericAxis";
 
 export const divMainChartId = "sciChart1";

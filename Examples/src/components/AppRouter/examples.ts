@@ -63,7 +63,7 @@ import RealtimePerformanceDemo from "../Examples/FeaturedApps/PerformanceDemos/R
 
 import VitalSignsMonitorDemo from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo";
 import SurfaceMesh3DChart from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart";
-
+import PointLine3DChart from "../Examples/Charts3D/Basic3DChartTypes/PointLine3DChart";
 import LiDAR3DPointCloudDemo from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo";
 
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
@@ -300,6 +300,7 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_PointLine3DChart,
             EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
         ]
@@ -492,6 +493,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return Bubble3DChart;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.id:
             return SurfaceMesh3DChart;
+        case EXAMPLES_PAGES.chart3D_basic3DChartTypes_PointLine3DChart.id:
+            return PointLine3DChart;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500.id:
             return Load500By500;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.id:
