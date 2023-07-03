@@ -11,6 +11,7 @@ import {
     ECoordinateMode,
     EHorizontalAnchorPoint,
     ELegendOrientation,
+    EStrokePaletteMode,
     EVerticalAnchorPoint,
     EXyDirection,
     FastLineRenderableSeries,
@@ -90,6 +91,7 @@ class CustomOffsetAxis extends NumericAxis {
 class CrossSectionPaletteProvider extends DefaultPaletteProvider {
 
     public selectedIndex: number = -1;
+    
     public override overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity: number): number {
         if (index === this.selectedIndex || index + 1 === this.selectedIndex || index -1 === this.selectedIndex) {
             return 0xFFFF8A42;
@@ -104,6 +106,7 @@ const drawExample = async () => {
     const theme = new SciChartJsNavyTheme();
 
     let mainChartSelectionModifier: SeriesSelectionModifier;
+    const crossSectionPaletteProvider = new CrossSectionPaletteProvider();
     let dragMeAnnotation: CustomAnnotation;
 
     console.log(`Waterfall Demo libraryVersion ${libraryVersion}`);
@@ -117,8 +120,6 @@ const drawExample = async () => {
         });
 
         const seriesCount = 50;
-        const crossSectionPaletteProvider = new CrossSectionPaletteProvider();
-
         for (let i = 0; i < seriesCount; i++) {
             // Create one yAxis per series
             sciChartSurface.yAxes.add(new CustomOffsetAxis(wasmContext, {
@@ -148,6 +149,7 @@ const drawExample = async () => {
             const { xValues, yValues } = createSpectralData(i);
 
             const lineSeries = new FastLineRenderableSeries(wasmContext, {
+                id: "S" + i,
                 xAxisId: "X" + i,
                 yAxisId: "Y" + i,
                 stroke: "#64BAE4",
@@ -155,7 +157,6 @@ const drawExample = async () => {
                 dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: `Spectra ${i}` }),
                 paletteProvider: crossSectionPaletteProvider
             });
-
             // Insert series in reverse order so the ones at the bottom of the chart are drawn first
             // sciChartSurface.renderableSeries.insert(0, lineSeries);
             sciChartSurface.renderableSeries.add(lineSeries);
@@ -209,31 +210,6 @@ const drawExample = async () => {
 
         sciChartSurface.annotations.add(promptAnnotation);
 
-        // Add a function to update drawing the cross-selection when the drag annotation is dragged
-        const updateDragAnnotation = () => {
-            // Don't allow to drag vertically, only horizontal
-            dragMeAnnotation.y1 = -25;
-
-            // Find the index to the x-values that the axis marker is on
-            // Note you could just loop getNativeXValues() here but the wasmContext.NumberUtil function does it for you
-            const dataIndex = wasmContext.NumberUtil.FindIndex(
-                sciChartSurface.renderableSeries.get(0).dataSeries.getNativeXValues(),
-                dragMeAnnotation.x1,
-                wasmContext.SCRTFindIndexSearchMode.Nearest,
-                true);
-
-            crossSectionPaletteProvider.selectedIndex = dataIndex;
-            sciChartSurface.invalidateElement();
-        };
-
-        // Run it once
-        updateDragAnnotation();
-
-        // Run it when user drags the annotation
-        dragMeAnnotation.dragDelta.subscribe((args: AnnotationDragDeltaEventArgs) => {
-            updateDragAnnotation();
-        });
-
         // Add zooming behaviours
         sciChartSurface.chartModifiers.add(
             new ZoomPanModifier({ xyDirection: EXyDirection.XDirection}),
@@ -241,24 +217,29 @@ const drawExample = async () => {
             new ZoomExtentsModifier( { xyDirection: EXyDirection.XDirection }));
 
         const updateSeriesSelectionState = (series: IRenderableSeries) => {
-            series.stroke = series.isSelected ? "White": series.isHovered ? "#FFBE93" : "#64BAE4";
+            series.stroke = series.isSelected ? "White": (series.isHovered ? "#FFBE93" : "#64BAE4");
             series.strokeThickness = (series.isSelected || series.isHovered) ? 3 : 1;
         };
 
+        let prevSelectedSeries: IRenderableSeries = sciChartSurface.renderableSeries.get(0);
         // Add selection behaviour
         mainChartSelectionModifier = new SeriesSelectionModifier({
             enableHover: true,
             enableSelection: true,
             hitTestRadius: 5,
             onSelectionChanged: args => {
-                args.allSeries.forEach(updateSeriesSelectionState);
+                if (args.selectedSeries.length > 0) {
+                    prevSelectedSeries = args.selectedSeries[0];
+                    args.allSeries.forEach(updateSeriesSelectionState);
+                } else {
+                    prevSelectedSeries.isSelected = true;
+                }
             },
             onHoverChanged: args => {
                 args.allSeries.forEach(updateSeriesSelectionState);
             }
         });
         sciChartSurface.chartModifiers.add(mainChartSelectionModifier);
-
         return sciChartSurface;
     };
 
@@ -371,7 +352,12 @@ const drawExample = async () => {
         }
         crossSectionLegendModifier.sciChartLegend?.invalidateLegend();
     });
-    dragMeAnnotation.dragDelta.subscribe((args: AnnotationDragDeltaEventArgs) => {
+    
+    // Add a function to update drawing the cross-selection when the drag annotation is dragged
+    const updateDragAnnotation = () => {
+        // Don't allow to drag vertically, only horizontal
+        dragMeAnnotation.y1 = -25;
+
         // Find the index to the x-values that the axis marker is on
         // Note you could just loop getNativeXValues() here but the wasmContext.NumberUtil function does it for you
         const dataIndex = mainChartSurface.webAssemblyContext2D.NumberUtil.FindIndex(
@@ -380,11 +366,23 @@ const drawExample = async () => {
             mainChartSurface.webAssemblyContext2D.SCRTFindIndexSearchMode.Nearest,
             true);
 
+        crossSectionPaletteProvider.selectedIndex = dataIndex;
+        mainChartSurface.invalidateElement();
         crossSectionSliceSeries.clear();
         for(let i = 0; i < mainChartSurface.renderableSeries.size(); i++) {
             crossSectionSliceSeries.append(i, mainChartSurface.renderableSeries.get(i).dataSeries.getNativeYValues().get(dataIndex));
         }
+    };
+
+    // Run it once
+    updateDragAnnotation();
+
+    //Run it when user drags the annotation
+    dragMeAnnotation.dragDelta.subscribe((args: AnnotationDragDeltaEventArgs) => {
+        updateDragAnnotation();
     });
+
+    mainChartSurface.renderableSeries.get(0).isSelected = true;
 
     return { charts };
 };
