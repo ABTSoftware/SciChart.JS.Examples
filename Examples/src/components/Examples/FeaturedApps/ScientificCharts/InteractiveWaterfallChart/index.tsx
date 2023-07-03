@@ -108,7 +108,7 @@ const drawExample = async () => {
     let mainChartSelectionModifier: SeriesSelectionModifier;
     const crossSectionPaletteProvider = new CrossSectionPaletteProvider();
     let dragMeAnnotation: CustomAnnotation;
-    
+
     // This function creates the main chart with waterfall series
     // To do this, we create N series, each with its own X,Y axis with a different X,Y offset
     // all axis other than the first are hidden
@@ -120,28 +120,30 @@ const drawExample = async () => {
         const seriesCount = 50;
         for (let i = 0; i < seriesCount; i++) {
             // Create one yAxis per series
-            sciChartSurface.yAxes.add(new CustomOffsetAxis(wasmContext, {
+            const yAxis = new CustomOffsetAxis(wasmContext, {
                 id: "Y" + i,
                 axisAlignment: EAxisAlignment.Left,
                 maxAutoTicks: 5,
                 drawMinorGridLines: false,
                 visibleRange: new NumberRange(-60, 60),
                 isVisible: i === seriesCount - 1,
-            }));
-            // Todo: This customOffset should be more easily set via library changes before we go live with the example
-            (sciChartSurface.yAxes.get(i) as CustomOffsetAxis).customOffset = 3 * -i;
+            });
+            // This customOffset class allows us to override layout of axis/series. For more complex layouts you can use the LayoutManager class
+            yAxis.customOffset = 3 * -i;
+            sciChartSurface.yAxes.add(yAxis);
 
             // Create a shared, default xaxis
-            sciChartSurface.xAxes.add(new CustomOffsetAxis(wasmContext, {
+            const xAxis = new CustomOffsetAxis(wasmContext, {
                 id: "X" + i,
                 axisAlignment: EAxisAlignment.Bottom,
                 maxAutoTicks: 5,
                 drawMinorGridLines: false,
                 growBy: new NumberRange(0, 0.2),
                 isVisible: i === seriesCount - 1,
-            }));
-            // Todo: This customOffset should be more easily set via library changes before we go live with the example
-            (sciChartSurface.xAxes.get(i) as CustomOffsetAxis).customOffset = 2 * i;
+            });
+            xAxis.customOffset = 2 * i;
+            // This customOffset class allows us to override layout of axis/series. For more complex layouts you can use the LayoutManager class
+            sciChartSurface.xAxes.add(xAxis);
 
             // Create some data for the example
             const { xValues, yValues } = createSpectralData(i);
