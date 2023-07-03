@@ -91,7 +91,7 @@ class CustomOffsetAxis extends NumericAxis {
 class CrossSectionPaletteProvider extends DefaultPaletteProvider {
 
     public selectedIndex: number = -1;
-    
+
     public override overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity: number): number {
         if (index === this.selectedIndex || index + 1 === this.selectedIndex || index -1 === this.selectedIndex) {
             return 0xFFFF8A42;
@@ -108,9 +108,7 @@ const drawExample = async () => {
     let mainChartSelectionModifier: SeriesSelectionModifier;
     const crossSectionPaletteProvider = new CrossSectionPaletteProvider();
     let dragMeAnnotation: CustomAnnotation;
-
-    console.log(`Waterfall Demo libraryVersion ${libraryVersion}`);
-
+    
     // This function creates the main chart with waterfall series
     // To do this, we create N series, each with its own X,Y axis with a different X,Y offset
     // all axis other than the first are hidden
@@ -352,7 +350,7 @@ const drawExample = async () => {
         }
         crossSectionLegendModifier.sciChartLegend?.invalidateLegend();
     });
-    
+
     // Add a function to update drawing the cross-selection when the drag annotation is dragged
     const updateDragAnnotation = () => {
         // Don't allow to drag vertically, only horizontal
