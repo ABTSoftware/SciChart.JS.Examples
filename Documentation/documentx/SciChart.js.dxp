@@ -773,13 +773,13 @@ image labels too </Notes>
 two left/right axis
 isPrimaryAxis switched depending on mouse over </Notes>
         </TaskItem>
-        <TaskItem Id="93c76f4c-5406-48f5-bac0-191a134b84cb" Priority="" AssignedTo="">
+        <TaskItem Id="93c76f4c-5406-48f5-bac0-191a134b84cb" Priority="High" AssignedTo="">
           <Title>v3.2 Add Memory Tips &amp; Tricks doc</Title>
           <AssociatedItemId></AssociatedItemId>
           <Status>Not Started</Status>
           <CreatedOn>2023-06-21T12:49:26.9157789Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-06-21T12:55:46.701097Z</ModifiedOn>
+          <ModifiedOn>2023-07-04T16:42:21.6638586Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>under perf tips
  - talk about Wasm memory model
@@ -789,13 +789,13 @@ isPrimaryAxis switched depending on mouse over </Notes>
  - Add Mem Leak Debugging tools doc
 </Notes>
         </TaskItem>
-        <TaskItem Id="1215a6ca-6e5c-413e-a6d5-0c4addab7848" Priority="" AssignedTo="">
+        <TaskItem Id="1215a6ca-6e5c-413e-a6d5-0c4addab7848" Priority="High" AssignedTo="">
           <Title>v3.2 Add Mem Leak Debugging tools doc</Title>
           <AssociatedItemId></AssociatedItemId>
           <Status>Not Started</Status>
           <CreatedOn>2023-06-21T12:53:23.3419754Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-06-21T12:53:29.0481957Z</ModifiedOn>
+          <ModifiedOn>2023-07-04T16:42:20.2139397Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -819,13 +819,13 @@ isPrimaryAxis switched depending on mouse over </Notes>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
-        <TaskItem Id="69bfebc0-86d6-40e8-a28f-74f34403ad7b" Priority="" AssignedTo="">
+        <TaskItem Id="69bfebc0-86d6-40e8-a28f-74f34403ad7b" Priority="High" AssignedTo="">
           <Title>v3.2 Add PointLineRenderablerSeries 3D Docs</Title>
           <AssociatedItemId></AssociatedItemId>
           <Status>Not Started</Status>
           <CreatedOn>2023-06-21T12:53:56.4584079Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-06-21T12:54:14.3791409Z</ModifiedOn>
+          <ModifiedOn>2023-07-04T16:42:14.2863788Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -859,25 +859,26 @@ isPrimaryAxis switched depending on mouse over </Notes>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
-        <TaskItem Id="dd64b95e-29ca-4808-833d-51b1729377a7" Priority="" AssignedTo="">
+        <TaskItem Id="dd64b95e-29ca-4808-833d-51b1729377a7" Priority="High" AssignedTo="">
           <Title>v3.2 add FIFO and Sweeping mode docs</Title>
           <AssociatedItemId></AssociatedItemId>
           <Status>Not Started</Status>
           <CreatedOn>2023-06-21T12:54:45.4364839Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-06-21T12:54:50.1770231Z</ModifiedOn>
+          <ModifiedOn>2023-07-04T16:42:09.3736126Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
-        <TaskItem Id="87ba294e-1912-40f5-8098-247794a67626" Priority="" AssignedTo="">
+        <TaskItem Id="87ba294e-1912-40f5-8098-247794a67626" Priority="High" AssignedTo="">
           <Title>v3.2 Refactor Dataseries docs to include realtime updates</Title>
           <AssociatedItemId></AssociatedItemId>
           <Status>Not Started</Status>
           <CreatedOn>2023-06-21T12:54:52.7185301Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-06-21T12:54:59.111126Z</ModifiedOn>
+          <ModifiedOn>2023-07-04T16:42:04.9731292Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
-          <Notes></Notes>
+          <Notes>Must document modes of realtime:
+ Append, Replace, Scroll and Sweep </Notes>
         </TaskItem>
         <TaskItem Id="0b59c288-04aa-414e-a54e-f83f29dc63a1" Priority="" AssignedTo="">
           <Title>v3.2 mention Series pointmarker: lastPointOnly mode</Title>
