@@ -55,7 +55,8 @@ export const drawExample = async () => {
 
     // INIT AUDIO
     const initAudio = () => {
-        return dataProvider.initAudio();
+        // TODO: Overlay warning on the example if audio can't be initialized, with steps to resolve (permissions)
+        dataProvider.initAudio()
     };
 
     function updateAnalysers(frame: number): void {
@@ -67,21 +68,16 @@ export const drawExample = async () => {
         // Get audio data
         const audioData = dataProvider.next();
 
-        // Update Audio Chart
-        audioDS.removeRange(0, audioData.pointsCount);
+        // Update Audio Chart. When fifoCapacity is set, data automatically scrolls
         audioDS.appendRange(audioData.xData, audioData.yData);
 
-        // Update History
-        const maxLength = fftCount * audioData.pointsCount;
+        // Update History. When fifoCapacity is set, data automatically scrolls
         historyDS.appendRange(audioData.xData, audioData.yData);
-        if (historyDS.count() > maxLength) {
-            historyDS.removeRange(0, historyDS.count() - maxLength);
-        }
 
         // Perform FFT
         const fftData = fft.run(audioData.yData);
 
-        // Update FFT Chart
+        // Update FFT Chart. Clear() and appendRange() is a fast replace for data (if same size)
         fftDS.clear();
         fftDS.appendRange(fftXValues, fftData);
 
@@ -135,7 +131,8 @@ export const drawExample = async () => {
         });
         sciChartSurface.yAxes.add(yAxis);
 
-        audioDS = new XyDataSeries(wasmContext);
+        // Initializing a series with fifoCapacity enables scrolling behaviour and auto discarding old data
+        audioDS = new XyDataSeries(wasmContext, { fifoCapacity: AUDIO_STREAM_BUFFER_SIZE });
 
         // Fill the data series with zero values
         for (let i = 0; i < AUDIO_STREAM_BUFFER_SIZE; i++) {
@@ -153,7 +150,8 @@ export const drawExample = async () => {
 
         sciChartSurface.renderableSeries.add(rs);
 
-        historyDS = new XyDataSeries(wasmContext);
+        // Initializing a series with fifoCapacity enables scrolling behaviour and auto discarding old data.
+        historyDS = new XyDataSeries(wasmContext, { fifoCapacity: AUDIO_STREAM_BUFFER_SIZE * fftCount });
         for (let i = 0; i < AUDIO_STREAM_BUFFER_SIZE * fftCount; i++) {
             historyDS.append(0, 0);
         }
