@@ -14,11 +14,12 @@ import {
     XyzDataSeries3D,
     SpherePointMarker3D,
     TGradientStop,
-    parseColorToUIntArgb, PointLineRenderableSeries3D
+    parseColorToUIntArgb, PointLineRenderableSeries3D, HeatmapLegend
 } from "scichart";
 import {Radix2FFT} from "../../../FeaturedApps/ScientificCharts/AudioAnalyzer/Radix2FFT";
 
 const divElementId = "chart";
+const divHeatmapLegend = "heatmapLegend";
 
 type TMetadata = {
     vertexColorAbgr: number;
@@ -151,18 +152,76 @@ function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): 
     });
 }
 
+const drawHeatmapLegend = async () => {
+    const {heatmapLegend, wasmContext} = await HeatmapLegend.create(divHeatmapLegend, {
+        theme: {
+            ...appTheme.SciChartJsTheme,
+            sciChartBackground: appTheme.DarkIndigo + "BB",
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
+        },
+        yAxisOptions: {
+            axisBorder: {
+                borderLeft: 1,
+                color: appTheme.ForegroundColor + "77"
+            },
+            majorTickLineStyle: {
+                color: appTheme.ForegroundColor,
+                tickSize: 6,
+                strokeThickness: 1,
+            },
+            minorTickLineStyle: {
+                color: appTheme.ForegroundColor,
+                tickSize: 3,
+                strokeThickness: 1,
+            },
+            axisTitle: "Power (dB)",
+            axisTitleStyle: { fontSize: 14 }
+        },
+        colorMap: {
+            minimum: -30,
+            maximum: 0,
+            gradientStops: [
+                {offset: 1, color: appTheme.VividPink},
+                {offset: 0.9, color: appTheme.VividOrange},
+                {offset: 0.7, color: appTheme.MutedRed},
+                {offset: 0.5, color: appTheme.VividGreen},
+                {offset: 0.3, color: appTheme.VividSkyBlue},
+                {offset: 0.15, color: appTheme.Indigo},
+                {offset: 0, color: appTheme.DarkIndigo}
+            ],
+        }
+    });
+
+    return heatmapLegend;
+}
+
 // REACT COMPONENT
 export default function PointLine3DChart() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChart3DSurface>();
+    const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
 
     React.useEffect(() => {
         (async () => {
             const res = await drawExample();
+            const legend = await drawHeatmapLegend();
+            setHeatmapLegend(legend);
             setSciChartSurface(res.sciChart3DSurface);
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => {
+            sciChartSurface?.delete();
+            heatmapLegend?.delete();
+        }
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return (
+        <div className={classes.ChartWrapper}>
+            <div style={{position: "relative", height: "100%", width: "100%"}}>
+                <div id={divElementId} style={{position: "absolute", height: "100%", width: "100%"}}></div>
+                <div id={divHeatmapLegend}
+                     style={{position: "absolute", height: "95%", width: "110px", right: "20px", margin: "20"}}>
+                </div>
+            </div>
+        </div>
+    )
 }
