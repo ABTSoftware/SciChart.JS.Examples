@@ -1,6 +1,6 @@
 import * as React from "react";
 import { getVarianceData } from "./data";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import {
     MouseWheelZoomModifier,

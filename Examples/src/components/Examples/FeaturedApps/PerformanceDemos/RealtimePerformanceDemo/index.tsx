@@ -1,7 +1,7 @@
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
-import {appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 import {
@@ -30,21 +30,21 @@ const drawExample = async () => {
     // Create a SciChartSurface
     // Note create() uses shared WebGL canvas, createSingle() uses one WebGL per chart
     // createSingle() = faster performance as doesn't require a copy-op, but limited by max-contexts in browser
-    const {wasmContext, sciChartSurface} = await SciChartSurface.createSingle(divElementId, {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
     // Create an XAxis and YAxis with autoRange=Always
-    const xAxis = new NumericAxis(wasmContext, {autoRange: EAutoRange.Always});
+    const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
     sciChartSurface.xAxes.add(xAxis);
-    const yAxis = new NumericAxis(wasmContext, {autoRange: EAutoRange.Always});
+    const yAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
     sciChartSurface.yAxes.add(yAxis);
 
     // Create some DataSeries
     const dataSeries: XyDataSeries[] = [
-        new XyDataSeries(wasmContext, {containsNaN: false, isSorted: true}),
-        new XyDataSeries(wasmContext, {containsNaN: false, isSorted: true}),
-        new XyDataSeries(wasmContext, {containsNaN: false, isSorted: true})
+        new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true }),
+        new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true }),
+        new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true })
     ];
 
     const seriesColors = [appTheme.VividSkyBlue, appTheme.VividOrange, appTheme.VividPink];
@@ -65,8 +65,8 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(
         new RubberBandXyZoomModifier(),
         new MouseWheelZoomModifier(),
-        new XAxisDragModifier({dragMode: EDragMode.Panning}),
-        new YAxisDragModifier({dragMode: EDragMode.Panning}),
+        new XAxisDragModifier({ dragMode: EDragMode.Panning }),
+        new YAxisDragModifier({ dragMode: EDragMode.Panning }),
         new ZoomExtentsModifier()
     );
 
@@ -101,7 +101,7 @@ const drawExample = async () => {
 
             randomWalkGenerators.forEach((randomWalk, index) => {
                 // Get the next N random walk x,y values
-                const {xValues, yValues} = randomWalk.getRandomWalkSeries(numberOfPointsPerTimerTick);
+                const { xValues, yValues } = randomWalk.getRandomWalkSeries(numberOfPointsPerTimerTick);
 
                 // Append these to the dataSeries. This will cause the chart to redraw
                 dataSeries[index].appendRange(xValues, yValues);
@@ -118,7 +118,7 @@ const drawExample = async () => {
         timerId = setTimeout(updateFunc, timerInterval);
     };
 
-    return {wasmContext, sciChartSurface, controls: {startDemo, stopDemo}};
+    return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo } };
 };
 
 const useStyles = makeStyles(theme => ({
@@ -138,7 +138,7 @@ const useStyles = makeStyles(theme => ({
         color: appTheme.ForegroundColor
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
@@ -147,11 +147,10 @@ let autoStartTimerId: NodeJS.Timeout;
 
 export default function RealtimePerformanceDemo() {
     const [controls, setControls] = React.useState({
-        startDemo: () => {
-        }, stopDemo: () => {
-        }
+        startDemo: () => {},
+        stopDemo: () => {}
     });
-    const [stats, setStats] = React.useState({numberPoints: 0, fps: 0});
+    const [stats, setStats] = React.useState({ numberPoints: 0, fps: 0 });
 
     React.useEffect(() => {
         (async () => {
@@ -165,7 +164,7 @@ export default function RealtimePerformanceDemo() {
                 const fps = 1 / timeDiffSeconds;
                 setStats({
                     numberPoints: scs.renderableSeries.size() * scs.renderableSeries.get(0).dataSeries.count(),
-                    fps,
+                    fps
                 });
             });
             setControls(res.controls);
@@ -187,13 +186,21 @@ export default function RealtimePerformanceDemo() {
             <div className={classes.ChartWrapper}>
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
-                        <Button onClick={controls.startDemo} style={{color: appTheme.ForegroundColor}}>Start</Button>
-                        <Button onClick={controls.stopDemo} style={{color: appTheme.ForegroundColor}}>Stop</Button>
-                        <span style={{
-                            margin: 12,
-                            minWidth: "200px"
-                        }}># DataPoints: {stats.numberPoints.toLocaleString()}</span>
-                        <span style={{margin: 12}}>FPS: {stats.fps.toFixed(0)}</span>
+                        <Button onClick={controls.startDemo} style={{ color: appTheme.ForegroundColor }}>
+                            Start
+                        </Button>
+                        <Button onClick={controls.stopDemo} style={{ color: appTheme.ForegroundColor }}>
+                            Stop
+                        </Button>
+                        <span
+                            style={{
+                                margin: 12,
+                                minWidth: "200px"
+                            }}
+                        >
+                            # DataPoints: {stats.numberPoints.toLocaleString()}
+                        </span>
+                        <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
                     <div className={localClasses.chartArea} id={divElementId}></div>
                 </div>

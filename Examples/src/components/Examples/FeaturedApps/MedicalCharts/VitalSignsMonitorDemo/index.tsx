@@ -1,17 +1,20 @@
 import * as React from "react";
 import { vitalSignsEcgData } from "./data/vitalSignsEcgData";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 
 import {
     CategoryAxis,
-    EAutoRange, EllipsePointMarker,
+    EAutoRange,
+    EllipsePointMarker,
     ENumericFormat,
     FastLineRenderableSeries,
     NumberRange,
-    NumericAxis, RightAlignedOuterVerticallyStackedAxisLayoutStrategy,
+    NumericAxis,
+    RightAlignedOuterVerticallyStackedAxisLayoutStrategy,
     SciChartSurface,
-    XyDataSeries, XyScatterRenderableSeries
+    XyDataSeries,
+    XyScatterRenderableSeries
 } from "scichart";
 
 const divElementId = "chart";
@@ -24,8 +27,13 @@ const DATA_LENGTH = vitalSignsEcgData.xValues.length;
 
 let timerId: NodeJS.Timeout;
 
-const { xValues, ecgHeartRateValues, bloodPressureValues, bloodVolumeValues, bloodOxygenationValues } =
-    vitalSignsEcgData;
+const {
+    xValues,
+    ecgHeartRateValues,
+    bloodPressureValues,
+    bloodVolumeValues,
+    bloodOxygenationValues
+} = vitalSignsEcgData;
 
 // HELPER FUNCTIONS
 const getValuesFromData = (xIndex: number) => {
@@ -71,7 +79,8 @@ const drawExample = async (
     //      See more info in the docs
     const xAxis = new CategoryAxis(wasmContext, {
         visibleRange: new NumberRange(0, POINTS_LOOP),
-        isVisible: false });
+        isVisible: false
+    });
     sciChartSurface.xAxes.add(xAxis);
 
     // Create multiple y-axis, one per trace. Using the stacked vertically layout strategy
@@ -95,8 +104,7 @@ const drawExample = async (
         visibleRange: new NumberRange(0, 0.2),
         isVisible: false
     });
-    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
-        new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
+    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy = new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
     sciChartSurface.yAxes.add(yAxisHeartRate, yAxisBloodPressure, yAxisBloodVolume, yAxisBloodOxygenation);
 
     // Using the NEW fifoCapacity, fifoSweeping mode in SciChart.js v3.2 we specify a number of points
@@ -125,7 +133,13 @@ const drawExample = async (
     });
 
     // A pointmarker with lastPointOnly = true will be used for all series to mark the last point
-    const pointMarkerOptions = { width: 7, height: 7, strokeThickness: 2, fill: appTheme.MutedSkyBlue, lastPointOnly: true };
+    const pointMarkerOptions = {
+        width: 7,
+        height: 7,
+        strokeThickness: 2,
+        fill: appTheme.MutedSkyBlue,
+        lastPointOnly: true
+    };
 
     // Create four RenderableSeries which render the data
     sciChartSurface.renderableSeries.add(
@@ -134,7 +148,7 @@ const drawExample = async (
             strokeThickness: STROKE_THICKNESS,
             stroke: appTheme.VividOrange,
             dataSeries: dataSeries1,
-            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividOrange }),
+            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividOrange })
         })
     );
 
@@ -144,7 +158,7 @@ const drawExample = async (
             strokeThickness: STROKE_THICKNESS,
             stroke: appTheme.VividSkyBlue,
             dataSeries: dataSeries2,
-            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividSkyBlue }),
+            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividSkyBlue })
         })
     );
 
@@ -154,7 +168,7 @@ const drawExample = async (
             strokeThickness: STROKE_THICKNESS,
             stroke: appTheme.VividPink,
             dataSeries: dataSeries3,
-            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividPink }),
+            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividPink })
         })
     );
 
@@ -164,7 +178,7 @@ const drawExample = async (
             strokeThickness: STROKE_THICKNESS,
             stroke: appTheme.VividTeal,
             dataSeries: dataSeries4,
-            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividTeal }),
+            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividTeal })
         })
     );
 
@@ -172,13 +186,9 @@ const drawExample = async (
     // Here you would subsitute your own callback to receive data from your data feed or sensors
     const runUpdateDataOnTimeout = () => {
         // Get data
-        const {
-            xArr,
-            ecgHeartRateArr,
-            bloodPressureArr,
-            bloodVolumeArr,
-            bloodOxygenationArr
-        } = getValuesFromData(currentPoint);
+        const { xArr, ecgHeartRateArr, bloodPressureArr, bloodVolumeArr, bloodOxygenationArr } = getValuesFromData(
+            currentPoint
+        );
         currentPoint += STEP;
 
         // appendRange when fifoSweepingMode = true and fifoCapacity is reached will cause the series to wrap around
@@ -254,10 +264,13 @@ export default function VitalSignsMonitorDemo() {
 
     return (
         <div className={classes.ChartWrapper}>
-            <div style={{display: "flex", height: "100%"}}>
+            <div style={{ display: "flex", height: "100%" }}>
                 <div id={divElementId} className={classes.VitalSigns} />
                 <div className={classes.InfoBoxContainer}>
-                    <div className={classes.InfoBox} style={{ color: appTheme.VividOrange, background: appTheme.Background }}>
+                    <div
+                        className={classes.InfoBox}
+                        style={{ color: appTheme.VividOrange, background: appTheme.Background }}
+                    >
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>ECG</div>
                         </div>
@@ -274,7 +287,10 @@ export default function VitalSignsMonitorDemo() {
                             </div>
                         </div>
                     </div>
-                    <div className={classes.InfoBox} style={{ color: appTheme.VividSkyBlue, background: appTheme.Background }}>
+                    <div
+                        className={classes.InfoBox}
+                        style={{ color: appTheme.VividSkyBlue, background: appTheme.Background }}
+                    >
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>NIBP</div>
                             <div className={classes.IbRow1Col2}>
@@ -291,7 +307,10 @@ export default function VitalSignsMonitorDemo() {
                             </div>
                         </div>
                     </div>
-                    <div className={classes.InfoBox} style={{ color: appTheme.VividPink, background: appTheme.Background }}>
+                    <div
+                        className={classes.InfoBox}
+                        style={{ color: appTheme.VividPink, background: appTheme.Background }}
+                    >
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>SV</div>
                             <div className={classes.IbRow1Col2}>
@@ -306,7 +325,10 @@ export default function VitalSignsMonitorDemo() {
                             </div>
                         </div>
                     </div>
-                    <div className={classes.InfoBox} style={{ color: appTheme.VividTeal, background: appTheme.Background }}>
+                    <div
+                        className={classes.InfoBox}
+                        style={{ color: appTheme.VividTeal, background: appTheme.Background }}
+                    >
                         <div className={classes.IbRow1}>
                             <div className={classes.IbRow1Col1}>
                                 SPO<span style={{ fontSize: 12 }}>2</span>

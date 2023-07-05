@@ -16,31 +16,32 @@ import {
     EChart2DModifierType,
     Point
 } from "scichart";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../styles/Examples.module.scss";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
-
     // Create a chart using the Builder-API, an api that allows defining a chart
     // with javascript-objects or JSON
     return await chartBuilder.build2DChart(divElementId, {
         // Set theme
-        surface: {theme: appTheme.SciChartJsTheme},
+        surface: { theme: appTheme.SciChartJsTheme },
         // Add XAxis
-        xAxes: [{
-            type: EAxisType.CategoryAxis,
-            options: {
-                axisTitle: "X Axis Title",
-                labelProvider: {
-                    type: ELabelProviderType.Text,
-                    options: {
-                        labels: {1: "one", 2: "two", 3: "three", 4: "four", 5: "five"}
+        xAxes: [
+            {
+                type: EAxisType.CategoryAxis,
+                options: {
+                    axisTitle: "X Axis Title",
+                    labelProvider: {
+                        type: ELabelProviderType.Text,
+                        options: {
+                            labels: { 1: "one", 2: "two", 3: "three", 4: "four", 5: "five" }
+                        }
                     }
                 }
             }
-        }],
+        ],
         // Add multiple Y-Axis
         yAxes: [
             {
@@ -66,20 +67,21 @@ const drawExample = async () => {
             }
         ],
         // Add series. More than one can be set in an array
-        series: [{
-            // each series has type, options in the builder-API
-            type: ESeriesType.SplineMountainSeries,
-            options: {
-                yAxisId: "y1",
-                stroke: appTheme.VividSkyBlue,
-                strokeThickness: 5,
-                fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                    {color: appTheme.VividTeal, offset: 0.2},
-                    {color: "Transparent", offset: 1}
-                ]),
+        series: [
+            {
+                // each series has type, options in the builder-API
+                type: ESeriesType.SplineMountainSeries,
+                options: {
+                    yAxisId: "y1",
+                    stroke: appTheme.VividSkyBlue,
+                    strokeThickness: 5,
+                    fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                        { color: appTheme.VividTeal, offset: 0.2 },
+                        { color: "Transparent", offset: 1 }
+                    ])
+                },
+                xyData: { xValues: [1, 2, 3, 4, 5], yValues: [8, 6, 7, 2, 16] }
             },
-            xyData: {xValues: [1, 2, 3, 4, 5], yValues: [8, 6, 7, 2, 16]}
-        },
             {
                 type: ESeriesType.BubbleSeries,
                 options: {
@@ -106,7 +108,7 @@ const drawExample = async () => {
         annotations: [
             {
                 type: EAnnotationType.SVGTextAnnotation,
-                options: {text: "Labels", yAxisId: "y1", x1: 0, y1: 10, yCoordinateMode: ECoordinateMode.DataValue}
+                options: { text: "Labels", yAxisId: "y1", x1: 0, y1: 10, yCoordinateMode: ECoordinateMode.DataValue }
             },
             {
                 type: EAnnotationType.SVGTextAnnotation,
@@ -120,7 +122,13 @@ const drawExample = async () => {
             },
             {
                 type: EAnnotationType.SVGTextAnnotation,
-                options: {text: "on the chart", yAxisId: "y1", x1: 2, y1: 9, yCoordinateMode: ECoordinateMode.DataValue}
+                options: {
+                    text: "on the chart",
+                    yAxisId: "y1",
+                    x1: 2,
+                    y1: 9,
+                    yCoordinateMode: ECoordinateMode.DataValue
+                }
             },
             {
                 type: EAnnotationType.SVGTextAnnotation,
@@ -164,8 +172,8 @@ const drawExample = async () => {
                     rolloverLineStroke: appTheme.VividTeal
                 }
             },
-            {type: EChart2DModifierType.MouseWheelZoom},
-            {type: EChart2DModifierType.ZoomExtents}
+            { type: EChart2DModifierType.MouseWheelZoom },
+            { type: EChart2DModifierType.ZoomExtents }
         ]
     });
 };
@@ -184,7 +192,5 @@ export default function BuilderFullChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return (
-        <div className={classes.ChartWrapper} id={divElementId}></div>
-    );
+    return <div className={classes.ChartWrapper} id={divElementId}></div>;
 }

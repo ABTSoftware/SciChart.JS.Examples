@@ -2,9 +2,9 @@ import * as React from "react";
 import { AlertTitle } from "@material-ui/lab";
 import { Button } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 import {
     EAutoRange,
@@ -34,23 +34,26 @@ const SERIES = 500;
 const POINTS = 500;
 
 const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
-
     // Create the SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
     // Create an X,Y Axis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(0, POINTS),
-        autoRange: EAutoRange.Never,
-        axisTitle: "X Axis",
-    }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(-250, 250),
-        autoRange: EAutoRange.Never,
-        axisTitle: "Y Axis",
-    }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            visibleRange: new NumberRange(0, POINTS),
+            autoRange: EAutoRange.Never,
+            axisTitle: "X Axis"
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            visibleRange: new NumberRange(-250, 250),
+            autoRange: EAutoRange.Never,
+            axisTitle: "Y Axis"
+        })
+    );
 
     const watermarkAnnotation = (text: string, offset: number = 0) => {
         return new TextAnnotation({
@@ -66,13 +69,13 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
-            annotationLayer: EAnnotationLayer.AboveChart,
+            annotationLayer: EAnnotationLayer.AboveChart
         });
-    }
+    };
     // add a title annotation
     sciChartSurface.annotations.add(watermarkAnnotation("SciChart.js Performance Demo", -52));
     sciChartSurface.annotations.add(watermarkAnnotation(`${SERIES} Series x ${POINTS} Points per series`, 0));
-    sciChartSurface.annotations.add(watermarkAnnotation(`(${SERIES * POINTS / 1000}k DataPoints)`, 52));
+    sciChartSurface.annotations.add(watermarkAnnotation(`(${(SERIES * POINTS) / 1000}k DataPoints)`, 52));
 
     // // add a title annotation
     // // Add title annotation
@@ -97,7 +100,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         const rendSeries: FastLineRenderableSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries,
             strokeThickness: 2,
-            stroke: "auto",
+            stroke: "auto"
         });
 
         dataSeriesArray[i] = dataSeries;
@@ -207,7 +210,7 @@ const useStyles = makeStyles(theme => ({
         color: appTheme.ForegroundColor
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
@@ -241,12 +244,17 @@ export default function Load500By500() {
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <div className={localClasses.chartArea} id={divElementId}></div>
-                <div className={localClasses.toolbarRow} style={{minHeight: "140px"}}>
-                    <Button id="loadPoints" style={{color: appTheme.ForegroundColor}}>🗘 Reload Test</Button>
-                    <div style={{width: "100%", marginLeft: "10px"}}>
+                <div className={localClasses.toolbarRow} style={{ minHeight: "140px" }}>
+                    <Button id="loadPoints" style={{ color: appTheme.ForegroundColor }}>
+                        🗘 Reload Test
+                    </Button>
+                    <div style={{ width: "100%", marginLeft: "10px" }}>
                         {timeSpans.length > 0 && (
-                            <Alert key="0" className={classes.Notification}
-                                   style={{backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor}}>
+                            <Alert
+                                key="0"
+                                className={classes.Notification}
+                                style={{ backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor }}
+                            >
                                 <AlertTitle>Performance Results</AlertTitle>
                                 {timeSpans.map((ts, index) => (
                                     <div key={index}>

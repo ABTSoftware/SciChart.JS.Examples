@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import SciChartImage from "./scichart-logo-white.jpg";
 import {
     SciChartSurface,
@@ -23,7 +23,6 @@ import {
     NativeTextAnnotation
 } from "scichart";
 
-
 const divElementId = "chart";
 
 const getImageAnnotation = (x1: number, y1: number, image: any, width: number, height: number): CustomAnnotation => {
@@ -39,21 +38,25 @@ const getImageAnnotation = (x1: number, y1: number, image: any, width: number, h
 };
 
 export const drawExample = async () => {
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
     // Create an X,Y axis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(0, 10)
-    }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(0, 10)
-    }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            visibleRange: new NumberRange(0, 10)
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            visibleRange: new NumberRange(0, 10)
+        })
+    );
 
     const textColor = appTheme.ForegroundColor;
 
-    const text1 = new TextAnnotation({text: "Editable Chart Annotations", fontSize: 24, x1: 0.3, y1: 9.7, textColor});
+    const text1 = new TextAnnotation({ text: "Editable Chart Annotations", fontSize: 24, x1: 0.3, y1: 9.7, textColor });
     const text2 = new TextAnnotation({
         text: "Click, Drag and Resize annotations with the mouse",
         fontSize: 18,
@@ -198,7 +201,7 @@ export const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 export default function EditableAnnotaions() {
@@ -213,5 +216,5 @@ export default function EditableAnnotaions() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

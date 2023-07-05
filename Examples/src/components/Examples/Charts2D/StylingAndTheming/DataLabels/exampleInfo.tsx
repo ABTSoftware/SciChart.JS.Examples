@@ -6,15 +6,15 @@ import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescript
 import exampleImage from "./javascript-datalabels-chart.jpg";
 
 const description = `Shows how to add and customise data labels for series using SciChart.js`;
-const tips = [
-    ``
-];
+const tips = [``];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDatalabelsDocumentation,
-    title: ExampleStrings.urlTitleDatalabelsDocumentation,
-    linkTitle: "Common RenderableSeries Properties"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDatalabelsDocumentation,
+        title: ExampleStrings.urlTitleDatalabelsDocumentation,
+        linkTitle: "Common RenderableSeries Properties"
+    }
+];
 
 const Subtitle = () => (
     <p>
@@ -32,8 +32,7 @@ export const datalabelsExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription:
-        "Show data labels on javascript chart. Get your free demo now.",
+    metaDescription: "Show data labels on javascript chart. Get your free demo now.",
     metaKeywords: "data labels, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage
 };

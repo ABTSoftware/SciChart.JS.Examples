@@ -12,7 +12,7 @@ import {
     UniformContoursRenderableSeries,
     HeatmapLegend
 } from "scichart";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 const divElementId = "chart";

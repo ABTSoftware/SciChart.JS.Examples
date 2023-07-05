@@ -34,7 +34,7 @@ import {
     FastOhlcRenderableSeries
 } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import {appTheme, simpleBinanceRestClient} from "scichart-example-dependencies";
+import { appTheme, simpleBinanceRestClient } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 const divElementId = "chart";

@@ -15,16 +15,18 @@ const tips = [
 and when to allow user-zooming.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlZoomPanModifierDocumentation,
-    title: ExampleStrings.urlTitleZoomPanModifierDocumentation,
-    linkTitle: "SciChart.js Zooming and Panning Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlZoomPanModifierDocumentation,
+        title: ExampleStrings.urlTitleZoomPanModifierDocumentation,
+        linkTitle: "SciChart.js Zooming and Panning Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Zoom the real-time chart below by dragging on the surface. Right click and drag to pan.  Then double-click to reset zoom and start
-        automatically scrolling again.
+        Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to
+        reset zoom and start automatically scrolling again.
     </p>
 );
 

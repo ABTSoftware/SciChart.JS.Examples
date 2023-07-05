@@ -1,8 +1,8 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import CustomImage from "./scichart-logo-white.jpg";
-import {rocketSvg} from "./416398_exploration_fuel_nasa_rocket_space_icon";
+import { rocketSvg } from "./416398_exploration_fuel_nasa_rocket_space_icon";
 import {
     SciChartSurface,
     NumericAxis,
@@ -29,7 +29,7 @@ const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -58,7 +58,7 @@ const drawExample = async () => {
         y1: 9.7,
         textColor
     });
-    const text2 = new TextAnnotation({text: "You can create text", fontSize: 18, x1: 2, y1: 9, textColor});
+    const text2 = new TextAnnotation({ text: "You can create text", fontSize: 18, x1: 2, y1: 9, textColor });
 
     const nativeText = new NativeTextAnnotation({
         text: "New! NativeText supports multi line with automatic wrapping, and rotation",
@@ -72,27 +72,40 @@ const drawExample = async () => {
 
     // Add Dashed line and anchor text center/right/left annotations
     //
-    const lineDash = new LineAnnotation({x1: 5, x2: 5, y1: 8.5, y2: 7, stroke, strokeDashArray});
+    const lineDash = new LineAnnotation({ x1: 5, x2: 5, y1: 8.5, y2: 7, stroke, strokeDashArray });
     const textAlignCenter = new TextAnnotation({
-        text: "Anchor Text Centered", x1: 5, y1: 8, textColor,
+        text: "Anchor Text Centered",
+        x1: 5,
+        y1: 8,
+        textColor,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center, // anchorpoints control where the X,Y coord is located
-        verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
+        verticalAnchorPoint: EVerticalAnchorPoint.Bottom
     });
     const textAlignRight = new TextAnnotation({
-        text: "Anchor Text Right", x1: 5, y1: 7.8, textColor,
+        text: "Anchor Text Right",
+        x1: 5,
+        y1: 7.8,
+        textColor,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top
     });
     const textAlignLeft = new TextAnnotation({
-        text: "or Anchor Text Left", x1: 5, y1: 7.5, textColor,
+        text: "or Anchor Text Left",
+        x1: 5,
+        y1: 7.5,
+        textColor,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top
     });
 
     // Watermark with CoordinateMode Relative
     //
     const textWatermark = new TextAnnotation({
-        text: "Create Centered Watermarks", x1: 0.5, y1: 0.5, textColor, opacity: 0.3,
+        text: "Create Centered Watermarks",
+        x1: 0.5,
+        y1: 0.5,
+        textColor,
+        opacity: 0.3,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
         fontSize: 48,
@@ -104,31 +117,45 @@ const drawExample = async () => {
 
     // Lines
     //
-    const textLines = new TextAnnotation({fontSize: 13, text: "You can draw lines", x1: 0.3, y1: 6.3, textColor});
-    const line1 = new LineAnnotation({stroke, strokeThickness: 2, x1: 1, x2: 2, y1: 4, y2: 6});
-    const line2 = new LineAnnotation({stroke, strokeThickness: 2, x1: 1.2, x2: 2.5, y1: 3.8, y2: 6});
+    const textLines = new TextAnnotation({ fontSize: 13, text: "You can draw lines", x1: 0.3, y1: 6.3, textColor });
+    const line1 = new LineAnnotation({ stroke, strokeThickness: 2, x1: 1, x2: 2, y1: 4, y2: 6 });
+    const line2 = new LineAnnotation({ stroke, strokeThickness: 2, x1: 1.2, x2: 2.5, y1: 3.8, y2: 6 });
 
     // Boxes
     //
-    const textBoxes = new TextAnnotation({fontSize: 13, text: "Draw Boxes with/without alignment", x1: 3.3, y1: 6.3});
+    const textBoxes = new TextAnnotation({ fontSize: 13, text: "Draw Boxes with/without alignment", x1: 3.3, y1: 6.3 });
 
     const box1 = new BoxAnnotation({
-        fill: appTheme.VividGreen + "33", stroke: appTheme.VividGreen,
-        strokeThickness: 1, x1: 3.5, x2: 5, y1: 3.9, y2: 4.9
+        fill: appTheme.VividGreen + "33",
+        stroke: appTheme.VividGreen,
+        strokeThickness: 1,
+        x1: 3.5,
+        x2: 5,
+        y1: 3.9,
+        y2: 4.9
     });
     const box2 = new BoxAnnotation({
         fill: appTheme.VividSkyBlue + "33",
-        strokeThickness: 0, x1: 0, x2: 1, y1: 4.4, y2: 5.4,
+        strokeThickness: 0,
+        x1: 0,
+        x2: 1,
+        y1: 4.4,
+        y2: 5.4,
         xCoordinateMode: ECoordinateMode.Relative // xCoordinateMode relative allows stretching a box horizontally to fit viewport
     });
     const box3 = new BoxAnnotation({
-        fill: appTheme.VividPink + "33", stroke: appTheme.VividPink,
-        strokeThickness: 1, x1: 4, x2: 5.5, y1: 5, y2: 6,
+        fill: appTheme.VividPink + "33",
+        stroke: appTheme.VividPink,
+        strokeThickness: 1,
+        x1: 4,
+        x2: 5.5,
+        y1: 5,
+        y2: 6
     });
 
     // Custom shapes (Buy Sell arrow markers)
     //
-    const textCustomShapes = new TextAnnotation({fontSize: 13, text: "Or custom shapes using SVG", x1: 7, y1: 6.3});
+    const textCustomShapes = new TextAnnotation({ fontSize: 13, text: "Or custom shapes using SVG", x1: 7, y1: 6.3 });
     const customAnnotationBuyMarker = getBuyMarkerAnnotation(8, 6);
     const customAnnotationSellMarker = getSellMarkerAnnotation(7.5, 5.5);
 
@@ -145,15 +172,21 @@ const drawExample = async () => {
 
     // Vectors (SVG)
     const testCustomSvg = new TextAnnotation({
-        x1: 3.3, y1: 3, text: "Add Vectors and Icons (SVG)", textColor,
+        x1: 3.3,
+        y1: 3,
+        text: "Add Vectors and Icons (SVG)",
+        textColor,
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom
     });
-    const customSvgAnnotation = new CustomAnnotation({x1: 3.3, y1: 2.8, svgString: rocketSvg});
+    const customSvgAnnotation = new CustomAnnotation({ x1: 3.3, y1: 2.8, svgString: rocketSvg });
 
     // Vertical or Horizontal lines with axis Label
     //
     const textVerticalLine = new TextAnnotation({
-        x1: 7, y1: 3, text: "Add Vertical/Horizontal Thresholds", textColor,
+        x1: 7,
+        y1: 3,
+        text: "Add Vertical/Horizontal Thresholds",
+        textColor,
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom
     });
     const horizontalLineStretched = new HorizontalLineAnnotation({
@@ -183,13 +216,32 @@ const drawExample = async () => {
     //     fontStyle: "Bold"
     // });
 
-
-    const allAnnotations = [text1, text2, nativeText, lineDash, textAlignLeft, textAlignRight, textAlignCenter, textCustomShapes, textWatermark,
-        textLines, line1, line2, textBoxes, box1, box2, box3,
-        textImage, image,
-        testCustomSvg, customSvgAnnotation,
-        textVerticalLine, verticalLineStretched, horizontalLineStretched,
-        customAnnotationBuyMarker, customAnnotationSellMarker,
+    const allAnnotations = [
+        text1,
+        text2,
+        nativeText,
+        lineDash,
+        textAlignLeft,
+        textAlignRight,
+        textAlignCenter,
+        textCustomShapes,
+        textWatermark,
+        textLines,
+        line1,
+        line2,
+        textBoxes,
+        box1,
+        box2,
+        box3,
+        textImage,
+        image,
+        testCustomSvg,
+        customSvgAnnotation,
+        textVerticalLine,
+        verticalLineStretched,
+        horizontalLineStretched,
+        customAnnotationBuyMarker,
+        customAnnotationSellMarker
         // customAnnotationSvg
     ];
 
@@ -199,7 +251,8 @@ const drawExample = async () => {
     // Just for fun, let's animate some animations using Scichart's GenericAnimation feature
     const duration = 1000;
     const delay = 800;
-    sciChartSurface.addAnimation(addTypewriterEffect(duration, 0, text1),
+    sciChartSurface.addAnimation(
+        addTypewriterEffect(duration, 0, text1),
         addTypewriterEffect(duration, delay, text2),
         addFadeEffect(duration, delay * 2, lineDash, textAlignCenter, textAlignLeft, textAlignRight),
         addTypewriterEffect(duration, delay * 3, textAlignCenter),
@@ -214,10 +267,10 @@ const drawExample = async () => {
         addFadeEffect(duration, delay * 10, textImage, image),
         addFadeEffect(duration, delay * 11, testCustomSvg, customSvgAnnotation),
         addTypewriterEffect(duration, delay * 12, textVerticalLine),
-        addFadeEffect(duration, delay * 12, textVerticalLine, verticalLineStretched, horizontalLineStretched),
+        addFadeEffect(duration, delay * 12, textVerticalLine, verticalLineStretched, horizontalLineStretched)
     );
 
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 const addFadeEffect = (duration: number, delay: number, ...annotations: IAnnotation[]) => {
@@ -225,12 +278,12 @@ const addFadeEffect = (duration: number, delay: number, ...annotations: IAnnotat
         from: 0,
         to: annotations[0].opacity,
         onAnimate: (from: number, to: number, progress: number) => {
-            annotations.forEach(a => a.opacity = to * progress);
+            annotations.forEach(a => (a.opacity = to * progress));
         },
         duration,
         delay,
         setInitialValueImmediately: true
-    })
+    });
 };
 
 const addTypewriterEffect = (duration: number, delay: number, textAnnotation: { text: string }) => {
@@ -245,7 +298,7 @@ const addTypewriterEffect = (duration: number, delay: number, textAnnotation: { 
         delay,
         setInitialValueImmediately: true
     });
-}
+};
 
 const addRotateEffect = (duration: number, delay: number, textAnnotation: NativeTextAnnotation) => {
     return new GenericAnimation<number>({
@@ -256,12 +309,11 @@ const addRotateEffect = (duration: number, delay: number, textAnnotation: Native
             textAnnotation.rotation = angle;
         },
         duration,
-        delay,
+        delay
     });
-}
+};
 
-const getBuyMarkerAnnotationSvgString =
-    `<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">
+const getBuyMarkerAnnotationSvgString = `<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(-53.867218,-75.091687)">
             <path style="fill:#1cb61c;fill-opacity:0.34117647;stroke:#00b400;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
                 d="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,-7.408333 7.158904,-7.408333 l 7.158906,7.408333 H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"/>
@@ -276,7 +328,7 @@ const getBuyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
         y1,
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        svgString: getBuyMarkerAnnotationSvgString,
+        svgString: getBuyMarkerAnnotationSvgString
     });
 };
 
@@ -325,5 +377,5 @@ export default function AnnotationsAreEasy() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

@@ -10,11 +10,13 @@ SciChart supports axis with Logarithmic scale and scientific or engineering nota
 This example shows how to configure the logarithmic axis.`;
 const tips = [`Try dragging an axis or the chart to zoom and pan around. Double clicking the chart resets the zoom!`];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlLogarithmicAxisDocumentation,
-    title: ExampleStrings.urlTitleLogarithmicAxisDocumentation,
-    linkTitle: "SciChart.js Documentation Home"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlLogarithmicAxisDocumentation,
+        title: ExampleStrings.urlTitleLogarithmicAxisDocumentation,
+        linkTitle: "SciChart.js Documentation Home"
+    }
+];
 
 const Subtitle = () => (
     <p>

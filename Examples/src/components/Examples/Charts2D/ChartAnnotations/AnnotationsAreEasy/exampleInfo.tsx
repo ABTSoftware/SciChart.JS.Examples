@@ -15,11 +15,13 @@ const tips = [
     creating watermarks!`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlAnnotationsDocumentation,
-    title: ExampleStrings.urlTitleAnnotationsDocumentation,
-    linkTitle: "Annotations API Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlAnnotationsDocumentation,
+        title: ExampleStrings.urlTitleAnnotationsDocumentation,
+        linkTitle: "Annotations API Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

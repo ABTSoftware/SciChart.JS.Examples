@@ -1,5 +1,5 @@
 import * as React from "react";
-import {closeValues, dateValues, highValues, lowValues, openValues} from "./data/themeing2dData";
+import { closeValues, dateValues, highValues, lowValues, openValues } from "./data/themeing2dData";
 import classes from "../../../styles/Examples.module.scss";
 
 import {
@@ -18,7 +18,7 @@ const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
     // Create and apply your custom theme
     sciChartSurface.applyTheme({
@@ -32,9 +32,9 @@ const drawExample = async () => {
         columnLineColor: "white",
         cursorLineBrush: "#6495ED99",
         defaultColorMapBrush: [
-            {offset: 0, color: "DarkBlue"},
-            {offset: 0.5, color: "CornflowerBlue"},
-            {offset: 1, color: "#FF22AA"}
+            { offset: 0, color: "DarkBlue" },
+            { offset: 0.5, color: "CornflowerBlue" },
+            { offset: 1, color: "#FF22AA" }
         ],
         downBandSeriesFillColor: "#52CC5490",
         downBandSeriesLineColor: "#E26565FF",
@@ -124,7 +124,7 @@ const drawExample = async () => {
 
     // Create tootip behaviour
     sciChartSurface.chartModifiers.add(new RolloverModifier());
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 let scs: SciChartSurface;
@@ -139,5 +139,5 @@ export default function CustomTheme() {
         return () => scs?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

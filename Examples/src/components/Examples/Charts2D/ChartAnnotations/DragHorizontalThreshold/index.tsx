@@ -24,7 +24,7 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier
 } from "scichart";
-import {appTheme, ExampleDataProvider } from "scichart-example-dependencies";
+import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 const divElementId = "chart";

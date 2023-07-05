@@ -1,7 +1,7 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
-import {populationData} from "./data/PopulationData";
+import { appTheme } from "scichart-example-dependencies";
+import { populationData } from "./data/PopulationData";
 
 import {
     SciChart3DSurface,
@@ -28,14 +28,12 @@ type TMetadata = {
 
 // SCICHART CODE
 const drawExample = async () => {
-
-    const {
-        sciChart3DSurface,
-        wasmContext
-    } = await SciChart3DSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
     sciChart3DSurface.camera = new CameraController(wasmContext, {
-        position: new Vector3(-141.60, 310.29, 393.32),
-        target: new Vector3(0, 50, 0),
+        position: new Vector3(-141.6, 310.29, 393.32),
+        target: new Vector3(0, 50, 0)
     });
 
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
@@ -67,34 +65,36 @@ const drawExample = async () => {
     // Metadata in scichart.js 3D controls color and scale of a bubble. It can also hold additional optional properties
     // Below we format the data for lifeExpectancy into metadata colour coded and scaled depending on the value
     const metadata = formatMetadata(lifeExpectancy, [
-        {offset: 1, color: appTheme.VividPink},
-        {offset: 0.9, color: appTheme.VividOrange},
-        {offset: 0.7, color: appTheme.MutedRed},
-        {offset: 0.5, color: appTheme.VividGreen},
-        {offset: 0.3, color: appTheme.VividSkyBlue},
-        {offset: 0.2, color: appTheme.Indigo},
-        {offset: 0, color: appTheme.DarkIndigo}
+        { offset: 1, color: appTheme.VividPink },
+        { offset: 0.9, color: appTheme.VividOrange },
+        { offset: 0.7, color: appTheme.MutedRed },
+        { offset: 0.5, color: appTheme.VividGreen },
+        { offset: 0.3, color: appTheme.VividSkyBlue },
+        { offset: 0.2, color: appTheme.Indigo },
+        { offset: 0, color: appTheme.DarkIndigo }
     ]);
 
-    sciChart3DSurface.renderableSeries.add(new ScatterRenderableSeries3D(wasmContext, {
-        dataSeries: new XyzDataSeries3D(wasmContext, {
-            xValues: lifeExpectancy,
-            yValues: gdpPerCapita,
-            zValues: year,
-            metadata
-        }),
-        pointMarker: new SpherePointMarker3D(wasmContext, {size: 10}),
-        opacity: 0.9
-    }));
+    sciChart3DSurface.renderableSeries.add(
+        new ScatterRenderableSeries3D(wasmContext, {
+            dataSeries: new XyzDataSeries3D(wasmContext, {
+                xValues: lifeExpectancy,
+                yValues: gdpPerCapita,
+                zValues: year,
+                metadata
+            }),
+            pointMarker: new SpherePointMarker3D(wasmContext, { size: 10 }),
+            opacity: 0.9
+        })
+    );
 
-    return {sciChart3DSurface, wasmContext};
+    return { sciChart3DSurface, wasmContext };
 };
 
 function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): TMetadata[] {
     const low = Math.min(...valuesArray);
     const high = Math.max(...valuesArray);
 
-    const sGradientStops = gradientStops.sort((a, b) => a.offset > b.offset ? 1 : -1);
+    const sGradientStops = gradientStops.sort((a, b) => (a.offset > b.offset ? 1 : -1));
     // Compute a scaling factor from 0...1 where values in valuesArray at the lower end correspond to 0 and
     // values at the higher end correspond to 1
     return valuesArray.map(x => {
@@ -109,7 +109,7 @@ function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): 
         // const ratio = (valueScale - sGradientStops[index].offset) / (sGradientStops[nextIndex].offset - sGradientStops[index].offset)
         // const colorScale = uintArgbColorLerp(color1, color2, ratio)
         // console.log(`valueScale ${valueScale} low ${sGradientStops[index].offset} high ${sGradientStops[nextIndex].offset} ratio ${ratio}`);
-        return {pointScale: 0.1 + valueScale, vertexColorAbgr: color1};
+        return { pointScale: 0.1 + valueScale, vertexColorAbgr: color1 };
     });
 }
 
@@ -126,5 +126,5 @@ export default function Bubble3DChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

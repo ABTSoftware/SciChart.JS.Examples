@@ -5,11 +5,13 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-load-500-series-by-500-points.jpg";
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlPerformanceTipsDocumentation,
-    title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
-    linkTitle: "SciChart.js Performance Tips and Tricks"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlPerformanceTipsDocumentation,
+        title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
+        linkTitle: "SciChart.js Performance Tips and Tricks"
+    }
+];
 
 const previewDescription = `This demo showcases the loading or startup time of SciChart.js with many series by appending 500 series to a chart, each with 500 points and rendering instantly!`;
 const description = `This kind of plot can be used in statistical analysis such as rendering the output of Monte Carlo
@@ -22,8 +24,8 @@ const tips = [
 
 const Subtitle = () => (
     <p>
-        Demonstrates loading <strong>500 series, each with 500 points (250k points total) instantly</strong>.{" "}
-        Click the <strong>Reload</strong> button at the bottom of the demo to see the chart draw again.
+        Demonstrates loading <strong>500 series, each with 500 points (250k points total) instantly</strong>. Click the{" "}
+        <strong>Reload</strong> button at the bottom of the demo to see the chart draw again.
     </p>
 );
 

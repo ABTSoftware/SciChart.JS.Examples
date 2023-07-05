@@ -1,6 +1,6 @@
 import * as React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
-import {appTheme, ExampleDataProvider} from "scichart-example-dependencies";
+import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import {

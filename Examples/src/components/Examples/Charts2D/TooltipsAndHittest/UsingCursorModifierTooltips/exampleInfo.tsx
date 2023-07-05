@@ -14,11 +14,13 @@ const tips = [
     for more info!`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlCursorModifierDocumentation,
-    title: ExampleStrings.urlTitleCursorModifierDocumentation,
-    linkTitle: "CursorModifier documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlCursorModifierDocumentation,
+        title: ExampleStrings.urlTitleCursorModifierDocumentation,
+        linkTitle: "CursorModifier documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

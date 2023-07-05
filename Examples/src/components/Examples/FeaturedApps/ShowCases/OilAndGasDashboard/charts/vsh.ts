@@ -5,18 +5,30 @@ import { axesSetup, generateModifiers, getRandomSinewave } from "./utils";
 import { NumberRange } from "scichart/Core/NumberRange";
 import { ELegendOrientation, TLegendItem } from "scichart/Charting/Visuals/Legend/SciChartLegendBase";
 
-export default async function initVshChart(id: string, group: SciChartVerticalGroup, pointsCount: number, visibleRange: NumberRange) {
+export default async function initVshChart(
+    id: string,
+    group: SciChartVerticalGroup,
+    pointsCount: number,
+    visibleRange: NumberRange
+) {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(id);
 
     axesSetup(sciChartSurface, wasmContext, visibleRange, false);
 
     // Create some data and set on a line series
-    let color = Math.round((Math.random() * 250));
+    let color = Math.round(Math.random() * 250);
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: `rgba(${255 - color},${color},${(color + 125) % 255},0.7)`
     });
-    lineSeries.dataSeries = getRandomSinewave(wasmContext, 0, Math.random() * 3, Math.random() * 50, pointsCount, 1).dataSeries;
-    lineSeries.dataSeries.dataSeriesName = 'VSH';
+    lineSeries.dataSeries = getRandomSinewave(
+        wasmContext,
+        0,
+        Math.random() * 3,
+        Math.random() * 50,
+        pointsCount,
+        1
+    ).dataSeries;
+    lineSeries.dataSeries.dataSeriesName = "VSH";
     sciChartSurface.renderableSeries.add(lineSeries);
     const getLegendItemHtml = generateLegend(sciChartSurface);
     generateModifiers(sciChartSurface, id, getLegendItemHtml);

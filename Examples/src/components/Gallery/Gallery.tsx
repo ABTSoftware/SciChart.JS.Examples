@@ -3,7 +3,7 @@ import * as React from "react";
 import GalleryList from "./GalleryList/GalleryList";
 import withWidth, { WithWidth } from "@material-ui/core/withWidth";
 import classes from "./Gallery.module.scss";
-import {GalleryItem} from "../../helpers/types/types";
+import { GalleryItem } from "../../helpers/types/types";
 
 type TProps = {
     examples: GalleryItem[];

@@ -1,7 +1,7 @@
-import {ThemeProvider} from "scichart/Charting/Themes/IThemeProvider";
-import {SciChartJSDarkv2Theme} from "scichart/Charting/Themes/SciChartJSDarkv2Theme";
-import {SciChartJSLightTheme} from "scichart/Charting/Themes/SciChartJSLightTheme";
-import {SciChartJsNavyTheme} from "scichart/Charting/Themes/SciChartJsNavyTheme";
+import { ThemeProvider } from "scichart/Charting/Themes/IThemeProvider";
+import { SciChartJSDarkv2Theme } from "scichart/Charting/Themes/SciChartJSDarkv2Theme";
+import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
+import { SciChartJsNavyTheme } from "scichart/Charting/Themes/SciChartJsNavyTheme";
 
 export interface AppThemeBase {
     SciChartJsTheme: ThemeProvider;
@@ -17,7 +17,7 @@ export interface AppThemeBase {
     ChartsGridStroke3: string;
 
     // 3D Chart colors
-    Chart3DScatterFill: string
+    Chart3DScatterFill: string;
     Chart3DColor1: string;
     Chart3DColor2: string;
     Chart3DColor3: string;
@@ -75,7 +75,6 @@ export interface AppThemeBase {
 
 // @ts-ignore
 export class App2022BrandTheme implements AppThemeBase {
-
     SciChartJsTheme = new SciChartJsNavyTheme();
 
     // general colours
@@ -149,7 +148,6 @@ export class App2022BrandTheme implements AppThemeBase {
 
 // tslint:disable-next-line:max-classes-per-file
 export class AppDarkTheme implements AppThemeBase {
-
     SciChartJsTheme = new SciChartJSDarkv2Theme();
 
     // general colours
@@ -223,7 +221,6 @@ export class AppDarkTheme implements AppThemeBase {
 
 // tslint:disable-next-line:max-classes-per-file
 export class AppLightTheme implements AppThemeBase {
-
     SciChartJsTheme = new SciChartJSLightTheme();
 
     // general colours

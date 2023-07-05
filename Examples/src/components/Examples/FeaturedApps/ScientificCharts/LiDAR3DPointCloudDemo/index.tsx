@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import {AscData, AscReader} from "./AscReader";
+import { AscData, AscReader } from "./AscReader";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 
 import {
     CameraController,
@@ -35,13 +35,14 @@ type TMetadata = {
 };
 
 const drawExample = async () => {
-
     // Load data from the server
     const dataFromServer = await getDataFromServer();
 
     // Create a SciChart3DSurface
-    const { wasmContext, sciChart3DSurface } = await SciChart3DSurface.create(div3DChart, { theme: appTheme.SciChartJsTheme });
-    sciChart3DSurface.worldDimensions = new Vector3(1000,200,1000);
+    const { wasmContext, sciChart3DSurface } = await SciChart3DSurface.create(div3DChart, {
+        theme: appTheme.SciChartJsTheme
+    });
+    sciChart3DSurface.worldDimensions = new Vector3(1000, 200, 1000);
 
     // Create and attach a camera to the 3D Viewport
     sciChart3DSurface.camera = new CameraController(wasmContext, {
@@ -55,44 +56,50 @@ const drawExample = async () => {
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Distance (Meters)" });
 
     // Create a ScatterRenderableSeries3D and configure as a point cloud with 1px markers
-    sciChart3DSurface.renderableSeries.add(new ScatterRenderableSeries3D(wasmContext, {
-        pointMarker: new PixelPointMarker3D(wasmContext),
-        dataSeries: new XyzDataSeries3D(wasmContext, {
-            xValues: dataFromServer.ascData.XValues,
-            yValues: dataFromServer.ascData.YValues,
-            zValues: dataFromServer.ascData.ZValues,
-            metadata: dataFromServer.meta
-        }),
-        opacity: 1
-    }));
+    sciChart3DSurface.renderableSeries.add(
+        new ScatterRenderableSeries3D(wasmContext, {
+            pointMarker: new PixelPointMarker3D(wasmContext),
+            dataSeries: new XyzDataSeries3D(wasmContext, {
+                xValues: dataFromServer.ascData.XValues,
+                yValues: dataFromServer.ascData.YValues,
+                zValues: dataFromServer.ascData.ZValues,
+                metadata: dataFromServer.meta
+            }),
+            opacity: 1
+        })
+    );
 
     // Also render the point-cloud data as a heightmap / topology map with contours
-    sciChart3DSurface.renderableSeries.add(new SurfaceMeshRenderableSeries3D(wasmContext, {
-        dataSeries: new UniformGridDataSeries3D(wasmContext, {
-            xStart: 0, xStep: dataFromServer.ascData.CellSize,
-            zStart: 0, zStep: dataFromServer.ascData.CellSize,
-            yValues: dataFromServer.heightValues2D
-        }),
-        minimum: 0,
-        maximum: 50,
-        drawSkirt: true,
-        opacity: 0.7,
-        meshColorPalette: new GradientColorPalette(wasmContext, {
-            gradientStops: [
-                {offset: 1, color: appTheme.VividPink},
-                {offset: 0.9, color: appTheme.VividOrange },
-                {offset: 0.7, color: appTheme.MutedRed },
-                {offset: 0.5, color: appTheme.VividGreen },
-                {offset: 0.3, color: appTheme.VividSkyBlue },
-                {offset: 0.2, color: appTheme.Indigo },
-                {offset: 0, color: appTheme.DarkIndigo }
-            ]
-        }),
-        contourStroke: appTheme.PaleSkyBlue,
-        meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_INTERPOLATED,
-        contourStrokeThickness: 2,
-        drawMeshAs: EDrawMeshAs.SOLID_WITH_CONTOURS
-    }));
+    sciChart3DSurface.renderableSeries.add(
+        new SurfaceMeshRenderableSeries3D(wasmContext, {
+            dataSeries: new UniformGridDataSeries3D(wasmContext, {
+                xStart: 0,
+                xStep: dataFromServer.ascData.CellSize,
+                zStart: 0,
+                zStep: dataFromServer.ascData.CellSize,
+                yValues: dataFromServer.heightValues2D
+            }),
+            minimum: 0,
+            maximum: 50,
+            drawSkirt: true,
+            opacity: 0.7,
+            meshColorPalette: new GradientColorPalette(wasmContext, {
+                gradientStops: [
+                    { offset: 1, color: appTheme.VividPink },
+                    { offset: 0.9, color: appTheme.VividOrange },
+                    { offset: 0.7, color: appTheme.MutedRed },
+                    { offset: 0.5, color: appTheme.VividGreen },
+                    { offset: 0.3, color: appTheme.VividSkyBlue },
+                    { offset: 0.2, color: appTheme.Indigo },
+                    { offset: 0, color: appTheme.DarkIndigo }
+                ]
+            }),
+            contourStroke: appTheme.PaleSkyBlue,
+            meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_INTERPOLATED,
+            contourStrokeThickness: 2,
+            drawMeshAs: EDrawMeshAs.SOLID_WITH_CONTOURS
+        })
+    );
 
     // Add interactivity modifiers for orbiting and zooming with the mousewheel
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
@@ -106,7 +113,7 @@ const drawHeatmapLegend = async () => {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB"
         },
         yAxisOptions: {
             axisBorder: {
@@ -116,36 +123,36 @@ const drawHeatmapLegend = async () => {
             majorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 6,
-                strokeThickness: 1,
+                strokeThickness: 1
             },
             minorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
-                strokeThickness: 1,
+                strokeThickness: 1
             },
             axisTitle: "Height (meters)",
             axisTitleStyle: {
                 fontSize: 13,
-                color: appTheme.ForegroundColor,
+                color: appTheme.ForegroundColor
             }
         },
         colorMap: {
             minimum: 0,
             maximum: 50,
             gradientStops: [
-                {offset: 1, color: appTheme.VividPink},
-                {offset: 0.9, color: appTheme.VividOrange },
-                {offset: 0.7, color: appTheme.MutedRed },
-                {offset: 0.5, color: appTheme.VividGreen },
-                {offset: 0.3, color: appTheme.VividSkyBlue },
-                {offset: 0.2, color: appTheme.Indigo },
-                {offset: 0, color: appTheme.DarkIndigo }
-            ],
+                { offset: 1, color: appTheme.VividPink },
+                { offset: 0.9, color: appTheme.VividOrange },
+                { offset: 0.7, color: appTheme.MutedRed },
+                { offset: 0.5, color: appTheme.VividGreen },
+                { offset: 0.3, color: appTheme.VividSkyBlue },
+                { offset: 0.2, color: appTheme.Indigo },
+                { offset: 0, color: appTheme.DarkIndigo }
+            ]
         }
     });
 
     return heatmapLegend;
-}
+};
 
 async function getDataFromServer() {
     // The LinearColorMap type in SciChart allows you to generate a colour map based on a
@@ -156,13 +163,13 @@ async function getDataFromServer() {
         Maximum: 50,
         Mode: EColorMapMode.Interpolated,
         GradientStops: [
-            {color: appTheme.DarkIndigo, offset: 0},
-            {color: appTheme.Indigo, offset: 0.2},
-            {color: appTheme.VividSkyBlue, offset: 0.3},
-            {color: appTheme.VividGreen, offset: 0.5},
-            {color: appTheme.MutedRed, offset: 0.7},
-            {color: appTheme.VividOrange, offset: 0.9},
-            {color: appTheme.VividPink, offset: 0}
+            { color: appTheme.DarkIndigo, offset: 0 },
+            { color: appTheme.Indigo, offset: 0.2 },
+            { color: appTheme.VividSkyBlue, offset: 0.3 },
+            { color: appTheme.VividGreen, offset: 0.5 },
+            { color: appTheme.MutedRed, offset: 0.7 },
+            { color: appTheme.VividOrange, offset: 0.9 },
+            { color: appTheme.VividPink, offset: 0 }
         ]
     };
 
@@ -195,7 +202,7 @@ async function getDataFromServer() {
     return {
         ascData,
         meta,
-        heightValues2D,
+        heightValues2D
     };
 }
 
@@ -218,15 +225,17 @@ export default function LiDAR3DPointCloudDemo() {
         return () => {
             heatmapLegend?.delete();
             sciChart3DSurface?.delete();
-        }
+        };
     }, []);
 
     return (
         <div className={classes.ChartWrapper}>
-            <div style={{position: "relative"}}>
-                <div id={div3DChart} style={{width: "100%", height: "100%"}}></div>
-                <div id={div3DChartLegend}
-                     style={{ position: "absolute", height: "90%", width: "100px", top: 0, right: "75px", margin: "20" }}></div>
+            <div style={{ position: "relative" }}>
+                <div id={div3DChart} style={{ width: "100%", height: "100%" }}></div>
+                <div
+                    id={div3DChartLegend}
+                    style={{ position: "absolute", height: "90%", width: "100px", top: 0, right: "75px", margin: "20" }}
+                ></div>
             </div>
         </div>
     );

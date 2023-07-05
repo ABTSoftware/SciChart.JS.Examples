@@ -11,20 +11,22 @@ const tips = [
     supports semi-transparent and linear gradient brush fills and looks great!.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlMountainChartDocumentation,
-    title: ExampleStrings.urlTitleMountainChartDocumentation,
-    linkTitle: "JavaScript Mountain Chart Documentation"
-}];
-
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlMountainChartDocumentation,
+        title: ExampleStrings.urlTitleMountainChartDocumentation,
+        linkTitle: "JavaScript Mountain Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Use our Mountain Chart example to learn how to create a <strong>JavaScript Mountain Chart</strong> using SciChart.js,{" "}
-        our in-house built{" "}
+        Use our Mountain Chart example to learn how to create a <strong>JavaScript Mountain Chart</strong> using
+        SciChart.js, our in-house built{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Framework">
             JavaScript Chart framework
-        </a>.
+        </a>
+        .
     </p>
 );
 

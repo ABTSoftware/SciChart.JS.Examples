@@ -13,11 +13,13 @@ const tips = [
     the same WebGL rendering as our Scatter Charts.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDigitalLineChartDocumentation,
-    title: ExampleStrings.urlTitleDigitalLineChartDocumentation,
-    linkTitle: "JavaScript Digital Line Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDigitalLineChartDocumentation,
+        title: ExampleStrings.urlTitleDigitalLineChartDocumentation,
+        linkTitle: "JavaScript Digital Line Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

@@ -1,4 +1,14 @@
-import { FormControlLabel, FormLabel, InputLabel, Mark, MenuItem, Radio, RadioGroup, Select, Slider} from "@material-ui/core";
+import {
+    FormControlLabel,
+    FormLabel,
+    InputLabel,
+    Mark,
+    MenuItem,
+    Radio,
+    RadioGroup,
+    Select,
+    Slider
+} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import FormControl from "@material-ui/core/FormControl";
@@ -8,7 +18,7 @@ import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
 import { ESeriesType } from "scichart";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import { divElementId, drawExample, ISettings, TMessage } from "./drawExample";
 
@@ -29,7 +39,7 @@ const useStyles = makeStyles(theme => ({
         color: appTheme.ForegroundColor
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
@@ -158,10 +168,23 @@ export default function RealtimeBigDataShowcase() {
     return (
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
-                <div id={divElementId} className={localClasses.chartArea} style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1 }} />
-                <div className={classes.notificationsBlock} style={{ margin: "10 10 0 10", color: appTheme.ForegroundColor, flexBasis: 100, flexGrow: 1, flexShrink: 1 }}>
-                        <div>
-                        <FormControl className={classes.formControl} >
+                <div
+                    id={divElementId}
+                    className={localClasses.chartArea}
+                    style={{ flexBasis: 600, flexGrow: 1, flexShrink: 1 }}
+                />
+                <div
+                    className={classes.notificationsBlock}
+                    style={{
+                        margin: "10 10 0 10",
+                        color: appTheme.ForegroundColor,
+                        flexBasis: 100,
+                        flexGrow: 1,
+                        flexShrink: 1
+                    }}
+                >
+                    <div>
+                        <FormControl className={classes.formControl}>
                             <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
                                 <Button id="startStreaming" onClick={handleStartStreaming}>
                                     {isDirty ? "ReStart" : "Start"}
@@ -171,91 +194,99 @@ export default function RealtimeBigDataShowcase() {
                                 </Button>
                             </ButtonGroup>
                         </FormControl>
-                        </div>
-                        <FormControl className={classes.formControl} >
-                            <RadioGroup
-                                id="chartType"
-                                value={seriesType}
-                                onChange={changeChart}
-                            >
-                                <FormControlLabel value={ESeriesType.LineSeries} control={<Radio />} label="Line Chart" />
-                                <FormControlLabel value={ESeriesType.ColumnSeries} control={<Radio />} label="Column Chart with Stacked Axes" />
-                                <FormControlLabel value={ESeriesType.StackedMountainSeries} control={<Radio />} label="Stacked Mountain Chart" />
-                                <FormControlLabel value={ESeriesType.BandSeries} control={<Radio />} label="Band Chart" />
-                                <FormControlLabel value={ESeriesType.ScatterSeries} control={<Radio />} label="Scatter Chart" />
-                                <FormControlLabel value={ESeriesType.CandlestickSeries} control={<Radio />} label="Candlestick Chart" />
-                            </RadioGroup>
-                        </FormControl>
-                            <Typography variant="body1">Number of Series {settings.seriesCount}</Typography>
-                            <Slider
-                                id="seriesCount"
-                                onChange={handleSeriesCount}
-                                step={1}
-                                min={1}
-                                max={maxSettings.seriesCount}
-                                value={settings.seriesCount}
-                                valueLabelDisplay="off"
+                    </div>
+                    <FormControl className={classes.formControl}>
+                        <RadioGroup id="chartType" value={seriesType} onChange={changeChart}>
+                            <FormControlLabel value={ESeriesType.LineSeries} control={<Radio />} label="Line Chart" />
+                            <FormControlLabel
+                                value={ESeriesType.ColumnSeries}
+                                control={<Radio />}
+                                label="Column Chart with Stacked Axes"
                             />
-                            <Typography variant="body1">Initial Points {logScale(settings.initialPoints)}</Typography>
-                            <Slider
-                                id="InitialPoints"
-                                onChange={handleInitialPoints}
-                                step={null}
-                                min={0.1}
-                                scale={logScale}
-                                marks={getLogMarks(maxSettings.initialPoints)}
-                                max={maxSettings.initialPoints}
-                                value={settings.initialPoints}
-                                valueLabelDisplay="off"
+                            <FormControlLabel
+                                value={ESeriesType.StackedMountainSeries}
+                                control={<Radio />}
+                                label="Stacked Mountain Chart"
                             />
-                            <Typography variant="body1">
-                                Max Points On Chart {logScale(settings.pointsOnChart)}
-                            </Typography>
-                            <Slider
-                                id="pointsOnChart"
-                                onChange={handlePointsOnChart}
-                                step={null}
-                                min={0.1}
-                                scale={logScale}
-                                marks={getLogMarks(maxSettings.pointsOnChart)}
-                                max={maxSettings.pointsOnChart}
-                                value={settings.pointsOnChart}
-                                valueLabelDisplay="off"
+                            <FormControlLabel value={ESeriesType.BandSeries} control={<Radio />} label="Band Chart" />
+                            <FormControlLabel
+                                value={ESeriesType.ScatterSeries}
+                                control={<Radio />}
+                                label="Scatter Chart"
                             />
-                            <Typography variant="body1">
-                                Points Per Update {logScale(settings.pointsPerUpdate)}
-                            </Typography>
-                            <Slider
-                                id="pointsPerUpdate"
-                                onChange={handlePointsPerUpdate}
-                                step={null}
-                                min={0.1}
-                                scale={logScale}
-                                marks={getLogMarks(maxSettings.pointsPerUpdate)}
-                                max={maxSettings.pointsPerUpdate}
-                                value={settings.pointsPerUpdate}
-                                valueLabelDisplay="off"
+                            <FormControlLabel
+                                value={ESeriesType.CandlestickSeries}
+                                control={<Radio />}
+                                label="Candlestick Chart"
                             />
-                            <Typography variant="body1">Send Data Interval {settings.sendEvery} ms</Typography>
-                            <Slider
-                                id="sendEvery"
-                                onChange={handleSendEvery}
-                                step={1}
-                                min={maxSettings.sendEvery}
-                                max={500}
-                                value={settings.sendEvery}
-                                valueLabelDisplay="off"
-                            />
-                        {messages.length > 0 && (
-                            <Alert key="0" severity="info" className={classes.notification}>
-                                {messages.map((msg, index) => (
-                                    <div key={index} style={{ paddingBottom: 10 }}>
-                                        <AlertTitle style={{ lineHeight: 1}}>{msg.title}</AlertTitle>
-                                        {msg.detail}
-                                    </div>
-                                ))}
-                            </Alert>
-                        )}
+                        </RadioGroup>
+                    </FormControl>
+                    <Typography variant="body1">Number of Series {settings.seriesCount}</Typography>
+                    <Slider
+                        id="seriesCount"
+                        onChange={handleSeriesCount}
+                        step={1}
+                        min={1}
+                        max={maxSettings.seriesCount}
+                        value={settings.seriesCount}
+                        valueLabelDisplay="off"
+                    />
+                    <Typography variant="body1">Initial Points {logScale(settings.initialPoints)}</Typography>
+                    <Slider
+                        id="InitialPoints"
+                        onChange={handleInitialPoints}
+                        step={null}
+                        min={0.1}
+                        scale={logScale}
+                        marks={getLogMarks(maxSettings.initialPoints)}
+                        max={maxSettings.initialPoints}
+                        value={settings.initialPoints}
+                        valueLabelDisplay="off"
+                    />
+                    <Typography variant="body1">Max Points On Chart {logScale(settings.pointsOnChart)}</Typography>
+                    <Slider
+                        id="pointsOnChart"
+                        onChange={handlePointsOnChart}
+                        step={null}
+                        min={0.1}
+                        scale={logScale}
+                        marks={getLogMarks(maxSettings.pointsOnChart)}
+                        max={maxSettings.pointsOnChart}
+                        value={settings.pointsOnChart}
+                        valueLabelDisplay="off"
+                    />
+                    <Typography variant="body1">Points Per Update {logScale(settings.pointsPerUpdate)}</Typography>
+                    <Slider
+                        id="pointsPerUpdate"
+                        onChange={handlePointsPerUpdate}
+                        step={null}
+                        min={0.1}
+                        scale={logScale}
+                        marks={getLogMarks(maxSettings.pointsPerUpdate)}
+                        max={maxSettings.pointsPerUpdate}
+                        value={settings.pointsPerUpdate}
+                        valueLabelDisplay="off"
+                    />
+                    <Typography variant="body1">Send Data Interval {settings.sendEvery} ms</Typography>
+                    <Slider
+                        id="sendEvery"
+                        onChange={handleSendEvery}
+                        step={1}
+                        min={maxSettings.sendEvery}
+                        max={500}
+                        value={settings.sendEvery}
+                        valueLabelDisplay="off"
+                    />
+                    {messages.length > 0 && (
+                        <Alert key="0" severity="info" className={classes.notification}>
+                            {messages.map((msg, index) => (
+                                <div key={index} style={{ paddingBottom: 10 }}>
+                                    <AlertTitle style={{ lineHeight: 1 }}>{msg.title}</AlertTitle>
+                                    {msg.detail}
+                                </div>
+                            ))}
+                        </Alert>
+                    )}
                 </div>
             </div>
         </div>

@@ -7,20 +7,23 @@ import exampleImage from "./javascript-subcharts-grid.jpg";
 
 const previewDescription = `Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript`;
 const description = ``;
-const tips = [
-    ``,
-    ``
-];
+const tips = [``, ``];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlSubchartApiDocumentation,
-    title: ExampleStrings.urlTitleSubCharstApiDocumentation,
-    linkTitle: "Scichart.js SubCharts API Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlSubchartApiDocumentation,
+        title: ExampleStrings.urlTitleSubCharstApiDocumentation,
+        linkTitle: "Scichart.js SubCharts API Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Using the SubCharts API as part of <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">SciChart.js</a>, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.
+        Using the SubCharts API as part of{" "}
+        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
+            SciChart.js
+        </a>
+        , this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript.
     </p>
 );
 

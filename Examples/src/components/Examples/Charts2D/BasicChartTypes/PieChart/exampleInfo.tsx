@@ -12,18 +12,22 @@ const tips = [
     `Every segment can be highlighted by clicking on it or when selected in the legend.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlPieChartDocumentation,
-    title: ExampleStrings.urlTitlePieChartDocumentation,
-    linkTitle: "JavaScript Pie Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlPieChartDocumentation,
+        title: ExampleStrings.urlTitlePieChartDocumentation,
+        linkTitle: "JavaScript Pie Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        For an example that demonstrates how create a <strong>JavaScript Pie Chart</strong>, our demo code teaches you how to do this with SciChart's{" "}
+        For an example that demonstrates how create a <strong>JavaScript Pie Chart</strong>, our demo code teaches you
+        how to do this with SciChart's{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
             JavaScript Charting Library
-        </a>.
+        </a>
+        .
     </p>
 );
 

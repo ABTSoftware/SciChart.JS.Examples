@@ -7,8 +7,8 @@ import { TDocumentationLink } from "../../../../helpers/types/ExampleDescription
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to use the Builder Api to create <strong>Reusable Chart Templates</strong>{" "}
-        using SciChart.js Builder API. Use this method when you want to create a template for a chart and add data later.
+        Demonstrates how to use the Builder Api to create <strong>Reusable Chart Templates</strong> using SciChart.js
+        Builder API. Use this method when you want to create a template for a chart and add data later.
     </p>
 );
 
@@ -20,11 +20,13 @@ const tips = [
     ` Data will be serialized to the individual series if the resulting chart is serialized`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlBuilderApiDocumentation,
-    title: ExampleStrings.urlTitleBuilderApiDocumentation,
-    linkTitle: "JavaScript Builder API Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlBuilderApiDocumentation,
+        title: ExampleStrings.urlTitleBuilderApiDocumentation,
+        linkTitle: "JavaScript Builder API Documentation"
+    }
+];
 
 export const sharedDataExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSharedData,

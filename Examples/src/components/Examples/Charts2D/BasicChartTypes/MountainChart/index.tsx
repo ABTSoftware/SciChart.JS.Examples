@@ -12,7 +12,7 @@ import {
     XyDataSeries,
     ZoomExtentsModifier
 } from "scichart";
-import {appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 const divElementId = "chart";

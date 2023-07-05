@@ -8,11 +8,13 @@ const description = `With our ThemeManager API you can create a custom theme. To
 properties of the IThemeProvider interface and pass to sciChartSurface.applyTheme.`;
 const tips = [`It's also possible to style chart-parts in code!`];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlCustomThemeDocumentation,
-    title: ExampleStrings.urlTitleCustomThemeDocumentation,
-    linkTitle: "Custom Theme documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlCustomThemeDocumentation,
+        title: ExampleStrings.urlTitleCustomThemeDocumentation,
+        linkTitle: "Custom Theme documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

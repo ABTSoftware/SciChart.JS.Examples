@@ -12,11 +12,13 @@ const tips = [
     setting the pointMarker property.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlScatterChartDocumentation,
-    title: ExampleStrings.urlTitleScatterChartDocumentation,
-    linkTitle: "JavaScript Scatter Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlScatterChartDocumentation,
+        title: ExampleStrings.urlTitleScatterChartDocumentation,
+        linkTitle: "JavaScript Scatter Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

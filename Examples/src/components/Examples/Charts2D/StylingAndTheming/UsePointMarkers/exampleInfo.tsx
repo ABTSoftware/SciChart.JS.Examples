@@ -10,11 +10,13 @@ WebGL-rendered data point markers to a line series.`;
 const description = `The Point-markers are created using the HTML Canvas or custom images, but applied to the line as a WebGL
 Texture, so it’s possible to render tens or hundreds of thousands of point-markers using this method.`;
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlPointMarkersDocumentation,
-    title: ExampleStrings.urlTitlePointMarkersDocumentation,
-    linkTitle: "Point-Markers API documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlPointMarkersDocumentation,
+        title: ExampleStrings.urlTitlePointMarkersDocumentation,
+        linkTitle: "Point-Markers API documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

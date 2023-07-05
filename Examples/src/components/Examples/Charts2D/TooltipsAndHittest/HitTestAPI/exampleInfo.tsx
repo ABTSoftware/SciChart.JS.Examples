@@ -14,11 +14,13 @@ const tips = [
     for more info!`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlHitTestDocumentation,
-    title: ExampleStrings.urlTitleHitTestDocumentation,
-    linkTitle: "Hit-Test API documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlHitTestDocumentation,
+        title: ExampleStrings.urlTitleHitTestDocumentation,
+        linkTitle: "Hit-Test API documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

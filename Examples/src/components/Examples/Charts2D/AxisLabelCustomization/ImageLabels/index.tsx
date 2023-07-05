@@ -41,42 +41,40 @@ import tecnoLogo from "./images/tecno.png";
 import infinixLogo from "./images/infinix.png";
 import googleLogo from "./images/google.png";
 import nokiaLogo from "./images/nokia.png";
-import {appTheme} from "scichart-example-dependencies";
-import {TTextureObject} from "scichart/Charting/Visuals/TextureManager/TextureManager";
+import { appTheme } from "scichart-example-dependencies";
+import { TTextureObject } from "scichart/Charting/Visuals/TextureManager/TextureManager";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
-
     // Dataset = 'percentage market share of phones, 2022'
     const dataset = [
-        {name: "Apple", percent: 28.41},
-        {name: "Samsung", percent: 28.21},
-        {name: "Xiaomi", percent: 12.73},
-        {name: "Huawei", percent: 5.27},
-        {name: "Oppo", percent: 5.53},
-        {name: "Vivo", percent: 4.31},
-        {name: "Realme", percent: 3.16},
-        {name: "Motorola", percent: 2.33},
-        {name: "Unknown", percent: 2.19},
-        {name: "LG", percent: 0.85},
-        {name: "OnePlus", percent: 1.11},
-        {name: "Tecno", percent: 1.09},
-        {name: "Infinix", percent: 0.96},
-        {name: "Google", percent: 0.77},
-        {name: "Nokia", percent: 0.45},
+        { name: "Apple", percent: 28.41 },
+        { name: "Samsung", percent: 28.21 },
+        { name: "Xiaomi", percent: 12.73 },
+        { name: "Huawei", percent: 5.27 },
+        { name: "Oppo", percent: 5.53 },
+        { name: "Vivo", percent: 4.31 },
+        { name: "Realme", percent: 3.16 },
+        { name: "Motorola", percent: 2.33 },
+        { name: "Unknown", percent: 2.19 },
+        { name: "LG", percent: 0.85 },
+        { name: "OnePlus", percent: 1.11 },
+        { name: "Tecno", percent: 1.09 },
+        { name: "Infinix", percent: 0.96 },
+        { name: "Google", percent: 0.77 },
+        { name: "Nokia", percent: 0.45 }
     ];
     // Create the SciChartSurface with theme
-    const {
-        sciChartSurface,
-        wasmContext
-    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     const xAxis = new NumericAxis(wasmContext, {
         // Ensure there can be 1 label per item in the dataset.
         // Also see major/minor delta in the docs
         maxAutoTicks: 15,
-        axisTitle: "Mobile phone manufacturer",
+        axisTitle: "Mobile phone manufacturer"
     });
     // We need the data value as plain text
     xAxis.labelProvider.numericFormat = ENumericFormat.NoFormat;
@@ -122,7 +120,7 @@ const drawExample = async () => {
         labelText: string,
         textureManager: TextureManager,
         labelStyle: TTextStyle
-    ) => Promise.resolve(getLabelTexture(labelText, textureManager, labelStyle))
+    ) => Promise.resolve(getLabelTexture(labelText, textureManager, labelStyle));
 
     // Disable shared cache for this provider, otherwise other axes might pick up the emoji textures
     xAxis.labelProvider.useSharedCache = false;
@@ -130,61 +128,71 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(xAxis);
 
     // Create a Y-Axis with standard properties
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        autoRange: EAutoRange.Always,
-        axisTitle: "Market Share (%)",
-        growBy: new NumberRange(0, 0.1),
-        labelPostfix: " %"
-    }));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            autoRange: EAutoRange.Always,
+            axisTitle: "Market Share (%)",
+            growBy: new NumberRange(0, 0.1),
+            labelPostfix: " %"
+        })
+    );
 
     // Add a column series.
-    sciChartSurface.renderableSeries.add(new FastColumnRenderableSeries(wasmContext, {
-        // Name index to xvalue for category axis
-        // Map percentage to yvalue
-        // store the manufacturer name in the metadata (used to generate colors)
-        dataSeries: new XyDataSeries(wasmContext, {
-            xValues: dataset.map((row, index) => index),
-            yValues: dataset.map(row => row.percent),
-        }),
-        strokeThickness: 0,
-        // // Optional datalabels on series. To enable set a style and position
-        // dataLabels: {
-        //     horizontalTextPosition: EHorizontalTextPosition.Center,
-        //     verticalTextPosition: EVerticalTextPosition.Top,
-        //     style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0,0,20,0) },
-        //     color: appTheme.ForegroundColor,
-        // },
-        // each column occupies 50% of available space
-        dataPointWidth: 0.5,
-        // add a gradient fill in X (why not?)
-        paletteProvider: PaletteFactory.createGradient(wasmContext, new GradientParams(new Point(0, 0), new Point(1, 1), [
-            {offset: 0, color: appTheme.VividPink},
-            {offset: 0.2, color: appTheme.VividOrange},
-            {offset: 0.3, color: appTheme.MutedRed},
-            {offset: 0.5, color: appTheme.VividGreen},
-            {offset: 0.7, color: appTheme.VividSkyBlue},
-            {offset: 0.9, color: appTheme.Indigo},
-            {offset: 1, color: appTheme.DarkIndigo},
-        ]), {enableFill: true, enableStroke: true}),
-        // Bit more eye candy ;)
-        animation: new WaveAnimation({duration: 1000})
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastColumnRenderableSeries(wasmContext, {
+            // Name index to xvalue for category axis
+            // Map percentage to yvalue
+            // store the manufacturer name in the metadata (used to generate colors)
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: dataset.map((row, index) => index),
+                yValues: dataset.map(row => row.percent)
+            }),
+            strokeThickness: 0,
+            // // Optional datalabels on series. To enable set a style and position
+            // dataLabels: {
+            //     horizontalTextPosition: EHorizontalTextPosition.Center,
+            //     verticalTextPosition: EVerticalTextPosition.Top,
+            //     style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0,0,20,0) },
+            //     color: appTheme.ForegroundColor,
+            // },
+            // each column occupies 50% of available space
+            dataPointWidth: 0.5,
+            // add a gradient fill in X (why not?)
+            paletteProvider: PaletteFactory.createGradient(
+                wasmContext,
+                new GradientParams(new Point(0, 0), new Point(1, 1), [
+                    { offset: 0, color: appTheme.VividPink },
+                    { offset: 0.2, color: appTheme.VividOrange },
+                    { offset: 0.3, color: appTheme.MutedRed },
+                    { offset: 0.5, color: appTheme.VividGreen },
+                    { offset: 0.7, color: appTheme.VividSkyBlue },
+                    { offset: 0.9, color: appTheme.Indigo },
+                    { offset: 1, color: appTheme.DarkIndigo }
+                ]),
+                { enableFill: true, enableStroke: true }
+            ),
+            // Bit more eye candy ;)
+            animation: new WaveAnimation({ duration: 1000 })
+        })
+    );
 
     // Add title annotation
-    sciChartSurface.annotations.add(new TextAnnotation({
-        text: "Mobile Phone manufacturer market share (2022)",
-        fontSize: 20,
-        textColor: appTheme.ForegroundColor,
-        x1: 0.5,
-        y1: 0,
-        opacity: 0.77,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
-    }));
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: "Mobile Phone manufacturer market share (2022)",
+            fontSize: 20,
+            textColor: appTheme.ForegroundColor,
+            x1: 0.5,
+            y1: 0,
+            opacity: 0.77,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative
+        })
+    );
 
     sciChartSurface.zoomExtents();
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 // React component needed as our examples app is react.
@@ -200,7 +208,7 @@ export default function ImageLabels() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
 
 export class EmojiPaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
@@ -213,12 +221,10 @@ export class EmojiPaletteProvider implements IStrokePaletteProvider, IFillPalett
     private readonly pfPink = parseColorToUIntArgb("FE7891");
 
     // tslint:disable-next-line:no-empty
-    public onAttached(parentSeries: IRenderableSeries): void {
-    }
+    public onAttached(parentSeries: IRenderableSeries): void {}
 
     // tslint:disable-next-line:no-empty
-    public onDetached(): void {
-    }
+    public onDetached(): void {}
 
     public overrideFillArgb(xValue: number, yValue: number, index: number): number {
         if (xValue === 0 || xValue === 4 || xValue === 8) {

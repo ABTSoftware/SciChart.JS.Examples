@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import {
     NumericAxis,
     XyDataSeries,
@@ -17,11 +17,11 @@ import {
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {axisTitle: "X Axis"}));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {axisTitle: "Y Axis", growBy: new NumberRange(0.1, 0.1)}));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis" }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { axisTitle: "Y Axis", growBy: new NumberRange(0.1, 0.1) }));
 
     const xValues = [];
     const yValues = [];
@@ -33,9 +33,9 @@ const drawExample = async () => {
     const impulseSeries = new FastImpulseRenderableSeries(wasmContext, {
         fill: appTheme.VividPink,
         strokeThickness: 2,
-        pointMarker: new EllipsePointMarker(wasmContext, {width: 1, height: 1}),
-        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
-        animation: {type: EAnimationType.Wave, options: {duration: 500, delay: 200, fadeEffect: true}}
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 1, height: 1 }),
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+        animation: { type: EAnimationType.Wave, options: { duration: 500, delay: 200, fadeEffect: true } }
     });
     sciChartSurface.renderableSeries.add(impulseSeries);
 
@@ -43,7 +43,7 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
-    return {sciChartSurface};
+    return { sciChartSurface };
 };
 
 // React component needed as our examples app is react.
@@ -58,5 +58,5 @@ export default function ImpulseChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

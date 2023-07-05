@@ -1,49 +1,49 @@
 import * as React from "react";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import {ZoomExtentsModifier} from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
+import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
+import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
+import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import classes from "../../../styles/Examples.module.scss";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {WaveAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
-import {FastBubbleRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import {SweepAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
-import {ScaleAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
-import {FadeAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
-import {appTheme} from "scichart-example-dependencies";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {ECoordinateMode} from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import {EHorizontalAnchorPoint, EVerticalAnchorPoint} from "scichart/types/AnchorPoint";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {XyzDataSeries} from "scichart/Charting/Model/XyzDataSeries";
-import {GenericAnimation} from "scichart/Core/Animations/GenericAnimation";
-import {SplineLineRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
-import {SeriesAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/SeriesAnimation";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
+import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
+import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
+import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
+import { FadeAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
+import { appTheme } from "scichart-example-dependencies";
+import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
+import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
+import { GenericAnimation } from "scichart/Core/Animations/GenericAnimation";
+import { SplineLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
+import { SeriesAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SeriesAnimation";
 
 const divElementId = "chart";
 
 // Four Series Animations are defined below. We apply these to the chart sequentially
-const waveAnimation = new WaveAnimation({zeroLine: 0, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true });
+const waveAnimation = new WaveAnimation({ zeroLine: 0, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true });
 const sweepAnimation = new SweepAnimation({ duration: 1000 });
 const scaleAnimation = new ScaleAnimation({ duration: 1000, zeroLine: 0 });
 const fadeAnimation = new FadeAnimation({ duration: 1000 });
 
 // generic animation to create typewritter effect on the watermark
-const typeWriterAnimation = (textAnnotation: TextAnnotation, finalText: string) => new GenericAnimation<string>({
-    from: "",
-    to: finalText,
-    onAnimate: (from: string, to: string, progress: number) => {
-        const length = Math.floor(to.length * progress);
-        textAnnotation.text = to.substring(0, length);
-    },
-    duration: 1000,
-    setInitialValueImmediately: true,
-});
+const typeWriterAnimation = (textAnnotation: TextAnnotation, finalText: string) =>
+    new GenericAnimation<string>({
+        from: "",
+        to: finalText,
+        onAnimate: (from: string, to: string, progress: number) => {
+            const length = Math.floor(to.length * progress);
+            textAnnotation.text = to.substring(0, length);
+        },
+        duration: 1000,
+        setInitialValueImmediately: true
+    });
 
 // Setup the example & chart
 const drawExample = async () => {
-
     // Create a SciChartSurface with theme
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
@@ -74,7 +74,7 @@ const drawExample = async () => {
             width: 64,
             height: 64,
             fill: appTheme.VividSkyBlue + "77",
-            strokeThickness: 0,
+            strokeThickness: 0
         }),
         dataSeries: new XyzDataSeries(wasmContext, { xValues, yValues, zValues })
     });
@@ -99,7 +99,7 @@ const drawExample = async () => {
         xCoordinateMode: ECoordinateMode.Relative,
         yCoordinateMode: ECoordinateMode.Relative,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center
     });
     sciChartSurface.annotations.add(watermark);
 
@@ -122,7 +122,7 @@ const drawExample = async () => {
     let animationState = 0;
     const updateAnimation = () => {
         let currentAnimation: SeriesAnimation;
-        switch(animationState){
+        switch (animationState) {
             case 0:
                 currentAnimation = waveAnimation;
                 sciChartSurface.addAnimation(typeWriterAnimation(watermark, "Wave Animation"));
@@ -147,9 +147,8 @@ const drawExample = async () => {
         lineSeries.enqueueAnimation(currentAnimation);
         bubbleSeries.enqueueAnimation(currentAnimation);
         // Loop forever while SciChartSurface is not deleted (see React Component unmount)
-        if (!sciChartSurface.isDeleted)
-            setTimeout(updateAnimation, 2000);
-    }
+        if (!sciChartSurface.isDeleted) setTimeout(updateAnimation, 2000);
+    };
 
     updateAnimation();
 
@@ -170,10 +169,10 @@ export default function StartupAnimation() {
             scs = res.sciChartSurface;
         })();
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => { scs?.delete();}
+        return () => {
+            scs?.delete();
+        };
     }, []);
 
-    return (
-        <div id={divElementId} className={classes.ChartWrapper} />
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

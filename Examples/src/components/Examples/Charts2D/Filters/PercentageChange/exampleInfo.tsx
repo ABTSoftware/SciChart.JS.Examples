@@ -7,8 +7,8 @@ import exampleImage from "./javascript-percentage-change.jpg";
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to use a ScaleOffsetFilter to convert data to a <strong>Percentage Change</strong> with realtime updates,
-        using SciChart.js, High Performance{" "}
+        Demonstrates how to use a ScaleOffsetFilter to convert data to a <strong>Percentage Change</strong> with
+        realtime updates, using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -20,13 +20,17 @@ This can be used to convert data to a percentage change`;
 const description = `The zero value for change is the visible start of the chart and data rescales as you pan.
 Click the Add Data button to see that data is automatically transformed when the original data is updated.
 A simple extention to the RenderableSeries allows us to show the original values for the transformed series in the rollover tooltip`;
-const tips = [`ScaleOffsetFilters are available for all DataSeries types, so you could do the same thing for a band or candlestick chart`];
+const tips = [
+    `ScaleOffsetFilters are available for all DataSeries types, so you could do the same thing for a band or candlestick chart`
+];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlScaleOffsetDocumentation,
-    title: ExampleStrings.urlTitleFiltersApiDocumentation,
-    linkTitle: "SciChart.js ScaleOffsetFilter Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlScaleOffsetDocumentation,
+        title: ExampleStrings.urlTitleFiltersApiDocumentation,
+        linkTitle: "SciChart.js ScaleOffsetFilter Documentation"
+    }
+];
 
 export const percentageChangeExampleInfo: TExampleInfo = {
     title: ExampleStrings.titlePercentageChange,

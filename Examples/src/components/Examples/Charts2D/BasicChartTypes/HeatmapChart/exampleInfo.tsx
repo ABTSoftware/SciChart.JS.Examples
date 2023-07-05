@@ -9,19 +9,22 @@ const description = `Our Heatmap is highly dynamic and enables display of Sonar,
     The entire heatmap is represented by a 2D array and is color-mapped to a numeric value.
     Massive heatmaps (1000x1000 or more) can be achieved in SciChart.js!`;
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlHeatmapChartDocumentation,
-    title: ExampleStrings.urlTitleHeatmapChartDocumentation,
-    linkTitle: "JavaScript Heatmap Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlHeatmapChartDocumentation,
+        title: ExampleStrings.urlTitleHeatmapChartDocumentation,
+        linkTitle: "JavaScript Heatmap Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        If you want to learn about heatmaps. this demo shows you how to create a <strong>JavaScript Heatmap Chart</strong>{" "}
-        using SciChart.js, our 5-star rated{" "}
+        If you want to learn about heatmaps. this demo shows you how to create a{" "}
+        <strong>JavaScript Heatmap Chart</strong> using SciChart.js, our 5-star rated{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Component">
             JavaScript Chart Component
-        </a>.
+        </a>
+        .
     </p>
 );
 

@@ -13,11 +13,13 @@ const tips = [
     supports semi-transparent and linear gradient brush fills and looks great!.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlStackedMountainChartDocumentation,
-    title: ExampleStrings.urlTitleStackedMountainChartDocumentation,
-    linkTitle: "JavaScript Stacked Mountain Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlStackedMountainChartDocumentation,
+        title: ExampleStrings.urlTitleStackedMountainChartDocumentation,
+        linkTitle: "JavaScript Stacked Mountain Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

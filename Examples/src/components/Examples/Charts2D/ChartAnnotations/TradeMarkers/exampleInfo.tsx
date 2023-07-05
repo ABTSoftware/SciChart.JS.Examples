@@ -14,11 +14,13 @@ const tips = [
 the event bullet at the bottom of the chart.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlAnnotationsDocumentation,
-    title: ExampleStrings.urlTitleAnnotationsDocumentation,
-    linkTitle: "Annotations API Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlAnnotationsDocumentation,
+        title: ExampleStrings.urlTitleAnnotationsDocumentation,
+        linkTitle: "Annotations API Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

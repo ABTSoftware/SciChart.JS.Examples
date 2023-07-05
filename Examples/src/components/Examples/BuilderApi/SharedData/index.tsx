@@ -10,7 +10,7 @@ import {
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint
 } from "scichart";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../styles/Examples.module.scss";
 
 const divElementId = "chart";
@@ -19,26 +19,28 @@ const drawExample = async () => {
     // Create a definition using dataIds
     const chartTemplate: ISciChart2DDefinition = {
         // Set theme
-        surface: {theme: appTheme.SciChartJsTheme},
+        surface: { theme: appTheme.SciChartJsTheme },
         // Set template of series without data and data Ids
         series: [
             {
                 type: ESeriesType.ColumnSeries,
-                options: {dataPointWidth: 0.5, fill: appTheme.VividSkyBlue + "77", stroke: appTheme.PaleSkyBlue},
-                xyData: {xDataId: "x", yDataId: "col"}
+                options: { dataPointWidth: 0.5, fill: appTheme.VividSkyBlue + "77", stroke: appTheme.PaleSkyBlue },
+                xyData: { xDataId: "x", yDataId: "col" }
             },
             {
                 type: ESeriesType.LineSeries,
-                options: {stroke: appTheme.VividPink, strokeThickness: 3},
-                xyData: {xDataId: "x", yDataId: "line"}
+                options: { stroke: appTheme.VividPink, strokeThickness: 3 },
+                xyData: { xDataId: "x", yDataId: "line" }
             },
             {
                 type: ESeriesType.SplineBandSeries,
                 options: {
-                    stroke: appTheme.VividOrange, strokeY1: appTheme.VividSkyBlue,
-                    fill: appTheme.VividOrange + "33", fillY1: appTheme.VividSkyBlue + "33"
+                    stroke: appTheme.VividOrange,
+                    strokeY1: appTheme.VividSkyBlue,
+                    fill: appTheme.VividOrange + "33",
+                    fillY1: appTheme.VividSkyBlue + "33"
                 },
-                xyyData: {xDataId: "x", yDataId: "col", y1DataId: "line"}
+                xyyData: { xDataId: "x", yDataId: "col", y1DataId: "line" }
             }
         ],
         // Add annotations
@@ -75,11 +77,11 @@ const drawExample = async () => {
                     fontWeight: "Bold"
                 }
             }
-        ],
+        ]
     };
 
     // When you want to add data for the chart later
-    const sharedData: TSharedDataDefinition = {x: [1, 2, 3, 4, 5], col: [8, 2, 3, 7, 10], line: [10, 6, 7, 2, 16]};
+    const sharedData: TSharedDataDefinition = { x: [1, 2, 3, 4, 5], col: [8, 2, 3, 7, 10], line: [10, 6, 7, 2, 16] };
 
     // Build the chart by combining the definition and data
     return await chartBuilder.build2DChart(divElementId, {
@@ -102,7 +104,5 @@ export default function BuilderSharedData() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return (
-        <div className={classes.ChartWrapper} id={divElementId}></div>
-    );
+    return <div className={classes.ChartWrapper} id={divElementId}></div>;
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {closeValues, dateValues as xValues, highValues, lowValues, openValues} from "./data/data";
+import { closeValues, dateValues as xValues, highValues, lowValues, openValues } from "./data/data";
 import {
     CategoryAxis,
     ENumericFormat,
@@ -20,43 +20,45 @@ const divElementId = "chart";
 
 // SCICHART EXAMPLE
 const drawExample = async () => {
-
     // Create a SciChartSurface
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
     // Add an XAxis of type CategoryAxis - which collapses gaps in stock market data
     // SmartLabelProvider returns useful labels for stock market data
-    sciChartSurface.xAxes.add(new CategoryAxis(wasmContext, {
-        labelProvider: new SmartDateLabelProvider(),
-        growBy: new NumberRange(0.05, 0.05)
-    }));
+    sciChartSurface.xAxes.add(
+        new CategoryAxis(wasmContext, {
+            labelProvider: new SmartDateLabelProvider(),
+            growBy: new NumberRange(0.05, 0.05)
+        })
+    );
 
     // Create a NumericAxis on the YAxis with 4 Decimal Places
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(1.1, 1.2),
-        growBy: new NumberRange(0.1, 0.1),
-        labelFormat: ENumericFormat.Decimal,
-        labelPrecision: 4,
-    }));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            visibleRange: new NumberRange(1.1, 1.2),
+            growBy: new NumberRange(0.1, 0.1),
+            labelFormat: ENumericFormat.Decimal,
+            labelPrecision: 4
+        })
+    );
 
     // Create the Ohlc series and add to the chart
-    sciChartSurface.renderableSeries.add(new FastOhlcRenderableSeries(wasmContext, {
-        dataSeries: new OhlcDataSeries(wasmContext, {xValues, openValues, highValues, lowValues, closeValues}),
-        strokeThickness: 1,
-        dataPointWidth: 0.7,
-        strokeUp: "#50ff50",
-        strokeDown: "#ff5050",
-        animation: new SweepAnimation({duration: 800, fadeEffect: true})
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastOhlcRenderableSeries(wasmContext, {
+            dataSeries: new OhlcDataSeries(wasmContext, { xValues, openValues, highValues, lowValues, closeValues }),
+            strokeThickness: 1,
+            dataPointWidth: 0.7,
+            strokeUp: "#50ff50",
+            strokeDown: "#ff5050",
+            animation: new SweepAnimation({ duration: 800, fadeEffect: true })
+        })
+    );
 
     // Optional: Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(
-        new ZoomExtentsModifier(),
-        new ZoomPanModifier(),
-        new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 // React component needed as our examples app is react.
@@ -73,5 +75,5 @@ export default function OhlcChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

@@ -15,7 +15,6 @@ import {
 const divElementId = "chart";
 
 const drawExample = async () => {
-
     // Demonstrates how to colour chart parts in code
     // This is better done by themes, where you can also style the loader pre-scichart initialisation
     //
@@ -28,7 +27,7 @@ const drawExample = async () => {
     const axisBackgroundFill = "#00000000";
     const borderColor = "#1F3D68";
 
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
     sciChartSurface.background = chartBackgroundColor;
 
     // Create and style xAxis
@@ -196,7 +195,7 @@ const drawExample = async () => {
 
     sciChartSurface.zoomExtents();
 
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 export default function StylingInCode() {
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
@@ -210,5 +209,5 @@ export default function StylingInCode() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

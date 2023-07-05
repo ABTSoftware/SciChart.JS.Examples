@@ -1,9 +1,9 @@
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import * as React from "react";
 import { TBinanceCandleData } from "../../../../../commonTypes/TBinanceCandleData";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 import {
     CategoryAxis,
@@ -35,7 +35,13 @@ import {
 
 const divElementId = "chart";
 
-const colorStrings = [appTheme.VividSkyBlue, appTheme.VividPink, appTheme.MutedTeal, appTheme.VividOrange, appTheme.VividBlue];
+const colorStrings = [
+    appTheme.VividSkyBlue,
+    appTheme.VividPink,
+    appTheme.MutedTeal,
+    appTheme.VividOrange,
+    appTheme.VividBlue
+];
 const colors = colorStrings.map(c => parseColorToUIntArgb(c + "AA"));
 
 const drawExample = async () => {
@@ -164,7 +170,7 @@ const useStyles = makeStyles(theme => ({
         color: appTheme.ForegroundColor
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
@@ -221,9 +227,15 @@ export default function FeatureAxisTypes() {
                         color="primary"
                         aria-label="small outlined button group"
                     >
-                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>Multi-Line</ToggleButton>
-                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>Single Line Rotated</ToggleButton>
-                        <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>Multi-Line Rotated</ToggleButton>
+                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
+                            Multi-Line
+                        </ToggleButton>
+                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
+                            Single Line Rotated
+                        </ToggleButton>
+                        <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>
+                            Multi-Line Rotated
+                        </ToggleButton>
                     </ToggleButtonGroup>
                 </div>
                 <div className={localClasses.chartArea} id={divElementId}></div>

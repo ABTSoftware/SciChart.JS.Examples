@@ -1,5 +1,5 @@
 import * as React from "react";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import { FormControl, ButtonGroup, Button, FormControlLabel, Checkbox } from "@material-ui/core";
@@ -166,7 +166,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
                 placeWithinChart: true,
                 fontSize: 12,
                 padding: Thickness.fromString("10 4 0 4"),
-                color: appTheme.ForegroundColor,
+                color: appTheme.ForegroundColor
             }
         };
 

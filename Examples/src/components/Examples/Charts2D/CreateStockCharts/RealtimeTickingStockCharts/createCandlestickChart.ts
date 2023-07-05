@@ -40,17 +40,17 @@ import {
     XyDataSeries,
     XyMovingAverageFilter,
     ZoomExtentsModifier,
-    ZoomPanModifier,
+    ZoomPanModifier
 } from "scichart";
-import {VolumePaletteProvider} from "./VolumePaletteProvider";
-import {appTheme, TPriceBar} from "scichart-example-dependencies";
+import { VolumePaletteProvider } from "./VolumePaletteProvider";
+import { appTheme, TPriceBar } from "scichart-example-dependencies";
 
 // Trades over this size will be rendered as bubbles on the chart
 export const LARGE_TRADE_THRESHOLD = 25_000;
 
 export const createCandlestickChart = async (divChartId: string, divOverviewId: string) => {
     // Create a SciChartSurface
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divChartId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divChartId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -132,7 +132,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
     );
 
     // Add volume data onto the chart
-    const volumeDataSeries = new XyDataSeries(wasmContext, {dataSeriesName: "Volume"});
+    const volumeDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "Volume" });
     sciChartSurface.renderableSeries.add(
         new FastColumnRenderableSeries(wasmContext, {
             dataSeries: volumeDataSeries,
@@ -140,12 +140,18 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
             // This is how we get volume to scale - on a hidden YAxis
             yAxisId: Y_AXIS_VOLUME_ID,
             // This is how we colour volume bars red or green
-            paletteProvider: new VolumePaletteProvider(candleDataSeries, appTheme.VividGreen + "77", appTheme.MutedRed + "77")
+            paletteProvider: new VolumePaletteProvider(
+                candleDataSeries,
+                appTheme.VividGreen + "77",
+                appTheme.MutedRed + "77"
+            )
         })
     );
 
     // Add large trades data to the chart
-    const largeTradesDataSeries = new XyzDataSeries(wasmContext, {dataSeriesName: `Trades Size > $${LARGE_TRADE_THRESHOLD.toLocaleString()}`});
+    const largeTradesDataSeries = new XyzDataSeries(wasmContext, {
+        dataSeriesName: `Trades Size > $${LARGE_TRADE_THRESHOLD.toLocaleString()}`
+    });
     sciChartSurface.renderableSeries.add(
         new FastBubbleRenderableSeries(wasmContext, {
             dataSeries: largeTradesDataSeries,
@@ -203,7 +209,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         strokeThickness: 1,
         axisFontSize: 13,
         axisLabelStroke: appTheme.ForegroundColor,
-        showLabel: true,
+        showLabel: true
     });
     sciChartSurface.annotations.add(latestPriceAnnotation);
 
@@ -217,7 +223,6 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
 
     // Setup functions to return to caller to control the candlestick chart
     const setData = (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => {
-
         console.log(`createCandlestickChart(): Setting data for ${symbolName}, ${priceBars.length} candles`);
 
         // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
@@ -267,7 +272,10 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
             if (xAxis.visibleRange.max > getLatestCandleDate) {
                 // If so, shift the xAxis by one candle
                 const dateDifference = priceBar.date / 1000 - getLatestCandleDate;
-                const shiftedRange = new NumberRange(xAxis.visibleRange.min + dateDifference, xAxis.visibleRange.max + dateDifference);
+                const shiftedRange = new NumberRange(
+                    xAxis.visibleRange.min + dateDifference,
+                    xAxis.visibleRange.max + dateDifference
+                );
                 xAxis.animateVisibleRange(shiftedRange, 250, easing.inOutQuad);
             }
         }
@@ -275,16 +283,23 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         const tradeValue = tradeSize * priceBar.close;
         if (tradeValue > LARGE_TRADE_THRESHOLD) {
             const tradeValueNormalised = 20 * Math.log10(tradeValue) - 70;
-            console.log(`Large trade: ${new Date(priceBar.date)}, price ${priceBar.close}, size ${lastTradeBuyOrSell ? "+" : "-"}$${tradeValue.toFixed(2)}`);
+            console.log(
+                `Large trade: ${new Date(priceBar.date)}, price ${priceBar.close}, size ${
+                    lastTradeBuyOrSell ? "+" : "-"
+                }$${tradeValue.toFixed(2)}`
+            );
             // @ts-ignore
-            largeTradesDataSeries.append(priceBar.date / 1000, priceBar.close, tradeValueNormalised, { isSelected: false, lastTradeBuyOrSell });
+            largeTradesDataSeries.append(priceBar.date / 1000, priceBar.close, tradeValueNormalised, {
+                isSelected: false,
+                lastTradeBuyOrSell
+            });
         }
         // Update the latest price line annotation
         updateLatestPriceAnnotation(priceBar);
     };
 
     const setXRange = (startDate: Date, endDate: Date) => {
-        console.log(`createCandlestickChart(): Setting chart range to ${startDate} - ${endDate}`)
+        console.log(`createCandlestickChart(): Setting chart range to ${startDate} - ${endDate}`);
         xAxis.visibleRange = new NumberRange(startDate.getTime() / 1000, endDate.getTime() / 1000);
     };
 
@@ -301,7 +316,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
     return {
         sciChartSurface,
         sciChartOverview,
-        controls: {setData, onNewTrade, setXRange, enableCandlestick, enableOhlc}
+        controls: { setData, onNewTrade, setXRange, enableCandlestick, enableOhlc }
     };
 };
 // Override the Renderableseries to display on the scichart overview
@@ -311,8 +326,8 @@ const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
         return new FastMountainRenderableSeries(defaultSeries.parentSurface.webAssemblyContext2D, {
             dataSeries: defaultSeries.dataSeries,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                {color: appTheme.VividSkyBlue + "77", offset: 0},
-                {color: "Transparent", offset: 1}
+                { color: appTheme.VividSkyBlue + "77", offset: 0 },
+                { color: "Transparent", offset: 1 }
             ]),
             stroke: appTheme.VividSkyBlue
         });
@@ -330,7 +345,7 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
         const y = 20 + index * 20;
         const textColor = seriesInfo.stroke;
         let legendText = seriesInfo.formattedYValue;
-        let separator = ":"
+        let separator = ":";
         if (seriesInfo.dataSeriesType === EDataSeriesType.Ohlc) {
             const o = seriesInfo as OhlcSeriesInfo;
             legendText = `Open=${o.formattedOpenValue} High=${o.formattedHighValue} Low=${o.formattedLowValue} Close=${o.formattedCloseValue}`;
@@ -349,7 +364,6 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
             </svg>`;
 };
 
-
 // Class which manages red/green fill colouring on Large Trades depending on if the trade is buy or sell
 class LargeTradesPaletteProvider implements IPointMarkerPaletteProvider {
     private readonly upColorArgb: number;
@@ -361,17 +375,21 @@ class LargeTradesPaletteProvider implements IPointMarkerPaletteProvider {
     }
 
     // Return up or down color for the large trades depending on if last trade was buy or sell
-    overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): TPointMarkerArgb {
+    overridePointMarkerArgb(
+        xValue: number,
+        yValue: number,
+        index: number,
+        opacity?: number,
+        metadata?: IPointMetadata
+    ): TPointMarkerArgb {
         // @ts-ignore
         const tradeColor = metadata?.lastTradeBuyOrSell ? this.upColorArgb : this.downColorArgb;
-        return {fill: tradeColor, stroke: tradeColor};
+        return { fill: tradeColor, stroke: tradeColor };
     }
 
     strokePaletteMode: EStrokePaletteMode = EStrokePaletteMode.SOLID;
 
-    onAttached(parentSeries: IRenderableSeries): void {
-    }
+    onAttached(parentSeries: IRenderableSeries): void {}
 
-    onDetached(): void {
-    }
+    onDetached(): void {}
 }

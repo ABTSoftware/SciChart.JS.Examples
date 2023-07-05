@@ -31,7 +31,7 @@ import {
     Thickness,
     XyDataSeries
 } from "scichart";
-import {appTheme, ExampleDataProvider, RandomWalkGenerator  } from "scichart-example-dependencies";
+import { appTheme, ExampleDataProvider, RandomWalkGenerator } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 const divElementId1 = "chart1";

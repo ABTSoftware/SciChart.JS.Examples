@@ -12,7 +12,7 @@
     "startServer": "webpack --config webpack.server.dev.config.js",
     "startClient": "webpack-dev-server --config webpack.client.dev.config.js",
     "startClientTsc": "webpack --config webpack.client.dev.config.js",
-    "prettier": "prettier --write",
+    "prettier": "prettier src/**/*.{js,ts,tsx} --write",
     "testUnit": "mocha --require ts-node/register \"testUnit/**/*.test.ts\"",
     "generateAll": "npm run generateExampleSrc && ts-node before-generate.js && ts-node generate-sitemap.ts && ts-node generate-footer-links.ts && ts-node after-generate.js",
     "generateExampleSrc": "ts-node generate-example-src.js",

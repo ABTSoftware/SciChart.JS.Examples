@@ -3,79 +3,74 @@ import * as fs from "fs";
 import { Request, Response } from "express";
 import { getParameters } from "codesandbox/lib/api/define";
 import { EXAMPLES_PAGES, TExampleInfo } from "../components/AppRouter/examplePages";
-const pj = require('../../package.json')
+const pj = require("../../package.json");
 
 interface IFiles {
-  [key: string]: {
-      content: string;
-      isBinary: boolean;
-  };
+    [key: string]: {
+        content: string;
+        isBinary: boolean;
+    };
 }
 
 let csStyles: IFiles;
 const loadStyles = async (folderPath: string) => {
-  if (!csStyles) {
-    const basePath = path.join(folderPath, "styles", "_base.scss");
-    const base = await fs.promises.readFile(basePath, "utf8");
-    const mixinsPath = path.join(folderPath, "styles", "mixins.scss");
-    const mixins = await fs.promises.readFile(mixinsPath, "utf8");
-    const examplesPath = path.join(folderPath, "styles", "Examples.module.scss");
-    const examples = await fs.promises.readFile(examplesPath, "utf8");
-    csStyles = {
-      "src/styles/_base.scss" : { content: base, isBinary: false },
-      "src/styles/mixins.scss" : { content: mixins, isBinary: false },
-      "src/styles/Examples.module.scss" : { content: examples, isBinary: false },
+    if (!csStyles) {
+        const basePath = path.join(folderPath, "styles", "_base.scss");
+        const base = await fs.promises.readFile(basePath, "utf8");
+        const mixinsPath = path.join(folderPath, "styles", "mixins.scss");
+        const mixins = await fs.promises.readFile(mixinsPath, "utf8");
+        const examplesPath = path.join(folderPath, "styles", "Examples.module.scss");
+        const examples = await fs.promises.readFile(examplesPath, "utf8");
+        csStyles = {
+            "src/styles/_base.scss": { content: base, isBinary: false },
+            "src/styles/mixins.scss": { content: mixins, isBinary: false },
+            "src/styles/Examples.module.scss": { content: examples, isBinary: false }
+        };
     }
-  }
-}
+};
 
 const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
-  const tsPath = path.join(folderPath, "index.tsx");
-  let code = await fs.promises.readFile(tsPath, "utf8");
-  const localImports = Array.from(code.matchAll(/import.*from "\.\/(.*)";/g));
-  code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`)
-  let files: IFiles = {
-    "package.json": {
-      // @ts-ignore
-      content: {
-          "name": currentExample.title,
-          "version": "1.0.0",
-          "main": "src/index.tsx",
-          "scripts": {
-            "start": "react-scripts start",
-            "build": "react-scripts build",
-            "test": "react-scripts test --env=jsdom",
-            "eject": "react-scripts eject"
-          },
-          "dependencies": {
-            "@material-ui/core": "4.12.4",
-            "@material-ui/lab": "4.0.0-alpha.61",
-            "react": "18.0.0",
-            "react-dom": "18.0.0",
-            "react-scripts": "4.0.3",
-            "scichart": pj.dependencies.scichart,
-            "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
-            ...currentExample.extraDependencies
-          },
-          "devDependencies": {
-            "@types/react": "18.0.25",
-            "@types/react-dom": "18.0.9",
-            "typescript": "4.4.2"
-          },
-          "browserslist": [
-            ">0.2%",
-            "not dead",
-            "not ie <= 11",
-            "not op_mini all"
-          ]
-      }
-    },
-    "src/App.tsx": {
-      content: code,
-      isBinary: false
-    },
-    "src/index.tsx": {
-      content:  `import { StrictMode } from "react";
+    const tsPath = path.join(folderPath, "index.tsx");
+    let code = await fs.promises.readFile(tsPath, "utf8");
+    const localImports = Array.from(code.matchAll(/import.*from "\.\/(.*)";/g));
+    code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
+    let files: IFiles = {
+        "package.json": {
+            // @ts-ignore
+            content: {
+                name: currentExample.title,
+                version: "1.0.0",
+                main: "src/index.tsx",
+                scripts: {
+                    start: "react-scripts start",
+                    build: "react-scripts build",
+                    test: "react-scripts test --env=jsdom",
+                    eject: "react-scripts eject"
+                },
+                dependencies: {
+                    "@material-ui/core": "4.12.4",
+                    "@material-ui/lab": "4.0.0-alpha.61",
+                    react: "18.0.0",
+                    "react-dom": "18.0.0",
+                    "react-scripts": "4.0.3",
+                    scichart: pj.dependencies.scichart,
+                    "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
+                    ...currentExample.extraDependencies
+                },
+                devDependencies: {
+                    "@types/react": "18.0.25",
+                    "@types/react-dom": "18.0.9",
+                    typescript: "4.4.2"
+                },
+                browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+            }
+        },
+        "src/App.tsx": {
+            content: code,
+            isBinary: false
+        },
+        "src/index.tsx": {
+            content: `import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { SciChartSurface, SciChart3DSurface } from "scichart";
 
@@ -91,10 +86,10 @@ root.render(
   </StrictMode>
 );
 `,
-      isBinary: false
-    },
-    "tsconfig.json": {
-      content: `{
+            isBinary: false
+        },
+        "tsconfig.json": {
+            content: `{
   "include": [
       "./src/**/*"
   ],
@@ -108,41 +103,39 @@ root.render(
       "jsx": "react-jsx"
   }
 }`,
-      isBinary: false
-    }
-  };
-  files = {...files, ...csStyles };
-
-  if (currentExample.sandboxConfig) {
-    files["sandbox.config.json"] = { 
-      // @ts-ignore
-      content: currentExample.sandboxConfig,
-      isBinary: false
+            isBinary: false
+        }
     };
-  }
+    files = { ...files, ...csStyles };
 
-  for (const localImport of localImports) {
-    if (localImport.length > 1) {
-      const filepath = path.join(folderPath, localImport[1] + ".ts");
-      const csPath = "src/" + localImport[1] + ".ts";
-      const content = await fs.promises.readFile(filepath, "utf8");
-      files[csPath] = { content, isBinary: false };
-      const nestedImports = Array.from(content.matchAll(/import.*from "\.\/(.*)";/g));
-      if (nestedImports.length > 0) {
-        localImports.push(...nestedImports);
-      }
+    if (currentExample.sandboxConfig) {
+        files["sandbox.config.json"] = {
+            // @ts-ignore
+            content: currentExample.sandboxConfig,
+            isBinary: false
+        };
     }
-  }
 
+    for (const localImport of localImports) {
+        if (localImport.length > 1) {
+            const filepath = path.join(folderPath, localImport[1] + ".ts");
+            const csPath = "src/" + localImport[1] + ".ts";
+            const content = await fs.promises.readFile(filepath, "utf8");
+            files[csPath] = { content, isBinary: false };
+            const nestedImports = Array.from(content.matchAll(/import.*from "\.\/(.*)";/g));
+            if (nestedImports.length > 0) {
+                localImports.push(...nestedImports);
+            }
+        }
+    }
 
-
-  const parameters = getParameters({ files });
+    const parameters = getParameters({ files });
     return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
     <input type="hidden" name="parameters" value="${parameters}" />
-  </form>`
-  }
-  
-  const renderCodeSandBoxRedirectPage = (form: string) => {
+  </form>`;
+};
+
+const renderCodeSandBoxRedirectPage = (form: string) => {
     return `
     <html lang="en-us">
       <head>
@@ -158,24 +151,24 @@ root.render(
         </script>
       </body>
   </html>`;
-  }
+};
 
 export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => {
     const basePath = path.join(__dirname, "Examples");
     await loadStyles(basePath);
     // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
-    const isIFrame = req.path.substring(1, 7) === 'iframe';
+    const isIFrame = req.path.substring(1, 7) === "iframe";
     const pathname = isIFrame ? req.path.substring(7) : req.path;
     const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
-    try {     
-      const folderPath = path.join(basePath, currentExample.filepath);
-      const form = await getCodeSandBoxForm(folderPath, currentExample);
-      const page = renderCodeSandBoxRedirectPage(form);
-      res.send(page);
-      return true;
+    try {
+        const folderPath = path.join(basePath, currentExample.filepath);
+        const form = await getCodeSandBoxForm(folderPath, currentExample);
+        const page = renderCodeSandBoxRedirectPage(form);
+        res.send(page);
+        return true;
     } catch (err) {
         console.warn(err);
         return false;
     }
-}
+};

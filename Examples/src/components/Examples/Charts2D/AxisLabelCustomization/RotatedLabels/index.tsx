@@ -15,17 +15,16 @@ import classes from "../../../styles/Examples.module.scss";
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const {
-        sciChartSurface,
-        wasmContext
-    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Add an X Axis
     const xAxis = new NumericAxis(wasmContext, {
         axisTitle: "X Axis with Rotated Labels",
         labelFormat: ENumericFormat.Date_DDMMYYYY,
         labelStyle: {
-            fontSize: 16,
+            fontSize: 16
         },
         // Rotation is in degrees clockwise
         rotation: 90,
@@ -37,7 +36,7 @@ const drawExample = async () => {
     sciChartSurface.xAxes.add(xAxis);
 
     // Add a Y Axis
-    const yAxis = new NumericAxis(wasmContext, {axisTitle: "Y Axis", labelStyle: {fontSize: 16}});
+    const yAxis = new NumericAxis(wasmContext, { axisTitle: "Y Axis", labelStyle: { fontSize: 16 } });
     sciChartSurface.yAxes.add(yAxis);
 
     // Generate some data
@@ -53,23 +52,22 @@ const drawExample = async () => {
     }
 
     // Add a Spline Mountain series
-    const mountainSeries = new SplineMountainRenderableSeries(wasmContext,
-        {
-            dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
-            stroke: appTheme.VividSkyBlue,
-            strokeThickness: 3,
-            zeroLineY: 0.0,
-            fill: "rgba(176, 196, 222, 0.7)", // when a solid color is required, use fill
-            // when a gradient is required, use fillLinearGradient
-            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                {color: appTheme.VividTeal + "77", offset: 0},
-                {color: "Transparent", offset: 1}
-            ]),
-            animation: new WaveAnimation({duration: 1000, fadeEffect: true, zeroLine: 0})
-        });
+    const mountainSeries = new SplineMountainRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+        stroke: appTheme.VividSkyBlue,
+        strokeThickness: 3,
+        zeroLineY: 0.0,
+        fill: "rgba(176, 196, 222, 0.7)", // when a solid color is required, use fill
+        // when a gradient is required, use fillLinearGradient
+        fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+            { color: appTheme.VividTeal + "77", offset: 0 },
+            { color: "Transparent", offset: 1 }
+        ]),
+        animation: new WaveAnimation({ duration: 1000, fadeEffect: true, zeroLine: 0 })
+    });
     sciChartSurface.renderableSeries.add(mountainSeries);
 
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 // React component needed as our examples app is react.
@@ -85,5 +83,5 @@ export default function RotatedLabels() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

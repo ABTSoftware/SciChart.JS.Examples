@@ -1,21 +1,30 @@
 import * as React from "react";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 import {
     EAutoRange,
     EAxisAlignment,
-    EInnerAxisPlacementCoordinateMode, ELabelAlignment, FastLineRenderableSeries,
-    INumericAxisOptions, NumberRange,
+    EInnerAxisPlacementCoordinateMode,
+    ELabelAlignment,
+    FastLineRenderableSeries,
+    INumericAxisOptions,
+    NumberRange,
     NumericAxis,
-    SciChartSurface, XAxisDragModifier, XyDataSeries, YAxisDragModifier, ZoomPanModifier,
+    SciChartSurface,
+    XAxisDragModifier,
+    XyDataSeries,
+    YAxisDragModifier,
+    ZoomPanModifier,
     RightAlignedOuterVerticallyStackedAxisLayoutStrategy
 } from "scichart";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     const commonAxisOptions: INumericAxisOptions = {
         drawMajorBands: false,
@@ -36,18 +45,14 @@ const drawExample = async () => {
             color: "white"
         },
         labelStyle: {
-            fontSize: 14,
+            fontSize: 14
         }
     };
 
     const horizontalAxisPosition = 60;
     const verticalAxisPosition = 30;
 
-    const primaryColors = ["#4FBEE6",
-    "#AD3D8D",
-    "#6BBDAE",
-    "#E76E63",
-    "#2C4B92"];
+    const primaryColors = ["#4FBEE6", "#AD3D8D", "#6BBDAE", "#E76E63", "#2C4B92"];
 
     const xAxis1 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "xAxis1", axisTitle: "X Axis" });
     const xAxis2 = new NumericAxis(wasmContext, {
@@ -101,8 +106,7 @@ const drawExample = async () => {
     const yAxis6 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "yAxis6", axisTitle: "yAxis6" });
     const yAxis7 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "yAxis7", axisTitle: "yAxis7" });
 
-    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
-        new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
+    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy = new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
 
     // use axes with custom ids for positioning the central axes
     sciChartSurface.layoutManager.rightInnerAxesLayoutStrategy.orthogonalAxisId = xAxis1.id;
@@ -252,7 +256,7 @@ export default function FeatureAxisLayout() {
         return () => sciChartSurface?.delete();
     }, []);
 
-        return (
+    return (
         <div>
             <div id={divElementId} className={classes.ChartWrapper} />
         </div>

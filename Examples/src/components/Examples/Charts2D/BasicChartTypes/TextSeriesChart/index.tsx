@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import {
     SciChartSurface,
     NumericAxis,
@@ -20,7 +20,7 @@ const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
     const xAxis = new LogarithmicAxis(wasmContext, {
@@ -40,20 +40,18 @@ const drawExample = async () => {
     );
 
     // data is { xValues: number[], yValues: number[], textValues: string[] }
-    const data: { xValues: number[], yValues: number[], textValues: string[] } = await fetch("/api/tweetData").then(r => r.json());
+    const data: { xValues: number[]; yValues: number[]; textValues: string[] } = await fetch("/api/tweetData").then(r =>
+        r.json()
+    );
     const series = new FastTextRenderableSeries(wasmContext, {
-        dataLabels: {style: {fontFamily: "arial", fontSize: 10}, calculateTextBounds: false},
+        dataLabels: { style: { fontFamily: "arial", fontSize: 10 }, calculateTextBounds: false },
         dataSeries: new XyTextDataSeries(wasmContext, data)
     });
     sciChartSurface.renderableSeries.add(series);
 
-    sciChartSurface.chartModifiers.add(
-        new ZoomPanModifier(),
-        new ZoomExtentsModifier(),
-        new MouseWheelZoomModifier()
-    );
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier(), new MouseWheelZoomModifier());
 
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 // React component needed as our examples app is react.
@@ -69,5 +67,5 @@ export default function TextChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

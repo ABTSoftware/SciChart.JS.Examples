@@ -14,7 +14,7 @@ export const drawSonicChart = async () => {
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
-            padding: Thickness.fromNumber(0),
+            padding: Thickness.fromNumber(0)
         }
     });
 
@@ -22,15 +22,15 @@ export const drawSonicChart = async () => {
     let i = 0;
 
     const rows = await getDataRows("Sonic.csv");
-    rows.forEach((row) => {
-        const data = row.replace(',', '.').split(';');
+    rows.forEach(row => {
+        const data = row.replace(",", ".").split(";");
         heatmapZValues.push([]);
         for (let j = 0; j < 1000; ++j) {
             heatmapZValues[i].push(Number.parseFloat(data[j]) * 100.0);
         }
 
         ++i;
-    })
+    });
 
     const gradientStops = [
         { offset: 0, color: appTheme.SonicGradient1 },
@@ -47,13 +47,12 @@ export const drawSonicChart = async () => {
         gradientStops
     });
 
-
     const dataSeries = new UniformHeatmapDataSeries(wasmContext, {
         xStart: 0,
         xStep: 1,
         yStart: 0,
         yStep: 1,
-        zValues: heatmapZValues,
+        zValues: heatmapZValues
     });
     dataSeries.hasNaNs = true;
 
@@ -62,7 +61,7 @@ export const drawSonicChart = async () => {
         options: {
             dataSeries,
             colorMap,
-            useLinearTextureFiltering: true,
+            useLinearTextureFiltering: true
         }
     });
 
@@ -70,7 +69,7 @@ export const drawSonicChart = async () => {
         rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
         rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
         rs.rolloverModifierProps.markerColor = appTheme.RolloverTooltipFill;
-    })
+    });
 
     sciChartSurface.renderableSeries.add(...renderableSeries);
 
@@ -80,7 +79,6 @@ export const drawSonicChart = async () => {
 
     return sciChartSurface;
 };
-
 
 const generateSonicLegend = (
     placement: ELegendPlacement,
@@ -94,7 +92,11 @@ const generateSonicLegend = (
 ): string => {
     return `
     <div class="chart-legend full-size-legend">
-        <div class="legend-color-item" style="background-image: linear-gradient(to right, ${appTheme.SonicGradient1}, ${appTheme.SonicGradient2}, ${appTheme.SonicGradient3}, ${appTheme.SonicGradient4}, ${appTheme.SonicGradient5}, ${appTheme.SonicGradient6});">
+        <div class="legend-color-item" style="background-image: linear-gradient(to right, ${appTheme.SonicGradient1}, ${
+        appTheme.SonicGradient2
+    }, ${appTheme.SonicGradient3}, ${appTheme.SonicGradient4}, ${appTheme.SonicGradient5}, ${
+        appTheme.SonicGradient6
+    });">
         </div>
         <div class="legend-text-item" style="color: ${appTheme.LegendTextColor}">
             <span>${0}</span>

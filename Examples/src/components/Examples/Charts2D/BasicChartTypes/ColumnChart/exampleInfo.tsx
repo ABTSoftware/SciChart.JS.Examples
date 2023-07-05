@@ -12,16 +12,18 @@ const tips = [
     space the column takes up.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlColumnChartDocumentation,
-    title: ExampleStrings.urlTitleColumnChartDocumentation,
-    linkTitle: "JavaScript Column Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlColumnChartDocumentation,
+        title: ExampleStrings.urlTitleColumnChartDocumentation,
+        linkTitle: "JavaScript Column Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Creates a <strong>JavaScript Column Chart</strong> using SciChart.js, with the following features:{" "}
-        DataLabels, Rounded corners, Gradient-palette fill, startup animations.
+        Creates a <strong>JavaScript Column Chart</strong> using SciChart.js, with the following features: DataLabels,
+        Rounded corners, Gradient-palette fill, startup animations.
     </p>
 );
 

@@ -9,14 +9,16 @@ const description = `Non-uniform heatmaps should be used if you want to specify 
 const tips = [
     `To specify the sizes of the cells, use the xCellOffsets and yCellOffsets params.`,
     `It is possible to specify offsets as arrays or mapping functions.`,
-    `Updating data with setZValues method recalcula tes the mapped offsets.`,
+    `Updating data with setZValues method recalcula tes the mapped offsets.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlNonUniformHeatmapChartDocumentation,
-    title: ExampleStrings.urlTitleNonUniformHeatmapChartDocumentation,
-    linkTitle: "JavaScript Non Uniform Heatmap Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlNonUniformHeatmapChartDocumentation,
+        title: ExampleStrings.urlTitleNonUniformHeatmapChartDocumentation,
+        linkTitle: "JavaScript Non Uniform Heatmap Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

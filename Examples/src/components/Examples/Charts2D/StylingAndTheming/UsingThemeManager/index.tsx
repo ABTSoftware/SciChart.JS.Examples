@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
-import {appTheme, ExampleDataProvider } from "scichart-example-dependencies";
+import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 import {

@@ -2,16 +2,22 @@ import * as React from "react";
 
 import {
     EExecuteOn,
-    EllipsePointMarker, EZoomState,
-    FastLineRenderableSeries, NumberRange,
-    NumericAxis, RubberBandXyZoomModifier,
-    SciChartSurface, XyDataSeries,
-    XyScatterRenderableSeries, ZoomExtentsModifier, ZoomPanModifier
+    EllipsePointMarker,
+    EZoomState,
+    FastLineRenderableSeries,
+    NumberRange,
+    NumericAxis,
+    RubberBandXyZoomModifier,
+    SciChartSurface,
+    XyDataSeries,
+    XyScatterRenderableSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier
 } from "scichart";
 
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
-import {makeStyles} from "@material-ui/core/styles";
+import { appTheme } from "scichart-example-dependencies";
+import { makeStyles } from "@material-ui/core/styles";
 
 export const divElementId = "chart";
 
@@ -21,7 +27,9 @@ export const drawExample = async () => {
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
     // instance must be passed to other types that exist on the same surface.
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, { labelPrecision: 0 });
@@ -92,10 +100,9 @@ const useStyles = makeStyles(theme => ({
         background: appTheme.DarkIndigo
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
-
 
 let scs: SciChartSurface;
 

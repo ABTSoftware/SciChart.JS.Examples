@@ -7,21 +7,21 @@ import exampleImage from "./javascript-axis-layout.jpg";
 
 const previewDescription = `Demonstrates the different axis layouts available in Scichart and how they affect the series`;
 const description = ``;
-const tips = [
-    ``,
-    ``
-];
+const tips = [``, ``];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlAxisDocumentation,
-    title: ExampleStrings.urlTitleAxisDocumentation,
-    linkTitle: "Scichart.js Axis Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlAxisDocumentation,
+        title: ExampleStrings.urlTitleAxisDocumentation,
+        linkTitle: "Scichart.js Axis Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner, central and stacked axes,{" "}
-        and use of axis alignment to create vertical charts. Series may be registered on specific X,Y axis pairs for infinite layout configuration.
+        The same data is rendered many to show the Axis Layout options in SciChart.js. Charts support outer, inner,
+        central and stacked axes, and use of axis alignment to create vertical charts. Series may be registered on
+        specific X,Y axis pairs for infinite layout configuration.
     </p>
 );
 

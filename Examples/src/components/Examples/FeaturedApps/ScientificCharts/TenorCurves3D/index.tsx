@@ -1,7 +1,7 @@
 import * as React from "react";
-import {getTenorCurveData} from "./TenorCurveData";
+import { getTenorCurveData } from "./TenorCurveData";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 
 import {
     EllipsePointMarker,
@@ -36,12 +36,10 @@ const X_DATA_SIZE = 25;
 const Z_DATA_SIZE = 25;
 
 export const draw3DChart = async () => {
-
     // Create the 3d chart
-    const {
-        sciChart3DSurface,
-        wasmContext
-    } = await SciChart3DSurface.create(div3DChart, {theme: appTheme.SciChartJsTheme});
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(div3DChart, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Create camerea, position, field of view
     sciChart3DSurface.camera = new CameraController(wasmContext, {
@@ -55,9 +53,9 @@ export const draw3DChart = async () => {
     sciChart3DSurface.worldDimensions = new Vector3(200, 200, 200);
 
     // Add X.Y,Z axis
-    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {axisTitle: "X Axis"});
-    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {axisTitle: "Y Axis"});
-    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {axisTitle: "Z Axis"});
+    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis" });
+    sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, { axisTitle: "Y Axis" });
+    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Axis" });
 
     // Add optional interaction modifiers (mousewheel and orbit via mouse drag)
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
@@ -81,13 +79,13 @@ export const draw3DChart = async () => {
     // color at offset = 1 is mapped to y-value at SurfaceMeshRenderableSeries3D.maximum
     const colorMap = new GradientColorPalette(wasmContext, {
         gradientStops: [
-            {offset: 1, color: appTheme.VividPink},
-            {offset: 0.9, color: appTheme.VividOrange},
-            {offset: 0.7, color: appTheme.MutedRed},
-            {offset: 0.5, color: appTheme.VividGreen},
-            {offset: 0.3, color: appTheme.VividSkyBlue},
-            {offset: 0.2, color: appTheme.Indigo},
-            {offset: 0, color: appTheme.DarkIndigo}
+            { offset: 1, color: appTheme.VividPink },
+            { offset: 0.9, color: appTheme.VividOrange },
+            { offset: 0.7, color: appTheme.MutedRed },
+            { offset: 0.5, color: appTheme.VividGreen },
+            { offset: 0.3, color: appTheme.VividSkyBlue },
+            { offset: 0.2, color: appTheme.Indigo },
+            { offset: 0, color: appTheme.DarkIndigo }
         ]
     });
 
@@ -105,7 +103,7 @@ export const draw3DChart = async () => {
         drawSkirt: false,
         drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME,
         meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_INTERPOLATED,
-        meshColorPalette: colorMap,
+        meshColorPalette: colorMap
     });
     sciChart3DSurface.renderableSeries.add(series);
 
@@ -113,11 +111,13 @@ export const draw3DChart = async () => {
 };
 
 export const drawLineChart1 = async () => {
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(div2DChart1, {theme: appTheme.SciChartJsTheme});
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(div2DChart1, {
+        theme: appTheme.SciChartJsTheme
+    });
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05)}));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
 
     const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
         stroke: appTheme.VividSkyBlue,
@@ -130,13 +130,13 @@ export const drawLineChart1 = async () => {
             fill: appTheme.ForegroundColor
         }),
         fillLinearGradient: {
-            startPoint: new Point(0,0),
-            endPoint: new Point(0,1),
+            startPoint: new Point(0, 0),
+            endPoint: new Point(0, 1),
             gradientStops: [
                 { offset: 0, color: appTheme.VividSkyBlue },
-                { offset: 1, color: "Transparent" },
+                { offset: 1, color: "Transparent" }
             ]
-        },
+        }
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 
@@ -156,20 +156,22 @@ export const drawLineChart1 = async () => {
 };
 
 export const drawLineChart2 = async () => {
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(div2DChart2, {theme: appTheme.SciChartJsTheme});
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(div2DChart2, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05)}));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
 
     const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 5,
         fillLinearGradient: {
-            startPoint: new Point(0,0),
-            endPoint: new Point(0,1),
+            startPoint: new Point(0, 0),
+            endPoint: new Point(0, 1),
             gradientStops: [
-                { offset: 0, color: appTheme.VividTeal},
-                { offset: 1, color: "Transparent"}
+                { offset: 0, color: appTheme.VividTeal },
+                { offset: 1, color: "Transparent" }
             ]
         },
         pointMarker: new EllipsePointMarker(wasmContext, {
@@ -178,7 +180,7 @@ export const drawLineChart2 = async () => {
             stroke: appTheme.PaleSkyBlue,
             strokeThickness: 2,
             fill: appTheme.ForegroundColor
-        }),
+        })
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 
@@ -198,7 +200,7 @@ export const draw3DChartLegend = async () => {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB"
         },
         yAxisOptions: {
             axisBorder: {
@@ -208,31 +210,31 @@ export const draw3DChartLegend = async () => {
             majorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 6,
-                strokeThickness: 1,
+                strokeThickness: 1
             },
             minorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
-                strokeThickness: 1,
+                strokeThickness: 1
             }
         },
         colorMap: {
             minimum: 0,
             maximum: 100,
             gradientStops: [
-                {offset: 1, color: appTheme.VividPink},
-                {offset: 0.9, color: appTheme.VividOrange},
-                {offset: 0.7, color: appTheme.MutedRed},
-                {offset: 0.5, color: appTheme.VividGreen},
-                {offset: 0.3, color: appTheme.VividSkyBlue},
-                {offset: 0.2, color: appTheme.Indigo},
-                {offset: 0, color: appTheme.DarkIndigo}
-            ],
+                { offset: 1, color: appTheme.VividPink },
+                { offset: 0.9, color: appTheme.VividOrange },
+                { offset: 0.7, color: appTheme.MutedRed },
+                { offset: 0.5, color: appTheme.VividGreen },
+                { offset: 0.3, color: appTheme.VividSkyBlue },
+                { offset: 0.2, color: appTheme.Indigo },
+                { offset: 0, color: appTheme.DarkIndigo }
+            ]
         }
     });
 
     return heatmapLegend;
-}
+};
 
 let surfaces: IDeletable[] = [];
 
@@ -240,12 +242,7 @@ export default function TenorCurves3DChart() {
     // const [sciChart3DSurface, setSciChart3DSurface] = React.useState<SciChart3DSurface>();
     React.useEffect(() => {
         (async () => {
-            surfaces = await Promise.all([
-                draw3DChart(),
-                draw3DChartLegend(),
-                drawLineChart1(),
-                drawLineChart2()
-            ]);
+            surfaces = await Promise.all([draw3DChart(), draw3DChartLegend(), drawLineChart1(), drawLineChart2()]);
         })();
 
         // Delete sciChartSurface on unmount component to prevent memory leak
@@ -255,14 +252,16 @@ export default function TenorCurves3DChart() {
     return (
         <React.Fragment>
             <div className={classes.ChartWrapper}>
-                <div style={{float: "left", width: "50%", height: "100%", position: "relative" }}>
-                    <div id={div3DChart} style={{position: "absolute", height: "100%", width: "100%"}}></div>
-                    <div id={div3DChartLegend} style={{position: "absolute", height: "95%", width: "100px", right: "0", margin: "20"}}>
-                    </div>
+                <div style={{ float: "left", width: "50%", height: "100%", position: "relative" }}>
+                    <div id={div3DChart} style={{ position: "absolute", height: "100%", width: "100%" }}></div>
+                    <div
+                        id={div3DChartLegend}
+                        style={{ position: "absolute", height: "95%", width: "100px", right: "0", margin: "20" }}
+                    ></div>
                 </div>
-                <div style={{position: "relative", left: "50%", width: "50%", height: "100%"}}>
-                    <div id={div2DChart1} style={{position: "relative", height: "50%"}}></div>
-                    <div id={div2DChart2} style={{height: "50%"}}></div>
+                <div style={{ position: "relative", left: "50%", width: "50%", height: "100%" }}>
+                    <div id={div2DChart1} style={{ position: "relative", height: "50%" }}></div>
+                    <div id={div2DChart2} style={{ height: "50%" }}></div>
                 </div>
             </div>
         </React.Fragment>

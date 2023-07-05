@@ -1,7 +1,7 @@
-import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
+import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import * as React from "react";
-import {makeStyles} from "@material-ui/core/styles";
-import {appTheme, RandomWalkGenerator} from "scichart-example-dependencies";
+import { makeStyles } from "@material-ui/core/styles";
+import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import {
     EAutoRange,
@@ -58,9 +58,8 @@ class TransformedSeries extends FastLineRenderableSeries {
 }
 
 export const drawExample = async (usePercentage: boolean) => {
-
     // Create the SciChartSurface with Theme
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -87,10 +86,10 @@ export const drawExample = async (usePercentage: boolean) => {
 
     // Generate some data to plot
     const data0 = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(100);
-    const dataSeries1 = new XyDataSeries(wasmContext, {xValues: data0.xValues, yValues: data0.yValues});
+    const dataSeries1 = new XyDataSeries(wasmContext, { xValues: data0.xValues, yValues: data0.yValues });
 
     // Offset the data by -100
-    const transform1 = new XyScaleOffsetFilter(dataSeries1, {offset: -100});
+    const transform1 = new XyScaleOffsetFilter(dataSeries1, { offset: -100 });
 
     // Update the scale of the data when the chart xAxis range changes
     xAxis.visibleRangeChanged.subscribe(args => (transform1.scale = getScaleValue(dataSeries1, args.visibleRange.min)));
@@ -113,9 +112,9 @@ export const drawExample = async (usePercentage: boolean) => {
 
     // Generate data and create transform
     const data1 = new RandomWalkGenerator().Seed(0).getRandomWalkSeries(100);
-    const dataSeries2 = new XyDataSeries(wasmContext, {xValues: data1.xValues, yValues: data1.yValues});
+    const dataSeries2 = new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues });
 
-    const transform2 = new XyScaleOffsetFilter(dataSeries2, {offset: -100});
+    const transform2 = new XyScaleOffsetFilter(dataSeries2, { offset: -100 });
     xAxis.visibleRangeChanged.subscribe(args => (transform2.scale = getScaleValue(dataSeries2, args.visibleRange.min)));
 
     // Choose which dataseries to use when percentage mode is enabled
@@ -129,7 +128,7 @@ export const drawExample = async (usePercentage: boolean) => {
     // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new RolloverModifier({rolloverLineStroke: appTheme.VividTeal}));
+    sciChartSurface.chartModifiers.add(new RolloverModifier({ rolloverLineStroke: appTheme.VividTeal }));
 
     // Add title annotation
     sciChartSurface.annotations.add(
@@ -148,23 +147,24 @@ export const drawExample = async (usePercentage: boolean) => {
 
     // Add a watermark annotation
     const watermarkText = usePercentage ? "Percentage Changed" : "Original Data";
-    sciChartSurface.annotations.add(new TextAnnotation({
-        text: watermarkText,
-        fontSize: 32,
-        textColor: appTheme.ForegroundColor,
-        x1: 0.5,
-        y1: 0.5,
-        opacity: 0.23,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
-        annotationLayer: EAnnotationLayer.BelowChart
-    }));
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: watermarkText,
+            fontSize: 32,
+            textColor: appTheme.ForegroundColor,
+            x1: 0.5,
+            y1: 0.5,
+            opacity: 0.23,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            annotationLayer: EAnnotationLayer.BelowChart
+        })
+    );
 
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
-
 
 const useStyles = makeStyles(theme => ({
     flexOuterContainer: {
@@ -182,14 +182,13 @@ const useStyles = makeStyles(theme => ({
         width: "100%"
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
 export default function PercentageChange() {
     const [usePercentage, setUsePercentage] = React.useState(true);
     const [scs, setSciChartSurface] = React.useState<SciChartSurface>();
-
 
     React.useEffect(() => {
         (async () => {
@@ -216,15 +215,18 @@ export default function PercentageChange() {
                     exclusive
                     value={usePercentage}
                     onChange={handleUsePercentage}
-                    size="small" color="primary" aria-label="small outlined button group">
-                    <ToggleButton value={true} style={{color: appTheme.ForegroundColor}}>
+                    size="small"
+                    color="primary"
+                    aria-label="small outlined button group"
+                >
+                    <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
                         Percentage Change
                     </ToggleButton>
-                    <ToggleButton value={false} style={{color: appTheme.ForegroundColor}}>
+                    <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
                         Original Data
                     </ToggleButton>
                 </ToggleButtonGroup>
-                <div id={divElementId} className={localClasses.chartArea}/>
+                <div id={divElementId} className={localClasses.chartArea} />
             </div>
         </div>
     );

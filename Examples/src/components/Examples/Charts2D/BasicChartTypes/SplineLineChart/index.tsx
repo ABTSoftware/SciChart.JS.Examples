@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import {
     ELegendOrientation,
     EllipsePointMarker,
@@ -21,7 +21,7 @@ const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -29,7 +29,7 @@ const drawExample = async () => {
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
 
-    const yAxis = new NumericAxis(wasmContext, {growBy: new NumberRange(0.05, 0.2)});
+    const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.2) });
     sciChartSurface.yAxes.add(yAxis);
 
     const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
@@ -54,7 +54,7 @@ const drawExample = async () => {
         stroke: appTheme.VividOrange,
         strokeThickness: 3,
         dataSeries: xyDataSeries,
-        animation: new WaveAnimation({zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true})
+        animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true })
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -64,12 +64,13 @@ const drawExample = async () => {
         strokeThickness: 5,
         dataSeries: splineXyDataSeries,
         pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 11, height: 11,
+            width: 11,
+            height: 11,
             fill: appTheme.ForegroundColor,
             stroke: appTheme.VividSkyBlue
         }),
         interpolationPoints: 10, // Set interpolation points to decide the amount of smoothing,
-        animation: new WaveAnimation({zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true})
+        animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true })
     });
     sciChartSurface.renderableSeries.add(splineSeries);
 
@@ -77,10 +78,10 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    sciChartSurface.chartModifiers.add(new LegendModifier({orientation: ELegendOrientation.Horizontal}));
+    sciChartSurface.chartModifiers.add(new LegendModifier({ orientation: ELegendOrientation.Horizontal }));
 
     sciChartSurface.zoomExtents();
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 let scs: SciChartSurface;
@@ -95,5 +96,5 @@ export default function SplineLineChart() {
         return () => scs?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

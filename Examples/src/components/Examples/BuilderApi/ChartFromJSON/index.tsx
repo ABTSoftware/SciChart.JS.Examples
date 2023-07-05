@@ -6,17 +6,17 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 
 const divElementId = "chart";
 
-const drawExample = async (json: string, setErrors: (error: any)=> void): Promise<TWebAssemblyChart> => {
+const drawExample = async (json: string, setErrors: (error: any) => void): Promise<TWebAssemblyChart> => {
     try {
         // Build the SciChartSurface from Json passed in
         const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, json);
 
         return { sciChartSurface, wasmContext };
-    } catch(error) {
+    } catch (error) {
         const msg = (error as any).message;
         setErrors(msg);
         return { sciChartSurface: undefined, wasmContext: undefined };
-    };
+    }
 };
 
 const defaultJSON = `{
@@ -216,7 +216,7 @@ export default function ChartFromJSON() {
         <div className={classes.ChartWrapper}>
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
                 <div id={divElementId} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }} />
-                <div style={{ position: "absolute", left: 20, top: 20, }} >
+                <div style={{ position: "absolute", left: 20, top: 20 }}>
                     {errors && (
                         <Alert key="0" severity="error">
                             <AlertTitle>Errors</AlertTitle>
@@ -224,16 +224,22 @@ export default function ChartFromJSON() {
                         </Alert>
                     )}
                 </div>
-                <div style={{ flexBasis: "50px"}} >
+                <div style={{ flexBasis: "50px" }}>
                     <div className={classes.FormControl}>
                         <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                            <Button id="eg1" onClick={loadMinimal}>Simple example</Button>
-                            <Button id="eg2" onClick={loadFull}>Full example</Button>
-                            <Button id="eg3" onClick={loadCentral}>Central Axes</Button>
+                            <Button id="eg1" onClick={loadMinimal}>
+                                Simple example
+                            </Button>
+                            <Button id="eg2" onClick={loadFull}>
+                                Full example
+                            </Button>
+                            <Button id="eg3" onClick={loadCentral}>
+                                Central Axes
+                            </Button>
                         </ButtonGroup>
                     </div>
                 </div>
-                <div style={{ flexBasis: "200px"}} >
+                <div style={{ flexBasis: "200px" }}>
                     <TextField
                         id="chartDef"
                         type="text"
@@ -245,9 +251,11 @@ export default function ChartFromJSON() {
                         onChange={handleChangeJSON}
                     />
                 </div>
-                <div className={[classes.FormControl, classes.AlignRight].join(' ')} style={{ flexBasis: "50px" }} >
+                <div className={[classes.FormControl, classes.AlignRight].join(" ")} style={{ flexBasis: "50px" }}>
                     <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                        <Button className={classes.ButtonFilled} id="buildChart" onClick={handleBuild}>Apply</Button>
+                        <Button className={classes.ButtonFilled} id="buildChart" onClick={handleBuild}>
+                            Apply
+                        </Button>
                     </ButtonGroup>
                 </div>
             </div>

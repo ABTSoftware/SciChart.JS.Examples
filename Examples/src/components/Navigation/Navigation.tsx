@@ -9,7 +9,7 @@ import {
     MENU_ITEMS_FEATURED_APPS,
     MENU_ITEMS_2D_ID,
     MENU_ITEMS_3D_ID,
-    MENU_ITEMS_FEATURED_APPS_ID,
+    MENU_ITEMS_FEATURED_APPS_ID
 } from "../AppRouter/examples";
 import ListItemsBlock from "./ListItemsBlock";
 import classes from "./Navigation.module.scss";
@@ -37,11 +37,7 @@ const Navigation: React.FC<TProps> = props => {
     };
 
     return (
-        <List
-            className={classes.NavigationList}
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-        >
+        <List className={classes.NavigationList} component="nav" aria-labelledby="nested-list-subheader">
             <div
                 className={location.pathname === "/" ? classes.SelectedHomepageListItem : classes.HomepageListItem}
                 onClick={historyPushHomepage}

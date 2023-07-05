@@ -24,7 +24,7 @@ export function getRandomSinewave(
     let max = 0;
 
     for (let i = 0; i < pad; i++) {
-        const time = 10 * i / pointCount;
+        const time = (10 * i) / pointCount;
         dataSeries.append(time, 0);
     }
 
@@ -32,8 +32,8 @@ export function getRandomSinewave(
         amplitude = Math.min(3, Math.max(0.1, amplitude * (1 + (Math.random() - 0.5) / 10)));
         freq = Math.min(50, Math.max(0.1, freq * (1 + (Math.random() - 0.5) / 50)));
 
-        const time = 10 * i / pointCount;
-        const wn = 2 * Math.PI / (pointCount / freq);
+        const time = (10 * i) / pointCount;
+        const wn = (2 * Math.PI) / (pointCount / freq);
 
         const d = amplitude * Math.sin(j * wn + phase);
         if (d < min) {
@@ -48,9 +48,20 @@ export function getRandomSinewave(
     return { dataSeries, min, max };
 }
 
-export function generateModifiers(sciChartSurface: SciChartSurface, id: string, getLegendItemHTML?: (orientation: ELegendOrientation, showCheckboxes: boolean, showSeriesMarkers: boolean, item: TLegendItem) => string) {
+export function generateModifiers(
+    sciChartSurface: SciChartSurface,
+    id: string,
+    getLegendItemHTML?: (
+        orientation: ELegendOrientation,
+        showCheckboxes: boolean,
+        showSeriesMarkers: boolean,
+        item: TLegendItem
+    ) => string
+) {
     sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "first" }));
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier({ modifierGroup: "first", excludedYAxisIds: [AxisCore.DEFAULT_AXIS_ID] }));
+    sciChartSurface.chartModifiers.add(
+        new ZoomPanModifier({ modifierGroup: "first", excludedYAxisIds: [AxisCore.DEFAULT_AXIS_ID] })
+    );
     // sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     const legendModifier = new LegendModifier({ showCheckboxes: true, placementDivId: `${id}-legend` });
     if (getLegendItemHTML) {
@@ -59,8 +70,12 @@ export function generateModifiers(sciChartSurface: SciChartSurface, id: string, 
     sciChartSurface.chartModifiers.add(legendModifier);
 }
 
-export function axesSetup(sciChartSurface: SciChartSurface, wasmContext: TSciChart, visibleRange: NumberRange, isXAxisVisible: boolean) {
-
+export function axesSetup(
+    sciChartSurface: SciChartSurface,
+    wasmContext: TSciChart,
+    visibleRange: NumberRange,
+    isXAxisVisible: boolean
+) {
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext);
     xAxis.axisAlignment = EAxisAlignment.Left;
@@ -79,8 +94,8 @@ export function getColor(name: string): string {
     const colors: any = {
         red: appTheme.ChartsGridStroke1,
         green: appTheme.ChartsGridStroke2,
-        blue: appTheme.ChartsGridStroke3,
-    }
+        blue: appTheme.ChartsGridStroke3
+    };
     return colors[name];
 }
 
@@ -134,13 +149,17 @@ export function generateDefaultLegend(sciChartSurface: SciChartSurface, typeColo
     };
 }
 
-export function getDataDiagonal(xValues: number[], yValues: number[], pointsByStep: number): { xValues: number[], yValues: number[] } {
+export function getDataDiagonal(
+    xValues: number[],
+    yValues: number[],
+    pointsByStep: number
+): { xValues: number[]; yValues: number[] } {
     const updatedXValues = [];
     const updatedYValues = [];
     for (let i = 0; i < xValues.length - 1; i++) {
-        const stepX = ((xValues[i + 1]) - xValues[i]) / pointsByStep;
+        const stepX = (xValues[i + 1] - xValues[i]) / pointsByStep;
         for (let j = 0; j <= pointsByStep; j++) {
-            const stepY = ((yValues[i + 1]) - yValues[i]) / pointsByStep;
+            const stepY = (yValues[i + 1] - yValues[i]) / pointsByStep;
             updatedXValues.push(j * stepX + xValues[i]);
             updatedYValues.push((j * stepY + yValues[i]) * (Math.random() * 0.1));
         }

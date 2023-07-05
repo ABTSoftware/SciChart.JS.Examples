@@ -21,19 +21,17 @@ import {
     SweepAnimation
 } from "scichart";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
-
+import { appTheme } from "scichart-example-dependencies";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface with X,Y Axis
-    const {
-        sciChartSurface,
-        wasmContext
-    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.05, 0.05)}));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.05, 0.05) }));
 
     // Create some data
     const xValues = [];
@@ -52,28 +50,32 @@ const drawExample = async () => {
     }
 
     // Create and add a line series to the chart
-    sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 3,
-        animation: new SweepAnimation({duration: 500})
-    }));
+    sciChartSurface.renderableSeries.add(
+        new SplineLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+            stroke: appTheme.PaleSkyBlue,
+            strokeThickness: 3,
+            animation: new SweepAnimation({ duration: 500 })
+        })
+    );
 
     // Create and add a Bubble series to the chart
     // The Bubble series requires a special dataseries type called XyzDataSeries with X,Y and Z (size) values
-    sciChartSurface.renderableSeries.add(new FastBubbleRenderableSeries(wasmContext, {
-        dataSeries: new XyzDataSeries(wasmContext, {xValues, yValues, zValues}),
-        // Pointmarker defines the marker shown per-bubble point. This will be scaled according to z-value
-        pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 64,
-            height: 64,
-            strokeThickness: 0,
-            fill: appTheme.VividSkyBlue + "77"
-        }),
-        // Optional: Allows per-point colouring of bubble stroke
-        paletteProvider: new BubblePaletteProvider(appTheme.VividOrange),
-        animation: new SweepAnimation({delay: 200, duration: 500, fadeEffect: true})
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastBubbleRenderableSeries(wasmContext, {
+            dataSeries: new XyzDataSeries(wasmContext, { xValues, yValues, zValues }),
+            // Pointmarker defines the marker shown per-bubble point. This will be scaled according to z-value
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 64,
+                height: 64,
+                strokeThickness: 0,
+                fill: appTheme.VividSkyBlue + "77"
+            }),
+            // Optional: Allows per-point colouring of bubble stroke
+            paletteProvider: new BubblePaletteProvider(appTheme.VividOrange),
+            animation: new SweepAnimation({ delay: 200, duration: 500, fadeEffect: true })
+        })
+    );
 
     // Add some zooming and panning behaviour
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
@@ -81,7 +83,7 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 /**
@@ -98,14 +100,18 @@ class BubblePaletteProvider implements IPointMarkerPaletteProvider {
         this.fillArgb = parseColorToUIntArgb(fillHexString);
     }
 
-    public onAttached(parentSeries: IRenderableSeries): void {
-    }
+    public onAttached(parentSeries: IRenderableSeries): void {}
 
-    public onDetached(): void {
-    }
+    public onDetached(): void {}
 
-    public overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): TPointMarkerArgb {
-        return xValue >= 8 && xValue <= 12 ? {fill: this.fillArgb, stroke: this.fillArgb} : undefined;
+    public overridePointMarkerArgb(
+        xValue: number,
+        yValue: number,
+        index: number,
+        opacity?: number,
+        metadata?: IPointMetadata
+    ): TPointMarkerArgb {
+        return xValue >= 8 && xValue <= 12 ? { fill: this.fillArgb, stroke: this.fillArgb } : undefined;
     }
 }
 
@@ -122,5 +128,5 @@ export default function BubbleChart() {
         return () => sciChartSurface?.delete();
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

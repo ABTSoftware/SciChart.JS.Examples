@@ -5,13 +5,9 @@ type TProps = {
     text: string;
 };
 
-const MenuListItemText: React.FC<TProps> = (props) => {
+const MenuListItemText: React.FC<TProps> = props => {
     const { className, text } = props;
-    return (
-        <span className={className}>
-            {text}
-        </span>
-    );
+    return <span className={className}>{text}</span>;
 };
 
 export default MenuListItemText;
