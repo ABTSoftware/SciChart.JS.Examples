@@ -1,0 +1,1 @@
+export const githubUrl = "/components/Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/index.tsx";
