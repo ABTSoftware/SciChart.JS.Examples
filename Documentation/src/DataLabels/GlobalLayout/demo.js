@@ -17,7 +17,9 @@ async function dataLabelGlobalLayout(divElementId) {
     // Create a chart with two line series
     //
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJsNavyTheme()
+        theme: new SciChartJsNavyTheme(),
+        title: "Skip overlapping labels across series",
+        titleStyle: { fontSize: 20 }
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -81,7 +83,10 @@ async function dataLabelGlobalLayout(divElementId) {
             for (const label of secondLabels) {
                 let overlap = false;
                 for (const existing of firstLabels) {
-                    const { top, left, bottom, right } = existing.rect;
+                    const top = existing.rect.top - 2;
+                    const bottom = existing.rect.bottom + 2;
+                    const left = existing.rect.left - 2;
+                    const right = existing.rect.right + 2;
                     if (testIsInBounds(label.rect.left, label.rect.top, left, bottom, right, top ) ||
                         testIsInBounds(label.rect.right, label.rect.top, left, bottom, right, top) ||
                         testIsInBounds(label.rect.left, label.rect.bottom, left, bottom, right, top) ||
