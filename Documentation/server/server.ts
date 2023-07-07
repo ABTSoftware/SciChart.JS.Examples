@@ -6,7 +6,7 @@ import { getParameters } from "codesandbox/lib/api/define";
 import {encode} from 'html-entities';
 
 const app = express();
-const port = parseInt(process.env.PORT || "3000", 10);
+const port = parseInt(process.env.PORT || "3001", 10);
 const host = process.env.HOST || "localhost";
 
 app.use(express.static("src"));
@@ -24,6 +24,7 @@ app.get("*", async (req: Request, res: Response) => {
       isDocEmbed = true;
     }
     let basePath = path.join(__dirname, "../src", reqPath);
+    console.log(`dirName: ${__dirname}\r\n reqPath: ${reqPath}\r\n basePath: ${basePath}\r\n process.cwd(): ${process.cwd()}`);
     if (reqPath.endsWith("html")) {
       res.sendStatus(404);
     }
