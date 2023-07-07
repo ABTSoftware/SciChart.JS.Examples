@@ -1179,16 +1179,16 @@ isPrimaryAxis switched depending on mouse over </Notes>
                       <TargetItemId>57b160a9-3476-4f80-89aa-ff7182023873</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
+                    <TocNode Name="" Id="a4abf8e7-7f66-4ad6-985c-03abcb7c30c3" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>35a4bfc3-eb1d-4c83-a168-49b68f225ff4</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
                     <TocNode Name="" Id="d4ccd633-bec0-40d4-9db2-5b4de7a25413" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>6c10b207-c6b8-4550-b2b9-5eda54932801</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="a4abf8e7-7f66-4ad6-985c-03abcb7c30c3" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>35a4bfc3-eb1d-4c83-a168-49b68f225ff4</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                     <TocNode Name="" Id="f78e1813-438b-486d-bb54-b79312c7fe0b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
@@ -13437,13 +13437,13 @@ isPrimaryAxis switched depending on mouse over </Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="35a4bfc3-eb1d-4c83-a168-49b68f225ff4" Status="New Topic" CreatedOn="2023-01-07T19:48:04.3315485Z" ModifiedOn="2023-01-07T19:51:21.3927624Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelColouring" BuildFlags="">
+              <Topic Id="35a4bfc3-eb1d-4c83-a168-49b68f225ff4" Status="New Topic" CreatedOn="2023-01-07T19:48:04.3315485Z" ModifiedOn="2023-07-07T21:49:40.3084124Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelColouring" BuildFlags="">
                 <Title m="2023-01-07T19:48:18.128374Z">Data Label Colouring</Title>
-                <ContentsTitle />
+                <ContentsTitle m="2023-07-07T21:37:47.1950944Z">Data Label Colouring</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-01-07T19:51:21.3927624Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2023-07-07T21:49:40.3084124Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
@@ -13453,11 +13453,10 @@ isPrimaryAxis switched depending on mouse over </Notes>
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Label Colouring&lt;/H2&gt;
-&lt;P&gt;The color property on the dataLabels option sets the color for all labels, but you can do per-label coloring by overriding the getColor function on the dataLabelProvider.&lt;/P&gt;
-&lt;P&gt;This function hsa to return the integer color codes used by SciChart's engine, so you need to use&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#parsecolortouintargb"&gt;parseColorToUIntArgb&lt;/A&gt; (from scichart/utils/parseColor) to convert from html colors. It is a good idea to do this once, as in the example below.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Labelcolouring&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;const columnSeries = new FastColumnRenderableSeries(wasmContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; stroke: "SteelBlue",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; fill: "LightSteelBlue",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; strokeThickness: 1,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataSeries: new XyDataSeries(wasmContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; xValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; yValues: [-3, -4, 0, 2, 6.3, 3, 4, 8, 7, 5, 6, 8],&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }),&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataLabels: {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; positionMode: EColumnDataLabelPosition.Outside,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; style: {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; fontFamily: "Arial",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; fontSize: 18,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; padding: new Thickness(3, 0, 3, 0)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; },&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; color: "#EEE"&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;});&lt;BR&gt;sciChartSurface.renderableSeries.add(columnSeries);&lt;/P&gt;
-&lt;P&gt;// Precalculate color values&lt;BR&gt;const red = parseColorToUIntArgb("red");&lt;BR&gt;const yellow = parseColorToUIntArgb("yellow");&lt;BR&gt;const green = parseColorToUIntArgb("green");&lt;BR&gt;// Color labels according to their value&lt;BR&gt;columnSeries.dataLabelProvider.getColor = (dataLabelState, text) =&amp;gt; {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const y = dataLabelState.yVal();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; if (y &amp;lt;= 0) return red;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; if (y &amp;lt;= 5) return yellow;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; return green;&lt;BR&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/DataLabels_Colouring.png"&gt;&amp;nbsp;&lt;/P&gt;</Content>
+&lt;P&gt;The color property on the dataLabels option sets the color for all labels, but you can do per-label coloring by overriding the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#getcolor"&gt;getColor()&lt;/A&gt; function on the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html"&gt;dataLabelProvider&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;This function hsa to return the integer color codes used by SciChart's engine, so you need to use&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#parsecolortouintargb"&gt;parseColorToUIntArgb&lt;/A&gt; helper function to convert from html colors. It is a good idea to pre-calculate integer colour codes, rather than compute them each time labels are drawn, as in the example below.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\DataLabels\Coloring\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/DataLabels/Coloring/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
@@ -14992,7 +14991,7 @@ isPrimaryAxis switched depending on mouse over </Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">645</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">1993</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>

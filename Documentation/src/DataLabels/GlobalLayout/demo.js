@@ -83,15 +83,16 @@ async function dataLabelGlobalLayout(divElementId) {
             for (const label of secondLabels) {
                 let overlap = false;
                 for (const existing of firstLabels) {
-                    const top = existing.rect.top - 2;
-                    const bottom = existing.rect.bottom + 2;
-                    const left = existing.rect.left - 2;
-                    const right = existing.rect.right + 2;
+                    const padding = 2;
+                    const top = existing.rect.top - padding;
+                    const bottom = existing.rect.bottom + padding;
+                    const left = existing.rect.left - padding;
+                    const right = existing.rect.right + padding;
                     if (testIsInBounds(label.rect.left, label.rect.top, left, bottom, right, top ) ||
                         testIsInBounds(label.rect.right, label.rect.top, left, bottom, right, top) ||
                         testIsInBounds(label.rect.left, label.rect.bottom, left, bottom, right, top) ||
                         testIsInBounds(label.rect.right, label.rect.bottom, left, bottom, right, top)) {
-                        console.log(`Label ${label.text} overlaps ${existing.text}, skipping...`);
+                        // console.log(`Label ${label.text} overlaps ${existing.text}, skipping...`);
                         overlap = true;
                         break;
                     }

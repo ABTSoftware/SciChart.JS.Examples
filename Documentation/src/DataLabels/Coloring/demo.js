@@ -1,19 +1,23 @@
-const {
-  SciChartSurface,
-  NumericAxis,
-  FastColumnRenderableSeries,
-  EllipsePointMarker,
-  XyDataSeries,
-  NumberRange,
-  EColumnDataLabelPosition,
-  parseColorToUIntArgb,
-  Thickness
-} = SciChart;
+
 
 async function dataLabelColoring(divElementId) {
-  const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-    divElementId
-  );
+  const {
+    SciChartSurface,
+    NumericAxis,
+    FastColumnRenderableSeries,
+    XyDataSeries,
+    NumberRange,
+    EColumnDataLabelPosition,
+    parseColorToUIntArgb,
+    Thickness,
+    SciChartJsNavyTheme
+  } = SciChart;
+
+  // or for npm, import { SciChartSurface, ... } from "scichart"
+
+  const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    theme: new SciChartJsNavyTheme()
+  });
 
   sciChartSurface.xAxes.add(
     new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) })
@@ -22,6 +26,8 @@ async function dataLabelColoring(divElementId) {
     new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) })
   );
 
+  // #region ExampleA
+  // Create a column series and add dataLabels
   const columnSeries = new FastColumnRenderableSeries(wasmContext, {
     stroke: "SteelBlue",
     fill: "LightSteelBlue",
@@ -42,6 +48,8 @@ async function dataLabelColoring(divElementId) {
   });
   sciChartSurface.renderableSeries.add(columnSeries);
 
+  // Override the colouring using dataLabelProvider.getColor
+  // import { parseColorToUIntArgb } from "scichart";
   const red = parseColorToUIntArgb("red");
   const yellow = parseColorToUIntArgb("yellow");
   const green = parseColorToUIntArgb("green");
@@ -51,6 +59,7 @@ async function dataLabelColoring(divElementId) {
     if (y <= 5) return yellow;
     return green;
   };
+  // #endregion ExampleA
 }
 
 dataLabelColoring("scichart-root");
