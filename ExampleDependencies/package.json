@@ -2,7 +2,7 @@
     "name": "scichart-example-dependencies",
     "description": "SciChart.JS Example Application Common Dependencies",
     "homepage": "https://www.scichart.com",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "keywords": [
@@ -23,10 +23,10 @@
         "@types/node": "^13.7.0",
         "rimraf": "^3.0.2",
         "typescript": "4.4.4",
-        "scichart": "^3.1.329"
+        "scichart": "^3.1.329 || >3.2.0-beta.1"
     },
     "peerDependencies": {
-        "scichart": "^3.1.329"
+        "scichart": "^3.1.329 || >3.2.0-beta.1"
     },
     "files": [
         "lib/**/*",
