@@ -408,6 +408,12 @@
       <OtherFile Id="beb87ef5-8978-4be4-b233-69169afd60eb" FileName="images\AxisLabelProviders_InheritenceDiagram.png" SourceData="" BuildFlags="" />
       <OtherFile Id="bb6bd614-72c0-4c42-b4fc-7db048eca2bf" FileName="images\TickProviders_InheritenceDiagram.png" SourceData="" BuildFlags="" />
       <OtherFile Id="f9652dfe-5d80-4629-bb59-caacaabaeeaa" FileName="images\LayoutManager_UML.png" SourceData="" BuildFlags="" />
+      <OtherFile Id="186701b8-1204-49fd-89c9-32313e4bf0ce" FileName="images\chart3d_xyz_axis.png" SourceData="" BuildFlags="" />
+      <OtherFile Id="64ee5888-8d2a-4c81-9dc6-06cb90d963c7" FileName="images\Chart3D_World_vs_data_coords.png" SourceData="" BuildFlags="" />
+      <OtherFile Id="34c38099-93ae-40ed-80b1-c06d69ff0525" FileName="images\Chart3D_Camera.png" SourceData="" BuildFlags="" />
+      <OtherFile Id="68c74ba7-7728-480e-a633-12f6d65ccc53" FileName="images\Chart3D_LeftHandCoords.png" SourceData="" BuildFlags="" />
+      <OtherFile Id="d2a54cbe-e046-4eec-ac39-4a0ca20d0858" FileName="images\Chart3D_World_vs_data_coords2.png" SourceData="" BuildFlags="" />
+      <OtherFile Id="adf71651-ec6f-4bc8-913b-8ec4d08a3a1b" FileName="images\Chart3D_Camera_Ortho.png" SourceData="" BuildFlags="" />
     </OtherFiles>
     <DefaultStylesheet>stylesheets\customstyles.css</DefaultStylesheet>
     <DefaultCaptureDirectory></DefaultCaptureDirectory>
@@ -862,20 +868,20 @@ isPrimaryAxis switched depending on mouse over </Notes>
         <TaskItem Id="dd64b95e-29ca-4808-833d-51b1729377a7" Priority="High" AssignedTo="">
           <Title>v3.2 add FIFO and Sweeping mode docs</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-06-21T12:54:45.4364839Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-04T16:42:09.3736126Z</ModifiedOn>
+          <ModifiedOn>2023-07-08T14:16:32.6785141Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
         <TaskItem Id="87ba294e-1912-40f5-8098-247794a67626" Priority="High" AssignedTo="">
           <Title>v3.2 Refactor Dataseries docs to include realtime updates</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-06-21T12:54:52.7185301Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-04T16:42:04.9731292Z</ModifiedOn>
+          <ModifiedOn>2023-07-08T14:16:39.2713059Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>Must document modes of realtime:
  Append, Replace, Scroll and Sweep </Notes>
@@ -897,6 +903,26 @@ isPrimaryAxis switched depending on mouse over </Notes>
           <CreatedOn>2023-06-21T12:57:13.3663505Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
           <ModifiedOn>2023-06-21T12:57:25.4706166Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="b7a3cfdc-feba-49b3-b581-663e174d52b6" Priority="" AssignedTo="">
+          <Title>v3.2 Add PointLine 3D Series docs</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-07-08T14:17:15.8327643Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-07-08T14:17:23.5748739Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="322bcea5-8f73-4857-89a5-d94158d13e8d" Priority="" AssignedTo="">
+          <Title>!!! Write some 3D Chart docs!</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-07-08T14:22:17.4656787Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-07-08T14:23:21.1883665Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -1969,16 +1995,10 @@ isPrimaryAxis switched depending on mouse over </Notes>
                       <TargetItemId>e06d99dc-d176-4c1f-a71d-5cc54aa9e669</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="daaeb18e-8529-4516-b689-4c024a18644e" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="daaeb18e-8529-4516-b689-4c024a18644e" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>a7a8e8a9-a153-42a0-af00-913ef6e7e06c</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="9cc611b3-18bf-4a11-9516-2a397802f870" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>75d0e31e-cd96-48ff-9839-147ff01c093e</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -2306,75 +2326,28 @@ isPrimaryAxis switched depending on mouse over </Notes>
         <TocNode Name="" Id="dfdecf02-99ea-4548-aca1-b81304886af5" IconIndex="1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
           <CaptionTemplate m="2020-08-03T15:09:11.0475314Z">SciChart.js JavaScript 3D Charts API</CaptionTemplate>
           <ChildNodes>
-            <TocNode Name="" Id="737db91a-518d-4688-9d1c-a9c69bcec393" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-              <CaptionTemplate m="2019-09-02T10:11:06.9389103Z">Tutorials 3D</CaptionTemplate>
-              <ChildNodes>
-                <TocNode Name="" Id="f86230dd-a125-4e44-bc10-40003ac9b6c5" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>1fb26b6a-1169-49bf-8d6a-981425483ff8</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="436322b3-13ab-4d04-89c6-57e053bdce20" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate m="2020-09-11T17:11:53.1080598Z">OLD 3D Tutorial 01 - Charting Concepts </CaptionTemplate>
-                  <ChildNodes />
-                  <TargetItemId>66c2a477-19b7-4c68-9aea-10c01c54774f</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="37b9e65a-f492-42f7-9e59-2cf3e0b3c2fb" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate m="2020-09-11T17:12:31.8754283Z">OLD 3D Tutorial 02 - Add SciChart Libraries to Android Studio</CaptionTemplate>
-                  <ChildNodes />
-                  <TargetItemId>b6028fd1-9906-48ac-9d08-dd81e45997dd</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="4e30556b-6862-4343-98ff-fe0d5c3b463e" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate m="2020-09-11T17:12:34.7073893Z">OLD 3D Tutorial 03 - Creating a Chart and Add a Data Series</CaptionTemplate>
-                  <ChildNodes />
-                  <TargetItemId>699aad4b-9271-4f53-bcff-48cd49a70752</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="e99d5960-ce1f-4789-b1a6-c71a78c5090f" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate m="2020-09-11T17:12:37.617649Z">OLD 3D Tutorials 04 - Changing the Axes Length and Chart Pitch and Yaw</CaptionTemplate>
-                  <ChildNodes />
-                  <TargetItemId>d5f6befd-6b5b-4650-a207-d63f648a4f8e</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="b7c34040-b121-4cc5-b024-b3bb0b54a2fb" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate m="2020-09-11T17:12:40.4281529Z">OLD 3D Tutorial 05 - Zooming and Rotating</CaptionTemplate>
-                  <ChildNodes />
-                  <TargetItemId>b302958a-29d2-4089-9b36-8ff8acd30627</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="1c6f59f7-fea5-4d68-a986-57e9fef03b54" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate m="2020-09-11T17:12:44.7561401Z">OLD 3D Tutorial 06 - Cursors and Tooltips</CaptionTemplate>
-                  <ChildNodes />
-                  <TargetItemId>57a08ab7-2fd2-4ee1-8268-30acf5c474c3</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="bd5dec11-7bff-4194-817f-f5a7af85e9f4" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate m="2020-09-11T17:12:47.6519531Z">OLD 3D Tutorial 07 - Plotting Realtime Data </CaptionTemplate>
-                  <ChildNodes />
-                  <TargetItemId>5eb89f7b-2486-4a91-bb5d-2a567a4cdd16</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-              </ChildNodes>
-            </TocNode>
             <TocNode Name="" Id="6a97f7dc-f8f6-45bc-9931-cae2cf470fae" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
               <CaptionTemplate m="2019-08-05T12:25:53.424656Z">SciChart3D Basics</CaptionTemplate>
               <ChildNodes>
-                <TocNode Name="" Id="2bee0ea0-86a7-4e3d-a78b-69c65bc78fa3" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="2bee0ea0-86a7-4e3d-a78b-69c65bc78fa3" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>01b31f4f-bced-419a-a232-e11ae17a7255</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
-                <TocNode Name="" Id="6678f472-85c5-4509-8e44-77ade9e98441" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="f9dd5fdb-0fce-4391-b07c-747450c530bd" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>ff022bdc-cb4d-4a6b-a941-6a84a59b0f04</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+                <TocNode Name="" Id="6678f472-85c5-4509-8e44-77ade9e98441" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>0a96bb3a-89bf-4886-9ad9-e11ad6f32c4e</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
-                <TocNode Name="" Id="5c8aa210-1cf4-4380-800f-d5e8a26a6647" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="5c8aa210-1cf4-4380-800f-d5e8a26a6647" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>e3c137ff-6d4e-44e5-9542-bbb00b65e3c1</TargetItemId>
@@ -4104,22 +4077,22 @@ isPrimaryAxis switched depending on mouse over </Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="6fec8d55-2d62-4262-ba23-beca67cfbb06" Status="New Topic" CreatedOn="2022-04-06T20:24:01.267798Z" ModifiedOn="2022-05-05T09:42:42.8823041Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="SciChartSurface.create and createSingle" BuildFlags="">
+              <Topic Id="6fec8d55-2d62-4262-ba23-beca67cfbb06" Status="New Topic" CreatedOn="2022-04-06T20:24:01.267798Z" ModifiedOn="2023-07-10T15:38:06.649642Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="SciChartSurface.create and createSingle" BuildFlags="">
                 <Title m="2022-04-06T20:30:22.7446157Z">Creating a new SciChartSurface and loading Wasm</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2022-05-05T09:42:33.3574703Z">&lt;P&gt;Instantiating a new SciChartSurface (a new Chart) is accomplished with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#create" target=_blank&gt;SciChartSurface.create()&lt;/A&gt; function. We have some variations on this function which can be used in different scenarios. We'll go through these as well as WebAssembly (wasm) file loading below.&lt;/P&gt;
+                    <Content m="2023-07-10T15:38:06.649642Z">&lt;P&gt;Instantiating a new SciChartSurface (a new Chart) is accomplished with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#create" target=_blank&gt;SciChartSurface.create()&lt;/A&gt; function. We have some variations on this function which can be used in different scenarios. We'll go through these as well as WebAssembly (wasm) file loading below.&lt;/P&gt;
 &lt;H2&gt;SciChartSurface.create()&lt;/H2&gt;
 &lt;P&gt;The first function to create a chart in SciChart.js is simply&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#create" target=_blank&gt;SciChartSurface.create()&lt;/A&gt;. This is an &lt;STRONG&gt;asynchronous static function&lt;/STRONG&gt; which places a SciChartSurface (a single chart with X, Y axis and one to many series) into the HTML Dom. It will also load WebAssembly files and initialise our 2D/3D WebGL engine for the first chart load.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;SciChartSurface.create()&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";&lt;/P&gt;
+&lt;P&gt;import {SciChartSurface} from "scichart";&lt;/P&gt;
 &lt;P&gt;async function initSciChart1() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Assumes a div in your HTML &amp;lt;div id="scichart-div-1"&amp;gt;&amp;lt;/div&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-div-id");&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Now manipulate the SciChartSurface, adding axis, series and more&lt;BR&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // When&amp;nbsp;you exit the page and no longer&amp;nbsp;want the chart to draw, call .delete() to free memory&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.delete();&lt;BR&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#create" target=_blank&gt;&lt;STRONG&gt;SciChartSurface.create()&lt;/STRONG&gt;&lt;/A&gt; &lt;STRONG&gt;uses a single, shared WebGL context for all chart surfaces on the screen&lt;/STRONG&gt;. This bypasses the maximum number of WebGL contexts and you can have 10, 20, 30 or even 100 charts on an HTML page. The only limit is performance of the browser in rendering the chart surfaces. &lt;STRONG&gt;For a higher performance solution which uses one WebGL context per chart, see&amp;nbsp;&lt;/STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#createsingle" target=_blank&gt;&lt;STRONG&gt;SciChartSurface.createSingle()&lt;/STRONG&gt;&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;STRONG&gt;Ensure that you await SciChartSurface.create().&lt;/STRONG&gt; The return type is an object containing SciChartSurface and its wasmContext (WebAssembly Context) which must be passed to other chart parts on this SciChartSurface.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;H2&gt;SciChartSurface.createSingle()&lt;/H2&gt;
 &lt;P&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#createsingle" target=_blank&gt;SciChartSurface.createSingle()&lt;/A&gt; is also an asynchronous static function which places a SciChartSurface into the DOM. However, this variation forces one WebGL context per chart. This can improve performance in multi-chart scenarios but you must obey the WebGL Context Limits per browser. More on this in our&amp;nbsp;&lt;A href="31c1fa0b-34ae-472f-b888-2de129265d50"&gt;Performance Tips&lt;/A&gt; article.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;SciChartSurface.createsingle()&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";&lt;/P&gt;
+&lt;P&gt;import {SciChartSurface} from "scichart";&lt;/P&gt;
 &lt;P&gt;async function initSciChart1() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Assumes a div in your HTML &amp;lt;div id="scichart-div-1"&amp;gt;&amp;lt;/div&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const { sciChartSurface, wasmContext } = await SciChartSurface.createSingle("scichart-div-id");&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Now manipulate the SciChartSurface, adding axis, series and more&lt;BR&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // When you exit the page and no longer want the chart to draw, call .delete() to free memory&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.delete();&lt;BR&gt;}&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H3&gt;Resolving Wasm errors on load&lt;/H3&gt;
@@ -4189,13 +4162,13 @@ isPrimaryAxis switched depending on mouse over </Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="e09e931b-15a2-4e8f-ac78-4c2822394a62" Status="New Topic" CreatedOn="2022-05-05T09:11:49.9545584Z" ModifiedOn="2022-05-05T09:42:12.4028973Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Deploying Wasm or WebAssembly and Data Files with your app" BuildFlags="">
+              <Topic Id="e09e931b-15a2-4e8f-ac78-4c2822394a62" Status="New Topic" CreatedOn="2022-05-05T09:11:49.9545584Z" ModifiedOn="2023-07-10T15:50:51.5930264Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Deploying Wasm or WebAssembly and Data Files with your app" BuildFlags="">
                 <Title m="2022-05-05T09:13:33.0365641Z">Deploying Wasm (WebAssembly) and Data Files with your app</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2022-05-05T09:42:12.4028973Z">&lt;H2&gt;Deploying Wasm (WebAssembly) and Data Files with your app&lt;/H2&gt;
+                    <Content m="2023-07-10T15:50:51.5930264Z">&lt;H2&gt;Deploying Wasm (WebAssembly) and Data Files with your app&lt;/H2&gt;
 &lt;P&gt;If you receive an error message when running your app, you may not have deployed the Wasm (WebAssembly) or data files correctly. Below are some steps on how to resolve that.&lt;/P&gt;&lt;innovasys:widget type="Caution Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;STRONG&gt;Error&lt;/STRONG&gt;: Could not load SciChart WebAssembly module. Check your build process and ensure that your scichart2d.wasm, scichart2d.data and scichart2d.js files are from the same version&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H3&gt;Option 1: Package Wasm &amp;amp; Data Files with WebPack (or similar)&amp;nbsp;&lt;/H3&gt;
 &lt;P&gt;In our tutorials and boilerplate examples we show you how to package the Wasm &amp;amp; Data files to load them in a variety of JavaScript frameworks. Find the links to setting up a JavaScript project below:&lt;/P&gt;
@@ -4232,11 +4205,15 @@ isPrimaryAxis switched depending on mouse over </Notes>
 &lt;H3&gt;Option 2: Load Wasm from URL with SciChartSurface.configure() or useWasmFromCDN()&lt;/H3&gt;
 &lt;P&gt;The easiest way for SciChart.js to load WebAssembly and Data files are to load them from our CDN&amp;nbsp;(see &lt;A href="https://www.jsdelivr.com/package/npm/scichart" target=_blank&gt;jsdelivr.com/package/npm/scichart&lt;/A&gt;). This method is particularly useful in projects or frameworks that don't have a package manager or module bundler.&lt;/P&gt;
 &lt;P&gt;To do load SciChart's Wasm and Data file from CDN, call&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;SciChartSurface.configure()&lt;/A&gt; once before any SciChartSurface is shown:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Configure Wasm and Data File URLs&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";&lt;BR&gt;import { libraryVersion } from "scichart/Core/BuildStamp";&lt;/P&gt;
+&lt;P&gt;import { SciChartSurface, libraryVersion } from "scichart";&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;// Load Wasm &amp;amp; Data files from URL&lt;BR&gt;// This URL can be anything, but for example purposes we are loading from JSDelivr CDN&lt;BR&gt;SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@${libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;We've packaged a helpful function that automatically loads the latest &amp;amp; correct version of SciChart's Wasm &amp;amp; Data files from CDN. To use this, instead of calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;SciChartSurface.configure()&lt;/A&gt;&amp;nbsp;passing in a URL, call &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#usewasmfromcdn" target=_blank&gt;SciChartSurface.useWasmFromCDN()&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Load Wasm from CDN&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";&lt;BR&gt;&lt;BR&gt;export async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Call this once before any SciChartSurface is shown.&lt;BR&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp;// This&amp;nbsp;is equivalent to calling SciChartSurface.configure() with the CDN URL (JSDelivr)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChartSurface.useWasmFromCDN();&lt;BR&gt;}&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&lt;/P&gt;</Content>
+&lt;P&gt;We've packaged a helpful function that automatically loads the latest &amp;amp; correct version of SciChart's Wasm &amp;amp; Data files from CDN. To use this, instead of calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;SciChartSurface.configure()&lt;/A&gt;&amp;nbsp;passing in a URL, call &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#usewasmfromcdn" target=_blank&gt;SciChartSurface.useWasmFromCDN()&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Load Wasm from CDN&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";&lt;BR&gt;&lt;BR&gt;export async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Call this once before any SciChartSurface is shown.&lt;BR&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp;// This&amp;nbsp;is equivalent to calling SciChartSurface.configure() with the CDN URL (JSDelivr)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChartSurface.useWasmFromCDN();&lt;BR&gt;}&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Loading Wasm for 3D Charts&lt;/H2&gt;
+&lt;P&gt;The process for loading Wasm files for 3D Charts is exactly the same, except you must configure SciChart.js to load scichart3d.wasm and scichart3d.data.&lt;/P&gt;
+&lt;P&gt;This can be done via Webpack/npm or a bundlers, or by calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#usewasmfromcdn"&gt;SciChart3DSurface.useWasmFromCDN()&lt;/A&gt; or&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#configure"&gt;SciChart3DSurface.configure()&lt;/A&gt; as before.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Configure Wasm and Data File URLs&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;import { SciChartSurface } from "scichart";&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&lt;BR&gt;// Call this once before any SciChart3DSurface is shown to load wasm from CDN&lt;BR&gt;SciChart3DSurface.useWasmFromCDN();&lt;/P&gt;
+&lt;P&gt;// Alternatively, if you want to host wasm/data files and serve them locally&lt;BR&gt;// 1.) Ensure you are serving your wasm &amp;amp; data files&lt;BR&gt;// 2.) Call to SciChart3DSurface.configure specifying the relative URL of the files&lt;BR&gt;SciChart3DSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp; dataUrl: `relative/path/to/scichart3d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;wasmUrl: `relative/path/to/scichart3d.wasm`&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
@@ -14514,6 +14491,20 @@ isPrimaryAxis switched depending on mouse over </Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
+              <Topic Id="33cbcf3e-8a70-4e28-a69f-3132493fcec7" Status="New Topic" CreatedOn="2023-07-10T16:17:52.721901Z" ModifiedOn="2023-07-10T16:18:08.7985719Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="ThePointLine3DChartType" BuildFlags="">
+                <Title m="2023-07-10T16:18:08.7985719Z">The Lines 3D Chart Type</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2023-07-10T16:17:52.721901Z">&lt;p&gt; &lt;/p&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
             </Topics>
           </TopicCategory>
           <TopicCategory Id="c23f4a6a-f3e6-4765-b11c-43a4d0dcd48d" AutoIndex="false">
@@ -14707,47 +14698,85 @@ isPrimaryAxis switched depending on mouse over </Notes>
             <Caption m="2019-08-04T13:24:13.9029458Z">SciChart3D Basics</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="e3c137ff-6d4e-44e5-9542-bbb00b65e3c1" Status="New Topic" CreatedOn="2019-08-04T13:24:21.2822269Z" ModifiedOn="2019-09-23T15:00:32.6059052Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The SciChartSurface Camera" BuildFlags="">
+              <Topic Id="e3c137ff-6d4e-44e5-9542-bbb00b65e3c1" Status="New Topic" CreatedOn="2019-08-04T13:24:21.2822269Z" ModifiedOn="2023-07-11T09:12:13.8978912Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The SciChartSurface Camera" BuildFlags="">
                 <Title />
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2019-09-23T15:00:32.6059052Z">&lt;P&gt;The property&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getCamera.html"&gt;SciChart3DSurface.Camera&lt;/A&gt; defines an&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController.html"&gt;ICameraController&lt;/A&gt; instance. By default this interface is implemented&amp;nbsp;in&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.Camera3D.html"&gt;Camera3D&lt;/A&gt;&amp;nbsp;class.&lt;/P&gt;
-&lt;P&gt;By default, the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getCamera.html"&gt;SciChart3DSurface.Camera&lt;/A&gt; is set to a new&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.Camera3D.html"&gt;Camera3D&lt;/A&gt;&amp;nbsp;instance which defines the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getPosition.html"&gt;Position&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getTarget.html"&gt;Target&lt;/A&gt; (in world coordinates) of the camera, and whether the camera is in Perspective or Orthogonal projection modes.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/Camera3DExplanation.png"&gt;&lt;/P&gt;
-&lt;P&gt;Above: the representation of a Camera in 3D Space. The camera is attached to the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getCamera.html"&gt;SciChart3DSurface.Camera&lt;/A&gt;&amp;nbsp;property and is defined by a&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getPosition.html"&gt;Position&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getTarget.html"&gt;Target&lt;/A&gt;, plus other properties which define the properties of the viewport.&lt;/P&gt;
-&lt;H2&gt;Camera Position, Target&lt;/H2&gt;
-&lt;P&gt;The camera is defined by a&amp;nbsp;&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getPosition.html"&gt;Position&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getTarget.html"&gt;Target&lt;/A&gt; which are XYZ vectors in World Coordinates.&lt;/P&gt;
-&lt;P&gt;Other properties which define the viewport as seen by the camera include:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getPosition.html"&gt;Position&lt;/A&gt; and&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getTarget.html"&gt;Target&lt;/A&gt; which define the position and target of the camera in World Coordinates. 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getOrbitalPitch.html"&gt;OrbitalPitch&lt;/A&gt; and&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getOrbitalYaw.html"&gt;OrbitalYaw&lt;/A&gt; which define the pitch and yaw around the target in Radians 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getRadius.html"&gt;Radius&lt;/A&gt; which is the distance of the Camera Position to the Camera Target 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getAspectRatio.html"&gt;AspectRatio&lt;/A&gt; which defines the aspect ratio. 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~setProjectionMode.html"&gt;ProjectionMode&lt;/A&gt; which defines whether the camera is&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.CameraProjectionMode~Perspective.html"&gt;Perspective&lt;/A&gt; or&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.CameraProjectionMode~Orthogonal.html"&gt;Orthogonal&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~setOrthoWidth.html"&gt;OrthoWidth&lt;/A&gt; and&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getOrthoHeight.html"&gt;OrthoHeight&lt;/A&gt;, which define the width, height of the projected viewport when in ProjectionMode Orthogonal. 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~setFieldOfView.html"&gt;FieldOfView&lt;/A&gt; which is the FOV of the camera in radians. 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~setNearClip.html"&gt;NearClip&lt;/A&gt; and&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getFarClip.html"&gt;FarClip&lt;/A&gt; which define when clipping of close or far objects should occur. &lt;/LI&gt;&lt;/UL&gt;
+                    <Content m="2023-07-11T09:12:13.8978912Z">&lt;P&gt;The property&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#camera"&gt;SciChart3DSurface.Camera&lt;/A&gt; defines an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/icameracontroller.html"&gt;ICameraController&lt;/A&gt; instance. By default this interface is implemented&amp;nbsp;in&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html"&gt;CameraController&lt;/A&gt;&amp;nbsp;class.&lt;/P&gt;
+&lt;P&gt;By default, the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#camera"&gt;SciChart3DSurface.Camera&lt;/A&gt; is set to a new&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html"&gt;CameraController&lt;/A&gt;&amp;nbsp;instance which defines the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html#position"&gt;position&lt;/A&gt;,&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html#target"&gt;target&lt;/A&gt; (in world coordinates) of the camera, and whether the camera is in Perspective or Orthogonal projection modes.&lt;/P&gt;
+&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/Chart3D_Camera.png"&gt;&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Above: the representation of a Camera in 3D Space. The camera is attached to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#camera"&gt;SciChart3DSurface.Camera&lt;/A&gt;&amp;nbsp;property and is defined by a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html#position"&gt;position&lt;/A&gt;,&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html#position"&gt;target&lt;/A&gt;, plus other properties which define the properties of the viewport.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/ModifyCamera3DProperties.gif"&gt;&lt;/P&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;P&gt;The&amp;nbsp;"Modify Camera3D Properties" example&amp;nbsp;shows how to manipulate the camera, and how to switch between perspective and orthoginal modes.&lt;/P&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks />
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="01b31f4f-bced-419a-a232-e11ae17a7255" Status="New Topic" CreatedOn="2019-08-05T08:01:00.2329662Z" ModifiedOn="2020-10-05T15:32:00.2652519Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Creating your first SciChartSurface3D" BuildFlags="">
-                <Title m="2020-10-05T15:08:39.2148037Z">Creating your first SciChartSurface3D</Title>
-                <ContentsTitle />
-                <Notes></Notes>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2020-10-05T15:32:00.2652519Z">&lt;P&gt;The root 3D chart view is called the &lt;B&gt;SciChart3DSurface&lt;/B&gt;. This is the JavaScript chart&amp;nbsp;control you will be adding to your applications wherever you need a 3D chart. You can add more than one SciChart3DSurface to an HTML page, you can configure them independently.&lt;/P&gt;
-&lt;P&gt;The SciChart3DSurface has the following properties an functions which allow you to configure and control the chart. More info like this can also be found at the &lt;STRONG&gt;TypeDoc API Documentation for SciChart&lt;/STRONG&gt;.&lt;/P&gt;
+&lt;H2&gt;Camera Position, Target and other Properties&lt;/H2&gt;
+&lt;P&gt;The camera is defined by a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html#position"&gt;position&lt;/A&gt;,&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html#position"&gt;target&lt;/A&gt; which are XYZ vectors in World Coordinates. These can be set in the create() function of SciChart3DSurface or after creation of the chart. &lt;/P&gt;
+&lt;P&gt;Other properties which define the viewport as seen by the camera include:&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;TABLE&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;Property&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Description&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Default&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;position&lt;/TD&gt;
+&lt;TD&gt;The position of the camera as a 3-component vector in World coordinates&lt;/TD&gt;
+&lt;TD&gt;-&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;target&lt;/TD&gt;
+&lt;TD&gt;The target (look-at) of the camera as a 3-component vector in World coordinates&lt;/TD&gt;
+&lt;TD&gt;-&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html#orbitalpitch"&gt;orbitalPitch&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;The pitch (vertical rotation angle) above or below the target in degrees.&lt;/TD&gt;
+&lt;TD&gt;-&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html#orbitalyaw"&gt;orbitalYaw&lt;/A&gt; &lt;/TD&gt;
+&lt;TD&gt;The yaw (horizontal rotation angle) around the target in degrees&lt;/TD&gt;
+&lt;TD&gt;-&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;projectionMode&lt;/TD&gt;
+&lt;TD&gt;Defines if the camera is perspectie or orthogonal&lt;/TD&gt;
+&lt;TD&gt;Perspective&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;fieldOfView&lt;/TD&gt;
+&lt;TD&gt;When projectionMode=Perspective, defines the field of view in degrees&lt;/TD&gt;
+&lt;TD&gt;60&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;radius&lt;/TD&gt;
+&lt;TD&gt;When projectionMode=Perspective get or set the distance of the camera position to target in World units.&lt;/TD&gt;
+&lt;TD&gt;-&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;orthoWidth&lt;/TD&gt;
+&lt;TD&gt;defines the width of the projected viewport when in projectionMode Orthogonal&lt;/TD&gt;
+&lt;TD&gt;600&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;orthoHeight&lt;/TD&gt;
+&lt;TD&gt;defines the height of the projected viewport when in projectionMode Perspective&lt;/TD&gt;
+&lt;TD&gt;400&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;nearClip&lt;/TD&gt;
+&lt;TD&gt;objects closer than nearClip will be hidden&lt;/TD&gt;
+&lt;TD&gt;1&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;farClip&lt;/TD&gt;
+&lt;TD&gt;objects further than farClip will be hidden&lt;/TD&gt;
+&lt;TD&gt;4000&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;A full list of properties, methods can be seen at the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html"&gt;CameraController&lt;/A&gt; Typedoc page.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Debugging Camera Properties&lt;/H3&gt;
+&lt;P&gt;You can be notified if any property on the camera is updated by subscribing to&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html#propertychanged"&gt;camera.propertyChanged&lt;/A&gt;. Note that this event will fire for properties set in code, or user input such as rotating, zooming or panning the chart.&lt;/P&gt;
+&lt;P&gt;It's also possible to debug the camera position &amp;amp; properties by calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cameracontroller.html#debugoutput"&gt;camera.debugOutput()&lt;/A&gt;. This logs properties to the console window. The same function also returns an array of strings, which you can use to update the UI. &lt;/P&gt;
+&lt;P&gt;Putting these together you can create the following example:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\CameraProperties\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/CameraProperties/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Camera Perspective vs. Orthogonal Mode&lt;/H2&gt;
+&lt;P&gt;SciChart.js 3D also has an orthogonal mode. In this mode, there is no perspective effect of lines converging or diverging and all lines in the same X,Y or Z plane are parallel.&lt;/P&gt;
+&lt;H3&gt;In Perspective Mode&lt;/H3&gt;
+&lt;P&gt;Camera position, target are obeyed. Camera.radius can be get/set to define the distance between position &amp;amp; target. Camera.fieldOfView is obeyed. &lt;/P&gt;
+&lt;H3&gt;In Orthogonal Mode&lt;/H3&gt;
+&lt;P&gt;Apparent distance to target is defined by camera.orthoWidth&amp;nbsp;and orthoHeight property. Instead of a pyramid shape for the camera view, imagine a box with parallel sides. The orthoWidth and orthoHeight specify the width and height of the view in 3D world coordinates. &lt;/P&gt;
+&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/Chart3D_Camera_Ortho.png"&gt;&lt;/P&gt;
+&lt;P&gt;In this mode, radius and fieldOfView are ignored. Update the orthoWidth and orthoHeight property to modify apparent zoom. Camera position, target&amp;nbsp;as well as orbitalPitch, orbitalYaw can be set to define camera orientation.&lt;/P&gt;
+&lt;P&gt;Find an example demonstrating camera orthogonal projection below.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\OrthogonalProjection\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/OrthogonalProjection/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
@@ -14756,49 +14785,76 @@ isPrimaryAxis switched depending on mouse over </Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="0a96bb3a-89bf-4886-9ad9-e11ad6f32c4e" Status="New Topic" CreatedOn="2019-08-05T08:43:36.5689615Z" ModifiedOn="2021-09-24T12:22:56.0789159Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Coordinates in 3D Space" BuildFlags="">
+              <Topic Id="01b31f4f-bced-419a-a232-e11ae17a7255" Status="New Topic" CreatedOn="2019-08-05T08:01:00.2329662Z" ModifiedOn="2023-07-10T15:51:37.3551661Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Creating your first SciChartSurface3D" BuildFlags="">
+                <Title m="2020-10-05T15:08:39.2148037Z">Creating your first SciChartSurface3D</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2023-07-10T15:51:37.3551661Z">&lt;P&gt;The root 3D chart view is called the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html"&gt;SciChart3DSurface&lt;/A&gt;. This is the JavaScript chart&amp;nbsp;control you will be adding to your applications wherever you need a 3D chart. You can add more than one&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html"&gt;SciChart3DSurface&lt;/A&gt; to an HTML page, you can configure them independently.&lt;/P&gt;
+&lt;P&gt;Let's start by declaring one:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\BasicChart\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/BasicChart/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Click on &lt;STRONG&gt;Edit in Codepen&lt;/STRONG&gt; above to create a copy of this example in codepen that you can edit. Note in codepen settings the reference to&amp;nbsp;&lt;A href="https://cdn.jsdelivr.net/npm/scichart/index.min.js"&gt;https://cdn.jsdelivr.net/npm/scichart/index.min.js&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Breaking the example down&lt;/H2&gt;
+&lt;H3&gt;Referencing SciChart library &amp;amp; Imports&lt;/H3&gt;
+&lt;P&gt;First need to have the correct scripts and imports. When loading SciChart.js in pure javascript (no npm), this is done by including index.min.js from &lt;A href="https://www.jsdelivr.com/package/npm/scichart"&gt;jsdelivr.com/package/npm/scichart&lt;/A&gt;&amp;nbsp;and declaring constants as follows:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Imports for SciChart3D.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;lt;script src="&lt;A href="https://cdn.jsdelivr.net/npm/scichart/index.min.js"&gt;https://cdn.jsdelivr.net/npm/scichart/index.min.js&lt;/A&gt;"&amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&lt;BR&gt;const {&lt;BR&gt;&amp;nbsp; SciChart3DSurface,&lt;BR&gt;&amp;nbsp; NumericAxis3D,&lt;BR&gt;&amp;nbsp; Vector3,&lt;BR&gt;&amp;nbsp; SciChartJsNavyTheme,&lt;BR&gt;&amp;nbsp; MouseWheelZoomModifier3D,&lt;BR&gt;&amp;nbsp; OrbitModifier3D,&lt;BR&gt;&amp;nbsp; ResetCamera3DModifier,&lt;BR&gt;} = SciChart;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;If using npm, instead you can import types from "scichart":&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Imports for SciChart3D.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// npm install scichart&lt;BR&gt;&lt;BR&gt;import {&lt;BR&gt;&amp;nbsp; SciChart3DSurface,&lt;BR&gt;&amp;nbsp; NumericAxis3D,&lt;BR&gt;&amp;nbsp; Vector3,&lt;BR&gt;&amp;nbsp; SciChartJsNavyTheme,&lt;BR&gt;&amp;nbsp; MouseWheelZoomModifier3D,&lt;BR&gt;&amp;nbsp; OrbitModifier3D,&lt;BR&gt;&amp;nbsp; ResetCamera3DModifier,&lt;BR&gt;} from "scichart";&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Creating the 3D SciChartSurface&lt;/H3&gt;
+&lt;P&gt;Once you have referenced the library and have the correct imports or constants, you can now use SciChart's API to create a 3D chart surface.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Imports for SciChart3D.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;// Create a SciChart3DSurface in the host &amp;lt;div id=".." /&amp;gt;&lt;BR&gt;const { wasmContext, sciChart3DSurface } = await SciChart3DSurface.create(divElementId, {&lt;BR&gt;&amp;nbsp; // Optional theme&lt;BR&gt;&amp;nbsp; theme: new SciChartJsNavyTheme(),&lt;BR&gt;&amp;nbsp; // Optional dimensions of the axis cube (X,Y,Z) in World coordinates&lt;BR&gt;&amp;nbsp; worldDimensions: new Vector3(300, 200, 300),&lt;BR&gt;&amp;nbsp; // Optional initial camera position and target&lt;BR&gt;&amp;nbsp; cameraOptions: {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; position: new Vector3(300, 300, 300),&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; target: new Vector3(0, 50, 0),&lt;BR&gt;&amp;nbsp; }&lt;BR&gt;});&lt;/P&gt;
+&lt;P&gt;// SciChart.js 3D supports only a single x,y,z axis. Declare your axis like this&lt;BR&gt;sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis" });&lt;BR&gt;sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, { axisTitle: "Y Axis" })&lt;BR&gt;sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Axis" });&lt;BR&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This will now show a 3D chart on the screen with default sizing of the X,Y,Z axis and position of the 3D camera.&lt;/P&gt;
+&lt;H3&gt;Serving Wasm (WebAssembly) and Data Files&lt;/H3&gt;
+&lt;P&gt;At this point you may get an error in the console depending on your environment:&lt;/P&gt;&lt;innovasys:widget type="Caution Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Could not load SciChart WebAssembly module. Check your build process and ensure that your scichart3d.wasm, scichart3d.data and scichart3d.js files are from the same version&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;If so, find out how to resolve this at the page&amp;nbsp;&lt;A href="e09e931b-15a2-4e8f-ac78-4c2822394a62"&gt;Deploying Wasm and Data files&lt;/A&gt;.&lt;/P&gt;
+&lt;H3&gt;Adding Optional Zoom &amp;amp; Pan Behaviour&lt;/H3&gt;
+&lt;P&gt;The last step, In SciChart.js interactivity is provided by ChartModifiers. These are classes which inherit &lt;STRONG&gt;ChartModifierBase&lt;/STRONG&gt; which receive events such as mouseDown, mouseMove, mouseUp. All the zooming, panning, tooltip and interaction behaviour in SciChart.js comes from the modifier API which is shared between 2D and 3D SciChart.&lt;/P&gt;
+&lt;P&gt;You can declare and add some built-in modifiers to add zooming, panning behaviour to the chart. Find these below:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Imports for SciChart3D.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// Optional: add zooming, panning for the example&lt;BR&gt;&amp;nbsp; sciChart3DSurface.chartModifiers.add(&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; new MouseWheelZoomModifier3D(), // provides camera zoom on mouse wheel&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; new OrbitModifier3D(), // provides 3d rotation on left mouse drag&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; new ResetCamera3DModifier()); // resets camera position on double-click&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Congratulations! You have just created your first SciChart3DSurface!&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="0a96bb3a-89bf-4886-9ad9-e11ad6f32c4e" Status="New Topic" CreatedOn="2019-08-05T08:43:36.5689615Z" ModifiedOn="2023-07-10T17:01:29.0502024Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Coordinates in 3D Space" BuildFlags="">
                 <Title />
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2021-09-24T12:22:56.0789159Z">&lt;H2&gt;Coordinate Systems&lt;/H2&gt;
+                    <Content m="2023-07-10T17:01:29.0502024Z">&lt;H2&gt;Coordinate Systems&lt;/H2&gt;
 &lt;H3&gt;The Left Handed Coordinate System (LHS)&lt;/H3&gt;
-&lt;P&gt;The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.SciChartSurface3D.html"&gt;SciChartSurface3D&lt;/A&gt; by default renders a 3D world using the Left Handed Coordinate system or LHS (as is common to DirectX). In the LHS X and Z form the horizontal plane, and Y is always up YDirection=(0,1,0). It is helpful to think of the 3D world as a 2D Chart in X-Y and Z goes ‘into the screen’.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/CoordinateSystem.png"&gt;&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/LeftHandedCoordinateSystem.png"&gt;&lt;/P&gt;
-&lt;P&gt;&lt;STRONG&gt;Left handed coordinate system. X-Z is a horizontal plane, Y is up.&lt;/STRONG&gt;&lt;/P&gt;
-&lt;H3&gt;Switching to Right Handed Coordinate System (RHS)&lt;/H3&gt;
-&lt;P&gt;The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.SciChartSurface3D.html"&gt;SciChartSurface3D&lt;/A&gt;&amp;nbsp;can also be rendered in the Right Handed Coordiante System (RHS) as is common to OpenGL and some CAD / Engineering packages.&lt;/P&gt;
-&lt;P&gt;To switch between the two, simply call&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.SciChartSurface3D~setIsLeftHandedCoordinateSystem.html"&gt;SciChartSurface3D.setIsLeftHandedCoordinateSystem()&lt;/A&gt;:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Switch to RHS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;surface3d.setIsLeftHandedCoordinateSystem(false);&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.SciChartSurface3D.html"&gt;SciChartSurface3D&lt;/A&gt; by default renders a 3D world using the Left Handed Coordinate system or LHS (as is common to WebGL). In the LHS X and Z form the horizontal plane, and Y is always up YDirection=(0,1,0). It is helpful to think of the 3D world as a 2D Chart in X-Y and Z goes ‘into the screen’.&lt;/P&gt;
+&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/Chart3D_LeftHandCoords.png"&gt;&lt;/P&gt;
+&lt;P&gt;&lt;IMG border=0 alt="" src="images/chart3d_xyz_axis.png"&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;Left handed coordinate system. X-Z is a horizontal plane, Y is up.&lt;/STRONG&gt;&lt;/P&gt;
 &lt;H2&gt;World Coordinates&lt;/H2&gt;
 &lt;P&gt;World Coordinates is the term used to describe coordinates in the 3D World. These are the raw X,Y,Z coordinates of a vertex. By default the origin (0,0,0) is in the centre, bottom of the chart.&lt;/P&gt;
 &lt;H3&gt;WorldDimensions and the Axis Cube&lt;/H3&gt;
-&lt;P&gt;The box in the chart is called the Axis Cube. The AxisCube size is defined by the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.SciChartSurface3D~getWorldDimensions.html"&gt;SciChartSurface3D.WorldDimensions&lt;/A&gt; property.&lt;/P&gt;
-&lt;P&gt;The WorldDimensions is a single Vector3 with X,Y,Z size, but defines the size of a cube as follows:&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/WorldCoordinates.png"&gt;&lt;/P&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;P&gt;&lt;STRONG&gt;How WorldDimensions Relates to the AxisCube in SciChart3D&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;The box in the chart is called the Axis Cube. The AxisCube size is defined by the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#worlddimensions"&gt;SciChartSurface3D.WorldDimensions&lt;/A&gt; property.&lt;/P&gt;
+&lt;P&gt;The WorldDimensions is a single&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/vector3.html"&gt;Vector3&lt;/A&gt; with X,Y,Z size, but defines the size of a cube as follows:&lt;/P&gt;
+&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/Chart3D_World_vs_data_coords2.png"&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;How WorldDimensions Relates to the AxisCube in SciChart3D&lt;/STRONG&gt;&lt;/P&gt;
 &lt;P&gt;Therefore…&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;The size of the AxisCube in the X Direction extends from -WorldDimensions.X/2 to +WorldDimensions.X/2 
 &lt;LI&gt;The size of the AxisCube in the Y Direction extends from 0 to +WorldDimensions.Y 
-&lt;LI&gt;The size of the AxisCube in the Z Direction extends from -WorldDimensions.Z/2 to +WorldDimensions.Z/2 &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;NOTE: By default, SciChart3DSurface.WorldDimensions property is set to X=300, Y=200, Z=300.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;LI&gt;The size of the AxisCube in the Z Direction extends from -WorldDimensions.Z/2 to +WorldDimensions.Z/2 &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;NOTE: By default,&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#worlddimensions"&gt;SciChart3DSurface.WorldDimensions&lt;/A&gt; property is set to X=300, Y=200, Z=300.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H3&gt;Setting the WorldDimensions Property&lt;/H3&gt;
-&lt;P&gt;To set the WorldDimensions Property, simply use the following code to define a Vector3 (3-component vector):&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Setting WorldDimensions&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;surface3d.getWorldDimensions().assign(200, 200, 200);&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;To set the WorldDimensions Property, simply use the following code to define a Vector3 (3-component vector):&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Setting WorldDimensions&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;import { SciChart3DSurface, Vector3 } from "scichart";&lt;BR&gt;&lt;BR&gt;// World dimensions can be set at creation of the chart&lt;BR&gt;const { wasmContext, sciChart3DSurface } = await SciChart3DSurface.create(divElementId, {&lt;BR&gt;&amp;nbsp; // Optional dimensions of the axis cube (X,Y,Z) in World coordinates&lt;BR&gt;&amp;nbsp; worldDimensions: new Vector3(300, 200, 300),&lt;BR&gt;});&lt;BR&gt;&lt;BR&gt;// Or, it can be set later&lt;BR&gt;sciChart3DSurface.worldDimensions = new Vector3(300, 200, 300);&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Data Coordinates&lt;/H2&gt;
-&lt;P&gt;By contrast to WorldCoordinates, which are absolute coordinates in the 3D World, in SciChart 3D there is the concept of Data Coordinates.&lt;/P&gt;
+&lt;P&gt;By contrast to WorldCoordinates, which are absolute coordinates in the 3D World, in SciChart 3D there is the concept of Data Coordinates.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;All Data in SciChart3D is provided in Data Coordinates. They are converted to World Coordinates by SciChart 3D for display on the chart.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;Data Coordinates are measured on an Axis, for example, the YAxis (which is UP) might have a size of 200 in the World Coordinates, but might display a VisibleRange of 0...10. Therefore, Data which falls int he range 0...10 will be spaced on this axis from 0...200 World Coordinates.&lt;/P&gt;
-&lt;P&gt;The difference between World Coordinates, Data Coordinates is shown in the following example:&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/DataVsWorldCoordinates.png"&gt;&lt;/P&gt;
-&lt;P&gt;&lt;STRONG&gt;How WorldDimensions Relates to the AxisCube in SciChart3D&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;The difference between World Coordinates, Data Coordinates is shown in the following diagram:&lt;/P&gt;
+&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/Chart3D_World_vs_data_coords.png"&gt;
+&lt;DIV align=left&gt;&amp;nbsp;&lt;/DIV&gt;
+&lt;P&gt;&lt;/P&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;How WorldDimensions Relates to the AxisCube in SciChart3D&lt;/STRONG&gt;&lt;/P&gt;
 &lt;H2&gt;Converting from World to Data Coordinates&lt;/H2&gt;
-&lt;P&gt;The conversion between Data Coordinates and World Coordinates is done by the Axis. For example. the follwoing code converts from Data to World Coordinates on the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.SciChartSurface3D~getXAxis.html"&gt;SciChartSurface3D.XAxis&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Converting Data to World coordinates&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;NumericAxis xAxis = ...;&lt;/P&gt;
-&lt;P&gt;final ICoordinateCalculator coordCalc = xAxis.getCurrentCoordinateCalculator();&lt;/P&gt;
-&lt;P&gt;// get world coordinate. getCoordinate() expects double value so you need to cast to double if your data is integer&lt;BR&gt;final float worldCoord = coordCalc.getCoordinate(1.23d);&lt;/P&gt;
-&lt;P&gt;// convert back to data value&lt;BR&gt;final double dataValue = coordCalc.getDataValue(worldCoord);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+&lt;P&gt;The conversion between Data Coordinates and World Coordinates is done by the Axis. For example. the following code converts from Data to World Coordinates on the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#xaxis"&gt;SciChartSurface3D.xAxis&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\CoordinateConversion\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
@@ -14841,6 +14897,35 @@ isPrimaryAxis switched depending on mouse over </Notes>
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; return view;&lt;BR&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;Usually this approach to chart&amp;nbsp;initialization&amp;nbsp;results in more concise and elegent code. It is preferred for the vast majority of examples from the&amp;nbsp;&lt;A href="http://www.scichart.com/android-chart-examples/"&gt;Android Examples Suite&lt;/A&gt;. We would recommend using it in applications too. However, it doesn't give any other benefits except those stated above, so the standard way of objects initialization is equally fine.&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="ff022bdc-cb4d-4a6b-a941-6a84a59b0f04" Status="New Topic" CreatedOn="2023-07-10T15:36:18.8282114Z" ModifiedOn="2023-07-10T15:52:16.0517896Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CreateVsCreateSingle3D" BuildFlags="">
+                <Title m="2023-07-10T15:36:37.1898397Z">SciChart3DSurface.create() vs. createSingle()</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2023-07-10T15:52:16.0517896Z">&lt;P&gt;Instantiating a new&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html"&gt;SciChart3DSurface&lt;/A&gt; (a new Chart) is accomplished with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#create" target=_blank&gt;SciChart3DSurface.create()&lt;/A&gt; function. We have some variations on this function which can be used in different scenarios. We'll go through these as well as WebAssembly (wasm) file loading below.&lt;/P&gt;
+&lt;H2&gt;SciChart3DSurface.create()&lt;/H2&gt;
+&lt;P&gt;The first function to create a 3D chart in SciChart.js is simply&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#create" target=_blank&gt;SciChart3DSurface.create()&lt;/A&gt;. This is an &lt;STRONG&gt;asynchronous static function&lt;/STRONG&gt; which places a SciChart3DSurface (a single chart with X, Y, Z axis and one to many series) into the HTML Dom. It will also load WebAssembly files and initialise our 3D WebGL engine for the first chart load.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;SciChart3DSurface.create()&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;import {SciChart3DSurface} from "scichart";&lt;/P&gt;
+&lt;P&gt;async function initSciChart1() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Assumes a div in your HTML &amp;lt;div id="scichart-div-1"&amp;gt;&amp;lt;/div&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create("scichart-div-id");&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Now manipulate the SciChart3DSurface, adding axis, series and more&lt;BR&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // When&amp;nbsp;you exit the page and no longer&amp;nbsp;want the chart to draw, call .delete() to free memory&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChart3DSurface.delete();&lt;BR&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#create" target=_blank&gt;&lt;/A&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#create"&gt;SciChart3DSurface.create()&lt;/A&gt; &lt;STRONG&gt;uses a single, shared WebGL context for all chart surfaces on the screen&lt;/STRONG&gt;. This bypasses the maximum number of WebGL contexts and you can have 10, 20, 30 or even 100 charts on an HTML page. The only limit is performance of the browser in rendering the chart surfaces. &lt;STRONG&gt;For a higher performance solution which uses one WebGL context per chart, see&amp;nbsp;&lt;/STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#createsingle" target=_blank&gt;&lt;/A&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#createSingle"&gt;SciChart3DSurface.createSingle()&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;STRONG&gt;Ensure that you await SciChart3DSurface.create().&lt;/STRONG&gt; The return type is an object containing SciChart3DSurface and its wasmContext (WebAssembly Context) which must be passed to other chart parts on this SciChart3DSurface.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;SciChart3DSurface.createSingle()&lt;/H2&gt;
+&lt;P&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#createSingle" target=_blank&gt;SciChart3DSurface.createSingle()&lt;/A&gt; is also an asynchronous static function which places a SciChart3DSurface into the DOM. However, this variation forces one WebGL context per chart. This can improve performance in multi-chart scenarios but you must obey the WebGL Context Limits per browser. More on this in our&amp;nbsp;&lt;A href="31c1fa0b-34ae-472f-b888-2de129265d50"&gt;Performance Tips&lt;/A&gt; article.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;SciChart3DSurface.createsingle()&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;import {SciChartSurface} from "scichart";&lt;/P&gt;
+&lt;P&gt;async function initSciChart1() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Assumes a div in your HTML &amp;lt;div id="scichart-div-1"&amp;gt;&amp;lt;/div&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.createSingle("scichart-div-id");&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Now manipulate the SciChart3DSurface, adding axis, series and more&lt;BR&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // When you exit the page and no longer want the chart to draw, call .delete() to free memory&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChart3DSurface.delete();&lt;BR&gt;}&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Resolving Wasm errors on load&lt;/H3&gt;
+&lt;P&gt;If you get an error when loading a SciChart3DSurface as follows:&lt;/P&gt;&lt;innovasys:widget type="Caution Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Could not load SciChart WebAssembly module. Check your build process and ensure that your scichart3d.wasm, scichart3d.data and scichart3d.js files are from the same version&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;If so, find out how to resolve this at the page&amp;nbsp;&lt;A href="e09e931b-15a2-4e8f-ac78-4c2822394a62"&gt;Deploying Wasm and Data files&lt;/A&gt;.&lt;/P&gt;
 &lt;P&gt;&lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
@@ -15039,7 +15124,7 @@ isPrimaryAxis switched depending on mouse over </Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">2164</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
