@@ -71,21 +71,21 @@ const createSpectralData = (n : number) => {
     return { xValues, yValues };
 }
 
-class CustomOffsetAxis extends NumericAxis {
-    constructor(wasmContext: TSciChart, options: INumericAxisOptions) {
-        super(wasmContext, options);
-    }
+// class CustomOffsetAxis extends NumericAxis {
+//     constructor(wasmContext: TSciChart, options: INumericAxisOptions) {
+//         super(wasmContext, options);
+//     }
 
-    public customOffset: number = 0;
+//     public customOffset: number = 0;
 
-    public get offset(): number {
-        return this.customOffset;
-    }
+//     public get offset(): number {
+//         return this.customOffset;
+//     }
 
-    public set offset(value: number) {
-        // do nothing
-    }
-}
+//     public set offset(value: number) {
+//         // do nothing
+//     }
+// }
 
 // tslint:disable-next-line:max-classes-per-file
 class CrossSectionPaletteProvider extends DefaultPaletteProvider {
@@ -120,29 +120,27 @@ const drawExample = async () => {
         const seriesCount = 50;
         for (let i = 0; i < seriesCount; i++) {
             // Create one yAxis per series
-            const yAxis = new CustomOffsetAxis(wasmContext, {
+            const yAxis = new NumericAxis(wasmContext, {
                 id: "Y" + i,
                 axisAlignment: EAxisAlignment.Left,
                 maxAutoTicks: 5,
                 drawMinorGridLines: false,
                 visibleRange: new NumberRange(-60, 60),
                 isVisible: i === seriesCount - 1,
+                overrideOffset: 3 * -i
             });
-            // This customOffset class allows us to override layout of axis/series. For more complex layouts you can use the LayoutManager class
-            yAxis.customOffset = 3 * -i;
             sciChartSurface.yAxes.add(yAxis);
 
             // Create a shared, default xaxis
-            const xAxis = new CustomOffsetAxis(wasmContext, {
+            const xAxis = new NumericAxis(wasmContext, {
                 id: "X" + i,
                 axisAlignment: EAxisAlignment.Bottom,
                 maxAutoTicks: 5,
                 drawMinorGridLines: false,
                 growBy: new NumberRange(0, 0.2),
                 isVisible: i === seriesCount - 1,
+                overrideOffset: 2 * i
             });
-            xAxis.customOffset = 2 * i;
-            // This customOffset class allows us to override layout of axis/series. For more complex layouts you can use the LayoutManager class
             sciChartSurface.xAxes.add(xAxis);
 
             // Create some data for the example

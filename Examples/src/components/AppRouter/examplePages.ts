@@ -97,6 +97,7 @@ import { heatmapInteractionsExampleInfo } from "../Examples/FeaturedApps/ShowCas
 import { depthChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/DepthChart/exampleInfo";
 import { textChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart/exampleInfo";
 import { chartTitleExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/ChartTitle/exampleInfo";
+import { backgroundAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -273,6 +274,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_chartAnnotations_DragHorizontalThreshold: {
         id: "chart2D_chartAnnotations_DragHorizontalThreshold",
         ...dragHorizontalThresholdExampleInfo
+    },
+    chart2D_chartAnnotations_BackgroundAnnotations: {
+        id: "chart2D_chartAnnotations_BackgroundAnnotations",
+        ...backgroundAnnotationsExampleInfo
     },
     featuredApps_performanceDemos_RealtimeGhostedTraces: {
         id: "featuredApps_performanceDemos_RealtimeGhostedTraces",
