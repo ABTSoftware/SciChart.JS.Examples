@@ -1,0 +1,242 @@
+import * as React from "react";
+import classes from "../../../styles/Examples.module.scss";
+import {appTheme} from "scichart-example-dependencies";
+import { happinessData } from "./happinessData";
+import {
+    SciChartSurface,
+    NumericAxis,
+    NumberRange,
+    ZoomPanModifier,
+    BoxAnnotation,
+    TextAnnotation,
+    EAnnotationLayer,
+    NativeTextAnnotation,
+    EAxisAlignment,
+    MouseWheelZoomModifier,
+    FastBubbleRenderableSeries,
+    XyzDataSeries,
+    IPointMetadata,
+    ZoomExtentsModifier,
+    EllipsePointMarker,
+    CursorModifier,
+    LogarithmicAxis,
+    ENumericFormat,
+    DefaultPaletteProvider,
+    TPointMarkerArgb,
+    parseColorToUIntArgb,
+    EHorizontalTextPosition,
+    EVerticalTextPosition,
+    SeriesInfo,
+    XyzSeriesInfo,
+    SweepAnimation,
+    ECoordinateMode,
+    EVerticalAnchorPoint
+} from "scichart";
+
+const divElementId = "chart";
+
+class ContinentPaletteProvider extends DefaultPaletteProvider {
+
+    Europe = parseColorToUIntArgb(appTheme.VividBlue);
+    Asia = parseColorToUIntArgb(appTheme.VividPurple);
+    NorthAmerica = parseColorToUIntArgb(appTheme.VividPink);
+    Oceania = parseColorToUIntArgb(appTheme.VividTeal);
+    SouthAmerica = parseColorToUIntArgb(appTheme.VividGreen);
+    Africa = parseColorToUIntArgb(appTheme.VividOrange);
+
+    overridePointMarkerArgb(xValue: number, yValue: number, index: number, opacity?: number, metadata?: IPointMetadata): TPointMarkerArgb {
+        let fill: number;
+        // @ts-ignore
+        switch (metadata.continent) {
+            case "Europe":
+                fill = this.Europe;
+                break;
+            case "Asia":
+                fill = this.Asia;
+                break;
+            case "North America":
+                fill = this.NorthAmerica;
+                break;
+            case "Oceania":
+                fill = this.Oceania;
+                break;
+            case "South America":
+                fill = this.SouthAmerica;
+                break;    
+            case "Africa":
+                fill = this.Africa;
+                break;
+            default:
+                break;
+        }
+        return { fill, stroke: undefined };
+    }
+}
+
+const drawExample = async () => {
+    // Create a SciChartSurface
+    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme,
+        title: "Happiness vs GDP"
+    });
+
+    // Create an XAxis and YAxis
+    const xAxis = new LogarithmicAxis(wasmContext, { 
+        growBy: new NumberRange(0.1, 0.1 ),
+        labelPrefix: "$",
+        labelFormat: ENumericFormat.SignificantFigures,
+        labelPrecision: 2,
+        cursorLabelFormat: ENumericFormat.Decimal,
+        logBase: 10,
+        drawMinorGridLines: false,
+        axisTitle: "GDP per Capita"
+    });
+    sciChartSurface.xAxes.add(xAxis);
+
+    const yAxis = new NumericAxis(wasmContext, { 
+        growBy: new NumberRange(0.1, 0.1 ),
+        axisAlignment: EAxisAlignment.Left,
+        drawMinorGridLines: false,
+        axisTitle: "Happiness"
+    });
+    sciChartSurface.yAxes.add(yAxis);
+
+    // Optional: Add some interactivity modifiers
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new MouseWheelZoomModifier(), new ZoomExtentsModifier(), 
+    new CursorModifier({ showTooltip: true,
+        hitTestRadius: 1,
+        tooltipContainerBackground: appTheme.MutedRed,
+        showAxisLabels: false,
+        showXLine: false,
+        showYLine: false,
+        tooltipDataTemplate: (seriesInfos: SeriesInfo[], tooltipTitle: string) => {
+            const valuesWithLabels: string[] = [];
+            const xyzSeriesInfo = seriesInfos[0] as XyzSeriesInfo;
+            if (xyzSeriesInfo.isHit) {
+                // @ts-ignore
+                valuesWithLabels.push(`${xyzSeriesInfo.pointMetadata.name}`);
+                valuesWithLabels.push(`GDP: ${xyzSeriesInfo.formattedXValue}`);
+                valuesWithLabels.push(`Happiness: ${xyzSeriesInfo.formattedYValue}`);
+                valuesWithLabels.push(`Population: ${xyzSeriesInfo.formattedZValue}`);
+            }
+            return valuesWithLabels
+        }
+    }));
+
+    // These boxes are set up so that x1,y1 is the outer corner and x2,y2 is the centre of the data
+    const x2 = 10000;
+    const y2 = 5;
+    const box1 = new BoxAnnotation({
+        annotationLayer: EAnnotationLayer.Background,
+        fill: appTheme.PaleBlue,
+        strokeThickness: 0,
+        x1: -10,
+        x2,
+        y1: 10,
+        y2
+    });
+    const box2 = new BoxAnnotation({
+        annotationLayer: EAnnotationLayer.Background,
+        fill: appTheme.PalePurple,
+        strokeThickness: 0,
+        x1: 10,
+        x2,
+        y1: 10,
+        y2
+    });
+    const box3 = new BoxAnnotation({
+        annotationLayer: EAnnotationLayer.Background,
+        fill: appTheme.PalePink,
+        strokeThickness: 0,
+        x1: -10,
+        x2,
+        y1: -10,
+        y2
+    });
+    const box4 = new BoxAnnotation({
+        annotationLayer: EAnnotationLayer.Background,
+        fill: appTheme.PaleTeal,
+        strokeThickness: 0,
+        x1: 10,
+        x2,
+        y1: -10,
+        y2
+    });
+
+    // update the outer corners of each box before the chart draws so that they always fill the plane
+    sciChartSurface.preRender.subscribe(data => {
+        box1.x1 = xAxis.visibleRange.min;
+        box2.x1 = xAxis.visibleRange.max;
+        box3.x1 = xAxis.visibleRange.min;
+        box4.x1 = xAxis.visibleRange.max;
+        box1.y1 = yAxis.visibleRange.min;
+        box2.y1 = yAxis.visibleRange.min;
+        box3.y1 = yAxis.visibleRange.max;
+        box4.y1 = yAxis.visibleRange.max;
+    });
+    sciChartSurface.annotations.add(box1, box2, box3, box4);   
+   
+    const xValues: number[] = [];
+    const yValues: number[] = [];
+    const zValues: number[] = [];
+    const metadata: any[] = [];
+    for (const item of happinessData) {
+        xValues.push(parseFloat(item.GDP));
+        yValues.push(parseFloat(item.Happiness));
+        zValues.push((Math.log2(parseInt(item.Population)) - 18) * 5);
+        //console.log(item.Entity, parseFloat(item.GDP), parseFloat(item.Happiness));
+        metadata.push({ isSelected: false, name: item.Entity, continent: item.Continent });
+    }
+    const dataSeries = new XyzDataSeries(wasmContext, { xValues, yValues, zValues, metadata});
+    const series = new FastBubbleRenderableSeries(wasmContext, { dataSeries,
+        paletteProvider: new ContinentPaletteProvider(),
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 64,
+            height: 64,
+            opacity: 0.6,
+        }),
+        dataLabels: {
+            color: "black",
+            style: {
+                fontFamily: "Arial",
+                fontSize: 14
+            },
+            horizontalTextPosition: EHorizontalTextPosition.Center,
+            verticalTextPosition: EVerticalTextPosition.Below,
+            metaDataSelector: (metadata => (metadata as any).name)
+        },
+        animation: new SweepAnimation({ duration: 2000 })
+    });
+    sciChartSurface.renderableSeries.add(series);
+
+    sciChartSurface.annotations.add(new TextAnnotation({
+        xCoordinateMode: ECoordinateMode.Pixel,
+        yCoordinateMode: ECoordinateMode.Pixel,
+        x1: 20,
+        y1: 10,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        text: "Bubble size represents population",
+        fontSize: 16,
+        fontFamily: "Arial",
+        textColor: appTheme.ForegroundColor
+
+    }))
+
+    sciChartSurface.zoomExtents();
+    return {sciChartSurface, wasmContext};
+};
+
+export default function BackgroundAnnotations() {
+    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+
+    React.useEffect(() => {
+        (async () => {
+            const res = await drawExample();
+            setSciChartSurface(res.sciChartSurface);
+        })();
+        // Delete sciChartSurface on unmount component to prevent memory leak
+        return () => sciChartSurface?.delete();
+    }, []);
+
+    return <div id={divElementId} className={classes.ChartWrapper}/>;
+}
