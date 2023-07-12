@@ -2358,16 +2358,28 @@ isPrimaryAxis switched depending on mouse over </Notes>
             <TocNode Name="" Id="900eca10-1404-4915-829d-ff0e8ffb3bbd" IconIndex="1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
               <CaptionTemplate m="2019-07-22T12:07:53.3845788Z">Axis3D APIs</CaptionTemplate>
               <ChildNodes>
-                <TocNode Name="" Id="a50c3f69-c85b-40d6-89a0-48b1c710532b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="022adc1a-0a2c-42ad-934a-aa9c2b427977" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>1d18444a-b912-4bcc-ae02-96bde1620a21</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+                <TocNode Name="" Id="a50c3f69-c85b-40d6-89a0-48b1c710532b" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>1f42648d-b868-4793-8ab7-b44504f33f99</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
-                <TocNode Name="" Id="022adc1a-0a2c-42ad-934a-aa9c2b427977" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="0fc7ea28-a66a-4015-b0ca-8521c36d60fd" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
-                  <TargetItemId>1d18444a-b912-4bcc-ae02-96bde1620a21</TargetItemId>
+                  <TargetItemId>8f08a07b-da4d-4872-83de-412850826296</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+                <TocNode Name="" Id="3478f940-0452-49c7-9a27-dab9d39b4674" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>7e505bd8-0973-4529-a8fb-4510d84addb6</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
                 <TocNode Name="" Id="0c97d207-89fd-4c2f-8f66-f66afc6df9dd" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
@@ -14001,8 +14013,8 @@ isPrimaryAxis switched depending on mouse over </Notes>
             <Caption m="2019-07-08T10:32:17.0279208Z">Axis3D APIs</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="1f42648d-b868-4793-8ab7-b44504f33f99" Status="New Topic" CreatedOn="2019-07-08T10:32:21.0237301Z" ModifiedOn="2023-07-11T17:55:21.4518429Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Types in SciChart3D" BuildFlags="">
-                <Title />
+              <Topic Id="1f42648d-b868-4793-8ab7-b44504f33f99" Status="New Topic" CreatedOn="2019-07-08T10:32:21.0237301Z" ModifiedOn="2023-07-12T15:34:57.03915Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Types in SciChart3D" BuildFlags="">
+                <Title m="2023-07-12T15:34:57.03915Z">Numeric and Date Axis in SciChart3D</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
@@ -14027,47 +14039,108 @@ isPrimaryAxis switched depending on mouse over </Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="1d18444a-b912-4bcc-ae02-96bde1620a21" Status="New Topic" CreatedOn="2019-07-08T11:53:54.69086Z" ModifiedOn="2019-09-23T13:03:44.0370404Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis3D APIs" BuildFlags="">
-                <Title />
+              <Topic Id="1d18444a-b912-4bcc-ae02-96bde1620a21" Status="New Topic" CreatedOn="2019-07-08T11:53:54.69086Z" ModifiedOn="2023-07-12T16:00:45.4792038Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis3D APIs" BuildFlags="">
+                <Title m="2023-07-12T15:30:27.1472048Z">Axis3D APIs Overview</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2019-09-23T13:03:44.0370404Z">&lt;P&gt;SciChart 3D shares the same&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.axes.AxisCore.html"&gt;AxisCore&lt;/A&gt; as SciChart 2D. Many of the following features are shared. For your convenience, some of the documentation has been duplicated here, with some referring to other sections of the user manual.&lt;/P&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;H2&gt;Axis 3D TextFormatting&lt;/H2&gt;
-&lt;P&gt;All Axis obey standard Java formatting strings via the&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.axes.AxisCore~getTextFormatting.html"&gt;TextFormatting&lt;/A&gt; and&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.axes.AxisCore~getCursorTextFormatting.html"&gt;CursorTextFormatting&lt;/A&gt; property.&lt;/P&gt;
-&lt;P&gt;e.g. several examples can be found at the following articles:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;A href="905dc605-3914-4824-9eb6-2e5d969f8475"&gt;Axis TextFormatting and CursorTextFormatting&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Axis LabelProvider API&lt;/A&gt; (Dynamic or complex text formatting) &lt;/LI&gt;&lt;/UL&gt;
-&lt;H2&gt;Axis 3D AutoRanging &amp;amp; Setting VisibleRange&lt;/H2&gt;
-&lt;P&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.axes.AxisBase3D.html"&gt;AxisBase3D&lt;/A&gt; derived Types also have AutoRanging behaviour as per the 2D axis types. The AxisCore.AutoRange property defines how the axis will autorange when data is changed.&lt;/P&gt;
-&lt;P&gt;The AxisCore.VisibleRange property allows you to set or get the VisibleRange on the axis.&lt;/P&gt;
+                    <Content m="2023-07-12T16:00:45.4792038Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;SciChart.js 3D shares the same&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html"&gt;AxisCore&lt;/A&gt; as SciChart.js 2D. Many features such as &lt;STRONG&gt;Text Formatting&lt;/STRONG&gt;, &lt;STRONG&gt;Autorange&lt;/STRONG&gt; (zooming to fit) and &lt;STRONG&gt;Styling&lt;/STRONG&gt; &lt;STRONG&gt;are&lt;/STRONG&gt; &lt;STRONG&gt;shared&lt;/STRONG&gt;.&amp;nbsp;For your convenience, some of the documentation has been duplicated here, with some referring to other sections of the user manual.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The Axis Types in SciChart all inherit from&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html"&gt;AxisCore&lt;/A&gt;&amp;nbsp;and 3D axis inherit&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html"&gt;AxisBase3D&lt;/A&gt;. Below you can find an inheritance diagram. In the next section we're going to go over the main properties, types and what you can do with SciChart.js 3D Axis.&lt;/P&gt;
+&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/AxisBase2D_InheritenceDiagram.png"&gt;&lt;/P&gt;
+&lt;H3&gt;The AxisCore Type&lt;/H3&gt;
+&lt;P&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html"&gt;AxisCore&lt;/A&gt; properties and methods can be seen at the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html"&gt;TypeDoc documentation&lt;/A&gt;. We've also included a table of important properties below. Click on each link to jump to the TypeDoc documentation where you can see a description and type information.&lt;/P&gt;
+&lt;UL class=tsd-index-list style='LIST-STYLE-TYPE: none; FONT-SIZE: 16px; FONT-FAMILY: "Segoe UI", sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(34,34,34); PADDING-BOTTOM: 0px; FONT-STYLE: normal; PADDING-TOP: 0px; PADDING-LEFT: 0px; ORPHANS: 2; WIDOWS: 2; MARGIN: 1em 0px; LETTER-SPACING: normal; LINE-HEIGHT: 1.33em; PADDING-RIGHT: 0px; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; column-count: 3; column-gap: 20px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial'&gt;
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#allowfastmath"&gt;allow&lt;WBR&gt;Fast&lt;WBR&gt;Math&lt;/A&gt; 
+&lt;LI class="tsd-kind-get-signature tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#animatedvisiblerange"&gt;animated&lt;WBR&gt;Visible&lt;WBR&gt;Range&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#autorange"&gt;auto&lt;WBR&gt;Range&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#autoticks"&gt;auto&lt;WBR&gt;Ticks&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#axisbandsfill"&gt;axis&lt;WBR&gt;Bands&lt;WBR&gt;Fill&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#axistitle"&gt;axis&lt;WBR&gt;Title&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#axistitlestyle"&gt;axis&lt;WBR&gt;Title&lt;WBR&gt;Style&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#cursortextformatting"&gt;cursor&lt;WBR&gt;Text&lt;WBR&gt;Formatting&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#deltacalculator"&gt;delta&lt;WBR&gt;Calculator&lt;/A&gt; 
+&lt;LI class="tsd-kind-get-signature tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#dpiadjustedaxistitlestyle"&gt;dpi&lt;WBR&gt;Adjusted&lt;WBR&gt;Axis&lt;WBR&gt;Title&lt;WBR&gt;Style&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#drawlabels"&gt;draw&lt;WBR&gt;Labels&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#drawmajorbands"&gt;draw&lt;WBR&gt;Major&lt;WBR&gt;Bands&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#drawmajorgridlines"&gt;draw&lt;WBR&gt;Major&lt;WBR&gt;Grid&lt;WBR&gt;Lines&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#drawmajorticklines"&gt;draw&lt;WBR&gt;Major&lt;WBR&gt;Tick&lt;WBR&gt;Lines&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#drawminorgridlines"&gt;draw&lt;WBR&gt;Minor&lt;WBR&gt;Grid&lt;WBR&gt;Lines&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#drawminorticklines"&gt;draw&lt;WBR&gt;Minor&lt;WBR&gt;Tick&lt;WBR&gt;Lines&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#flippedcoordinates"&gt;flipped&lt;WBR&gt;Coordinates&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#growby"&gt;grow&lt;WBR&gt;By&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#id"&gt;id&lt;/A&gt; 
+&lt;LI class="tsd-kind-get-signature tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#iscategoryaxis"&gt;is&lt;WBR&gt;Category&lt;WBR&gt;Axis&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#isvisible"&gt;is&lt;WBR&gt;Visible&lt;/A&gt; 
+&lt;LI class="tsd-kind-get-signature tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#isxaxis"&gt;isXAxis&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#labelprovider"&gt;label&lt;WBR&gt;Provider&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#majordelta"&gt;major&lt;WBR&gt;Delta&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#majorgridlinestyle"&gt;major&lt;WBR&gt;Grid&lt;WBR&gt;Line&lt;WBR&gt;Style&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#majorticklinestyle"&gt;major&lt;WBR&gt;Tick&lt;WBR&gt;Line&lt;WBR&gt;Style&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#maxautoticks"&gt;max&lt;WBR&gt;Auto&lt;WBR&gt;Ticks&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#minordelta"&gt;minor&lt;WBR&gt;Delta&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#minorgridlinestyle"&gt;minor&lt;WBR&gt;Grid&lt;WBR&gt;Line&lt;WBR&gt;Style&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#minorticklinestyle"&gt;minor&lt;WBR&gt;Tick&lt;WBR&gt;Line&lt;WBR&gt;Style&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#minorspermajor"&gt;minors&lt;WBR&gt;Per&lt;WBR&gt;Major&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#textformatting"&gt;text&lt;WBR&gt;Formatting&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#tickcoordinatesprovider"&gt;tick&lt;WBR&gt;Coordinates&lt;WBR&gt;Provider&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#tickprovider"&gt;tick&lt;WBR&gt;Provider&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#visiblerange"&gt;visible&lt;WBR&gt;Range&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Some important properties to note: &lt;STRONG&gt;autoRange&lt;/STRONG&gt;, &lt;STRONG&gt;textFormatting&lt;/STRONG&gt;, &lt;STRONG&gt;major/minorGridLineStyle&lt;/STRONG&gt; and properties like &lt;STRONG&gt;drawLabels&lt;/STRONG&gt;, &lt;STRONG&gt;drawMajorGridlines&lt;/STRONG&gt; etc...&amp;nbsp;&amp;nbsp;We're going to explain more on how to use these later.&lt;/P&gt;
+&lt;H3&gt;The AxisBase3D Type&lt;/H3&gt;
+&lt;P&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html"&gt;AxisBase3D&lt;/A&gt; inherits AxisCore and has some additional properties specific to 3D charts. These include:&lt;/P&gt;
+&lt;UL class=tsd-index-list style='LIST-STYLE-TYPE: none; FONT-SIZE: 16px; FONT-FAMILY: "Segoe UI", sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(34,34,34); PADDING-BOTTOM: 0px; FONT-STYLE: normal; PADDING-TOP: 0px; PADDING-LEFT: 0px; ORPHANS: 2; WIDOWS: 2; MARGIN: 1em 0px; LETTER-SPACING: normal; LINE-HEIGHT: 1.33em; PADDING-RIGHT: 0px; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; column-count: 3; column-gap: 20px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial'&gt;
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#axisplanebackgroundfill"&gt;axis&lt;WBR&gt;Plane&lt;WBR&gt;Background&lt;WBR&gt;Fill&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#backgroundcolor"&gt;background&lt;WBR&gt;Color&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#labeldepthtestenabled"&gt;label&lt;WBR&gt;Depth&lt;WBR&gt;Test&lt;WBR&gt;Enabled&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#negativesideclipping"&gt;negative&lt;WBR&gt;Side&lt;WBR&gt;Clipping&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#planebordercolor"&gt;plane&lt;WBR&gt;Border&lt;WBR&gt;Color&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#planeborderthickness"&gt;plane&lt;WBR&gt;Border&lt;WBR&gt;Thickness&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#positivesideclipping"&gt;positive&lt;WBR&gt;Side&lt;WBR&gt;Clipping&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#ticklabelalignment"&gt;tick&lt;WBR&gt;Label&lt;WBR&gt;Alignment&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#ticklabelsoffset"&gt;tick&lt;WBR&gt;Labels&lt;WBR&gt;Offset&lt;/A&gt; 
+&lt;LI class="tsd-kind-accessor tsd-parent-kind-class" style="break-inside: avoid"&gt;&lt;A class=tsd-kind-icon style="TEXT-DECORATION: none; POSITION: relative; COLOR: rgb(77,166,255); PADDING-LEFT: 20px; DISPLAY: block; TEXT-INDENT: -20px" href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#titleoffset"&gt;title&lt;WBR&gt;Offset&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;H2&gt;Basic Examples of how to declare an Axis&lt;/H2&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;For a super-simple primer with code sample on how to declare an axis in SciChart.js 3D, see the article&amp;nbsp;&lt;A href="1f42648d-b868-4793-8ab7-b44504f33f99"&gt;Numeric and Date Axis in SciChart3D&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Axis 3D APIs&lt;/H2&gt;
+&lt;P&gt;Below are the key things you can do with the axis in SciChart.js 3D and where to find more information.&lt;/P&gt;
+&lt;H3&gt;Axis 3D Text (Label) Formatting&lt;/H3&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;All Axis in SciChart use the labelProviders to format text for the axis labels and cursor (tooltip) labels.&lt;/P&gt;
+&lt;P&gt;Background information can be found&amp;nbsp;found at the&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Axis LabelProvider API Overview&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;Specific example code for formatting 3D Axis text labels can be found in the article&amp;nbsp;&lt;A href="8f08a07b-da4d-4872-83de-412850826296"&gt;Axis3D Text (Label) Formatting)&lt;/A&gt;.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Axis 3D AutoRanging &amp;amp; Setting VisibleRange&lt;/H3&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html"&gt;AxisBase3D&lt;/A&gt; derived Types also have auto-ranging behaviour as per the 2D axis types. The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#autorange"&gt;axis.autoRange&lt;/A&gt; property defines how the axis will autorange when data is changed.&lt;/P&gt;
+&lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#visiblerange"&gt;axis.visibleRange&lt;/A&gt; property allows you to set or get the min, max on the axis.&lt;/P&gt;
+&lt;P&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#growby"&gt;axis.growBy&lt;/A&gt; allows you to set padding on the visibleRange.&lt;/P&gt;
+&lt;P&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#visiblerangechanged"&gt;axis.visibleRangeChanged&lt;/A&gt; is an event or callback which fires when the range is updated.&lt;/P&gt;
 &lt;P&gt;For more info see:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="f43a75da-4a63-41a6-8db9-ff0ea13a5198"&gt;Axis Ranging - AutoRanging&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="494e52f8-99aa-417d-b80e-819c259dbb08"&gt;Axis Ranging - VisibleRange and DataRange&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="1af2411a-a194-4bbe-9a3b-efe4a4caf49a"&gt;Axis Ranging -&amp;nbsp;Restricting VisibleRange&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;NOTE: In a 3D Axis, AutoRanging means ‘given a fixed size of Axis in 3D world coordinates, change the VisibleRange Max/Min to fit the data’. Dynamically positioning the camera to view all of the 3D Chart is known as ‘Zoom to Fit’ and is performed by&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.Camera3D~zoomToFit.html"&gt;Camera3D.zoomToFit()&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
-&lt;H2&gt;Axis 3D Tick Frequency&lt;/H2&gt;
-&lt;P&gt;In SciChart, the ticks are small marks around the chart on an axis. They Also define the spacing of Gridlines, Axis Labels and Axis Bands.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/Axis3DTickFrequency.png"&gt;&amp;nbsp;&lt;/P&gt;
-&lt;DIV align=left&gt;&lt;/DIV&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;P&gt;AxisBase3D tick intervals can be changed using the same APIs as SciChart 2D. For further information see:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;A href="463d136b-fe1f-4960-85ac-9cb15ceb1d21"&gt;Axis Ticks - MajorDelta, MinorDelta and AutoTicks&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="965db259-73ff-4df0-b49d-b539f7a304a2"&gt;Axis Ticks - TickProvider and DeltaCalculator API&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;</Content>
+&lt;LI&gt;&lt;A href="dfe50e75-c34a-4d96-98c7-9ce9855956cd"&gt;Axis Ranging - Setting and Getting VisibleRange&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="75091468-bbf7-49ad-9841-c5d935660429"&gt;Axis Ranging - Listen to VisibleRange Changes&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;EM&gt;&lt;STRONG&gt;NOTE&lt;/STRONG&gt;: In a 3D Axis, AutoRanging means ‘given a fixed size of Axis in 3D world coordinates, change the VisibleRange Max/Min to fit the data’.&lt;/EM&gt;&lt;/P&gt;
+&lt;P&gt;&lt;EM&gt;Dynamically positioning the camera to view all of the 3D Chart would require updating the camera position, target. See the&amp;nbsp;&lt;/EM&gt;&lt;A href="e3c137ff-6d4e-44e5-9542-bbb00b65e3c1"&gt;&lt;EM&gt;article on Camera 3D&lt;/EM&gt;&lt;/A&gt; &lt;EM&gt;for more information.&lt;/EM&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Axis 3D Tick / Label Frequency&lt;/H3&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;In SciChart.js, the ticks are small marks around the chart on an axis. They Also define the spacing of Gridlines, Axis Labels and Axis Bands.&lt;/P&gt;
+&lt;P&gt;AxisBase3D tick intervals can be changed using the same APIs as SciChart 2D. For further information see&amp;nbsp;&lt;A href="7e505bd8-0973-4529-a8fb-4510d84addb6"&gt;Axis 3D Gridline and Label Spacing&lt;/A&gt;.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Axis 3D Element Styling&lt;/H3&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;For styling gridlines, labels and titles, the rules in SciChart.js 3D are the same as 2D charts.&lt;/P&gt;
+&lt;P&gt;There are some addditional elements on the 3D chart which can be styled, such as the axis walls. For more info see the article on&amp;nbsp;&lt;A href="8c00716b-2379-46f2-8cd1-a26dd54a3115"&gt;Styling Axis3D Gridlines, Labels and Elements&lt;/A&gt;.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                   </TopicSection>
                 </TopicSections>
-                <TopicLinks />
+                <TopicLinks>
+                  <TopicLink Id="ccd191bf-9391-4e40-9334-0184c5cba428" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="1f42648d-b868-4793-8ab7-b44504f33f99" BuildFlags="">
+                    <Title />
+                    <Category />
+                  </TopicLink>
+                </TopicLinks>
                 <TopicKeywords />
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="6cc44150-883d-41f3-818c-0068615c6a34" Status="New Topic" CreatedOn="2019-07-08T11:54:15.0322699Z" ModifiedOn="2021-09-24T12:22:56.3591659Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Advanced Axis3D APIs" BuildFlags="">
+              <Topic Id="6cc44150-883d-41f3-818c-0068615c6a34" Status="New Topic" CreatedOn="2019-07-08T11:54:15.0322699Z" ModifiedOn="2023-07-12T15:44:36.325484Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Advanced Axis3D APIs" BuildFlags="">
                 <Title />
-                <ContentsTitle />
+                <ContentsTitle m="2023-07-12T15:44:36.325484Z">Advanced Axis3D APIs</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
@@ -14108,8 +14181,8 @@ isPrimaryAxis switched depending on mouse over </Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="8c00716b-2379-46f2-8cd1-a26dd54a3115" Status="New Topic" CreatedOn="2019-07-09T08:26:29.8963497Z" ModifiedOn="2019-09-23T13:08:56.132619Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Styling Axis3D Gridlines and Labels" BuildFlags="">
-                <Title />
+              <Topic Id="8c00716b-2379-46f2-8cd1-a26dd54a3115" Status="New Topic" CreatedOn="2019-07-09T08:26:29.8963497Z" ModifiedOn="2023-07-12T16:00:59.0766193Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Styling Axis3D Gridlines and Labels" BuildFlags="">
+                <Title m="2023-07-12T16:00:59.0766193Z">Styling Axis3D Gridlines, Labels and Elements</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
@@ -14161,6 +14234,51 @@ isPrimaryAxis switched depending on mouse over </Notes>
 &lt;P&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.axes.AxisPlaneDrawLabelsMode~AxisPlaneDrawLabelsLocalY.html"&gt;AxisPlaneDrawLabelsLocalY&lt;/A&gt; draws the labels on the other side (the local Y) of the plane.&lt;/P&gt;
 &lt;P&gt;&lt;IMG border=0 alt="" src="images/LocalXyPlane-min.png"&gt;&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="8f08a07b-da4d-4872-83de-412850826296" Status="New Topic" CreatedOn="2023-07-12T15:42:58.9154944Z" ModifiedOn="2023-07-12T16:35:56.9867666Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis3DTextFormatting" BuildFlags="">
+                <Title m="2023-07-12T15:43:21.6856768Z">Axis3D Text (Label) Formatting</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2023-07-12T16:35:56.9867666Z">&lt;P&gt;Axis 3D Label Formatting obeys the same rules as SciChart 2D. &lt;/P&gt;
+&lt;P&gt;Each axis has a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase3d.html#labelprovider"&gt;labelProvider&lt;/A&gt; property, which allows you to attach pre-built classes to format numbers, dates, as well as create your own. There are also a number of properties&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Background reading: Read the&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Axis LabelProvider API Overview&lt;/A&gt; to learn more about this powerful API&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Simple examples of formatting Labels&lt;/H2&gt;
+&lt;P&gt;Axis can have simple label formatting via constructor options. Things like setting the &lt;STRONG&gt;number of decimal places&lt;/STRONG&gt;, &lt;STRONG&gt;prefix&lt;/STRONG&gt; and &lt;STRONG&gt;postfix&lt;/STRONG&gt;, and &lt;STRONG&gt;scientific notation&lt;/STRONG&gt; can be achieved by just setting some properties. &lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\NumericAxis3D\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/NumericAxis3D/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Date Formatting&lt;/H2&gt;
+&lt;P&gt;There is no date axis in SciChart.js 3D, however it is possible to achieve date or time formatting using labelProviders. Take a look at this quick example:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\DateAxis3D\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/DateAxis3D/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Custom Label Formatting Rules&lt;/H2&gt;
+&lt;P&gt;Using the labelProvider API, more complex rules can be created to format axis labels in SciChart.js 3D. &lt;/P&gt;
+&lt;P&gt;Below we've adapted the example from&amp;nbsp;&lt;A href="e9747ecc-a3cd-456b-9180-c47daead66ef"&gt;2D Charts - Custom LabelProviders: Readable Numbers&lt;/A&gt; to apply it to a 3D axis.&lt;/P&gt;
+&lt;P&gt;First, delcare the custom LabelProvider class by inheriting one of the available base types in SciChart.js.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\LabelProviderNumeric3D\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Next, attach to a chart axis like this:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\LabelProviderNumeric3D\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/LabelProviderNumeric3D/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="7e505bd8-0973-4529-a8fb-4510d84addb6" Status="New Topic" CreatedOn="2023-07-12T15:43:32.3936572Z" ModifiedOn="2023-07-12T15:44:28.6231545Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis3DLabelInterval" BuildFlags="">
+                <Title m="2023-07-12T15:44:28.622138Z">Axis3D Gridline and Label Spacing (Interval)</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2023-07-12T15:43:32.3936572Z">&lt;p&gt; &lt;/p&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
@@ -15117,7 +15235,7 @@ isPrimaryAxis switched depending on mouse over </Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">1192</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">917</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
