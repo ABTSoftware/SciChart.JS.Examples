@@ -43,7 +43,7 @@ async function dataSeriesReplacing(divElementId) {
   const updateCallback = () => {
     const xValues = [];
     const yValues = [];
-    for(i = 0; i < 100; i++) {
+    for(let i = 0; i < 100; i++) {
       xValues.push(i);
       yValues.push(Math.random() * Math.sin(i*0.1) - Math.cos(i * 0.01));
     }
