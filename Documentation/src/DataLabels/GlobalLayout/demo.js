@@ -1,15 +1,26 @@
-const {
-    SciChartSurface,
-    NumericAxis,
-    FastLineRenderableSeries,
-    EllipsePointMarker,
-    XyDataSeries,
-    NumberRange,
-    testIsInBounds,
-  } = SciChart;
 
 async function dataLabelGlobalLayout(divElementId) {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    // #region ExampleA
+    const {
+        SciChartSurface,
+        NumericAxis,
+        FastLineRenderableSeries,
+        EllipsePointMarker,
+        XyDataSeries,
+        NumberRange,
+        testIsInBounds,
+        SciChartJsNavyTheme
+    } = SciChart;
+
+    // or, for npm, import { SciChartSurface, ... } from "scichart"
+
+    // Create a chart with two line series
+    //
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: new SciChartJsNavyTheme(),
+        title: "Skip overlapping labels across series",
+        titleStyle: { fontSize: 20 }
+    });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
@@ -64,6 +75,7 @@ async function dataLabelGlobalLayout(divElementId) {
 
     sciChartSurface.renderableSeries.add(lineSeries2);
 
+    // Override the default data label layout manager and perform custom label layout
     sciChartSurface.dataLabelLayoutManager = {
         performTextLayout(sciChartSurface, renderPassInfo) {
             const firstLabels = renderPassInfo.renderableSeriesArray[0].dataLabelProvider.dataLabels;
@@ -71,13 +83,18 @@ async function dataLabelGlobalLayout(divElementId) {
             for (const label of secondLabels) {
                 let overlap = false;
                 for (const existing of firstLabels) {
-                    const { top, left, bottom, right } = existing.rect;
+                    const padding = 2;
+                    const top = existing.rect.top - padding;
+                    const bottom = existing.rect.bottom + padding;
+                    const left = existing.rect.left - padding;
+                    const right = existing.rect.right + padding;
                     if (testIsInBounds(label.rect.left, label.rect.top, left, bottom, right, top ) ||
                         testIsInBounds(label.rect.right, label.rect.top, left, bottom, right, top) ||
                         testIsInBounds(label.rect.left, label.rect.bottom, left, bottom, right, top) ||
                         testIsInBounds(label.rect.right, label.rect.bottom, left, bottom, right, top)) {
-                    overlap = true;
-                    break;
+                        // console.log(`Label ${label.text} overlaps ${existing.text}, skipping...`);
+                        overlap = true;
+                        break;
                     }
                 } 
                 if (overlap) {
@@ -87,6 +104,7 @@ async function dataLabelGlobalLayout(divElementId) {
             }
         }
     }
+    // #endregion ExampleA
 }
 
 dataLabelGlobalLayout('scichart-root')

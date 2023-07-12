@@ -23,7 +23,13 @@ app.get("*", async (req: Request, res: Response) => {
       reqPath = reqPath.substring(0, reqPath.indexOf("docembed"));
       isDocEmbed = true;
     }
+    if (reqPath.includes("socket.io")) {
+      console.log(`what the heck? Socket.io is polling you ${req.url}`);
+      // Ignore
+      return;
+    }
     let basePath = path.join(__dirname, "../src", reqPath);
+    console.log(`Handling request for reqPath: ${reqPath}, basePath: ${basePath}`);
     if (reqPath.endsWith("html")) {
       res.sendStatus(404);
     }

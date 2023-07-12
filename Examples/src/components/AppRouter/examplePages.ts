@@ -47,11 +47,13 @@ import { seriesSelectionExampleInfo } from "../Examples/Charts2D/TooltipsAndHitt
 import { usingCursorModifierTooltipsExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips/exampleInfo";
 import { bubble3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/exampleInfo";
 import { surfaceMesh3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/exampleInfo";
+import { pointLine3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/PointLine3DChart/exampleInfo";
 import { load500By500ExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/Load500By500/exampleInfo";
 import { realtimePerformanceDemoExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo/exampleInfo";
 import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/exampleInfo";
 import { lidar3DPointCloudExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/exampleInfo";
 import { audioAnalyzerExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/exampleInfo";
+import { waterfallChartExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/exampleInfo";
 import { TPage } from "./pages";
 import { tenorCurvesExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/exampleInfo";
 import { loadOneMillionPointsExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/exampleInfo";
@@ -95,6 +97,7 @@ import { heatmapInteractionsExampleInfo } from "../Examples/FeaturedApps/ShowCas
 import { depthChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/DepthChart/exampleInfo";
 import { textChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart/exampleInfo";
 import { chartTitleExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/ChartTitle/exampleInfo";
+import { backgroundAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -272,6 +275,10 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart2D_chartAnnotations_DragHorizontalThreshold",
         ...dragHorizontalThresholdExampleInfo
     },
+    chart2D_chartAnnotations_BackgroundAnnotations: {
+        id: "chart2D_chartAnnotations_BackgroundAnnotations",
+        ...backgroundAnnotationsExampleInfo
+    },
     featuredApps_performanceDemos_RealtimeGhostedTraces: {
         id: "featuredApps_performanceDemos_RealtimeGhostedTraces",
         ...realtimeGhostedTracesExampleInfo
@@ -448,6 +455,10 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart3D_basic3DChartTypes_SurfaceMesh3DChart",
         ...surfaceMesh3DChartExampleInfo
     },
+    chart3D_basic3DChartTypes_PointLine3DChart: {
+        id: "chart3D_basic3DChartTypes_PointLine3DChart",
+        ...pointLine3DChartExampleInfo
+    },
     featuredApps_performanceDemos_Load500By500: {
         id: "featuredApps_performanceDemos_Load500By500",
         ...load500By500ExampleInfo
@@ -483,6 +494,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_scientificCharts_AudioAnalyzerDemo: {
         id: "featuredApps_scientificCharts_AudioAnalyzerDemo",
         ...audioAnalyzerExampleInfo
+    },
+    featuredApps_scientificCharts_WaterfallChartDemo: {
+        id: "featuredApps_scientificCharts_WaterfallChartDemo",
+        ...waterfallChartExampleInfo
     },
     featuredApps_scientificCharts_TenorCurvesDemo: {
         id: "featuredApps_scientificCharts_TenorCurvesDemo",

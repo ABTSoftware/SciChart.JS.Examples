@@ -25,8 +25,8 @@ async function labelFormattingWithDateTimeNumericAxis(divElementId) {
 
   // #region ExampleA
   // If you want to show an XAxis with custom label formats
-  const minDate = new Date("2023-03-1");
-  const maxDate = new Date("2023-03-3");
+  const minDate = new Date("2023-03-01");
+  const maxDate = new Date("2023-03-03");
 
   // Create the axis. SmartDateLabelProvider is automatically applied to labelProvider property
   const xAxis = new DateTimeNumericAxis(wasmContext, {
@@ -110,8 +110,8 @@ async function builderExample(divElementId) {
 
   // #region ExampleB
   // If you want to show an XAxis with dates and dynamic label formats
-  const minDate = new Date("2023-03-1");
-  const maxDate = new Date("2023-03-3");
+  const minDate = new Date("2023-03-01");
+  const maxDate = new Date("2023-03-03");
 
   const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, {
     surface: { theme: { type: EThemeProviderType.Dark } },

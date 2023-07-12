@@ -63,11 +63,12 @@ import RealtimePerformanceDemo from "../Examples/FeaturedApps/PerformanceDemos/R
 
 import VitalSignsMonitorDemo from "../Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo";
 import SurfaceMesh3DChart from "../Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart";
-
+import PointLine3DChart from "../Examples/Charts3D/Basic3DChartTypes/PointLine3DChart";
 import LiDAR3DPointCloudDemo from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo";
 
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import AudioAnalyzer from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer";
+import WaterfallChart from "../Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart";
 import TenorCurves3DChart from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D";
 import Load1MillionPointsChart from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints";
 import DragAxisToScale from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale";
@@ -105,6 +106,7 @@ import VirtualizedDataOverview from "../Examples/Charts2D/ZoomingAndPanning/Virt
 import HeatmapInteractions from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions";
 import DepthChart from "../Examples/Charts2D/CreateStockCharts/DepthChart";
 import TextChart from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart";
+import BackgroundAnnotations from "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations";
 
 export type TMenuItem = {
     item: {
@@ -137,6 +139,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_WaterfallChartDemo,
         ]
     },
     {
@@ -183,6 +186,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_PieChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DonutChart,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations
         ]
     },
     {
@@ -193,6 +197,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers,
             EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold,
             EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations
         ]
     },
     {
@@ -298,6 +303,7 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_Bubble3DChart,
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_PointLine3DChart,
             EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
         ]
@@ -410,6 +416,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return TradeMarkers;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold.id:
             return DragHorizontalThreshold;
+        case EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations.id:
+            return BackgroundAnnotations;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.id:
             return RealtimeGhostedTraces;
         case EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.id:
@@ -490,6 +498,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return Bubble3DChart;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.id:
             return SurfaceMesh3DChart;
+        case EXAMPLES_PAGES.chart3D_basic3DChartTypes_PointLine3DChart.id:
+            return PointLine3DChart;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500.id:
             return Load500By500;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimePerformanceDemo.id:
@@ -502,6 +512,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return LiDAR3DPointCloudDemo;
         case EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo.id:
             return AudioAnalyzer;
+        case EXAMPLES_PAGES.featuredApps_scientificCharts_WaterfallChartDemo.id:
+            return WaterfallChart;
         case EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo.id:
             return TenorCurves3DChart;
         case EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes.id:

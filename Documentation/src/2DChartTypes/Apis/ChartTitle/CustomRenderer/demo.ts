@@ -88,7 +88,7 @@ async function customChartTitleRenderer(divElementId: string) {
             ...sciChartSurface.titleStyle,
             fontSize: 30,
             alignment: ETextAlignment.Right,
-        }
+        } as Required<TChartTitleStyle>
     );
 }
 

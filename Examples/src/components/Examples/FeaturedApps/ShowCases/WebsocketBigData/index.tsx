@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
-import { ESeriesType } from "scichart/types/SeriesType";
+import { ESeriesType } from "scichart";
 import {appTheme} from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import { divElementId, drawExample, ISettings, TMessage } from "./drawExample";
