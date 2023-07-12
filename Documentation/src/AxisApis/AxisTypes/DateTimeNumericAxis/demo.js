@@ -25,7 +25,7 @@ async function chartWithDateTimeNumericAxis(divElementId) {
   });
 
   // If you want to show an XAxis with dates between 1st March 2023 and 10th March 2023
-  const minDate = new Date("2023-03-1");
+  const minDate = new Date("2023-03-01");
   const maxDate = new Date("2023-03-10");
 
   // Create the axis. SmartDateLabelProvider is automatically applied to labelProvider property
@@ -111,7 +111,7 @@ async function builderExample(divElementId) {
 
   // #region ExampleB
   // If you want to show an XAxis with dates between 1st March 2023 and 10th March 2023
-  const minDate = new Date("2023-03-1");
+  const minDate = new Date("2023-03-01");
   const maxDate = new Date("2023-03-10");
 
   // Create data for the chart with X-data as dates using unix Timestamp / 1000

@@ -26,7 +26,7 @@ async function numericAxisFormattedAsDates3D(divElementId) {
   });
 
   // If you want to show an XAxis with dates between 1st March 2023 and 10th March 2023
-  const minDate = new Date("2023-03-1");
+  const minDate = new Date("2023-03-01");
   const maxDate = new Date("2023-03-10");
 
   // Create an xAxis and assign to SciChart3DSurface
