@@ -52,7 +52,6 @@ class CustomNumericLabelProvider extends NumericLabelProvider {
     let result = originalLabel;
     // Now we need to inject K, M, B, T into the label before the postfix
 
-    console.log(`postFix: ${this.postfix}, prefix: ${this.prefix}`);
     // e.g. formatLabel(1000000) with prefix="$", postfix="USD" = "$1000000 USD" => "$1M USD"
     if (dataValue >= 1_000_000_000_000) {
       result = super.formatLabel(dataValue / 1_000_000_000_000).replace(this.postfix, "T" + this.postfix);
