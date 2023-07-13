@@ -19,6 +19,8 @@ export class AudioDataProvider {
 
     private freqByteData: Uint8Array;
 
+    public permissionError: boolean;
+
     constructor(sampleRate: number = 44100, bufferSizeProperty: number = 2048) {
         this.sampleRateProperty = sampleRate;
         this.bufferSizeProperty = bufferSizeProperty;
@@ -41,42 +43,44 @@ export class AudioDataProvider {
         return this.sampleRateProperty;
     }
 
-    public initAudio() {
-        const getUserMedia = async () => {
-            try {
-                const constraints = { audio: true, video: false };
-                const stream = await navigator.mediaDevices.getUserMedia(constraints);
-                // @ts-ignore
-                const AudioContextClass: any = window.AudioContext || window.webkitAudioContext || false;
-                if (AudioContextClass) {
-                    this.audioContext = new AudioContextClass();
-                } else {
-                    throw Error("AudioContextClass is not defined");
-                }
-
-                this.inputPoint = this.audioContext.createGain();
-
-                // Create an AudioNode from the stream.
-                this.streamSource = this.audioContext.createMediaStreamSource(stream);
-                this.streamSource.connect(this.inputPoint);
-
-                this.analyserNode = this.audioContext.createAnalyser();
-                this.analyserNode.fftSize = this.bufferSizeProperty * 2;
-                this.inputPoint.connect(this.analyserNode);
-
-                this.zeroGain = this.audioContext.createGain();
-                this.zeroGain.gain.value = 0.0;
-                this.inputPoint.connect(this.zeroGain);
-                this.zeroGain.connect(this.audioContext.destination);
-
-                this.freqByteData = new Uint8Array(this.analyserNode.frequencyBinCount);
-
-                this.initializedProperty = true;
-            } catch (error) {
-                console.error("Error getting audio", error);
+    public async initAudio() {
+        try {
+            const constraints = { audio: true, video: false };
+            const stream = await navigator.mediaDevices.getUserMedia(constraints);
+            // @ts-ignore
+            const AudioContextClass: any = window.AudioContext || window.webkitAudioContext || false;
+            if (AudioContextClass) {
+                this.audioContext = new AudioContextClass();
+            } else {
+                throw Error("AudioContextClass is not defined");
             }
-        };
-        getUserMedia();
+
+            this.inputPoint = this.audioContext.createGain();
+
+            // Create an AudioNode from the stream.
+            this.streamSource = this.audioContext.createMediaStreamSource(stream);
+            this.streamSource.connect(this.inputPoint);
+
+            this.analyserNode = this.audioContext.createAnalyser();
+            this.analyserNode.fftSize = this.bufferSizeProperty * 2;
+            this.inputPoint.connect(this.analyserNode);
+
+            this.zeroGain = this.audioContext.createGain();
+            this.zeroGain.gain.value = 0.0;
+            this.inputPoint.connect(this.zeroGain);
+            this.zeroGain.connect(this.audioContext.destination);
+
+            this.freqByteData = new Uint8Array(this.analyserNode.frequencyBinCount);
+
+            this.initializedProperty = true;
+        } catch (error) {
+            //@ts-ignore
+            if (error.name === "NotAllowedError") {
+                this.permissionError = true;
+            }
+            console.error("Error getting audio", error);
+            return false;
+        }
     }
 
     public closeAudio() {
