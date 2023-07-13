@@ -30,7 +30,9 @@ import {
     XyzSeriesInfo,
     SweepAnimation,
     ECoordinateMode,
-    EVerticalAnchorPoint
+    EVerticalAnchorPoint,
+    SciChartLegend,
+    ManualLegend
 } from "scichart";
 
 const divElementId = "chart";
@@ -77,7 +79,8 @@ const drawExample = async () => {
     // Create a SciChartSurface
     const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
-        title: "Happiness vs GDP"
+        title: "Happiness vs GDP",
+        titleStyle: { fontSize: 20 }
     });
 
     // Create an XAxis and YAxis
@@ -89,7 +92,8 @@ const drawExample = async () => {
         cursorLabelFormat: ENumericFormat.Decimal,
         logBase: 10,
         drawMinorGridLines: false,
-        axisTitle: "GDP per Capita"
+        axisTitle: "GDP per Capita",
+        axisTitleStyle: { fontSize: 16 }
     });
     sciChartSurface.xAxes.add(xAxis);
 
@@ -97,7 +101,8 @@ const drawExample = async () => {
         growBy: new NumberRange(0.1, 0.1 ),
         axisAlignment: EAxisAlignment.Left,
         drawMinorGridLines: false,
-        axisTitle: "Happiness"
+        axisTitle: "Happiness",
+        axisTitleStyle: { fontSize: 16 }
     });
     sciChartSurface.yAxes.add(yAxis);
 
@@ -112,7 +117,7 @@ const drawExample = async () => {
         tooltipDataTemplate: (seriesInfos: SeriesInfo[], tooltipTitle: string) => {
             const valuesWithLabels: string[] = [];
             const xyzSeriesInfo = seriesInfos[0] as XyzSeriesInfo;
-            if (xyzSeriesInfo.isHit) {
+            if (xyzSeriesInfo?.isHit) {
                 // @ts-ignore
                 valuesWithLabels.push(`${xyzSeriesInfo.pointMetadata.name}`);
                 valuesWithLabels.push(`GDP: ${xyzSeriesInfo.formattedXValue}`);
@@ -196,7 +201,7 @@ const drawExample = async () => {
             opacity: 0.6,
         }),
         dataLabels: {
-            color: "black",
+            color: "#000000C0",
             style: {
                 fontFamily: "Arial",
                 fontSize: 14
@@ -209,18 +214,20 @@ const drawExample = async () => {
     });
     sciChartSurface.renderableSeries.add(series);
 
-    sciChartSurface.annotations.add(new TextAnnotation({
-        xCoordinateMode: ECoordinateMode.Pixel,
-        yCoordinateMode: ECoordinateMode.Pixel,
-        x1: 20,
-        y1: 10,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top,
-        text: "Bubble size represents population",
-        fontSize: 16,
-        fontFamily: "Arial",
-        textColor: appTheme.ForegroundColor
-
-    }))
+    const legend = new ManualLegend({
+        textColor: "black",
+        backgroundColor: "#E0E0E077",
+        items: [
+            { name: "Bubble size represents population", color: "transparent", id:"pop", checked: false, showMarker: false },
+            { name: "Bubble color indicates continent", color: "transparent", id:"col", checked: false, showMarker: false },
+            { name: "Europe", color: appTheme.VividBlue, id:"Europe", checked: false },
+            { name: "Asia", color: appTheme.VividPurple, id:"Asia", checked: false },
+            { name: "North America", color: appTheme.VividPink, id:"NorthAmerica", checked: false },
+            { name: "South America", color: appTheme.VividGreen, id:"SouthAmerica", checked: false },
+            { name: "Oceania", color: appTheme.VividBlue, id:"VividTeal", checked: false },
+            { name: "Africa", color: appTheme.VividOrange, id:"Africa", checked: false },
+        ]
+    }, sciChartSurface);
 
     sciChartSurface.zoomExtents();
     return {sciChartSurface, wasmContext};
