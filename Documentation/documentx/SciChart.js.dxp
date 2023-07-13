@@ -909,10 +909,10 @@ isPrimaryAxis switched depending on mouse over </Notes>
         <TaskItem Id="b7a3cfdc-feba-49b3-b581-663e174d52b6" Priority="" AssignedTo="">
           <Title>v3.2 Add PointLine 3D Series docs</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>In Progress</Status>
           <CreatedOn>2023-07-08T14:17:15.8327643Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-08T14:17:23.5748739Z</ModifiedOn>
+          <ModifiedOn>2023-07-13T15:09:39.3611632Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -925,6 +925,27 @@ isPrimaryAxis switched depending on mouse over </Notes>
           <ModifiedOn>2023-07-11T15:55:11.65971Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="ba1912c9-b560-46e0-9695-602fff5c3d9d" Priority="" AssignedTo="">
+          <Title>Document 3D Chart hiding/showing axis walls, labels</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-07-13T15:09:14.4479007Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-07-13T15:09:34.317173Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes>Currently you cannot hide an axis wall in scichart.js 3d however should be easy to add
+when done, document it</Notes>
+        </TaskItem>
+        <TaskItem Id="59df57fa-6d57-44ca-afb2-4a754f07bf7c" Priority="" AssignedTo="">
+          <Title>Document 3D Chart styling and theming</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-07-13T15:09:48.0383349Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-07-13T15:10:02.1398103Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes>Some bugs discovered during this process</Notes>
         </TaskItem>
       </TaskItems>
     </Tasks>
@@ -2382,36 +2403,18 @@ isPrimaryAxis switched depending on mouse over </Notes>
                   <TargetItemId>7e505bd8-0973-4529-a8fb-4510d84addb6</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
-                <TocNode Name="" Id="0c97d207-89fd-4c2f-8f66-f66afc6df9dd" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>6cc44150-883d-41f3-818c-0068615c6a34</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="dfc615bf-3f24-4ca2-aa8b-cb7048d0c2b9" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>8c00716b-2379-46f2-8cd1-a26dd54a3115</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="26224512-7385-42d6-bc45-60c7c96c1899" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>a0d12d84-660f-424a-87f4-4eb79b8031a4</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
               </ChildNodes>
             </TocNode>
             <TocNode Name="" Id="5af8ded8-d5df-470f-a88d-6a7846e6e3f5" IconIndex="1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
               <CaptionTemplate m="2019-07-22T12:04:51.5850314Z">3D Chart Types</CaptionTemplate>
               <ChildNodes>
-                <TocNode Name="" Id="878970cb-5b88-4d05-a5b7-83ab0c924fe4" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="878970cb-5b88-4d05-a5b7-83ab0c924fe4" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>4390d675-fd3c-45d8-8357-09b747d5071c</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
-                <TocNode Name="" Id="0977f735-a08f-45e8-8004-b6c266cb5bd3" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="0977f735-a08f-45e8-8004-b6c266cb5bd3" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>07c999cf-2895-4b49-ae5f-77d283a51741</TargetItemId>
@@ -2424,12 +2427,6 @@ isPrimaryAxis switched depending on mouse over </Notes>
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>18cded29-373d-4748-a964-9bcd4e931443</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="1c490d45-ec7b-4df9-af8b-c3eba42fa9fa" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>a0d12d84-660f-424a-87f4-4eb79b8031a4</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                     <TocNode Name="" Id="7607318a-2606-4e1f-93c9-d57ccef314a9" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
@@ -2458,6 +2455,12 @@ isPrimaryAxis switched depending on mouse over </Notes>
                     </TocNode>
                   </ChildNodes>
                   <TargetItemId>e5fc78ef-475f-45ae-b38c-d42ba9e6ed50</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+                <TocNode Name="" Id="c8ed7e34-7f51-48ee-a584-62ad53663b33" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>33cbcf3e-8a70-4e28-a69f-3132493fcec7</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
               </ChildNodes>
@@ -14138,109 +14141,6 @@ isPrimaryAxis switched depending on mouse over </Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="6cc44150-883d-41f3-818c-0068615c6a34" Status="New Topic" CreatedOn="2019-07-08T11:54:15.0322699Z" ModifiedOn="2023-07-12T15:44:36.325484Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Advanced Axis3D APIs" BuildFlags="">
-                <Title />
-                <ContentsTitle m="2023-07-12T15:44:36.325484Z">Advanced Axis3D APIs</ContentsTitle>
-                <Notes></Notes>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2021-09-24T12:22:56.3591659Z">&lt;P&gt;Several Axis APIs are shared with SciChart 2D’s&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.axes.AxisCore.html"&gt;AxisCore&lt;/A&gt; type. These are summarised below:&lt;BR&gt;&lt;/P&gt;
-&lt;H2&gt;LabelProvider API – Full Control over Axis Labels&lt;/H2&gt;
-&lt;P&gt;The&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;LabelProvider API&lt;/A&gt; allows full control over the formatting of&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.axes.AxisCore.html"&gt;AxisCore&lt;/A&gt; text labels, over and above what you can achieve by setting TextFormatting.&lt;/P&gt;
-&lt;P&gt;Use the LabelProvider when you want to:&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Have fine-grained control over Axis Text or Cursor Labels, depending on numeric (or date) values.&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Display strings on Axis e.g. “Bananas”, “Oranges”, “Apples”, not “1”, “2”, “3”&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Dynamically change the Axis Textformatting as you zoom in or out.&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Dynamically change the Axis Textformatting depending on data-value.&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;NOTE: This is a shared API between SciChart 2D and SciChart 3D. For a full walk-through of the AxisCore LabelProvider API, including code-samples, please see&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;LabelProvider API&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Full Control over Axis ticks – Tick Provider and Delta Calculator API&lt;/H2&gt;
-&lt;P&gt;The&amp;nbsp;&lt;A href="965db259-73ff-4df0-b49d-b539f7a304a2"&gt;TickProvider and DeltaCalculator APIs&lt;/A&gt; provide full control over the frequency of axis labels and gridlines, over and above what you can achieve by setting&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.axes.AxisCore~setMajorDelta.html"&gt;MajorDelta&lt;/A&gt; and&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.axes.AxisCore~setMinorDelta.html"&gt;MinorDelta&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;NOTE: This is a shared API between SciChart 2D and SciChart 3D. For a full walk-through of the AxisCore TickProvider API, including code-samples, please see&amp;nbsp;&lt;A href="965db259-73ff-4df0-b49d-b539f7a304a2"&gt;TickProvider and DeltaCalculator APIs&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Axis Data/Pixel Coordinate Conversion API&lt;/H2&gt;
-&lt;P&gt;SciChart 3D provides a clean and simple API to transform 3D world coordinates to data-values and vice versa via the&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.axes.IAxisCore~getCurrentCoordinateCalculator.html"&gt;AxisCore.getCurrentCoordinateCalculator()&lt;/A&gt; API.&lt;/P&gt;
-&lt;H2&gt;Where World Coordinates are measured from&lt;/H2&gt;
-&lt;P&gt;World coordinates are virtual coordinates in the 3D World. They are defined by Vector3 struct which comprises X,Y,Z components.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/WorldCoordinates.png"&gt;&lt;/P&gt;
-&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;All points in ‘World Coordinates’ are measured from the origin, which by default is the center floor of the Axis Cube.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;All Axes are responsible for converting between data-values and world-coordinates: the XAxis converts X data-values to X-world coordinates, the YAxis converts Y data-values to Y-world coordinates and the ZAxis converts Z-data values to Z-world coordinates.&lt;/P&gt;
-&lt;P&gt;&lt;BR&gt;Getting a CoordinateCalculator instance&lt;/P&gt;
-&lt;P&gt;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.axes.IAxisCore~getCurrentCoordinateCalculator.html"&gt;AxisCore.getCurrentCoordinateCalculator()&lt;/A&gt; returns a coordinate calculator instance which is valid for the current render pass.&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Note: If the&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.axes.IAxisCore~getVisibleRange.html"&gt;VisibleRange&lt;/A&gt; changes, the data changes, or the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.SciChartSurface3D~getWorldDimensions.html"&gt;SciChart3DSurface.WorldDimensions&lt;/A&gt; changes, then the CoordinateCalculator will give incorrect results. It is advisable to cache the Coordinate Calculator only for a short period of time, e.g. when using inside a loop.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Converting from Data to Pixels&lt;/H2&gt;
-&lt;P&gt;Data-values are converted to pixel coordinates via the ICoordinateCalculator.GetCoordinate() method.&lt;/P&gt;
-&lt;H3&gt;Converting NumericAxis3D Data to World Coordinates and vice versa&lt;/H3&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Coordinate calculations for NumericAxis3D&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final NumericAxis3D numericAxis3D = new NumericAxis3D();&lt;/P&gt;
-&lt;P&gt;// get coordinate calculator used by axis&lt;BR&gt;final ICoordinateCalculator coordinateCalculator = numericAxis3D.getCurrentCoordinateCalculator();&lt;/P&gt;
-&lt;P&gt;// convert value to 3D world coordinate&lt;BR&gt;final float worldCoordinate = coordinateCalculator.getCoordinate(1.23d);&lt;/P&gt;
-&lt;P&gt;// convert 3D world coordinate back to double value&lt;BR&gt;final double dataValue = coordinateCalculator.getDataValue(worldCoordinate);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H3&gt;Converting DateAxis3D Data to World Coordinates&lt;/H3&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Coordinate calculations for DateAxis3D&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final DateAxis3D dateAxis3D = new DateAxis3D();&lt;/P&gt;
-&lt;P&gt;// get coordinate calculator used by axis&lt;BR&gt;final ICoordinateCalculator coordinateCalculator = dateAxis3D.getCurrentCoordinateCalculator();&lt;/P&gt;
-&lt;P&gt;// create Date instance&lt;BR&gt;final Date now = Calendar.getInstance().getTime();&lt;/P&gt;
-&lt;P&gt;// convert time value to 3D world coordinate&lt;BR&gt;final float worldCoordinate = coordinateCalculator.getCoordinate(now.getTime());&lt;/P&gt;
-&lt;P&gt;// convert 3D world coordinate back to double value&lt;BR&gt;final double doubleDataValue = coordinateCalculator.getDataValue(worldCoordinate);&lt;/P&gt;
-&lt;P&gt;// You need to wrap the double in a Date to complete the conversion&lt;BR&gt;final Date dataValue = new Date((long) doubleDataValue);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks />
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="8c00716b-2379-46f2-8cd1-a26dd54a3115" Status="New Topic" CreatedOn="2019-07-09T08:26:29.8963497Z" ModifiedOn="2023-07-12T16:00:59.0766193Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Styling Axis3D Gridlines and Labels" BuildFlags="">
-                <Title m="2023-07-12T16:00:59.0766193Z">Styling Axis3D Gridlines, Labels and Elements</Title>
-                <ContentsTitle />
-                <Notes></Notes>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2019-09-23T13:08:56.132619Z">&lt;P&gt;Like SciChart 2D, many aspects of the Axis in SciChart3D can be styled, including major and minor gridlines, tick lines and labels.&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;To style a MajorGridline or MinorGridLine create a&amp;nbsp;&lt;A href="SciChart.Drawing~com.scichart.drawing.common.PenStyle.html"&gt;PenStyle&lt;/A&gt;&amp;nbsp;with properties such as Stroke, StrokeThickness, StrokeDashArray etc. 
-&lt;LI&gt;To style a Major or Minor Tick, create a &lt;A href="SciChart.Drawing~com.scichart.drawing.common.PenStyle.html"&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;PenStyle&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt;&amp;nbsp;and set Stroke, StrokeThickness etc. You can also set&amp;nbsp;&lt;A href="SciChart.Charting~com.scichart.charting.visuals.axes.AxisCore~setMinorTickLineLength.html"&gt;MinorTickLineLength&lt;/A&gt;/&lt;A href="SciChart.Charting~com.scichart.charting.visuals.axes.AxisCore~getMajorTickLineLength.html"&gt;MajorTickLineLength&lt;/A&gt; to define the size of the tick. 
-&lt;LI&gt;To blanket style all labels, set the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.axes.AxisBase3D~setTextSize.html"&gt;TextSize&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.axes.AxisBase3D~setTextColor.html"&gt;TextColor&lt;/A&gt; and&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.axes.AxisBase3D~getTextFont.html"&gt;TextFont&lt;/A&gt;&amp;nbsp;properties&lt;BR&gt;&lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Style Axis3D using Builders API&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final NumericAxis3D xAxis = sciChart3DBuilder.newNumericAxis3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMinorsPerMajor(5)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMaxAutoTicks(7)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withTextSize(13)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withTextColor(ColorUtil.Lime)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withTextFont(font)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withAxisBandsFill(ColorUtil.DarkOliveGreen)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMajorTickLineStyle(ColorUtil.Lime, 1)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMajorTickLineLength(8f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMinorTickLineStyle(ColorUtil.MediumVioletRed, 1)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMajorTickLineLength(4f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMajorGridLineStyle(ColorUtil.Lime, 1)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMinorGridLineStyle(ColorUtil.DarkViolet, 1)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;BR&gt;final NumericAxis3D yAxis = sciChart3DBuilder.newNumericAxis3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMinorsPerMajor(5)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMaxAutoTicks(7)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withTextSize(13)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withTextColor(ColorUtil.Firebrick)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withTextFont(font)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withAxisBandsFill(ColorUtil.Tomato)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMajorTickLineStyle(ColorUtil.Firebrick, 1)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMajorTickLineLength(8f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMinorTickLineStyle(ColorUtil.IndianRed, 1)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMajorTickLineLength(4f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMajorGridLineStyle(ColorUtil.DarkGreen, 1)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMinorGridLineStyle(ColorUtil.DarkSkyBlue, 1)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;BR&gt;final NumericAxis3D zAxis = sciChart3DBuilder.newNumericAxis3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMinorsPerMajor(5)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMaxAutoTicks(7)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withTextSize(13)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withTextColor(ColorUtil.PaleVioletRed)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withTextFont(font)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withAxisBandsFill(ColorUtil.GreenYellow)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMajorTickLineStyle(ColorUtil.PaleVioletRed, 1)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMajorTickLineLength(8f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMinorTickLineStyle(ColorUtil.Chartreuse, 1)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMajorTickLineLength(4f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMajorGridLineStyle(ColorUtil.Beige, 1)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMinorGridLineStyle(ColorUtil.Brown, 1)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;surface3d.setXAxis(xAxis);&lt;BR&gt;surface3d.setYAxis(yAxis);&lt;BR&gt;surface3d.setZAxis(zAxis);&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Which results in the following:&lt;/P&gt;
-&lt;P&gt;&lt;IMG style="HEIGHT: 254px; WIDTH: 482px" border=0 alt="" src="images/StyleAxis3D.png" width=605 height=310&gt;&lt;/P&gt;
-&lt;DIV align=left&gt;&lt;/DIV&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;P align=center&gt;&amp;nbsp;&lt;/P&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks />
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="a0d12d84-660f-424a-87f4-4eb79b8031a4" Status="New Topic" CreatedOn="2019-07-09T08:27:13.6478909Z" ModifiedOn="2019-09-24T13:47:13.2234838Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Showing Axis Labels on one side of the 3D charts " BuildFlags="">
-                <Title />
-                <ContentsTitle />
-                <Notes></Notes>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2019-09-24T13:47:13.2234838Z">&lt;P&gt;To enable showing of&amp;nbsp;Axis Labels on one side of the Axis Cube, simply set one of the following properties on the SciChart3DSurface:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.SciChartSurface3D~getXyAxisPlaneDrawLabelsMode.html"&gt;XyAxisPlaneDrawLabelsMode&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.SciChartSurface3D~setZyAxisPlaneDrawLabelsMode.html"&gt;ZyAxisPlaneDrawLabelsMode&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.SciChartSurface3D~setZxAxisPlaneDrawLabelsMode.html"&gt;ZxAxisPlaneDrawLabelsMode&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Setting Axis Labels Drawing Mode&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;surface3d.setXyAxisPlaneDrawLabelsMode(AxisPlaneDrawLabelsMode.AxisPlaneDrawLabelsBoth);&lt;BR&gt;surface3d.setZyAxisPlaneDrawLabelsMode(AxisPlaneDrawLabelsMode.AxisPlaneDrawLabelsLocalX);&lt;BR&gt;surface3d.setZxAxisPlaneDrawLabelsMode(AxisPlaneDrawLabelsMode.AxisPlaneDrawLabelsHidden);&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/Axis3DLabelsOnFarSide-min.png"&gt;&lt;/P&gt;
-&lt;H2&gt;Zy, Zx, Xy Planes&lt;/H2&gt;
-&lt;P&gt;The Planes are defined as follows.&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; The Zy Plane is perpedicular to the X Axis (Right by default)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; The Zx Plane is perpendicular to the Y Axis (up)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; The Xy Plane is perpendicular to the Z Axis (Left by default)&lt;/P&gt;
-&lt;P&gt;For example:&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/ZyPlaneExplanation-min.png"&gt;&lt;/P&gt;
-&lt;H2&gt;AxisPlaneDrawLabelsMode Enum&lt;/H2&gt;
-&lt;P&gt;The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.axes.AxisPlaneDrawLabelsMode.html"&gt;AxisPlaneDrawLabelsMode Enum&lt;/A&gt; has the following options:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;AxisPlaneDrawLabelsMode&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;public enum AxisPlaneDrawLabelsMode {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; AxisPlaneDrawLabelsBoth,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; AxisPlaneDrawLabelsHidden,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; AxisPlaneDrawLabelsLocalX,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; AxisPlaneDrawLabelsLocalY&lt;/P&gt;
-&lt;P&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;The default is&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.axes.AxisPlaneDrawLabelsMode~AxisPlaneDrawLabelsBoth.html"&gt;AxisPlaneDrawLabelsBoth&lt;/A&gt;: axis labels are drawn on both sides of the axis cube.&lt;/P&gt;
-&lt;P&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.axes.AxisPlaneDrawLabelsMode~AxisPlaneDrawLabelsHidden.html"&gt;AxisPlaneDrawLabelsHidden&lt;/A&gt; hides the axis labels for this plane, for example, when applied to the XyAxisPlane, the labels drawn by this plane will be hidden.&lt;/P&gt;
-&lt;P&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.axes.AxisPlaneDrawLabelsMode~AxisPlaneDrawLabelsLocalX.html"&gt;AxisPlaneDrawLabelsLocalX&lt;/A&gt; draws the labels on one side (the local X) of the plane.&lt;/P&gt;
-&lt;P&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.axes.AxisPlaneDrawLabelsMode~AxisPlaneDrawLabelsLocalY.html"&gt;AxisPlaneDrawLabelsLocalY&lt;/A&gt; draws the labels on the other side (the local Y) of the plane.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/LocalXyPlane-min.png"&gt;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks />
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
               <Topic Id="8f08a07b-da4d-4872-83de-412850826296" Status="New Topic" CreatedOn="2023-07-12T15:42:58.9154944Z" ModifiedOn="2023-07-12T18:16:49.9148567Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis3DTextFormatting" BuildFlags="">
                 <Title m="2023-07-12T15:43:21.6856768Z">Axis3D Text (Label) Formatting</Title>
                 <ContentsTitle />
@@ -14523,48 +14423,38 @@ isPrimaryAxis switched depending on mouse over </Notes>
               </TopicCategory>
             </ChildTopicCategories>
             <Topics>
-              <Topic Id="4390d675-fd3c-45d8-8357-09b747d5071c" Status="New Topic" CreatedOn="2019-07-10T07:58:09.7294709Z" ModifiedOn="2019-09-23T14:18:23.0360154Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The Scatter 3D Chart Type" BuildFlags="">
+              <Topic Id="4390d675-fd3c-45d8-8357-09b747d5071c" Status="New Topic" CreatedOn="2019-07-10T07:58:09.7294709Z" ModifiedOn="2023-07-13T18:33:00.6256568Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The Scatter 3D Chart Type" BuildFlags="">
                 <Title />
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2019-09-23T14:18:23.0360154Z">&lt;P&gt;3D Scatter Charts are provided by the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.scatter.ScatterRenderableSeries3D.html"&gt;ScatterRenderableSeries3D&lt;/A&gt; type, which requires a PointMarker.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/AndroidScatter3DChart.png"&gt;&lt;/P&gt;
-&lt;P&gt;The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.scatter.ScatterRenderableSeries3D.html"&gt;ScatterRenderableSeries3D&lt;/A&gt; supports multiple pointmarkers, including:&lt;BR&gt;&lt;/P&gt;
+                    <Content m="2023-07-13T18:33:00.6256568Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;Examples for the Scatter 3D Chart can be found in the SciChart.js Demo app which can be viewed on our website, or downloaged from SciChart.Js.Examples Github Repository&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-3d-bubble-chart" target=_blank&gt;SciChart.js Demo app&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;All examples on Github&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;3D Scatter Charts are provided by the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scatterrenderableseries3d.html"&gt;ScatterRenderableSeries3D&lt;/A&gt; type. This draws a single PointMarker at an X,Y,Z location in the 3D world. Charts can be static or dynamic, and updated in real-time if required.&lt;/P&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameWidth"&gt;100%&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameHeight"&gt;500px&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-3d-bubble-chart&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;&lt;EM&gt;Above: The&amp;nbsp;&lt;/EM&gt;&lt;/STRONG&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-3d-bubble-chart" target=_blank&gt;JavaScript 3D Bubble Chart example&lt;/A&gt; &lt;EM&gt;from the SciChart.js Demo, showing a variety of line options in SciChart.js.&lt;/EM&gt;&lt;/P&gt;
+&lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scatterrenderableseries3d.html"&gt;ScatterRenderableSeries3D&lt;/A&gt; supports multiple pointmarkers, including:&lt;/P&gt;
 &lt;H3&gt;3D Marker Types&lt;/H3&gt;
 &lt;UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.SpherePointMarker3D.html"&gt;SpherePointMarker3D&lt;/A&gt; - a 3D Sphere at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.CubePointMarker3D.html"&gt;CubePointMarker3D&lt;/A&gt; - 3D Cube at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.PyramidPointMarker3D.html"&gt;PyramidPointMarker3D&lt;/A&gt; - a 3D Pyramid at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.CylinderPointMarker3D.html"&gt;CylinderPointMarker3D&lt;/A&gt; - a 3D Cylinder at each point &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/spherepointmarker3d.html"&gt;SpherePointMarker3D&lt;/A&gt; - a 3D Sphere at each point 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cubepointmarker3d.html"&gt;CubePointMarker3D&lt;/A&gt; - 3D Cube at each point 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/pyramidpointmarker3d.html"&gt;PyramidPointMarker3D&lt;/A&gt; - a 3D Pyramid at each point 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cylinderpointmarker3d.html"&gt;CylinderPointMarker3D&lt;/A&gt; - a 3D Cylinder at each point &lt;/LI&gt;&lt;/UL&gt;
 &lt;H3&gt;Fast 2D Marker types&lt;/H3&gt;
 &lt;UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.PixelPointMarker3D.html"&gt;PixelPointMarker3D&lt;/A&gt; - a single pixel at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.QuadPointMarker3D.html"&gt;QuadPointMarker3D&lt;/A&gt; - a Quad (flat square) facing the camera at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.EllipsePointMarker3D.html"&gt;EllipsePointMarker3D&lt;/A&gt; - a flat ellipse facing the camera at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.TrianglePointerMarker3D.html"&gt;TrianglePointMarker3D&lt;/A&gt; - a flat triangle facing the camera at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.CustomPointMarker3D.html"&gt;CustomPointMarker3D&lt;/A&gt; - custom flat textured markers facing the camera at each point &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/pixelpointmarker3d.html"&gt;PixelPointMarker3D&lt;/A&gt; - a single pixel at each point 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/quadpointmarker.html"&gt;QuadPointMarker3D&lt;/A&gt; - a Quad (flat square) facing the camera at each point 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/ellipsepointmarker3d.html"&gt;EllipsePointMarker3D&lt;/A&gt; - a flat ellipse facing the camera at each point 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/trianglepointmarker3d.html"&gt;TrianglePointMarker3D&lt;/A&gt; - a flat triangle facing the camera at each point &lt;/LI&gt;&lt;/UL&gt;
 &lt;H2&gt;Declaring a 3D Scatter Series&lt;/H2&gt;
-&lt;P&gt;To declare a 3D Scatter Series with PointMarker use the following code:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;3D Scatter Series&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final Camera3D camera = sciChart3DBuilder.newCamera3D().build();&lt;/P&gt;
-&lt;P&gt;final NumericAxis3D xAxis = sciChart3DBuilder.newNumericAxis3D().withGrowBy(.1, .1).build();&lt;BR&gt;final NumericAxis3D yAxis = sciChart3DBuilder.newNumericAxis3D().withGrowBy(.1, .1).build();&lt;BR&gt;final NumericAxis3D zAxis = sciChart3DBuilder.newNumericAxis3D().withGrowBy(.1, .1).build();&lt;/P&gt;
-&lt;P&gt;final DataManager dataManager = DataManager.getInstance();&lt;BR&gt;final XyzDataSeries3D&amp;lt;Double, Double, Double&amp;gt; dataSeries = new XyzDataSeries3D&amp;lt;&amp;gt;(Double.class, Double.class, Double.class);&lt;BR&gt;for (int i = 0; i &amp;lt; 1000; i++) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double x = dataManager.getGaussianRandomNumber(5, 1.5);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double y = dataManager.getGaussianRandomNumber(5, 1.5);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double z = dataManager.getGaussianRandomNumber(5, 1.5);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataSeries.append(x, y, z);&lt;BR&gt;}&lt;/P&gt;
-&lt;P&gt;final EllipsePointMarker3D pointMarker3D = sciChart3DBuilder.newEllipsePointMarker3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withFill(ColorUtil.LimeGreen)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withSize(2f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;
-&lt;P&gt;final ScatterRenderableSeries3D rs = sciChart3DBuilder.newScatterSeries3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDataSeries(dataSeries)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withPointMarker(pointMarker3D)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;
-&lt;P&gt;UpdateSuspender.using(surface3d, new Runnable() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;@Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;public void run() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setCamera(camera);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setXAxis(xAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setYAxis(yAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setZAxis(zAxis);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.getRenderableSeries().add(rs);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;To declare a 3D Scatter Series with PointMarker use the following code:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\Scatter3D\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/Scatter3D/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Coloring Individual Scatter Points&lt;/H2&gt;
-&lt;P&gt;Scatter points may be colored or scaled individually using the PointMetada3D API. To do this, set a&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.metadataProviders.PointMetadataProvider3D+PointMetadata3D.html"&gt;PointMetada3D&lt;/A&gt; instance at the data-point as follows:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;MetadataProvider 3D&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final PointMetadataProvider3D metadataProvider = new PointMetadataProvider3D();&lt;/P&gt;
-&lt;P&gt;final DataManager dataManager = DataManager.getInstance();&lt;/P&gt;
-&lt;P&gt;final ObservableCollection&amp;lt;PointMetadataProvider3D.PointMetadata3D&amp;gt; medatata = metadataProvider.metadata;&lt;/P&gt;
-&lt;P&gt;&lt;BR&gt;for (int i = 0; i &amp;lt; 250; i++) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final int color = dataManager.getRandomColor();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final float scale = dataManager.getRandomScale();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; medatata.add(new PointMetadataProvider3D.PointMetadata3D(color, scale));&lt;/P&gt;
-&lt;P&gt;}&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;final ScatterRenderableSeries3D rs = sciChart3DBuilder.newScatterSeries3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMetadataProvider(metadataProvider)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;BR&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+&lt;P&gt;Scatter points may be colored or scaled individually using the PointMetada3D API. To do this, set a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ipointmetadata3d.html"&gt;PointMetadata3D&lt;/A&gt; instance with property vertexColorAbgr at each data-point in the XyzDataSeries3D.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\Scatter3DMetadata\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/Scatter3DMetadata/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Note: PointMetadata can be any javascript object but the property vertexColorAbgr is used to determine scatter 3D datapoint colour. This is in hex format Alpha, Blue, Green, Red, so 0xFFFF0000 would correspond to blue. The helper function&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#parseColorToUIntArgb"&gt;parseColorToUIntArgb&lt;/A&gt; can convert Javascript Hex codes to this format.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
@@ -14572,42 +14462,36 @@ isPrimaryAxis switched depending on mouse over </Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="07c999cf-2895-4b49-ae5f-77d283a51741" Status="New Topic" CreatedOn="2019-07-10T07:58:54.1113574Z" ModifiedOn="2021-09-24T12:22:56.5167443Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The Bubble 3D Chart Type" BuildFlags="">
+              <Topic Id="07c999cf-2895-4b49-ae5f-77d283a51741" Status="New Topic" CreatedOn="2019-07-10T07:58:54.1113574Z" ModifiedOn="2023-07-13T18:32:35.7750397Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The Bubble 3D Chart Type" BuildFlags="">
                 <Title />
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2021-09-24T12:22:56.5167443Z">&lt;P&gt;3D Bubble Charts are provided by the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.scatter.ScatterRenderableSeries3D.html"&gt;ScatterRenderableSeries3D&lt;/A&gt; type.&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;IMG border=0 alt="" src="images/AndroidBubble3DChart.png"&gt;&lt;/P&gt;
-&lt;P&gt;The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.scatter.ScatterRenderableSeries3D.html"&gt;ScatterRenderableSeries3D&lt;/A&gt; supports multiple pointmarkers, including:&lt;BR&gt;&lt;/P&gt;
+                    <Content m="2023-07-13T18:32:35.7750397Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;Examples for the Scatter 3D Chart can be found in the SciChart.js Demo app which can be viewed on our website, or downloaged from SciChart.Js.Examples Github Repository&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-3d-bubble-chart" target=_blank&gt;SciChart.js Demo app&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;All examples on Github&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;3D Bubble Charts are provided by the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scatterrenderableseries3d.html"&gt;ScatterRenderableSeries3D&lt;/A&gt; type. This draws a single PointMarker at an X,Y,Z location in the 3D world with a per-point scaling factor.&amp;nbsp;Charts can be static or dynamic, and updated in real-time if required.&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameWidth"&gt;100%&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameHeight"&gt;500px&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-3d-bubble-chart&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
+&lt;P align=center&gt;&lt;STRONG&gt;&lt;EM&gt;Above: The&amp;nbsp;&lt;/EM&gt;&lt;/STRONG&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-3d-bubble-chart" target=_blank&gt;JavaScript 3D Bubble Chart example&lt;/A&gt; &lt;EM&gt;from the SciChart.js Demo, showing a variety of line options in SciChart.js.&lt;/EM&gt;&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;
+&lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scatterrenderableseries3d.html"&gt;ScatterRenderableSeries3D&lt;/A&gt; supports multiple pointmarkers, including:&lt;/P&gt;
 &lt;H3&gt;3D Marker Types&lt;/H3&gt;
 &lt;UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.SpherePointMarker3D.html"&gt;SpherePointMarker3D&lt;/A&gt; - a 3D Sphere at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.CubePointMarker3D.html"&gt;CubePointMarker3D&lt;/A&gt; - 3D Cube at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.PyramidPointMarker3D.html"&gt;PyramidPointMarker3D&lt;/A&gt; - a 3D Pyramid at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.CylinderPointMarker3D.html"&gt;CylinderPointMarker3D&lt;/A&gt; - a 3D Cylinder at each point &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/spherepointmarker3d.html"&gt;SpherePointMarker3D&lt;/A&gt; - a 3D Sphere at each point 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cubepointmarker3d.html"&gt;CubePointMarker3D&lt;/A&gt; - 3D Cube at each point 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/pyramidpointmarker3d.html"&gt;PyramidPointMarker3D&lt;/A&gt; - a 3D Pyramid at each point 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cylinderpointmarker3d.html"&gt;CylinderPointMarker3D&lt;/A&gt; - a 3D Cylinder at each point &lt;/LI&gt;&lt;/UL&gt;
 &lt;H3&gt;Fast 2D Marker types&lt;/H3&gt;
 &lt;UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.PixelPointMarker3D.html"&gt;PixelPointMarker3D&lt;/A&gt; - a single pixel at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.QuadPointMarker3D.html"&gt;QuadPointMarker3D&lt;/A&gt; - a Quad (flat square) facing the camera at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.EllipsePointMarker3D.html"&gt;EllipsePointMarker3D&lt;/A&gt; - a flat ellipse facing the camera at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.TrianglePointerMarker3D.html"&gt;TrianglePointMarker3D&lt;/A&gt; - a flat triangle facing the camera at each point 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.pointMarkers.CustomPointMarker3D.html"&gt;CustomPointMarker3D&lt;/A&gt; - custom flat textured markers facing the camera at each point &lt;/LI&gt;&lt;/UL&gt;
-&lt;H2&gt;Declaring a 3D Scatter Series with custom Sizes &amp;amp; Colors&lt;/H2&gt;
-&lt;P&gt;To declare a 3D Scatter Series with individual sizes &amp;amp; colors, use the following code.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Bubble 3D Chart&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final DataManager dataManager = DataManager.getInstance();&lt;/P&gt;
-&lt;P&gt;final Camera3D camera = sciChart3DBuilder.newCamera3D().build();&lt;/P&gt;
-&lt;P&gt;final NumericAxis3D xAxis = sciChart3DBuilder.newNumericAxis3D().withGrowBy(.1, .1).build();&lt;BR&gt;final NumericAxis3D yAxis = sciChart3DBuilder.newNumericAxis3D().withGrowBy(.1, .1).build();&lt;BR&gt;final NumericAxis3D zAxis = sciChart3DBuilder.newNumericAxis3D().withGrowBy(.1, .1).build();&lt;/P&gt;
-&lt;P&gt;final XyzDataSeries3D&amp;lt;Double, Double, Double&amp;gt; xyzDataSeries3D = new XyzDataSeries3D&amp;lt;&amp;gt;(Double.class, Double.class, Double.class);&lt;BR&gt;final PointMetadataProvider3D metadataProvider = new PointMetadataProvider3D();&lt;/P&gt;
-&lt;P&gt;final ObservableCollection&amp;lt;PointMetadataProvider3D.PointMetadata3D&amp;gt; medatata = metadataProvider.metadata;&lt;BR&gt;for (int i = 0; i &amp;lt; 250; i++) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double x = dataManager.getGaussianRandomNumber(5, 1.5);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double y = dataManager.getGaussianRandomNumber(5, 1.5);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double z = dataManager.getGaussianRandomNumber(5, 1.5);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; xyzDataSeries3D.append(x, y, z);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; final int color = dataManager.getRandomColor();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; final float scale = dataManager.getRandomScale();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; medatata.add(new PointMetadataProvider3D.PointMetadata3D(color, scale));&lt;BR&gt;}&lt;/P&gt;
-&lt;P&gt;final SpherePointMarker3D pointMarker = sciChart3DBuilder.newSpherePointMarker3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withFill(ColorUtil.LimeGreen)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withSize(2f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;
-&lt;P&gt;final ScatterRenderableSeries3D rs = sciChart3DBuilder.newScatterSeries3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDataSeries(xyzDataSeries3D)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withPointMarker(pointMarker)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMetadataProvider(metadataProvider)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;
-&lt;P&gt;UpdateSuspender.using(surface3d, new Runnable() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;@Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;public void run() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setCamera(camera);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setXAxis(xAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setYAxis(yAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setZAxis(zAxis);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.getRenderableSeries().add(rs);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/pixelpointmarker3d.html"&gt;PixelPointMarker3D&lt;/A&gt; - a single pixel at each point 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/quadpointmarker.html"&gt;QuadPointMarker3D&lt;/A&gt; - a Quad (flat square) facing the camera at each point 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/ellipsepointmarker3d.html"&gt;EllipsePointMarker3D&lt;/A&gt; - a flat ellipse facing the camera at each point 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/trianglepointmarker3d.html"&gt;TrianglePointMarker3D&lt;/A&gt; - a flat triangle facing the camera at each point &lt;/LI&gt;&lt;/UL&gt;
+&lt;H2&gt;Declaring a 3D Bubble Series with custom Sizes &amp;amp; Colors&lt;/H2&gt;
+&lt;P&gt;To declare a 3D Scatter Series with individual sizes &amp;amp; colors, use the following code.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\BubbleSeries3D\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/BubbleSeries3D/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Note: PointMetadata can be any javascript object but the property vertexColorAbgr is used to determine scatter 3D datapoint colour. This is in hex format Alpha, Blue, Green, Red, so 0xFFFF0000 would correspond to blue. The helper function&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#parseColorToUIntArgb"&gt;parseColorToUIntArgb&lt;/A&gt; can convert Javascript Hex codes to this format.&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
@@ -15248,7 +15132,8 @@ isPrimaryAxis switched depending on mouse over </Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">3525</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">274</Attribute>
+        <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>

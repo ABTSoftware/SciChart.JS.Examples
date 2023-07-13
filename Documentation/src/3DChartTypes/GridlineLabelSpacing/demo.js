@@ -33,7 +33,7 @@ async function gridlineLabelSpacing(divElementId) {
     minorsPerMajor: 4, // Exact: 4 minor gridlines per major gridline
   });
   // #endregion
-  
+
   // #region ExampleB
   sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
     axisTitle: "Y [Manual Spacing]",
