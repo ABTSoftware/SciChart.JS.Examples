@@ -27,18 +27,27 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-let scs: SciChartSurface;
-
 export default function HeatmapInteractions() {
     const localClasses = useStyles();
     const surfacesRef = React.useRef<SciChartSurface[]>([]);
 
     React.useEffect(() => {
-        drawExample().then(charts => {
-            charts.forEach(sciChartSurface => {
-                surfacesRef.current.push(sciChartSurface);
-            });
+        const chartInitializationPromise = drawExample().then(charts => {
+            surfacesRef.current = charts;
         });
+
+        return () => {
+            // check if chart is already initialized
+            if (surfacesRef.current) {
+                surfacesRef.current.forEach(surface => surface.delete());
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                surfacesRef.current.forEach(surface => surface.delete());
+            });
+        };
     }, []);
 
     return (

@@ -389,31 +389,37 @@ const useStyles = makeStyles(theme => ({
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function SubchartsGrid() {
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const controlsRef = React.useRef<{
+        startStreaming: () => void,
+        stopStreaming: () => void,
+        setLabels: (show: boolean) => void
+    }>();
     const [isDirty, setIsDirty] = React.useState<boolean>(false);
 
     const [messages, setMessages] = React.useState<TMessage[]>([]);
-    const [controls, setControls] = React.useState({
-        startStreaming: () => {},
-        stopStreaming: () => {},
-        setLabels: (show: boolean) => {}
-    });
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawGridExample((newMessages: TMessage[]) => {
-                setMessages([...newMessages]);
-            });
-
+        const chartInitializationPromise = drawGridExample((newMessages: TMessage[]) => {
+            setMessages([...newMessages]);
+        }).then(res => {
             sciChartSurfaceRef.current = res.subChartSurface;
-
-            setControls(res.controls);
-        })();
+            controlsRef.current = res.controls;
+        });
 
         // Delete subChartSurface on unmount component to prevent memory leak
         return () => {
-            controls.stopStreaming();
-            sciChartSurfaceRef.current?.delete();
-            sciChartSurfaceRef.current = null;
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                controlsRef.current.stopStreaming();
+                sciChartSurfaceRef.current?.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                controlsRef.current.stopStreaming();
+                sciChartSurfaceRef.current?.delete();
+            });
         };
     }, []);
 
@@ -421,11 +427,11 @@ export default function SubchartsGrid() {
 
     const handleStartStreaming = () => {
         setIsDirty(false);
-        controls.startStreaming();
+        controlsRef.current.startStreaming();
     };
 
     const handleLabelsChange = (ev: any, checked: boolean) => {
-        controls.setLabels(checked);
+        controlsRef.current.setLabels(checked);
     };
 
     return (
@@ -437,7 +443,7 @@ export default function SubchartsGrid() {
                             <Button id="startStreaming" onClick={handleStartStreaming}>
                                 {isDirty ? "ReStart" : "Start"}
                             </Button>
-                            <Button id="stopStreaming" onClick={controls.stopStreaming}>
+                            <Button id="stopStreaming" onClick={() => controlsRef.current.stopStreaming()}>
                                 Stop
                             </Button>
                         </ButtonGroup>

@@ -50,36 +50,48 @@ const drawExample = async () => {
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function RealtimeTickingStockCharts() {
-    const itemsToDelete: IDeletable[] = [];
-    let websocketSubcription: Subscription;
+    const itemsToDeleteRef = React.useRef<IDeletable[]>();
+    const websocketSubscriptionRef = React.useRef<Subscription>();
     const [preset, setPreset] = React.useState<number>(0);
-    const [chartControls, setControls] = React.useState({
-        setData: (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => {},
-        onNewTrade: (priceBar: TPriceBar, tradeSize: number, lastTradeBuyOrSell: boolean) => {},
-        setXRange: (startDate: Date, endDate: Date) => {},
-        enableCandlestick: () => {},
-        enableOhlc: () => {}
-    });
+    const chartControlsRef = React.useRef<{
+        setData: (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => void;
+        onNewTrade: (priceBar: TPriceBar, tradeSize: number, lastTradeBuyOrSell: boolean) => void;
+        setXRange: (startDate: Date, endDate: Date) => void;
+        enableCandlestick: () => void;
+        enableOhlc: () => void;
+    }>();
 
     React.useEffect(() => {
-        (async () => {
-            const { sciChartSurface, sciChartOverview, subscription, controls } = await drawExample();
-            setControls(controls);
-            websocketSubcription = subscription;
-            itemsToDelete.push(sciChartSurface, sciChartOverview);
-        })();
+        const chartInitializationPromise = drawExample().then(
+            ({ sciChartSurface, sciChartOverview, subscription, controls }) => {
+                chartControlsRef.current = controls;
+                websocketSubscriptionRef.current = subscription;
+                itemsToDeleteRef.current = [sciChartSurface, sciChartOverview];
+            }
+        );
+
         return () => {
-            itemsToDelete.forEach(item => item.delete());
-            websocketSubcription?.unsubscribe();
+            // check if chart is already initialized
+            if (itemsToDeleteRef.current) {
+                itemsToDeleteRef.current.forEach(item => item.delete());
+                websocketSubscriptionRef.current.unsubscribe();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                itemsToDeleteRef.current.forEach(item => item.delete());
+                websocketSubscriptionRef.current.unsubscribe();
+            });
         };
     }, []);
 
     const handleToggleButtonChanged = (event: any, state: number) => {
-        if (state === null || chartControls === undefined) return;
+        if (state === null || chartControlsRef.current === undefined) return;
         setPreset(state);
         console.log(`Toggling Candle/Ohlc state: ${state}`);
-        if (state === 0) chartControls.enableCandlestick();
-        if (state === 1) chartControls.enableOhlc();
+        if (state === 0) chartControlsRef.current.enableCandlestick();
+        if (state === 1) chartControlsRef.current.enableOhlc();
     };
 
     return (

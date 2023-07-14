@@ -330,19 +330,31 @@ export const drawExample = async () => {
 };
 
 export default function AudioAnalyzer() {
-    let charts: SciChartSurface[];
-    let dataProvider: AudioDataProvider;
+    let chartsRef = React.useRef<SciChartSurface[]>();
+    let dataProviderRef = React.useRef<AudioDataProvider>();
 
     React.useEffect(() => {
-        drawExample().then(res => {
-            charts = res.charts;
-            dataProvider = res.dataProvider;
+        const chartInitializationPromise = drawExample().then(res => {
+            chartsRef.current = res.charts;
+            dataProviderRef.current = res.dataProvider;
         });
+
+        // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            // Ensure deleting charts on React component unmount
-            charts?.forEach(c => c.delete());
-            // ensure releasing audio data provider
-            dataProvider?.closeAudio();
+            // check if chart is already initialized
+            if (chartsRef.current) {
+                chartsRef.current.forEach(c => c.delete());
+                // ensure releasing audio data provider
+                dataProviderRef.current.closeAudio();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                chartsRef.current.forEach(c => c.delete());
+                // ensure releasing audio data provider
+                dataProviderRef.current.closeAudio();
+            });
         };
     }, []);
 

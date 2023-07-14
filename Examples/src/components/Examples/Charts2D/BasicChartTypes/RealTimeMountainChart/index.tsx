@@ -21,9 +21,6 @@ import {
 
 export const divElementId = "chart";
 
-let timerId: NodeJS.Timeout;
-let animationToken: AnimationToken;
-
 export const drawExample = async () => {
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
@@ -81,6 +78,8 @@ export const drawExample = async () => {
 
     sciChartSurface.annotations.add(pulsingDotAnnotation);
 
+    let timerId: NodeJS.Timeout;
+    let animationToken: AnimationToken;
     // This function performs animation on any XyDataSeries, animating the latest point only
     // Be careful of reentrancy, e.g. calling animateXy more than once before previous animation has finished
     // might require special handling
@@ -122,7 +121,7 @@ export const drawExample = async () => {
 
     // This is the loop where we add a new X,Y point and animate every 1 second to demonstrate animations
     const runAddDataOnTimeout = () => {
-        if (scs?.isDeleted) {
+        if (sciChartSurface?.isDeleted) {
             return;
         }
         const generated = generator.getRandomWalkSeries(1);
@@ -139,29 +138,44 @@ export const drawExample = async () => {
         runAddDataOnTimeout();
     };
 
+    const handleStop = () => {
+        animationToken?.cancelAnimation();
+        clearTimeout(timerId);
+        timerId = undefined;
+    };
+
     return { sciChartSurface, wasmContext, controls: { handleStart, handleStop } };
 };
 
-const handleStop = () => {
-    animationToken?.cancelAnimation();
-    clearTimeout(timerId);
-    timerId = undefined;
-};
-
-let scs: SciChartSurface;
-
 export default function RealtimeMountainChart() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const controlsRef = React.useRef({
+        handleStop: () => {},
+        handleStart: () => {}
+    });
+
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            scs = res.sciChartSurface;
+        const chartInitializationPromise = drawExample().then(res => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
+            controlsRef.current = res.controls;
+
             res.controls.handleStart();
-        })();
+        });
 
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            handleStop();
-            scs?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                controlsRef.current.handleStop();
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                controlsRef.current.handleStop();
+                sciChartSurfaceRef.current.delete();
+            });
         };
     }, []);
 

@@ -99,16 +99,34 @@ export const drawExample = async () => {
     return { sciChartSurface, overview };
 };
 
-const itemsToDelete: IDeletable[] = [];
-
 export default function Overview() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const sciChartOverviewRef = React.useRef<SciChartOverview>();
+
     React.useEffect(() => {
-        (async () => {
-            const { sciChartSurface, overview } = await drawExample();
-            itemsToDelete.push(sciChartSurface, overview);
-        })();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface, overview }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+            sciChartOverviewRef.current = overview;
+        });
+
+        // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            itemsToDelete.forEach(item => item.delete());
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                sciChartOverviewRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                sciChartOverviewRef.current = undefined;
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                sciChartOverviewRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                sciChartOverviewRef.current = undefined;
+            });
         };
     }, []);
 

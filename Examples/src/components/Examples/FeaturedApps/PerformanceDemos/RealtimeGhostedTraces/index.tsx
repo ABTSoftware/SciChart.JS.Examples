@@ -161,41 +161,55 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-let scs: SciChartSurface;
-let autoStartTimerId: NodeJS.Timeout;
-
 export default function RealtimeGhostedTraces() {
-    const [controls, setControls] = React.useState({
-        startAnimation: () => {},
-        stopAnimation: () => {}
-    });
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const controlsRef = React.useRef<{
+        startAnimation: () => void;
+        stopAnimation: () => void;
+    }>();
+
     const [stats, setStats] = React.useState({ numberSeries: 0, numberPoints: 0, fps: 0 });
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            scs = res.sciChartSurface;
+        let autoStartTimerId: NodeJS.Timeout;
+
+        const chartInitializationPromise = drawExample().then(res => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
+            controlsRef.current = res.controls;
             let lastRendered = Date.now();
-            scs.rendered.subscribe(() => {
+            res.sciChartSurface.rendered.subscribe(() => {
                 const currentTime = Date.now();
                 const timeDiffSeconds = new Date(currentTime - lastRendered).getTime() / 1000;
                 lastRendered = currentTime;
                 const fps = 1 / timeDiffSeconds;
                 setStats({
-                    numberSeries: scs.renderableSeries.size(),
-                    numberPoints: scs.renderableSeries.size() * scs.renderableSeries.get(0).dataSeries.count(),
+                    numberSeries: res.sciChartSurface.renderableSeries.size(),
+                    numberPoints:
+                        res.sciChartSurface.renderableSeries.size() *
+                        res.sciChartSurface.renderableSeries.get(0).dataSeries.count(),
                     fps
                 });
             });
-            setControls(res.controls);
+
             autoStartTimerId = setTimeout(res.controls.startAnimation, 0);
-        })();
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            controls.stopAnimation();
-            clearTimeout(timerId);
-            clearTimeout(autoStartTimerId);
-            scs?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                clearTimeout(autoStartTimerId);
+                controlsRef.current.stopAnimation();
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                clearTimeout(autoStartTimerId);
+                controlsRef.current.stopAnimation();
+                sciChartSurfaceRef.current.delete();
+            });
         };
     }, []);
 
@@ -206,10 +220,18 @@ export default function RealtimeGhostedTraces() {
             <div className={classes.ChartWrapper}>
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
-                        <Button id="startAnimation" style={{ color: appTheme.ForegroundColor }}>
+                        <Button
+                            id="startAnimation"
+                            style={{ color: appTheme.ForegroundColor }}
+                            onClick={() => controlsRef.current.startAnimation()}
+                        >
                             Start
                         </Button>
-                        <Button id="stopAnimation" style={{ color: appTheme.ForegroundColor }}>
+                        <Button
+                            id="stopAnimation"
+                            style={{ color: appTheme.ForegroundColor }}
+                            onClick={() => controlsRef.current.stopAnimation()}
+                        >
                             Stop
                         </Button>
                         <span style={{ margin: 12 }}># Series: {stats.numberSeries}</span>

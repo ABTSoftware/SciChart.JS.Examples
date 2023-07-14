@@ -25,8 +25,6 @@ const POINTS_LOOP = 5200;
 const GAP_POINTS = 50;
 const DATA_LENGTH = vitalSignsEcgData.xValues.length;
 
-let timerId: NodeJS.Timeout;
-
 const {
     xValues,
     ecgHeartRateValues,
@@ -182,6 +180,8 @@ const drawExample = async (
         })
     );
 
+    let timerId: NodeJS.Timeout;
+
     // The following code is run once per timer-step to update the data in the charts
     // Here you would subsitute your own callback to receive data from your data feed or sensors
     const runUpdateDataOnTimeout = () => {
@@ -228,37 +228,50 @@ const drawExample = async (
 };
 
 let currentPoint = 0;
-let scs: SciChartSurface;
-let autoStartTimerId: NodeJS.Timeout;
 
 // REACT COMPONENT
 export default function VitalSignsMonitorDemo() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const controlsRef = React.useRef<{ handleStart: () => void; handleStop: () => void }>();
+
     const [infoEcg, setInfoEcg] = React.useState<number>(0);
     const [infoBloodPressure1, setInfoBloodPressure1] = React.useState<number>(0);
     const [infoBloodPressure2, setInfoBloodPressure2] = React.useState<number>(0);
     const [infoBloodVolume, setInfoBloodVolume] = React.useState<number>(0);
     const [infoBloodOxygenation, setInfoBloodOxygenation] = React.useState<number>(0);
-    const [controls, setControls] = React.useState({ handleStart: () => {}, handleStop: () => {} });
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample(
-                setInfoEcg,
-                setInfoBloodPressure1,
-                setInfoBloodPressure2,
-                setInfoBloodVolume,
-                setInfoBloodOxygenation
-            );
-            scs = res.sciChartSurface;
-            setControls(res.controls);
+        let autoStartTimerId: NodeJS.Timeout;
+
+        const chartInitializationPromise = drawExample(
+            setInfoEcg,
+            setInfoBloodPressure1,
+            setInfoBloodPressure2,
+            setInfoBloodVolume,
+            setInfoBloodOxygenation
+        ).then(res => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
+            controlsRef.current = res.controls;
             autoStartTimerId = setTimeout(res.controls.handleStart, 0);
-        })();
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            controls.handleStop();
-            clearTimeout(timerId);
-            clearTimeout(autoStartTimerId);
-            scs?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                clearTimeout(autoStartTimerId);
+                controlsRef.current.handleStop();
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                clearTimeout(autoStartTimerId);
+                controlsRef.current.handleStop();
+                sciChartSurfaceRef.current.delete();
+                return;
+            });
         };
     }, []);
 

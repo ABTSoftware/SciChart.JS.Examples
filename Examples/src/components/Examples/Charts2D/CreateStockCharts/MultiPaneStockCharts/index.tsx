@@ -487,18 +487,29 @@ class MacdHistogramPaletteProvider implements IStrokePaletteProvider, IFillPalet
 }
 
 export default function MultiPaneStockCharts() {
+    const sciChartSurfaceRef = React.useRef<TWebAssemblyChart[]>();
+    const sciChartOverviewRef = React.useRef<SciChartOverview>();
+
     React.useEffect(() => {
-        let allCharts: TWebAssemblyChart[];
-        let sciChartOverview: SciChartOverview;
-        (async () => {
-            const { res, overview } = await drawExample();
-            allCharts = res;
-            sciChartOverview = overview;
-        })();
+        const chartInitializationPromise = drawExample().then(({ res, overview }) => {
+            sciChartSurfaceRef.current = res;
+            sciChartOverviewRef.current = overview;
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            allCharts.forEach(el => el?.sciChartSurface?.delete());
-            sciChartOverview?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartOverviewRef.current.delete();
+                sciChartSurfaceRef.current.forEach(el => el.sciChartSurface.delete());
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartOverviewRef.current.delete();
+                sciChartSurfaceRef.current.forEach(el => el.sciChartSurface.delete());
+            });
         };
     }, []);
 

@@ -142,40 +142,53 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-let scs: SciChartSurface;
-let autoStartTimerId: NodeJS.Timeout;
-
 export default function RealtimePerformanceDemo() {
-    const [controls, setControls] = React.useState({
-        startDemo: () => {},
-        stopDemo: () => {}
-    });
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const controlsRef = React.useRef<{
+        startDemo: () => void;
+        stopDemo: () => void;
+    }>();
+
     const [stats, setStats] = React.useState({ numberPoints: 0, fps: 0 });
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            scs = res.sciChartSurface;
+        let autoStartTimerId: NodeJS.Timeout;
+
+        const chartInitializationPromise = drawExample().then(res => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
+            controlsRef.current = res.controls;
             let lastRendered = Date.now();
-            scs.rendered.subscribe(() => {
+            res.sciChartSurface.rendered.subscribe(() => {
                 const currentTime = Date.now();
                 const timeDiffSeconds = new Date(currentTime - lastRendered).getTime() / 1000;
                 lastRendered = currentTime;
                 const fps = 1 / timeDiffSeconds;
                 setStats({
-                    numberPoints: scs.renderableSeries.size() * scs.renderableSeries.get(0).dataSeries.count(),
+                    numberPoints:
+                        res.sciChartSurface.renderableSeries.size() *
+                        res.sciChartSurface.renderableSeries.get(0).dataSeries.count(),
                     fps
                 });
             });
-            setControls(res.controls);
+
             autoStartTimerId = setTimeout(res.controls.startDemo, 0);
-        })();
+        });
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            controls.stopDemo();
-            clearTimeout(timerId);
-            clearTimeout(autoStartTimerId);
-            scs?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                clearTimeout(autoStartTimerId);
+                controlsRef.current.stopDemo();
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                clearTimeout(autoStartTimerId);
+                controlsRef.current.stopDemo();
+                sciChartSurfaceRef.current.delete();
+            });
         };
     }, []);
 
@@ -186,10 +199,16 @@ export default function RealtimePerformanceDemo() {
             <div className={classes.ChartWrapper}>
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
-                        <Button onClick={controls.startDemo} style={{ color: appTheme.ForegroundColor }}>
+                        <Button
+                            onClick={() => controlsRef.current.startDemo()}
+                            style={{ color: appTheme.ForegroundColor }}
+                        >
                             Start
                         </Button>
-                        <Button onClick={controls.stopDemo} style={{ color: appTheme.ForegroundColor }}>
+                        <Button
+                            onClick={() => controlsRef.current.stopDemo()}
+                            style={{ color: appTheme.ForegroundColor }}
+                        >
                             Stop
                         </Button>
                         <span

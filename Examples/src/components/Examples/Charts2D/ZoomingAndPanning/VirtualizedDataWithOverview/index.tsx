@@ -114,7 +114,7 @@ export const drawExample = async () => {
             )
         );
 
-    return [sciChartSurface, overview.overviewSciChartSurface];
+    return { sciChartSurface, overview };
 };
 
 const loadPoints = async (xFrom: number, xTo: number, chartWidth: number, dataSeries: XyDataSeries) => {
@@ -149,15 +149,29 @@ const showError = (sciChartSurface: SciChartSurface, message: string) => {
 };
 
 export default function VirtualizedDataOverview() {
-    let charts: SciChartSurface[];
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const sciChartOverviewRef = React.useRef<SciChartOverview>();
 
     React.useEffect(() => {
-        (async () => {
-            charts = await drawExample();
-        })();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface, overview }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+            sciChartOverviewRef.current = overview;
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            charts.forEach(chart => chart?.delete());
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                sciChartOverviewRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                sciChartOverviewRef.current.delete();
+            });
         };
     }, []);
 

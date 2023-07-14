@@ -154,20 +154,32 @@ function generateExampleData(index: number, heatmapWidth: number, heatmapHeight:
 }
 
 export default function ContourChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
-    const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const heatmapLegendRef = React.useRef<HeatmapLegend>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            const legend = await drawHeatmapLegend();
-            setSciChartSurface(res.sciChartSurface);
-            setHeatmapLegend(legend);
-        })();
+            const chartInitializationPromise = Promise.all([
+                drawExample(),
+                drawHeatmapLegend()
+            ]).then(([{ sciChartSurface }, legend]) => {
+                sciChartSurfaceRef.current = sciChartSurface;
+                heatmapLegendRef.current = legend;
+            })
+        
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            sciChartSurface?.delete();
-            heatmapLegend?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                heatmapLegendRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                heatmapLegendRef.current.delete();
+            });
         };
     }, []);
 

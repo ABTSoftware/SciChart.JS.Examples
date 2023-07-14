@@ -20,7 +20,6 @@ import {
 } from "scichart";
 
 export const divElementId = "chart";
-let timerId: NodeJS.Timeout;
 
 // A custom filter which calculates the frequency distribution of the original data
 class AggregationFilter extends XyFilterBase {
@@ -186,6 +185,8 @@ export const drawExample = async () => {
         })
     );
 
+    let timerId: NodeJS.Timeout;
+
     // Function called when the user clicks stopDemo button
     const stopDemo = () => {
         clearTimeout(timerId);
@@ -223,28 +224,38 @@ export const drawExample = async () => {
     return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo } };
 };
 
-let scs: SciChartSurface;
-let autoStartTimerId: NodeJS.Timeout;
-
 export default function CustomFilters() {
-    const [controls, setControls] = React.useState({
-        startDemo: () => {},
-        stopDemo: () => {}
-    });
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const chartControlsRef = React.useRef<{
+        startDemo: () => void;
+        stopDemo: () => void;
+    }>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            scs = res.sciChartSurface;
-            setControls(res.controls);
+        let autoStartTimerId: NodeJS.Timeout;
+
+        const chartInitializationPromise = drawExample().then(res => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
+            chartControlsRef.current = res.controls;
             autoStartTimerId = setTimeout(res.controls.startDemo, 0);
-        })();
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            controls.stopDemo();
-            clearTimeout(timerId);
-            clearTimeout(autoStartTimerId);
-            scs?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                clearTimeout(autoStartTimerId);
+                chartControlsRef.current.stopDemo();
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                clearTimeout(autoStartTimerId);
+                chartControlsRef.current.stopDemo();
+                sciChartSurfaceRef.current.delete();
+            });
         };
     }, []);
 

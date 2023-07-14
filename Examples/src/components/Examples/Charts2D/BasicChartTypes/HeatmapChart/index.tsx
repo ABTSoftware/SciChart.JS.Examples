@@ -206,21 +206,19 @@ const useStyles = makeStyles(theme => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function HeatmapChart() {
-    const [controls, setControls] = React.useState({
+    const controlsRef = React.useRef({
         startDemo: () => {},
         stopDemo: () => {}
     });
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
-    const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const heatmapLegendRef = React.useRef<HeatmapLegend>();
     const [stats, setStats] = React.useState({ xSize: 0, ySize: 0, fps: 0 });
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            const legend = await drawHeatmapLegend();
-            setSciChartSurface(res.sciChartSurface);
-            setHeatmapLegend(legend);
-            setControls(res.controls);
+        const chartInitializationPromise = Promise.all([drawExample(), drawHeatmapLegend()]).then(([res, legend]) => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
+            heatmapLegendRef.current = legend;
+            controlsRef.current = res.controls;
 
             // Handle drawing/updating FPS
             let lastRendered = Date.now();
@@ -236,12 +234,24 @@ export default function HeatmapChart() {
                 });
             });
             res.controls.startDemo();
-        })();
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            controls.stopDemo();
-            sciChartSurface?.delete();
-            heatmapLegend?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                controlsRef.current.stopDemo();
+                sciChartSurfaceRef.current.delete();
+                heatmapLegendRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                controlsRef.current.stopDemo();
+                sciChartSurfaceRef.current.delete();
+                heatmapLegendRef.current.delete();
+            });
         };
     }, []);
 
@@ -252,10 +262,16 @@ export default function HeatmapChart() {
             <div className={classes.ChartWrapper}>
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
-                        <Button onClick={controls.startDemo} style={{ color: appTheme.ForegroundColor }}>
+                        <Button
+                            onClick={() => controlsRef.current.startDemo()}
+                            style={{ color: appTheme.ForegroundColor }}
+                        >
                             Start
                         </Button>
-                        <Button onClick={controls.stopDemo} style={{ color: appTheme.ForegroundColor }}>
+                        <Button
+                            onClick={() => controlsRef.current.stopDemo()}
+                            style={{ color: appTheme.ForegroundColor }}
+                        >
                             Stop
                         </Button>
                         <span style={{ margin: 12, minWidth: "200px" }}>

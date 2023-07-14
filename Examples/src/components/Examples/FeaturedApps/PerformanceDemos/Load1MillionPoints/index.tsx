@@ -24,14 +24,14 @@ import {
     ZoomPanModifier
 } from "scichart";
 
-export type TTimeSpan = {
+type TTimeSpan = {
     title: string;
     durationMs: number;
 };
 
-export const divElementId = "chart";
+const divElementId = "chart";
 
-export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
+const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
@@ -179,24 +179,33 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-let scs: SciChartSurface;
-let autoStartTimerId: NodeJS.Timeout;
-
 export default function Load1MillionPointsChart() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample((newTimeSpans: TTimeSpan[]) => {
-                setTimeSpans([...newTimeSpans]);
-            });
-            scs = res.sciChartSurface;
+        let autoStartTimerId: NodeJS.Timeout;
+
+        const chartInitializationPromise = drawExample((newTimeSpans: TTimeSpan[]) => {
+            setTimeSpans([...newTimeSpans]);
+        }).then((res) => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
             autoStartTimerId = setTimeout(res.loadPoints, 0);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
+        });
+
         return () => {
-            clearTimeout(autoStartTimerId);
-            scs?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                clearTimeout(autoStartTimerId);
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                clearTimeout(autoStartTimerId);
+                sciChartSurfaceRef.current.delete();
+            });
         };
     }, []);
 

@@ -214,27 +214,35 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-let scs: SciChartSurface;
-let autoStartTimerId: NodeJS.Timeout;
-
 export default function Load500By500() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
 
-    const [loading, setLoading] = React.useState(false);
     React.useEffect(() => {
-        (async () => {
-            setLoading(true);
-            const res = await drawExample((newTimeSpans: TTimeSpan[]) => {
-                setTimeSpans([...newTimeSpans]);
-            });
-            scs = res.sciChartSurface;
+        let autoStartTimerId: NodeJS.Timeout;
+
+        const chartInitializationPromise = drawExample((newTimeSpans: TTimeSpan[]) => {
+            setTimeSpans([...newTimeSpans]);
+        }).then((res) => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
             autoStartTimerId = setTimeout(res.loadPoints, 0);
-            if (res) setLoading(false);
-        })();
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            clearTimeout(autoStartTimerId);
-            scs?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                clearTimeout(autoStartTimerId);
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                clearTimeout(autoStartTimerId);
+                sciChartSurfaceRef.current.delete();
+            });
         };
     }, []);
 

@@ -107,18 +107,29 @@ const useStyles = makeStyles(theme => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function StackedMountainChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const stackedMountainCollectionRef = React.useRef<StackedMountainCollection>();
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
-    const [stackedMountainCollection, setStackedMountainCollection] = React.useState<StackedMountainCollection>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-            setStackedMountainCollection(res.stackedMountainCollection);
-        })();
+        const chartInitializationPromise = drawExample().then(res => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
+            stackedMountainCollectionRef.current = res.stackedMountainCollection;
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
     const handleUsePercentage = (event: any, value: boolean) => {
@@ -126,8 +137,8 @@ export default function StackedMountainChart() {
             console.log(`100% stacked? ${value}`);
             setUse100PercentStackedMode(value);
             // Toggle 100% mode on click
-            stackedMountainCollection.isOneHundredPercent = value;
-            sciChartSurface.zoomExtents(200);
+            stackedMountainCollectionRef.current.isOneHundredPercent = value;
+            sciChartSurfaceRef.current.zoomExtents(200);
         }
     };
 

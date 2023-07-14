@@ -207,24 +207,31 @@ async function getDataFromServer() {
 }
 
 export default function LiDAR3DPointCloudDemo() {
-    const [loading, setLoading] = React.useState(true);
-    const [sciChart3DSurface, setSciChart3DSurface] = React.useState<SciChart3DSurface>();
-    const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
+    const sciChartSurfaceRef = React.useRef<SciChart3DSurface>();
+    const heatmapLegendRef = React.useRef<HeatmapLegend>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            const legend = await drawHeatmapLegend();
-            if (res) {
-                setLoading(false);
+        const chartInitializationPromise = Promise.all([drawExample(), drawHeatmapLegend()]).then(
+            ([{ sciChart3DSurface }, legend]) => {
+                sciChartSurfaceRef.current = sciChart3DSurface;
+                heatmapLegendRef.current = legend;
             }
-            setHeatmapLegend(legend);
-            setSciChart3DSurface(res.sciChart3DSurface);
-        })();
+        );
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            heatmapLegend?.delete();
-            sciChart3DSurface?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                heatmapLegendRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                heatmapLegendRef.current.delete();
+            });
         };
     }, []);
 

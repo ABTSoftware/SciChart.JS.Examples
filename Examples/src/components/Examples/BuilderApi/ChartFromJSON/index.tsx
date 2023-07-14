@@ -45,20 +45,33 @@ const defaultJSON = `{
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartFromJSON() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const [errors, setErrors] = React.useState<string>();
     const [json, setJSON] = React.useState<string>(defaultJSON);
     const [buildRequested, setBuildRequested] = React.useState<boolean>(true);
 
     React.useEffect(() => {
-        (async () => {
-            if (buildRequested) {
-                const res = await drawExample(json, setErrors);
-                setSciChartSurface(res.sciChartSurface);
-            }
-        })();
-        // Deleting sciChartSurface to prevent memory leak
-        return () => sciChartSurface?.delete();
+        if (buildRequested) {
+            const chartInitializationPromise = drawExample(json, setErrors).then(({ sciChartSurface }) => {
+                sciChartSurfaceRef.current = sciChartSurface;
+                return sciChartSurface;
+            });
+
+            return () => {
+                // check if chart is already initialized
+                if (sciChartSurfaceRef.current) {
+                    sciChartSurfaceRef.current.delete();
+                    return;
+                }
+
+                // else postpone deletion
+                chartInitializationPromise.then(surface => {
+                    surface.delete();
+                });
+            };
+        }
+
+        return () => {}
     }, [buildRequested]);
 
     const handleChangeJSON = (event: React.ChangeEvent<{ value: string }>) => {

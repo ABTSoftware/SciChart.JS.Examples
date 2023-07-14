@@ -200,20 +200,35 @@ const drawHeatmapLegend = async () => {
 
 // REACT COMPONENT
 export default function PointLine3DChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChart3DSurface>();
-    const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
+    const sciChartSurfaceRef = React.useRef<SciChart3DSurface>();
+    const heatmapLegendRef = React.useRef<HeatmapLegend>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            const legend = await drawHeatmapLegend();
-            setHeatmapLegend(legend);
-            setSciChartSurface(res.sciChart3DSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
+        const chartInitializationPromise = Promise.all([
+            drawExample(),
+            drawHeatmapLegend()
+        ]).then(([{ sciChart3DSurface }, legend]) => {
+            sciChartSurfaceRef.current = sciChart3DSurface;
+            heatmapLegendRef.current = legend;
+        });
+
         return () => {
-            sciChartSurface?.delete();
-            heatmapLegend?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                heatmapLegendRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                heatmapLegendRef.current = undefined;
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                heatmapLegendRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                heatmapLegendRef.current = undefined;
+            });
         };
     }, []);
 

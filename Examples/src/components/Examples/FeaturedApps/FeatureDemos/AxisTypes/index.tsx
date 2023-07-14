@@ -177,18 +177,32 @@ const useStyles = makeStyles(theme => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function FeatureAxisTypes() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+
     const [labelProvider, setLabelProvider] = React.useState<TextLabelProvider>();
     const [preset, setPreset] = React.useState<number>(0);
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-            setLabelProvider(res.labelProvider);
-        })();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface, labelProvider }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+            setLabelProvider(labelProvider);
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                sciChartSurfaceRef.current = undefined
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                sciChartSurfaceRef.current = undefined
+            });
+        };
     }, []);
 
     const handlePreset = (event: any, value: number) => {
