@@ -118,17 +118,31 @@ export const drawExample = async () => {
 
     sciChartSurface.zoomExtents();
 
-    return sciChartSurface;
+    return { sciChartSurface };
 };
 
-export default function DragAxisToScale() {
-    React.useEffect(() => {
-        let sciChartSurface: SciChartSurface;
-        (async () => {
-            sciChartSurface = await drawExample();
-        })();
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
-        return () => sciChartSurface?.delete();
+    React.useEffect(() => {
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
     return <div id={divElementId} className={classes.ChartWrapper} />;

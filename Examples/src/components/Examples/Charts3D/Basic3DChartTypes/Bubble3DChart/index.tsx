@@ -112,18 +112,28 @@ function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): 
         return { pointScale: 0.1 + valueScale, vertexColorAbgr: color1 };
     });
 }
-
-// REACT COMPONENT
-export default function Bubble3DChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChart3DSurface>();
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChart3DSurface>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChart3DSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChart3DSurface }) => {
+            sciChartSurfaceRef.current = sciChart3DSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
     return <div id={divElementId} className={classes.ChartWrapper} />;

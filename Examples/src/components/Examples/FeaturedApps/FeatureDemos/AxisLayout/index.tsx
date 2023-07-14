@@ -76,9 +76,6 @@ const drawExample = async () => {
 
         isInnerAxis: true
     });
-    const xAxis5 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "xAxis5", axisTitle: "xAxis5" });
-    const xAxis6 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "xAxis6", axisTitle: "xAxis6" });
-    const xAxis7 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "xAxis7", axisTitle: "xAxis7" });
 
     const yAxis2 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "yAxis1", axisTitle: "Stacked Y Axis" });
     const yAxis1 = new NumericAxis(wasmContext, {
@@ -102,9 +99,6 @@ const drawExample = async () => {
         flippedCoordinates: false,
         isInnerAxis: true
     });
-    const yAxis5 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "yAxis5", axisTitle: "yAxis5" });
-    const yAxis6 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "yAxis6", axisTitle: "yAxis6" });
-    const yAxis7 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "yAxis7", axisTitle: "yAxis7" });
 
     sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy = new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
 
@@ -131,8 +125,6 @@ const drawExample = async () => {
         xAxis3,
         xAxis1,
         xAxis4
-        //  xAxis5,
-        //  xAxis6, xAxis7
     );
 
     sciChartSurface.yAxes.add(
@@ -140,8 +132,6 @@ const drawExample = async () => {
         yAxis3,
         yAxis1,
         yAxis4
-        // yAxis5,
-        // yAxis6, yAxis7
     );
     xAxis1.isPrimaryAxis = true;
     yAxis1.isPrimaryAxis = true;
@@ -244,21 +234,27 @@ const drawExample = async () => {
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
-export default function FeatureAxisLayout() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-    return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
-        </div>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

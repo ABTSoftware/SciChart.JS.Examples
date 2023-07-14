@@ -183,18 +183,28 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
     return { wasmContext, sciChartSurface };
 };
 
-let scs: SciChartSurface;
-
 export default function DatapointSelection() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+
     const [selectedPoints, setSelectedPoints] = React.useState<DataPointInfo[]>([]);
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample(setSelectedPoints);
-            scs = res.sciChartSurface;
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => scs?.delete();
+        const chartInitializationPromise = drawExample(setSelectedPoints).then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
     const rowStyle = {

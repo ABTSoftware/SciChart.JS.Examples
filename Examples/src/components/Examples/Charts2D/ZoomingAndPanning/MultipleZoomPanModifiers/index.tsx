@@ -162,31 +162,29 @@ const drawExample = async () => {
     return { wasmContext, sciChartSurface };
 };
 
-let scs: SciChartSurface;
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
-export default function ZoomPanUsage() {
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            scs = res.sciChartSurface;
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => scs?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-    /*
-     * In order to prevent conflicts of touch actions on the chart with the default browser gestures behavior,
-     * touch-actions css property can be used. https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action
-     *
-     * Suggestions:
-     * - if a chart uses some Zoom/Pan modifiers or draggable elements:
-     *   touch-actions property should be set to 'none' to prevent default browser touch behavior
-     *   (or the value can be set to allow only specific type of default touch actions);
-     *
-     * - if a chart doesn't allow zooming/panning:
-     *   prefer leaving the default 'touch-actions: auto' to allow default browser gestures upon the chart element.
-     */
-
-    // make sure default browser touch behavior doesn't conflict with the chart modifiers functionality
-    return <div id={divElementId} style={{ touchAction: "none" }} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

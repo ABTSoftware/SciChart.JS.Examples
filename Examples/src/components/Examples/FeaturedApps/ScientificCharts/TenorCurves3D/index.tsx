@@ -110,7 +110,7 @@ export const draw3DChart = async () => {
     return sciChart3DSurface;
 };
 
-export const drawLineChart1 = async () => {
+const drawLineChart1 = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(div2DChart1, {
         theme: appTheme.SciChartJsTheme
     });
@@ -155,7 +155,7 @@ export const drawLineChart1 = async () => {
     return sciChartSurface;
 };
 
-export const drawLineChart2 = async () => {
+const drawLineChart2 = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(div2DChart2, {
         theme: appTheme.SciChartJsTheme
     });
@@ -195,7 +195,7 @@ export const drawLineChart2 = async () => {
     return sciChartSurface;
 };
 
-export const draw3DChartLegend = async () => {
+const draw3DChartLegend = async () => {
     const { heatmapLegend, wasmContext } = await HeatmapLegend.create(div3DChartLegend, {
         theme: {
             ...appTheme.SciChartJsTheme,
@@ -236,17 +236,32 @@ export const draw3DChartLegend = async () => {
     return heatmapLegend;
 };
 
-let surfaces: IDeletable[] = [];
-
 export default function TenorCurves3DChart() {
-    // const [sciChart3DSurface, setSciChart3DSurface] = React.useState<SciChart3DSurface>();
+    const sciChartSurfaceRef = React.useRef<IDeletable[]>();
+
     React.useEffect(() => {
-        (async () => {
-            surfaces = await Promise.all([draw3DChart(), draw3DChartLegend(), drawLineChart1(), drawLineChart2()]);
-        })();
+        const chartInitializationPromise = Promise.all([
+            draw3DChart(),
+            draw3DChartLegend(),
+            drawLineChart1(),
+            drawLineChart2()
+        ]).then(charts => {
+            sciChartSurfaceRef.current = charts;
+        });
 
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => surfaces.forEach(s => s.delete());
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.forEach(chart => chart.delete());
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.forEach(chart => chart.delete());
+            });
+        };
     }, []);
 
     return (

@@ -187,7 +187,8 @@ const useStyles = makeStyles(theme => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function LogarithmicAxisExample() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+
     const [linearXAxis, setLinearXAxis] = React.useState<NumericAxis>();
     const [logXAxis, setLogXAxis] = React.useState<LogarithmicAxis>();
     const [linearYAxis, setLinearYAxis] = React.useState<NumericAxis>();
@@ -195,21 +196,30 @@ export default function LogarithmicAxisExample() {
     const [preset, setPreset] = React.useState<number>(0);
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            // Store some variables which we will need later when switching x,y axis type
-            setSciChartSurface(res.sciChartSurface);
+        const chartInitializationPromise = drawExample().then((res) => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
             setLogXAxis(res.xAxisLogarithmic);
             setLogYAxis(res.yAxisLogarithmic);
             setLinearXAxis(res.xAxisLinear);
             setLinearYAxis(res.yAxisLinear);
-        })();
+        });
 
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
     const handleToggleButtonChanged = (event: any, state: number) => {
+        const sciChartSurface = sciChartSurfaceRef.current;
         const toggleAxis = (axis: AxisBase2D, isEnabled: boolean) => {
             axis.isVisible = isEnabled; // toggle this axis as visible/invisible
             axis.isPrimaryAxis = isEnabled; // Only the primary axis shows gridlines

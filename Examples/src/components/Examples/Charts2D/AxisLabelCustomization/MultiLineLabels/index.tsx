@@ -154,38 +154,55 @@ const drawExample = async () => {
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function MultiLineLabels() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
-    const [labelProvider, setLabelProvider] = React.useState<TextLabelProvider>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const labelProviderRef = React.useRef<TextLabelProvider>();
+
     const [preset, setPreset] = React.useState<number>(0);
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-            setLabelProvider(res.labelProvider);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface, labelProvider }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+            labelProviderRef.current = labelProvider;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                labelProviderRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                labelProviderRef.current = undefined;
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                labelProviderRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                labelProviderRef.current = undefined;
+            });
+        };
     }, []);
 
     const handlePreset = (event: any, value: number) => {
         setPreset(value);
         switch (value) {
             case 0:
-                labelProvider.rotation = 0;
-                labelProvider.maxLength = 9;
+                labelProviderRef.current.rotation = 0;
+                labelProviderRef.current.maxLength = 9;
                 break;
             case 1:
-                labelProvider.rotation = 20;
-                labelProvider.maxLength = 0;
+                labelProviderRef.current.rotation = 20;
+                labelProviderRef.current.maxLength = 0;
                 break;
             case 2:
-                labelProvider.rotation = 30;
-                labelProvider.maxLength = 12;
+                labelProviderRef.current.rotation = 30;
+                labelProviderRef.current.maxLength = 12;
                 break;
             default:
-                labelProvider.rotation = 0;
-                labelProvider.maxLength = 9;
+                labelProviderRef.current.rotation = 0;
+                labelProviderRef.current.maxLength = 9;
                 break;
         }
     };

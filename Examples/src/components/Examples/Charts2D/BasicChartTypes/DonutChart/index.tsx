@@ -14,7 +14,7 @@ import {
 
 export const divElementId1 = "chart1";
 
-export const drawExample = async () => {
+export const drawExample = async (): Promise<SciChartPieSurface> => {
     // Create the pie chart
     const sciChartPieSurface = await SciChartPieSurface.create(divElementId1, {
         theme: appTheme.SciChartJsTheme,
@@ -84,15 +84,25 @@ export const drawExample = async () => {
 };
 
 export default function DonutChart() {
-    const [chart, setChart] = React.useState<SciChartPieSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartPieSurface>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setChart(res);
-        })();
-        // Deleting sciChartSurface to prevent memory leak
-        return () => chart?.delete();
+        const chartInitializationPromise = drawExample().then((sciChartSurface) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
     return (
