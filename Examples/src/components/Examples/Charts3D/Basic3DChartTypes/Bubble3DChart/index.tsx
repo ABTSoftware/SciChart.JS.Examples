@@ -28,7 +28,7 @@ const divElementId = "chart";
 type TMetadata = {
     country: string;
     color: string;
-    vertexColorAbgr: number;
+    vertexColor: number;
     pointScale: number;
 };
 
@@ -138,8 +138,8 @@ function formatMetadata(population: PopulationData[], gradientStops: TGradientSt
         // const nextIndex = Math.min(index + 1, sGradientStops.length - 1);
         // work out the colour of this point
         const color = sGradientStops[index].color;
-        const vertexColorAbgr = parseColorToUIntArgb(color);
-        metaData.push({country: item.country, pointScale: 0.1 + valueScale, vertexColorAbgr, color });
+        const vertexColor = parseColorToUIntArgb(color);
+        metaData.push({country: item.country, pointScale: 0.1 + valueScale, vertexColor, color });
     }
     return metaData;
 }

@@ -82,9 +82,9 @@ async function scatter3DChart(divElementId) {
 
     console.log(`Point ${i} has scale factor ${scaleFactor} and color ${color}`);
 
-    // Return IPointMetadat3D with pointScale and vertexColorAbgr properties
+    // Return IPointMetadat3D with pointScale and vertexColor properties
     metadata.push({
-      vertexColorAbgr: parseColorToUIntArgb(color),
+      vertexColor: parseColorToUIntArgb(color),
       pointScale: scaleFactor
     });
   }
@@ -95,7 +95,7 @@ async function scatter3DChart(divElementId) {
       xValues,
       yValues,
       zValues,
-      metadata // Optional metadata here. Property vertexColorAbgr is read to color the point
+      metadata // Optional metadata here. Property vertexColor is read to color the point
     }),
     // When metadata colours are provided, the pointMarker.fill is ignored
     pointMarker: new SpherePointMarker3D(wasmContext, {

@@ -30,7 +30,7 @@ const div3DChart = "chart";
 const div3DChartLegend = "heatmapLegend";
 
 type TMetadata = {
-    vertexColorAbgr: number;
+    vertexColor: number;
     pointScale: number;
 };
 
@@ -180,7 +180,7 @@ async function getDataFromServer() {
 
     // Prepare metadata to contain the color values from ASCData
     const meta: TMetadata[] = ascData.ColorValues.map(c => ({
-        vertexColorAbgr: c,
+        vertexColor: c,
         pointScale: 0
     }));
 

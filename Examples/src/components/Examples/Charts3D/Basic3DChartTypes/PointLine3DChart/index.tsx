@@ -22,7 +22,7 @@ const divElementId = "chart";
 const divHeatmapLegend = "heatmapLegend";
 
 type TMetadata = {
-    vertexColorAbgr: number;
+    vertexColor: number;
     pointScale: number;
 };
 
@@ -148,7 +148,7 @@ function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): 
         // const ratio = (valueScale - sGradientStops[index].offset) / (sGradientStops[nextIndex].offset - sGradientStops[index].offset)
         // const colorScale = uintArgbColorLerp(color1, color2, ratio)
         // console.log(`valueScale ${valueScale} low ${sGradientStops[index].offset} high ${sGradientStops[nextIndex].offset} ratio ${ratio}`);
-        return {pointScale: 0.1 + valueScale, vertexColorAbgr: color1};
+        return {pointScale: 0.1 + valueScale, vertexColor: color1};
     });
 }
 

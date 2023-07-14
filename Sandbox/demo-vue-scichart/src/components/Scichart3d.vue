@@ -49,7 +49,7 @@ async function initSciChart() {
         const randomColor = Math.floor(Math.random() * 0xffffff) + 0xff000000;
          // To declare scale and colour, add an optional PointMetadata3D type as the w (fourth) parameter.
          // The PointMetadata3D type also has other properties defining the behaviour of the XYZ point
-         xyzDataSeries.append(x, y, z, { vertexColorAbgr: 0xffa88d32, pointScale: scale });
+         xyzDataSeries.append(x, y, z, { vertexColor: 0xffa88d32, pointScale: scale });
      }
      series.dataSeries = xyzDataSeries;
      sciChart3DSurface.renderableSeries.add(series)

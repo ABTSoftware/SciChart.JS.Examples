@@ -73,7 +73,7 @@ async function scatter3DChart(divElementId) {
   const metadata = xValues.map((x, i) => {
     // Return a random colour from the array above
     const color = colors[Math.floor(Math.random() * colors.length)];
-    return { vertexColorAbgr: parseColorToUIntArgb(color) };
+    return { vertexColor: parseColorToUIntArgb(color) };
   });
 
   // Add a ScatterRenderableSeries3D
@@ -82,7 +82,7 @@ async function scatter3DChart(divElementId) {
       xValues,
       yValues,
       zValues,
-      metadata // Optional metadata here. Property vertexColorAbgr is read to color the point
+      metadata // Optional metadata here. Property vertexColor is read to color the point
     }),
     // When metadata colours are provided, the pointMarker.fill is ignored
     pointMarker: new SpherePointMarker3D(wasmContext, {
