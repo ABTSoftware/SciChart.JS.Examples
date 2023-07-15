@@ -2420,40 +2420,9 @@ when done, document it</Notes>
                   <TargetItemId>07c999cf-2895-4b49-ae5f-77d283a51741</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
-                <TocNode Name="" Id="3826b76e-4673-47d6-aa9a-87e8856ee8b5" IconIndex="1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate m="2019-07-22T12:08:43.5316826Z">The SurfaceMesh 3D Chart Type</CaptionTemplate>
-                  <ChildNodes>
-                    <TocNode Name="" Id="47b238cc-39b9-4e4a-9af4-409b14c0f394" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>18cded29-373d-4748-a964-9bcd4e931443</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="7607318a-2606-4e1f-93c9-d57ccef314a9" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>25011f80-a875-4a44-afee-b40e37c64bdf</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="cac7143b-7630-4d95-9843-f893bb55aa27" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>3f9f08b1-fe1c-4ab5-a312-8c2b8e5a00d3</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="62e9e714-e021-43fe-855f-ae37ba9f4748" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>d4142937-b850-4b7c-81bf-52358f803349</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="07b979d4-a386-4674-ace5-15b4b0a32095" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>0b5698bb-7ae4-45bd-94fe-6b76bf553ecd</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                  </ChildNodes>
+                <TocNode Name="" Id="3826b76e-4673-47d6-aa9a-87e8856ee8b5" IconIndex="11" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate m="2023-07-15T10:38:58.6895342Z">The Surface Mesh 3D Chart Type</CaptionTemplate>
+                  <ChildNodes />
                   <TargetItemId>e5fc78ef-475f-45ae-b38c-d42ba9e6ed50</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
@@ -2483,16 +2452,27 @@ when done, document it</Notes>
                       <TargetItemId>0f6660f9-8d3a-4fa9-b228-36376c2d79d4</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
+                    <TocNode Name="" Id="97762646-046f-4b00-aadf-c61a76886a85" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>8cc4d206-bdd4-4d42-8ff4-4c09fddcb317</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
                     <TocNode Name="" Id="15a9722f-342c-4772-9643-88134ecf3887" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>0f31338f-c416-4129-8e9b-cc357faf1082</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="97762646-046f-4b00-aadf-c61a76886a85" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  </ChildNodes>
+                </TocNode>
+                <TocNode Name="" Id="5d43a765-146e-4882-8cdc-89ecce3f6aa9" IconIndex="1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+                  <CaptionTemplate m="2023-07-14T18:11:29.8730762Z">Tooltips</CaptionTemplate>
+                  <ChildNodes>
+                    <TocNode Name="" Id="f9060c54-9092-482b-8036-e316d45384f1" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
-                      <TargetItemId>8cc4d206-bdd4-4d42-8ff4-4c09fddcb317</TargetItemId>
+                      <TargetItemId>7915ac64-f37b-4acd-a5c7-521a0259d63c</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -14203,225 +14183,7 @@ when done, document it</Notes>
           </TopicCategory>
           <TopicCategory Id="52a1498f-8169-4c7e-abfb-bae331217e72" AutoIndex="false">
             <Caption m="2019-07-10T07:58:05.7072369Z">3D Chart Types</Caption>
-            <ChildTopicCategories>
-              <TopicCategory Id="5bcc9eea-4d0c-416d-af36-e08e3c6eeed4" AutoIndex="false">
-                <Caption m="2019-07-11T12:17:16.6871166Z">The SurfaceMesh 3D Chart Type</Caption>
-                <ChildTopicCategories />
-                <Topics>
-                  <Topic Id="18cded29-373d-4748-a964-9bcd4e931443" Status="New Topic" CreatedOn="2019-07-11T12:18:26.621479Z" ModifiedOn="2019-09-23T13:52:43.4591632Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Applying Palettes to Surface Meshes" BuildFlags="">
-                    <Title />
-                    <ContentsTitle />
-                    <Notes></Notes>
-                    <TopicSections>
-                      <TopicSection Name="BodyText">
-                        <Content m="2019-09-23T13:52:43.4581641Z">&lt;P&gt;The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.surfaceMesh.SurfaceMeshRenderableSeries3D.html"&gt;SurfaceMeshRenderableSeries3D&lt;/A&gt; accepts color palettes via the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~getMeshColorPalette.html"&gt;MeshColorPalette&lt;/A&gt; property.&amp;nbsp; Several options are available for paletting the mesh, including:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.SolidColorBrushPalette.html"&gt;SolidColorBrushPalette&lt;/A&gt; - applies a solid color to all cells in the mesh 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.GradientColorPalette.html"&gt;GradientColorPalette&lt;/A&gt; - maps a linear gradient to the mesh, where heights map to successive colors. 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.BrushColorPalette.html"&gt;BrushColorPalette&lt;/A&gt; - maps a&amp;nbsp;&lt;A href="SciChart.Drawing~com.scichart.drawing.common.BrushStyle.html"&gt;BrushStyle&lt;/A&gt; to the mesh. For example, this can be used to map an image via the&amp;nbsp;&lt;A href="SciChart.Drawing~com.scichart.drawing.common.TextureBrushStyle.html"&gt;TextureBrushStyle&lt;/A&gt; type. &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;We will talk about each of these options below.&lt;/P&gt;
-&lt;H2&gt;SolidColorBrushPalette&lt;/H2&gt;
-&lt;P&gt;The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.SolidColorBrushPalette.html"&gt;SolidColorBrushPalette&lt;/A&gt; is simple enough.&lt;/P&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;SolidColorBrushPalette&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;surfaceMeshRenderableSeries3D.setMeshColorPalette(new SolidColorBrushPalette(ColorUtil.DarkGreen));&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/SolidColorBrushPalette.png" width=605 height=310&gt;&lt;/P&gt;
-&lt;H2&gt;GradientColorPalette&lt;/H2&gt;
-&lt;P&gt;The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.GradientColorPalette.html"&gt;GradientColorPalette&lt;/A&gt; can be used to map a Gradient Brush set of colors to heights in the Surface Mesh. The mapping is similar to that performed by the Heatmap Series in 2D Charts.&lt;/P&gt;
-&lt;P&gt;Given the following code:&lt;/P&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;GradientBrushPalette&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final int[] colors = new int[]{0xFF1D2C6B, Blue, Cyan, GreenYellow, Yellow, Red, DarkRed};&lt;BR&gt;final float[] stops = {0, .1f, .3f, .5f, .7f, .9f, 1};&lt;BR&gt;&lt;/P&gt;
-&lt;P&gt;surfaceMeshRenderableSeries3D.setMeshColorPalette(new GradientColorPalette(colors, stops));&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Colors are mapped onto Y-values as follows:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;Y values corresponding to&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.surfaceMesh.SurfaceMeshRenderableSeries3D~getMinimum.html"&gt;Minimum&lt;/A&gt; are drawn with the gradient stop color at offset 0. 
-&lt;LI&gt;Y values corresponding to&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.surfaceMesh.SurfaceMeshRenderableSeries3D~getMaximum.html"&gt;Maximum&lt;/A&gt; are drawn with the gradient stop color at offset 1. 
-&lt;LI&gt;All other values are linearly interpolated (including Y-values outside of&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.surfaceMesh.SurfaceMeshRenderableSeries3D~getMinimum.html"&gt;Minimum&lt;/A&gt; and&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.surfaceMesh.SurfaceMeshRenderableSeries3D~getMaximum.html"&gt;Maximum&lt;/A&gt;). &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/GradientColorPalette.png"&gt;&lt;/P&gt;
-&lt;H3&gt;GradientColorPalette.IsStepped&lt;/H3&gt;
-&lt;P&gt;When the property IsStepped is set to true, the color map is not interpolated, and graidnet stops are interpretted as hard steppings.&lt;/P&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Stepped GradientColorPalette&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final int[] colors = new int[]{0xFF1D2C6B, Blue, Cyan, GreenYellow, Yellow, Red, DarkRed};&lt;BR&gt;final float[] stops = {0, .1f, .3f, .5f, .7f, .9f, 1};&lt;BR&gt;&lt;/P&gt;
-&lt;P&gt;surfaceMeshRenderableSeries3D.setMeshColorPalette(new GradientColorPalette(colors, stops, true));&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;The Surface Mesh now looks like this:&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/SteppedGradientColorPalette.png"&gt;&lt;/P&gt;
-&lt;H2&gt;BrushColorPalette&lt;/H2&gt;
-&lt;P&gt;A texture can be applied to the SurfaceMesh and mapped over it in the X-Z plane by using a combination of&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.BrushColorPalette.html"&gt;BrushColorPalette&lt;/A&gt;, &lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.MeshPaletteMode~Textured.html"&gt;MeshPaletteMode.Textured&lt;/A&gt;&amp;nbsp;and&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~setMeshColorPaletteSize.html"&gt;MeshColorPaletteSize&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;BrushColorPalette&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.smiley);&lt;BR&gt;final TextureBrushStyle brushStyle = new TextureBrushStyle(bitmap);&lt;/P&gt;
-&lt;P&gt;surfaceMeshRenderableSeries.setMeshPaletteMode(MeshPaletteMode.Textured);&lt;BR&gt;surfaceMeshRenderableSeries.setMeshColorPalette(new BrushColorPalette(brushStyle));&lt;BR&gt;surfaceMeshRenderableSeries.setMeshColorPaletteSize(new Size(bitmap.getWidth(), bitmap.getHeight()));&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/TexturedMeshPaletteMode.png"&gt;&lt;/P&gt;
-&lt;H2&gt;Creating a Custom Palette&lt;/H2&gt;
-&lt;P&gt;You can create a custom Color Palette by inheriting&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.MeshColorPalette.html"&gt;MeshColorPalette&lt;/A&gt; and overriding&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.MeshColorPalette~getTexture.html"&gt;getTexture&lt;/A&gt;. For example, see below.&lt;/P&gt;&lt;innovasys:widget layout="block" type="Colorized Example Code"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Custom Palette&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;class CustomPalette extends MeshColorPalette {&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; public Texture2D getTexture(int width, int height) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; try {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // TODO fill Bitmap&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; return Texture2D.fromBitmap(bitmap);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; } finally {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; bitmap.recycle();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;The palette is applied to a&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.surfaceMesh.SurfaceMeshRenderableSeries3D.html"&gt;SurfaceMeshRenderableSeries3D&lt;/A&gt; as before.&lt;/P&gt;
-&lt;H2&gt;Effect of SurfaceMeshRenderableSeries3D.MeshPaletteMode&lt;/H2&gt;
-&lt;P&gt;The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~setMeshPaletteMode.html"&gt;MeshPaletteMode&lt;/A&gt; property changes how the palette is applied to the Mesh.&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.MeshPaletteMode~Textured.html"&gt;MeshPaletteMode.Textured&lt;/A&gt; means the Palette is applied to the mesh in the X-Z plane (the plane of the floor of the 3D Chart). Imagine the palette is stretched over the mesh itself. 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.MeshPaletteMode~HeightMapInterpolated.html"&gt;MeshPaletteMode.HeightMapInterpolated&lt;/A&gt; means the palette is applied in the Y direction (vertically)&amp;nbsp; 
-&lt;LI&gt;Other variations such as &lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.MeshPaletteMode~TexturedSolidCells.html"&gt;MeshPaletteMode.TexturedSolidCells&lt;/A&gt; and&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.MeshPaletteMode~HeightMapSolidCells.html"&gt;HeightMapSolidCells&lt;/A&gt; perform the above two functions but without linear interpolation between nearby cells. use this to have each cell a constant colour. &lt;/LI&gt;&lt;/UL&gt;</Content>
-                      </TopicSection>
-                    </TopicSections>
-                    <TopicLinks />
-                    <TopicKeywords />
-                    <PropertyDefinitionValues />
-                    <ExcludedOtherFiles />
-                  </Topic>
-                  <Topic Id="25011f80-a875-4a44-afee-b40e37c64bdf" Status="New Topic" CreatedOn="2019-07-11T12:18:42.7014709Z" ModifiedOn="2019-07-12T10:50:14.2687069Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Configuring Wireframe on Surface Meshes " BuildFlags="">
-                    <Title />
-                    <ContentsTitle />
-                    <Notes></Notes>
-                    <TopicSections>
-                      <TopicSection Name="BodyText">
-                        <Content m="2019-07-12T10:50:14.2687069Z">&lt;P&gt;The 3D Surface Mesh Wireframe can be added optionally and configured via the following properties.&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~setDrawMeshAs.html"&gt;SurfaceMeshRenderableSeries3D.DrawMeshAs&lt;/A&gt;:
-&lt;UL&gt;
-&lt;LI&gt;Options&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.DrawMeshAs~SolidWireframe.html"&gt;SolidWireFrame&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.DrawMeshAs~Wireframe.html"&gt;WireFrame&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.DrawMeshAs~SolidWireframeWithContours.html"&gt;SolidWireframeWithContours&lt;/A&gt; will draw wireframes
-&lt;LI&gt;Options&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.DrawMeshAs~SolidMesh.html"&gt;SolidMesh&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.DrawMeshAs~Contours.html"&gt;Contours&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.DrawMeshAs~SolidWithContours.html"&gt;SolidWithContours&lt;/A&gt; will omit wireframes.&lt;/LI&gt;&lt;/UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~setStrokeThickness.html"&gt;SurfaceMeshRenderableSeries3D.StrokeThickness&lt;/A&gt;: Defines the thickness of the wireframe line
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~setStroke.html"&gt;SurfaceMeshRenderableSeries3D.Stroke&lt;/A&gt;: Defines the stroke color of the wireframe, which may optionally include opacity.&lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/UniformMeshWithWifreframe.png"&gt;&lt;/P&gt;</Content>
-                      </TopicSection>
-                    </TopicSections>
-                    <TopicLinks />
-                    <TopicKeywords />
-                    <PropertyDefinitionValues />
-                    <ExcludedOtherFiles />
-                  </Topic>
-                  <Topic Id="3f9f08b1-fe1c-4ab5-a312-8c2b8e5a00d3" Status="New Topic" CreatedOn="2019-07-11T12:19:18.9063505Z" ModifiedOn="2019-07-12T10:53:13.8329902Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Configuring Contours on Surface Meshes" BuildFlags="">
-                    <Title />
-                    <ContentsTitle />
-                    <Notes></Notes>
-                    <TopicSections>
-                      <TopicSection Name="BodyText">
-                        <Content m="2019-07-12T10:53:13.8329902Z">&lt;P&gt;The 3D Surface Mesh Contours can be added optionally and configured via the following properties.&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~setDrawMeshAs.html"&gt;SurfaceMeshRenderableSeries3D.DrawMeshAs&lt;/A&gt;:
-&lt;UL&gt;
-&lt;LI&gt;Options&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.DrawMeshAs~Contours.html"&gt;Contours&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.DrawMeshAs~SolidWithContours.html"&gt;SolidWithContours&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.DrawMeshAs~SolidWireframeWithContours.html"&gt;SolidWireframeWithContours&lt;/A&gt; will draw contours
-&lt;LI&gt;Options&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.DrawMeshAs~SolidWireframe.html"&gt;SolidWireframe&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.DrawMeshAs~Wireframe.html"&gt;Wireframe&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.data.DrawMeshAs~SolidMesh.html"&gt;SolidMesh&lt;/A&gt;, will omit contours&lt;/LI&gt;&lt;/UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~setContourStrokeThickness.html"&gt;SurfaceMeshRenderableSeries3D.ContourStrokeThickness&lt;/A&gt;: Defines the thickness of the contour line
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~setContourStroke.html"&gt;SurfaceMeshRenderableSeries3D.ContourStroke&lt;/A&gt;: Defines the stroke color of the contours, which may optionally include opacity.
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~setContourOffset.html"&gt;SurfaceMeshRenderableSeries3D.ContourOffset&lt;/A&gt;: Defines the offset of contours from Y-values, defaults to 0
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~setContourInterval.html"&gt;SurfaceMeshRenderableSeries3D.ContourInterval&lt;/A&gt;: Defines the Y-value intervals between contours&lt;BR&gt;&lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/UniformMeshWithCountours.png"&gt;&lt;/P&gt;</Content>
-                      </TopicSection>
-                    </TopicSections>
-                    <TopicLinks />
-                    <TopicKeywords />
-                    <PropertyDefinitionValues />
-                    <ExcludedOtherFiles />
-                  </Topic>
-                  <Topic Id="d4142937-b850-4b7c-81bf-52358f803349" Status="New Topic" CreatedOn="2019-07-11T12:19:38.1359554Z" ModifiedOn="2019-08-02T11:36:48.932406Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Overriding Specific Cell Colors" BuildFlags="">
-                    <Title />
-                    <ContentsTitle />
-                    <Notes></Notes>
-                    <TopicSections>
-                      <TopicSection Name="BodyText">
-                        <Content m="2019-08-02T11:36:48.932406Z">&lt;P&gt;In addition to custom palettes, heightmaps, textures, you can override a specific cell or cells in the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.surfaceMesh.SurfaceMeshRenderableSeries3D.html"&gt;SurfaceMeshRenderableSeries3D&lt;/A&gt; by using the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.BaseRenderableSeries3D~setMetadataProvider.html"&gt;MetadataProvider3D&lt;/A&gt; property.&lt;/P&gt;
-&lt;P&gt;For example:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;You can remove specific cells or mark them as NULL by overriding the cell color to be&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.metadataProviders.MetadataProvider3DBase~TRANSPARENT.html"&gt;TRANSPARENT&lt;/A&gt; 
-&lt;LI&gt;You can mark regions of interest, say certain cells in a value range, or with index must be colored differently. 
-&lt;LI&gt;With higher resolution meshes, you can change the shape of the mesh to circular (approx) by removing cells outside of a region. &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;ISurfaceMeshPaletteProvider Example&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;class SurfaceMeshMetadataProvider3D extends MetadataProvider3DBase&amp;lt;SurfaceMeshRenderableSeries3D&amp;gt; implements ISurfaceMeshMetadataProvider3D {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SurfaceMeshMetadataProvider3D() { super(SurfaceMeshRenderableSeries3D.class); }&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; public void updateMeshColors(IntegerValues cellColors) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final SurfaceMeshRenderPassData3D currentRenderPassData = (SurfaceMeshRenderPassData3D) renderableSeries.getCurrentRenderPassData();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final DataManager dataManager = DataManager.getInstance();&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final int countX = currentRenderPassData.countX - 1;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final int countZ = currentRenderPassData.countZ - 1;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; cellColors.setSize(currentRenderPassData.getPointsCount());&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final int[] items = cellColors.getItemsArray();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; for (int x = 0; x &amp;lt; countX; x++) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; for (int z = 0; z &amp;lt; countZ; z++) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final int index = x * countZ + z;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final int color;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; if ((x &amp;gt;= 20 &amp;amp;&amp;amp; x &amp;lt;= 26 &amp;amp;&amp;amp; z &amp;gt; 0 &amp;amp;&amp;amp; z &amp;lt; 47) || (z &amp;gt;= 20 &amp;amp;&amp;amp; z &amp;lt;= 26 &amp;amp;&amp;amp; x &amp;gt; 0 &amp;amp;&amp;amp; x &amp;lt; 47)) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // need to use special transparent color definition for MetadataProvider3D for it to work&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; color = TRANSPARENT;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; } else {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; color = dataManager.getRandomColor();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; items[index] = color;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;This results in the following:&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/MeshMetadataProvider.png"&gt;&lt;/P&gt;</Content>
-                      </TopicSection>
-                    </TopicSections>
-                    <TopicLinks />
-                    <TopicKeywords />
-                    <PropertyDefinitionValues />
-                    <ExcludedOtherFiles />
-                  </Topic>
-                  <Topic Id="0b5698bb-7ae4-45bd-94fe-6b76bf553ecd" Status="New Topic" CreatedOn="2019-07-11T12:19:57.929309Z" ModifiedOn="2019-08-02T11:37:39.1664335Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Additional Surface Mesh properties" BuildFlags="">
-                    <Title />
-                    <ContentsTitle />
-                    <Notes></Notes>
-                    <TopicSections>
-                      <TopicSection Name="BodyText">
-                        <Content m="2019-08-02T11:37:39.1664335Z">&lt;P&gt;Additional properties which affect the rendering of a&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.surfaceMesh.SurfaceMeshRenderableSeries3D.html"&gt;SurfaceMeshRenderableSeries3D&lt;/A&gt; include:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~setHighlight.html"&gt;SurfaceMeshRenderableSeries3D.Highlight&lt;/A&gt;: Changes the lighting algorithm to make cells appear lighter 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.ContourMeshRenderableSeries3DBase~setMeshPaletteMode.html"&gt;SurfaceMeshRenderableSeries3D.MeshPaletteMode&lt;/A&gt;: Changes how the heightmap is applied. HeightMapInterpolated allows for smooth colors, while HeightMapSolidCells means each cell has one continuous color.&amp;nbsp; 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.surfaceMesh.SurfaceMeshRenderableSeries3D~setHeightScaleFactor.html"&gt;SurfaceMeshRenderableSeries3D.HeightScaleFactor&lt;/A&gt;: Applies a constant scaling factor to the heights, e.g. setting to 0 will make the surface mesh flat 
-&lt;LI&gt;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.surfaceMesh.SurfaceMeshRenderableSeries3D~setYOffset.html"&gt;SurfaceMeshRenderableSeries3D.YOffset&lt;/A&gt;: Applies a constant offset heights, e.g. setting to 1 will move the SurfaceMesh 1-Datavalue in the Y-direction. &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;The effect of these properties are demonstrated in the images below.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Higlight=0&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final int[] colors = new int[]{0xFF1D2C6B, Blue, Cyan, GreenYellow, Yellow, Red, DarkRed};&lt;BR&gt;final float[] stops = {0, .1f, .3f, .5f, .7f, .9f, 1};&lt;/P&gt;
-&lt;P&gt;final int stroke = 0x77228B22;&lt;/P&gt;
-&lt;P&gt;final SurfaceMeshRenderableSeries3D rs = sciChart3DBuilder.newSurfaceMeshSeries3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDataSeries(ds)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDrawMeshAs(DrawMeshAs.SolidWireframe)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withStroke(stroke)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withContourStroke(stroke)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withStrokeThicknes(1f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDrawSkirt(false) &lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withHighlight(0f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMeshColorPalette(new GradientColorPalette(colors, stops))&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/UniformMeshWithoutHighlighting.png"&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Highlight=1&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final int[] colors = new int[]{0xFF1D2C6B, Blue, Cyan, GreenYellow, Yellow, Red, DarkRed};&lt;BR&gt;final float[] stops = {0, .1f, .3f, .5f, .7f, .9f, 1};&lt;/P&gt;
-&lt;P&gt;final int stroke = 0x77228B22;&lt;/P&gt;
-&lt;P&gt;final SurfaceMeshRenderableSeries3D rs = sciChart3DBuilder.newSurfaceMeshSeries3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDataSeries(ds)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDrawMeshAs(DrawMeshAs.SolidWireframe)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withStroke(stroke)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withContourStroke(stroke)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withStrokeThicknes(1f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDrawSkirt(false)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withHighlight(1f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMeshColorPalette(new GradientColorPalette(colors, stops))&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/UniformMeshWithHighlighting.png"&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Highlight=0.1, MeshPaletteMode=HeightMapSolidCells&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final int[] colors = new int[]{0xFF1D2C6B, Blue, Cyan, GreenYellow, Yellow, Red, DarkRed};&lt;BR&gt;final float[] stops = {0, .1f, .3f, .5f, .7f, .9f, 1};&lt;/P&gt;
-&lt;P&gt;final int stroke = 0x77228B22;&lt;/P&gt;
-&lt;P&gt;final SurfaceMeshRenderableSeries3D rs = sciChart3DBuilder.newSurfaceMeshSeries3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDataSeries(ds)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDrawMeshAs(DrawMeshAs.SolidWireframe)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withStroke(stroke)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withContourStroke(stroke)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withStrokeThicknes(1f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDrawSkirt(false)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;.withHighlight(0.1f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMeshPaletteMode(MeshPaletteMode.HeightMapSolidCells)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMeshColorPalette(new GradientColorPalette(colors, stops))&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/UniformMeshWithSolidCellColors.png"&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;YOffset=0, HeightScaleFactor=0&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;CS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final int[] colors = new int[]{0xFF1D2C6B, Blue, Cyan, GreenYellow, Yellow, Red, DarkRed};&lt;BR&gt;final float[] stops = {0, .1f, .3f, .5f, .7f, .9f, 1};&lt;/P&gt;
-&lt;P&gt;final int stroke = 0x77228B22;&lt;/P&gt;
-&lt;P&gt;final SurfaceMeshRenderableSeries3D rs = sciChart3DBuilder.newSurfaceMeshSeries3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDataSeries(ds)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDrawMeshAs(DrawMeshAs.SolidWireframe)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withStroke(stroke)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withContourStroke(stroke)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withStrokeThicknes(1f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDrawSkirt(false)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withYOffset(0f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withHeightScaleFactor(0f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMeshColorPalette(new GradientColorPalette(colors, stops))&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/FlatUniformMesh.png"&gt;&lt;/P&gt;</Content>
-                      </TopicSection>
-                    </TopicSections>
-                    <TopicLinks />
-                    <TopicKeywords />
-                    <PropertyDefinitionValues />
-                    <ExcludedOtherFiles />
-                  </Topic>
-                  <Topic Id="e5fc78ef-475f-45ae-b38c-d42ba9e6ed50" Status="New Topic" CreatedOn="2019-07-22T12:12:50.6890873Z" ModifiedOn="2019-08-02T11:42:28.979725Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The SurfaceMesh 3D Chart Type" BuildFlags="">
-                    <Title />
-                    <ContentsTitle />
-                    <Notes></Notes>
-                    <TopicSections>
-                      <TopicSection Name="BodyText">
-                        <Content m="2019-08-02T11:42:28.979725Z">&lt;P&gt;The surface mesh renders a two-dimensional array as a heightmap. The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.renderableSeries.surfaceMesh.SurfaceMeshRenderableSeries3D.html"&gt;SurfaceMeshRenderableSeries3D&lt;/A&gt; type provides a number of configurable chart types in SciChart 3D, including:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;Dynamic, updating Surfaces (terrains or height maps) 
-&lt;LI&gt;Texturing of surfaces or terrains or height maps 
-&lt;LI&gt;Non-uniform or uniform grid spacing 
-&lt;LI&gt;Contour mapping or wireframe on terrain or height maps &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/UniformSurfaceMesh.png"&gt;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P class=NewStyle2&gt;Declaring a Surface Mesh with Uniform Data&lt;/P&gt;
-&lt;P&gt;To declare a Surface Mesh with uniform data, use the following code:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Uniform SurfaceMesh 3D&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final Camera3D camera = sciChart3DBuilder.newCamera3D().build();&lt;/P&gt;
-&lt;P&gt;final NumericAxis3D xAxis = sciChart3DBuilder.newNumericAxis3D().withGrowBy(.1, .1).build();&lt;BR&gt;final NumericAxis3D yAxis = sciChart3DBuilder.newNumericAxis3D().withVisibleRange(0, .3).withGrowBy(.1, .1).build();&lt;BR&gt;final NumericAxis3D zAxis = sciChart3DBuilder.newNumericAxis3D().withGrowBy(.1, .1).build();&lt;/P&gt;
-&lt;P&gt;final int xSize = 25;&lt;BR&gt;final int zSize = 25;&lt;/P&gt;
-&lt;P&gt;final UniformGridDataSeries3D&amp;lt;Double, Double, Double&amp;gt; ds = new UniformGridDataSeries3D&amp;lt;&amp;gt;(Double.class, Double.class, Double.class, xSize, zSize);&lt;/P&gt;
-&lt;P&gt;for (int x = 0; x &amp;lt; xSize; x++) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; for (int z = 0; z &amp;lt; zSize; z++) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double xVal = 25.0 * x / xSize;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double zVal = 25.0 * z / zSize;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; final double y = Math.sin(xVal * .2) / ((zVal+1) * 2);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; ds.updateYAt(x, z, y);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;}&lt;/P&gt;
-&lt;P&gt;final int[] colors = new int[]{0xFF1D2C6B, Blue, Cyan, GreenYellow, Yellow, Red, DarkRed};&lt;BR&gt;final float[] stops = {0, .1f, .3f, .5f, .7f, .9f, 1};&lt;/P&gt;
-&lt;P&gt;final int stroke = 0x77228B22;&lt;/P&gt;
-&lt;P&gt;final SurfaceMeshRenderableSeries3D rs = sciChart3DBuilder.newSurfaceMeshSeries3D()&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDataSeries(ds)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDrawMeshAs(DrawMeshAs.SolidWireframe)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withStroke(stroke)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withContourStroke(stroke)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withStrokeThicknes(1f)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withDrawSkirt(false)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .withMeshColorPalette(new GradientColorPalette(colors, stops))&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; .build();&lt;/P&gt;
-&lt;P&gt;UpdateSuspender.using(surface3d, new Runnable() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; @Override&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; public void run() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setCamera(camera);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setXAxis(xAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setYAxis(yAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.setZAxis(zAxis);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.getRenderableSeries().add(rs);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; surface3d.getChartModifiers().add(sciChart3DBuilder.newModifierGroupWithDefaultModifiers().build());&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Data is stored in the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.model.dataSeries.grid.UniformGridDataSeries3D.html"&gt;UniformGridDataSeries3D&lt;/A&gt; Type. This represents a 2-dimensional grid, typically of type Double (but can be defined with generics).&lt;/P&gt;
-&lt;P&gt;Some important points to note:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;The double values stored in the &lt;A href="SciChart.Charting3D~com.scichart.charting3d.model.dataSeries.grid.UniformGridDataSeries3D.html"&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;UniformGridDataSeries3D&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt;&amp;nbsp;correspond to the heights on the chart (the Y-Axis). They are transformed into chart World Coordinates via the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getYAxis.html"&gt;YAxis&lt;/A&gt;. 
-&lt;LI&gt;The Z and X Data-Value is defined by the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.model.dataSeries.grid.UniformGridDataSeries3D~getStartX.html"&gt;StartX&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.model.dataSeries.grid.UniformGridDataSeries3D~getStepX.html"&gt;StepX&lt;/A&gt;,&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.model.dataSeries.grid.UniformGridDataSeries3D~getStartZ.html"&gt;StartZ&lt;/A&gt; and&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.model.dataSeries.grid.UniformGridDataSeries3D~getStepZ.html"&gt;StepZ&lt;/A&gt; properties on &lt;A href="SciChart.Charting3D~com.scichart.charting3d.model.dataSeries.grid.UniformGridDataSeries3D.html"&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;UniformGridDataSeries3D&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt;&amp;nbsp;. These are also transformed into World Coordinates via the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getZAxis.html"&gt;ZAxis&lt;/A&gt; and&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getXAxis.html"&gt;XAxis&lt;/A&gt; respectively. 
-&lt;LI&gt;The Colours on the SurfaceMesh are defined by the&amp;nbsp;&lt;A href="18cded29-373d-4748-a964-9bcd4e931443"&gt;MeshColorPalette&lt;/A&gt;. More on this in the following sections.&lt;BR&gt;&lt;/LI&gt;&lt;/UL&gt;</Content>
-                      </TopicSection>
-                    </TopicSections>
-                    <TopicLinks />
-                    <TopicKeywords />
-                    <PropertyDefinitionValues />
-                    <ExcludedOtherFiles />
-                  </Topic>
-                </Topics>
-              </TopicCategory>
-            </ChildTopicCategories>
+            <ChildTopicCategories />
             <Topics>
               <Topic Id="4390d675-fd3c-45d8-8357-09b747d5071c" Status="New Topic" CreatedOn="2019-07-10T07:58:09.7294709Z" ModifiedOn="2023-07-14T18:06:35.1979001Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The Scatter 3D Chart Type" BuildFlags="">
                 <Title />
@@ -14543,6 +14305,51 @@ when done, document it</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
+              <Topic Id="e5fc78ef-475f-45ae-b38c-d42ba9e6ed50" Status="New Topic" CreatedOn="2019-07-22T12:12:50.6890873Z" ModifiedOn="2023-07-15T12:14:21.0181512Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The SurfaceMesh 3D Chart Type" BuildFlags="">
+                <Title />
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2023-07-15T12:14:21.0181512Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;Examples for the Surface Mesh 3D Chart can be found in the SciChart.js Demo app which can be viewed on our website, or downloaged from SciChart.Js.Examples Github Repository&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/iframe/javascript-3d-surface-mesh-chart" target=_blank&gt;SciChart.js Demo app&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;All examples on Github&lt;/A&gt;&lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;3D Surface (topology, grid) Mesh Charts are provided by the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html"&gt;SurfaceMeshRenderableSeries3D&lt;/A&gt; type. The surface mesh renders a two-dimensional array as a heightmap. This allows a number of configurable chart types in SciChart.js 3D, including:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;Dynamic, updating Surfaces (terrains or height maps) 
+&lt;LI&gt;Texturing of surfaces or terrains or height maps 
+&lt;LI&gt;Contour mapping or wireframe on terrain or height maps&lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameWidth"&gt;100%&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameHeight"&gt;500px&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-3d-surface-mesh-chart&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Declaring a Surface Mesh with Uniform Data&lt;/H2&gt;
+&lt;P&gt;To declare a Surface Mesh with uniform data, use the following code:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\SurfaceMesh3D\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;this results in the following output&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/SurfaceMesh3D/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;Breaking this down:&lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;We create a 2-dimensional array of numbers to store the heights (yValues). This is in the format number[][] and contains double precision values. 
+&lt;LI&gt;Height values are applied to a &lt;STRONG&gt;UniformGridDataSeries3D&lt;/STRONG&gt;. The dataSeries is set on the dataSeries property of a &lt;STRONG&gt;SurfaceMeshRenderableSeries3D&lt;/STRONG&gt;
+&lt;LI&gt;Data-values are mapped to colours using the &lt;STRONG&gt;meshColorPalette&lt;/STRONG&gt;. In this example we use &lt;STRONG&gt;GradientColorPalette&lt;/STRONG&gt; to map heights to a list of gradient stops.
+&lt;LI&gt;Other properties are set to control wireframe, X,Y,Z axis and drawing.&lt;/LI&gt;&lt;/OL&gt;
+&lt;H2&gt;Applying Color Palettes (Heightmaps)&amp;nbsp;to Surfaces&lt;/H2&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Overlaying a Heightmap Legend on the Surface&lt;/H2&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Configuring the Wireframe on the Surface&lt;/H2&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Configuring Contours on the Surface&lt;/H2&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Additional Surface Mesh Properties&lt;/H2&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
             </Topics>
           </TopicCategory>
           <TopicCategory Id="c23f4a6a-f3e6-4765-b11c-43a4d0dcd48d" AutoIndex="false">
@@ -14574,9 +14381,9 @@ when done, document it</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="8cc4d206-bdd4-4d42-8ff4-4c09fddcb317" Status="New Topic" CreatedOn="2019-07-22T13:18:02.3361727Z" ModifiedOn="2019-09-23T14:20:45.0649353Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="FreeLookModifier3D" BuildFlags="">
+                  <Topic Id="8cc4d206-bdd4-4d42-8ff4-4c09fddcb317" Status="New Topic" CreatedOn="2019-07-22T13:18:02.3361727Z" ModifiedOn="2023-07-15T10:49:38.2171358Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="MouseWheelZoomModifier3D" BuildFlags="">
                     <Title />
-                    <ContentsTitle m="2019-07-22T13:21:49.3095094Z">Free Look Modifier 3D</ContentsTitle>
+                    <ContentsTitle m="2023-07-15T10:49:38.2161332Z">Mouse Wheel Zoom Modifier 3D</ContentsTitle>
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
@@ -14621,8 +14428,8 @@ when done, document it</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="0f31338f-c416-4129-8e9b-cc357faf1082" Status="New Topic" CreatedOn="2019-07-22T13:18:56.2971418Z" ModifiedOn="2019-09-23T14:21:39.9411657Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="ZoomExtentsModifier3D" BuildFlags="">
-                    <Title />
+                  <Topic Id="0f31338f-c416-4129-8e9b-cc357faf1082" Status="New Topic" CreatedOn="2019-07-22T13:18:56.2971418Z" ModifiedOn="2023-07-15T10:50:24.6834648Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="ResetCamera3DModifier" BuildFlags="">
+                    <Title m="2023-07-15T10:50:24.682461Z">Reset Camera Modifier 3D</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
@@ -14704,30 +14511,7 @@ when done, document it</Notes>
               <TopicCategory Id="7255c88f-abce-425e-9c21-4b50da1d9490" AutoIndex="false">
                 <Caption m="2019-07-22T13:16:40.4006076Z">Selection</Caption>
                 <ChildTopicCategories />
-                <Topics>
-                  <Topic Id="e70c80b0-c167-4aa8-8a0d-823752caa406" Status="New Topic" CreatedOn="2019-07-22T13:16:43.3261815Z" ModifiedOn="2019-09-23T14:59:03.3346216Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="VertexSelectionModifier3D" BuildFlags="">
-                    <Title />
-                    <ContentsTitle />
-                    <Notes></Notes>
-                    <TopicSections>
-                      <TopicSection Name="BodyText">
-                        <Content m="2019-09-23T14:59:03.3346216Z">&lt;P&gt;Ther&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.VertexSelectionModifier3D.html"&gt;VertexSelectionModifier3D&lt;/A&gt; allows you to perform selection of points on a 3D Chart.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/VertexSelectionModifier3D.gif"&gt;&lt;/P&gt;
-&lt;P&gt;&lt;BR&gt;
-&lt;H2&gt;Declaring a VertexSelectionModifier3D&lt;/H2&gt;
-&lt;P&gt;Declaring a&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.VertexSelectionModifier3D.html"&gt;VertexSelectionModifier3D&lt;/A&gt; is as simple as adding one to the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getChartModifiers.html"&gt;SciChart3DSurface.ChartModifiers&lt;/A&gt;&amp;nbsp;property. This can be done as a single modifier, or as part of a&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.ModifierGroup3D.html"&gt;ModifierGroup3D&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Declaring Modifier&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final VertexSelectionModifier3D vertexSelectionModifier3D = new VertexSelectionModifier3D();&lt;/P&gt;
-&lt;P&gt;vertexSelectionModifier3D.setIsEnabled(true);&lt;BR&gt;vertexSelectionModifier3D.setDrawCross(true);&lt;BR&gt;vertexSelectionModifier3D.setOffset(0f);&lt;/P&gt;
-&lt;P&gt;surface3d.getChartModifiers().add(new ModifierGroup3D(vertexSelectionModifier3D));&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
-                      </TopicSection>
-                    </TopicSections>
-                    <TopicLinks />
-                    <TopicKeywords />
-                    <PropertyDefinitionValues />
-                    <ExcludedOtherFiles />
-                  </Topic>
-                </Topics>
+                <Topics />
               </TopicCategory>
             </ChildTopicCategories>
             <Topics />
@@ -15162,7 +14946,7 @@ when done, document it</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">2843</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">1704</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>
