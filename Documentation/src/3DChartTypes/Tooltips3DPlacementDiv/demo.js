@@ -32,61 +32,18 @@ async function tooltips3D(divElementId) {
 
   sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
     axisTitle: "X Axis",
-    visibleRange: new NumberRange(0, 10),
-    autoRange: EAutoRange.Never
   });
   sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
     axisTitle: "Y Axis",
-    visibleRange: new NumberRange(0, 10),
-    autoRange: EAutoRange.Never
+    visibleRange: new NumberRange(0, 3)
   });
   sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
     axisTitle: "Z Axis",
-    visibleRange: new NumberRange(0, 10),
-    autoRange: EAutoRange.Never
   });
-
-  sciChart3DSurface.renderableSeries.add(
-    new ScatterRenderableSeries3D(wasmContext, {
-      pointMarker: new SpherePointMarker3D(wasmContext, { size: 10, fill: "#FF6600" }),
-      dataSeries: new XyzDataSeries3D(wasmContext, {
-        xValues: [4, 4.1, 4.3],
-        yValues: [4, 4.1, 4.3],
-        zValues: [4, 4.1, 4.3],
-        dataSeriesName: "Orange"
-      })
-    })
-  );
-
-  sciChart3DSurface.renderableSeries.add(
-    new ScatterRenderableSeries3D(wasmContext, {
-      pointMarker: new SpherePointMarker3D(wasmContext, { size: 10, fill: "#33AAFF" }),
-      dataSeries: new XyzDataSeries3D(wasmContext, {
-        xValues: [5, 5.1, 5.3],
-        yValues: [5, 5.1, 5.3],
-        zValues: [5, 5.1, 5.3],
-        dataSeriesName: "Blue"
-      })
-    })
-  );
-
-  sciChart3DSurface.renderableSeries.add(
-    new ScatterRenderableSeries3D(wasmContext, {
-      pointMarker: new SpherePointMarker3D(wasmContext, { size: 10, fill: "#00FF00" }),
-      dataSeries: new XyzDataSeries3D(wasmContext, {
-        xValues: [6, 6.1, 6.3],
-        yValues: [6, 6.1, 6.3],
-        zValues: [6, 6.1, 6.3],
-        dataSeriesName: "Green"
-      })
-    })
-  );
 
   sciChart3DSurface.renderableSeries.add(
     new SurfaceMeshRenderableSeries3D(wasmContext, {
       dataSeries: new UniformGridDataSeries3D(wasmContext, {
-        xStart: 5,
-        zStart: 5,
         yValues: [
           [0.1, 0.4, 0.4, 0.2, 0.8],
           [0.6, 0.4, 0.6, 0.1, 0.7],
@@ -111,38 +68,25 @@ async function tooltips3D(divElementId) {
       opacity: 0.77,
       drawSkirt: false,
       stroke: "White",
-      strokeThickness: 1.5,
+      strokeThickness: 2,
       lightingFactor: 0.2,
       meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_SOLID_CELLS,
       drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME
     })
   );
 
-  sciChart3DSurface.renderableSeries.add(
-    new PointLineRenderableSeries3D(wasmContext, {
-      stroke: "#E4F5FC",
-      dataSeries: new XyzDataSeries3D(wasmContext, {
-        dataSeriesName: "PointLine 3D",
-        xValues: [0, 0, 0, 0, 0],
-        yValues: [6, 6.1, 6.3, 5.5, 6.0],
-        zValues: [2, 4, 6, 8, 10]
-      }),
-      pointMarker: new SpherePointMarker3D(wasmContext, { size: 10, fill: "#00FF00" })
-    })
-  );
-
   // #region ExampleA
   // Declare a tooltip and add to the chart like this.
-  // Optional parameters help define tooltip operation
   const tooltipModifier = new TooltipModifier3D({
-      isCrosshairVisible: true,
-      isTooltipVisible: true,
       crosshairStroke: "#83D2F5",
       crosshairStrokeThickness: 3,
       tooltipContainerBackground: "#537ABD",
       tooltipTextStroke: "White",
       tooltipLegendOffsetX: 10,
-      tooltipLegendOffsetY: 10
+      tooltipLegendOffsetY: 10,
+
+      // Allows placement of tooltip in a custom div anywhere in your app
+      placementDivId: "tooltipContainerDivId"
     });
 
   sciChart3DSurface.chartModifiers.add(tooltipModifier);
