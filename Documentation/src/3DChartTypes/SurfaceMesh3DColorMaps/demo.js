@@ -57,10 +57,11 @@ async function surfaceMesh3DChart(divElementId) {
         {offset: 0, color: "#14233C"}  // yValues <= minimum mapped to this color
       ],
     }),
-    opacity: 0.77,
+    opacity: 1,
     stroke: "White",
     strokeThickness: 1,
     drawSkirt: false,
+    lightingFactor: 0,
     drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME, // Draw mesh as solid, wireframe or solid wireframe
     meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_SOLID_CELLS, // Interpolation mode for cell colors
   });

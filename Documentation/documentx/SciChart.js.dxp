@@ -14305,13 +14305,13 @@ when done, document it</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="e5fc78ef-475f-45ae-b38c-d42ba9e6ed50" Status="New Topic" CreatedOn="2019-07-22T12:12:50.6890873Z" ModifiedOn="2023-07-16T09:10:30.8020098Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The SurfaceMesh 3D Chart Type" BuildFlags="">
+              <Topic Id="e5fc78ef-475f-45ae-b38c-d42ba9e6ed50" Status="New Topic" CreatedOn="2019-07-22T12:12:50.6890873Z" ModifiedOn="2023-07-16T09:18:30.3990282Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The SurfaceMesh 3D Chart Type" BuildFlags="">
                 <Title />
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-16T09:10:30.8020098Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2023-07-16T09:18:30.3990282Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;Examples for the Surface Mesh 3D Chart can be found in the SciChart.js Demo app which can be viewed on our website, or downloaged from SciChart.Js.Examples Github Repository&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/iframe/javascript-3d-surface-mesh-chart" target=_blank&gt;SciChart.js Demo app&lt;/A&gt; 
@@ -14391,23 +14391,17 @@ when done, document it</Notes>
 &lt;TD&gt;&lt;STRONG&gt;Property&lt;/STRONG&gt;&lt;/TD&gt;
 &lt;TD&gt;&lt;STRONG&gt;Description&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html#cellhardnessfactor"&gt;cellHardnessFactor&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;Cosmetic setting which affects surface mesh rendering&lt;/TD&gt;&lt;/TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html#meshpalettemode"&gt;meshPaletteMode&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Defines how cells are filled by palettes. E.g. interpolated, or solid cells, or textured. &lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html#drawskirt"&gt;drawSkirt&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;When true, draws a wall to zero around the edges of the surface mesh&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html#heightscalefactor"&gt;heightScaleFactor&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;Scaling factor for heights. Default = 1, when between 0..1 this is a multiplier on the final height of the mesh.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TD height=49&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html#heightscalefactor"&gt;heightScaleFactor&lt;/A&gt;&lt;/TD&gt;
+&lt;TD height=49&gt;Scaling factor for heights. Default = 1, when between 0..1 this is a multiplier on the final height of the mesh.&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html#highlight"&gt;highlight&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;Cosmetic setting which affects surface mesh rendering&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html#lightingfactor"&gt;lightningFactor&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;Cosmetic setting which affects surface mesh rendering&lt;/TD&gt;&lt;/TR&gt;
-&lt;TR&gt;
-&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html#shininess"&gt;shininess&lt;/A&gt;&lt;/TD&gt;
-&lt;TD&gt;Cosmetic setting which affects surface mesh rendering&lt;/TD&gt;&lt;/TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html#lightingfactor"&gt;lightingFactor&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Setting from 0..1&amp;nbsp;which affects surface mesh rendering shininess or lightning. &lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html#yoffset"&gt;yOffset&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;A constant offset applied to a surface mesh in the Y-direction (height). &lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
