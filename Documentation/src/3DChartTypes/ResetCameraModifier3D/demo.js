@@ -1,4 +1,4 @@
-async function mouseWheelZoom3D(divElementId) {
+async function resetCameraModifier3D(divElementId) {
   const {
     SciChart3DSurface,
     NumericAxis3D,
@@ -16,7 +16,7 @@ async function mouseWheelZoom3D(divElementId) {
     worldDimensions: new Vector3(300, 200, 300),
     // Optional initial camera position and target
     cameraOptions: {
-      position: new Vector3(-300, 300, -300),
+      position: new Vector3(-650, 700, 200),
       target: new Vector3(0, 50, 0),
     }
   });
@@ -39,14 +39,25 @@ async function mouseWheelZoom3D(divElementId) {
   camera.target = new Vector3(0, 60, 0);
 
   // #region ExampleA
-  const { MouseWheelZoomModifier3D } = SciChart;
+  const { ResetCamera3DModifier } = SciChart;
 
-  // or for npm: import { MouseWheelZoomModifier3D } from "scichart"
+  // or for npm: import { ResetCameraModifier3D } from "scichart"
 
   sciChart3DSurface.chartModifiers.add(
-    new MouseWheelZoomModifier3D(),
+    new ResetCamera3DModifier ({
+      // Optional properties. If these are not set,
+      // the ResetCameraModifier3D grabs initial state from the SciChart3DSurface.camera
+      isAnimated: true,
+      animationDuration: 2000,
+      // Camera will animate to this position on double click (or initial position if not set)
+      destination: {
+        radius: 450,
+        pitch: 30,
+        yaw: 45,
+      }
+    }),
   );
   // #endregion
 };
 
-mouseWheelZoom3D("scichart-root");
+resetCameraModifier3D("scichart-root");

@@ -14486,28 +14486,25 @@ when done, document it</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="0f31338f-c416-4129-8e9b-cc357faf1082" Status="New Topic" CreatedOn="2019-07-22T13:18:56.2971418Z" ModifiedOn="2023-07-15T10:50:24.6834648Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="ResetCamera3DModifier" BuildFlags="">
+                  <Topic Id="0f31338f-c416-4129-8e9b-cc357faf1082" Status="New Topic" CreatedOn="2019-07-22T13:18:56.2971418Z" ModifiedOn="2023-07-16T11:16:37.0331738Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="ResetCamera3DModifier" BuildFlags="">
                     <Title m="2023-07-15T10:50:24.682461Z">Reset Camera Modifier 3D</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2019-09-23T14:21:39.9411657Z">&lt;P&gt;Zooming and Panning a Chart in SciChart3D is achieved by moving the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getCamera.html"&gt;SciChart3DSurface.Camera&lt;/A&gt;&amp;nbsp;to a new location.&lt;/P&gt;
+                        <Content m="2023-07-16T11:16:37.0331738Z">&lt;P&gt;Zooming and Panning a Chart in SciChart.js is achieved by moving the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#camera"&gt;SciChart3DSurface.camera&lt;/A&gt; to a new location.&lt;/P&gt;
 &lt;P&gt;The article&amp;nbsp;&lt;A href="e3c137ff-6d4e-44e5-9542-bbb00b65e3c1"&gt;"The SciChart3DSurface Camera"&lt;/A&gt; goes into detail how this camera class works and how to manipulate it programatically to achieve various views.&lt;/P&gt;
-&lt;P&gt;If you get lost and want to quickly zoom to fit the 3D Chart to the available space, you can use the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.ZoomExtentsModifier3D.html"&gt;ZoomExtentsModifier3D&lt;/A&gt;.&lt;/P&gt;
-&lt;P&gt;With this modifier enabled: Double-tap on the chart to zoom to fit.&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;IMG border=0 alt="" src="images/ZoomExtentsModifier3D.gif"&gt;&lt;/P&gt;
-&lt;H2&gt;How does it work?&lt;/H2&gt;
-&lt;P&gt;There are two modes of operation for the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.ZoomExtentsModifier3D.html"&gt;ZoomExtentsModifier3D&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;If you add any zooming or panning to the chart you might want to reset the viewport to it's original state. You can do this with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/resetcamera3dmodifier.html"&gt;ResetCamera3DModifier&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;How this modifier works:&lt;/P&gt;
 &lt;UL&gt;
-&lt;LI&gt;Attempt to AutoFit the 3D scene into the viewport by setting&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.ZoomExtentsModifier3D~setAutoFitRadius.html"&gt;ZoomExtentsModifier3D.AutoFitRadius&lt;/A&gt; = true. 
-&lt;LI&gt;You specify precise coordinates for the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getTarget.html"&gt;Camera.Target&lt;/A&gt; and&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.camera.ICameraController~getPosition.html"&gt;Position&lt;/A&gt; when&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.ZoomExtentsModifier3D~setAutoFitRadius.html"&gt;ZoomExtentsModifier3D.AutoFitRadius&lt;/A&gt;&amp;nbsp;= false. &lt;/LI&gt;&lt;/UL&gt;
-&lt;H2&gt;Declaring a ZoomExtentsModifier3D&lt;/H2&gt;
-&lt;P&gt;Declaring a&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.ZoomExtentsModifier3D.html"&gt;ZoomExtentsModifier3D&lt;/A&gt; is as simple as adding one to the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getChartModifiers.html"&gt;SciChart3DSurface.ChartModifiers&lt;/A&gt; property. This can be done as a single modifier, or as part of a&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.ModifierGroup3D.html"&gt;ModifierGroup3D&lt;/A&gt;.&lt;/P&gt;
-&lt;P&gt;The following code will reset the camera position to 200,200,200 and target to 0,0,0 on double tap on screen.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Declaring Modifier&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final ZoomExtentsModifier3D zoomExtentsModifier3D = new ZoomExtentsModifier3D();&lt;/P&gt;
-&lt;P&gt;zoomExtentsModifier3D.setIsEnabled(true);&lt;BR&gt;zoomExtentsModifier3D.setExecuteOn(ExecuteOn.DoubleTap);&lt;BR&gt;zoomExtentsModifier3D.setAutoFitRadius(false);&lt;BR&gt;zoomExtentsModifier3D.setResetPosition(new Vector3(200, 200, 200));&lt;BR&gt;zoomExtentsModifier3D.setResetTarget(new Vector3(0, 0, 0));&lt;/P&gt;
-&lt;P&gt;surface3d.getChartModifiers().add(new ModifierGroup3D(zoomExtentsModifier3D));&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;LI&gt;When the &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/resetcamera3dmodifier.html"&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;ResetCamera3DModifier&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt;&amp;nbsp;is attached to the chart, it saves the current&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#camera"&gt;camera&lt;/A&gt; state.
+&lt;LI&gt;An optional destination object of type&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#tcamerastate"&gt;TCameraState&lt;/A&gt;&amp;nbsp;may be set to override this state.
+&lt;LI&gt;When you double click on the chart, the &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/resetcamera3dmodifier.html"&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;ResetCamera3DModifier&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt;&amp;nbsp;animates the camera position to the initial camera state.&lt;/LI&gt;&lt;/UL&gt;
+&lt;H2&gt;Declaring an ResetCameraModifier3D&lt;/H2&gt;
+&lt;P&gt;Declaring a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/resetcamera3dmodifier.html"&gt;ResetCamera3DModifier&lt;/A&gt;&amp;nbsp;is as simple as adding one to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/orbitmodifier3d.html"&gt;SciChart3DSurface.chartModifiers&lt;/A&gt; property. This can be done as a single modifier, or as part of a group.&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\ResetCameraModifier3D\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following behaviour added to the chart.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/ResetCameraModifier3D/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
@@ -15004,7 +15001,7 @@ when done, document it</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">226</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">1046</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>
