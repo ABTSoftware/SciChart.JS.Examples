@@ -2420,7 +2420,7 @@ when done, document it</Notes>
                   <TargetItemId>07c999cf-2895-4b49-ae5f-77d283a51741</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
-                <TocNode Name="" Id="3826b76e-4673-47d6-aa9a-87e8856ee8b5" IconIndex="11" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="3826b76e-4673-47d6-aa9a-87e8856ee8b5" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate m="2023-07-15T10:38:58.6895342Z">The Surface Mesh 3D Chart Type</CaptionTemplate>
                   <ChildNodes />
                   <TargetItemId>e5fc78ef-475f-45ae-b38c-d42ba9e6ed50</TargetItemId>
@@ -2440,7 +2440,7 @@ when done, document it</Notes>
                 <TocNode Name="" Id="434349a7-aefe-4284-976d-234662dccec4" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
                   <CaptionTemplate m="2019-07-22T13:20:10.1582387Z">Zooming and Panning</CaptionTemplate>
                   <ChildNodes>
-                    <TocNode Name="" Id="f7ebe0b7-33e9-4e50-be67-280214d900e5" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="f7ebe0b7-33e9-4e50-be67-280214d900e5" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>02e0ff0e-aa3f-4ed3-8227-4ca9e6217352</TargetItemId>
@@ -2452,7 +2452,7 @@ when done, document it</Notes>
                       <TargetItemId>0f6660f9-8d3a-4fa9-b228-36376c2d79d4</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="97762646-046f-4b00-aadf-c61a76886a85" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="97762646-046f-4b00-aadf-c61a76886a85" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>8cc4d206-bdd4-4d42-8ff4-4c09fddcb317</TargetItemId>
@@ -14305,13 +14305,13 @@ when done, document it</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="e5fc78ef-475f-45ae-b38c-d42ba9e6ed50" Status="New Topic" CreatedOn="2019-07-22T12:12:50.6890873Z" ModifiedOn="2023-07-16T09:18:30.3990282Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The SurfaceMesh 3D Chart Type" BuildFlags="">
+              <Topic Id="e5fc78ef-475f-45ae-b38c-d42ba9e6ed50" Status="New Topic" CreatedOn="2019-07-22T12:12:50.6890873Z" ModifiedOn="2023-07-16T09:22:55.8536277Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The SurfaceMesh 3D Chart Type" BuildFlags="">
                 <Title />
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-16T09:18:30.3990282Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2023-07-16T09:22:55.8536277Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;Examples for the Surface Mesh 3D Chart can be found in the SciChart.js Demo app which can be viewed on our website, or downloaged from SciChart.Js.Examples Github Repository&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/iframe/javascript-3d-surface-mesh-chart" target=_blank&gt;SciChart.js Demo app&lt;/A&gt; 
@@ -14334,7 +14334,7 @@ when done, document it</Notes>
 &lt;LI&gt;Other properties are set to control wireframe, X,Y,Z axis and drawing.&lt;/LI&gt;&lt;/OL&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;The dimensions of the yValues height 2D array are [zIndex][xIndex]&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Applying Color Palettes (Heightmaps)&amp;nbsp;to Surfaces&lt;/H2&gt;
 &lt;P&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/uniformgriddataseries3d.html#setyvalues"&gt;yValues&lt;/A&gt; in the UniformGridDataSeries3D are a 2-dimensional array of type number[][]. These are mapped to heights in the 3D world, and are also mapped to colors using the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html#meshcolorpalette"&gt;SurfaceMeshRenderableSeries3D.meshColorPalette&lt;/A&gt;&amp;nbsp;property. &lt;/P&gt;
-&lt;P&gt;The mapping is similar to the method used by the&amp;nbsp;&lt;A href="5f664da7-9d4d-42e9-bcac-736d69110d96"&gt;2D Heatmap Series&lt;/A&gt;. Let's explain by digging into a simple example below. &lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\SurfaceMesh3DColorMapping\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The mapping is similar to the method used by the&amp;nbsp;&lt;A href="5f664da7-9d4d-42e9-bcac-736d69110d96"&gt;2D Heatmap Series&lt;/A&gt;. Let's explain by digging into a simple example below. &lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\SurfaceMesh3DColorMaps\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/SurfaceMesh3DColorMaps/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;What this means:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;The GradientStop at Offset = 0 with corresponds to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/surfacemeshrenderableseries3d.html#minimum"&gt;SurfaceMeshRenderableSeries3D.minimum&lt;/A&gt; value of 0
@@ -14422,21 +14422,19 @@ when done, document it</Notes>
                 <Caption m="2019-07-22T13:16:35.2406484Z">ZoomingPanning</Caption>
                 <ChildTopicCategories />
                 <Topics>
-                  <Topic Id="02e0ff0e-aa3f-4ed3-8227-4ca9e6217352" Status="New Topic" CreatedOn="2019-07-22T13:17:51.5313463Z" ModifiedOn="2019-09-23T14:20:20.4762071Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OrbitModifier3D" BuildFlags="">
+                  <Topic Id="02e0ff0e-aa3f-4ed3-8227-4ca9e6217352" Status="New Topic" CreatedOn="2019-07-22T13:17:51.5313463Z" ModifiedOn="2023-07-16T09:51:35.2897459Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OrbitModifier3D" BuildFlags="">
                     <Title />
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2019-09-23T14:20:20.4762071Z">&lt;P&gt;Zooming and Panning a Chart in SciChart3D is achieved by moving the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getCamera.html"&gt;SciChart3DSurface.Camera&lt;/A&gt; to a new location.&lt;/P&gt;
+                        <Content m="2023-07-16T09:51:35.2897459Z">&lt;P&gt;Zooming and Panning a Chart in SciChart.js is achieved by moving the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#camera"&gt;SciChart3DSurface.camera&lt;/A&gt; to a new location.&lt;/P&gt;
 &lt;P&gt;The article&amp;nbsp;&lt;A href="e3c137ff-6d4e-44e5-9542-bbb00b65e3c1"&gt;"The SciChart3DSurface Camera"&lt;/A&gt; goes into detail how this camera class works and how to manipulate it programatically to achieve various views.&lt;/P&gt;
-&lt;P&gt;If you want to add simple panning of the camera to the chart then you can do so using our ChartModifiers API. The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.OrbitModifier3D.html"&gt;OrbitModifier3D&lt;/A&gt; performs orbital motion of the camera giving the appearance of the chart rotating.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/OrbitModifier3D.gif"&gt;&lt;/P&gt;
+&lt;P&gt;If you want to add simple panning of the camera to the chart then you can do so using our ChartModifiers API. The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/orbitmodifier3d.html"&gt;OrbitModifier3D&lt;/A&gt; performs orbital motion of the camera giving the appearance of the chart rotating.&lt;/P&gt;
+&lt;P&gt;TODO IMAGE&lt;/P&gt;
 &lt;H2&gt;Declaring an OrbitModifier3D&lt;/H2&gt;
-&lt;P&gt;Declaring an&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.OrbitModifier3D.html"&gt;OrbitModifier3D&lt;/A&gt; is as simple as adding one to the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getChartModifiers.html"&gt;SciChart3DSurface.ChartModifiers&lt;/A&gt; property. This can be done as a single modifier, or as part of a&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.ModifierGroup3D.html"&gt;ModifierGroup3D&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Declaring Modifier&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final OrbitModifier3D orbitModifier3D = new OrbitModifier3D();&lt;/P&gt;
-&lt;P&gt;orbitModifier3D.setIsEnabled(true);&lt;BR&gt;orbitModifier3D.setExecuteOnPointerCount(1);&lt;BR&gt;orbitModifier3D.setReceiveHandledEvents(true);&lt;BR&gt;orbitModifier3D.setDegreesPerPixelSensitivity(0.2f);&lt;/P&gt;
-&lt;P&gt;surface3d.getChartModifiers().add(new ModifierGroup3D(orbitModifier3D));&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+&lt;P&gt;Declaring an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/orbitmodifier3d.html"&gt;OrbitModifier3D&lt;/A&gt; is as simple as adding one to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/orbitmodifier3d.html"&gt;SciChart3DSurface.chartModifiers&lt;/A&gt; property. This can be done as a single modifier, or as part of a group.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\OrbitModifier3D\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following behaviour added to the chart.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/OrbitModifier3D/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks />
@@ -14444,22 +14442,19 @@ when done, document it</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="8cc4d206-bdd4-4d42-8ff4-4c09fddcb317" Status="New Topic" CreatedOn="2019-07-22T13:18:02.3361727Z" ModifiedOn="2023-07-15T10:49:38.2171358Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="MouseWheelZoomModifier3D" BuildFlags="">
+                  <Topic Id="8cc4d206-bdd4-4d42-8ff4-4c09fddcb317" Status="New Topic" CreatedOn="2019-07-22T13:18:02.3361727Z" ModifiedOn="2023-07-16T09:52:01.771455Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="MouseWheelZoomModifier3D" BuildFlags="">
                     <Title />
                     <ContentsTitle m="2023-07-15T10:49:38.2161332Z">Mouse Wheel Zoom Modifier 3D</ContentsTitle>
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2019-09-23T14:20:45.0649353Z">&lt;P&gt;Zooming and Panning a Chart in SciChart3D is achieved by moving the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getCamera.html"&gt;SciChart3DSurface.Camera&lt;/A&gt; to a new location.&lt;/P&gt;
+                        <Content m="2023-07-16T09:52:01.771455Z">&lt;P&gt;Zooming and Panning a Chart in SciChart.js is achieved by moving the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#camera"&gt;SciChart3DSurface.camera&lt;/A&gt; to a new location.&lt;/P&gt;
 &lt;P&gt;The article&amp;nbsp;&lt;A href="e3c137ff-6d4e-44e5-9542-bbb00b65e3c1"&gt;"The SciChart3DSurface Camera"&lt;/A&gt; goes into detail how this camera class works and how to manipulate it programatically to achieve various views.&lt;/P&gt;
-&lt;P&gt;If you want to add simple mvement of the camera (imagine free-look in a computer game) then you can do so using our ChartModifiers API. The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.FreeLookModifier3D.html"&gt;FreelookModifier3D&lt;/A&gt; moves camera in the Left/Right/Up/Down direciton giving the appearance of rotation camera in&amp;nbsp;the 3D World&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/FreeLookModifier3D.gif"&gt;&lt;/P&gt;
-&lt;H2&gt;Declaring an FreelookModifier3D&lt;/H2&gt;
-&lt;P&gt;Declaring an&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.FreeLookModifier3D.html"&gt;FreelookModifier3D&lt;/A&gt; is as simple as adding one to the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getChartModifiers.html"&gt;SciChart3DSurface.ChartModifiers&lt;/A&gt;&amp;nbsp;property. This can be done as a single modifier, or as part of a&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.ModifierGroup3D.html"&gt;ModifierGroup3D&lt;/A&gt;.&lt;/P&gt;
-&lt;P&gt;The following code will allow to rotate camera by scrolling with two fingers:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Declaring Modifier&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final FreeLookModifier3D freeLookModifier3D = new FreeLookModifier3D();&lt;/P&gt;
-&lt;P&gt;freeLookModifier3D.setIsEnabled(true);&lt;BR&gt;freeLookModifier3D.setDegreesPerPixelSensitivity(0.2f);&lt;BR&gt;freeLookModifier3D.setExecuteOnPointerCount(2);&lt;BR&gt;freeLookModifier3D.setReceiveHandledEvents(true);&lt;/P&gt;
-&lt;P&gt;surface3d.getChartModifiers().add(new ModifierGroup3D(freeLookModifier3D));&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;If you want to add simple zooming in/out of the camera to the chart then you can do so using our ChartModifiers API. The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/mousewheelzoommodifier3d.html"&gt;MouseWheelZoomModifier3D&lt;/A&gt; performs&amp;nbsp;movement of the camera by adjusting the radius proprerty,&amp;nbsp; giving the appearance of the chart zooming.&lt;/P&gt;
+&lt;H2&gt;Declaring an MouseWheelZoomModifier3D&lt;/H2&gt;
+&lt;P&gt;Declaring a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/mousewheelzoommodifier3d.html"&gt;MouseWheelZoomModifier3D&lt;/A&gt; is as simple as adding one to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/orbitmodifier3d.html"&gt;SciChart3DSurface.chartModifiers&lt;/A&gt; property. This can be done as a single modifier, or as part of a group.&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\MouseWheelZoomModifier3D\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following behaviour added to the chart.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/MouseWheelZoomModifier3D/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
@@ -15009,7 +15004,7 @@ when done, document it</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">226</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>

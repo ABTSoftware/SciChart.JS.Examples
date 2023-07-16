@@ -57,9 +57,9 @@ async function surfaceMesh3DChart(divElementId) {
         {offset: 0, color: "#14233C"}  // yValues <= minimum mapped to this color
       ],
     }),
-    opacity: 1,
+    opacity: 0.77,
     stroke: "White",
-    strokeThickness: 1,
+    strokeThickness: 2,
     drawSkirt: false,
     lightingFactor: 0,
     drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME, // Draw mesh as solid, wireframe or solid wireframe
