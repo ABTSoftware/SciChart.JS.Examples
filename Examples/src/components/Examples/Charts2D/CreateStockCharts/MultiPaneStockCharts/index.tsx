@@ -330,8 +330,10 @@ const drawExample = async () => {
             theme: appTheme.SciChartJsTheme
         });
 
-        chart3XAxis = new CategoryAxis(wasmContext, { autoRange: EAutoRange.Once });
-        chart3XAxis.labelProvider = new SmartDateLabelProvider();
+        chart3XAxis = new CategoryAxis(wasmContext, {
+            autoRange: EAutoRange.Once,
+            labelProvider: new SmartDateLabelProvider()
+        });
         sciChartSurface.xAxes.add(chart3XAxis);
 
         const yAxis = new NumericAxis(wasmContext, {

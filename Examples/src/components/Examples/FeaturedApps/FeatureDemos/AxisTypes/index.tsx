@@ -49,13 +49,12 @@ const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
-
-    // Category Axis - measures using index not value.
-    const xAxis = new CategoryAxis(wasmContext, { id: "XCategory" });
     const labelProvider = new TextLabelProvider({
         labels: ["Bitcoin", "Ethereum", "XRP", "Cardano", "Dogecoin"]
     });
-    xAxis.labelProvider = labelProvider;
+    // Category Axis - measures using index not value.
+    const xAxis = new CategoryAxis(wasmContext, { id: "XCategory", labelProvider });
+
     xAxis.labelStyle.fontSize = 18;
     xAxis.labelStyle.alignment = ELabelAlignment.Center;
     xAxis.labelStyle.padding = new Thickness(2, 1, 2, 1);

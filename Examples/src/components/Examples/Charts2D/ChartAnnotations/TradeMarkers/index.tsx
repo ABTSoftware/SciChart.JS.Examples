@@ -30,9 +30,8 @@ const drawExample = async () => {
     });
 
     // Add an XAxis, YAxis
-    const xAxis = new CategoryAxis(wasmContext);
+    const xAxis = new CategoryAxis(wasmContext, { labelProvider: new SmartDateLabelProvider() });
     xAxis.growBy = new NumberRange(0.01, 0.01);
-    xAxis.labelProvider = new SmartDateLabelProvider();
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
