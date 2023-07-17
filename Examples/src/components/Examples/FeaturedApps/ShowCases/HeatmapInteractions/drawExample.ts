@@ -406,6 +406,10 @@ export const drawExample = async () => {
     };
     document.querySelector("#stopAnimation").addEventListener("click", stopAnimation);
 
+    sciChartSurface.addDeletable({
+        delete: () => stopAnimation()
+    })
+
     const showHelp = () => {
         const anim = getHelpAnnotation(
             "This heatmap is running a 2D wave simulation.  Colours correspond to wave height. Drag the Damping marker to adjust how long the waves last.",
@@ -527,6 +531,7 @@ const getHelpAnnotation = (text: string, surface: SciChartSurface) => {
                         ann.opacity = 1 - progress;
                     },
                     onCompleted() {
+                        ann.delete();
                         surface.annotations.remove(ann);
                         if (next.onNext) next.onNext();
                     }

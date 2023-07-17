@@ -188,16 +188,26 @@ const useStyles = makeStyles(theme => ({
 
 export default function PercentageChange() {
     const [usePercentage, setUsePercentage] = React.useState(true);
-    const [scs, setSciChartSurface] = React.useState<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample(usePercentage);
-            setSciChartSurface(res.sciChartSurface);
-        })();
+        const chartInitializationPromise = drawExample(usePercentage).then(res => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
+            return res.sciChartSurface
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            scs?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then((surface) => {
+                surface.delete();
+            });
         };
     }, [usePercentage]);
 

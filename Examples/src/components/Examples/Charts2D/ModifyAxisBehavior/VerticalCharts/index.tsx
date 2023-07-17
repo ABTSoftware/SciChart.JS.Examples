@@ -18,10 +18,10 @@ import {
 import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
-const divElementId2 = "chart2";
+const divElementId = "chart2";
 
 const drawExample = async () => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId2, {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
