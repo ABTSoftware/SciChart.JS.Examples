@@ -118,6 +118,18 @@ async function initSciChart() {
 Charts can be initialized in a Vue Component and placed in a `<div>` element. Make sure to delete the chart on component unmount.
 
 ```javascript
+<template>
+  <div class="hello">
+    <h1>{{ msg }}</h1>
+    <div id="scichart-root" style="width: 600px; height: 400px; margin: auto;"></div>
+  </div>
+</template>
+
+<script lang="js">
+async function initSciChart() {
+  // ... definition above
+}
+
 export default defineComponent({
   // Best practise in Vue.js is to ensure that sciChartSurface is deleted on component unmount.
   // Here's one way to do this
@@ -142,6 +154,33 @@ export default defineComponent({
     msg: String
   }
 });
+</script>
+```
+
+### Include Components in your App
+
+Components are now included in App.vue as follows
+
+```javascript
+// App.vue 
+<template>
+  <Scichart2d msg="2D Charts" />
+  <scichart3d msg="3D Charts" />
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import Scichart2d from "./components/Scichart2d.vue";
+import Scichart3d from "./components/Scichart3d.vue";
+
+export default defineComponent({
+  name: "App",
+  components: {
+    Scichart2d,
+    Scichart3d
+  }
+});
+</script>
 ```
 
 ## Using this Project 
