@@ -1,42 +1,59 @@
 import React, { useEffect } from "react";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import {
+  SciChartSurface,
+  NumericAxis,
+  FastLineRenderableSeries,
+  XyDataSeries,
+  EllipsePointMarker,
+  SweepAnimation,
+  SciChartJsNavyTheme,
+  NumberRange
+} from "scichart";
 
 async function initSciChart() {
-  // LICENSING //
-  // Set your license code here
-  // You can get a trial license key from https://www.scichart.com/licensing-scichart-js/
+  // LICENSING
+  // Commercial licenses set your license code here
   // Purchased license keys can be viewed at https://www.scichart.com/profile
-  //
-  // e.g.
-  //
+  // How-to steps at https://www.scichart.com/licensing-scichart-js/
   // SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
-  //
-  // Also, once activated (trial or paid license) having the licensing wizard open on your machine
-  // will mean any or all applications you run locally will be fully licensed.
 
-  // Create the SciChartSurface in the div 'scichart-root'
-  // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
-  // instance must be passed to other types that exist on the same surface.
-  const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-    "scichart-root"
-  );
+  // Initialize SciChartSurface. Don't forget to await!
+  const { sciChartSurface, wasmContext } = await SciChartSurface.create("scichart-root", {
+    theme: new SciChartJsNavyTheme(),
+    title: "SciChart.js First Chart",
+    titleStyle: { fontSize: 22 }
+  });
 
-  // Create an X,Y Axis and add to the chart
-  const xAxis = new NumericAxis(wasmContext);
-  const yAxis = new NumericAxis(wasmContext);
+  // Create an XAxis and YAxis with growBy padding
+  const growBy = new NumberRange(0.1, 0.1);
+  sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis", growBy }));
+  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { axisTitle: "Y Axis", growBy }));
 
-  sciChartSurface.xAxes.add(xAxis);
-  sciChartSurface.yAxes.add(yAxis);
+  // Create a line series with some initial data
+  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+    stroke: "steelblue",
+    strokeThickness: 3,
+    dataSeries: new XyDataSeries(wasmContext, {
+      xValues: [0,1,2,3,4,5,6,7,8,9],
+      yValues: [0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173, 0.7833]
+    }),
+    pointMarker: new EllipsePointMarker(wasmContext, { width: 11, height: 11, fill: "#fff" }),
+    animation: new SweepAnimation({ duration: 300, fadeEffect: true })
+  }));
 
-  // That's it! You just created your first SciChartSurface!
+  return sciChartSurface;
 }
 
 function App() {
   useEffect(() => {
-    console.log("use effect");
-    initSciChart();
-  });
+    // Best practise in React is to ensure that sciChartSurface is deleted on component unmount.
+    // Here's one way to do this
+    const chartInitializationPromise = initSciChart();
+
+    return () => {
+      chartInitializationPromise.then((sciChartSurface) => sciChartSurface.delete());
+    };
+  }, []);
 
   return (
     <div className="App">
