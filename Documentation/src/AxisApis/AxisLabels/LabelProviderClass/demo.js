@@ -110,8 +110,8 @@ async function labelProviderClass(divElementId) {
 
   // #region ExampleB
 
-  const minDate = new Date("2023-03-1");
-  const maxDate = new Date("2023-03-3");
+  const minDate = new Date("2023-03-01");
+  const maxDate = new Date("2023-03-03");
 
   const xAxis = new DateTimeNumericAxis(wasmContext, {
     axisTitle: "X Axis with custom LabelProvider",
@@ -144,8 +144,8 @@ async function builderExample(divElementId) {
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
 
-  const minDate = new Date("2023-03-1");
-  const maxDate = new Date("2023-03-3");
+  const minDate = new Date("2023-03-01");
+  const maxDate = new Date("2023-03-03");
 
   // #region ExampleC
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {

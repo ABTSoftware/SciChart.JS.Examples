@@ -83,7 +83,7 @@ function getData(wasmContext: TSciChart3D) {
         const scale = (Math.random() + 0.5) * 0.5;
         // To declare scale and colour, add an optional PointMetadata3D type as the w (fourth) parameter.
         // The PointMetadata3D type also has other properties defining the behaviour of the XYZ point
-        xyzDataSeries.append(x, y, z, { vertexColorAbgr: fixedColor, pointScale: scale });
+        xyzDataSeries.append(x, y, z, { vertexColor: fixedColor, pointScale: scale });
 
     }
 

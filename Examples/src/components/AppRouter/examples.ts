@@ -106,6 +106,7 @@ import VirtualizedDataOverview from "../Examples/Charts2D/ZoomingAndPanning/Virt
 import HeatmapInteractions from "../Examples/FeaturedApps/ShowCases/HeatmapInteractions";
 import DepthChart from "../Examples/Charts2D/CreateStockCharts/DepthChart";
 import TextChart from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart";
+import BackgroundAnnotations from "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations";
 
 export type TMenuItem = {
     item: {
@@ -184,7 +185,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide,
             EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_PieChart,
-            EXAMPLES_PAGES.chart2D_basicCharts_DonutChart
+            EXAMPLES_PAGES.chart2D_basicCharts_DonutChart,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations
         ]
     },
     {
@@ -194,7 +196,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
             EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers,
             EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold,
-            EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations
+            EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations
         ]
     },
     {
@@ -406,6 +409,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return TradeMarkers;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold.id:
             return DragHorizontalThreshold;
+        case EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations.id:
+            return BackgroundAnnotations;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_RealtimeGhostedTraces.id:
             return RealtimeGhostedTraces;
         case EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts.id:

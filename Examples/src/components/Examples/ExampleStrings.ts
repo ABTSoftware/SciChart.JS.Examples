@@ -349,6 +349,10 @@ export const ExampleStrings = {
     urlTitleDragHorizontalThreshold:
         "This Javascript chart example shows you how to add a draggable threshold and change the chart colour depending on threshold value",
 
+    // Background Annotations
+    urlBackgroundAnnotations: "/javascript-chart-background-annotations",
+    titleBackgroundAnnotations: "Quadrant chart using Background Annotations",
+
     // Use Pointmarkers
     urlPointMarkers: "/javascript-chart-custom-pointmarkers",
     titlePointMarkers: "JavaScript Point-Markers Chart",

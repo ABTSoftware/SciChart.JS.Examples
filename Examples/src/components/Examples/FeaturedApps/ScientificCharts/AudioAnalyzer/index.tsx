@@ -59,11 +59,17 @@ export const drawExample = async () => {
     let fftDS: XyDataSeries;
     let spectrogramDS: UniformHeatmapDataSeries;
 
-    // INIT AUDIO
-    const initAudio = () => {
-        // TODO: Overlay warning on the example if audio can't be initialized, with steps to resolve (permissions)
-        dataProvider.initAudio();
-    };
+    const helpText = new TextAnnotation({
+        x1: 0,
+        y1: 0,
+        xAxisId: "history",
+        xCoordinateMode: ECoordinateMode.Relative,
+        yCoordinateMode: ECoordinateMode.Relative,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        text: "This example requires microphone permissions.  Please click Allow in the popup.",
+        textColor: "#FFFFFF44"
+    });
 
     function updateAnalysers(frame: number): void {
         // Make sure Audio is initialized
@@ -173,19 +179,7 @@ export const drawExample = async () => {
         sciChartSurface.renderableSeries.add(histrs);
 
         // Add instructions
-        sciChartSurface.annotations.add(
-            new TextAnnotation({
-                x1: 0,
-                y1: 0,
-                xAxisId: "history",
-                xCoordinateMode: ECoordinateMode.Relative,
-                yCoordinateMode: ECoordinateMode.Relative,
-                horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-                verticalAnchorPoint: EVerticalAnchorPoint.Top,
-                text: "This example uses your microphone to generate waveforms. Say something!",
-                textColor: "#FFFFFF44"
-            })
-        );
+        sciChartSurface.annotations.add(helpText);
 
         return sciChartSurface;
     };
@@ -313,20 +307,30 @@ export const drawExample = async () => {
     const charts = await Promise.all([initAudioChart(), initFftChart(), initSpectogramChart()]);
 
     // INIT AUDIO
-    await initAudio();
-
-    // START ANIMATION
-    let timerId: NodeJS.Timeout;
-    let frameCounter = 0;
-    const updateChart = () => {
-        if (!dataProvider.isDeleted) {
-            updateAnalysers(frameCounter++);
-            timerId = setTimeout(updateChart, 20);
+    const hasAudio = await dataProvider.initAudio();
+    if (!hasAudio) {
+        if (dataProvider.permissionError) {
+            helpText.text = "We were not able to access your microphone.  This may be because you did not accept the permissions.  Open your browser security settings and remove the block on microphone permissions from this site, then reload the page.";
+        } else if (!window.isSecureContext) {
+            helpText.text = "Cannot get microphone access if the site is not localhost or on https";
+        } else {
+            helpText.text = "There was an error trying to get microphone access.  Check the console";
         }
-    };
-    updateChart();
+    } else {
+        helpText.text = "This example uses your microphone to generate waveforms. Say something!";
 
-    return { charts, dataProvider };
+        // START ANIMATION
+        let timerId: NodeJS.Timeout;
+        let frameCounter = 0;
+        const updateChart = () => {
+            if (!dataProvider.isDeleted) {
+                updateAnalysers(frameCounter++);
+                timerId = setTimeout(updateChart, 20);
+            }
+        };
+        updateChart();
+    }
+    return {charts, dataProvider};
 };
 
 export default function AudioAnalyzer() {

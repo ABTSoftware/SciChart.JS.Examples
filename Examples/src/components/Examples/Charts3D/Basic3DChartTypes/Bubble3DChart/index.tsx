@@ -1,7 +1,7 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import { appTheme } from "scichart-example-dependencies";
-import { populationData } from "./data/PopulationData";
+import {appTheme} from "scichart-example-dependencies";
+import {populationData, PopulationData} from "./data/PopulationData";
 
 import {
     SciChart3DSurface,
@@ -16,13 +16,19 @@ import {
     XyzDataSeries3D,
     SpherePointMarker3D,
     TGradientStop,
-    parseColorToUIntArgb
+    parseColorToUIntArgb,
+    TooltipModifier3D,
+    SeriesInfo3D,
+    TooltipSvgAnnotation3D,
+    XyzSeriesInfo3D
 } from "scichart";
 
 const divElementId = "chart";
 
 type TMetadata = {
-    vertexColorAbgr: number;
+    country: string;
+    color: string;
+    vertexColor: number;
     pointScale: number;
 };
 
@@ -36,9 +42,33 @@ const drawExample = async () => {
         target: new Vector3(0, 50, 0)
     });
 
-    sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
-    sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
-    sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
+    sciChart3DSurface.chartModifiers.add(
+        new MouseWheelZoomModifier3D(),
+        new OrbitModifier3D(),
+        new ResetCamera3DModifier());
+
+    const tooltipModifier = new TooltipModifier3D({ tooltipLegendOffsetX: 10, tooltipLegendOffsetY: 10 });
+    tooltipModifier.tooltipDataTemplate = (seriesInfo: SeriesInfo3D, svgAnnotation: TooltipSvgAnnotation3D) => {
+        const valuesWithLabels: string[] = [];
+        if (seriesInfo && seriesInfo.isHit) {
+            const md = (seriesInfo as XyzSeriesInfo3D).pointMetadata as TMetadata;
+            valuesWithLabels.push(md.country);
+            valuesWithLabels.push(`Life Expectancy: ${seriesInfo.xValue}`);
+            valuesWithLabels.push(`GDP Per Capita: ${seriesInfo.yValue}`);
+            valuesWithLabels.push(`Year: ${seriesInfo.zValue}`);
+        }
+        return valuesWithLabels;
+    }
+    const defaultTemplate = tooltipModifier.tooltipSvgTemplate;
+    tooltipModifier.tooltipSvgTemplate = (seriesInfo: SeriesInfo3D, svgAnnotation: TooltipSvgAnnotation3D) => {
+        if (seriesInfo) {
+            const md = (seriesInfo as XyzSeriesInfo3D).pointMetadata as TMetadata;
+            svgAnnotation.containerBackground = md.color
+            svgAnnotation.textStroke = "white";
+        }
+        return defaultTemplate(seriesInfo, svgAnnotation);
+    };
+    sciChart3DSurface.chartModifiers.add(tooltipModifier);
 
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Life Expectancy",
@@ -64,14 +94,14 @@ const drawExample = async () => {
 
     // Metadata in scichart.js 3D controls color and scale of a bubble. It can also hold additional optional properties
     // Below we format the data for lifeExpectancy into metadata colour coded and scaled depending on the value
-    const metadata = formatMetadata(lifeExpectancy, [
-        { offset: 1, color: appTheme.VividPink },
-        { offset: 0.9, color: appTheme.VividOrange },
-        { offset: 0.7, color: appTheme.MutedRed },
-        { offset: 0.5, color: appTheme.VividGreen },
-        { offset: 0.3, color: appTheme.VividSkyBlue },
-        { offset: 0.2, color: appTheme.Indigo },
-        { offset: 0, color: appTheme.DarkIndigo }
+    const metadata = formatMetadata(populationData, [
+        {offset: 1, color: appTheme.VividPink},
+        {offset: 0.9, color: appTheme.VividOrange},
+        {offset: 0.7, color: appTheme.MutedRed},
+        {offset: 0.5, color: appTheme.VividGreen},
+        {offset: 0.3, color: appTheme.VividSkyBlue},
+        {offset: 0.2, color: appTheme.Indigo},
+        {offset: 0, color: appTheme.DarkIndigo}
     ]);
 
     sciChart3DSurface.renderableSeries.add(
@@ -90,27 +120,28 @@ const drawExample = async () => {
     return { sciChart3DSurface, wasmContext };
 };
 
-function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): TMetadata[] {
+function formatMetadata(population: PopulationData[], gradientStops: TGradientStop[]): TMetadata[] {
+    const valuesArray = populationData.map(item => item.lifeExpectancy);
     const low = Math.min(...valuesArray);
     const high = Math.max(...valuesArray);
 
     const sGradientStops = gradientStops.sort((a, b) => (a.offset > b.offset ? 1 : -1));
     // Compute a scaling factor from 0...1 where values in valuesArray at the lower end correspond to 0 and
     // values at the higher end correspond to 1
-    return valuesArray.map(x => {
+    const metaData: TMetadata [] = [];
+    for (const item of population) {
+        const x = item.lifeExpectancy;
         // scale from 0..1 for the values
         const valueScale = (x - low) / (high - low);
         // Find the nearest gradient stop index
         const index = sGradientStops.findIndex(gs => gs.offset >= valueScale);
         // const nextIndex = Math.min(index + 1, sGradientStops.length - 1);
         // work out the colour of this point
-        const color1 = parseColorToUIntArgb(sGradientStops[index].color);
-        // const color2 = parseColorToUIntArgb(sGradientStops[nextIndex].color);
-        // const ratio = (valueScale - sGradientStops[index].offset) / (sGradientStops[nextIndex].offset - sGradientStops[index].offset)
-        // const colorScale = uintArgbColorLerp(color1, color2, ratio)
-        // console.log(`valueScale ${valueScale} low ${sGradientStops[index].offset} high ${sGradientStops[nextIndex].offset} ratio ${ratio}`);
-        return { pointScale: 0.1 + valueScale, vertexColorAbgr: color1 };
-    });
+        const color = sGradientStops[index].color;
+        const vertexColor = parseColorToUIntArgb(color);
+        metaData.push({country: item.country, pointScale: 0.1 + valueScale, vertexColor, color });
+    }
+    return metaData;
 }
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info

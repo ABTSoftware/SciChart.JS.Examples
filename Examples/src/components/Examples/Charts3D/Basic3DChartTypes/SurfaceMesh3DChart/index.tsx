@@ -16,7 +16,8 @@ import {
     NumberRange,
     zeroArray2D,
     HeatmapLegend,
-    ResetCamera3DModifier
+    ResetCamera3DModifier,
+    TooltipModifier3D
 } from "scichart";
 
 const divElementId = "chart";
@@ -108,6 +109,9 @@ const drawExample = async () => {
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
     sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
+    const tooltip = new TooltipModifier3D({ tooltipContainerBackground: appTheme.PaleBlue, showTooltip: false });
+    tooltip.tooltipLegendTemplate = tooltip.tooltipSvgTemplate;
+    sciChart3DSurface.chartModifiers.add(tooltip);
 
     return { sciChart3DSurface, wasmContext };
 };
