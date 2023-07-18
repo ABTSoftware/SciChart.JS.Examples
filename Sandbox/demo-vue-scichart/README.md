@@ -8,9 +8,9 @@ SciChart.js is commercial software with a [free community license](https://scich
 - For commercial licensing, follow steps from [scichart.com/licensing-scichart-js](https://scichart.com/licensing-scichart-js).
 
 
-## Step 1: Adding SciChart to your React Application
+## Step 1: Adding SciChart to your Vue Application
 
-If you haven't already done so, add SciChart.js to your react application
+If you haven't already done so, add SciChart.js to your Vue.js application
 ```javascript
 npm install scichart 
 ```
@@ -61,6 +61,8 @@ Vue.js requires *.data file to be in the /public output folder, and *.wasm files
     "copy-files-from-to": "^3.2.1",
   }
 ```
+
+> Note: other methods to [load wasm from CDN](https://www.scichart.com/documentation/js/current/webframe.html#Deploying%20Wasm%20or%20WebAssembly%20and%20Data%20Files%20with%20your%20app.html) are available to simplify getting started
 
 ## Step 3: Creating the chart
 
@@ -148,16 +150,16 @@ export default defineComponent({
       console.log("..deleting sciChartSurface");
       sciChartSurface.delete();
     });
-  },
-  name: "scichart2d",
-  props: {
-    msg: String
-  }
+},
+name: "scichart2d",
+props: {
+msg: String
+}
 });
 </script>
 ```
 
-### Include Components in your App
+## Step 5: Include Components in your App
 
 Components are now included in App.vue as follows
 
