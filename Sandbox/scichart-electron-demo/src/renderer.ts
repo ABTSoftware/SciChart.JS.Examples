@@ -26,7 +26,8 @@
  * ```
  */
 
-import "./chartInit";
+import "./chartInit2D";
+import "./chartInit3D";
 import "./index.css";
 
 console.log(
