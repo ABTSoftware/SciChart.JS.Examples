@@ -73,6 +73,7 @@ export class AudioDataProvider {
             this.freqByteData = new Uint8Array(this.analyserNode.frequencyBinCount);
 
             this.initializedProperty = true;
+            return true;
         } catch (error) {
             //@ts-ignore
             if (error.name === "NotAllowedError") {
