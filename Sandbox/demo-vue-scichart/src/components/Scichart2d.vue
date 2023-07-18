@@ -15,7 +15,10 @@ import {
   EllipsePointMarker,
   SweepAnimation,
   SciChartJsNavyTheme,
-  NumberRange
+  NumberRange,
+  MouseWheelZoomModifier,
+  ZoomPanModifier,
+  ZoomExtentsModifier
 } from "scichart";
 
 async function initSciChart() {
@@ -48,6 +51,9 @@ async function initSciChart() {
     pointMarker: new EllipsePointMarker(wasmContext, { width: 11, height: 11, fill: "#fff" }),
     animation: new SweepAnimation({ duration: 300, fadeEffect: true })
   }));
+
+  // Add some interaction modifiers to show zooming and panning
+  sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier(), new ZoomPanModifier(), new ZoomExtentsModifier());
 
   return sciChartSurface;
 }
