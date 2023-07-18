@@ -518,9 +518,10 @@
           <Status>Not Started</Status>
           <CreatedOn>2022-08-16T16:15:00.7484807Z</CreatedOn>
           <CreatedBy>DESKTOP-IPPVO8O\aburn</CreatedBy>
-          <ModifiedOn>2023-06-21T12:53:14.3730184Z</ModifiedOn>
+          <ModifiedOn>2023-07-17T08:57:16.4180943Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
-          <Notes>... to include subcharts, native text rendering, dataSeries.capacity</Notes>
+          <Notes>... to include subcharts, native text rendering, dataSeries.capacity
+... mention deletion of wasm memory and link to memory document</Notes>
         </TaskItem>
         <TaskItem Id="44c9be99-5d52-42fc-b32d-ff191642a197" Priority="" AssignedTo="">
           <Title>How do I: Pan the chart with mousewheel</Title>
@@ -838,20 +839,20 @@ isPrimaryAxis switched depending on mouse over </Notes>
         <TaskItem Id="f039e782-9222-497f-9e57-2d7626ffc2c4" Priority="" AssignedTo="">
           <Title>v3.2 Add TooltipModifier 3D Docs</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>In Progress</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-06-21T12:54:17.2058301Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-16T12:32:29.24812Z</ModifiedOn>
+          <ModifiedOn>2023-07-16T14:17:17.1267246Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
         <TaskItem Id="4ef4416f-7f98-4079-b7da-1bf16eab2288" Priority="" AssignedTo="">
           <Title>v3.2 add PinchZoomModifier3D docs</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>In Progress</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-06-21T12:54:24.9003008Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-16T12:32:32.2415982Z</ModifiedOn>
+          <ModifiedOn>2023-07-16T14:17:24.3936143Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -916,13 +917,13 @@ isPrimaryAxis switched depending on mouse over </Notes>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
-        <TaskItem Id="322bcea5-8f73-4857-89a5-d94158d13e8d" Priority="" AssignedTo="">
+        <TaskItem Id="322bcea5-8f73-4857-89a5-d94158d13e8d" Priority="High" AssignedTo="">
           <Title>!!! Write some 3D Chart docs!</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>In Progress</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-07-08T14:22:17.4656787Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-11T15:55:11.65971Z</ModifiedOn>
+          <ModifiedOn>2023-07-18T17:05:34.8458332Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -946,6 +947,16 @@ when done, document it</Notes>
           <ModifiedOn>2023-07-13T15:10:02.1398103Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>Some bugs discovered during this process</Notes>
+        </TaskItem>
+        <TaskItem Id="2e3625f3-285b-4b83-b0ec-211c4b3a1a39" Priority="High" AssignedTo="">
+          <Title>v3.2 Browser Bundle tutorials now out of date</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-07-17T16:35:06.4644731Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-07-17T16:35:17.915024Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
         </TaskItem>
       </TaskItems>
     </Tasks>
@@ -2469,7 +2480,7 @@ when done, document it</Notes>
                 <TocNode Name="" Id="5d43a765-146e-4882-8cdc-89ecce3f6aa9" IconIndex="1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
                   <CaptionTemplate m="2023-07-14T18:11:29.8730762Z">Tooltips</CaptionTemplate>
                   <ChildNodes>
-                    <TocNode Name="" Id="f9060c54-9092-482b-8036-e316d45384f1" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="f9060c54-9092-482b-8036-e316d45384f1" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>7915ac64-f37b-4acd-a5c7-521a0259d63c</TargetItemId>
@@ -14422,16 +14433,15 @@ when done, document it</Notes>
                 <Caption m="2019-07-22T13:16:35.2406484Z">ZoomingPanning</Caption>
                 <ChildTopicCategories />
                 <Topics>
-                  <Topic Id="02e0ff0e-aa3f-4ed3-8227-4ca9e6217352" Status="New Topic" CreatedOn="2019-07-22T13:17:51.5313463Z" ModifiedOn="2023-07-16T09:51:35.2897459Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OrbitModifier3D" BuildFlags="">
+                  <Topic Id="02e0ff0e-aa3f-4ed3-8227-4ca9e6217352" Status="New Topic" CreatedOn="2019-07-22T13:17:51.5313463Z" ModifiedOn="2023-07-18T17:01:05.4255143Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="OrbitModifier3D" BuildFlags="">
                     <Title />
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-07-16T09:51:35.2897459Z">&lt;P&gt;Zooming and Panning a Chart in SciChart.js is achieved by moving the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#camera"&gt;SciChart3DSurface.camera&lt;/A&gt; to a new location.&lt;/P&gt;
+                        <Content m="2023-07-18T17:01:05.4255143Z">&lt;P&gt;Zooming and Panning a Chart in SciChart.js is achieved by moving the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#camera"&gt;SciChart3DSurface.camera&lt;/A&gt; to a new location.&lt;/P&gt;
 &lt;P&gt;The article&amp;nbsp;&lt;A href="e3c137ff-6d4e-44e5-9542-bbb00b65e3c1"&gt;"The SciChart3DSurface Camera"&lt;/A&gt; goes into detail how this camera class works and how to manipulate it programatically to achieve various views.&lt;/P&gt;
 &lt;P&gt;If you want to add simple panning of the camera to the chart then you can do so using our ChartModifiers API. The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/orbitmodifier3d.html"&gt;OrbitModifier3D&lt;/A&gt; performs orbital motion of the camera giving the appearance of the chart rotating.&lt;/P&gt;
-&lt;P&gt;TODO IMAGE&lt;/P&gt;
 &lt;H2&gt;Declaring an OrbitModifier3D&lt;/H2&gt;
 &lt;P&gt;Declaring an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/orbitmodifier3d.html"&gt;OrbitModifier3D&lt;/A&gt; is as simple as adding one to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/orbitmodifier3d.html"&gt;SciChart3DSurface.chartModifiers&lt;/A&gt; property. This can be done as a single modifier, or as part of a group.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\OrbitModifier3D\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;This results in the following behaviour added to the chart.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/OrbitModifier3D/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
@@ -14463,22 +14473,18 @@ when done, document it</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="0f6660f9-8d3a-4fa9-b228-36376c2d79d4" Status="New Topic" CreatedOn="2019-07-22T13:18:37.0670368Z" ModifiedOn="2019-09-23T14:21:03.3452261Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="PinchZoomModifier3D" BuildFlags="">
+                  <Topic Id="0f6660f9-8d3a-4fa9-b228-36376c2d79d4" Status="New Topic" CreatedOn="2019-07-22T13:18:37.0670368Z" ModifiedOn="2023-07-18T17:05:53.5800105Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="PinchZoomModifier3D" BuildFlags="">
                     <Title />
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2019-09-23T14:21:03.3452261Z">&lt;P&gt;Zooming and Panning a Chart in SciChart3D is achieved by moving the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getCamera.html"&gt;SciChart3DSurface.Camera&lt;/A&gt;&amp;nbsp;to a new location.&lt;/P&gt;
+                        <Content m="2023-07-18T17:05:53.5800105Z">&lt;P&gt;Zooming and Panning a Chart in SciChart.js is achieved by moving the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichart3dsurface.html#camera"&gt;SciChart3DSurface.camera&lt;/A&gt; to a new location.&lt;/P&gt;
 &lt;P&gt;The article&amp;nbsp;&lt;A href="e3c137ff-6d4e-44e5-9542-bbb00b65e3c1"&gt;"The SciChart3DSurface Camera"&lt;/A&gt; goes into detail how this camera class works and how to manipulate it programatically to achieve various views.&lt;/P&gt;
-&lt;P&gt;If you want to add simple panning of the camera to the chart then you can do so using our ChartModifiers API. The&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.PinchZoomModifier3D.html"&gt;PinchZoomModifier3D&lt;/A&gt; performs movement the camera forwards/backwards when the user pinches a touch screen giving the appearance of zooming the 3D world.&lt;BR&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;IMG border=0 alt="" src="images/PinchZoomModifier3D.gif"&gt;&lt;/P&gt;
-&lt;H2&gt;Declaring a PinchZoomModifier3D&lt;/H2&gt;
-&lt;P&gt;Declaring an&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.PinchZoomModifier3D.html"&gt;PinchZoomModifier3D&lt;/A&gt; is as simple as adding one to the&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.visuals.ISciChartSurface3D~getChartModifiers.html"&gt;SciChart3DSurface.ChartModifiers&lt;/A&gt;&amp;nbsp;property. This can be done as a single modifier, or as part of a&amp;nbsp;&lt;A href="SciChart.Charting3D~com.scichart.charting3d.modifiers.ModifierGroup3D.html"&gt;ModifierGroup3D&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Declaring Modifier&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;final PinchZoomModifier3D pinchZoomModifier3D = new PinchZoomModifier3D();&lt;/P&gt;
-&lt;P&gt;pinchZoomModifier3D.setIsEnabled(true);&lt;BR&gt;pinchZoomModifier3D.setScaleFactor(2f);&lt;/P&gt;
-&lt;P&gt;surface3d.getChartModifiers().add(new ModifierGroup3D(pinchZoomModifier3D));&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+&lt;P&gt;If you want to add simple Pinch Zooming via Touch to the chart then you can do so using our ChartModifiers API. The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/pinchzoommodifier3d.html"&gt;PinchZoomModifier3D&lt;/A&gt; was added to SciChart.js v3.2 and&amp;nbsp;performs adjustment of the camera radius giving the appearance of the chart zooming.&lt;/P&gt;
+&lt;H2&gt;Declaring an PinchZoomModifier3D&lt;/H2&gt;
+&lt;P&gt;Declaring a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/pinchzoommodifier3d.html"&gt;PinchZoomModifier3D&lt;/A&gt;&amp;nbsp; is as simple as adding one to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/orbitmodifier3d.html"&gt;SciChart3DSurface.chartModifiers&lt;/A&gt; property. This can be done as a single modifier, or as part of a group.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\3DChartTypes\PinchZoom3D\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following behaviour added to the chart.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/3DChartTypes/PinchZoom3D/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks />
@@ -15018,7 +15024,7 @@ when done, document it</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">2105</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>
