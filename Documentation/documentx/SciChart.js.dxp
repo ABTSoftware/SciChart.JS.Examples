@@ -783,10 +783,10 @@ isPrimaryAxis switched depending on mouse over </Notes>
         <TaskItem Id="93c76f4c-5406-48f5-bac0-191a134b84cb" Priority="High" AssignedTo="">
           <Title>v3.2 Add Memory Tips &amp; Tricks doc</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>In Progress</Status>
           <CreatedOn>2023-06-21T12:49:26.9157789Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-04T16:42:21.6638586Z</ModifiedOn>
+          <ModifiedOn>2023-07-19T12:44:22.1840542Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>under perf tips
  - talk about Wasm memory model
@@ -799,30 +799,30 @@ isPrimaryAxis switched depending on mouse over </Notes>
         <TaskItem Id="1215a6ca-6e5c-413e-a6d5-0c4addab7848" Priority="High" AssignedTo="">
           <Title>v3.2 Add Mem Leak Debugging tools doc</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>In Progress</Status>
           <CreatedOn>2023-06-21T12:53:23.3419754Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-04T16:42:20.2139397Z</ModifiedOn>
+          <ModifiedOn>2023-07-19T12:32:01.3150553Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
-        <TaskItem Id="66172453-6969-40de-858f-d96b684d5956" Priority="" AssignedTo="">
+        <TaskItem Id="66172453-6969-40de-858f-d96b684d5956" Priority="Medium" AssignedTo="">
           <Title>v3.2 add Optional Delete on remove/clear in collections</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>In Progress</Status>
           <CreatedOn>2023-06-21T12:53:31.8802592Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-06-21T12:53:39.6454039Z</ModifiedOn>
+          <ModifiedOn>2023-07-19T12:44:27.021477Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
-        <TaskItem Id="a94fb247-ff06-409c-86ef-f660ee0ddeca" Priority="" AssignedTo="">
+        <TaskItem Id="a94fb247-ff06-409c-86ef-f660ee0ddeca" Priority="Medium" AssignedTo="">
           <Title>v3.2 Add configure WebGL Buffer sizes in Perf Tips and Tricks docs</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>In Progress</Status>
           <CreatedOn>2023-06-21T12:53:42.664291Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-06-21T12:53:52.7789789Z</ModifiedOn>
+          <ModifiedOn>2023-07-19T12:44:30.2617215Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -856,13 +856,13 @@ isPrimaryAxis switched depending on mouse over </Notes>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
-        <TaskItem Id="7b0b5583-e857-4565-96ad-105616612454" Priority="" AssignedTo="">
+        <TaskItem Id="7b0b5583-e857-4565-96ad-105616612454" Priority="Medium" AssignedTo="">
           <Title>v3.2 add rotating axis titles to docs</Title>
           <AssociatedItemId></AssociatedItemId>
           <Status>Not Started</Status>
           <CreatedOn>2023-06-21T12:54:32.7650988Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-06-21T12:54:36.969325Z</ModifiedOn>
+          <ModifiedOn>2023-07-19T11:45:00.5865921Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -887,13 +887,13 @@ isPrimaryAxis switched depending on mouse over </Notes>
           <Notes>Must document modes of realtime:
  Append, Replace, Scroll and Sweep </Notes>
         </TaskItem>
-        <TaskItem Id="0b59c288-04aa-414e-a54e-f83f29dc63a1" Priority="" AssignedTo="">
+        <TaskItem Id="0b59c288-04aa-414e-a54e-f83f29dc63a1" Priority="Medium" AssignedTo="">
           <Title>v3.2 mention Series pointmarker: lastPointOnly mode</Title>
           <AssociatedItemId></AssociatedItemId>
           <Status>Not Started</Status>
           <CreatedOn>2023-06-21T12:55:56.1517749Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-06-21T12:56:02.4314954Z</ModifiedOn>
+          <ModifiedOn>2023-07-19T11:45:04.0182852Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -1889,7 +1889,7 @@ when done, document it</Notes>
                 <TocNode Name="" Id="08cb4a90-7f14-4634-9e20-122890dc20da" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
                   <CaptionTemplate m="2016-10-19T10:11:32.2300756Z">Zooming and Panning</CaptionTemplate>
                   <ChildNodes>
-                    <TocNode Name="" Id="e7b09ca9-1a77-4ffb-8d2e-cec50c455751" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="e7b09ca9-1a77-4ffb-8d2e-cec50c455751" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>ffe63a68-26a7-4dac-91d7-ea3e3ba97ef3</TargetItemId>
@@ -2333,28 +2333,45 @@ when done, document it</Notes>
             <TocNode Name="" Id="fcb5ab2b-4c10-4f07-b022-8d1c0f61e8b2" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
               <CaptionTemplate m="2021-09-17T08:38:37.5361172Z">Miscellaneous APIs</CaptionTemplate>
               <ChildNodes>
-                <TocNode Name="" Id="1d806f15-5859-473d-b638-4a9ab63e5a1a" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>498f88e2-6f84-4804-9da5-426e8d72ef00</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
                 <TocNode Name="" Id="2db46c38-6f40-4ee9-b101-906f7082a37f" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>d2be691e-df29-43c3-9a57-0130024efa03</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
-                <TocNode Name="" Id="ff075725-6c6e-400f-ab66-bf27a7049a0b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="1d806f15-5859-473d-b638-4a9ab63e5a1a" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
-                  <TargetItemId>31c1fa0b-34ae-472f-b888-2de129265d50</TargetItemId>
+                  <TargetItemId>498f88e2-6f84-4804-9da5-426e8d72ef00</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
                 <TocNode Name="" Id="fb1a7864-6413-42a0-b91d-f74a9a6ac4ad" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>e5a3627c-906d-4bb5-a81d-981df6e3e96b</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+              </ChildNodes>
+            </TocNode>
+            <TocNode Name="" Id="de28e798-d43c-4c61-a357-cd5e20829396" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+              <CaptionTemplate m="2023-07-19T12:48:16.9073597Z">Performance Tips</CaptionTemplate>
+              <ChildNodes>
+                <TocNode Name="" Id="ff075725-6c6e-400f-ab66-bf27a7049a0b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>31c1fa0b-34ae-472f-b888-2de129265d50</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+                <TocNode Name="" Id="b9ba56ba-6464-4de4-8aa9-14b330ad8928" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>fe846da4-4ffb-4833-bf13-e688f8f82497</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+                <TocNode Name="" Id="14cc7b79-ccce-437a-b2ba-699c6fc1105b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>4658035b-e6f2-4a3a-8203-958042b96f56</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
               </ChildNodes>
@@ -8597,14 +8614,14 @@ when done, document it</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="31c1fa0b-34ae-472f-b888-2de129265d50" Status="New Topic" CreatedOn="2021-09-16T17:07:56.3277122Z" ModifiedOn="2023-06-21T12:35:30.8929823Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Performance Tips" BuildFlags="">
+              <Topic Id="31c1fa0b-34ae-472f-b888-2de129265d50" Status="New Topic" CreatedOn="2021-09-16T17:07:56.3277122Z" ModifiedOn="2023-07-19T14:02:11.3196454Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Performance Tips" BuildFlags="">
                 <Title m="2022-01-10T14:59:03.3113614Z">Performance Tips &amp; Tricks</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-06-21T12:35:30.8929823Z">&lt;P&gt;SciChart.js is a High Performance WebGL / WebAssembly chart library. Out of the box SciChart.js can&amp;nbsp;achieve incredible performance vs. other JavaScript Chart Libraries on the market, capable of rendering millions of datapoints. However, if you want to get the best possible performance out of SciChart.js then read on!&lt;/P&gt;
-&lt;H2&gt;Data Distribution&lt;/H2&gt;
+                    <Content m="2023-07-19T14:02:11.3196454Z">&lt;P&gt;SciChart.js is a High Performance WebGL / WebAssembly chart library. Out of the box SciChart.js can&amp;nbsp;achieve incredible performance vs. other JavaScript Chart Libraries on the market, capable of rendering millions of datapoints. However, if you want to get the best possible performance out of SciChart.js then read on!&lt;/P&gt;
+&lt;H2&gt;DataSeries Optimisations&lt;/H2&gt;
 &lt;H3&gt;Data is Sorted in X (TimeSeries Data) is Faster than Unsorted (Scatter Data)&lt;/H3&gt;
 &lt;P&gt;SciChart.js uses a number of optimised algorithms when your data is sorted in the X-direction.&lt;/P&gt;
 &lt;P&gt;Algorithms such as Hit-Test (used by cursors, tooltips), indexing and drawing have a faster path when the data is sorted in X vs. unsorted.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
@@ -8617,27 +8634,29 @@ when done, document it</Notes>
 &lt;LI&gt;Data spacing in X is evenly spaced &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;These properties allow us to choose the best &amp;amp; fastest algorithms for drawing, but detecting these properties takes some CPU time.&lt;/P&gt;
 &lt;P&gt;You can tell SciChart.js these properties in advance to save the time when creating dataseries, and appending and updating data.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Create Dataseries with Flags&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;const count = 1_000_000;&lt;BR&gt;const xValues: number[] = Array.from(Array(count).keys());&lt;BR&gt;const yValues: number[] = Array.from(Array(count).keys());&lt;BR&gt;&lt;BR&gt;// Test 1: Create DataSeries with 1 Million points without flags&lt;BR&gt;console.time("create series 1M points without Flags");&lt;BR&gt;const series = new XyDataSeries(webAssemblyContext, { xValues, yValues });&lt;BR&gt;console.timeEnd("create series 1M points without Flags");&lt;BR&gt;&lt;BR&gt;// Test 2: Create DataSeries with 1 Million points with flags&lt;BR&gt;console.time("create series 1M points with Flags");&lt;BR&gt;const series2 = new XyDataSeries(webAssemblyContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; xValues,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; yValues,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataIsSortedInX: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataEvenlySpacedInX: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; containsNaN: false&lt;BR&gt;});&lt;BR&gt;console.timeEnd("create series 1M points with Flags");&lt;/P&gt;
+&lt;P&gt;const count = 1_000_000;&lt;BR&gt;const xValues = Array.from(Array(count).keys());&lt;BR&gt;const yValues =&amp;nbsp;Array.from(Array(count).keys());&lt;BR&gt;&lt;BR&gt;// Test 1: Create DataSeries with 1 Million points without flags&lt;BR&gt;console.time("create series 1M points without Flags");&lt;BR&gt;const series = new XyDataSeries(webAssemblyContext, { xValues, yValues });&lt;BR&gt;console.timeEnd("create series 1M points without Flags");&lt;BR&gt;&lt;BR&gt;// Test 2: Create DataSeries with 1 Million points with flags&lt;BR&gt;console.time("create series 1M points with Flags");&lt;BR&gt;const series2 = new XyDataSeries(webAssemblyContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; xValues,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; yValues,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataIsSortedInX: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataEvenlySpacedInX: true,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; containsNaN: false&lt;BR&gt;});&lt;BR&gt;console.timeEnd("create series 1M points with Flags");&lt;/P&gt;
 &lt;P&gt;// Results&lt;BR&gt;//&lt;BR&gt;// Time to create 1 Million points without flags: 55ms&lt;BR&gt;// Time to create 1 Million points with flags specified: 11ms&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P align=left&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Specify Data Distribution properties &lt;STRONG&gt;containsNaN&lt;/STRONG&gt;, &lt;STRONG&gt;dataSortedInX&lt;/STRONG&gt;, &lt;STRONG&gt;dataEvenlySpacedInX&lt;/STRONG&gt; when creating a DataSeries to save CPU time. Note you will need to update these flags if the data properties change.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Enable Resampling&lt;/H2&gt;
-&lt;P&gt;&lt;STRONG&gt;New to SciChart.js v2.1!&lt;/STRONG&gt;&lt;/P&gt;
+&lt;H3&gt;Enable Resampling&lt;/H3&gt;
 &lt;P&gt;We've enabled drawing optimisations which allow for faster rendering / drawing path in Line, Column, Candlestick, Mountain and Band Series by using data-point resampling.&lt;/P&gt;
 &lt;P&gt;Set the property &lt;STRONG&gt;FastLineRenderableSeries.resamplingMode&lt;/STRONG&gt; = &lt;STRONG&gt;EResamplingMode.Auto&lt;/STRONG&gt; to take advantage of this faster drawing path.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;enable resampling&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";&lt;BR&gt;import { EResamplingMode } from "scichart/Charting/Numerics/Resamplers/ResamplingMode";&lt;/P&gt;
+&lt;P&gt;import { SciChartDefaults, EResamplingMode &amp;nbsp;} from "scichart";&lt;/P&gt;
 &lt;P&gt;// Creates a line series and explicitly enables resampling (default is AUTO)&lt;BR&gt;const lineSeries = new FastLineRenderableSeries(wasmContext, { resamplingMode: EResamplingMode.Auto} );&lt;BR&gt;&lt;BR&gt;// Disables resampling&lt;BR&gt;lineSeries.resamplingMode = EResamplingMode.None;&lt;BR&gt;&lt;BR&gt;// Enable or disable globally&lt;BR&gt;SciChartDefaults.enableResampling = false;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;Set the property&amp;nbsp;&lt;STRONG&gt;FastLineRenderableSeries.resamplingMode&lt;/STRONG&gt; = &lt;STRONG&gt;EResamplingMode.Auto&lt;/STRONG&gt; to enable new drawing optimisations. Note this property is enabled by default.&lt;/P&gt;
 &lt;P&gt;To read further about this property see the page on&amp;nbsp;&lt;A href="52beca85-ed1b-4135-bd27-72f46ff74aa0"&gt;Data Resampling&lt;/A&gt;.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;H2&gt;Batch Updates to DataSeries&lt;/H2&gt;
+&lt;H3&gt;Batch Updates to DataSeries&lt;/H3&gt;
 &lt;P&gt;SciChart DataSeries have functions like append(), insert(), update(), removeAt() where you can modify the data that the chart is showing. This allows you to achieve real-time updates in SciChart.&lt;/P&gt;
 &lt;P&gt;It is faster to update the DataSeries in batches aka using functions appendRange(), insertRange(), removeRange() where you modify an array of data than to use single-point changes.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;DataSeries Batch Updates&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
 &lt;P&gt;// Test 1: Append 100k points one at a time&lt;BR&gt;const series = new XyDataSeries(webAssemblyContext, { dataIsSortedInX: true, containsNaN: false });&lt;BR&gt;const count = 100_000;&lt;/P&gt;
 &lt;P&gt;console.time("dataseries.append(x,y) 100k points");&lt;BR&gt;for (let i = 0; i &amp;lt; count; i++) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; series.append(i, i);&lt;BR&gt;}&lt;BR&gt;console.timeEnd("dataseries.append(x,y) 100k points");&lt;/P&gt;
 &lt;P&gt;// Test 2: Append 100k points using AppendRange&lt;BR&gt;const series2 = new XyDataSeries(webAssemblyContext, { dataIsSortedInX: true, containsNaN: false });&lt;BR&gt;const xValues: number[] = Array.from(Array(count).keys());&lt;BR&gt;const yValues: number[] = Array.from(Array(count).keys());&lt;BR&gt;console.time("dataseries.appendRange(xValues,yValues) 100k points");&lt;BR&gt;series.appendRange(xValues, yValues);&lt;BR&gt;console.timeEnd("dataseries.appendRange(xValues,yValues) 100k points");&lt;BR&gt;&lt;BR&gt;// Results&lt;BR&gt;//&lt;BR&gt;// Append(x,y) 100,000 times: 69ms&lt;BR&gt;// AppendRange(xValues, yValues) with 100,000 points: 1ms&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;STRONG&gt;appendRange()&lt;/STRONG&gt;, &lt;STRONG&gt;insertRange()&lt;/STRONG&gt; and &lt;STRONG&gt;removeRange()&lt;/STRONG&gt; are much more performant than append(), insert() and remove(). This performance difference is more noticeable with insert &amp;amp; remove.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Initialize DataSeries with Capacity&lt;/H2&gt;
-&lt;P style="COLOR: rgb(255,0,0)"&gt;TODO&lt;/P&gt;
-&lt;H2&gt;Use One WebGL Context per SciChartSurface&lt;/H2&gt;
+&lt;H3&gt;Initialize DataSeries with Capacity &lt;/H3&gt;
+&lt;P&gt;Internally, SciChart DataSeries use a geometric resizing algorithm which reserves more memory than needed as you call &lt;STRONG&gt;append()&lt;/STRONG&gt;, &lt;STRONG&gt;appendRange()&lt;/STRONG&gt;. Starting with a new DataSeries and calling &lt;STRONG&gt;.append()&lt;/STRONG&gt; many times may result in several resizes of the underlying vector as the DataSeries grows. &lt;/P&gt;
+&lt;P&gt;To avoid this, and reduce unnecessary allocations, if the size is known ahead of time you can initialize a DataSeries with capacity.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;DataSeries Batch Updates&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;const dataSeries = new XyDataSeries(wasmContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; capacity: 10000 // Reserves memory for 10,000 elements&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Multi Chart Optimisations&lt;/H2&gt;
+&lt;H3&gt;Use One WebGL Context per SciChartSurface&lt;/H3&gt;
 &lt;P&gt;The function &lt;STRONG&gt;SciChartSurface.create()&lt;/STRONG&gt; uses a single shared WebGL context for all chart surfaces. This allows us to have multiple charts (up to hundreds of charts) in a single webpage.&lt;/P&gt;
 &lt;P&gt;The function &lt;STRONG&gt;SciChartSurface.createSingle()&lt;/STRONG&gt; creates one WebGL Context per SciChartSurface. This gives faster drawing&amp;nbsp;performance but will quickly hit the limit of WebGL contexts in a webpage.&lt;/P&gt;
 &lt;P&gt;Approximate WebGL Context Limits per browser can be found below.&lt;/P&gt;
@@ -8664,28 +8683,30 @@ when done, document it</Notes>
 &lt;TD&gt;16&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
 &lt;TD&gt;Chrome (Android)&lt;/TD&gt;
-&lt;TD&gt;8&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Individual WebGL contexts per SciChartSurface will give faster performance than a shared WebGL context. This is more noticeable in &lt;STRONG&gt;FireFox&lt;/STRONG&gt; than &lt;STRONG&gt;Chrome&lt;/STRONG&gt; which performs very well for shared WebGL contexts.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;TD&gt;8&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Individual WebGL contexts per SciChartSurface will give faster performance than a shared WebGL context. This is more noticeable in &lt;STRONG&gt;FireFox&lt;/STRONG&gt; or &lt;STRONG&gt;Safari&lt;/STRONG&gt; than Chrome which performs very well for shared WebGL contexts.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Sharing WebGL Drawing with SubCharts&lt;/H3&gt;
+&lt;P style="COLOR: rgb(255,0,0)"&gt;TODO SUBCHARTS&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;H2&gt;Text Label Optimisations&lt;/H2&gt;
-&lt;H3&gt;Async Labels&lt;/H3&gt;
-&lt;P&gt;&lt;STRONG&gt;New to SciChart.js v2.1!&lt;/STRONG&gt;&lt;/P&gt;
-&lt;P&gt;Initial creation of label textures can take a few hundred milliseconds. There is an experimental option to do this work asynchornously in a background worker. This allows the series to be drawn more quickly and labels will appear progressively as they become available. The labels will appear to animate in.&lt;/P&gt;
-&lt;P&gt;You can enable this globally by setting:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;asyncLabels&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;CS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;SciChartDefaults.asyncLabels = true;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Or you can enable it for a particular axis by setting asyncLabels = true on the axis options, or directly on the axis labelProvider.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Async Labels improves the startup performance of charts using a WebWorker and also results in a cool animated label effect!&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Caution Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
-&lt;P&gt;This feature requires that the browser support OffscreenCanvas, so it currently only works on Chrome.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Native Text Labels&lt;/H3&gt;
+&lt;P style="COLOR: rgb(255,0,0)"&gt;TODO NATIVE TEXT &lt;/P&gt;
 &lt;H3&gt;Shared Label Cache&lt;/H3&gt;
-&lt;P&gt;&lt;STRONG&gt;New to SciChart.js v2.1!&lt;/STRONG&gt;&lt;/P&gt;
 &lt;P&gt;Previously labels were cached per axis, but it is now possible to reuse cached labels across axes and across charts. This improves label drawing performance in multi-chart scenarios.&lt;/P&gt;
 &lt;P&gt;You can enable this globally by setting:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;useSharedCache&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;SciChartDefaults.useSharedCache = true&lt;STRONG&gt;;&lt;/STRONG&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;Or you can enable it for a particular axis by setting useSharedCache = true on the axis options, or directly on the axis labelProvider.&lt;/P&gt;
 &lt;P&gt;This will give significant benefit if you have multiple charts with very similar sets of labels, even if they are not on screen at the same time. Labels are retained in the cache for a minute, so switching to a different chart that has some or all of the same labels will reuse the labels, saving a few hundred ms.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Using shared label cache gives significant performance benefits if you have multiple charts with very similar sets of labels, even if they are not on screen at the same time.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Caution Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;useSharedCache is not enabled by default. If you are overriding getLabelTexture, it is important to ensure that the combination of text and label style is unique for each label texture. See the documentation for getLabelTexture for some ways to handle this.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Use the Fastest Browser!&lt;/H2&gt;
+&lt;H3&gt;Async Labels&lt;/H3&gt;
+&lt;P&gt;Async labels was available in earlier versions of ScIChart.js, but has been deprecated in favour of Native text labels below.&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Misc Optimisations&lt;/H2&gt;
+&lt;H3&gt;Use the Fastest Browser!&lt;/H3&gt;
 &lt;P&gt;By far, the fastest browser for WebGL, WebAssembly and JavaScript is &lt;STRONG&gt;Google Chrome&lt;/STRONG&gt;.&lt;/P&gt;
 &lt;P&gt;Browsers such as Safari, Firefox have slower execution of JavaScript code. Please bear this in mind when comparing performance or when making recommendations to your customers!&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Use Google Chrome for the best performance with SciChart.js&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Retina macOS Performance&lt;/H2&gt;
+&lt;H3&gt;Retina macOS Performance&lt;/H3&gt;
 &lt;P&gt;When SciChart.js is used on a high resolution display such as Retina, the chart will be rendered at 4x the number of pixels visible on screen. For example a 1,000 x 1,000 chart (1M Pixels) will be rendered at 2,000 x 2,000 (4M Pixels) before scaling down to the correct size.&lt;/P&gt;
 &lt;P&gt;Higher number of pixels means more work for the browser to display the chart. If you notice any performance degredation on your application you can disable Dpi scaling using the code below.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Disable DPI scaling&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;import { DpiHelper} from "scichart/Charting/Visuals/TextureManager/DpiHelper";&lt;BR&gt;&lt;BR&gt;// Note: you will need to call this before any SciChartSurface is created&lt;BR&gt;DpiHelper.IsDpiScaleEnabled = false;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;Also, we recommend use of Google Chrome browser as this has by far the best performance metrics, compared to Safari or Firefox, which both struggle to render large canvases.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;See&amp;nbsp;&lt;A href="d2be691e-df29-43c3-9a57-0130024efa03"&gt;Related Article on Retina DPI Support and Browser Zoom&lt;/A&gt;&amp;nbsp;for further information. Use Google Chrome on macOS for best performance. You can also disable retina high precision in code.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Dual GPU machines or Macbook Pro&lt;/H2&gt;
+&lt;H3&gt;Dual GPU machines or Macbook Pro&lt;/H3&gt;
 &lt;P&gt;Some Windows PCs and many macOS computers such as Macbook Pro&amp;nbsp;have dual GPUs. A slower integrated GPU which uses less battery power, and a faster dedicated GPU which has better rendering performance.&lt;/P&gt;
 &lt;P&gt;When using a browser (Safari or Chrome) on macOS, the operating system by default picks the slower, integrated GPU. Here's how you can check and force the dedicated GPU.&lt;/P&gt;
 &lt;H3&gt;Checking which GPU you are using on macOS or Windows&lt;/H3&gt;
@@ -8772,6 +8793,117 @@ when done, document it</Notes>
                     <Category />
                   </TopicLink>
                 </TopicLinks>
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="4658035b-e6f2-4a3a-8203-958042b96f56" Status="New Topic" CreatedOn="2023-07-19T11:59:42.6049307Z" ModifiedOn="2023-07-19T14:07:28.337267Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="MemoryLeakDebugging" BuildFlags="">
+                <Title m="2023-07-19T12:01:10.6491675Z">Memory Leak Debugging</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2023-07-19T14:07:28.337267Z">&lt;P&gt;In SciChart.js v3.2 we've introduced a set of Memory Leak debugging tools. Read this guide to find out how to enable Memory Leak Debugging in your app in Dev mode.&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;Read the setion in&amp;nbsp;&lt;A href="fe846da4-4ffb-4833-bf13-e688f8f82497"&gt;Memory Best Practices - Deletable Entities&lt;/A&gt; for background info on which types need to be explictly deleted in SciChart.js and how failure to do this can cause a memory leak.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Enabling Memory Debugging tools&lt;/H2&gt;
+&lt;P&gt;Enabling memory leak debugging is possible by calling the static function:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;CS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;import { MemoryUsageTracker } from "scichart";&lt;BR&gt;&lt;BR&gt;MemoryUsageHelper.isMemoryUsageDebugEnabled = true;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;After enabling memory usage helper you should see a message in the console output like this:&lt;/P&gt;
+&lt;P style="COLOR: rgb(255,0,0)"&gt;TODO IMAGE&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Note this will only work in development mode: the environment variable process.env.NODE_ENV must not equal "prod" or "production"&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Tracking Undeleted objects&lt;/H2&gt;
+&lt;P&gt;Once &lt;STRONG&gt;MemoryUsageHelper&lt;/STRONG&gt; is enabled, the memory usage debugging tool has two features:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;It adds helpful warnings to the JS Console when executing actions which may result in a potential memory leak or undesirable behaviour. 
+&lt;LI&gt;It wraps objects implementing &lt;STRONG&gt;IDeletable&lt;/STRONG&gt; interface and native entites created in WebAssembly into a proxy - and will keep records of them in an &lt;STRONG&gt;ObjectRegistry&lt;/STRONG&gt; instance - &lt;STRONG&gt;MemoryUsageHelper.objectRegistry&lt;/STRONG&gt;. &lt;/LI&gt;&lt;/UL&gt;
+&lt;H3&gt;Examining the ObjectRegistry State&lt;/H3&gt;
+&lt;P&gt;The registry state can be examined at any time by calling&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;CS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;import { MemoryUsageTracker } from "scichart";&lt;BR&gt;&lt;BR&gt;// Log out current objectRegistry state&lt;BR&gt;MemoryUsageHelper.objectRegistry.log();&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This will output several collections and their contents to the JS console. From the output we can define a lifecycle state of an object and it's type.&lt;/P&gt;
+&lt;P style="COLOR: rgb(255,0,0)"&gt;TODO IMAGE&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;STRONG&gt;undeletedObjectsMap&lt;/STRONG&gt; - objects that were created but .delete() was not called. 
+&lt;LI&gt;&lt;STRONG&gt;uncollectedObjectsMap&lt;/STRONG&gt; = objects that are not yet garbage collected by the JavaScript Garbage Collector 
+&lt;LI&gt;&lt;STRONG&gt;collectedNotDeleted&lt;/STRONG&gt; - objects that have been garbage collected but .delete() was omitted 
+&lt;LI&gt;&lt;STRONG&gt;deletedNotCollected&lt;/STRONG&gt; - objects that had .delete() called by were not collected by the JavaScript Garbage Collector 
+&lt;LI&gt;&lt;STRONG&gt;weakMap&lt;/STRONG&gt; - another collection that could be used to see if an object was GC'd. Additionally tracks referenes to proxies of deleted objects. &lt;/LI&gt;&lt;/UL&gt;
+&lt;H2&gt;What to do if you find a Leak&lt;/H2&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;STRONG&gt;deletedNotCollected&lt;/STRONG&gt;: your application code called &lt;STRONG&gt;.delete()&lt;/STRONG&gt; on an object but there is still a reference to it somewhere in JavaScript&amp;nbsp;preventing it from being GC'd.&amp;nbsp;Use the Chrome memory tools to identify the GC roots to determine the cause of the leak (find out how). 
+&lt;LI&gt;&lt;STRONG&gt;collectedNotDeleted&lt;/STRONG&gt;: your application code GC'd the object but you forgot to call &lt;STRONG&gt;.delete()&lt;/STRONG&gt;. This can cause a WebAssembly memory leak. Ensure this object has &lt;STRONG&gt;.delete()&lt;/STRONG&gt; called before it falls out of scope. &lt;/LI&gt;&lt;/UL&gt;
+&lt;H2&gt;Tracking Arbitrary objects&lt;/H2&gt;
+&lt;P&gt;MemoryUsageHelper automatically tracks all objects created within SciChart itself. If you want to use our tools to track abitrary objects in your application. you can use the following functions:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;CS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// Register an arbitrary object&lt;BR&gt;MemoryUsageHelper.register(yourObject, "identifier");&lt;BR&gt;&lt;BR&gt;// Unregister an arbitrary object&lt;BR&gt;MemoryUsageHelper.unregister("identifier");&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks>
+                  <TopicLink Id="dddc380a-e9ae-4071-b606-77535f3a8e4a" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="31c1fa0b-34ae-472f-b888-2de129265d50" BuildFlags="">
+                    <Title />
+                    <Category />
+                  </TopicLink>
+                  <TopicLink Id="57227e1f-397a-4a7c-b29b-d1ae6bfb9b8c" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="fe846da4-4ffb-4833-bf13-e688f8f82497" BuildFlags="">
+                    <Title />
+                    <Category />
+                  </TopicLink>
+                </TopicLinks>
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="fe846da4-4ffb-4833-bf13-e688f8f82497" Status="New Topic" CreatedOn="2023-07-19T12:43:37.0872429Z" ModifiedOn="2023-07-19T14:58:11.5805466Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="MemoryBestPractices" BuildFlags="">
+                <Title />
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2023-07-19T14:58:11.5805466Z">&lt;P&gt;&lt;/P&gt;
+&lt;P&gt;Related to&amp;nbsp;&lt;A href="31c1fa0b-34ae-472f-b888-2de129265d50"&gt;Performance Tips&lt;/A&gt;, this article covers Memory Best Practices in SciChart.js. &lt;/P&gt;
+&lt;H2&gt;Wasm Memory vs. JavaScript Memory Model&lt;/H2&gt;
+&lt;P&gt;SciChart.js uses WebAssembly, also known as Wasm, to achieve high performance 2D/3D chart rendering in the browser. Using Wasm, we've compiled our in-house C++ codebase, battle tested on Windows and mobile into a JavaScript friendly library.&lt;/P&gt;
+&lt;P&gt;A key difference between Wasm and JavaScript is that JS has a garbage collector and Wasm does not. Any type created in WebAssembly must be expliclty deleted to reclaim memory. Below we have some guidelines on how to do that, and what to do to detect problems.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Failure to call .delete() on a WebAssembly type can result in a memory leak. But don't worry, we have&amp;nbsp;&lt;A href="4658035b-e6f2-4a3a-8203-958042b96f56"&gt;memory debugging tools&lt;/A&gt; to help track that.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Deletable Entities in SciChart.js&lt;/H3&gt;
+&lt;P&gt;A number of types in SciChart.js implement the &lt;STRONG&gt;IDeletable&lt;/STRONG&gt; interface. This has a single function: .&lt;STRONG&gt;delete()&lt;/STRONG&gt; which deletes underlying WebAssembly memory.&lt;/P&gt;
+&lt;P&gt;The following types implement IDeletable in SciChart.js:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;STRONG&gt;SciChartSurface&lt;/STRONG&gt; 
+&lt;LI&gt;&lt;STRONG&gt;SciChart3DSurface&lt;/STRONG&gt; 
+&lt;LI&gt;Axis types e.g &lt;STRONG&gt;NumericAxis&lt;/STRONG&gt;, &lt;STRONG&gt;CategoryAxis&lt;/STRONG&gt; 
+&lt;LI&gt;Series types e.g. &lt;STRONG&gt;FastLineRenderableSeries&lt;/STRONG&gt; 
+&lt;LI&gt;DataSeries types e.g. &lt;STRONG&gt;XyDataSeries&lt;/STRONG&gt; 
+&lt;LI&gt;Annotations e.g. &lt;STRONG&gt;LineAnnotation&lt;/STRONG&gt; 
+&lt;LI&gt;Miscellaneous types e.g. &lt;STRONG&gt;EllipsePointMarker&lt;/STRONG&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;When calling delete on a parent, all child items are deleted so to properly clean-up an entire chart, you must only call &lt;STRONG&gt;sciChartSurface.delete()&lt;/STRONG&gt; once. The best place to do this is component unmount in React, Vue or onDestroy in Angular.&lt;/P&gt;
+&lt;H2&gt;Best Practices to call .delete()&lt;/H2&gt;
+&lt;H3&gt;Deleting Charts on Component Unmount&lt;/H3&gt;
+&lt;P&gt;React, Vue and Angular all have component unmount or onDestroy callbacks. In our React, Vue and Angular boilerplates at &lt;STRONG&gt;scichart.com/getting-started-scichart-js&lt;/STRONG&gt; we show you how to do this.&lt;/P&gt;
+&lt;P&gt;Deleting a ScIChartSurface by calling &lt;STRONG&gt;sciChartSurface.delete()&lt;/STRONG&gt; once on component unmount will cascade down to all child objects such as DataSeries, Annotations and RenderableSeries.&lt;/P&gt;
+&lt;H3&gt;Deleting DataSeries memory&lt;/H3&gt;
+&lt;P&gt;If&amp;nbsp;you remove or re-assign a DataSeries from a chart (use case: adding or removing chart series), don't forget to call&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ideletable.html#delete"&gt;series.delete()&lt;/A&gt;. This frees WebAssembly native memory and releases it back to the browser.&lt;/P&gt;
+&lt;P&gt;For some examples of how to do this, see the article&amp;nbsp;&lt;A href="13f5705c-af26-4667-999f-6535e4e07b6c"&gt;Deleting DataSeries Memory&lt;/A&gt;.&lt;/P&gt;
+&lt;H3&gt;Deleting RendeableSeries, Annotations or Modifiers&lt;/H3&gt;
+&lt;P&gt;RenderableSeries, Annotations and Axis&amp;nbsp;must also be deleted in the case where you remove, or reassign series on a chart. Some code examples of how to do this can also&amp;nbsp;be seen in the page&amp;nbsp;&lt;A href="13f5705c-af26-4667-999f-6535e4e07b6c"&gt;Deleting DataSeries Memory&lt;/A&gt;.&lt;/P&gt;
+&lt;H3&gt;Detecting Leaks by forgetting to call .delete()&lt;/H3&gt;
+&lt;P&gt;Suspect a memory leak? If you forget to call .delete(), don't worry! We have a set of tools to detect memory leaks and inform you of which objects need to be properly cleaned up. See the article&amp;nbsp;&lt;A href="4658035b-e6f2-4a3a-8203-958042b96f56"&gt;Memory Leak Debugging&lt;/A&gt; for more info.&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Other Memory Optimisations / Footnotes&lt;/H2&gt;
+&lt;H3&gt;Memory Differences between create() and createSingle()&lt;/H3&gt;
+&lt;P&gt;There are two factory functions to create a chart: &lt;STRONG&gt;SciChartSurface.create()&lt;/STRONG&gt; and &lt;STRONG&gt;SciChartSurface.createSingle()&lt;/STRONG&gt;. &lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;When &lt;STRONG&gt;SciChartSurface.create()&lt;/STRONG&gt; is called, a single shared instance of our WebGL graphics engine is instantiated with a single one-time memory cost. 
+&lt;LI&gt;When &lt;STRONG&gt;SciChartSurface.createSingle()&lt;/STRONG&gt; is called, one instance of our WebGL engine is instantiated per-chart, which uses additional RAM per chart.&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Therefore,&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;Charts created with &lt;STRONG&gt;create()&lt;/STRONG&gt; have lower memory usage but marginally slower drawing performance.
+&lt;LI&gt;Charts created with &lt;STRONG&gt;createSingle()&lt;/STRONG&gt; have higher memory usage but faster drawing performance. They are also subject to WebGL context limits&amp;nbsp;&lt;A href="31c1fa0b-34ae-472f-b888-2de129265d50"&gt;specified here&lt;/A&gt;.&lt;/LI&gt;&lt;/UL&gt;
+&lt;H3&gt;Completely Releasing Memory back to the OS&lt;/H3&gt;
+&lt;P&gt;When deleting charts created with &lt;STRONG&gt;SciChartSurface.createSingle()&lt;/STRONG&gt;, and when the last reference to sciChartSurface falls out of scope, the JavaScript Garbage Collector releases all memory held by WebAssembly and JavaScript for this chart back to the host OS.&lt;/P&gt;
+&lt;P&gt;When deleting charts created with &lt;STRONG&gt;SciChartSurface.create()&lt;/STRONG&gt;, and when the last reference to &lt;U&gt;all siChartSurfaces&lt;/U&gt; fall out of scope, the JavaScript Garbage Collector will release all JS/Wasm memory only if the following flag is set.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;CS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// Set static properties to define memory cleanup behaviour after the last chart is garbage collected&lt;BR&gt;&lt;BR&gt;SciChartSurface.autoDisposeWasmContext = true; // default false&lt;BR&gt;SciChartSurface.wasmContextDisposeTimeout = 100; // default 0 mlliseconds&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This default behaviour is there to avoid unintential garbage collection and re-instanitation of our WebGL engine on switching page in a Single Page Application. Setting &lt;STRONG&gt;autoDisposeWasmContext&lt;/STRONG&gt; to true and a suitable non-zero timeout gives SPA apps change to switch page before automatically cleaning up WebAssembly memory.&lt;/P&gt;
+&lt;H3&gt;Setting WebGL Buffer Sizes&lt;/H3&gt;
+&lt;P&gt;We're into esoteric memory improvements here, but this small optimisation is worth mentioning. &lt;/P&gt;
+&lt;P&gt;If you are operating in an extremely memory constrained environment and every megabyte counts, you can trade drawing performance for lower memory by adjusting maximum WebGL buffer size. To do this, set this code once in your app before showing a chart.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;CS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// Specifies the maximum buffer size to use PER PRIMITIVE TYPE&lt;BR&gt;// If all chart types are shown in application, theoretical maximum = 8 x wasmBufferSizesKb &lt;BR&gt;SciChartDefaults.wasmBufferSizesKb = 1024; &lt;BR&gt;&lt;BR&gt;// minimum = 1024 kb&lt;BR&gt;// default = 8192 kb &lt;BR&gt;// maximum = 32,768 kb&lt;BR&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
                 <TopicKeywords />
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
@@ -15076,7 +15208,7 @@ when done, document it</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">1635</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">313</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>
