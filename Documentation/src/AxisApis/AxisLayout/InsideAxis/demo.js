@@ -54,7 +54,7 @@ async function innerAxis(divElementId) {
     xCoordinateMode: ECoordinateMode.Relative,
     yCoordinateMode: ECoordinateMode.Relative,
     horizontalAnchorPoint: EHorizontalAnchorPoint.Center
-  }))
+  }));
 };
 
 innerAxis("scichart-root");

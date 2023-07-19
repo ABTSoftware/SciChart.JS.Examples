@@ -618,10 +618,10 @@ how to request a feature or workaround (on forums) </Notes>
         <TaskItem Id="30bb03c3-707c-4ab7-959f-47feb8c615ff" Priority="Medium" AssignedTo="">
           <Title>v3.2 Add a PinchZoomModifier documentation page and update ZoomPanModifier page</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2022-09-23T12:03:08.164045Z</CreatedOn>
           <CreatedBy>DESKTOP-IPPVO8O\aburn</CreatedBy>
-          <ModifiedOn>2023-06-21T12:52:49.7080114Z</ModifiedOn>
+          <ModifiedOn>2023-07-19T11:27:53.6370437Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>ZoomPanModifier now has pinchzoom behaviour in-built. Must be disabled if you dont want it</Notes>
         </TaskItem>
@@ -1895,16 +1895,22 @@ when done, document it</Notes>
                       <TargetItemId>ffe63a68-26a7-4dac-91d7-ea3e3ba97ef3</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="4a84d799-128d-4bb7-88b0-7ef14d5b5d0b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>3404e05e-872c-4be6-ab19-52ddac8c4f94</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
                     <TocNode Name="" Id="a463b1e0-0472-4d30-a69a-efdf4083cd28" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>4af28faf-3268-417a-8146-a3d25a8d9833</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="2e3dd468-30f9-42a3-af9c-7b38c7ae89ac" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>e4070924-5099-4e15-8a7b-81dcc7056865</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="4a84d799-128d-4bb7-88b0-7ef14d5b5d0b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>3404e05e-872c-4be6-ab19-52ddac8c4f94</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                     <TocNode Name="" Id="7bd5f2a6-6dac-4bd1-a99c-9b9f0086d03f" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
@@ -7557,19 +7563,19 @@ when done, document it</Notes>
                 <Caption m="2016-08-04T13:47:03.3171627Z">Zooming And Panning</Caption>
                 <ChildTopicCategories />
                 <Topics>
-                  <Topic Id="ffe63a68-26a7-4dac-91d7-ea3e3ba97ef3" Status="New Topic" CreatedOn="2016-10-10T11:47:18.4493252Z" ModifiedOn="2020-10-13T10:55:18.4727707Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="ZoomPanModifier" BuildFlags="">
+                  <Topic Id="ffe63a68-26a7-4dac-91d7-ea3e3ba97ef3" Status="New Topic" CreatedOn="2016-10-10T11:47:18.4493252Z" ModifiedOn="2023-07-19T10:05:32.1259062Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="ZoomPanModifier" BuildFlags="">
                     <Title m="2016-10-10T12:42:44.3317812Z">ZoomPanModifier</Title>
                     <ContentsTitle m="2020-09-11T16:13:35.0715774Z">ZoomPanModifier</ContentsTitle>
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2020-10-13T10:55:18.4727707Z">&lt;P&gt;SciChart.js provides an scrolling / panning&amp;nbsp;behavior via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/zoompanmodifier.html"&gt;ZoomPanModifier type&lt;/A&gt;, available out of the box.&lt;/P&gt;
+                        <Content m="2023-07-19T10:05:32.1259062Z">&lt;P&gt;SciChart.js provides an scrolling / panning&amp;nbsp;behavior via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/zoompanmodifier.html"&gt;ZoomPanModifier type&lt;/A&gt;, available out of the box.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;As of SciChart.js v3.2, &lt;STRONG&gt;ZoomPanModifier&lt;/STRONG&gt; now inherits &lt;STRONG&gt;PinchZoomModifier&lt;/STRONG&gt;, allowing you to configure zooming, panning and touch-to-zoom interaction via a single modifier.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;Besides common features which are inherited from the&amp;nbsp;&lt;A href="c7ddb5a2-5c58-4351-9336-bafd039a556f"&gt;ChartModifierBase&lt;/A&gt; class, the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/zoompanmodifier.html"&gt;ZoomPanModifier&lt;/A&gt;&amp;nbsp;allows to&amp;nbsp;&lt;STRONG&gt;restrict scrolling&lt;/STRONG&gt; to the horizontal or vertical direction only, via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/zoompanmodifier.html#xydirection"&gt;xyDirection property&lt;/A&gt;.&lt;/P&gt;
 &lt;H2&gt;Adding a&amp;nbsp;ZoomPanModifier&amp;nbsp;to a Chart&lt;/H2&gt;
 &lt;P&gt;A ZoomPanModifier can be added to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#chartmodifiers"&gt;sciChartSurface.chartModifiers&lt;/A&gt; collection to enable panning behavior. For example:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// Create a SciChartSurface&lt;BR&gt;const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);&lt;BR&gt;&lt;BR&gt;// Add ZoomPan behavior&lt;BR&gt;const zoomPanModifier = new ZoomPanModifier({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; xyDirection: EXyDirection.XyDirection,&lt;BR&gt;});&lt;BR&gt;sciChartSurface.chartModifiers.add(zoomPanModifier);&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;This results in the following behavior:&lt;/P&gt;
 &lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/ChartModifiers_ZoomPanModifier_24fps.gif"&gt;&lt;/P&gt;
-&lt;DIV align=left&gt; &lt;/DIV&gt;
+&lt;DIV align=left&gt;&lt;/DIV&gt;
 &lt;P&gt;&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
@@ -7833,6 +7839,36 @@ when done, document it</Notes>
 &lt;P&gt;This will make the chart vertical and as a result the overview will now be resizable and movable in vertical direction. Also you may have to position the container HTML element according to your needs.&lt;/P&gt;
 &lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/Overview_Vertical.png"&gt;&lt;/P&gt;
 &lt;P align=center&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="e4070924-5099-4e15-8a7b-81dcc7056865" Status="New Topic" CreatedOn="2023-07-19T09:50:20.4709099Z" ModifiedOn="2023-07-19T11:22:47.5407216Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="PinchZoomModifier" BuildFlags="">
+                    <Title m="2023-07-19T09:50:43.6409936Z">PinchZoomModifier</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2023-07-19T11:22:47.5407216Z">&lt;P&gt;SciChart.js provides Pinch zooming on touch devices via the &lt;STRONG&gt;PinchZoomModifier&lt;/STRONG&gt; type.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;As of SciChart.js v3.2, &lt;STRONG&gt;ZoomPanModifier&lt;/STRONG&gt; now inherits &lt;STRONG&gt;PinchZoomModifier&lt;/STRONG&gt;, allowing you to configure zooming, panning and touch-to-zoom interaction via a single modifier.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Adding a PinchZoomModifier to a Chart&lt;/H2&gt;
+&lt;P&gt;A &lt;STRONG&gt;PinchZoomModifier&lt;/STRONG&gt; may be added to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#chartmodifiers"&gt;sciChartSurface.chartModifiers&lt;/A&gt; colletion to enable pinch to zoom behaviour. For example:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\PinchZoom\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\PinchZoom\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/PinchZoom/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Additional Properties&lt;/H2&gt;
+&lt;H3&gt;Adjust Zooming&amp;nbsp;/ Scale Factor&lt;/H3&gt;
+&lt;P&gt;Horizontal and vertical zoom scale factor can be adjusted via the following properties. The default value is set to 0.005.&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;STRONG&gt;PinchZoomModifier.horizontalGrowFactor&lt;/STRONG&gt;
+&lt;LI&gt;&lt;STRONG&gt;PinchZoomModifier.verticalGrowFactor&lt;/STRONG&gt;&lt;/LI&gt;&lt;/UL&gt;
+&lt;H3&gt;Include/Exclude Certain Axis from Pinch Zoom &lt;/H3&gt;
+&lt;P&gt;The PinchZoomModifier allows you to include or exclude certain axis by axis.id from the zoom operation. &lt;/P&gt;
+&lt;P&gt;By default all axis are included, to exclude one or more X or Y axis, set the following property:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Exclude Axis&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// Exclude a specific axis from the pinch zoom operation&lt;BR&gt;pinchZoomModifier.includeXAxis(axisXInstance, false);&lt;BR&gt;pinchZoomModifier.includeYAxis(axisYInstance, false);&lt;BR&gt;&lt;BR&gt;// Include specific axis from the pinch zoom operation&lt;BR&gt;pinchZoomModifier.includeXAxis(axisXInstance, true);&lt;BR&gt;pinchZoomModifier.includeYAxis(axisYInstance, true);&lt;BR&gt;&lt;BR&gt;// Reset flags&lt;BR&gt;pinchZoomModifier.includeAllAxes();&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Allow Pinch Zoom in only one direction&lt;/H3&gt;
+&lt;P&gt;If you want to enable pinch zooming in only one direction,&amp;nbsp; e.g. horizontal only, modify the &lt;STRONG&gt;PinchZoomModifier.verticalGrowFactor&lt;/STRONG&gt; to equal 0.&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks />
