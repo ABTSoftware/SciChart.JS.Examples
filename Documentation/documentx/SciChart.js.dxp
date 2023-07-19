@@ -618,10 +618,10 @@ how to request a feature or workaround (on forums) </Notes>
         <TaskItem Id="30bb03c3-707c-4ab7-959f-47feb8c615ff" Priority="Medium" AssignedTo="">
           <Title>v3.2 Add a PinchZoomModifier documentation page and update ZoomPanModifier page</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Complete</Status>
+          <Status>In Progress</Status>
           <CreatedOn>2022-09-23T12:03:08.164045Z</CreatedOn>
           <CreatedBy>DESKTOP-IPPVO8O\aburn</CreatedBy>
-          <ModifiedOn>2023-07-19T11:27:53.6370437Z</ModifiedOn>
+          <ModifiedOn>2023-07-19T11:39:54.0644668Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>ZoomPanModifier now has pinchzoom behaviour in-built. Must be disabled if you dont want it</Notes>
         </TaskItem>
@@ -900,10 +900,10 @@ isPrimaryAxis switched depending on mouse over </Notes>
         <TaskItem Id="fc8e13f4-09ce-49ee-aa8b-c73672715e70" Priority="" AssignedTo="">
           <Title>v3.2 Update ZoomPanModifier to mention pinch zooming</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>In Progress</Status>
           <CreatedOn>2023-06-21T12:57:13.3663505Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-06-21T12:57:25.4706166Z</ModifiedOn>
+          <ModifiedOn>2023-07-19T11:29:50.8985967Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -7563,20 +7563,36 @@ when done, document it</Notes>
                 <Caption m="2016-08-04T13:47:03.3171627Z">Zooming And Panning</Caption>
                 <ChildTopicCategories />
                 <Topics>
-                  <Topic Id="ffe63a68-26a7-4dac-91d7-ea3e3ba97ef3" Status="New Topic" CreatedOn="2016-10-10T11:47:18.4493252Z" ModifiedOn="2023-07-19T10:05:32.1259062Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="ZoomPanModifier" BuildFlags="">
+                  <Topic Id="ffe63a68-26a7-4dac-91d7-ea3e3ba97ef3" Status="New Topic" CreatedOn="2016-10-10T11:47:18.4493252Z" ModifiedOn="2023-07-19T11:41:37.6358043Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="ZoomPanModifier" BuildFlags="">
                     <Title m="2016-10-10T12:42:44.3317812Z">ZoomPanModifier</Title>
                     <ContentsTitle m="2020-09-11T16:13:35.0715774Z">ZoomPanModifier</ContentsTitle>
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-07-19T10:05:32.1259062Z">&lt;P&gt;SciChart.js provides an scrolling / panning&amp;nbsp;behavior via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/zoompanmodifier.html"&gt;ZoomPanModifier type&lt;/A&gt;, available out of the box.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;As of SciChart.js v3.2, &lt;STRONG&gt;ZoomPanModifier&lt;/STRONG&gt; now inherits &lt;STRONG&gt;PinchZoomModifier&lt;/STRONG&gt;, allowing you to configure zooming, panning and touch-to-zoom interaction via a single modifier.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+                        <Content m="2023-07-19T11:41:37.6358043Z">&lt;P&gt;SciChart.js provides an scrolling / panning&amp;nbsp;behavior via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/zoompanmodifier.html"&gt;ZoomPanModifier type&lt;/A&gt;, available out of the box.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;As of SciChart.js v3.2, &lt;STRONG&gt;ZoomPanModifier&lt;/STRONG&gt; now inherits &lt;STRONG&gt;PinchZoomModifier&lt;/STRONG&gt;, allowing you to configure zooming, panning and touch-to-zoom interaction via a single modifier.&lt;/P&gt;
+&lt;P&gt;All the properties for the&amp;nbsp;&lt;STRONG&gt;PinchZoomModifier&lt;/STRONG&gt; may be set to control vertical/horizontal zooming, include/exclude axis from pinch zooming etc..&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;Besides common features which are inherited from the&amp;nbsp;&lt;A href="c7ddb5a2-5c58-4351-9336-bafd039a556f"&gt;ChartModifierBase&lt;/A&gt; class, the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/zoompanmodifier.html"&gt;ZoomPanModifier&lt;/A&gt;&amp;nbsp;allows to&amp;nbsp;&lt;STRONG&gt;restrict scrolling&lt;/STRONG&gt; to the horizontal or vertical direction only, via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/zoompanmodifier.html#xydirection"&gt;xyDirection property&lt;/A&gt;.&lt;/P&gt;
 &lt;H2&gt;Adding a&amp;nbsp;ZoomPanModifier&amp;nbsp;to a Chart&lt;/H2&gt;
-&lt;P&gt;A ZoomPanModifier can be added to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#chartmodifiers"&gt;sciChartSurface.chartModifiers&lt;/A&gt; collection to enable panning behavior. For example:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// Create a SciChartSurface&lt;BR&gt;const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);&lt;BR&gt;&lt;BR&gt;// Add ZoomPan behavior&lt;BR&gt;const zoomPanModifier = new ZoomPanModifier({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; xyDirection: EXyDirection.XyDirection,&lt;BR&gt;});&lt;BR&gt;sciChartSurface.chartModifiers.add(zoomPanModifier);&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;A ZoomPanModifier can be added to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#chartmodifiers"&gt;sciChartSurface.chartModifiers&lt;/A&gt; collection to enable panning behavior. For example:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\ZoomPanModifier\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\ZoomPanModifier\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;This results in the following behavior:&lt;/P&gt;
-&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/ChartModifiers_ZoomPanModifier_24fps.gif"&gt;&lt;/P&gt;
-&lt;DIV align=left&gt;&lt;/DIV&gt;
-&lt;P&gt;&lt;/P&gt;</Content>
+&lt;DIV align=left&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/ZoomPanModifier/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/DIV&gt;
+&lt;H2&gt;Additional Properties&lt;/H2&gt;
+&lt;H3&gt;Allow Panning in only one direction (X or Y)&lt;/H3&gt;
+&lt;P&gt;Panning can be restricted to X or Y by setting the &lt;STRONG&gt;ZoomPanModifier.xyDirection&lt;/STRONG&gt; property.&lt;/P&gt;
+&lt;H3&gt;Allow Panning on only one X/Y axis&lt;/H3&gt;
+&lt;P&gt;Panning can be restricted to a single X or Y axis by setting the &lt;STRONG&gt;ZoomPanModifier.xAxisId&lt;/STRONG&gt; or &lt;STRONG&gt;yAxisId&lt;/STRONG&gt; properties.&lt;/P&gt;
+&lt;H3&gt;Adjust Pinch Zooming&amp;nbsp;/ Scale Factor&lt;/H3&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;The following is inherited from &lt;STRONG&gt;PinchZoomModifier&lt;/STRONG&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Horizontal and vertical pinch zoom scale factor can be adjusted via the following properties. The default value is set to 0.005.&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;STRONG&gt;ZoomPanModifier.horizontalGrowFactor&lt;/STRONG&gt;
+&lt;LI&gt;&lt;STRONG&gt;&lt;STRONG&gt;ZoomPanModifier&lt;/STRONG&gt;.verticalGrowFactor&lt;/STRONG&gt;&lt;/LI&gt;&lt;/UL&gt;
+&lt;H3&gt;Include/Exclude Certain Axis from Pinch Zoom &lt;/H3&gt;
+&lt;P&gt;The ZoomPanModifier allows you to include or exclude certain axis by axis.id from the pinch zoom operation. &lt;/P&gt;
+&lt;P&gt;By default all axis are included, to exclude one or more X or Y axis, set the following property:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Exclude Axis&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// Exclude a specific axis from the pinch zoom operation&lt;BR&gt;zoomPanModifier.includeXAxis(axisXInstance, false);&lt;BR&gt;zoomPanModifier.includeYAxis(axisYInstance, false);&lt;BR&gt;&lt;BR&gt;// Include specific axis from the pinch zoom operation&lt;BR&gt;zoomPanModifier.includeXAxis(axisXInstance, true);&lt;BR&gt;zoomPanModifier.includeYAxis(axisYInstance, true);&lt;BR&gt;&lt;BR&gt;// Reset flags&lt;BR&gt;zoomPanModifier.includeAllAxes();&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Allow Pinch Zoom in only one direction&lt;/H3&gt;
+&lt;P&gt;If you want to enable pinch zooming in only one direction,&amp;nbsp; e.g. horizontal only, modify the &lt;STRONG&gt;ZoomPanModifier.verticalGrowFactor&lt;/STRONG&gt; to equal 0.&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks>
@@ -15060,7 +15076,7 @@ when done, document it</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">1635</Attribute>
         <Attribute key="i-toggle-section-collapsed-i-seealso-section-heading" valuetype="string">true</Attribute>
       </Attributes>
     </TopicEditorState>

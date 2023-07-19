@@ -1,5 +1,5 @@
 
-async function pinchZoom2D(divElementId) {
+async function zoomPan2D(divElementId) {
 
   const {
     SciChartSurface,
@@ -50,7 +50,7 @@ async function pinchZoom2D(divElementId) {
 
   // Add annotations to tell the user what to do
   sciChartSurface.annotations.add(new TextAnnotation({
-    text: "Pinch-Zoom 2D Demo",
+    text: "ZoomPanModifier 2D Demo",
     x1: 0.5, y1: 0.5,
     yCoordShift: 0,
     xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
@@ -60,7 +60,7 @@ async function pinchZoom2D(divElementId) {
     fontWeight: "Bold"
   }));
   sciChartSurface.annotations.add(new TextAnnotation({
-    text: "Pinch touch screen to zoom. To add pan behaviour, use ZoomPanModifier",
+    text: "Pinch, touch and drag to zoom and pan",
     x1: 0.5, y1: 0.5,
     yCoordShift: 50,
     xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
@@ -71,16 +71,21 @@ async function pinchZoom2D(divElementId) {
 
   // #region ExampleA
   const {
-    PinchZoomModifier
+    ZoomPanModifier,
+    EXyDirection
   } = SciChart;
 
   // or for npm: import { PinchZoomModifier } from "scichart";
 
-  // Add PinchZoom behaviour to the chart
-  sciChartSurface.chartModifiers.add(new PinchZoomModifier({
-    // Optional parameters specify the amount of zooming in X/Y. Default is 0.005
+  // Add Zoom Pan and Pinch behaviour to the chart. All parameters are optional
+  sciChartSurface.chartModifiers.add(new ZoomPanModifier({
+    // Specifies Panning in X,Y direction or both
+    xyDirection: EXyDirection.XyDirection,
+    // Enables Pinch Zoom functionality
+    enableZoom: true,
+    // Optional parameters specify the amount of pinch zooming in X/Y  Default is 0.005
     horizontalGrowFactor: 0.005,
-    verticalGrowFactor: 0.005,
+    verticalGrowFactor: 0.005
     // Optional parameters to include/exclude X/Y axis from zooming by axis.id
     // If not specified, by default, all axis are included in zooming
     // either use:
@@ -96,17 +101,18 @@ async function pinchZoom2D(divElementId) {
   // #endregion
 };
 
-pinchZoom2D("scichart-root");
+zoomPan2D("scichart-root");
 
 
 async function builderExample(divElementId) {
   // #region ExampleB
-  // Demonstrates how to configure the PinchZoomModifier in SciChart.js using the Builder API
+  // Demonstrates how to configure the ZoomPanModifier in SciChart.js using the Builder API
   const {
     chartBuilder,
     EThemeProviderType,
     EAxisType,
     EChart2DModifierType,
+    EXyDirection
   } = SciChart;
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
@@ -116,9 +122,13 @@ async function builderExample(divElementId) {
     xAxes: { type: EAxisType.NumericAxis },
     yAxes: { type: EAxisType.NumericAxis },
     modifiers: [{
-      type: EChart2DModifierType.PinchZoom,
+      type: EChart2DModifierType.ZoomPan,
       options: {
-        // Optional parameters specify the amount of zooming in X/Y  Default is 0.005
+        // Specifies Panning in X,Y direction or both
+        xyDirection: EXyDirection.XyDirection,
+        // Enables Pinch Zoom functionality
+        enableZoom: true,
+        // Optional parameters specify the amount of pinch zooming in X/Y  Default is 0.005
         horizontalGrowFactor: 0.005,
         verticalGrowFactor: 0.005
       }
