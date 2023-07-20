@@ -80,7 +80,7 @@ async function initSciChart() {
       xValues: [0,1,2,3,4,5,6,7,8,9],
       yValues: [0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173, 0.7833]
     }),
-    pointMarker: new Ellips§ePointMarker(wasmContext, { width: 11, height: 11, fill: "#fff" }),
+    pointMarker: new EllipsePointMarker(wasmContext, { width: 11, height: 11, fill: "#fff" }),
     animation: new SweepAnimation({ duration: 300, fadeEffect: true })
   }));
 
