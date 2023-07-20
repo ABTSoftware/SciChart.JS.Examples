@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-realtime-ghosted-traces-oscilloscope-chart.jpg";
+const exampleImage = "javascript-realtime-ghosted-traces-oscilloscope-chart.jpg";
 
 const description = `This real-time performance demo shows persistence of old traces giving a ‘ghosted’ effect. As new series are
 drawn older series are made increasingly transparent until they become invisible.`;

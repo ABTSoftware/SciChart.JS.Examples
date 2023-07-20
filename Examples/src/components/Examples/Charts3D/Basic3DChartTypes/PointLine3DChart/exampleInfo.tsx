@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-3d-point-line-chart.jpg";
+const exampleImage = "javascript-3d-point-line-chart.jpg";
 
 const description = `JavaScript 3D Point Line Charts can be created using SciChart.js.
     Large datasets can be drawn, enabling visualisation of large statistical datsets in a browser.`;

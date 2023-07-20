@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-datalabels-chart.jpg";
+const exampleImage = "javascript-datalabels-chart.jpg";
 
 const description = `Shows how to add and customise data labels for series using SciChart.js`;
 const tips = [

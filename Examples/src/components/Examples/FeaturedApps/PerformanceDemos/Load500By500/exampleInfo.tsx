@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-load-500-series-by-500-points.jpg";
+const exampleImage = "javascript-chart-load-500-series-by-500-points.jpg";
 
 const documentationLinks: TDocumentationLink[] = [{
     href: ExampleStrings.urlPerformanceTipsDocumentation,

@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-custom-pointmarkers.jpg";
+const exampleImage = "javascript-chart-custom-pointmarkers.jpg";
 
 const previewDescription = `Demonstrates how to use the FastLineRenderableSeries and the Data-Point Markers API to apply fast
 WebGL-rendered data point markers to a line series.`;

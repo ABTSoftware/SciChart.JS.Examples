@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-depth-chart.jpg";
+const exampleImage = "javascript-depth-chart.jpg";
 
 const previewDescription = `An example which demonstrates a depth chart.`;
 const description = ``;

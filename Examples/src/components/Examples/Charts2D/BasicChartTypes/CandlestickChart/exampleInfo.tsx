@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-candlestick-chart.jpg";
+const exampleImage = "javascript-candlestick-chart.jpg";
 
 const previewDescription = `SciChart.js supports Candlestick Charts or OHLC with custom colours per bar and Date X-Axis.`;
 const description = `Candlestick charts can be animated, dynamically updated for real trading apps or combined with other series types to draw technical indicators or shapes.`;

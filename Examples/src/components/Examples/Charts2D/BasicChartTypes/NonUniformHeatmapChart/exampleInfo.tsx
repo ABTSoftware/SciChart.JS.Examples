@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-non-uniform-heatmap-chart.jpg";
+const exampleImage = "javascript-non-uniform-heatmap-chart.jpg";
 
 const description = `Non-uniform heatmaps should be used if you want to specify independent sizes for heat cells.`;
 const tips = [

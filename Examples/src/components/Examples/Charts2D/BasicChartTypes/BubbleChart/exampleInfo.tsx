@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-bubble-chart.jpg";
+const exampleImage = "javascript-bubble-chart.jpg";
 
 const previewDescription = `Bubble charts are created in SciChart.js using the FastBubbleRenderableSeries. `;
 const description = `The JS Bubble chart type can be animated, have varying point colours and sizes and supports a variety of point types: circle, square, and custom shapes are possible.`;

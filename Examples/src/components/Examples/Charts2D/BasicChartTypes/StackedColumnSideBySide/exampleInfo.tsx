@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-stacked-grouped-column-chart.jpg";
+const exampleImage = "javascript-stacked-grouped-column-chart.jpg";
 
 const description = `Demonstrates how to create a JavaScript Stacked Column Chart with side-by-side grouping. This mode of
 Stacked Column Charts groups the columns next to each other, allowing for easy comparison of several

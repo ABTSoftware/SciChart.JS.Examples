@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-series-selection.jpg";
+const exampleImage = "javascript-chart-series-selection.jpg";
 
 const previewDescription = `Demonstrates the Hover and Selection Apu, which can be used to get feedback about clicks or hover on data-points or lines. Click or hover on the data-point and see the result.`;
 const description = `Click or hover anywhere on the chart to call BaseRenderableSeries.hitTestProvider. hitTest. The HitTest functionCHANGE CHANGE CHANGE CHANGE

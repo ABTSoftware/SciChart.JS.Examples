@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-styling-theming-in-code.jpg";
+const exampleImage = "javascript-chart-styling-theming-in-code.jpg";
 
 const previewDescription = `Using garish colors to demonstrate styling of a JavaScript chart, Axis, grid lines, tick lines and more.`;
 const description = `Almost any element in SciChart is stylable in code and most parts of the chart are exposed. You can easily

@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-text-chart.jpg";
+const exampleImage = "javascript-text-chart.jpg";
 
 const previewDescription = `Text series allows you to render large numbers of text labels very quickly.`;
 const description = ``;

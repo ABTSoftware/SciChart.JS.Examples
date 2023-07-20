@@ -3,7 +3,7 @@ import {TExampleInfo} from "../../../../AppRouter/examplePages";
 import {githubUrl} from "./GENERATED_GITHUB_URL";
 import {ExampleStrings} from "../../../ExampleStrings";
 import {TDocumentationLink} from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-transparent-background.jpg";
+const exampleImage = "javascript-chart-transparent-background.jpg";
 
 const previewDescription = `Demonstrates how to set a background image by setting a transparent background to SciChart.js.`;
 const description = `SciChart.js v2.x now supports transparent backgrounds in all browsers, and will show through the DOM element underneath the chart. In this example we use a background image to demonstrate how to create a stunning styled chart.`;

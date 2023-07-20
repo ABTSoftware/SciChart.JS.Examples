@@ -2,7 +2,7 @@ import * as React from "react";
 import { TExampleInfo } from "../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../ExampleStrings";
-import exampleImage from "./javascript-shared-data.jpg";
+const exampleImage = "javascript-shared-data.jpg";
 import { TDocumentationLink } from "../../../../helpers/types/ExampleDescriptionTypes";
 
 const Subtitle = () => (

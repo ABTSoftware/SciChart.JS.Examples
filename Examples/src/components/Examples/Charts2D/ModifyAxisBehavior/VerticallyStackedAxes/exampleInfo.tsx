@@ -3,7 +3,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-vertically-stacked-axes.jpg";
+const exampleImage = "javascript-vertically-stacked-axes.jpg";
 
 const description = `Stacked axes allow data to be drawn in different sections of the chart but still overlap.
 Zoom vertically using the mouse wheel, or by dragging individual axes.  Right-click and drag to zoom horizontally.  Double click to Reset`;

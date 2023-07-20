@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-realtime-mountain-chart.jpg";
+const exampleImage = "javascript-realtime-mountain-chart.jpg";
 
 const description = `This variation on Mountain or Area charts in SciChart.js uses dynamic updates to show how easy it is to achieve
     animated realtime charts with our library.`;

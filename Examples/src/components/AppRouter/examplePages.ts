@@ -98,6 +98,7 @@ import { depthChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/De
 import { textChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart/exampleInfo";
 import { chartTitleExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/ChartTitle/exampleInfo";
 import { backgroundAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations/exampleInfo";
+import { realtimeSurfaceMesh3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart/exampleInfo";
 
 
 export type TExampleInfo = {
@@ -454,6 +455,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart3D_basic3DChartTypes_SurfaceMesh3DChart: {
         id: "chart3D_basic3DChartTypes_SurfaceMesh3DChart",
         ...surfaceMesh3DChartExampleInfo
+    },
+    chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart: {
+        id: "chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart",
+        ...realtimeSurfaceMesh3DChartExampleInfo
     },
     chart3D_basic3DChartTypes_PointLine3DChart: {
         id: "chart3D_basic3DChartTypes_PointLine3DChart",

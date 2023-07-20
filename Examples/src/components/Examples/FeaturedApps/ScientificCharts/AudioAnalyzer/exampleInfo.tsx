@@ -3,7 +3,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-audio-analyzer-fft-example.jpg";
+const exampleImage = "javascript-audio-analyzer-fft-example.jpg";
 
 const description = `Demonstrating the capability of SciChart.js to create a JavaScript Audio Analyzer and visualize the
 Fourier-Transform of an audio waveform.`;

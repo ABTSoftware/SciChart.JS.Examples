@@ -107,6 +107,7 @@ import HeatmapInteractions from "../Examples/FeaturedApps/ShowCases/HeatmapInter
 import DepthChart from "../Examples/Charts2D/CreateStockCharts/DepthChart";
 import TextChart from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart";
 import BackgroundAnnotations from "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations";
+import RealtimeSurfaceMesh3DChart from "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart";
 
 export type TMenuItem = {
     item: {
@@ -306,6 +307,7 @@ export const MENU_ITEMS_3D: TMenuItem[] = [
             EXAMPLES_PAGES.chart3D_basic3DChartTypes_PointLine3DChart,
             EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
+            EXAMPLES_PAGES.chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart
         ]
     }
 ];
@@ -498,6 +500,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return Bubble3DChart;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_SurfaceMesh3DChart.id:
             return SurfaceMesh3DChart;
+        case EXAMPLES_PAGES.chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart.id:
+            return RealtimeSurfaceMesh3DChart;
         case EXAMPLES_PAGES.chart3D_basic3DChartTypes_PointLine3DChart.id:
             return PointLine3DChart;
         case EXAMPLES_PAGES.featuredApps_performanceDemos_Load500By500.id:

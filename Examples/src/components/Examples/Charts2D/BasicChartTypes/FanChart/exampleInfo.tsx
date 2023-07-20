@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-fan-chart.jpg";
+const exampleImage = "javascript-fan-chart.jpg";
 
 const description = `Fan charts can be used for visualizing, forecasting
 or estimation figures and can be achieved in SciChart.js using several Band Series overlaid with varying

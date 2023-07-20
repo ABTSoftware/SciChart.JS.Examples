@@ -3,7 +3,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./virtualized-data-javascript-chart.jpg";
+const exampleImage = "virtualized-data-javascript-chart.jpg";
 
 const previewDescription = `This examples shows how to load data on zoom/pan and how to create an overview chart for this case.`;
 const description = `.`;

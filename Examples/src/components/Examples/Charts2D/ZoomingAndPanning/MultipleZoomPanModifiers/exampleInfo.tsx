@@ -2,7 +2,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
-import exampleImage from "./zoom-pan-multiple-modifiers.jpg";
+const exampleImage = "zoom-pan-multiple-modifiers.jpg";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
 const description = `Scroll Middle Mouse button to zoom in/zoom out. Use Right Mouse Button to select an area on the chart with RubberBandXyZoomModifier. Try it out on touch devices: use pinch zoom gesture to scale.`;

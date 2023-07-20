@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-spline-mountain-chart.jpg";
+const exampleImage = "javascript-spline-mountain-chart.jpg";
 
 const previewDescription = `A mountain or area chart draws a polygon from a line to configurable zero value. This variation on Mountain Charts in SciChart.js uses Spline (smoothed) lines to achieve a nice visual effect!`;
 const description = `This chart type features a spline or smoothed line which beautifies the datavizualization where there are

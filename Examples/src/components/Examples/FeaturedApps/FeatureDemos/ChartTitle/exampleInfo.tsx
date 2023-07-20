@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-title.jpg";
+const exampleImage = "javascript-chart-title.jpg";
 
 const previewDescription = `Demonstrates how to set a Chart Title and some configuration options.`;
 const description = ``;

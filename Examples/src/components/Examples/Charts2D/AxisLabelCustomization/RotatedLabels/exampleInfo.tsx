@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-rotated-labels-chart.jpg";
+const exampleImage = "javascript-rotated-labels-chart.jpg";
 
 const previewDescription = `This example uses rotation to create vertical labels so as to fit more onto a x axis.
 Y axis uses right aligned labels so decimals are nicely aligned.`;

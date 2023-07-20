@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-metadata.jpg";
+const exampleImage = "javascript-chart-metadata.jpg";
 
 const previewDescription = `Demonstrates the Metadata API, which allows you to associate custom data to each point,
 which can be displayed using cursor or rollover modifiers, or used to drive a palletprovider.`;
