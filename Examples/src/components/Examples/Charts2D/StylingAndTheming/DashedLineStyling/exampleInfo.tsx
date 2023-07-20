@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-dashed-line-chart.jpg";
+import exampleImage from "./javascript-dashed-line-chart.jpg";
 
 const description = `Demonstrates the Line series, Mountain series and Band series StrokeDashArray property which can be used to
 style a dashed line, dotted line or solid line.`;

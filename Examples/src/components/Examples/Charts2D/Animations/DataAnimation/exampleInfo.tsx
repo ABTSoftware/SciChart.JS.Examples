@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-data-animation.jpg";
+import exampleImage from "./javascript-data-animation.jpg";
 
 const previewDescription = ``;//`Demonstrates how to run data animation for a JavaScript Chart.`;
 const description = `Every second new random values are generated for the scatter series and transition from one state to another is animated`;

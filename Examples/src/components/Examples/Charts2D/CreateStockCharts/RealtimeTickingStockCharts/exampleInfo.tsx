@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-realtime-ticking-stock-charts.jpg";
+import exampleImage from "./javascript-realtime-ticking-stock-charts.jpg";
 import {LARGE_TRADE_THRESHOLD} from "./createCandlestickChart";
 
 const previewDescription = `An example which demonstrates real-time ticking / updating stock charts in JavaScript with Price data as

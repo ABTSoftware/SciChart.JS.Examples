@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-streaming-data.jpg";
+import exampleImage from "./javascript-streaming-data.jpg";
 
 const Subtitle = () => (
     <p>

@@ -3,7 +3,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-chart-with-multiple-x-axis.jpg";
+import exampleImage from "./javascript-chart-with-multiple-x-axis.jpg";
 
 const description = `Demonstrates a line chart with four series and multiple top / bottom X-Axis and left / right Y-Axis.
 SciChart supports multiple top or bottom X-Axes and multiple left and right Y-Axes. This example shows in a

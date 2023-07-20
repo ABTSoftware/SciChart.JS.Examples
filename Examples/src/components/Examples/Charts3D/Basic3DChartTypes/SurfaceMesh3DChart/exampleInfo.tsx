@@ -4,7 +4,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-3d-surface-mesh-chart.jpg";
+import exampleImage from "./javascript-3d-surface-mesh-chart.jpg";
 
 const description = `The Surface Mesh chart type can be used to represent 2D data in a 3D map.
     It looks like a topographical map where values in a 2D array are drawn as heights and mapped to a color.

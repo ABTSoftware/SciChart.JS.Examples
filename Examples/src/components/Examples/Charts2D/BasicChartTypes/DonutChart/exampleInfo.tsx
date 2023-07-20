@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-donut-chart.jpg";
+import exampleImage from "./javascript-donut-chart.jpg";
 
 const description = `Donut Charts in SciChart.js support selection, legends, different text labels, animated updates,
     gradient or solid fills and more.`;

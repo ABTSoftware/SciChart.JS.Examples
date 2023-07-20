@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-spline-smoothed-line-chart.jpg";
+import exampleImage from "./javascript-spline-smoothed-line-chart.jpg";
 
 const previewDescription = `This example demonstrating a JavaScript Spline Line chart uses the
 SplineLineRenderableSeries type.`;

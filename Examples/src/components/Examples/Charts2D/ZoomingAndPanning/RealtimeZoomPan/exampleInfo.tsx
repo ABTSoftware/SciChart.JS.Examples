@@ -3,7 +3,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "zoom-and-pan-a-realtime-javascript-chart.jpg";
+import exampleImage from "./zoom-and-pan-a-realtime-javascript-chart.jpg";
 
 const previewDescription = `This examples shows how to add zooming and panning behaviour to a realtime JavaScript Chart.`;
 const description = `When you use AutoRanging in a SciChart.js chart, the chart will always automatically range to fit the data.

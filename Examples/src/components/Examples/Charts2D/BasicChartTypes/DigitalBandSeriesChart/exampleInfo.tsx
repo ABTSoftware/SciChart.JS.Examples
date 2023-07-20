@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-digital-band-chart.jpg";
+import exampleImage from "./javascript-digital-band-chart.jpg";
 
 const previewDescription = `Step bands or Digital bands are created in SciChart.js using the FastBandRenderableSeries. By setting the property IsDigitalLine=true the line is drawn as a step function.`;
 const description = `Band series (also known as High-Low fill or Poylgon Fill) can be used to draw thresholds, a fill between two lines or areas of interest on a chart.`;

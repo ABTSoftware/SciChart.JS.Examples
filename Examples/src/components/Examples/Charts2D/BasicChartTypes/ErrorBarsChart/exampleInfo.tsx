@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-error-bars-chart.jpg";
+import exampleImage from "./javascript-error-bars-chart.jpg";
 
 const description = `Error Bars on JavaScript Charts are useful to display uncertainty or statistical confidence of a data-point.
     In SciChart.js Error Bars can have custom error values per point or a fixed percentage error value. Error bars can be horizontal or vertical.`;

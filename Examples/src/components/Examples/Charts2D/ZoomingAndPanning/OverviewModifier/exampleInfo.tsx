@@ -3,7 +3,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-overview-chart.jpg";
+import exampleImage from "./javascript-overview-chart.jpg";
 
 const previewDescription = `This examples shows how use SciChartOverview to quickly create an overview chart
  that contains a draggable box that controls the visible range of another chart`;

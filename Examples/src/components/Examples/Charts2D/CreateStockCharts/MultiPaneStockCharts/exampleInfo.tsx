@@ -4,7 +4,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-multi-pane-stock-charts.jpg";
+import exampleImage from "./javascript-multi-pane-stock-charts.jpg";
 
 const previewDescription = `An example which demonstrates creating static multi-pane stock charts in JavaScript with Price data as
 Candlesticks, Volume bars behind the chart, Moving averages, plus how to link several charts together to

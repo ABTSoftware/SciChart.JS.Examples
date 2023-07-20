@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-background-annotations.jpg";
+import exampleImage from "./javascript-background-annotations.jpg";
 
 const previewDescription = `Chart with the quadrants individually coloured, using background annotations.`;
 const description = `Annotations can be placed on the Background layer, behind the gridlines, which allows for colouring areas of the chart`;

@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-generic-animation.jpg";
+import exampleImage from "./javascript-generic-animation.jpg";
 
 const previewDescription = ``; //`Demonstrates how to run Generic Animation for a JavaScript Chart.`;
 const description = `Generic Animation gives an opportunity to build complex animations and control progress of each animation separately`;

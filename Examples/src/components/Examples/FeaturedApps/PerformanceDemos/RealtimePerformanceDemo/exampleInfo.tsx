@@ -4,7 +4,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
-const exampleImage = "javascript-chart-realtime-performance-demo.jpg";
+import exampleImage from "./javascript-chart-realtime-performance-demo.jpg";
 
 const Subtitle = () => (
     <p>

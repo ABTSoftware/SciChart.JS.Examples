@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-digital-mountain-chart.jpg";
+import exampleImage from "./javascript-digital-mountain-chart.jpg";
 
 const description = `A mountain or area chart draws a polygon from a line to configurable zero value.
     This variation on Mountain Charts in SciChart.js uses the IsDigitalLine property to achieve a stepped-line visual effect!`;

@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-custom-filters.jpg";
+import exampleImage from "./javascript-custom-filters.jpg";
 
 const previewDescription = `This uses a simple custom filter to apply random noise to a line, then an advanced aggregation filter calculates the frequency distribution`;
 const description = `Simple Custom Filters are great if you just want to apply some function to each y value.  Just create an XyCustomFilter and set your function.

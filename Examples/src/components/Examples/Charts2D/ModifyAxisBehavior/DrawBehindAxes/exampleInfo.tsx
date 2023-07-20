@@ -3,7 +3,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-draw-behind-axes.jpg";
+import exampleImage from "./javascript-draw-behind-axes.jpg";
 
 const description = `Demonstrates a chart where the series can draw into the axes area.`;
 const tips = [`You can also draw axes over the chart area, and in other positions, buy using Inner Axes`];

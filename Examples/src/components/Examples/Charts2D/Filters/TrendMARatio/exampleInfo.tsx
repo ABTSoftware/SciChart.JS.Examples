@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-trend-ma-ratio.jpg";
+import exampleImage from "./javascript-trend-ma-ratio.jpg";
 
 const previewDescription = `Ratio Filter divides the original dataseries by the divisor series.  Moving Average and Linear Trend fitlers are then applied to the resulting ratio`;
 const description = `Click 'Add Data' to see how the filters automatically recalculate when data changes`;

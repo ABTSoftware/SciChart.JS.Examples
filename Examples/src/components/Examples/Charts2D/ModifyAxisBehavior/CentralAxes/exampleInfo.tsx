@@ -3,7 +3,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-central-axes.jpg";
+import exampleImage from "./javascript-central-axes.jpg";
 
 const description = `Demonstrates a chart with axes being placed centrally.
 SciChart supports customization of axes placement. This example shows how to use inner axes and set a layout strategy.`;

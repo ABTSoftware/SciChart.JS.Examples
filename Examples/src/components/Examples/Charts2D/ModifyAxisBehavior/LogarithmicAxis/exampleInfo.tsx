@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-chart-logarithmic-axis.jpg";
+import exampleImage from "./javascript-chart-logarithmic-axis.jpg";
 
 const description = `Demonstrates how to create Logarithmic X or Y axis in a JavaScript Chart.
 SciChart supports axis with Logarithmic scale and scientific or engineering notation.

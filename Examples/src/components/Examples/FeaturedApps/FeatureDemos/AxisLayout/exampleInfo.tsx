@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-axis-layout.jpg";
+import exampleImage from "./javascript-axis-layout.jpg";
 
 const previewDescription = `Demonstrates the different axis layouts available in Scichart and how they affect the series`;
 const description = ``;

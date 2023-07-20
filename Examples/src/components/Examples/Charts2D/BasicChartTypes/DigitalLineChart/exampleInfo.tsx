@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-digital-line-chart.jpg";
+import exampleImage from "./javascript-digital-line-chart.jpg";
 
 const previewDescription = `Step Lines or Digital Lines are created in SciChart.js using the FastLineRenderableSeries. By setting the property IsDigitalLine=true the line is drawn as a step function.`;
 const description = `In SciChart.js lines can be stepped, continuous or spline interpolated (smoothed) using our flexible JS Chart Library.`;

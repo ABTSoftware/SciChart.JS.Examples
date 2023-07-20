@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-chart-legends.jpg";
+import exampleImage from "./javascript-chart-legends.jpg";
 
 const previewDescription = `Demonstrates how to add a Legend to a JavaScript Line Chart using SciChart.js. The legend is created when
 you add a LegendModifier type to the sciChartSurface.chartModifiers collection.`;

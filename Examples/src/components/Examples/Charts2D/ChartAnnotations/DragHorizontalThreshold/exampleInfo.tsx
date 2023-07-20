@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-chart-drag-horizontal-threshold.jpg";
+import exampleImage from "./javascript-chart-drag-horizontal-threshold.jpg";
 
 const previewDescription = `Drag Threshold demo shows how to add draggable vertical and horizontal thresholds to the chart and change chart series colour based on the threshold value.`;
 const description = `The Drag Threshold demo shows how to add draggable vertical and horizontal thresholds to a JavaScript chart and change chart series colour based on the threshold value.`;

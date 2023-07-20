@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-chart-with-secondary-y-axis.jpg";
+import exampleImage from "./javascript-chart-with-secondary-y-axis.jpg";
 
 const description = `Demonstrates how to assign line series to different Y Axis in a JavaScript Chart. SciChart supports multiple
 top or bottom X-Axes and multiple left and right Y-Axes. This example shows in a simple way how to register

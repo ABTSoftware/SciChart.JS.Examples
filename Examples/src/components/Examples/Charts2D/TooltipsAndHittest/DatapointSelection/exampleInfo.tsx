@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-datapoint-selection.jpg";
+import exampleImage from "./javascript-datapoint-selection.jpg";
 
 const previewDescription = `Demonstrates the DataPointSelectionModifier, which provides a UI to select one or many data points,
 and works with DataPointSelectionPaletteProvider to change the appearance of selected points`;

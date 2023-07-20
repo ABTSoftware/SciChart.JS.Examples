@@ -3,7 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-const exampleImage = "javascript-chart-hit-test-on-click.jpg";
+import exampleImage from "./javascript-chart-hit-test-on-click.jpg";
 
 const previewDescription = `Demonstrates the Hit Test API, which can be used to get feedback about clicks on data-points or lines and
 enable selection, of showing of context menus. Click on the data-point and see hit test info on the right.`;
