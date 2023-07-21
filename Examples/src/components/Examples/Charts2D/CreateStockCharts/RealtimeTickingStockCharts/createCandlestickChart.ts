@@ -288,9 +288,9 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
                     lastTradeBuyOrSell ? "+" : "-"
                 }$${tradeValue.toFixed(2)}`
             );
-            // @ts-ignore
             largeTradesDataSeries.append(priceBar.date / 1000, priceBar.close, tradeValueNormalised, {
                 isSelected: false,
+                // @ts-ignore
                 lastTradeBuyOrSell
             });
         }
