@@ -4,7 +4,8 @@
   "description": "SciChart demo with react, webpack, and typescript",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode production",
+    "start": "ts-node server",
     "dev": "webpack-dev-server --mode development"
   },
   "keywords": [],
@@ -13,6 +14,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "ts-node": "^10.9.1",
     "scichart": "latest"
   },
   "devDependencies": {
