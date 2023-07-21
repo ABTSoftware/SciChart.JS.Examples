@@ -1,4 +1,4 @@
-import { AxisBase2D, buildAxes, chartBuilder, configure2DSurface, convertColor, DoubleAnimator, easing, ECoordinateMode, GenericAnimation, I2DSubSurfaceOptions, ISciChart2DDefinition, Rect, TAxisDefinition, Thickness, TModifierDefinition, TSeriesDefinition } from "scichart";
+import { applyOpacityToHtmlColor, AxisBase2D, buildAxes, chartBuilder, configure2DSurface, convertColor, DoubleAnimator, easing, ECoordinateMode, GenericAnimation, I2DSubSurfaceOptions, ISciChart2DDefinition, parseColorToTArgb, parseTArgbToHtmlColor, Rect, TAxisDefinition, Thickness, TModifierDefinition, TSeriesDefinition } from "scichart";
 import { appTheme } from "scichart-example-dependencies";
 import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
 import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
@@ -80,10 +80,10 @@ export class GridLayoutModifier extends ChartModifierBase2D {
                 const w = DoubleAnimator.interpolate(from.width, to.width, progress);
                 const h = DoubleAnimator.interpolate(from.height, to.height, progress);
                 subChart.viewportBorder = { color: `rgba(150, 74, 148, ${progress * 0.5})`, border: 2 };
-                xAxis.labelStyle = { color: convertColor(labelColor, progress) };
-                yAxis.labelStyle = { color: convertColor(labelColor, progress) };
+                xAxis.labelStyle = { color: applyOpacityToHtmlColor(labelColor, progress) };
+                yAxis.labelStyle = { color: applyOpacityToHtmlColor(labelColor, progress) };
                 yAxis.drawMinorGridLines = false;
-                subChart.titleStyle = { color: convertColor(appTheme.ForegroundColor, progress)};
+                subChart.titleStyle = { color: applyOpacityToHtmlColor(appTheme.ForegroundColor, progress)};
                 const newPos = new Rect(x, y, w, h);
                 subChart.subPosition = newPos;
             },
@@ -124,9 +124,9 @@ export class GridLayoutModifier extends ChartModifierBase2D {
                     const w = DoubleAnimator.interpolate(from.width, to.width, progress);
                     const h = DoubleAnimator.interpolate(from.height, to.height, progress);
                     subChart.viewportBorder = { color: `rgba(150, 74, 148, ${(1 - progress) * 0.5 + 0.01})`, border: 2 };
-                    xAxis.labelStyle = { color: convertColor(labelColor, 1 - progress * 0.99) }
-                    yAxis.labelStyle = { color: convertColor(labelColor, 1 - progress * 0.99) }
-                    subChart.titleStyle = { color: convertColor(appTheme.ForegroundColor, 1 - progress * 0.99)};
+                    xAxis.labelStyle = { color: applyOpacityToHtmlColor(labelColor, 1 - progress * 0.99) }
+                    yAxis.labelStyle = { color: applyOpacityToHtmlColor(labelColor, 1 - progress * 0.99) }
+                    subChart.titleStyle = { color: applyOpacityToHtmlColor(appTheme.ForegroundColor, 1 - progress * 0.99)};
                     const newPos = new Rect(x, y, w, h);
                     subChart.subPosition = newPos;
                 },
