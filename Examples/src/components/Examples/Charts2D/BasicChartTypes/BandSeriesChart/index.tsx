@@ -12,10 +12,9 @@ import {
 } from "scichart";
 import classes from "../../../styles/Examples.module.scss";
 import { appTheme } from "scichart-example-dependencies";
+import { SciChartComponent } from "../../../SciChartComponent";
 
-const divElementId = "chart";
-
-const drawExample = async () => {
+const drawExample = async (divElementId: string) => {
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
@@ -62,26 +61,5 @@ const drawExample = async () => {
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-        });
-
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
-
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+    return <SciChartComponent initFunction={drawExample} className={classes.ChartWrapper} />;
 }

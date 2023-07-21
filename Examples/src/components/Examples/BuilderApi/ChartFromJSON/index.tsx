@@ -3,10 +3,13 @@ import { SciChartSurface, chartBuilder, TWebAssemblyChart } from "scichart";
 import classes from "../../styles/Examples.module.scss";
 import { ButtonGroup, Button, TextField } from "@material-ui/core";
 import { Alert, AlertTitle } from "@material-ui/lab";
+import { SciChartComponent } from "../../SciChartComponent";
 
-const divElementId = "chart";
-
-const drawExample = async (json: string, setErrors: (error: any) => void): Promise<TWebAssemblyChart> => {
+const drawExample = async (
+    divElementId: string,
+    json: string,
+    setErrors: (error: any) => void
+): Promise<TWebAssemblyChart> => {
     try {
         // Build the SciChartSurface from Json passed in
         const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, json);
@@ -45,51 +48,36 @@ const defaultJSON = `{
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartFromJSON() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const [errors, setErrors] = React.useState<string>();
     const [json, setJSON] = React.useState<string>(defaultJSON);
-    const [buildRequested, setBuildRequested] = React.useState<boolean>(true);
+    const [currentChartConfig, setCurrentChartConfig] = React.useState<string>(defaultJSON);
 
-    React.useEffect(() => {
-        if (buildRequested) {
-            const chartInitializationPromise = drawExample(json, setErrors).then(({ sciChartSurface }) => {
-                sciChartSurfaceRef.current = sciChartSurface;
-                return sciChartSurface;
-            });
-
-            return () => {
-                // check if chart is already initialized
-                if (sciChartSurfaceRef.current) {
-                    sciChartSurfaceRef.current.delete();
-                    return;
-                }
-
-                // else postpone deletion
-                chartInitializationPromise.then(surface => {
-                    surface.delete();
-                });
-            };
-        }
-
-        return () => {}
-    }, [buildRequested]);
+    const Chart = React.useMemo(
+        () =>
+            React.memo((props: { chartConfig: string }) => {
+                console.log("Rebuild");
+                return (
+                    <SciChartComponent
+                        initFunction={(divId: string) => drawExample(divId, props.chartConfig, setErrors)}
+                        style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }}
+                    />
+                );
+            }),
+        [currentChartConfig]
+    );
 
     const handleChangeJSON = (event: React.ChangeEvent<{ value: string }>) => {
         const newValue = event.target.value;
         setJSON(newValue);
-        setBuildRequested(false);
     };
 
     const handleBuild = (event: any) => {
-        if (!buildRequested) {
-            setErrors("");
-            setBuildRequested(true);
-        }
+        setErrors("");
+        setCurrentChartConfig(json);
     };
 
     const loadMinimal = (event: any) => {
         setJSON(defaultJSON);
-        setBuildRequested(false);
     };
 
     const loadFull = (event: any) => {
@@ -190,7 +178,6 @@ export default function ChartFromJSON() {
                 }
             ]
         }`);
-        setBuildRequested(false);
     };
 
     const loadCentral = (event: any) => {
@@ -222,13 +209,12 @@ export default function ChartFromJSON() {
                 { "type": "ZoomPan" }
             ]
         }`);
-        setBuildRequested(false);
     };
 
     return (
         <div className={classes.ChartWrapper}>
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                <div id={divElementId} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }} />
+                <Chart chartConfig={currentChartConfig} />
                 <div style={{ position: "absolute", left: 20, top: 20 }}>
                     {errors && (
                         <Alert key="0" severity="error">
@@ -258,7 +244,8 @@ export default function ChartFromJSON() {
                         type="text"
                         fullWidth={true}
                         multiline={true}
-                        rows="10"
+                        minRows="10"
+                        maxRows="10"
                         variant="outlined"
                         value={json}
                         onChange={handleChangeJSON}
