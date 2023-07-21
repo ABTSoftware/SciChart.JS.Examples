@@ -99,6 +99,7 @@ import { textChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/TextS
 import { chartTitleExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/ChartTitle/exampleInfo";
 import { backgroundAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations/exampleInfo";
 import { realtimeSurfaceMesh3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart/exampleInfo";
+import { dynamicLayoutExampleInfo } from "../Examples/FeaturedApps/ShowCases/DynamicLayout/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -518,6 +519,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_showcases_richInteractions: {
         id: "featuredApps_showcases_richInteractions",
         ...heatmapInteractionsExampleInfo
+    },
+    featuredApps_showcases_dynamicLayout : {
+        id: "featuredApps_showcases_dynamicLayout",
+        ...dynamicLayoutExampleInfo
     },
     builderApi_simplechart: {
         id: "builderApi_simplechart",

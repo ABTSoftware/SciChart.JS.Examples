@@ -114,31 +114,51 @@ const drawExample = async () => {
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
     sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
 
-    let updates = 0;
+    let frame = 0;
+    let timer: NodeJS.Timeout;
     const updateFunc = () => {
-        if (updates < 1000) {
-            setData(updates);
-            setTimeout(() => updateFunc(), 20);
-        }
-        updates++;
+        setData(frame);
+        frame++;
     }
     updateFunc();
+    const startAnimation = () => {
+        frame = 0;
+        timer = setInterval(updateFunc, 20);
+    }
+    const stopAnimation = () => {
+        clearInterval(timer);
+    }
 
-    return {sciChart3DSurface, wasmContext};
+    return {sciChart3DSurface, wasmContext, controls: { startAnimation, stopAnimation }};
 };
 
 // REACT COMPONENT
 export default function RealtimeSurfaceMesh3DChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChart3DSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChart3DSurface>();
+    const controlsRef = React.useRef<{ startAnimation: ()=>void, stopAnimation:()=>void }>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChart3DSurface);
-        })();
+        const chartPromise = drawExample().then(res => {
+            sciChartSurfaceRef.current = res.sciChart3DSurface;
+            controlsRef.current = res.controls;
+            res.controls.startAnimation();
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            sciChartSurface?.delete();
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                controlsRef.current.stopAnimation();
+                controlsRef.current = undefined;
+            } else {
+                chartPromise.then(res => {
+                    sciChartSurfaceRef.current.delete();
+                    sciChartSurfaceRef.current = undefined;
+                    controlsRef.current.stopAnimation();
+                    controlsRef.current = undefined;
+                });
+            }
         }
     }, []);
 

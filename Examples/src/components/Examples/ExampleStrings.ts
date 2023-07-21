@@ -773,6 +773,9 @@ export const ExampleStrings = {
     urlHeatmapInteractionsData: "/javascript-heatmap-interactions",
     titleHeatmapInteractionsData: "Rich Interactions Showcase",
 
+    urlDynamicLayout: "/javascript-dynamic-layout",
+    titleDynamicLayout: "Dynamic Layout Showcase",
+
     urlTextChart: "/javascript-text-chart",
     titleTextChart: "Javascript Text Chart",
     urlTextSeriesDocumentation:

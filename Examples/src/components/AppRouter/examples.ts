@@ -108,6 +108,7 @@ import DepthChart from "../Examples/Charts2D/CreateStockCharts/DepthChart";
 import TextChart from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart";
 import BackgroundAnnotations from "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations";
 import RealtimeSurfaceMesh3DChart from "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart";
+import DynamicLayout from "../Examples/FeaturedApps/ShowCases/DynamicLayout";
 
 export type TMenuItem = {
     item: {
@@ -129,7 +130,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
             EXAMPLES_PAGES.featuredApps_showcases_oilandgasdashboard,
             EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata,
-            EXAMPLES_PAGES.featuredApps_showcases_richInteractions
+            EXAMPLES_PAGES.featuredApps_showcases_richInteractions,
+            EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout
         ]
     },
     {
@@ -291,8 +293,11 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
     },
     {
         item: { id: "subchartsApi", name: "Subcharts API" },
-        submenu: [EXAMPLES_PAGES.featuredApps_featureDemos_subchartsGrid]
-    }
+        submenu: [
+            EXAMPLES_PAGES.featuredApps_featureDemos_subchartsGrid,
+            EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout
+        ]
+    },
 ];
 
 export const MENU_ITEMS_3D_ID = "MENU_ITEMS_3D_ID";
@@ -527,6 +532,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return OilAndGasDashboardShowcase;
         case EXAMPLES_PAGES.featuredApps_showcases_richInteractions.id:
             return HeatmapInteractions;
+        case EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout.id:
+            return DynamicLayout;
         case EXAMPLES_PAGES.builderApi_simplechart.id:
             return BuilderSimpleChart;
         case EXAMPLES_PAGES.builderApi_fullchart.id:
