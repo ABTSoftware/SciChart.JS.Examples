@@ -61,9 +61,9 @@ type TChartComponentPropsWithInit<
     config?: never;
 };
 
-type TChartComponentPropsWithConfig<TSurface extends ISciChartSurfaceBase> = IChartComponentPropsCore<
-    TSurface,
-    IInitResult<TSurface>
+type TChartComponentPropsWithConfig = IChartComponentPropsCore<
+    SciChartSurface | SciChartPieSurface,
+    IInitResult<SciChartSurface | SciChartPieSurface>
 > & {
     initChart?: never;
     config: string | TSurfaceDefinition;
@@ -71,7 +71,7 @@ type TChartComponentPropsWithConfig<TSurface extends ISciChartSurfaceBase> = ICh
 
 type TChartComponentProps<TSurface extends ISciChartSurfaceBase, TInitResult extends IInitResult<TSurface>> =
     | TChartComponentPropsWithInit<TSurface, TInitResult>
-    | TChartComponentPropsWithConfig<TSurface>;
+    | TChartComponentPropsWithConfig;
 
 // const superPRops: TChartComponentProps<SciChartSurface, { sciChartSurface: SciChartSurface }> = {
 //     config: {},
@@ -81,7 +81,7 @@ type TChartComponentProps<TSurface extends ISciChartSurfaceBase, TInitResult ext
 type TChartComponentPropsIntersection<
     TSurface extends ISciChartSurfaceBase,
     TInitResult extends IInitResult<TSurface>
-> = TChartComponentPropsWithInit<TSurface, TInitResult> & TChartComponentPropsWithConfig<TSurface>;
+> = TChartComponentPropsWithInit<TSurface, TInitResult> & TChartComponentPropsWithConfig;
 
 export class SciChartComponentAPI<TSurface extends ISciChartSurfaceBase, TInitResult extends IInitResult<TSurface>> {
     protected initResultRef: MutableRefObject<TInitResult>;
@@ -146,7 +146,9 @@ function SciChartComponent<
     const [chartRoot] = useState(createChartRoot);
 
     useEffect(() => {
-        const initializationFunction = initChart ? initChart : createChartFromConfig<TSurface>(config);
+        const initializationFunction = initChart
+            ? (initChart as TInitFunction<TSurface, TInitResult>)
+            : createChartFromConfig<TSurface>(config);
         const initPromise = initializationFunction(chartRoot).then((initResult) => {
             if (!initResult.sciChartSurface) {
                 throw new Error(
@@ -154,8 +156,8 @@ function SciChartComponent<
                 );
             }
             // TODO try to remove assertions after 3D charts could be created via Builder API
-            sciChartSurfaceRef.current = initResult.sciChartSurface as unknown as TSurface;
-            initResultRef.current = initResult as unknown as TInitResult;
+            sciChartSurfaceRef.current = initResult.sciChartSurface as TSurface;
+            initResultRef.current = initResult as TInitResult;
 
             setIsInitialized(true);
 
