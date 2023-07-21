@@ -136,16 +136,16 @@ export default function ChartLegendsAPI() {
             // check if chart is already initialized
             if (sciChartSurfaceRef.current) {
                 sciChartSurfaceRef.current.delete();
-                sciChartSurfaceRef.current = undefined
-                legendModifierRef.current = undefined
+                sciChartSurfaceRef.current = undefined;
+                legendModifierRef.current = undefined;
                 return;
             }
 
             // else postpone deletion
             chartInitializationPromise.then(() => {
                 sciChartSurfaceRef.current.delete();
-                sciChartSurfaceRef.current = undefined
-                legendModifierRef.current = undefined
+                sciChartSurfaceRef.current = undefined;
+                legendModifierRef.current = undefined;
             });
         };
     }, []);
@@ -224,20 +224,11 @@ export default function ChartLegendsAPI() {
                     {/*The toolbar is here*/}
                     <div className={localClasses.toolbar}>
                         Show Legend?
-                        <Checkbox
-                            checked={showLegendValue}
-                            onChange={handleChangeShowLegend}
-                        />
+                        <Checkbox checked={showLegendValue} onChange={handleChangeShowLegend} />
                         Show Visibility Checkboxes?
-                        <Checkbox
-                            checked={showCheckboxesValue}
-                            onChange={handleChangeShowCheckboxes}
-                        />
+                        <Checkbox checked={showCheckboxesValue} onChange={handleChangeShowCheckboxes} />
                         Show Series Markers?
-                        <Checkbox
-                            checked={showSeriesMarkersValue}
-                            onChange={handleChangeShowSeriesMarkers}
-                        />
+                        <Checkbox checked={showSeriesMarkersValue} onChange={handleChangeShowSeriesMarkers} />
                         <label id="sciChartPlacement-label">
                             Legend Placement
                             <select
