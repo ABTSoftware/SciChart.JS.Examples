@@ -7,16 +7,15 @@ import { NumberRange } from "scichart/Core/NumberRange";
 import { Thickness } from "scichart/Core/Thickness";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
-import { appTheme} from "../../theme";
+import { appTheme } from "../../theme";
 
-export 
-const drawResistivityChart = async () => {
+export const drawResistivityChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("resistivity-chart", {
         ...getCommonChartConfigs("Resistivity"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
-            padding: Thickness.fromNumber(0),
+            padding: Thickness.fromNumber(0)
         }
     });
 
@@ -25,7 +24,7 @@ const drawResistivityChart = async () => {
     const dataSeries = new XyDataSeries(wasmContext, { dataIsSortedInX: true, containsNaN: false });
 
     const data = await getParsedData("Resistivity.csv");
-    data.forEach((dataRow) => {
+    data.forEach(dataRow => {
         dataSeries.append(dataRow[0], dataRow[1]);
     });
 
@@ -37,7 +36,7 @@ const drawResistivityChart = async () => {
             options: {
                 dataSeries,
                 strokeThickness: 2,
-                stroke: appTheme.ResistivityLineStroke,
+                stroke: appTheme.ResistivityLineStroke
             }
         },
         {
@@ -45,12 +44,12 @@ const drawResistivityChart = async () => {
             options: {
                 dataSeries: movingAverage20DataSeries,
                 strokeDashArray: [5, 5],
-                stroke: appTheme.ResistivityLineStroke2,
+                stroke: appTheme.ResistivityLineStroke2
             }
-        },
+        }
     ]);
 
-    sciChartSurface.renderableSeries.add(...renderableSeries)
+    sciChartSurface.renderableSeries.add(...renderableSeries);
 
     renderableSeries.forEach(rs => {
         rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
@@ -92,4 +91,3 @@ const generateResistivityLegend = (
     </div>
     `;
 };
-

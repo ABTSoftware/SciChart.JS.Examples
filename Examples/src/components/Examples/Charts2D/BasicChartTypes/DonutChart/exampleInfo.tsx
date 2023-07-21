@@ -12,18 +12,22 @@ const tips = [
     `Every segment can be highlighted by clicking on it or when selected in the legend.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDonutChartDocumentation,
-    title: ExampleStrings.titleDonutChart,
-    linkTitle: "JavaScript Donut Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDonutChartDocumentation,
+        title: ExampleStrings.titleDonutChart,
+        linkTitle: "JavaScript Donut Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        This demo demonstrates how create a <strong>JavaScript Donut Chart</strong> with our powerful JavaScript library,{" "}
+        This demo demonstrates how create a <strong>JavaScript Donut Chart</strong> with our powerful JavaScript
+        library,{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
             SciChart.js
-        </a>.
+        </a>
+        .
     </p>
 );
 

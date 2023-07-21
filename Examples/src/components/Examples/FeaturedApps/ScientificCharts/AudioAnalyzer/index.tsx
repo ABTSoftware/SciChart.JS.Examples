@@ -16,12 +16,18 @@ import {
     LogarithmicAxis,
     ENumericFormat,
     FastMountainRenderableSeries,
-    EllipsePointMarker, PaletteFactory, GradientParams, EVerticalAnchorPoint, ECoordinateMode, TextAnnotation, Point
+    EllipsePointMarker,
+    PaletteFactory,
+    GradientParams,
+    EVerticalAnchorPoint,
+    ECoordinateMode,
+    TextAnnotation,
+    Point
 } from "scichart";
 
-import {AudioDataProvider} from "./AudioDataProvider";
-import {Radix2FFT} from "./Radix2FFT";
-import {appTheme} from "scichart-example-dependencies";
+import { AudioDataProvider } from "./AudioDataProvider";
+import { Radix2FFT } from "./Radix2FFT";
+import { appTheme } from "scichart-example-dependencies";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";
@@ -96,10 +102,9 @@ export const drawExample = async () => {
     // AUDIO CHART
     const initAudioChart = async () => {
         // Create a chart for the audio
-        const {
-            sciChartSurface,
-            wasmContext
-        } = await SciChartSurface.create(divElementIdAudioChart, {theme: appTheme.SciChartJsTheme});
+        const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementIdAudioChart, {
+            theme: appTheme.SciChartJsTheme
+        });
 
         // Create an XAxis for the live audio
         const xAxis = new NumericAxis(wasmContext, {
@@ -181,12 +186,14 @@ export const drawExample = async () => {
 
     // FFT CHART
     const initFftChart = async () => {
-        const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementIdFttChart, { theme: appTheme.SciChartJsTheme });
+        const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementIdFttChart, {
+            theme: appTheme.SciChartJsTheme
+        });
         const xAxis = new LogarithmicAxis(wasmContext, {
             logBase: 10,
             labelFormat: ENumericFormat.SignificantFigures,
             maxAutoTicks: 5,
-            axisTitleStyle: {fontSize: 10},
+            axisTitleStyle: { fontSize: 10 },
             drawMinorGridLines: false,
             drawMinorTickLines: false,
             drawMajorTickLines: false
@@ -201,7 +208,7 @@ export const drawExample = async () => {
             drawMinorTickLines: false,
             drawMajorTickLines: false,
             labelPrecision: 0,
-            axisTitleStyle: {fontSize: 10}
+            axisTitleStyle: { fontSize: 10 }
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -214,16 +221,16 @@ export const drawExample = async () => {
         // Make a column chart with a gradient palette on the stroke only
         const rs = new FastMountainRenderableSeries(wasmContext, {
             dataSeries: fftDS,
-            pointMarker: new EllipsePointMarker(wasmContext, {width: 9, height: 9}),
+            pointMarker: new EllipsePointMarker(wasmContext, { width: 9, height: 9 }),
             strokeThickness: 3,
             paletteProvider: PaletteFactory.createGradient(
                 wasmContext,
                 new GradientParams(new Point(0, 0), new Point(1, 1), [
-                    {offset: 0, color: "#36B8E6"},
-                    {offset: 0.001, color: "#5D8CC2"},
-                    {offset: 0.01, color: "#8166A2"},
-                    {offset: 0.1, color: "#AE418C"},
-                    {offset: 1.0, color: "#CA5B79"}
+                    { offset: 0, color: "#36B8E6" },
+                    { offset: 0.001, color: "#5D8CC2" },
+                    { offset: 0.01, color: "#8166A2" },
+                    { offset: 0.1, color: "#AE418C" },
+                    { offset: 1.0, color: "#CA5B79" }
                 ]),
                 {
                     enableStroke: true,
@@ -249,7 +256,9 @@ export const drawExample = async () => {
             }
         }
 
-        const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementIdChart3, { theme: appTheme.SciChartJsTheme });
+        const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementIdChart3, {
+            theme: appTheme.SciChartJsTheme
+        });
 
         const xAxis = new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Always,
@@ -281,11 +290,11 @@ export const drawExample = async () => {
                 minimum: 0,
                 maximum: 70,
                 gradientStops: [
-                    {offset: 0, color: "#000000"},
-                    {offset: 0.25, color: "#800080"},
-                    {offset: 0.5, color: "#FF0000"},
-                    {offset: 0.75, color: "#FFFF00"},
-                    {offset: 1, color: "#FFFFFF"}
+                    { offset: 0, color: "#000000" },
+                    { offset: 0.25, color: "#800080" },
+                    { offset: 0.5, color: "#FF0000" },
+                    { offset: 0.75, color: "#FFFF00" },
+                    { offset: 1, color: "#FFFFFF" }
                 ]
             })
         });
@@ -325,34 +334,50 @@ export const drawExample = async () => {
 };
 
 export default function AudioAnalyzer() {
-    let charts: SciChartSurface[];
-    let dataProvider: AudioDataProvider;
+    let chartsRef = React.useRef<SciChartSurface[]>();
+    let dataProviderRef = React.useRef<AudioDataProvider>();
 
     React.useEffect(() => {
-        drawExample().then(res => {
-            charts = res.charts;
-            dataProvider = res.dataProvider;
+        const chartInitializationPromise = drawExample().then(res => {
+            chartsRef.current = res.charts;
+            dataProviderRef.current = res.dataProvider;
         });
+
+        // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            // Ensure deleting charts on React component unmount
-            charts?.forEach(c => c.delete());
-            // ensure releasing audio data provider
-            dataProvider?.closeAudio();
-        }
+            // check if chart is already initialized
+            if (chartsRef.current) {
+                chartsRef.current.forEach(c => c.delete());
+                // ensure releasing audio data provider
+                dataProviderRef.current.closeAudio();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                chartsRef.current.forEach(c => c.delete());
+                // ensure releasing audio data provider
+                dataProviderRef.current.closeAudio();
+            });
+        };
     }, []);
 
     return (
         <React.Fragment>
-            <div style={{background: appTheme.Background}} className={classes.ChartWrapper}>
-                <div style={{width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    background: appTheme.DarkIndigo}}>
-                    <div id={divElementIdAudioChart} style={{ flexBasis: "50%" }}/>
-                    <div style={{display: "flex", flex: 1 }}>
-                        <div id={divElementIdFttChart} style={{flex: 1 }}/>
-                        <div id={divElementIdChart3} style={{flex: 1 }}/>
+            <div style={{ background: appTheme.Background }} className={classes.ChartWrapper}>
+                <div
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        background: appTheme.DarkIndigo
+                    }}
+                >
+                    <div id={divElementIdAudioChart} style={{ flexBasis: "50%" }} />
+                    <div style={{ display: "flex", flex: 1 }}>
+                        <div id={divElementIdFttChart} style={{ flex: 1 }} />
+                        <div id={divElementIdChart3} style={{ flex: 1 }} />
                     </div>
                 </div>
             </div>

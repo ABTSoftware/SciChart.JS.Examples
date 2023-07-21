@@ -2,7 +2,7 @@ import * as React from "react";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from "@material-ui/icons/Close";
 import Navigation from "../Navigation/Navigation";
 import { useNavigate } from "react-router-dom";
 import classes from "./DrawerContent.module.scss";
@@ -30,11 +30,7 @@ const DrawerContent: React.FC<TProps> = props => {
                     </h6>
                     <span className={classes.versionCaption}>{`v${APP_VERSION}`}</span>
                 </div>
-                <IconButton
-                    onClick={toggleDrawer}
-                    className={classes.CloseButton}
-                    aria-label="close-drawer-button"
-                >
+                <IconButton onClick={toggleDrawer} className={classes.CloseButton} aria-label="close-drawer-button">
                     <CloseIcon />
                 </IconButton>
             </div>

@@ -12,11 +12,13 @@ const tips = [
     `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much space the column takes up.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlStackedColumnChartDocumentation,
-    title: ExampleStrings.urlTitleStackedColumnChartDocumentation,
-    linkTitle: "JavaScript Stacked Column Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlStackedColumnChartDocumentation,
+        title: ExampleStrings.urlTitleStackedColumnChartDocumentation,
+        linkTitle: "JavaScript Stacked Column Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
@@ -24,7 +26,8 @@ const Subtitle = () => (
         <strong>JavaScript Stacked Column Chart Side-by-side</strong> using our{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Framework">
             JavaScript Chart Framework
-        </a>.
+        </a>
+        .
     </p>
 );
 

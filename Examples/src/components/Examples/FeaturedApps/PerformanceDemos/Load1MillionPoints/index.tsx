@@ -2,8 +2,8 @@ import Button from "@material-ui/core/Button";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
-import {makeStyles} from "@material-ui/core/styles";
-import {appTheme} from "scichart-example-dependencies";
+import { makeStyles } from "@material-ui/core/styles";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 import {
@@ -24,29 +24,33 @@ import {
     ZoomPanModifier
 } from "scichart";
 
-export type TTimeSpan = {
+type TTimeSpan = {
     title: string;
     durationMs: number;
 };
 
-export const divElementId = "chart";
+const divElementId = "chart";
 
-export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
+const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        axisTitle: "X Axis",
-        visibleRange: new NumberRange(0, 1000000),
-        autoRange: EAutoRange.Never
-    }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        axisAlignment: EAxisAlignment.Left,
-        visibleRange: new NumberRange(-5000, 5000),
-        autoRange: EAutoRange.Never,
-        axisTitle: "Y Axis"
-    }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            axisTitle: "X Axis",
+            visibleRange: new NumberRange(0, 1000000),
+            autoRange: EAutoRange.Never
+        })
+    );
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            axisAlignment: EAxisAlignment.Left,
+            visibleRange: new NumberRange(-5000, 5000),
+            autoRange: EAutoRange.Never,
+            axisTitle: "Y Axis"
+        })
+    );
 
     const watermarkAnnotation = (text: string, offset: number = 0) => {
         return new TextAnnotation({
@@ -62,19 +66,21 @@ export const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) =
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
-            annotationLayer: EAnnotationLayer.BelowChart,
+            annotationLayer: EAnnotationLayer.BelowChart
         });
-    }
+    };
     // add a title annotation
     sciChartSurface.annotations.add(watermarkAnnotation("SciChart.js Performance Demo"));
     sciChartSurface.annotations.add(watermarkAnnotation("1 Million Data-Points", 52));
 
     const dataSeries = new XyDataSeries(wasmContext);
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries,
-        stroke: appTheme.VividSkyBlue,
-        strokeThickness: 2
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries,
+            stroke: appTheme.VividSkyBlue,
+            strokeThickness: 2
+        })
+    );
 
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
@@ -169,28 +175,37 @@ const useStyles = makeStyles(theme => ({
         color: appTheme.ForegroundColor
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
-let scs: SciChartSurface;
-let autoStartTimerId: NodeJS.Timeout;
-
 export default function Load1MillionPointsChart() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample((newTimeSpans: TTimeSpan[]) => {
-                setTimeSpans([...newTimeSpans]);
-            });
-            scs = res.sciChartSurface;
+        let autoStartTimerId: NodeJS.Timeout;
+
+        const chartInitializationPromise = drawExample((newTimeSpans: TTimeSpan[]) => {
+            setTimeSpans([...newTimeSpans]);
+        }).then((res) => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
             autoStartTimerId = setTimeout(res.loadPoints, 0);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
+        });
+
         return () => {
-            clearTimeout(autoStartTimerId);
-            scs?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                clearTimeout(autoStartTimerId);
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                clearTimeout(autoStartTimerId);
+                sciChartSurfaceRef.current.delete();
+            });
         };
     }, []);
 
@@ -200,12 +215,17 @@ export default function Load1MillionPointsChart() {
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <div className={localClasses.chartArea} id={divElementId}></div>
-                <div className={localClasses.toolbarRow} style={{minHeight: "140px"}}>
-                    <Button id="loadPoints" style={{color: appTheme.ForegroundColor}}>🗘 Reload Test</Button>
-                    <div style={{width: "100%", marginLeft: "10px"}}>
+                <div className={localClasses.toolbarRow} style={{ minHeight: "140px" }}>
+                    <Button id="loadPoints" style={{ color: appTheme.ForegroundColor }}>
+                        🗘 Reload Test
+                    </Button>
+                    <div style={{ width: "100%", marginLeft: "10px" }}>
                         {timeSpans.length > 0 && (
-                            <Alert key="0" className={classes.Notification}
-                                   style={{backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor}}>
+                            <Alert
+                                key="0"
+                                className={classes.Notification}
+                                style={{ backgroundColor: appTheme.Indigo, color: appTheme.ForegroundColor }}
+                            >
                                 <AlertTitle>Performance Results</AlertTitle>
                                 {timeSpans.map((ts, index) => (
                                     <div key={index}>

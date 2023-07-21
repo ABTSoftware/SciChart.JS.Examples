@@ -1,15 +1,25 @@
 import * as React from "react";
-import {appTheme,ExampleDataProvider} from "scichart-example-dependencies";
+import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import {
-    easing, EHorizontalAnchorPoint,
+    easing,
+    EHorizontalAnchorPoint,
     EllipsePointMarker,
-    ENumericFormat, EVerticalAnchorPoint,
-    FastLineRenderableSeries, MouseWheelZoomModifier,
+    ENumericFormat,
+    EVerticalAnchorPoint,
+    FastLineRenderableSeries,
+    MouseWheelZoomModifier,
     NumberRange,
-    NumericAxis, PinchZoomModifier, RubberBandXyZoomModifier,
+    NumericAxis,
+    PinchZoomModifier,
+    RubberBandXyZoomModifier,
     SciChartSurface,
-    XyDataSeries, ZoomExtentsModifier, ZoomPanModifier, EExecuteOn, TextAnnotation, ECoordinateMode
+    XyDataSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
+    EExecuteOn,
+    TextAnnotation,
+    ECoordinateMode
 } from "scichart";
 
 const divElementId = "chart";
@@ -20,43 +30,74 @@ const drawExample = async () => {
         theme: appTheme.SciChartJsTheme
     });
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        growBy: new NumberRange(0.05, 0.05),
-        labelFormat: ENumericFormat.Decimal,
-        labelPrecision: 4
-    }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.05, 0.05),
+            labelFormat: ENumericFormat.Decimal,
+            labelPrecision: 4
+        })
+    );
 
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        growBy: new NumberRange(0.1, 0.1),
-        labelFormat: ENumericFormat.Decimal,
-        labelPrecision: 4
-    }));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.1, 0.1),
+            labelFormat: ENumericFormat.Decimal,
+            labelPrecision: 4
+        })
+    );
 
     // Add some data
     const data1 = ExampleDataProvider.getFourierSeriesZoomed(0.6, 0.13, 5.0, 5.15);
     const lineSeries0 = new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues, dataSeriesName: "First Line Series" }),
+        dataSeries: new XyDataSeries(wasmContext, {
+            xValues: data1.xValues,
+            yValues: data1.yValues,
+            dataSeriesName: "First Line Series"
+        }),
         strokeThickness: 3,
         stroke: appTheme.VividSkyBlue,
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, strokeThickness: 0, fill: appTheme.VividSkyBlue })
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 7,
+            height: 7,
+            strokeThickness: 0,
+            fill: appTheme.VividSkyBlue
+        })
     });
     sciChartSurface.renderableSeries.add(lineSeries0);
 
     const data2 = ExampleDataProvider.getFourierSeriesZoomed(0.5, 0.12, 5.0, 5.15);
-    const lineSeries1  =new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data2.xValues, yValues: data2.yValues, dataSeriesName: "Second Line Series" }),
+    const lineSeries1 = new FastLineRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, {
+            xValues: data2.xValues,
+            yValues: data2.yValues,
+            dataSeriesName: "Second Line Series"
+        }),
         strokeThickness: 3,
         stroke: appTheme.VividOrange,
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, strokeThickness: 0, fill: appTheme.VividOrange })
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 7,
+            height: 7,
+            strokeThickness: 0,
+            fill: appTheme.VividOrange
+        })
     });
     sciChartSurface.renderableSeries.add(lineSeries1);
 
     const data3 = ExampleDataProvider.getFourierSeriesZoomed(0.4, 0.11, 5.0, 5.15);
     const lineSeries2 = new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data3.xValues, yValues: data3.yValues, dataSeriesName: "Third Line Series" }),
+        dataSeries: new XyDataSeries(wasmContext, {
+            xValues: data3.xValues,
+            yValues: data3.yValues,
+            dataSeriesName: "Third Line Series"
+        }),
         strokeThickness: 3,
         stroke: appTheme.MutedPink,
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, strokeThickness: 0, fill: appTheme.MutedPink }),
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 7,
+            height: 7,
+            strokeThickness: 0,
+            fill: appTheme.MutedPink
+        })
     });
     sciChartSurface.renderableSeries.add(lineSeries2);
 
@@ -70,66 +111,80 @@ const drawExample = async () => {
         // use PinchZoomModifier to allow zooming with pinch gesture on touch devices
         new PinchZoomModifier(),
         // Zoom extents on double click
-        new ZoomExtentsModifier( { easingFunction: easing.elastic })
+        new ZoomExtentsModifier({ easingFunction: easing.elastic })
     );
 
     // Add annotations to tell the user what to do
-    sciChartSurface.annotations.add(new TextAnnotation({
-        text: "Zoom Pan Modifiers Demo",
-        x1: 0.5, y1: 0.5,
-        yCoordShift: -50,
-        xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center, verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        opacity: 0.33,
-        fontSize: 48,
-        fontWeight: "Bold"
-    }));
-    sciChartSurface.annotations.add(new TextAnnotation({
-        text: "Multiple zoom, pan behaviours enabled on a single chart",
-        x1: 0.5, y1: 0.5,
-        yCoordShift: 0,
-        xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center, verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        opacity: 0.38,
-        fontSize: 28,
-    }));
-    sciChartSurface.annotations.add(new TextAnnotation({
-        text: "Try mouse-wheel, left/right mouse drag, mousewheel on axis, pinch zoom, double-click to zoom to fit etc...",
-        x1: 0.5, y1: 0.5,
-        yCoordShift: 50,
-        xCoordinateMode: ECoordinateMode.Relative, yCoordinateMode: ECoordinateMode.Relative,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center, verticalAnchorPoint: EVerticalAnchorPoint.Center,
-        opacity: 0.45,
-        fontSize: 17,
-    }));
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: "Zoom Pan Modifiers Demo",
+            x1: 0.5,
+            y1: 0.5,
+            yCoordShift: -50,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            opacity: 0.33,
+            fontSize: 48,
+            fontWeight: "Bold"
+        })
+    );
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: "Multiple zoom, pan behaviours enabled on a single chart",
+            x1: 0.5,
+            y1: 0.5,
+            yCoordShift: 0,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            opacity: 0.38,
+            fontSize: 28
+        })
+    );
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text:
+                "Try mouse-wheel, left/right mouse drag, mousewheel on axis, pinch zoom, double-click to zoom to fit etc...",
+            x1: 0.5,
+            y1: 0.5,
+            yCoordShift: 50,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            opacity: 0.45,
+            fontSize: 17
+        })
+    );
     return { wasmContext, sciChartSurface };
 };
 
-let scs: SciChartSurface;
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
-export default function ZoomPanUsage() {
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            scs = res.sciChartSurface;
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => scs?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-    /*
-     * In order to prevent conflicts of touch actions on the chart with the default browser gestures behavior,
-     * touch-actions css property can be used. https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action
-     *
-     * Suggestions:
-     * - if a chart uses some Zoom/Pan modifiers or draggable elements:
-     *   touch-actions property should be set to 'none' to prevent default browser touch behavior
-     *   (or the value can be set to allow only specific type of default touch actions);
-     *
-     * - if a chart doesn't allow zooming/panning:
-     *   prefer leaving the default 'touch-actions: auto' to allow default browser gestures upon the chart element.
-     */
-
-    // make sure default browser touch behavior doesn't conflict with the chart modifiers functionality
-    return <div id={divElementId} style={{ touchAction: "none" }} className={classes.ChartWrapper} />;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

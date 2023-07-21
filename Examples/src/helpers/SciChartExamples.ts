@@ -1,11 +1,6 @@
 import { GalleryItem } from "./types/types";
-import {
-    MENU_ITEMS_2D,
-    MENU_ITEMS_3D,
-    MENU_ITEMS_FEATURED_APPS,
-    TMenuItem,
-} from "../components/AppRouter/examples";
-import {TExamplePage} from "../components/AppRouter/examplePages";
+import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS, TMenuItem } from "../components/AppRouter/examples";
+import { TExamplePage } from "../components/AppRouter/examplePages";
 
 const getGalleryItems = (category: string, menuItem: TMenuItem) => {
     return {
@@ -15,8 +10,8 @@ const getGalleryItems = (category: string, menuItem: TMenuItem) => {
                 imgPath: subMenu.thumbnailImage,
                 title: subMenu.title,
                 seoTitle: subMenu.pageTitle,
-                examplePath: subMenu.path,
-            }
+                examplePath: subMenu.path
+            };
         })
     };
 };
@@ -44,13 +39,15 @@ export const getSeeAlsoGalleryItems = (allMenuItems: TMenuItem[], currentExample
         // Get all the examples in that menu that is not this example
         const seeAlsoExamples = topLevelMenu.submenu.filter(sm => sm.id !== currentExample.id);
         // Convert to a galleryItem for the See-Also section on each individual example
-        galleryItems.push(getGalleryItems("See Also", {
-            item: {
-                id: topLevelMenu.item.id,
-                name: topLevelMenu.item.name,
-            },
-            submenu: seeAlsoExamples
-        }));
+        galleryItems.push(
+            getGalleryItems("See Also", {
+                item: {
+                    id: topLevelMenu.item.id,
+                    name: topLevelMenu.item.name
+                },
+                submenu: seeAlsoExamples
+            })
+        );
     }
     return galleryItems;
 };

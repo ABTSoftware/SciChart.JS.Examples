@@ -12,11 +12,13 @@ const tips = [
     chart-parts in code.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlThemeManagerDocumentation,
-    title: ExampleStrings.urlTitleThemeManagerDocumentation,
-    linkTitle: "The ThemeManager documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlThemeManagerDocumentation,
+        title: ExampleStrings.urlTitleThemeManagerDocumentation,
+        linkTitle: "The ThemeManager documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

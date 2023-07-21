@@ -16,8 +16,8 @@ import {
     translateToNotScaled,
     registerType
 } from "scichart";
-import {TFinanceLegendTemplate, FinChartLegendAnnotation} from "./FinChartLegendAnnotation";
-import {EMousePosition} from "scichart/types/MousePosition";
+import { TFinanceLegendTemplate, FinChartLegendAnnotation } from "./FinChartLegendAnnotation";
+import { EMousePosition } from "scichart/types/MousePosition";
 
 /**
  * Optional parameters used to configure a {@link CursorModifier} at construct time
@@ -178,7 +178,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
 
     private update() {
         if (this.mousePosition === EMousePosition.SeriesArea) {
-            const {x: scaledX, y: scaledY} = this.translatedMousePoint;
+            const { x: scaledX, y: scaledY } = this.translatedMousePoint;
             const x = translateToNotScaled(scaledX);
             const y = translateToNotScaled(scaledY);
 

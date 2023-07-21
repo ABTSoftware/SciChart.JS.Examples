@@ -5,15 +5,17 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-data-animation.jpg";
 
-const previewDescription = ``;//`Demonstrates how to run data animation for a JavaScript Chart.`;
+const previewDescription = ``; //`Demonstrates how to run data animation for a JavaScript Chart.`;
 const description = `Every second new random values are generated for the scatter series and transition from one state to another is animated`;
 const tips: string[] = ["Animations can be chained"];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDataAnimationDocumentation,
-    title: ExampleStrings.urlTitleDataAnimationDocumentation,
-    linkTitle: "JavaScript Data Animation Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDataAnimationDocumentation,
+        title: ExampleStrings.urlTitleDataAnimationDocumentation,
+        linkTitle: "JavaScript Data Animation Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

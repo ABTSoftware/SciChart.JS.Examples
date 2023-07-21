@@ -9,7 +9,6 @@ import {
     SvgAnnotationBase
 } from "scichart";
 
-
 export type TFinanceLegendTemplate = (legendAnnotation: FinChartLegendAnnotation) => string;
 
 export interface IFinChartLegendAnnotationOptions extends ISvgAnnotationBaseOptions {
@@ -141,7 +140,7 @@ const defaultFinanceLegendTemplate: TFinanceLegendTemplate = (la: FinChartLegend
     const outputStrings: string[] = [];
     const subSurface = la.sciFinanceChart.subCharts.find(study => study.id === la.paneId);
     let outputStr = "";
-    subSurface.renderableSeries.asArray().forEach(({dataSeries}) => {
+    subSurface.renderableSeries.asArray().forEach(({ dataSeries }) => {
         switch (dataSeries.type) {
             case EDataSeriesType.Ohlc: {
                 const openValues = (dataSeries as OhlcDataSeries).getNativeOpenValues();

@@ -18,7 +18,7 @@ const GalleryCard: React.FC<TProps> = props => {
     return (
         <div className={classes.GalleryItemCard}>
             <Link className={classes.GalleryItemCardImage} to={examplePath}>
-                <Tooltip title={<img src={imgPath} width={600} height={600} alt={seoTitle} />} >
+                <Tooltip title={<img src={imgPath} width={600} height={600} alt={seoTitle} />}>
                     <img src={imgPath} data-title={seoTitle} alt={seoTitle} />
                 </Tooltip>
                 <h5 className={classes.GalleryItemTitle}>{title}</h5>

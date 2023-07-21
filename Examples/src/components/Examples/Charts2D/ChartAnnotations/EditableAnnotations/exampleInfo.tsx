@@ -11,11 +11,13 @@ const description = `SciChart annotations are available for drag and drop, such 
 HorizontalLineAnnotation, VerticalLineAnnotation, CustomAnnotation`;
 const tips = [`Setting only one property isEditable give you access to change annotation`];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlEditableAnnotationsDocumentation,
-    title: ExampleStrings.urlTitleEditableAnnotations,
-    linkTitle: "Annotations API Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlEditableAnnotationsDocumentation,
+        title: ExampleStrings.urlTitleEditableAnnotations,
+        linkTitle: "Annotations API Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

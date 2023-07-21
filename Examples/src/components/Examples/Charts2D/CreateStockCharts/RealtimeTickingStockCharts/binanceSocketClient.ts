@@ -29,7 +29,10 @@ export type TTrade = {
     tradeId: number;
 };
 
-export const tradeToCandle = (candle: TRealtimePriceBar, curr: { trade: TTrade; firstCandle: TRealtimePriceBar }): TRealtimePriceBar => {
+export const tradeToCandle = (
+    candle: TRealtimePriceBar,
+    curr: { trade: TTrade; firstCandle: TRealtimePriceBar }
+): TRealtimePriceBar => {
     candle = candle ?? curr.firstCandle;
     const trade = curr.trade;
     const price = trade.price;
@@ -129,7 +132,7 @@ const parseKline = (kline: any) => {
         volume: parseFloat(kline.k.v),
         closeTime: kline.k.T,
         lastTradeSize: parseFloat(kline.k.v),
-        lastTradeBuyOrSell: undefined,
+        lastTradeBuyOrSell: undefined
     };
     return pb;
 };
@@ -184,7 +187,8 @@ const getRealtimeCandleStream = (symbol: string, interval: string) => {
     return combineLatest([trade$, latestCandle$]).pipe(
         skipWhile(([trade, candle]) => trade.eventTime < candle.eventTime),
         scan(
-            (acc: TRealtimePriceBar, cur: [TTrade, TRealtimePriceBar]) => tradeToCandle(acc, { trade: cur[0], firstCandle: cur[1] }),
+            (acc: TRealtimePriceBar, cur: [TTrade, TRealtimePriceBar]) =>
+                tradeToCandle(acc, { trade: cur[0], firstCandle: cur[1] }),
             null
         )
     );

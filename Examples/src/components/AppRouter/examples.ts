@@ -140,7 +140,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_Lidar3DPointCloudDemo,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
-            EXAMPLES_PAGES.featuredApps_scientificCharts_WaterfallChartDemo,
+            EXAMPLES_PAGES.featuredApps_scientificCharts_WaterfallChartDemo
         ]
     },
     {
@@ -151,9 +151,9 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts,
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
             EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
-            EXAMPLES_PAGES.chart2D_createStockCharts_DepthChart,
+            EXAMPLES_PAGES.chart2D_createStockCharts_DepthChart
         ]
-    },
+    }
 ];
 
 export const MENU_ITEMS_2D_ID = "MENU_ITEMS_2D_ID";
@@ -216,7 +216,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes,
             EXAMPLES_PAGES.featuredApps_featureDemos_axisTypes,
-            EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout,
+            EXAMPLES_PAGES.featuredApps_featureDemos_axisLayout
         ]
     },
     {
@@ -248,7 +248,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection,
-            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection
         ]
     },
     {
@@ -267,7 +267,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_filters_TrendMARatio,
             EXAMPLES_PAGES.chart2D_filters_CustomFilters,
-            EXAMPLES_PAGES.chart2D_filters_PercentageChange,
+            EXAMPLES_PAGES.chart2D_filters_PercentageChange
         ]
     },
     {
@@ -291,10 +291,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
     },
     {
         item: { id: "subchartsApi", name: "Subcharts API" },
-        submenu: [
-            EXAMPLES_PAGES.featuredApps_featureDemos_subchartsGrid,
-        ]
-    },
+        submenu: [EXAMPLES_PAGES.featuredApps_featureDemos_subchartsGrid]
+    }
 ];
 
 export const MENU_ITEMS_3D_ID = "MENU_ITEMS_3D_ID";
@@ -344,12 +342,7 @@ export const getParentMenuIds = (exampleId: string): string[] => {
         resMenuLevel.push(MENU_ITEMS_FEATURED_APPS_ID);
     }
 
-    return [
-        ...resMenuLevel,
-        ...resSubmenuLevel2D,
-        ...resSubmenuLevel3D,
-        ...resSubmenuLevelFeaturedApps,
-    ];
+    return [...resMenuLevel, ...resSubmenuLevel2D, ...resSubmenuLevel3D, ...resSubmenuLevelFeaturedApps];
 };
 
 export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {

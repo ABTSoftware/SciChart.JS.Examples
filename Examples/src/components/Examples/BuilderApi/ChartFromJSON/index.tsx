@@ -3,20 +3,23 @@ import { SciChartSurface, chartBuilder, TWebAssemblyChart } from "scichart";
 import classes from "../../styles/Examples.module.scss";
 import { ButtonGroup, Button, TextField } from "@material-ui/core";
 import { Alert, AlertTitle } from "@material-ui/lab";
+import { SciChartComponent } from "../../SciChartComponent";
 
-const divElementId = "chart";
-
-const drawExample = async (json: string, setErrors: (error: any)=> void): Promise<TWebAssemblyChart> => {
+const drawExample = async (
+    divElementId: string,
+    json: string,
+    setErrors: (error: any) => void
+): Promise<TWebAssemblyChart> => {
     try {
         // Build the SciChartSurface from Json passed in
         const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart(divElementId, json);
 
         return { sciChartSurface, wasmContext };
-    } catch(error) {
+    } catch (error) {
         const msg = (error as any).message;
         setErrors(msg);
         return { sciChartSurface: undefined, wasmContext: undefined };
-    };
+    }
 };
 
 const defaultJSON = `{
@@ -45,38 +48,36 @@ const defaultJSON = `{
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartFromJSON() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
     const [errors, setErrors] = React.useState<string>();
     const [json, setJSON] = React.useState<string>(defaultJSON);
-    const [buildRequested, setBuildRequested] = React.useState<boolean>(true);
+    const [currentChartConfig, setCurrentChartConfig] = React.useState<string>(defaultJSON);
 
-    React.useEffect(() => {
-        (async () => {
-            if (buildRequested) {
-                const res = await drawExample(json, setErrors);
-                setSciChartSurface(res.sciChartSurface);
-            }
-        })();
-        // Deleting sciChartSurface to prevent memory leak
-        return () => sciChartSurface?.delete();
-    }, [buildRequested]);
+    const Chart = React.useMemo(
+        () =>
+            React.memo((props: { chartConfig: string }) => {
+                console.log("Rebuild");
+                return (
+                    <SciChartComponent
+                        initFunction={(divId: string) => drawExample(divId, props.chartConfig, setErrors)}
+                        style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }}
+                    />
+                );
+            }),
+        [currentChartConfig]
+    );
 
     const handleChangeJSON = (event: React.ChangeEvent<{ value: string }>) => {
         const newValue = event.target.value;
         setJSON(newValue);
-        setBuildRequested(false);
     };
 
     const handleBuild = (event: any) => {
-        if (!buildRequested) {
-            setErrors("");
-            setBuildRequested(true);
-        }
+        setErrors("");
+        setCurrentChartConfig(json);
     };
 
     const loadMinimal = (event: any) => {
         setJSON(defaultJSON);
-        setBuildRequested(false);
     };
 
     const loadFull = (event: any) => {
@@ -177,7 +178,6 @@ export default function ChartFromJSON() {
                 }
             ]
         }`);
-        setBuildRequested(false);
     };
 
     const loadCentral = (event: any) => {
@@ -209,14 +209,13 @@ export default function ChartFromJSON() {
                 { "type": "ZoomPan" }
             ]
         }`);
-        setBuildRequested(false);
     };
 
     return (
         <div className={classes.ChartWrapper}>
             <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                <div id={divElementId} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }} />
-                <div style={{ position: "absolute", left: 20, top: 20, }} >
+                <Chart chartConfig={currentChartConfig} />
+                <div style={{ position: "absolute", left: 20, top: 20 }}>
                     {errors && (
                         <Alert key="0" severity="error">
                             <AlertTitle>Errors</AlertTitle>
@@ -224,30 +223,39 @@ export default function ChartFromJSON() {
                         </Alert>
                     )}
                 </div>
-                <div style={{ flexBasis: "50px"}} >
+                <div style={{ flexBasis: "50px" }}>
                     <div className={classes.FormControl}>
                         <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                            <Button id="eg1" onClick={loadMinimal}>Simple example</Button>
-                            <Button id="eg2" onClick={loadFull}>Full example</Button>
-                            <Button id="eg3" onClick={loadCentral}>Central Axes</Button>
+                            <Button id="eg1" onClick={loadMinimal}>
+                                Simple example
+                            </Button>
+                            <Button id="eg2" onClick={loadFull}>
+                                Full example
+                            </Button>
+                            <Button id="eg3" onClick={loadCentral}>
+                                Central Axes
+                            </Button>
                         </ButtonGroup>
                     </div>
                 </div>
-                <div style={{ flexBasis: "200px"}} >
+                <div style={{ flexBasis: "200px" }}>
                     <TextField
                         id="chartDef"
                         type="text"
                         fullWidth={true}
                         multiline={true}
-                        rows="10"
+                        minRows="10"
+                        maxRows="10"
                         variant="outlined"
                         value={json}
                         onChange={handleChangeJSON}
                     />
                 </div>
-                <div className={[classes.FormControl, classes.AlignRight].join(' ')} style={{ flexBasis: "50px" }} >
+                <div className={[classes.FormControl, classes.AlignRight].join(" ")} style={{ flexBasis: "50px" }}>
                     <ButtonGroup size="medium" color="primary" aria-label="small outlined button group">
-                        <Button className={classes.ButtonFilled} id="buildChart" onClick={handleBuild}>Apply</Button>
+                        <Button className={classes.ButtonFilled} id="buildChart" onClick={handleBuild}>
+                            Apply
+                        </Button>
                     </ButtonGroup>
                 </div>
             </div>

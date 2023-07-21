@@ -16,7 +16,7 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier
 } from "scichart";
-import {appTheme, ExampleDataProvider } from "scichart-example-dependencies";
+import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 const divElementId = "chart";
@@ -30,9 +30,8 @@ const drawExample = async () => {
     });
 
     // Add an XAxis, YAxis
-    const xAxis = new CategoryAxis(wasmContext);
+    const xAxis = new CategoryAxis(wasmContext, { labelProvider: new SmartDateLabelProvider() });
     xAxis.growBy = new NumberRange(0.01, 0.01);
-    xAxis.labelProvider = new SmartDateLabelProvider();
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
@@ -158,16 +157,28 @@ const newsBulletAnnotation = (x1: number): CustomAnnotation => {
     });
 };
 
-export default function TradeMarkers() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
     return <div id={divElementId} className={classes.ChartWrapper} />;

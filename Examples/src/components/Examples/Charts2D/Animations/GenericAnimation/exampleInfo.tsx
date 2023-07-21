@@ -9,11 +9,13 @@ const previewDescription = ``; //`Demonstrates how to run Generic Animation for 
 const description = `Generic Animation gives an opportunity to build complex animations and control progress of each animation separately`;
 const tips: string[] = ["Use START, CANCEL or RESTART buttons to see the control action of Generic Animation"];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlGenericAnimationDocumentation,
-    title: ExampleStrings.urlTitleGenericAnimationDocumentation,
-    linkTitle: "Generic Animation Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlGenericAnimationDocumentation,
+        title: ExampleStrings.urlTitleGenericAnimationDocumentation,
+        linkTitle: "Generic Animation Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

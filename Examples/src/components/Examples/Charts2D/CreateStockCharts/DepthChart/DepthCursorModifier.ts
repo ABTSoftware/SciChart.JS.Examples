@@ -1,5 +1,9 @@
 import { ChartModifierBase2D, IChartModifierBaseOptions } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
-import { TCursorTooltipSvgTemplate, TCursorTooltipDataTemplate, ICursorModifierOptions } from "scichart/Charting/ChartModifiers/CursorModifier";
+import {
+    TCursorTooltipSvgTemplate,
+    TCursorTooltipDataTemplate,
+    ICursorModifierOptions
+} from "scichart/Charting/ChartModifiers/CursorModifier";
 import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
 import { SeriesInfo } from "scichart/Charting/Model/ChartData/SeriesInfo";
 import { IThemeProvider } from "scichart/Charting/Themes/IThemeProvider";
@@ -90,8 +94,7 @@ export class DepthCursorModifier extends ChartModifierBase2D implements IRollove
     /**
      * @inheritDoc
      */
-    public applyTheme(themeProvider: IThemeProvider): void {
-    }
+    public applyTheme(themeProvider: IThemeProvider): void {}
     /**
      * @inheritDoc
      */
@@ -103,15 +106,23 @@ export class DepthCursorModifier extends ChartModifierBase2D implements IRollove
         this.xSellLineAnnotation = this.createLineAnnotation(this.sellColor, this.axisLabelFill, this.axisLabelStroke);
         this.ySellLineAnnotation = this.createLineAnnotation(this.sellColor, this.axisLabelFill, this.axisLabelStroke);
         this.ySellLineAnnotation.showLabel = true;
-        this.parentSurface.modifierAnnotations.add(this.xBuyLineAnnotation, this.yBuyLineAnnotation, this.xSellLineAnnotation, this.ySellLineAnnotation);
+        this.parentSurface.modifierAnnotations.add(
+            this.xBuyLineAnnotation,
+            this.yBuyLineAnnotation,
+            this.xSellLineAnnotation,
+            this.ySellLineAnnotation
+        );
         this.createMarkers();
-        this.parentSurface.modifierAnnotations.add(this.buySeries.rolloverModifierProps.marker, this.sellSeries.rolloverModifierProps.marker);
+        this.parentSurface.modifierAnnotations.add(
+            this.buySeries.rolloverModifierProps.marker,
+            this.sellSeries.rolloverModifierProps.marker
+        );
         this.buyLabel = this.createTextAnnotation(EHorizontalAnchorPoint.Right);
         this.sellLabel = this.createTextAnnotation(EHorizontalAnchorPoint.Left);
         this.parentSurface.modifierAnnotations.add(this.buyLabel, this.sellLabel);
         this.midLine = new VerticalLineAnnotation({
             stroke: "white",
-            strokeDashArray: [3,2],
+            strokeDashArray: [3, 2],
             showLabel: true,
             axisLabelFill: "white",
             labelPlacement: ELabelPlacement.Top
@@ -234,7 +245,7 @@ export class DepthCursorModifier extends ChartModifierBase2D implements IRollove
             axisLabelFill: this.axisLabelFill,
             axisLabelStroke: this.axisLabelStroke,
             crosshairStrokeDashArray: this.crosshairStrokeDashArray,
-            crosshairStrokeThickness: this.crosshairStrokeThickness,
+            crosshairStrokeThickness: this.crosshairStrokeThickness
         };
         Object.assign(json.options, options);
         return json;
@@ -261,7 +272,7 @@ export class DepthCursorModifier extends ChartModifierBase2D implements IRollove
     protected update() {
         if (this.mousePosition !== EMousePosition.SeriesArea) {
             this.getAnnotations().forEach(l => {
-                    l.isHidden = true;
+                l.isHidden = true;
             });
             this.buySeries.rolloverModifierProps.marker.isHidden = true;
             this.sellSeries.rolloverModifierProps.marker.isHidden = true;
@@ -279,7 +290,12 @@ export class DepthCursorModifier extends ChartModifierBase2D implements IRollove
                 l.isHidden = false;
             });
             const midPrice = this.getMidPrice();
-            const midCoord = translateToNotScaled(this.parentSurface.getXAxisById(this.xAxisId).getCurrentCoordinateCalculator().getCoordinate(midPrice));
+            const midCoord = translateToNotScaled(
+                this.parentSurface
+                    .getXAxisById(this.xAxisId)
+                    .getCurrentCoordinateCalculator()
+                    .getCoordinate(midPrice)
+            );
             this.xBuyLineAnnotation.x1 = midCoord;
             this.xSellLineAnnotation.x1 = midCoord;
             this.yBuyLineAnnotation.y1 = 0;
@@ -288,7 +304,7 @@ export class DepthCursorModifier extends ChartModifierBase2D implements IRollove
 
             const buyHitTestInfo = this.hitTestRenderableSeries(this.buySeries, this.mousePoint);
             if (buyHitTestInfo && buyHitTestInfo.isWithinDataBounds) {
-                this.updateBuy(buyHitTestInfo)
+                this.updateBuy(buyHitTestInfo);
                 // Find corresponding sell value
                 const xSell = (midCoord + (midCoord - this.xBuyLineAnnotation.x2)) * DpiHelper.PIXEL_RATIO;
                 const sellHitTestInfo = this.sellSeries.hitTestProvider.hitTestXSlice(xSell, this.mousePoint.y);
@@ -320,7 +336,9 @@ export class DepthCursorModifier extends ChartModifierBase2D implements IRollove
         this.yBuyLineAnnotation.y2 = y;
         this.buyLabel.x1 = this.xBuyLineAnnotation.x1;
         this.buyLabel.y1 = y;
-        this.buyLabel.text = this.parentSurface.getYAxisById(this.yAxisId).labelProvider.formatCursorLabel(buyHitTestInfo.yValue);
+        this.buyLabel.text = this.parentSurface
+            .getYAxisById(this.yAxisId)
+            .labelProvider.formatCursorLabel(buyHitTestInfo.yValue);
         this.buySeries.rolloverModifierProps.marker.isHidden = false;
         this.buySeries.rolloverModifierProps.marker.x1 = buyHitTestInfo.xValue;
         this.buySeries.rolloverModifierProps.marker.y1 = buyHitTestInfo.yValue;
@@ -337,14 +355,16 @@ export class DepthCursorModifier extends ChartModifierBase2D implements IRollove
         this.ySellLineAnnotation.y2 = y;
         this.sellLabel.x1 = this.xBuyLineAnnotation.x1;
         this.sellLabel.y1 = y;
-        this.sellLabel.text = this.parentSurface.getYAxisById(this.yAxisId).labelProvider.formatCursorLabel(sellHitTestInfo.yValue);
+        this.sellLabel.text = this.parentSurface
+            .getYAxisById(this.yAxisId)
+            .labelProvider.formatCursorLabel(sellHitTestInfo.yValue);
         this.sellSeries.rolloverModifierProps.marker.isHidden = false;
         this.sellSeries.rolloverModifierProps.marker.x1 = sellHitTestInfo.xValue;
         this.sellSeries.rolloverModifierProps.marker.y1 = sellHitTestInfo.yValue;
     }
 
     protected createMarkers() {
-        [this.buySeries, this.sellSeries].forEach( rs => {
+        [this.buySeries, this.sellSeries].forEach(rs => {
             rs.rolloverModifierProps.marker = new RolloverMarkerSvgAnnotation(rs.rolloverModifierProps);
             rs.rolloverModifierProps.marker.xAxisId = rs.xAxisId;
             rs.rolloverModifierProps.marker.yAxisId = rs.yAxisId;
@@ -369,7 +389,7 @@ export class DepthCursorModifier extends ChartModifierBase2D implements IRollove
         });
     }
 
-    protected createTextAnnotation(horizontalAnchorPoint: EHorizontalAnchorPoint){
+    protected createTextAnnotation(horizontalAnchorPoint: EHorizontalAnchorPoint) {
         return new TextAnnotation({
             xCoordinateMode: ECoordinateMode.Pixel,
             yCoordinateMode: ECoordinateMode.Pixel,
@@ -377,7 +397,7 @@ export class DepthCursorModifier extends ChartModifierBase2D implements IRollove
             textColor: "white",
             verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
             horizontalAnchorPoint
-        })
+        });
     }
 
     protected isVerticalChart() {

@@ -1,4 +1,4 @@
-import {RandomWalkGenerator} from "scichart-example-dependencies";
+import { RandomWalkGenerator } from "scichart-example-dependencies";
 
 export type TVarPoint = {
     date: number;
@@ -9,16 +9,16 @@ export type TVarPoint = {
     var2: number;
     var1: number;
     varMin: number;
-}
+};
 
 export function getVarianceData(): TVarPoint[] {
     const varianceData: TVarPoint[] = [];
     const startDate = 1546300800; // 1st Jan 2019
-    const dateStep = 1546387200 - startDate // one day;
+    const dateStep = 1546387200 - startDate; // one day;
 
     const length: number = 10;
     const yValues: number[] = new RandomWalkGenerator().Seed(923478).getRandomWalkSeries(length).yValues;
-    for(let i = 0; i < length; i++) {
+    for (let i = 0; i < length; i++) {
         const date = startDate + dateStep * i;
 
         let varMax: number = NaN;
@@ -37,7 +37,7 @@ export function getVarianceData(): TVarPoint[] {
             varMin = yValues[i] - (i - 5) * 0.3;
         }
 
-        varianceData.push({date, actual: yValues[i], varMax, var4, var3, var2, var1, varMin});
+        varianceData.push({ date, actual: yValues[i], varMax, var4, var3, var2, var1, varMin });
     }
 
     return varianceData;

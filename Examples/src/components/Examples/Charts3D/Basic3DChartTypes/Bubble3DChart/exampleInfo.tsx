@@ -12,18 +12,22 @@ const tips = [
     PointMetadata also allows you to tag individual bubbles with a business object of any type.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlBubble3DChartDocumentation,
-    title: ExampleStrings.urlTitleBubble3DChartDocumentation,
-    linkTitle: "JavaScript 3D Bubble Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlBubble3DChartDocumentation,
+        title: ExampleStrings.urlTitleBubble3DChartDocumentation,
+        linkTitle: "JavaScript 3D Bubble Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Our team demonstrates how to create a <strong>JavaScript 3D Bubble Chart</strong> using SciChart.js, capable of creating detailed{" "}
+        Our team demonstrates how to create a <strong>JavaScript 3D Bubble Chart</strong> using SciChart.js, capable of
+        creating detailed{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="3D JavaScript Charts">
             3D JavaScript Charts
-        </a>.
+        </a>
+        .
     </p>
 );
 

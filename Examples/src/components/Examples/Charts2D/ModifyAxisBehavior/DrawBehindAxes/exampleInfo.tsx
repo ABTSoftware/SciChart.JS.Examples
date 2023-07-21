@@ -8,11 +8,13 @@ import exampleImage from "./javascript-draw-behind-axes.jpg";
 const description = `Demonstrates a chart where the series can draw into the axes area.`;
 const tips = [`You can also draw axes over the chart area, and in other positions, buy using Inner Axes`];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDrawBehindAxesDocumentation,
-    title: ExampleStrings.urlTitleDrawBehindAxesDocumentation,
-    linkTitle: "Central Axis documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDrawBehindAxesDocumentation,
+        title: ExampleStrings.urlTitleDrawBehindAxesDocumentation,
+        linkTitle: "Central Axis documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

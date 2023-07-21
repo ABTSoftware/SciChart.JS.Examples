@@ -34,7 +34,7 @@ import {
     FastOhlcRenderableSeries
 } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import {appTheme, simpleBinanceRestClient} from "scichart-example-dependencies";
+import { appTheme, simpleBinanceRestClient } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 const divElementId = "chart";
@@ -270,20 +270,39 @@ class VolumePaletteProvider implements IFillPaletteProvider {
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function CandlestickChart() {
-    const itemsToDelete: IDeletable[] = [];
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const sciChartOverviewRef = React.useRef<SciChartOverview>();
+
     const [preset, setPreset] = React.useState<number>(0);
     const [candlestickChartSeries, setCandlestickChartSeries] = React.useState<FastCandlestickRenderableSeries>();
     const [ohlcChartSeries, setOhlcChartSeries] = React.useState<FastOhlcRenderableSeries>();
 
     React.useEffect(() => {
-        (async () => {
-            const { sciChartSurface, overview, candlestickSeries, ohlcSeries } = await drawExample();
-            setCandlestickChartSeries(candlestickSeries);
-            setOhlcChartSeries(ohlcSeries);
-            itemsToDelete.push(sciChartSurface, overview);
-        })();
+        const chartInitializationPromise = drawExample().then(
+            ({ sciChartSurface, overview, candlestickSeries, ohlcSeries }) => {
+                setCandlestickChartSeries(candlestickSeries);
+                setOhlcChartSeries(ohlcSeries);
+                sciChartSurfaceRef.current = sciChartSurface;
+                sciChartOverviewRef.current = overview;
+            }
+        );
         return () => {
-            itemsToDelete.forEach(item => item.delete());
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                sciChartOverviewRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                sciChartOverviewRef.current = undefined;
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                sciChartOverviewRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                sciChartOverviewRef.current = undefined;
+            });
         };
     }, []);
 

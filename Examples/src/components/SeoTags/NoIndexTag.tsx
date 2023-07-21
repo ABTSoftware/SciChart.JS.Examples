@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 const NoIndexTag: React.FC = () => {
     return (
         <Helmet>
-            <meta name="robots" content="noindex"/>
+            <meta name="robots" content="noindex" />
         </Helmet>
     );
 };

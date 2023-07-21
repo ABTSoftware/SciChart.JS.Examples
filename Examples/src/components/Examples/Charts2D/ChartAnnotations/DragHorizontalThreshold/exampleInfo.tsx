@@ -11,16 +11,18 @@ const tips = [
     ` All Annotations have an isEditable property. When true, the annotation can be dragged and resized. Chart colouring may be changed via a rule using the PaletteProvider API.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlAnnotationsDocumentation,
-    title: ExampleStrings.urlTitleAnnotationsDocumentation,
-    linkTitle: "Annotations API Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlAnnotationsDocumentation,
+        title: ExampleStrings.urlTitleAnnotationsDocumentation,
+        linkTitle: "Annotations API Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Demonstrates interaction by dragging vertical and horizontal line thresholds.{" "}
-        As the thresholds move, the chart colour updates.
+        Demonstrates interaction by dragging vertical and horizontal line thresholds. As the thresholds move, the chart
+        colour updates.
     </p>
 );
 

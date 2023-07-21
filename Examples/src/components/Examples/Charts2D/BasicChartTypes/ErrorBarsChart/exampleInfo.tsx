@@ -10,14 +10,16 @@ const description = `Error Bars on JavaScript Charts are useful to display uncer
 const tips = [
     `To change the size of the cap, use the dataPointWidth and dataPointWidthMode properties.`,
     `It is possible to change orientation of error bars.`,
-    `You can also configure visibility of different part of an error bar.`,
+    `You can also configure visibility of different part of an error bar.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlErrorBarsChartDocumentation,
-    title: ExampleStrings.urlTitleErrorBarsChartDocumentation,
-    linkTitle: "JavaScript Impulse Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlErrorBarsChartDocumentation,
+        title: ExampleStrings.urlTitleErrorBarsChartDocumentation,
+        linkTitle: "JavaScript Impulse Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

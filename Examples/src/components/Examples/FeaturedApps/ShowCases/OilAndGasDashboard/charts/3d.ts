@@ -28,9 +28,15 @@ export default async function init3dChart(id: string) {
 
     const defaultPointMarker = new SpherePointMarker3D(wasmContext, { size: 10, fill: "#00FF00" });
     const series = new ScatterRenderableSeries3D(wasmContext, { pointMarker: defaultPointMarker });
-    const seriesX = new ScatterRenderableSeries3D(wasmContext, { pointMarker: new QuadPointMarker(wasmContext, { size: 10, fill: "#00FF00" }) });
-    const seriesY = new ScatterRenderableSeries3D(wasmContext, { pointMarker: new QuadPointMarker(wasmContext, { size: 10, fill: "#00FF00" }) });
-    const seriesZ = new ScatterRenderableSeries3D(wasmContext, { pointMarker: new QuadPointMarker(wasmContext, { size: 10, fill: "#00FF00" }) });
+    const seriesX = new ScatterRenderableSeries3D(wasmContext, {
+        pointMarker: new QuadPointMarker(wasmContext, { size: 10, fill: "#00FF00" })
+    });
+    const seriesY = new ScatterRenderableSeries3D(wasmContext, {
+        pointMarker: new QuadPointMarker(wasmContext, { size: 10, fill: "#00FF00" })
+    });
+    const seriesZ = new ScatterRenderableSeries3D(wasmContext, {
+        pointMarker: new QuadPointMarker(wasmContext, { size: 10, fill: "#00FF00" })
+    });
     const data = getData(wasmContext);
     series.dataSeries = data.xyzDataSeries;
     seriesX.dataSeries = data.xyzDataSeriesX;
@@ -85,7 +91,6 @@ function getData(wasmContext: TSciChart3D) {
 }
 
 function getColor(colors: number[], coord: number): number {
-
     const divider = 350 / 7;
     const index = Math.ceil(coord / divider) - 1;
     return colors[index];

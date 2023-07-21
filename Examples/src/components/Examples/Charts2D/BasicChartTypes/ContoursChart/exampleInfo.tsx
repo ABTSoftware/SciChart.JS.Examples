@@ -13,18 +13,21 @@ const tips = [
 on UniformContoursRenderableSeries to get a good visual.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlContourChartDocumentation,
-    title: ExampleStrings.urlTitleContourChartDocumentation,
-    linkTitle: "JavaScript Contours Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlContourChartDocumentation,
+        title: ExampleStrings.urlTitleContourChartDocumentation,
+        linkTitle: "JavaScript Contours Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
         Our Contours Chart example demonstrates how to create a <strong>JavaScript Contour-map Chart</strong> using our{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="powerful JavaScript Chart Library">
             powerful JavaScript Chart Library
-        </a>.
+        </a>
+        .
     </p>
 );
 

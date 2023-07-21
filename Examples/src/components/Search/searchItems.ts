@@ -1,4 +1,4 @@
-import {ALL_MENU_ITEMS, TMenuItem} from "../AppRouter/examples";
+import { ALL_MENU_ITEMS, TMenuItem } from "../AppRouter/examples";
 
 export type TSearchItem = {
     category: string;
@@ -16,8 +16,8 @@ const generateSearchItems = (allMenuItems: TMenuItem[]) => {
                     category: menuItem.item.name,
                     title: smItem.title,
                     link: smItem.path,
-                    keywords: smItem.metaKeywords,
-            });
+                    keywords: smItem.metaKeywords
+                });
             }
         });
     });

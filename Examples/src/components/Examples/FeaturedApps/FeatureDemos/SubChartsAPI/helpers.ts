@@ -107,9 +107,11 @@ export const appendData = (
             break;
         case EDataSeriesType.Xyy:
             const xyySeries = dataSeries as XyyDataSeries;
-            xyySeries.appendRange(xValues, 
-                GetRandomData(xValues, positive, xyySeries.getNativeYValues().get(lastIndex)), 
-                GetRandomData(xValues, positive, xyySeries.getNativeY1Values().get(lastIndex)));
+            xyySeries.appendRange(
+                xValues,
+                GetRandomData(xValues, positive, xyySeries.getNativeYValues().get(lastIndex)),
+                GetRandomData(xValues, positive, xyySeries.getNativeY1Values().get(lastIndex))
+            );
             if (xyySeries.count() > pointsOnChart) {
                 xyySeries.removeRange(0, pointsPerUpdate);
             }
@@ -118,7 +120,7 @@ export const appendData = (
             const xyzSeries = dataSeries as XyzDataSeries;
             xyzSeries.appendRange(
                 xValues,
-                GetRandomData(xValues, positive, xyySeries.getNativeYValues().get(lastIndex)), 
+                GetRandomData(xValues, positive, xyySeries.getNativeYValues().get(lastIndex)),
                 GetRandomData(xValues, positive, xyySeries.getNativeY1Values().get(lastIndex)).map(z => Math.abs(z / 5))
             );
             if (xyzSeries.count() > pointsOnChart) {

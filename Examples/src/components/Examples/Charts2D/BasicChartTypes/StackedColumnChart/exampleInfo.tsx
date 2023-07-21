@@ -12,18 +12,21 @@ const tips = [
     `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much space the column takes up.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlStackedColumnChartDocumentation,
-    title: ExampleStrings.urlTitleStackedColumnChartDocumentation,
-    linkTitle: "JavaScript Stacked Column Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlStackedColumnChartDocumentation,
+        title: ExampleStrings.urlTitleStackedColumnChartDocumentation,
+        linkTitle: "JavaScript Stacked Column Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
         The example on this page demonstrates how to create a <strong>JavaScript Stacked Column Chart</strong> using our{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
             feature-rich JavaScript Chart Library
-        </a>, SciChart.js.
+        </a>
+        , SciChart.js.
     </p>
 );
 

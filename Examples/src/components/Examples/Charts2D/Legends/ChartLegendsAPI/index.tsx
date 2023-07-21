@@ -1,6 +1,6 @@
 import * as React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
-import {appTheme, ExampleDataProvider} from "scichart-example-dependencies";
+import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -117,9 +117,9 @@ const orientationSelect = [
 ];
 
 export default function ChartLegendsAPI() {
-    const [chartReady, setChartReady] = React.useState(false);
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
-    const [legendModifier, setLegendModifier] = React.useState<LegendModifier>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const legendModifierRef = React.useRef<LegendModifier>();
+
     const [placementValue, setPlacementValue] = React.useState<ELegendPlacement>(ELegendPlacement.TopLeft);
     const [orientationValue, setOrientationValue] = React.useState<ELegendOrientation>(ELegendOrientation.Vertical);
     const [showLegendValue, setShowLegendValue] = React.useState(true);
@@ -127,44 +127,67 @@ export default function ChartLegendsAPI() {
     const [showSeriesMarkersValue, setShowSeriesMarkersValue] = React.useState(true);
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-            setLegendModifier(res.legendModifier);
-            setChartReady(true);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface, legendModifier }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+            legendModifierRef.current = legendModifier;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                legendModifierRef.current = undefined;
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                legendModifierRef.current = undefined;
+            });
+        };
     }, []);
 
     const handleChangePlacement = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const newValue = +event.target.value as ELegendPlacement;
-        setPlacementValue(newValue);
-        legendModifier.sciChartLegend.placement = newValue;
+        if (legendModifierRef.current) {
+            const newValue = +event.target.value as ELegendPlacement;
+            setPlacementValue(newValue);
+            legendModifierRef.current.sciChartLegend.placement = newValue;
+        }
     };
 
     const handleChangeOrientation = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const newValue = +event.target.value as ELegendOrientation;
-        setOrientationValue(newValue);
-        legendModifier.sciChartLegend.orientation = newValue;
+        if (legendModifierRef.current) {
+            const newValue = +event.target.value as ELegendOrientation;
+            setOrientationValue(newValue);
+            legendModifierRef.current.sciChartLegend.orientation = newValue;
+        }
     };
 
     const handleChangeShowLegend = (event: React.ChangeEvent<{ checked: boolean }>) => {
-        const newValue = event.target.checked;
-        setShowLegendValue(newValue);
-        legendModifier.sciChartLegend.showLegend = newValue;
+        if (legendModifierRef.current) {
+            const newValue = event.target.checked;
+            setShowLegendValue(newValue);
+            legendModifierRef.current.sciChartLegend.showLegend = newValue;
+        }
     };
 
     const handleChangeShowCheckboxes = (event: React.ChangeEvent<{ checked: boolean }>) => {
-        const newValue = event.target.checked;
-        setShowCheckboxesValue(newValue);
-        legendModifier.sciChartLegend.showCheckboxes = newValue;
+        if (legendModifierRef.current) {
+            const newValue = event.target.checked;
+            setShowCheckboxesValue(newValue);
+            legendModifierRef.current.sciChartLegend.showCheckboxes = newValue;
+        }
     };
 
     const handleChangeShowSeriesMarkers = (event: React.ChangeEvent<{ checked: boolean }>) => {
-        const newValue = event.target.checked;
-        setShowSeriesMarkersValue(newValue);
-        legendModifier.sciChartLegend.showSeriesMarkers = newValue;
+        if (legendModifierRef.current) {
+            const newValue = event.target.checked;
+            setShowSeriesMarkersValue(newValue);
+            legendModifierRef.current.sciChartLegend.showSeriesMarkers = newValue;
+        }
     };
 
     const useStyles = makeStyles(theme => ({
@@ -201,35 +224,18 @@ export default function ChartLegendsAPI() {
                     {/*The toolbar is here*/}
                     <div className={localClasses.toolbar}>
                         Show Legend?
-                        <Checkbox
-                            checked={showLegendValue}
-                            onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
-                                if (chartReady) handleChangeShowLegend(e);
-                            }}
-                        />
+                        <Checkbox checked={showLegendValue} onChange={handleChangeShowLegend} />
                         Show Visibility Checkboxes?
-                        <Checkbox
-                            checked={showCheckboxesValue}
-                            onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
-                                if (chartReady) handleChangeShowCheckboxes(e);
-                            }}
-                        />
+                        <Checkbox checked={showCheckboxesValue} onChange={handleChangeShowCheckboxes} />
                         Show Series Markers?
-                        <Checkbox
-                            checked={showSeriesMarkersValue}
-                            onChange={(e: React.ChangeEvent<{ checked: boolean }>) => {
-                                if (chartReady) handleChangeShowSeriesMarkers(e);
-                            }}
-                        />
+                        <Checkbox checked={showSeriesMarkersValue} onChange={handleChangeShowSeriesMarkers} />
                         <label id="sciChartPlacement-label">
                             Legend Placement
                             <select
                                 className={localClasses.combobox}
                                 id="sciChartPlacement"
                                 value={placementValue}
-                                onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                                    if (chartReady) handleChangePlacement(e);
-                                }}
+                                onChange={handleChangePlacement}
                             >
                                 {placementSelect.map(el => (
                                     <option key={el.value} value={el.value}>
@@ -244,9 +250,7 @@ export default function ChartLegendsAPI() {
                                 className={localClasses.combobox}
                                 id="sciChartOrientation"
                                 value={orientationValue}
-                                onChange={(e: React.ChangeEvent<{ value: unknown }>) => {
-                                    if (chartReady) handleChangeOrientation(e);
-                                }}
+                                onChange={handleChangeOrientation}
                             >
                                 {orientationSelect.map(el => (
                                     <option key={el.value} value={el.value}>

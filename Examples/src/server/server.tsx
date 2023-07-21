@@ -24,8 +24,7 @@ const targetDir = defaultConfig.buildConfig.targetDir;
 
 function handleRender(req: Request, res: Response) {
     if (req.query["codesandbox"]) {
-        if (renderCodeSandBoxRedirect(req, res))
-            return;
+        if (renderCodeSandBoxRedirect(req, res)) return;
     }
     const sheets = new ServerStyleSheets();
 

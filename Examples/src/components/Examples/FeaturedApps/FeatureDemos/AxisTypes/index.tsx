@@ -1,9 +1,9 @@
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import * as React from "react";
 import { TBinanceCandleData } from "../../../../../commonTypes/TBinanceCandleData";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 import {
     CategoryAxis,
@@ -35,7 +35,13 @@ import {
 
 const divElementId = "chart";
 
-const colorStrings = [appTheme.VividSkyBlue, appTheme.VividPink, appTheme.MutedTeal, appTheme.VividOrange, appTheme.VividBlue];
+const colorStrings = [
+    appTheme.VividSkyBlue,
+    appTheme.VividPink,
+    appTheme.MutedTeal,
+    appTheme.VividOrange,
+    appTheme.VividBlue
+];
 const colors = colorStrings.map(c => parseColorToUIntArgb(c + "AA"));
 
 const drawExample = async () => {
@@ -43,13 +49,12 @@ const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
-
-    // Category Axis - measures using index not value.
-    const xAxis = new CategoryAxis(wasmContext, { id: "XCategory" });
     const labelProvider = new TextLabelProvider({
         labels: ["Bitcoin", "Ethereum", "XRP", "Cardano", "Dogecoin"]
     });
-    xAxis.labelProvider = labelProvider;
+    // Category Axis - measures using index not value.
+    const xAxis = new CategoryAxis(wasmContext, { id: "XCategory", labelProvider });
+
     xAxis.labelStyle.fontSize = 18;
     xAxis.labelStyle.alignment = ELabelAlignment.Center;
     xAxis.labelStyle.padding = new Thickness(2, 1, 2, 1);
@@ -164,25 +169,39 @@ const useStyles = makeStyles(theme => ({
         color: appTheme.ForegroundColor
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function FeatureAxisTypes() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+
     const [labelProvider, setLabelProvider] = React.useState<TextLabelProvider>();
     const [preset, setPreset] = React.useState<number>(0);
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-            setLabelProvider(res.labelProvider);
-        })();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface, labelProvider }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+            setLabelProvider(labelProvider);
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                sciChartSurfaceRef.current = undefined
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                sciChartSurfaceRef.current = undefined
+            });
+        };
     }, []);
 
     const handlePreset = (event: any, value: number) => {
@@ -221,9 +240,15 @@ export default function FeatureAxisTypes() {
                         color="primary"
                         aria-label="small outlined button group"
                     >
-                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>Multi-Line</ToggleButton>
-                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>Single Line Rotated</ToggleButton>
-                        <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>Multi-Line Rotated</ToggleButton>
+                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
+                            Multi-Line
+                        </ToggleButton>
+                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
+                            Single Line Rotated
+                        </ToggleButton>
+                        <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>
+                            Multi-Line Rotated
+                        </ToggleButton>
                     </ToggleButtonGroup>
                 </div>
                 <div className={localClasses.chartArea} id={divElementId}></div>

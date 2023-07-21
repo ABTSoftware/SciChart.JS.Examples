@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import {
     CentralAxesLayoutManager,
     EAnimationType,
@@ -45,76 +45,97 @@ const drawExample = async () => {
     sciChartSurface.layoutManager = new CentralAxesLayoutManager(options);
 
     // Configure x,y axis with central layout - oscilloscope style
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(-5, 5),
-        isInnerAxis: true, // required for central axis
-        axisAlignment: EAxisAlignment.Top,
-        labelStyle: {
-            color: appTheme.PaleSkyBlue,
-        },
-        axisBorder: {
-            borderTop: 1,
-            color: appTheme.VividSkyBlue
-        }
-    }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            visibleRange: new NumberRange(-5, 5),
+            isInnerAxis: true, // required for central axis
+            axisAlignment: EAxisAlignment.Top,
+            labelStyle: {
+                color: appTheme.PaleSkyBlue
+            },
+            axisBorder: {
+                borderTop: 1,
+                color: appTheme.VividSkyBlue
+            }
+        })
+    );
 
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(-5, 5),
-        isInnerAxis: true, // required for central axis
-        axisAlignment: EAxisAlignment.Left,
-        labelStyle: {
-            color: appTheme.PaleSkyBlue,
-        },
-        axisBorder: {
-            borderLeft: 1,
-            color: appTheme.VividSkyBlue
-        }
-    }));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            visibleRange: new NumberRange(-5, 5),
+            isInnerAxis: true, // required for central axis
+            axisAlignment: EAxisAlignment.Left,
+            labelStyle: {
+                color: appTheme.PaleSkyBlue
+            },
+            axisBorder: {
+                borderLeft: 1,
+                color: appTheme.VividSkyBlue
+            }
+        })
+    );
 
     // Add a line series
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        drawNaNAs: ELineDrawMode.PolyLine,
-        dataSeries: getButterflyCurve(wasmContext, 20000),
-        isDigitalLine: false,
-        stroke: appTheme.VividTeal,
-        animation: { type: EAnimationType.Fade, options: { duration: 500 }}
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            drawNaNAs: ELineDrawMode.PolyLine,
+            dataSeries: getButterflyCurve(wasmContext, 20000),
+            isDigitalLine: false,
+            stroke: appTheme.VividTeal,
+            animation: { type: EAnimationType.Fade, options: { duration: 500 } }
+        })
+    );
 
     // Add title annotation
-    sciChartSurface.annotations.add(new TextAnnotation({
-        text: "SciChart.js allows axis layout customisation including Central axis",
-        fontSize: 16,
-        textColor: appTheme.ForegroundColor,
-        x1: 0,
-        xCoordShift: 10,
-        y1: 0,
-        yCoordShift: 10,
-        opacity: 0.77,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-        xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
-    }));
+    sciChartSurface.annotations.add(
+        new TextAnnotation({
+            text: "SciChart.js allows axis layout customisation including Central axis",
+            fontSize: 16,
+            textColor: appTheme.ForegroundColor,
+            x1: 0,
+            xCoordShift: 10,
+            y1: 0,
+            yCoordShift: 10,
+            opacity: 0.77,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative
+        })
+    );
 
     // Add some interaction modifiers
     sciChartSurface.chartModifiers.add(
         new ZoomPanModifier(),
         new PinchZoomModifier(),
         new MouseWheelZoomModifier(),
-        new ZoomExtentsModifier());
+        new ZoomExtentsModifier()
+    );
 
     return { sciChartSurface, wasmContext };
 };
 
-export default function CentralAxes() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
     return <div id={divElementId} className={classes.ChartWrapper} />;

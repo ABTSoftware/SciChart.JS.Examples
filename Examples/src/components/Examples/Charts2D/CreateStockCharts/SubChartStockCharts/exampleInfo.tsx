@@ -16,16 +16,19 @@ const tips = [
     incredible real-time performance.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDocumentationHome,
-    title: ExampleStrings.titleDocumentationHome,
-    linkTitle: "SciChart.js Documentation Home"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL chart surface.{" "}
-        This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors are synchronised between the charts.{" "}
+        Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL
+        chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors
+        are synchronised between the charts.{" "}
     </p>
 );
 

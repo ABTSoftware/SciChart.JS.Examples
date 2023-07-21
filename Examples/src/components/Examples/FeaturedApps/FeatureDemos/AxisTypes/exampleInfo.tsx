@@ -7,21 +7,19 @@ import exampleImage from "./javascript-axis-types.jpg";
 
 const previewDescription = `Demonstrates The different axis types available in Scichart, and some of the options for configuring them`;
 const description = ``;
-const tips = [
-    ``,
-    ``
-];
+const tips = [``, ``];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlAxisDocumentation,
-    title: ExampleStrings.urlTitleAxisDocumentation,
-    linkTitle: "Scichart.js Axis Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlAxisDocumentation,
+        title: ExampleStrings.urlTitleAxisDocumentation,
+        linkTitle: "Scichart.js Axis Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High
-        Performance{" "}
+        Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>

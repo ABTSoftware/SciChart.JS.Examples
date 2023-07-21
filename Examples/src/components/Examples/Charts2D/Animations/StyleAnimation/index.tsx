@@ -11,8 +11,8 @@ import classes from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { BandAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/BandAnimation";
-import {makeStyles} from "@material-ui/core/styles";
-import {appTheme} from "scichart-example-dependencies";
+import { makeStyles } from "@material-ui/core/styles";
+import { appTheme } from "scichart-example-dependencies";
 
 const divElementId = "chart";
 
@@ -32,7 +32,6 @@ const POINTS = 100;
 const STEP = (3 * Math.PI) / POINTS;
 
 const drawExample = async () => {
-
     // create a chart with X, Y axis
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
@@ -65,7 +64,6 @@ const drawExample = async () => {
 
     // Animate both the data & the style of the chart, using a style animation
     const animateChartStyle = (isStyle1: boolean) => {
-
         xValues = [];
         yValues = [];
         y1Values = [];
@@ -102,7 +100,7 @@ const drawExample = async () => {
                     fill: isStyle1 ? fillColor1 : fillColor1b,
                     fillY1: isStyle1 ? fillColor2 : fillColor2b
                 },
-                dataSeries: new XyyDataSeries(wasmContext, { xValues, yValues, y1Values }),
+                dataSeries: new XyyDataSeries(wasmContext, { xValues, yValues, y1Values })
             })
         );
     };
@@ -134,7 +132,7 @@ const useStyles = makeStyles(theme => ({
         color: appTheme.ForegroundColor
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
@@ -143,7 +141,7 @@ const useStyles = makeStyles(theme => ({
 export default function StyleAnimation() {
     const [preset, setPreset] = React.useState<number>(0);
     const [rs, setRs] = React.useState<IRenderableSeries>();
-    const [controls, setControls] = React.useState( { animateChartStyle: (state: boolean) => { }});
+    const [controls, setControls] = React.useState({ animateChartStyle: (state: boolean) => {} });
 
     React.useEffect(() => {
         let sciChartSurface: SciChartSurface;
@@ -170,15 +168,20 @@ export default function StyleAnimation() {
             <div className={localClasses.flexOuterContainer}>
                 <div className={localClasses.toolbarRow}>
                     <ToggleButtonGroup
-                            exclusive
-                            value={preset}
-                            onChange={handleToggleButtonChanged}
-                            size="medium"
-                            color="primary"
-                            aria-label="small outlined button group">
-                            <ToggleButton value={0} style={{color: appTheme.ForegroundColor}}>Animate Styles 1</ToggleButton>
-                            <ToggleButton value={1} style={{color: appTheme.ForegroundColor}}>Animate Styles 2</ToggleButton>
-                        </ToggleButtonGroup>
+                        exclusive
+                        value={preset}
+                        onChange={handleToggleButtonChanged}
+                        size="medium"
+                        color="primary"
+                        aria-label="small outlined button group"
+                    >
+                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
+                            Animate Styles 1
+                        </ToggleButton>
+                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
+                            Animate Styles 2
+                        </ToggleButton>
+                    </ToggleButtonGroup>
                 </div>
                 <div className={localClasses.chartArea} id={divElementId}></div>
             </div>

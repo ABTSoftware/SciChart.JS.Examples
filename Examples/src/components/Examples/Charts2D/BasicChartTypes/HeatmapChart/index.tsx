@@ -1,8 +1,8 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {Button} from "@material-ui/core";
-import {appTheme} from "scichart-example-dependencies";
-import {makeStyles} from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+import { appTheme } from "scichart-example-dependencies";
+import { makeStyles } from "@material-ui/core/styles";
 import {
     NumericAxis,
     SciChartSurface,
@@ -25,7 +25,7 @@ const HEIGHT = 200;
 // Draws a Heatmap chart in real-time over the <div id={divElementId}>
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -52,13 +52,13 @@ const drawExample = async () => {
             minimum: 0,
             maximum: 200,
             gradientStops: [
-                {offset: 1, color: appTheme.VividPink},
-                {offset: 0.9, color: appTheme.VividOrange},
-                {offset: 0.7, color: appTheme.MutedRed},
-                {offset: 0.5, color: appTheme.VividGreen},
-                {offset: 0.3, color: appTheme.VividSkyBlue},
-                {offset: 0.2, color: appTheme.Indigo},
-                {offset: 0, color: appTheme.DarkIndigo}
+                { offset: 1, color: appTheme.VividPink },
+                { offset: 0.9, color: appTheme.VividOrange },
+                { offset: 0.7, color: appTheme.MutedRed },
+                { offset: 0.5, color: appTheme.VividGreen },
+                { offset: 0.3, color: appTheme.VividSkyBlue },
+                { offset: 0.2, color: appTheme.Indigo },
+                { offset: 0, color: appTheme.DarkIndigo }
             ]
         })
     });
@@ -97,12 +97,12 @@ const drawExample = async () => {
         timerId = undefined;
     };
 
-    return {sciChartSurface, wasmContext, heatmapDataSeries, controls: {startDemo, stopDemo}};
+    return { sciChartSurface, wasmContext, heatmapDataSeries, controls: { startDemo, stopDemo } };
 };
 
 // Draws a Heatmap legend over the <div id={divHeatmapLegend}></div>
 const drawHeatmapLegend = async () => {
-    const {heatmapLegend, wasmContext} = await HeatmapLegend.create(divHeatmapLegend, {
+    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
@@ -128,13 +128,13 @@ const drawHeatmapLegend = async () => {
             minimum: 0,
             maximum: 200,
             gradientStops: [
-                {offset: 1, color: appTheme.VividPink},
-                {offset: 0.9, color: appTheme.VividOrange},
-                {offset: 0.7, color: appTheme.MutedRed},
-                {offset: 0.5, color: appTheme.VividGreen},
-                {offset: 0.3, color: appTheme.VividSkyBlue},
-                {offset: 0.2, color: appTheme.Indigo},
-                {offset: 0, color: appTheme.DarkIndigo}
+                { offset: 1, color: appTheme.VividPink },
+                { offset: 0.9, color: appTheme.VividOrange },
+                { offset: 0.7, color: appTheme.MutedRed },
+                { offset: 0.5, color: appTheme.VividGreen },
+                { offset: 0.3, color: appTheme.VividSkyBlue },
+                { offset: 0.2, color: appTheme.Indigo },
+                { offset: 0, color: appTheme.DarkIndigo }
             ]
         }
     });
@@ -199,29 +199,26 @@ const useStyles = makeStyles(theme => ({
         color: appTheme.ForegroundColor
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function HeatmapChart() {
-    const [controls, setControls] = React.useState({
-        startDemo: () => {
-        }, stopDemo: () => {
-        }
+    const controlsRef = React.useRef({
+        startDemo: () => {},
+        stopDemo: () => {}
     });
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
-    const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
-    const [stats, setStats] = React.useState({xSize: 0, ySize: 0, fps: 0});
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const heatmapLegendRef = React.useRef<HeatmapLegend>();
+    const [stats, setStats] = React.useState({ xSize: 0, ySize: 0, fps: 0 });
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            const legend = await drawHeatmapLegend();
-            setSciChartSurface(res.sciChartSurface);
-            setHeatmapLegend(legend);
-            setControls(res.controls);
+        const chartInitializationPromise = Promise.all([drawExample(), drawHeatmapLegend()]).then(([res, legend]) => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
+            heatmapLegendRef.current = legend;
+            controlsRef.current = res.controls;
 
             // Handle drawing/updating FPS
             let lastRendered = Date.now();
@@ -233,16 +230,28 @@ export default function HeatmapChart() {
                 setStats({
                     xSize: res.heatmapDataSeries.arrayWidth,
                     ySize: res.heatmapDataSeries.arrayHeight,
-                    fps,
+                    fps
                 });
             });
             res.controls.startDemo();
-        })();
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            controls.stopDemo();
-            sciChartSurface?.delete();
-            heatmapLegend?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                controlsRef.current.stopDemo();
+                sciChartSurfaceRef.current.delete();
+                heatmapLegendRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                controlsRef.current.stopDemo();
+                sciChartSurfaceRef.current.delete();
+                heatmapLegendRef.current.delete();
+            });
         };
     }, []);
 
@@ -253,23 +262,36 @@ export default function HeatmapChart() {
             <div className={classes.ChartWrapper}>
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
-                        <Button onClick={controls.startDemo} style={{color: appTheme.ForegroundColor}}>Start</Button>
-                        <Button onClick={controls.stopDemo} style={{color: appTheme.ForegroundColor}}>Stop</Button>
-                        <span
-                            style={{margin: 12, minWidth: "200px"}}># Heatmap Size: {stats.xSize} x {stats.ySize}</span>
-                        <span style={{margin: 12}}>FPS: {stats.fps.toFixed(0)}</span>
+                        <Button
+                            onClick={() => controlsRef.current.startDemo()}
+                            style={{ color: appTheme.ForegroundColor }}
+                        >
+                            Start
+                        </Button>
+                        <Button
+                            onClick={() => controlsRef.current.stopDemo()}
+                            style={{ color: appTheme.ForegroundColor }}
+                        >
+                            Stop
+                        </Button>
+                        <span style={{ margin: 12, minWidth: "200px" }}>
+                            # Heatmap Size: {stats.xSize} x {stats.ySize}
+                        </span>
+                        <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
-                    <div className={localClasses.chartArea} style={{position: "relative"}}>
-                        <div id={divElementId} style={{width: "100%", height: "100%"}}></div>
-                        <div id={divHeatmapLegend}
-                             style={{
-                                 position: "absolute",
-                                 height: "90%",
-                                 width: "100px",
-                                 top: 0,
-                                 right: "75px",
-                                 margin: "20"
-                             }}></div>
+                    <div className={localClasses.chartArea} style={{ position: "relative" }}>
+                        <div id={divElementId} style={{ width: "100%", height: "100%" }}></div>
+                        <div
+                            id={divHeatmapLegend}
+                            style={{
+                                position: "absolute",
+                                height: "90%",
+                                width: "100px",
+                                top: 0,
+                                right: "75px",
+                                margin: "20"
+                            }}
+                        ></div>
                     </div>
                 </div>
             </div>

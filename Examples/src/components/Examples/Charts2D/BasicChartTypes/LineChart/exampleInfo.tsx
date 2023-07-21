@@ -10,7 +10,9 @@ const Subtitle = () => (
         Demonstrates all the permutations of JavaScript Line Chart using{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
             SciChart.js
-        </a>, including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines and paletted lines.
+        </a>
+        , including Digital Line chart, Tooltips, Dashed lines, Gradient lines, Hovering/selecting lines, vertical lines
+        and paletted lines.
     </p>
 );
 
@@ -24,11 +26,13 @@ const tips = [
     the same WebGL rendering as our Scatter Charts.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlLineChartDocumentation,
-    title: ExampleStrings.urlTitleLineChartDocumentation,
-    linkTitle: "JavaScript Line Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlLineChartDocumentation,
+        title: ExampleStrings.urlTitleLineChartDocumentation,
+        linkTitle: "JavaScript Line Chart Documentation"
+    }
+];
 
 export const lineChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleLineChart,

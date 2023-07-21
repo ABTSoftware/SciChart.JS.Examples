@@ -1,9 +1,7 @@
 import * as React from "react";
-import {
-    RandomWalkGenerator
-} from "../../../../../../../Sandbox/CustomerExamples/AnimateXyValuesOnSeries/src/RandomWalkGenerator";
+import { RandomWalkGenerator } from "../../../../../../../Sandbox/CustomerExamples/AnimateXyValuesOnSeries/src/RandomWalkGenerator";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import {
     AnimationToken,
     CustomAnnotation,
@@ -23,20 +21,17 @@ import {
 
 export const divElementId = "chart";
 
-let timerId: NodeJS.Timeout;
-let animationToken: AnimationToken;
-
 export const drawExample = async () => {
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
     // instance must be passed to other types that exist on the same surface.
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
     // Create an X,Y Axis and add to the chart
-    const xAxis = new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)});
-    const yAxis = new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)});
+    const xAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
+    const yAxis = new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) });
 
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis);
@@ -54,8 +49,8 @@ export const drawExample = async () => {
         new FastMountainRenderableSeries(wasmContext, {
             dataSeries,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                {color: appTheme.VividSkyBlue + "77", offset: 0},
-                {color: "Transparent", offset: 1}
+                { color: appTheme.VividSkyBlue + "77", offset: 0 },
+                { color: "Transparent", offset: 1 }
             ]),
             stroke: appTheme.VividSkyBlue,
             strokeThickness: 4
@@ -63,8 +58,7 @@ export const drawExample = async () => {
     );
 
     // The animated pulsing dot at the end of the chart is rendered with this SVG annotation
-    const svgString =
-        `<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+    const svgString = `<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
             <rect x="0" y="0" width="100%" height="100%" fill="transparent"/>
             <circle cx="25" cy="25" fill="${appTheme.VividTeal}" r="5" stroke="${appTheme.VividTeal}">
                 <animate attributeName="r" from="5" to="25" dur="1s" begin="0s" repeatCount="indefinite"/>
@@ -84,6 +78,8 @@ export const drawExample = async () => {
 
     sciChartSurface.annotations.add(pulsingDotAnnotation);
 
+    let timerId: NodeJS.Timeout;
+    let animationToken: AnimationToken;
     // This function performs animation on any XyDataSeries, animating the latest point only
     // Be careful of reentrancy, e.g. calling animateXy more than once before previous animation has finished
     // might require special handling
@@ -125,7 +121,7 @@ export const drawExample = async () => {
 
     // This is the loop where we add a new X,Y point and animate every 1 second to demonstrate animations
     const runAddDataOnTimeout = () => {
-        if (scs?.isDeleted) {
+        if (sciChartSurface?.isDeleted) {
             return;
         }
         const generated = generator.getRandomWalkSeries(1);
@@ -142,31 +138,46 @@ export const drawExample = async () => {
         runAddDataOnTimeout();
     };
 
-    return {sciChartSurface, wasmContext, controls: {handleStart, handleStop}};
-};
+    const handleStop = () => {
+        animationToken?.cancelAnimation();
+        clearTimeout(timerId);
+        timerId = undefined;
+    };
 
-const handleStop = () => {
-    animationToken?.cancelAnimation();
-    clearTimeout(timerId);
-    timerId = undefined;
+    return { sciChartSurface, wasmContext, controls: { handleStart, handleStop } };
 };
-
-let scs: SciChartSurface;
 
 export default function RealtimeMountainChart() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const controlsRef = React.useRef({
+        handleStop: () => {},
+        handleStart: () => {}
+    });
+
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            scs = res.sciChartSurface;
+        const chartInitializationPromise = drawExample().then(res => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
+            controlsRef.current = res.controls;
+
             res.controls.handleStart();
-        })();
+        });
 
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            handleStop();
-            scs?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                controlsRef.current.handleStop();
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                controlsRef.current.handleStop();
+                sciChartSurfaceRef.current.delete();
+            });
         };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

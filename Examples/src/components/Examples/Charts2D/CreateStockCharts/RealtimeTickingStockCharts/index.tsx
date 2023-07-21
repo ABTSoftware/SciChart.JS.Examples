@@ -1,18 +1,17 @@
 import * as React from "react";
 import { IDeletable } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import {appTheme,simpleBinanceRestClient,TPriceBar} from "scichart-example-dependencies";
+import { appTheme, simpleBinanceRestClient, TPriceBar } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
-import {createCandlestickChart} from "./createCandlestickChart";
-import {binanceSocketClient} from "./binanceSocketClient";
-import {Subscription} from "rxjs";
+import { createCandlestickChart } from "./createCandlestickChart";
+import { binanceSocketClient } from "./binanceSocketClient";
+import { Subscription } from "rxjs";
 
 const divElementId = "chart";
 const divOverviewId = "overview";
 
 // SCICHART EXAMPLE
 const drawExample = async () => {
-
     // Create the candlestick chart example. Contains Candlestick series, tooltips, volume, zooming panning behaviour and more
     const { sciChartSurface, sciChartOverview, controls } = await createCandlestickChart(divElementId, divOverviewId);
 
@@ -34,49 +33,65 @@ const drawExample = async () => {
 
     // Susbscribe to price updates from the exchange
     const subscription = binanceSocketClient.getRealtimeCandleStream("BTCUSDT", "1m").subscribe(pb => {
-        const priceBar = { date: pb.openTime, open: pb.open, high: pb.high, low: pb.low, close: pb.close, volume: pb.volume };
+        const priceBar = {
+            date: pb.openTime,
+            open: pb.open,
+            high: pb.high,
+            low: pb.low,
+            close: pb.close,
+            volume: pb.volume
+        };
         controls.onNewTrade(priceBar, pb.lastTradeSize, pb.lastTradeBuyOrSell);
     });
 
     return { sciChartSurface, sciChartOverview, subscription, controls };
-}
-
+};
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function RealtimeTickingStockCharts() {
-    const itemsToDelete: IDeletable[] = [];
-    let websocketSubcription: Subscription;
+    const itemsToDeleteRef = React.useRef<IDeletable[]>();
+    const websocketSubscriptionRef = React.useRef<Subscription>();
     const [preset, setPreset] = React.useState<number>(0);
-    const [chartControls, setControls] = React.useState( {
-        setData: (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => {},
-        onNewTrade: (priceBar: TPriceBar, tradeSize: number, lastTradeBuyOrSell: boolean) => {},
-        setXRange: (startDate: Date, endDate: Date) => {},
-        enableCandlestick: () => {},
-        enableOhlc: () => {},
-    });
+    const chartControlsRef = React.useRef<{
+        setData: (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => void;
+        onNewTrade: (priceBar: TPriceBar, tradeSize: number, lastTradeBuyOrSell: boolean) => void;
+        setXRange: (startDate: Date, endDate: Date) => void;
+        enableCandlestick: () => void;
+        enableOhlc: () => void;
+    }>();
 
     React.useEffect(() => {
-        (async () => {
-            const { sciChartSurface, sciChartOverview, subscription, controls } = await drawExample();
-            setControls(controls);
-            websocketSubcription = subscription;
-            itemsToDelete.push(sciChartSurface, sciChartOverview);
-        })();
+        const chartInitializationPromise = drawExample().then(
+            ({ sciChartSurface, sciChartOverview, subscription, controls }) => {
+                chartControlsRef.current = controls;
+                websocketSubscriptionRef.current = subscription;
+                itemsToDeleteRef.current = [sciChartSurface, sciChartOverview];
+            }
+        );
+
         return () => {
-            itemsToDelete.forEach(item => item.delete());
-            websocketSubcription?.unsubscribe();
+            // check if chart is already initialized
+            if (itemsToDeleteRef.current) {
+                itemsToDeleteRef.current.forEach(item => item.delete());
+                websocketSubscriptionRef.current.unsubscribe();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                itemsToDeleteRef.current.forEach(item => item.delete());
+                websocketSubscriptionRef.current.unsubscribe();
+            });
         };
     }, []);
 
     const handleToggleButtonChanged = (event: any, state: number) => {
-        if (state === null || chartControls === undefined) return;
+        if (state === null || chartControlsRef.current === undefined) return;
         setPreset(state);
         console.log(`Toggling Candle/Ohlc state: ${state}`);
-        if (state === 0)
-            chartControls.enableCandlestick();
-        if (state === 1)
-            chartControls.enableOhlc();
+        if (state === 0) chartControlsRef.current.enableCandlestick();
+        if (state === 1) chartControlsRef.current.enableOhlc();
     };
 
     return (

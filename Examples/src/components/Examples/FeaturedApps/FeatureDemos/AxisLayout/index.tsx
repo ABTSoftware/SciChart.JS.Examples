@@ -1,21 +1,30 @@
 import * as React from "react";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 import {
     EAutoRange,
     EAxisAlignment,
-    EInnerAxisPlacementCoordinateMode, ELabelAlignment, FastLineRenderableSeries,
-    INumericAxisOptions, NumberRange,
+    EInnerAxisPlacementCoordinateMode,
+    ELabelAlignment,
+    FastLineRenderableSeries,
+    INumericAxisOptions,
+    NumberRange,
     NumericAxis,
-    SciChartSurface, XAxisDragModifier, XyDataSeries, YAxisDragModifier, ZoomPanModifier,
+    SciChartSurface,
+    XAxisDragModifier,
+    XyDataSeries,
+    YAxisDragModifier,
+    ZoomPanModifier,
     RightAlignedOuterVerticallyStackedAxisLayoutStrategy
 } from "scichart";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     const commonAxisOptions: INumericAxisOptions = {
         drawMajorBands: false,
@@ -36,18 +45,14 @@ const drawExample = async () => {
             color: "white"
         },
         labelStyle: {
-            fontSize: 14,
+            fontSize: 14
         }
     };
 
     const horizontalAxisPosition = 60;
     const verticalAxisPosition = 30;
 
-    const primaryColors = ["#4FBEE6",
-    "#AD3D8D",
-    "#6BBDAE",
-    "#E76E63",
-    "#2C4B92"];
+    const primaryColors = ["#4FBEE6", "#AD3D8D", "#6BBDAE", "#E76E63", "#2C4B92"];
 
     const xAxis1 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "xAxis1", axisTitle: "X Axis" });
     const xAxis2 = new NumericAxis(wasmContext, {
@@ -71,9 +76,6 @@ const drawExample = async () => {
 
         isInnerAxis: true
     });
-    const xAxis5 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "xAxis5", axisTitle: "xAxis5" });
-    const xAxis6 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "xAxis6", axisTitle: "xAxis6" });
-    const xAxis7 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "xAxis7", axisTitle: "xAxis7" });
 
     const yAxis2 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "yAxis1", axisTitle: "Stacked Y Axis" });
     const yAxis1 = new NumericAxis(wasmContext, {
@@ -97,12 +99,8 @@ const drawExample = async () => {
         flippedCoordinates: false,
         isInnerAxis: true
     });
-    const yAxis5 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "yAxis5", axisTitle: "yAxis5" });
-    const yAxis6 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "yAxis6", axisTitle: "yAxis6" });
-    const yAxis7 = new NumericAxis(wasmContext, { ...commonAxisOptions, id: "yAxis7", axisTitle: "yAxis7" });
 
-    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
-        new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
+    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy = new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
 
     // use axes with custom ids for positioning the central axes
     sciChartSurface.layoutManager.rightInnerAxesLayoutStrategy.orthogonalAxisId = xAxis1.id;
@@ -127,8 +125,6 @@ const drawExample = async () => {
         xAxis3,
         xAxis1,
         xAxis4
-        //  xAxis5,
-        //  xAxis6, xAxis7
     );
 
     sciChartSurface.yAxes.add(
@@ -136,8 +132,6 @@ const drawExample = async () => {
         yAxis3,
         yAxis1,
         yAxis4
-        // yAxis5,
-        // yAxis6, yAxis7
     );
     xAxis1.isPrimaryAxis = true;
     yAxis1.isPrimaryAxis = true;
@@ -240,21 +234,27 @@ const drawExample = async () => {
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
-export default function FeatureAxisLayout() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-        return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
-        </div>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

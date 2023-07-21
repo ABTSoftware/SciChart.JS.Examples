@@ -11,22 +11,22 @@ import {
     SweepAnimation
 } from "scichart";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {
-        wasmContext,
-        sciChartSurface
-    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Create an XAxis and YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {axisTitle: "X Axis"}));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis" }));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.4, 0.4),
-            axisTitle: "Y Axis",
+            axisTitle: "Y Axis"
         })
     );
 
@@ -45,38 +45,48 @@ const drawExample = async () => {
 
     // Create the band series and add to the chart
     // The bandseries requires a special dataseries type called XyyDataSeries with X,Y and Y1 values
-    sciChartSurface.renderableSeries.add(new FastBandRenderableSeries(wasmContext, {
-        dataSeries: new XyyDataSeries(wasmContext, {xValues, yValues, y1Values}),
-        strokeThickness: 3,
-        fill: appTheme.VividOrange + "33",
-        fillY1: appTheme.VividSkyBlue + "33",
-        stroke: appTheme.VividOrange,
-        strokeY1: appTheme.VividSkyBlue,
-        isDigitalLine: true,
-        animation: new SweepAnimation({duration: 800})
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastBandRenderableSeries(wasmContext, {
+            dataSeries: new XyyDataSeries(wasmContext, { xValues, yValues, y1Values }),
+            strokeThickness: 3,
+            fill: appTheme.VividOrange + "33",
+            fillY1: appTheme.VividSkyBlue + "33",
+            stroke: appTheme.VividOrange,
+            strokeY1: appTheme.VividSkyBlue,
+            isDigitalLine: true,
+            animation: new SweepAnimation({ duration: 800 })
+        })
+    );
 
     // Optional: Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(
-        new ZoomExtentsModifier(),
-        new ZoomPanModifier(),
-        new MouseWheelZoomModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
-    return {wasmContext, sciChartSurface};
+    return { wasmContext, sciChartSurface };
 };
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
-export default function DigitalBandSeriesChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

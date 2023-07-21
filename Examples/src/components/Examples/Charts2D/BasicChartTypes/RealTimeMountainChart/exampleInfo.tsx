@@ -12,19 +12,22 @@ const tips = [
     supports semi-transparent and linear gradient brush fills and looks great!.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlMountainChartDocumentation,
-    title: ExampleStrings.urlTitleMountainChart,
-    linkTitle: "Mountain (Area) Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlMountainChartDocumentation,
+        title: ExampleStrings.urlTitleMountainChart,
+        linkTitle: "Mountain (Area) Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        This example demonstrates how create a <strong>JavaScript Mountain Chart</strong>{" "}
-        with animated realtime updates using SciChart.js, our High Performance{" "}
+        This example demonstrates how create a <strong>JavaScript Mountain Chart</strong> with animated realtime updates
+        using SciChart.js, our High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Charts">
             JavaScript Charts
-        </a>.
+        </a>
+        .
     </p>
 );
 
@@ -38,7 +41,8 @@ export const realTimeMountainChartExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription: "JavaScript Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",
+    metaDescription:
+        "JavaScript Realtime Mountain Chart made easy. Add animated, real-time updates with SciChart.js - high performance JavaScript Charts. Get free trial now. ",
     metaKeywords: "mountain, chart, realtime, animated, javascript, canvas",
     thumbnailImage: exampleImage
 };

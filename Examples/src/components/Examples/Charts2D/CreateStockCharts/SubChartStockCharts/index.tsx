@@ -4,6 +4,7 @@ import classes from "../../../styles/Examples.module.scss";
 import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
 
 import {
+    SciChartSurface,
     BasePaletteProvider,
     calcAverageForArray,
     chartBuilder,
@@ -583,17 +584,25 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
     });
 };
 
-const charts: TWebAssemblyChart[] = [];
-
 export default function SubChartStockCharts() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+
     React.useEffect(() => {
-        (async () => {
-            const chart = await drawExample();
-            charts.push(chart);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
         return () => {
-            charts.forEach(el => el?.sciChartSurface?.delete());
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
         };
     }, []);
 

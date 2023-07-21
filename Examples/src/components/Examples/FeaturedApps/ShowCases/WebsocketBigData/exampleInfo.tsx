@@ -22,11 +22,13 @@ const tips = [
     `For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded
     appendRange functions on dataseries.`
 ];
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDocumentationHome,
-    title: ExampleStrings.titleDocumentationHome,
-    linkTitle: "SciChart.js Documentation Home"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    }
+];
 
 export const websocketBigDataDemoExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo,

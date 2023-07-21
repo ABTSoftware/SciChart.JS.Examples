@@ -10,11 +10,13 @@ rule. Using this API you can color individual data-points of the following chart
 Candlestick, Ohlc, Mountain, Scatter, Bubble and Band.`;
 const tips = [`The PaletteProvider API is useful for showing thresholds or areas of interest!`];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlPaletteProviderDocumentation,
-    title: ExampleStrings.urlTitlePaletteProviderDocumentation,
-    linkTitle: "SciChart.js PaletteProvider documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlPaletteProviderDocumentation,
+        title: ExampleStrings.urlTitlePaletteProviderDocumentation,
+        linkTitle: "SciChart.js PaletteProvider documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

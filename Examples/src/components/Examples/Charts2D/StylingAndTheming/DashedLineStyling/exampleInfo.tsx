@@ -12,11 +12,13 @@ const tips = [
     length of the gap.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDashedLineStylingDocumentation,
-    title: ExampleStrings.urlTitleDashedLineStylingDocumentation,
-    linkTitle: "The Dashed Line Styling Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDashedLineStylingDocumentation,
+        title: ExampleStrings.urlTitleDashedLineStylingDocumentation,
+        linkTitle: "The Dashed Line Styling Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

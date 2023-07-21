@@ -7,7 +7,8 @@ import { TDocumentationLink } from "../../../../helpers/types/ExampleDescription
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to use the Builder Api to create a <strong>Simple Chart</strong> using SciChart.js, High Performance{" "}
+        Demonstrates how to use the Builder Api to create a <strong>Simple Chart</strong> using SciChart.js, High
+        Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -22,11 +23,13 @@ const tips = [
     `You can combine the builder api and normal api to utilize the strengths of each`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlBuilderApiDocumentation,
-    title: ExampleStrings.urlTitleBuilderApiDocumentation,
-    linkTitle: "JavaScript Builder API Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlBuilderApiDocumentation,
+        title: ExampleStrings.urlTitleBuilderApiDocumentation,
+        linkTitle: "JavaScript Builder API Documentation"
+    }
+];
 
 export const simpleChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleBuilderSimpleChart,

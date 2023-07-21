@@ -13,16 +13,17 @@ const tips = [
     `To see how padding affects label placement try setting sciChartSurface.debugRendering = true;`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlTextLabelProviderDocumentation,
-    title: ExampleStrings.urlTitleTextLabelProviderDocumentation,
-    linkTitle: "Scichart.js TextlabelProvider Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlTextLabelProviderDocumentation,
+        title: ExampleStrings.urlTitleTextLabelProviderDocumentation,
+        linkTitle: "Scichart.js TextlabelProvider Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to use <strong>Multi-Line Text</strong> for axis labels using SciChart.js, High
-        Performance{" "}
+        Demonstrates how to use <strong>Multi-Line Text</strong> for axis labels using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>

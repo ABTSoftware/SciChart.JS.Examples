@@ -15,16 +15,18 @@ charts are shown on the same example to show that 2D & 3D charts can be combined
     the DrawMeshAs property.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlSurfaceMesh3DChartDocumentation,
-    title: ExampleStrings.urlTitleSurfaceMesh3DChartDocumentation,
-    linkTitle: "JavaScript 3D Surface Mesh Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlSurfaceMesh3DChartDocumentation,
+        title: ExampleStrings.urlTitleSurfaceMesh3DChartDocumentation,
+        linkTitle: "JavaScript 3D Surface Mesh Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor curves.{" "}
-        This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.
+        In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor
+        curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.
     </p>
 );
 

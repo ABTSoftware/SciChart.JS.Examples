@@ -5,7 +5,10 @@ import {
     EHorizontalAnchorPoint,
     ELineDrawMode,
     FastLineRenderableSeries,
-    MouseWheelZoomModifier, NumberRange, NumericAxis, PinchZoomModifier,
+    MouseWheelZoomModifier,
+    NumberRange,
+    NumericAxis,
+    PinchZoomModifier,
     SciChartSurface,
     TextAnnotation,
     XyDataSeries,
@@ -101,27 +104,38 @@ const drawExample = async () => {
 };
 
 export default function DrawBehindAxes() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+
     const [preset, setPreset] = React.useState<number>(0);
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
     const handleToggleButtonChanged = (event: any, value: number) => {
         setPreset(value);
-        sciChartSurface.drawSeriesBehindAxis = value === 0;
-        sciChartSurface.title =
+        sciChartSurfaceRef.current.drawSeriesBehindAxis = value === 0;
+        sciChartSurfaceRef.current.title =
             value === 0
                 ? "SciChartSurface with Series Drawn Behind Axis"
                 : "SciChartSurface with Series clipped to Viewport";
-        sciChartSurface.yAxes.get(0).axisBorder.borderLeft = value;
-        sciChartSurface.xAxes.get(0).axisBorder.borderTop = value;
+        sciChartSurfaceRef.current.yAxes.get(0).axisBorder.borderLeft = value;
+        sciChartSurfaceRef.current.xAxes.get(0).axisBorder.borderTop = value;
     };
 
     return (

@@ -3,17 +3,19 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-style-animation.jpg"
+import exampleImage from "./javascript-style-animation.jpg";
 
-const previewDescription = ``;// `Demonstrates how to run style and data animations simultaneously for a JavaScript Chart.`;
+const previewDescription = ``; // `Demonstrates how to run style and data animations simultaneously for a JavaScript Chart.`;
 const description = `By clicking the buttons the chart styles and data transform from one value to another`;
 const tips: string[] = ["Use runAnimation or enqueueAnimation method"];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlStyleAnimationDocumentation,
-    title: ExampleStrings.urlTitleStyleAnimationDocumentation,
-    linkTitle: "JavaScript Style Transition Animation Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlStyleAnimationDocumentation,
+        title: ExampleStrings.urlTitleStyleAnimationDocumentation,
+        linkTitle: "JavaScript Style Transition Animation Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

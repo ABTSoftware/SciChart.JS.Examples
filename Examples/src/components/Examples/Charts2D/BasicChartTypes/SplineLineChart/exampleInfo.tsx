@@ -15,11 +15,13 @@ const tips = [
     same WebGL rendering as our Scatter Charts.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlSplineLineChartDocumentation,
-    title: ExampleStrings.titleSplineLineChart,
-    linkTitle: "JavaScript Spline Line Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlSplineLineChartDocumentation,
+        title: ExampleStrings.titleSplineLineChart,
+        linkTitle: "JavaScript Spline Line Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

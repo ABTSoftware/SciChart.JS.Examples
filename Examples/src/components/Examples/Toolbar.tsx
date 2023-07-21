@@ -133,7 +133,11 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
                         fab: classes.actionButtonFab
                     }}
                     key={action.name}
-                    icon={<a className={classes.actionLink} href={action.href} target="_blank">{action.icon}</a>}
+                    icon={
+                        <a className={classes.actionLink} href={action.href} target="_blank">
+                            {action.icon}
+                        </a>
+                    }
                     tooltipTitle={action.name}
                     tooltipPlacement="bottom"
                     FabProps={{

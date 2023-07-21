@@ -9,11 +9,13 @@ const description = `Demonstrates a chart with axes being placed centrally.
 SciChart supports customization of axes placement. This example shows how to use inner axes and set a layout strategy.`;
 const tips = [`You can create a custom Axis Layout Strategy!`];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlCentralAxesDocumentation,
-    title: ExampleStrings.urlTitleCentralAxesDocumentation,
-    linkTitle: "Central Axis documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlCentralAxesDocumentation,
+        title: ExampleStrings.urlTitleCentralAxesDocumentation,
+        linkTitle: "Central Axis documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

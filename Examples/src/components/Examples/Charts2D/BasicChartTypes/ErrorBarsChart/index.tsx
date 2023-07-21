@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import {
     NumericAxis,
     XyDataSeries,
@@ -25,12 +25,12 @@ import {
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)}));
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)}));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
 
     // Xy values for the data
     const xValues = [0, 1, 2, 2.5, 4.5, 5, 6, 7, 8];
@@ -47,14 +47,14 @@ const drawExample = async () => {
 
     // add optional mountain series. We use Spline type, for higher performance use FastLine or FastMountainRenderableSeries
     const lineSeries = new SplineMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
         strokeThickness: 5,
         stroke: appTheme.VividSkyBlue,
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-            {offset: 0, color: appTheme.VividSkyBlue + "77"},
-            {offset: 1, color: "Transparent"}
+            { offset: 0, color: appTheme.VividSkyBlue + "77" },
+            { offset: 1, color: "Transparent" }
         ]),
-        animation: {type: EAnimationType.Sweep, options: {zeroLine: -1, pointDurationFraction: 0.5, duration: 500}}
+        animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 } }
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -72,20 +72,20 @@ const drawExample = async () => {
         dataPointWidth: 0.3,
         strokeThickness: 4,
         stroke: appTheme.VividSkyBlue + "77",
-        animation: {type: EAnimationType.Sweep, options: {zeroLine: 0, pointDurationFraction: 0.5, duration: 500}}
+        animation: { type: EAnimationType.Sweep, options: { zeroLine: 0, pointDurationFraction: 0.5, duration: 500 } }
     });
     sciChartSurface.renderableSeries.add(errorBarsHorizontalSeries);
 
     // Define Vertical Error Bars Series, Error bars require HLC data with absolute values for error whiskers
     const errorBarsSeries = new FastErrorBarsRenderableSeries(wasmContext, {
-        dataSeries: new HlcDataSeries(wasmContext, {xValues, yValues, highValues, lowValues}),
+        dataSeries: new HlcDataSeries(wasmContext, { xValues, yValues, highValues, lowValues }),
         errorMode: EErrorMode.Both,
         errorDirection: EErrorDirection.Vertical,
         dataPointWidthMode: EDataPointWidthMode.Relative,
         dataPointWidth: 0.3,
         strokeThickness: 4,
         stroke: appTheme.VividSkyBlue,
-        animation: {type: EAnimationType.Sweep, options: {zeroLine: 0, pointDurationFraction: 0.5, duration: 500}},
+        animation: { type: EAnimationType.Sweep, options: { zeroLine: 0, pointDurationFraction: 0.5, duration: 500 } },
         // Add optional pointmarker (or use separate XyScatterRenderableSeries)
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 9,
@@ -104,20 +104,32 @@ const drawExample = async () => {
 
     sciChartSurface.zoomExtents();
 
-    return {sciChartSurface};
+    return { sciChartSurface };
 };
 
 // React component needed as our examples app is react.
-export default function ErrorBarsChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

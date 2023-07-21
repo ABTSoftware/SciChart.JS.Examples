@@ -23,11 +23,13 @@ const tips = [
     `For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded
     appendRange functions on dataseries.`
 ];
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlPerformanceTipsDocumentation,
-    title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
-    linkTitle: "SciChart.js Performance Tips and Tricks"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlPerformanceTipsDocumentation,
+        title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
+        linkTitle: "SciChart.js Performance Tips and Tricks"
+    }
+];
 
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRealtimeJavaScriptChartDemo,

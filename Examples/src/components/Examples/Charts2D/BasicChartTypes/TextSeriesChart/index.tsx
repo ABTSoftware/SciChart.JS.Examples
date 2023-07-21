@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import {
     SciChartSurface,
     NumericAxis,
@@ -20,7 +20,7 @@ const divElementId = "chart";
 
 const drawExample = async () => {
     // Create a SciChartSurface
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
     const xAxis = new LogarithmicAxis(wasmContext, {
@@ -40,34 +40,43 @@ const drawExample = async () => {
     );
 
     // data is { xValues: number[], yValues: number[], textValues: string[] }
-    const data: { xValues: number[], yValues: number[], textValues: string[] } = await fetch("/api/tweetData").then(r => r.json());
+    const data: { xValues: number[]; yValues: number[]; textValues: string[] } = await fetch("/api/tweetData").then(r =>
+        r.json()
+    );
     const series = new FastTextRenderableSeries(wasmContext, {
-        dataLabels: {style: {fontFamily: "arial", fontSize: 10}, calculateTextBounds: false},
+        dataLabels: { style: { fontFamily: "arial", fontSize: 10 }, calculateTextBounds: false },
         dataSeries: new XyTextDataSeries(wasmContext, data)
     });
     sciChartSurface.renderableSeries.add(series);
 
-    sciChartSurface.chartModifiers.add(
-        new ZoomPanModifier(),
-        new ZoomExtentsModifier(),
-        new MouseWheelZoomModifier()
-    );
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier(), new MouseWheelZoomModifier());
 
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
-export default function TextChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
