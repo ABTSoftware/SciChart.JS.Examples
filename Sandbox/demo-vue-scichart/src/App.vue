@@ -1,7 +1,6 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <Scichart2d msg="2D" />
-  <scichart3d msg="3D" />
+  <Scichart2d msg="2D Charts" />
+  <scichart3d msg="3D Charts" />
 </template>
 
 <script lang="ts">

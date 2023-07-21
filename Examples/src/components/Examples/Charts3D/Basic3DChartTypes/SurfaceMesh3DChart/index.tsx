@@ -109,9 +109,7 @@ const drawExample = async () => {
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
     sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
-    const tooltip = new TooltipModifier3D({ tooltipContainerBackground: appTheme.PaleBlue, showTooltip: false });
-    tooltip.tooltipLegendTemplate = tooltip.tooltipSvgTemplate;
-    sciChart3DSurface.chartModifiers.add(tooltip);
+    sciChart3DSurface.chartModifiers.add(new TooltipModifier3D({ tooltipContainerBackground: appTheme.PaleBlue }));
 
     return { sciChart3DSurface, wasmContext };
 };

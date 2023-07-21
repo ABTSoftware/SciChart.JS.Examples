@@ -1,12 +1,3 @@
-<template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <div id="chart3d" style="width: 600px; height: 400px; margin: auto;"></div>
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
 import {
   CameraController,
   MouseWheelZoomModifier3D,
@@ -42,9 +33,9 @@ const generateData = (xSize, zSize) => {
 }
 
 
-async function initSciChart() {
+async function initSciChart3D() {
   // Create a SciChart3DSurface in the host <div id=".." />
-  const { wasmContext, sciChart3DSurface } = await SciChart3DSurface.create("chart3d", {
+  const { wasmContext, sciChart3DSurface } = await SciChart3DSurface.create("scichart-3d-root", {
     theme: new SciChartJsNavyTheme(),
     // worldDimensions: new Vector3(300, 200, 300),
     // cameraOptions: {
@@ -106,44 +97,6 @@ async function initSciChart() {
   return sciChart3DSurface;
 }
 
-export default defineComponent({
-  data() {
-    return {
-      chartInitializationPromise: undefined,
-    };
-  },
-  mounted() {
-    console.log("SciChart3d.vue onMounted");
-    this.chartInitializationPromise = initSciChart();
-  },
-  beforeUnmount() {
-    console.log("SciChart3d.vue beforeUnmount");
-    this.chartInitializationPromise.then((sciChart3DSurface) => {
-      console.log("..deleting SciChart3DSurface");
-      sciChart3DSurface.delete()
-    });
-  },
-  name: "Scichart3d",
-  props: {
-    msg: String
-  }
-});
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+// Note: When using SciChart.js in React, Angular, Vue use component lifecycle to delete the chart on unmount
+// for examples see the Vue/React/Angular boilerplates at https://www.scichart.com/getting-started/scichart-javascript/
+initSciChart3D();

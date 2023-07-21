@@ -607,6 +607,11 @@ export const ExampleStrings = {
     urlSurfaceMesh3D: "/javascript-3d-surface-mesh-chart",
     urlTitleSurfaceMesh3D: "The Surface Mesh 3D Chart example shows how to create this 3D Chart type in SciChart.js",
 
+    // Realtime 3D Surface Mesh
+    titleRealtimeSurfaceMesh3D: "JavaScript Realtime Surface Mesh 3D Chart",
+    pageTitleRealtimeSurfaceMesh3D: "JavaScript Realtime 3D Surface Mesh Chart | View 3D JavaScript Charts",
+    urlRealtimeSurfaceMesh3D: "/javascript-realtime-3d-surface-mesh-chart",
+
     // 3D Point Line
     titlePointLine3DChart: "JavaScript Point Line 3D Chart",
     pageTitlePointLine3DChart: "JavaScript 3D Point Line Chart | View 3D JavaScript Charts",
