@@ -10,11 +10,13 @@ const description = `Almost any element in SciChart is stylable in code and most
 set background, grid-line, axis label, viewport background and chart series colors in JavaScript.`;
 const tips = [`It's also possible to style chart-parts in code!`];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlStylingInCodeDocumentation,
-    title: ExampleStrings.urlTitleStylingInCodeDocumentation,
-    linkTitle: "Custom Theme documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlStylingInCodeDocumentation,
+        title: ExampleStrings.urlTitleStylingInCodeDocumentation,
+        linkTitle: "Custom Theme documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

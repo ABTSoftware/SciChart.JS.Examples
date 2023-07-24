@@ -13,16 +13,17 @@ const tips = [
     for more info!`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlSeriesSelectionDocumentation,
-    title: ExampleStrings.urlTitleSeriesSelectionDocumentation,
-    linkTitle: "SciChart.js Series Selection Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlSeriesSelectionDocumentation,
+        title: ExampleStrings.urlTitleSeriesSelectionDocumentation,
+        linkTitle: "SciChart.js Series Selection Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to add <strong>Series Selection</strong> to a chart using SciChart.js, High
-        Performance{" "}
+        Demonstrates how to add <strong>Series Selection</strong> to a chart using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>

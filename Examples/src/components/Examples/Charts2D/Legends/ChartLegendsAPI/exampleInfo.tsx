@@ -14,11 +14,13 @@ const tips = [
     Please review the API documentation below carefully for further information.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlLegendDocumentation,
-    title: ExampleStrings.urlTitleLegendDocumentation,
-    linkTitle: "Legend API Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlLegendDocumentation,
+        title: ExampleStrings.urlTitleLegendDocumentation,
+        linkTitle: "Legend API Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

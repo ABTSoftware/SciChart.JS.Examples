@@ -1,0 +1,1 @@
+export const githubUrl = "/components/Examples/FeaturedApps/ShowCases/DynamicLayout/index.tsx";

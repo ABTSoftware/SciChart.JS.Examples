@@ -34,14 +34,12 @@ type TMetadata = {
 
 // SCICHART CODE
 const drawExample = async () => {
-
-    const {
-        sciChart3DSurface,
-        wasmContext
-    } = await SciChart3DSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
     sciChart3DSurface.camera = new CameraController(wasmContext, {
-        position: new Vector3(-141.60, 310.29, 393.32),
-        target: new Vector3(0, 50, 0),
+        position: new Vector3(-141.6, 310.29, 393.32),
+        target: new Vector3(0, 50, 0)
     });
 
     sciChart3DSurface.chartModifiers.add(
@@ -106,18 +104,20 @@ const drawExample = async () => {
         {offset: 0, color: appTheme.DarkIndigo}
     ]);
 
-    sciChart3DSurface.renderableSeries.add(new ScatterRenderableSeries3D(wasmContext, {
-        dataSeries: new XyzDataSeries3D(wasmContext, {
-            xValues: lifeExpectancy,
-            yValues: gdpPerCapita,
-            zValues: year,
-            metadata
-        }),
-        pointMarker: new SpherePointMarker3D(wasmContext, {size: 10}),
-        opacity: 0.9
-    }));
+    sciChart3DSurface.renderableSeries.add(
+        new ScatterRenderableSeries3D(wasmContext, {
+            dataSeries: new XyzDataSeries3D(wasmContext, {
+                xValues: lifeExpectancy,
+                yValues: gdpPerCapita,
+                zValues: year,
+                metadata
+            }),
+            pointMarker: new SpherePointMarker3D(wasmContext, { size: 10 }),
+            opacity: 0.9
+        })
+    );
 
-    return {sciChart3DSurface, wasmContext};
+    return { sciChart3DSurface, wasmContext };
 };
 
 function formatMetadata(population: PopulationData[], gradientStops: TGradientStop[]): TMetadata[] {
@@ -125,7 +125,7 @@ function formatMetadata(population: PopulationData[], gradientStops: TGradientSt
     const low = Math.min(...valuesArray);
     const high = Math.max(...valuesArray);
 
-    const sGradientStops = gradientStops.sort((a, b) => a.offset > b.offset ? 1 : -1);
+    const sGradientStops = gradientStops.sort((a, b) => (a.offset > b.offset ? 1 : -1));
     // Compute a scaling factor from 0...1 where values in valuesArray at the lower end correspond to 0 and
     // values at the higher end correspond to 1
     const metaData: TMetadata [] = [];
@@ -143,19 +143,29 @@ function formatMetadata(population: PopulationData[], gradientStops: TGradientSt
     }
     return metaData;
 }
-
-// REACT COMPONENT
-export default function Bubble3DChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChart3DSurface>();
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChart3DSurface>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChart3DSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChart3DSurface }) => {
+            sciChartSurfaceRef.current = sciChart3DSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

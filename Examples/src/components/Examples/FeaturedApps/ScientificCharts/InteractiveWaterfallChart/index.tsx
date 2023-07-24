@@ -388,18 +388,27 @@ const drawExample = async () => {
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function InteractiveWaterfallChart() {
-    let charts: SciChartSurface[];
+    const sciChartSurfaceRef = React.useRef<SciChartSurface[]>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            charts = res.charts;
-        })();
+        const chartInitializationPromise = drawExample().then((res) => {
+            sciChartSurfaceRef.current = res.charts;
+        });
 
+        // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            // Ensure deleting charts on React component unmount
-            charts?.forEach(c => c.delete());
-        }
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.forEach(c => c.delete());
+
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.forEach(c => c.delete());
+            });
+        };
     }, []);
 
     return (

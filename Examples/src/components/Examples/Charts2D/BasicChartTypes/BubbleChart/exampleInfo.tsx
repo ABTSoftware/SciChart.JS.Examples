@@ -12,16 +12,17 @@ const tips = [
     points while the Bubble will render the X-Y-Z points.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlBubbleChartDocumentation,
-    title: ExampleStrings.urlTitleBubbleChartDocumentation,
-    linkTitle: "JavaScript Bubble Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlBubbleChartDocumentation,
+        title: ExampleStrings.urlTitleBubbleChartDocumentation,
+        linkTitle: "JavaScript Bubble Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Bubble Chart</strong>{" "}
-        This is a{" "}
+        Demonstrates how to create a <strong>JavaScript Bubble Chart</strong> This is a{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Charts">
             JavaScript Chart
         </a>{" "}

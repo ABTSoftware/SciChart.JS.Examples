@@ -15,7 +15,7 @@ export const drawTextureChart = async () => {
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
-            padding: Thickness.fromNumber(0),
+            padding: Thickness.fromNumber(0)
         }
     });
 
@@ -25,7 +25,7 @@ export const drawTextureChart = async () => {
     const dataSeries2 = new XyDataSeries(wasmContext, { dataIsSortedInX: true, containsNaN: false });
 
     const data = await getParsedData("Texture.csv");
-    data.forEach((dataRow) => {
+    data.forEach(dataRow => {
         const x = dataRow[0];
         dataSeries1.append(x, dataRow[1]);
         dataSeries2.append(x, 0);
@@ -53,7 +53,7 @@ export const drawTextureChart = async () => {
                 paletteProvider: rangePaletteProvider,
                 isDigitalLine: true,
                 strokeThickness: 0,
-                fill: appTheme.TextureFill,
+                fill: appTheme.TextureFill
             }
         },
         {
@@ -61,9 +61,9 @@ export const drawTextureChart = async () => {
             options: {
                 dataSeries: dataSeries2,
                 strokeThickness: 4,
-                stroke: appTheme.TextureLine,
+                stroke: appTheme.TextureLine
             }
-        },
+        }
     ]);
 
     renderableSeries[0].rolloverModifierProps.showRollover = false;

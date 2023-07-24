@@ -13,11 +13,13 @@ Left, and yAxis.axisAlignment = top.`,
     `Try dragging an axis or the chart to zoom and pan around. Double clicking the chart resets the zoom!`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlVerticalChartsDocumentation,
-    title: ExampleStrings.urlTitleVerticalChartsDocumentation,
-    linkTitle: "SciChart.js Documentation Home"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlVerticalChartsDocumentation,
+        title: ExampleStrings.urlTitleVerticalChartsDocumentation,
+        linkTitle: "SciChart.js Documentation Home"
+    }
+];
 
 const Subtitle = () => (
     <p>

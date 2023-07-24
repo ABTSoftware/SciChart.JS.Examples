@@ -34,7 +34,7 @@ import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { ENumericFormat } from "scichart/types/NumericFormat";
 import { ESeriesType } from "scichart/types/SeriesType";
 import { TSciChart } from "scichart/types/TSciChart";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 export type TMessage = {
@@ -318,7 +318,9 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
     let sendEvery = 30;
     let initialPoints: number = 0;
 
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
     const xAxis = new NumericAxis(wasmContext, axisOptions);
     sciChartSurface.xAxes.add(xAxis);
     let yAxis = new NumericAxis(wasmContext, { ...axisOptions });
@@ -369,8 +371,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
                 // create stacked y axis
                 if (i === 0) {
                     // tslint:disable-next-line: max-line-length
-                    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
-                        new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
+                    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy = new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
                     yAxis.id = "0";
                 } else {
                     sciChartSurface.yAxes.add(
@@ -479,7 +480,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
                 socket.disconnect();
             });
         }
-        
+
         // If initial data has been generated, this should be an array of the last y values of each series
         const index = dataSeriesArray[0].count() - 1;
         let series: number[];

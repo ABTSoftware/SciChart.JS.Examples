@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import {
     NumericAxis,
     XyDataSeries,
@@ -17,11 +17,11 @@ import {
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {axisTitle: "X Axis"}));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {axisTitle: "Y Axis", growBy: new NumberRange(0.1, 0.1)}));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisTitle: "X Axis" }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { axisTitle: "Y Axis", growBy: new NumberRange(0.1, 0.1) }));
 
     const xValues = [];
     const yValues = [];
@@ -33,9 +33,9 @@ const drawExample = async () => {
     const impulseSeries = new FastImpulseRenderableSeries(wasmContext, {
         fill: appTheme.VividPink,
         strokeThickness: 2,
-        pointMarker: new EllipsePointMarker(wasmContext, {width: 1, height: 1}),
-        dataSeries: new XyDataSeries(wasmContext, {xValues, yValues}),
-        animation: {type: EAnimationType.Wave, options: {duration: 500, delay: 200, fadeEffect: true}}
+        pointMarker: new EllipsePointMarker(wasmContext, { width: 1, height: 1 }),
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+        animation: { type: EAnimationType.Wave, options: { duration: 500, delay: 200, fadeEffect: true } }
     });
     sciChartSurface.renderableSeries.add(impulseSeries);
 
@@ -43,20 +43,32 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
 
-    return {sciChartSurface};
+    return { sciChartSurface };
 };
 
 // React component needed as our examples app is react.
-export default function ImpulseChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

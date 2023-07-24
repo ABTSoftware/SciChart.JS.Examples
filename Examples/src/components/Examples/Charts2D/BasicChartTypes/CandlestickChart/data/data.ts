@@ -28,7 +28,7 @@ export const dateValues: number[] = [
     918518400,
     918604800,
     918691200,
-    918777600,
+    918777600
 ];
 export const openValues: number[] = [
     1.1801,
@@ -60,7 +60,7 @@ export const openValues: number[] = [
     1.1312,
     1.1314,
     1.1323,
-    1.1219,
+    1.1219
 ];
 export const highValues: number[] = [
     1.1862,
@@ -92,7 +92,7 @@ export const highValues: number[] = [
     1.1345,
     1.136,
     1.1336,
-    1.1308,
+    1.1308
 ];
 export const lowValues: number[] = [
     1.1769,
@@ -124,7 +124,7 @@ export const lowValues: number[] = [
     1.1281,
     1.127,
     1.1214,
-    1.1216,
+    1.1216
 ];
 export const closeValues: number[] = [
     1.1815,
@@ -156,5 +156,5 @@ export const closeValues: number[] = [
     1.1315,
     1.1326,
     1.1218,
-    1.1306,
+    1.1306
 ];

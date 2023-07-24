@@ -1,16 +1,15 @@
-import {SciChartSurface} from "scichart";
-import {HitTestInfo} from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
-import {appTheme} from "scichart-example-dependencies";
-import {XyScatterRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import {FadeAnimation} from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
-import {XyDataSeries} from "scichart/Charting/Model/XyDataSeries";
-import {EllipsePointMarker} from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import {TextAnnotation} from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import {EHorizontalAnchorPoint,    EVerticalAnchorPoint
-} from "scichart/types/AnchorPoint";
-import {LineAnnotation} from "scichart/Charting/Visuals/Annotations/LineAnnotation";
-import {GenericAnimation} from "scichart/Core/Animations/GenericAnimation";
-import {easing} from "scichart/Core/Animations/EasingFunctions";
+import { SciChartSurface } from "scichart";
+import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
+import { appTheme } from "scichart-example-dependencies";
+import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
+import { FadeAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
+import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
+import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
+import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
+import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
+import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
+import { GenericAnimation } from "scichart/Core/Animations/GenericAnimation";
+import { easing } from "scichart/Core/Animations/EasingFunctions";
 
 // This method hit-tests the series body
 const HIT_TEST = "hitTest";
@@ -20,8 +19,12 @@ const HIT_TEST_DATAPOINT = "hitTestDataPoint";
 const HIT_TEST_X_SLICE = "hitTestXSlice";
 
 // Helper function to visualise where the user clicked on the chart
-export function visualiseHitTestPoint(sciChartSurface: SciChartSurface, hitTestInfo: HitTestInfo, hitTestMethod: string, timeout: number) {
-
+export function visualiseHitTestPoint(
+    sciChartSurface: SciChartSurface,
+    hitTestInfo: HitTestInfo,
+    hitTestMethod: string,
+    timeout: number
+) {
     // HitTestInfo contains info about where the user clicked on a chart during a hitTest operation
     // This can include the x/y value hit, whether the mouse was over a point/segment
     // and info about previous points and mouse coordinates
@@ -32,10 +35,18 @@ export function visualiseHitTestPoint(sciChartSurface: SciChartSurface, hitTestI
     // Use a scatter series to temporarily render a single point at the hitTestInfo.x/yValue
     const fill = hitTestInfo.isHit ? appTheme.PaleTeal : appTheme.VividPink;
     const series = new XyScatterRenderableSeries(sciChartSurface.webAssemblyContext2D, {
-        animation: new FadeAnimation({ duration: timeout, ease: (t) => 1-t }),
+        animation: new FadeAnimation({ duration: timeout, ease: t => 1 - t }),
         opacity: 1,
-        dataSeries: new XyDataSeries(sciChartSurface.webAssemblyContext2D, { xValues: [hitTestInfo.xValue], yValues: [hitTestInfo.yValue] }),
-        pointMarker: new EllipsePointMarker(sciChartSurface.webAssemblyContext2D, { width: 25, height: 25, strokeThickness: 0, fill})
+        dataSeries: new XyDataSeries(sciChartSurface.webAssemblyContext2D, {
+            xValues: [hitTestInfo.xValue],
+            yValues: [hitTestInfo.yValue]
+        }),
+        pointMarker: new EllipsePointMarker(sciChartSurface.webAssemblyContext2D, {
+            width: 25,
+            height: 25,
+            strokeThickness: 0,
+            fill
+        })
     });
     sciChartSurface.renderableSeries.add(series);
     const hitOrMissLabel = new TextAnnotation({
@@ -49,9 +60,9 @@ export function visualiseHitTestPoint(sciChartSurface: SciChartSurface, hitTestI
     });
     sciChartSurface.annotations.add(hitOrMissLabel);
 
-    const hitTestLine = new LineAnnotation( {
+    const hitTestLine = new LineAnnotation({
         strokeThickness: 2,
-        stroke: fill,
+        stroke: fill
     });
     // Depending on the hitTestMethod, we want to position the lineAnnotation to show whats going on
     if (hitTestMethod === HIT_TEST_DATAPOINT) {
@@ -84,21 +95,24 @@ export function visualiseHitTestPoint(sciChartSurface: SciChartSurface, hitTestI
     sciChartSurface.annotations.add(hitTestLine);
 
     // Animate the appearance of the annotations
-    sciChartSurface.addAnimation(new GenericAnimation({
-        from: 1,
-        to: 0,
-        // Progress animates from 0..1. We want to reverse the opacity so we use 1-progress
-        onAnimate: (from, to, progress: number) => {
-            hitTestLine.opacity = 1 - progress;
-            hitOrMissLabel.opacity = 1 - progress;
-        },
-        onCompleted: () => {
-            sciChartSurface.renderableSeries.remove(series);
-            sciChartSurface.annotations.remove(hitOrMissLabel);
-            sciChartSurface.annotations.remove(hitTestLine);
-            series.delete();
-            hitOrMissLabel.delete();
-            hitTestLine.delete();
-        }, ease: easing.linear
-    }));
+    sciChartSurface.addAnimation(
+        new GenericAnimation({
+            from: 1,
+            to: 0,
+            // Progress animates from 0..1. We want to reverse the opacity so we use 1-progress
+            onAnimate: (from, to, progress: number) => {
+                hitTestLine.opacity = 1 - progress;
+                hitOrMissLabel.opacity = 1 - progress;
+            },
+            onCompleted: () => {
+                sciChartSurface.renderableSeries.remove(series);
+                sciChartSurface.annotations.remove(hitOrMissLabel);
+                sciChartSurface.annotations.remove(hitTestLine);
+                series.delete();
+                hitOrMissLabel.delete();
+                hitTestLine.delete();
+            },
+            ease: easing.linear
+        })
+    );
 }

@@ -1,27 +1,39 @@
 import * as React from "react";
 
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import { Subject, debounceTime } from "rxjs";
 
 import {
     easing,
     EAutoRange,
-    EAxisAlignment, EHorizontalAnchorPoint, EVerticalAnchorPoint, EWrapTo, EXyDirection,
-    FastLineRenderableSeries, MouseWheelZoomModifier, NativeTextAnnotation,
+    EAxisAlignment,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    EWrapTo,
+    EXyDirection,
+    FastLineRenderableSeries,
+    MouseWheelZoomModifier,
+    NativeTextAnnotation,
     NumberRange,
-    NumericAxis, SciChartOverview,
-    SciChartSurface, XAxisDragModifier,
-    XyDataSeries, YAxisDragModifier, ZoomExtentsModifier, ZoomPanModifier,
+    NumericAxis,
+    SciChartOverview,
+    SciChartSurface,
+    XAxisDragModifier,
+    XyDataSeries,
+    YAxisDragModifier,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
     ECoordinateMode
 } from "scichart";
-
 
 export const divElementId = "chart";
 export const divOverviewId = "overview";
 
 export const drawExample = async () => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
     const xAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Bottom,
         visibleRange: new NumberRange(4000000, 5000000),
@@ -41,7 +53,11 @@ export const drawExample = async () => {
     sciChartSurface.yAxes.add(yAxis);
 
     const dataSeries = new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true });
-    const rendSeries = new FastLineRenderableSeries(wasmContext, { dataSeries, strokeThickness: 2, stroke: appTheme.VividOrange });
+    const rendSeries = new FastLineRenderableSeries(wasmContext, {
+        dataSeries,
+        strokeThickness: 2,
+        stroke: appTheme.VividOrange
+    });
     sciChartSurface.renderableSeries.add(rendSeries);
     rendSeries.rolloverModifierProps.tooltipTextColor = "black";
     rendSeries.rolloverModifierProps.showRollover = true;
@@ -65,14 +81,21 @@ export const drawExample = async () => {
     // subscribe to the observable with a debounce
     subject.pipe(debounceTime(250)).subscribe((r: NumberRange) => {
         // Fetch data and update the dataSeries
-        loadPoints(r.min, r.max, sciChartSurface.domCanvas2D.width, dataSeries).then(() => {
-            // Update the y axis
-            const yRange = yAxis.getWindowedYRange(null);
-            yAxis.animateVisibleRange(yRange, 250, easing.outExpo);
-        }).catch(err => showError(sciChartSurface, "Server data is unavailable.  Please do npm run build, then npm start and access the site at localhost:3000"));
+        loadPoints(r.min, r.max, sciChartSurface.domCanvas2D.width, dataSeries)
+            .then(() => {
+                // Update the y axis
+                const yRange = yAxis.getWindowedYRange(null);
+                yAxis.animateVisibleRange(yRange, 250, easing.outExpo);
+            })
+            .catch(err =>
+                showError(
+                    sciChartSurface,
+                    "Server data is unavailable.  Please do npm run build, then npm start and access the site at localhost:3000"
+                )
+            );
     });
 
-    const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, {theme: appTheme.SciChartJsTheme});
+    const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, { theme: appTheme.SciChartJsTheme });
     const overviewData = new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true });
     // Load the full dataSet
     loadPoints(0, 10000000, overview.overviewSciChartSurface.domCanvas2D.width, overviewData).catch(err => {});
@@ -80,13 +103,18 @@ export const drawExample = async () => {
     overview.overviewSciChartSurface.zoomExtents();
 
     // Load initial data
-    loadPoints(xAxis.visibleRange.min, xAxis.visibleRange.max, sciChartSurface.domCanvas2D.width, dataSeries).then(
-        () => {
+    loadPoints(xAxis.visibleRange.min, xAxis.visibleRange.max, sciChartSurface.domCanvas2D.width, dataSeries)
+        .then(() => {
             sciChartSurface.zoomExtents();
-        }
-    ).catch(err => showError(sciChartSurface, "Server data is unavailable.  Please do npm run build, then npm start and access the site at localhost:3000"));
+        })
+        .catch(err =>
+            showError(
+                sciChartSurface,
+                "Server data is unavailable.  Please do npm run build, then npm start and access the site at localhost:3000"
+            )
+        );
 
-    return [sciChartSurface, overview.overviewSciChartSurface];
+    return { sciChartSurface, overview };
 };
 
 const loadPoints = async (xFrom: number, xTo: number, chartWidth: number, dataSeries: XyDataSeries) => {
@@ -101,33 +129,49 @@ const loadPoints = async (xFrom: number, xTo: number, chartWidth: number, dataSe
 
 const showError = (sciChartSurface: SciChartSurface, message: string) => {
     if (!sciChartSurface.annotations.getById("error")) {
-        sciChartSurface.annotations.add(new NativeTextAnnotation({
-            id: "error",
-            text: message,
-            x1: 0.5,
-            y1: 0.5,
-            textColor: "red",
-            fontSize: 24,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            verticalAnchorPoint: EVerticalAnchorPoint.Center,
-            xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative,
-            lineSpacing: 5,
-            wrapTo: EWrapTo.ViewRect,
-        }));
+        sciChartSurface.annotations.add(
+            new NativeTextAnnotation({
+                id: "error",
+                text: message,
+                x1: 0.5,
+                y1: 0.5,
+                textColor: "red",
+                fontSize: 24,
+                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+                verticalAnchorPoint: EVerticalAnchorPoint.Center,
+                xCoordinateMode: ECoordinateMode.Relative,
+                yCoordinateMode: ECoordinateMode.Relative,
+                lineSpacing: 5,
+                wrapTo: EWrapTo.ViewRect
+            })
+        );
     }
-}
+};
 
 export default function VirtualizedDataOverview() {
-    let charts: SciChartSurface[];
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const sciChartOverviewRef = React.useRef<SciChartOverview>();
 
     React.useEffect(() => {
-        (async () => {
-            charts = await drawExample();
-        })();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface, overview }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+            sciChartOverviewRef.current = overview;
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            charts.forEach(chart => chart?.delete());
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                sciChartOverviewRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                sciChartOverviewRef.current.delete();
+            });
         };
     }, []);
 
@@ -138,5 +182,5 @@ export default function VirtualizedDataOverview() {
                 <div id={divOverviewId} style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }} />
             </div>
         </div>
-    )
+    );
 }

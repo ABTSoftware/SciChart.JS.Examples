@@ -17,11 +17,13 @@ const tips = [
     also has the glow applied. Try it out!`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDocumentationHome,
-    title: ExampleStrings.titleDocumentationHome,
-    linkTitle: "SciChart.js Documentation Home"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    }
+];
 
 const Subtitle = () => (
     <p>

@@ -4,7 +4,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App";
 import { customTheme } from "./theme";
-import './components/index.scss';
+import "./components/index.scss";
 
 function Main() {
     React.useEffect(() => {

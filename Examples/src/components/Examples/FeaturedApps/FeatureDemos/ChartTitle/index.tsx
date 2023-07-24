@@ -67,45 +67,63 @@ export default function FeatureChartTitle() {
     const [placeWithinChart, setPlaceWithinChart] = React.useState(false);
 
     const handleChangeTitleText = (event: React.ChangeEvent<{ value: string }>) => {
-        const newValue = event.target.value;
-        setTitleText(newValue);
-        sciChartSurfaceRef.current.title = newValue;
+        if (sciChartSurfaceRef.current) {
+            const newValue = event.target.value;
+            setTitleText(newValue);
+            sciChartSurfaceRef.current.title = newValue;
+        }
     };
 
     const selectTitleTextPosition = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const { value } = event.target;
-        setTitlePosition(value as ETitlePosition);
-        sciChartSurfaceRef.current.titleStyle = { position: value as ETitlePosition };
+        if (sciChartSurfaceRef.current) {
+            const { value } = event.target;
+            setTitlePosition(value as ETitlePosition);
+            sciChartSurfaceRef.current.titleStyle = { position: value as ETitlePosition };
+        }
     };
 
     const selectTitleTextMultilineAlignment = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const { value } = event.target;
-        setMultilineAlignment(value as EMultiLineAlignment);
-        sciChartSurfaceRef.current.titleStyle = { multilineAlignment: value as EMultiLineAlignment };
+        if (sciChartSurfaceRef.current) {
+            const { value } = event.target;
+            setMultilineAlignment(value as EMultiLineAlignment);
+            sciChartSurfaceRef.current.titleStyle = { multilineAlignment: value as EMultiLineAlignment };
+        }
     };
 
     const selectTitleTextAlignment = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const { value } = event.target;
-        setTitleAlignment(value as ETextAlignment);
-        sciChartSurfaceRef.current.titleStyle = { alignment: value as ETextAlignment };
+        if (sciChartSurfaceRef.current) {
+            const { value } = event.target;
+            setTitleAlignment(value as ETextAlignment);
+            sciChartSurfaceRef.current.titleStyle = { alignment: value as ETextAlignment };
+        }
     };
 
     const handleChangePlaceWithinChart = (event: React.ChangeEvent<{ checked: boolean }>) => {
-        const newValue = event.target.checked;
-        setPlaceWithinChart(newValue);
-        sciChartSurfaceRef.current.titleStyle = { placeWithinChart: newValue };
+        if (sciChartSurfaceRef.current) {
+            const newValue = event.target.checked;
+            setPlaceWithinChart(newValue);
+            sciChartSurfaceRef.current.titleStyle = { placeWithinChart: newValue };
+        }
     };
 
     React.useEffect(() => {
-        const initChartPromise = drawExample().then(res => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
         });
 
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            initChartPromise.then(() => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
                 sciChartSurfaceRef.current.delete();
-                sciChartSurfaceRef.current = null;
+                sciChartSurfaceRef.current = undefined;
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
             });
         };
     }, []);

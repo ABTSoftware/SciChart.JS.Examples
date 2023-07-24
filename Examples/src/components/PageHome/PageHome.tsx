@@ -11,7 +11,6 @@ export const HOME_PAGE_TITLE = "HOMEPAGE";
 
 let prev = 0;
 export default function PageHome() {
-
     React.useEffect(() => {
         updateGoogleTagManagerPage();
     }, []);
@@ -27,15 +26,22 @@ export default function PageHome() {
             <div className={classes.PageHomeContent}>
                 <div className={classes.PageHomeHeader}>
                     <div className={classes.PageHomeHeaderText}>
-                        <h1 className={classes.PageHomeTitle}>
-                            SciChart.js Demo
-                        </h1>
+                        <h1 className={classes.PageHomeTitle}>SciChart.js Demo</h1>
                         <h3 className={classes.PageHomeAboutText}>
                             The SciChart.js Demo app is where we host our showcases and demos for SciChart's{" "}
-                            <a href="https://www.scichart.com/javascript-chart/" target="_blank" title="JavaScript Chart Library">
+                            <a
+                                href="https://www.scichart.com/javascript-chart/"
+                                target="_blank"
+                                title="JavaScript Chart Library"
+                            >
                                 JavaScript Chart Library
-                            </a>. All demos can be viewed at the main SciChart website, over at{" "}
-                            <a href="https://www.scichart.com/examples/javascript-chart/" target="_blank" title="JavaScript Chart Examples">
+                            </a>
+                            . All demos can be viewed at the main SciChart website, over at{" "}
+                            <a
+                                href="https://www.scichart.com/examples/javascript-chart/"
+                                target="_blank"
+                                title="JavaScript Chart Examples"
+                            >
                                 scichart.com/examples/javascript-chart
                             </a>
                         </h3>

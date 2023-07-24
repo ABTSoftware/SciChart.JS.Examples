@@ -12,11 +12,13 @@ const tips = [
     confidence intervals, error margins or Bollinger Bands!`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDigitalBandChartDocumentation,
-    title: ExampleStrings.urlTitleDigitalBandChart,
-    linkTitle: "JavaScript Digital Band Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDigitalBandChartDocumentation,
+        title: ExampleStrings.urlTitleDigitalBandChart,
+        linkTitle: "JavaScript Digital Band Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

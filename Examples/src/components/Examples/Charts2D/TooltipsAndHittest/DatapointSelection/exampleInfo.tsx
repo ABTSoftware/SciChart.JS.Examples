@@ -13,16 +13,17 @@ const tips = [
     `You don't have to use DataPointSelectionPaletteProvider.  You can create your own and use the metadata.isSelected that is passed to the paletteProvider methods.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDataPointSelectionDocumentation,
-    title: ExampleStrings.urlTitleDataPointSelectionDocumentation,
-    linkTitle: "DataPointSelectionModifier documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDataPointSelectionDocumentation,
+        title: ExampleStrings.urlTitleDataPointSelectionDocumentation,
+        linkTitle: "DataPointSelectionModifier documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to <strong>Select Data Points</strong> on a chart using SciChart.js, High
-        Performance{" "}
+        Demonstrates how to <strong>Select Data Points</strong> on a chart using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>

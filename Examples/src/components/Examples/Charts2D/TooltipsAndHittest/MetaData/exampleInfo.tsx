@@ -13,16 +13,17 @@ const tips = [
     `MetaData can be anything that implements IPointMetadata.  You do not have to assign metadata to every point.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlMetaDataDocumentation,
-    title: ExampleStrings.urlTitleMetaDataDocumentation,
-    linkTitle: "MetaData API documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlMetaDataDocumentation,
+        title: ExampleStrings.urlTitleMetaDataDocumentation,
+        linkTitle: "MetaData API documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to add and use <strong>MetaData</strong> in a chart using SciChart.js, High
-        Performance{" "}
+        Demonstrates how to add and use <strong>MetaData</strong> in a chart using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>

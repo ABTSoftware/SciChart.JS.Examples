@@ -7,21 +7,18 @@ import exampleImage from "./javascript-chart-title.jpg";
 
 const previewDescription = `Demonstrates how to set a Chart Title and some configuration options.`;
 const description = ``;
-const tips = [
-    ``,
-    ``
+const tips = [``, ``];
+
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    }
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDocumentationHome,
-    title: ExampleStrings.titleDocumentationHome,
-    linkTitle: "SciChart.js Documentation Home"
-}];
-
 const Subtitle = () => (
-    <p>
-        A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.
-    </p>
+    <p>A Chart Title can be placed above, below, or either side of the chart, and be left, center or right aligned.</p>
 );
 
 export const chartTitleExampleInfo: TExampleInfo = {
@@ -35,8 +32,7 @@ export const chartTitleExampleInfo: TExampleInfo = {
     previewDescription,
     filepath: "FeaturedApps/FeatureDemos/ChartTitle",
     githubUrl,
-    metaDescription:
-        "Demonstrates chart title with different position and alignment options",
+    metaDescription: "Demonstrates chart title with different position and alignment options",
     metaKeywords: "title, text, alignment, multiline, javascript, webgl, canvas",
     thumbnailImage: exampleImage
 };

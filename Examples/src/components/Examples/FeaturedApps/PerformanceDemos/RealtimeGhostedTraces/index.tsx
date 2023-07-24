@@ -1,8 +1,8 @@
 import * as React from "react";
-import {appTheme,ExampleDataProvider} from "scichart-example-dependencies";
+import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
-import {Button} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 import {
     CentralAxesLayoutManager,
@@ -24,7 +24,7 @@ const divElementId = "chart";
 let timerId: NodeJS.Timeout;
 
 const drawExample = async () => {
-    const {wasmContext, sciChartSurface} = await SciChartSurface.create(divElementId, {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -39,31 +39,35 @@ const drawExample = async () => {
     };
 
     // Configure x,y axis with central layout - oscilloscope style
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(0, 900),
-        isInnerAxis: true,
-        axisAlignment: EAxisAlignment.Top,
-        labelStyle: {
-            color: appTheme.PaleSkyBlue,
-        },
-        axisBorder: {
-            borderTop: 1,
-            color: appTheme.VividSkyBlue
-        }
-    }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            visibleRange: new NumberRange(0, 900),
+            isInnerAxis: true,
+            axisAlignment: EAxisAlignment.Top,
+            labelStyle: {
+                color: appTheme.PaleSkyBlue
+            },
+            axisBorder: {
+                borderTop: 1,
+                color: appTheme.VividSkyBlue
+            }
+        })
+    );
 
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        visibleRange: new NumberRange(-300, 300),
-        isInnerAxis: true,
-        axisAlignment: EAxisAlignment.Left,
-        labelStyle: {
-            color: appTheme.PaleSkyBlue,
-        },
-        axisBorder: {
-            borderLeft: 1,
-            color: appTheme.VividSkyBlue
-        }
-    }));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            visibleRange: new NumberRange(-300, 300),
+            isInnerAxis: true,
+            axisAlignment: EAxisAlignment.Left,
+            labelStyle: {
+                color: appTheme.PaleSkyBlue
+            },
+            axisBorder: {
+                borderLeft: 1,
+                color: appTheme.VividSkyBlue
+            }
+        })
+    );
 
     // Control the placement of the axis by specifying CentralAxesLayoutManager
     // and isInnerAxis property
@@ -73,14 +77,14 @@ const drawExample = async () => {
         const amplitude = Math.random() * AMPLITUDE;
         const effect = new GlowEffect(wasmContext, {
             range: 0,
-            intensity: 0.5,
+            intensity: 0.5
         });
-        const lineSeries = new FastLineRenderableSeries(wasmContext, {stroke, effect});
+        const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke, effect });
         lineSeries.strokeThickness = 3;
         lineSeries.opacity = opacity;
         sciChartSurface.renderableSeries.add(lineSeries);
-        const {xValues, yValues} = ExampleDataProvider.getNoisySinewave(500, 900, 7, amplitude, 30);
-        lineSeries.dataSeries = new XyDataSeries(wasmContext, {xValues, yValues});
+        const { xValues, yValues } = ExampleDataProvider.getNoisySinewave(500, 900, 7, amplitude, 30);
+        lineSeries.dataSeries = new XyDataSeries(wasmContext, { xValues, yValues });
         return lineSeries;
     };
 
@@ -133,7 +137,7 @@ const drawExample = async () => {
     };
     document.getElementById("startAnimation").addEventListener("click", startAnimation);
 
-    return {wasmContext, sciChartSurface, controls: {startAnimation, stopAnimation}};
+    return { wasmContext, sciChartSurface, controls: { startAnimation, stopAnimation } };
 };
 
 const useStyles = makeStyles(theme => ({
@@ -153,46 +157,59 @@ const useStyles = makeStyles(theme => ({
         color: appTheme.ForegroundColor
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
-let scs: SciChartSurface;
-let autoStartTimerId: NodeJS.Timeout;
-
 export default function RealtimeGhostedTraces() {
-    const [controls, setControls] = React.useState({
-        startAnimation: () => {
-        }, stopAnimation: () => {
-        }
-    });
-    const [stats, setStats] = React.useState({numberSeries: 0, numberPoints: 0, fps: 0});
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const controlsRef = React.useRef<{
+        startAnimation: () => void;
+        stopAnimation: () => void;
+    }>();
+
+    const [stats, setStats] = React.useState({ numberSeries: 0, numberPoints: 0, fps: 0 });
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            scs = res.sciChartSurface;
+        let autoStartTimerId: NodeJS.Timeout;
+
+        const chartInitializationPromise = drawExample().then(res => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
+            controlsRef.current = res.controls;
             let lastRendered = Date.now();
-            scs.rendered.subscribe(() => {
+            res.sciChartSurface.rendered.subscribe(() => {
                 const currentTime = Date.now();
                 const timeDiffSeconds = new Date(currentTime - lastRendered).getTime() / 1000;
                 lastRendered = currentTime;
                 const fps = 1 / timeDiffSeconds;
                 setStats({
-                    numberSeries: scs.renderableSeries.size(),
-                    numberPoints: scs.renderableSeries.size() * scs.renderableSeries.get(0).dataSeries.count(),
-                    fps,
+                    numberSeries: res.sciChartSurface.renderableSeries.size(),
+                    numberPoints:
+                        res.sciChartSurface.renderableSeries.size() *
+                        res.sciChartSurface.renderableSeries.get(0).dataSeries.count(),
+                    fps
                 });
             });
-            setControls(res.controls);
+
             autoStartTimerId = setTimeout(res.controls.startAnimation, 0);
-        })();
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            controls.stopAnimation();
-            clearTimeout(timerId);
-            clearTimeout(autoStartTimerId);
-            scs?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                clearTimeout(autoStartTimerId);
+                controlsRef.current.stopAnimation();
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                clearTimeout(autoStartTimerId);
+                controlsRef.current.stopAnimation();
+                sciChartSurfaceRef.current.delete();
+            });
         };
     }, []);
 
@@ -203,14 +220,30 @@ export default function RealtimeGhostedTraces() {
             <div className={classes.ChartWrapper}>
                 <div className={localClasses.flexOuterContainer}>
                     <div className={localClasses.toolbarRow}>
-                        <Button id="startAnimation" style={{color: appTheme.ForegroundColor}}>Start</Button>
-                        <Button id="stopAnimation" style={{color: appTheme.ForegroundColor}}>Stop</Button>
-                        <span style={{margin: 12}}># Series: {stats.numberSeries}</span>
-                        <span style={{
-                            margin: 12,
-                            minWidth: "200px"
-                        }}># DataPoints: {stats.numberPoints.toLocaleString()}</span>
-                        <span style={{margin: 12}}>FPS: {stats.fps.toFixed(0)}</span>
+                        <Button
+                            id="startAnimation"
+                            style={{ color: appTheme.ForegroundColor }}
+                            onClick={() => controlsRef.current.startAnimation()}
+                        >
+                            Start
+                        </Button>
+                        <Button
+                            id="stopAnimation"
+                            style={{ color: appTheme.ForegroundColor }}
+                            onClick={() => controlsRef.current.stopAnimation()}
+                        >
+                            Stop
+                        </Button>
+                        <span style={{ margin: 12 }}># Series: {stats.numberSeries}</span>
+                        <span
+                            style={{
+                                margin: 12,
+                                minWidth: "200px"
+                            }}
+                        >
+                            # DataPoints: {stats.numberPoints.toLocaleString()}
+                        </span>
+                        <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
                     <div className={localClasses.chartArea} id={divElementId}></div>
                 </div>

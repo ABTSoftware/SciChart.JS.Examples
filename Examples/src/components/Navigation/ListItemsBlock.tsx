@@ -35,10 +35,7 @@ const ListItemsBlock: React.FC<TProps> = props => {
                 <List component="div" disablePadding>
                     {menuItems.map(el => (
                         <React.Fragment key={el.item.id}>
-                            <div
-                                className={classes.CollapsibleMenuListItem}
-                                onClick={() => onExpandClick(el.item.id)}
-                            >
+                            <div className={classes.CollapsibleMenuListItem} onClick={() => onExpandClick(el.item.id)}>
                                 <MenuListItemText text={el.item.name} className={classes.SecondLevelMenuListItemText} />
                                 <ListItemCollapseArrowIcon
                                     className={classes.CollapseArrowButton}
@@ -52,9 +49,10 @@ const ListItemsBlock: React.FC<TProps> = props => {
                                         <div
                                             key={subEl.id}
                                             className={
-                                                location.pathname === subEl.path 
+                                                location.pathname === subEl.path
                                                     ? classes.SelectedBottomLevelListItem
-                                                    : classes.BottomLevelListItem}
+                                                    : classes.BottomLevelListItem
+                                            }
                                             onClick={() => historyPushPath(subEl.path)}
                                         >
                                             <a className={classes.ExampleLink} href={subEl.path} title={subEl.title}>

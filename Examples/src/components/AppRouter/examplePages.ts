@@ -89,7 +89,7 @@ import { subChartStockChartsExampleInfo } from "../Examples/Charts2D/CreateStock
 import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisLayout/exampleInfo";
 import { subchartsGridExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/SubChartsAPI/exampleInfo";
 import { websocketBigDataDemoExampleInfo } from "../Examples/FeaturedApps/ShowCases/WebsocketBigData/exampleInfo";
-import {oilAndGasExplorerDashboard} from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard/exampleInfo";
+import { oilAndGasExplorerDashboard } from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard/exampleInfo";
 import { TDocumentationLink } from "../../helpers/types/ExampleDescriptionTypes";
 import { datalabelsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/DataLabels/exampleInfo";
 import { virtualizedDataOverviewExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview/exampleInfo";
@@ -98,7 +98,8 @@ import { depthChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/De
 import { textChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart/exampleInfo";
 import { chartTitleExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/ChartTitle/exampleInfo";
 import { backgroundAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations/exampleInfo";
-
+import { realtimeSurfaceMesh3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart/exampleInfo";
+import { dynamicLayoutExampleInfo } from "../Examples/FeaturedApps/ShowCases/DynamicLayout/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -455,6 +456,10 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart3D_basic3DChartTypes_SurfaceMesh3DChart",
         ...surfaceMesh3DChartExampleInfo
     },
+    chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart: {
+        id: "chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart",
+        ...realtimeSurfaceMesh3DChartExampleInfo
+    },
     chart3D_basic3DChartTypes_PointLine3DChart: {
         id: "chart3D_basic3DChartTypes_PointLine3DChart",
         ...pointLine3DChartExampleInfo
@@ -503,17 +508,21 @@ export const EXAMPLES_PAGES = asRecord({
         id: "featuredApps_scientificCharts_TenorCurvesDemo",
         ...tenorCurvesExampleInfo
     },
-    featuredApps_showcases_realtimebigdata : {
+    featuredApps_showcases_realtimebigdata: {
         id: "featuredApps_showcases_realtimebigdata",
         ...websocketBigDataDemoExampleInfo
     },
-    featuredApps_showcases_oilandgasdashboard : {
+    featuredApps_showcases_oilandgasdashboard: {
         id: "featuredApps_showcases_oilandgasdashboard",
         ...oilAndGasExplorerDashboard
     },
-    featuredApps_showcases_richInteractions : {
+    featuredApps_showcases_richInteractions: {
         id: "featuredApps_showcases_richInteractions",
         ...heatmapInteractionsExampleInfo
+    },
+    featuredApps_showcases_dynamicLayout : {
+        id: "featuredApps_showcases_dynamicLayout",
+        ...dynamicLayoutExampleInfo
     },
     builderApi_simplechart: {
         id: "builderApi_simplechart",

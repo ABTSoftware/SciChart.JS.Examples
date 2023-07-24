@@ -8,14 +8,13 @@ import { ESeriesType } from "scichart/types/SeriesType";
 import { getCommonChartConfigs, getCommonChartModifiersConfig, getParsedData } from "./utils";
 import { appTheme } from "../../theme";
 
-export 
-const drawDensityChart = async () => {
+export const drawDensityChart = async () => {
     const { sciChartSurface, wasmContext } = await chartBuilder.build2DChart("density-chart", {
         ...getCommonChartConfigs("Density"),
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
-            padding: Thickness.fromNumber(0),
+            padding: Thickness.fromNumber(0)
         }
     });
 
@@ -24,7 +23,7 @@ const drawDensityChart = async () => {
     const dataSeries = new XyyDataSeries(wasmContext, { dataIsSortedInX: true, containsNaN: false });
 
     const data = await getParsedData("Density.csv");
-    data.forEach((dataRow) => {
+    data.forEach(dataRow => {
         const x = dataRow[0];
         dataSeries.append(x, dataRow[1], dataRow[2]);
     });
@@ -37,11 +36,11 @@ const drawDensityChart = async () => {
             stroke: appTheme.DensityStrokeY,
             strokeY1: appTheme.DensityStrokeY1,
             fill: appTheme.DensityFillY,
-            fillY1: appTheme.DensityFillY1,
+            fillY1: appTheme.DensityFillY1
         }
     });
 
-    sciChartSurface.renderableSeries.add(...renderableSeries)
+    sciChartSurface.renderableSeries.add(...renderableSeries);
 
     renderableSeries.forEach(rs => {
         rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;

@@ -24,16 +24,15 @@ export class RangeFillPaletteProvider implements IFillPaletteProvider {
     public readonly fillPaletteMode = EFillPaletteMode.SOLID;
     private paletteRanges: PaletteRange[];
 
-
     constructor(paletteRanges: PaletteRange[]) {
         this.paletteRanges = paletteRanges;
     }
 
     // tslint:disable-next-line:no-empty
-    public onAttached(parentSeries: IRenderableSeries): void { }
+    public onAttached(parentSeries: IRenderableSeries): void {}
 
     // tslint:disable-next-line:no-empty
-    public onDetached(): void { }
+    public onDetached(): void {}
 
     public overrideFillArgb(
         xValue: number,
@@ -42,7 +41,7 @@ export class RangeFillPaletteProvider implements IFillPaletteProvider {
         opacity: number,
         metadata: IPointMetadata
     ): number {
-        const currentRange = this.paletteRanges.find((range) => range.startIndex <= index && range.endIndex >= index);
+        const currentRange = this.paletteRanges.find(range => range.startIndex <= index && range.endIndex >= index);
         return currentRange ? parseColorToUIntArgb(currentRange.fill) : undefined;
     }
 }

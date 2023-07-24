@@ -20,11 +20,9 @@ export class VolumePaletteProvider implements IFillPaletteProvider {
         this.ohlcDataSeries = masterData;
     }
 
-    onAttached(parentSeries: IRenderableSeries): void {
-    }
+    onAttached(parentSeries: IRenderableSeries): void {}
 
-    onDetached(): void {
-    }
+    onDetached(): void {}
 
     // Return up or down color for the volume bars depending on Ohlc data
     overrideFillArgb(

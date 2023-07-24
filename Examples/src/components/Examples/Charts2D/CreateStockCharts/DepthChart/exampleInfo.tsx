@@ -9,16 +9,16 @@ const previewDescription = `An example which demonstrates a depth chart.`;
 const description = ``;
 const tips = [""];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDocumentationHome,
-    title: ExampleStrings.titleDocumentationHome,
-    linkTitle: "SciChart.js Documentation Home"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    }
+];
 
 const Subtitle = () => (
-    <p>
-       How to create a market depth (order book) chart using mountain series and a custom modifier
-    </p>
+    <p>How to create a market depth (order book) chart using mountain series and a custom modifier</p>
 );
 
 export const depthChartExampleInfo: TExampleInfo = {

@@ -12,17 +12,19 @@ const tips = [
     FFT data, and a Heatmap series to render a spectrogram - a scrolling visualisation of frequency domain data.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlDocumentationHome,
-    title: ExampleStrings.titleDocumentationHome,
-    linkTitle: "SciChart.js Documentation Home"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlDocumentationHome,
+        title: ExampleStrings.titleDocumentationHome,
+        linkTitle: "SciChart.js Documentation Home"
+    }
+];
 
 // tslint:disable-next-line:max-line-length
 const Subtitle = () => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Frequency / Audio Analyzer</strong> with Fourier Transform (Frequency spectra){" "}
-        and a real-time frequency history using heatmaps.{" "}
+        Demonstrates how to create a <strong>JavaScript Frequency / Audio Analyzer</strong> with Fourier Transform
+        (Frequency spectra) and a real-time frequency history using heatmaps.{" "}
         <em>
             <strong>Note: this example requires microphone permissions to run.</strong>
         </em>
@@ -45,8 +47,8 @@ export const audioAnalyzerExampleInfo: TExampleInfo = {
     metaKeywords: "audio, analyzer, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     sandboxConfig: {
-        "infiniteLoopProtection": false,
-        "hardReloadOnChange": false,
-        "view": "browser"
-      }
+        infiniteLoopProtection: false,
+        hardReloadOnChange: false,
+        view: "browser"
+    }
 };

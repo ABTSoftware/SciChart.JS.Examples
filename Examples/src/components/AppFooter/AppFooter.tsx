@@ -10,10 +10,10 @@ import {
 import FooterGrid from "./FooterGrid";
 import { useNavigate } from "react-router-dom";
 import classes from "./AppFooter.module.scss";
-import FacebookIcon from '@material-ui/icons/Facebook';
-import YouTubeIcon from '@material-ui/icons/YouTube';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import FacebookIcon from "@material-ui/icons/Facebook";
+import YouTubeIcon from "@material-ui/icons/YouTube";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import TwitterIcon from "@material-ui/icons/Twitter";
 import Button from "@material-ui/core/Button";
 
 export type TFooterlink = {
@@ -127,7 +127,7 @@ export default function AppFooter() {
                             </a>
                             <a href="https://demo.scichart.com" title="JavaScript Chart Examples">
                                 JavaScript Chart Examples
-                        </a>
+                            </a>
                         </div>
                     </div>
                     <div className={classes.LinksBox}>
@@ -161,9 +161,7 @@ export default function AppFooter() {
                 </div>
             </div>
             <div className={classes.Copyright}>
-                <span>
-                    SciChart Ltd, 16 Beaufort Court, Admirals Way, Docklands, London, E14 9XL.
-                </span>
+                <span>SciChart Ltd, 16 Beaufort Court, Admirals Way, Docklands, London, E14 9XL.</span>
             </div>
         </>
     );

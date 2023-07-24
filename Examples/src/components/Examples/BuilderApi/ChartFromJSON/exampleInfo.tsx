@@ -7,8 +7,9 @@ import { TDocumentationLink } from "../../../../helpers/types/ExampleDescription
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to use the Builder Api to create a <strong>Chart from JSON</strong> using SciChart.js.{" "}
-        Adjust the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about the Builder API.
+        Demonstrates how to use the Builder Api to create a <strong>Chart from JSON</strong> using SciChart.js. Adjust
+        the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about
+        the Builder API.
     </p>
 );
 
@@ -19,11 +20,13 @@ const tips = [
     ` See the documentation links for the types and options you can specify.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlBuilderApiDocumentation,
-    title: ExampleStrings.urlTitleBuilderApiDocumentation,
-    linkTitle: "JavaScript Builder API Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlBuilderApiDocumentation,
+        title: ExampleStrings.urlTitleBuilderApiDocumentation,
+        linkTitle: "JavaScript Builder API Documentation"
+    }
+];
 
 export const chartFromJSONExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleChartFromJSON,
@@ -36,8 +39,7 @@ export const chartFromJSONExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to create a JavaScript Chart from JSON using the builder API. ",
+    metaDescription: "Demonstrates how to create a JavaScript Chart from JSON using the builder API. ",
     metaKeywords: "json, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage
 };

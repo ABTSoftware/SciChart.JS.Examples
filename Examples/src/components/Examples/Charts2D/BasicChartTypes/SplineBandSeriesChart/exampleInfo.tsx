@@ -22,11 +22,13 @@ const Subtitle = () => (
     </p>
 );
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlSplineBandChartDocumentation,
-    title: ExampleStrings.urlTitleSplineBandChartDocumentation,
-    linkTitle: "JavaScript Spline Band Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlSplineBandChartDocumentation,
+        title: ExampleStrings.urlTitleSplineBandChartDocumentation,
+        linkTitle: "JavaScript Spline Band Documentation"
+    }
+];
 
 export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleSplineBandChart,

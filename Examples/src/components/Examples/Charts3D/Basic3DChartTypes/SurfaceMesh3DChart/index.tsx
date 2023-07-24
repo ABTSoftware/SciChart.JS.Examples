@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 
 import {
     SciChart3DSurface,
@@ -26,10 +26,9 @@ const divHeatmapLegend = "heatmapLegend";
 // SCICHART CODE
 const drawExample = async () => {
     // Create a SciChart3DSurface
-    const {
-        sciChart3DSurface,
-        wasmContext
-    } = await SciChart3DSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Create and position the camera in the 3D world
     sciChart3DSurface.camera = new CameraController(wasmContext, {
@@ -40,12 +39,12 @@ const drawExample = async () => {
     sciChart3DSurface.worldDimensions = new Vector3(200, 100, 200);
 
     // Add an X,Y and Z Axis
-    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, {axisTitle: "X Axis"});
+    sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis" });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Y Axis",
         visibleRange: new NumberRange(0, 0.3)
     });
-    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {axisTitle: "Z Axis"});
+    sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Axis" });
 
     // Create a 2D array using the helper function zeroArray2D
     // and fill this with data
@@ -72,14 +71,14 @@ const drawExample = async () => {
     // Create the color map
     const colorMap = new GradientColorPalette(wasmContext, {
         gradientStops: [
-            {offset: 1, color: appTheme.VividPink},
-            {offset: 0.9, color: appTheme.VividOrange},
-            {offset: 0.7, color: appTheme.MutedRed},
-            {offset: 0.5, color: appTheme.VividGreen},
-            {offset: 0.3, color: appTheme.VividSkyBlue},
-            {offset: 0.15, color: appTheme.Indigo},
-            {offset: 0, color: appTheme.DarkIndigo}
-        ],
+            { offset: 1, color: appTheme.VividPink },
+            { offset: 0.9, color: appTheme.VividOrange },
+            { offset: 0.7, color: appTheme.MutedRed },
+            { offset: 0.5, color: appTheme.VividGreen },
+            { offset: 0.3, color: appTheme.VividSkyBlue },
+            { offset: 0.15, color: appTheme.Indigo },
+            { offset: 0, color: appTheme.DarkIndigo }
+        ]
     });
 
     // Finally, create a SurfaceMeshRenderableSeries3D and add to the chart
@@ -110,19 +109,17 @@ const drawExample = async () => {
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
     sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
-    const tooltip = new TooltipModifier3D({ tooltipContainerBackground: appTheme.PaleBlue, showTooltip: false });
-    tooltip.tooltipLegendTemplate = tooltip.tooltipSvgTemplate;
-    sciChart3DSurface.chartModifiers.add(tooltip);
+    sciChart3DSurface.chartModifiers.add(new TooltipModifier3D({ tooltipContainerBackground: appTheme.PaleBlue }));
 
-    return {sciChart3DSurface, wasmContext};
+    return { sciChart3DSurface, wasmContext };
 };
 
 const drawHeatmapLegend = async () => {
-    const {heatmapLegend, wasmContext} = await HeatmapLegend.create(divHeatmapLegend, {
+    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB"
         },
         yAxisOptions: {
             axisBorder: {
@@ -132,59 +129,74 @@ const drawHeatmapLegend = async () => {
             majorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 6,
-                strokeThickness: 1,
+                strokeThickness: 1
             },
             minorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
-                strokeThickness: 1,
+                strokeThickness: 1
             }
         },
         colorMap: {
             minimum: 0,
             maximum: 0.5,
             gradientStops: [
-                {offset: 1, color: appTheme.VividPink},
-                {offset: 0.9, color: appTheme.VividOrange},
-                {offset: 0.7, color: appTheme.MutedRed},
-                {offset: 0.5, color: appTheme.VividGreen},
-                {offset: 0.3, color: appTheme.VividSkyBlue},
-                {offset: 0.15, color: appTheme.Indigo},
-                {offset: 0, color: appTheme.DarkIndigo}
-            ],
+                { offset: 1, color: appTheme.VividPink },
+                { offset: 0.9, color: appTheme.VividOrange },
+                { offset: 0.7, color: appTheme.MutedRed },
+                { offset: 0.5, color: appTheme.VividGreen },
+                { offset: 0.3, color: appTheme.VividSkyBlue },
+                { offset: 0.15, color: appTheme.Indigo },
+                { offset: 0, color: appTheme.DarkIndigo }
+            ]
         }
     });
 
     return heatmapLegend;
-}
+};
 
 // REACT COMPONENT
 export default function SurfaceMesh3DChart() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChart3DSurface>();
-    const [heatmapLegend, setHeatmapLegend] = React.useState<HeatmapLegend>();
+    const sciChartSurfaceRef = React.useRef<SciChart3DSurface>();
+    const heatmapLegendRef = React.useRef<HeatmapLegend>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            const legend = await drawHeatmapLegend();
-            setHeatmapLegend(legend);
-            setSciChartSurface(res.sciChart3DSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
+        const chartInitializationPromise = Promise.all([drawExample(), drawHeatmapLegend()]).then(
+            ([{ sciChart3DSurface }, legend]) => {
+                sciChartSurfaceRef.current = sciChart3DSurface;
+                heatmapLegendRef.current = legend;
+            }
+        );
+
         return () => {
-            sciChartSurface?.delete();
-            heatmapLegend?.delete();
-        }
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                heatmapLegendRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                heatmapLegendRef.current = undefined;
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+                heatmapLegendRef.current.delete();
+                sciChartSurfaceRef.current = undefined;
+                heatmapLegendRef.current = undefined;
+            });
+        };
     }, []);
 
     return (
         <div className={classes.ChartWrapper}>
-            <div style={{position: "relative", height: "100%", width: "100%"}}>
-                <div id={divElementId} style={{position: "absolute", height: "100%", width: "100%"}}></div>
-                <div id={divHeatmapLegend}
-                     style={{position: "absolute", height: "95%", width: "100px", right: "75px", margin: "20"}}>
-                </div>
+            <div style={{ position: "relative", height: "100%", width: "100%" }}>
+                <div id={divElementId} style={{ position: "absolute", height: "100%", width: "100%" }}></div>
+                <div
+                    id={divHeatmapLegend}
+                    style={{ position: "absolute", height: "95%", width: "100px", right: "75px", margin: "20" }}
+                ></div>
             </div>
         </div>
-    )
+    );
 }

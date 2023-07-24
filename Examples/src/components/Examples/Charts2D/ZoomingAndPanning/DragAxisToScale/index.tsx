@@ -2,18 +2,24 @@ import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
 
 import {
-    EAxisAlignment, EColor,
+    EAxisAlignment,
+    EColor,
     ELabelAlignment,
     ENumericFormat,
     FastLineRenderableSeries,
     NumericAxis,
-    SciChartSurface, XyDataSeries, ZoomExtentsModifier, EDragMode, YAxisDragModifier, XAxisDragModifier
+    SciChartSurface,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    EDragMode,
+    YAxisDragModifier,
+    XAxisDragModifier
 } from "scichart";
 
 export const divElementId = "chart";
 
 export const drawExample = async () => {
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
 
     const ID_X_AXIS_2 = "xAxis2";
     const ID_Y_AXIS_2 = "yAxis2";
@@ -53,12 +59,12 @@ export const drawExample = async () => {
         yAxis.axisTitle = "Drag the Y-Axis to Scale";
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         yAxis.labelProvider.precision = 0;
-        yAxis.labelStyle = {alignment: ELabelAlignment.Right};
+        yAxis.labelStyle = { alignment: ELabelAlignment.Right };
         sciChartSurface.yAxes.add(yAxis);
     };
 
     const setSeries1 = () => {
-        const lineSeries = new FastLineRenderableSeries(wasmContext, {stroke: EColor.Red});
+        const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke: EColor.Red });
         lineSeries.strokeThickness = 3;
         sciChartSurface.renderableSeries.add(lineSeries);
         const lineData = new XyDataSeries(wasmContext);
@@ -75,7 +81,7 @@ export const drawExample = async () => {
     };
 
     const setSeries2 = () => {
-        const lineSeries = new FastLineRenderableSeries(wasmContext, {stroke: EColor.Purple});
+        const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke: EColor.Purple });
         lineSeries.xAxisId = ID_X_AXIS_2;
         lineSeries.yAxisId = ID_Y_AXIS_2;
         lineSeries.strokeThickness = 3;
@@ -103,8 +109,8 @@ export const drawExample = async () => {
 
     // Add modifiers to enable YAxis and XAxis drag with dragMode as scale or pan
     sciChartSurface.chartModifiers.add(
-        new XAxisDragModifier({dragMode: EDragMode.Panning}),
-        new YAxisDragModifier({dragMode: EDragMode.Scaling})
+        new XAxisDragModifier({ dragMode: EDragMode.Panning }),
+        new YAxisDragModifier({ dragMode: EDragMode.Scaling })
     );
 
     // Add a modifier to zoom to fit on double-click
@@ -112,18 +118,32 @@ export const drawExample = async () => {
 
     sciChartSurface.zoomExtents();
 
-    return sciChartSurface;
+    return { sciChartSurface };
 };
 
-export default function DragAxisToScale() {
-    React.useEffect(() => {
-        let sciChartSurface: SciChartSurface;
-        (async () => {
-            sciChartSurface = await drawExample();
-        })();
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
-        return () => sciChartSurface?.delete();
+    React.useEffect(() => {
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

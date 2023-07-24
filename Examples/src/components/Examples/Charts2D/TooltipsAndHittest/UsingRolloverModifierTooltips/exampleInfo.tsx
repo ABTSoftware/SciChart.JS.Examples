@@ -14,11 +14,13 @@ const tips = [
     for more info!`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlRolloverModifierDocumentation,
-    title: ExampleStrings.urlTitleRolloverModifierDocumentation,
-    linkTitle: "RolloverModifier documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlRolloverModifierDocumentation,
+        title: ExampleStrings.urlTitleRolloverModifierDocumentation,
+        linkTitle: "RolloverModifier documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>

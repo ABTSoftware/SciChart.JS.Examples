@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 
 import {
     ECoordinateMode,
@@ -45,12 +45,12 @@ const onHoveredChanged = (sourceSeries: IRenderableSeries, isHovered: boolean) =
     const otherSeriesOpacity = isHovered ? 0.3 : 1;
 
     const sciChartSurface = sourceSeries.parentSurface;
-    const otherSeries = sciChartSurface.renderableSeries.asArray().filter((rs) => rs !== sourceSeries);
+    const otherSeries = sciChartSurface.renderableSeries.asArray().filter(rs => rs !== sourceSeries);
 
     // Use the genericanimations feature to animate opacity on the hovered series
     // TODO: SciChart devs will think of a way to make this code more succinct!
-    sciChartSurface.addAnimation(new GenericAnimation(
-        {
+    sciChartSurface.addAnimation(
+        new GenericAnimation({
             from: sourceSeries.opacity,
             to: targetSeriesOpacity,
             duration: 100,
@@ -59,10 +59,11 @@ const onHoveredChanged = (sourceSeries: IRenderableSeries, isHovered: boolean) =
                 sourceSeries.opacity = opacity;
                 sourceSeries.pointMarker.opacity = opacity;
             }
-        }));
+        })
+    );
     // Dim opacity on the other non-hovered series
-    sciChartSurface.addAnimation(new GenericAnimation(
-        {
+    sciChartSurface.addAnimation(
+        new GenericAnimation({
             from: otherSeries[0].opacity,
             to: otherSeriesOpacity,
             duration: 100,
@@ -73,12 +74,12 @@ const onHoveredChanged = (sourceSeries: IRenderableSeries, isHovered: boolean) =
                     rs.pointMarker.opacity = opacity;
                 });
             }
-        }));
+        })
+    );
 };
 
 // Custom function called when a series is selected or deselected
 const onSelectedChanged = (sourceSeries: IRenderableSeries, isSelected: boolean) => {
-
     console.log(`Series ${sourceSeries.dataSeries.dataSeriesName} isSelected=${isSelected}`);
 
     // When selected, set the stroke = white, or reset to auto (previous value)
@@ -89,52 +90,74 @@ const onSelectedChanged = (sourceSeries: IRenderableSeries, isSelected: boolean)
 
 export const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme,
+        theme: appTheme.SciChartJsTheme
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            growBy: new NumberRange(0.1, 0.1),
+            growBy: new NumberRange(0.1, 0.1)
         })
     );
 
-    sciChartSurface.chartModifiers.add(new SeriesSelectionModifier({
-        enableHover: true,
-        enableSelection: true
-    }));
+    sciChartSurface.chartModifiers.add(
+        new SeriesSelectionModifier({
+            enableHover: true,
+            enableSelection: true
+        })
+    );
 
-    sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: "First Series"}),
-        pointMarker: { type: EPointMarkerType.Ellipse, options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 } },
-        strokeThickness: 3,
-        onHoveredChanged,
-        onSelectedChanged
-    }));
+    sciChartSurface.renderableSeries.add(
+        new SplineLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: "First Series" }),
+            pointMarker: {
+                type: EPointMarkerType.Ellipse,
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 }
+            },
+            strokeThickness: 3,
+            onHoveredChanged,
+            onSelectedChanged
+        })
+    );
 
-    sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Second Series"}),
-        pointMarker: { type: EPointMarkerType.Ellipse, options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 } },
-        strokeThickness: 3,
-        onHoveredChanged,
-        onSelectedChanged
-    }));
+    sciChartSurface.renderableSeries.add(
+        new SplineLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Second Series" }),
+            pointMarker: {
+                type: EPointMarkerType.Ellipse,
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 }
+            },
+            strokeThickness: 3,
+            onHoveredChanged,
+            onSelectedChanged
+        })
+    );
 
-    sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Third Series"}),
-        pointMarker: { type: EPointMarkerType.Ellipse, options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 } },
-        strokeThickness: 3,
-        onHoveredChanged,
-        onSelectedChanged
-    }));
+    sciChartSurface.renderableSeries.add(
+        new SplineLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Third Series" }),
+            pointMarker: {
+                type: EPointMarkerType.Ellipse,
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 }
+            },
+            strokeThickness: 3,
+            onHoveredChanged,
+            onSelectedChanged
+        })
+    );
 
-    sciChartSurface.renderableSeries.add(new SplineLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Fourth Series"}),
-        pointMarker: { type: EPointMarkerType.Ellipse, options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 } },
-        strokeThickness: 3,
-        onHoveredChanged,
-        onSelectedChanged
-    }));
+    sciChartSurface.renderableSeries.add(
+        new SplineLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Fourth Series" }),
+            pointMarker: {
+                type: EPointMarkerType.Ellipse,
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 }
+            },
+            strokeThickness: 3,
+            onHoveredChanged,
+            onSelectedChanged
+        })
+    );
 
     // Add title annotation
     sciChartSurface.annotations.add(
@@ -157,21 +180,29 @@ export const drawExample = async () => {
     return { sciChartSurface, wasmContext };
 };
 
-let scs: SciChartSurface;
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
-export default function SeriesSelection() {
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            scs = res.sciChartSurface;
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => scs?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-    return (
-        <div>
-            <div id={divElementId} className={classes.ChartWrapper} />
-        </div>
-    );
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

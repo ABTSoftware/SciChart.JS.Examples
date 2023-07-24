@@ -12,11 +12,13 @@ const tips = [
     to add oscilloscope/VDU style glow effects. Try it out!`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlPerformanceTipsDocumentation,
-    title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
-    linkTitle: "SciChart.js Performance Tips and Tricks"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlPerformanceTipsDocumentation,
+        title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
+        linkTitle: "SciChart.js Performance Tips and Tricks"
+    }
+];
 
 const Subtitle = () => (
     <p>

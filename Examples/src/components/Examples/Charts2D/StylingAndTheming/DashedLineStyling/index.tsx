@@ -1,5 +1,5 @@
 import * as React from "react";
-import {appTheme, ExampleDataProvider } from "scichart-example-dependencies";
+import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 import {
@@ -8,8 +8,13 @@ import {
     FastLineRenderableSeries,
     FastMountainRenderableSeries,
     GradientParams,
-    MouseWheelZoomModifier, NumberRange, NumericAxis, Point,
-    SciChartSurface, TSciChart, XyDataSeries,
+    MouseWheelZoomModifier,
+    NumberRange,
+    NumericAxis,
+    Point,
+    SciChartSurface,
+    TSciChart,
+    XyDataSeries,
     XyyDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier
@@ -21,13 +26,12 @@ import {
 const divElementId = "chart";
 
 const drawExample = async () => {
-    const {
-        sciChartSurface,
-        wasmContext
-    } = await SciChartSurface.create(divElementId, {theme: appTheme.SciChartJsTheme});
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Create XAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {labelFormat: ENumericFormat.Decimal, labelPrecision: 2}));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelFormat: ENumericFormat.Decimal, labelPrecision: 2 }));
 
     // Create YAxis
     sciChartSurface.yAxes.add(
@@ -41,8 +45,8 @@ const drawExample = async () => {
         new FastMountainRenderableSeries(wasmContext, {
             stroke: "SteelBlue",
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                {color: appTheme.VividSkyBlue + "77", offset: 0},
-                {color: "Transparent", offset: 0.5}
+                { color: appTheme.VividSkyBlue + "77", offset: 0 },
+                { color: "Transparent", offset: 0.5 }
             ]),
             strokeThickness: 3,
             dataSeries: createLineData(wasmContext, 2),
@@ -94,7 +98,7 @@ const drawExample = async () => {
 
     sciChartSurface.zoomExtents();
 
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 // Creates some dummy data and appends into an XyDataSeries for the example
@@ -117,17 +121,29 @@ const createBandData = (wasmContext: TSciChart) => {
     return xyyDataSeries;
 };
 
-export default function DashedLineStyling() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

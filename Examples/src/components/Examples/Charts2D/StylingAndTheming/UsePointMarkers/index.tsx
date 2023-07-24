@@ -1,7 +1,7 @@
 import * as React from "react";
 import customPointImage from "./img/CustomMarkerImage.png";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 
 import {
     SciChartSurface,
@@ -21,18 +21,18 @@ import {
     LegendModifier,
     ELegendOrientation,
     ELegendPlacement,
-    TSciChart,
+    TSciChart
 } from "scichart";
 
 const divElementId = "chart";
 
 function createData(wasmContext: TSciChart) {
     // Create some dataseries
-    const dataSeries1 = new XyDataSeries(wasmContext, {dataSeriesName: "Ellipse Marker"});
-    const dataSeries2 = new XyDataSeries(wasmContext, {dataSeriesName: "Square Marker"});
-    const dataSeries3 = new XyDataSeries(wasmContext, {dataSeriesName: "Triangle Marker"});
-    const dataSeries4 = new XyDataSeries(wasmContext, {dataSeriesName: "Cross Marker"});
-    const dataSeries5 = new XyDataSeries(wasmContext, {dataSeriesName: "Custom Marker"});
+    const dataSeries1 = new XyDataSeries(wasmContext, { dataSeriesName: "Ellipse Marker" });
+    const dataSeries2 = new XyDataSeries(wasmContext, { dataSeriesName: "Square Marker" });
+    const dataSeries3 = new XyDataSeries(wasmContext, { dataSeriesName: "Triangle Marker" });
+    const dataSeries4 = new XyDataSeries(wasmContext, { dataSeriesName: "Cross Marker" });
+    const dataSeries5 = new XyDataSeries(wasmContext, { dataSeriesName: "Custom Marker" });
 
     // Append values
     const dataSize = 30;
@@ -55,14 +55,14 @@ function createData(wasmContext: TSciChart) {
 }
 
 const drawExample = async () => {
-    const {sciChartSurface, wasmContext} = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
     const dataSeriesArr = createData(wasmContext);
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {growBy: new NumberRange(0.1, 0.1)}));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
 
     // Add a line series with EllipsePointMarker
     sciChartSurface.renderableSeries.add(
@@ -106,7 +106,7 @@ const drawExample = async () => {
                 height: 13,
                 strokeThickness: 2,
                 fill: appTheme.VividOrange,
-                stroke: appTheme.VividOrange,
+                stroke: appTheme.VividOrange
             }),
             dataSeries: dataSeriesArr[2]
         })
@@ -121,7 +121,7 @@ const drawExample = async () => {
                 width: 13,
                 height: 13,
                 strokeThickness: 3,
-                stroke: appTheme.VividPurple,
+                stroke: appTheme.VividPurple
             }),
             dataSeries: dataSeriesArr[3]
         })
@@ -145,29 +145,41 @@ const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
 
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    sciChartSurface.chartModifiers.add(new LegendModifier({
-        orientation: ELegendOrientation.Horizontal,
-        placement: ELegendPlacement.TopLeft
-    }));
+    sciChartSurface.chartModifiers.add(
+        new LegendModifier({
+            orientation: ELegendOrientation.Horizontal,
+            placement: ELegendPlacement.TopLeft
+        })
+    );
 
     sciChartSurface.zoomExtents();
 
-    return {sciChartSurface, wasmContext};
+    return { sciChartSurface, wasmContext };
 };
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
-export default function UsePointMarkers() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
-    return <div id={divElementId} className={classes.ChartWrapper}/>;
+    return <div id={divElementId} className={classes.ChartWrapper} />;
 }

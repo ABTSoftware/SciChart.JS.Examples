@@ -1,9 +1,9 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
-import {visualiseHitTestPoint} from "./visualizeHitTest";
-import {ToggleButton, ToggleButtonGroup} from "@material-ui/lab";
-import {makeStyles} from "@material-ui/core/styles";
+import { appTheme } from "scichart-example-dependencies";
+import { visualiseHitTestPoint } from "./visualizeHitTest";
+import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+import { makeStyles } from "@material-ui/core/styles";
 
 import {
     SciChartSurface,
@@ -178,18 +178,30 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function HitTestAPI() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+
     const [updateFunc, setUpdateHitTestMethod] = React.useState<(hitTestMethod: string) => void>(() => {});
     const [preset, setPreset] = React.useState<string>(HIT_TEST_DATAPOINT);
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
+        const chartInitializationPromise = drawExample().then(res => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
             setUpdateHitTestMethod(() => res.updateHitTestMethod);
-        })();
+        });
+
         // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
     const handlePreset = (event: any, value: string) => {

@@ -1,7 +1,7 @@
 import * as React from "react";
-import {appTheme,ExampleDataProvider} from "scichart-example-dependencies";
+import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
-import {TWebAssemblyChart} from "scichart/Charting/Visuals/SciChartSurface";
+import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 import {
     NumericAxis,
     NumberRange,
@@ -12,57 +12,93 @@ import {
     EllipsePointMarker,
     CursorModifier,
     ZoomPanModifier,
-    ZoomExtentsModifier, MouseWheelZoomModifier,
+    ZoomExtentsModifier,
+    MouseWheelZoomModifier,
     SeriesInfo,
     CursorTooltipSvgAnnotation
 } from "scichart";
 
 const divElementId = "chart";
 
-
 const drawExample = async (): Promise<TWebAssemblyChart> => {
-
     // Create a SciChartSurface with X,Y Axis
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme
     });
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-        growBy: new NumberRange(0.05, 0.05),
-        labelFormat: ENumericFormat.Decimal,
-        labelPrecision: 4
-    }));
+    sciChartSurface.xAxes.add(
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.05, 0.05),
+            labelFormat: ENumericFormat.Decimal,
+            labelPrecision: 4
+        })
+    );
 
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-        growBy: new NumberRange(0.1, 0.1),
-        labelFormat: ENumericFormat.Decimal,
-        labelPrecision: 4
-    }));
+    sciChartSurface.yAxes.add(
+        new NumericAxis(wasmContext, {
+            growBy: new NumberRange(0.1, 0.1),
+            labelFormat: ENumericFormat.Decimal,
+            labelPrecision: 4
+        })
+    );
 
     // Add some data
     const data1 = ExampleDataProvider.getFourierSeriesZoomed(0.6, 0.13, 5.0, 5.15);
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues, dataSeriesName: "First Line Series" }),
-        strokeThickness: 3,
-        stroke: appTheme.VividSkyBlue,
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, strokeThickness: 0, fill: appTheme.VividSkyBlue })
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: data1.xValues,
+                yValues: data1.yValues,
+                dataSeriesName: "First Line Series"
+            }),
+            strokeThickness: 3,
+            stroke: appTheme.VividSkyBlue,
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 7,
+                height: 7,
+                strokeThickness: 0,
+                fill: appTheme.VividSkyBlue
+            })
+        })
+    );
 
     const data2 = ExampleDataProvider.getFourierSeriesZoomed(0.5, 0.12, 5.0, 5.15);
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data2.xValues, yValues: data2.yValues, dataSeriesName: "Second Line Series" }),
-        strokeThickness: 3,
-        stroke: appTheme.VividOrange,
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, strokeThickness: 0, fill: appTheme.VividOrange })
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: data2.xValues,
+                yValues: data2.yValues,
+                dataSeriesName: "Second Line Series"
+            }),
+            strokeThickness: 3,
+            stroke: appTheme.VividOrange,
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 7,
+                height: 7,
+                strokeThickness: 0,
+                fill: appTheme.VividOrange
+            })
+        })
+    );
 
     const data3 = ExampleDataProvider.getFourierSeriesZoomed(0.4, 0.11, 5.0, 5.15);
-    sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues: data3.xValues, yValues: data3.yValues, dataSeriesName: "Third Line Series" }),
-        strokeThickness: 3,
-        stroke: appTheme.MutedPink,
-        pointMarker: new EllipsePointMarker(wasmContext, { width: 7, height: 7, strokeThickness: 0, fill: appTheme.MutedPink })
-    }));
+    sciChartSurface.renderableSeries.add(
+        new FastLineRenderableSeries(wasmContext, {
+            dataSeries: new XyDataSeries(wasmContext, {
+                xValues: data3.xValues,
+                yValues: data3.yValues,
+                dataSeriesName: "Third Line Series"
+            }),
+            strokeThickness: 3,
+            stroke: appTheme.MutedPink,
+            pointMarker: new EllipsePointMarker(wasmContext, {
+                width: 7,
+                height: 7,
+                strokeThickness: 0,
+                fill: appTheme.MutedPink
+            })
+        })
+    );
 
     // Here is where we add cursor behaviour
     //
@@ -114,16 +150,28 @@ const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: Curs
             </svg>`;
 };
 
-export default function UsingCursorModifierTooltips() {
-    const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
+// React component needed as our examples app is react.
+// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
+export default function ChartComponent() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setSciChartSurface(res.sciChartSurface);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => sciChartSurface?.delete();
+        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.delete();
+            });
+        };
     }, []);
 
     return <div id={divElementId} className={classes.ChartWrapper} />;

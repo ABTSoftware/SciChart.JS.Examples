@@ -31,7 +31,7 @@ import {
     Thickness,
     XyDataSeries
 } from "scichart";
-import {appTheme, ExampleDataProvider, RandomWalkGenerator  } from "scichart-example-dependencies";
+import { appTheme, ExampleDataProvider, RandomWalkGenerator } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 const divElementId1 = "chart1";
@@ -603,14 +603,26 @@ const useStyles = makeStyles(theme => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function LineChart() {
-    const [charts, setCharts] = React.useState<SciChartSurface[]>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface[]>();
+
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setCharts(res.charts);
-        })();
+        const chartInitializationPromise = drawExample().then(({ charts }) => {
+            sciChartSurfaceRef.current = charts;
+        });
+
         // Deleting sciChartSurface to prevent memory leak
-        return () => charts?.forEach(sciChartSurface => sciChartSurface?.delete());
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.forEach(sciChartSurface => sciChartSurface.delete());
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.forEach(sciChartSurface => sciChartSurface.delete());
+            });
+        };
     }, []);
 
     const localClasses = useStyles();

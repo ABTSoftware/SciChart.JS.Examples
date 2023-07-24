@@ -55,16 +55,16 @@ const sendData = (
 
 // tslint:disable: no-console
 export const createSocketServer = (server: http.Server): void => {
-    const io = new socketIo.Server(server, { 
-        serveClient: false, 
+    const io = new socketIo.Server(server, {
+        serveClient: false,
         cors: {
-            origin: ["http://localhost:8080","http://localhost:8081","/\.csb\.app$/", "/\.cdpn\.io$/"],
+            origin: ["http://localhost:8080", "http://localhost:8081", "/.csb.app$/", "/.cdpn.io$/"],
             methods: ["GET", "POST"]
-        } 
+        }
     });
-        
+
     // listen on every connection
-    io.on("connection", (socket) => {
+    io.on("connection", socket => {
         console.log("New user connected, socket.id", socket.id);
 
         socket.on("getData", (message: TSubscription) => {

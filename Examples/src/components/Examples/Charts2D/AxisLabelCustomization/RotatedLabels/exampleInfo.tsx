@@ -9,16 +9,15 @@ const previewDescription = `This example uses rotation to create vertical labels
 Y axis uses right aligned labels so decimals are nicely aligned.`;
 const description = `maxAutoTicks has been increased to force more major gridlines to be rendered, and minor gridlines have been turned off.
 The default label alignment is Auto, meaning that labels will be aligned closest to the axis.`;
-const tips = [
-    `Rotation is is degrees clockwise.`,
-    `All axes and label providers support rotation.`
-];
+const tips = [`Rotation is is degrees clockwise.`, `All axes and label providers support rotation.`];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlRotatingLabelsDocumentation,
-    title: ExampleStrings.urlTitleRotatingLabelsDocumentation,
-    linkTitle: "SciChart.js Axis Label Formatting Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlRotatingLabelsDocumentation,
+        title: ExampleStrings.urlTitleRotatingLabelsDocumentation,
+        linkTitle: "SciChart.js Axis Label Formatting Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
@@ -41,8 +40,7 @@ export const rotatedLabelsExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Rotate to create vertical axis labels and fit more on an axis",
+    metaDescription: "Rotate to create vertical axis labels and fit more on an axis",
     metaKeywords: "Axis, label, rotated, vertical, javascript, webgl, canvas",
     thumbnailImage: exampleImage
 };

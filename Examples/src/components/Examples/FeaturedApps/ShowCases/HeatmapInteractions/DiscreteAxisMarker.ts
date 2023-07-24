@@ -22,7 +22,7 @@ export class DiscreteAxisMarker extends AxisMarkerAnnotation {
                 this.x1 = Math.min(Math.max(this.x1, this.minValue), this.maxValue);
             } else if (this.y1 !== undefined) {
                 this.y1 = Math.min(Math.max(this.y1, this.minValue), this.maxValue);
-            }    
+            }
         }
         this.dragDelta.raiseEvent(new AnnotationDragDeltaEventArgs());
     }

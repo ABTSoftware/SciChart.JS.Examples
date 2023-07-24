@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
-import {appTheme, ExampleDataProvider } from "scichart-example-dependencies";
+import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 import {
@@ -174,15 +174,25 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function UsingThemeManager() {
-    const [charts, setCharts] = React.useState<SciChartSurface[]>();
+    const sciChartSurfaceRef = React.useRef<SciChartSurface[]>();
 
     React.useEffect(() => {
-        (async () => {
-            const res = await drawExample();
-            setCharts(res.charts);
-        })();
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => charts?.forEach(sciChartSurface => sciChartSurface?.delete());
+        const chartInitializationPromise = drawExample().then(({ charts }) => {
+            sciChartSurfaceRef.current = charts;
+        });
+
+        return () => {
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                sciChartSurfaceRef.current.forEach(sciChartSurface => sciChartSurface.delete());
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurfaceRef.current.forEach(sciChartSurface => sciChartSurface.delete());
+            });
+        };
     }, []);
 
     const localClasses = useStyles();

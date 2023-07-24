@@ -2,26 +2,32 @@ import * as React from "react";
 
 import {
     EExecuteOn,
-    EllipsePointMarker, EZoomState,
-    FastLineRenderableSeries, NumberRange,
-    NumericAxis, RubberBandXyZoomModifier,
-    SciChartSurface, XyDataSeries,
-    XyScatterRenderableSeries, ZoomExtentsModifier, ZoomPanModifier
+    EllipsePointMarker,
+    EZoomState,
+    FastLineRenderableSeries,
+    NumberRange,
+    NumericAxis,
+    RubberBandXyZoomModifier,
+    SciChartSurface,
+    XyDataSeries,
+    XyScatterRenderableSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier
 } from "scichart";
 
 import classes from "../../../styles/Examples.module.scss";
-import {appTheme} from "scichart-example-dependencies";
-import {makeStyles} from "@material-ui/core/styles";
+import { appTheme } from "scichart-example-dependencies";
+import { makeStyles } from "@material-ui/core/styles";
 
 export const divElementId = "chart";
-
-let timerId: NodeJS.Timeout;
 
 export const drawExample = async () => {
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
     // instance must be passed to other types that exist on the same surface.
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, { theme: appTheme.SciChartJsTheme });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: appTheme.SciChartJsTheme
+    });
 
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, { labelPrecision: 0 });
@@ -60,6 +66,8 @@ export const drawExample = async () => {
 
     // Part 2: Appending data in realtime
     //
+    let timerId: NodeJS.Timeout;
+
     const updateDataFunc = () => {
         // Append another data-point to the chart. We use dataSeries.count()
         // to determine the current length before appending
@@ -79,8 +87,12 @@ export const drawExample = async () => {
         // Warning, this will repeat forever, it's not best practice!
     };
 
+    const handleStop = () => {
+        clearTimeout(timerId);
+    };
+
     updateDataFunc();
-    return sciChartSurface;
+    return { sciChartSurface, controls: { handleStop } };
 };
 
 const useStyles = makeStyles(theme => ({
@@ -92,22 +104,34 @@ const useStyles = makeStyles(theme => ({
         background: appTheme.DarkIndigo
     },
     chartArea: {
-        flex: 1,
+        flex: 1
     }
 }));
 
-
-let scs: SciChartSurface;
-
 export default function RealtimeZoomPan() {
+    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const controlsRef = React.useRef<{ handleStop: () => void }>();
+
     React.useEffect(() => {
-        (async () => {
-            scs = await drawExample();
-        })();
+        const chartInitializationPromise = drawExample().then(res => {
+            sciChartSurfaceRef.current = res.sciChartSurface;
+            controlsRef.current = res.controls;
+        });
+
         // IMPORTANT to cancel all subscriptions on component unmount!
         return () => {
-            clearTimeout(timerId);
-            scs?.delete();
+            // check if chart is already initialized
+            if (sciChartSurfaceRef.current) {
+                controlsRef.current.handleStop();
+                sciChartSurfaceRef.current.delete();
+                return;
+            }
+
+            // else postpone deletion
+            chartInitializationPromise.then(() => {
+                controlsRef.current.handleStop();
+                sciChartSurfaceRef.current.delete();
+            });
         };
     }, []);
 

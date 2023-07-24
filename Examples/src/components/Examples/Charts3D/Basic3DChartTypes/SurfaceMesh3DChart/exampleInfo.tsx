@@ -14,16 +14,22 @@ const tips = [
     PointMetadata also allows you to tag individual bubbles with a business object of any type.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlSurfaceMesh3DChartDocumentation,
-    title: ExampleStrings.urlTitleSurfaceMesh3DChartDocumentation,
-    linkTitle: "JavaScript 3D Surface Mesh Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlSurfaceMesh3DChartDocumentation,
+        title: ExampleStrings.urlTitleSurfaceMesh3DChartDocumentation,
+        linkTitle: "JavaScript 3D Surface Mesh Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Learn how to create a detailed <strong>JavaScript 3D Surface Mesh Chart</strong> using SciChart.js, and our {" "}
-        <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="High Performance JavaScript 3D Chart Library">
+        Learn how to create a detailed <strong>JavaScript 3D Surface Mesh Chart</strong> using SciChart.js, and our{" "}
+        <a
+            href={ExampleStrings.urlJavascriptChartFeatures}
+            target="_blank"
+            title="High Performance JavaScript 3D Chart Library"
+        >
             High Performance JavaScript 3D Chart Library
         </a>
     </p>

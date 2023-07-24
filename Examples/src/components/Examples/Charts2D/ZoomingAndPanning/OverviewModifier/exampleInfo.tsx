@@ -15,16 +15,17 @@ const tips = [
     `You can also apply the overview to vertical charts.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlOverviewDocumentation,
-    title: ExampleStrings.urlTitleOverviewDocumentation,
-    linkTitle: "SciChart.js Overview Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlOverviewDocumentation,
+        title: ExampleStrings.urlTitleOverviewDocumentation,
+        linkTitle: "SciChart.js Overview Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
-        Demonstrates how to zoom and pan with an <strong>Overview Chart</strong> using SciChart.js, High
-        Performance{" "}
+        Demonstrates how to zoom and pan with an <strong>Overview Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -42,8 +43,7 @@ export const overviewExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to zoom and pan with an Overview Chart",
+    metaDescription: "Demonstrates how to zoom and pan with an Overview Chart",
     metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",
     thumbnailImage: exampleImage
 };

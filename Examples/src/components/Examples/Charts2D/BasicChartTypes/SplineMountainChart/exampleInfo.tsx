@@ -13,19 +13,21 @@ const tips = [
     supports semi-transparent and linear gradient brush fills and looks great!.`
 ];
 
-const documentationLinks: TDocumentationLink[] = [{
-    href: ExampleStrings.urlSplineMountainChartDocumentation,
-    title: ExampleStrings.urlTitleSplineMountainChartDocumentation,
-    linkTitle: "JavaScript Mountain Chart Documentation"
-}];
+const documentationLinks: TDocumentationLink[] = [
+    {
+        href: ExampleStrings.urlSplineMountainChartDocumentation,
+        title: ExampleStrings.urlTitleSplineMountainChartDocumentation,
+        linkTitle: "JavaScript Mountain Chart Documentation"
+    }
+];
 
 const Subtitle = () => (
     <p>
         This example showcases how to create a <strong>JavaScript Spline Mountain Chart</strong> using{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
             SciChart.js
-        </a>'{" "}
-        feature-rich and High Performance JavaScript Charts.
+        </a>
+        ' feature-rich and High Performance JavaScript Charts.
     </p>
 );
 

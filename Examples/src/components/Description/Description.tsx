@@ -8,9 +8,7 @@ type TProps = {
 const Description: React.FC<TProps> = props => {
     return (
         <React.Fragment>
-            <p className={classes.description}>
-                Description
-            </p>
+            <p className={classes.description}>Description</p>
             {props.children}
         </React.Fragment>
     );
