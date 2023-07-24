@@ -110,7 +110,7 @@ const renderIndexHtml = (html: string, css: string, url: string, code: string, s
         `<iframe style="width: 800px; height: 600px;" src="${url + queryChar}nav=0"></iframe>`;
     body = `
     <div style="display: flex">
-      <div style="flex-basis: 100px; border: 1;">
+      <div style="flex-basis: 400px; border: 1; height: 100vh; overflow-x:auto; overflow-y:auto">
         ${navHtml}
       </div>
       <div>      

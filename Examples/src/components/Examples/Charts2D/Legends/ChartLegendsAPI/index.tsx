@@ -12,7 +12,8 @@ import {
     NumericAxis,
     NumberRange,
     SciChartSurface,
-    XyDataSeries
+    XyDataSeries,
+    getLegendItemHtml
 } from "scichart";
 
 const divElementId = "chart";

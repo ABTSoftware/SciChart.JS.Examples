@@ -64,6 +64,16 @@ async function axisStyling(divElementId) {
         }
       })
   );
+
+  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
+      axisAlignment: EAxisAlignment.Right,
+      axisTitle: ["Right Axis", "Rotation: 0"],
+      axisTitleStyle: {
+        fontSize: 18,
+        rotation: 0
+      }
+    })
+  );
   // #endregion
 };
 
