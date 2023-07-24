@@ -17,6 +17,7 @@ import * as http from "http";
 import { createSocketServer } from "./websockets";
 import { api } from "./api";
 import { renderCodeSandBoxRedirect } from "./renderCodeSandboxRedirect";
+import { oembed } from "./oembed";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
@@ -74,6 +75,7 @@ app.use(
     })
 );
 app.use("/api", api);
+app.use("/services", oembed);
 
 app.get("*", (req: Request, res: Response) => {
     handleRender(req, res);
