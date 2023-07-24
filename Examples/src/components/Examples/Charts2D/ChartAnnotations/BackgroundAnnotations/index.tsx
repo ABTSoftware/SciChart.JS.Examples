@@ -180,7 +180,6 @@ const drawExample = async () => {
         box4.y1 = yAxis.visibleRange.max;
     });
     sciChartSurface.annotations.add(box1, box2, box3, box4);   
-   
     const xValues: number[] = [];
     const yValues: number[] = [];
     const zValues: number[] = [];
