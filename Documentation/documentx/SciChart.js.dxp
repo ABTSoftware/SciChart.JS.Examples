@@ -2076,22 +2076,10 @@ when done, document it</Notes>
                       <TargetItemId>52beca85-ed1b-4135-bd27-72f46ff74aa0</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="3288239b-7823-4d7f-af38-fd48d592ba4b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>1bee1fdf-d198-451c-8224-a6a52f11ca7e</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="29697be8-3f40-4b3c-aa42-097e71c0fd7a" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="29697be8-3f40-4b3c-aa42-097e71c0fd7a" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>13f5705c-af26-4667-999f-6535e4e07b6c</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="c05fcbcd-edb5-43ea-9394-383bf6430315" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>2f4ff3d0-8b4b-4ee5-8c51-2bc1be0634ff</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -2377,13 +2365,13 @@ when done, document it</Notes>
                   <TargetItemId>31c1fa0b-34ae-472f-b888-2de129265d50</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
-                <TocNode Name="" Id="b9ba56ba-6464-4de4-8aa9-14b330ad8928" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="b9ba56ba-6464-4de4-8aa9-14b330ad8928" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>fe846da4-4ffb-4833-bf13-e688f8f82497</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
-                <TocNode Name="" Id="14cc7b79-ccce-437a-b2ba-699c6fc1105b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                <TocNode Name="" Id="14cc7b79-ccce-437a-b2ba-699c6fc1105b" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>4658035b-e6f2-4a3a-8203-958042b96f56</TargetItemId>
@@ -8980,19 +8968,19 @@ when done, document it</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="fe846da4-4ffb-4833-bf13-e688f8f82497" Status="New Topic" CreatedOn="2023-07-19T12:43:37.0872429Z" ModifiedOn="2023-07-24T18:31:26.8275701Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="MemoryBestPractices" BuildFlags="">
+              <Topic Id="fe846da4-4ffb-4833-bf13-e688f8f82497" Status="New Topic" CreatedOn="2023-07-19T12:43:37.0872429Z" ModifiedOn="2023-07-24T18:55:57.9685267Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="MemoryBestPractices" BuildFlags="">
                 <Title />
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-24T18:31:26.8275701Z">&lt;P&gt;&lt;/P&gt;
+                    <Content m="2023-07-24T18:55:57.9685267Z">&lt;P&gt;&lt;/P&gt;
 &lt;P&gt;Related to&amp;nbsp;&lt;A href="31c1fa0b-34ae-472f-b888-2de129265d50"&gt;Performance Tips&lt;/A&gt;, this article covers Memory Best Practices in SciChart.js.&lt;/P&gt;
 &lt;H2&gt;Wasm Memory vs. JavaScript Memory Model&lt;/H2&gt;
 &lt;P&gt;SciChart.js uses WebAssembly, also known as Wasm, to achieve high performance 2D/3D chart rendering in the browser. Using Wasm, we've compiled our in-house C++ codebase, tested in enterprise and embedded environments for many years on Windows and mobile into a JavaScript friendly library.&lt;/P&gt;
 &lt;P&gt;A key difference between Wasm and JavaScript is that JS has a garbage collector and Wasm does not. Any type created in WebAssembly must be expliclty deleted to reclaim memory. Below we have some guidelines on how to do that, and what to do to detect problems.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Failure to call .delete() on a WebAssembly type can result in a memory leak. But don't worry, we have&amp;nbsp;&lt;A href="4658035b-e6f2-4a3a-8203-958042b96f56"&gt;memory debugging tools&lt;/A&gt; to help track that.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H3&gt;Deletable Entities in SciChart.js&lt;/H3&gt;
-&lt;P&gt;A number of types in SciChart.js implement the &lt;STRONG&gt;IDeletable&lt;/STRONG&gt; interface. This has a single function: .&lt;STRONG&gt;delete()&lt;/STRONG&gt; which deletes underlying WebAssembly memory.&lt;/P&gt;
+&lt;P&gt;A number of types in SciChart.js implement the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ideletable.html"&gt;IDeletable&lt;/A&gt; interface. This has a single function:&amp;nbsp;&lt;STRONG&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ideletable.html#delete"&gt;.delete()&lt;/A&gt;&lt;/STRONG&gt; which deletes underlying WebAssembly memory.&lt;/P&gt;
 &lt;P&gt;The following types implement IDeletable in SciChart.js:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;STRONG&gt;SciChartSurface&lt;/STRONG&gt; 
@@ -9002,11 +8990,10 @@ when done, document it</Notes>
 &lt;LI&gt;DataSeries types e.g. &lt;STRONG&gt;XyDataSeries&lt;/STRONG&gt; 
 &lt;LI&gt;Annotations e.g. &lt;STRONG&gt;LineAnnotation&lt;/STRONG&gt; 
 &lt;LI&gt;Miscellaneous types e.g. &lt;STRONG&gt;EllipsePointMarker&lt;/STRONG&gt; &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;When calling delete on a parent, all child items are deleted so to properly clean-up an entire chart, you must only call &lt;STRONG&gt;sciChartSurface.delete()&lt;/STRONG&gt; once. The best place to do this is component unmount in React, Vue or onDestroy in Angular.&lt;/P&gt;
+&lt;P&gt;When calling delete on a parent, all child items are deleted so to properly clean-up an entire chart, you must only call&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#delete"&gt;sciChartSurface.delete()&lt;/A&gt; once. The best place to do this is component unmount in React, Vue or onDestroy in Angular.&lt;/P&gt;
 &lt;H2&gt;Best Practices to call .delete()&lt;/H2&gt;
 &lt;H3&gt;Deleting Charts on Component Unmount&lt;/H3&gt;
-&lt;P&gt;React, Vue and Angular all have component unmount or onDestroy callbacks. In our React, Vue and Angular boilerplates at &lt;STRONG&gt;scichart.com/getting-started-scichart-js&lt;/STRONG&gt; we show you how to do this. We've also created a guide for React at the page&amp;nbsp;&lt;A href="MemoryBestPracticesReact.html"&gt;Memory Best Practices with React Components&lt;/A&gt;.&lt;/P&gt;
-&lt;P&gt;Deleting a ScIChartSurface by calling &lt;STRONG&gt;sciChartSurface.delete()&lt;/STRONG&gt; once on component unmount will cascade down to all child objects such as DataSeries, Annotations and RenderableSeries.&lt;/P&gt;
+&lt;P&gt;Deleting a ScIChartSurface by calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#delete"&gt;sciChartSurface.delete()&lt;/A&gt; once on component unmount will cascade down to all child objects such as DataSeries, Annotations and RenderableSeries.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;React, Vue and Angular all have component unmount or onDestroy callbacks. In our React, Vue and Angular boilerplates at&amp;nbsp;&lt;A href="https://www.scichart.com/getting-started/scichart-javascript/" target=_blank&gt;scichart.com/getting-started-scichart-js&lt;/A&gt; we show you how to do this. We've also created a&lt;A href="a5d48d77-152d-4142-b184-811540804fde"&gt; Tutorial for Creating a Reusable React Component&lt;/A&gt; showing you how to correctly delete the chart on unmount.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H3&gt;Deleting DataSeries memory&lt;/H3&gt;
 &lt;P&gt;If&amp;nbsp;you remove or re-assign a DataSeries from a chart (use case: adding or removing chart series), don't forget to call&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ideletable.html#delete"&gt;series.delete()&lt;/A&gt;. This frees WebAssembly native memory and releases it back to the browser.&lt;/P&gt;
 &lt;P&gt;For some examples of how to do this, see the article&amp;nbsp;&lt;A href="13f5705c-af26-4667-999f-6535e4e07b6c"&gt;Deleting DataSeries Memory&lt;/A&gt;.&lt;/P&gt;
@@ -9017,23 +9004,23 @@ when done, document it</Notes>
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;H2&gt;Other Memory Optimisations / Footnotes&lt;/H2&gt;
 &lt;H3&gt;Memory Differences between create() and createSingle()&lt;/H3&gt;
-&lt;P&gt;There are two factory functions to create a chart: &lt;STRONG&gt;SciChartSurface.create()&lt;/STRONG&gt; and &lt;STRONG&gt;SciChartSurface.createSingle()&lt;/STRONG&gt;.&lt;/P&gt;
+&lt;P&gt;There are two factory functions to create a chart:&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#create"&gt;SciChartSurface.create()&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#createsingle"&gt;SciChartSurface.createSingle()&lt;/A&gt;.&lt;/P&gt;
 &lt;UL&gt;
-&lt;LI&gt;When &lt;STRONG&gt;SciChartSurface.create()&lt;/STRONG&gt; is called, a single shared instance of our WebGL graphics engine is instantiated with a single one-time memory cost. 
-&lt;LI&gt;When &lt;STRONG&gt;SciChartSurface.createSingle()&lt;/STRONG&gt; is called, one instance of our WebGL engine is instantiated per-chart, which uses additional RAM per chart. &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;When&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#create"&gt;SciChartSurface.create()&lt;/A&gt; is called, a single shared instance of our WebGL graphics engine is instantiated with a single one-time memory cost. 
+&lt;LI&gt;When&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#createsingle"&gt;SciChartSurface.createSingle()&lt;/A&gt; is called, one instance of our WebGL engine is instantiated per-chart, which uses additional RAM per chart. &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Therefore,&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;Charts created with &lt;STRONG&gt;create()&lt;/STRONG&gt; have lower memory usage but marginally slower drawing performance. 
 &lt;LI&gt;Charts created with &lt;STRONG&gt;createSingle()&lt;/STRONG&gt; have higher memory usage but faster drawing performance. They are also subject to WebGL context limits&amp;nbsp;&lt;A href="31c1fa0b-34ae-472f-b888-2de129265d50"&gt;specified here&lt;/A&gt;. &lt;/LI&gt;&lt;/UL&gt;
 &lt;H3&gt;Completely Releasing Memory back to the OS&lt;/H3&gt;
-&lt;P&gt;When deleting charts created with &lt;STRONG&gt;SciChartSurface.createSingle()&lt;/STRONG&gt;, and when the last reference to sciChartSurface falls out of scope, the JavaScript Garbage Collector releases all memory held by WebAssembly and JavaScript for this chart back to the host OS.&lt;/P&gt;
-&lt;P&gt;When deleting charts created with &lt;STRONG&gt;SciChartSurface.create()&lt;/STRONG&gt;, and when the last reference to &lt;U&gt;all SciChartSurfaces&lt;/U&gt; fall out of scope, the JavaScript Garbage Collector will release all JS/Wasm memory only if the following flag is set.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;CS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// Set static properties to define memory cleanup behaviour after the last chart is garbage collected&lt;BR&gt;&lt;BR&gt;SciChartSurface.autoDisposeWasmContext = true; // default false&lt;BR&gt;SciChartSurface.wasmContextDisposeTimeout = 100; // default 0 mlliseconds&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;When deleting charts created with&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#createsingle"&gt;SciChartSurface.createSingle()&lt;/A&gt;, and when the last reference to sciChartSurface falls out of scope, the JavaScript Garbage Collector releases all memory held by WebAssembly and JavaScript for this chart back to the host OS.&lt;/P&gt;
+&lt;P&gt;When deleting charts created with&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#create"&gt;SciChartSurface.create()&lt;/A&gt;, and when the last reference to &lt;U&gt;all SciChartSurfaces&lt;/U&gt; fall out of scope, the JavaScript Garbage Collector will release all JS/Wasm memory only if the following flag is set.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;CS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// Set static properties to define memory cleanup behaviour after the last chart is garbage collected&lt;BR&gt;&lt;BR&gt;SciChartSurface.autoDisposeWasmContext = true; // default false&lt;BR&gt;SciChartSurface.wasmContextDisposeTimeout = 100; // default 0 mlliseconds&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;This default behaviour is there to avoid unintential garbage collection and re-instanitation of our WebGL engine on switching page in a Single Page Application. Setting &lt;STRONG&gt;autoDisposeWasmContext&lt;/STRONG&gt; to true and a suitable non-zero timeout gives SPA apps change to switch page before automatically cleaning up WebAssembly memory.&lt;/P&gt;
 &lt;H4&gt;Summary of Options to Force Wasm Context disposal&lt;/H4&gt;
 &lt;P&gt;The Wasm engine can be disposed in several ways to release memory back to the host OS.&lt;/P&gt;
 &lt;UL md-src-pos="73..592"&gt;
-&lt;LI md-src-pos="73..216"&gt;for charts instantiated with&amp;nbsp;&lt;STRONG&gt;SciChartSurface.createSingle()&lt;/STRONG&gt; wasmContext is destroyed automatically upon surface deletion and nullifying all of the references to the SciChartSurface/wasmContext. 
-&lt;LI md-src-pos="217..592"&gt;for charts instantiated with&amp;nbsp;&lt;STRONG&gt;SciChartSurface.create()&lt;/STRONG&gt; wasmContext is not destroyed automatically by default; to destroy it 
+&lt;LI md-src-pos="73..216"&gt;for charts instantiated with&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#createsingle"&gt;SciChartSurface.createSingle()&lt;/A&gt; wasmContext is destroyed automatically upon surface deletion and nullifying all of the references to the SciChartSurface/wasmContext. 
+&lt;LI md-src-pos="217..592"&gt;for charts instantiated with&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#create"&gt;SciChartSurface.create()&lt;/A&gt; wasmContext is not destroyed automatically by default; to destroy it 
 &lt;UL&gt;
 &lt;LI md-src-pos="217..592"&gt;call&amp;nbsp;&lt;STRONG md-src-pos="331..377"&gt;SciChartSurface.disposeSharedWasmContext()&lt;/STRONG&gt;&amp;nbsp;/&amp;nbsp;&lt;STRONG md-src-pos="380..428"&gt;SciChart3DSurface.disposeSharedWasmContext()&lt;/STRONG&gt;&amp;nbsp; 
 &lt;LI md-src-pos="217..592"&gt;or enable auto disposal after a specified timeout using&amp;nbsp;&lt;STRONG md-src-pos="485..527"&gt;SciChartSurface.autoDisposeWasmContext&lt;/STRONG&gt;&amp;nbsp;flag and&amp;nbsp;&lt;STRONG md-src-pos="537..582"&gt;SciChartSurface.wasmContextDisposeTimeout&lt;/STRONG&gt;&amp;nbsp;property. &lt;/LI&gt;&lt;/UL&gt;&lt;/LI&gt;&lt;/UL&gt;
@@ -10233,14 +10220,14 @@ when done, document it</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="13f5705c-af26-4667-999f-6535e4e07b6c" Status="New Topic" CreatedOn="2023-06-02T17:17:20.9201704Z" ModifiedOn="2023-06-21T12:41:04.5526257Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataSeries_DeletingMemory" BuildFlags="">
+              <Topic Id="13f5705c-af26-4667-999f-6535e4e07b6c" Status="New Topic" CreatedOn="2023-06-02T17:17:20.9201704Z" ModifiedOn="2023-07-24T19:03:15.06579Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataSeries_DeletingMemory" BuildFlags="">
                 <Title m="2023-06-21T12:38:45.3321585Z">Deleting DataSeries Memory</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-06-21T12:41:04.5526257Z">&lt;P&gt;SciChart.js stores memory in WebAssembly. This allows us to achieve our incredible performance, and also provide a unfied experience across SciChart platforms (Windows, iOS, Android and JavaScript).&lt;/P&gt;
-&lt;P&gt;Unlike JavaScript which has built-in garbage collection, WebAssembly requires that you delete memory that you have allocated. Think of it as similar to closing a WebSocket connection if you want to close the connection and free memory.&lt;/P&gt;
+                    <Content m="2023-07-24T19:03:15.06579Z">&lt;P&gt;SciChart.js stores memory in WebAssembly. This allows us to achieve our incredible performance, and also provide a unfied experience across SciChart platforms (Windows, iOS, Android and JavaScript).&lt;/P&gt;
+&lt;P&gt;Unlike JavaScript which has built-in garbage collection, WebAssembly requires that you delete memory that you have allocated. Think of it as similar to closing a WebSocket connection if you want to close the connection and free memory.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;See related articles:&amp;nbsp;&lt;A href="fe846da4-4ffb-4833-bf13-e688f8f82497"&gt;Memory Usage Best Practices&lt;/A&gt; which has some further info on optimising memory usage with SciChart.js, and&amp;nbsp;&lt;A href="4658035b-e6f2-4a3a-8203-958042b96f56"&gt;Memory Leak Debugging&lt;/A&gt;&amp;nbsp;which introduces our new tools to identify and fix memory leaks.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Examples of how to use Delete()&lt;/H2&gt;
 &lt;P&gt;Once you are finished with the DataSeries, don't forget to call&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ideletable.html#delete"&gt;IDeletable.delete()&lt;/A&gt;. This frees WebAssembly native memory and releases it back to the host.&lt;/P&gt;
 &lt;P&gt;Below are a few examples of best-practices when deleting dataSeries, renderableSeries and sciChartSurfaces.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;example 1 - dataseries delete()&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\DataSeriesApi\DeletingSeries\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;example 2 - reassign dataseries&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\DataSeriesApi\DeletingSeries\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;example 3 - deleting renderableseries&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\DataSeriesApi\DeletingSeries\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleC&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;example 4 - deleting scichartsurface&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\DataSeriesApi\DeletingSeries\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleD&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Caution Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
@@ -10249,7 +10236,16 @@ when done, document it</Notes>
 &lt;P&gt;&lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
-                <TopicLinks />
+                <TopicLinks>
+                  <TopicLink Id="3fd729d3-bbbf-46a0-9b16-6131c6740aaf" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="fe846da4-4ffb-4833-bf13-e688f8f82497" BuildFlags="">
+                    <Title />
+                    <Category />
+                  </TopicLink>
+                  <TopicLink Id="cf7b7040-bf84-42c5-9ea4-4679d971c495" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="4658035b-e6f2-4a3a-8203-958042b96f56" BuildFlags="">
+                    <Title />
+                    <Category />
+                  </TopicLink>
+                </TopicLinks>
                 <TopicKeywords />
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
@@ -15360,7 +15356,7 @@ when done, document it</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">129</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">1835</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
