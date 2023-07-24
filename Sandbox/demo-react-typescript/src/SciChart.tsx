@@ -73,11 +73,6 @@ type TChartComponentProps<TSurface extends ISciChartSurfaceBase, TInitResult ext
     | TChartComponentPropsWithInit<TSurface, TInitResult>
     | TChartComponentPropsWithConfig;
 
-// const superPRops: TChartComponentProps<SciChartSurface, { sciChartSurface: SciChartSurface }> = {
-//     config: {},
-//     initChart: (id: string | HTMLDivElement) => Promise.resolve({ sciChartSurface: null as SciChartSurface }),
-// };
-
 type TChartComponentPropsIntersection<
     TSurface extends ISciChartSurfaceBase,
     TInitResult extends IInitResult<TSurface>
