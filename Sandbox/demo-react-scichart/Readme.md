@@ -1,4 +1,4 @@
-# SciChart.js React Scichart Demo
+# SciChart.js React Demo
 
 ## Licensing
 
