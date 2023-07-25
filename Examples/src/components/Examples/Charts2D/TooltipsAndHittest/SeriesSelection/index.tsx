@@ -82,8 +82,8 @@ const onHoveredChanged = (sourceSeries: IRenderableSeries, isHovered: boolean) =
 const onSelectedChanged = (sourceSeries: IRenderableSeries, isSelected: boolean) => {
     console.log(`Series ${sourceSeries.dataSeries.dataSeriesName} isSelected=${isSelected}`);
 
-    // When selected, set the stroke = white, or reset to auto (previous value)
-    const targetSeriesStroke = isSelected ? appTheme.ForegroundColor : "auto";
+    // When selected, set the stroke = white, or reset previous value
+    const targetSeriesStroke = isSelected ? appTheme.ForegroundColor : sourceSeries.pointMarker.fill;
     sourceSeries.stroke = targetSeriesStroke;
     sourceSeries.pointMarker.stroke = targetSeriesStroke;
 };
