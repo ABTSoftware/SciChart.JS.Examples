@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "papaparse": "^5.3.1",
-    "scichart": "^3.1.329"
+    "scichart": "latest"
   },
   "devDependencies": {
     "@types/papaparse": "^5.3.1",

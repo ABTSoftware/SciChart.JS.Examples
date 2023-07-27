@@ -22,7 +22,7 @@
     "copy-files-from-to": "^3.8.0",
     "core-js": "3.26.1",
     "rxjs": "7.6.0",
-    "scichart": "^3.2.0-beta",
+    "scichart": "latest",
     "zone.js": "0.12.0"
   },
   "devDependencies": {

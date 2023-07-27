@@ -5938,12 +5938,10 @@ schema-utils@^4.0.0:
     ajv-formats "^2.1.1"
     ajv-keywords "^5.0.0"
 
-scichart@^3.0.301:
-  version "3.0.301"
-  resolved "https://registry.npmjs.org/scichart/-/scichart-3.0.301.tgz"
-  integrity sha512-uvultyyxxh7D7uJZTRfcgMQ8Z4XBsRh+fKC5FV+/GGexhHBxM5wDlxU4dz/lgevq9GVzN0+nO0id0MWkuotmMA==
-  dependencies:
-    typescript "4.8.4"
+scichart@latest:
+  version "3.2.434"
+  resolved "https://registry.npmjs.org/scichart/-/scichart-3.2.434.tgz"
+  integrity sha512-boxeKBxZ+olGLoioBT4eQfCKEVjtrYq9L7kX65UIJiTJHkIpYy1GVtbwRKQ5DWi9NUr4uGGdq3iiOH8rVvl3oA==
 
 select-hose@^2.0.0:
   version "2.0.0"
@@ -6646,11 +6644,6 @@ typed-assert@^1.0.8:
   version "4.8.2"
   resolved "https://registry.npmjs.org/typescript/-/typescript-4.8.2.tgz"
   integrity sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==
-
-typescript@4.8.4:
-  version "4.8.4"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-4.8.4.tgz"
-  integrity sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==
 
 ua-parser-js@^0.7.30:
   version "0.7.34"

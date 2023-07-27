@@ -6,6 +6,12 @@ module.exports = merge(webpackConfig, {
     mode: "development",
     devtool: "inline-source-map",
     devServer: {
-        disableHostCheck: true
+        allowedHosts: "all",
+        client: {
+            overlay: {
+                warnings: false,
+                errors: true
+            }
+        }
     }
 });
