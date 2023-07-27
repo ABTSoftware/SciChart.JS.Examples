@@ -14,10 +14,13 @@ export function SciChartComponent(props: IChartComponentProps) {
     const sciChartSurfaceRef = React.useRef<ISciChartSurfaceBase>();
 
     // generate or provide a unique root element id to avoid chart rendering collisions
-    const [rootElementId] = React.useState(`chart-root-${generateGuid()}`);
-
+    // `React.useId` makes sure the same id is generated when using SSR
+    const rootElementId = React.useId();
     React.useEffect(() => {
-        const chartInitializationPromise = props.initFunction(rootElementId).then(({ sciChartSurface }) => {
+        // workaround for format issues of id returned by `React.useId`
+        const myComponentDOMElement = document.querySelector(`[id="${rootElementId}"]`);
+        // @ts-ignore
+        const chartInitializationPromise = props.initFunction(myComponentDOMElement).then(({ sciChartSurface }) => {
             sciChartSurfaceRef.current = sciChartSurface;
             return sciChartSurface;
         });
