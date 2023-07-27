@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const realtimeZoomPanExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleRealtimeZoomPan,
     pageTitle: ExampleStrings.titleRealtimeZoomPan + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeZoomPan,

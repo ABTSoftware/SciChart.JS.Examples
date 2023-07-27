@@ -22,6 +22,7 @@ const Subtitle = () => (
 );
 
 export const depthChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleDepthChart,
     pageTitle: ExampleStrings.titleDepthChart + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDepthChart,

@@ -29,6 +29,7 @@ const Subtitle = () => (
 );
 
 export const verticallyStackedAxesExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleVerticallyStackedAxes,
     pageTitle: ExampleStrings.titleVerticallyStackedAxes + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlVerticallyStackedAxes,

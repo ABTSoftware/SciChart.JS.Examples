@@ -33,6 +33,7 @@ const Subtitle = () => (
 );
 
 export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleTradeMarkers,
     pageTitle: ExampleStrings.titleTradeMarkers + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTradeMarkers,

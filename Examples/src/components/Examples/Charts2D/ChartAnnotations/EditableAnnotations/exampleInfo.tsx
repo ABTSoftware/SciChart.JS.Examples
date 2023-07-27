@@ -30,6 +30,7 @@ const Subtitle = () => (
 );
 
 export const editableAnnotationsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleEditableAnnotations,
     pageTitle: ExampleStrings.titleEditableAnnotations + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlEditableAnnotations,

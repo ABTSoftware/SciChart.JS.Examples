@@ -30,6 +30,7 @@ const Subtitle = () => (
 );
 
 export const load500By500ExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleLoad500By500,
     pageTitle: ExampleStrings.titleLoad500By500 + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlLoad500By500,

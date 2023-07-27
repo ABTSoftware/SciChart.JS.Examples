@@ -29,6 +29,7 @@ const Subtitle = () => (
 );
 
 export const secondaryYAxesExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleSecondaryYAxis,
     pageTitle: ExampleStrings.titleSecondaryYAxis + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlSecondaryYAxis,

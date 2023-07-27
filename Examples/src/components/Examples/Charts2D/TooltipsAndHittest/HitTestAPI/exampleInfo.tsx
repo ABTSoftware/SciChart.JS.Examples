@@ -33,6 +33,7 @@ const Subtitle = () => (
 );
 
 export const hitTestApiExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleHitTestApi,
     pageTitle: ExampleStrings.titleHitTestApi + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlHitTestApi,

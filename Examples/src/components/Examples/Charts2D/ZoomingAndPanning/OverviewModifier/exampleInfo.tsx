@@ -33,6 +33,7 @@ const Subtitle = () => (
 );
 
 export const overviewExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleOverview,
     pageTitle: ExampleStrings.titleOverview + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlOverview,

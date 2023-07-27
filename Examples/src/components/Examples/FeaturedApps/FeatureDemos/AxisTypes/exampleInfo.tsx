@@ -27,6 +27,7 @@ const Subtitle = () => (
 );
 
 export const axisTypesExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: "Axis Types",
     pageTitle: "Axis Types" + ExampleStrings.exampleGenericTitleSuffix,
     path: "/javascript-axis-types",

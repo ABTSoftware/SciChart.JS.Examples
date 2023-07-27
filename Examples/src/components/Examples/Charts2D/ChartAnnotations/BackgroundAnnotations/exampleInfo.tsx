@@ -29,6 +29,7 @@ const Subtitle = () => (
 );
 
 export const backgroundAnnotationsExampleInfo: TExampleInfo = {
+    onWebsite: false,
     title: ExampleStrings.titleBackgroundAnnotations,
     pageTitle: ExampleStrings.titleBackgroundAnnotations + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlBackgroundAnnotations,

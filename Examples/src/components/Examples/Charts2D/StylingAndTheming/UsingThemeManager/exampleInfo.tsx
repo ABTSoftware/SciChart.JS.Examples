@@ -30,6 +30,7 @@ const Subtitle = () => (
 );
 
 export const usingThemeManagerExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleThemeManager,
     pageTitle: ExampleStrings.titleThemeManager + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlThemeManager,

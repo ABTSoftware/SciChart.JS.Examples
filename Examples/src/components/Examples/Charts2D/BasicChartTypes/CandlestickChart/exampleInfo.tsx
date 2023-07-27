@@ -29,6 +29,7 @@ const Subtitle = () => (
 );
 
 export const candlestickChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleCandlestickChart,
     pageTitle: ExampleStrings.pageTitleCandlestickChart,
     path: ExampleStrings.urlCandlestickChart,

@@ -33,6 +33,7 @@ const Subtitle = () => (
 );
 
 export const subChartStockChartsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleSubChartStockChart,
     pageTitle: ExampleStrings.pageTitleSubChartStockChart,
     path: ExampleStrings.urluSubChartStockChart,

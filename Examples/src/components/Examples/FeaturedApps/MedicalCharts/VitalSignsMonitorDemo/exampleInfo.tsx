@@ -36,6 +36,7 @@ const Subtitle = () => (
 );
 
 export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleVitalSigns,
     pageTitle: ExampleStrings.titleVitalSigns + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlVitalSigns,

@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const pieChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titlePieChart,
     pageTitle: ExampleStrings.pageTitlePieChart,
     path: ExampleStrings.urlPieChart,

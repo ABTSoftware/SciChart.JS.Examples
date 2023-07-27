@@ -33,6 +33,7 @@ const Subtitle = () => (
 );
 
 export const splineLineChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleSplineLineChart,
     pageTitle: ExampleStrings.pageTitleSplineLineChart,
     path: ExampleStrings.urlSplineLineChart,

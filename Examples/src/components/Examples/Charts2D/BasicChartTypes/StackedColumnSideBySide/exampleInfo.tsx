@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const stackedColumnSideBySideExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleGroupedColumnChart,
     pageTitle: ExampleStrings.pageTitleGroupedColumnChart,
     path: ExampleStrings.urlGroupedColumnChart,

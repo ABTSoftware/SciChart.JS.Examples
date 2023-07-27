@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const audioAnalyzerExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
     pageTitle: ExampleStrings.titleAudioAnalyzerFeaturedApp + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlAudioAnalyzerFeaturedApp,

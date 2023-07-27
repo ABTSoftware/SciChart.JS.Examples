@@ -117,7 +117,8 @@ export type TExampleInfo = {
     description: any;
     previewDescription?: any;
     subtitle: () => JSX.Element;
-
+    // If this example has been created on scichart.com
+    onWebsite?: boolean;
     /**
      * OPTIONAL: If provided, use these items as a See Also. If not, they will be auto-generated from similar items
      * in the top level menu. See {@link getSeeAlsoGalleryItems}

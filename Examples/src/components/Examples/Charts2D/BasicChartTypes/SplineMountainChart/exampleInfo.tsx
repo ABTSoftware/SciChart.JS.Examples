@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const splineMountainChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleSplineMountainChart,
     pageTitle: ExampleStrings.pageTitleSplineMountainChart,
     path: ExampleStrings.urlSplineMountainChart,

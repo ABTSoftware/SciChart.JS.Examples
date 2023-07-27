@@ -32,6 +32,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 export const fullChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleBuilderFullChart,
     pageTitle: ExampleStrings.titleBuilderFullChart + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlBuilderFullChart,

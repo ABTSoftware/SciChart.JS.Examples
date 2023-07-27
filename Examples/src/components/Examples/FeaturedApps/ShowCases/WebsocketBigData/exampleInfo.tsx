@@ -31,6 +31,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 export const websocketBigDataDemoExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo,
     pageTitle: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeBigDataJavaScriptChartDemo,

@@ -32,6 +32,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
     pageTitle: ExampleStrings.titleRealtimeJavaScriptChartDemo + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeJavaScriptChartDemo,

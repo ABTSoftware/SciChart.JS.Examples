@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const verticalChartsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleVerticalCharts,
     pageTitle: ExampleStrings.titleVerticalCharts + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlVerticalCharts,

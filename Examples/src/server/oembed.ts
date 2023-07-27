@@ -20,7 +20,7 @@ class OEmbedResponse {
 
 }
 
-router.get("/oembed", (req, res) => {
+router.get("/", (req, res) => {
     const requestUrl = req.query["url"];
     const location = url.parse( requestUrl, true);
     const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === location.pathname);

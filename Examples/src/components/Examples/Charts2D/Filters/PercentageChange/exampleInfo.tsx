@@ -33,6 +33,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 export const percentageChangeExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titlePercentageChange,
     pageTitle: ExampleStrings.titlePercentageChange + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlPercentageChange,

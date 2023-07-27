@@ -30,6 +30,7 @@ const Subtitle = () => (
 );
 
 export const scatterChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleScatterChart,
     pageTitle: ExampleStrings.pageTitleScatterChart,
     path: ExampleStrings.urlScatterChart,

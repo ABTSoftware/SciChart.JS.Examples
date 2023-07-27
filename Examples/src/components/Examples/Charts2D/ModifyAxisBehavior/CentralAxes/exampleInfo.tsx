@@ -28,6 +28,7 @@ const Subtitle = () => (
 );
 
 export const centralAxesExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleCentralAxes,
     pageTitle: ExampleStrings.titleCentralAxes + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCentralAxes,

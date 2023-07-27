@@ -27,6 +27,7 @@ const Subtitle = () => (
 );
 
 export const dragHorizontalThresholdExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleDragHorizontalThreshold,
     pageTitle: ExampleStrings.titleDragHorizontalThreshold + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDragHorizontalThreshold,

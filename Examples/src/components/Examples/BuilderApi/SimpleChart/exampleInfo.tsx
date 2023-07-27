@@ -32,6 +32,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 export const simpleChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleBuilderSimpleChart,
     pageTitle: ExampleStrings.titleBuilderSimpleChart + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlBuilderSimpleChart,

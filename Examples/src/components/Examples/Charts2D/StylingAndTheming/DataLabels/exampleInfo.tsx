@@ -23,6 +23,7 @@ const Subtitle = () => (
 );
 
 export const datalabelsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleDatalabels,
     pageTitle: ExampleStrings.titleDatalabels + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDatalabels,

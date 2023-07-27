@@ -15,7 +15,8 @@
     "bugs": "https://github.com/ABTSoftware/SciChart.JS.Examples/issues",
     "scripts": {
         "tsc": "tsc --watch",
-        "build": "rimraf lib/* && tsc"
+        "build": "rimraf lib/* && tsc",
+        "publishPrivate": "npm publish --scope scichart"
     },
     "author": "SciChart Ltd",
     "license": "https://www.scichart.com/scichart-eula",

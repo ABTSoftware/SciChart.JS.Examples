@@ -31,6 +31,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 export const customTypesExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleCustomTypes,
     pageTitle: ExampleStrings.titleCustomTypes + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCustomTypes,

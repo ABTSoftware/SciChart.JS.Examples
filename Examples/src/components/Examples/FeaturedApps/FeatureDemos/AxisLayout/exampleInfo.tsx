@@ -26,6 +26,7 @@ const Subtitle = () => (
 );
 
 export const axisLayoutExampleInfo: TExampleInfo = {
+    onWebsite: false,
     title: ExampleStrings.titleAxisLayout,
     pageTitle: ExampleStrings.titleAxisLayout + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlAxisLayout,

@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleRolloverModifier,
     pageTitle: ExampleStrings.titleRolloverModifier + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRolloverModifier,

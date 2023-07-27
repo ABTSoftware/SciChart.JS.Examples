@@ -35,6 +35,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 export const lineChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleLineChart,
     pageTitle: ExampleStrings.pageTitleLineChart,
     path: ExampleStrings.urlLineChart,

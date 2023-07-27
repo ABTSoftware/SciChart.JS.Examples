@@ -28,6 +28,7 @@ const Subtitle = () => (
 );
 
 export const usePointMarkersExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titlePointMarkers,
     pageTitle: ExampleStrings.titlePointMarkers + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlPointMarkers,

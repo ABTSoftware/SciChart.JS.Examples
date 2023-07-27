@@ -28,6 +28,7 @@ const Subtitle = () => (
 );
 
 export const dragAxisToScaleExampleInfo: TExampleInfo = {
+    onWebsite: false,
     title: ExampleStrings.titleDragAxisToScale,
     pageTitle: ExampleStrings.titleDragAxisToScale + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDragAxisToScale,

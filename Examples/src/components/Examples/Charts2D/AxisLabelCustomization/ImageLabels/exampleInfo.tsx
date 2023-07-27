@@ -28,6 +28,7 @@ const Subtitle = () => (
 );
 
 export const imageLabelsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleImageLabels,
     pageTitle: ExampleStrings.titleImageLabels + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlImageLabels,

@@ -30,6 +30,7 @@ const Subtitle = () => (
 );
 
 export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleRealtimeGhostedTraces,
     pageTitle: ExampleStrings.titleRealtimeGhostedTraces + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeGhostedTraces,

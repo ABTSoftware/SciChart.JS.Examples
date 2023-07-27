@@ -26,6 +26,7 @@ const documentationLinks: TDocumentationLink[] = [{
 }];
 
 export const dynamicLayoutExampleInfo: TExampleInfo = {
+    onWebsite: false,
     title: ExampleStrings.titleDynamicLayout,
     pageTitle: ExampleStrings.titleDynamicLayout + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDynamicLayout,

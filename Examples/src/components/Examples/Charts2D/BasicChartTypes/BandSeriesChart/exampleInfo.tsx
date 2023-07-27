@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const bandSeriesChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleBandChart,
     pageTitle: ExampleStrings.pageTitleBandChart,
     path: ExampleStrings.urlBandChart,

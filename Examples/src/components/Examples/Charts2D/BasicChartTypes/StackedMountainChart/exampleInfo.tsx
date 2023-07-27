@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const stackedMountainChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleStackedMountainChart,
     pageTitle: ExampleStrings.pageTitleStackedMountainChart,
     path: ExampleStrings.urlStackedMountainChart,

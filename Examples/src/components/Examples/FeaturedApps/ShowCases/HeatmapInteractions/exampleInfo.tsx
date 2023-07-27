@@ -31,6 +31,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 export const heatmapInteractionsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleHeatmapInteractionsData,
     pageTitle: ExampleStrings.titleHeatmapInteractionsData + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlHeatmapInteractionsData,

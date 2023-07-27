@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const donutChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleDonutChart,
     pageTitle: ExampleStrings.pageTitleDonutChart,
     path: ExampleStrings.urlDonutChart,

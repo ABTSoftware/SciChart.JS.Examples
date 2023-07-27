@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const multiLineLabelsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleMultiLineLabels,
     pageTitle: ExampleStrings.titleMultiLineLabels + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlMultiLineLabels,

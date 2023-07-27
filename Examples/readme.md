@@ -15,19 +15,12 @@ _**Note:** This will run the application in development mode._
 
 ## Licensing the SciChart.js demo app
 
-If you run the demo app locally and don't ave a SciChart license, you may see warnings on the chart.
+Since version 3.2 SciChart.js runs by default with a FREE Community License.  No need to sign up, start a trial, or enter a license key.  This is for non-commercial use, and limited time commercial evaluation.  For all the details on community licensing, including who can use it, features and restrictions, check out the [community licensing](https://www.scichart.com/community-licensing/) page.
 
-How to go about getting a license:
+If you are a paid customer with an activated license, just make sure the SciChart Licensing Wizard is running, and SciChart.js will automatically pick up and use your development license.  For more details on how to activate see [scichart.com/licensing-scichart-js](https://www.scichart.com/licensing-scichart-js/).
 
-1. Visit [scichart.com/getting-started/javascript-chart](https://scichart.com/getting-started/javascript-chart) to be walked through the onboarding process
-2. Signup for a SciChart account
-3. Download & Install the Licensing Wizard
-4. Click **'Start Trial'** to get a trial code downloaded onto your PC/Mac
-5. Refresh the page. SciChart should pick up the license on your PC/Mac
+To purchase a full commercial license, visit [store.scichart.com](https://store.scichart.com) or [contact sales](mailto://sales@scichart.com).
 
-If you get stuck, frustrated, or would like to share feedback on how to improve this journey, reach out and [contact us](https://scichart.com/contact-us)!
-
-> See our note on licensing, trials, purchasing and the soon Community Edition of SciChart at the [Home readme](../readme.md)
 ## Running in production mode (client & Server)
 
 Some of the demos require client & server to be running. To run the demo app in prod mode:
@@ -36,7 +29,7 @@ Some of the demos require client & server to be running. To run the demo app in 
 2. ```cd examples``` and ```npm install```
 3. compile the application ```npm run build```
 4. now run the application ```npm start```
-5. Now open https://localhost:3030 to see the demo!
+5. Now open https://localhost:3000 to see the demo!
 
 ## Adding a new example to the demo app
 

@@ -29,6 +29,7 @@ const Subtitle = () => (
 );
 
 export const perPointColoringExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titlePaletteProvider,
     pageTitle: ExampleStrings.titlePaletteProvider + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlPaletteProvider,
