@@ -4,7 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./components/App";
 import { customTheme } from "./theme";
 import "./components/index.scss";
-import { createRoot, hydrateRoot } from "react-dom/client";
+// import { createRoot, hydrateRoot } from "react-dom/client";
+import { hydrate } from "react-dom";
 
 function Main() {
     React.useEffect(() => {
@@ -22,10 +23,12 @@ function Main() {
         </ThemeProvider>
     );
 }
+hydrate( <Main />, document.querySelector("#react-root"));
 
-if (process.env.NODE_ENV === "production") {
-    hydrateRoot(document.querySelector("#react-root"), <Main />);
-} else {
-    const root = createRoot(document.querySelector("#react-root"))
-    root.render(<Main />);
-}
+// TODO use with React 18
+// if (process.env.NODE_ENV === "production") {
+//     hydrateRoot(document.querySelector("#react-root"), <Main />);
+// } else {
+//     const root = createRoot(document.querySelector("#react-root"))
+//     root.render(<Main />);
+// }
