@@ -5,16 +5,13 @@ import { appTheme } from "scichart-example-dependencies";
 
 import {
     CategoryAxis,
-    EAutoRange,
     EllipsePointMarker,
-    ENumericFormat,
     FastLineRenderableSeries,
     NumberRange,
     NumericAxis,
     RightAlignedOuterVerticallyStackedAxisLayoutStrategy,
     SciChartSurface,
     XyDataSeries,
-    XyScatterRenderableSeries
 } from "scichart";
 
 const divElementId = "chart";
@@ -26,7 +23,6 @@ const GAP_POINTS = 50;
 const DATA_LENGTH = vitalSignsEcgData.xValues.length;
 
 const {
-    xValues,
     ecgHeartRateValues,
     bloodPressureValues,
     bloodVolumeValues,
@@ -102,7 +98,7 @@ const drawExample = async (
         visibleRange: new NumberRange(0, 0.2),
         isVisible: false
     });
-    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy = new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
+    sciChartSurface.layoutManager!.rightOuterAxesLayoutStrategy = new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
     sciChartSurface.yAxes.add(yAxisHeartRate, yAxisBloodPressure, yAxisBloodVolume, yAxisBloodOxygenation);
 
     // Using the NEW fifoCapacity, fifoSweeping mode in SciChart.js v3.2 we specify a number of points

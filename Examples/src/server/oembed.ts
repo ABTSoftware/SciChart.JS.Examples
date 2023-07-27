@@ -15,6 +15,8 @@ class OEmbedResponse {
     thumbnail_url: string;
     thumbnail_width: string = "900";
     thumbnail_height: string = "900";
+    description: string;
+    //html: string;
 
 }
 
@@ -25,6 +27,7 @@ router.get("/oembed", (req, res) => {
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     const oEmbedResponse = new OEmbedResponse();
     oEmbedResponse.title = currentExample.title;
+    oEmbedResponse.description = currentExample.previewDescription;
     oEmbedResponse.author_url = oEmbedResponse.provider_url + currentExample.path;
     oEmbedResponse.thumbnail_url = oEmbedResponse.provider_url + "/" + currentExample.thumbnailImage;
     res.send(oEmbedResponse);

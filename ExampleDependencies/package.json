@@ -23,10 +23,10 @@
         "@types/node": "^13.7.0",
         "rimraf": "^3.0.2",
         "typescript": "4.4.4",
-        "scichart": "^3.1.329 || >3.2.0-beta.1"
+        "scichart": "^3.2.434"
     },
     "peerDependencies": {
-        "scichart": "^3.1.329 || >3.2.0-beta.1"
+        "scichart": "^3.2.434"
     },
     "files": [
         "lib/**/*",

@@ -21,10 +21,13 @@ const loadStyles = async (folderPath: string) => {
         const mixins = await fs.promises.readFile(mixinsPath, "utf8");
         const examplesPath = path.join(folderPath, "styles", "Examples.module.scss");
         const examples = await fs.promises.readFile(examplesPath, "utf8");
+        const componentPath = path.join(folderPath, "SciChartComponent.tsx");
+        const component = await fs.promises.readFile(componentPath, "utf8");
         csStyles = {
             "src/styles/_base.scss": { content: base, isBinary: false },
             "src/styles/mixins.scss": { content: mixins, isBinary: false },
-            "src/styles/Examples.module.scss": { content: examples, isBinary: false }
+            "src/styles/Examples.module.scss": { content: examples, isBinary: false },
+            "src/SciChartComponent.tsx": { content: component, isBinary: false }
         };
     }
 };
@@ -34,6 +37,7 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
     let code = await fs.promises.readFile(tsPath, "utf8");
     const localImports = Array.from(code.matchAll(/import.*from "\.\/(.*)";/g));
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
+    code = code.replace(/\.\.\/.*SciChartComponent/, `./SciChartComponent.tsx`);
     let files: IFiles = {
         "package.json": {
             // @ts-ignore
@@ -50,9 +54,10 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
                 dependencies: {
                     "@material-ui/core": "4.12.4",
                     "@material-ui/lab": "4.0.0-alpha.61",
-                    react: "18.0.0",
-                    "react-dom": "18.0.0",
-                    "react-scripts": "4.0.3",
+                    "loader-utils": "3.2.1",
+                    "react": "18.2.0",
+                    "react-dom": "18.2.0",
+                    "react-scripts": "5.0.1",
                     scichart: pj.dependencies.scichart,
                     "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
                     ...currentExample.extraDependencies
@@ -60,6 +65,7 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
                 devDependencies: {
                     "@types/react": "18.0.25",
                     "@types/react-dom": "18.0.9",
+                    "@babel/runtime": "7.13.8",
                     typescript: "4.4.2"
                 },
                 browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
@@ -103,18 +109,26 @@ root.render(
       "jsx": "react-jsx"
   }
 }`,
-            isBinary: false
-        }
-    };
-    files = { ...files, ...csStyles };
+      isBinary: false
+    },
+      "sandbox.config.json": {
+          content: `{
+    "infiniteLoopProtection": false,
+    "hardReloadOnChange": false,
+    "view": "browser"
+}`,
+          isBinary: false
+      },
+  };
 
-    if (currentExample.sandboxConfig) {
-        files["sandbox.config.json"] = {
-            // @ts-ignore
-            content: currentExample.sandboxConfig,
-            isBinary: false
-        };
-    }
+  if (currentExample.sandboxConfig) {
+    files["sandbox.config.json"] = {
+      // @ts-ignore
+      content: currentExample.sandboxConfig,
+      isBinary: false
+    };
+  }
+  files = {...files, ...csStyles };
 
     for (const localImport of localImports) {
         if (localImport.length > 1) {
@@ -131,8 +145,8 @@ root.render(
 
     const parameters = getParameters({ files });
     return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
-    <input type="hidden" name="parameters" value="${parameters}" />
-  </form>`;
+        <input type="hidden" name="parameters" value="${parameters}" />
+    </form>`;
 };
 
 const renderCodeSandBoxRedirectPage = (form: string) => {
