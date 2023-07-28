@@ -1,10 +1,16 @@
-const { merge } = require("webpack-merge");
-const webpackConfig = require("./webpack.config.js");
+const { merge } = require('webpack-merge');
+const webpackConfig = require('./webpack.config.js');
 
 module.exports = merge(webpackConfig, {
-    mode: "development",
-    devtool: "inline-source-map",
+    mode: 'development',
+    devtool: 'inline-source-map',
     devServer: {
-        disableHostCheck: true
-    }
+        allowedHosts: 'all',
+        client: {
+            overlay: {
+                warnings: false,
+                errors: true,
+            },
+        },
+    },
 });

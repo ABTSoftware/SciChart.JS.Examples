@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "parcel-bundler": "1.12.5",
-    "scichart": "^3.0.284"
+    "scichart": "latest"
   },
   "devDependencies": {
     "typescript": "4.4.4"
