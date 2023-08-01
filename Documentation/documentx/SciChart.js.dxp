@@ -4158,6 +4158,46 @@ when done, document it</Notes>
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
+          <Topic Id="bddab365-84a3-44b1-a3f5-10ef3d2136c1" Status="New Topic" CreatedOn="2023-08-01T15:57:19.7770218Z" ModifiedOn="2023-08-01T16:24:17.3769263Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WhatsNewSciChartJs3-2" BuildFlags="">
+            <Title m="2023-08-01T15:57:41.2929299Z">What's New in SciChart.js SDKv 3.2</Title>
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2023-08-01T16:24:17.3769263Z">&lt;P&gt;SciChart.js v3.2 is minor update to our JavaScript Chart Library which is backward compatible to &lt;A href="048e8b8c-3acd-4ad6-93c6-034a8d79b14a"&gt;version 3.0&lt;/A&gt;. Our team has added lots of features to improve SciChart, which are detailed below.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Read the full release note at&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/" target=_blank&gt;scichart.com/scichart-js-v3-2-released&lt;/A&gt;!&lt;/innovasys:widgetproperty&gt; &lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H3&gt;Version 3.2 at a glance&lt;/H3&gt;
+&lt;OL&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-1"&gt;Community Licensing&lt;/A&gt;! 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-2"&gt;DataSeries FIFO (First in first out) mode&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-3"&gt;DataSeries FIFO-sweeping mode&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-4"&gt;DataSeries initialize with capacity&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-5"&gt;Series PointMarker: lastPointOnly mode&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-6"&gt;Significant WebAssembly memory improvements&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-7"&gt;Memory leak debugging tools&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-8"&gt;Optional delete on clear/remove from collections&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-9"&gt;Allow configuring WebGL Buffer sizes in low-memory environments&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-10"&gt;2D/3D Touch Interaction improvements&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-11"&gt;3D Point-Line chart (PointLineRenderableSeries3D)&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-12"&gt;3D Tooltips (TooltipModifier3D)&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-13"&gt;3D Pinch Zoom&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-14"&gt;Allow Annotations below Gridlines&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-15"&gt;New Custom Manual Legend control&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-16"&gt;Allow rotating Axis Titles&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-17"&gt;Update to Emscripten EMSDK v3.1 and Clang 17&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-18"&gt;Reduction in wasm module file size&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-19"&gt;Faster wasm module initialization&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-20"&gt;More Documentation Improvements&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-21"&gt;Multiple bugs fixed&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-22"&gt;Multiple New Examples created&lt;/A&gt; &lt;/LI&gt;&lt;/OL&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
         </Topics>
       </TopicCategory>
       <TopicCategory Id="36406a57-adda-4a2b-8a37-9d11942994e5" AutoIndex="false">
