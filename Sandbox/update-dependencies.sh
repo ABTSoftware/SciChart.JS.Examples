@@ -1,0 +1,1 @@
+find ./ -name node_modules -prune -o -name package.json -execdir rm -rf package-lock.json \; -execdir npm install \;

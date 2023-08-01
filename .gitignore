@@ -7,6 +7,10 @@
 .DS_Store
 ExampleDependencies/lib
 Sandbox/demo-electron/dist/main/main.js
+Sandbox/**/scichart2d.data
+Sandbox/**/scichart2d.wasm
+Sandbox/**/scichart3d.data
+Sandbox/**/scichart3d.wasm
 !Sandbox/DocumentationSnippets/**/package-lock.json
 Documentation/documentx/SciChart.js.dxp.bak
 Documentation/documentx/DocsOut/**
