@@ -13,8 +13,11 @@ interface IChartComponentProps {
 export function SciChartComponent(props: IChartComponentProps) {
     const sciChartSurfaceRef = React.useRef<ISciChartSurfaceBase>();
 
-    // generate or provide a unique root element id to avoid chart rendering collisions
-    const [rootElementId] = React.useState(`chart-root-${generateGuid()}`);
+    const rootElementId = "chart";
+
+    // A better approach is to generate or provide a unique root element id to avoid chart rendering collisions
+    // TODO: In React 18 `useId` makes sure the same id is generated when using SSR
+    // const rootElementId = React.useId();
 
     React.useEffect(() => {
         const chartInitializationPromise = props.initFunction(rootElementId).then(({ sciChartSurface }) => {

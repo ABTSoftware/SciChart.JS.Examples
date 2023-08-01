@@ -28,6 +28,7 @@ const Subtitle = () => (
 );
 
 export const stylingInCodeExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleStylingInCode,
     pageTitle: ExampleStrings.titleStylingInCode + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlStylingInCode,

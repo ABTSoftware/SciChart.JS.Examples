@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const tenorCurvesExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleTenorCurvesFeaturedApp,
     pageTitle: ExampleStrings.titleTenorCurvesFeaturedApp + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTenorCurvesFeaturedApp,

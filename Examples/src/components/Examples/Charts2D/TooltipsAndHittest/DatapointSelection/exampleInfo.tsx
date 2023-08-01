@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const dataPointSelectionExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleDataPointSelection,
     pageTitle: ExampleStrings.titleDataPointSelection + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDataPointSelection,

@@ -30,6 +30,7 @@ const Subtitle = () => (
 );
 
 export const trendMARatioExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleTrendMARatio,
     pageTitle: ExampleStrings.titleTrendMARatio + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTrendMARatio,

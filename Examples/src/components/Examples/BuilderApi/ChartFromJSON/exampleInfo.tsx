@@ -29,6 +29,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 export const chartFromJSONExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleChartFromJSON,
     pageTitle: ExampleStrings.titleChartFromJSON + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlChartFromJSON,

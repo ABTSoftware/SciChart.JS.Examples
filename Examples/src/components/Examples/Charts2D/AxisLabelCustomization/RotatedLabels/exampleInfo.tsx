@@ -30,6 +30,7 @@ const Subtitle = () => (
 );
 
 export const rotatedLabelsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleRotatedLabels,
     pageTitle: ExampleStrings.titleRotatedLabels + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRotatedLabels,

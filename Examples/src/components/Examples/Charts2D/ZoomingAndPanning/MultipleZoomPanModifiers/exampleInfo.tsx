@@ -28,6 +28,7 @@ const Subtitle = () => (
 );
 
 export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
     pageTitle: ExampleStrings.titleZoomPanWithMultipleChartModifiers + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlZoomPanWithMultipleChartModifiers,

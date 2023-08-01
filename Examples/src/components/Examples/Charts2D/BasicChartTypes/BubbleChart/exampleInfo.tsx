@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const bubbleChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleBubbleChart,
     pageTitle: ExampleStrings.pageTitleBubbleChart,
     path: ExampleStrings.urlBubbleChart,

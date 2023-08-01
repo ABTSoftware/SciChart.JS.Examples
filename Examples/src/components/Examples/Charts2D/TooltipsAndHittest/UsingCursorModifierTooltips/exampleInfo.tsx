@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleCursorModifier,
     pageTitle: ExampleStrings.titleCursorModifier + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCursorModifier,

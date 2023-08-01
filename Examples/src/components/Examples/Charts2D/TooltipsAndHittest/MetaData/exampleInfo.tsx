@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const metaDataExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleMetaData,
     pageTitle: ExampleStrings.titleMetaData + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlMetaData,

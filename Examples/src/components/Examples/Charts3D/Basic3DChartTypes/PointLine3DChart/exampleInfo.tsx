@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const pointLine3DChartExampleInfo: TExampleInfo = {
+    onWebsite: false,
     title: ExampleStrings.titlePointLine3DChart,
     pageTitle: ExampleStrings.pageTitlePointLine3DChart,
     path: ExampleStrings.urlPointLine3DChart,

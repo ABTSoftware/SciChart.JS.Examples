@@ -26,6 +26,7 @@ const Subtitle = () => (
 );
 
 export const virtualizedDataOverviewExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleVirtualizedData,
     pageTitle: ExampleStrings.titleVirtualizedData + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlVirtualizedData,

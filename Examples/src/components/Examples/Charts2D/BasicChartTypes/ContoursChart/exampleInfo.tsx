@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const contourChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleContourChart,
     pageTitle: ExampleStrings.pageTitleContourChart,
     path: ExampleStrings.urlContourChart,

@@ -29,6 +29,7 @@ const Subtitle = () => (
 );
 
 export const heatmapChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleHeatmapChart,
     pageTitle: ExampleStrings.pageTitleHeatmapChart,
     path: ExampleStrings.urlHeatmapChart,

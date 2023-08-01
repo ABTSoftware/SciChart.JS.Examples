@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const stackedColumnChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleStackedColumnChart,
     pageTitle: ExampleStrings.pageTitleStackedColumnChart,
     path: ExampleStrings.urlStackedColumnChart,

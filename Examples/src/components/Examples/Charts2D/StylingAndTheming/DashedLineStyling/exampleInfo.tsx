@@ -30,6 +30,7 @@ const Subtitle = () => (
 );
 
 export const dashedLineStylingExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleDashedLineStyling,
     pageTitle: ExampleStrings.titleDashedLineStyling + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDashedLineStyling,

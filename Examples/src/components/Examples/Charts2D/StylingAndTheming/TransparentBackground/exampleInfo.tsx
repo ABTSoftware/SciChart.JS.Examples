@@ -30,6 +30,7 @@ const Subtitle = () => (
 );
 
 export const transparentBackgroundExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleTransparentBackground,
     pageTitle: ExampleStrings.titleTransparentBackground + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTransparentBackground,

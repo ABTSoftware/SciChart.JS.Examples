@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const realTimeMountainChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleRealtimeMountainChart,
     pageTitle: ExampleStrings.pageTitleRealtimeMountainChart,
     path: ExampleStrings.urlRealtimeMountainChart,

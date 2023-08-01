@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const seriesSelectionExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleSeriesSelection,
     pageTitle: ExampleStrings.titleSeriesSelection + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlSeriesSelection,

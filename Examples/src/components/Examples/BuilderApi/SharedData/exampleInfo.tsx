@@ -29,6 +29,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 export const sharedDataExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleSharedData,
     pageTitle: ExampleStrings.titleSharedData + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlSharedData,

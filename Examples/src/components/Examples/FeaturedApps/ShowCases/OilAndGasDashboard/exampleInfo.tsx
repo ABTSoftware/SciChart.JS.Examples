@@ -22,6 +22,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 export const oilAndGasExplorerDashboard: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleOilAndGasExplorerDashboard,
     pageTitle: ExampleStrings.titleOilAndGasExplorerDashboard + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlOilAndGasExplorerDashboard,

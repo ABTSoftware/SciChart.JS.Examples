@@ -33,6 +33,7 @@ const Subtitle = () => (
 );
 
 export const customFiltersExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleCustomFilters,
     pageTitle: ExampleStrings.titleCustomFilters + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCustomFilters,

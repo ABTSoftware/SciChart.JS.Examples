@@ -28,6 +28,7 @@ const Subtitle = () => (
 );
 
 export const columnChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleColumnChart,
     pageTitle: ExampleStrings.pageTitleColumnChart,
     path: ExampleStrings.urlColumnChart,

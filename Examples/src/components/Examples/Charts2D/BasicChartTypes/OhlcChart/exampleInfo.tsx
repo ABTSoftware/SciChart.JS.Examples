@@ -30,6 +30,7 @@ const Subtitle = () => (
 );
 
 export const ohlcChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleOhlcChart,
     pageTitle: ExampleStrings.pageTitleOhlcChart,
     path: ExampleStrings.urlOhlcChart,

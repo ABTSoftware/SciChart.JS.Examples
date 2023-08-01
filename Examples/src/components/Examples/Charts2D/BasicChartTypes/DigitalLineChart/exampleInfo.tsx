@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const digitalLineChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleDigitalLineChart,
     pageTitle: ExampleStrings.pageTitleDigitalLineChart,
     path: ExampleStrings.urlDigitalLineChart,

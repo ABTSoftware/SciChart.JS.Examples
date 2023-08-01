@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const lidar3DPointCloudExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleLidarFeaturedApp,
     pageTitle: ExampleStrings.titleLidarFeaturedApp + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlLidarFeaturedApp,

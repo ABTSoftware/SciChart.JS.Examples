@@ -34,6 +34,7 @@ const Subtitle = () => (
 );
 
 export const annotationsAreEasyExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleAnnotationsAreEasy,
     pageTitle: ExampleStrings.titleAnnotationsAreEasy + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlAnnotationsAreEasy,

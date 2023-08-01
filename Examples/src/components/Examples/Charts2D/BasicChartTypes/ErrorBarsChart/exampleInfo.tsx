@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const errorBarsChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleErrorBarsChart,
     pageTitle: ExampleStrings.pageTitleErrorBarsChart,
     path: ExampleStrings.urlErrorBarsChart,

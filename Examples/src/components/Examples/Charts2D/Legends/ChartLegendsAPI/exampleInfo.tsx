@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const chartLegendsAPIExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleChartLegends,
     pageTitle: ExampleStrings.titleChartLegends + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlChartLegends,

@@ -22,6 +22,7 @@ const Subtitle = () => (
 );
 
 export const chartTitleExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleChartTitle,
     pageTitle: ExampleStrings.titleChartTitle + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlChartTitle,

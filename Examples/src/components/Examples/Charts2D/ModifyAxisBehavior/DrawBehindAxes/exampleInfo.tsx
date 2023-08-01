@@ -27,6 +27,7 @@ const Subtitle = () => (
 );
 
 export const drawBehindAxesExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleDrawBehindAxes,
     pageTitle: ExampleStrings.titleDrawBehindAxes + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDrawBehindAxes,

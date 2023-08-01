@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const nonUniformHeatmapExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleNonUniformHeatmapChart,
     pageTitle: ExampleStrings.pageTitleNonUniformHeatmapChart,
     path: ExampleStrings.urlNonUniformHeatmapChart,

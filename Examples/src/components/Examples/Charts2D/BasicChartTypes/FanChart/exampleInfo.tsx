@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const fanChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleFanChart,
     pageTitle: ExampleStrings.pageTitleFanChart,
     path: ExampleStrings.urlFanChart,

@@ -28,6 +28,7 @@ const Subtitle = () => (
 );
 
 export const loadOneMillionPointsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleLoadOneMillionPoints,
     pageTitle: ExampleStrings.titleLoadOneMillionPoints + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlLoadOneMillionPoints,

@@ -29,6 +29,7 @@ const Subtitle = () => (
 );
 
 export const logarithmicAxisExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleLogarithmicAxis,
     pageTitle: ExampleStrings.titleLogarithmicAxis + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlLogarithmicAxis,

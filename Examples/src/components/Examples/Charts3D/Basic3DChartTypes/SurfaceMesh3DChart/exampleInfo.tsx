@@ -36,6 +36,7 @@ const Subtitle = () => (
 );
 
 export const surfaceMesh3DChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleSurfaceMesh3D,
     pageTitle: ExampleStrings.pageTitleSurfaceMesh3D,
     path: ExampleStrings.urlSurfaceMesh3D,

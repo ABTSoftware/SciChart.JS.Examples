@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const digitalMountainChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleDigitalMountainChart,
     pageTitle: ExampleStrings.pageTitleDigitalMountainChart,
     path: ExampleStrings.urlDigitalMountainChart,

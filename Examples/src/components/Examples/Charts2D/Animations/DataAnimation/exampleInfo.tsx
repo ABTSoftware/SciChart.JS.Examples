@@ -27,6 +27,7 @@ const Subtitle = () => (
 );
 
 export const dataAnimationExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleDataAnimation,
     pageTitle: ExampleStrings.titleDataAnimation + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDataAnimation,

@@ -31,6 +31,7 @@ const Subtitle = () => (
 );
 
 export const mountainChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleMountainChart,
     pageTitle: ExampleStrings.pageTitleMountainChart,
     path: ExampleStrings.urlMountainChart,

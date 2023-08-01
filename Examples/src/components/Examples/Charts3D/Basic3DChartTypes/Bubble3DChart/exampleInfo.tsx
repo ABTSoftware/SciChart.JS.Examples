@@ -32,6 +32,7 @@ const Subtitle = () => (
 );
 
 export const bubble3DChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleBubble3DChart,
     pageTitle: ExampleStrings.pageTitleBubble3DChart,
     path: ExampleStrings.urlBubble3DChart,

@@ -29,6 +29,7 @@ const Subtitle = () => (
 );
 
 export const impulseChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleImpulseChart,
     pageTitle: ExampleStrings.pageTitleImpulseChart,
     path: ExampleStrings.urlImpulseChart,

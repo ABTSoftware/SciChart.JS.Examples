@@ -31,6 +31,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 export const splineBandSeriesChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleSplineBandChart,
     pageTitle: ExampleStrings.pageTitleSplineBandChart,
     path: ExampleStrings.urlSplineBandChart,

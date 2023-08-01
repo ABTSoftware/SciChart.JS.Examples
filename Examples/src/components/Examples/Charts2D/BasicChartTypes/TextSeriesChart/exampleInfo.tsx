@@ -29,6 +29,7 @@ const Subtitle = () => (
 );
 
 export const textChartExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleTextChart,
     pageTitle: ExampleStrings.titleTextChart + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlTextChart,

@@ -29,6 +29,7 @@ const Subtitle = () => (
 );
 
 export const multipleXAxesExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleMultipleXAxis,
     pageTitle: ExampleStrings.titleMultipleXAxis + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlMultipleXAxis,

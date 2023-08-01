@@ -30,6 +30,7 @@ const Subtitle = () => (
 );
 
 export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
+    onWebsite: true,
     title: ExampleStrings.titleRealtimeTickingStockCharts,
     pageTitle: ExampleStrings.pageTitleRealtimeTickingStockCharts,
     path: ExampleStrings.urlRealtimeTickingStockCharts,

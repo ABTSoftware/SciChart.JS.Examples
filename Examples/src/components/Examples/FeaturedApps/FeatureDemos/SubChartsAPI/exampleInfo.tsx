@@ -28,6 +28,7 @@ const Subtitle = () => (
 );
 
 export const subchartsGridExampleInfo: TExampleInfo = {
+    onWebsite: false,
     title: "JavaScript 64-Chart Dashboard Performance Demo",
     pageTitle: "JavaScript 64-Chart Dashboard Performance Demo" + ExampleStrings.exampleGenericTitleSuffix,
     path: "/javascript-multiple-chart-dashboard-performance-demo",

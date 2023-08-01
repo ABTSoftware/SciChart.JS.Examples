@@ -34,6 +34,7 @@ const Subtitle = () => (
 );
 
 export const multiPaneStockChartsExampleInfo: TExampleInfo = {
+    onWebsite: false,
     title: ExampleStrings.titleMultiPaneStockChart,
     pageTitle: ExampleStrings.pageTitleMultiPaneStockChart,
     path: ExampleStrings.urlMultiPaneStockChart,

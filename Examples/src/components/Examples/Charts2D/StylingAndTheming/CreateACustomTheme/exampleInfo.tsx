@@ -26,6 +26,7 @@ const Subtitle = () => (
 );
 
 export const createACustomThemeExampleInfo: TExampleInfo = {
+    onWebsite: false,
     title: ExampleStrings.titleCustomTheme,
     pageTitle: ExampleStrings.titleCustomTheme + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlCustomTheme,
