@@ -61,12 +61,6 @@ async function customLayoutManager(divElementId) {
     SciChartSurface,
     NumericAxis,
     SciChartJsNavyTheme,
-    ZoomPanModifier,
-    PinchZoomModifier,
-    ZoomExtentsModifier,
-    MouseWheelZoomModifier,
-    FastLineRenderableSeries,
-    XyDataSeries
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -127,6 +121,16 @@ async function customLayoutManager(divElementId) {
 
   // #endregion
 
+  const {
+    ZoomPanModifier,
+    PinchZoomModifier,
+    ZoomExtentsModifier,
+    MouseWheelZoomModifier,
+    FastLineRenderableSeries,
+    XyDataSeries,
+    TextAnnotation
+  } = SciChart;
+
   // Let's add some series to the chart to show how they also behave with axis
   const getOptions = (index, offset = 0) => {
     const xValues = Array.from(Array(50).keys());
@@ -144,6 +148,38 @@ async function customLayoutManager(divElementId) {
   sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(1)}));
   sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(2)}));
   sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(3)}));
+
+  // We will also add some annotations to explain to the user
+  sciChartSurface.annotations.add(new TextAnnotation({
+    text: "Blue series uses xAxis0 and is stretched horizontally",
+    x1: 0,
+    y1: 2,
+    textColor: axisColors[0],
+  }));
+
+  sciChartSurface.annotations.add(new TextAnnotation({
+    text: "Using xAxis1",
+    x1: 0,
+    y1: 1.1,
+    xAxisId: ID_X_AXIS_2,
+    textColor: axisColors[1],
+  }));
+
+  sciChartSurface.annotations.add(new TextAnnotation({
+    text: "Using xAxis2",
+    x1: 0,
+    y1: 1.1,
+    xAxisId: ID_X_AXIS_3,
+    textColor: axisColors[2],
+  }));
+
+  sciChartSurface.annotations.add(new TextAnnotation({
+    text: "Using xAxis3",
+    x1: 0,
+    y1: 1.1,
+    xAxisId: ID_X_AXIS_4,
+    textColor: axisColors[3],
+  }));
 
   sciChartSurface.chartModifiers.add(
     new ZoomPanModifier(),
