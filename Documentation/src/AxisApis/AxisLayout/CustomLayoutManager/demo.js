@@ -21,7 +21,7 @@ class CustomAxisLayoutStrategy extends BottomAlignedOuterHorizontallyStackedAxis
   }
 
   // override measureAxes from the base class
-  measureAxes(sciChartSurface,    chartLayoutState,    axes) {
+  measureAxes(sciChartSurface,  chartLayoutState,  axes) {
     const [firstAxis, ...stackedAxes] = axes;
     // measure stacked axes and max height (stackedAreaSize) required by them
     super.measureAxes(sciChartSurface, chartLayoutState, stackedAxes);
@@ -40,15 +40,11 @@ class CustomAxisLayoutStrategy extends BottomAlignedOuterHorizontallyStackedAxis
   }
 
   // Override layoutAxes from the base class
-  layoutAxes(left, right, top, bottom, axes) {
+  layoutAxes(left, top, right, bottom, axes) {
     const [firstAxis, ...stackedAxes] = axes;
     // layout first axis with the regular logic
     this.defaultBottomOuterAxisLayoutStrategy.layoutAxes(
-      left,
-      top,
-      right,
-      bottom,
-      [firstAxis]
+      left, top, right, bottom, [firstAxis]
     );
 
     // after the layout phase we get axis.viewRect which specifies size and position of an axis
@@ -68,7 +64,9 @@ async function customLayoutManager(divElementId) {
     ZoomPanModifier,
     PinchZoomModifier,
     ZoomExtentsModifier,
-    MouseWheelZoomModifier
+    MouseWheelZoomModifier,
+    FastLineRenderableSeries,
+    XyDataSeries
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -77,44 +75,75 @@ async function customLayoutManager(divElementId) {
     theme: new SciChartJsNavyTheme()
   });
 
-
+  // Apply your layour manager
   sciChartSurface.layoutManager.bottomOuterAxesLayoutStrategy = new CustomAxisLayoutStrategy();
 
-  const ID_X_AXIS_1 = "xAxis1";
-  const ID_X_AXIS_2 = "xAxis2";
-  const ID_X_AXIS_3 = "xAxis3";
+  // Create some X Axis
+  const ID_X_AXIS_1 = "xAxis0";
+  const ID_X_AXIS_2 = "xAxis1";
+  const ID_X_AXIS_3 = "xAxis2";
   const ID_X_AXIS_4 = "xAxis3";
-  const ID_Y_AXIS_1 = "yAxis1";
   const options = { drawMajorBands: false, drawMajorGridLines: false, drawMinorGridLines: false };
   const xAxis1 = new NumericAxis(wasmContext, {
     id: ID_X_AXIS_1,
     axisTitle: ID_X_AXIS_1,
     drawMajorBands: true,
     drawMajorGridLines: true,
-    drawMinorGridLines: true
+    drawMinorGridLines: true,
   });
   const xAxis2 = new NumericAxis(wasmContext, {
     id: ID_X_AXIS_2,
     axisTitle: ID_X_AXIS_2,
-    ...options
+    ...options,
   });
   const xAxis3 = new NumericAxis(wasmContext, {
     id: ID_X_AXIS_3,
     axisTitle: ID_X_AXIS_3,
-    ...options
+    ...options,
   });
   const xAxis4 = new NumericAxis(wasmContext, {
     id: ID_X_AXIS_4,
     axisTitle: ID_X_AXIS_4,
-    ...options
+    ...options,
   });
   const yAxis1 = new NumericAxis(wasmContext, {
-    id: ID_Y_AXIS_1,
-    axisTitle: ID_Y_AXIS_1
+    axisTitle: "yAxis",
+    backgroundColor: "#50C7E022",
+    axisBorder: {color: "#50C7E0", borderLeft: 1 },
+    axisTitleStyle: { fontSize: 13 },
   });
 
+  // Add the axis to the chart
   sciChartSurface.xAxes.add(xAxis1, xAxis2, xAxis3, xAxis4);
   sciChartSurface.yAxes.add(yAxis1);
+
+  // To make it clearer what's happening, colour the axis backgrounds & borders
+  const axisColors = ["#50C7E0", "#EC0F6C", "#30BC9A", "#F48420" ];
+  sciChartSurface.xAxes.asArray().forEach((xAxis, index) => {
+    xAxis.backgroundColor = axisColors[index] + "22";
+    xAxis.axisBorder = {color: axisColors[index], borderTop: 1};
+    xAxis.axisTitleStyle.fontSize = 13;
+  });
+
+  // #endregion
+
+  // Let's add some series to the chart to show how they also behave with axis
+  const getOptions = (index, offset = 0) => {
+    const xValues = Array.from(Array(50).keys());
+    const yValues = xValues.map(x => Math.sin(x * 0.4 + index) + offset);
+
+    return {
+      xAxisId: `xAxis${index}`,
+      stroke: axisColors[index],
+      strokeThickness: 3,
+      dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
+    };
+  };
+
+  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(0, 1)}));
+  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(1)}));
+  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(2)}));
+  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(3)}));
 
   sciChartSurface.chartModifiers.add(
     new ZoomPanModifier(),
@@ -122,7 +151,6 @@ async function customLayoutManager(divElementId) {
     new ZoomExtentsModifier(),
     new MouseWheelZoomModifier({ applyToSeriesViewRect: false })
   );
-  // #endregion
 };
 
 customLayoutManager("scichart-root");
@@ -145,8 +173,8 @@ async function builderExample(divElementId) {
 
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
     surface: {
-        theme: { type: EThemeProviderType.Dark },
-        layoutManager: { type: ELayoutManagerType.CentralAxes }
+      theme: { type: EThemeProviderType.Dark },
+      layoutManager: { type: ELayoutManagerType.CentralAxes }
     },
     xAxes: {
       type: EAxisType.NumericAxis,
@@ -176,5 +204,5 @@ async function builderExample(divElementId) {
 
 
 
-if (location.search.includes("builder=1"))
-  builderExample("scichart-root");
+// Uncomment this to use the builder example
+//builderExample("scichart-root");
