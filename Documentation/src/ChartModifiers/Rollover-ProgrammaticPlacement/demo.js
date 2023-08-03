@@ -1,40 +1,37 @@
 // #region ExampleA
-const { RolloverModifier, EMousePosition, Point } = SciChart;
+const { RolloverModifier, EMousePosition, Point, translateFromSeriesViewRectToCanvas } = SciChart;
 
 // or for npm import { RolloverModifier } from "scichart"
 
 // Workaround for programmatically placing a RolloverModifier at a specific location
 class CustomPlacementRollover extends RolloverModifier {
-  constructor(xValue) {
+  constructor() {
     super();
-
-    this.setXValue(xValue);
-  }
-  modifierMouseMove(e) {
-    // do nothing (disable default behavior)
   }
 
-  onAttach() {
-    super.onAttach();
-    this.updatePosition();
+  // do nothing (disable default behavior)
+  modifierMouseMove(e) { }
+  modifierMouseLeave(e) { }
+
+  onParentSurfaceRendered() {
+
+    const xAxis = this.parentSurface?.xAxes?.getById(this.xAxisId);
+    if (xAxis && this.xValue && this.parentSurface?.seriesViewRect) {
+      // Convert xValue from data to coordinate.
+      const xCoord = xAxis.getCurrentCoordinateCalculator()?.getCoordinate(this.xValue);
+      // Translate from the seriesViewRect back to the parent canvas (rollover expects coords in this space)
+      const hackedMousePoint = translateFromSeriesViewRectToCanvas(new Point(xCoord, 0), this.parentSurface.seriesViewRect);
+      // Simulate rollover at x,y coord
+      console.log(`Simulating a mouse move to (x,y) = ${hackedMousePoint?.toString()}`);
+      super.modifierMouseMove({ mousePoint: hackedMousePoint });
+    }
+
+    super.onParentSurfaceRendered();
   }
 
   setXValue(xValue) {
     console.log(`Setting XValue to ${xValue}`);
     this.xValue = xValue;
-    this.updatePosition();
-  }
-
-  updatePosition() {
-    // Find the xAxis on parent chart by id
-    const xAxis = this.parentSurface?.xAxes?.getById(this.xAxisId);
-    if (xAxis) {
-      // Convert xValue from data to coordinate. Set this on the base class mousePoint property to force rollover to appear
-      // at this pixel value
-      const hackedMousePoint = new Point(xAxis.getCurrentCoordinateCalculator()?.getCoordinate(this.xValue), 10);
-      console.log(`Setting MousePoint to ${hackedMousePoint.toString()}`);
-      super.modifierMouseMove({ mousePoint: hackedMousePoint });
-    }
   }
 }
 // #endregion
@@ -66,7 +63,8 @@ async function rolloverProgrammaticPlacement(divElementId) {
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-2, 0.5), axisTitle: "Y Axis" }));
 
   // Add a RolloverModifier with custom placement at X=10
-  const rollover = new CustomPlacementRollover(5);
+  const rollover = new CustomPlacementRollover();
+  rollover.setXValue(10);
   sciChartSurface.chartModifiers.add(rollover);
 
   // #endregion
@@ -98,7 +96,7 @@ async function rolloverProgrammaticPlacement(divElementId) {
 
   setTimeout(() => {
     updateCallback();
-    setInterval(updateCallback, 20);
+    setInterval(updateCallback, 500);
   }, 20);
 }
 
