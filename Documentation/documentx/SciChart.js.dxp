@@ -622,10 +622,10 @@ how to request a feature or workaround (on forums) </Notes>
         <TaskItem Id="30bb03c3-707c-4ab7-959f-47feb8c615ff" Priority="Medium" AssignedTo="">
           <Title>v3.2 Add a PinchZoomModifier documentation page and update ZoomPanModifier page</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>In Progress</Status>
+          <Status>Complete</Status>
           <CreatedOn>2022-09-23T12:03:08.164045Z</CreatedOn>
           <CreatedBy>DESKTOP-IPPVO8O\aburn</CreatedBy>
-          <ModifiedOn>2023-07-19T11:39:54.0644668Z</ModifiedOn>
+          <ModifiedOn>2023-08-03T20:32:17.6165791Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>ZoomPanModifier now has pinchzoom behaviour in-built. Must be disabled if you dont want it</Notes>
         </TaskItem>
@@ -787,10 +787,10 @@ isPrimaryAxis switched depending on mouse over </Notes>
         <TaskItem Id="93c76f4c-5406-48f5-bac0-191a134b84cb" Priority="High" AssignedTo="">
           <Title>v3.2 Add Memory Tips &amp; Tricks doc</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>In Progress</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-06-21T12:49:26.9157789Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-19T12:44:22.1840542Z</ModifiedOn>
+          <ModifiedOn>2023-08-03T20:32:14.5316816Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>under perf tips
  - talk about Wasm memory model
@@ -803,10 +803,10 @@ isPrimaryAxis switched depending on mouse over </Notes>
         <TaskItem Id="1215a6ca-6e5c-413e-a6d5-0c4addab7848" Priority="High" AssignedTo="">
           <Title>v3.2 Add Mem Leak Debugging tools doc</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>In Progress</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-06-21T12:53:23.3419754Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-19T12:32:01.3150553Z</ModifiedOn>
+          <ModifiedOn>2023-08-03T20:32:12.1527586Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -823,10 +823,10 @@ isPrimaryAxis switched depending on mouse over </Notes>
         <TaskItem Id="a94fb247-ff06-409c-86ef-f660ee0ddeca" Priority="Medium" AssignedTo="">
           <Title>v3.2 Add configure WebGL Buffer sizes in Perf Tips and Tricks docs</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>In Progress</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-06-21T12:53:42.664291Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-19T12:44:30.2617215Z</ModifiedOn>
+          <ModifiedOn>2023-08-03T20:32:06.5907385Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -904,10 +904,10 @@ isPrimaryAxis switched depending on mouse over </Notes>
         <TaskItem Id="fc8e13f4-09ce-49ee-aa8b-c73672715e70" Priority="" AssignedTo="">
           <Title>v3.2 Update ZoomPanModifier to mention pinch zooming</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>In Progress</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-06-21T12:57:13.3663505Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-19T11:29:50.8985967Z</ModifiedOn>
+          <ModifiedOn>2023-08-03T20:32:08.4856104Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -959,6 +959,37 @@ when done, document it</Notes>
           <CreatedOn>2023-07-17T16:35:06.4644731Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
           <ModifiedOn>2023-07-17T16:35:17.915024Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="a29a0369-5fdc-4090-b58e-70f2f55f3743" Priority="" AssignedTo="">
+          <Title>Update PointMetadata docs</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>In Progress</Status>
+          <CreatedOn>2023-08-03T20:32:19.474043Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-08-04T10:51:58.6227128Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="9e5c5c4b-692a-43cf-b5f7-8909b60f9a8b" Priority="" AssignedTo="">
+          <Title>Update CursorModifier doc to include this codepen</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-08-03T20:32:25.7664907Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-08-03T20:32:42.3394871Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes>https://codepen.io/scichart/pen/VwVRZNL 
+mode where hover a point shows a value - no crosshair. </Notes>
+        </TaskItem>
+        <TaskItem Id="4aa33c43-5f40-407c-a290-b42fc065ee9d" Priority="" AssignedTo="">
+          <Title>Update Custom Layout Provider docs with examples</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-08-04T10:52:08.9365343Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-08-04T10:52:16.2340389Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -1244,7 +1275,7 @@ when done, document it</Notes>
                   </ChildNodes>
                 </TocNode>
                 <TocNode Name="" Id="ff40fd7a-db17-4e85-a5a5-a20f966af23a" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-                  <CaptionTemplate m="2023-03-08T19:17:23.5673938Z">Text DataPoint Labels API</CaptionTemplate>
+                  <CaptionTemplate m="2023-08-04T12:32:31.1275168Z">Series Text DataPoint Labels API</CaptionTemplate>
                   <ChildNodes>
                     <TocNode Name="" Id="2d8652b9-0313-4fe6-8f8f-f6b48228c0c0" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
@@ -1285,7 +1316,7 @@ when done, document it</Notes>
                   </ChildNodes>
                 </TocNode>
                 <TocNode Name="" Id="ac455cf6-74dd-40d7-87f1-8d40e18d8213" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-                  <CaptionTemplate m="2021-09-18T19:40:45.0565041Z">PaletteProvider API</CaptionTemplate>
+                  <CaptionTemplate m="2023-08-04T12:32:35.9772758Z">Series PaletteProvider API</CaptionTemplate>
                   <ChildNodes>
                     <TocNode Name="" Id="f0331ab8-f7e8-44a5-9165-1a50e61008ce" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
@@ -1339,6 +1370,194 @@ when done, document it</Notes>
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>71c23100-837e-47c7-af5d-667c153ff3a3</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                  </ChildNodes>
+                </TocNode>
+                <TocNode Name="" Id="e4892202-6781-4d56-9170-c36bfd06c3a4" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+                  <CaptionTemplate m="2023-08-04T12:31:05.0345025Z">Series Hit Test API</CaptionTemplate>
+                  <ChildNodes>
+                    <TocNode Name="" Id="cd492542-4ad6-4ae6-8a7e-561c93dc87cf" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>bf7f5efa-0109-4ff3-aa52-1bf07c26c9f0</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="49ed0816-17e4-490a-b311-b70ab731e3c9" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>985bd560-7f5a-4d81-8b65-aa1b4cf33256</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="6bc0e42e-2d95-431d-8445-06145809a8eb" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>309a8887-503f-42be-b7eb-4f9adf27b7b4</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="a25e03cb-820a-4c51-b9de-0bfe669b5bab" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>2a065a28-4405-4185-bb71-d28c21e51fd9</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="8a81549b-1536-4c24-be22-bfe559442070" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>00681dda-3a4d-465d-9d54-0ffae4ab3649</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="789f4a61-d063-4313-abd5-fd9d30a40828" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>34fc166c-b0dc-4749-a87f-50854a179ca8</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="4890808d-3cd1-4ca4-a6ac-1f6103af14f9" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>98381ce7-bffe-4157-8818-baa222f88516</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="3d28b820-89af-44aa-9cd2-69e86a15edd9" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>ca213a8e-8f6e-4c61-97e9-e8254f56ec41</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="ac9c991c-15b7-401f-9d03-50c864fd3106" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>11195739-cff6-4237-9987-ea34bfa6179f</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="fcdbd857-fd19-4fc7-b68e-338113e2db46" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>4a777396-dc5f-42fd-8145-a6ed9215a557</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="ea45d30b-4d55-4d9c-a066-1f05bd2b3a24" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>ccc3be2e-6fc5-42d3-9ed8-16be48a6adf3</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="d25ff225-8c00-45f6-a406-da1798eb0c89" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>b7bd274d-c460-4def-aa3d-7dce881e616d</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                  </ChildNodes>
+                </TocNode>
+                <TocNode Name="" Id="e194d51f-4d0f-4678-9713-d2ea37f19452" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+                  <CaptionTemplate m="2023-08-04T12:42:32.6940109Z">DataSeries (Data Updates) API</CaptionTemplate>
+                  <ChildNodes>
+                    <TocNode Name="" Id="1bb0e58d-e046-467d-8729-2569a8974c8a" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>3425a202-cb28-4349-915f-ccf122d3a766</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="0fde7cea-135f-46f3-ba3e-6b1768893e95" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>31ffd4dc-de59-4205-a9e0-f64e390e618f</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="2b02a042-0077-4fcb-8a37-933c728631ed" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>e06d99dc-d176-4c1f-a71d-5cc54aa9e669</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="daaeb18e-8529-4516-b689-4c024a18644e" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>a7a8e8a9-a153-42a0-af00-913ef6e7e06c</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="a9634cf8-ab4c-4a03-97a4-272a34364765" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>52beca85-ed1b-4135-bd27-72f46ff74aa0</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="29697be8-3f40-4b3c-aa42-097e71c0fd7a" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>13f5705c-af26-4667-999f-6535e4e07b6c</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                  </ChildNodes>
+                </TocNode>
+                <TocNode Name="" Id="83cce1ea-cde5-4680-9597-c3c8dfb85ef7" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+                  <CaptionTemplate m="2023-08-04T12:30:57.4408558Z">Data PointMetadata API</CaptionTemplate>
+                  <ChildNodes>
+                    <TocNode Name="" Id="878c131c-bd29-4f68-8ec6-7c4b536c1bb4" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>8990ef25-dc00-4e2f-a07a-0d4cb1d8dc71</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="86757b96-e016-4290-a330-379a538cf478" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>a939c1ec-24a9-46dd-95ca-72654dd45e42</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="601a8b9f-9b74-43cc-9f11-ba9c69bc913d" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>f6efccfe-43eb-4f99-abfe-11299fdecbcc</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="de55fb83-f3d9-44f2-95f0-01731d9f09cf" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>6b3501ee-5886-476b-b661-0964a70da63a</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                  </ChildNodes>
+                </TocNode>
+                <TocNode Name="" Id="2d92f30b-7030-49d7-aa4e-65f652871a28" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+                  <CaptionTemplate m="2023-08-04T12:30:49.966764Z">Data Filters (Transforms) API</CaptionTemplate>
+                  <ChildNodes>
+                    <TocNode Name="" Id="b8c0f10e-0608-4715-a7bc-46d0ee8cfae1" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>681061b4-68ce-47a5-8b9c-920651d9dc6c</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="55cab64a-01fe-4b45-8e7a-583bcabe4063" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>cce20b3a-f65b-4260-9f46-3c27aab8673b</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="914081b0-0be6-40e9-8d22-1b8cc27b0440" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>dfdfc7d3-8a7a-4ad8-ad19-38c8de9c3753</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="4ff11d95-4759-4863-a6ca-c29a6c6b4bb6" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>68b69103-2ec3-457f-a1ab-c4b32ed72b37</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="15011118-0d95-49c1-874e-e9ed5fc55ab0" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>d62d3048-eecd-4e3b-85a0-7115d98a2440</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="2ebabfdf-e192-4491-ac61-75dfaffa48ad" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>064a8784-a0b0-48ad-90dd-2917297856a2</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -2027,204 +2246,6 @@ when done, document it</Notes>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
-                </TocNode>
-              </ChildNodes>
-            </TocNode>
-            <TocNode Name="" Id="e194d51f-4d0f-4678-9713-d2ea37f19452" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-              <CaptionTemplate m="2019-08-16T13:28:48.5389368Z">DataSeries API</CaptionTemplate>
-              <ChildNodes>
-                <TocNode Name="" Id="1bb0e58d-e046-467d-8729-2569a8974c8a" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>3425a202-cb28-4349-915f-ccf122d3a766</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="6d5cdcf9-325f-4ac6-b373-5c8ebbbab62c" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-                  <CaptionTemplate m="2023-06-21T12:26:41.0394136Z">Dynamic Data Updates</CaptionTemplate>
-                  <ChildNodes>
-                    <TocNode Name="" Id="0fde7cea-135f-46f3-ba3e-6b1768893e95" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>31ffd4dc-de59-4205-a9e0-f64e390e618f</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="2b02a042-0077-4fcb-8a37-933c728631ed" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>e06d99dc-d176-4c1f-a71d-5cc54aa9e669</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="daaeb18e-8529-4516-b689-4c024a18644e" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>a7a8e8a9-a153-42a0-af00-913ef6e7e06c</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                  </ChildNodes>
-                </TocNode>
-                <TocNode Name="" Id="83cce1ea-cde5-4680-9597-c3c8dfb85ef7" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-                  <CaptionTemplate m="2023-06-21T12:27:54.1031625Z">PointMetadata API</CaptionTemplate>
-                  <ChildNodes>
-                    <TocNode Name="" Id="878c131c-bd29-4f68-8ec6-7c4b536c1bb4" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>8990ef25-dc00-4e2f-a07a-0d4cb1d8dc71</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="86757b96-e016-4290-a330-379a538cf478" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>a939c1ec-24a9-46dd-95ca-72654dd45e42</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="601a8b9f-9b74-43cc-9f11-ba9c69bc913d" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>f6efccfe-43eb-4f99-abfe-11299fdecbcc</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="de55fb83-f3d9-44f2-95f0-01731d9f09cf" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>6b3501ee-5886-476b-b661-0964a70da63a</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                  </ChildNodes>
-                </TocNode>
-                <TocNode Name="" Id="2734c904-ef72-4804-8cf0-907ed38660d9" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-                  <CaptionTemplate m="2023-06-21T12:38:09.3365269Z">Misc</CaptionTemplate>
-                  <ChildNodes>
-                    <TocNode Name="" Id="a9634cf8-ab4c-4a03-97a4-272a34364765" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>52beca85-ed1b-4135-bd27-72f46ff74aa0</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                    <TocNode Name="" Id="29697be8-3f40-4b3c-aa42-097e71c0fd7a" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                      <CaptionTemplate />
-                      <ChildNodes />
-                      <TargetItemId>13f5705c-af26-4667-999f-6535e4e07b6c</TargetItemId>
-                      <TargetItemBookmark></TargetItemBookmark>
-                    </TocNode>
-                  </ChildNodes>
-                </TocNode>
-              </ChildNodes>
-            </TocNode>
-            <TocNode Name="" Id="2d92f30b-7030-49d7-aa4e-65f652871a28" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-              <CaptionTemplate m="2021-09-16T16:50:56.4954207Z">Filters API</CaptionTemplate>
-              <ChildNodes>
-                <TocNode Name="" Id="b8c0f10e-0608-4715-a7bc-46d0ee8cfae1" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>681061b4-68ce-47a5-8b9c-920651d9dc6c</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="55cab64a-01fe-4b45-8e7a-583bcabe4063" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>cce20b3a-f65b-4260-9f46-3c27aab8673b</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="914081b0-0be6-40e9-8d22-1b8cc27b0440" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>dfdfc7d3-8a7a-4ad8-ad19-38c8de9c3753</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="4ff11d95-4759-4863-a6ca-c29a6c6b4bb6" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>68b69103-2ec3-457f-a1ab-c4b32ed72b37</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="15011118-0d95-49c1-874e-e9ed5fc55ab0" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>d62d3048-eecd-4e3b-85a0-7115d98a2440</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="2ebabfdf-e192-4491-ac61-75dfaffa48ad" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>064a8784-a0b0-48ad-90dd-2917297856a2</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-              </ChildNodes>
-            </TocNode>
-            <TocNode Name="" Id="e4892202-6781-4d56-9170-c36bfd06c3a4" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-              <CaptionTemplate m="2021-09-17T08:38:19.0728837Z">Hit Test API</CaptionTemplate>
-              <ChildNodes>
-                <TocNode Name="" Id="cd492542-4ad6-4ae6-8a7e-561c93dc87cf" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>bf7f5efa-0109-4ff3-aa52-1bf07c26c9f0</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="49ed0816-17e4-490a-b311-b70ab731e3c9" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>985bd560-7f5a-4d81-8b65-aa1b4cf33256</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="6bc0e42e-2d95-431d-8445-06145809a8eb" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>309a8887-503f-42be-b7eb-4f9adf27b7b4</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="a25e03cb-820a-4c51-b9de-0bfe669b5bab" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>2a065a28-4405-4185-bb71-d28c21e51fd9</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="8a81549b-1536-4c24-be22-bfe559442070" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>00681dda-3a4d-465d-9d54-0ffae4ab3649</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="789f4a61-d063-4313-abd5-fd9d30a40828" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>34fc166c-b0dc-4749-a87f-50854a179ca8</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="4890808d-3cd1-4ca4-a6ac-1f6103af14f9" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>98381ce7-bffe-4157-8818-baa222f88516</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="3d28b820-89af-44aa-9cd2-69e86a15edd9" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>ca213a8e-8f6e-4c61-97e9-e8254f56ec41</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="ac9c991c-15b7-401f-9d03-50c864fd3106" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>11195739-cff6-4237-9987-ea34bfa6179f</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="fcdbd857-fd19-4fc7-b68e-338113e2db46" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>4a777396-dc5f-42fd-8145-a6ed9215a557</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="ea45d30b-4d55-4d9c-a066-1f05bd2b3a24" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>ccc3be2e-6fc5-42d3-9ed8-16be48a6adf3</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
-                </TocNode>
-                <TocNode Name="" Id="d25ff225-8c00-45f6-a406-da1798eb0c89" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
-                  <CaptionTemplate />
-                  <ChildNodes />
-                  <TargetItemId>b7bd274d-c460-4def-aa3d-7dce881e616d</TargetItemId>
-                  <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
               </ChildNodes>
             </TocNode>
@@ -10174,14 +10195,13 @@ when done, document it</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="8990ef25-dc00-4e2f-a07a-0d4cb1d8dc71" Status="New Topic" CreatedOn="2021-09-16T16:49:42.0547354Z" ModifiedOn="2023-08-03T20:04:48.750354Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataSeries PointMetaData Api" BuildFlags="">
-                <Title m="2021-09-20T14:18:35.249721Z">DataSeries PointMetaData Api</Title>
+              <Topic Id="8990ef25-dc00-4e2f-a07a-0d4cb1d8dc71" Status="New Topic" CreatedOn="2021-09-16T16:49:42.0547354Z" ModifiedOn="2023-08-04T12:51:57.0735517Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataSeries PointMetaData Api" BuildFlags="">
+                <Title m="2023-08-04T12:42:57.6266742Z">DataSeries PointMetaData API</Title>
                 <ContentsTitle m="2023-06-02T15:06:13.8906498Z">DataSeries PointMetaData Api</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-08-03T20:04:48.750354Z">&lt;P&gt;SciChart.js v2.x or above now features a new API: The PointMetadata API. This allows you to store any additional kind of data to some or all x,y points in a data series.&lt;/P&gt;
-&lt;P&gt;The PointMetadata API allows you to:&lt;/P&gt;
+                    <Content m="2023-08-04T12:51:57.0735517Z">&lt;P&gt;The PointMetadata API in SciChart.js allows you to:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;STRONG&gt;Tag any X,Y point in a DataSeries with a custom JavaScript object&lt;/STRONG&gt; 
 &lt;LI&gt;It can be used with the&amp;nbsp;&lt;A href="ae9b10e1-f5ba-444e-9835-6b0f95806007"&gt;DataPoint Selection Modifier&lt;/A&gt;&amp;nbsp;to enable per-point &lt;STRONG&gt;selection&lt;/STRONG&gt; 
@@ -10190,7 +10210,7 @@ when done, document it</Notes>
 &lt;LI&gt;Finally, it can be used in the&amp;nbsp;result of any&amp;nbsp;&lt;A href="bf7f5efa-0109-4ff3-aa52-1bf07c26c9f0"&gt;Hit-Test operation&lt;/A&gt; where X,Y,Metadata can be queried on click &lt;/LI&gt;&lt;/UL&gt;
 &lt;H2&gt;Adding Metadata to Charts&lt;/H2&gt;
 &lt;P&gt;Metadata is optional and can be set when a dataseries is first created, or whenever data is added or updated. Metadata is just a JavaScript object and can contain any properties, objects, even functions.&lt;/P&gt;
-&lt;P&gt;See the example below for how to create metadata when constructing an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xydataseries.html"&gt;XyDataSeries&lt;/A&gt; and how to consume it in a RolloverModifier.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;See the example below for how to create metadata when constructing an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xydataseries.html"&gt;XyDataSeries&lt;/A&gt; and how to consume it in a&amp;nbsp;&lt;A href="fac601dc-5435-4c51-abec-1c267f55f193"&gt;RolloverModifier&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\PointMetadata\AddingMetadata\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\PointMetadata\AddingMetadata\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;This results in the following output&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/PointMetadata/AddingMetadata/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
@@ -10381,26 +10401,26 @@ when done, document it</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="a939c1ec-24a9-46dd-95ca-72654dd45e42" Status="New Topic" CreatedOn="2023-08-03T19:34:34.9846898Z" ModifiedOn="2023-08-03T19:38:05.3256205Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataSeries_PointMetadata_PaletteProviders" BuildFlags="">
+              <Topic Id="a939c1ec-24a9-46dd-95ca-72654dd45e42" Status="New Topic" CreatedOn="2023-08-03T19:34:34.9846898Z" ModifiedOn="2023-08-04T14:14:48.1638068Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataSeries_PointMetadata_PaletteProviders" BuildFlags="">
                 <Title m="2023-08-03T19:36:16.4441801Z">Metadata and PaletteProviders</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-08-03T19:38:05.3256205Z">&lt;H2&gt;Using Metadata to Colour Datapoints&lt;/H2&gt;
-&lt;P&gt;SciChart.js features a powerful API - the PaletteProvider API - which allows you to individually colour line or mountain series segments, pointmarkers or candles / columns.&lt;/P&gt;
-&lt;P&gt;Metadata can be used as an input if you wanted to control series colour based on a custom object.&lt;/P&gt;
-&lt;P&gt;This example nelow uses metadata to drive line color explicitly.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Example Title&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";&lt;BR&gt;import { parseColorToUIntArgb } from "scichart/utils/parseColor";&lt;/P&gt;
-&lt;P&gt;&lt;BR&gt;// Create series with metadata containing color&lt;BR&gt;const dataSeries = new XyDataSeries(wasmContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; xValues: [1, 2, 3, 4, 5],&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; yValues: [4.3, 5.3, 6, 6.3, 5.7],&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; metadata: [&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; { isSelected: false, color: 'red' },&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; { isSelected: false, color: 'green' },&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; { isSelected: false },&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; { isSelected: false, color: 'blue' },&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; { isSelected: false },&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; ],&lt;BR&gt;});&lt;/P&gt;
-&lt;P&gt;// PaletteProvider implementing IStrokePaletteProvider&lt;BR&gt;class LinePaletteProvider extends DefaultPaletteProvider {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; constructor() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; super();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; this.strokePaletteMode = EStrokePaletteMode.SOLID;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; overrideStrokeArgb(xValue, yValue, index, opacity, metadata) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; if (metadata &amp;amp;&amp;amp; metadata.color) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; return parseColorToUIntArgb(metadata.color);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; } else {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; return undefined;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;}&lt;/P&gt;
-&lt;P&gt;// Renderable series using the paletteProvider&lt;BR&gt;const series = new FastLineRenderableSeries(wasmContext, {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataSeries,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; paletteProvider: new LinePaletteProvider(),&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; strokeThickness: 5,&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;This example produces the following chart:&lt;/P&gt;
-&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/Metadata_PaletteProvider.png"&gt;&lt;/P&gt;
-&lt;DIV align=left&gt;&lt;/DIV&gt;
-&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To learn more about the PaletteProvider API, see the&amp;nbsp;&lt;A href="3fb757b4-70d4-4a57-8c0d-97485cb8b722"&gt;documentation pages here&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;aaa&lt;/H2&gt;
-&lt;P&gt;&lt;/P&gt;</Content>
+                    <Content m="2023-08-04T14:14:48.1638068Z">&lt;P&gt;Using the&amp;nbsp;&lt;A href="3fb757b4-70d4-4a57-8c0d-97485cb8b722"&gt;PaletteProvider API&lt;/A&gt;&amp;nbsp;you can control the colour of data-points, line segments or columns / bars based on a programatic rule, e.g. if Y&amp;gt;5 or index &amp;lt; 100.&lt;/P&gt;
+&lt;P&gt;By combining this with Metadata now you can control the point colour based on any javascript object. Useful if you want to host additional data in your chart such as validity of data or alarm/alert values alongside x-y points.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;Background reading:&amp;nbsp;&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;If you haven't already, read the article&amp;nbsp;&lt;A href="8990ef25-dc00-4e2f-a07a-0d4cb1d8dc71"&gt;DataSeries PointMetadata API&lt;/A&gt;&amp;nbsp;which will show you how to setup a DataSeries with point metadata (javascript objects). 
+&lt;LI&gt;Also take a look at the&amp;nbsp;&lt;A href="3fb757b4-70d4-4a57-8c0d-97485cb8b722"&gt;PaletteProvider API&lt;/A&gt;&amp;nbsp;docs to find out how to programmatically change series-color on a per-point basis. &lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Example: Metadata + PaletteProviders&lt;/H2&gt;
+&lt;P&gt;Below is a worked example showing how to store series point colours in metadata and render them using a custom paletteprovider.&lt;/P&gt;
+&lt;P&gt;Let's start off by creating the PaletteProvider:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\PointMetadata\MetadataPaletteProviders\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;By inheriting&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/defaultpaletteprovider.html"&gt;DefaultPaletteProvider&lt;/A&gt; we can override functions like&amp;nbsp;overrideStrokeArgb, overrideFillArgb and overridePointMarkerArgb. Returning a colour code in Uint ARGB format overrides the colour for that data-point. Returning undefined uses the default series colour.&lt;/P&gt;
+&lt;P&gt;Next, we can apply the PaletteProvider and metadata to a chart like this.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\PointMetadata\MetadataPaletteProviders\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\PointMetadata\MetadataPaletteProviders\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleC&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/PointMetadata/MetadataPaletteProviders/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To learn more about the PaletteProvider API, see the&amp;nbsp;&lt;A href="3fb757b4-70d4-4a57-8c0d-97485cb8b722"&gt;documentation pages here&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
@@ -15468,7 +15488,7 @@ when done, document it</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">1408</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">283</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
