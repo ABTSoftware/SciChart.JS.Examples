@@ -993,6 +993,54 @@ mode where hover a point shows a value - no crosshair. </Notes>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
+        <TaskItem Id="777ed607-1468-4b69-958d-102873c8e7e4" Priority="" AssignedTo="">
+          <Title>Update Rollover Docs to show external div</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-08-04T16:33:40.6063047Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-08-04T16:33:59.0975176Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes>Update rollover docs
+ - Codepens 
+ - Customisation
+ - External PlacementDivId</Notes>
+        </TaskItem>
+        <TaskItem Id="abbca67f-cbf9-4a8d-9184-2ac8534ed353" Priority="" AssignedTo="">
+          <Title>Add Realtime Non-uniform Heatmap to docs</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-08-04T16:34:42.1027872Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-08-04T16:34:48.5535055Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="4089762a-8ce4-4c66-86fb-21243cfbbbf2" Priority="" AssignedTo="">
+          <Title>Rework legend documentation</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-08-04T16:35:16.9010395Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-08-04T16:35:35.9173628Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes>- Codepens
+- Customisation
+- Placemement
+- Manual legends
+- Feedback like checkboxes 
+</Notes>
+        </TaskItem>
+        <TaskItem Id="3c566677-b0d2-40b1-a662-d25404c0f426" Priority="" AssignedTo="">
+          <Title>Getting Started - how to host Wasm/Js locally without NPM</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-08-04T16:36:09.5224828Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-08-04T16:36:19.7776072Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
       </TaskItems>
     </Tasks>
   </TasksProjectPlugin>
@@ -10458,13 +10506,24 @@ mode where hover a point shows a value - no crosshair. </Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="6b3501ee-5886-476b-b661-0964a70da63a" Status="New Topic" CreatedOn="2023-08-03T19:36:51.0676683Z" ModifiedOn="2023-08-03T20:14:36.3962363Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataSeries_PointMetadata_HitTest" BuildFlags="">
+              <Topic Id="6b3501ee-5886-476b-b661-0964a70da63a" Status="New Topic" CreatedOn="2023-08-03T19:36:51.0676683Z" ModifiedOn="2023-08-04T17:00:48.1451169Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataSeries_PointMetadata_HitTest" BuildFlags="">
                 <Title m="2023-08-03T19:37:05.1995807Z">Metadata and HitTest</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-08-03T20:14:36.3962363Z">&lt;P&gt;WIP&lt;/P&gt;</Content>
+                    <Content m="2023-08-04T17:00:48.1451169Z">&lt;P&gt;The Hi-Test API is a low level API used to extract information about chart series under the mouse. Our own in-house RolloverModifier and CursorModifier are based on this API. You can use it too to create Drill-downs and custom data-inspections. &lt;/P&gt;
+&lt;P&gt;This article purpose is to keep it brief and show you how to store and retrieve Metadata from datapoints during a Hit-Test operation. Further reading about these APIs can be found below. &lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;Background reading:&amp;nbsp;&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;If you haven't already, read the article&amp;nbsp;&lt;A href="8990ef25-dc00-4e2f-a07a-0d4cb1d8dc71"&gt;DataSeries PointMetadata API&lt;/A&gt;&amp;nbsp;which will show you how to setup a DataSeries with point metadata (javascript objects). 
+&lt;LI&gt;Also take a look at the&amp;nbsp;&lt;A href="bf7f5efa-0109-4ff3-aa52-1bf07c26c9f0"&gt;Hit-Test API&lt;/A&gt;&amp;nbsp;docs to describe how to perform chart hit-testing (inspection on click, hover) &lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Example: Metadata + HitTest&lt;/H2&gt;
+&lt;P&gt;Here's a code sample showing how to extract metadata from a HitTest result. This is as simple as getting HitTestInfo.metadata&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\PointMetadata\MetadataHitTest\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Click on the data-points in the example below to see the Hit-Test result.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/PointMetadata/MetadataHitTest/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
                 <TopicLinks />
@@ -15494,7 +15553,7 @@ mode where hover a point shows a value - no crosshair. </Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">1094</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>

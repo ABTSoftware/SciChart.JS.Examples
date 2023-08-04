@@ -1,0 +1,4 @@
+body { margin: 0; font-family: Arial; }
+.wrapper { width: 100%; height: 100vh; position: relative; }
+#scichart-root { width: 100%; height: 100%; position: relative; }
+#debug-hittest { pointer-events: none; position: absolute; left: 10px; top: 10px; color: #FFFFFF; background: #00000077; padding: 10px; font-size: 13px }
