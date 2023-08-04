@@ -1,4 +1,4 @@
-// #region ExampleA
+
 // or for npm ... import { BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy } from "scichart";
 const {
   BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy,
@@ -39,20 +39,26 @@ class CustomAxisLayoutStrategy extends BottomAlignedOuterHorizontallyStackedAxis
     chartLayoutState.bottomOuterAreaSize = firstAxisSize + stackedAreaSize;
   }
 
-  // Override layoutAxes from the base class
+  // #region ExampleA
+  // Use the base horizontal stacked layout first, before default layout to switch the order of axis
   layoutAxes(left, top, right, bottom, axes) {
     const [firstAxis, ...stackedAxes] = axes;
-    // layout first axis with the regular logic
-    this.defaultBottomOuterAxisLayoutStrategy.layoutAxes(
-      left, top, right, bottom, [firstAxis]
-    );
+    // layout stacked axes first
+    super.layoutAxes(left, top, right, bottom, stackedAxes);
 
-    // after the layout phase we get axis.viewRect which specifies size and position of an axis
-    // and then we can layout rest of the axes with stacked strategy beneath it.
-    super.layoutAxes(left, firstAxis.viewRect.bottom, right, bottom, stackedAxes);
+    // then get the top offset for the normalAxis with stackedAxis.viewRect.bottom
+    const stackedAxis = stackedAxes[0]
+    this.defaultBottomOuterAxisLayoutStrategy.layoutAxes(
+      left,
+      stackedAxis.viewRect.bottom,
+      right,
+      bottom,
+      [firstAxis] // normal axis
+    );
   }
+  // #endregion
 }
-// #endregion
+
 
 async function customLayoutManager(divElementId) {
 
@@ -65,7 +71,6 @@ async function customLayoutManager(divElementId) {
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
 
-  // #region ExampleB
   const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
     theme: new SciChartJsNavyTheme()
   });
@@ -120,74 +125,27 @@ async function customLayoutManager(divElementId) {
     xAxis.axisTitleStyle.fontSize = 13;
   });
 
-  // #endregion
-
-  const {
-    ZoomPanModifier,
-    PinchZoomModifier,
-    ZoomExtentsModifier,
-    MouseWheelZoomModifier,
-    FastLineRenderableSeries,
-    XyDataSeries,
-    TextAnnotation
-  } = SciChart;
-
-  // Let's add some series to the chart to show how they also behave with axis
-  const getOptions = (index, offset = 0) => {
-    const xValues = Array.from(Array(50).keys());
-    const yValues = xValues.map(x => Math.sin(x * 0.4 + index) + offset);
-
-    return {
-      xAxisId: `xAxis${index}`,
-      stroke: axisColors[index],
-      strokeThickness: 3,
-      dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
-    };
+  const { TextAnnotation, EHorizontalAnchorPoint, ECoordinateMode, EAnnotationLayer } = SciChart;
+  const textOpts = {
+    xCoordinateMode: ECoordinateMode.Relative,
+    yCoordinateMode: ECoordinateMode.Relative,
+    x1: 0.5,
+    y1: 0.5,
+    horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+    opacity: 0.33,
+    textColor: "White",
   };
-
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(0, 1)}));
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(1)}));
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(2)}));
-  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {...getOptions(3)}));
-
-  // We will also add some annotations to explain to the user
   sciChartSurface.annotations.add(new TextAnnotation({
-    text: "Blue series uses xAxis0 and is stretched horizontally",
-    x1: 0,
-    y1: 2,
-    textColor: axisColors[0],
+    text: "Custom Layout Manager Example",
+    fontSize: 36,
+    yCoordShift: -50,
+    ... textOpts,
   }));
-
   sciChartSurface.annotations.add(new TextAnnotation({
-    text: "Using xAxis1",
-    x1: 0,
-    y1: 1.1,
-    xAxisId: ID_X_AXIS_2,
-    textColor: axisColors[1],
+    text: "Reversing the order of Stacked and Stretched X-Axis",
+    fontSize: 20,
+    ... textOpts,
   }));
-
-  sciChartSurface.annotations.add(new TextAnnotation({
-    text: "Using xAxis2",
-    x1: 0,
-    y1: 1.1,
-    xAxisId: ID_X_AXIS_3,
-    textColor: axisColors[2],
-  }));
-
-  sciChartSurface.annotations.add(new TextAnnotation({
-    text: "Using xAxis3",
-    x1: 0,
-    y1: 1.1,
-    xAxisId: ID_X_AXIS_4,
-    textColor: axisColors[3],
-  }));
-
-  sciChartSurface.chartModifiers.add(
-    new ZoomPanModifier(),
-    new PinchZoomModifier(),
-    new ZoomExtentsModifier(),
-    new MouseWheelZoomModifier({ applyToSeriesViewRect: false })
-  );
 };
 
 customLayoutManager("scichart-root");

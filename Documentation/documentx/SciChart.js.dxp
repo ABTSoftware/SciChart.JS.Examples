@@ -418,6 +418,7 @@
       <OtherFile Id="666ccae5-1957-45c7-abf2-142dc166b538" FileName="images\MemoryBestPractice_Warning.png" SourceData="" BuildFlags="" />
       <OtherFile Id="80e3a733-d98d-4d9b-97b8-be5c29db7392" FileName="images\MemoryDebugging_LogOutput.png" SourceData="" BuildFlags="" />
       <OtherFile Id="7ff67d21-2939-4eca-bd36-9d0bee9e2179" FileName="images\MemoryDebugging_Warning.png" SourceData="" BuildFlags="" />
+      <OtherFile Id="996a3beb-6d3e-474f-ac36-48370cde8d0a" FileName="images\Axis_CustomLayoutManager.png" SourceData="" BuildFlags="" />
     </OtherFiles>
     <DefaultStylesheet>stylesheets\customstyles.css</DefaultStylesheet>
     <DefaultCaptureDirectory></DefaultCaptureDirectory>
@@ -833,10 +834,10 @@ isPrimaryAxis switched depending on mouse over </Notes>
         <TaskItem Id="69bfebc0-86d6-40e8-a28f-74f34403ad7b" Priority="High" AssignedTo="">
           <Title>v3.2 Add PointLineRenderablerSeries 3D Docs</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Cancelled</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-06-21T12:53:56.4584079Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-07-11T15:55:32.1860699Z</ModifiedOn>
+          <ModifiedOn>2023-08-04T17:08:13.7974068Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -965,10 +966,10 @@ when done, document it</Notes>
         <TaskItem Id="a29a0369-5fdc-4090-b58e-70f2f55f3743" Priority="" AssignedTo="">
           <Title>Update PointMetadata docs</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>In Progress</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-08-03T20:32:19.474043Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-08-04T10:51:58.6227128Z</ModifiedOn>
+          <ModifiedOn>2023-08-04T17:07:40.7051461Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -986,10 +987,10 @@ mode where hover a point shows a value - no crosshair. </Notes>
         <TaskItem Id="4aa33c43-5f40-407c-a290-b42fc065ee9d" Priority="" AssignedTo="">
           <Title>Update Custom Layout Provider docs with examples</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2023-08-04T10:52:08.9365343Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-08-04T10:52:16.2340389Z</ModifiedOn>
+          <ModifiedOn>2023-08-04T18:00:18.6131446Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -1561,7 +1562,7 @@ mode where hover a point shows a value - no crosshair. </Notes>
                       <TargetItemId>f6efccfe-43eb-4f99-abfe-11299fdecbcc</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="de55fb83-f3d9-44f2-95f0-01731d9f09cf" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="de55fb83-f3d9-44f2-95f0-01731d9f09cf" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>6b3501ee-5886-476b-b661-0964a70da63a</TargetItemId>
@@ -2004,7 +2005,7 @@ mode where hover a point shows a value - no crosshair. </Notes>
                       <TargetItemId>60612d56-74d4-46c1-bdff-f31e2fe22d57</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="16b3d887-789e-468d-9b0a-916634842135" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="16b3d887-789e-468d-9b0a-916634842135" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>3a1fa3f5-6ae6-4819-8100-4a382d581587</TargetItemId>
@@ -4806,102 +4807,83 @@ mode where hover a point shows a value - no crosshair. </Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="3a1fa3f5-6ae6-4819-8100-4a382d581587" Status="New Topic" CreatedOn="2023-03-22T11:40:37.9981766Z" ModifiedOn="2023-03-22T19:13:38.5921096Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="LayoutManagers" BuildFlags="">
-                    <Title m="2023-03-22T11:43:14.5265238Z">Advanced Options - Layout Managers</Title>
+                  <Topic Id="3a1fa3f5-6ae6-4819-8100-4a382d581587" Status="New Topic" CreatedOn="2023-03-22T11:40:37.9981766Z" ModifiedOn="2023-08-04T17:57:24.2983327Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="LayoutManagers" BuildFlags="">
+                    <Title m="2023-08-04T17:09:35.7513394Z">Advanced Options - Custom Layout Managers</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-03-22T19:13:38.5921096Z">&lt;H2&gt;TODO: Strategies&lt;/H2&gt;
-&lt;P&gt;The following layout strategies are available:&lt;/P&gt;
+                        <Content m="2023-08-04T17:57:24.2983327Z">&lt;P&gt;In SciChart.js, all positioning and layout of axis are done with Layout Strategies. A list of default built-in strategies can be found below.&lt;/P&gt;
 &lt;TABLE&gt;
 &lt;TBODY&gt;
 &lt;TR&gt;
-&lt;TD&gt;Layout Strategy&lt;/TD&gt;
-&lt;TD&gt;Use on&lt;/TD&gt;
-&lt;TD&gt;Apply to&lt;/TD&gt;
-&lt;TD&gt;Behaviour&lt;/TD&gt;&lt;/TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;Layout Strategy&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Use on&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Apply to&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Behaviour&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
-&lt;TD&gt;BottomAlignedOuterAxisLayoutStrategy&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baseaxislayoutstrategy.html"&gt;BottomAlignedOuterAxisLayoutStrategy&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;X Axis&lt;/TD&gt;
 &lt;TD&gt;Bottom side&lt;/TD&gt;
 &lt;TD&gt;Default behaviour&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
-&lt;TD&gt;BottomAlignedOuterHorizontallyStackedLayoutStrategy&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/bottomalignedouterhorizontallystackedaxislayoutstrategy.html"&gt;BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;X Axis&lt;/TD&gt;
 &lt;TD&gt;Bottom side&lt;/TD&gt;
 &lt;TD&gt;Horizontal stacking behaviour&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
-&lt;TD&gt;LeftAlignedOuterAxisLayoutStrategy&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/leftalignedouteraxislayoutstrategy.html"&gt;LeftAlignedOuterAxisLayoutStrategy&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;Y Axis&lt;/TD&gt;
 &lt;TD&gt;Left side&lt;/TD&gt;
 &lt;TD&gt;Default behaviour&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
-&lt;TD&gt;RightAlignedOuterAxisLayoutStrategy&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rightalignedouteraxislayoutstrategy.html"&gt;RightAlignedOuterAxisLayoutStrategy&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;Y Axis&lt;/TD&gt;
 &lt;TD&gt;Right side&lt;/TD&gt;
 &lt;TD&gt;Default behaviour&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
-&lt;TD&gt;TopAlignedOuterAxisLayoutStrategy&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/topalignedouteraxislayoutstrategy.html"&gt;TopAlignedOuterAxisLayoutStrategy&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;X Axis&lt;/TD&gt;
 &lt;TD&gt;Top side&lt;/TD&gt;
-&lt;TD&gt;Default behaviour &lt;/TD&gt;&lt;/TR&gt;
+&lt;TD&gt;Default behaviour&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
-&lt;TD&gt;LeftAlignedOuterVerticallyStackedAxisLayoutStrategy&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/leftalignedouterverticallystackedaxislayoutstrategy.html"&gt;LeftAlignedOuterVerticallyStackedAxisLayoutStrategy&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;Y Axis&lt;/TD&gt;
 &lt;TD&gt;Left side&lt;/TD&gt;
 &lt;TD&gt;Vertical stacking behaviour&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
-&lt;TD&gt;RightAlignedOuterVerticallyStackedAxisLayoutStrategy&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rightalignedouterverticallystackedaxislayoutstrategy.html"&gt;RightAlignedOuterVerticallyStackedAxisLayoutStrategy&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;Y Axis&lt;/TD&gt;
 &lt;TD&gt;Right side&lt;/TD&gt;
 &lt;TD&gt;Vertical stacking behaviour&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR&gt;
-&lt;TD&gt;TopAlignedOuterHorizontallyStackedAxisLayoutStrategy&lt;/TD&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/topalignedouterhorizontallystackedaxislayoutstrategy.html"&gt;TopAlignedOuterHorizontallyStackedAxisLayoutStrategy&lt;/A&gt;&lt;/TD&gt;
 &lt;TD&gt;X Axis&lt;/TD&gt;
 &lt;TD&gt;Top side&lt;/TD&gt;
 &lt;TD&gt;Horizontal stacking behaviour&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;H2&gt;Configuring&amp;nbsp;Inner Axis Position&lt;/H2&gt;
-&lt;P&gt;You can bind the position of&amp;nbsp;an inner&amp;nbsp;axis to a different place using the&amp;nbsp;axisPosition property of the relevant LayoutStrategy on the LayoutManager. Here's a quick diagram showing the relationship between SciChartSurface and LayoutManager, and the derived types.&lt;/P&gt;
-&lt;P align=center&gt;&lt;IMG border=0 alt="" src="images/LayoutManager_UML.png"&gt;&lt;/P&gt;
-&lt;DIV align=left&gt;&lt;/DIV&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;P&gt;Properties which affect the layout of axis are:&lt;/P&gt;
+&lt;P&gt;By applying these strategies to the SciChartSurface you can achieve various layouts, such as&amp;nbsp;&lt;A href="0175a983-0786-4067-b718-206c8c41cd3b"&gt;Central Axis Layout&lt;/A&gt; or&amp;nbsp;&lt;A href="af7dd07c-7746-4a9d-a9ea-1afc4bb95701"&gt;Vertically Stacked Axis Layout&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;However, you can also create your own layout managers for custom or complex axis layouts.&lt;/P&gt;
+&lt;P&gt;Here's a worked example:&lt;/P&gt;
+&lt;H2&gt;Example: Custom Stacked and Normal Axis Layout&lt;/H2&gt;
+&lt;P&gt;A user on the&amp;nbsp;&lt;A href="https://www.scichart.com/questions/js/is-it-possible-to-create-two-xaxis-where-one-is-normal-and-the-other-one-is-horizontally-stacked-axis-layout" target=_blank&gt;SciChart Forums&lt;/A&gt; asked us how to combine Horizontally Stacked Axis behaviour with default behaviour, to achieve a layout like this:&lt;/P&gt;
+&lt;P&gt;&lt;IMG border=0 alt="" src="images/Axis_CustomLayoutManager.png"&gt;&lt;/P&gt;
+&lt;P&gt;This is possible by creating a &lt;STRONG&gt;custom layout strategy.&lt;/STRONG&gt;&lt;/P&gt;
+&lt;P&gt;Step 1: create a class which inherits one of our default layout strategies. For this, we chose&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/bottomalignedouterhorizontallystackedaxislayoutstrategy.html"&gt;BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy&lt;/A&gt;&amp;nbsp;as the base class. &lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisLayout\CustomLayoutManager\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Breaking this code down:&lt;/P&gt;
 &lt;UL&gt;
-&lt;LI&gt;LayoutManager.leftInnerAxesLayoutStrategy 
-&lt;LI&gt;LayoutManager.rightInnerAxesLayoutStrategy 
-&lt;LI&gt;LayoutManager.topInnerAxesLayoutStrategy 
-&lt;LI&gt;LayoutManager.bottomInnerAxesLayoutStrategy &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;The&amp;nbsp;&amp;nbsp;coordinateMode&amp;nbsp;property is an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/einneraxisplacementcoordinatemode.html"&gt;EInnerAxisPlacementCoordinateMode&lt;/A&gt;&amp;nbsp;which is:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;STRONG&gt;DataValue&lt;/STRONG&gt; - axis will be placed at this data value on the orthogonal axis. 
-&lt;LI&gt;&lt;STRONG&gt;Pixel&lt;/STRONG&gt; - axis will be placed at that pixel coordinate, relative to the top/left of the chart 
-&lt;LI&gt;&lt;STRONG&gt;Relative&lt;/STRONG&gt; - a value between 0.0 and 1.0, where 0.o is the top/left and 1.0 is the bottom/right of the chart. &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;In the example below, note that the first x-Axis is Top aligned, so we need to set properties on topInnerAxesLayoutStrategy.&amp;nbsp; This axis will move vertically as the chart is panned as it is positioned by data value.&amp;nbsp; The second x-Axis is Bottom aligned, so we configure the bottomInnerAxesLayoutStrategy.&amp;nbsp; This uses Pixel coordinateMode, so it stays fixed as the chart is panned.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt; 
-&lt;P&gt;Positioning Inner Axis&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import { EInnerAxisPlacementCoordinateMode } from "scichart/Charting/LayoutManager/EInnerAxisPlacementCoordinateMode";&lt;/P&gt;
-&lt;P&gt;const xAxis = new NumericAxis(wasmContext, { isInnerAxis: true, axisAlignment: EAxisAlignment.Top, axisBorder: { borderTop: 2, color: "steelblue" } });&lt;BR&gt;sciChartSurface.layoutManager.topInnerAxesLayoutStrategy.coordinateMode = EInnerAxisPlacementCoordinateMode.DataValue;&lt;BR&gt;sciChartSurface.layoutManager.topInnerAxesLayoutStrategy.axisPosition = 7;&lt;/P&gt;
-&lt;P&gt;const xAxis2 = new NumericAxis(wasmContext, { isInnerAxis: true, axisAlignment: EAxisAlignment.Bottom, axisBorder: { borderBottom: 2, color: "white" } });&lt;BR&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.coordinateMode = EInnerAxisPlacementCoordinateMode.Pixel;&lt;BR&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.axisPosition = 300;&lt;/P&gt;
-&lt;P&gt;const yAxis = new NumericAxis(wasmContext);&lt;/P&gt;
-&lt;P&gt;sciChartSurface.xAxes.add(xAxis, xAxis2);&lt;BR&gt;sciChartSurface.yAxes.add(yAxis);&lt;BR&gt;sciChartSurface.chartModifiers.add(new ZoomPanModifier());&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Note also that&amp;nbsp;for the top aligned axis, inner axis labels are placed below the axis line, so we need to set borderTop, and the opposite for a bottom aligned axis.&lt;/P&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/AxisLayout_InnerAxesPositioning.gif"&gt;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;H2&gt;Handling Custom Axis Ids of Orthogonal Axes&lt;/H2&gt;
-&lt;P&gt;If there are multiple Y or X Axes used on the chart, you should provide them with specific distinct Ids. As a result you may need to pass custom ids to Layout Strategies as a hint for which X axis should be for calculating the position of the Y axis and vice versa.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt; 
-&lt;P&gt;Custom Axis Ids&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;import { NumberRange } from "scichart/Core/NumberRange";&lt;/P&gt;
-&lt;P&gt;// ...&lt;/P&gt;
-&lt;P&gt;const ID_Y_AXIS_1 = "yAxis1";&lt;BR&gt;const ID_Y_AXIS_2 = "yAxis2";&lt;/P&gt;
-&lt;P&gt;const xAxis = new NumericAxis(wasmContext, { isInnerAxis: true });&lt;BR&gt;const yAxis1 = new NumericAxis(wasmContext, { id: ID_Y_AXIS_1 });&lt;BR&gt;const yAxis2 = new NumericAxis(wasmContext, { id: ID_Y_AXIS_2, visibleRange: new NumberRange(-5, 5) });&lt;/P&gt;
-&lt;P&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.orthogonalAxisId = ID_Y_AXIS_1;&lt;BR&gt;// the xAxis will be positioned accordingly to value on the yAxis1&lt;BR&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.coordinateMode = EInnerAxisPlacementCoordinateMode.DataValue;&lt;BR&gt;sciChartSurface.layoutManager.bottomInnerAxesLayoutStrategy.axisPosition = 3;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;IMG border=0 alt="" src="images/AxisLayout_AxisIds.png"&gt;&lt;/P&gt;
+&lt;LI&gt;The &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/bottomalignedouterhorizontallystackedaxislayoutstrategy.html"&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt;&amp;nbsp;is designed to layout axis on the bottom of the chart (x-Axis) horizontally stacked. 
+&lt;LI&gt;We override&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baseaxislayoutstrategy.html#measureaxes"&gt;measureAxes&lt;/A&gt; and use the default &lt;STRONG&gt;super.measureAxes()&lt;/STRONG&gt; function to measure the last three axis. We use a &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baseaxislayoutstrategy.html"&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;BottomAlignedOuterAxisLayoutStrategy&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt;&amp;nbsp;member variable to measure the final axis. 
+&lt;LI&gt;We override&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baseaxislayoutstrategy.html#layoutaxes"&gt;layoutAxes&lt;/A&gt; and do the same, combining the result of two strategies. &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Applying the strategy like this to a chart:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisLayout\CustomLayoutManager\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;You can now get the following output.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisLayout/CustomLayoutManager/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Reversing the Order of Stacked &amp;amp; Stretched Axis&lt;/H2&gt;
+&lt;P&gt;What if you wanted to swap the order of the stretched xAxis and the stacked xAxis? &lt;/P&gt;
+&lt;P&gt;This is really simple, just modify the layoutAxes function like this. &lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisLayout\CustomLayoutManagerReversed\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&lt;BR&gt;Now the axis order are swapped, resulting in this output.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisLayout/CustomLayoutManagerReversed/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
@@ -15553,7 +15535,7 @@ mode where hover a point shows a value - no crosshair. </Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">1094</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">1636</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
