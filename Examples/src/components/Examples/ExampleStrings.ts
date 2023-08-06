@@ -616,13 +616,15 @@ export const ExampleStrings = {
     titlePointLine3DChart: "JavaScript Point Line 3D Chart",
     pageTitlePointLine3DChart: "JavaScript 3D Point Line Chart | View 3D JavaScript Charts",
     urlPointLine3DChart: "/javascript-3d-point-line-chart",
-    urlPointLine3DChartDocumentation: "https://www.scichart.com/documentation/js/current/webframe.html",
+    urlPointLine3DChartDocumentation: "https://www.scichart.com/documentation/js/current/webframe.html#ThePointLine3DChartType.html",
     urlTitlePointLine3DChartDocumentation: "SciChart.js 3D Point Line Chart Documentation",
 
     // Featured Apps Lidar Example
     urlLidarFeaturedApp: "/javascript-3d-lidar-visualization",
     urlTitleLidarFeaturedApp: "LiDAR 3D Point Cloud of Geospatial Data",
     titleLidarFeaturedApp: "LiDAR 3D Point Cloud of Geospatial Data",
+    urlLidar3DDocumentation: "https://www.scichart.com/documentation/js/current/webframe.html#The%20Scatter%203D%20Chart%20Type.html",
+    urlTitleLidar3DDocumentation: "SciChart.js 3D Chart Documentation",
 
     // Featured Apps Load 500x500
     titleLoad500By500: "Load 500 Series x 500 Points Performance Demo",
