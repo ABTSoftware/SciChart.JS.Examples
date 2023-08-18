@@ -1,4 +1,4 @@
-async function basicCursorModifier(divElementId) {
+async function cursorDataTemplates(divElementId) {
 
   const {
     SciChartSurface,
@@ -6,8 +6,6 @@ async function basicCursorModifier(divElementId) {
     FastLineRenderableSeries,
     XyDataSeries,
     SciChartJsNavyTheme,
-    EAutoRange,
-    NumberRange,
     CursorModifier,
     TextAnnotation,
     EHorizontalAnchorPoint,
@@ -24,27 +22,39 @@ async function basicCursorModifier(divElementId) {
     titleStyle: { fontSize: 16 }
   });
 
-  // For the example to work, axis must have EAutoRange.Always
-  sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { autoRange: EAutoRange.Always, axisTitle: "X Axis" }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-2, 0.5), axisTitle: "Y Axis" }));
+  sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+  sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
   // Add a CursorModifier to the chart
   const cursorModifier = new CursorModifier({
-    // Optional properties to configure what parts are shown
     showTooltip: true,
     showAxisLabels: true,
-    showXLine: true,
-    showYLine: true,
-    // How close to a datapoint to show the tooltip? 10 = 10 pixels. 0 means always
     hitTestRadius: 10,
-    // Optional properties to configure the axis labels
-    axisLabelFill: "#b36200",
-    axisLabelStroke: "#fff",
-    // Optional properties to configure line and tooltip style
-    crosshairStroke: "#ff6600",
-    crosshairStrokeThickness: 1,
-    tooltipContainerBackground: "#000",
-    tooltipTextStroke: "#ff6600",
+    // Add a custom tooltip data template
+    tooltipDataTemplate: (seriesInfos, tooltipTitle) => {
+      // each element in this array = 1 line in the tooltip
+      const lineItems = [];
+      // See SeriesInfo docs at https://scichart.com/documentation/js/current/typedoc/classes/xyseriesinfo.html
+      seriesInfos.forEach(si => {
+        // If hit (within hitTestRadius of point)
+        if (si.isHit) {
+          // SeriesInfo.seriesName comes from dataSeries.dataSeriesName
+          lineItems.push(`${si.seriesName}`);
+          // seriesInfo.xValue, yValue are available to be formatted
+          // Or, preformatted values are available as si.formattedXValue, si.formattedYValue
+          lineItems.push(`X: ${si.xValue.toFixed(2)}`);
+          lineItems.push(`Y: ${si.yValue.toFixed(2)}`);
+          // index to the dataseries is available
+          lineItems.push(`Index: ${si.dataSeriesIndex}`);
+          // Which can be used to get anything from the dataseries
+          lineItems.push(`Y-value from dataSeries: ${si.renderableSeries.dataSeries.getNativeYValues().get(si.dataSeriesIndex).toFixed(4)}`);
+          // Location of the hit in pixels is available
+          lineItems.push(`Location: ${si.xCoordinate.toFixed(0)}, ${si.yCoordinate.toFixed(0)}`);
+        }
+      });
+
+      return lineItems;
+    }
   });
   sciChartSurface.chartModifiers.add(cursorModifier);
 
@@ -70,7 +80,7 @@ async function basicCursorModifier(divElementId) {
       yValues,
       dataSeriesName: "Sinewave 1",
     }),
-    pointMarker,
+    pointMarker
   }));
 
   sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
@@ -81,7 +91,7 @@ async function basicCursorModifier(divElementId) {
       yValues: yValues2,
       dataSeriesName: "Sinewave 2",
     }),
-    pointMarker,
+    pointMarker
   }));
 
   // Add some instructions to the user
@@ -95,7 +105,7 @@ async function basicCursorModifier(divElementId) {
     textColor: "White",
   };
   sciChartSurface.annotations.add(new TextAnnotation({
-    text: "CursorModifier Example",
+    text: "CursorModifier Custom DataTemplates",
     fontSize: 36,
     yCoordShift: 25,
     ... options,
@@ -106,9 +116,11 @@ async function basicCursorModifier(divElementId) {
     yCoordShift: 75,
     ... options,
   }));
+
+  sciChartSurface.chartModifiers.add(new SciChart.LegendModifier());
 }
 
-basicCursorModifier("scichart-root");
+cursorDataTemplates("scichart-root");
 
 
 

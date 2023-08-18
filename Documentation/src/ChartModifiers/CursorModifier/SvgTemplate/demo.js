@@ -1,4 +1,4 @@
-async function basicCursorModifier(divElementId) {
+async function tooltipSvgCursorModifier(divElementId) {
 
   const {
     SciChartSurface,
@@ -6,8 +6,6 @@ async function basicCursorModifier(divElementId) {
     FastLineRenderableSeries,
     XyDataSeries,
     SciChartJsNavyTheme,
-    EAutoRange,
-    NumberRange,
     CursorModifier,
     TextAnnotation,
     EHorizontalAnchorPoint,
@@ -24,30 +22,17 @@ async function basicCursorModifier(divElementId) {
     titleStyle: { fontSize: 16 }
   });
 
-  // For the example to work, axis must have EAutoRange.Always
-  sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { autoRange: EAutoRange.Always, axisTitle: "X Axis" }));
-  sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { visibleRange: new NumberRange(-2, 0.5), axisTitle: "Y Axis" }));
+  sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+  sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
 
   // Add a CursorModifier to the chart
   const cursorModifier = new CursorModifier({
-    // Optional properties to configure what parts are shown
     showTooltip: true,
     showAxisLabels: true,
-    showXLine: true,
-    showYLine: true,
-    // How close to a datapoint to show the tooltip? 10 = 10 pixels. 0 means always
     hitTestRadius: 10,
-    // Optional properties to configure the axis labels
-    axisLabelFill: "#b36200",
-    axisLabelStroke: "#fff",
-    // Optional properties to configure line and tooltip style
-    crosshairStroke: "#ff6600",
-    crosshairStrokeThickness: 1,
-    tooltipContainerBackground: "#000",
-    tooltipTextStroke: "#ff6600",
+    tooltipSvgTemplate:
   });
   sciChartSurface.chartModifiers.add(cursorModifier);
-
   // #endregion
 
   // Add some series to inspect
@@ -70,7 +55,7 @@ async function basicCursorModifier(divElementId) {
       yValues,
       dataSeriesName: "Sinewave 1",
     }),
-    pointMarker,
+    pointMarker
   }));
 
   sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
@@ -81,7 +66,7 @@ async function basicCursorModifier(divElementId) {
       yValues: yValues2,
       dataSeriesName: "Sinewave 2",
     }),
-    pointMarker,
+    pointMarker
   }));
 
   // Add some instructions to the user
@@ -95,7 +80,7 @@ async function basicCursorModifier(divElementId) {
     textColor: "White",
   };
   sciChartSurface.annotations.add(new TextAnnotation({
-    text: "CursorModifier Example",
+    text: "CursorModifier Formatting",
     fontSize: 36,
     yCoordShift: 25,
     ... options,
@@ -108,43 +93,54 @@ async function basicCursorModifier(divElementId) {
   }));
 }
 
-basicCursorModifier("scichart-root");
+tooltipSvgCursorModifier("scichart-root");
 
 
 
 
 async function builderExample(divElementId) {
-  // #region ExampleB
   // Demonstrates how to configure the PinchZoomModifier in SciChart.js using the Builder API
   const {
     chartBuilder,
     EThemeProviderType,
     EAxisType,
     EChart2DModifierType,
+    ENumericFormat
   } = SciChart;
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
 
+  // #region ExampleB
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
     surface: { theme: { type: EThemeProviderType.Dark } },
+    xAxes: {
+      type: EAxisType.NumericAxis,
+      options: {
+        // label format options applied to the X-Axis
+        labelPrecision: 2,
+        labelFormat: ENumericFormat.Decimal,
+        // label format options applied to cursors & tooltips
+        cursorLabelPrecision: 4,
+        cursorLabelFormat: ENumericFormat.Decimal
+      }
+    },
+    yAxes: {
+      type: EAxisType.NumericAxis,
+      options: {
+        // label format options applied to the X-Axis
+        labelPrecision: 2,
+        labelFormat: ENumericFormat.Decimal,
+        // label format options applied to cursors & tooltips
+        cursorLabelPrecision: 4,
+        cursorLabelFormat: ENumericFormat.Decimal
+      }
+    },
     modifiers: [{
       type: EChart2DModifierType.Cursor,
       options: {
-        // Optional properties to configure what parts are shown
         showTooltip: true,
         showAxisLabels: true,
-        showXLine: true,
-        showYLine: true,
-        // How close to a datapoint to show the tooltip? 10 = 10 pixels. 0 means always
         hitTestRadius: 10,
-        // Optional properties to configure the axis labels
-        axisLabelFill: "#b36200",
-        axisLabelStroke: "#fff",
-        // Optional properties to configure line and tooltip style
-        crosshairStroke: "#ff6600",
-        crosshairStrokeThickness: 1,
-        tooltipContainerBackground: "#000",
-        tooltipTextStroke: "#ff6600",
       }
     }]
   });

@@ -1,4 +1,4 @@
-async function basicCursorModifier(divElementId) {
+async function formatCursorModifier(divElementId) {
 
   const {
     SciChartSurface,
@@ -23,7 +23,6 @@ async function basicCursorModifier(divElementId) {
     titleStyle: { fontSize: 16 }
   });
 
-  // For the example to work, axis must have EAutoRange.Always
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
     // label format options applied to the X-Axis
     labelPrecision: 2,
@@ -48,7 +47,6 @@ async function basicCursorModifier(divElementId) {
     hitTestRadius: 10,
   });
   sciChartSurface.chartModifiers.add(cursorModifier);
-
   // #endregion
 
   // Add some series to inspect
@@ -69,6 +67,7 @@ async function basicCursorModifier(divElementId) {
     dataSeries: new XyDataSeries(wasmContext, {
       xValues,
       yValues,
+      dataSeriesName: "Sinewave 1",
     }),
     pointMarker
   }));
@@ -79,6 +78,7 @@ async function basicCursorModifier(divElementId) {
     dataSeries: new XyDataSeries(wasmContext, {
       xValues,
       yValues: yValues2,
+      dataSeriesName: "Sinewave 2",
     }),
     pointMarker
   }));
@@ -107,13 +107,12 @@ async function basicCursorModifier(divElementId) {
   }));
 }
 
-basicCursorModifier("scichart-root");
+formatCursorModifier("scichart-root");
 
 
 
 
 async function builderExample(divElementId) {
-  // #region ExampleB
   // Demonstrates how to configure the PinchZoomModifier in SciChart.js using the Builder API
   const {
     chartBuilder,
@@ -125,6 +124,7 @@ async function builderExample(divElementId) {
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
 
+  // #region ExampleB
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
     surface: { theme: { type: EThemeProviderType.Dark } },
     xAxes: {
