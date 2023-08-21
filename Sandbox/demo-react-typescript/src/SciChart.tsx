@@ -22,7 +22,6 @@ import {
     chartBuilder,
     generateGuid,
 } from 'scichart';
-import { createChart } from './chart-configurations';
 
 const useIsMountedRef = () => {
     const isMountedRef = useRef(false);
@@ -95,6 +94,11 @@ export class SciChartComponentAPI<TSurface extends ISciChartSurfaceBase, TInitRe
 }
 
 const createChartRoot = () => {
+    // check if SSR
+    if (typeof window === 'undefined') {
+        return null;
+    }
+
     const internalRootElement = document.createElement('div') as HTMLDivElement;
     // generate or provide a unique root element id to avoid chart rendering collisions
     internalRootElement.id = `chart-root-${generateGuid()}`;
@@ -119,8 +123,6 @@ function SciChartComponent<
     TSurface extends ISciChartSurfaceBase = ISciChartSurfaceBase,
     TInitResult extends IInitResult<TSurface> = IInitResult<TSurface>
 >(props: TChartComponentProps<TSurface, TInitResult>, ref: ForwardedRef<any>) {
-    console.log('SciChart');
-
     const { initChart, config, apiProvider, fallback, ...divElementProps } = props as TChartComponentPropsIntersection<
         TSurface,
         TInitResult
@@ -130,7 +132,7 @@ function SciChartComponent<
         throw new Error(`Only one of "initChart" or "config" props is required!`);
     }
 
-    const [divElementId] = useState(divElementProps.id ?? `component-root-${generateGuid()}`);
+    const [divElementId] = useState(divElementProps.id ?? `component-root-${useId()}`);
 
     const isMountedRef = useIsMountedRef();
 
