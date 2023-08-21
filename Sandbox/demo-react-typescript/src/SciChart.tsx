@@ -136,6 +136,7 @@ function SciChartComponent<
 
     const isMountedRef = useIsMountedRef();
 
+    const initPromiseRef = useRef<Promise<TInitResult | IInitResult<SciChartSurface | SciChartPieSurface>>>();
     const initResultRef = useRef<TInitResult>();
     const sciChartSurfaceRef = useRef<TSurface>();
 
@@ -146,20 +147,27 @@ function SciChartComponent<
         const initializationFunction = initChart
             ? (initChart as TInitFunction<TSurface, TInitResult>)
             : createChartFromConfig<TSurface>(config);
-        const initPromise = initializationFunction(chartRoot).then((initResult) => {
-            if (!initResult.sciChartSurface) {
-                throw new Error(
-                    `"initChart" function should resolve to an object with "sciChartSurface" property ({ sciChartSurface })`
-                );
-            }
-            // TODO try to remove assertions after 3D charts could be created via Builder API
-            sciChartSurfaceRef.current = initResult.sciChartSurface as TSurface;
-            initResultRef.current = initResult as TInitResult;
 
-            setIsInitialized(true);
+        const runInit = async () => {
+            return initializationFunction(chartRoot).then((initResult) => {
+                if (!initResult.sciChartSurface) {
+                    throw new Error(
+                        `"initChart" function should resolve to an object with "sciChartSurface" property ({ sciChartSurface })`
+                    );
+                }
+                // TODO try to remove assertions after 3D charts could be created via Builder API
+                sciChartSurfaceRef.current = initResult.sciChartSurface as TSurface;
+                initResultRef.current = initResult as TInitResult;
 
-            return initResult;
-        });
+                setIsInitialized(true);
+
+                return initResult;
+            });
+        };
+
+        // workaround to handle StrictMode
+        const initPromise = initPromiseRef.current ? initPromiseRef.current.then(runInit) : runInit();
+        initPromiseRef.current = initPromise;
 
         const performCleanup = () => {
             sciChartSurfaceRef.current.delete();
