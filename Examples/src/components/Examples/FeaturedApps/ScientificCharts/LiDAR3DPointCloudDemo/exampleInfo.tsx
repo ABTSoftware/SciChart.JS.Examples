@@ -16,9 +16,9 @@ visualization of a 500x500 (250k points) ASC format dataset.`,
 
 const documentationLinks: TDocumentationLink[] = [
     {
-        href: ExampleStrings.urlBubble3DChartDocumentation,
-        title: ExampleStrings.urlTitleBubble3DChartDocumentation,
-        linkTitle: "JavaScript 3D Bubble Chart Documentation"
+        href: ExampleStrings.urlLidar3DDocumentation,
+        title: ExampleStrings.urlTitleLidar3DDocumentation,
+        linkTitle: "JavaScript 3D Charts Documentation"
     }
 ];
 
