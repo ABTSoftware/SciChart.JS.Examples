@@ -21,6 +21,7 @@ type TProps = {
 
 const AppBarTop: React.FC<TProps> = props => {
     const { toggleDrawer, currentExample } = props;
+    const [isMobile, setIsMobile] = React.useState(false);
 
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const contextualGithub =
@@ -39,14 +40,19 @@ const AppBarTop: React.FC<TProps> = props => {
     const contextualDocTitle =
         docLinks !== undefined && docLinks.length > 0 ? docLinks[0].title : "SciChart.js Documentation Home";
 
-    const isMobile = window.innerWidth <= 768
+    React.useEffect(() => {
+        setIsMobile(window.innerWidth <= 768);
+    }, []);
 
     return (
         <AppBar position="sticky" className={classes.AppBar}>
             <Toolbar className={classes.ToolBar}>
                 <a href="https://demo.scichart.com/" title="SciChart Demo">
-                    {isMobile ? ( <img className={classes.Logo} src={LogoSmall} alt="scichart-logo" /> ) :
-                        ( <img className={classes.Logo} src={Logo} alt="scichart-logo" /> )}
+                    {isMobile ? (
+                        <img className={classes.Logo} src={LogoSmall} alt="scichart-logo" />
+                    ) : (
+                        <img className={classes.Logo} src={Logo} alt="scichart-logo" />
+                    )}
                 </a>
                 <Search />
                 <div className={classes.FlexPlaceholder}></div>
