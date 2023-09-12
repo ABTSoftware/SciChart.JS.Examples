@@ -10,6 +10,7 @@ import BookIcon from "@material-ui/icons/Book";
 import Search from "../Search/Search";
 import classes from "./AppTopBar.module.scss";
 import Logo from "../../images/scichart-logo-app-bar.svg";
+import LogoSmall from "../../images/scichart-logo-app-bar-mobile.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import npm from "./npm.svg";
 
@@ -20,6 +21,7 @@ type TProps = {
 
 const AppBarTop: React.FC<TProps> = props => {
     const { toggleDrawer, currentExample } = props;
+    const [isMobile, setIsMobile] = React.useState(false);
 
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const contextualGithub =
@@ -38,11 +40,19 @@ const AppBarTop: React.FC<TProps> = props => {
     const contextualDocTitle =
         docLinks !== undefined && docLinks.length > 0 ? docLinks[0].title : "SciChart.js Documentation Home";
 
+    React.useEffect(() => {
+        setIsMobile(window.innerWidth <= 768);
+    }, []);
+
     return (
         <AppBar position="sticky" className={classes.AppBar}>
             <Toolbar className={classes.ToolBar}>
                 <a href="https://demo.scichart.com/" title="SciChart Demo">
-                    <img className={classes.Logo} src={Logo} alt="scichart-logo" />
+                    {isMobile ? (
+                        <img className={classes.Logo} src={LogoSmall} alt="scichart-logo" />
+                    ) : (
+                        <img className={classes.Logo} src={Logo} alt="scichart-logo" />
+                    )}
                 </a>
                 <Search />
                 <div className={classes.FlexPlaceholder}></div>
@@ -50,9 +60,9 @@ const AppBarTop: React.FC<TProps> = props => {
                     className={classes.BlueButton}
                     href="https://www.scichart.com/getting-started/scichart-javascript/"
                     target="_blank"
-                    title="Start a trial or community license"
+                    title="Get a FREE Community license"
                 >
-                    Get Started
+                    Get it FREE
                 </Button>
                 <Button
                     className={classes.PurpleButton}
