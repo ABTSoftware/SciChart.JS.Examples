@@ -2283,8 +2283,8 @@ Show external placement div</Notes>
                     </TocNode>
                   </ChildNodes>
                 </TocNode>
-                <TocNode Name="" Id="47832a57-8e22-4bce-b477-0a493d68c8f0" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-                  <CaptionTemplate m="2016-10-19T10:11:52.5898134Z">Cursors and Tooltips</CaptionTemplate>
+                <TocNode Name="" Id="e0ce4c24-48a6-44d3-a3b4-2554ef8909ca" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+                  <CaptionTemplate m="2023-09-13T15:10:20.1012793Z">CursorModifier (Crosshair + Tooltips)</CaptionTemplate>
                   <ChildNodes>
                     <TocNode Name="" Id="e0d03363-ed9f-4a4c-9bc3-f9be68b653b4" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
@@ -2292,16 +2292,33 @@ Show external placement div</Notes>
                       <TargetItemId>ff5c9d10-4cdb-49f2-9e5b-45a4c611ed62</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
-                    <TocNode Name="" Id="7f960da3-d741-4f1c-abd4-d7d1dda3f4ec" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                    <TocNode Name="" Id="ad7a63bf-0f96-415b-b04a-0191eefaa911" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
-                      <TargetItemId>fac601dc-5435-4c51-abec-1c267f55f193</TargetItemId>
+                      <TargetItemId>f5e77a55-f317-420d-9781-f8de2522f889</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="cbe199bf-1a33-4930-ae23-27c85460e1be" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>bc9cfc5a-28fb-4fd8-9649-59e5c8357e7f</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                     <TocNode Name="" Id="3d651449-3789-47a5-8367-39ab70234a70" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>994b40e2-b798-4517-82fa-09b2c79a3617</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                  </ChildNodes>
+                </TocNode>
+                <TocNode Name="" Id="47832a57-8e22-4bce-b477-0a493d68c8f0" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+                  <CaptionTemplate m="2023-09-13T15:11:01.3255494Z">RolloverModifier (VerticalLine + Tooltips)</CaptionTemplate>
+                  <ChildNodes>
+                    <TocNode Name="" Id="7f960da3-d741-4f1c-abd4-d7d1dda3f4ec" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>fac601dc-5435-4c51-abec-1c267f55f193</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -8205,13 +8222,13 @@ Show external placement div</Notes>
                 <Caption m="2016-10-17T15:24:55.8524474Z">Cursors and Tooltips</Caption>
                 <ChildTopicCategories />
                 <Topics>
-                  <Topic Id="ff5c9d10-4cdb-49f2-9e5b-45a4c611ed62" Status="New Topic" CreatedOn="2016-10-07T16:13:08.8825627Z" ModifiedOn="2023-08-14T17:50:13.6400177Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier" BuildFlags="">
-                    <Title />
+                  <Topic Id="ff5c9d10-4cdb-49f2-9e5b-45a4c611ed62" Status="New Topic" CreatedOn="2016-10-07T16:13:08.8825627Z" ModifiedOn="2023-09-13T15:46:32.9658583Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier" BuildFlags="">
+                    <Title m="2023-09-13T15:20:42.6901303Z">The CursorModifier Type</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-08-14T17:50:13.6400177Z">&lt;P&gt;SciChart.js provides a cursors / crosshairs&amp;nbsp;behavior via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html"&gt;CursorModifier&lt;/A&gt;, available out of the box. Besides common features which are inherited from the&amp;nbsp;&lt;A href="c7ddb5a2-5c58-4351-9336-bafd039a556f"&gt;ChartModifierBase&lt;/A&gt; class, the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html"&gt;CursorModifier&lt;/A&gt; allows to&amp;nbsp;you to:&lt;/P&gt;
+                        <Content m="2023-09-13T15:46:09.9393294Z">&lt;P&gt;SciChart.js provides a cursors / crosshairs&amp;nbsp;behavior via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html"&gt;CursorModifier&lt;/A&gt;, available out of the box. Besides common features which are inherited from the&amp;nbsp;&lt;A href="c7ddb5a2-5c58-4351-9336-bafd039a556f"&gt;ChartModifierBase&lt;/A&gt; class, the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html"&gt;CursorModifier&lt;/A&gt; allows to&amp;nbsp;you to:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;STRONG&gt;Place a crosshair (cursor) on the&amp;nbsp;chart which tracks the&amp;nbsp;mouse&lt;/STRONG&gt; 
 &lt;LI&gt;&lt;STRONG&gt;Place a single aggregated tooltip for all series at the crosshair site&lt;/STRONG&gt; 
@@ -8221,18 +8238,45 @@ Show external placement div</Notes>
 &lt;LI&gt;Allow customisation of the tooltip style and contents 
 &lt;LI&gt;Place a legend at an external &amp;lt;div&amp;gt; with tooltip info 
 &lt;LI&gt;Configure when the tooltip is shown (always, only on hover of a point) 
-&lt;LI&gt;Configure which series react to the Tooltip (all, some, or specific series) &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;Configure which series react to the Tooltip (all, some, or specific series) &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;The &lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-chart-cursormodifier-crosshairs" target=_blank&gt;Using CursorModifier Example&lt;/A&gt; can be found in the&amp;nbsp;&lt;A href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;SciChart.Js Examples Suite&lt;/A&gt;&amp;nbsp;on Github, or our live demo at&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;demo.scichart.com&lt;/A&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameWidth"&gt;100%&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameHeight"&gt;500px&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-chart-cursormodifier-crosshairs&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above&lt;/STRONG&gt;: The&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-chart-cursormodifier-crosshairs" target=_blank&gt;Using CursorModifier Example&lt;/A&gt;&lt;/EM&gt; &lt;EM&gt;from the SciChart.js Demo, showing various options of the CursorModifier in SciChart.js.&lt;/EM&gt;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;H2&gt;Adding a&amp;nbsp;CursorModifier&amp;nbsp;to a Chart&lt;/H2&gt;
 &lt;P&gt;A CursorModifier can be added to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#chartmodifiers"&gt;sciChartSurface.chartModifiers&lt;/A&gt; collection to enable crosshair/cursor behavior. For example, this code adds a crosshair, enables default&amp;nbsp;tooltips and axis labels.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\CursorModifier\Basic\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\CursorModifier\Basic\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;This results in the following output:&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/CursorModifier/Basic/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Many of the properties here are optional - they have been included to show the configuration possibilities for the cursor. See&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/icursormodifieroptions.html"&gt;ICursorModifierOptions&lt;/A&gt; for more.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Formatting&amp;nbsp;of Tooltip items &amp;amp; Labels&lt;/H2&gt;
-&lt;H3&gt;Basic Formatting Options&lt;/H3&gt;
-&lt;P&gt;Tooltip and Axis Label formatting comes from the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/labelprovider.html#formatcursorlabel"&gt;axis.labelprovider.formatCursorLabel()&lt;/A&gt; function&amp;nbsp;and is axis-specific. You can read more about the&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Axis.LabelProvider API here&lt;/A&gt;, including how to specify formats from Enums and override formatting programmatically. &lt;/P&gt;
+&lt;P&gt;This results in the following output:&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/CursorModifier/Basic/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Many of the properties here are optional - they have been included to show the configuration possibilities for the cursor. See&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/icursormodifieroptions.html"&gt;ICursorModifierOptions&lt;/A&gt; for more.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks>
+                      <TopicLink Id="44858cc9-7856-4d2f-8bd4-bfe3b89b1c9b" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="f5e77a55-f317-420d-9781-f8de2522f889" BuildFlags="">
+                        <Title />
+                        <Category />
+                      </TopicLink>
+                      <TopicLink Id="c6e31d3b-d2b9-4681-bac7-ff79c88e8ef4" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="bc9cfc5a-28fb-4fd8-9649-59e5c8357e7f" BuildFlags="">
+                        <Title />
+                        <Category />
+                      </TopicLink>
+                    </TopicLinks>
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="f5e77a55-f317-420d-9781-f8de2522f889" Status="New Topic" CreatedOn="2023-09-13T15:35:07.8301221Z" ModifiedOn="2023-09-13T15:50:57.7141689Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier_Formatting" BuildFlags="">
+                    <Title m="2023-09-13T15:38:43.9743309Z">Formatting CursorModifier Tooltip Items</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2023-09-13T15:49:49.3527462Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;Background reading:&lt;/P&gt;
+&lt;P&gt;If you haven't already, read the article&amp;nbsp;&lt;A href="ff5c9d10-4cdb-49f2-9e5b-45a4c611ed62"&gt;The CursorModifier Type&lt;/A&gt;&amp;nbsp;which will show you how to setup a CursorModifier with default options for tooltips. This article goes into further detail on customising the tooltip items (formatting, text content)&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Basic CursorModifier Tooltip Formatting Options&lt;/H2&gt;
+&lt;P&gt;Tooltip and Axis Label formatting comes from the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/labelprovider.html#formatcursorlabel"&gt;axis.labelprovider.formatCursorLabel()&lt;/A&gt; function&amp;nbsp;and is axis-specific. You can read more about the&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Axis.LabelProvider API here&lt;/A&gt;, including how to specify formats from Enums and override formatting programmatically.&lt;/P&gt;
 &lt;P&gt;Below we're going to show you how to apply cursor formatting to enable four-decimal places on tooltips.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\CursorModifier\Formatting\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\CursorModifier\Formatting\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;Try adjusting the previous &lt;STRONG&gt;Codepen&lt;/STRONG&gt; we shared above with axis labelFormat and cursorLabelFormat to see the effect on tooltips in the CursorModifier.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;For further customisation on a per-axis basis, consider using the&amp;nbsp;&lt;A href="e9747ecc-a3cd-456b-9180-c47daead66ef"&gt;LabelProvider feature&lt;/A&gt; to create a custom labelprovider, and override formatCursorLabel. &lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H3&gt;Tooltip DataTemplates&lt;/H3&gt;
+&lt;P&gt;Here's a &lt;STRONG&gt;Codepen&lt;/STRONG&gt; which shows the effect of these properties on the axis on cursor tooltips.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/CursorModifier/Formatting/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;For further customisation on a per-axis basis, consider using the&amp;nbsp;&lt;A href="e9747ecc-a3cd-456b-9180-c47daead66ef"&gt;LabelProvider feature&lt;/A&gt; to create a custom labelprovider, and override formatCursorLabel.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Tooltip DataTemplates&lt;/H2&gt;
 &lt;P&gt;Further customisation of tooltip content can be achieved with the &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#tooltipdatatemplate"&gt;CursorModifier.tooltipDataTemplate&lt;/A&gt; property. This defines the content inside the tooltip e.g. what values are shown (x, y, values from metadata), if the series name is shown and so on.&lt;/P&gt;
 &lt;P&gt;This property expects a function in the following format (see&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#tcursortooltipdatatemplate"&gt;TCursorTooltipDataTemplate&lt;/A&gt;):&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;tooltipDataTemplateFunction&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;export type TCursorTooltipDataTemplate = (seriesInfos: SeriesInfo[], tooltipTitle: string) =&amp;gt; string[];&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;The&amp;nbsp;input/output parameters are:&lt;/P&gt;
@@ -8242,50 +8286,19 @@ Show external placement div</Notes>
 &lt;LI&gt;&lt;STRONG&gt;Output&lt;/STRONG&gt;:&amp;nbsp;an array of strings, each one corresponding to a line in the tooltip. &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Let's create a simple example which shows you how to access properties on&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xyseriesinfo.html"&gt;XySeriesInfo&lt;/A&gt; and output to tooltips.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\CursorModifier\DataTemplate\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\CursorModifier\DataTemplate\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;This results in the following output&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/CursorModifier/DataTemplate/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H3&gt;Accessing Metadata in Tooltip DataTemplates&lt;/H3&gt;
-&lt;P&gt;In the above example we access properties of&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xyseriesinfo.html"&gt;XySeriesInfo&lt;/A&gt; to format lines in the CursorModifier tooltip. &lt;/P&gt;
-&lt;P&gt;You can also access metadata to store any custom object in your X,Y data, then read that data out in tooltips. &lt;/P&gt;
+&lt;H2&gt;Accessing Metadata in Tooltip DataTemplates&lt;/H2&gt;
+&lt;P&gt;In the above example we access properties of&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xyseriesinfo.html"&gt;XySeriesInfo&lt;/A&gt; to format lines in the CursorModifier tooltip.&lt;/P&gt;
+&lt;P&gt;You can also access metadata to store any custom object in your X,Y data, then read that data out in tooltips.&lt;/P&gt;
 &lt;P&gt;For a worked example see&amp;nbsp;&lt;A href="f6efccfe-43eb-4f99-abfe-11299fdecbcc"&gt;PointMetadata API - Metadata and Tooltips&lt;/A&gt;.&lt;/P&gt;
-&lt;H2&gt;Customizing the Tooltip Container Appearance&lt;/H2&gt;
-&lt;P&gt;Basic customisation of the cursor and tooltip appearance can be made through the following properties.&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;The crosshair line thickness and stroke color can be changed with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#crosshairstrokethickness"&gt;crosshairStrokeThickness&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#crosshairstroke"&gt;crosshairStroke&lt;/A&gt; properties.
-&lt;LI&gt;Axis labels can be turned on/off via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#showaxislabels"&gt;showAxisLabels&lt;/A&gt; property.
-&lt;LI&gt;The tooltip can be turned on/off (to have a simple cursor) with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#showtooltip"&gt;showTooltip&lt;/A&gt; property.
-&lt;LI&gt;Axis Label backgrounds and text color can be changed with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#axislabelstroke"&gt;axisLabelStroke&lt;/A&gt;,&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#axislabelfill"&gt;axisLabelFill&lt;/A&gt; properties.
-&lt;LI&gt;The tooltip background and text color can be changed with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#tooltipcontainerbackground"&gt;tooltipContainerBackground&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#tooltiptextstroke"&gt;tooltipTextStroke&lt;/A&gt; properties.&lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;Deeper customisation of the tooltip appearance can be achieved via the &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#tooltipsvgtemplate"&gt;tooltipSvgTemplate&lt;/A&gt; property. &lt;/P&gt;
-&lt;P&gt;This defines the actual SVG used to host the tooltip container. This property expects a function in the following format (see&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#tcursortooltipsvgtemplate"&gt;TCursorTooltipSvgTemplate&lt;/A&gt;):&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;cursotTooltipSvgTemplate function&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;(seriesInfos: SeriesInfo[], svgAnnotation: CursorTooltipSvgAnnotation) =&amp;gt; string&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;The&amp;nbsp;input/output parameters are:&lt;/P&gt;
-&lt;UL&gt;
-&lt;LI&gt;&lt;STRONG&gt;Input&lt;/STRONG&gt;: an array of&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/seriesinfo.html"&gt;SeriesInfo&lt;/A&gt;: a data object which stores info about the series under the mouse.
-&lt;LI&gt;&lt;STRONG&gt;Input&lt;/STRONG&gt;: svgAnnotation (&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#tcursortooltipsvgtemplate"&gt;CursorTooltipSvgAnnotation&lt;/A&gt;) which is the current tooltip SVG annotation
-&lt;LI&gt;&lt;STRONG&gt;Output&lt;/STRONG&gt;:&amp;nbsp;string, containing the new SVG to define the tooltip container.&lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;Let's create a simple example which shows you how to customize the tooltip container.&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Tooltip Appearance&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const tooltipSvgTemplate: TCursorTooltipSvgTemplate = (&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; seriesInfos: SeriesInfo[],&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; svgAnnotation: CursorTooltipSvgAnnotation&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; ): string =&amp;gt; {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const width = 120;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const height = 120;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const seriesInfo = seriesInfos[0];&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; if (!seriesInfo?.isWithinDataBounds) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; return "&amp;lt;svg&amp;gt;&amp;lt;/svg&amp;gt;";&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const x = seriesInfo ? seriesInfo.formattedXValue : "";&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const y = seriesInfo ? seriesInfo.formattedYValue : "";&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // this calculates and sets svgAnnotation.xCoordShift and svgAnnotation.yCoordShift.&amp;nbsp; Do not set x1 or y1 at this point.&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; adjustTooltipPosition(width, height, svgAnnotation);&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; return `&amp;lt;svg width="${width}" height="${height}"&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;circle cx="50%" cy="50%" r="50%" fill="green"/&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;svg width="100%"&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;text y="40" font-size="13" font-family="Verdana" dy="0" fill="white"&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;tspan x="50%" text-anchor="middle" dy="1.2em"&amp;gt;Some Title&amp;lt;/tspan&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;tspan x="50%" text-anchor="middle" dy="1.2em"&amp;gt;x: ${x} y: ${y}&amp;lt;/tspan&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/text&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;image x="50%" y="10" width="25" height="25" transform="translate(-12.5,0)" xlink:href="/img/posture.png" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/svg&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/svg&amp;gt;`;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; };&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Place the Tooltip in an External Div (Active Legends)&lt;/H2&gt;
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks>
-                      <TopicLink Id="9aa1dcc7-546c-410c-902a-c16501d1b09c" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="f1ace0de-c745-4610-a766-eb59af8cf33d" BuildFlags="">
+                      <TopicLink Id="b8d52726-51a8-421a-83d1-c14599a5e9b5" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="bc9cfc5a-28fb-4fd8-9649-59e5c8357e7f" BuildFlags="">
                         <Title />
                         <Category />
                       </TopicLink>
-                      <TopicLink Id="0eb24f25-d546-42d9-a3a9-518387079555" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="c7ddb5a2-5c58-4351-9336-bafd039a556f" BuildFlags="">
-                        <Title />
-                        <Category />
-                      </TopicLink>
-                      <TopicLink Id="539fa302-d966-4772-85eb-5d6a1c7f6d40" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="fac601dc-5435-4c51-abec-1c267f55f193" BuildFlags="">
-                        <Title />
-                        <Category />
-                      </TopicLink>
-                      <TopicLink Id="064fbac2-79aa-4c51-9089-3328255cfc8a" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="994b40e2-b798-4517-82fa-09b2c79a3617" BuildFlags="">
+                      <TopicLink Id="8e4bc2a1-cc51-403b-a0e7-d0792ec7d7fc" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="b8fb3f0a-a8f1-4c2c-821c-230efc18e5b8" BuildFlags="">
                         <Title />
                         <Category />
                       </TopicLink>
@@ -8373,9 +8386,9 @@ Show external placement div</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="994b40e2-b798-4517-82fa-09b2c79a3617" Status="New Topic" CreatedOn="2023-01-23T17:20:18.0560453Z" ModifiedOn="2023-01-24T14:32:23.1184544Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="InterpolatedTooltipValues" BuildFlags="">
+                  <Topic Id="994b40e2-b798-4517-82fa-09b2c79a3617" Status="New Topic" CreatedOn="2023-01-23T17:20:18.0560453Z" ModifiedOn="2023-09-13T15:10:31.5997903Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="InterpolatedTooltipValues" BuildFlags="">
                     <Title />
-                    <ContentsTitle />
+                    <ContentsTitle m="2023-09-13T15:10:31.5997903Z">Interpolated Tooltip Values</ContentsTitle>
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
@@ -8398,6 +8411,56 @@ Show external placement div</Notes>
                         <Category />
                       </TopicLink>
                     </TopicLinks>
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="bc9cfc5a-28fb-4fd8-9649-59e5c8357e7f" Status="New Topic" CreatedOn="2023-09-13T15:37:07.961403Z" ModifiedOn="2023-09-13T16:00:17.4481049Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier_CustomisingContainer" BuildFlags="">
+                    <Title m="2023-09-13T15:37:43.2538476Z">Customizing the Tooltip Container Appearance</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2023-09-13T16:00:17.4481049Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;Background reading:&lt;/P&gt;
+&lt;P&gt;If you haven't already, read the article&amp;nbsp;&lt;A href="ff5c9d10-4cdb-49f2-9e5b-45a4c611ed62"&gt;The CursorModifier Type&lt;/A&gt;&amp;nbsp;which will show you how to setup a CursorModifier with default options for tooltips. This article goes into further detail on customising the tooltip items (formatting, text content)&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Basic customisation of the cursor and tooltip appearance can be made through the following properties.&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;The crosshair line thickness and stroke color can be changed with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#crosshairstrokethickness"&gt;crosshairStrokeThickness&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#crosshairstroke"&gt;crosshairStroke&lt;/A&gt; properties. 
+&lt;LI&gt;Axis labels can be turned on/off via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#showaxislabels"&gt;showAxisLabels&lt;/A&gt; property. 
+&lt;LI&gt;The tooltip can be turned on/off (to have a simple cursor) with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#showtooltip"&gt;showTooltip&lt;/A&gt; property. 
+&lt;LI&gt;Axis Label backgrounds and text color can be changed with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#axislabelstroke"&gt;axisLabelStroke&lt;/A&gt;,&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#axislabelfill"&gt;axisLabelFill&lt;/A&gt; properties. 
+&lt;LI&gt;The tooltip background and text color can be changed with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#tooltipcontainerbackground"&gt;tooltipContainerBackground&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#tooltiptextstroke"&gt;tooltipTextStroke&lt;/A&gt; properties. &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Deeper customisation of the tooltip appearance can be achieved via the &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#tooltipsvgtemplate"&gt;tooltipSvgTemplate&lt;/A&gt; property.&lt;/P&gt;
+&lt;P&gt;This defines the actual SVG used to host the tooltip container. This property expects a function in the following format (see&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#tcursortooltipsvgtemplate"&gt;TCursorTooltipSvgTemplate&lt;/A&gt;):&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;cursotTooltipSvgTemplate function&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;(seriesInfos: SeriesInfo[], svgAnnotation: CursorTooltipSvgAnnotation) =&amp;gt; string&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The&amp;nbsp;input/output parameters are:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;STRONG&gt;Input&lt;/STRONG&gt;: an array of&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/seriesinfo.html"&gt;SeriesInfo&lt;/A&gt;: a data object which stores info about the series under the mouse. 
+&lt;LI&gt;&lt;STRONG&gt;Input&lt;/STRONG&gt;: svgAnnotation (&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#tcursortooltipsvgtemplate"&gt;CursorTooltipSvgAnnotation&lt;/A&gt;) which is the current tooltip SVG annotation 
+&lt;LI&gt;&lt;STRONG&gt;Output&lt;/STRONG&gt;:&amp;nbsp;string, containing the new SVG to define the tooltip container. &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Let's create a simple example which shows you how to customize the tooltip container.&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Tooltip Appearance&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const tooltipSvgTemplate: TCursorTooltipSvgTemplate = (&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; seriesInfos: SeriesInfo[],&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; svgAnnotation: CursorTooltipSvgAnnotation&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; ): string =&amp;gt; {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const width = 120;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const height = 120;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const seriesInfo = seriesInfos[0];&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; if (!seriesInfo?.isWithinDataBounds) {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; return "&amp;lt;svg&amp;gt;&amp;lt;/svg&amp;gt;";&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const x = seriesInfo ? seriesInfo.formattedXValue : "";&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const y = seriesInfo ? seriesInfo.formattedYValue : "";&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // this calculates and sets svgAnnotation.xCoordShift and svgAnnotation.yCoordShift.&amp;nbsp; Do not set x1 or y1 at this point.&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; adjustTooltipPosition(width, height, svgAnnotation);&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; return `&amp;lt;svg width="${width}" height="${height}"&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;circle cx="50%" cy="50%" r="50%" fill="green"/&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;svg width="100%"&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;text y="40" font-size="13" font-family="Verdana" dy="0" fill="white"&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;tspan x="50%" text-anchor="middle" dy="1.2em"&amp;gt;Some Title&amp;lt;/tspan&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;tspan x="50%" text-anchor="middle" dy="1.2em"&amp;gt;x: ${x} y: ${y}&amp;lt;/tspan&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/text&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;image x="50%" y="10" width="25" height="25" transform="translate(-12.5,0)" xlink:href="/img/posture.png" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/svg&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/svg&amp;gt;`;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; };&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;&amp;nbsp;&lt;/H2&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="b8fb3f0a-a8f1-4c2c-821c-230efc18e5b8" Status="New Topic" CreatedOn="2023-09-13T15:38:00.9396188Z" ModifiedOn="2023-09-13T16:00:17.4491296Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier_PlaceTooltipLegendExternally" BuildFlags="">
+                    <Title m="2023-09-13T15:51:34.0286889Z">CursorModifier - Placing values in an External Legend</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2023-09-13T16:00:17.4491296Z">&lt;P&gt;TODO&lt;/P&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
                     <TopicKeywords />
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
@@ -15621,7 +15684,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">3327</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">3251</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
