@@ -2298,6 +2298,12 @@ Show external placement div</Notes>
                       <TargetItemId>f5e77a55-f317-420d-9781-f8de2522f889</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
+                    <TocNode Name="" Id="914a098c-4930-4b8e-b172-974ccc5c1e18" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>b8fb3f0a-a8f1-4c2c-821c-230efc18e5b8</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
                     <TocNode Name="" Id="cbe199bf-1a33-4930-ae23-27c85460e1be" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
@@ -8451,13 +8457,23 @@ Show external placement div</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="b8fb3f0a-a8f1-4c2c-821c-230efc18e5b8" Status="New Topic" CreatedOn="2023-09-13T15:38:00.9396188Z" ModifiedOn="2023-09-13T16:00:17.4491296Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier_PlaceTooltipLegendExternally" BuildFlags="">
-                    <Title m="2023-09-13T15:51:34.0286889Z">CursorModifier - Placing values in an External Legend</Title>
+                  <Topic Id="b8fb3f0a-a8f1-4c2c-821c-230efc18e5b8" Status="New Topic" CreatedOn="2023-09-13T15:38:00.9396188Z" ModifiedOn="2023-09-15T13:14:57.444527Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier_PlaceTooltipLegendExternally" BuildFlags="">
+                    <Title m="2023-09-15T12:37:57.8610822Z">Active Legends - CursorModifier output into a legend</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-09-13T16:00:17.4491296Z">&lt;P&gt;TODO&lt;/P&gt;</Content>
+                        <Content m="2023-09-15T13:14:57.444527Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;Background reading:&lt;/P&gt;
+&lt;P&gt;If you haven't already, read the article&amp;nbsp;&lt;A href="ff5c9d10-4cdb-49f2-9e5b-45a4c611ed62"&gt;The CursorModifier Type&lt;/A&gt;&amp;nbsp;which will show you how to setup a CursorModifier with default options for tooltips. This article goes into further detail on customising the tooltip items (formatting, text content)&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Placing CursorModifier Tooltips into a Legend&lt;/H2&gt;
+&lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html"&gt;CursorModifier&lt;/A&gt;&amp;nbsp;content can also be placed in an external div to create an active legend which updates with series values as you move the mouse. &lt;/P&gt;
+&lt;P&gt;Perhaps the best example of this is in financial charts, which require placing a legend in the top left of the chart to show the current hovered candle or series. &lt;/P&gt;
+&lt;P&gt;Here's a worked example below, which extends our&amp;nbsp;&lt;A href="b2fc10ad-2614-414b-a173-bed16255aa6f"&gt;Candlestick Chart - Volume Bars&lt;/A&gt; example with an active legend provided by&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html"&gt;CursorModifier&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\CursorModifier\ActiveLegend\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/CursorModifier/ActiveLegend/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks />
@@ -15684,7 +15700,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">3251</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">3710</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
