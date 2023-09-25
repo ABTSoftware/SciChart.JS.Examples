@@ -215,7 +215,7 @@ function App() {
         gridLayoutModifierRef.current.isGrid = !isGridLayout;
 
         if (!isGridLayout) {
-            serverLoadChartRef.current.sciChartSurface.subCharts.forEach((subChart) => {
+            serverLoadChartRef.current.sciChartSurface.subCharts.forEach((subChart: SciChartSubSurface) => {
                 const rolloverModifier = subChart.chartModifiers.getById(
                     'ServerLoadCursorModifier'
                 ) as RolloverModifier;
@@ -226,7 +226,7 @@ function App() {
                 () => isVisibleRangeSyncedRef.current
             );
         } else {
-            serverLoadChartRef.current.sciChartSurface.subCharts.forEach((subChart) => {
+            serverLoadChartRef.current.sciChartSurface.subCharts.forEach((subChart: SciChartSubSurface) => {
                 const rolloverModifier = subChart.chartModifiers.getById(
                     'ServerLoadCursorModifier'
                 ) as RolloverModifier;

@@ -86,8 +86,6 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             subChartPadding: Thickness.fromString('0 0 0 0'),
             viewportBorder: {
                 color: borderInitialColor,
-                // border: 2
-
                 borderRight: 2,
                 borderLeft: 2,
                 borderTop: 2,
@@ -102,8 +100,6 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             },
         };
 
-        (this.parentSurface.chartModifiers.getById('LegendModifier') as LegendModifier).sciChartLegend.showLegend =
-            false;
         const subChart = this.parentSurface.addSubChart(subChartOptions);
         const xAxisDef = (surfaceDef.xAxes as TAxisDefinition[]).find((a) => a.options.id == rs.xAxisId);
         const yAxisDef = (surfaceDef.yAxes as TAxisDefinition[]).find((a) => a.options.id == rs.yAxisId);
@@ -122,12 +118,8 @@ export class GridLayoutModifier extends ChartModifierBase2D {
         // make series on parent surface invisible
         rs.isVisible = false;
 
-
-
         const xAxis = subChart.xAxes.get(0);
         const yAxis = subChart.yAxes.get(0);
-
-
 
         xAxis.axisTitle = '';
         yAxis.axisTitle = '';
@@ -184,61 +176,46 @@ export class GridLayoutModifier extends ChartModifierBase2D {
         this.parentSurface.addAnimation(positionAnimation, styleAnimation);
     }
 
-    private makeGridLayout() {
-        const series = this.parentSurface.renderableSeries.asArray();
-        const chartCount = series.length;
-        const rows = Math.ceil(chartCount / this.columns);
+    private fadeOutMainSurface() {
+        // hide legend
+        const legendModifier = this.parentSurface.chartModifiers.getById('LegendModifier') as LegendModifier;
+        legendModifier.sciChartLegend.showLegend = false;
 
-        const subChartsAreaRect = this.getSubChartsAreaRect();
-
-        const gap = 10;
-        const width = (subChartsAreaRect.width - gap * (this.columns - 1)) / this.columns;
-        const height = (subChartsAreaRect.height - gap * (rows - 1)) / rows;
-
-        const surfaceDef = this.parentSurface.toJSON(true);
-
-        for (let i = 0; i < chartCount; i++) {
-            this.makeSubChart(surfaceDef, i, width, height, gap);
-        }
-
+        // animation setup to hide main surface
+        // assuming the same colors are used for both X and Y axes
         const parentXAxis = this.parentSurface.xAxes.get(0);
         const parentYAxis = this.parentSurface.yAxes.get(0);
-        // assuming the same colors are used for both axes
         const axisInitialStyles = collectAxisStyles(parentXAxis);
 
-        const animation = new GenericAnimation<number>({
+        const onAnimate = (from: number, to: number, progress: number) => {
+            const currentOpacity = from + (to - from) * progress;
+            multiplyAxisStylesOpacity(parentXAxis, axisInitialStyles, currentOpacity);
+            multiplyAxisStylesOpacity(parentYAxis, axisInitialStyles, currentOpacity);
+        };
+
+        const mainSurfaceFadeOutAnimation = new GenericAnimation<number>({
             from: 1,
             to: 0,
-            onAnimate: (from: number, to: number, progress: number) => {
-                const currentOpacity = from + (to - from) * progress;
-
-                multiplyAxisStylesOpacity(parentXAxis, axisInitialStyles, currentOpacity);
-                multiplyAxisStylesOpacity(parentYAxis, axisInitialStyles, currentOpacity);
-            },
+            onAnimate,
             delay: 0,
             duration: this.transitionDuration / 2,
             ease: easing.linear,
-            onCompleted: () => {},
         });
-        this.parentSurface.addAnimation(animation);
-
+        this.parentSurface.addAnimation(mainSurfaceFadeOutAnimation);
     }
 
-    private makeSingleChart() {
+    private fadeInMainSurface() {
+        const subCharts = this.parentSurface.subCharts;
         const parentXAxis = this.parentSurface.xAxes.get(0);
         const parentYAxis = this.parentSurface.yAxes.get(0);
+        const [firstSubChart] = subCharts;
 
-        const [firstSubChart] = this.parentSurface.subCharts;
-
-        if (!firstSubChart) {
-            return;
-        }
-
-        // assuming the same colors are y+used for both axes and for subcharts
+        // animation setup for making main surface visible
+        // assuming the same colors are used for both X and Y axes and for sub-charts
         const subChartAxis = firstSubChart.xAxes.get(0);
         const axisInitialStyles = collectAxisStyles(subChartAxis);
 
-        const mainSurfaceAnimation = new GenericAnimation<number>({
+        const mainSurfaceFadeInAnimation = new GenericAnimation<number>({
             from: 0,
             to: 1,
             onAnimate: (from: number, to: number, progress: number) => {
@@ -250,23 +227,52 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             delay: (this.transitionDuration * 2) / 6,
             duration: (this.transitionDuration * 4) / 6,
             ease: easing.linear,
-            onCompleted: () => {},
         });
-        this.parentSurface.addAnimation(mainSurfaceAnimation);
+
+        this.parentSurface.addAnimation(mainSurfaceFadeInAnimation);
+    }
+
+    private makeGridLayout() {
+        // calculating sizes of sub-charts in grid
+        const series = this.parentSurface.renderableSeries.asArray();
+        const chartCount = series.length;
+        const rows = Math.ceil(chartCount / this.columns);
 
         const subChartsAreaRect = this.getSubChartsAreaRect();
 
-        const count = this.parentSurface.subCharts.length;
+        const gap = 10;
+        const width = (subChartsAreaRect.width - gap * (this.columns - 1)) / this.columns;
+        const height = (subChartsAreaRect.height - gap * (rows - 1)) / rows;
 
-        for (let i = 0; i < count; i++) {
-            const subChart = this.parentSurface.subCharts[i];
+        // copying main surface options
+        const surfaceDef = this.parentSurface.toJSON(true);
+
+        for (let i = 0; i < chartCount; i++) {
+            this.makeSubChart(surfaceDef, i, width, height, gap);
+        }
+
+        this.fadeOutMainSurface();
+    }
+
+    private makeSingleChart() {
+        const subCharts = this.parentSurface.subCharts;
+        if (subCharts.length === 0) {
+            return;
+        }
+
+        this.fadeInMainSurface();
+
+        // Rect defining the size and position of sub-charts grid
+        const subChartsAreaRect = this.getSubChartsAreaRect();
+
+        subCharts.forEach((subChart, subChartIndex) => {
             const xAxis = subChart.xAxes.get(0);
             const yAxis = subChart.yAxes.get(0);
 
             const axisInitialStyles = collectAxisStyles(xAxis);
             const surfaceInitialStyles = collectSurfaceStyles(subChart);
 
-            const animation = new GenericAnimation<Rect>({
+            const subChartRepositioningAnimation = new GenericAnimation<Rect>({
                 from: subChart.subPosition,
                 to: subChartsAreaRect,
                 onAnimate: (from: Rect, to: Rect, progress: number) => {
@@ -282,6 +288,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
                 duration: (this.transitionDuration * 4) / 6,
                 ease: easing.linear,
                 onCompleted: () => {
+                    // setTimeout is important here to prevent chart flickering
                     setTimeout(() => {
                         // subChart.isVisible = false;
                         const rs = subChart.renderableSeries.get(0);
@@ -289,15 +296,17 @@ export class GridLayoutModifier extends ChartModifierBase2D {
                         rs.dataSeries = undefined;
                         this.parentSurface.removeSubChart(subChart);
                         // make series on parent surface visible
-                        this.parentSurface.renderableSeries.get(i).isVisible = true;
+                        this.parentSurface.renderableSeries.get(subChartIndex).isVisible = true;
 
-                        (
-                            this.parentSurface.chartModifiers.getById('LegendModifier') as LegendModifier
-                        ).sciChartLegend.showLegend = true;
+                        const legendModifier = this.parentSurface.chartModifiers.getById(
+                            'LegendModifier'
+                        ) as LegendModifier;
+                        legendModifier.sciChartLegend.showLegend = true;
                     }, 0);
                 },
             });
-            const styleAnimation = new GenericAnimation<number>({
+
+            const subChartFadeOutAnimation = new GenericAnimation<number>({
                 from: 1,
                 to: 0,
                 onAnimate: (from: number, to: number, progress: number) => {
@@ -310,10 +319,10 @@ export class GridLayoutModifier extends ChartModifierBase2D {
                 delay: 0,
                 duration: (this.transitionDuration * 2) / 6,
                 ease: easing.linear,
-                onCompleted: () => {},
             });
-            this.parentSurface.addAnimation(animation, styleAnimation);
-        }
+
+            this.parentSurface.addAnimation(subChartRepositioningAnimation, subChartFadeOutAnimation);
+        });
     }
 }
 
