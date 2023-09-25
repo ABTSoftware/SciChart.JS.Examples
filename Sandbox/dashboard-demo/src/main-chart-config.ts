@@ -13,17 +13,40 @@ import {
     EXyDirection,
     ZoomPanModifier,
     MouseWheelZoomModifier,
-    SciChartOverview,
+    IDataLabelProviderOptions,
+    IPointMetadata,
+    FastLineRenderableSeries,
+    EDataLabelSkipMode,
+    EllipsePointMarker,
+    EHorizontalTextPosition,
+    DefaultPaletteProvider,
+    IPointMarkerPaletteProvider,
+    TPointMarkerArgb,
+    parseColorToUIntArgb,
+    SeriesInfo,
+    CursorTooltipSvgAnnotation,
+    EVerticalAlignment,
+    EVerticalTextPosition,
+    Thickness,
+    BasePaletteProvider,
+    EStrokePaletteMode,
+    EFillPaletteMode,
+    TPaletteProviderDefinition,
+    parseColorToHexStringAbgr,
+    parseColorToHexStringArgb,
+    parseColorToTArgb,
+    parseArgbToHtmlColor,
+    XySeriesInfo,
 } from 'scichart';
 import { appTheme } from 'scichart-example-dependencies';
 import { TDataEntry, getData, getRequestsNumberPerTimestamp } from './data-generation';
-import { TChartConfigFunc } from './ChartAPI';
+import { TChartConfigFunc, TMainChartConfigFunc } from './chart-configurations';
 
-export const createChart1: TChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
+export const createChart1: TMainChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
-
+        padding: Thickness.fromString('10 10 2 10'),
         title: 'Number of requests for time period',
         titleStyle: {
             placeWithinChart: true,
@@ -44,7 +67,83 @@ export const createChart1: TChartConfigFunc = async (divElementId: string | HTML
         metadata,
     });
 
-    
+    let averageDurationThreshold = 1600;
+
+    const getAverageDurationFromMetadata = (pointMetadata: IPointMetadata) => {
+        const requestsMetadata = pointMetadata as (typeof metadata)[number];
+        const averageDuration =
+            requestsMetadata.entries.reduce((acc: number, value: TDataEntry) => {
+                return acc + value.duration;
+            }, 0) / requestsMetadata.entries.length;
+        return Math.round(averageDuration);
+    };
+
+    const dataLabels: IDataLabelProviderOptions = {
+        color: appTheme.VividRed,
+        style: {
+            fontFamily: 'Arial',
+            fontSize: 14,
+            padding: Thickness.fromNumber(10),
+        },
+        horizontalTextPosition: EHorizontalTextPosition.Center,
+        verticalTextPosition: EVerticalTextPosition.Above,
+        skipMode: EDataLabelSkipMode.SkipIfOverlapNext,
+        // skipNumber: 3,
+        // skipMode: EDataLabelSkipMode.SkipIfOverlapNext,
+        metaDataSelector: (pointMetadata: IPointMetadata) => {
+            const averageDuration = getAverageDurationFromMetadata(pointMetadata);
+            return averageDuration > averageDurationThreshold ? `${Math.round(averageDuration)}ms` : undefined;
+        },
+    };
+
+    class CustomPaletteProvider extends BasePaletteProvider {
+        public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
+        public readonly fillPaletteMode = EFillPaletteMode.GRADIENT;
+
+        // public overrideFillArgb(
+        //     xValue: number,
+        //     yValue: number,
+        //     index: number,
+        //     opacity?: number,
+        //     metadata?: IPointMetadata
+        // ): number {
+        //     const finalOpacity = metadata.isSelected ? 1 : opacity;
+        //     return parseColorToUIntArgb(appTheme.VividTeal, opacity * 255);
+        // }
+
+        public overrideStrokeArgb(
+            xValue: number,
+            yValue: number,
+            index: number,
+            opacity?: number,
+            metadata?: IPointMetadata
+        ): number {
+            const finalOpacity = metadata.isSelected ? 1 : opacity;
+            return parseColorToUIntArgb(appTheme.VividTeal, opacity * 255);
+        }
+
+        overridePointMarkerArgb(
+            xValue: number,
+            yValue: number,
+            index: number,
+            opacity?: number,
+            metadata?: IPointMetadata
+        ): TPointMarkerArgb {
+            const averageDuration = getAverageDurationFromMetadata(metadata);
+
+            if (averageDuration > averageDurationThreshold) {
+                return {
+                    fill: parseColorToUIntArgb(appTheme.MutedRed),
+                    stroke: parseColorToUIntArgb(appTheme.VividRed),
+                };
+            } else {
+                return {
+                    fill: undefined,
+                    stroke: undefined,
+                };
+            }
+        }
+    }
 
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
@@ -68,25 +167,84 @@ export const createChart1: TChartConfigFunc = async (divElementId: string | HTML
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis);
 
-    const lineSeries = new FastMountainRenderableSeries(wasmContext, {
+    const paletteProvider = new CustomPaletteProvider();
+
+    const mountainSeries = new FastMountainRenderableSeries(wasmContext, {
         dataSeries,
-        stroke: appTheme.VividOrange,
+        dataLabels,
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 8,
+            height: 8,
+            fill: appTheme.VividSkyBlue,
+            strokeThickness: 2,
+            opacity: 1,
+        }),
+        stroke: appTheme.VividGreen,
+        strokeThickness: 2,
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-            { color: appTheme.VividTeal, offset: 0.2 },
-            { color: 'Transparent', offset: 1 },
+            { color: appTheme.VividTeal, offset: 0 },
+            { color: parseArgbToHtmlColor(parseColorToUIntArgb(appTheme.VividTeal, 250)), offset: 0.2 },
+            { color: parseArgbToHtmlColor(parseColorToUIntArgb(appTheme.VividTeal, 0)), offset: 1 },
         ]),
+        paletteProvider,
     });
 
-    sciChartSurface.renderableSeries.add(lineSeries);
+    sciChartSurface.renderableSeries.add(mountainSeries);
+    // Override the standard legend displayed by RolloverModifier
+    const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: CursorTooltipSvgAnnotation) => {
+        let outputSvgString = '';
 
+        // Foreach series there will be a seriesInfo supplied by SciChart. This contains info about the series under the house
+        seriesInfos.forEach((seriesInfo, index) => {
+            const y = 20 + index * 20;
+            const textColor = seriesInfo.stroke;
+            let legendText = seriesInfo.formattedYValue;
+            const metadataEntry =  seriesInfo.pointMetadata as typeof metadata[number]
+            const averageDuration = getAverageDurationFromMetadata(metadataEntry)
+            legendText = `Avg. Request Duration: ${averageDuration};  Requests Number: ${metadataEntry.entries.length}`;
+            outputSvgString += `<text x="8" y="${y}" font-size="13" font-family="Verdana" fill="${textColor}">
+            ${legendText}
+        </text>`;
+        });
+
+        return `<svg width="100%" height="100%">
+                ${outputSvgString}
+            </svg>`;
+    };
     const cursorModifier = new CursorModifier({
         id: 'TotalRequestsCursorModifier',
         showTooltip: false,
         showAxisLabels: true,
         // showXLine: false,
         showYLine: false,
+        crosshairStrokeDashArray: [10, 20],
+        crosshairStrokeThickness: 2,
+        tooltipLegendOffsetX: 100,
+        // tooltipLegendTemplate: getTooltipLegendTemplate,
     });
-    const rolloverModifier = new RolloverModifier({ id: 'TotalRequestsRolloverModifier', showTooltip: true });
+
+    const getTooltipDataTemplate = (
+        seriesInfo: SeriesInfo,
+        tooltipTitle: string,
+        tooltipLabelX: string,
+        tooltipLabelY: string
+    ) => {
+        // Lines here are returned to the tooltip and displayed as text-line per tooltip
+        const lines: string[] = [];
+        // lines.push(tooltipTitle);
+        const metadataEntry =  seriesInfo.pointMetadata as typeof metadata[number]
+        const averageDuration = getAverageDurationFromMetadata(metadataEntry)
+        lines.push(`Count: ${seriesInfo.formattedYValue}`);
+        lines.push(`Avg. Time: ${averageDuration}ms`);
+        return lines;
+    };
+
+    const rolloverModifier = new RolloverModifier({
+        id: 'TotalRequestsRolloverModifier',
+        showTooltip: true,
+        showRolloverLine: false,
+        tooltipDataTemplate: getTooltipDataTemplate,
+    });
     sciChartSurface.chartModifiers.add(
         cursorModifier,
         rolloverModifier,
@@ -101,19 +259,16 @@ export const createChart1: TChartConfigFunc = async (divElementId: string | HTML
     const updateData = (newData: TDataEntry[]) => {
         const { xValues, yValues } = getRequestsNumberPerTimestamp(newData);
 
-        // const dataSeries = new XyDataSeries(wasmContext, {
-        //     xValues,
-        //     yValues,
-        // });
-
-        const oldDataSeries = lineSeries.dataSeries as XyDataSeries;
-
-        // lineSeries.dataSeries = dataSeries;
-        // oldDataSeries.delete();
+        const oldDataSeries = dataSeries;
 
         oldDataSeries.clear();
         oldDataSeries.appendRange(xValues, yValues);
     };
 
-    return { sciChartSurface, updateData };
+    const updateThreshold = (value: number) => {
+        averageDurationThreshold = value
+        sciChartSurface.invalidateElement()
+    }
+
+    return { sciChartSurface, updateData, updateThreshold };
 };

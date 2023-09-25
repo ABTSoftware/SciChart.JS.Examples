@@ -1,24 +1,29 @@
-import { ChangeEventHandler, MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
+import { CSSProperties, ChangeEventHandler, MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
 import SciChart, { IInitResult } from './SciChart';
-import { synchronizeXVisibleRanges } from './chart-configurations';
+import { TChartConfigResult, synchronizeXVisibleRanges } from './chart-configurations';
 import {
     BaseRenderableSeries,
     ChartModifierBase2D,
     DataPointSelectionChangedArgs,
     DataPointSelectionModifier,
+    ESeriesType,
     FastMountainRenderableSeries,
     GenericAnimation,
+    GradientParams,
+    IOverviewOptions,
     IRenderableSeries,
-    ISciChartSurfaceBase,
     LegendModifier,
     MemoryUsageHelper,
     NumberRange,
+    Point,
     RolloverModifier,
     SciChartPieLegend,
     SciChartPieSurface,
+    SciChartSubSurface,
     SciChartSurface,
     StackedColumnCollection,
     TCheckedChangedArgs,
+    Thickness,
     XyDataSeries,
     ZoomPanModifier,
     chartBuilder,
@@ -30,23 +35,16 @@ import { createChart5, createChart3 } from './region-statistic-charts';
 import { createChart1 } from './main-chart-config';
 import { createChart2 } from './page-statistics-chart-config';
 import { createChart4 } from './server-load-chart-config';
-import {
-    TDataEntry,
-    availableLocations,
-    availableServers,
-    getData,
-    getRequestsNumberPerLocation,
-} from './data-generation';
-import { SciChart2022AppTheme, appTheme } from 'scichart-example-dependencies/lib/theme';
-import { ChartAPI, TChartConfigResult } from './ChartAPI';
+import { TDataEntry, availableLocations, getData } from './data-generation';
+import { appTheme } from 'scichart-example-dependencies/lib/theme';
 import Overview from './Overview';
 import DashboardOverlay from './DashboardOverlay';
+import ThresholdSlider from './ThresholdSlider';
 
 // SciChartSurface.autoDisposeWasmContext = true;
 // MemoryUsageHelper.isMemoryUsageDebugEnabled = true;
 
 function App() {
-    // const chartRef = useRef<SciChartComponentAPI<TSurf, TInitResult>>(null);
     const [drawChart, setDrawChart] = useState(true);
     const [isVisibleRangeSynced, setIsVisibleRangeSynced] = useState(false);
     const isVisibleRangeSyncedRef = useRef(false);
@@ -237,63 +235,8 @@ function App() {
         setIsGridLayout(!isGridLayout);
     };
 
-    const gridStyle: React.CSSProperties = {
-        boxSizing: 'border-box',
-        padding: '1em',
-        height: '100%',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        gap: '1em',
-        gridTemplateRows: 'repeat(8, 1fr)',
-    };
-
-    const mainChartStyle = {
-        gridRow: '1 / 4',
-        gridColumn: '1/-1',
-    };
-
-    const innerContainerProps = {
-        style: {
-            height: '70%',
-        },
-    };
-
-    const overviewStyle = {
-        height: '30%',
-    };
-
-    const pageChartStyle = {
-        gridRow: '4 / 8',
-        gridColumn: '1 / 3',
-    };
-
-    const serverChartStyle = {
-        gridRow: '4 / 8',
-        gridColumn: '3 / -1',
-    };
-
-    const columnChartStyle = {
-        gridRow: '8 / -1',
-        gridColumn: 'span 3',
-        // height: 250, flex: 'auto', marginRight: 4, marginTop: 4
-    };
-    const pieChartStyle = {
-        gridRow: '8 / -1',
-        gridColumn: 'span 1',
-        // width: 450, height: 250, flex: 'none', marginTop: 4
-    };
-
     return (
-        <div
-            className='App'
-            style={{
-                height: '100vh',
-
-                backgroundColor: '#242529',
-
-                // position: 'relative', width: '100vw', height: '100vh'
-            }}
-        >
+        <div className='App' style={{ height: '100vh', backgroundColor: '#242529' }}>
             {!(
                 isChartInitialized1 &&
                 isChartInitialized2 &&
@@ -369,116 +312,168 @@ function App() {
                 </div>
 
                 {drawChart ? (
-                    <SciChart
-                        initChart={createChart1}
-                        onInit={(initResult: TChartConfigResult<SciChartSurface>) => {
-                            mainChartRef.current = initResult;
-                            // setIsChartInitialized1(true);
+                    <>
+                        <SciChart
+                            initChart={createChart1}
+                            onInit={(initResult: TChartConfigResult<SciChartSurface>) => {
+                                mainChartRef.current = initResult;
+                                // setIsChartInitialized1(true);
 
-                            const sciChartSurface = initResult.sciChartSurface;
-                            const modifier = sciChartSurface.chartModifiers.getById('TotalRequestsCursorModifier');
-                            const rollover = sciChartSurface.chartModifiers.getById('TotalRequestsRolloverModifier');
-                            modifierGroup.add(modifier as ChartModifierBase2D, rollover as ChartModifierBase2D);
-                        }}
-                        style={mainChartStyle}
-                        innerContainerProps={innerContainerProps}
-                        fallback={<div style={mainChartStyle} />}
-                    >
-                        <Overview
-                            style={overviewStyle}
-                            onInit={() => setIsChartInitialized1(true)}
-                            options={{
-                                theme: appTheme.SciChartJsTheme,
-                                transformRenderableSeries: (renderableSeries: IRenderableSeries) => {
-                                    const definition = renderableSeries.toJSON(true);
-                                    const [copiedSeries] = chartBuilder.buildSeries(
-                                        renderableSeries.parentSurface.webAssemblyContext2D,
-                                        definition
-                                    ) as FastMountainRenderableSeries[];
-                                    copiedSeries.dataSeries = renderableSeries.dataSeries;
-
-                                    copiedSeries.stroke = appTheme.Indigo;
-                                    // TODO investigate why fill setting not working
-                                    copiedSeries.fill = appTheme.MutedPurple;
-
-                                    return copiedSeries;
-                                },
+                                const sciChartSurface = initResult.sciChartSurface;
+                                const modifier = sciChartSurface.chartModifiers.getById('TotalRequestsCursorModifier');
+                                const rollover = sciChartSurface.chartModifiers.getById(
+                                    'TotalRequestsRolloverModifier'
+                                );
+                                modifierGroup.add(modifier as ChartModifierBase2D, rollover as ChartModifierBase2D);
                             }}
-                        ></Overview>
-                    </SciChart>
-                ) : null}
-                {/* <div id={'overview'} style={{ gridRow: '3 / 4', gridColumn: '1 / -1' }}></div> */}
-                {drawChart ? (
-                    <SciChart
-                        initChart={createChart2}
-                        onInit={(initResult: TChartConfigResult<SciChartSurface>) => {
-                            pageStatisticChartRef.current = initResult;
-                            const sciChartSurface = initResult.sciChartSurface;
+                            style={mainChartStyle}
+                            innerContainerProps={innerContainerProps}
+                            fallback={<div style={mainChartStyle} />}
+                        >
+                            <ThresholdSlider></ThresholdSlider>
+                            <Overview
+                                style={overviewStyle}
+                                options={overviewOptions}
+                                onInit={() => setIsChartInitialized1(true)}
+                            ></Overview>
+                        </SciChart>
 
-                            setIsChartInitialized2(true);
+                        <SciChart
+                            initChart={createChart2}
+                            onInit={(initResult: TChartConfigResult<SciChartSurface>) => {
+                                pageStatisticChartRef.current = initResult;
+                                const sciChartSurface = initResult.sciChartSurface;
 
-                            stackedColumnCollectionRef.current = (
-                                sciChartSurface as SciChartSurface
-                            ).renderableSeries.get(0) as StackedColumnCollection;
+                                setIsChartInitialized2(true);
 
-                            const modifier = (sciChartSurface as SciChartSurface).chartModifiers.getById(
-                                'PageStatisticsRolloverModifier'
-                            );
-                            modifierGroup.add(modifier as ChartModifierBase2D);
-                        }}
-                        style={pageChartStyle}
-                        fallback={<div style={pageChartStyle} />}
-                    />
-                ) : null}
-                {drawChart ? (
-                    <SciChart
-                        initChart={createChart4}
-                        onInit={(initResult: TChartConfigResult<SciChartSurface>) => {
-                            serverLoadChartRef.current = initResult;
-                            setIsChartInitialized4(true);
-                            const sciChartSurface = initResult.sciChartSurface;
+                                stackedColumnCollectionRef.current = (
+                                    sciChartSurface as SciChartSurface
+                                ).renderableSeries.get(0) as StackedColumnCollection;
 
-                            // type TW<T extends (...args: any) => any> =  Awaited<ReturnType<T>>
-                            // type TY = Awaited<ReturnType<typeof createChart4>>
-                            gridLayoutModifierRef.current = (sciChartSurface as SciChartSurface).chartModifiers.getById(
-                                'GridLayoutModifier'
-                            ) as GridLayoutModifier;
+                                const modifier = (sciChartSurface as SciChartSurface).chartModifiers.getById(
+                                    'PageStatisticsRolloverModifier'
+                                );
+                                modifierGroup.add(modifier as ChartModifierBase2D);
+                            }}
+                            style={pageChartStyle}
+                            fallback={<div style={pageChartStyle} />}
+                        />
+                        <SciChart
+                            initChart={createChart4}
+                            onInit={(initResult: TChartConfigResult<SciChartSurface>) => {
+                                serverLoadChartRef.current = initResult;
+                                setIsChartInitialized4(true);
+                                const sciChartSurface = initResult.sciChartSurface;
 
-                            const modifier = (sciChartSurface as SciChartSurface).chartModifiers.getById(
-                                'ServerLoadCursorModifier'
-                            ) as ChartModifierBase2D;
-                            console.log(modifier);
-                            modifierGroup.add(modifier);
-                        }}
-                        style={serverChartStyle}
-                        fallback={<div style={serverChartStyle} />}
-                    />
-                ) : null}
-                {drawChart ? (
-                    <SciChart
-                        initChart={createChart5}
-                        onInit={(initResult: TChartConfigResult<SciChartSurface>) => {
-                            locationStatisticChartRef.current = initResult;
-                            setIsChartInitialized5(true);
-                        }}
-                        style={columnChartStyle}
-                        fallback={<div style={columnChartStyle} />}
-                    />
-                ) : null}
-                {drawChart ? (
-                    <SciChart<SciChartPieSurface, TChartConfigResult<SciChartPieSurface>>
-                        initChart={createChart3}
-                        onInit={(initResult: TChartConfigResult<SciChartPieSurface>) => {
-                            pieChartRef.current = initResult;
-                            setIsChartInitialized3(true);
-                        }}
-                        style={pieChartStyle}
-                        fallback={<div style={pieChartStyle} />}
-                    />
+                                // type TW<T extends (...args: any) => any> =  Awaited<ReturnType<T>>
+                                // type TY = Awaited<ReturnType<typeof createChart4>>
+                                gridLayoutModifierRef.current = (
+                                    sciChartSurface as SciChartSurface
+                                ).chartModifiers.getById('GridLayoutModifier') as GridLayoutModifier;
+
+                                const modifier = (sciChartSurface as SciChartSurface).chartModifiers.getById(
+                                    'ServerLoadCursorModifier'
+                                ) as ChartModifierBase2D;
+                                modifierGroup.add(modifier);
+                            }}
+                            style={serverChartStyle}
+                            fallback={<div style={serverChartStyle} />}
+                        />
+                        <SciChart
+                            initChart={createChart5}
+                            onInit={(initResult: TChartConfigResult<SciChartSurface>) => {
+                                locationStatisticChartRef.current = initResult;
+                                setIsChartInitialized5(true);
+                            }}
+                            style={columnChartStyle}
+                            fallback={<div style={columnChartStyle} />}
+                        />
+
+                        <SciChart<SciChartPieSurface, TChartConfigResult<SciChartPieSurface>>
+                            initChart={createChart3}
+                            onInit={(initResult: TChartConfigResult<SciChartPieSurface>) => {
+                                pieChartRef.current = initResult;
+                                setIsChartInitialized3(true);
+                            }}
+                            style={pieChartStyle}
+                            fallback={<div style={pieChartStyle} />}
+                        />
+                    </>
                 ) : null}
             </div>
         </div>
     );
 }
+
+const gridStyle: React.CSSProperties = {
+    boxSizing: 'border-box',
+    padding: '1em',
+    height: '100%',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+    gap: '1em',
+    gridTemplateRows: 'repeat(8, 1fr)',
+};
+
+const mainChartStyle: CSSProperties = {
+    gridRow: '1 / 4',
+    gridColumn: '1/-1',
+    position: "relative"
+};
+
+const innerContainerProps = {
+    style: {
+        height: '80%',
+    },
+};
+
+const overviewStyle = {
+    height: '20%',
+};
+
+const pageChartStyle = {
+    gridRow: '4 / 8',
+    gridColumn: '1 / 3',
+};
+
+const serverChartStyle = {
+    gridRow: '4 / 8',
+    gridColumn: '3 / -1',
+};
+
+const columnChartStyle = {
+    gridRow: '8 / -1',
+    gridColumn: 'span 3',
+};
+const pieChartStyle = {
+    gridRow: '8 / -1',
+    gridColumn: 'span 1',
+};
+
+const overviewOptions: IOverviewOptions = {
+    theme: appTheme.SciChartJsTheme,
+    padding: Thickness.fromString('0 10 10 10'),
+    viewportBorder: {
+        color: appTheme.DarkIndigo,
+        border: 2,
+    },
+    transformRenderableSeries: (renderableSeries: IRenderableSeries) => {
+        if (renderableSeries.type !== ESeriesType.MountainSeries) {
+            return undefined;
+        }
+
+        const copiedSeries = new FastMountainRenderableSeries(renderableSeries.parentSurface.webAssemblyContext2D, {
+            dataSeries: renderableSeries.dataSeries,
+            stroke: appTheme.MutedPink,
+            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(1, 1), [
+                { color: appTheme.MutedPurple, offset: 0 },
+                { color: appTheme.MutedBlue, offset: 0.5 },
+                { color: appTheme.MutedOrange, offset: 1 },
+            ]),
+        });
+
+        return copiedSeries;
+    },
+};
 
 export default App;

@@ -1,4 +1,22 @@
-import { EBaseType, SciChartSurface, TRolloverTooltipDataTemplate, XySeriesInfo, chartBuilder } from 'scichart';
+import { EBaseType, ISciChartSurfaceBase, SciChartSurface, TRolloverTooltipDataTemplate, XySeriesInfo, chartBuilder } from 'scichart';
+import { TDataEntry } from './data-generation';
+import { IInitResult, TInitFunction } from './SciChart';
+
+export type TUpdateDataFunc = (newData: TDataEntry[]) => void;
+
+export interface TChartConfigResult<TSurface extends ISciChartSurfaceBase> extends IInitResult<TSurface> {
+    updateData: TUpdateDataFunc;
+}
+
+export type TChartConfigFunc<TSurface extends ISciChartSurfaceBase = SciChartSurface> = TInitFunction<
+    ISciChartSurfaceBase,
+    TChartConfigResult<TSurface>
+>;
+
+export type TMainChartConfigFunc = TInitFunction<
+    ISciChartSurfaceBase,
+    TChartConfigResult<SciChartSurface> & { updateThreshold: (value: number) => void }
+>;
 
 /** Synchronizes first X axes of the surfaces */
 export const synchronizeXVisibleRanges = (surfaces: SciChartSurface[], shouldSync: () => boolean) => {
