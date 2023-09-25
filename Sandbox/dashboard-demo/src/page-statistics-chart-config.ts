@@ -27,8 +27,7 @@ import {
 } from 'scichart';
 import { appTheme } from 'scichart-example-dependencies';
 import { getData, TDataEntry, availablePages, getRequestsNumberPerTimestamp } from './data-generation';
-import { TChartConfigFunc } from './ChartAPI';
-import { tooltipDataTemplateKey } from './chart-configurations';
+import { TChartConfigFunc, tooltipDataTemplateKey } from './chart-configurations';
 
 // per page
 export const createChart2: TChartConfigFunc = async (divElementId: string | HTMLDivElement) => {

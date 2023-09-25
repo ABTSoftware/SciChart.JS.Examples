@@ -26,16 +26,12 @@ import {
     IPointMetadata,
     IStrokePaletteProvider,
     parseColorToUIntArgb,
-    GlowEffect,
     IRenderableSeries,
-    SeriesSelectionModifier,
     DataPointSelectionModifier,
-    DataPointSelectionChangedArgs,
-    EColumnDataLabelPosition,
 } from 'scichart';
 import { appTheme } from 'scichart-example-dependencies';
 import { TDataEntry, availableLocations, getData, getRequestsNumberPerLocation } from './data-generation';
-import { TChartConfigFunc } from './ChartAPI';
+import { TChartConfigFunc } from './chart-configurations';
 
 const regionFillColors = [appTheme.MutedBlue, appTheme.MutedOrange, appTheme.MutedPink, appTheme.MutedPurple];
 const regionStrokeColors = [appTheme.VividBlue, appTheme.VividOrange, appTheme.VividPink, appTheme.VividPurple];
@@ -67,12 +63,11 @@ class CustomColumnPaletteProvider extends BasePaletteProvider implements IStroke
     }
 }
 
-// prer locatio
+// location stats
 export const createChart5: TChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
-
     });
 
     const labelProvider = new TextLabelProvider({
@@ -102,36 +97,7 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
         metadata: xValues.map(() => ({ isSelected: false })),
     });
 
-    // filtered per page
-
-    // xValues.forEach((xValue, index) => {
-    //     const dataSeries = new XyDataSeries(wasmContext, {
-    //         xValues: [xValue],
-    //         yValues: [yValues[index]],
-    //     });
-
-    //     const rendSeries = new FastColumnRenderableSeries(wasmContext, {
-    //         dataSeries,
-    //         fill: AUTO_COLOR,
-    //         stroke: AUTO_COLOR,
-    //         paletteProvider: new CustomColumnPaletteProvider(index),
-    //         strokeThickness: 2,
-    //         dataPointWidth: 0.15,
-    //         cornerRadius: 10,
-    //         opacity: 0.8,
-    //         dataLabels: {
-    //             precision: 0,
-    //             style: {
-    //                 padding: Thickness.fromString('6 0 6 0'),
-    //                 fontFamily: 'Arial',
-    //                 fontSize: 20,
-    //             },
-    //             color: appTheme.ForegroundColor,
-    //         },
-    //     });
-    //     sciChartSurface.renderableSeries.add(rendSeries);
-    // })
-
+    // filtered per location
     const rendSeries = new FastColumnRenderableSeries(wasmContext, {
         dataSeries,
         fill: AUTO_COLOR,
@@ -149,18 +115,16 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
             },
             color: appTheme.ForegroundColor,
         },
+        animation: new WaveAnimation({ duration: 1000, fadeEffect: true }),
         onHoveredChanged: (sourceSeries: IRenderableSeries, isHovered: boolean) => {
             sourceSeries.opacity = isHovered ? 1 : 0.6;
         },
     });
     sciChartSurface.renderableSeries.add(rendSeries);
-    const dataPointSelectionModifier = new DataPointSelectionModifier({id: "DataPointSelectionModifier"});
-    dataPointSelectionModifier.selectionChanged.subscribe((data: DataPointSelectionChangedArgs) => {
-        // When points are selected, set them - we render the selected points to a table below the chart
-    });
 
-    rendSeries.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
-    sciChartSurface.chartModifiers.add(dataPointSelectionModifier );
+    const dataPointSelectionModifier = new DataPointSelectionModifier({ id: 'DataPointSelectionModifier' });
+    sciChartSurface.chartModifiers.add(dataPointSelectionModifier);
+
     sciChartSurface.zoomExtentsY();
 
     const updateData = (newData: TDataEntry[]) => {
@@ -173,11 +137,9 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
             metadata: xValues.map((_, index) => oldDataSeries.getMetadataAt(index)),
         });
 
-
         rendSeries.dataSeries = newDataSeries;
         oldDataSeries.delete();
-    
-    }
+    };
     return { sciChartSurface, updateData };
 };
 
@@ -243,11 +205,11 @@ export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElem
     const updateData = (newData: TDataEntry[]) => {
         const requestsPerLocation = getRequestsNumberPerLocation(newData);
         const totalRequests = requestsPerLocation.yValues.reduce((acc, value) => acc + value, 0);
-    
+
         sciChartPieSurface.pieSegments.asArray().forEach((segment, index) => {
-            segment.value = (requestsPerLocation.yValues[index] * 100) / totalRequests
-        })
-    }
+            segment.value = (requestsPerLocation.yValues[index] * 100) / totalRequests;
+        });
+    };
 
     return { sciChartSurface: sciChartPieSurface, updateData };
 };

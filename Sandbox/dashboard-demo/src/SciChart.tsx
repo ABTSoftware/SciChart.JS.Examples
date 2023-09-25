@@ -40,21 +40,6 @@ const useIsMountedRef = () => {
     return isMountedRef;
 };
 
-const useIsStrictModeRef = () => {
-    const wasMountedRef = useRef(false);
-    const isStrictModeRef = useRef(undefined);
-
-    useEffect(() => {
-        if (wasMountedRef.current) {
-            isStrictModeRef.current = true;
-        }
-
-        wasMountedRef.current = true;
-    }, []);
-
-    return isStrictModeRef;
-};
-
 export interface IInitResult<TSurface extends ISciChartSurfaceBase = ISciChartSurfaceBase> {
     sciChartSurface: TSurface;
 }
@@ -69,7 +54,6 @@ export interface IChartComponentPropsCore<
     TSurface extends ISciChartSurfaceBase,
     TInitResult extends IInitResult<TSurface>
 > extends TDivProps {
-    // apiProvider?: (initResult: MutableRefObject<TInitResult>) => any;
     fallback?: React.ReactNode;
     onInit?: (initResult?: TInitResult) => void;
     innerContainerProps?: TDivProps;
@@ -99,34 +83,6 @@ type TChartComponentPropsIntersection<
     TSurface extends ISciChartSurfaceBase,
     TInitResult extends IInitResult<TSurface>
 > = TChartComponentPropsWithInit<TSurface, TInitResult> & TChartComponentPropsWithConfig<TSurface>;
-
-export abstract class SciChartComponentAPIBase<
-    TInitResult extends IInitResult<TSurface>,
-    TSurface extends ISciChartSurfaceBase = ISciChartSurfaceBase
-> {
-    protected initResult: TInitResult;
-
-    constructor(initResult: TInitResult) {
-        this.initResult = initResult;
-    }
-}
-
-export class DefaultSciChartComponentAPI<
-    TInitResult extends IInitResult<TSurface>,
-    TSurface extends ISciChartSurfaceBase = ISciChartSurfaceBase
-> extends SciChartComponentAPIBase<TInitResult, TSurface> {
-    public get sciChartSurface(): TSurface {
-        return this.initResult.sciChartSurface;
-    }
-
-    public get customChartProperties(): TInitResult {
-        return this.initResult;
-    }
-}
-
-const createNode = (ref: MutableRefObject<any>) => {
-    return <div id={`chart-root-${generateGuid()}`} style={{ width: '100%', height: '100%' }} ref={ref}></div>;
-};
 
 const createChartRoot = () => {
     // check if SSR
@@ -159,23 +115,12 @@ function createChartFromConfig<TSurface extends ISciChartSurfaceBase>(config: st
     };
 }
 
-// ForwardRefRenderFunction<any, IChartComponentProps<T>>
 function SciChartComponent<
     TSurface extends ISciChartSurfaceBase = ISciChartSurfaceBase,
     TInitResult extends IInitResult<TSurface> = IInitResult<TSurface>
->(
-    props: TChartComponentProps<TSurface, TInitResult>
-    // , ref: ForwardedRef<any>
-) {
-    const {
-        initChart,
-        config,
-        // apiProvider, //
-        fallback,
-        onInit,
-        innerContainerProps,
-        ...divElementProps
-    } = props as TChartComponentPropsIntersection<TSurface, TInitResult>;
+>(props: TChartComponentProps<TSurface, TInitResult>) {
+    const { initChart, config, fallback, onInit, innerContainerProps, ...divElementProps } =
+        props as TChartComponentPropsIntersection<TSurface, TInitResult>;
 
     if ((!initChart && !config) || (initChart && config)) {
         throw new Error(`Only one of "initChart" or "config" props is required!`);
@@ -204,7 +149,6 @@ function SciChartComponent<
                         `"initChart" function should resolve to an object with "sciChartSurface" property ({ sciChartSurface })`
                     );
                 }
-                // TODO try to remove assertions after 3D charts could be created via Builder API
                 sciChartSurfaceRef.current = initResult.sciChartSurface as TSurface;
                 initResultRef.current = initResult as TInitResult;
 
@@ -244,43 +188,18 @@ function SciChartComponent<
         }
     }, [isInitialized]);
 
-    // Expose Chart API
-    // useImperativeHandle(
-    //     ref,
-    //     () => (apiProvider ? apiProvider(initResultRef) : new DefaultSciChartComponentAPI(initResultRef)),
-    //     [apiProvider]
-    // );
-    // return <div {...divElementProps} id={divElementId}></div>
     return isInitialized ? (
-        <SurfaceContext.Provider value={sciChartSurfaceRef.current}>
+        <SurfaceContext.Provider value={initResultRef.current}>
             <div {...divElementProps}>
                 <div {...innerContainerProps} id={divElementId}></div>
                 {props.children}
             </div>
         </SurfaceContext.Provider>
     ) : (
-        fallback
+        fallback ?? null
     );
 }
 
-type TSciChartComponent = <
-    TSurface extends ISciChartSurfaceBase = ISciChartSurfaceBase,
-    TInitResult extends IInitResult<TSurface> = IInitResult<TSurface>
->(
-    props: TChartComponentProps<TSurface, TInitResult> & {
-        ref?: ForwardedRef<SciChartComponentAPIBase<TInitResult, TSurface>>;
-    }
-    // ref?: ForwardedRef<any>
-) => ReturnType<typeof SciChartComponent>;
-
-// // Redecalare forwardRef
-// declare module "react" {
-//     function forwardRef<T, P = {}>(
-//       render: (props: P, ref: Ref<T>) => ReactNode | null
-//     ): (props: P & RefAttributes<T>) => ReactNode | null;
-//   }
-
-// const SciChart = forwardRef(SciChartComponent) as ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>>;
 const SciChart = SciChartComponent;
 export default SciChart;
 

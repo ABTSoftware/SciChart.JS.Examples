@@ -27,8 +27,7 @@ import {
 import { appTheme } from 'scichart-example-dependencies';
 import { GridLayoutModifier } from './GridLayoutModifier';
 import { getData, TDataEntry, availableServers, getRequestsNumberPerTimestamp } from './data-generation';
-import { TChartConfigFunc } from './ChartAPI';
-import { tooltipDataTemplateKey } from './chart-configurations';
+import { TChartConfigFunc, tooltipDataTemplateKey } from './chart-configurations';
 
 // per server
 export const createChart4: TChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
@@ -103,7 +102,6 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
     const onSelectionChanged = (args: SelectionChangedArgs) => {
         args.allSeries.forEach((series) => {
             if (series.isSelected) {
-                console.log('set point marker opacity');
                 series.pointMarker.opacity = series.opacity;
             } else {
                 series.pointMarker.opacity = 0;

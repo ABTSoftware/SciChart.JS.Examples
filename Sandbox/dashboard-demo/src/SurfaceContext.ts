@@ -1,4 +1,5 @@
 import { createContext } from 'react';
-import { ISciChartSurfaceBase, SciChartSurface } from 'scichart';
+import { ISciChartSurfaceBase } from 'scichart';
+import { IInitResult } from './SciChart';
 
-export const SurfaceContext = createContext<ISciChartSurfaceBase>(null);
+export const SurfaceContext = createContext<IInitResult<ISciChartSurfaceBase>>(null);

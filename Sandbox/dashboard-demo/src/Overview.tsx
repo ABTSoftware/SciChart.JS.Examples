@@ -8,7 +8,7 @@ const OverviewComponent = (
     // ref: ForwardedRef<any>
 ) => {
     const {options, ...chartComponentProps} = props
-    const parentSurface = useContext(SurfaceContext) as SciChartSurface;
+    const parentSurface = useContext(SurfaceContext).sciChartSurface as SciChartSurface;
     const initChart = async (divElementId: string | HTMLDivElement): Promise<IInitResult<SciChartSurface>> => {
         const overview = await SciChartOverview.create(parentSurface, divElementId, options);
         // overview.applyTheme(parentSurface.themeProvider)
