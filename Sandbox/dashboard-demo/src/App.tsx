@@ -273,12 +273,12 @@ function App() {
                 </div>
                 <div
                     style={{
-                        gridArea: '3 / 1 / 8 / 3',
+                        gridArea: '4 / 1 / 5 / 3',
                         color: appTheme.ForegroundColor,
                         zIndex: 2,
                         justifySelf: 'start',
-                        alignSelf: 'end',
-                        marginBottom: 10,
+                        alignSelf: 'start',
+                        marginTop: 10,
                         marginLeft: 10,
                     }}
                 >
@@ -293,10 +293,10 @@ function App() {
 
                 <div
                     style={{
-                        gridArea: '3 / 3 / 8 / 3',
+                        gridArea: '4 / 3 / 5 / 3',
                         justifySelf: 'start',
-                        alignSelf: 'end',
-                        marginBottom: 10,
+                        alignSelf: 'start',
+                        marginTop: 10,
                         marginLeft: 10,
                         color: appTheme.ForegroundColor,
                         zIndex: 2,
@@ -407,11 +407,11 @@ function App() {
 
 const gridStyle: React.CSSProperties = {
     boxSizing: 'border-box',
-    padding: '1em',
+    padding: '0.5em',
     height: '100%',
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '1em',
+    gap: '0.2em',
     gridTemplateRows: 'repeat(8, 1fr)',
 };
 

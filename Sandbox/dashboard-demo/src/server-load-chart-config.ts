@@ -23,6 +23,7 @@ import {
     Thickness,
     EBaseType,
     chartBuilder,
+    ELegendOrientation,
 } from 'scichart';
 import { appTheme } from 'scichart-example-dependencies';
 import { GridLayoutModifier } from './GridLayoutModifier';
@@ -34,19 +35,16 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
-
         padding: Thickness.fromNumber(10),
         title: 'Server Load',
         titleStyle: {
+            useNativeText: true,
+            padding: Thickness.fromString("15 0 0 0"),
             fontSize: 20,
         },
     });
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
-        axisTitle: 'Date',
-        axisTitleStyle: {
-            fontSize: 20,
-        },
         labelFormat: ENumericFormat.Date_DDMM,
     });
 
@@ -177,7 +175,9 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
 
     sciChartSurface.chartModifiers.add(
         seriesSelectionModifier,
-        new LegendModifier({ id: 'LegendModifier', placement: ELegendPlacement.TopRight, showCheckboxes: true }),
+        new LegendModifier({ id: 'LegendModifier', 
+        orientation: ELegendOrientation.Horizontal,
+        placement: ELegendPlacement.TopRight,  showCheckboxes: true }),
         new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }),
         new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),

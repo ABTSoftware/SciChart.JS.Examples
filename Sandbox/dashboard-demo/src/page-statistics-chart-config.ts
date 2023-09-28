@@ -34,9 +34,10 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
-        title: 'Page request statistics',
+        title: 'URL statistics',
         titleStyle: {
-            padding: Thickness.fromString('10 0 0 30'),
+            useNativeText: true,
+            padding: Thickness.fromString("15 0 0 0"),
             // placeWithinChart: true,
             alignment: ETextAlignment.Center,
             fontSize: 20,
@@ -45,10 +46,6 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
 
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
-        axisTitle: 'Date Axis',
-        axisTitleStyle: {
-            fontSize: 20,
-        },
         labelFormat: ENumericFormat.Date_DDMM,
     });
     const yAxis = new NumericAxis(wasmContext, {
