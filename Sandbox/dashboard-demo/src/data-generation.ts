@@ -7,7 +7,7 @@ export interface TDataEntry {
 }
 
 export const availablePages = ['Signup', 'Login', 'Signout', 'Content'];
-export const availableLocations = ['NA', 'EU', 'Asia', 'Africa'];
+export const availableLocations = ['CN', 'IN', 'US', 'JP', 'DE', 'GB', 'FR', 'BR', 'CA', 'AU'];
 export const availableServers = ['server0', 'server1', 'server2', 'server3'];
 
 function generateTimestampRange(daysAgo: number, numberOfDays: number) {
@@ -32,7 +32,7 @@ const generateData = () => {
     for (let index = 0; index < size; ++index) {
         const timestamp = Math.round(timestampRange[Math.round(Math.random() * 1000) % timestampRange.length] / 1000);
         const page = availablePages[Math.round(Math.random() * 1000) % availablePages.length];
-        const server = `server${Math.floor(Math.random() * 10) % 4}`;
+        const server = `server${Math.floor(Math.random() * 10) % availableServers.length}`;
         const location = availableLocations[Math.floor(Math.random() * 10) % availableLocations.length];
         const duration = Math.floor(Math.random() * 3000);
 

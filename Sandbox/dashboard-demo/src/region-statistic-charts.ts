@@ -28,13 +28,66 @@ import {
     parseColorToUIntArgb,
     IRenderableSeries,
     DataPointSelectionModifier,
+    TTextStyle,
+    TextureManager,
 } from 'scichart';
+import { CN, IN, US, JP, DE, GB, FR, BR, CA, AU } from 'country-flag-icons/string/3x2';
 import { appTheme } from 'scichart-example-dependencies';
 import { TDataEntry, availableLocations, getData, getRequestsNumberPerLocation } from './data-generation';
 import { TChartConfigFunc } from './chart-configurations';
+import { TTextureObject } from 'scichart/Charting/Visuals/TextureManager/TextureManager';
 
-const regionFillColors = [appTheme.MutedBlue, appTheme.MutedOrange, appTheme.MutedPink, appTheme.MutedPurple];
-const regionStrokeColors = [appTheme.VividBlue, appTheme.VividOrange, appTheme.VividPink, appTheme.VividPurple];
+const createImageFromSvgString = async (svg: string) => {
+    return new Promise<HTMLImageElement>((resolve, reject) => {
+        let blob = new Blob([svg], { type: 'image/svg+xml' });
+        let url = URL.createObjectURL(blob);
+        let image = document.createElement('img');
+        image.src = url;
+        image.addEventListener(
+            'load',
+            () => {
+                URL.revokeObjectURL(url);
+                resolve(image);
+            },
+            { once: true }
+        );
+    });
+};
+
+const getIcons = () => {
+    const icons = [CN, IN, US, JP, DE, GB, FR, BR, CA, AU].map(async (svg) => {
+        const icon = createImageFromSvgString(svg);
+
+        return icon;
+    });
+
+    return Promise.all(icons);
+};
+
+const regionFillColors = [
+    '#FF0000',
+    '#FF7E00',
+    '#0052CC',
+    '#D32F2F',
+    '#006400',
+    '#3333FF',
+    '#0055A4',
+    '#00A859',
+    '#FF0000',
+    '#FFD700',
+];
+const regionStrokeColors = [
+    '#FF0000',
+    '#FF7E00',
+    '#0052CC',
+    '#D32F2F',
+    '#006400',
+    '#3333FF',
+    '#0055A4',
+    '#00A859',
+    '#FF0000',
+    '#FFD700',
+];
 
 class CustomColumnPaletteProvider extends BasePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
     public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
@@ -65,13 +118,11 @@ class CustomColumnPaletteProvider extends BasePaletteProvider implements IStroke
 
 // location stats
 export const createChart5: TChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
+    const icons = await getIcons();
+
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
-    });
-
-    const labelProvider = new TextLabelProvider({
-        labels: availableLocations,
     });
 
     // Create an X,Y Axis and add to the chart
@@ -79,10 +130,33 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
         visibleRange: new NumberRange(-1, availableLocations.length),
         // visibleRangeLimit: new NumberRange(0, availableLocations.length),
         growBy: new NumberRange(0.1, 0.1),
-        labelProvider,
+        autoTicks: false,
+        majorDelta: 1,
     });
 
-    const yAxis = new NumericAxis(wasmContext, { labelPrecision: 0, growBy: new NumberRange(0.05, 0.25) });
+    xAxis.labelProvider.getLabelTexture = (
+        labelText: string,
+        textureManager: TextureManager,
+        labelStyle: TTextStyle
+    ): TTextureObject => {
+        const index = Number.isInteger(Number.parseFloat(labelText)) ? Number.parseFloat(labelText) : NaN;
+        if (!isNaN(index)) {
+            const icon = icons[index];
+            if (icon) {
+                return textureManager.createTextureFromImage(icon, 30, 20);
+            }
+        }
+        return textureManager.createTextTexture([''], labelStyle);
+    };
+
+    const yAxis = new NumericAxis(wasmContext, {
+        axisTitle: 'Requests per location',
+        axisTitleStyle: {
+            fontSize: 18,
+        },
+        labelPrecision: 0,
+        growBy: new NumberRange(0.05, 0.25),
+    });
 
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis);
@@ -103,7 +177,7 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
         fill: AUTO_COLOR,
         stroke: AUTO_COLOR,
         paletteProvider: new CustomColumnPaletteProvider(),
-        strokeThickness: 10,
+        strokeThickness: 2,
         // cornerRadius: 50,
         opacity: 0.6,
         dataLabels: {
