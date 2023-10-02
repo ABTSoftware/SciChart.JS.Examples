@@ -48,7 +48,8 @@ export class ModifierGroup extends ObservableArray<ChartModifierBase2D> {
             if (this.mousePoint && args.isMaster) {
                 let translatedMousePoint: Point = translateFromCanvasToSeriesViewRect(
                     this.mousePoint,
-                    this.parentSurface.seriesViewRect
+                    this.parentSurface.seriesViewRect,
+                    true
                 );
 
                 if (translatedMousePoint) {
@@ -75,10 +76,32 @@ export class ModifierGroup extends ObservableArray<ChartModifierBase2D> {
         };
 
         modifier.modifierMouseMove = customMouseMoveHandler.bind(modifier);
+        const originalMouseLeaveHandler = modifier.modifierMouseLeave;
+
+        const customMouseLeaveHandler = function (this: ChartModifierBase2D, args: ModifierMouseArgs) {
+            const otherModifiers = getOther(modifier);
+
+            originalMouseLeaveHandler.call(modifier, args);
+            if (args.isMaster) {
+                // call the same event handler on related modifiers in the group
+                otherModifiers.forEach((relatedModifier) => {
+                    const argsCopy = ModifierMouseArgs.copy(
+                        args,
+                        undefined,
+                        this.parentSurface.seriesViewRect,
+                        relatedModifier.parentSurface.seriesViewRect,
+                        undefined
+                    );
+                    relatedModifier.modifierMouseLeave(argsCopy);
+                });
+            }
+        };
+
+        modifier.modifierMouseLeave = customMouseLeaveHandler.bind(modifier);
     }
 
     protected onModifierRemove(modifier: IChartModifierBase) {
-        
+        // TODO reset binding to custom handlers
     }
 }
 
