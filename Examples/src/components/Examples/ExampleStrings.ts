@@ -567,6 +567,13 @@ export const ExampleStrings = {
     titleRolloverModifier: "Using Rollover Modifier Tooltips",
     urlRolloverModifier: "/javascript-chart-rollovermodifier-tooltips",
 
+    // VerticalSliceModifier
+    urlVerticalSliceModifierDocumentation:
+        "https://www.scichart.com/documentation/js/current/webframe.html#VerticalSliceModifier.html",
+    urlTitleVerticalSliceModifierDocumentation: "SciChart.js VerticalSliceModifier Documentation",
+    titleVerticalSliceModifier: "Using VerticalSliceModifier",
+    urlVerticalSliceModifier: "/javascript-chart-vertical-slice-modifier",
+
     // SeriesSelection
     urlSeriesSelectionDocumentation:
         "https://www.scichart.com/documentation/js/current/webframe.html#SeriesSelection.html",

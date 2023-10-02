@@ -100,6 +100,7 @@ import { chartTitleExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/Cha
 import { backgroundAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations/exampleInfo";
 import { realtimeSurfaceMesh3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart/exampleInfo";
 import { dynamicLayoutExampleInfo } from "../Examples/FeaturedApps/ShowCases/DynamicLayout/exampleInfo";
+import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -416,6 +417,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_tooltipsAndHittest_SeriesSelection: {
         id: "chart2D_tooltipsAndHittest_SeriesSelection",
         ...seriesSelectionExampleInfo
+    },
+    chart2D_tooltipsAndHittest_VerticalSliceModifier: {
+        id: "chart2D_tooltipsAndHittest_VerticalSliceModifier",
+        ...usingVerticalSliceModifierExampleInfo
     },
     chart2D_zoomAndPanAChart_DragAxisToScale: {
         id: "chart2D_zoomAndPanAChart_DragAxisToScale",
