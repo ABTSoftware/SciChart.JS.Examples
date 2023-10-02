@@ -26,16 +26,21 @@ import {
     IPointMetadata,
     IStrokePaletteProvider,
     parseColorToUIntArgb,
-    IRenderableSeries,
     DataPointSelectionModifier,
     TTextStyle,
     TextureManager,
+    SeriesSelectionModifier,
+    HoveredChangedArgs,
 } from 'scichart';
 import { CN, IN, US, JP, DE, GB, FR, BR, CA, AU } from 'country-flag-icons/string/3x2';
 import { appTheme } from 'scichart-example-dependencies';
 import { TDataEntry, availableLocations, getData, getRequestsNumberPerLocation } from './data-generation';
 import { TChartConfigFunc } from './chart-configurations';
 import { TTextureObject } from 'scichart/Charting/Visuals/TextureManager/TextureManager';
+
+type TCustomMetadata = IPointMetadata & {
+    isHovered: boolean;
+};
 
 const createImageFromSvgString = async (svg: string) => {
     return new Promise<HTMLImageElement>((resolve, reject) => {
@@ -100,7 +105,8 @@ class CustomColumnPaletteProvider extends BasePaletteProvider implements IStroke
         opacity?: number,
         metadata?: IPointMetadata
     ): number {
-        const finalOpacity = metadata.isSelected ? 1 : opacity;
+        const dataPointMetadata = metadata as TCustomMetadata;
+        const finalOpacity = metadata.isSelected ? 1 : dataPointMetadata.isHovered ? 0.8 : opacity;
         return parseColorToUIntArgb(regionFillColors[index], finalOpacity * 255);
     }
 
@@ -111,7 +117,8 @@ class CustomColumnPaletteProvider extends BasePaletteProvider implements IStroke
         opacity?: number,
         metadata?: IPointMetadata
     ): number {
-        const finalOpacity = metadata.isSelected ? 1 : opacity;
+        const dataPointMetadata = metadata as TCustomMetadata;
+        const finalOpacity = metadata.isSelected ? 1 : dataPointMetadata.isHovered ? 0.8 : opacity;
         return parseColorToUIntArgb(regionStrokeColors[index], finalOpacity * 255);
     }
 }
@@ -168,7 +175,7 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues,
         yValues,
-        metadata: xValues.map(() => ({ isSelected: false })),
+        metadata: xValues.map(() => ({ isSelected: false, isHovered: false })),
     });
 
     // filtered per location
@@ -178,7 +185,6 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
         stroke: AUTO_COLOR,
         paletteProvider: new CustomColumnPaletteProvider(),
         strokeThickness: 2,
-        // cornerRadius: 50,
         opacity: 0.6,
         dataLabels: {
             precision: 0,
@@ -190,14 +196,34 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
             color: appTheme.ForegroundColor,
         },
         animation: new WaveAnimation({ duration: 1000, fadeEffect: true }),
-        onHoveredChanged: (sourceSeries: IRenderableSeries, isHovered: boolean) => {
-            sourceSeries.opacity = isHovered ? 1 : 0.6;
-        },
     });
     sciChartSurface.renderableSeries.add(rendSeries);
 
     const dataPointSelectionModifier = new DataPointSelectionModifier({ id: 'DataPointSelectionModifier' });
-    sciChartSurface.chartModifiers.add(dataPointSelectionModifier);
+
+    let lastSelectedDataPointIndex = -1;
+    const onHoverChanged = (args: HoveredChangedArgs) => {
+        if (args.hoveredSeries.length === 0 && lastSelectedDataPointIndex >= 0) {
+            const yValue = dataSeries.getNativeYValues().get(lastSelectedDataPointIndex);
+            const metadata = dataSeries.getMetadataAt(lastSelectedDataPointIndex) as TCustomMetadata;
+            metadata.isHovered = false;
+            dataSeries.update(lastSelectedDataPointIndex, yValue, metadata);
+            lastSelectedDataPointIndex = -1;
+        } else if (args.hoveredSeries.length > 0) {
+            const yValue = dataSeries.getNativeYValues().get(args.hitTestInfo.dataSeriesIndex);
+            const metadata = dataSeries.getMetadataAt(args.hitTestInfo.dataSeriesIndex) as TCustomMetadata;
+            metadata.isHovered = true;
+            dataSeries.update(args.hitTestInfo.dataSeriesIndex, yValue, metadata);
+            lastSelectedDataPointIndex = args.hitTestInfo.dataSeriesIndex;
+        }
+    };
+
+    const seriesSelectionModifier = new SeriesSelectionModifier({
+        enableHover: true,
+        enableSelection: false,
+        onHoverChanged,
+    });
+    sciChartSurface.chartModifiers.add(dataPointSelectionModifier, seriesSelectionModifier);
 
     sciChartSurface.zoomExtentsY();
 
@@ -205,7 +231,7 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
         const { xValues, yValues } = getRequestsNumberPerLocation(newData);
         const dataSeries = rendSeries.dataSeries as XyDataSeries;
         const metadata = xValues.map((_, index) => dataSeries.getMetadataAt(index));
-        dataSeries.clear()
+        dataSeries.clear();
         dataSeries.appendRange(xValues, yValues, metadata);
     };
     return { sciChartSurface, updateData };
