@@ -109,6 +109,7 @@ import TextChart from "../Examples/Charts2D/BasicChartTypes/TextSeriesChart";
 import BackgroundAnnotations from "../Examples/Charts2D/ChartAnnotations/BackgroundAnnotations";
 import RealtimeSurfaceMesh3DChart from "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart";
 import DynamicLayout from "../Examples/FeaturedApps/ShowCases/DynamicLayout";
+import UsingVerticalSliceModifier from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier";
 
 export type TMenuItem = {
     item: {
@@ -248,6 +249,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_HitTestApi,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_UsingCursorModifierTooltips,
+            EXAMPLES_PAGES.chart2D_tooltipsAndHittest_VerticalSliceModifier,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_MetaData,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_SeriesSelection,
             EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection
@@ -478,6 +480,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return UsingMetaData;
         case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_DataPointSelection.id:
             return DatapointSelection;
+        case EXAMPLES_PAGES.chart2D_tooltipsAndHittest_VerticalSliceModifier.id:
+            return UsingVerticalSliceModifier;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale.id:
             return DragAxisToScale;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan.id:
