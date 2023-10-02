@@ -39,13 +39,14 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
         title: 'Server Load',
         titleStyle: {
             useNativeText: true,
-            padding: Thickness.fromString("15 0 0 0"),
+            padding: Thickness.fromString('15 0 0 0'),
             fontSize: 20,
         },
     });
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
         labelFormat: ENumericFormat.Date_DDMM,
+        useNativeText: true,
     });
 
     const yAxis = new NumericAxis(wasmContext, {
@@ -55,6 +56,7 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
             fontSize: 20,
         },
         growBy: new NumberRange(0, 0.3),
+        useNativeText: true,
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -74,6 +76,9 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
         const pageData = filter(data, server);
         const dataSeries = new XyDataSeries(wasmContext, {
             dataSeriesName: server,
+            containsNaN: false,
+            dataEvenlySpacedInX: true,
+            isSorted: true,
             ...getRequestsNumberPerTimestamp(pageData),
         });
 
@@ -175,9 +180,12 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
 
     sciChartSurface.chartModifiers.add(
         seriesSelectionModifier,
-        new LegendModifier({ id: 'LegendModifier', 
-        orientation: ELegendOrientation.Horizontal,
-        placement: ELegendPlacement.TopRight,  showCheckboxes: true }),
+        new LegendModifier({
+            id: 'LegendModifier',
+            orientation: ELegendOrientation.Horizontal,
+            placement: ELegendPlacement.TopRight,
+            showCheckboxes: true,
+        }),
         new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }),
         new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
@@ -200,13 +208,10 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
         availableServers.forEach((server, index) => {
             const serverData = filter(data, server);
             const rendSeries = sciChartSurface.renderableSeries.get(index);
-            const oldDataSeries = rendSeries.dataSeries;
-            const dataSeries = new XyDataSeries(wasmContext, {
-                dataSeriesName: server,
-                ...getRequestsNumberPerTimestamp(serverData),
-            });
-            rendSeries.dataSeries = dataSeries;
-            oldDataSeries.delete();
+            const dataSeries = rendSeries.dataSeries as XyDataSeries;
+            const { xValues, yValues } = getRequestsNumberPerTimestamp(serverData);
+            dataSeries.clear();
+            dataSeries.appendRange(xValues, yValues);
         });
     };
 

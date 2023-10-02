@@ -65,6 +65,9 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         xValues,
         yValues,
         metadata,
+        containsNaN: false,
+        isSorted: true,
+        dataEvenlySpacedInX: true,
     });
 
     let averageDurationThreshold = 1600;
@@ -154,6 +157,7 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         visibleRangeLimit: dataSeries.getXRange(),
         labelFormat: ENumericFormat.Date_DDMM,
         isInnerAxis: true,
+        useNativeText: true,
     });
     const yAxis = new NumericAxis(wasmContext, {
         axisTitle: 'Requests',
@@ -162,6 +166,7 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         },
         visibleRangeLimit: new NumberRange(0, 1000),
         labelPrecision: 0,
+        useNativeText: true,
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -257,12 +262,15 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
     yAxis.visibleRange = new NumberRange(0, yAxis.visibleRange.max * 1.5);
 
     const updateData = (newData: TDataEntry[]) => {
-        const { xValues, yValues } = getRequestsNumberPerTimestamp(newData);
-
+        const { xValues, yValues, groupedEntries } = getRequestsNumberPerTimestamp(newData);
+        const metadata = groupedEntries.map((entries) => ({
+            isSelected: false,
+            entries,
+        }));
         const oldDataSeries = dataSeries;
 
         oldDataSeries.clear();
-        oldDataSeries.appendRange(xValues, yValues);
+        oldDataSeries.appendRange(xValues, yValues, metadata);
     };
 
     const updateThreshold = (value: number) => {

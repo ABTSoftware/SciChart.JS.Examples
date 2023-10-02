@@ -203,16 +203,10 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
 
     const updateData = (newData: TDataEntry[]) => {
         const { xValues, yValues } = getRequestsNumberPerLocation(newData);
-        const oldDataSeries = rendSeries.dataSeries as XyDataSeries;
-
-        const newDataSeries = new XyDataSeries(wasmContext, {
-            xValues,
-            yValues,
-            metadata: xValues.map((_, index) => oldDataSeries.getMetadataAt(index)),
-        });
-
-        rendSeries.dataSeries = newDataSeries;
-        oldDataSeries.delete();
+        const dataSeries = rendSeries.dataSeries as XyDataSeries;
+        const metadata = xValues.map((_, index) => dataSeries.getMetadataAt(index));
+        dataSeries.clear()
+        dataSeries.appendRange(xValues, yValues, metadata);
     };
     return { sciChartSurface, updateData };
 };

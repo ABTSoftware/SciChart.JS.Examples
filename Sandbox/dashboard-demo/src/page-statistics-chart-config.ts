@@ -37,7 +37,7 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
         title: 'URL statistics',
         titleStyle: {
             useNativeText: true,
-            padding: Thickness.fromString("15 0 0 0"),
+            padding: Thickness.fromString('15 0 0 0'),
             // placeWithinChart: true,
             alignment: ETextAlignment.Center,
             fontSize: 20,
@@ -47,6 +47,7 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
         labelFormat: ENumericFormat.Date_DDMM,
+        useNativeText: true,
     });
     const yAxis = new NumericAxis(wasmContext, {
         axisTitle: 'Requests',
@@ -57,6 +58,7 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
         growBy: new NumberRange(0, 0.5),
         labelPrecision: 0,
         keepLabelsWithinAxis: true,
+        useNativeText: true,
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -74,6 +76,9 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
         const pageData = getNumberOfRequestsForPage(data, page);
         const dataSeries = new XyDataSeries(wasmContext, {
             dataSeriesName: page,
+            containsNaN: false,
+            dataEvenlySpacedInX: true,
+            isSorted: true,
             ...getRequestsNumberPerTimestamp(pageData),
         });
 
@@ -104,7 +109,7 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
         id: 'PageStatisticsRolloverModifier',
         showTooltip: true,
         snapToDataPoint: true,
-        tooltipDataTemplate: tooltipDataTemplateKey
+        tooltipDataTemplate: tooltipDataTemplateKey,
     });
     sciChartSurface.chartModifiers.add(
         legendModifier,
@@ -121,15 +126,11 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
     const updateData = (data: TDataEntry[]) => {
         availablePages.forEach((page, index) => {
             const pageData = getNumberOfRequestsForPage(data, page);
-            const dataSeries = new XyDataSeries(wasmContext, {
-                dataSeriesName: page,
-                ...getRequestsNumberPerTimestamp(pageData),
-            });
+            const { xValues, yValues } = getRequestsNumberPerTimestamp(pageData);
             const oldRendSeries = stackedColumnCollection.get(index) as StackedColumnRenderableSeries;
-            const oldDataSeries =  oldRendSeries.dataSeries
-            oldRendSeries.dataSeries = dataSeries
-            oldDataSeries.delete()
-
+            const dataSeries = oldRendSeries.dataSeries as XyDataSeries;
+            dataSeries.clear();
+            dataSeries.appendRange(xValues, yValues);
         });
     };
 
