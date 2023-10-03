@@ -24,7 +24,7 @@ import {
 } from 'scichart';
 import { appTheme } from 'scichart-example-dependencies';
 import { getData, TDataEntry, availablePages, getRequestsNumberPerTimestamp } from './data-generation';
-import { TChartConfigFunc, tooltipDataTemplateKey } from './chart-configurations';
+import { TPageStatsChartConfigFunc, tooltipDataTemplateKey } from './chart-configurations';
 
 // per page
 export const createChart2: TPageStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
@@ -117,6 +117,8 @@ export const createChart2: TPageStatsChartConfigFunc = async (divElementId: stri
     );
     sciChartSurface.zoomExtents();
     xAxis.visibleRangeLimit = xAxis.visibleRange;
+    yAxis.visibleRangeLimit = new NumberRange(0, undefined);
+    yAxis.visibleRangeSizeLimit = new NumberRange(10, Number.MAX_SAFE_INTEGER);
 
     const adjustYAxisVisibleRange = () => {
         if (stackedColumnCollection.isOneHundredPercent) {
@@ -139,7 +141,7 @@ export const createChart2: TPageStatsChartConfigFunc = async (divElementId: stri
             yAxis.visibleRangeLimit = new NumberRange(0, 100);
             yAxis.labelProvider.formatLabel = (dataValue: number) => `${dataValue}%`;
         } else {
-            yAxis.visibleRangeLimit = undefined;
+            yAxis.visibleRangeLimit = new NumberRange(0, undefined);
             yAxis.labelProvider.formatLabel = (dataValue: number) => `${dataValue}`;
             adjustYAxisVisibleRange();
         }
