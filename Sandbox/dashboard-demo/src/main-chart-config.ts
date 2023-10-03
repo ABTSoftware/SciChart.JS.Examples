@@ -15,32 +15,24 @@ import {
     MouseWheelZoomModifier,
     IDataLabelProviderOptions,
     IPointMetadata,
-    FastLineRenderableSeries,
     EDataLabelSkipMode,
     EllipsePointMarker,
     EHorizontalTextPosition,
-    DefaultPaletteProvider,
     IPointMarkerPaletteProvider,
     TPointMarkerArgb,
     parseColorToUIntArgb,
     SeriesInfo,
     CursorTooltipSvgAnnotation,
-    EVerticalAlignment,
     EVerticalTextPosition,
     Thickness,
     BasePaletteProvider,
     EStrokePaletteMode,
     EFillPaletteMode,
-    TPaletteProviderDefinition,
-    parseColorToHexStringAbgr,
-    parseColorToHexStringArgb,
-    parseColorToTArgb,
     parseArgbToHtmlColor,
-    XySeriesInfo,
 } from 'scichart';
 import { appTheme } from 'scichart-example-dependencies';
 import { TDataEntry, getData, getRequestsNumberPerTimestamp } from './data-generation';
-import { TChartConfigFunc, TMainChartConfigFunc } from './chart-configurations';
+import { TMainChartConfigFunc } from './chart-configurations';
 
 export const createChart1: TMainChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
@@ -73,11 +65,8 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
     let averageDurationThreshold = 1600;
 
     const getAverageDurationFromMetadata = (pointMetadata: IPointMetadata) => {
-        const requestsMetadata = pointMetadata as (typeof metadata)[number];
-        const averageDuration =
-            requestsMetadata.entries.reduce((acc: number, value: TDataEntry) => {
-                return acc + value.duration;
-            }, 0) / requestsMetadata.entries.length;
+        const { entries } = pointMetadata as (typeof metadata)[number];
+        const averageDuration = entries.reduce((acc, value) => acc + value.duration, 0) / entries.length;
         return Math.round(averageDuration);
     };
 
@@ -91,28 +80,18 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         horizontalTextPosition: EHorizontalTextPosition.Center,
         verticalTextPosition: EVerticalTextPosition.Above,
         skipMode: EDataLabelSkipMode.SkipIfOverlapNext,
-        // skipNumber: 3,
-        // skipMode: EDataLabelSkipMode.SkipIfOverlapNext,
         metaDataSelector: (pointMetadata: IPointMetadata) => {
             const averageDuration = getAverageDurationFromMetadata(pointMetadata);
             return averageDuration > averageDurationThreshold ? `${Math.round(averageDuration)}ms` : undefined;
         },
     };
 
-    class CustomPaletteProvider extends BasePaletteProvider {
+    class CustomPaletteProvider extends BasePaletteProvider implements IPointMarkerPaletteProvider {
         public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
         public readonly fillPaletteMode = EFillPaletteMode.GRADIENT;
 
-        // public overrideFillArgb(
-        //     xValue: number,
-        //     yValue: number,
-        //     index: number,
-        //     opacity?: number,
-        //     metadata?: IPointMetadata
-        // ): number {
-        //     const finalOpacity = metadata.isSelected ? 1 : opacity;
-        //     return parseColorToUIntArgb(appTheme.VividTeal, opacity * 255);
-        // }
+        private highlightedFill = parseColorToUIntArgb(appTheme.MutedRed);
+        private highlightedStroke = parseColorToUIntArgb(appTheme.VividRed);
 
         public overrideStrokeArgb(
             xValue: number,
@@ -121,11 +100,11 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
             opacity?: number,
             metadata?: IPointMetadata
         ): number {
-            const finalOpacity = metadata.isSelected ? 1 : opacity;
+            // TODO this should not be required
             return parseColorToUIntArgb(appTheme.VividTeal, opacity * 255);
         }
 
-        overridePointMarkerArgb(
+        public overridePointMarkerArgb(
             xValue: number,
             yValue: number,
             index: number,
@@ -133,18 +112,9 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
             metadata?: IPointMetadata
         ): TPointMarkerArgb {
             const averageDuration = getAverageDurationFromMetadata(metadata);
-
-            if (averageDuration > averageDurationThreshold) {
-                return {
-                    fill: parseColorToUIntArgb(appTheme.MutedRed),
-                    stroke: parseColorToUIntArgb(appTheme.VividRed),
-                };
-            } else {
-                return {
-                    fill: undefined,
-                    stroke: undefined,
-                };
-            }
+            return averageDuration > averageDurationThreshold
+                ? { fill: this.highlightedFill, stroke: this.highlightedStroke }
+                : { fill: undefined, stroke: undefined };
         }
     }
 
@@ -204,8 +174,8 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
             const y = 20 + index * 20;
             const textColor = seriesInfo.stroke;
             let legendText = seriesInfo.formattedYValue;
-            const metadataEntry =  seriesInfo.pointMetadata as typeof metadata[number]
-            const averageDuration = getAverageDurationFromMetadata(metadataEntry)
+            const metadataEntry = seriesInfo.pointMetadata as (typeof metadata)[number];
+            const averageDuration = getAverageDurationFromMetadata(metadataEntry);
             legendText = `Avg. Request Duration: ${averageDuration};  Requests Number: ${metadataEntry.entries.length}`;
             outputSvgString += `<text x="8" y="${y}" font-size="13" font-family="Verdana" fill="${textColor}">
             ${legendText}
@@ -237,8 +207,8 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         // Lines here are returned to the tooltip and displayed as text-line per tooltip
         const lines: string[] = [];
         // lines.push(tooltipTitle);
-        const metadataEntry =  seriesInfo.pointMetadata as typeof metadata[number]
-        const averageDuration = getAverageDurationFromMetadata(metadataEntry)
+        const metadataEntry = seriesInfo.pointMetadata as (typeof metadata)[number];
+        const averageDuration = getAverageDurationFromMetadata(metadataEntry);
         lines.push(`Count: ${seriesInfo.formattedYValue}`);
         lines.push(`Avg. Time: ${averageDuration}ms`);
         return lines;
@@ -258,8 +228,14 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection })
     );
 
-    sciChartSurface.zoomExtents();
-    yAxis.visibleRange = new NumberRange(0, yAxis.visibleRange.max * 1.5);
+    sciChartSurface.zoomExtentsX();
+
+    const adjustYAxisVisibleRange = () => {
+        const growFactor = 1.5;
+        yAxis.visibleRange = new NumberRange(0, yAxis.getMaximumRange().max * growFactor);
+    };
+
+    adjustYAxisVisibleRange();
 
     const updateData = (newData: TDataEntry[]) => {
         const { xValues, yValues, groupedEntries } = getRequestsNumberPerTimestamp(newData);
@@ -271,12 +247,14 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
 
         oldDataSeries.clear();
         oldDataSeries.appendRange(xValues, yValues, metadata);
+
+        adjustYAxisVisibleRange();
     };
 
     const updateThreshold = (value: number) => {
-        averageDurationThreshold = value
-        sciChartSurface.invalidateElement()
-    }
+        averageDurationThreshold = value;
+        sciChartSurface.invalidateElement();
+    };
 
     return { sciChartSurface, updateData, updateThreshold };
 };

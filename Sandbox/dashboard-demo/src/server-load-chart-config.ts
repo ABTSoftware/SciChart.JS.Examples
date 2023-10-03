@@ -55,7 +55,6 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
         axisTitleStyle: {
             fontSize: 20,
         },
-        growBy: new NumberRange(0, 0.3),
         useNativeText: true,
     });
 
@@ -201,8 +200,15 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
     const glm = new GridLayoutModifier({ id: 'GridLayoutModifier' });
     sciChartSurface.chartModifiers.add(glm);
 
-    sciChartSurface.zoomExtents();
+    sciChartSurface.zoomExtentsX();
     xAxis.visibleRangeLimit = xAxis.visibleRange;
+
+    const adjustYAxisVisibleRange = () => {
+        const growFactor = 1.3;
+        yAxis.visibleRange = new NumberRange(0, yAxis.getMaximumRange().max * growFactor);
+    };
+
+    adjustYAxisVisibleRange();
 
     const updateData = (data: TDataEntry[]) => {
         availableServers.forEach((server, index) => {
@@ -212,6 +218,8 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
             const { xValues, yValues } = getRequestsNumberPerTimestamp(serverData);
             dataSeries.clear();
             dataSeries.appendRange(xValues, yValues);
+
+            adjustYAxisVisibleRange();
         });
     };
 

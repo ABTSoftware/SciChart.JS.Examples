@@ -55,7 +55,7 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
             fontSize: 20,
         },
         axisAlignment: EAxisAlignment.Left,
-        growBy: new NumberRange(0, 0.5),
+        growBy: new NumberRange(0, 0.3),
         labelPrecision: 0,
         keepLabelsWithinAxis: true,
         useNativeText: true,
@@ -119,9 +119,15 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
         new MouseWheelZoomModifier({ xyDirection: zoomAndScrollDirection })
     );
     sciChartSurface.zoomExtents();
-
     xAxis.visibleRangeLimit = xAxis.visibleRange;
-    // yAxis.zoomBy(yAxis.growBy.min, yAxis.growBy.max)
+
+    const adjustYAxisVisibleRange = () => {
+        const growFactor = 1.3;
+        const maxRange = stackedColumnCollection.getYRange(xAxis.getMaximumRange(), yAxis.isCategoryAxis);
+        yAxis.visibleRange = new NumberRange(0, maxRange.max * growFactor);
+    };
+
+    adjustYAxisVisibleRange();
 
     const updateData = (data: TDataEntry[]) => {
         availablePages.forEach((page, index) => {
@@ -131,6 +137,9 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
             const dataSeries = oldRendSeries.dataSeries as XyDataSeries;
             dataSeries.clear();
             dataSeries.appendRange(xValues, yValues);
+
+            stackedColumnCollection.updateAccumulatedVectors();
+            adjustYAxisVisibleRange();
         });
     };
 
