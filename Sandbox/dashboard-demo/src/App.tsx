@@ -110,7 +110,11 @@ function App() {
                 const dataFilteredForServerStats = currentData.filter(locationFilter);
 
                 mainChartRef.current.updateData(commonData);
-                pageStatisticChartRef.current.updateData(commonData);
+                pageStatisticChartRef.current.updateData(
+                    currentData.map((entry: TDataEntry) =>
+                        serverFilter(entry) && locationFilter(entry) ? entry : { ...entry, page: null }
+                    )
+                );
                 // server series should be just hidden
                 serverLoadChartRef.current.updateData(dataFilteredForServerStats);
                 updateLocationStats();

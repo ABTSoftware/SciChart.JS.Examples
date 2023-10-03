@@ -32,8 +32,8 @@ const generateData = () => {
     for (let index = 0; index < size; ++index) {
         const timestamp = Math.round(timestampRange[Math.round(Math.random() * 1000) % timestampRange.length] / 1000);
         const page = availablePages[Math.round(Math.random() * 1000) % availablePages.length];
-        const server = `server${Math.floor(Math.random() * 10) % availableServers.length}`;
-        const location = availableLocations[Math.floor(Math.random() * 10) % availableLocations.length];
+        const server = `server${Math.floor(Math.random() * 109) % availableServers.length}`;
+        const location = availableLocations[Math.floor(Math.random() * 109) % availableLocations.length];
         const duration = Math.floor(Math.random() * 3000);
 
         if (duration > 2000) {
@@ -63,21 +63,23 @@ export const getData = () => {
 };
 
 const groupItemsByProperty = (array: TDataEntry[], propertyName: string) => {
-    return array.reduce((acc: Record<any, TDataEntry[]>, item: TDataEntry) => {
+    return array.reduce((acc: Map<TDataEntry[keyof TDataEntry], TDataEntry[]>, item: TDataEntry) => {
         const value = item[propertyName as keyof TDataEntry];
-        acc[value] = acc[value] || [];
-        acc[value].push(item);
+        acc.set(value, acc.get(value) || []);
+        acc.get(value).push(item);
         return acc;
-    }, {});
+    }, new Map<TDataEntry[keyof TDataEntry], TDataEntry[]>());
 };
 const distinctValues = (array: any[]): any[] => [...new Set(array)];
 
-const getGroupedItemsSize = (groupedResult: Record<number, TDataEntry[]>): Record<number, number> => {
+const getGroupedItemsSize = (
+    groupedResult: Map<TDataEntry[keyof TDataEntry], TDataEntry[]>
+): Record<number, number> => {
     const totalCounts: Record<number, number> = {};
 
-    for (const item in groupedResult) {
-        totalCounts[item] = groupedResult[item].length;
-    }
+    groupedResult.forEach((value, key, map) => {
+        totalCounts[key as any] = map.get(key).length;
+    });
 
     return totalCounts;
 };
@@ -92,15 +94,17 @@ export const getRequestsNumberPerTimestamp = (data: TDataEntry[]) => {
         })
     );
 
-    const dataGroupedByTimestamp = groupItemsByTimestamp(data);
-    const requestsPerPeriods = getGroupedItemsSize(dataGroupedByTimestamp);
-    const yValues = Object.entries(requestsPerPeriods)
-        .sort((a, b) => parseInt(a[0]) - parseInt(b[0]))
-        .map(([timestamp, count]) => count);
+    const dataGroupedByTimestamp = groupItemsByTimestamp(data) as Map<number, TDataEntry[]>;
 
-    const groupedEntries = Object.entries(dataGroupedByTimestamp)
-        .sort((a, b) => parseInt(a[0]) - parseInt(b[0]))
-        .map(([timestamp, dataEntries]) => dataEntries);
+    const yValues: number[] = [];
+    const groupedEntries: TDataEntry[][] = [];
+
+    const sortedEntries = [...dataGroupedByTimestamp].sort((a, b) => a[0] - b[0]);
+    for (let i = 0; i < sortedEntries.length; ++i) {
+        const [key, dataEntries] = sortedEntries[i];
+        yValues.push(dataEntries.filter((entry) => entry.page).length);
+        groupedEntries.push(dataEntries);
+    }
 
     return {
         xValues,
@@ -114,17 +118,21 @@ const getLocationIndex = (location: string) => {
     return locationIndex;
 };
 
+const locationIndexes = availableLocations.map((v, i) => i);
 export const getRequestsNumberPerLocation = (data: TDataEntry[]) => {
-    const xValues = distinctValues(availableLocations).map((v, i) => i);
+    const xValues = locationIndexes;
 
-    const groupedData = groupItemsByLocation(data);
+    const groupedData = groupItemsByLocation(data) as Map<string, TDataEntry[]>;
 
-    const groupedDataSizes = getGroupedItemsSize(groupedData);
+    const yValues: number[] = Array.from(new Array(xValues.length), () => 0);
+    const groupedEntries: TDataEntry[][] = [];
 
-    const yValues = Object.entries(groupedDataSizes)
-        .sort((a, b) => getLocationIndex(a[0]) - getLocationIndex(b[0]))
-        .map(([timestamp, count]) => count);
-
+    const entries = [...groupedData];
+    for (let i = 0; i < entries.length; ++i) {
+        const [key, dataEntries] = entries[i];
+        yValues[getLocationIndex(key)] = dataEntries.length;
+        // groupedEntries.push(dataEntries);
+    }
     return {
         xValues,
         yValues,

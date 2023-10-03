@@ -176,6 +176,9 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
         xValues,
         yValues,
         metadata: xValues.map(() => ({ isSelected: false, isHovered: false })),
+        containsNaN: false,
+        isSorted: true,
+        dataEvenlySpacedInX: true,
     });
 
     // filtered per location
@@ -298,7 +301,7 @@ export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElem
 
     const updateData = (newData: TDataEntry[]) => {
         const requestsPerLocation = getRequestsNumberPerLocation(newData);
-        const totalRequests = requestsPerLocation.yValues.reduce((acc, value) => acc + value, 0);
+        const totalRequests = requestsPerLocation.yValues.reduce((acc, value) => acc + value, 0) || 1;
 
         sciChartPieSurface.pieSegments.asArray().forEach((segment, index) => {
             segment.value = (requestsPerLocation.yValues[index] * 100) / totalRequests;
