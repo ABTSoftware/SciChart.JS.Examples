@@ -1,14 +1,12 @@
-import { CSSProperties, ChangeEventHandler, MouseEventHandler, MutableRefObject, useEffect, useRef, useState } from 'react';
+import { CSSProperties, ChangeEventHandler, MouseEventHandler, useEffect, useRef, useState } from 'react';
 import SciChart, { IInitResult } from './SciChart';
-import { TChartConfigResult, synchronizeXVisibleRanges } from './chart-configurations';
+import { TChartConfigResult, TPageStatsConfigFuncResult, synchronizeXVisibleRanges } from './chart-configurations';
 import {
-    BaseRenderableSeries,
     ChartModifierBase2D,
     DataPointSelectionChangedArgs,
     DataPointSelectionModifier,
     ESeriesType,
     FastMountainRenderableSeries,
-    GenericAnimation,
     GradientParams,
     IOverviewOptions,
     IRenderableSeries,
@@ -17,16 +15,11 @@ import {
     NumberRange,
     Point,
     RolloverModifier,
-    SciChartPieLegend,
     SciChartPieSurface,
     SciChartSubSurface,
     SciChartSurface,
-    StackedColumnCollection,
     TCheckedChangedArgs,
     Thickness,
-    XyDataSeries,
-    ZoomPanModifier,
-    chartBuilder,
     easing,
 } from 'scichart';
 import { GridLayoutModifier } from './GridLayoutModifier';
@@ -57,11 +50,10 @@ function App() {
     const [isChartInitialized5, setIsChartInitialized5] = useState(false);
 
     const mainChartRef = useRef<TChartConfigResult<SciChartSurface>>(null);
-    const pageStatisticChartRef = useRef<TChartConfigResult<SciChartSurface>>(null);
+    const pageStatisticChartRef = useRef<TPageStatsConfigFuncResult>(null);
     const serverLoadChartRef = useRef<TChartConfigResult<SciChartSurface>>(null);
     const locationStatisticChartRef = useRef<TChartConfigResult<SciChartSurface>>(null);
     const pieChartRef = useRef<TChartConfigResult<SciChartPieSurface>>(null);
-    const stackedColumnCollectionRef = useRef<StackedColumnCollection>(null);
     const gridLayoutModifierRef = useRef<GridLayoutModifier>(null);
 
     const [modifierGroup] = useState(new ModifierGroup());
@@ -190,22 +182,7 @@ function App() {
     };
 
     const handleUsePercentage: ChangeEventHandler<HTMLInputElement> = (e) => {
-        // Toggle 100% mode on click
-        const stackedCollection = stackedColumnCollectionRef.current;
-        stackedCollection.isOneHundredPercent = !isHundredPercentCollection;
-        const sciChartSurface = stackedCollection.parentSurface;
-        const yAxis = sciChartSurface.yAxes.get(0);
-        if (!isHundredPercentCollection) {
-            yAxis.visibleRange = new NumberRange(0, 100);
-            yAxis.visibleRangeLimit = new NumberRange(0, 100);
-            sciChartSurface.zoomExtentsY(200);
-            yAxis.labelProvider.formatLabel = (dataValue: number) => `${dataValue}%`;
-        } else {
-            yAxis.visibleRangeLimit = undefined;
-            sciChartSurface.zoomExtentsY(200);
-            yAxis.labelProvider.formatLabel = (dataValue: number) => `${dataValue}`;
-        }
-
+        pageStatisticChartRef.current.toggleIsHundredPercent();
         setIsHundredPercentCollection(!isHundredPercentCollection);
     };
 
@@ -338,17 +315,13 @@ function App() {
                             ></Overview>
                         </SciChart>
 
-                        <SciChart
+                        <SciChart<SciChartSurface, TPageStatsConfigFuncResult>
                             initChart={createChart2}
-                            onInit={(initResult: TChartConfigResult<SciChartSurface>) => {
+                            onInit={(initResult: TPageStatsConfigFuncResult) => {
                                 pageStatisticChartRef.current = initResult;
                                 const sciChartSurface = initResult.sciChartSurface;
 
                                 setIsChartInitialized2(true);
-
-                                stackedColumnCollectionRef.current = (
-                                    sciChartSurface as SciChartSurface
-                                ).renderableSeries.get(0) as StackedColumnCollection;
 
                                 const modifier = (sciChartSurface as SciChartSurface).chartModifiers.getById(
                                     'PageStatisticsRolloverModifier'
@@ -418,7 +391,7 @@ const gridStyle: React.CSSProperties = {
 const mainChartStyle: CSSProperties = {
     gridRow: '1 / 4',
     gridColumn: '1/-1',
-    position: "relative"
+    position: 'relative',
 };
 
 const innerContainerProps = {

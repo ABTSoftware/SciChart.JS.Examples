@@ -18,9 +18,6 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
     MouseWheelZoomModifier,
-    IRenderableSeries,
-    SeriesSelectionModifier,
-    HoveredChangedArgs,
     EAxisAlignment,
     TRolloverTooltipDataTemplate,
     XySeriesInfo,
@@ -30,7 +27,7 @@ import { getData, TDataEntry, availablePages, getRequestsNumberPerTimestamp } fr
 import { TChartConfigFunc, tooltipDataTemplateKey } from './chart-configurations';
 
 // per page
-export const createChart2: TChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
+export const createChart2: TPageStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
@@ -70,7 +67,7 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
 
     // filtered per page
     const getNumberOfRequestsForPage = (data: TDataEntry[], page: string) =>
-        data.filter((entry) => entry.page === page);
+        data.map((entry) => (entry.page === page ? entry : { ...entry, page: null }));
 
     availablePages.forEach((page, index) => {
         const pageData = getNumberOfRequestsForPage(data, page);
@@ -122,12 +119,31 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
     xAxis.visibleRangeLimit = xAxis.visibleRange;
 
     const adjustYAxisVisibleRange = () => {
+        if (stackedColumnCollection.isOneHundredPercent) {
+            return;
+        }
+
+        stackedColumnCollection.updateAccumulatedVectors();
         const growFactor = 1.3;
         const maxRange = stackedColumnCollection.getYRange(xAxis.getMaximumRange(), yAxis.isCategoryAxis);
         yAxis.visibleRange = new NumberRange(0, maxRange.max * growFactor);
     };
 
     adjustYAxisVisibleRange();
+
+    const toggleIsHundredPercent = () => {
+        stackedColumnCollection.isOneHundredPercent = !stackedColumnCollection.isOneHundredPercent;
+
+        if (stackedColumnCollection.isOneHundredPercent) {
+            yAxis.visibleRange = new NumberRange(0, 100);
+            yAxis.visibleRangeLimit = new NumberRange(0, 100);
+            yAxis.labelProvider.formatLabel = (dataValue: number) => `${dataValue}%`;
+        } else {
+            yAxis.visibleRangeLimit = undefined;
+            yAxis.labelProvider.formatLabel = (dataValue: number) => `${dataValue}`;
+            adjustYAxisVisibleRange();
+        }
+    };
 
     const updateData = (data: TDataEntry[]) => {
         availablePages.forEach((page, index) => {
@@ -138,10 +154,9 @@ export const createChart2: TChartConfigFunc = async (divElementId: string | HTML
             dataSeries.clear();
             dataSeries.appendRange(xValues, yValues);
 
-            stackedColumnCollection.updateAccumulatedVectors();
             adjustYAxisVisibleRange();
         });
     };
 
-    return { sciChartSurface, updateData };
+    return { sciChartSurface, updateData, toggleIsHundredPercent };
 };

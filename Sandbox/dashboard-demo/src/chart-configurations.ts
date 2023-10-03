@@ -1,4 +1,11 @@
-import { EBaseType, ISciChartSurfaceBase, SciChartSurface, TRolloverTooltipDataTemplate, XySeriesInfo, chartBuilder } from 'scichart';
+import {
+    EBaseType,
+    ISciChartSurfaceBase,
+    SciChartSurface,
+    TRolloverTooltipDataTemplate,
+    XySeriesInfo,
+    chartBuilder,
+} from 'scichart';
 import { TDataEntry } from './data-generation';
 import { IInitResult, TInitFunction } from './SciChart';
 
@@ -16,6 +23,12 @@ export type TChartConfigFunc<TSurface extends ISciChartSurfaceBase = SciChartSur
 export type TMainChartConfigFunc = TInitFunction<
     ISciChartSurfaceBase,
     TChartConfigResult<SciChartSurface> & { updateThreshold: (value: number) => void }
+>;
+
+export type TPageStatsConfigFuncResult =  TChartConfigResult<SciChartSurface> & { toggleIsHundredPercent: () => void }
+export type TPageStatsChartConfigFunc = TInitFunction<
+    ISciChartSurfaceBase,
+    TPageStatsConfigFuncResult
 >;
 
 /** Synchronizes first X axes of the surfaces */
