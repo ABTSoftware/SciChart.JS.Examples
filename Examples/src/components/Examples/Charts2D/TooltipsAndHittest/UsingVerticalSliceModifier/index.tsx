@@ -121,8 +121,8 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
         tooltipDataTemplate: getTooltipDataTemplate
     });
     const vSlice2 = new VerticalSliceModifier({
-        x1: 600,
-        xCoordinateMode: ECoordinateMode.Pixel,
+        x1: 0.75,
+        xCoordinateMode: ECoordinateMode.Relative,
         isDraggable: true,
         // Defines if rollover vertical line is shown
         showRolloverLine: true,
@@ -156,7 +156,7 @@ const drawExample = async (): Promise<TWebAssemblyChart> => {
     sciChartSurface.annotations.add(textAnn1);
 
     const textAnn2 = new NativeTextAnnotation({
-        text: "xCoordinateMode: ECoordinateMode.Pixel\nFixed position\nDraggable ",
+        text: "xCoordinateMode: Relative\nFixed position\nDraggable ",
         textColor: appTheme.ForegroundColor,
         y1: 0.9,
         xCoordinateMode: ECoordinateMode.Pixel,
