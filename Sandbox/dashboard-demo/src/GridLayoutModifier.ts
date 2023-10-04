@@ -7,12 +7,14 @@ import {
     convertColor,
     DoubleAnimator,
     easing,
+    EAutoRange,
     EChart2DModifierType,
     ECoordinateMode,
     GenericAnimation,
     I2DSubSurfaceOptions,
     ISciChart2DDefinition,
     LegendModifier,
+    NumberRange,
     parseColorToTArgb,
     parseTArgbToHtmlColor,
     Rect,
@@ -50,6 +52,10 @@ export class GridLayoutModifier extends ChartModifierBase2D {
         }
     }
 
+    public onAttach(): void {
+        // TODO add viewportSizeChange subscription
+    }
+
     private getSubChartsAreaRect() {
         const seriesViewRect = this.parentSurface.seriesViewRect;
         const parentXAxis = this.parentSurface.xAxes.get(0);
@@ -60,6 +66,15 @@ export class GridLayoutModifier extends ChartModifierBase2D {
         return new Rect(seriesViewRect.x, seriesViewRect.y, subChartsAreaWidth, subChartsAreaHeight);
     }
 
+    private translateRectToRelativeCoordinates = (value: Rect) => {
+        return new Rect(
+            value.x / this.parentSurface.renderSurface.viewportSize.width,
+            value.y / this.parentSurface.renderSurface.viewportSize.height,
+            value.width / this.parentSurface.renderSurface.viewportSize.width,
+            value.height / this.parentSurface.renderSurface.viewportSize.height
+        );
+    };
+
     private makeSubChart(surfaceDef: ISciChart2DDefinition, i: number, width: number, height: number, gap: number) {
         const rs = this.parentSurface.renderableSeries.get(i);
         const rsDef = (surfaceDef.series as TSeriesDefinition[])[i];
@@ -68,11 +83,13 @@ export class GridLayoutModifier extends ChartModifierBase2D {
 
         const subChartsAreaRect = this.getSubChartsAreaRect();
 
-        const position = new Rect(
-            subChartsAreaRect.x + (col && gap) + col * width,
-            subChartsAreaRect.y + (row && gap) + row * height,
-            width,
-            height
+        const position = this.translateRectToRelativeCoordinates(
+            new Rect(
+                subChartsAreaRect.x + (col && gap) + col * width,
+                subChartsAreaRect.y + (row && gap) + row * height,
+                width,
+                height
+            )
         );
 
         const borderInitialColor = rs.stroke;
@@ -81,8 +98,8 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             id: `subChart-${i}`,
             theme: appTheme.SciChartJsTheme,
             // Start full size
-            position: subChartsAreaRect,
-            coordinateMode: ECoordinateMode.Pixel,
+            position: this.translateRectToRelativeCoordinates(subChartsAreaRect),
+            coordinateMode: ECoordinateMode.Relative,
             subChartPadding: Thickness.fromString('0 0 0 0'),
             viewportBorder: {
                 color: borderInitialColor,
@@ -120,6 +137,9 @@ export class GridLayoutModifier extends ChartModifierBase2D {
 
         const xAxis = subChart.xAxes.get(0);
         const yAxis = subChart.yAxes.get(0);
+
+        yAxis.growBy = new NumberRange(0, 0.3);
+        yAxis.autoRange = EAutoRange.Always;
 
         xAxis.axisTitle = '';
         yAxis.axisTitle = '';
@@ -274,7 +294,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
 
             const subChartRepositioningAnimation = new GenericAnimation<Rect>({
                 from: subChart.subPosition,
-                to: subChartsAreaRect,
+                to: this.translateRectToRelativeCoordinates(subChartsAreaRect),
                 onAnimate: (from: Rect, to: Rect, progress: number) => {
                     const x = DoubleAnimator.interpolate(from.x, to.x, progress);
                     const y = DoubleAnimator.interpolate(from.y, to.y, progress);
