@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { SurfaceContext } from './SurfaceContext';
-import { TMainChartConfigFunc } from './chart-configurations';
 import { appTheme } from 'scichart-example-dependencies';
 import { Rect } from 'scichart';
+import { TMainChartConfigFunc } from './main-chart-config';
 
 const ThresholdSlider = () => {
     // get reference to chart init result

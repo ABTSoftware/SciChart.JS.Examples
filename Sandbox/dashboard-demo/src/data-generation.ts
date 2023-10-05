@@ -72,18 +72,6 @@ const groupItemsByProperty = (array: TDataEntry[], propertyName: string) => {
 };
 const distinctValues = (array: any[]): any[] => [...new Set(array)];
 
-const getGroupedItemsSize = (
-    groupedResult: Map<TDataEntry[keyof TDataEntry], TDataEntry[]>
-): Record<number, number> => {
-    const totalCounts: Record<number, number> = {};
-
-    groupedResult.forEach((value, key, map) => {
-        totalCounts[key as any] = map.get(key).length;
-    });
-
-    return totalCounts;
-};
-
 const groupItemsByTimestamp = (array: TDataEntry[]) => groupItemsByProperty(array, 'timestamp');
 const groupItemsByLocation = (array: TDataEntry[]) => groupItemsByProperty(array, 'location');
 

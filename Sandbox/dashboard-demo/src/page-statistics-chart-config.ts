@@ -24,7 +24,16 @@ import {
 } from 'scichart';
 import { appTheme } from 'scichart-example-dependencies';
 import { getData, TDataEntry, availablePages, getRequestsNumberPerTimestamp } from './data-generation';
-import { TPageStatsChartConfigFunc, tooltipDataTemplateKey } from './chart-configurations';
+import {  TChartConfigResult, tooltipDataTemplateKey } from './chart-configurations';
+import { TInitFunction } from './SciChart';
+
+export type TPageStatsConfigFuncResult =  TChartConfigResult<SciChartSurface> & { toggleIsHundredPercent: () => void }
+export type TPageStatsChartConfigFunc = TInitFunction<
+    SciChartSurface,
+    TPageStatsConfigFuncResult
+>;
+
+const fillColors = [appTheme.VividRed, appTheme.MutedBlue, appTheme.MutedTeal, appTheme.MutedOrange];
 
 // per page
 export const createChart2: TPageStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
@@ -81,9 +90,9 @@ export const createChart2: TPageStatsChartConfigFunc = async (divElementId: stri
 
         const rendSeries = new StackedColumnRenderableSeries(wasmContext, {
             dataSeries,
-            fill: AUTO_COLOR,
-            stroke: AUTO_COLOR,
-            strokeThickness: 2,
+            fill: fillColors[index],
+            stroke: fillColors[index],
+            strokeThickness: 0,
             opacity: 0.8,
             stackedGroupId: 'StackedGroupId',
         });

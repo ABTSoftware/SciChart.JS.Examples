@@ -32,7 +32,13 @@ import {
 } from 'scichart';
 import { appTheme } from 'scichart-example-dependencies';
 import { TDataEntry, getData, getRequestsNumberPerTimestamp } from './data-generation';
-import { TMainChartConfigFunc } from './chart-configurations';
+import { TInitFunction } from './SciChart';
+import { TChartConfigResult } from './chart-configurations';
+
+export type TMainChartConfigFunc = TInitFunction<
+    SciChartSurface,
+    TChartConfigResult<SciChartSurface> & { updateThreshold: (value: number) => void }
+>;
 
 export const createChart1: TMainChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {

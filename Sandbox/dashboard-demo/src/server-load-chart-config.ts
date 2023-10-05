@@ -19,19 +19,25 @@ import {
     SelectionChangedArgs,
     GenericAnimation,
     EllipsePointMarker,
-    DataPointSelectionModifier,
     Thickness,
     EBaseType,
     chartBuilder,
     ELegendOrientation,
+    TCheckedChangedArgs,
 } from 'scichart';
 import { appTheme } from 'scichart-example-dependencies';
 import { GridLayoutModifier } from './GridLayoutModifier';
 import { getData, TDataEntry, availableServers, getRequestsNumberPerTimestamp } from './data-generation';
-import { TChartConfigFunc, tooltipDataTemplateKey } from './chart-configurations';
+import { TChartConfigResult, tooltipDataTemplateKey } from './chart-configurations';
+import { TInitFunction } from './SciChart';
+
+export type TServerStatsChartConfigFuncResult = TChartConfigResult<SciChartSurface> & {
+    subscribeToServerSelection: (callback: (server: string, isChecked: boolean) => void) => void;
+};
+export type TServerStatsChartConfigFunc = TInitFunction<SciChartSurface, TServerStatsChartConfigFuncResult>;
 
 // per server
-export const createChart4: TChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
+export const createChart4: TServerStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
@@ -177,14 +183,16 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
         onSelectionChanged: 'onServerSelectionChanged',
     });
 
+    const legendModifier = new LegendModifier({
+        id: 'LegendModifier',
+        orientation: ELegendOrientation.Horizontal,
+        placement: ELegendPlacement.TopRight,
+        showCheckboxes: true,
+    });
+
     sciChartSurface.chartModifiers.add(
         seriesSelectionModifier,
-        new LegendModifier({
-            id: 'LegendModifier',
-            orientation: ELegendOrientation.Horizontal,
-            placement: ELegendPlacement.TopRight,
-            showCheckboxes: true,
-        }),
+        legendModifier,
         new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }),
         new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
@@ -223,5 +231,12 @@ export const createChart4: TChartConfigFunc = async (divElementId: string | HTML
         });
     };
 
-    return { sciChartSurface, updateData };
+    const subscribeToServerSelection = (callback: (args: string, isChecked: boolean) => void) => {
+        legendModifier.isCheckedChanged.subscribe((args: TCheckedChangedArgs) => {
+            const server = args.series.getDataSeriesName();
+            callback(server, args.isChecked);
+        });
+    };
+
+    return { sciChartSurface, updateData, subscribeToServerSelection };
 };

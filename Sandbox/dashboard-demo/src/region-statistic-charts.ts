@@ -31,12 +31,14 @@ import {
     TextureManager,
     SeriesSelectionModifier,
     HoveredChangedArgs,
+    DataPointSelectionChangedArgs,
 } from 'scichart';
 import { CN, IN, US, JP, DE, GB, FR, BR, CA, AU } from 'country-flag-icons/string/3x2';
 import { appTheme } from 'scichart-example-dependencies';
 import { TDataEntry, availableLocations, getData, getRequestsNumberPerLocation } from './data-generation';
-import { TChartConfigFunc } from './chart-configurations';
+import { TChartConfigFunc, TChartConfigResult } from './chart-configurations';
 import { TTextureObject } from 'scichart/Charting/Visuals/TextureManager/TextureManager';
+import { TInitFunction } from './SciChart';
 
 type TCustomMetadata = IPointMetadata & {
     isHovered: boolean;
@@ -123,8 +125,13 @@ class CustomColumnPaletteProvider extends BasePaletteProvider implements IStroke
     }
 }
 
+export type TLocationStatsChartConfigFuncResult = TChartConfigResult<SciChartSurface> & {
+    subscribeToLocationSelection: (callback: (value: string) => void) => void;
+};
+export type TLocationStatsChartConfigFunc = TInitFunction<SciChartSurface, TLocationStatsChartConfigFuncResult>;
+
 // location stats
-export const createChart5: TChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
+export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const icons = await getIcons();
 
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
@@ -188,7 +195,7 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
         stroke: AUTO_COLOR,
         paletteProvider: new CustomColumnPaletteProvider(),
         strokeThickness: 2,
-        opacity: 0.6,
+        opacity: 0.4,
         dataLabels: {
             precision: 0,
             style: {
@@ -202,7 +209,10 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
     });
     sciChartSurface.renderableSeries.add(rendSeries);
 
-    const dataPointSelectionModifier = new DataPointSelectionModifier({ id: 'DataPointSelectionModifier' });
+    const dataPointSelectionModifier = new DataPointSelectionModifier({
+        id: 'DataPointSelectionModifier',
+        allowDragSelect: false,
+    });
 
     let lastSelectedDataPointIndex = -1;
     const onHoverChanged = (args: HoveredChangedArgs) => {
@@ -237,7 +247,16 @@ export const createChart5: TChartConfigFunc = async (divElementId: string | HTML
         dataSeries.clear();
         dataSeries.appendRange(xValues, yValues, metadata);
     };
-    return { sciChartSurface, updateData };
+
+    const subscribeToLocationSelection = (callback: (location: string) => void) => {
+        dataPointSelectionModifier.selectionChanged.subscribe((data: DataPointSelectionChangedArgs) => {
+            const [dataPoint] = data.selectedDataPoints;
+            const selectedLocation = availableLocations[dataPoint?.xValue];
+            callback(selectedLocation);
+        });
+    };
+
+    return { sciChartSurface, updateData, subscribeToLocationSelection };
 };
 
 export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElementId: string | HTMLDivElement) => {
@@ -276,7 +295,6 @@ export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElem
 
     // Optional Relative radius adjustment per segment
     const radiusSize = [1, 0.9, 0.95, 0.9, 0.85, 0.85, 0.85, 0.9, 0.9, 0.9, 0.95, 0.95, 0.95, 0.95, 0.95];
-    // const radiusSize = [1, 1, 1, 1];
 
     const toPieSegment = (name: string, value: number, radiusAdjustment: number, color1: string, color2?: string) => {
         return new PieSegment({
@@ -287,7 +305,7 @@ export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElem
             showLabel: value > 2,
             colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: color1, offset: 0 },
-                { color: color2 ?? color1 + '77', offset: 1 },
+                { color: (color2 ?? color1) + '77', offset: 1 },
             ]),
         });
     };

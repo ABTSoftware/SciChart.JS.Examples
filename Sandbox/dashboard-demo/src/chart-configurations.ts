@@ -20,16 +20,7 @@ export type TChartConfigFunc<TSurface extends ISciChartSurfaceBase = SciChartSur
     TChartConfigResult<TSurface>
 >;
 
-export type TMainChartConfigFunc = TInitFunction<
-    ISciChartSurfaceBase,
-    TChartConfigResult<SciChartSurface> & { updateThreshold: (value: number) => void }
->;
 
-export type TPageStatsConfigFuncResult =  TChartConfigResult<SciChartSurface> & { toggleIsHundredPercent: () => void }
-export type TPageStatsChartConfigFunc = TInitFunction<
-    ISciChartSurfaceBase,
-    TPageStatsConfigFuncResult
->;
 
 /** Synchronizes first X axes of the surfaces */
 export const synchronizeXVisibleRanges = (surfaces: SciChartSurface[], shouldSync: () => boolean) => {
