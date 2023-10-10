@@ -14,6 +14,7 @@ import {
 
 export class ModifierGroup extends ObservableArray<ChartModifierBase2D> {
     public readonly name = `ModifierGroup${generateGuid()}`;
+    private boundModifiers = new Map<ChartModifierBase2D, () => void>();
 
     constructor() {
         super();
@@ -35,8 +36,6 @@ export class ModifierGroup extends ObservableArray<ChartModifierBase2D> {
         // TODO handle modifier detach
         const getOther = (mod: ChartModifierBase2D) => this.getOtherModifiers(mod);
 
-        // TODO move to prop;
-
         const syncByDataValue = true;
         const originalMouseMoveHandler = modifier.modifierMouseMove;
 
@@ -44,7 +43,6 @@ export class ModifierGroup extends ObservableArray<ChartModifierBase2D> {
             const otherModifiers = getOther(modifier);
 
             originalMouseMoveHandler.call(modifier, args);
-            // console.log('customMouseMoveHandler', this.mousePoint, args.isMaster);
             if (this.mousePoint && args.isMaster) {
                 let translatedMousePoint: Point = translateFromCanvasToSeriesViewRect(
                     this.mousePoint,
@@ -55,7 +53,6 @@ export class ModifierGroup extends ObservableArray<ChartModifierBase2D> {
                 if (translatedMousePoint) {
                     const masterXAxis = this.parentSurface.xAxes.get(0);
                     const masterYAxis = this.parentSurface.yAxes.get(0);
-                    // TODO get ptoper axis
                     const xValue = masterXAxis.getCurrentCoordinateCalculator().getDataValue(translatedMousePoint.x);
                     const yValue = masterYAxis.getCurrentCoordinateCalculator().getDataValue(translatedMousePoint.y);
 
@@ -98,10 +95,19 @@ export class ModifierGroup extends ObservableArray<ChartModifierBase2D> {
         };
 
         modifier.modifierMouseLeave = customMouseLeaveHandler.bind(modifier);
+
+        const unsubscribe = () => {
+            modifier.modifierMouseMove = originalMouseMoveHandler.bind(modifier);
+            modifier.modifierMouseLeave = originalMouseLeaveHandler.bind(modifier);
+        };
+
+        this.boundModifiers.set(modifier, unsubscribe);
+        modifier.parentSurface.addDeletable({ delete: unsubscribe });
     }
 
-    protected onModifierRemove(modifier: IChartModifierBase) {
-        // TODO reset binding to custom handlers
+    protected onModifierRemove(modifier: ChartModifierBase2D) {
+        const unsubscribe = this.boundModifiers.get(modifier);
+        unsubscribe();
     }
 }
 
