@@ -105,12 +105,12 @@ function App() {
                 updateLocationStats();
             };
 
-            mainXAxis.animateVisibleRange(newInitialVisibleRange, 1000, easing.inCirc, () => {
+            mainXAxis.visibleRangeChanged.subscribe((args) => {
                 // filter location stats by visible range
-                mainXAxis.visibleRangeChanged.subscribe((args) => {
-                    updateLocationStats();
-                });
+                updateLocationStats();
+            });
 
+            mainXAxis.animateVisibleRange(newInitialVisibleRange, 2000, easing.inOutQuint, () => {
                 // filter data by server accordingly to visible series
                 serverLoadChartRef.current.subscribeToServerSelection((server: string, isChecked: boolean) => {
                     if (isChecked) {

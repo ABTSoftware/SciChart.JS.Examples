@@ -69,7 +69,7 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
 
     const data = getData();
 
-    const stackedColumnCollection = new StackedColumnCollection(wasmContext);
+    // const stackedColumnCollection = new StackedColumnCollection(wasmContext);
 
     // filtered per server
     const filter = (data: TDataEntry[], server: string) => data.filter((entry) => entry.server === server);
@@ -101,11 +101,12 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
                 height: 10,
                 strokeThickness: 1,
             }),
+            animation:  new WaveAnimation({ duration: 1000, fadeEffect: true })
         });
         sciChartSurface.renderableSeries.add(rendSeries);
     });
 
-    stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
+    // stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
 
     const onSelectionChanged = (args: SelectionChangedArgs) => {
         args.allSeries.forEach((series) => {

@@ -205,7 +205,7 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
             },
             color: appTheme.ForegroundColor,
         },
-        animation: new WaveAnimation({ duration: 1000, fadeEffect: true }),
+        animation: new WaveAnimation({ duration: 1000, fadeEffect: false }),
     });
     sciChartSurface.renderableSeries.add(rendSeries);
 
@@ -222,7 +222,7 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
             metadata.isHovered = false;
             dataSeries.update(lastSelectedDataPointIndex, yValue, metadata);
             lastSelectedDataPointIndex = -1;
-        } else if (args.hoveredSeries.length > 0) {
+        } else if (args.hoveredSeries.length > 0 && args.hitTestInfo) {
             const yValue = dataSeries.getNativeYValues().get(args.hitTestInfo.dataSeriesIndex);
             const metadata = dataSeries.getMetadataAt(args.hitTestInfo.dataSeriesIndex) as TCustomMetadata;
             metadata.isHovered = true;
