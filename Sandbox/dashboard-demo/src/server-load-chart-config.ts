@@ -191,19 +191,20 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
         showCheckboxes: true,
     });
 
+    const rolloverModifier = new RolloverModifier({
+        id: 'ServerLoadCursorModifier',
+        tooltipDataTemplate: tooltipDataTemplateKey,
+        showTooltip: true,
+        snapToDataPoint: true
+    })
+    rolloverModifier.rolloverLineAnnotation.showLabel = true;
     sciChartSurface.chartModifiers.add(
         seriesSelectionModifier,
         legendModifier,
         new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }),
         new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
-
-        new RolloverModifier({
-            id: 'ServerLoadCursorModifier',
-            tooltipDataTemplate: tooltipDataTemplateKey,
-            showTooltip: true,
-            showRolloverLine: false,
-        })
+        rolloverModifier  
     );
 
     const glm = new GridLayoutModifier({ id: 'GridLayoutModifier' });

@@ -28,8 +28,8 @@ import ThresholdSlider from './ThresholdSlider';
 
 function App() {
     const [drawChart, setDrawChart] = useState(true);
-    const [isVisibleRangeSynced, setIsVisibleRangeSynced] = useState(false);
-    const isVisibleRangeSyncedRef = useRef(false);
+    const [isVisibleRangeSynced, setIsVisibleRangeSynced] = useState(true);
+    const isVisibleRangeSyncedRef = useRef(true);
     const [isHundredPercentCollection, setIsHundredPercentCollection] = useState(false);
     const [isGridLayout, setIsGridLayout] = useState(false);
     const [isChartInitialized1, setIsChartInitialized1] = useState(false);

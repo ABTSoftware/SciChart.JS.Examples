@@ -117,6 +117,7 @@ export const createChart2: TPageStatsChartConfigFunc = async (divElementId: stri
         snapToDataPoint: true,
         tooltipDataTemplate: tooltipDataTemplateKey,
     });
+    rolloverModifier.rolloverLineAnnotation.showLabel = true;
     sciChartSurface.chartModifiers.add(
         legendModifier,
         rolloverModifier,

@@ -47,7 +47,7 @@ const tooltipDataTemplate: TRolloverTooltipDataTemplate = (seriesInfo: XySeriesI
     const valuesWithLabels: string[] = [];
     // Line Series
     const xySeriesInfo = seriesInfo as XySeriesInfo;
-    valuesWithLabels.push(`X: ${xySeriesInfo.formattedXValue} Y: ${xySeriesInfo.formattedYValue}`);
+    valuesWithLabels.push(`${xySeriesInfo.seriesName}: ${xySeriesInfo.formattedYValue}`);
     return valuesWithLabels;
 };
 
