@@ -101,81 +101,12 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
                 height: 10,
                 strokeThickness: 1,
             }),
-            animation:  new WaveAnimation({ duration: 1000, fadeEffect: true })
+            animation: new WaveAnimation({ duration: 1000, fadeEffect: true }),
         });
         sciChartSurface.renderableSeries.add(rendSeries);
     });
 
     // stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
-
-    const onSelectionChanged = (args: SelectionChangedArgs) => {
-        args.allSeries.forEach((series) => {
-            if (series.isSelected) {
-                series.pointMarker.opacity = series.opacity;
-            } else {
-                series.pointMarker.opacity = 0;
-            }
-        });
-    };
-
-    const onHoverChanged = (args: HoveredChangedArgs) => {
-        const hoverAnimationDuration = 500;
-        args.allSeries.forEach((series) => {
-            if (series.isHovered) {
-                sciChartSurface.addAnimation(
-                    new GenericAnimation({
-                        from: series.opacity,
-                        to: 0.8,
-                        duration: hoverAnimationDuration,
-                        onAnimate: (from, to, progress) => {
-                            const opacity = (to - from) * progress + from;
-                            series.opacity = opacity;
-                            if (series.isSelected) {
-                                series.pointMarker.opacity = opacity;
-                            }
-                        },
-                    })
-                );
-
-                series.strokeThickness = 5;
-            } else if (args.hoveredSeries.length > 0) {
-                sciChartSurface.addAnimation(
-                    new GenericAnimation({
-                        from: series.opacity,
-                        to: 0.3,
-                        duration: hoverAnimationDuration,
-                        onAnimate: (from, to, progress) => {
-                            const opacity = (to - from) * progress + from;
-                            series.opacity = opacity;
-                            if (series.isSelected) {
-                                series.pointMarker.opacity = opacity;
-                            }
-                        },
-                    })
-                );
-                series.strokeThickness = 2;
-            } else {
-                sciChartSurface.addAnimation(
-                    new GenericAnimation({
-                        from: series.opacity,
-                        to: 0.5,
-                        duration: hoverAnimationDuration,
-                        onAnimate: (from, to, progress) => {
-                            const opacity = (to - from) * progress + from;
-                            series.opacity = opacity;
-                            if (series.isSelected) {
-                                series.pointMarker.opacity = opacity;
-                            }
-                        },
-                    })
-                );
-                series.strokeThickness = 2;
-            }
-        });
-    };
-
-    chartBuilder.registerFunction(EBaseType.OptionFunction, 'onServerSelectionChanged', onSelectionChanged);
-    chartBuilder.registerFunction(EBaseType.OptionFunction, 'onServerHoverChanged', onHoverChanged);
 
     const seriesSelectionModifier = new SeriesSelectionModifier({
         enableHover: true,
@@ -242,3 +173,75 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
 
     return { sciChartSurface, updateData, subscribeToServerSelection };
 };
+
+
+
+const onSelectionChanged = (args: SelectionChangedArgs) => {
+    args.allSeries.forEach((series) => {
+        if (series.isSelected) {
+            series.pointMarker.opacity = series.opacity;
+        } else {
+            series.pointMarker.opacity = 0;
+        }
+    });
+};
+
+const onHoverChanged = (args: HoveredChangedArgs) => {
+    const sciChartSurface = args.source.parentSurface;
+    const hoverAnimationDuration = 500;
+    args.allSeries.forEach((series) => {
+        if (series.isHovered) {
+            sciChartSurface.addAnimation(
+                new GenericAnimation({
+                    from: series.opacity,
+                    to: 0.8,
+                    duration: hoverAnimationDuration,
+                    onAnimate: (from, to, progress) => {
+                        const opacity = (to - from) * progress + from;
+                        series.opacity = opacity;
+                        if (series.isSelected) {
+                            series.pointMarker.opacity = opacity;
+                        }
+                    },
+                })
+            );
+
+            series.strokeThickness = 5;
+        } else if (args.hoveredSeries.length > 0) {
+            sciChartSurface.addAnimation(
+                new GenericAnimation({
+                    from: series.opacity,
+                    to: 0.3,
+                    duration: hoverAnimationDuration,
+                    onAnimate: (from, to, progress) => {
+                        const opacity = (to - from) * progress + from;
+                        series.opacity = opacity;
+                        if (series.isSelected) {
+                            series.pointMarker.opacity = opacity;
+                        }
+                    },
+                })
+            );
+            series.strokeThickness = 2;
+        } else {
+            sciChartSurface.addAnimation(
+                new GenericAnimation({
+                    from: series.opacity,
+                    to: 0.5,
+                    duration: hoverAnimationDuration,
+                    onAnimate: (from, to, progress) => {
+                        const opacity = (to - from) * progress + from;
+                        series.opacity = opacity;
+                        if (series.isSelected) {
+                            series.pointMarker.opacity = opacity;
+                        }
+                    },
+                })
+            );
+            series.strokeThickness = 2;
+        }
+    });
+};
+
+chartBuilder.registerFunction(EBaseType.OptionFunction, 'onServerSelectionChanged', onSelectionChanged);
+chartBuilder.registerFunction(EBaseType.OptionFunction, 'onServerHoverChanged', onHoverChanged);

@@ -131,7 +131,9 @@ export class GridLayoutModifier extends ChartModifierBase2D {
         };
         configure2DSurface(subSurfaceDef, subChart, this.parentSurface.webAssemblyContext2D);
         // Share dataSeries
+        const oldDataSeries = subChart.renderableSeries.get(0).dataSeries;
         subChart.renderableSeries.get(0).dataSeries = rs.dataSeries;
+        oldDataSeries.delete();
         // make series on parent surface invisible
         rs.isVisible = false;
 
