@@ -163,8 +163,6 @@ function SciChartComponent<
         initPromiseRef.current = initPromise;
 
         const performCleanup = () => {
-            console.log('performCleanup', divElementId);
-
             sciChartSurfaceRef.current.delete();
             sciChartSurfaceRef.current = undefined;
             initResultRef.current = undefined;

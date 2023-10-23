@@ -171,27 +171,7 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
     });
 
     sciChartSurface.renderableSeries.add(mountainSeries);
-    // Override the standard legend displayed by RolloverModifier
-    const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: CursorTooltipSvgAnnotation) => {
-        let outputSvgString = '';
 
-        // Foreach series there will be a seriesInfo supplied by SciChart. This contains info about the series under the house
-        seriesInfos.forEach((seriesInfo, index) => {
-            const y = 20 + index * 20;
-            const textColor = seriesInfo.stroke;
-            let legendText = seriesInfo.formattedYValue;
-            const metadataEntry = seriesInfo.pointMetadata as (typeof metadata)[number];
-            const averageDuration = getAverageDurationFromMetadata(metadataEntry);
-            legendText = `Avg. Request Duration: ${averageDuration};  Requests Number: ${metadataEntry.entries.length}`;
-            outputSvgString += `<text x="8" y="${y}" font-size="13" font-family="Verdana" fill="${textColor}">
-            ${legendText}
-        </text>`;
-        });
-
-        return `<svg width="100%" height="100%">
-                ${outputSvgString}
-            </svg>`;
-    };
     const cursorModifier = new CursorModifier({
         id: 'TotalRequestsCursorModifier',
         showTooltip: false,
