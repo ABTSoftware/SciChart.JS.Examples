@@ -23,11 +23,7 @@ import Overview, { overviewOptions } from './Overview';
 import DashboardOverlay from './DashboardOverlay';
 import ThresholdSlider from './ThresholdSlider';
 
-// SciChartSurface.autoDisposeWasmContext = true;
-// MemoryUsageHelper.isMemoryUsageDebugEnabled = true;
-
 function App() {
-    const [drawChart, setDrawChart] = useState(true);
     const [isVisibleRangeSynced, setIsVisibleRangeSynced] = useState(true);
     const isVisibleRangeSyncedRef = useRef(true);
     const [isHundredPercentCollection, setIsHundredPercentCollection] = useState(false);
@@ -139,19 +135,9 @@ function App() {
             mainChartRef.current = undefined;
             pageStatisticChartRef.current = undefined;
             locationStatisticChartRef.current = undefined;
+            gridLayoutModifierRef.current = undefined;
         };
     }, []);
-
-    const handleCheckbox: ChangeEventHandler<HTMLInputElement> = (e) => {
-        setDrawChart(e.target.checked);
-    };
-
-    const handleClick: MouseEventHandler<HTMLInputElement> = () => {
-        // @ts-ignore
-        window.gc && window.gc();
-        const state = MemoryUsageHelper.objectRegistry.getState();
-        console.log('state', state);
-    };
 
     const handleSyncVisibleRangeChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         isVisibleRangeSyncedRef.current = !isVisibleRangeSynced;
@@ -196,9 +182,6 @@ function App() {
             {/* <header className='App-header'> */}
             {/* <h1>SciChart.js Dashboard</h1> */}
             {/* </header> */}
-            {/* <input type='checkbox' checked={drawChart} onChange={handleCheckbox} /> Show Chart */}
-            {/* <br /> */}
-            {/* <input type='button' onClick={handleClick} value='Log Object Registry State'></input> */}
 
             <div style={gridStyle}>
                 <div
@@ -240,89 +223,83 @@ function App() {
                     is Grid Layout
                 </div>
 
-                {drawChart ? (
-                    <>
-                        <SciChart
-                            initChart={createChart1}
-                            onInit={(initResult: TChartConfigResult<SciChartSurface>) => {
-                                mainChartRef.current = initResult;
-                                // setIsChartInitialized1(true);
+                <SciChart
+                    initChart={createChart1}
+                    onInit={(initResult: TChartConfigResult<SciChartSurface>) => {
+                        mainChartRef.current = initResult;
+                        setIsChartInitialized1(true);
 
-                                const sciChartSurface = initResult.sciChartSurface;
-                                const modifier = sciChartSurface.chartModifiers.getById('TotalRequestsCursorModifier');
-                                const rollover = sciChartSurface.chartModifiers.getById(
-                                    'TotalRequestsRolloverModifier'
-                                );
-                                modifierGroup.add(modifier as ChartModifierBase2D, rollover as ChartModifierBase2D);
-                            }}
-                            style={mainChartStyle}
-                            innerContainerProps={innerContainerProps}
-                            fallback={<div style={mainChartStyle} />}
-                        >
-                            <ThresholdSlider></ThresholdSlider>
-                            <Overview
-                                style={overviewStyle}
-                                options={overviewOptions}
-                                onInit={() => setIsChartInitialized1(true)}
-                            ></Overview>
-                        </SciChart>
+                        const sciChartSurface = initResult.sciChartSurface;
+                        const modifier = sciChartSurface.chartModifiers.getById('TotalRequestsCursorModifier');
+                        const rollover = sciChartSurface.chartModifiers.getById('TotalRequestsRolloverModifier');
+                        modifierGroup.add(modifier as ChartModifierBase2D, rollover as ChartModifierBase2D);
+                    }}
+                    style={mainChartStyle}
+                    innerContainerProps={innerContainerProps}
+                    fallback={<div style={mainChartStyle} />}
+                >
+                    <ThresholdSlider></ThresholdSlider>
+                    <Overview
+                        style={overviewStyle}
+                        options={overviewOptions}
+                        onInit={() => setIsChartInitialized1(true)}
+                    ></Overview>
+                </SciChart>
 
-                        <SciChart<SciChartSurface, TPageStatsConfigFuncResult>
-                            initChart={createChart2}
-                            onInit={(initResult: TPageStatsConfigFuncResult) => {
-                                pageStatisticChartRef.current = initResult;
-                                const sciChartSurface = initResult.sciChartSurface;
+                <SciChart<SciChartSurface, TPageStatsConfigFuncResult>
+                    initChart={createChart2}
+                    onInit={(initResult: TPageStatsConfigFuncResult) => {
+                        pageStatisticChartRef.current = initResult;
+                        const sciChartSurface = initResult.sciChartSurface;
 
-                                setIsChartInitialized2(true);
+                        setIsChartInitialized2(true);
 
-                                const modifier = sciChartSurface.chartModifiers.getById(
-                                    'PageStatisticsRolloverModifier'
-                                ) as ChartModifierBase2D;
-                                modifierGroup.add(modifier);
-                            }}
-                            style={pageChartStyle}
-                            fallback={<div style={pageChartStyle} />}
-                        />
-                        <SciChart<SciChartSurface, TServerStatsChartConfigFuncResult>
-                            initChart={createChart4}
-                            onInit={(initResult: TServerStatsChartConfigFuncResult) => {
-                                serverLoadChartRef.current = initResult;
-                                setIsChartInitialized4(true);
-                                const sciChartSurface = initResult.sciChartSurface;
+                        const modifier = sciChartSurface.chartModifiers.getById(
+                            'PageStatisticsRolloverModifier'
+                        ) as ChartModifierBase2D;
+                        modifierGroup.add(modifier);
+                    }}
+                    style={pageChartStyle}
+                    fallback={<div style={pageChartStyle} />}
+                />
+                <SciChart<SciChartSurface, TServerStatsChartConfigFuncResult>
+                    initChart={createChart4}
+                    onInit={(initResult: TServerStatsChartConfigFuncResult) => {
+                        serverLoadChartRef.current = initResult;
+                        setIsChartInitialized4(true);
+                        const sciChartSurface = initResult.sciChartSurface;
 
-                                gridLayoutModifierRef.current = sciChartSurface.chartModifiers.getById(
-                                    'GridLayoutModifier'
-                                ) as GridLayoutModifier;
+                        gridLayoutModifierRef.current = sciChartSurface.chartModifiers.getById(
+                            'GridLayoutModifier'
+                        ) as GridLayoutModifier;
 
-                                const modifier = (sciChartSurface as SciChartSurface).chartModifiers.getById(
-                                    'ServerLoadCursorModifier'
-                                ) as ChartModifierBase2D;
-                                modifierGroup.add(modifier);
-                            }}
-                            style={serverChartStyle}
-                            fallback={<div style={serverChartStyle} />}
-                        />
-                        <SciChart<SciChartSurface, TLocationStatsChartConfigFuncResult>
-                            initChart={createChart5}
-                            onInit={(initResult: TLocationStatsChartConfigFuncResult) => {
-                                locationStatisticChartRef.current = initResult;
-                                setIsChartInitialized5(true);
-                            }}
-                            style={columnChartStyle}
-                            fallback={<div style={columnChartStyle} />}
-                        />
+                        const modifier = (sciChartSurface as SciChartSurface).chartModifiers.getById(
+                            'ServerLoadCursorModifier'
+                        ) as ChartModifierBase2D;
+                        modifierGroup.add(modifier);
+                    }}
+                    style={serverChartStyle}
+                    fallback={<div style={serverChartStyle} />}
+                />
+                <SciChart<SciChartSurface, TLocationStatsChartConfigFuncResult>
+                    initChart={createChart5}
+                    onInit={(initResult: TLocationStatsChartConfigFuncResult) => {
+                        locationStatisticChartRef.current = initResult;
+                        setIsChartInitialized5(true);
+                    }}
+                    style={columnChartStyle}
+                    fallback={<div style={columnChartStyle} />}
+                />
 
-                        <SciChart<SciChartPieSurface, TChartConfigResult<SciChartPieSurface>>
-                            initChart={createChart3}
-                            onInit={(initResult: TChartConfigResult<SciChartPieSurface>) => {
-                                pieChartRef.current = initResult;
-                                setIsChartInitialized3(true);
-                            }}
-                            style={pieChartStyle}
-                            fallback={<div style={pieChartStyle} />}
-                        />
-                    </>
-                ) : null}
+                <SciChart<SciChartPieSurface, TChartConfigResult<SciChartPieSurface>>
+                    initChart={createChart3}
+                    onInit={(initResult: TChartConfigResult<SciChartPieSurface>) => {
+                        pieChartRef.current = initResult;
+                        setIsChartInitialized3(true);
+                    }}
+                    style={pieChartStyle}
+                    fallback={<div style={pieChartStyle} />}
+                />
             </div>
         </div>
     );
