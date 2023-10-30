@@ -1,26 +1,12 @@
 import {
-    CSSProperties,
-    ForwardRefRenderFunction,
-    ForwardedRef,
     useRef,
     useState,
     useEffect,
-    useImperativeHandle,
-    forwardRef,
-    useLayoutEffect,
     DetailedHTMLProps,
     HTMLAttributes,
-    MutableRefObject,
-    useId,
-    ForwardRefExoticComponent,
-    PropsWithoutRef,
-    RefAttributes,
 } from 'react';
 import {
     ISciChartSurfaceBase,
-    SciChart3DSurface,
-    SciChartPieSurface,
-    SciChartSurface,
     TSurfaceDefinition,
     chartBuilder,
     generateGuid,
@@ -126,9 +112,10 @@ function SciChartComponent<
         throw new Error(`Only one of "initChart" or "config" props is required!`);
     }
 
-    const [divElementId] = useState(divElementProps.id ?? `component-root-${useId()}`);
+    const [divElementId] = useState(divElementProps.id);
 
     const isMountedRef = useIsMountedRef();
+    const innerContainerRef = useRef<HTMLDivElement>(null);
 
     const initPromiseRef = useRef<Promise<TInitResult | IInitResult<TSurface>>>();
     const initResultRef = useRef<TInitResult>();
@@ -169,7 +156,6 @@ function SciChartComponent<
         };
 
         return () => {
-            console.log('unmount SciChart', divElementId);
             // check if chart is already initialized or wait init to finish before deleting it
             sciChartSurfaceRef.current ? performCleanup() : initPromise.then(performCleanup);
         };
@@ -177,7 +163,7 @@ function SciChartComponent<
 
     useEffect(() => {
         if (isInitialized && isMountedRef.current) {
-            const rootElement = document.getElementById(divElementId);
+            const rootElement = innerContainerRef.current;
             rootElement.appendChild(chartRoot);
 
             if (onInit) {
@@ -189,7 +175,7 @@ function SciChartComponent<
     return isInitialized ? (
         <SurfaceContext.Provider value={initResultRef.current}>
             <div {...divElementProps}>
-                <div {...innerContainerProps} id={divElementId}></div>
+                <div {...innerContainerProps} ref={innerContainerRef} id={divElementId}></div>
                 {props.children}
             </div>
         </SurfaceContext.Provider>
