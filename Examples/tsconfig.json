@@ -16,20 +16,14 @@
         "noFallthroughCasesInSwitch": true,
         "module": "commonjs",
         "target": "es5",
-        "jsx": "react",
+        "downlevelIteration": true,
+        "jsx": "react-jsx",
         "allowJs": true,
-        "typeRoots": [
-            "./src/types", "./node_modules/@types"],
+        "typeRoots": ["./src/types", "./node_modules/@types"],
         "esModuleInterop": false,
         "skipLibCheck": false,
         "forceConsistentCasingInFileNames": true
     },
-    "include": [
-        "src/**/*",
-        "testUnit/**/*"
-, "../ExampleDependencies/src/ExampleData/binanceRestClient.ts"    ],
-    "exclude": [
-        "node_modules",
-        "src/static/*"
-    ]
+    "include": ["src/**/*", "testUnit/**/*", "../ExampleDependencies/src/ExampleData/binanceRestClient.ts"],
+    "exclude": ["node_modules", "src/static/*"]
 }

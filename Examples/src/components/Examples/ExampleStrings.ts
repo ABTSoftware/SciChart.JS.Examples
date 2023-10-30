@@ -672,6 +672,10 @@ export const ExampleStrings = {
     urlRealtimeBigDataJavaScriptChartDemo: "/javascript-chart-websocket-bigdata-demo",
     titleRealtimeBigDataJavaScriptChartDemo: "Client/Server Websocket Data Streaming",
 
+    // ServerTrafficDashboards Demo
+    urlServerTrafficDashboard: "/javascript-server-traffic-dashboard",
+    titleServerTrafficDashboard: "Server Traffic Dashboard",
+
     // BuilderApi, Simple Chart
     urlBuilderSimpleChart: "/javascript-builder-simple",
     titleBuilderSimpleChart: "Simple Chart using Builder API",

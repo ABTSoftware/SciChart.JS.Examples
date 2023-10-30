@@ -110,6 +110,7 @@ import BackgroundAnnotations from "../Examples/Charts2D/ChartAnnotations/Backgro
 import RealtimeSurfaceMesh3DChart from "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart";
 import DynamicLayout from "../Examples/FeaturedApps/ShowCases/DynamicLayout";
 import UsingVerticalSliceModifier from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier";
+import ServerTrafficDashboard from "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard";
 
 export type TMenuItem = {
     item: {
@@ -131,6 +132,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_AudioAnalyzerDemo,
             EXAMPLES_PAGES.featuredApps_showcases_oilandgasdashboard,
             EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata,
+            EXAMPLES_PAGES.featuredApps_showcases_servertrafficdashboard,
             EXAMPLES_PAGES.featuredApps_showcases_richInteractions,
             EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout
         ]
@@ -532,6 +534,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return SubchartsGrid;
         case EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata.id:
             return RealtimeBigDataShowcase;
+        case EXAMPLES_PAGES.featuredApps_showcases_servertrafficdashboard.id:
+            return ServerTrafficDashboard;
         case EXAMPLES_PAGES.featuredApps_showcases_oilandgasdashboard.id:
             return OilAndGasDashboardShowcase;
         case EXAMPLES_PAGES.featuredApps_showcases_richInteractions.id:
