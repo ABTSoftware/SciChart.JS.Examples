@@ -1,16 +1,5 @@
-import {
-    useRef,
-    useState,
-    useEffect,
-    DetailedHTMLProps,
-    HTMLAttributes,
-} from 'react';
-import {
-    ISciChartSurfaceBase,
-    TSurfaceDefinition,
-    chartBuilder,
-    generateGuid,
-} from 'scichart';
+import { useRef, useState, useEffect, DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import { ISciChartSurfaceBase, TSurfaceDefinition, chartBuilder, generateGuid } from 'scichart';
 import { SurfaceContext } from './SurfaceContext';
 
 const useIsMountedRef = () => {
@@ -40,7 +29,7 @@ export interface IChartComponentPropsCore<
     TSurface extends ISciChartSurfaceBase,
     TInitResult extends IInitResult<TSurface>
 > extends TDivProps {
-    fallback?: React.ReactNode;
+    fallback?: ReactNode | undefined;
     onInit?: (initResult?: TInitResult) => void;
     innerContainerProps?: TDivProps;
 }
@@ -104,7 +93,7 @@ function createChartFromConfig<TSurface extends ISciChartSurfaceBase>(config: st
 function SciChartComponent<
     TSurface extends ISciChartSurfaceBase = ISciChartSurfaceBase,
     TInitResult extends IInitResult<TSurface> = IInitResult<TSurface>
->(props: TChartComponentProps<TSurface, TInitResult>) {
+>(props: TChartComponentProps<TSurface, TInitResult>): JSX.Element {
     const { initChart, config, fallback, onInit, innerContainerProps, ...divElementProps } =
         props as TChartComponentPropsIntersection<TSurface, TInitResult>;
 
@@ -172,15 +161,17 @@ function SciChartComponent<
         }
     }, [isInitialized]);
 
+    const mergedInnerContainerProps = { style: { height: '100%', width: '100%' }, ...innerContainerProps };
+
     return isInitialized ? (
         <SurfaceContext.Provider value={initResultRef.current}>
             <div {...divElementProps}>
-                <div {...innerContainerProps} ref={innerContainerRef} id={divElementId}></div>
+                <div {...mergedInnerContainerProps} ref={innerContainerRef} id={divElementId}></div>
                 {props.children}
             </div>
         </SurfaceContext.Provider>
     ) : (
-        fallback ?? null
+        <>{fallback}</> ?? null
     );
 }
 

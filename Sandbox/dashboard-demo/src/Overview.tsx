@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import SciChart, { IChartComponentPropsCore, IInitResult } from './SciChart';
 import { SurfaceContext } from './SurfaceContext';
 import { ESeriesType, FastMountainRenderableSeries, GradientParams, IOverviewOptions, IRenderableSeries, Point, SciChartOverview, SciChartSurface, Thickness } from 'scichart';
@@ -9,10 +9,29 @@ const OverviewComponent = (
 ) => {
     const { options, ...chartComponentProps } = props;
     const parentSurface = useContext(SurfaceContext).sciChartSurface as SciChartSurface;
+    const overviewRef = useRef<SciChartOverview>(null);
+    const overviewCreatePromiseRef = useRef<Promise<SciChartOverview>>(null);
+
     const initChart = async (divElementId: string | HTMLDivElement): Promise<IInitResult<SciChartSurface>> => {
-        const overview = await SciChartOverview.create(parentSurface, divElementId, options);
+        overviewCreatePromiseRef.current = SciChartOverview.create(parentSurface, divElementId, options);
+        const overview = await overviewCreatePromiseRef.current
+        overviewRef.current = overview;
         return { sciChartSurface: overview.overviewSciChartSurface };
     };
+
+    useEffect(() => { 
+        const performCleanup = () => {
+            // TODO find a proper way to resolve deletion without wornings
+            // @ts-ignore
+            overviewRef.current.overviewSciChartSurfaceProperty = undefined
+            overviewRef.current.delete();
+            overviewRef.current = undefined; 
+        }
+
+        return () => {
+            overviewRef.current ? performCleanup() : overviewCreatePromiseRef.current.then(performCleanup)
+        }
+    }, [])
 
     return <SciChart<SciChartSurface> {...chartComponentProps} initChart={initChart}></SciChart>;
 };
@@ -22,6 +41,7 @@ export default OverviewComponent;
 // options used for current example
 export const overviewOptions: IOverviewOptions = {
     theme: appTheme.SciChartJsTheme,
+    disableAspect: true,
     padding: Thickness.fromString('0 10 10 10'),
     viewportBorder: {
         color: appTheme.DarkIndigo,

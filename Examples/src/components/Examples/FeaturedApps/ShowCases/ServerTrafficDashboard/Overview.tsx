@@ -38,6 +38,7 @@ export default OverviewComponent;
 // options used for current example
 export const overviewOptions: IOverviewOptions = {
     theme: appTheme.SciChartJsTheme,
+    disableAspect: true,
     padding: Thickness.fromString('0 10 10 10'),
     viewportBorder: {
         color: appTheme.DarkIndigo,

@@ -168,10 +168,12 @@ function SciChartComponent<
         }
     }, [isInitialized]);
 
+    const mergedInnerContainerProps = { style: { height: "100%", width: "100%" }, ...innerContainerProps };
+
     return isInitialized ? (
         <SurfaceContext.Provider value={initResultRef.current}>
             <div {...divElementProps}>
-                <div {...innerContainerProps} ref={innerContainerRef} id={divElementId}></div>
+                <div {...mergedInnerContainerProps} ref={innerContainerRef} id={divElementId}></div>
                 {props.children}
             </div>
         </SurfaceContext.Provider>
