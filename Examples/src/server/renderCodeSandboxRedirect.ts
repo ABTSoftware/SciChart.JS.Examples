@@ -35,7 +35,7 @@ const loadStyles = async (folderPath: string) => {
 const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
     const tsPath = path.join(folderPath, "index.tsx");
     let code = await fs.promises.readFile(tsPath, "utf8");
-    const localImports = Array.from(code.matchAll(/import.*from "\.\/(.*)";/g));
+    const localImports = Array.from(code.matchAll(/import.*from ["']\.\/(.*)["'];/g));
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     code = code.replace(/\.\.\/.*SciChartComponent/, `./SciChartComponent.tsx`);
     let files: IFiles = {
@@ -129,13 +129,20 @@ root.render(
     };
   }
   files = {...files, ...csStyles };
-
     for (const localImport of localImports) {
         if (localImport.length > 1) {
-            const filepath = path.join(folderPath, localImport[1] + ".ts");
-            const csPath = "src/" + localImport[1] + ".ts";
-            const content = await fs.promises.readFile(filepath, "utf8");
-            files[csPath] = { content, isBinary: false };
+            let content: string = "";
+            try {
+                const filepath = path.join(folderPath, localImport[1] + ".ts");
+                const csPath = "src/" + localImport[1] + ".ts";
+                content = await fs.promises.readFile(filepath, "utf8");
+                files[csPath] = { content, isBinary: false };
+            } catch (e) {
+                const filepath = path.join(folderPath, localImport[1] + ".tsx");
+                const csPath = "src/" + localImport[1] + ".tsx";
+                content = await fs.promises.readFile(filepath, "utf8");
+                files[csPath] = { content, isBinary: false };
+            }
             const nestedImports = Array.from(content.matchAll(/import.*from "\.\/(.*)";/g));
             if (nestedImports.length > 0) {
                 localImports.push(...nestedImports);
