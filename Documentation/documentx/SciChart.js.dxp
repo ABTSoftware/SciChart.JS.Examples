@@ -631,13 +631,13 @@ how to request a feature or workaround (on forums) </Notes>
           <Notes>ZoomPanModifier now has pinchzoom behaviour in-built. Must be disabled if you dont want it</Notes>
         </TaskItem>
         <TaskItem Id="c2bfb0ed-5b12-4b8c-b487-10328c4d1f1e" Priority="" AssignedTo="">
-          <Title>Update HitTestInfo docs to show changes</Title>
+          <Title>Codepens needed and updates: Hit-Test docs</Title>
           <AssociatedItemId></AssociatedItemId>
           <Status>Not Started</Status>
           <CreatedOn>2022-09-26T11:03:01.45353Z</CreatedOn>
           <CreatedBy>DESKTOP-IPPVO8O\aburn</CreatedBy>
-          <ModifiedOn>2022-09-26T11:03:26.9030071Z</ModifiedOn>
-          <ModifiedBy>DESKTOP-IPPVO8O\aburn</ModifiedBy>
+          <ModifiedOn>2023-10-30T15:21:56.2487419Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>Info for datapoints either side of the hit-test which allows you to do interpolation if you want to</Notes>
         </TaskItem>
         <TaskItem Id="268fbae8-fc75-4497-9f7d-b3dd5635744c" Priority="" AssignedTo="">
@@ -998,12 +998,12 @@ Show external placement div</Notes>
           <Notes></Notes>
         </TaskItem>
         <TaskItem Id="777ed607-1468-4b69-958d-102873c8e7e4" Priority="High" AssignedTo="">
-          <Title>Rollover Docs need the codepen treatment</Title>
+          <Title>Codepens needed: RolloverModifier</Title>
           <AssociatedItemId></AssociatedItemId>
           <Status>Not Started</Status>
           <CreatedOn>2023-08-04T16:33:40.6063047Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-08-08T17:36:44.0467757Z</ModifiedOn>
+          <ModifiedOn>2023-10-30T15:21:20.5114253Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>Update rollover docs
  - Codepens 
@@ -1022,12 +1022,12 @@ Show external placement div</Notes>
           <Notes></Notes>
         </TaskItem>
         <TaskItem Id="4089762a-8ce4-4c66-86fb-21243cfbbbf2" Priority="" AssignedTo="">
-          <Title>LegendModifier needs the codepen treatment</Title>
+          <Title>Codepens needed: LegendModifier </Title>
           <AssociatedItemId></AssociatedItemId>
           <Status>Not Started</Status>
           <CreatedOn>2023-08-04T16:35:16.9010395Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-08-09T18:07:06.6026576Z</ModifiedOn>
+          <ModifiedOn>2023-10-30T15:21:10.4108048Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes>- Codepens
 - Customisation
@@ -1048,22 +1048,22 @@ Show external placement div</Notes>
           <Notes></Notes>
         </TaskItem>
         <TaskItem Id="4772c649-9513-4a9c-8d4d-8d1359ee275b" Priority="High" AssignedTo="">
-          <Title>SeriesSelectionModifier docs need codepen treatment</Title>
+          <Title>Codepens Needed: SeriesSelectionModifier </Title>
           <AssociatedItemId></AssociatedItemId>
           <Status>Not Started</Status>
           <CreatedOn>2023-08-08T17:35:41.2083519Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-08-08T17:35:52.8939737Z</ModifiedOn>
+          <ModifiedOn>2023-10-30T15:21:30.3189559Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
         <TaskItem Id="033d48b8-c352-4d8f-9fb9-980984fab972" Priority="High" AssignedTo="">
-          <Title>DataPointSelectionModifier docs need codepen treatment</Title>
+          <Title>Codepens needed: DataPointSelectionModifier </Title>
           <AssociatedItemId></AssociatedItemId>
           <Status>Not Started</Status>
           <CreatedOn>2023-08-08T17:35:55.9667486Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2023-08-08T17:36:02.80556Z</ModifiedOn>
+          <ModifiedOn>2023-10-30T15:20:35.0132008Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -1096,6 +1096,25 @@ Show external placement div</Notes>
           <ModifiedOn>2023-08-18T13:20:25.3756309Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="184d22ac-ebff-4f4f-a169-434224fc5ca8" Priority="High" AssignedTo="">
+          <Title>Synchronizing Multiple Charts docs</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2023-10-30T15:24:33.4663161Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2023-10-30T15:25:04.8163195Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes>1/ how to sync two charts
+2/ Sync axis sizes
+3/ Sync zooming, panning
+4/ sync cursors
+5/ Add/remove charts fro the sync
+6/ Resizing Synchronized panels
+
+ ... 
+
+7/ Doing the same thing with subcharts API?</Notes>
         </TaskItem>
       </TaskItems>
     </Tasks>
@@ -10574,48 +10593,6 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="1bee1fdf-d198-451c-8224-a6a52f11ca7e" Status="New Topic" CreatedOn="2023-06-21T12:37:50.9517755Z" ModifiedOn="2023-06-21T12:40:48.6318805Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataSeries_TransformingData" BuildFlags="">
-                <Title />
-                <ContentsTitle />
-                <Notes></Notes>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2023-06-21T12:37:50.9517755Z">&lt;p&gt; &lt;/p&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks />
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="2f4ff3d0-8b4b-4ee5-8c51-2bc1be0634ff" Status="New Topic" CreatedOn="2023-06-21T12:38:19.5335941Z" ModifiedOn="2023-06-21T12:40:43.0186713Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataSeries_SharingDataBetweenSeries" BuildFlags="">
-                <Title />
-                <ContentsTitle />
-                <Notes></Notes>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2023-06-21T12:38:19.534572Z">&lt;p&gt; &lt;/p&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks />
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
-              <Topic Id="75d0e31e-cd96-48ff-9839-147ff01c093e" Status="New Topic" CreatedOn="2023-06-21T12:39:35.6863086Z" ModifiedOn="2023-06-21T12:40:05.0488001Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataSeries_FIFOandSweepingMode" BuildFlags="">
-                <Title m="2023-06-21T12:40:00.2836592Z">Standard, FIFO and Sweeping Mode</Title>
-                <ContentsTitle />
-                <Notes></Notes>
-                <TopicSections>
-                  <TopicSection Name="BodyText">
-                    <Content m="2023-06-21T12:39:35.6863086Z">&lt;p&gt; &lt;/p&gt;</Content>
-                  </TopicSection>
-                </TopicSections>
-                <TopicLinks />
-                <TopicKeywords />
-                <PropertyDefinitionValues />
-                <ExcludedOtherFiles />
-              </Topic>
               <Topic Id="a939c1ec-24a9-46dd-95ca-72654dd45e42" Status="New Topic" CreatedOn="2023-08-03T19:34:34.9846898Z" ModifiedOn="2023-08-04T14:14:48.1638068Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataSeries_PointMetadata_PaletteProviders" BuildFlags="">
                 <Title m="2023-08-03T19:36:16.4441801Z">Metadata and PaletteProviders</Title>
                 <ContentsTitle />
@@ -15720,7 +15697,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">1722</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
