@@ -79,7 +79,7 @@ export class AudioDataProvider {
             if (error.name === "NotAllowedError") {
                 this.permissionError = true;
             }
-            console.error("Error getting audio", error);
+            console.warn("Error getting audio", error);
             return false;
         }
     }

@@ -149,6 +149,8 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
         majorDelta: 1,
     });
 
+    // Required to stop these country textures showing up on other charts
+    xAxis.labelProvider.useSharedCache = false;
     xAxis.labelProvider.getLabelTexture = (
         labelText: string,
         textureManager: TextureManager,
