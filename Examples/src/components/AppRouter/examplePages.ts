@@ -89,6 +89,7 @@ import { subChartStockChartsExampleInfo } from "../Examples/Charts2D/CreateStock
 import { axisLayoutExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/AxisLayout/exampleInfo";
 import { subchartsGridExampleInfo } from "../Examples/FeaturedApps/FeatureDemos/SubChartsAPI/exampleInfo";
 import { websocketBigDataDemoExampleInfo } from "../Examples/FeaturedApps/ShowCases/WebsocketBigData/exampleInfo";
+import { serverTrafficDashboardDemoExampleInfo } from "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard/exampleInfo";
 import { oilAndGasExplorerDashboard } from "../Examples/FeaturedApps/ShowCases/OilAndGasDashboard/exampleInfo";
 import { TDocumentationLink } from "../../helpers/types/ExampleDescriptionTypes";
 import { datalabelsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/DataLabels/exampleInfo";
@@ -517,6 +518,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_showcases_realtimebigdata: {
         id: "featuredApps_showcases_realtimebigdata",
         ...websocketBigDataDemoExampleInfo
+    },
+    featuredApps_showcases_servertrafficdashboard: {
+        id: "featuredApps_showcases_servertrafficdashboard",
+        ...serverTrafficDashboardDemoExampleInfo
     },
     featuredApps_showcases_oilandgasdashboard: {
         id: "featuredApps_showcases_oilandgasdashboard",

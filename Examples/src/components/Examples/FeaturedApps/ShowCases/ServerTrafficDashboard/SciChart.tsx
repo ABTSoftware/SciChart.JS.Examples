@@ -1,6 +1,7 @@
-import { useRef, useState, useEffect, DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
-import { ISciChartSurfaceBase, TSurfaceDefinition, chartBuilder, generateGuid } from 'scichart';
-import { SurfaceContext } from './SurfaceContext';
+import * as React from "react";
+import { useRef, useState, useEffect, DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
+import { ISciChartSurfaceBase, TSurfaceDefinition, chartBuilder, generateGuid } from "scichart";
+import { SurfaceContext } from "./SurfaceContext";
 
 const useIsMountedRef = () => {
     const isMountedRef = useRef(false);
@@ -61,15 +62,15 @@ type TChartComponentPropsIntersection<
 
 const createChartRoot = () => {
     // check if SSR
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
         return null;
     }
 
-    const internalRootElement = document.createElement('div') as HTMLDivElement;
+    const internalRootElement = document.createElement("div") as HTMLDivElement;
     // generate or provide a unique root element id to avoid chart rendering collisions
     internalRootElement.id = `chart-root-${generateGuid()}`;
-    internalRootElement.style.width = '100%';
-    internalRootElement.style.height = '100%';
+    internalRootElement.style.width = "100%";
+    internalRootElement.style.height = "100%";
     return internalRootElement;
 };
 
@@ -77,10 +78,10 @@ function createChartFromConfig<TSurface extends ISciChartSurfaceBase>(config: st
     return async (chartRoot: string | HTMLDivElement): Promise<IInitResult<TSurface>> => {
         // Potentially should return 2D, 3D, or Pie Chart
         const chart = (await chartBuilder.buildChart(chartRoot, config)) as any;
-        if ('sciChartSurface' in chart) {
+        if ("sciChartSurface" in chart) {
             // 2D Chart
             return { sciChartSurface: chart.sciChartSurface as TSurface };
-        } else if ('sciChart3DSurface' in chart) {
+        } else if ("sciChart3DSurface" in chart) {
             // 3D Chart
             return { sciChartSurface: chart.sciChart3DSurface as TSurface };
         } else {
@@ -94,8 +95,14 @@ function SciChartComponent<
     TSurface extends ISciChartSurfaceBase = ISciChartSurfaceBase,
     TInitResult extends IInitResult<TSurface> = IInitResult<TSurface>
 >(props: TChartComponentProps<TSurface, TInitResult>): JSX.Element {
-    const { initChart, config, fallback, onInit, innerContainerProps, ...divElementProps } =
-        props as TChartComponentPropsIntersection<TSurface, TInitResult>;
+    const {
+        initChart,
+        config,
+        fallback,
+        onInit,
+        innerContainerProps,
+        ...divElementProps
+    } = props as TChartComponentPropsIntersection<TSurface, TInitResult>;
 
     if ((!initChart && !config) || (initChart && config)) {
         throw new Error(`Only one of "initChart" or "config" props is required!`);
@@ -119,7 +126,7 @@ function SciChartComponent<
             : createChartFromConfig<TSurface>(config);
 
         const runInit = async () => {
-            return initializationFunction(chartRoot).then((initResult) => {
+            return initializationFunction(chartRoot).then(initResult => {
                 if (!initResult.sciChartSurface) {
                     throw new Error(
                         `"initChart" function should resolve to an object with "sciChartSurface" property ({ sciChartSurface })`
@@ -161,7 +168,7 @@ function SciChartComponent<
         }
     }, [isInitialized]);
 
-    const mergedInnerContainerProps = { style: { height: '100%', width: '100%' }, ...innerContainerProps };
+    const mergedInnerContainerProps = { style: { height: "100%", width: "100%" }, ...innerContainerProps };
 
     return isInitialized ? (
         <SurfaceContext.Provider value={initResultRef.current}>

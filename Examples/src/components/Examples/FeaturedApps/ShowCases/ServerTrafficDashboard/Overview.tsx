@@ -21,9 +21,6 @@ const OverviewComponent = (
 
     useEffect(() => { 
         const performCleanup = () => {
-            // TODO find a proper way to resolve deletion without wornings
-            // @ts-ignore
-            overviewRef.current.overviewSciChartSurfaceProperty = undefined
             overviewRef.current.delete();
             overviewRef.current = undefined; 
         }
