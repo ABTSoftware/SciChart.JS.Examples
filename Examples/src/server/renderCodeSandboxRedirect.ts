@@ -42,7 +42,7 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
         "package.json": {
             // @ts-ignore
             content: {
-                name: currentExample.title,
+                name: currentExample.path.replace("/", ""),
                 version: "1.0.0",
                 main: "src/index.tsx",
                 scripts: {
