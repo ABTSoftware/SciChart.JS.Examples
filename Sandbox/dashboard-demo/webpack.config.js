@@ -22,6 +22,9 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "build")
   },
+  devServer: {
+    allowedHosts: ['.csb.app'], // allow this to work in codesandbox
+  },
   plugins: [
     new CopyPlugin({
       patterns: [
