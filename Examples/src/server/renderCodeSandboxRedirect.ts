@@ -54,19 +54,20 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
                 dependencies: {
                     "@material-ui/core": "4.12.4",
                     "@material-ui/lab": "4.0.0-alpha.61",
+                    "sass": "^1.49.9",
                     "loader-utils": "3.2.1",
-                    "react": "18.2.0",
-                    "react-dom": "18.2.0",
+                    "react": "^17.0.2",
+                    "react-dom": "^17.0.2",
                     "react-scripts": "5.0.1",
                     scichart: pj.dependencies.scichart,
                     "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
                     ...currentExample.extraDependencies
                 },
                 devDependencies: {
-                    "@types/react": "18.0.25",
+                    "@types/react": "^17.0.52",
                     "@types/react-dom": "18.0.9",
                     "@babel/runtime": "7.13.8",
-                    typescript: "4.4.2"
+                    "typescript": "4.9.5"
                 },
                 browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
             }
@@ -76,21 +77,16 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
             isBinary: false
         },
         "src/index.tsx": {
-            content: `import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+            content: `
+            import { hydrate } from "react-dom";
 import { SciChartSurface, SciChart3DSurface } from "scichart";
 
 import App from "./App";
 
 const rootElement = document.getElementById("root");
-const root = createRoot(rootElement!);
 SciChartSurface.useWasmFromCDN();
 SciChart3DSurface.useWasmFromCDN();
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+hydrate( <App />, rootElement);
 `,
             isBinary: false
         },
