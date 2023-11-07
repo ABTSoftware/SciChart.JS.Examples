@@ -98,10 +98,13 @@ hydrate( <App />, rootElement);
   "compilerOptions": {
       "strict": false,
       "esModuleInterop": true,
+      "target": "es5",
+      "downlevelIteration": true,
       "lib": [
           "dom",
           "es2015"
       ],
+      "typeRoots": ["./src/types", "./node_modules/@types"],
       "jsx": "react-jsx"
   }
 }`,
@@ -115,6 +118,47 @@ hydrate( <App />, rootElement);
 }`,
           isBinary: false
       },
+      "src/types/declaration.d.ts": {
+        content: `declare module "*.scss" {
+            const content: Record<string, string>;
+            export default content;
+        }`,
+        isBinary: false
+      },
+      "src/types/jpg.d.ts": {
+        content: `declare module "*.jpg" {
+            const value: any;
+            export default value;
+        }`,
+        isBinary: false
+      },
+      "src/types/png.d.ts": {
+        content: `declare module "*.png" {
+            const value: any;
+            export default value;
+        } `,
+        isBinary: false
+      },
+      "src/types/svg.d.ts": {
+        content: `declare module "*.svg" {
+            const value: any;
+            export default value;
+        }`,
+        isBinary: false
+      },
+      "public/index.html": {
+        content: `<!DOCTYPE html>
+        <html lang="en">
+          <head>
+          <title>React App</title>
+          </head>
+          <body>
+            <noscript>You need to enable JavaScript to run this app.</noscript>
+            <div id="root"></div>
+          </body>
+        </html>`,
+        isBinary: false
+      }
   };
 
   if (currentExample.sandboxConfig) {
