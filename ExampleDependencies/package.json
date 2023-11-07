@@ -2,7 +2,7 @@
     "name": "scichart-example-dependencies",
     "description": "SciChart.JS Example Application Common Dependencies",
     "homepage": "https://www.scichart.com",
-    "version": "0.1.8",
+    "version": "0.1.7",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "keywords": [

@@ -102,7 +102,6 @@ hydrate( <App />, rootElement);
           "dom",
           "es2015"
       ],
-      "typeRoots": ["./src/types", "./node_modules/scichart-example-dependencies"],
       "jsx": "react-jsx"
   }
 }`,
@@ -115,7 +114,7 @@ hydrate( <App />, rootElement);
     "view": "browser"
 }`,
           isBinary: false
-      }
+      },
   };
 
   if (currentExample.sandboxConfig) {
