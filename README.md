@@ -31,6 +31,7 @@
 > This will walk you through the entire process of getting started in React, Vue, Angular or just pure JS and show you where tutorials and documentation are and examples.
 > 
 > Other useful links below:
+> - [Changelog for SciChart.js Library](https://www.scichart.com/changelog/scichart-js/)
 > - [Video Tutorials](https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2001%20-%20Setting%20up%20a%20Project%20with%20SciChart.js.html)
 > - [SciChart.js Documentation](https://www.scichart.com/documentation/js/current/webframe.html)
 > - [SciChart Community forums](https://scichart.com/questions)
