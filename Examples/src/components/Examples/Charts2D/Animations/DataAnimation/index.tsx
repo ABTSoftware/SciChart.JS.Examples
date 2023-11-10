@@ -69,16 +69,23 @@ const drawExample = async () => {
     });
     sciChartSurface.renderableSeries.add(scatterSeries);
 
+    // create a temp series for passing animation values
+    const animationSeries = new XyDataSeries(wasmContext);
+    // register this so it is deleted along with the main surface
+    sciChartSurface.addDeletable(animationSeries);
     // Update data using data animations
     const animateData = () => {
         xValues = Array.from({ length }, () => Math.random() * length);
         yValues = Array.from({ length }, () => Math.random() * length);
-
+        // Set the values on the temp series
+        animationSeries.clear();
+        animationSeries.appendRange(xValues, yValues);
         scatterSeries.runAnimation(
             new ScatterAnimation({
                 duration: 500,
                 ease: easing.outQuad,
-                dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
+                // Do not create a new DataSeries here or it will leak and eventually crash.
+                dataSeries: animationSeries
             })
         );
 

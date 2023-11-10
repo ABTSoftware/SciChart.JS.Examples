@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ApplicationWorkspace>
   <RecentItems>
+    <RecentItem Key="85747712-2b51-4065-9ca9-63bfba49d2d1.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
+      <HandlerName>TOPICS</HandlerName>
+      <Category>Topics</Category>
+    </RecentItem>
     <RecentItem Key="522bb84c-264c-4919-aa66-5f8272a72610.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
@@ -49,19 +53,7 @@
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
     </RecentItem>
-    <RecentItem Key="75d0e31e-cd96-48ff-9839-147ff01c093e.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
-      <HandlerName>TOPICS</HandlerName>
-      <Category>Topics</Category>
-    </RecentItem>
     <RecentItem Key="13f5705c-af26-4667-999f-6535e4e07b6c.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
-      <HandlerName>TOPICS</HandlerName>
-      <Category>Topics</Category>
-    </RecentItem>
-    <RecentItem Key="2f4ff3d0-8b4b-4ee5-8c51-2bc1be0634ff.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
-      <HandlerName>TOPICS</HandlerName>
-      <Category>Topics</Category>
-    </RecentItem>
-    <RecentItem Key="1bee1fdf-d198-451c-8224-a6a52f11ca7e.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
     </RecentItem>
