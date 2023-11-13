@@ -28,12 +28,12 @@ import {
     BasePaletteProvider,
     EStrokePaletteMode,
     EFillPaletteMode,
-    parseArgbToHtmlColor,
-} from 'scichart';
-import { appTheme } from 'scichart-example-dependencies';
-import { TDataEntry, getData, getRequestsNumberPerTimestamp } from './data-generation';
-import { TInitFunction } from './SciChart';
-import { TChartConfigResult } from './chart-configurations';
+    parseArgbToHtmlColor
+} from "scichart";
+import { appTheme } from "scichart-example-dependencies";
+import { TDataEntry, getData, getRequestsNumberPerTimestamp } from "./data-generation";
+import { TInitFunction } from "./SciChart";
+import { TChartConfigResult } from "./chart-configurations";
 
 export type TMainChartConfigFunc = TInitFunction<
     SciChartSurface,
@@ -44,20 +44,21 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
-        padding: Thickness.fromString('10 10 2 10'),
-        title: 'Number of requests for time period',
+        padding: Thickness.fromString("10 10 2 10"),
+        title: "Number of requests for time period",
         titleStyle: {
             placeWithinChart: true,
             fontSize: 16,
-        },
+            color: appTheme.ForegroundColor
+        }
     });
 
     const data = getData();
 
     const { xValues, yValues, groupedEntries } = getRequestsNumberPerTimestamp(data);
-    const metadata = groupedEntries.map((entries) => ({
+    const metadata = groupedEntries.map(entries => ({
         isSelected: false,
-        entries,
+        entries
     }));
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues,
@@ -65,23 +66,23 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         metadata,
         containsNaN: false,
         isSorted: true,
-        dataEvenlySpacedInX: true,
+        dataEvenlySpacedInX: true
     });
 
     let averageDurationThreshold = 1600;
 
     const getAverageDurationFromMetadata = (pointMetadata: IPointMetadata) => {
-        const { entries } = pointMetadata as (typeof metadata)[number];
+        const { entries } = pointMetadata as typeof metadata[number];
         const averageDuration = entries.reduce((acc, value) => acc + value.duration, 0) / entries.length;
         return Math.round(averageDuration);
     };
 
     const dataLabels: IDataLabelProviderOptions = {
-        color: appTheme.VividRed,
+        color: "#f6086c",
         style: {
-            fontFamily: 'Arial',
+            fontFamily: "Arial",
             fontSize: 14,
-            padding: Thickness.fromNumber(10),
+            padding: Thickness.fromNumber(10)
         },
         horizontalTextPosition: EHorizontalTextPosition.Center,
         verticalTextPosition: EVerticalTextPosition.Above,
@@ -89,15 +90,15 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         metaDataSelector: (pointMetadata: IPointMetadata) => {
             const averageDuration = getAverageDurationFromMetadata(pointMetadata);
             return averageDuration > averageDurationThreshold ? `${Math.round(averageDuration)}ms` : undefined;
-        },
+        }
     };
 
     class CustomPaletteProvider extends BasePaletteProvider implements IPointMarkerPaletteProvider {
         public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
         public readonly fillPaletteMode = EFillPaletteMode.GRADIENT;
 
-        private highlightedFill = parseColorToUIntArgb(appTheme.MutedRed);
-        private highlightedStroke = parseColorToUIntArgb(appTheme.VividRed);
+        private highlightedFill = parseColorToUIntArgb("#ae418d");
+        private highlightedStroke = parseColorToUIntArgb("#f6086c");
 
         public overrideStrokeArgb(
             xValue: number,
@@ -126,23 +127,28 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
 
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
-        axisTitle: 'Date Axis',
+        axisTitle: "Date Axis",
         axisTitleStyle: {
             fontSize: 20,
+            color: appTheme.ForegroundColor
         },
         visibleRangeLimit: dataSeries.getXRange(),
         labelFormat: ENumericFormat.Date_DDMM,
-        isInnerAxis: true,
-        useNativeText: true,
+        isInnerAxis: true
+        // useNativeText: true,
     });
     const yAxis = new NumericAxis(wasmContext, {
-        axisTitle: 'Requests',
+        axisTitle: "Requests",
         axisTitleStyle: {
             fontSize: 20,
+            color: appTheme.ForegroundColor
+        },
+        labelStyle: {
+            color: appTheme.ForegroundColor
         },
         visibleRangeLimit: new NumberRange(0, 1000),
         labelPrecision: 0,
-        useNativeText: true,
+        useNativeText: true
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -156,31 +162,34 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 8,
             height: 8,
-            fill: appTheme.VividSkyBlue,
+            stroke: "#0bf4cd",
+            fill: "#17243d",
             strokeThickness: 2,
-            opacity: 1,
+            opacity: 1
         }),
-        stroke: appTheme.VividGreen,
+        stroke: "#34c19c",
         strokeThickness: 2,
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-            { color: appTheme.VividTeal, offset: 0 },
-            { color: parseArgbToHtmlColor(parseColorToUIntArgb(appTheme.VividTeal, 250)), offset: 0.2 },
-            { color: parseArgbToHtmlColor(parseColorToUIntArgb(appTheme.VividTeal, 0)), offset: 1 },
+            { color: "#67bdaf", offset: 0 },
+            { color: "#223459 ", offset: 1 }
         ]),
-        paletteProvider,
+        paletteProvider
     });
 
     sciChartSurface.renderableSeries.add(mountainSeries);
 
     const cursorModifier = new CursorModifier({
-        id: 'TotalRequestsCursorModifier',
+        id: "TotalRequestsCursorModifier",
         showTooltip: false,
         showAxisLabels: true,
         // showXLine: false,
         showYLine: false,
         crosshairStrokeDashArray: [10, 20],
         crosshairStrokeThickness: 2,
-        tooltipLegendOffsetX: 100,
+        axisLabelFill: "#e8c667",
+        axisLabelStroke: "#0d1523",
+        tooltipContainerBackground: "#34c19c",
+        tooltipLegendOffsetX: 100
         // tooltipLegendTemplate: getTooltipLegendTemplate,
     });
 
@@ -193,7 +202,7 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         // Lines here are returned to the tooltip and displayed as text-line per tooltip
         const lines: string[] = [];
         // lines.push(tooltipTitle);
-        const metadataEntry = seriesInfo.pointMetadata as (typeof metadata)[number];
+        const metadataEntry = seriesInfo.pointMetadata as typeof metadata[number];
         const averageDuration = getAverageDurationFromMetadata(metadataEntry);
         lines.push(`Count: ${seriesInfo.formattedYValue}`);
         lines.push(`Avg. Time: ${averageDuration}ms`);
@@ -201,16 +210,16 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
     };
 
     const rolloverModifier = new RolloverModifier({
-        id: 'TotalRequestsRolloverModifier',
+        id: "TotalRequestsRolloverModifier",
         showTooltip: true,
         showRolloverLine: false,
-        tooltipDataTemplate: getTooltipDataTemplate,
+        tooltipDataTemplate: getTooltipDataTemplate
     });
     sciChartSurface.chartModifiers.add(
         cursorModifier,
         rolloverModifier,
         new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }),
-        new ZoomPanModifier({ id: 'ZoomPanModifier', xyDirection: EXyDirection.XDirection }),
+        new ZoomPanModifier({ id: "ZoomPanModifier", xyDirection: EXyDirection.XDirection }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection })
     );
 

@@ -53,9 +53,12 @@ export const overviewOptions: IOverviewOptions = {
             dataSeries: renderableSeries.dataSeries,
             stroke: appTheme.MutedPink,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(1, 1), [
-                { color: appTheme.MutedPurple, offset: 0 },
-                { color: appTheme.MutedBlue, offset: 0.5 },
-                { color: appTheme.MutedOrange, offset: 1 },
+                { color: "#47bde6", offset: 0 },
+                { color: "#8166a2", offset: 0.2 },
+                { color: "#21a0d8", offset: 0.4 },
+                { color: "#68bcae", offset: 0.6 },
+                { color: "#ae418d", offset: 0.8 },
+                { color: "#e97064", offset: 1 },
             ]),
         });
 

@@ -32,14 +32,14 @@ import {
     SeriesSelectionModifier,
     HoveredChangedArgs,
     DataPointSelectionChangedArgs,
-    IPieSegment,
-} from 'scichart';
-import { CN, IN, US, JP, DE, GB, FR, BR, CA, AU } from 'country-flag-icons/string/3x2';
-import { appTheme } from 'scichart-example-dependencies';
-import { TDataEntry, availableLocations, getData, getRequestsNumberPerLocation } from './data-generation';
-import { TChartConfigFunc, TChartConfigResult } from './chart-configurations';
-import { TTextureObject } from 'scichart/Charting/Visuals/TextureManager/TextureManager';
-import { TInitFunction } from './SciChart';
+    IPieSegment
+} from "scichart";
+import { CN, IN, US, JP, DE, GB, FR, BR, CA, AU } from "country-flag-icons/string/3x2";
+import { appTheme } from "scichart-example-dependencies";
+import { TDataEntry, availableLocations, getData, getRequestsNumberPerLocation } from "./data-generation";
+import { TChartConfigFunc, TChartConfigResult } from "./chart-configurations";
+import { TTextureObject } from "scichart/Charting/Visuals/TextureManager/TextureManager";
+import { TInitFunction } from "./SciChart";
 
 type TCustomMetadata = IPointMetadata & {
     isHovered: boolean;
@@ -47,12 +47,12 @@ type TCustomMetadata = IPointMetadata & {
 
 const createImageFromSvgString = async (svg: string) => {
     return new Promise<HTMLImageElement>((resolve, reject) => {
-        let blob = new Blob([svg], { type: 'image/svg+xml' });
+        let blob = new Blob([svg], { type: "image/svg+xml" });
         let url = URL.createObjectURL(blob);
-        let image = document.createElement('img');
+        let image = document.createElement("img");
         image.src = url;
         image.addEventListener(
-            'load',
+            "load",
             () => {
                 URL.revokeObjectURL(url);
                 resolve(image);
@@ -63,7 +63,7 @@ const createImageFromSvgString = async (svg: string) => {
 };
 
 const getIcons = () => {
-    const icons = [CN, IN, US, JP, DE, GB, FR, BR, CA, AU].map(async (svg) => {
+    const icons = [CN, IN, US, JP, DE, GB, FR, BR, CA, AU].map(async svg => {
         const icon = createImageFromSvgString(svg);
 
         return icon;
@@ -73,28 +73,28 @@ const getIcons = () => {
 };
 
 const regionFillColors = [
-    '#FF0000',
-    '#FF7E00',
-    '#0052CC',
-    '#D32F2F',
-    '#006400',
-    '#3333FF',
-    '#0055A4',
-    '#00A859',
-    '#FF007E',
-    '#FFD700',
+    "#c43360",
+    "#47bde6",
+    "#ae418d",
+    "#34c19c",
+    "#e97064",
+    "#274b92",
+    "#634e96",
+    "#0bdef4",
+    "#f6086c",
+    "#68bcae"
 ];
 const regionStrokeColors = [
-    '#FF0000',
-    '#FF7E00',
-    '#0052CC',
-    '#D32F2F',
-    '#006400',
-    '#3333FF',
-    '#0055A4',
-    '#00A859',
-    '#FF007E',
-    '#FFD700',
+    "#c43360",
+    "#47bde6",
+    "#ae418d",
+    "#34c19c",
+    "#e97064",
+    "#274b92",
+    "#634e96",
+    "#0bdef4",
+    "#f6086c",
+    "#68bcae"
 ];
 
 class CustomColumnPaletteProvider extends BasePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
@@ -137,7 +137,7 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
 
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
-        disableAspect: true,
+        disableAspect: true
     });
 
     // Create an X,Y Axis and add to the chart
@@ -146,7 +146,7 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
         // visibleRangeLimit: new NumberRange(0, availableLocations.length),
         growBy: new NumberRange(0.1, 0.1),
         autoTicks: false,
-        majorDelta: 1,
+        majorDelta: 1
     });
 
     // Required to stop these country textures showing up on other charts
@@ -163,16 +163,20 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
                 return textureManager.createTextureFromImage(icon, 30, 20);
             }
         }
-        return textureManager.createTextTexture([''], labelStyle);
+        return textureManager.createTextTexture([""], labelStyle);
     };
 
     const yAxis = new NumericAxis(wasmContext, {
-        axisTitle: 'Requests per location',
+        axisTitle: "Requests",
         axisTitleStyle: {
             fontSize: 18,
+            color: appTheme.ForegroundColor
+        },
+        labelStyle: {
+            color: appTheme.ForegroundColor
         },
         labelPrecision: 0,
-        growBy: new NumberRange(0.05, 0.25),
+        growBy: new NumberRange(0.05, 0.25)
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -188,7 +192,7 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
         metadata: xValues.map(() => ({ isSelected: false, isHovered: false })),
         containsNaN: false,
         isSorted: true,
-        dataEvenlySpacedInX: true,
+        dataEvenlySpacedInX: true
     });
 
     // filtered per location
@@ -198,23 +202,23 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
         stroke: AUTO_COLOR,
         paletteProvider: new CustomColumnPaletteProvider(),
         strokeThickness: 2,
-        opacity: 0.4,
+        opacity: 0.6,
         dataLabels: {
             precision: 0,
             style: {
-                padding: Thickness.fromString('6 0 6 0'),
-                fontFamily: 'Arial',
-                fontSize: 18,
+                padding: Thickness.fromString("6 0 6 0"),
+                fontFamily: "Arial",
+                fontSize: 18
             },
-            color: appTheme.ForegroundColor,
+            color: appTheme.ForegroundColor
         },
-        animation: new WaveAnimation({ duration: 1000, fadeEffect: false }),
+        animation: new WaveAnimation({ duration: 1000, fadeEffect: false })
     });
     sciChartSurface.renderableSeries.add(rendSeries);
 
     const dataPointSelectionModifier = new DataPointSelectionModifier({
-        id: 'DataPointSelectionModifier',
-        allowDragSelect: false,
+        id: "DataPointSelectionModifier",
+        allowDragSelect: false
     });
 
     let lastSelectedDataPointIndex = -1;
@@ -237,7 +241,7 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
     const seriesSelectionModifier = new SeriesSelectionModifier({
         enableHover: true,
         enableSelection: false,
-        onHoverChanged,
+        onHoverChanged
     });
     sciChartSurface.chartModifiers.add(dataPointSelectionModifier, seriesSelectionModifier);
 
@@ -273,7 +277,7 @@ export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElem
         seriesSpacing: 1,
         showLegend: false,
         showLegendSeriesMarkers: true,
-        animateLegend: true,
+        animateLegend: true
     });
     sciChartPieSurface.labelRadiusAdjustment = 1.7;
     // Optional placement of legend
@@ -287,14 +291,14 @@ export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElem
     const dataset = requestsPerLocation.xValues.map((value, index) => {
         return {
             name: availableLocations[index],
-            percent: (requestsPerLocation.yValues[index] * 100) / totalRequests,
+            percent: (requestsPerLocation.yValues[index] * 100) / totalRequests
         };
     });
 
     // Colors are just hex strings, supporting #FFFFFF (RBG) or 8-digit with RGBA or CSS color strings e.g. rgba()
     const colors = dataset.map((_, index) => ({
         color1: regionFillColors[index],
-        color2: regionStrokeColors[index],
+        color2: regionStrokeColors[index]
     }));
 
     // Optional Relative radius adjustment per segment
@@ -310,8 +314,8 @@ export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElem
             showLabel: true,
             colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: color1, offset: 0 },
-                { color: (color2 ?? color1) + '77', offset: 1 },
-            ]),
+                { color: (color2 ?? color1) + "77", offset: 1 }
+            ])
         });
     };
 

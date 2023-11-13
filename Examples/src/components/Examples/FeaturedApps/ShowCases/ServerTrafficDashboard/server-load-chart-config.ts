@@ -24,12 +24,14 @@ import {
     chartBuilder,
     ELegendOrientation,
     TCheckedChangedArgs,
-} from 'scichart';
-import { appTheme } from 'scichart-example-dependencies';
-import { GridLayoutModifier } from './GridLayoutModifier';
-import { getData, TDataEntry, availableServers, getRequestsNumberPerTimestamp } from './data-generation';
-import { TChartConfigResult, tooltipDataTemplateKey } from './chart-configurations';
-import { TInitFunction } from './SciChart';
+    GradientParams,
+    Point
+} from "scichart";
+import { appTheme } from "scichart-example-dependencies";
+import { GridLayoutModifier } from "./GridLayoutModifier";
+import { getData, TDataEntry, availableServers, getRequestsNumberPerTimestamp } from "./data-generation";
+import { TChartConfigResult, tooltipDataTemplateKey } from "./chart-configurations";
+import { TInitFunction } from "./SciChart";
 
 export type TServerStatsChartConfigFuncResult = TChartConfigResult<SciChartSurface> & {
     subscribeToServerSelection: (callback: (server: string, isChecked: boolean) => void) => void;
@@ -42,26 +44,31 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
         padding: Thickness.fromNumber(10),
-        title: 'Server Load',
+        title: "Server Load",
         titleStyle: {
             useNativeText: true,
-            padding: Thickness.fromString('15 0 0 0'),
+            padding: Thickness.fromString("15 0 0 0"),
             fontSize: 20,
-        },
+            color: appTheme.ForegroundColor
+        }
     });
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
-        labelFormat: ENumericFormat.Date_DDMM,
-        useNativeText: true,
+        labelFormat: ENumericFormat.Date_DDMM
+        // useNativeText: true,
     });
 
     const yAxis = new NumericAxis(wasmContext, {
         labelPrecision: 0,
-        axisTitle: 'Requests',
+        axisTitle: "Requests",
         axisTitleStyle: {
             fontSize: 20,
+            color: appTheme.ForegroundColor
         },
-        useNativeText: true,
+        labelStyle: {
+            color: appTheme.ForegroundColor
+        },
+        useNativeText: true
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -72,10 +79,10 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
     // const stackedColumnCollection = new StackedColumnCollection(wasmContext);
 
     // filtered per server
-    const filter = (data: TDataEntry[], server: string) => data.filter((entry) => entry.server === server);
+    const filter = (data: TDataEntry[], server: string) => data.filter(entry => entry.server === server);
 
-    const seriesFillColors = [appTheme.MutedPink, appTheme.MutedOrange, appTheme.MutedPurple, appTheme.MutedTeal];
-    const seriesStrokeColors = [appTheme.VividPink, appTheme.VividOrange, appTheme.VividPurple, appTheme.VividTeal];
+    const seriesFillColors = ["#f6086c", "#9002a1", "#47bde6", "#34c19c"];
+    const seriesStrokeColors = ["#f6086c", "#9002a1", "#47bde6", "#34c19c"];
 
     availableServers.forEach((server, index) => {
         const pageData = filter(data, server);
@@ -84,14 +91,14 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
             containsNaN: false,
             dataEvenlySpacedInX: true,
             isSorted: true,
-            ...getRequestsNumberPerTimestamp(pageData),
+            ...getRequestsNumberPerTimestamp(pageData)
         });
 
         const rendSeries = new FastMountainRenderableSeries(wasmContext, {
             dataSeries,
             fill: seriesFillColors[index],
-            stroke: seriesStrokeColors[index],
-            strokeThickness: 2,
+            stroke: seriesStrokeColors[index] + "AA",
+            strokeThickness: 4,
             opacity: 0.5,
             pointMarker: new EllipsePointMarker(wasmContext, {
                 fill: appTheme.Indigo,
@@ -99,9 +106,9 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
                 opacity: 0,
                 width: 10,
                 height: 10,
-                strokeThickness: 1,
+                strokeThickness: 1
             }),
-            animation: new WaveAnimation({ duration: 1000, fadeEffect: true }),
+            animation: new WaveAnimation({ duration: 1000, fadeEffect: true })
         });
         sciChartSurface.renderableSeries.add(rendSeries);
     });
@@ -111,34 +118,37 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
     const seriesSelectionModifier = new SeriesSelectionModifier({
         enableHover: true,
         enableSelection: true,
-        onHoverChanged: 'onServerHoverChanged',
-        onSelectionChanged: 'onServerSelectionChanged',
+        onHoverChanged: "onServerHoverChanged",
+        onSelectionChanged: "onServerSelectionChanged"
     });
 
     const legendModifier = new LegendModifier({
-        id: 'LegendModifier',
+        id: "LegendModifier",
         orientation: ELegendOrientation.Horizontal,
         placement: ELegendPlacement.TopRight,
         showCheckboxes: true,
+        backgroundColor: "#0d1523"
     });
 
     const rolloverModifier = new RolloverModifier({
-        id: 'ServerLoadCursorModifier',
+        id: "ServerLoadCursorModifier",
         tooltipDataTemplate: tooltipDataTemplateKey,
         showTooltip: true,
         snapToDataPoint: true
-    })
+    });
     rolloverModifier.rolloverLineAnnotation.showLabel = true;
+    rolloverModifier.rolloverLineAnnotation.axisLabelFill = "#e8c667";
+    rolloverModifier.rolloverLineAnnotation.axisLabelStroke = "#0d1523";
     sciChartSurface.chartModifiers.add(
         seriesSelectionModifier,
         legendModifier,
         new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }),
         new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
-        rolloverModifier  
+        rolloverModifier
     );
 
-    const glm = new GridLayoutModifier({ id: 'GridLayoutModifier' });
+    const glm = new GridLayoutModifier({ id: "GridLayoutModifier" });
     sciChartSurface.chartModifiers.add(glm);
 
     sciChartSurface.zoomExtentsX();
@@ -174,11 +184,10 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
     return { sciChartSurface, updateData, subscribeToServerSelection };
 };
 
-
-
 const onSelectionChanged = (args: SelectionChangedArgs) => {
-    args.allSeries.forEach((series) => {
+    args.allSeries.forEach(series => {
         if (series.isSelected) {
+            console.log("onSelectionChanged")
             series.pointMarker.opacity = series.opacity;
         } else {
             series.pointMarker.opacity = 0;
@@ -189,7 +198,7 @@ const onSelectionChanged = (args: SelectionChangedArgs) => {
 const onHoverChanged = (args: HoveredChangedArgs) => {
     const sciChartSurface = args.source.parentSurface;
     const hoverAnimationDuration = 500;
-    args.allSeries.forEach((series) => {
+    args.allSeries.forEach(series => {
         if (series.isHovered) {
             sciChartSurface.addAnimation(
                 new GenericAnimation({
@@ -202,7 +211,7 @@ const onHoverChanged = (args: HoveredChangedArgs) => {
                         if (series.isSelected) {
                             series.pointMarker.opacity = opacity;
                         }
-                    },
+                    }
                 })
             );
 
@@ -219,7 +228,7 @@ const onHoverChanged = (args: HoveredChangedArgs) => {
                         if (series.isSelected) {
                             series.pointMarker.opacity = opacity;
                         }
-                    },
+                    }
                 })
             );
             series.strokeThickness = 2;
@@ -235,7 +244,7 @@ const onHoverChanged = (args: HoveredChangedArgs) => {
                         if (series.isSelected) {
                             series.pointMarker.opacity = opacity;
                         }
-                    },
+                    }
                 })
             );
             series.strokeThickness = 2;
@@ -243,5 +252,5 @@ const onHoverChanged = (args: HoveredChangedArgs) => {
     });
 };
 
-chartBuilder.registerFunction(EBaseType.OptionFunction, 'onServerSelectionChanged', onSelectionChanged);
-chartBuilder.registerFunction(EBaseType.OptionFunction, 'onServerHoverChanged', onHoverChanged);
+chartBuilder.registerFunction(EBaseType.OptionFunction, "onServerSelectionChanged", onSelectionChanged);
+chartBuilder.registerFunction(EBaseType.OptionFunction, "onServerHoverChanged", onHoverChanged);

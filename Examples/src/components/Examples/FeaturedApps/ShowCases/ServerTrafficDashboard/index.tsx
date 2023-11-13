@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { CSSProperties, ChangeEventHandler, MouseEventHandler, useEffect, useRef, useState } from 'react';
-import { appTheme } from 'scichart-example-dependencies/lib/theme';
+import * as React from "react";
+import { CSSProperties, ChangeEventHandler, MouseEventHandler, useEffect, useRef, useState } from "react";
+import { appTheme } from "scichart-example-dependencies/lib/theme";
 import classes from "../../../styles/Examples.module.scss";
-import SciChart from './SciChart';
-import { TChartConfigResult, synchronizeXVisibleRanges } from './chart-configurations';
+import SciChart from "./SciChart";
+import { TChartConfigResult, synchronizeXVisibleRanges } from "./chart-configurations";
 import {
     ChartModifierBase2D,
     MemoryUsageHelper,
@@ -12,18 +12,18 @@ import {
     SciChartPieSurface,
     SciChartSubSurface,
     SciChartSurface,
-    easing,
-} from 'scichart';
-import { GridLayoutModifier } from './GridLayoutModifier';
-import { ModifierGroup } from './ModifierGroup';
-import { createChart5, createChart3, TLocationStatsChartConfigFuncResult } from './region-statistic-charts';
-import { createChart1 } from './main-chart-config';
-import { TPageStatsConfigFuncResult, createChart2 } from './page-statistics-chart-config';
-import { TServerStatsChartConfigFuncResult, createChart4 } from './server-load-chart-config';
-import { TDataEntry, availableLocations, getData } from './data-generation';
-import Overview, { overviewOptions } from './Overview';
-import DashboardOverlay from './DashboardOverlay';
-import ThresholdSlider from './ThresholdSlider';
+    easing
+} from "scichart";
+import { GridLayoutModifier } from "./GridLayoutModifier";
+import { ModifierGroup } from "./ModifierGroup";
+import { createChart5, createChart3, TLocationStatsChartConfigFuncResult } from "./region-statistic-charts";
+import { createChart1 } from "./main-chart-config";
+import { TPageStatsConfigFuncResult, createChart2 } from "./page-statistics-chart-config";
+import { TServerStatsChartConfigFuncResult, createChart4 } from "./server-load-chart-config";
+import { TDataEntry, availableLocations, getData } from "./data-generation";
+import Overview, { overviewOptions } from "./Overview";
+import DashboardOverlay from "./DashboardOverlay";
+import ThresholdSlider from "./ThresholdSlider";
 
 function ServerTrafficDashboard() {
     const [isVisibleRangeSynced, setIsVisibleRangeSynced] = useState(true);
@@ -57,7 +57,7 @@ function ServerTrafficDashboard() {
                 [
                     mainChartRef.current.sciChartSurface,
                     pageStatisticChartRef.current.sciChartSurface,
-                    serverLoadChartRef.current.sciChartSurface,
+                    serverLoadChartRef.current.sciChartSurface
                 ],
                 () => isVisibleRangeSyncedRef.current
             );
@@ -80,7 +80,7 @@ function ServerTrafficDashboard() {
                 const currentRange = mainXAxis.visibleRange;
 
                 const dataFilteredByTime = currentData.filter(
-                    (entry) => entry.timestamp >= currentRange.min && entry.timestamp <= currentRange.max
+                    entry => entry.timestamp >= currentRange.min && entry.timestamp <= currentRange.max
                 );
                 const dataFilteredForLocationStats = dataFilteredByTime.filter(serverFilter);
                 locationStatisticChartRef.current.updateData(dataFilteredForLocationStats);
@@ -103,7 +103,7 @@ function ServerTrafficDashboard() {
                 updateLocationStats();
             };
 
-            mainXAxis.visibleRangeChanged.subscribe((args) => {
+            mainXAxis.visibleRangeChanged.subscribe(args => {
                 // filter location stats by visible range
                 updateLocationStats();
             });
@@ -121,7 +121,7 @@ function ServerTrafficDashboard() {
                 });
 
                 // filter data  by location
-                locationStatisticChartRef.current.subscribeToLocationSelection((location) => {
+                locationStatisticChartRef.current.subscribeToLocationSelection(location => {
                     selectedLocations.clear();
                     if (location) {
                         selectedLocations.add(location);
@@ -141,24 +141,24 @@ function ServerTrafficDashboard() {
         };
     }, []);
 
-    const handleSyncVisibleRangeChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleSyncVisibleRangeChange: ChangeEventHandler<HTMLInputElement> = e => {
         isVisibleRangeSyncedRef.current = !isVisibleRangeSynced;
         setIsVisibleRangeSynced(!isVisibleRangeSynced);
     };
 
-    const handleUsePercentage: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleUsePercentage: ChangeEventHandler<HTMLInputElement> = e => {
         pageStatisticChartRef.current.toggleIsHundredPercent();
         setIsHundredPercentCollection(!isHundredPercentCollection);
     };
 
-    const handleUseGridLayout: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleUseGridLayout: ChangeEventHandler<HTMLInputElement> = e => {
         gridLayoutModifierRef.current.isGrid = !isGridLayout;
         const subCharts = serverLoadChartRef.current.sciChartSurface.subCharts;
 
         if (!isGridLayout) {
             subCharts.forEach((subChart: SciChartSubSurface) => {
                 const rolloverModifier = subChart.chartModifiers.getById(
-                    'ServerLoadCursorModifier'
+                    "ServerLoadCursorModifier"
                 ) as RolloverModifier;
                 modifierGroup.add(rolloverModifier);
             });
@@ -169,7 +169,7 @@ function ServerTrafficDashboard() {
         } else {
             subCharts.forEach((subChart: SciChartSubSurface) => {
                 const rolloverModifier = subChart.chartModifiers.getById(
-                    'ServerLoadCursorModifier'
+                    "ServerLoadCursorModifier"
                 ) as RolloverModifier;
                 modifierGroup.remove(rolloverModifier);
             });
@@ -179,44 +179,47 @@ function ServerTrafficDashboard() {
     };
 
     return (
-        <div className={classes.ChartWrapper} style={{ backgroundColor: '#242529' }}>
+        <div className={classes.ChartWrapper} style={{ backgroundColor: "#242529" }}>
             {chartsAreInitialized ? null : <DashboardOverlay />}
             <div style={gridStyle}>
                 <div
                     style={{
-                        gridArea: '1 / 1 / 2 / 2',
+                        gridArea: "1 / 1 / 2 / 2",
                         color: appTheme.ForegroundColor,
                         zIndex: 2,
-                        justifySelf: 'start',
-                        alignSelf: 'start',
+                        justifySelf: "start",
+                        alignSelf: "start",
                         marginTop: 10,
-                        marginLeft: 10,
+                        marginLeft: 10
                     }}
                 >
                     <input
-                        type='checkbox'
+                        type="checkbox"
                         checked={isVisibleRangeSynced}
                         onChange={handleSyncVisibleRangeChange}
-                        value='Sync X Axis visible range'
+                        value="Sync X Axis visible range"
+                        style={{ color: "#17243d", accentColor: "#0bdef4", marginRight: 4 }}
                     ></input>
                     Sync X Axis visible range
                 </div>
                 <div style={hundredPercentCheckboxStyle}>
                     <input
-                        type='checkbox'
+                        type="checkbox"
                         checked={isHundredPercentCollection}
                         onChange={handleUsePercentage}
-                        value='is 100% collection'
+                        value="is 100% collection"
+                        style={{ color: "#17243d", accentColor: "#0bdef4", marginRight: 4 }}
                     ></input>
                     is 100% collection
                 </div>
 
                 <div style={toggleGridLayoutCheckboxStyle}>
                     <input
-                        type='checkbox'
+                        type="checkbox"
                         checked={isGridLayout}
                         onChange={handleUseGridLayout}
-                        value='is Grid Layout'
+                        value="is Grid Layout"
+                        style={{ color: "#17243d", accentColor: "#0bdef4", marginRight: 4 }}
                     ></input>
                     is Grid Layout
                 </div>
@@ -228,8 +231,8 @@ function ServerTrafficDashboard() {
                         setIsChartInitialized1(true);
 
                         const sciChartSurface = initResult.sciChartSurface;
-                        const modifier = sciChartSurface.chartModifiers.getById('TotalRequestsCursorModifier');
-                        const rollover = sciChartSurface.chartModifiers.getById('TotalRequestsRolloverModifier');
+                        const modifier = sciChartSurface.chartModifiers.getById("TotalRequestsCursorModifier");
+                        const rollover = sciChartSurface.chartModifiers.getById("TotalRequestsRolloverModifier");
                         modifierGroup.add(modifier as ChartModifierBase2D, rollover as ChartModifierBase2D);
                     }}
                     style={mainChartStyle}
@@ -253,7 +256,7 @@ function ServerTrafficDashboard() {
                         setIsChartInitialized2(true);
 
                         const modifier = sciChartSurface.chartModifiers.getById(
-                            'PageStatisticsRolloverModifier'
+                            "PageStatisticsRolloverModifier"
                         ) as ChartModifierBase2D;
                         modifierGroup.add(modifier);
                     }}
@@ -268,11 +271,11 @@ function ServerTrafficDashboard() {
                         const sciChartSurface = initResult.sciChartSurface;
 
                         gridLayoutModifierRef.current = sciChartSurface.chartModifiers.getById(
-                            'GridLayoutModifier'
+                            "GridLayoutModifier"
                         ) as GridLayoutModifier;
 
                         const modifier = (sciChartSurface as SciChartSurface).chartModifiers.getById(
-                            'ServerLoadCursorModifier'
+                            "ServerLoadCursorModifier"
                         ) as ChartModifierBase2D;
                         modifierGroup.add(modifier);
                     }}
@@ -304,68 +307,68 @@ function ServerTrafficDashboard() {
 }
 
 const gridStyle: React.CSSProperties = {
-    boxSizing: 'border-box',
-    padding: '0.5em',
-    height: '100%',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '0.2em',
-    gridTemplateRows: 'repeat(8, 1fr)',
+    boxSizing: "border-box",
+    padding: "0.5em",
+    height: "100%",
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gap: "0.2em",
+    gridTemplateRows: "repeat(8, 1fr)"
 };
 
 const mainChartStyle: CSSProperties = {
-    gridRow: '1 / 4',
-    gridColumn: '1/-1',
-    position: 'relative',
+    gridRow: "1 / 4",
+    gridColumn: "1/-1",
+    position: "relative"
 };
 
 const innerContainerProps = {
     style: {
-        height: '80%',
-    },
+        height: "80%"
+    }
 };
 
 const overviewStyle = {
-    height: '20%',
+    height: "20%"
 };
 
 const pageChartStyle = {
-    gridRow: '4 / 8',
-    gridColumn: '1 / 3',
+    gridRow: "4 / 8",
+    gridColumn: "1 / 3"
 };
 
 const serverChartStyle = {
-    gridRow: '4 / 8',
-    gridColumn: '3 / -1',
+    gridRow: "4 / 8",
+    gridColumn: "3 / -1"
 };
 
 const columnChartStyle = {
-    gridRow: '8 / -1',
-    gridColumn: 'span 3',
+    gridRow: "8 / -1",
+    gridColumn: "span 3"
 };
 const pieChartStyle = {
-    gridRow: '8 / -1',
-    gridColumn: 'span 1',
+    gridRow: "8 / -1",
+    gridColumn: "span 1"
 };
 
 const hundredPercentCheckboxStyle: CSSProperties = {
-    gridArea: '4 / 1 / 5 / 3',
+    gridArea: "4 / 1 / 5 / 3",
     color: appTheme.ForegroundColor,
     zIndex: 2,
-    justifySelf: 'start',
-    alignSelf: 'start',
+    justifySelf: "start",
+    alignSelf: "start",
     marginTop: 10,
-    marginLeft: 10,
+    marginLeft: 10
 };
 
 const toggleGridLayoutCheckboxStyle: CSSProperties = {
-    gridArea: '4 / 3 / 5 / 3',
-    justifySelf: 'start',
-    alignSelf: 'start',
+    gridArea: "4 / 3 / 5 / 3",
+    justifySelf: "start",
+    alignSelf: "start",
     marginTop: 10,
     marginLeft: 10,
     color: appTheme.ForegroundColor,
-    zIndex: 2,
+    zIndex: 2
 };
 
 export default ServerTrafficDashboard;
