@@ -42,7 +42,7 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
         "package.json": {
             // @ts-ignore
             content: {
-                name: currentExample.title,
+                name: currentExample.path.replace("/", ""),
                 version: "1.0.0",
                 main: "src/index.tsx",
                 scripts: {
@@ -54,19 +54,20 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
                 dependencies: {
                     "@material-ui/core": "4.12.4",
                     "@material-ui/lab": "4.0.0-alpha.61",
+                    "sass": "^1.49.9",
                     "loader-utils": "3.2.1",
-                    "react": "18.2.0",
-                    "react-dom": "18.2.0",
+                    "react": "^17.0.2",
+                    "react-dom": "^17.0.2",
                     "react-scripts": "5.0.1",
                     scichart: pj.dependencies.scichart,
                     "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
                     ...currentExample.extraDependencies
                 },
                 devDependencies: {
-                    "@types/react": "18.0.25",
+                    "@types/react": "^17.0.52",
                     "@types/react-dom": "18.0.9",
                     "@babel/runtime": "7.13.8",
-                    typescript: "4.4.2"
+                    "typescript": "4.9.5"
                 },
                 browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
             }
@@ -76,21 +77,16 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
             isBinary: false
         },
         "src/index.tsx": {
-            content: `import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+            content: `
+            import { hydrate } from "react-dom";
 import { SciChartSurface, SciChart3DSurface } from "scichart";
 
 import App from "./App";
 
 const rootElement = document.getElementById("root");
-const root = createRoot(rootElement!);
 SciChartSurface.useWasmFromCDN();
 SciChart3DSurface.useWasmFromCDN();
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+hydrate( <App />, rootElement);
 `,
             isBinary: false
         },
@@ -102,10 +98,13 @@ root.render(
   "compilerOptions": {
       "strict": false,
       "esModuleInterop": true,
+      "target": "es5",
+      "downlevelIteration": true,
       "lib": [
           "dom",
           "es2015"
       ],
+      "typeRoots": ["./src/types", "./node_modules/@types"],
       "jsx": "react-jsx"
   }
 }`,
@@ -119,6 +118,47 @@ root.render(
 }`,
           isBinary: false
       },
+      "src/types/declaration.d.ts": {
+        content: `declare module "*.scss" {
+            const content: Record<string, string>;
+            export default content;
+        }`,
+        isBinary: false
+      },
+      "src/types/jpg.d.ts": {
+        content: `declare module "*.jpg" {
+            const value: any;
+            export default value;
+        }`,
+        isBinary: false
+      },
+      "src/types/png.d.ts": {
+        content: `declare module "*.png" {
+            const value: any;
+            export default value;
+        } `,
+        isBinary: false
+      },
+      "src/types/svg.d.ts": {
+        content: `declare module "*.svg" {
+            const value: any;
+            export default value;
+        }`,
+        isBinary: false
+      },
+      "public/index.html": {
+        content: `<!DOCTYPE html>
+        <html lang="en">
+          <head>
+          <title>React App</title>
+          </head>
+          <body>
+            <noscript>You need to enable JavaScript to run this app.</noscript>
+            <div id="root"></div>
+          </body>
+        </html>`,
+        isBinary: false
+      }
   };
 
   if (currentExample.sandboxConfig) {

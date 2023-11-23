@@ -49,7 +49,7 @@ export const createChart2: TPageStatsChartConfigFunc = async (divElementId: stri
             fontSize: 20,
         },
     });
-
+    sciChartSurface.renderNativeAxisLabelsImmediately = true;
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
         labelFormat: ENumericFormat.Date_DDMM,

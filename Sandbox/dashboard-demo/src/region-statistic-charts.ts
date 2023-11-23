@@ -32,6 +32,8 @@ import {
     SeriesSelectionModifier,
     HoveredChangedArgs,
     DataPointSelectionChangedArgs,
+    PieLabelProvider,
+    IPieSegment
 } from 'scichart';
 import { CN, IN, US, JP, DE, GB, FR, BR, CA, AU } from 'country-flag-icons/string/3x2';
 import { appTheme } from 'scichart-example-dependencies';
@@ -80,7 +82,7 @@ const regionFillColors = [
     '#3333FF',
     '#0055A4',
     '#00A859',
-    '#FF0000',
+    '#FF007E',
     '#FFD700',
 ];
 const regionStrokeColors = [
@@ -92,7 +94,7 @@ const regionStrokeColors = [
     '#3333FF',
     '#0055A4',
     '#00A859',
-    '#FF0000',
+    '#FF007E',
     '#FFD700',
 ];
 
@@ -268,13 +270,15 @@ export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElem
         pieType: EPieType.Pie,
         animate: true,
         seriesSpacing: 1,
-        showLegend: true,
+        showLegend: false,
         showLegendSeriesMarkers: true,
         animateLegend: true,
     });
+    sciChartPieSurface.labelRadiusAdjustment = 1.5
     // Optional placement of legend
-    sciChartPieSurface.legend.orientation = ELegendOrientation.Vertical;
-    sciChartPieSurface.legend.placement = ELegendPlacement.BottomRight;
+    //sciChartPieSurface.legend.orientation = ELegendOrientation.Vertical;
+    //sciChartPieSurface.legend.placement = ELegendPlacement.BottomRight;
+    
     const data = getData();
 
     const requestsPerLocation = getRequestsNumberPerLocation(data);
@@ -295,18 +299,21 @@ export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElem
 
     // Optional Relative radius adjustment per segment
     const radiusSize = [1, 0.9, 0.95, 0.9, 0.85, 0.85, 0.85, 0.9, 0.9, 0.9, 0.95, 0.95, 0.95, 0.95, 0.95];
+    sciChartPieSurface.labelProvider.getSegmentText = (segment: IPieSegment, total) =>
+        `<span>${segment.text}<span><span> ${segment.getPercentage(total).toFixed(1)}%</span>`;
 
     const toPieSegment = (name: string, value: number, radiusAdjustment: number, color1: string, color2?: string) => {
         return new PieSegment({
             value,
             text: name,
-            labelStyle: { color: appTheme.ForegroundColor, fontSize: 18 },
+            labelStyle: { color: appTheme.ForegroundColor, fontSize: 12 },
             radiusAdjustment,
             showLabel: value > 2,
             colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: color1, offset: 0 },
                 { color: (color2 ?? color1) + '77', offset: 1 },
             ]),
+
         });
     };
 

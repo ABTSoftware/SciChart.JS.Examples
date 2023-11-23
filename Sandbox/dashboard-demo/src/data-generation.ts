@@ -7,7 +7,22 @@ export interface TDataEntry {
 }
 
 export const availablePages = ['Signup', 'Login', 'Signout', 'Content'];
+const pageDistribution = [
+    'Signup',
+    'Login',
+    'Login',
+    'Login',
+    'Signout',
+    'Signout',
+    'Content',
+    'Content',
+    'Content',
+    'Content',
+    'Content',
+    'Content',
+];
 export const availableLocations = ['CN', 'IN', 'US', 'JP', 'DE', 'GB', 'FR', 'BR', 'CA', 'AU'];
+const locationDistribution = ['CN', 'CN', 'IN', 'US', 'US', 'US', 'US', 'JP', 'DE', 'GB', 'GB', 'FR', 'BR', 'CA', 'AU'];
 export const availableServers = ['server0', 'server1', 'server2', 'server3'];
 
 function generateTimestampRange(daysAgo: number, numberOfDays: number) {

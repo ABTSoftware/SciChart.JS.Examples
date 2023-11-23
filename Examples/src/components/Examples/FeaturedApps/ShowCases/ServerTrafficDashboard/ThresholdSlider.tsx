@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
-import { SurfaceContext } from './SurfaceContext';
-import { appTheme } from 'scichart-example-dependencies';
-import { Rect } from 'scichart';
-import { TMainChartConfigFunc } from './main-chart-config';
+import { useContext, useEffect, useState } from "react";
+import { SurfaceContext } from "./SurfaceContext";
+import { appTheme } from "scichart-example-dependencies";
+import { Rect } from "scichart";
+import { TMainChartConfigFunc } from "./main-chart-config";
 
 const ThresholdSlider = () => {
     // get reference to chart init result
@@ -32,8 +32,8 @@ const ThresholdSlider = () => {
         };
     }, [context]);
 
-    const [width, setWidth] = useState('1600');
-    const changeWidth: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const [width, setWidth] = useState("1600");
+    const changeWidth: React.ChangeEventHandler<HTMLInputElement> = event => {
         setWidth(event.target.value);
         context.updateThreshold(parseInt(event.target.value));
     };
@@ -47,13 +47,27 @@ const ThresholdSlider = () => {
             style={{
                 top: seriesViewRect.top,
                 right: viewport.width - seriesViewRect.right,
-                position: 'absolute',
-                color: appTheme.ForegroundColor,
+                position: "absolute",
+                color: appTheme.ForegroundColor
             }}
         >
             Duration Threshold
             <br />
-            <input type='range' min='0' max='2000' value={width} onChange={changeWidth}></input>
+            <input
+                type="range"
+                min="0"
+                max="2000"
+                value={width}
+                onChange={changeWidth}
+                style={{
+                    color: "red",
+                    appearance: "none",
+                    WebkitAppearance: "none",
+                    borderRadius: 15,
+                    height: 10,
+                    background: "#0bdef4",
+                }}
+            ></input>
         </div>
     );
 };

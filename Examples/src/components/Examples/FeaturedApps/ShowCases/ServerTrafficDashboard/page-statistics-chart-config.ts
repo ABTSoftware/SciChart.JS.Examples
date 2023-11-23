@@ -33,7 +33,7 @@ export type TPageStatsChartConfigFunc = TInitFunction<
     TPageStatsConfigFuncResult
 >;
 
-const fillColors = [appTheme.VividRed, appTheme.MutedBlue, appTheme.MutedTeal, appTheme.MutedOrange];
+const fillColors = ["#f6086c", "#47bde6", "#34c19c", "#f4840b"];
 
 // per page
 export const createChart2: TPageStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
@@ -47,18 +47,23 @@ export const createChart2: TPageStatsChartConfigFunc = async (divElementId: stri
             // placeWithinChart: true,
             alignment: ETextAlignment.Center,
             fontSize: 20,
+            color: appTheme.ForegroundColor
         },
     });
 
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
         labelFormat: ENumericFormat.Date_DDMM,
-        useNativeText: true,
+        // useNativeText: true,
     });
     const yAxis = new NumericAxis(wasmContext, {
         axisTitle: 'Requests',
         axisTitleStyle: {
             fontSize: 20,
+            color: appTheme.ForegroundColor
+        },
+        labelStyle: {
+            color : appTheme.ForegroundColor
         },
         axisAlignment: EAxisAlignment.Left,
         growBy: new NumberRange(0, 0.3),
@@ -107,6 +112,7 @@ export const createChart2: TPageStatsChartConfigFunc = async (divElementId: stri
     const legendModifier = new LegendModifier({
         placement: ELegendPlacement.TopLeft,
         orientation: ELegendOrientation.Vertical,
+        backgroundColor: "#0d1523"
     });
 
     const zoomAndScrollDirection = EXyDirection.XDirection;
@@ -118,6 +124,8 @@ export const createChart2: TPageStatsChartConfigFunc = async (divElementId: stri
         tooltipDataTemplate: tooltipDataTemplateKey,
     });
     rolloverModifier.rolloverLineAnnotation.showLabel = true;
+    rolloverModifier.rolloverLineAnnotation.axisLabelFill = "#e8c667";
+    rolloverModifier.rolloverLineAnnotation.axisLabelStroke = "#0d1523";
     sciChartSurface.chartModifiers.add(
         legendModifier,
         rolloverModifier,

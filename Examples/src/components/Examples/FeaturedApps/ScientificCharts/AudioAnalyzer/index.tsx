@@ -68,7 +68,7 @@ export const drawExample = async () => {
         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
         text: "This example requires microphone permissions.  Please click Allow in the popup.",
-        textColor: "#FFFFFF44"
+        textColor: "#FFFFFF88"
     });
 
     function updateAnalysers(frame: number): void {

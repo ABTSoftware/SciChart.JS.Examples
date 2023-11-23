@@ -51,7 +51,7 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
             fontSize: 16,
         },
     });
-
+    sciChartSurface.renderNativeAxisLabelsImmediately = true;
     const data = getData();
 
     const { xValues, yValues, groupedEntries } = getRequestsNumberPerTimestamp(data);

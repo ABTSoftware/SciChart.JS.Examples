@@ -62,6 +62,10 @@ const drawExample = async () => {
     });
     sciChartSurface.renderableSeries.add(bandSeries);
 
+    // create a temp series for passing animation values
+    const animationSeries = new XyyDataSeries(wasmContext);
+    // register this so it is deleted along with the main surface
+    sciChartSurface.addDeletable(animationSeries);
     // Animate both the data & the style of the chart, using a style animation
     const animateChartStyle = (isStyle1: boolean) => {
         xValues = [];
@@ -88,6 +92,9 @@ const drawExample = async () => {
                 y1Values.push(y1);
             }
         }
+        // Set the values on the temp series
+        animationSeries.clear();
+        animationSeries.appendRange(xValues, yValues, y1Values);
 
         // Running an animation on the series lets you change data as well as styles
         bandSeries.runAnimation(
@@ -100,7 +107,8 @@ const drawExample = async () => {
                     fill: isStyle1 ? fillColor1 : fillColor1b,
                     fillY1: isStyle1 ? fillColor2 : fillColor2b
                 },
-                dataSeries: new XyyDataSeries(wasmContext, { xValues, yValues, y1Values })
+                // Don't create a new dataSeries here or it will leak and crash if run repeatedly
+                dataSeries: animationSeries
             })
         );
     };
