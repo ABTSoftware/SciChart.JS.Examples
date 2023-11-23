@@ -770,6 +770,10 @@ export const ExampleStrings = {
     urlTitleOverviewDocumentation:
         "This specific page in the JavaScript SciChartOverview Api documentation will help you to get started",
 
+    // SyncMultiChart
+    urlSyncMultiChart: "/javascript-sync-multi-chart",
+    titleSyncMultiChart: "Synchronse Multiple Charts",
+
     // Oil & Gas Demo
     titleOilAndGasExplorerDashboard: "Oil & Gas Explorer Dashboard",
     urlOilAndGasExplorerDashboard: "/javascript-oil-and-gas-dashboard-showcase",

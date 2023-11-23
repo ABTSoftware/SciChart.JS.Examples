@@ -1,1 +1,1 @@
-export const githubUrl = "/components/Examples/Charts2D/ZoomingAndPanning/OverviewModifier/index.tsx";
+export const githubUrl = "/components/Examples/Charts2D/MultiChart/MultiChartMethods/index.tsx";
