@@ -102,6 +102,7 @@ import { backgroundAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnno
 import { realtimeSurfaceMesh3DChartExampleInfo } from "../Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart/exampleInfo";
 import { dynamicLayoutExampleInfo } from "../Examples/FeaturedApps/ShowCases/DynamicLayout/exampleInfo";
 import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/exampleInfo";
+import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -454,6 +455,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_filters_CustomFilters: {
         id: "chart2D_filters_CustomFilters",
         ...customFiltersExampleInfo
+    },
+    chart2D_multiChart_syncMultiChart: {
+        id: "chart2D_multiChart_syncMultiChart",
+        ...syncMultiChartExampleInfo
     },
     chart3D_basic3DChartTypes_Bubble3DChart: {
         id: "chart3D_basic3DChartTypes_Bubble3DChart",
