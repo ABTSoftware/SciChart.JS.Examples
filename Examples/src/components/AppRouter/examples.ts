@@ -111,6 +111,7 @@ import RealtimeSurfaceMesh3DChart from "../Examples/Charts3D/Basic3DChartTypes/R
 import DynamicLayout from "../Examples/FeaturedApps/ShowCases/DynamicLayout";
 import UsingVerticalSliceModifier from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier";
 import ServerTrafficDashboard from "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard";
+import SyncMultiChart from "../Examples/Charts2D/MultiChart/SyncMultiChart";
 
 export type TMenuItem = {
     item: {
@@ -300,6 +301,14 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.featuredApps_featureDemos_subchartsGrid,
             EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout
+        ]
+    },
+    {
+        item: { id: "multichart", name: "Multiple Charts" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_multiChart_syncMultiChart,
+            EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
+            EXAMPLES_PAGES.featuredApps_showcases_servertrafficdashboard,
         ]
     },
 ];
@@ -542,6 +551,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return HeatmapInteractions;
         case EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout.id:
             return DynamicLayout;
+        case EXAMPLES_PAGES.chart2D_multiChart_syncMultiChart.id:
+            return SyncMultiChart;
         case EXAMPLES_PAGES.builderApi_simplechart.id:
             return BuilderSimpleChart;
         case EXAMPLES_PAGES.builderApi_fullchart.id:
