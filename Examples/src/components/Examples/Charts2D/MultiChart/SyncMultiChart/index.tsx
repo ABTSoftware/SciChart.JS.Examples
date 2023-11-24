@@ -21,6 +21,7 @@ import {
     NumberRange,
     NumericAxis,
     OverviewRangeSelectionModifier,
+    RolloverModifier,
     RubberBandXyZoomModifier,
     SciChartOverview,
     SciChartSurface,
@@ -32,7 +33,7 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier
 } from "scichart";
-import { Button, Checkbox, FormControlLabel } from "@material-ui/core";
+import { Button, Checkbox, FormControlLabel, Typography } from "@material-ui/core";
 
 export const divOverview = "multiChartOverview";
 export const divChart1 = "multiChart1";
@@ -80,7 +81,8 @@ class AxisSynchroniser {
 
 const createChart = async (divId: string, id: number) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
+        disableAspect: true
     });
 
     // Create and add an XAxis and YAxis
@@ -104,15 +106,20 @@ const createChart = async (divId: string, id: number) => {
         })
     );
 
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton }));
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+    // Use modifierGroup to trigger the modifier in the same place on multiple charts
+    sciChartSurface.chartModifiers.add(new RolloverModifier({ modifierGroup: "one"}),
+        new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton, modifierGroup:"one" }),
+        // These do not need modifierGroup as the xAxes are synchronised.
+        new ZoomPanModifier(),
+        new ZoomExtentsModifier(),
+        new MouseWheelZoomModifier());
 
     return { sciChartSurface, wasmContext };
 }
 
 const createOverview = async (divId: string, axisSynchroniser: AxisSynchroniser) => {
+    // Note this does not use SciChartOverview. 
+    // Instead we create a normal chart and then manually add the OverviewRangeSelectionModifier and bind it to the axisSynchroniser
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divId, {
         theme: appTheme.SciChartJsTheme
     });
@@ -129,6 +136,7 @@ const createOverview = async (divId: string, axisSynchroniser: AxisSynchroniser)
     );
 
     const rangeSelectionModifier = new OverviewRangeSelectionModifier();
+    // When the range selection is moved, updated the linked charts
     rangeSelectionModifier.onSelectedAreaChanged = (selectedRange: NumberRange) => {
         if (!selectedRange.equals(axisSynchroniser.visibleRange)) {
             axisSynchroniser.publishChange({ visibleRange: selectedRange });
@@ -137,6 +145,7 @@ const createOverview = async (divId: string, axisSynchroniser: AxisSynchroniser)
     rangeSelectionModifier.selectedArea = axisSynchroniser.visibleRange;
     sciChartSurface.chartModifiers.add(rangeSelectionModifier);
 
+    // When charts are moved, update the range selection
     axisSynchroniser.visibleRangeChanged.subscribe(({ visibleRange }) => {
         const updatedSelectedRange = visibleRange.clip(xAxis.visibleRange);
         const shouldUpdateSelectedRange = !updatedSelectedRange.equals(rangeSelectionModifier.selectedArea);
@@ -179,37 +188,44 @@ const useStyles = makeStyles(theme => ({
     },
     chartRow: {
         display: "flex",
+        flex: "auto",
         flexDirection: "row",
-        flexBasis: "70px",
-        padding: 5,
+        padding: 0,
+        width: "100%",
+        color: appTheme.ForegroundColor
+    },
+    emptyRow: {
+        display: "flex",
+        flexBasis: 0,
+        padding: 0,
         width: "100%",
         color: appTheme.ForegroundColor
     },
     toolCol: {
         display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 5,
+        flex: "none",
+        width: "130px",
+        padding: "10 10 5 0",
         color: appTheme.ForegroundColor
     },
     chartArea: {
-        flex: 1,
+        flex: "auto",
         padding: "0",
-        "min-height": "70px",
-        height: "100px",
-        resize: "vertical",
-        overflow: "hidden"
+        height: "100%",
       }
 }));
 
 
 export default function SyncMultiChart() {
-    const [chartPanes, setChartPanes] = React.useState<ChartPane[]>([{ id: 0, divId: divOverview, isSynced: true, sciChartSurface: undefined},
+    // We are using a fixed set of divs here as it simplifies the html handling, but this could with dynamic html and an arbitrary number of charts
+    const [chartPanes, setChartPanes] = React.useState<ChartPane[]>([
+        { id: 0, divId: divOverview, isSynced: true, sciChartSurface: undefined},
         { id: 1, divId: divChart1, isSynced: true, sciChartSurface: undefined},
         { id: 2, divId: divChart2, isSynced: true, sciChartSurface: undefined},
         { id: 3, divId: divChart3, isSynced: true, sciChartSurface: undefined},
         { id: 4, divId: divChart4, isSynced: true, sciChartSurface: undefined},
         { id: 5, divId: divChart5, isSynced: true, sciChartSurface: undefined}]);
+        
     const verticalGroupRef = React.useRef<SciChartVerticalGroup>(new SciChartVerticalGroup());
     const axisSynchroniserRef = React.useRef<AxisSynchroniser>(new AxisSynchroniser(new NumberRange(200, 500)));
 
@@ -229,7 +245,7 @@ export default function SyncMultiChart() {
 
     React.useEffect(() => {
 
-        const chartInitializationPromise = addChart(0).then(() => addChart(1)).then(() => addChart(2));
+        const chartInitializationPromise = Promise.all([addChart(0), addChart(1),addChart(2),addChart(3)]);
 
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
@@ -285,38 +301,47 @@ export default function SyncMultiChart() {
         setChartPanes([...chartPanes]);
     }
 
+    const firstFreePane = chartPanes.find(pane => !pane.sciChartSurface);
     return (
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
-                {chartPanes.map(pane => 
-                    <div className={localClasses.chartRow} key={pane.id}>
-                        <div className={localClasses.chartArea} id={pane.divId}></div>
-                        <div className={localClasses.toolCol}>
-                            {(pane.id > 0) ?
-                                (pane.sciChartSurface ? <div>
-                            <Button color="primary" onClick={() => removeChart(pane.id)}>
-                                Remove Chart
-                            </Button>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={pane.isSynced}
-                                        onChange={() => handleChangeSynced(pane.id)}
-                                    />
-                                }
-                                labelPlacement="start"
-                                label="Sync?"
-                            />
-                            </div>  
-                            :
-                            <Button color="primary" onClick={() => addChart(pane.id)}>
-                                Add Chart
-                            </Button>
-                                 ) : ""    
+            <div style={{width: "100%", height: "100px", flex: "none"}}>
+                <div className={localClasses.chartArea} id={chartPanes[0].divId}></div>
+            </div>
+            {firstFreePane ? 
+                <div style={{width: "100%", height: "40px", display: "flex", justifyContent:"space-between", alignItems:"center", flex: "none"}}>    
+                    <Typography  style={{ color: appTheme.ForegroundColor, marginLeft: "20px" }}>
+                        Click and drag or mousewheel to zoom/pan the charts.
+                    </Typography>
+                    <Button color="primary" variant="outlined" onClick={() => addChart(firstFreePane.id)} style={{ width:"120px", flex:"none", color: appTheme.ForegroundColor, marginRight: "10px" }}>
+                        Add Chart
+                    </Button>
+                </div>
+            : "" }   
+            {chartPanes.filter(pane => pane.id > 0).map(pane => 
+                <div className={pane.sciChartSurface ? localClasses.chartRow : localClasses.emptyRow} key={pane.id}>
+                    <div className={pane.sciChartSurface ? localClasses.chartArea : localClasses.emptyRow } id={pane.divId}></div>
+                    { pane.sciChartSurface ? 
+                    <div className={localClasses.toolCol}>
+                        <div>
+                        <Button color="primary" variant="outlined" onClick={() => removeChart(pane.id)} style={{ color: appTheme.ForegroundColor}}>
+                            Remove Chart
+                        </Button>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={pane.isSynced}
+                                    onChange={() => handleChangeSynced(pane.id)}
+                                />
                             }
-                        </div>   
-                    </div>
-                )}
+                            labelPlacement="start"
+                            label="Sync?"
+                        />
+                        </div> 
+                    </div>   
+                    : "" }
+                </div>
+            )}
             </div>
         </div>
     );

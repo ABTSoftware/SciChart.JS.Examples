@@ -772,7 +772,8 @@ export const ExampleStrings = {
 
     // SyncMultiChart
     urlSyncMultiChart: "/javascript-sync-multi-chart",
-    titleSyncMultiChart: "Synchronse Multiple Charts",
+    titleSyncMultiChart: "Synchronise Multiple Charts",
+    urlSyncDocs: "https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2009%20-%20Linking%20Multiple%20Charts.html",
 
     // Oil & Gas Demo
     titleOilAndGasExplorerDashboard: "Oil & Gas Explorer Dashboard",

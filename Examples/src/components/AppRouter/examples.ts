@@ -307,6 +307,8 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         item: { id: "multichart", name: "Multiple Charts" },
         submenu: [
             EXAMPLES_PAGES.chart2D_multiChart_syncMultiChart,
+            EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
+            EXAMPLES_PAGES.featuredApps_showcases_servertrafficdashboard,
         ]
     },
 ];

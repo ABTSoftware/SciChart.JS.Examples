@@ -13,6 +13,11 @@ const tips = [
 
 const documentationLinks: TDocumentationLink[] = [
     {
+        href: ExampleStrings.urlSyncDocs,
+        title: "This is a tutorial for how to synchronise the axis and modifiers for multiple charts",
+        linkTitle: "SciChart.js Synchronise Charts Tutorial"
+    },
+    {
         href: ExampleStrings.urlOverviewDocumentation,
         title: ExampleStrings.urlTitleOverviewDocumentation,
         linkTitle: "SciChart.js Overview Documentation"
@@ -41,6 +46,6 @@ export const syncMultiChartExampleInfo: TExampleInfo = {
     previewDescription,
     githubUrl,
     metaDescription: "Synchronise multiple dynamic charts and overview",
-    metaKeywords: "axis, synchronise, multiple, charts, javascript, webgl, canvas",
+    metaKeywords: "axis, synchronise, multiple, charts, overview, zoom, pan, javascript, webgl, canvas",
     thumbnailImage: exampleImage
 };
