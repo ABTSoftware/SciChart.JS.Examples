@@ -22,8 +22,7 @@ import {
     LineSeriesDataLabelProvider,
     DataLabelState
 } from "scichart";
-
-const divElementId = "chart";
+import { SciChartReact } from "scichart-react";
 
 // Generate some data for the example
 const dataSize = 30;
@@ -42,8 +41,8 @@ for (let i = 0; i < dataSize; i++) {
     yValues.push(Math.random() + 3.6);
 }
 
-const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) => void) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+const drawExample = async (rootElement:string | HTMLDivElement, setSelectedPoints: (selectedPoints: DataPointInfo[]) => void) => {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -184,28 +183,7 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
 };
 
 export default function DatapointSelection() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-
     const [selectedPoints, setSelectedPoints] = React.useState<DataPointInfo[]>([]);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample(setSelectedPoints).then(({ sciChartSurface }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-        });
-
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
 
     const rowStyle = {
         height: "30px",
@@ -251,7 +229,10 @@ export default function DatapointSelection() {
     return (
         <div className={classes.FullHeightChartWrapper}>
             <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
-                <div id={divElementId} style={chartStyle} />
+                <SciChartReact 
+                    style={chartStyle} 
+                    initChart={(rootElement) => drawExample(rootElement, setSelectedPoints)}
+                />
                 <div style={pointsBoxStyle}>
                     <h3 style={{ color: appTheme.PaleSkyBlue, margin: 5 }}>Selected Points</h3>
                     <div style={{ ...rowStyle, marginRight: "17px" }}>

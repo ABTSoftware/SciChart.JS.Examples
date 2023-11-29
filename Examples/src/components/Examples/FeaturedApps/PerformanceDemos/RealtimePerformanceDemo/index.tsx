@@ -17,11 +17,9 @@ import {
     YAxisDragModifier,
     ZoomExtentsModifier
 } from "scichart";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
-const divElementId = "chart";
-let timerId: NodeJS.Timeout;
-
-const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Define some constants
     const numberOfPointsPerTimerTick = 1000; // 1,000 points every timer tick
     const timerInterval = 10; // timer tick every 10 milliseconds
@@ -30,7 +28,7 @@ const drawExample = async () => {
     // Create a SciChartSurface
     // Note create() uses shared WebGL canvas, createSingle() uses one WebGL per chart
     // createSingle() = faster performance as doesn't require a copy-op, but limited by max-contexts in browser
-    const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(divElementId, {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.createSingle(rootElement, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -77,6 +75,8 @@ const drawExample = async () => {
         return new RandomWalkGenerator(0);
     });
 
+    let timerId: NodeJS.Timeout;
+
     // Function called when the user clicks stopDemo button
     const stopDemo = () => {
         clearTimeout(timerId);
@@ -118,7 +118,30 @@ const drawExample = async () => {
         timerId = setTimeout(updateFunc, timerInterval);
     };
 
-    return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo } };
+    type TRenderStats = { numberPoints: number; fps: number };
+    type TOnRenderStatsChangeCallback = (stats: TRenderStats) => void;
+
+    let statsCallback: TOnRenderStatsChangeCallback;
+    const setStatsChangedCallback = (callback: TOnRenderStatsChangeCallback) => {
+        statsCallback = callback;
+    };
+
+    let lastRendered = Date.now();
+    sciChartSurface.rendered.subscribe(() => {
+        const currentTime = Date.now();
+        const timeDiffSeconds = new Date(currentTime - lastRendered).getTime() / 1000;
+        lastRendered = currentTime;
+        const fps = 1 / timeDiffSeconds;
+        const renderStats = {
+            numberPoints:
+                sciChartSurface.renderableSeries.size() * sciChartSurface.renderableSeries.get(0).dataSeries.count(),
+            fps
+        };
+
+        statsCallback(renderStats);
+    });
+
+    return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo, setStatsChangedCallback } };
 };
 
 const useStyles = makeStyles(theme => ({
@@ -143,54 +166,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function RealtimePerformanceDemo() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const controlsRef = React.useRef<{
         startDemo: () => void;
         stopDemo: () => void;
     }>();
 
     const [stats, setStats] = React.useState({ numberPoints: 0, fps: 0 });
-
-    React.useEffect(() => {
-        let autoStartTimerId: NodeJS.Timeout;
-
-        const chartInitializationPromise = drawExample().then(res => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            controlsRef.current = res.controls;
-            let lastRendered = Date.now();
-            res.sciChartSurface.rendered.subscribe(() => {
-                const currentTime = Date.now();
-                const timeDiffSeconds = new Date(currentTime - lastRendered).getTime() / 1000;
-                lastRendered = currentTime;
-                const fps = 1 / timeDiffSeconds;
-                setStats({
-                    numberPoints:
-                        res.sciChartSurface.renderableSeries.size() *
-                        res.sciChartSurface.renderableSeries.get(0).dataSeries.count(),
-                    fps
-                });
-            });
-
-            autoStartTimerId = setTimeout(res.controls.startDemo, 0);
-        });
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                clearTimeout(autoStartTimerId);
-                controlsRef.current.stopDemo();
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                clearTimeout(autoStartTimerId);
-                controlsRef.current.stopDemo();
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
 
     const localClasses = useStyles();
 
@@ -221,7 +202,18 @@ export default function RealtimePerformanceDemo() {
                         </span>
                         <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
-                    <div className={localClasses.chartArea} id={divElementId}></div>
+                    <SciChartReact
+                        className={localClasses.chartArea}
+                        initChart={drawExample}
+                        onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                            controlsRef.current = initResult.controls;
+                            initResult.controls.setStatsChangedCallback(renderStats => setStats(renderStats));
+                            initResult.controls.startDemo();
+                        }}
+                        onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                            initResult.controls.stopDemo();
+                        }}
+                    />
                 </div>
             </div>
         </React.Fragment>

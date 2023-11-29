@@ -1,5 +1,5 @@
 import * as React from "react";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 import {
@@ -26,42 +26,40 @@ import {
     Point,
     SciChartJsNavyTheme,
     SciChartSurface,
-    SeriesSelectionModifier, Thickness,
+    SeriesSelectionModifier,
+    Thickness,
     TSciChart,
     XyDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier
 } from "scichart";
-import {Radix2FFT} from "../AudioAnalyzer/Radix2FFT";
-import {INumericAxisOptions} from "scichart/Charting/Visuals/Axis/NumericAxis";
-
-export const divMainChartId = "sciChart1";
-export const divCrossSection1 = "sciChart2";
-export const divCrossSection2 = "sciChart3";
+import { Radix2FFT } from "../AudioAnalyzer/Radix2FFT";
+import { INumericAxisOptions } from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { createContext, PropsWithChildren, useContext, useState } from "react";
+import { SciChartReact, SciChartGroup } from "scichart-react";
 
 // This function generates some spectral data for the waterfall chart
-const createSpectralData = (n : number) => {
+const createSpectralData = (n: number) => {
     const spectraSize = 1024;
     const timeData = new Array(spectraSize);
 
     // Generate some random data with spectral components
     for (let i = 0; i < spectraSize; i++) {
-        timeData[i] = 2.0 * Math.sin(2 * Math.PI * i / (20 + n * 0.2)) +
-            5 * Math.sin(2 * Math.PI * i / (10 + n * 0.01)) +
-            10 * Math.sin(2 * Math.PI * i / (5 + n * -0.002)) +
+        timeData[i] =
+            2.0 * Math.sin((2 * Math.PI * i) / (20 + n * 0.2)) +
+            5 * Math.sin((2 * Math.PI * i) / (10 + n * 0.01)) +
+            10 * Math.sin((2 * Math.PI * i) / (5 + n * -0.002)) +
             2.0 * Math.random();
     }
 
     // Do a fourier-transform on the data to get the frequency domain
     const transform = new Radix2FFT(spectraSize);
-    const yValues = transform.run(timeData)
-        .slice(0, 300); // We only want the first N points just to make the example cleaner
+    const yValues = transform.run(timeData).slice(0, 300); // We only want the first N points just to make the example cleaner
 
     // This is just setting a floor to make the data cleaner for the example
     for (let i = 0; i < yValues.length; i++) {
-        yValues[i] = (yValues[i] < -30 || yValues[i] > -5)
-            ? (yValues[i] < -30) ? -30 : (Math.random() * 9 - 6)
-            : yValues[i];
+        yValues[i] =
+            yValues[i] < -30 || yValues[i] > -5 ? (yValues[i] < -30 ? -30 : Math.random() * 9 - 6) : yValues[i];
     }
     yValues[0] = -30;
 
@@ -69,7 +67,7 @@ const createSpectralData = (n : number) => {
     const xValues = yValues.map((value, index) => index);
 
     return { xValues, yValues };
-}
+};
 
 // class CustomOffsetAxis extends NumericAxis {
 //     constructor(wasmContext: TSciChart, options: INumericAxisOptions) {
@@ -89,22 +87,21 @@ const createSpectralData = (n : number) => {
 
 // tslint:disable-next-line:max-classes-per-file
 class CrossSectionPaletteProvider extends DefaultPaletteProvider {
-
     public selectedIndex: number = -1;
 
-    public override overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity: number): number {
-        if (index === this.selectedIndex || index + 1 === this.selectedIndex || index -1 === this.selectedIndex) {
-            return 0xFFFF8A42;
+    public overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity: number): number {
+        if (index === this.selectedIndex || index + 1 === this.selectedIndex || index - 1 === this.selectedIndex) {
+            return 0xffff8a42;
         }
         return undefined;
     }
 }
 
-// This function draws the entire example
-const drawExample = async () => {
-
+// This function returns methods for initializing the example
+const getChartsInitializationAPI = () => {
     const theme = new SciChartJsNavyTheme();
 
+    let mainChartSurface: SciChartSurface;
     let mainChartSelectionModifier: SeriesSelectionModifier;
     const crossSectionPaletteProvider = new CrossSectionPaletteProvider();
     let dragMeAnnotation: CustomAnnotation;
@@ -112,10 +109,13 @@ const drawExample = async () => {
     // This function creates the main chart with waterfall series
     // To do this, we create N series, each with its own X,Y axis with a different X,Y offset
     // all axis other than the first are hidden
-    const initMainChart = async () => {
-        const { sciChartSurface, wasmContext } = await SciChartSurface.create(divMainChartId, {
+    const initMainChart = async (rootElement: string | HTMLDivElement) => {
+        const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
+            disableAspect: true,
             theme
         });
+
+        mainChartSurface = sciChartSurface;
 
         const seriesCount = 50;
         for (let i = 0; i < seriesCount; i++) {
@@ -179,13 +179,13 @@ const drawExample = async () => {
             annotationsGripsStroke: "Transparent",
             selectionBoxStroke: "Transparent",
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            verticalAnchorPoint: EVerticalAnchorPoint.Top,
+            verticalAnchorPoint: EVerticalAnchorPoint.Top
         });
         sciChartSurface.annotations.add(dragMeAnnotation);
 
         // Place an annotation with further instructions in the top right of the chart
         const promptAnnotation = new CustomAnnotation({
-           svgString: `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="82">
+            svgString: `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="82">
               <g>
                 <line x1="5" y1="77" x2="40" y2="42" stroke="#ffffff" stroke-dasharray="2,2" />
                 <circle cx="5" cy="77" r="5" fill="#ffffff" />
@@ -210,13 +210,14 @@ const drawExample = async () => {
 
         // Add zooming behaviours
         sciChartSurface.chartModifiers.add(
-            new ZoomPanModifier({ xyDirection: EXyDirection.XDirection}),
-            new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection}),
-            new ZoomExtentsModifier( { xyDirection: EXyDirection.XDirection }));
+            new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }),
+            new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
+            new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection })
+        );
 
         const updateSeriesSelectionState = (series: IRenderableSeries) => {
-            series.stroke = series.isSelected ? "White": (series.isHovered ? "#FFBE93" : "#64BAE4");
-            series.strokeThickness = (series.isSelected || series.isHovered) ? 3 : 1;
+            series.stroke = series.isSelected ? "White" : series.isHovered ? "#FFBE93" : "#64BAE4";
+            series.strokeThickness = series.isSelected || series.isHovered ? 3 : 1;
         };
 
         let prevSelectedSeries: IRenderableSeries = sciChartSurface.renderableSeries.get(0);
@@ -238,7 +239,7 @@ const drawExample = async () => {
             }
         });
         sciChartSurface.chartModifiers.add(mainChartSelectionModifier);
-        return sciChartSurface;
+        return { sciChartSurface };
     };
 
     let crossSectionSelectedSeries: IRenderableSeries;
@@ -248,25 +249,30 @@ const drawExample = async () => {
 
     // In the bottom left chart, add two series to show the currently hovered/selected series on the main chart
     // These will be updated in the selection callback below
-    const initCrossSectionLeft = async () => {
-        const { sciChartSurface, wasmContext } = await SciChartSurface.create(divCrossSection1, {
+    const initCrossSectionLeft = async (rootElement: string | HTMLDivElement) => {
+        const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
+            disableAspect: true,
             theme
         });
 
-        sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-            autoRange: EAutoRange.Always,
-            drawMinorGridLines: false,
-        }));
-        sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-            autoRange: EAutoRange.Never,
-            axisAlignment: EAxisAlignment.Left,
-            visibleRange: new NumberRange(-30, 5),
-            drawMinorGridLines: false,
-        }));
+        sciChartSurface.xAxes.add(
+            new NumericAxis(wasmContext, {
+                autoRange: EAutoRange.Always,
+                drawMinorGridLines: false
+            })
+        );
+        sciChartSurface.yAxes.add(
+            new NumericAxis(wasmContext, {
+                autoRange: EAutoRange.Never,
+                axisAlignment: EAxisAlignment.Left,
+                visibleRange: new NumberRange(-30, 5),
+                drawMinorGridLines: false
+            })
+        );
 
         crossSectionSelectedSeries = new FastLineRenderableSeries(wasmContext, {
             stroke: "#ff6600",
-            strokeThickness: 3,
+            strokeThickness: 3
         });
         sciChartSurface.renderableSeries.add(crossSectionSelectedSeries);
         crossSectionHoveredSeries = new FastMountainRenderableSeries(wasmContext, {
@@ -275,155 +281,165 @@ const drawExample = async () => {
             strokeDashArray: [2, 2],
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: "#64BAE455", offset: 0 },
-                { color: "#64BAE400", offset: 1 },
+                { color: "#64BAE400", offset: 1 }
             ]),
             dataSeries: crossSectionSliceSeries,
-            zeroLineY: -999,
+            zeroLineY: -999
         });
         sciChartSurface.renderableSeries.add(crossSectionHoveredSeries);
 
         // Add a legend to the bottom left chart
         crossSectionLegendModifier = new LegendModifier({
             showCheckboxes: false,
-            orientation: ELegendOrientation.Horizontal,
+            orientation: ELegendOrientation.Horizontal
         });
         crossSectionLegendModifier.isEnabled = false;
         sciChartSurface.chartModifiers.add(crossSectionLegendModifier);
 
-        return sciChartSurface;
+        return { sciChartSurface };
     };
 
-    const initCrossSectionRight = async () => {
-        const { sciChartSurface, wasmContext } = await SciChartSurface.create(divCrossSection2, {
+    const initCrossSectionRight = async (rootElement: string | HTMLDivElement) => {
+        const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
+            disableAspect: true,
             theme,
             title: "Cross Section Slice",
             titleStyle: {
                 fontSize: 13,
-                padding: Thickness.fromNumber(10),
+                padding: Thickness.fromNumber(10)
             }
         });
 
-        sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
-            autoRange: EAutoRange.Always,
-            drawMinorGridLines: false,
-        }));
-        sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
-            autoRange: EAutoRange.Never,
-            axisAlignment: EAxisAlignment.Left,
-            visibleRange: new NumberRange(-30, 5),
-            drawMinorGridLines: false,
-        }));
+        sciChartSurface.xAxes.add(
+            new NumericAxis(wasmContext, {
+                autoRange: EAutoRange.Always,
+                drawMinorGridLines: false
+            })
+        );
+        sciChartSurface.yAxes.add(
+            new NumericAxis(wasmContext, {
+                autoRange: EAutoRange.Never,
+                axisAlignment: EAxisAlignment.Left,
+                visibleRange: new NumberRange(-30, 5),
+                drawMinorGridLines: false
+            })
+        );
 
         crossSectionSliceSeries = new XyDataSeries(wasmContext);
-        sciChartSurface.renderableSeries.add(new FastMountainRenderableSeries(wasmContext, {
-            stroke: "#64BAE4",
-            strokeThickness: 3,
-            strokeDashArray: [2,2],
-            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: "#64BAE477", offset: 0 },
-                { color: "#64BAE433", offset: 1 },
-            ]),
-            dataSeries: crossSectionSliceSeries,
-            zeroLineY: -999,
-        }));
+        sciChartSurface.renderableSeries.add(
+            new FastMountainRenderableSeries(wasmContext, {
+                stroke: "#64BAE4",
+                strokeThickness: 3,
+                strokeDashArray: [2, 2],
+                fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                    { color: "#64BAE477", offset: 0 },
+                    { color: "#64BAE433", offset: 1 }
+                ]),
+                dataSeries: crossSectionSliceSeries,
+                zeroLineY: -999
+            })
+        );
 
-        return sciChartSurface;
+        return { sciChartSurface };
     };
 
-    const charts = await Promise.all([ initMainChart(), initCrossSectionLeft(), initCrossSectionRight() ]);
+    const configureAfterInit = () => {
+        // Link interactions together
+        mainChartSelectionModifier.selectionChanged.subscribe(args => {
+            const selectedSeries = args.selectedSeries[0]?.dataSeries;
+            if (selectedSeries) {
+                crossSectionSelectedSeries.dataSeries = selectedSeries;
+            }
+            crossSectionLegendModifier.isEnabled = true;
+            crossSectionLegendModifier.sciChartLegend?.invalidateLegend();
+        });
+        mainChartSelectionModifier.hoverChanged.subscribe(args => {
+            const hoveredSeries = args.hoveredSeries[0]?.dataSeries;
+            if (hoveredSeries) {
+                crossSectionHoveredSeries.dataSeries = hoveredSeries;
+            }
+            crossSectionLegendModifier.sciChartLegend?.invalidateLegend();
+        });
 
-    const mainChartSurface = charts[0];
+        // Add a function to update drawing the cross-selection when the drag annotation is dragged
+        const updateDragAnnotation = () => {
+            // Don't allow to drag vertically, only horizontal
+            dragMeAnnotation.y1 = -25;
 
-    // Link interactions together
-    mainChartSelectionModifier.selectionChanged.subscribe(args => {
-        const selectedSeries = args.selectedSeries[0]?.dataSeries;
-        if (selectedSeries) {
-            crossSectionSelectedSeries.dataSeries = selectedSeries;
-        }
-        crossSectionLegendModifier.isEnabled = true;
-        crossSectionLegendModifier.sciChartLegend?.invalidateLegend();
-    });
-    mainChartSelectionModifier.hoverChanged.subscribe(args => {
-        const hoveredSeries = args.hoveredSeries[0]?.dataSeries;
-        if (hoveredSeries) {
-            crossSectionHoveredSeries.dataSeries = hoveredSeries;
-        }
-        crossSectionLegendModifier.sciChartLegend?.invalidateLegend();
-    });
+            // Find the index to the x-values that the axis marker is on
+            // Note you could just loop getNativeXValues() here but the wasmContext.NumberUtil function does it for you
+            const dataIndex = mainChartSurface.webAssemblyContext2D.NumberUtil.FindIndex(
+                mainChartSurface.renderableSeries.get(0).dataSeries.getNativeXValues(),
+                dragMeAnnotation.x1,
+                mainChartSurface.webAssemblyContext2D.SCRTFindIndexSearchMode.Nearest,
+                true
+            );
 
-    // Add a function to update drawing the cross-selection when the drag annotation is dragged
-    const updateDragAnnotation = () => {
-        // Don't allow to drag vertically, only horizontal
-        dragMeAnnotation.y1 = -25;
+            crossSectionPaletteProvider.selectedIndex = dataIndex;
+            mainChartSurface.invalidateElement();
+            crossSectionSliceSeries.clear();
+            for (let i = 0; i < mainChartSurface.renderableSeries.size(); i++) {
+                crossSectionSliceSeries.append(
+                    i,
+                    mainChartSurface.renderableSeries
+                        .get(i)
+                        .dataSeries.getNativeYValues()
+                        .get(dataIndex)
+                );
+            }
+        };
 
-        // Find the index to the x-values that the axis marker is on
-        // Note you could just loop getNativeXValues() here but the wasmContext.NumberUtil function does it for you
-        const dataIndex = mainChartSurface.webAssemblyContext2D.NumberUtil.FindIndex(
-            mainChartSurface.renderableSeries.get(0).dataSeries.getNativeXValues(),
-            dragMeAnnotation.x1,
-            mainChartSurface.webAssemblyContext2D.SCRTFindIndexSearchMode.Nearest,
-            true);
-
-        crossSectionPaletteProvider.selectedIndex = dataIndex;
-        mainChartSurface.invalidateElement();
-        crossSectionSliceSeries.clear();
-        for(let i = 0; i < mainChartSurface.renderableSeries.size(); i++) {
-            crossSectionSliceSeries.append(i, mainChartSurface.renderableSeries.get(i).dataSeries.getNativeYValues().get(dataIndex));
-        }
-    };
-
-    // Run it once
-    updateDragAnnotation();
-
-    //Run it when user drags the annotation
-    dragMeAnnotation.dragDelta.subscribe((args: AnnotationDragDeltaEventArgs) => {
+        // Run it once
         updateDragAnnotation();
-    });
 
-    mainChartSurface.renderableSeries.get(0).isSelected = true;
+        //Run it when user drags the annotation
+        dragMeAnnotation.dragDelta.subscribe((args: AnnotationDragDeltaEventArgs) => {
+            updateDragAnnotation();
+        });
 
-    return { charts };
+        mainChartSurface.renderableSeries.get(0).isSelected = true;
+    };
+
+    return { initMainChart, initCrossSectionLeft, initCrossSectionRight, configureAfterInit };
 };
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function InteractiveWaterfallChart() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface[]>();
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then((res) => {
-            sciChartSurfaceRef.current = res.charts;
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.forEach(c => c.delete());
-
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.forEach(c => c.delete());
-            });
-        };
-    }, []);
+    const [chartsInitializationAPI] = useState(getChartsInitializationAPI);
 
     return (
         <React.Fragment>
-            <div style={{background: appTheme.Background}} className={classes.ChartWrapper}>
-                <div style={{width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    background: appTheme.DarkIndigo}}>
-                    <div id={divMainChartId} style={{ flexBasis: "50%" }}/>
-                    <div style={{display: "flex", flex: 1 }}>
-                        <div id={divCrossSection1} style={{flex: 1 }}/>
-                        <div id={divCrossSection2} style={{flex: 1 }}/>
-                    </div>
+            <div style={{ background: appTheme.Background }} className={classes.ChartWrapper}>
+                <div
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        background: appTheme.DarkIndigo
+                    }}
+                >
+                    <SciChartGroup
+                        onInit={() => {
+                            chartsInitializationAPI.configureAfterInit();
+                        }} // callback executed when all charts within the group are initialized
+                    >
+                        <SciChartReact
+                            style={{ flex: 1, flexBasis: "50%" }}
+                            initChart={chartsInitializationAPI.initMainChart}
+                        />
+                        <div style={{ display: "flex", flex: 1, flexBasis: "50%" }}>
+                            <SciChartReact
+                                style={{ flex: 1 }}
+                                initChart={chartsInitializationAPI.initCrossSectionLeft}
+                            />
+                            <SciChartReact
+                                style={{ flex: 1 }}
+                                initChart={chartsInitializationAPI.initCrossSectionRight}
+                            />
+                        </div>
+                    </SciChartGroup>
                 </div>
             </div>
         </React.Fragment>

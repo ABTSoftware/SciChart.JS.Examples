@@ -17,15 +17,13 @@ import {
 
 import classes from "../../../styles/Examples.module.scss";
 import { appTheme } from "scichart-example-dependencies";
-import { makeStyles } from "@material-ui/core/styles";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
-export const divElementId = "chart";
-
-export const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
     // instance must be passed to other types that exist on the same surface.
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -95,53 +93,14 @@ export const drawExample = async () => {
     return { sciChartSurface, controls: { handleStop } };
 };
 
-const useStyles = makeStyles(theme => ({
-    flexOuterContainer: {
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        background: appTheme.DarkIndigo
-    },
-    chartArea: {
-        flex: 1
-    }
-}));
-
 export default function RealtimeZoomPan() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const controlsRef = React.useRef<{ handleStop: () => void }>();
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(res => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            controlsRef.current = res.controls;
-        });
-
-        // IMPORTANT to cancel all subscriptions on component unmount!
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                controlsRef.current.handleStop();
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                controlsRef.current.handleStop();
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
-
-    const localClasses = useStyles();
-
     return (
-        <div className={classes.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.chartArea} id={divElementId}></div>
-            </div>
-        </div>
+        <SciChartReact
+            className={classes.ChartWrapper}
+            initChart={drawExample}
+            onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                initResult.controls.handleStop();
+            }}
+        />
     );
 }
