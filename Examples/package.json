@@ -17,7 +17,9 @@
     "generateAll": "npm run generateExampleSrc && ts-node before-generate.js && ts-node generate-sitemap.ts && ts-node generate-footer-links.ts && ts-node after-generate.js",
     "generateExampleSrc": "ts-node generate-example-src.js",
     "generateSitemap": "ts-node before-generate.js && ts-node generate-sitemap.ts && ts-node after-generate.js",
-    "generateFooterLinks": "ts-node before-generate.js && ts-node generate-footer-links.ts && ts-node after-generate.js"
+    "generateFooterLinks": "ts-node before-generate.js && ts-node generate-footer-links.ts && ts-node after-generate.js",
+    "prepare": "cd .. && husky install",
+    "pretty-quick": "pretty-quick --staged"
   },
   "author": "",
   "license": "ISC",
@@ -66,7 +68,8 @@
     "nodemon": "^2.0.20",
     "nodemon-webpack-plugin": "^4.8.1",
     "postcss-loader": "^7.0.2",
-    "prettier": "^1.19.1",
+    "prettier": "^2.3.1",
+    "pretty-quick": "^3.1.1",
     "rimraf": "^3.0.2",
     "sass": "^1.49.9",
     "sass-loader": "^10.4.1",
@@ -82,7 +85,8 @@
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",
     "webpack-merge": "^5.8.0",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-node-externals": "^3.0.0",
+    "husky": "^8.0.0"
   },
   "browserslist": [
     "defaults",
