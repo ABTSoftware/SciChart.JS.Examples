@@ -794,6 +794,9 @@ export const ExampleStrings = {
     urlDynamicLayout: "/javascript-dynamic-layout",
     titleDynamicLayout: "Dynamic Layout Showcase",
 
+    urlEventMarkers: "/javascript-dragabble-event-markers",
+    titleEventMarkers: "Dragabble Event Markers",
+
     urlTextChart: "/javascript-text-chart",
     titleTextChart: "Javascript Text Chart",
     urlTextSeriesDocumentation:

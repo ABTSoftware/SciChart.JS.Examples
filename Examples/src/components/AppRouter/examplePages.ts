@@ -103,6 +103,7 @@ import { realtimeSurfaceMesh3DChartExampleInfo } from "../Examples/Charts3D/Basi
 import { dynamicLayoutExampleInfo } from "../Examples/FeaturedApps/ShowCases/DynamicLayout/exampleInfo";
 import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/exampleInfo";
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
+import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -539,6 +540,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_showcases_dynamicLayout : {
         id: "featuredApps_showcases_dynamicLayout",
         ...dynamicLayoutExampleInfo
+    },
+    featuredApps_showcases_eventMarkers : {
+        id: "featuredApps_showcases_eventMarkers",
+        ...eventMarkersExampleInfo
     },
     builderApi_simplechart: {
         id: "builderApi_simplechart",

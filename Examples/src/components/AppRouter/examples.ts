@@ -112,6 +112,7 @@ import DynamicLayout from "../Examples/FeaturedApps/ShowCases/DynamicLayout";
 import UsingVerticalSliceModifier from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier";
 import ServerTrafficDashboard from "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard";
 import SyncMultiChart from "../Examples/Charts2D/MultiChart/SyncMultiChart";
+import EventMarkers from "../Examples/FeaturedApps/ShowCases/EventMarkers";
 
 export type TMenuItem = {
     item: {
@@ -135,7 +136,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata,
             EXAMPLES_PAGES.featuredApps_showcases_servertrafficdashboard,
             EXAMPLES_PAGES.featuredApps_showcases_richInteractions,
-            EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout
+            EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout,
+            EXAMPLES_PAGES.featuredApps_showcases_eventMarkers
         ]
     },
     {
@@ -551,6 +553,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return HeatmapInteractions;
         case EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout.id:
             return DynamicLayout;
+        case EXAMPLES_PAGES.featuredApps_showcases_eventMarkers.id:
+            return EventMarkers;
         case EXAMPLES_PAGES.chart2D_multiChart_syncMultiChart.id:
             return SyncMultiChart;
         case EXAMPLES_PAGES.builderApi_simplechart.id:
