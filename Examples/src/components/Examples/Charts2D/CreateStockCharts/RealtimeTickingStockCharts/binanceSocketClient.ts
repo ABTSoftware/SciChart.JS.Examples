@@ -1,5 +1,10 @@
 import { WebsocketBuilder } from "websocket-ts";
-import { combineLatest, map, Observable, scan, skipWhile, take } from "rxjs";
+import { catchError, combineLatest, map, Observable, scan, skipWhile, take } from "rxjs";
+import * as candleData from "../../../../../../candleData.json";
+import * as tradeData from "../../../../../../tradeData.json";
+import * as historicalCandleData from "../../../../../../historicalCandleData.json";
+
+// console.log("candleData", candleData)
 
 // NOTE: THIS IS NOT PRODUCTION CODE, FOR DEMONSTRATION PURPOSE ONLY
 //       IF USING IN PRODUCTION, USE A FULL OR OFFICIAL BINANCE / EXCHANGE LIBRARY
@@ -148,11 +153,15 @@ const parseKline = (kline: any) => {
 const getCandleStream = (symbol: string, interval: string) => {
     const obs = new Observable<TRealtimePriceBar>(subscriber => {
         console.log("Connecting to binance klines for ", symbol, interval);
-        const ws = new WebsocketBuilder(`wss://stream.binance.us:9443/ws/${symbol.toLowerCase()}@kline_${interval}`)
+        const ws = new WebsocketBuilder(`wss://stream.binaance.us:9443/ws/${symbol.toLowerCase()}@kline_${interval}`)
             // .onOpen((i, ev) => { console.log("opened") })
             // .onClose((i, ev) => { console.log("closed") })
-            // .onError((i, ev) => { console.log("error") })
+            .onError((i, ev) => {
+                console.error("error", ev);
+                subscriber.error(ev);
+            })
             .onMessage((i, ev) => {
+                console.log("WebsocketBuilder getCandleStream message", ev.data);
                 subscriber.next(parseKline(JSON.parse(ev.data)));
             })
             .build();
@@ -165,16 +174,62 @@ const getCandleStream = (symbol: string, interval: string) => {
 const getTradeStream = (symbol: string) => {
     const obs = new Observable<TTrade>(subscriber => {
         console.log("Connecting to binance trades for ", symbol);
-        const ws = new WebsocketBuilder(`wss://stream.binance.us:9443/ws/${symbol.toLowerCase()}@aggTrade`)
+        const ws = new WebsocketBuilder(`wss://stream.binnance.us:9443/ws/${symbol.toLowerCase()}@aggTrade`)
             // .onOpen((i, ev) => { console.log("opened") })
             // .onClose((i, ev) => { console.log("closed") })
-            // .onError((i, ev) => { console.log("error") })
+            .onError((i, ev) => {
+                console.error("error", ev);
+                subscriber.error(ev);
+            })
             .onMessage((i, ev) => {
+                console.log("WebsocketBuilder message", ev.data);
                 subscriber.next(parseTrade(JSON.parse(ev.data)));
+                throw new Error("err");
             })
             .build();
 
         return () => ws.close();
+    });
+    return obs;
+};
+
+const getFakeCandleStream = (symbol: string, interval: string) => {
+    const obs = new Observable<TRealtimePriceBar>(subscriber => {
+        console.log("Using fake trades for ", symbol);
+        let counter = 0;
+        const token = setInterval(() => {
+            if (counter >= tradeData.length) {
+                clearInterval(token)
+                return
+            };
+
+            const data = tradeData[counter];
+            ++counter;
+            subscriber.next(parseKline(data));
+
+        }, 100);
+
+        return () => clearInterval(token);
+    });
+    return obs;
+};
+
+const getFakeTradeStream = (symbol: string) => {
+    const obs = new Observable<TTrade>(subscriber => {
+        console.log("Using fake trades for ", symbol);
+        let counter = 0;
+        const token = setInterval(() => {
+            if (counter >= tradeData.length) {
+                clearInterval(token)
+                return
+            };
+
+            const data = tradeData[counter];
+            ++counter;
+            subscriber.next(parseTrade(data));
+        }, 100);
+
+        return () => clearInterval(token);
     });
     return obs;
 };
@@ -185,6 +240,11 @@ const getRealtimeCandleStream = (symbol: string, interval: string) => {
     // TODO add a timer continuation to latestCandle$ so it keeps emmitting empty candles on openTime
     // Use these to create new candles from previous in tradeToCandle
     return combineLatest([trade$, latestCandle$]).pipe(
+        catchError((error: any) => {
+            console.warn(error);
+
+            return combineLatest([getFakeTradeStream(symbol), getFakeCandleStream(symbol, interval)]);
+        }),
         skipWhile(([trade, candle]) => trade.eventTime < candle.eventTime),
         scan(
             (acc: TRealtimePriceBar, cur: [TTrade, TRealtimePriceBar]) =>

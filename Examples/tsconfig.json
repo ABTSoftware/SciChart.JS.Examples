@@ -21,6 +21,7 @@
         "typeRoots": [
             "./src/types", "./node_modules/@types"],
         "esModuleInterop": false,
+        "resolveJsonModule": true,
         "skipLibCheck": false,
         "forceConsistentCasingInFileNames": true
     },
