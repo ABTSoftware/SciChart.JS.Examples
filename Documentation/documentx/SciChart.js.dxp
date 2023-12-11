@@ -15768,7 +15768,7 @@ Show external placement div</Notes>
           <PropertyValue m="2022-12-30T23:56:02.7527975Z">SCICHART ® is a Registered Trademark in the UK, US and EU. Copyright SciChart Ltd 2011-2023.</PropertyValue>
         </PropertyDefinitionValue>
         <PropertyDefinitionValue PropertyDefinitionId="76de16a8-8dcb-462c-b636-b20ff0b3c3a1">
-          <PropertyValue m="2020-08-03T15:01:49.2611528Z">&lt;a href="mailto:sales@scichart.com?subject=Feedback on SciChart Documentation"&gt;Email us to give feedback!&lt;/a&gt;</PropertyValue>
+          <PropertyValue m="2023-12-11T16:20:11.3037271Z">&lt;a href="%%DocumentationRoot%%sitemap.xml" target="_blank"&gt;Sitemap&lt;/a&gt; | &lt;a href="mailto:support@scichart.com?subject=Documentation Feedback: %%FileName%%"&gt;Send Feedback&lt;/a&gt;</PropertyValue>
         </PropertyDefinitionValue>
       </PropertyDefinitionValues>
       <DefaultTemplateName>Material</DefaultTemplateName>
