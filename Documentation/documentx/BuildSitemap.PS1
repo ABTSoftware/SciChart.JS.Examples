@@ -38,12 +38,6 @@ $itemCount = 0;
 # Loop through HTML files in the folder
 Get-ChildItem -Path $folderPath -Filter *.html | ForEach-Object {
     $filePath = $_.FullName
-
-	# Check if the path contains a tilde "~"
-    if ($filePath -like "*~*") {
-         # Write-Host "Skipping file with tilde in the path: $filePath"
-         return  # Continue to the next iteration of the loop
-    }
 	
     # Parse the HTML file to extract the title (assuming it's within <title> tags)
     # #  $title = (Get-Content $filePath | Select-String -Pattern '<title>(.*?)<\/title>').Matches[0].Groups[1].Value
@@ -63,7 +57,7 @@ Get-ChildItem -Path $folderPath -Filter *.html | ForEach-Object {
         loc       = $url
         lastmod   = $today
         changefreq= "weekly"
-        priority  = 0.8
+        priority  = 0.5
         # title     = $title
     }
 

@@ -15,7 +15,7 @@ if %ERRORLEVEL% EQU -100 goto :partiallyCompleted
 if %ERRORLEVEL% EQU -101 goto :error
 
 Echo Building sitemap ... 
-".\BuildSitemap.PS1" -folderPath "DocsOut" -rootUrl "https://www.scichart.com/documentation/js/current" 
+powershell -File ".\BuildSitemap.PS1" -folderPath "DocsOut" -rootUrl "https://www.scichart.com/documentation/js/current" 
 
 @echo off 
 
