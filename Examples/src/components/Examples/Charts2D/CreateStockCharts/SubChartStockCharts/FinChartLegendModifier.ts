@@ -14,7 +14,8 @@ import {
     SciChartSubSurface,
     translateFromCanvasToSeriesViewRect,
     translateToNotScaled,
-    registerType
+    registerType,
+    testIsInBounds
 } from "scichart";
 import { TFinanceLegendTemplate, FinChartLegendAnnotation } from "./FinChartLegendAnnotation";
 import { EMousePosition } from "scichart/types/MousePosition";
@@ -48,7 +49,6 @@ class CustomPaneModifier extends ChartModifierBase2D {
 
     public modifierMouseMove(args: ModifierMouseArgs): void {
         super.modifierMouseMove(args);
-        // console.log("CustomModifier Mouse Move", this.parentSurface.id);
         this.callback();
     }
 }
@@ -101,7 +101,9 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
     public onAttachSubSurface(subChart: SciChartSubSurface): void {
         const newCustomModifier = new CustomPaneModifier(() => {
             this.updateMousePosition(subChart);
-            this.update();
+            if (this.mousePosition !== EMousePosition.OutOfCanvas) {
+                this.update();
+            }
         });
         subChart.chartModifiers.add(newCustomModifier);
         this.paneModifiers.set(subChart, newCustomModifier);
@@ -161,18 +163,23 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
         });
     }
 
-    private updateMousePosition(scs: SciChartSubSurface) {
-        this.mousePositionPaneId = scs.id;
-        this.mousePositionSciChartSurface = scs;
-        if (!this.mousePoint) {
-            this.mousePosition = EMousePosition.OutOfCanvas;
-        } else {
-            this.translatedMousePoint = translateFromCanvasToSeriesViewRect(this.mousePoint, scs.seriesViewRect);
-            if (!this.translatedMousePoint) {
-                this.mousePosition = EMousePosition.AxisArea;
-            } else {
-                this.mousePosition = EMousePosition.SeriesArea;
+    private updateMousePosition(scs: SciChartSubSurface) {     
+        const { left, right, top, bottom } = scs.getSubChartRect();
+        if (testIsInBounds(this.mousePoint.x, this.mousePoint.y, left, bottom, right, top)) {
+            this.mousePositionPaneId = scs.id;
+            this.mousePositionSciChartSurface = scs;
+            if (!this.mousePoint) {
+                this.mousePosition = EMousePosition.OutOfCanvas;
+            } else {           
+                this.translatedMousePoint = translateFromCanvasToSeriesViewRect(this.mousePoint, scs.seriesViewRect);
+                if (!this.translatedMousePoint) {
+                    this.mousePosition = EMousePosition.AxisArea;
+                } else {
+                    this.mousePosition = EMousePosition.SeriesArea;
+                }
             }
+        } else {
+            this.mousePosition = EMousePosition.OutOfCanvas;
         }
     }
 
