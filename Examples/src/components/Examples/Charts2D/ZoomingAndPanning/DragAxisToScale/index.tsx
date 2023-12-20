@@ -13,13 +13,15 @@ import {
     ZoomExtentsModifier,
     EDragMode,
     YAxisDragModifier,
-    XAxisDragModifier
+    XAxisDragModifier, SciChartJsNavyTheme
 } from "scichart";
 
 export const divElementId = "chart";
 
 export const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: new SciChartJsNavyTheme(),
+    });
 
     const ID_X_AXIS_2 = "xAxis2";
     const ID_Y_AXIS_2 = "yAxis2";

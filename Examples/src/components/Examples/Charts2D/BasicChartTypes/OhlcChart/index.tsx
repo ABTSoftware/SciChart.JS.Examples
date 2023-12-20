@@ -13,7 +13,7 @@ import {
     SmartDateLabelProvider,
     SweepAnimation,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier, SciChartJsNavyTheme
 } from "scichart";
 
 const divElementId = "chart";
@@ -21,7 +21,9 @@ const divElementId = "chart";
 // SCICHART EXAMPLE
 const drawExample = async () => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId);
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+        theme: new SciChartJsNavyTheme()
+    });
 
     // Add an XAxis of type CategoryAxis - which collapses gaps in stock market data
     // SmartLabelProvider returns useful labels for stock market data
