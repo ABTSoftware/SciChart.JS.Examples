@@ -101,6 +101,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                 <a
                                     className={classes.ExampleRootDescriptionLink}
                                     target="_blank"
+                                    rel="nofollow external"
                                     href="https://github.com/abtsoftware/scichart.js.examples"
                                     title={titleText}
                                 >
@@ -110,6 +111,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                 <a
                                     className={classes.ExampleRootDescriptionLink}
                                     target="_blank"
+                                    rel="nofollow external"
                                     href={`${exampleUrl}?codesandbox=1`}
                                 >
                                     Open in CodeSandBox
