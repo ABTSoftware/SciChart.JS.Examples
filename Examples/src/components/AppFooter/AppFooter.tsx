@@ -79,9 +79,9 @@ export default function AppFooter() {
                                 Pricing
                             </a>
                             <a href="https://www.scichart.com/news/" title="News">
-                                News
+                                News &amp; Releases
                             </a>
-                            <a href="https://blog.scichart.com" title="SciChart Blog">
+                            <a href="https://scichart.com/blog" title="SciChart Blog">
                                 NEW! SciChart Blog
                             </a>
                             <a href="https://www.scichart.com/about-us/" title="About Us">
