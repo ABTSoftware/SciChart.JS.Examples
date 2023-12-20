@@ -165,6 +165,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                             href={`/iframe${examplePage.path}`}
                                             title="View this example in Full Screen"
                                             target="_blank"
+                                            rel="nofollow"
                                             className={classes.ButtonsText}
                                         >
                                             VIEW Full Screen
