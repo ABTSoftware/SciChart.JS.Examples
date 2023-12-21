@@ -78,6 +78,7 @@ const AppBarTop: React.FC<TProps> = props => {
                         className={classes.PurpleButton}
                         href={`${currentExample.path}?codesandbox=1`}
                         title={`Edit ${currentExample.title} in CodeSandbox`}
+                        rel="nofollow external"
                         target="_blank"
                     >
                         <CodeIcon fontSize="small" /> &nbsp;Code Sandbox
