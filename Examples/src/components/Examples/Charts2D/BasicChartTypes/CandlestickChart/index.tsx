@@ -265,6 +265,17 @@ class VolumePaletteProvider implements IFillPaletteProvider {
             this.ohlcDataSeries.getNativeCloseValues().get(index);
         return isUpCandle ? this.upColorArgb : this.downColorArgb;
     }
+
+    // Override stroke as well, even though strokethickness is 0, because stroke is used if column thickness goes to 0.
+    overrideStrokeArgb(
+        xValue: number,
+        yValue: number,
+        index: number,
+        opacity?: number,
+        metadata?: IPointMetadata
+    ): number {
+        return this.overrideFillArgb(xValue, yValue, index, opacity, metadata);
+    }
 }
 
 // React component needed as our examples app is react.

@@ -1,26 +1,16 @@
-import {SciChartSurface} from "scichart/Charting/Visuals/SciChartSurface";
-import {NumericAxis} from "scichart/Charting/Visuals/Axis/NumericAxis";
-import {zeroArray2D} from "scichart/utils/zeroArray2D";
-import {UniformHeatmapDataSeries} from "scichart/Charting/Model/UniformHeatmapDataSeries";
-import {UniformHeatmapRenderableSeries} from "scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries";
-import {HeatmapColorMap} from "scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap";
-import {NumberRange} from "scichart/Core/NumberRange";
-import {ZoomPanModifier} from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
+import {
+    SciChartSurface,
+    NumericAxis,
+    zeroArray2D,
+    UniformHeatmapDataSeries,
+    UniformHeatmapRenderableSeries,
+    HeatmapColorMap,
+    NumberRange,
+    ZoomPanModifier,
+    MouseWheelZoomModifier
+} from "scichart";
 
 async function initSciChart() {
-    // LICENSING //
-    // Set your license code here
-    // You can get a trial license key from https://www.scichart.com/licensing-scichart-js/
-    // Purchased license keys can be viewed at https://www.scichart.com/profile
-    //
-    // e.g.
-    //
-    // SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
-    //
-    // Also, once activated (trial or paid license) having the licensing wizard open on your machine
-    // will mean any or all applications you run locally will be fully licensed.
-
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext
     // instance must be passed to other types that exist on the same surface.
@@ -49,7 +39,7 @@ async function initSciChart() {
 
     // OPTIONAL:
     // Override HeatmapDataSeries.getYRange() to always return the bottom 5% of the chart
-    // NOTE: Use this with caution as DataSeries.getYRange() is also used in the yAxis autorange algorothm
+    // NOTE: Use this with caution as DataSeries.getYRange() is also used in the yAxis autorange algorithm
     // so you will need to specify a visiblerange on the yaxis or have other series as well.
     heatmapDataSeries.getYRange = () => {
         return new NumberRange(yAxis.visibleRange.min, yAxis.visibleRange.diff * 0.05 + yAxis.visibleRange.min);

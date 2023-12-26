@@ -101,6 +101,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                 <a
                                     className={classes.ExampleRootDescriptionLink}
                                     target="_blank"
+                                    rel="nofollow external"
                                     href="https://github.com/abtsoftware/scichart.js.examples"
                                     title={titleText}
                                 >
@@ -110,6 +111,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                 <a
                                     className={classes.ExampleRootDescriptionLink}
                                     target="_blank"
+                                    rel="nofollow external"
                                     href={`${exampleUrl}?codesandbox=1`}
                                 >
                                     Open in CodeSandBox
@@ -163,6 +165,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                             href={`/iframe${examplePage.path}`}
                                             title="View this example in Full Screen"
                                             target="_blank"
+                                            rel="nofollow"
                                             className={classes.ButtonsText}
                                         >
                                             VIEW Full Screen

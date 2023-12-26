@@ -1,39 +1,40 @@
-import { SciChartSurface } from 'scichart/Charting/Visuals/SciChartSurface';
-import { NumericAxis } from 'scichart/Charting/Visuals/Axis/NumericAxis';
-import { MouseWheelZoomModifier } from 'scichart/Charting/ChartModifiers/MouseWheelZoomModifier';
-import { ZoomExtentsModifier } from 'scichart/Charting/ChartModifiers/ZoomExtentsModifier';
-import { ZoomPanModifier } from 'scichart/Charting/ChartModifiers/ZoomPanModifier';
-import { EAxisAlignment } from 'scichart/types/AxisAlignment';
-import { NumberRange } from 'scichart/Core/NumberRange';
-import { FastLineRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries';
-import { XyDataSeries } from 'scichart/Charting/Model/XyDataSeries';
-import { UniformHeatmapDataSeries } from 'scichart/Charting/Model/UniformHeatmapDataSeries';
-import { UniformHeatmapRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/UniformHeatmapRenderableSeries';
-import { HeatmapColorMap } from 'scichart/Charting/Visuals/RenderableSeries/HeatmapColorMap';
-import { RolloverModifier } from 'scichart/Charting/ChartModifiers/RolloverModifier';
-import { GradientParams } from 'scichart/Core/GradientParams';
-import { Point } from 'scichart/Core/Point';
-import { PaletteFactory } from 'scichart/Charting/Model/PaletteFactory';
-import { IStrokePaletteProvider, EStrokePaletteMode } from 'scichart/Charting/Model/IPaletteProvider';
-import { IRenderableSeries } from 'scichart/Charting/Visuals/RenderableSeries/IRenderableSeries';
-import { EPaletteProviderType } from 'scichart/types/PaletteProviderType';
-import { TGradientStop } from 'scichart/types/TGradientStop';
+import {
+    EAxisAlignment,
+    EStrokePaletteMode,
+    FastLineRenderableSeries,
+    HeatmapColorMap,
+    IRenderableSeries,
+    IStrokePaletteProvider,
+    MouseWheelZoomModifier,
+    NumberRange,
+    NumericAxis,
+    PaletteFactory,
+    RolloverModifier,
+    SciChartJsNavyTheme,
+    SciChartSurface,
+    TGradientStop,
+    UniformHeatmapDataSeries,
+    UniformHeatmapRenderableSeries,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier
+} from 'scichart';
 
 async function initSciChart() {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root');
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create('scichart-root', {
+        theme: new SciChartJsNavyTheme()
+    });
 
-    const xAxis = new NumericAxis(wasmContext);
-    xAxis.axisAlignment = EAxisAlignment.Top;
+    const xAxis = new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Bottom});
     sciChartSurface.xAxes.add(xAxis);
 
-    const yAxis = new NumericAxis(wasmContext);
-    yAxis.axisAlignment = EAxisAlignment.Left;
-    yAxis.visibleRange = new NumberRange(0, 120);
+    const yAxis = new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Left, visibleRange: new NumberRange(0, 120)});
     sciChartSurface.yAxes.add(yAxis);
 
-    const lineSeries = new FastLineRenderableSeries(wasmContext);
-    lineSeries.stroke = "steelBlue";
-    lineSeries.strokeThickness = 3;
+    const lineSeries = new FastLineRenderableSeries(wasmContext, {
+        stroke: "steelblue",
+        strokeThickness: 3,
+    });
     const dataSeries = new XyDataSeries(wasmContext);
     const flatDataSeries = new XyDataSeries(wasmContext);
     const heatMapData: number[][] = [[]];
@@ -52,8 +53,8 @@ async function initSciChart() {
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
         xStart: 0,
         xStep: 0.2,
-        yStart: 110,
-        yStep: 5,
+        yStart: 0,
+        yStep: 1,
         zValues: heatMapData,
     });
 
@@ -104,9 +105,21 @@ async function initSciChart() {
     heatMapLine.dataSeries = flatDataSeries;
     heatMapLine.paletteProvider = palette;
 
-    sciChartSurface.renderableSeries.add(lineSeries, heatmapSeries, heatMapLine);
+    sciChartSurface.renderableSeries.add(
+        lineSeries,
+        heatmapSeries,
+        // heatMapLine
+    );
 
     sciChartSurface.chartModifiers.add(new ZoomPanModifier(), new ZoomExtentsModifier(), new MouseWheelZoomModifier(), new RolloverModifier());
+
+    // OPTIONAL:
+    // Override HeatmapDataSeries.getYRange() to always return the bottom 5% of the chart
+    // NOTE: Use this with caution as DataSeries.getYRange() is also used in the yAxis autorange algorithm
+    // so you will need to specify a visiblerange on the yaxis or have other series as well.
+    heatmapDataSeries.getYRange = () => {
+        return new NumberRange(yAxis.visibleRange.min, yAxis.visibleRange.diff * 0.05 + yAxis.visibleRange.min);
+    };
 }
 
 initSciChart();

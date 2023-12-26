@@ -1,4 +1,4 @@
-async function fixedAspectRation(divElementId) {
+async function fixedAspectRatio(divElementId) {
 
   const {
     SciChartSurface,
@@ -14,7 +14,7 @@ async function fixedAspectRation(divElementId) {
     RubberBandXyZoomModifier,
     XyScatterRenderableSeries,
     XyDataSeries,
-    CrossPointMarker
+    XPointMarker
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -31,7 +31,7 @@ async function fixedAspectRation(divElementId) {
   sciChartSurface.yAxes.add(yAxis);
 
   const { width, height } = sciChartSurface.renderSurface.viewportSize;
-  // force the x and y tick spacing to be the same, regardless of the aspect ratio of the chart
+  // force the ratio of the visibleRanges to be constant even when one is changed
   const ratio = height / width;
   xAxis.visibleRange = new NumberRange(-10, 10);
   yAxis.visibleRange = new NumberRange(-10 * ratio, 10 * ratio);
@@ -58,6 +58,11 @@ async function fixedAspectRation(divElementId) {
   });
   // #endregion
 
+  sciChartSurface.renderableSeries.add(new XyScatterRenderableSeries(wasmContext, {
+    pointMarker: new XPointMarker(wasmContext, { stroke: "red", width: 10, height: 10}),
+    dataSeries: new XyDataSeries(wasmContext, { xValues: [-2, 0, 2, -2, 0, 2, -2, 0, 2], yValues: [-2, -2, -2, 0, 0, 0, 2, 2, 2]})
+  }));
+
   // add pan and zoom behaviour
   sciChartSurface.chartModifiers.add(
     new ZoomExtentsModifier(),
@@ -68,6 +73,6 @@ async function fixedAspectRation(divElementId) {
   );
 };
 
-fixedAspectRation("scichart-root");
+fixedAspectRatio("scichart-root");
 
 

@@ -155,6 +155,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
         item: { id: "featuredApps_financialCharts", name: "Financial Charts" },
         submenu: [
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
             EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts,
             EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts,
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
@@ -241,6 +242,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTheme,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling,
@@ -265,6 +267,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview,

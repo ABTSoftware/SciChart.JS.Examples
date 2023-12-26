@@ -28,8 +28,8 @@ export default function App() {
     const location = useLocation();
     // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
     const isIFrame = location.pathname.substring(1, 7) === "iframe";
-    const pathname = isIFrame ? location.pathname.substring(7) : location.pathname;
-
+    let pathname = isIFrame ? location.pathname.substring(7) : location.pathname;
+    pathname = pathname.endsWith("/") ? pathname.substring(0, pathname.length - 1) : pathname;
     const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
     let initialOpenedMenuItems = {
