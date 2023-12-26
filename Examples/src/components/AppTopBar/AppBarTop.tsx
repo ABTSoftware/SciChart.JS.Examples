@@ -74,14 +74,15 @@ const AppBarTop: React.FC<TProps> = props => {
                     &nbsp;Docs
                 </Button>
                 {currentExample !== undefined && (
-                    <Button
-                        className={classes.PurpleButton}
+                    <a
+                        className={`MuiButtonBase-root MuiButton-root ${classes.PurpleButton}`}
+                        rel="nofollow external"
                         href={`${currentExample.path}?codesandbox=1`}
                         title={`Edit ${currentExample.title} in CodeSandbox`}
                         target="_blank"
                     >
-                        <CodeIcon fontSize="small" /> &nbsp;Code Sandbox
-                    </Button>
+                        <span className={`MuiButton-label`}><CodeIcon fontSize="small" /> &nbsp;Code Sandbox</span>
+                    </a>
                 )}
                 <a className={classes.GitHubLink} href={contextualGithub} title={contextualGithubTitle} target="_blank">
                     <GitHubIcon fontSize="small" />
