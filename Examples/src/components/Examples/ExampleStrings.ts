@@ -500,6 +500,10 @@ export const ExampleStrings = {
         "https://www.scichart.com/documentation/js/current/webframe.html#The%20PaletteProvider%20API.html",
     urlTitlePaletteProviderDocumentation: "The PaletteProvider API documentation",
 
+    // MultiplePointMarkers
+    titleMultiplePointMarkers: "Multiple Point Markers using RenderDataTransform",
+    urlMultiplePointMarkers: "/javascript-multiple-pointmarkers-with-renderdatatransform",
+
     // Dashed line styling
     titleDashedLineStyling: "Dashed Line Styling",
     urlDashedLineStyling: "/javascript-dashed-line-chart",

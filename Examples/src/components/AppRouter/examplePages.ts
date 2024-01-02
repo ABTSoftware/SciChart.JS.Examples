@@ -104,6 +104,7 @@ import { dynamicLayoutExampleInfo } from "../Examples/FeaturedApps/ShowCases/Dyn
 import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/exampleInfo";
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
+import { multiplePointMarkersExampleInfo } from "../Examples/Charts2D/StylingAndTheming/MultiplePointMarkers/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -396,6 +397,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_stylingAndTheming_DataLabels: {
         id: "chart2D_stylingAndTheming_DataLabels",
         ...datalabelsExampleInfo
+    },
+    chart2D_stylingAndTheming_MultiplePointMarkers: {
+        id: "chart2D_stylingAndTheming_MultiplePointMarkers",
+        ...multiplePointMarkersExampleInfo
     },
     chart2D_tooltipsAndHittest_HitTestApi: {
         id: "chart2D_tooltipsAndHittest_HitTestApi",
