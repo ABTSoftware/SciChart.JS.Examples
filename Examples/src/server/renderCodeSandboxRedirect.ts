@@ -202,6 +202,7 @@ const renderCodeSandBoxRedirectPage = (form: string) => {
       <head>
           <meta charset="utf-8" />
           <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+          <meta name="robots" content="noindex" />
           <title>SciChart.js Documentation Examples</title>
       </head>
       <body>
