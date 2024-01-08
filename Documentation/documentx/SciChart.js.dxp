@@ -3766,19 +3766,21 @@ Show external placement div</Notes>
             <Caption m="2023-07-24T18:13:53.6489646Z">Tutorials React</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="a5d48d77-152d-4142-b184-811540804fde" Status="New Topic" CreatedOn="2023-07-24T09:15:58.4265193Z" ModifiedOn="2023-12-22T14:34:26.2589025Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TutorialReusableReactComponent" BuildFlags="">
+              <Topic Id="a5d48d77-152d-4142-b184-811540804fde" Status="New Topic" CreatedOn="2023-07-24T09:15:58.4265193Z" ModifiedOn="2024-01-08T14:43:06.5473393Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TutorialReusableReactComponent" BuildFlags="">
                 <Title m="2023-07-24T18:14:14.2438355Z">Tutorial - Creating a Reusable React Component</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-12-22T14:34:26.2589025Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-01-08T14:43:06.5473393Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;&lt;STRONG&gt;NEW! We have now published an open source scichart-react library&lt;/STRONG&gt; which neatly wraps up this entire tutorial and more. Handling component lifecycle, proper disposal of the SciChartSurface and with a nice API too :)&lt;/P&gt;
-&lt;P&gt;Head over to the following pages to learn more:&lt;/P&gt;
-&lt;UL&gt;&lt;STRONG&gt;&lt;/STRONG&gt;
+&lt;P&gt;Head over to the following page to learn more:&lt;/P&gt;
+&lt;P&gt;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;&lt;STRONG&gt;React Charts with SciChart.js: Introducing the scichart-react library&lt;/STRONG&gt;&lt;/A&gt;&lt;/P&gt;
+&lt;P&gt;Also see:&lt;/P&gt;
+&lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://github.com/ABTSoftware/scichart-react" target=_blank&gt;SciChart-React on Github&lt;/A&gt;: official React component wrapper for SciChart.js 
 &lt;LI&gt;&lt;A href="https://www.npmjs.com/package/scichart-react" target=_blank&gt;SciChart-React on npm&lt;/A&gt;&lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;Blog posts will be published on the scichart site soon showing how to use &lt;STRONG&gt;scichart-react&lt;/STRONG&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P md-src-pos="2198..2365"&gt;The idea of this tutorial is to create a reusable React component which could be used as a core setup for instantiating a SciChart.js chart and properly disposing of memory once the chart is no longer needed.&amp;nbsp;Source code for this tutorial can be found at &lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/dev_v3.2/Tutorials/React/reusable-react-component" target=_blank&gt;SciChart.Js.Examples Github Repository&lt;/A&gt;&lt;/P&gt;
 &lt;P md-src-pos="2198..2365"&gt;Main criteria and points to consider:&lt;/P&gt;
 &lt;UL md-src-pos="2366..2833"&gt;
@@ -15692,7 +15694,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">2610</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
