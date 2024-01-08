@@ -1,36 +1,46 @@
-import { useContext, useEffect, useRef } from 'react';
-import SciChart, { IChartComponentPropsCore, IInitResult } from './SciChart';
-import { SurfaceContext } from './SurfaceContext';
-import { ESeriesType, FastMountainRenderableSeries, GradientParams, IOverviewOptions, IRenderableSeries, Point, SciChartOverview, SciChartSurface, Thickness } from 'scichart';
-import { appTheme } from 'scichart-example-dependencies';
+import { useContext, useEffect, useRef } from "react";
+import { SciChartReact, SciChartSurfaceContext, IInitResult } from "scichart-react";
+import {
+    ESeriesType,
+    FastMountainRenderableSeries,
+    GradientParams,
+    IOverviewOptions,
+    IRenderableSeries,
+    Point,
+    SciChartOverview,
+    SciChartSurface,
+    Thickness,
+} from "scichart";
+import { appTheme } from "scichart-example-dependencies";
+import { IChartComponentPropsCore } from "scichart-react/types";
 
 const OverviewComponent = (
     props: IChartComponentPropsCore<SciChartSurface, IInitResult<SciChartSurface>> & { options?: IOverviewOptions }
 ) => {
     const { options, ...chartComponentProps } = props;
-    const parentSurface = useContext(SurfaceContext).sciChartSurface as SciChartSurface;
+    const parentSurface = useContext(SciChartSurfaceContext).sciChartSurface as SciChartSurface;
     const overviewRef = useRef<SciChartOverview>(null);
     const overviewCreatePromiseRef = useRef<Promise<SciChartOverview>>(null);
 
     const initChart = async (divElementId: string | HTMLDivElement): Promise<IInitResult<SciChartSurface>> => {
         overviewCreatePromiseRef.current = SciChartOverview.create(parentSurface, divElementId, options);
-        const overview = await overviewCreatePromiseRef.current
+        const overview = await overviewCreatePromiseRef.current;
         overviewRef.current = overview;
         return { sciChartSurface: overview.overviewSciChartSurface };
     };
 
-    useEffect(() => { 
+    useEffect(() => {
         const performCleanup = () => {
             overviewRef.current.delete();
-            overviewRef.current = undefined; 
-        }
+            overviewRef.current = undefined;
+        };
 
         return () => {
-            overviewRef.current ? performCleanup() : overviewCreatePromiseRef.current.then(performCleanup)
-        }
-    }, [])
+            overviewRef.current ? performCleanup() : overviewCreatePromiseRef.current.then(performCleanup);
+        };
+    }, []);
 
-    return <SciChart<SciChartSurface> {...chartComponentProps} initChart={initChart}></SciChart>;
+    return <SciChartReact<SciChartSurface> {...chartComponentProps} initChart={initChart} />;
 };
 
 export default OverviewComponent;
@@ -39,7 +49,7 @@ export default OverviewComponent;
 export const overviewOptions: IOverviewOptions = {
     theme: appTheme.SciChartJsTheme,
     disableAspect: true,
-    padding: Thickness.fromString('0 10 10 10'),
+    padding: Thickness.fromString("0 10 10 10"),
     viewportBorder: {
         color: appTheme.DarkIndigo,
         border: 2,
