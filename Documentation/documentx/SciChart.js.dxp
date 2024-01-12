@@ -16520,6 +16520,7 @@ Show external placement div</Notes>
 		console.log("Inserted codepen script!");
 	}
 &lt;/script&gt;
+&lt;script src="https://scichart.activehosted.com/f/embed.php?id=25" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;
 &lt;style&gt;.cp_embed_iframe { aspect-ratio:1.333 }&lt;/style&gt;</OtherHeadContent>
       </OtherFiles>
       <VersionsAndEditions>
