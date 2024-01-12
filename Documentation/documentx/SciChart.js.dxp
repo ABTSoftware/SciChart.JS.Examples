@@ -3766,22 +3766,23 @@ Show external placement div</Notes>
             <Caption m="2023-07-24T18:13:53.6489646Z">Tutorials React</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="a5d48d77-152d-4142-b184-811540804fde" Status="New Topic" CreatedOn="2023-07-24T09:15:58.4265193Z" ModifiedOn="2024-01-08T14:43:06.5473393Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TutorialReusableReactComponent" BuildFlags="">
-                <Title m="2023-07-24T18:14:14.2438355Z">Tutorial - Creating a Reusable React Component</Title>
+              <Topic Id="a5d48d77-152d-4142-b184-811540804fde" Status="New Topic" CreatedOn="2023-07-24T09:15:58.4265193Z" ModifiedOn="2024-01-12T17:24:08.5767921Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TutorialReusableReactComponent" BuildFlags="">
+                <Title m="2024-01-12T17:12:32.3820528Z">Tutorial - Creating a SciChart React Component from the Ground Up</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2024-01-08T14:43:06.5473393Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
-&lt;P&gt;&lt;STRONG&gt;NEW! We have now published an open source scichart-react library&lt;/STRONG&gt; which neatly wraps up this entire tutorial and more. Handling component lifecycle, proper disposal of the SciChartSurface and with a nice API too :)&lt;/P&gt;
+                    <Content m="2024-01-12T17:24:08.5767921Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;STRONG&gt;NEW! We have now published an open source&amp;nbsp;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;scichart-react&lt;/A&gt; library&lt;/STRONG&gt; which neatly wraps up this entire tutorial and more. Handling component lifecycle, proper disposal of the SciChartSurface and with a nice API too :)&lt;/P&gt;
 &lt;P&gt;Head over to the following page to learn more:&lt;/P&gt;
-&lt;P&gt;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;&lt;STRONG&gt;React Charts with SciChart.js: Introducing the scichart-react library&lt;/STRONG&gt;&lt;/A&gt;&lt;/P&gt;
+&lt;P&gt;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;React Charts with SciChart.js: Introducing the scichart-react library&lt;/A&gt;&lt;/A&gt;&lt;/P&gt;
 &lt;P&gt;Also see:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://github.com/ABTSoftware/scichart-react" target=_blank&gt;SciChart-React on Github&lt;/A&gt;: official React component wrapper for SciChart.js 
-&lt;LI&gt;&lt;A href="https://www.npmjs.com/package/scichart-react" target=_blank&gt;SciChart-React on npm&lt;/A&gt;&lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://www.npmjs.com/package/scichart-react" target=_blank&gt;SciChart-React on npm&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P md-src-pos="2198..2365"&gt;The idea of this tutorial is to create a reusable React component which could be used as a core setup for instantiating a SciChart.js chart and properly disposing of memory once the chart is no longer needed.&amp;nbsp;Source code for this tutorial can be found at &lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/dev_v3.2/Tutorials/React/reusable-react-component" target=_blank&gt;SciChart.Js.Examples Github Repository&lt;/A&gt;&lt;/P&gt;
+&lt;P md-src-pos="2198..2365"&gt;The idea of this tutorial is to create a reusable React component which could be used as a core setup for instantiating a SciChart.js chart and properly disposing of memory once the chart is no longer needed.&amp;nbsp;&lt;/P&gt;
+&lt;P md-src-pos="2198..2365"&gt;Source code for this tutorial can be found at &lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/dev_v3.2/Tutorials/React/reusable-react-component" target=_blank&gt;SciChart.Js.Examples Github Repository&lt;/A&gt;&lt;/P&gt;
 &lt;P md-src-pos="2198..2365"&gt;Main criteria and points to consider:&lt;/P&gt;
 &lt;UL md-src-pos="2366..2833"&gt;
 &lt;LI md-src-pos="2366..2436"&gt;The component should be &lt;STRONG&gt;reusable&lt;/STRONG&gt; for different chart configurations 
@@ -15756,7 +15757,7 @@ Show external placement div</Notes>
           <PropertyValue m="2023-01-13T17:13:13.9884312Z">v3.x</PropertyValue>
         </PropertyDefinitionValue>
         <PropertyDefinitionValue PropertyDefinitionId="08de2c63-c533-49c3-a1d7-52b3995b9bec">
-          <PropertyValue m="2022-12-30T23:56:02.7527975Z">SCICHART ® is a Registered Trademark in the UK, US and EU. Copyright SciChart Ltd 2011-2023.</PropertyValue>
+          <PropertyValue m="2024-01-12T16:58:30.920619Z">SCICHART ® is a Registered Trademark in the UK, US and EU. Copyright SciChart Ltd 2011-2024.</PropertyValue>
         </PropertyDefinitionValue>
         <PropertyDefinitionValue PropertyDefinitionId="76de16a8-8dcb-462c-b636-b20ff0b3c3a1">
           <PropertyValue m="2023-12-11T16:20:11.3037271Z">&lt;a href="%%DocumentationRoot%%sitemap.xml" target="_blank"&gt;Sitemap&lt;/a&gt; | &lt;a href="mailto:support@scichart.com?subject=Documentation Feedback: %%FileName%%"&gt;Send Feedback&lt;/a&gt;</PropertyValue>
@@ -16512,15 +16513,22 @@ Show external placement div</Notes>
 &lt;script&gt;
 	var isDesigner = location.protocol === 'about:';
 	if (!isDesigner) {
-	   	var head = document.getElementsByTagName('head')[0];
-		var script = document.createElement('script');
-		script.type = 'text/javascript';
-		script.src = 'https://static.codepen.io/assets/embed/ei.js';
-		head.appendChild(script);
-		console.log("Inserted codepen script!");
+		function appendScript(scriptSrc, charSet) {
+			var head = document.getElementsByTagName('head')[0];
+			var script = document.createElement('script');
+			script.type = 'text/javascript';
+			script.src = scriptSrc;
+			if (charSet) {
+				script.charset = charSet;
+			}
+			head.appendChild(script);
+			console.log(`appended script ` + scriptSrc + `!`);
+		}
+	   	
+		appendScript('https://static.codepen.io/assets/embed/ei.js', undefined);
+		appendScript('https://scichart.activehosted.com/f/embed.php?id=25', 'utf-8');	
 	}
 &lt;/script&gt;
-&lt;script src="https://scichart.activehosted.com/f/embed.php?id=25" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;
 &lt;style&gt;.cp_embed_iframe { aspect-ratio:1.333 }&lt;/style&gt;</OtherHeadContent>
       </OtherFiles>
       <VersionsAndEditions>
