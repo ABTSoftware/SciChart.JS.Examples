@@ -298,21 +298,21 @@ const overviewStyle = {
 };
 
 const pageChartStyle = {
-    gridRow: "4 / 8",
+    gridRow: "4 / 7",
     gridColumn: "1 / 3",
 };
 
 const serverChartStyle = {
-    gridRow: "4 / 8",
+    gridRow: "4 / 7",
     gridColumn: "3 / -1",
 };
 
 const columnChartStyle = {
-    gridRow: "8 / -1",
+    gridRow: "7 / -1",
     gridColumn: "span 3",
 };
 const pieChartStyle = {
-    gridRow: "8 / -1",
+    gridRow: "7 / -1",
     gridColumn: "span 1",
 };
 

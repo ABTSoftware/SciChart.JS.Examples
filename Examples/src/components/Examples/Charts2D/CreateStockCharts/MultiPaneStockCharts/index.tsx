@@ -46,9 +46,10 @@ import {
     ECoordinateMode,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
-    EAnnotationLayer
+    EAnnotationLayer,
 } from "scichart";
-import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
+import { SciChartGroup, SciChartReact } from "scichart-react";
+import { useState } from "react";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
@@ -86,26 +87,20 @@ const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
             dataSeries: defaultSeries.dataSeries,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: appTheme.VividSkyBlue + "77", offset: 0 },
-                { color: "Transparent", offset: 1 }
+                { color: "Transparent", offset: 1 },
             ]),
-            stroke: appTheme.VividSkyBlue
+            stroke: appTheme.VividSkyBlue,
         });
     }
     // hide all other series
     return undefined;
 };
 
-const drawExample = async () => {
+const getChartsInitializationAPI = () => {
     // We can group together charts using VerticalChartGroup type
     const verticalGroup = new SciChartVerticalGroup();
-    const {
-        dateValues,
-        openValues,
-        highValues,
-        lowValues,
-        closeValues,
-        volumeValues
-    } = ExampleDataProvider.getTradingData();
+    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } =
+        ExampleDataProvider.getTradingData();
 
     let chart1XAxis: CategoryAxis;
     let chart2XAxis: CategoryAxis;
@@ -117,15 +112,17 @@ const drawExample = async () => {
     const opacity = "AA";
 
     // CHART 1
-    const drawPriceChart = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId1, {
-            theme: appTheme.SciChartJsTheme
+    const drawPriceChart = async (rootElement: string | HTMLDivElement) => {
+        const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
+            // prevent default size settings
+            disableAspect: true,
+            theme: appTheme.SciChartJsTheme,
         });
 
         chart1XAxis = new CategoryAxis(wasmContext, {
             drawLabels: false,
             drawMajorTickLines: false,
-            drawMinorTickLines: false
+            drawMinorTickLines: false,
         });
         sciChartSurface.xAxes.add(chart1XAxis);
 
@@ -138,7 +135,7 @@ const drawExample = async () => {
             cursorLabelFormat: ENumericFormat.Decimal,
             cursorLabelPrecision: 4,
             labelPrefix: "$",
-            axisAlignment
+            axisAlignment,
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -149,7 +146,7 @@ const drawExample = async () => {
             openValues,
             highValues,
             lowValues,
-            closeValues
+            closeValues,
         });
         const fcRendSeries = new FastCandlestickRenderableSeries(wasmContext, {
             dataSeries: usdDataSeries,
@@ -157,7 +154,7 @@ const drawExample = async () => {
             brushUp: upCol + "77",
             brushDown: downCol + "77",
             strokeUp: upCol,
-            strokeDown: downCol
+            strokeDown: downCol,
         });
         sciChartSurface.renderableSeries.add(fcRendSeries);
 
@@ -165,10 +162,10 @@ const drawExample = async () => {
         const maLowDataSeries = new XyMovingAverageFilter(usdDataSeries, {
             dataSeriesName: "MA 50 Low",
             length: 50,
-            field: EDataSeriesField.Low
+            field: EDataSeriesField.Low,
         });
         const maLowRenderableSeries = new FastLineRenderableSeries(wasmContext, {
-            dataSeries: maLowDataSeries
+            dataSeries: maLowDataSeries,
         });
         sciChartSurface.renderableSeries.add(maLowRenderableSeries);
         maLowRenderableSeries.rolloverModifierProps.tooltipColor = "red";
@@ -180,10 +177,10 @@ const drawExample = async () => {
         const maHighDataSeries = new XyMovingAverageFilter(usdDataSeries, {
             dataSeriesName: "MA 200 High",
             length: 200,
-            field: EDataSeriesField.High
+            field: EDataSeriesField.High,
         });
         const maHighRenderableSeries = new FastLineRenderableSeries(wasmContext, {
-            dataSeries: maHighDataSeries
+            dataSeries: maHighDataSeries,
         });
         sciChartSurface.renderableSeries.add(maHighRenderableSeries);
         maHighRenderableSeries.stroke = appTheme.VividSkyBlue;
@@ -194,7 +191,7 @@ const drawExample = async () => {
             id: "yAxis2",
             isVisible: false,
             autoRange: EAutoRange.Always,
-            growBy: new NumberRange(0, 3)
+            growBy: new NumberRange(0, 3),
         });
         sciChartSurface.yAxes.add(yAxis2);
 
@@ -203,11 +200,11 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, {
                 dataSeriesName: "Volume",
                 xValues: dateValues,
-                yValues: volumeValues
+                yValues: volumeValues,
             }),
             dataPointWidth: 0.5,
             strokeThickness: 1,
-            paletteProvider: new VolumePaletteProvider(usdDataSeries, upCol + opacity, downCol + opacity)
+            paletteProvider: new VolumePaletteProvider(usdDataSeries, upCol + opacity, downCol + opacity),
         });
         sciChartSurface.renderableSeries.add(volumeRenderableSeries);
 
@@ -224,7 +221,7 @@ const drawExample = async () => {
             fontSize: 48,
             fontWeight: "Bold",
             text: "Euro / U.S. Dollar - Daily",
-            annotationLayer: EAnnotationLayer.BelowChart
+            annotationLayer: EAnnotationLayer.BelowChart,
         });
         sciChartSurface.annotations.add(watermarkAnnotation);
 
@@ -236,7 +233,7 @@ const drawExample = async () => {
             new RolloverModifier({
                 modifierGroup: "cursorGroup",
                 showTooltip: false,
-                tooltipLegendTemplate: getTooltipLegendTemplate
+                tooltipLegendTemplate: getTooltipLegendTemplate,
             })
         );
 
@@ -246,15 +243,17 @@ const drawExample = async () => {
     };
 
     // CHART 2 - MACD
-    const drawMacdChart = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId2, {
-            theme: appTheme.SciChartJsTheme
+    const drawMacdChart = async (rootElement: string | HTMLDivElement) => {
+        const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
+            // prevent default size settings
+            disableAspect: true,
+            theme: appTheme.SciChartJsTheme,
         });
 
         chart2XAxis = new CategoryAxis(wasmContext, {
             drawLabels: false,
             drawMajorTickLines: false,
-            drawMinorTickLines: false
+            drawMinorTickLines: false,
         });
         sciChartSurface.xAxes.add(chart2XAxis);
 
@@ -264,7 +263,7 @@ const drawExample = async () => {
             axisAlignment,
             labelPrecision: 2,
             cursorLabelPrecision: 2,
-            labelStyle: { alignment: ELabelAlignment.Right }
+            labelStyle: { alignment: ELabelAlignment.Right },
         });
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
@@ -288,12 +287,12 @@ const drawExample = async () => {
                 dataSeriesName: "MACD",
                 xValues: dateValues,
                 yValues: signalArray,
-                y1Values: macdArray
+                y1Values: macdArray,
             }),
             stroke: downCol,
             strokeY1: upCol,
             fill: upCol + "77",
-            fillY1: downCol + "77"
+            fillY1: downCol + "77",
         });
         sciChartSurface.renderableSeries.add(bandSeries);
 
@@ -301,10 +300,10 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, {
                 dataSeriesName: "Divergence",
                 xValues: dateValues,
-                yValues: divergenceArray
+                yValues: divergenceArray,
             }),
             paletteProvider: new MacdHistogramPaletteProvider(upCol + "AA", downCol + "AA"),
-            dataPointWidth: 0.5
+            dataPointWidth: 0.5,
         });
         sciChartSurface.renderableSeries.add(columnSeries);
 
@@ -315,7 +314,7 @@ const drawExample = async () => {
             new RolloverModifier({
                 modifierGroup: "cursorGroup",
                 showTooltip: false,
-                tooltipLegendTemplate: getTooltipLegendTemplate
+                tooltipLegendTemplate: getTooltipLegendTemplate,
             })
         );
 
@@ -325,14 +324,16 @@ const drawExample = async () => {
     };
 
     // CHART 3 - RSI
-    const drawRsiChart = async () => {
-        const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId3, {
-            theme: appTheme.SciChartJsTheme
+    const drawRsiChart = async (rootElement: string | HTMLDivElement) => {
+        const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
+            // prevent default size settings
+            disableAspect: true,
+            theme: appTheme.SciChartJsTheme,
         });
 
         chart3XAxis = new CategoryAxis(wasmContext, {
             autoRange: EAutoRange.Once,
-            labelProvider: new SmartDateLabelProvider()
+            labelProvider: new SmartDateLabelProvider(),
         });
         sciChartSurface.xAxes.add(chart3XAxis);
 
@@ -342,7 +343,7 @@ const drawExample = async () => {
             labelPrecision: 0,
             cursorLabelPrecision: 0,
             axisAlignment,
-            labelStyle: { alignment: ELabelAlignment.Right }
+            labelStyle: { alignment: ELabelAlignment.Right },
         });
         yAxis.labelProvider.numericFormat = ENumericFormat.Decimal;
         sciChartSurface.yAxes.add(yAxis);
@@ -370,10 +371,10 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, {
                 dataSeriesName: "RSI",
                 xValues: dateValues,
-                yValues: rsiArray
+                yValues: rsiArray,
             }),
             stroke: appTheme.MutedBlue,
-            strokeThickness: 2
+            strokeThickness: 2,
         });
         sciChartSurface.renderableSeries.add(rsiRenderableSeries);
 
@@ -384,7 +385,7 @@ const drawExample = async () => {
             new RolloverModifier({
                 modifierGroup: "cursorGroup",
                 showTooltip: false,
-                tooltipLegendTemplate: getTooltipLegendTemplate
+                tooltipLegendTemplate: getTooltipLegendTemplate,
             })
         );
 
@@ -393,41 +394,51 @@ const drawExample = async () => {
         return { wasmContext, sciChartSurface };
     };
 
-    // DRAW CHARTS
-    const res = await Promise.all([drawPriceChart(), drawMacdChart(), drawRsiChart()]);
-
     // DRAW OVERVIEW
     // Must be done after main chart creation
-    const mainPriceChart = res[0].sciChartSurface;
-    const overview = await SciChartOverview.create(mainPriceChart, divOverviewId, {
-        theme: appTheme.SciChartJsTheme,
-        transformRenderableSeries: getOverviewSeries
-    });
+    const drawOverview = (mainSurface: SciChartSurface) => async (rootElement: string | HTMLDivElement) => {
+        const overview = await SciChartOverview.create(mainSurface, rootElement, {
+            // prevent default size settings
+            disableAspect: true,
+            theme: appTheme.SciChartJsTheme,
+            transformRenderableSeries: getOverviewSeries,
+        });
 
-    // SYNCHRONIZE VISIBLE RANGES
-    chart1XAxis.visibleRangeChanged.subscribe(data1 => {
-        chart2XAxis.visibleRange = data1.visibleRange;
-        chart3XAxis.visibleRange = data1.visibleRange;
-    });
-    chart2XAxis.visibleRangeChanged.subscribe(data1 => {
-        chart1XAxis.visibleRange = data1.visibleRange;
-        chart3XAxis.visibleRange = data1.visibleRange;
-    });
-    chart3XAxis.visibleRangeChanged.subscribe(data1 => {
-        chart1XAxis.visibleRange = data1.visibleRange;
-        chart2XAxis.visibleRange = data1.visibleRange;
-    });
+        return { sciChartSurface: overview.overviewSciChartSurface };
+    };
 
-    // Force showing the latest 200 bars
-    const oneDay = 600; // One day in javascript Date() has a value of 600
-    const twoHundredDays = 600 * 200; // 200 days in JS date
-    const twoHundredDaysSciChartFormat = twoHundredDays / 1000; // SciChart expects date.getTime() / 1000
-    chart1XAxis.visibleRange = new NumberRange(
-        chart1XAxis.visibleRange.max - twoHundredDaysSciChartFormat,
-        chart1XAxis.visibleRange.max
-    );
+    const configureAfterInit = () => {
+        const synchronizeAxes = () => {
+            // TODO refactor using AxisSynchroniser
 
-    return { res, overview };
+            // SYNCHRONIZE VISIBLE RANGES
+            chart1XAxis.visibleRangeChanged.subscribe((data1) => {
+                chart2XAxis.visibleRange = data1.visibleRange;
+                chart3XAxis.visibleRange = data1.visibleRange;
+            });
+            chart2XAxis.visibleRangeChanged.subscribe((data1) => {
+                chart1XAxis.visibleRange = data1.visibleRange;
+                chart3XAxis.visibleRange = data1.visibleRange;
+            });
+            chart3XAxis.visibleRangeChanged.subscribe((data1) => {
+                chart1XAxis.visibleRange = data1.visibleRange;
+                chart2XAxis.visibleRange = data1.visibleRange;
+            });
+        };
+
+        synchronizeAxes();
+
+        // Force showing the latest 200 bars
+        const oneDay = 600; // One day in javascript Date() has a value of 600
+        const twoHundredDays = oneDay * 200; // 200 days in JS date
+        const twoHundredDaysSciChartFormat = twoHundredDays / 1000; // SciChart expects date.getTime() / 1000
+        chart1XAxis.visibleRange = new NumberRange(
+            chart1XAxis.visibleRange.max - twoHundredDaysSciChartFormat,
+            chart1XAxis.visibleRange.max
+        );
+    };
+
+    return { drawPriceChart, drawMacdChart, drawRsiChart, drawOverview, configureAfterInit };
 };
 
 /**
@@ -489,43 +500,38 @@ class MacdHistogramPaletteProvider implements IStrokePaletteProvider, IFillPalet
 }
 
 export default function MultiPaneStockCharts() {
-    const sciChartSurfaceRef = React.useRef<TWebAssemblyChart[]>();
-    const sciChartOverviewRef = React.useRef<SciChartOverview>();
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(({ res, overview }) => {
-            sciChartSurfaceRef.current = res;
-            sciChartOverviewRef.current = overview;
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartOverviewRef.current.delete();
-                sciChartSurfaceRef.current.forEach(el => el.sciChartSurface.delete());
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartOverviewRef.current.delete();
-                sciChartSurfaceRef.current.forEach(el => el.sciChartSurface.delete());
-            });
-        };
-    }, []);
+    const [chartsInitializationAPI] = useState(getChartsInitializationAPI());
+    const [mainChart, setMainChart] = useState<SciChartSurface>();
 
     return (
         <div className={classes.ChartWrapper}>
-            <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                {/*The panel hosting the price chart*/}
-                <div id={divElementId1} style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }} />
-                {/*Panels hosting the Macd and RSI Indicator charts*/}
-                <div id={divElementId2} style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }} />
-                <div id={divElementId3} style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }} />
-                {/*Panel hosting the overview control*/}
-                <div id={divOverviewId} style={{ flexBasis: "70px" }} />
-            </div>
+            <SciChartGroup onInit={() => {}}>
+                <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                    {/*The panel hosting the price chart*/}
+                    <SciChartReact<SciChartSurface>
+                        initChart={chartsInitializationAPI.drawPriceChart}
+                        style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }}
+                        onInit={({ sciChartSurface }) => setMainChart(sciChartSurface)}
+                    />
+                    {/*Panels hosting the Macd and RSI Indicator charts*/}
+                    <SciChartReact
+                        initChart={chartsInitializationAPI.drawMacdChart}
+                        style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }}
+                    />
+                    <SciChartReact
+                        initChart={chartsInitializationAPI.drawRsiChart}
+                        style={{ flexBasis: 100, flexGrow: 1, flexShrink: 1 }}
+                    />
+
+                    {/*Panel hosting the overview control*/}
+                    {mainChart ? (
+                        <SciChartReact
+                            initChart={chartsInitializationAPI.drawOverview(mainChart)}
+                            style={{ flexBasis: "70px" }}
+                        />
+                    ) : null}
+                </div>
+            </SciChartGroup>
         </div>
     );
 }
