@@ -1,5 +1,3 @@
-import { useContext, useEffect, useRef } from "react";
-import { SciChartReact, SciChartSurfaceContext, IInitResult } from "scichart-react";
 import {
     ESeriesType,
     FastMountainRenderableSeries,
@@ -7,43 +5,9 @@ import {
     IOverviewOptions,
     IRenderableSeries,
     Point,
-    SciChartOverview,
-    SciChartSurface,
     Thickness,
 } from "scichart";
 import { appTheme } from "scichart-example-dependencies";
-import { IChartComponentPropsCore } from "scichart-react/types";
-
-const OverviewComponent = (
-    props: IChartComponentPropsCore<SciChartSurface, IInitResult<SciChartSurface>> & { options?: IOverviewOptions }
-) => {
-    const { options, ...chartComponentProps } = props;
-    const parentSurface = useContext(SciChartSurfaceContext).sciChartSurface as SciChartSurface;
-    const overviewRef = useRef<SciChartOverview>(null);
-    const overviewCreatePromiseRef = useRef<Promise<SciChartOverview>>(null);
-
-    const initChart = async (divElementId: string | HTMLDivElement): Promise<IInitResult<SciChartSurface>> => {
-        overviewCreatePromiseRef.current = SciChartOverview.create(parentSurface, divElementId, options);
-        const overview = await overviewCreatePromiseRef.current;
-        overviewRef.current = overview;
-        return { sciChartSurface: overview.overviewSciChartSurface };
-    };
-
-    useEffect(() => {
-        const performCleanup = () => {
-            overviewRef.current.delete();
-            overviewRef.current = undefined;
-        };
-
-        return () => {
-            overviewRef.current ? performCleanup() : overviewCreatePromiseRef.current.then(performCleanup);
-        };
-    }, []);
-
-    return <SciChartReact<SciChartSurface> {...chartComponentProps} initChart={initChart} />;
-};
-
-export default OverviewComponent;
 
 // options used for current example
 export const overviewOptions: IOverviewOptions = {
