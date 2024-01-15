@@ -40,27 +40,93 @@ e.g. with webpack.config.js:
 
 ## Step 3: Creating the chart
 
-After that, you can create a function to create a SciChartSurface like this.
+After that, you can define a config object to create a SciChartSurface like this.
 
 ```javascript
 import React from "react";
 import { SciChartReact } from "scichart-react";
 import {
-  SciChartSurface,
-  NumericAxis,
-  FastLineRenderableSeries,
-  XyDataSeries,
-  EllipsePointMarker,
   SweepAnimation,
   SciChartJsNavyTheme,
   NumberRange,
-  MouseWheelZoomModifier,
-  ZoomPanModifier,
-  ZoomExtentsModifier,
+  EAxisType,
+  EChart2DModifierType,
+  ESeriesType,
+  EPointMarkerType,
 } from "scichart";
 
-// A function which defines configuration and creates a chart on the provided root element
-async function initSciChart(rootElement) {
+const chartConfig = {
+  surface: {
+    theme: new SciChartJsNavyTheme(),
+    title: "SciChart.js First Chart",
+    titleStyle: { fontSize: 22 },
+  },
+  // Create an XAxis and YAxis with growBy padding
+  xAxes: [
+    {
+      type: EAxisType.NumericAxis,
+      options: {
+        axisTitle: "X Axis",
+        growBy: new NumberRange(0.1, 0.1),
+      },
+    },
+  ],
+  yAxes: [
+    {
+      type: EAxisType.NumericAxis,
+      options: {
+        axisTitle: "Y Axis",
+        growBy: new NumberRange(0.1, 0.1),
+      },
+    },
+  ],
+  // Create a line series with some initial data
+  series: [
+    {
+      type: ESeriesType.LineSeries,
+      xyData: {
+        xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        yValues: [
+          0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173,
+          0.7833,
+        ],
+      },
+      options: {
+        stroke: "steelblue",
+        strokeThickness: 3,
+        pointMarker: {
+          type: EPointMarkerType.Ellipse,
+          options: {
+            width: 11,
+            height: 11,
+            fill: "#fff",
+          },
+        },
+        animation: new SweepAnimation({
+          duration: 300,
+          fadeEffect: true,
+        }),
+      },
+    },
+  ],
+  // Add some interaction modifiers to show zooming and panning
+  modifiers: [
+    { type: EChart2DModifierType.MouseWheelZoom },
+    {
+      type: EChart2DModifierType.ZoomPan,
+      options: { enableZoom: true },
+    },
+    { type: EChart2DModifierType.ZoomExtents },
+  ],
+};
+```
+
+## Step 4: Create a React Component
+
+Charts can be initialized with the SciChartReact Component using the `config` property.
+
+```javascript
+function App() {
   // LICENSING
   // Commercial licenses set your license code here
   // Purchased license keys can be viewed at https://www.scichart.com/profile
@@ -70,64 +136,8 @@ async function initSciChart(rootElement) {
   // to use WebAssembly and Data files from CDN instead of the same origin
   // SciChartSurface.loadWasmFromCDN();
 
-  // Initialize SciChartSurface. Don't forget to await!
-  const { sciChartSurface, wasmContext } = await SciChartSurface.create(
-    rootElement,
-    {
-      theme: new SciChartJsNavyTheme(),
-      title: "SciChart.js First Chart",
-      titleStyle: { fontSize: 22 },
-    }
-  );
+  // Note: for both licensing and WASM configurations - make sure they are set on the client side.
 
-  // Create an XAxis and YAxis with growBy padding
-  const growBy = new NumberRange(0.1, 0.1);
-  sciChartSurface.xAxes.add(
-    new NumericAxis(wasmContext, { axisTitle: "X Axis", growBy })
-  );
-  sciChartSurface.yAxes.add(
-    new NumericAxis(wasmContext, { axisTitle: "Y Axis", growBy })
-  );
-
-  // Create a line series with some initial data
-  sciChartSurface.renderableSeries.add(
-    new FastLineRenderableSeries(wasmContext, {
-      stroke: "steelblue",
-      strokeThickness: 3,
-      dataSeries: new XyDataSeries(wasmContext, {
-        xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        yValues: [
-          0, 0.0998, 0.1986, 0.2955, 0.3894, 0.4794, 0.5646, 0.6442, 0.7173,
-          0.7833,
-        ],
-      }),
-      pointMarker: new EllipsePointMarker(wasmContext, {
-        width: 11,
-        height: 11,
-        fill: "#fff",
-      }),
-      animation: new SweepAnimation({ duration: 300, fadeEffect: true }),
-    })
-  );
-
-  // Add some interaction modifiers to show zooming and panning
-  sciChartSurface.chartModifiers.add(
-    new MouseWheelZoomModifier(),
-    new ZoomPanModifier(),
-    new ZoomExtentsModifier()
-  );
-
-  // SciChartReact requires the function to return an object with the sciChartSurface reference
-  return { sciChartSurface };
-}
-```
-
-## Step 4: Create a React Component
-
-Charts can be initialized in a React Component and placed in a <div> element. Make sure to delete the chart on component unmount.
-
-```javascript
-function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -137,11 +147,14 @@ function App() {
           scichart-react to create a simple chart with one X and Y axis
         </p>
       </header>
-      <SciChartReact initChart={initSciChart} style={{ maxWidth: 600 }} />
+      <SciChartReact config={chartConfig} style={{ maxWidth: 900 }} />
     </div>
   );
 }
 ```
+
+For alternative initialization and usage refer to the [scichart-react](https://www.npmjs.com/package/scichart-react).  
+Or check out [our tutorial on how to build and test your own chart wrapper component](https://www.scichart.com/documentation/js/current/webframe.html#TutorialReusableReactComponent.html).
 
 # Running the example
 
