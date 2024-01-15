@@ -1,4 +1,4 @@
-import { CSSProperties, ChangeEventHandler, useEffect, useRef, useState } from 'react';
+import { CSSProperties, ChangeEventHandler, FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
 import { appTheme } from 'scichart-example-dependencies/lib/theme';
 import { TChartConfigResult, synchronizeXVisibleRanges } from './chart-configurations';
 import {
@@ -24,6 +24,59 @@ import { overviewOptions } from './Overview';
 import DashboardOverlay from './DashboardOverlay';
 import ThresholdSlider from './ThresholdSlider';
 import { IInitResult, SciChartReact as SciChart, SciChartGroup, SciChartNestedOverview } from 'scichart-react';
+import { Responsive, ResponsiveProps, WidthProvider } from 'react-grid-layout';
+import { SizeMe, SizeMeProps, withSize } from 'react-sizeme';
+
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import '../node_modules/react-resizable/css/styles.css';
+import '../node_modules/react-grid-layout/css/styles.css';
+import './custom-styles.css';
+
+const ResponsiveGridLayout: FunctionComponent<ResponsiveProps> = (props: any) => {
+    const factor = 5;
+
+    const layout = [
+        { i: 'main', x: 0 * factor, y: 0 * factor, w: 4 * factor, h: 2 * factor, static: false, isBounded: true },
+        { i: 'page', x: 0 * factor, y: 2 * factor, w: 2 * factor, h: 2 * factor },
+        { i: 'server', x: 2 * factor, y: 2 * factor, w: 2 * factor, h: 2 * factor },
+        { i: 'column', x: 0 * factor, y: 4 * factor, w: 3 * factor, h: 2 * factor },
+        { i: 'pie', x: 4 * factor, y: 4 * factor, w: 1 * factor, h: 2 * factor },
+    ];
+
+    const mobileLayout = [
+        { i: 'main', x: 0 * factor, y: 0 * factor, w: 4 * factor, h: 2 * factor, static: false, isBounded: true },
+        { i: 'page', x: 0 * factor, y: 2 * factor, w: 4 * factor, h: 2 * factor },
+        { i: 'server', x: 0 * factor, y: 4 * factor, w: 4 * factor, h: 2 * factor },
+        { i: 'column', x: 0 * factor, y: 6 * factor, w: 4 * factor, h: 2 * factor },
+        { i: 'pie', x: 0 * factor, y: 8 * factor, w: 4 * factor, h: 2 * factor },
+    ];
+    const renderFunc = ({ size }: SizeMeProps) => {
+        const rowHeight = size.height / (6 * factor) - 10;
+        return (
+            <Responsive
+                style={{ height: '100%', overflow: 'auto' }}
+                {...props}
+                width={size.width}
+                autoSize
+                useCSSTransforms
+                className='layout'
+                margin={[10, 10]}
+                layouts={{ lg: layout, md: mobileLayout, sm: mobileLayout, xs: mobileLayout }}
+                rowHeight={rowHeight}
+                breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+                cols={{ lg: 4 * factor, md: 4 * factor, sm: 4 * factor, xs: 4 * factor, xxs: 4 * factor }}
+                draggableHandle='.react-grid-dragHandleExample'
+            />
+        );
+    };
+    return (
+        <SizeMe monitorHeight refreshRate={16}>
+            {renderFunc}
+        </SizeMe>
+    );
+};
+// const ResponsiveGridLayout = withSize({})(Responsive);
+// const ResponsiveGridLayout = WidthProvider(Responsive);
 
 function ServerTrafficDashboard() {
     const [isVisibleRangeSynced, setIsVisibleRangeSynced] = useState(true);
@@ -185,76 +238,104 @@ function ServerTrafficDashboard() {
         setIsGridLayout(!isGridLayout);
     };
 
+    const dragHandle = (
+        <DragIndicatorIcon
+            style={{
+                width: 20,
+                height: 20,
+                top: 10,
+                left: 10,
+                position: 'absolute',
+                color: 'white',
+                cursor: 'grab',
+            }}
+            className='react-grid-dragHandleExample'
+        ></DragIndicatorIcon>
+    );
+
+    const charts = useMemo(() => {
+        return [
+            <div key='main' className='grid-layout-chart-wrapper'>
+                <div style={visibleRangeSyncCheckboxStyle}>
+                    <input
+                        type='checkbox'
+                        checked={isVisibleRangeSynced}
+                        onChange={handleSyncVisibleRangeChange}
+                        value='Sync X Axis visible range'
+                        style={{ color: '#17243d', accentColor: '#0bdef4', marginRight: 4 }}
+                    ></input>
+                    Sync X Axis visible range
+                </div>
+                <SciChart
+                    initChart={createMainChart}
+                    onInit={onMainChartInit}
+                    style={mainChartStyle}
+                    innerContainerProps={innerContainerProps}
+                >
+                    <ThresholdSlider />
+                    <SciChartNestedOverview style={overviewStyle} options={overviewOptions} />
+                </SciChart>
+                {dragHandle}
+            </div>,
+            <div key='page'>
+                <div style={hundredPercentCheckboxStyle}>
+                    <input
+                        type='checkbox'
+                        checked={isHundredPercentCollection}
+                        onChange={handleUsePercentage}
+                        value='is 100% collection'
+                        style={{ color: '#17243d', accentColor: '#0bdef4', marginRight: 4 }}
+                    ></input>
+                    is 100% collection
+                </div>
+                <SciChart
+                    initChart={createPageStatisticsChart}
+                    onInit={onPageStatisticsChartInit}
+                    style={pageChartStyle}
+                />
+                {dragHandle}
+            </div>,
+            <div key='server'>
+                <div style={toggleGridLayoutCheckboxStyle}>
+                    <input
+                        type='checkbox'
+                        checked={isGridLayout}
+                        onChange={handleUseGridLayout}
+                        value='is Grid Layout'
+                        style={{ color: '#17243d', accentColor: '#0bdef4', marginRight: 4 }}
+                    ></input>
+                    is Grid Layout
+                </div>
+                <SciChart initChart={createServerLoadChart} onInit={onServerLoadChartInit} style={serverChartStyle} />
+                {dragHandle}
+            </div>,
+            <div key='column'>
+                <SciChart initChart={createRegionStatisticsColumnChart} style={columnChartStyle} />
+                {dragHandle}
+            </div>,
+            <div key='pie'>
+                <SciChart initChart={createRegionStatisticsPieChart} style={pieChartStyle} />
+                {dragHandle}
+            </div>,
+        ];
+    }, []);
+
     return (
         <div className='App' style={{ height: '100vh', backgroundColor: '#242529' }}>
             {isDashboardInitialized ? null : <DashboardOverlay />}
-            <div style={gridStyle}>
-                <SciChartGroup
-                    onInit={(initResults: IInitResult[]) => {
-                        configureDataBindings(initResults);
-                        setIsDashboardInitialized(true);
-                    }}
-                    onDelete={() => {
-                        // TODO cleanup data bindings if needed
-                    }}
-                >
-                    <div style={visibleRangeSyncCheckboxStyle}>
-                        <input
-                            type='checkbox'
-                            checked={isVisibleRangeSynced}
-                            onChange={handleSyncVisibleRangeChange}
-                            value='Sync X Axis visible range'
-                            style={{ color: '#17243d', accentColor: '#0bdef4', marginRight: 4 }}
-                        ></input>
-                        Sync X Axis visible range
-                    </div>
-                    <div style={hundredPercentCheckboxStyle}>
-                        <input
-                            type='checkbox'
-                            checked={isHundredPercentCollection}
-                            onChange={handleUsePercentage}
-                            value='is 100% collection'
-                            style={{ color: '#17243d', accentColor: '#0bdef4', marginRight: 4 }}
-                        ></input>
-                        is 100% collection
-                    </div>
-
-                    <div style={toggleGridLayoutCheckboxStyle}>
-                        <input
-                            type='checkbox'
-                            checked={isGridLayout}
-                            onChange={handleUseGridLayout}
-                            value='is Grid Layout'
-                            style={{ color: '#17243d', accentColor: '#0bdef4', marginRight: 4 }}
-                        ></input>
-                        is Grid Layout
-                    </div>
-
-                    <SciChart
-                        initChart={createMainChart}
-                        onInit={onMainChartInit}
-                        style={mainChartStyle}
-                        innerContainerProps={innerContainerProps}
-                    >
-                        <ThresholdSlider />
-                        <SciChartNestedOverview style={overviewStyle} options={overviewOptions} />
-                    </SciChart>
-
-                    <SciChart
-                        initChart={createPageStatisticsChart}
-                        onInit={onPageStatisticsChartInit}
-                        style={pageChartStyle}
-                    />
-                    <SciChart
-                        initChart={createServerLoadChart}
-                        onInit={onServerLoadChartInit}
-                        style={serverChartStyle}
-                    />
-                    <SciChart initChart={createRegionStatisticsColumnChart} style={columnChartStyle} />
-
-                    <SciChart initChart={createRegionStatisticsPieChart} style={pieChartStyle} />
-                </SciChartGroup>
-            </div>
+            {/* <div style={gridStyle}> */}
+            <SciChartGroup
+                onInit={(initResults: IInitResult[]) => {
+                    // configureDataBindings(initResults);
+                    setIsDashboardInitialized(true);
+                }}
+                onDelete={() => {
+                    // TODO cleanup data bindings if needed
+                }}
+            >
+                <ResponsiveGridLayout>{charts}</ResponsiveGridLayout>
+            </SciChartGroup>
+            {/* </div> */}
         </div>
     );
 }
@@ -289,57 +370,59 @@ const innerContainerProps = {
     },
 };
 
-const overviewStyle = {
+const overviewStyle: CSSProperties = {
     height: '20%',
 };
 
-const pageChartStyle = {
+const pageChartStyle: CSSProperties = {
     gridRow: '4 / 7',
     gridColumn: '1 / 3',
 };
 
-const serverChartStyle = {
+const serverChartStyle: CSSProperties = {
     gridRow: '4 / 7',
     gridColumn: '3 / -1',
 };
 
-const columnChartStyle = {
+const columnChartStyle: CSSProperties = {
     gridRow: '7 / -1',
     gridColumn: 'span 3',
 };
-const pieChartStyle = {
+const pieChartStyle: CSSProperties = {
     gridRow: '7 / -1',
     gridColumn: 'span 1',
 };
 
 const hundredPercentCheckboxStyle: CSSProperties = {
+    position: 'absolute',
     gridArea: '4 / 1 / 5 / 3',
     color: appTheme.ForegroundColor,
     zIndex: 2,
     justifySelf: 'start',
     alignSelf: 'start',
     marginTop: 10,
-    marginLeft: 10,
+    marginLeft: 30,
 };
 
 const toggleGridLayoutCheckboxStyle: CSSProperties = {
+    position: 'absolute',
     gridArea: '4 / 3 / 5 / 3',
     justifySelf: 'start',
     alignSelf: 'start',
     marginTop: 10,
-    marginLeft: 10,
+    marginLeft: 30,
     color: appTheme.ForegroundColor,
     zIndex: 2,
 };
 
-const visibleRangeSyncCheckboxStyle = {
-    gridArea: '1 / 1 / 2 / 2',
+const visibleRangeSyncCheckboxStyle: CSSProperties = {
+    position: 'absolute',
     color: appTheme.ForegroundColor,
     zIndex: 2,
     justifySelf: 'start',
     alignSelf: 'start',
     marginTop: 10,
-    marginLeft: 10,
+    marginLeft: 30,
 };
 
 export default ServerTrafficDashboard;
