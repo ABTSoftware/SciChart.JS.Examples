@@ -34,6 +34,7 @@ import {
 } from "scichart";
 import {Radix2FFT} from "../AudioAnalyzer/Radix2FFT";
 import {INumericAxisOptions} from "scichart/Charting/Visuals/Axis/NumericAxis";
+import { resourceUsage } from "process";
 
 export const divMainChartId = "sciChart1";
 export const divCrossSection1 = "sciChart2";
@@ -91,6 +92,11 @@ const createSpectralData = (n : number) => {
 class CrossSectionPaletteProvider extends DefaultPaletteProvider {
 
     public selectedIndex: number = -1;
+    public shouldUpdate: boolean = true;
+
+    public shouldUpdatePalette(): boolean {
+        return this.shouldUpdate;
+    }
 
     public override overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity: number): number {
         if (index === this.selectedIndex || index + 1 === this.selectedIndex || index -1 === this.selectedIndex) {
@@ -333,6 +339,10 @@ const drawExample = async () => {
     const charts = await Promise.all([ initMainChart(), initCrossSectionLeft(), initCrossSectionRight() ]);
 
     const mainChartSurface = charts[0];
+    mainChartSurface.rendered.subscribe(() => {
+        // Don't recalculate the palette unless the selected index changes
+        crossSectionPaletteProvider.shouldUpdate = false;
+    })
 
     // Link interactions together
     mainChartSelectionModifier.selectionChanged.subscribe(args => {
@@ -365,6 +375,7 @@ const drawExample = async () => {
             true);
 
         crossSectionPaletteProvider.selectedIndex = dataIndex;
+        crossSectionPaletteProvider.shouldUpdate = true;
         mainChartSurface.invalidateElement();
         crossSectionSliceSeries.clear();
         for(let i = 0; i < mainChartSurface.renderableSeries.size(); i++) {

@@ -79,6 +79,7 @@ const AppBarTop: React.FC<TProps> = props => {
                         rel="nofollow external"
                         href={`${currentExample.path}?codesandbox=1`}
                         title={`Edit ${currentExample.title} in CodeSandbox`}
+                        rel="nofollow external"
                         target="_blank"
                     >
                         <span className={`MuiButton-label`}><CodeIcon fontSize="small" /> &nbsp;Code Sandbox</span>

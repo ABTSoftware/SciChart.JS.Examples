@@ -3,6 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-ohlc-chart.jpg";
 
 const previewDescription = `SciChart.js supports Candlestick Charts or OHLC with custom colours per bar and Date X-Axis.`;
 const description = `OHLC charts can be animated, dynamically updated for real trading apps or combined with other series types to draw technical indicators or shapes.`;
@@ -44,5 +45,5 @@ export const ohlcChartExampleInfo: TExampleInfo = {
     metaDescription:
         "Easily create JavaScript OHLC Chart or Stock Chart using feature-rich SciChart.js chart library. Supports custom colors. Get your free trial now. ",
     metaKeywords: "ohlc, stock, trading, chart, javascript, webgl, canvas",
-    thumbnailImage: "javascript-ohlc-chart.jpg"
+    thumbnailImage: exampleImage
 };
