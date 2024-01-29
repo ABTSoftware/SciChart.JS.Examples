@@ -505,7 +505,7 @@ export default function MultiPaneStockCharts() {
 
     return (
         <div className={classes.ChartWrapper}>
-            <SciChartGroup onInit={() => {}}>
+            <SciChartGroup onInit={chartsInitializationAPI.configureAfterInit}>
                 <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
                     {/*The panel hosting the price chart*/}
                     <SciChartReact<SciChartSurface>
