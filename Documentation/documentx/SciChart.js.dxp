@@ -1116,6 +1116,46 @@ Show external placement div</Notes>
 
 7/ Doing the same thing with subcharts API?</Notes>
         </TaskItem>
+        <TaskItem Id="aa646516-38a5-43e3-b8cf-49fdfd56c9a1" Priority="High" AssignedTo="">
+          <Title>Add RenderDataTransforms documentation</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2024-02-02T09:25:52.8061039Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-02-02T09:26:03.7138322Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="b793460b-78be-4102-b135-e69d06c8b602" Priority="High" AssignedTo="">
+          <Title>Add IAdvancedPaletteProvider documentation</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2024-02-02T09:26:06.6383105Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-02-02T09:26:18.5018501Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="0cb64b18-227e-4527-a001-a0db1d314fe1" Priority="High" AssignedTo="">
+          <Title>Add VerticalSliceModifier Documentation</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2024-02-02T09:26:22.3720312Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-02-02T09:26:31.8555316Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="c1d6634b-e95b-4dcf-a75a-eeb995bc4a39" Priority="High" AssignedTo="">
+          <Title>Add IsStaticAxis Documentation</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2024-02-02T09:26:34.3557426Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-02-02T09:26:45.3380614Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
       </TaskItems>
     </Tasks>
   </TasksProjectPlugin>
