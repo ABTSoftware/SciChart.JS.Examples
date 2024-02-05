@@ -21,20 +21,16 @@ To run the project, use:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/scichart@3.3.560/_wasm/scichart.browser.js" crossorigin="anonymous"></script>
 ```
-2. Configure SciChartSurface to download .data and .wasm files from the CDN. Library versions in the script and in the configure method must be the same!
+2. Configure SciChartSurface to download .data and .wasm files from the CDN.
 ```typescript
-SciChart.SciChartSurface.configure({
-    dataUrl: "https://cdn.jsdelivr.net/npm/scichart@3.3.560/_wasm/scichart2d.data",
-    wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@3.3.560/_wasm/scichart2d.wasm"
-});
+SciChart.SciChartSurface.loadWasmFromCDN();
 ```
 
-Note: For newer versions of SciChart we have included the library version as a field, so you can use code like this instead to avoid version mismatches:
-
+If you want to use a different cdn, or serve the wasm files locally you can configure them in detail like this
 ```typescript
 SciChart.SciChartSurface.configure({
-    dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.3.560${SciChart.libraryVersion}/_wasm/scichart2d.data`,
-    wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.3.560${SciChart.libraryVersion}/_wasm/scichart2d.wasm`
+    dataUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.data`,
+    wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.wasm`
 });
 ```
 
