@@ -111,6 +111,8 @@ import RealtimeSurfaceMesh3DChart from "../Examples/Charts3D/Basic3DChartTypes/R
 import DynamicLayout from "../Examples/FeaturedApps/ShowCases/DynamicLayout";
 import UsingVerticalSliceModifier from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier";
 import ServerTrafficDashboard from "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard";
+import SyncMultiChart from "../Examples/Charts2D/MultiChart/SyncMultiChart";
+import EventMarkers from "../Examples/FeaturedApps/ShowCases/EventMarkers";
 
 export type TMenuItem = {
     item: {
@@ -134,7 +136,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_showcases_realtimebigdata,
             EXAMPLES_PAGES.featuredApps_showcases_servertrafficdashboard,
             EXAMPLES_PAGES.featuredApps_showcases_richInteractions,
-            EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout
+            EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout,
+            EXAMPLES_PAGES.featuredApps_showcases_eventMarkers
         ]
     },
     {
@@ -152,6 +155,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
         item: { id: "featuredApps_financialCharts", name: "Financial Charts" },
         submenu: [
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_OhlcChart,
             EXAMPLES_PAGES.chart2D_createStockCharts_RealtimeTickingStockCharts,
             EXAMPLES_PAGES.chart2D_createStockCharts_SubchartStockCharts,
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
@@ -238,6 +242,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_TransparentBackground,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_StylingInCode,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTheme,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_PerPointColoring,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling,
@@ -262,6 +267,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
+            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_DragAxisToScale,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_RealtimeZoomPan,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview,
@@ -300,6 +306,14 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
         submenu: [
             EXAMPLES_PAGES.featuredApps_featureDemos_subchartsGrid,
             EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout
+        ]
+    },
+    {
+        item: { id: "multichart", name: "Multiple Charts" },
+        submenu: [
+            EXAMPLES_PAGES.chart2D_multiChart_syncMultiChart,
+            EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
+            EXAMPLES_PAGES.featuredApps_showcases_servertrafficdashboard,
         ]
     },
 ];
@@ -542,6 +556,10 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return HeatmapInteractions;
         case EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout.id:
             return DynamicLayout;
+        case EXAMPLES_PAGES.featuredApps_showcases_eventMarkers.id:
+            return EventMarkers;
+        case EXAMPLES_PAGES.chart2D_multiChart_syncMultiChart.id:
+            return SyncMultiChart;
         case EXAMPLES_PAGES.builderApi_simplechart.id:
             return BuilderSimpleChart;
         case EXAMPLES_PAGES.builderApi_fullchart.id:

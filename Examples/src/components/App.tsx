@@ -28,8 +28,8 @@ export default function App() {
     const location = useLocation();
     // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
     const isIFrame = location.pathname.substring(1, 7) === "iframe";
-    const pathname = isIFrame ? location.pathname.substring(7) : location.pathname;
-
+    let pathname = isIFrame ? location.pathname.substring(7) : location.pathname;
+    pathname = pathname.endsWith("/") ? pathname.substring(0, pathname.length - 1) : pathname;
     const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
     let initialOpenedMenuItems = {
@@ -75,7 +75,7 @@ export default function App() {
     React.useEffect(() => {
         if (window.location.hostname.includes("scichart.com")) {
             SciChartSurface.setRuntimeLicenseKey(
-                "Ba+CO9zu9dtOPXWHd4ZSf62jLWJ2mWWzfLjGE/WG26CwypCj4VQ4UWY0ny44WPEyiEAvbu10cjdmLtCmTpIWsOdyga+mGQ66j3WlpyGfsZxrlWtexjJKNTed2LiDhsrQMwYm5MJEmKW0Vu69k/G51q+LEO2Pn3IIMoLCZvWHffo0ngugfC5ECFtx1laMNvPGmTlguswqCp/VIsBeKNGDadt2Bq9DPpCAh53+AQBDXhtW5GSu/KocQzTHc7cmNGEaumRohQteEfPonqNWDEhbQj+BS65c6Ha13Vi23XRtthKSVgjhicoyk50MU3G46Xvxnt5FRoGJ2y/f8up1ASXL4jzcZgY2Sy+d5FblwksjoMR+AB0DEwOwWK0Gj+v6BeH6T3pl4KYXjlVTn+suhQKNSUov2GXhZQWwZxdvaWNrcuZuNpQECZ7o7ffW5Qggh80euz4bFT8ARySoTPJCwcuIL2L4tJ/zbHqwB1wBmPQf2wKLMbdr1ZrXl6E53xBClavieC+zfuu11gcCYkCd2g3icvuzKnQ/mw6/Uu6wJOE27nv8dPR4neKanseE2/0tiL0hQgjGi6Q7ltgHK8dKlqBVbkjCiQ0X1dvEPdT+FopQu6RAMynoodtgJGXXMOxH4gFmO2J+9Cn0QATCRIeezLR7uyU9Eo0aYh7fDyfe7tZK0Gic/rrvECGby5OAqvJLfaKSO4JzKyAic/GqzD+hv9BIOTL3zbFH7TggaEfJXRXdsB1expogeN+AbL6YXX7WIIDuSYuG0w=="
+                "pcVGl35vQKAOUbnT78/jbkYSH6kBUK7/7Q6oe3SHHWHjExhdi7L/bZyu0uX1WO6xAcBvfO1XGSLW6IOCv+D1WBKlTdgg2I1Y7nrzVuB93iTIPlbQwA/U1i2i9JLWAVDJwL7Zh0yh9KXYj9UjhUmTmfvL7BKBbQpa7vQ2s68q9V9ID1vWIxdBQizWe1JpYj3tXLGtwdbqdFkjxFE7oNzf2CuXyFGGlt6/rW09tFapFlq18ZE5L702xmFPeX9qglbSdz+tsSkzR7X1lXbEOSHGpMU6dUxr4F4+Hkf5pU+M2/C4iTYBnYqFTM4RRAqVT7ckizLxH48guriguzRybtYyT7icQQussPE7humzM73IVfLi8jU25iB8C+42rc/NPImWoID6q4Evi3MD7zXTKp+QaIyheXo/ntgiaSFg+tBQ1WMUm+n+bdxGwrsDQdc5iDHpt56I9/qdGOKDC8yYY1BhwPbsFkPZ7XG9ahZFJ95cgemKl17lsxG7hAcF9a5tteVRXgmvg6a4B/4vVmi9Qb0/C2c0pGjCx9l+sVW6IL/5Qc2UOVIJAuO9mfh6uAj7RvLqE61V2OV71elCmn8IhjTEXyY6MIdcIN2ur1F671vZzE9nDgSy7OifbdEZKDJe/wweXDPrZ5E45guOcKZmSeE4y33SZdD6YJahSG9quYxyXNhZFYZWsNIUaB4vdSXD5hm3s8q/bXxaNjmJz743TpucwTT6bjbEFBmSaFXHL1LpsbeNE07IcJdPmbKfJz+Gr5kXjUpgAw=="
             );
         }
 

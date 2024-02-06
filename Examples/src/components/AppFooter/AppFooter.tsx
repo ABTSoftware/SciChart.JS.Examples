@@ -79,9 +79,9 @@ export default function AppFooter() {
                                 Pricing
                             </a>
                             <a href="https://www.scichart.com/news/" title="News">
-                                News
+                                News &amp; Releases
                             </a>
-                            <a href="https://blog.scichart.com" title="SciChart Blog">
+                            <a href="https://scichart.com/blog" title="SciChart Blog">
                                 NEW! SciChart Blog
                             </a>
                             <a href="https://www.scichart.com/about-us/" title="About Us">
@@ -104,13 +104,10 @@ export default function AppFooter() {
                             <a href="https://www.scichart.com/downloads" title="Download FREE Trials">
                                 Download FREE Trials
                             </a>
-                            <a href="http://try.scichart.com/wpf-charts-trial/clkn/https/www.scichart.com/documentation/v4.x/webframe.html#Installing%20and%20Uninstalling%20SciChart.html">
-                                Installing and Uninstalling SciChart WPF
-                            </a>
                             <a href="https://www.scichart.com/read-testimonials/" title="Testimonials &amp; Reviews">
                                 Testimonials &amp; Reviews
                             </a>
-                            <a href="http://support.scichart.com/" title="Community &amp; Support">
+                            <a href="https://support.scichart.com/" title="Community &amp; Support">
                                 Community &amp; Support
                             </a>
                             <a href="https://www.scichart.com/wpf-chart-examples" title="WPF Chart Examples">

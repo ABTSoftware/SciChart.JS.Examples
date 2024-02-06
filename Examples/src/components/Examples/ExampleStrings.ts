@@ -770,6 +770,11 @@ export const ExampleStrings = {
     urlTitleOverviewDocumentation:
         "This specific page in the JavaScript SciChartOverview Api documentation will help you to get started",
 
+    // SyncMultiChart
+    urlSyncMultiChart: "/javascript-sync-multi-chart",
+    titleSyncMultiChart: "Synchronise Multiple Charts",
+    urlSyncDocs: "https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2009%20-%20Linking%20Multiple%20Charts.html",
+
     // Oil & Gas Demo
     titleOilAndGasExplorerDashboard: "Oil & Gas Explorer Dashboard",
     urlOilAndGasExplorerDashboard: "/javascript-oil-and-gas-dashboard-showcase",
@@ -788,6 +793,9 @@ export const ExampleStrings = {
 
     urlDynamicLayout: "/javascript-dynamic-layout",
     titleDynamicLayout: "Dynamic Layout Showcase",
+
+    urlEventMarkers: "/javascript-dragabble-event-markers",
+    titleEventMarkers: "Dragabble Event Markers",
 
     urlTextChart: "/javascript-text-chart",
     titleTextChart: "Javascript Text Chart",

@@ -37,6 +37,11 @@ import { Radix2FFT } from "../AudioAnalyzer/Radix2FFT";
 import { INumericAxisOptions } from "scichart/Charting/Visuals/Axis/NumericAxis";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { SciChartReact, SciChartGroup } from "scichart-react";
+import { resourceUsage } from "process";
+
+export const divMainChartId = "sciChart1";
+export const divCrossSection1 = "sciChart2";
+export const divCrossSection2 = "sciChart3";
 
 // This function generates some spectral data for the waterfall chart
 const createSpectralData = (n: number) => {
@@ -88,6 +93,11 @@ const createSpectralData = (n: number) => {
 // tslint:disable-next-line:max-classes-per-file
 class CrossSectionPaletteProvider extends DefaultPaletteProvider {
     public selectedIndex: number = -1;
+    public shouldUpdate: boolean = true;
+
+    public shouldUpdatePalette(): boolean {
+        return this.shouldUpdate;
+    }
 
     public overrideStrokeArgb(xValue: number, yValue: number, index: number, opacity: number): number {
         if (index === this.selectedIndex || index + 1 === this.selectedIndex || index - 1 === this.selectedIndex) {
@@ -145,7 +155,10 @@ const getChartsInitializationAPI = () => {
 
             // Create some data for the example
             const { xValues, yValues } = createSpectralData(i);
-
+            mainChartSurface.rendered.subscribe(() => {
+                // Don't recalculate the palette unless the selected index changes
+                crossSectionPaletteProvider.shouldUpdate = false;
+            })
             const lineSeries = new FastLineRenderableSeries(wasmContext, {
                 id: "S" + i,
                 xAxisId: "X" + i,
@@ -366,30 +379,29 @@ const getChartsInitializationAPI = () => {
             // Don't allow to drag vertically, only horizontal
             dragMeAnnotation.y1 = -25;
 
-            // Find the index to the x-values that the axis marker is on
-            // Note you could just loop getNativeXValues() here but the wasmContext.NumberUtil function does it for you
-            const dataIndex = mainChartSurface.webAssemblyContext2D.NumberUtil.FindIndex(
-                mainChartSurface.renderableSeries.get(0).dataSeries.getNativeXValues(),
-                dragMeAnnotation.x1,
-                mainChartSurface.webAssemblyContext2D.SCRTFindIndexSearchMode.Nearest,
-                true
-            );
+        // Find the index to the x-values that the axis marker is on
+        // Note you could just loop getNativeXValues() here but the wasmContext.NumberUtil function does it for you
+        const dataIndex = mainChartSurface.webAssemblyContext2D.NumberUtil.FindIndex(
+            mainChartSurface.renderableSeries.get(0).dataSeries.getNativeXValues(),
+            dragMeAnnotation.x1,
+            mainChartSurface.webAssemblyContext2D.SCRTFindIndexSearchMode.Nearest,
+            true);
 
-            crossSectionPaletteProvider.selectedIndex = dataIndex;
-            mainChartSurface.invalidateElement();
-            crossSectionSliceSeries.clear();
-            for (let i = 0; i < mainChartSurface.renderableSeries.size(); i++) {
-                crossSectionSliceSeries.append(
-                    i,
-                    mainChartSurface.renderableSeries
-                        .get(i)
-                        .dataSeries.getNativeYValues()
-                        .get(dataIndex)
-                );
-            }
+        crossSectionPaletteProvider.selectedIndex = dataIndex;
+        crossSectionPaletteProvider.shouldUpdate = true;
+        mainChartSurface.invalidateElement();
+        crossSectionSliceSeries.clear();
+        for(let i = 0; i < mainChartSurface.renderableSeries.size(); i++) {
+            crossSectionSliceSeries.append(i, mainChartSurface.renderableSeries.get(i).dataSeries.getNativeYValues().get(dataIndex));
+        }
         };
 
-        // Run it once
+
+    // Run it once
+    updateDragAnnotation();
+
+    //Run it when user drags the annotation
+    dragMeAnnotation.dragDelta.subscribe((args: AnnotationDragDeltaEventArgs) => {
         updateDragAnnotation();
 
         //Run it when user drags the annotation
