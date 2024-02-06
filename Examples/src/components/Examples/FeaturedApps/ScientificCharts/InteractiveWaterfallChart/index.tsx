@@ -31,7 +31,7 @@ import {
     TSciChart,
     XyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
 import { Radix2FFT } from "../AudioAnalyzer/Radix2FFT";
 import { INumericAxisOptions } from "scichart/Charting/Visuals/Axis/NumericAxis";
@@ -122,7 +122,7 @@ const getChartsInitializationAPI = () => {
     const initMainChart = async (rootElement: string | HTMLDivElement) => {
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
             disableAspect: true,
-            theme
+            theme,
         });
 
         mainChartSurface = sciChartSurface;
@@ -137,7 +137,7 @@ const getChartsInitializationAPI = () => {
                 drawMinorGridLines: false,
                 visibleRange: new NumberRange(-60, 60),
                 isVisible: i === seriesCount - 1,
-                overrideOffset: 3 * -i
+                overrideOffset: 3 * -i,
             });
             sciChartSurface.yAxes.add(yAxis);
 
@@ -149,7 +149,7 @@ const getChartsInitializationAPI = () => {
                 drawMinorGridLines: false,
                 growBy: new NumberRange(0, 0.2),
                 isVisible: i === seriesCount - 1,
-                overrideOffset: 2 * i
+                overrideOffset: 2 * i,
             });
             sciChartSurface.xAxes.add(xAxis);
 
@@ -158,7 +158,7 @@ const getChartsInitializationAPI = () => {
             mainChartSurface.rendered.subscribe(() => {
                 // Don't recalculate the palette unless the selected index changes
                 crossSectionPaletteProvider.shouldUpdate = false;
-            })
+            });
             const lineSeries = new FastLineRenderableSeries(wasmContext, {
                 id: "S" + i,
                 xAxisId: "X" + i,
@@ -166,7 +166,7 @@ const getChartsInitializationAPI = () => {
                 stroke: "#64BAE4",
                 strokeThickness: 1,
                 dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: `Spectra ${i}` }),
-                paletteProvider: crossSectionPaletteProvider
+                paletteProvider: crossSectionPaletteProvider,
             });
             // Insert series in reverse order so the ones at the bottom of the chart are drawn first
             // sciChartSurface.renderableSeries.insert(0, lineSeries);
@@ -192,7 +192,7 @@ const getChartsInitializationAPI = () => {
             annotationsGripsStroke: "Transparent",
             selectionBoxStroke: "Transparent",
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-            verticalAnchorPoint: EVerticalAnchorPoint.Top
+            verticalAnchorPoint: EVerticalAnchorPoint.Top,
         });
         sciChartSurface.annotations.add(dragMeAnnotation);
 
@@ -216,7 +216,7 @@ const getChartsInitializationAPI = () => {
             horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
             verticalAnchorPoint: EVerticalAnchorPoint.Top,
             x1: 0.9,
-            y1: 0.1
+            y1: 0.1,
         });
 
         sciChartSurface.annotations.add(promptAnnotation);
@@ -239,7 +239,7 @@ const getChartsInitializationAPI = () => {
             enableHover: true,
             enableSelection: true,
             hitTestRadius: 5,
-            onSelectionChanged: args => {
+            onSelectionChanged: (args) => {
                 if (args.selectedSeries.length > 0) {
                     prevSelectedSeries = args.selectedSeries[0];
                     args.allSeries.forEach(updateSeriesSelectionState);
@@ -247,9 +247,9 @@ const getChartsInitializationAPI = () => {
                     prevSelectedSeries.isSelected = true;
                 }
             },
-            onHoverChanged: args => {
+            onHoverChanged: (args) => {
                 args.allSeries.forEach(updateSeriesSelectionState);
-            }
+            },
         });
         sciChartSurface.chartModifiers.add(mainChartSelectionModifier);
         return { sciChartSurface };
@@ -265,13 +265,13 @@ const getChartsInitializationAPI = () => {
     const initCrossSectionLeft = async (rootElement: string | HTMLDivElement) => {
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
             disableAspect: true,
-            theme
+            theme,
         });
 
         sciChartSurface.xAxes.add(
             new NumericAxis(wasmContext, {
                 autoRange: EAutoRange.Always,
-                drawMinorGridLines: false
+                drawMinorGridLines: false,
             })
         );
         sciChartSurface.yAxes.add(
@@ -279,13 +279,13 @@ const getChartsInitializationAPI = () => {
                 autoRange: EAutoRange.Never,
                 axisAlignment: EAxisAlignment.Left,
                 visibleRange: new NumberRange(-30, 5),
-                drawMinorGridLines: false
+                drawMinorGridLines: false,
             })
         );
 
         crossSectionSelectedSeries = new FastLineRenderableSeries(wasmContext, {
             stroke: "#ff6600",
-            strokeThickness: 3
+            strokeThickness: 3,
         });
         sciChartSurface.renderableSeries.add(crossSectionSelectedSeries);
         crossSectionHoveredSeries = new FastMountainRenderableSeries(wasmContext, {
@@ -294,17 +294,17 @@ const getChartsInitializationAPI = () => {
             strokeDashArray: [2, 2],
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: "#64BAE455", offset: 0 },
-                { color: "#64BAE400", offset: 1 }
+                { color: "#64BAE400", offset: 1 },
             ]),
             dataSeries: crossSectionSliceSeries,
-            zeroLineY: -999
+            zeroLineY: -999,
         });
         sciChartSurface.renderableSeries.add(crossSectionHoveredSeries);
 
         // Add a legend to the bottom left chart
         crossSectionLegendModifier = new LegendModifier({
             showCheckboxes: false,
-            orientation: ELegendOrientation.Horizontal
+            orientation: ELegendOrientation.Horizontal,
         });
         crossSectionLegendModifier.isEnabled = false;
         sciChartSurface.chartModifiers.add(crossSectionLegendModifier);
@@ -319,14 +319,14 @@ const getChartsInitializationAPI = () => {
             title: "Cross Section Slice",
             titleStyle: {
                 fontSize: 13,
-                padding: Thickness.fromNumber(10)
-            }
+                padding: Thickness.fromNumber(10),
+            },
         });
 
         sciChartSurface.xAxes.add(
             new NumericAxis(wasmContext, {
                 autoRange: EAutoRange.Always,
-                drawMinorGridLines: false
+                drawMinorGridLines: false,
             })
         );
         sciChartSurface.yAxes.add(
@@ -334,7 +334,7 @@ const getChartsInitializationAPI = () => {
                 autoRange: EAutoRange.Never,
                 axisAlignment: EAxisAlignment.Left,
                 visibleRange: new NumberRange(-30, 5),
-                drawMinorGridLines: false
+                drawMinorGridLines: false,
             })
         );
 
@@ -346,10 +346,10 @@ const getChartsInitializationAPI = () => {
                 strokeDashArray: [2, 2],
                 fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                     { color: "#64BAE477", offset: 0 },
-                    { color: "#64BAE433", offset: 1 }
+                    { color: "#64BAE433", offset: 1 },
                 ]),
                 dataSeries: crossSectionSliceSeries,
-                zeroLineY: -999
+                zeroLineY: -999,
             })
         );
 
@@ -358,7 +358,7 @@ const getChartsInitializationAPI = () => {
 
     const configureAfterInit = () => {
         // Link interactions together
-        mainChartSelectionModifier.selectionChanged.subscribe(args => {
+        mainChartSelectionModifier.selectionChanged.subscribe((args) => {
             const selectedSeries = args.selectedSeries[0]?.dataSeries;
             if (selectedSeries) {
                 crossSectionSelectedSeries.dataSeries = selectedSeries;
@@ -366,7 +366,7 @@ const getChartsInitializationAPI = () => {
             crossSectionLegendModifier.isEnabled = true;
             crossSectionLegendModifier.sciChartLegend?.invalidateLegend();
         });
-        mainChartSelectionModifier.hoverChanged.subscribe(args => {
+        mainChartSelectionModifier.hoverChanged.subscribe((args) => {
             const hoveredSeries = args.hoveredSeries[0]?.dataSeries;
             if (hoveredSeries) {
                 crossSectionHoveredSeries.dataSeries = hoveredSeries;
@@ -379,37 +379,41 @@ const getChartsInitializationAPI = () => {
             // Don't allow to drag vertically, only horizontal
             dragMeAnnotation.y1 = -25;
 
-        // Find the index to the x-values that the axis marker is on
-        // Note you could just loop getNativeXValues() here but the wasmContext.NumberUtil function does it for you
-        const dataIndex = mainChartSurface.webAssemblyContext2D.NumberUtil.FindIndex(
-            mainChartSurface.renderableSeries.get(0).dataSeries.getNativeXValues(),
-            dragMeAnnotation.x1,
-            mainChartSurface.webAssemblyContext2D.SCRTFindIndexSearchMode.Nearest,
-            true);
+            // Find the index to the x-values that the axis marker is on
+            // Note you could just loop getNativeXValues() here but the wasmContext.NumberUtil function does it for you
+            const dataIndex = mainChartSurface.webAssemblyContext2D.NumberUtil.FindIndex(
+                mainChartSurface.renderableSeries.get(0).dataSeries.getNativeXValues(),
+                dragMeAnnotation.x1,
+                mainChartSurface.webAssemblyContext2D.SCRTFindIndexSearchMode.Nearest,
+                true
+            );
 
-        crossSectionPaletteProvider.selectedIndex = dataIndex;
-        crossSectionPaletteProvider.shouldUpdate = true;
-        mainChartSurface.invalidateElement();
-        crossSectionSliceSeries.clear();
-        for(let i = 0; i < mainChartSurface.renderableSeries.size(); i++) {
-            crossSectionSliceSeries.append(i, mainChartSurface.renderableSeries.get(i).dataSeries.getNativeYValues().get(dataIndex));
-        }
+            crossSectionPaletteProvider.selectedIndex = dataIndex;
+            crossSectionPaletteProvider.shouldUpdate = true;
+            mainChartSurface.invalidateElement();
+            crossSectionSliceSeries.clear();
+            for (let i = 0; i < mainChartSurface.renderableSeries.size(); i++) {
+                crossSectionSliceSeries.append(
+                    i,
+                    mainChartSurface.renderableSeries.get(i).dataSeries.getNativeYValues().get(dataIndex)
+                );
+            }
         };
 
-
-    // Run it once
-    updateDragAnnotation();
-
-    //Run it when user drags the annotation
-    dragMeAnnotation.dragDelta.subscribe((args: AnnotationDragDeltaEventArgs) => {
+        // Run it once
         updateDragAnnotation();
 
         //Run it when user drags the annotation
         dragMeAnnotation.dragDelta.subscribe((args: AnnotationDragDeltaEventArgs) => {
             updateDragAnnotation();
-        });
 
-        mainChartSurface.renderableSeries.get(0).isSelected = true;
+            //Run it when user drags the annotation
+            dragMeAnnotation.dragDelta.subscribe((args: AnnotationDragDeltaEventArgs) => {
+                updateDragAnnotation();
+            });
+
+            mainChartSurface.renderableSeries.get(0).isSelected = true;
+        });
     };
 
     return { initMainChart, initCrossSectionLeft, initCrossSectionRight, configureAfterInit };
@@ -429,7 +433,7 @@ export default function InteractiveWaterfallChart() {
                         height: "100%",
                         display: "flex",
                         flexDirection: "column",
-                        background: appTheme.DarkIndigo
+                        background: appTheme.DarkIndigo,
                     }}
                 >
                     <SciChartGroup
