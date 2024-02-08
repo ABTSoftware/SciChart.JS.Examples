@@ -8,21 +8,20 @@ import {
     GradientParams,
     Point,
     PieSegment,
-    SciChartPieSurface
+    SciChartPieSurface,
 } from "scichart";
+import { SciChartReact } from "scichart-react";
 
-export const divElementId1 = "chart1";
-
-export const drawExample = async (): Promise<SciChartPieSurface> => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create the pie chart
-    const sciChartPieSurface = await SciChartPieSurface.create(divElementId1, {
+    const sciChartPieSurface = await SciChartPieSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
         pieType: EPieType.Pie,
         animate: true,
         seriesSpacing: 15,
         showLegend: true,
         showLegendSeriesMarkers: true,
-        animateLegend: true
+        animateLegend: true,
     });
     // Optional placement of legend
     sciChartPieSurface.legend.orientation = ELegendOrientation.Horizontal;
@@ -45,7 +44,7 @@ export const drawExample = async (): Promise<SciChartPieSurface> => {
         { name: "Tecno", percent: 1.09 },
         { name: "Infinix", percent: 0.96 },
         { name: "Google", percent: 0.77 },
-        { name: "Nokia", percent: 0.45 }
+        { name: "Nokia", percent: 0.45 },
     ];
 
     // Colors are just hex strings, supporting #FFFFFF (RBG) or 8-digit with RGBA or CSS color strings e.g. rgba()
@@ -64,7 +63,7 @@ export const drawExample = async (): Promise<SciChartPieSurface> => {
         { color1: appTheme.PaleTeal },
         { color1: appTheme.PaleBlue },
         { color1: appTheme.PaleOrange },
-        { color1: appTheme.PalePink }
+        { color1: appTheme.PalePink },
     ];
 
     // Optional Relative radius adjustment per segment
@@ -79,8 +78,8 @@ export const drawExample = async (): Promise<SciChartPieSurface> => {
             showLabel: value > 2,
             colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: color1, offset: 0 },
-                { color: color2 ?? color1 + "77", offset: 1 }
-            ])
+                { color: color2 ?? color1 + "77", offset: 1 },
+            ]),
         });
     };
 
@@ -91,34 +90,13 @@ export const drawExample = async (): Promise<SciChartPieSurface> => {
 
     sciChartPieSurface.pieSegments.add(...pieSegments);
 
-    return sciChartPieSurface;
+    return { sciChartSurface: sciChartPieSurface };
 };
 
-export default function PieChart() {
-    const sciChartSurfaceRef = React.useRef<SciChartPieSurface>();
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then((sciChartSurface) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-        });
-
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
-
+export default function ChartComponent() {
     return (
         <div className={classes.ChartWrapper}>
-            <div id={divElementId1} style={{ width: "100%", height: "100%", float: "left" }} />
+            <SciChartReact style={{ width: "100%", height: "100%", float: "left" }} initChart={drawExample} />
             {/*Placeholder until we have a proper chart title (soon!)*/}
             <span
                 style={{
@@ -127,7 +105,7 @@ export default function PieChart() {
                     position: "absolute",
                     left: "50%",
                     top: "20px",
-                    transform: "translate(-50%)"
+                    transform: "translate(-50%)",
                 }}
             >
                 Market share of Mobile Phone Manufacturers (2022)
