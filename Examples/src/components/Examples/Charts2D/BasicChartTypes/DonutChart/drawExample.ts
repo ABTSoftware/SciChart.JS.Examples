@@ -1,5 +1,3 @@
-import * as React from "react";
-import classes from "../../../styles/Examples.module.scss";
 import { appTheme } from "scichart-example-dependencies";
 import {
     EPieType,
@@ -11,7 +9,6 @@ import {
     ELegendOrientation,
     ELegendPlacement,
 } from "scichart";
-import { SciChartReact } from "scichart-react";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create the pie chart
@@ -81,24 +78,3 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     return { sciChartSurface: sciChartPieSurface };
 };
-
-export default function ChartComponent() {
-    return (
-        <div className={classes.ChartWrapper}>
-            <SciChartReact style={{ width: "100%", height: "100%", float: "left" }} initChart={drawExample} />
-            {/*Placeholder until we have a proper chart title (soon!)*/}
-            <span
-                style={{
-                    color: appTheme.ForegroundColor,
-                    fontSize: 20,
-                    position: "absolute",
-                    left: "50%",
-                    top: "20px",
-                    transform: "translate(-50%)",
-                }}
-            >
-                Market share of Internet Browsers (2022)
-            </span>
-        </div>
-    );
-}
