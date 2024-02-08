@@ -1,0 +1,8 @@
+/lib
+/node_modules
+/dist
+/build
+scichart2d.data
+scichart2d.wasm
+scichart3d.data
+scichart3d.wasm
