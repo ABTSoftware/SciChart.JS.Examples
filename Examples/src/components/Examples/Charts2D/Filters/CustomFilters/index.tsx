@@ -16,8 +16,9 @@ import {
     XyCustomFilter,
     XyDataSeries,
     XyFilterBase,
-    XyScatterRenderableSeries
+    XyScatterRenderableSeries,
 } from "scichart";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 export const divElementId = "chart";
 
@@ -99,14 +100,14 @@ export const drawExample = async () => {
     const maxPoints = 100_000; // max points for a single series before the demo stops
 
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
     const rawXAxis = new NumericAxis(wasmContext, { id: "rawX", isVisible: false, autoRange: EAutoRange.Always });
     const aggXAxis = new NumericAxis(wasmContext, {
         id: "aggX",
         axisTitle: "Value",
         autoRange: EAutoRange.Always,
-        labelPrecision: 0
+        labelPrecision: 0,
     });
     sciChartSurface.xAxes.add(rawXAxis, aggXAxis);
 
@@ -115,7 +116,7 @@ export const drawExample = async () => {
         axisTitle: "Raw Data",
         id: "rawY",
         labelPrecision: 0,
-        labelStyle: { alignment: ELabelAlignment.Right }
+        labelStyle: { alignment: ELabelAlignment.Right },
     });
     const aggYAxis = new NumericAxis(wasmContext, {
         axisTitle: "Frequency (Aggregated)",
@@ -123,7 +124,7 @@ export const drawExample = async () => {
         autoRange: EAutoRange.Always,
         axisAlignment: EAxisAlignment.Left,
         growBy: new NumberRange(0, 0.5),
-        labelPrecision: 0
+        labelPrecision: 0,
     });
     sciChartSurface.yAxes.add(aggYAxis, rawYAxis);
 
@@ -149,12 +150,12 @@ export const drawExample = async () => {
                 height: 3,
                 strokeThickness: 0,
                 fill: appTheme.VividOrange,
-                opacity: 0.77
+                opacity: 0.77,
             }),
             stroke: appTheme.VividOrange,
             dataSeries: gaussFilter,
             xAxisId: "rawX",
-            yAxisId: "rawY"
+            yAxisId: "rawY",
         })
     );
 
@@ -165,7 +166,7 @@ export const drawExample = async () => {
             stroke: appTheme.VividTeal,
             strokeThickness: 3,
             xAxisId: "rawX",
-            yAxisId: "rawY"
+            yAxisId: "rawY",
         })
     );
 
@@ -181,7 +182,7 @@ export const drawExample = async () => {
             dataSeries: aggFilter,
             xAxisId: "aggX",
             yAxisId: "aggY",
-            cornerRadius: 10
+            cornerRadius: 10,
         })
     );
 
@@ -224,40 +225,32 @@ export const drawExample = async () => {
     return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo } };
 };
 
-export default function CustomFilters() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const chartControlsRef = React.useRef<{
-        startDemo: () => void;
-        stopDemo: () => void;
-    }>();
-
-    React.useEffect(() => {
-        let autoStartTimerId: NodeJS.Timeout;
-
-        const chartInitializationPromise = drawExample().then(res => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            chartControlsRef.current = res.controls;
-            autoStartTimerId = setTimeout(res.controls.startDemo, 0);
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                clearTimeout(autoStartTimerId);
-                chartControlsRef.current.stopDemo();
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                clearTimeout(autoStartTimerId);
-                chartControlsRef.current.stopDemo();
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
-
-    return <div id={divElementId} className={classes.ChartWrapper} />;
+export default function ChartComponent() {
+    return (
+        <div className={classes.ChartWrapper}>
+            <SciChartReact
+                style={{ width: "100%", height: "100%", float: "left" }}
+                initChart={drawExample}
+                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    initResult.controls.startDemo();
+                }}
+                onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    initResult.controls.stopDemo();
+                }}
+            />
+            {/*Placeholder until we have a proper chart title (soon!)*/}
+            <span
+                style={{
+                    color: appTheme.ForegroundColor,
+                    fontSize: 20,
+                    position: "absolute",
+                    left: "50%",
+                    top: "20px",
+                    transform: "translate(-50%)",
+                }}
+            >
+                Market share of Mobile Phone Manufacturers (2022)
+            </span>
+        </div>
+    );
 }
