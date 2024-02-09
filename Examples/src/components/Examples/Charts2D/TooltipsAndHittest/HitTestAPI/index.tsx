@@ -22,10 +22,9 @@ import {
     EAnnotationLayer,
     EMultiLineAlignment,
     ETextAlignment,
-    Thickness
+    Thickness,
 } from "scichart";
-
-const divElementId = "chart";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 // This method hit-tests the series body
 const HIT_TEST = "hitTest";
@@ -34,16 +33,16 @@ const HIT_TEST_DATAPOINT = "hitTestDataPoint";
 // This method hit-tests by searching first in X, then Y
 const HIT_TEST_X_SLICE = "hitTestXSlice";
 
-const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Which hit-test method are we using? See below for usage
     let whichHitTestMethod = HIT_TEST_DATAPOINT;
 
     // Create a SciChartSurface with theme
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
         title: [
             "Click on the chart to demonstrate Hit-Test API",
-            "Change the Hit-Test method above to see the different behaviours"
+            "Change the Hit-Test method above to see the different behaviours",
         ],
         titleStyle: {
             fontSize: 16,
@@ -51,13 +50,13 @@ const drawExample = async () => {
             alignment: ETextAlignment.Left,
             multilineAlignment: EMultiLineAlignment.Left,
             color: appTheme.ForegroundColor + "C4",
-            padding: Thickness.fromString("13 4 0 9")
-        }
+            padding: Thickness.fromString("13 4 0 9"),
+        },
     });
 
     // add an event listener for mouse down. You can access the actual SciChartSurface canvas as
     // follows, or find element by ID=divElementId in the dom
-    sciChartSurface.domCanvas2D.addEventListener("mousedown", mouseEvent => {
+    sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent) => {
         // Translate the point to the series viewrect before hit-testing
         // Attention!
         // We need to multiply it by DpiHelper.PIXEL_RATIO
@@ -103,7 +102,7 @@ const drawExample = async () => {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisAlignment: EAxisAlignment.Left,
-            growBy: new NumberRange(0.1, 0.1)
+            growBy: new NumberRange(0.1, 0.1),
         })
     );
 
@@ -114,14 +113,14 @@ const drawExample = async () => {
         dataSeries: new XyDataSeries(wasmContext, {
             dataSeriesName: "Line Series",
             xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-            yValues: [0, 1, 5, 1, 20, 5, 1, 8, 9, 3]
+            yValues: [0, 1, 5, 1, 20, 5, 1, 8, 9, 3],
         }),
         pointMarker: new EllipsePointMarker(wasmContext, {
             stroke: appTheme.VividSkyBlue,
             fill: appTheme.VividSkyBlue + "33",
             width: 11,
-            height: 11
-        })
+            height: 11,
+        }),
     });
 
     // Add the line series to the SciChartSurface
@@ -139,7 +138,7 @@ const drawExample = async () => {
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
-            annotationLayer: EAnnotationLayer.BelowChart
+            annotationLayer: EAnnotationLayer.BelowChart,
         });
     };
 
@@ -154,62 +153,40 @@ const drawExample = async () => {
         theWatermark.text = "METHOD: " + hitTestMethod + "()";
     };
 
-    return { sciChartSurface, wasmContext, updateHitTestMethod };
+    return { sciChartSurface, wasmContext, controls: { updateHitTestMethod } };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
         // flex: "auto",
         flexBasis: "70px",
         padding: 10,
-        width: "100%"
+        width: "100%",
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
-export default function HitTestAPI() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+export default function ChartComponent() {
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
 
-    const [updateFunc, setUpdateHitTestMethod] = React.useState<(hitTestMethod: string) => void>(() => {});
     const [preset, setPreset] = React.useState<string>(HIT_TEST_DATAPOINT);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(res => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            setUpdateHitTestMethod(() => res.updateHitTestMethod);
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
 
     const handlePreset = (event: any, value: string) => {
         // When user clicks a togglebutton, update state
         if (value) {
             console.log("ToggleButton changed " + value);
             setPreset(value);
-            updateFunc(value);
+            controlsRef.current.updateHitTestMethod(value);
         }
     };
 
@@ -236,7 +213,13 @@ export default function HitTestAPI() {
                         Hit-Test Series Body
                     </ToggleButton>
                 </ToggleButtonGroup>
-                <div id={divElementId} className={localClasses.chartArea} />
+                <SciChartReact
+                    className={localClasses.chartArea}
+                    initChart={drawExample}
+                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                        controlsRef.current = initResult.controls;
+                    }}
+                />
             </div>
         </div>
     );
