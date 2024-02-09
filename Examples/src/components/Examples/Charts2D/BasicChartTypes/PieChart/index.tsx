@@ -2,6 +2,7 @@ import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
 import { appTheme } from "scichart-example-dependencies";
 import { SciChartReact } from "scichart-react";
+import { drawExample } from "./drawExample";
 
 export default function ChartComponent() {
     return (
