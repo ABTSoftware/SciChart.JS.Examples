@@ -2,8 +2,6 @@ import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
 import { appTheme } from "scichart-example-dependencies";
 import { visualiseHitTestPoint } from "./visualizeHitTest";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import { makeStyles } from "@material-ui/core/styles";
 
 import {
     SciChartSurface,
@@ -24,14 +22,13 @@ import {
     ETextAlignment,
     Thickness,
 } from "scichart";
-import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 // This method hit-tests the series body
-const HIT_TEST = "hitTest";
+export const HIT_TEST = "hitTest";
 // This method hit-tests the nearest data-point
-const HIT_TEST_DATAPOINT = "hitTestDataPoint";
+export const HIT_TEST_DATAPOINT = "hitTestDataPoint";
 // This method hit-tests by searching first in X, then Y
-const HIT_TEST_X_SLICE = "hitTestXSlice";
+export const HIT_TEST_X_SLICE = "hitTestXSlice";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Which hit-test method are we using? See below for usage
@@ -155,72 +152,3 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     return { sciChartSurface, wasmContext, controls: { updateHitTestMethod } };
 };
-
-const useStyles = makeStyles((theme) => ({
-    flexOuterContainer: {
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        background: appTheme.DarkIndigo,
-    },
-    toolbarRow: {
-        display: "flex",
-        // flex: "auto",
-        flexBasis: "70px",
-        padding: 10,
-        width: "100%",
-    },
-    chartArea: {
-        flex: 1,
-    },
-}));
-
-export default function ChartComponent() {
-    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
-
-    const [preset, setPreset] = React.useState<string>(HIT_TEST_DATAPOINT);
-
-    const handlePreset = (event: any, value: string) => {
-        // When user clicks a togglebutton, update state
-        if (value) {
-            console.log("ToggleButton changed " + value);
-            setPreset(value);
-            controlsRef.current.updateHitTestMethod(value);
-        }
-    };
-
-    const localClasses = useStyles();
-    return (
-        <div className={classes.ChartWrapper}>
-            <div className={localClasses.flexOuterContainer}>
-                <ToggleButtonGroup
-                    className={localClasses.toolbarRow}
-                    exclusive
-                    value={preset}
-                    onChange={handlePreset}
-                    size="small"
-                    color="primary"
-                    aria-label="small outlined button group"
-                >
-                    <ToggleButton value={HIT_TEST_DATAPOINT} style={{ color: appTheme.ForegroundColor }}>
-                        Hit-Test Datapoint
-                    </ToggleButton>
-                    <ToggleButton value={HIT_TEST_X_SLICE} style={{ color: appTheme.ForegroundColor }}>
-                        Hit-Test X-Slice
-                    </ToggleButton>
-                    <ToggleButton value={HIT_TEST} style={{ color: appTheme.ForegroundColor }}>
-                        Hit-Test Series Body
-                    </ToggleButton>
-                </ToggleButtonGroup>
-                <SciChartReact
-                    className={localClasses.chartArea}
-                    initChart={drawExample}
-                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                        controlsRef.current = initResult.controls;
-                    }}
-                />
-            </div>
-        </div>
-    );
-}
