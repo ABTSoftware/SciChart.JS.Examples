@@ -6,6 +6,7 @@ async function staticAxis(divElementId) {
     SciChartSurface,
     NumericAxis,
     SciChartJsNavyTheme,
+    NumberRange
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -21,13 +22,15 @@ async function staticAxis(divElementId) {
   };
 
   const xAxis = new NumericAxis(wasmContext, {
-    axisTitle: "XAxis.isStaticAxis = true",
+    axisTitle: "isStaticAxis = true, maxAutoTicks = 10",
     isStaticAxis: true,
+    maxAutoTicks: 10,
     ...styleOptions
   });
 
   const yAxis = new NumericAxis(wasmContext, {
     axisTitle: "yAxis.isStaticAxis = false",
+    growBy: new NumberRange(0.1, 0.1),
     ...styleOptions
   });
 
@@ -92,8 +95,9 @@ async function builderExample(divElementId) {
     xAxes: {
       type: EAxisType.NumericAxis,
       options: {
-        axisTitle: "XAxis.isStaticAxis = true",
+        axisTitle: "isStaticAxis = true, maxAutoTicks = 5",
         isStaticAxis: true,
+        maxAutoTicks: 5,
       }
     },
     yAxes: {
@@ -104,6 +108,16 @@ async function builderExample(divElementId) {
     },
   });
   // #endregion
+
+  const { FastLineRenderableSeries, XyDataSeries } = SciChart;
+  sciChartSurface.renderableSeries.add(new FastLineRenderableSeries(wasmContext, {
+    dataSeries: new XyDataSeries(wasmContext, { xValues: [1, 2, 3, 4, 5], yValues: [1, 2, 1, 2, 1] }),
+    stroke: "#FF6600",
+    strokeThickness: 3,
+  }));
+
+  const { ZoomPanModifier, EXyDirection } = SciChart;
+  sciChartSurface.chartModifiers.add(new ZoomPanModifier( { xyDirection: EXyDirection.XDirection }));
 };
 
 
