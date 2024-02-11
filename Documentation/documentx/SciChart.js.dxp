@@ -2078,6 +2078,12 @@ Show external placement div</Notes>
                       <TargetItemId>31e819ca-a224-4e7a-8fa1-4c8301fb6108</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
+                    <TocNode Name="" Id="660bcb07-a773-41c4-968f-b20f2e111d99" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>bedb02d6-75f3-488d-be71-67fc57df5666</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
                   </ChildNodes>
                 </TocNode>
                 <TocNode Name="" Id="83b64966-fcb3-4a15-9b85-7775af061105" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
@@ -5432,6 +5438,31 @@ Show external placement div</Notes>
 &lt;P&gt;Then, apply the TickProvider to an axis like this:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisTicks\TickProvider\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisTicks\TickProvider\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleC&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;This results in an uneven spacing of ticklines or gridlines in SciChart which looks like this:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisTicks/TickProvider/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;You can customize TickProviders further and even return dynamic arrays. For example, if you wanted to ensure an equally sized grid independent of zoom level, or to dynamically change the number of gridlines on screen, you can do it with the TickProvider API. &lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="bedb02d6-75f3-488d-be71-67fc57df5666" Status="New Topic" CreatedOn="2024-02-11T08:49:22.5808924Z" ModifiedOn="2024-02-11T09:46:20.0403384Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="StaticAxisFeature" BuildFlags="">
+                    <Title m="2024-02-11T08:49:44.2869477Z">Fixed Label Intervals - Static Axis Feature</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2024-02-11T09:46:20.0403384Z">&lt;P&gt;Sometimes you want to have a fixed number of labels and major gridlines displayed on a chart, at specific values. &lt;/P&gt;
+&lt;P&gt;Consider the case where you have a chart with&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#visiblerange"&gt;xAxis.visibleRange&lt;/A&gt; from 0 to 10, and you want to display labels precisely at 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10. Zooming and panning should not change the number or spacing of the labels. In this case, you can set the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#isstaticaxis"&gt;axis.isStaticAxis&lt;/A&gt; property.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;When in this mode, the major gridline positions / label positions and spacing are fixed. If the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#visiblerange"&gt;axis.visibleRange&lt;/A&gt; changes then the label values update, not the position or spacing. &lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Enabling Static Axis&lt;/H2&gt;
+&lt;P&gt;To enable the static axis mode, use the following code:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisTicks\StaticAxis\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisTicks\StaticAxis\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisTicks/StaticAxis/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Varying the number of Static Axis Ticks &amp;amp; Labels&lt;/H2&gt;
+&lt;P&gt;When&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#isstaticaxis"&gt;axis.isStaticAxis&lt;/A&gt; is set to true, the number of major ticks (major gridlines, axis labels) are constrained by&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#maxautoticks"&gt;axis.maxAutoTicks&lt;/A&gt;. &lt;/P&gt;
+&lt;P&gt;For example setting&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#maxautoticks"&gt;axis.maxAutoTicks&lt;/A&gt; = 5 will ensure there are always 5 labels and 5 major gridlines on the chart. These wil be at fixed spacings no matter the zoom level of the chart. Label values will update instead. &lt;/P&gt;
+&lt;H2&gt;Formatting Labels and Precision (Decimal Places)&lt;/H2&gt;
+&lt;P&gt;When in static axis mode, the axis stil obeys formatting rules provided by the LabelProvider. Read the&amp;nbsp;&lt;A href="bf3b144b-2153-4d7c-ab74-152f839df85f"&gt;NumericAxis Docs&lt;/A&gt; or the&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;LabelProvider API Docs&lt;/A&gt; for more info on how to vary label precision.&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks />
@@ -16562,11 +16593,11 @@ Show external placement div</Notes>
 				script.charset = charSet;
 			}
 			head.appendChild(script);
-			console.log(`appended script ` + scriptSrc + `!`);
+			// console.log(`appended script ` + scriptSrc + `!`);
 		}
 	   	
 		appendScript('https://static.codepen.io/assets/embed/ei.js', undefined);
-		appendScript('https://scichart.activehosted.com/f/embed.php?id=25', 'utf-8');	
+		// appendScript('https://scichart.activehosted.com/f/embed.php?id=25', 'utf-8');	
 	}
 &lt;/script&gt;
 &lt;style&gt;.cp_embed_iframe { aspect-ratio:1.333 }&lt;/style&gt;</OtherHeadContent>
