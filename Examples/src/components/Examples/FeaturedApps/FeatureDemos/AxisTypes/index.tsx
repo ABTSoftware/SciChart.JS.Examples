@@ -178,13 +178,9 @@ const useStyles = makeStyles(theme => ({
 export default function FeatureAxisTypes() {
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
-    const [labelProvider, setLabelProvider] = React.useState<TextLabelProvider>();
-    const [preset, setPreset] = React.useState<number>(0);
-
     React.useEffect(() => {
         const chartInitializationPromise = drawExample().then(({ sciChartSurface, labelProvider }) => {
             sciChartSurfaceRef.current = sciChartSurface;
-            setLabelProvider(labelProvider);
         });
 
         // Delete sciChartSurface on unmount component to prevent memory leak
@@ -204,53 +200,11 @@ export default function FeatureAxisTypes() {
         };
     }, []);
 
-    const handlePreset = (event: any, value: number) => {
-        setPreset(value);
-        switch (value) {
-            case 0:
-                labelProvider.rotation = 0;
-                labelProvider.maxLength = 9;
-                break;
-            case 1:
-                labelProvider.rotation = 20;
-                labelProvider.maxLength = 0;
-                break;
-            case 2:
-                labelProvider.rotation = 30;
-                labelProvider.maxLength = 12;
-                break;
-            default:
-                labelProvider.rotation = 0;
-                labelProvider.maxLength = 9;
-                break;
-        }
-    };
-
     const localClasses = useStyles();
 
     return (
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.toolbarRow}>
-                    <ToggleButtonGroup
-                        exclusive
-                        value={preset}
-                        onChange={handlePreset}
-                        size="medium"
-                        color="primary"
-                        aria-label="small outlined button group"
-                    >
-                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
-                            Multi-Line
-                        </ToggleButton>
-                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
-                            Single Line Rotated
-                        </ToggleButton>
-                        <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>
-                            Multi-Line Rotated
-                        </ToggleButton>
-                    </ToggleButtonGroup>
-                </div>
                 <div className={localClasses.chartArea} id={divElementId}></div>
             </div>
         </div>

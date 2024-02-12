@@ -13,6 +13,7 @@ import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/Annotatio
 import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
 import { GenericAnimation } from "scichart/Core/Animations/GenericAnimation";
 import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
+import { EWrapTo, NativeTextAnnotation } from "scichart";
 
 const divElementId = "chart";
 
@@ -69,14 +70,14 @@ const drawExample = async () => {
     sciChartSurface.renderableSeries.add(bubbleSeries0);
 
     // add a label & line
-    const labelAnnotation1 = new TextAnnotation({
+    const labelAnnotation1 = new NativeTextAnnotation({
         x1: 1955,
         y1: 82,
-        text: "In this dataset life expectancy increases with time (years). Bubble size is GDP/capita",
+        text: "In this dataset life expectancy increases with time (years).\n Bubble size is GDP/capita",
         fontSize: 18,
         opacity: 0, // initially hidden
         textColor: appTheme.PaleSkyBlue,
-        verticalAnchorPoint: EVerticalAnchorPoint.Bottom
+        verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
     });
     sciChartSurface.annotations.add(labelAnnotation1);
     const lineAnnotation = new LineAnnotation({
@@ -158,15 +159,14 @@ const drawExample = async () => {
     );
 
     // add a second label & line from 7..9s
-    const labelAnnotation2 = new TextAnnotation({
+    const labelAnnotation2 = new NativeTextAnnotation({
         x1: 10000,
         y1: 50,
-        yCoordShift: 20,
-        text: "Let's swap the axis to GDP vs. Life Expectancy using GenericAnimation. Bubble size is Population",
+        text: "Let's swap the axis to GDP vs. Life Expectancy using GenericAnimation.\n Bubble size is Population",
         fontSize: 18,
         opacity: 0, // initially hidden
         textColor: appTheme.PaleSkyBlue,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
     });
     sciChartSurface.annotations.add(labelAnnotation2);
     const lineAnnotation2 = new LineAnnotation({
