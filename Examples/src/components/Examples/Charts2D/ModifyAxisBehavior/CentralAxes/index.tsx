@@ -31,13 +31,21 @@ const drawExample = async () => {
     });
 
     // Optional parameters to control exact placement of the axis
-    // Below: These are defaults, but we specify them for completeness of the example
+    // These are defaults: which fix the axes in the center of the chart
     // Relative coordinate mode and 0.5 means 'place half way'
+    // const options: ICentralAxesLayoutManagerOptions = {
+    //     horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Relative,
+    //     verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Relative,
+    //     horizontalAxisPosition: 0.5,
+    //     verticalAxisPosition: 0.5
+    // };
+    
+    // These options keep the axes crossing at (0,0), so the axes pan with the chart
     const options: ICentralAxesLayoutManagerOptions = {
-        horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Relative,
-        verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Relative,
-        horizontalAxisPosition: 0.5,
-        verticalAxisPosition: 0.5
+        horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.DataValue,
+        verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.DataValue,
+        horizontalAxisPosition: 0,
+        verticalAxisPosition: 0
     };
 
     // Control the placement of the axis by specifying CentralAxesLayoutManager
