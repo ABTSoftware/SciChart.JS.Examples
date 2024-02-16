@@ -36,7 +36,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     let xValues = Array.from(Array(length).keys());
-    let yValues = Array.from({ length }, () => 0.5 * length);
+    let yValues = Array.from({ length }, () => Math.random() * length);
 
     // Create a scatter series with some initial data
     const scatterSeries = new FastLineRenderableSeries(wasmContext, {
@@ -73,21 +73,21 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     let timerId: NodeJS.Timeout;
 
     const animateData = () => {
-        xValues = Array.from({ length }, () => Math.random() * length);
-        yValues = Array.from({ length }, () => Math.random() * length);
+        xValues = xValues.map((x) => x + ((Math.random() - 0.5) * length) / 5);
+        yValues = yValues.map((y) => y + ((Math.random() - 0.5) * length) / 5);
         // Set the values on the temp series
         animationSeries.clear();
         animationSeries.appendRange(xValues, yValues);
         scatterSeries.runAnimation(
             new ScatterAnimation({
-                duration: 500,
+                duration: 1000,
                 ease: easing.outQuad,
                 // Do not create a new DataSeries here or it will leak and eventually crash.
                 dataSeries: animationSeries,
             })
         );
 
-        timerId = setTimeout(animateData, 1000);
+        timerId = setTimeout(animateData, 1200);
     };
     timerId = setTimeout(animateData, 1000);
 
