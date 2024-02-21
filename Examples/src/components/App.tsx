@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { Theme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -9,7 +9,7 @@ import {
     getParentMenuIds,
     MENU_ITEMS_2D,
     MENU_ITEMS_3D,
-    MENU_ITEMS_FEATURED_APPS
+    MENU_ITEMS_FEATURED_APPS,
 } from "./AppRouter/examples";
 import AppBarTop from "./AppTopBar/AppBarTop";
 import DrawerContent from "./DrawerContent/DrawerContent";
@@ -20,12 +20,17 @@ import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";
 import classes from "./App.module.scss";
 import "./index.scss";
 import Gallery from "./Gallery/Gallery";
-import { PAGES } from "./AppRouter/pages";
+import { EPageFramework, PAGES } from "./AppRouter/pages";
 import { GalleryItem } from "../helpers/types/types";
 import { allGalleryItems, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 
 export default function App() {
     const location = useLocation();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const frameworkFromUrl = searchParams.get("framework");
+    const selectedFramework = Object.values(EPageFramework).includes(frameworkFromUrl as EPageFramework)
+        ? (frameworkFromUrl as EPageFramework)
+        : EPageFramework.Vanilla;
     // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
     const isIFrame = location.pathname.substring(1, 7) === "iframe";
     let pathname = isIFrame ? location.pathname.substring(7) : location.pathname;
@@ -35,16 +40,16 @@ export default function App() {
     let initialOpenedMenuItems = {
         MENU_ITEMS_FEATURED_APPS_ID: true,
         MENU_ITEMS_3D_ID: true,
-        MENU_ITEMS_2D_ID: true
+        MENU_ITEMS_2D_ID: true,
     };
 
-    MENU_ITEMS_FEATURED_APPS.forEach(item => {
+    MENU_ITEMS_FEATURED_APPS.forEach((item) => {
         initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
     });
-    MENU_ITEMS_3D.forEach(item => {
+    MENU_ITEMS_3D.forEach((item) => {
         initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
     });
-    MENU_ITEMS_2D.forEach(item => {
+    MENU_ITEMS_2D.forEach((item) => {
         initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
     });
 
@@ -52,7 +57,7 @@ export default function App() {
 
     const [isDrawerOpened, setIsDrawerOpened] = React.useState(false);
 
-    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === pathname);
+    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     const currentExampleId = currentExample?.id;
     // SeeAlso is now optional on exampleInfo. Return this if provided else auto-generate from menu
@@ -83,7 +88,7 @@ export default function App() {
         if (currentExample) {
             const parentMenuIds = getParentMenuIds(currentExample.id);
             const updatedOpenedItems: Record<string, boolean> = { ...openedMenuItems };
-            parentMenuIds.forEach(elId => {
+            parentMenuIds.forEach((elId) => {
                 updatedOpenedItems[elId] = true;
             });
             setOpenedMenuItems(updatedOpenedItems);
@@ -91,7 +96,14 @@ export default function App() {
     }, [currentExampleId]);
 
     if (isIFrame) {
-        return <AppRouter currentExample={currentExample} seeAlso={seeAlso} isIFrame={true} />;
+        return (
+            <AppRouter
+                currentExample={currentExample}
+                seeAlso={seeAlso}
+                isIFrame={true}
+                framework={selectedFramework}
+            />
+        );
     }
 
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
@@ -112,9 +124,9 @@ export default function App() {
                 />
             </Drawer>
             <div className={classes.MainAppContent}>
-                <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
+                <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} framework={selectedFramework} />
                 {PAGES.homapage.path === location.pathname && (
-                    <AppRouter currentExample={currentExample} seeAlso={[]} />
+                    <AppRouter currentExample={currentExample} seeAlso={[]} framework={selectedFramework} />
                 )}
 
                 <div className={classes.MainAppWrapper}>
@@ -130,7 +142,7 @@ export default function App() {
                             <Gallery examples={allGalleryItems} />
                         </div>
                     ) : (
-                        <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
+                        <AppRouter currentExample={currentExample} seeAlso={seeAlso} framework={selectedFramework} />
                     )}
                 </div>
 

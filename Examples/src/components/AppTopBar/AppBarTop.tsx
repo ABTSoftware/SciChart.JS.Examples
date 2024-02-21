@@ -13,13 +13,15 @@ import Logo from "../../images/scichart-logo-app-bar.svg";
 import LogoSmall from "../../images/scichart-logo-app-bar-mobile.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import npm from "./npm.svg";
+import { EPageFramework } from "../AppRouter/pages";
 
 type TProps = {
     toggleDrawer: () => void;
     currentExample?: TExamplePage;
+    framework: EPageFramework;
 };
 
-const AppBarTop: React.FC<TProps> = props => {
+const AppBarTop: React.FC<TProps> = (props) => {
     const { toggleDrawer, currentExample } = props;
     const [isMobile, setIsMobile] = React.useState(false);
 
@@ -76,7 +78,7 @@ const AppBarTop: React.FC<TProps> = props => {
                 {currentExample !== undefined && (
                     <Button
                         className={classes.PurpleButton}
-                        href={`${currentExample.path}?codesandbox=1`}
+                        href={`${currentExample.path}?codesandbox=1&framework=${props.framework}`}
                         title={`Edit ${currentExample.title} in CodeSandbox`}
                         rel="nofollow external"
                         target="_blank"

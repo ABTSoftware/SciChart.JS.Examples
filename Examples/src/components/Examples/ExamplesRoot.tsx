@@ -16,18 +16,22 @@ import submit = Simulate.submit;
 import { Radio, SubdirectoryArrowRight } from "@material-ui/icons";
 import { InfoToolbar } from "./Toolbar";
 import { baseGithubPath } from "../../constants";
+import { useSearchParams } from "react-router-dom";
+import { EPageFramework } from "../AppRouter/pages";
 
 type TProps = {
     // example: () => JSX.Element;
     examplePage: TExamplePage;
     seeAlso: GalleryItem[];
+    framework: EPageFramework;
 };
 
-const ExamplesRoot: React.FC<TProps> = props => {
+const ExamplesRoot: React.FC<TProps> = (props) => {
     const [render, setRender] = React.useState(false);
     const { examplePage, seeAlso } = props;
     const [showSource, setShowSource] = React.useState(false);
     const [firstRender, setFirstRender] = React.useState(true);
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const myRef = React.useRef(null);
     const executeScroll = () => myRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
@@ -148,6 +152,34 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                     {/*    <CodeIcon />*/}
                                     {/*    <span className={classes.ButtonsText}>VIEW SOURCE CODE</span>*/}
                                     {/*</Button>*/}
+                                    <Button
+                                        onClick={() => {
+                                            setSearchParams({ framework: EPageFramework.Vanilla });
+                                        }}
+                                    >
+                                        <span className={classes.ButtonsText}>Switch Framework to Vanilla TS</span>
+                                    </Button>
+                                    <Button
+                                        onClick={() => {
+                                            setSearchParams({ framework: EPageFramework.React });
+                                        }}
+                                    >
+                                        <span className={classes.ButtonsText}>Switch Framework to React TS</span>
+                                    </Button>
+                                    <Button
+                                        onClick={() => {
+                                            setSearchParams({ framework: EPageFramework.Angular });
+                                        }}
+                                    >
+                                        <span className={classes.ButtonsText}>Switch Framework to Angular TS</span>
+                                    </Button>
+                                    <Button
+                                        onClick={() => {
+                                            setSearchParams({ framework: EPageFramework.Vue });
+                                        }}
+                                    >
+                                        <span className={classes.ButtonsText}>Switch Framework to Vue TS</span>
+                                    </Button>
                                     <Button className={classes.GitHubLink}>
                                         <GitHubIcon />
                                         <a

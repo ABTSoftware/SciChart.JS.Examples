@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as compression from "compression";
 import { Request, Response, NextFunction } from "express";
+import * as bodyParser from "body-parser";
 
 import * as chalk from "chalk";
 import * as cors from "cors";
@@ -52,6 +53,8 @@ function handleRender(req: Request, res: Response) {
 }
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cors());
 app.use(compression({ filter: shouldCompress }));
 
@@ -72,7 +75,7 @@ function shouldCompress(req: Request, res: Response) {
 app.use(
     express.static(targetDir, {
         etag: true,
-        maxAge: 0
+        maxAge: 0,
     })
 );
 app.use("/api", api);
