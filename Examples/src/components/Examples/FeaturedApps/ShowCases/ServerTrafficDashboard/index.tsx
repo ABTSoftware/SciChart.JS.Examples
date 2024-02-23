@@ -2,176 +2,185 @@ import * as React from "react";
 import { CSSProperties, ChangeEventHandler, MouseEventHandler, useEffect, useRef, useState } from "react";
 import { appTheme } from "scichart-example-dependencies/lib/theme";
 import classes from "../../../styles/Examples.module.scss";
-import SciChart from "./SciChart";
 import { TChartConfigResult, synchronizeXVisibleRanges } from "./chart-configurations";
 import {
     ChartModifierBase2D,
-    MemoryUsageHelper,
     NumberRange,
-    RolloverModifier,
     SciChartPieSurface,
     SciChartSubSurface,
     SciChartSurface,
-    easing
+    easing,
 } from "scichart";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { ModifierGroup } from "./ModifierGroup";
-import { createChart5, createChart3, TLocationStatsChartConfigFuncResult } from "./region-statistic-charts";
-import { createChart1 } from "./main-chart-config";
-import { TPageStatsConfigFuncResult, createChart2 } from "./page-statistics-chart-config";
-import { TServerStatsChartConfigFuncResult, createChart4 } from "./server-load-chart-config";
+import {
+    createRegionStatisticsColumnChart,
+    createRegionStatisticsPieChart,
+    TLocationStatsChartConfigFuncResult,
+} from "./region-statistic-charts";
+import { createMainChart } from "./main-chart-config";
+import { TPageStatsConfigFuncResult, createPageStatisticsChart } from "./page-statistics-chart-config";
+import { TServerStatsChartConfigFuncResult, createServerLoadChart } from "./server-load-chart-config";
 import { TDataEntry, availableLocations, getData } from "./data-generation";
-import Overview, { overviewOptions } from "./Overview";
+import { overviewOptions } from "./Overview";
 import DashboardOverlay from "./DashboardOverlay";
 import ThresholdSlider from "./ThresholdSlider";
+import { IInitResult, SciChartReact as SciChart, SciChartGroup, SciChartNestedOverview } from "scichart-react";
 
 function ServerTrafficDashboard() {
     const [isVisibleRangeSynced, setIsVisibleRangeSynced] = useState(true);
     const isVisibleRangeSyncedRef = useRef(true);
     const [isHundredPercentCollection, setIsHundredPercentCollection] = useState(false);
     const [isGridLayout, setIsGridLayout] = useState(false);
-    const [isChartInitialized1, setIsChartInitialized1] = useState(false);
-    const [isChartInitialized2, setIsChartInitialized2] = useState(false);
-    const [isChartInitialized3, setIsChartInitialized3] = useState(false);
-    const [isChartInitialized4, setIsChartInitialized4] = useState(false);
-    const [isChartInitialized5, setIsChartInitialized5] = useState(false);
 
-    const mainChartRef = useRef<TChartConfigResult<SciChartSurface>>(null);
     const pageStatisticChartRef = useRef<TPageStatsConfigFuncResult>(null);
     const serverLoadChartRef = useRef<TServerStatsChartConfigFuncResult>(null);
-    const locationStatisticChartRef = useRef<TLocationStatsChartConfigFuncResult>(null);
-    const pieChartRef = useRef<TChartConfigResult<SciChartPieSurface>>(null);
     const gridLayoutModifierRef = useRef<GridLayoutModifier>(null);
 
     const [modifierGroup] = useState(new ModifierGroup());
-    const chartsAreInitialized =
-        isChartInitialized1 && isChartInitialized2 && isChartInitialized3 && isChartInitialized4 && isChartInitialized5;
+    const [isDashboardInitialized, setIsDashboardInitialized] = useState(false);
 
-    useEffect(() => {
-        if (chartsAreInitialized) {
-            const currentData = getData();
-            const unCheckedServers = new Set<string>();
-            const selectedLocations = new Set<string>();
+    const configureDataBindings = (initResults: IInitResult[]) => {
+        const [mainChart, pageStatisticChart, serverLoadChart, locationStatisticChart, pieChart] =
+            initResults as TInitResults;
+        const currentData = getData();
+        const unCheckedServers = new Set<string>();
+        const selectedLocations = new Set<string>();
 
-            synchronizeXVisibleRanges(
-                [
-                    mainChartRef.current.sciChartSurface,
-                    pageStatisticChartRef.current.sciChartSurface,
-                    serverLoadChartRef.current.sciChartSurface
-                ],
-                () => isVisibleRangeSyncedRef.current
+        synchronizeXVisibleRanges(
+            [mainChart.sciChartSurface, pageStatisticChart.sciChartSurface, serverLoadChart.sciChartSurface],
+            () => isVisibleRangeSyncedRef.current
+        );
+
+        const mainSurface = mainChart.sciChartSurface;
+        const mainXAxis = mainSurface.xAxes.get(0);
+
+        // initial animation of visible range
+        const visibleRangeDiff = mainXAxis.visibleRange.diff;
+        const newInitialVisibleRange = new NumberRange(
+            mainXAxis.visibleRange.min + visibleRangeDiff * 0.2,
+            mainXAxis.visibleRange.max - visibleRangeDiff * 0.2
+        );
+
+        const locationFilter = (entry: TDataEntry) =>
+            selectedLocations.size ? selectedLocations.has(entry.location) : true;
+        const serverFilter = (entry: TDataEntry) => !unCheckedServers.has(entry.server);
+
+        const updateLocationStats = () => {
+            const currentRange = mainXAxis.visibleRange;
+
+            const dataFilteredByTime = currentData.filter(
+                (entry) => entry.timestamp >= currentRange.min && entry.timestamp <= currentRange.max
             );
+            const dataFilteredForLocationStats = dataFilteredByTime.filter(serverFilter);
+            locationStatisticChart.updateData(dataFilteredForLocationStats);
+            pieChart.updateData(dataFilteredForLocationStats);
+        };
 
-            const mainSurface = mainChartRef.current.sciChartSurface;
-            const mainXAxis = mainSurface.xAxes.get(0);
+        const updateChartData = () => {
+            const commonData = currentData.filter(serverFilter).filter(locationFilter);
 
-            // initial animation of visible range
-            const visibleRangeDiff = mainXAxis.visibleRange.diff;
-            const newInitialVisibleRange = new NumberRange(
-                mainXAxis.visibleRange.min + visibleRangeDiff * 0.2,
-                mainXAxis.visibleRange.max - visibleRangeDiff * 0.2
+            const dataFilteredForServerStats = currentData.filter(locationFilter);
+
+            mainChart.updateData(commonData);
+            pageStatisticChart.updateData(
+                currentData.map((entry: TDataEntry) =>
+                    serverFilter(entry) && locationFilter(entry) ? entry : { ...entry, page: null }
+                )
             );
+            // server series should be just hidden
+            serverLoadChart.updateData(dataFilteredForServerStats);
+            updateLocationStats();
+        };
 
-            const locationFilter = (entry: TDataEntry) =>
-                selectedLocations.size ? selectedLocations.has(entry.location) : true;
-            const serverFilter = (entry: TDataEntry) => !unCheckedServers.has(entry.server);
+        // filter location stats by visible range
+        mainXAxis.visibleRangeChanged.subscribe(updateLocationStats);
 
-            const updateLocationStats = () => {
-                const currentRange = mainXAxis.visibleRange;
+        mainXAxis.animateVisibleRange(newInitialVisibleRange, 2000, easing.inOutQuint, () => {
+            // filter data by server accordingly to visible series
+            serverLoadChart.subscribeToServerSelection((server: string, isChecked: boolean) => {
+                if (isChecked) {
+                    unCheckedServers.delete(server);
+                } else {
+                    unCheckedServers.add(server);
+                }
 
-                const dataFilteredByTime = currentData.filter(
-                    entry => entry.timestamp >= currentRange.min && entry.timestamp <= currentRange.max
-                );
-                const dataFilteredForLocationStats = dataFilteredByTime.filter(serverFilter);
-                locationStatisticChartRef.current.updateData(dataFilteredForLocationStats);
-                pieChartRef.current.updateData(dataFilteredForLocationStats);
-            };
-
-            const updateChartData = () => {
-                const commonData = currentData.filter(serverFilter).filter(locationFilter);
-
-                const dataFilteredForServerStats = currentData.filter(locationFilter);
-
-                mainChartRef.current.updateData(commonData);
-                pageStatisticChartRef.current.updateData(
-                    currentData.map((entry: TDataEntry) =>
-                        serverFilter(entry) && locationFilter(entry) ? entry : { ...entry, page: null }
-                    )
-                );
-                // server series should be just hidden
-                serverLoadChartRef.current.updateData(dataFilteredForServerStats);
-                updateLocationStats();
-            };
-
-            mainXAxis.visibleRangeChanged.subscribe(args => {
-                // filter location stats by visible range
-                updateLocationStats();
+                updateChartData();
             });
 
-            mainXAxis.animateVisibleRange(newInitialVisibleRange, 2000, easing.inOutQuint, () => {
-                // filter data by server accordingly to visible series
-                serverLoadChartRef.current.subscribeToServerSelection((server: string, isChecked: boolean) => {
-                    if (isChecked) {
-                        unCheckedServers.delete(server);
-                    } else {
-                        unCheckedServers.add(server);
-                    }
-
-                    updateChartData();
-                });
-
-                // filter data  by location
-                locationStatisticChartRef.current.subscribeToLocationSelection(location => {
-                    selectedLocations.clear();
-                    if (location) {
-                        selectedLocations.add(location);
-                    }
-                    updateChartData();
-                });
+            // filter data  by location
+            locationStatisticChart.subscribeToLocationSelection((location) => {
+                selectedLocations.clear();
+                if (location) {
+                    selectedLocations.add(location);
+                }
+                updateChartData();
             });
-        }
-    }, [chartsAreInitialized]);
+        });
+    };
 
     useEffect(() => {
         return () => {
-            mainChartRef.current = undefined;
             pageStatisticChartRef.current = undefined;
-            locationStatisticChartRef.current = undefined;
+            serverLoadChartRef.current = undefined;
             gridLayoutModifierRef.current = undefined;
         };
     }, []);
 
-    const handleSyncVisibleRangeChange: ChangeEventHandler<HTMLInputElement> = e => {
+    const onMainChartInit = (initResult: TChartConfigResult<SciChartSurface>) => {
+        const sciChartSurface = initResult.sciChartSurface;
+        const modifier = sciChartSurface.chartModifiers.getById("TotalRequestsCursorModifier");
+        const rollover = sciChartSurface.chartModifiers.getById("TotalRequestsRolloverModifier");
+        modifierGroup.add(modifier as ChartModifierBase2D, rollover as ChartModifierBase2D);
+    };
+
+    const onPageStatisticsChartInit = (initResult: TPageStatsConfigFuncResult) => {
+        pageStatisticChartRef.current = initResult;
+        const sciChartSurface = initResult.sciChartSurface;
+        const modifier = sciChartSurface.chartModifiers.getById("PageStatisticsRolloverModifier");
+        modifierGroup.add(modifier as ChartModifierBase2D);
+    };
+
+    const onServerLoadChartInit = (initResult: TServerStatsChartConfigFuncResult) => {
+        serverLoadChartRef.current = initResult;
+        const sciChartSurface = initResult.sciChartSurface;
+
+        gridLayoutModifierRef.current = sciChartSurface.chartModifiers.getById(
+            "GridLayoutModifier"
+        ) as GridLayoutModifier;
+
+        const modifier = sciChartSurface.chartModifiers.getById("ServerLoadCursorModifier");
+        modifierGroup.add(modifier as ChartModifierBase2D);
+    };
+
+    const handleSyncVisibleRangeChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         isVisibleRangeSyncedRef.current = !isVisibleRangeSynced;
         setIsVisibleRangeSynced(!isVisibleRangeSynced);
     };
 
-    const handleUsePercentage: ChangeEventHandler<HTMLInputElement> = e => {
+    const handleUsePercentage: ChangeEventHandler<HTMLInputElement> = (e) => {
         pageStatisticChartRef.current.toggleIsHundredPercent();
         setIsHundredPercentCollection(!isHundredPercentCollection);
     };
 
-    const handleUseGridLayout: ChangeEventHandler<HTMLInputElement> = e => {
+    const handleUseGridLayout: ChangeEventHandler<HTMLInputElement> = (e) => {
         gridLayoutModifierRef.current.isGrid = !isGridLayout;
         const subCharts = serverLoadChartRef.current.sciChartSurface.subCharts;
 
         if (!isGridLayout) {
             subCharts.forEach((subChart: SciChartSubSurface) => {
-                const rolloverModifier = subChart.chartModifiers.getById(
-                    "ServerLoadCursorModifier"
-                ) as RolloverModifier;
-                modifierGroup.add(rolloverModifier);
+                const modifier = subChart.chartModifiers.getById("ServerLoadCursorModifier");
+                modifierGroup.add(modifier as ChartModifierBase2D);
             });
+
             synchronizeXVisibleRanges(
                 [serverLoadChartRef.current.sciChartSurface, ...serverLoadChartRef.current.sciChartSurface.subCharts],
                 () => isVisibleRangeSyncedRef.current
             );
         } else {
             subCharts.forEach((subChart: SciChartSubSurface) => {
-                const rolloverModifier = subChart.chartModifiers.getById(
-                    "ServerLoadCursorModifier"
-                ) as RolloverModifier;
-                modifierGroup.remove(rolloverModifier);
+                const modifier = subChart.chartModifiers.getById("ServerLoadCursorModifier");
+                modifierGroup.remove(modifier as ChartModifierBase2D);
             });
         }
 
@@ -180,131 +189,87 @@ function ServerTrafficDashboard() {
 
     return (
         <div className={classes.ChartWrapper} style={{ backgroundColor: "#242529" }}>
-            {chartsAreInitialized ? null : <DashboardOverlay />}
+            {isDashboardInitialized ? null : <DashboardOverlay />}
             <div style={gridStyle}>
-                <div
-                    style={{
-                        gridArea: "1 / 1 / 2 / 2",
-                        color: appTheme.ForegroundColor,
-                        zIndex: 2,
-                        justifySelf: "start",
-                        alignSelf: "start",
-                        marginTop: 10,
-                        marginLeft: 10
+                <SciChartGroup
+                    onInit={(initResults: IInitResult[]) => {
+                        configureDataBindings(initResults);
+                        setIsDashboardInitialized(true);
+                    }}
+                    onDelete={() => {
+                        // TODO cleanup data bindings if needed
                     }}
                 >
-                    <input
-                        type="checkbox"
-                        checked={isVisibleRangeSynced}
-                        onChange={handleSyncVisibleRangeChange}
-                        value="Sync X Axis visible range"
-                        style={{ color: "#17243d", accentColor: "#0bdef4", marginRight: 4 }}
-                    ></input>
-                    Sync X Axis visible range
-                </div>
-                <div style={hundredPercentCheckboxStyle}>
-                    <input
-                        type="checkbox"
-                        checked={isHundredPercentCollection}
-                        onChange={handleUsePercentage}
-                        value="is 100% collection"
-                        style={{ color: "#17243d", accentColor: "#0bdef4", marginRight: 4 }}
-                    ></input>
-                    is 100% collection
-                </div>
+                    <div style={visibleRangeSyncCheckboxStyle}>
+                        <input
+                            type="checkbox"
+                            checked={isVisibleRangeSynced}
+                            onChange={handleSyncVisibleRangeChange}
+                            value="Sync X Axis visible range"
+                            style={{ color: "#17243d", accentColor: "#0bdef4", marginRight: 4 }}
+                        ></input>
+                        Sync X Axis visible range
+                    </div>
+                    <div style={hundredPercentCheckboxStyle}>
+                        <input
+                            type="checkbox"
+                            checked={isHundredPercentCollection}
+                            onChange={handleUsePercentage}
+                            value="is 100% collection"
+                            style={{ color: "#17243d", accentColor: "#0bdef4", marginRight: 4 }}
+                        ></input>
+                        is 100% collection
+                    </div>
 
-                <div style={toggleGridLayoutCheckboxStyle}>
-                    <input
-                        type="checkbox"
-                        checked={isGridLayout}
-                        onChange={handleUseGridLayout}
-                        value="is Grid Layout"
-                        style={{ color: "#17243d", accentColor: "#0bdef4", marginRight: 4 }}
-                    ></input>
-                    is Grid Layout
-                </div>
+                    <div style={toggleGridLayoutCheckboxStyle}>
+                        <input
+                            type="checkbox"
+                            checked={isGridLayout}
+                            onChange={handleUseGridLayout}
+                            value="is Grid Layout"
+                            style={{ color: "#17243d", accentColor: "#0bdef4", marginRight: 4 }}
+                        ></input>
+                        is Grid Layout
+                    </div>
 
-                <SciChart
-                    initChart={createChart1}
-                    onInit={(initResult: TChartConfigResult<SciChartSurface>) => {
-                        mainChartRef.current = initResult;
-                        setIsChartInitialized1(true);
+                    <SciChart
+                        initChart={createMainChart}
+                        onInit={onMainChartInit}
+                        style={mainChartStyle}
+                        innerContainerProps={innerContainerProps}
+                    >
+                        <ThresholdSlider />
+                        <SciChartNestedOverview style={overviewStyle} options={overviewOptions} />
+                    </SciChart>
 
-                        const sciChartSurface = initResult.sciChartSurface;
-                        const modifier = sciChartSurface.chartModifiers.getById("TotalRequestsCursorModifier");
-                        const rollover = sciChartSurface.chartModifiers.getById("TotalRequestsRolloverModifier");
-                        modifierGroup.add(modifier as ChartModifierBase2D, rollover as ChartModifierBase2D);
-                    }}
-                    style={mainChartStyle}
-                    innerContainerProps={innerContainerProps}
-                    fallback={<div style={mainChartStyle} />}
-                >
-                    <ThresholdSlider></ThresholdSlider>
-                    <Overview
-                        style={overviewStyle}
-                        options={overviewOptions}
-                        onInit={() => setIsChartInitialized1(true)}
-                    ></Overview>
-                </SciChart>
+                    <SciChart
+                        initChart={createPageStatisticsChart}
+                        onInit={onPageStatisticsChartInit}
+                        style={pageChartStyle}
+                    />
 
-                <SciChart<SciChartSurface, TPageStatsConfigFuncResult>
-                    initChart={createChart2}
-                    onInit={(initResult: TPageStatsConfigFuncResult) => {
-                        pageStatisticChartRef.current = initResult;
-                        const sciChartSurface = initResult.sciChartSurface;
+                    <SciChart
+                        initChart={createServerLoadChart}
+                        onInit={onServerLoadChartInit}
+                        style={serverChartStyle}
+                    />
 
-                        setIsChartInitialized2(true);
+                    <SciChart initChart={createRegionStatisticsColumnChart} style={columnChartStyle} />
 
-                        const modifier = sciChartSurface.chartModifiers.getById(
-                            "PageStatisticsRolloverModifier"
-                        ) as ChartModifierBase2D;
-                        modifierGroup.add(modifier);
-                    }}
-                    style={pageChartStyle}
-                    fallback={<div style={pageChartStyle} />}
-                />
-                <SciChart<SciChartSurface, TServerStatsChartConfigFuncResult>
-                    initChart={createChart4}
-                    onInit={(initResult: TServerStatsChartConfigFuncResult) => {
-                        serverLoadChartRef.current = initResult;
-                        setIsChartInitialized4(true);
-                        const sciChartSurface = initResult.sciChartSurface;
-
-                        gridLayoutModifierRef.current = sciChartSurface.chartModifiers.getById(
-                            "GridLayoutModifier"
-                        ) as GridLayoutModifier;
-
-                        const modifier = (sciChartSurface as SciChartSurface).chartModifiers.getById(
-                            "ServerLoadCursorModifier"
-                        ) as ChartModifierBase2D;
-                        modifierGroup.add(modifier);
-                    }}
-                    style={serverChartStyle}
-                    fallback={<div style={serverChartStyle} />}
-                />
-                <SciChart<SciChartSurface, TLocationStatsChartConfigFuncResult>
-                    initChart={createChart5}
-                    onInit={(initResult: TLocationStatsChartConfigFuncResult) => {
-                        locationStatisticChartRef.current = initResult;
-                        setIsChartInitialized5(true);
-                    }}
-                    style={columnChartStyle}
-                    fallback={<div style={columnChartStyle} />}
-                />
-
-                <SciChart<SciChartPieSurface, TChartConfigResult<SciChartPieSurface>>
-                    initChart={createChart3}
-                    onInit={(initResult: TChartConfigResult<SciChartPieSurface>) => {
-                        pieChartRef.current = initResult;
-                        setIsChartInitialized3(true);
-                    }}
-                    style={pieChartStyle}
-                    fallback={<div style={pieChartStyle} />}
-                />
+                    <SciChart initChart={createRegionStatisticsPieChart} style={pieChartStyle} />
+                </SciChartGroup>
             </div>
         </div>
     );
 }
+
+type TInitResults = [
+    TChartConfigResult<SciChartSurface>,
+    TPageStatsConfigFuncResult,
+    TServerStatsChartConfigFuncResult,
+    TLocationStatsChartConfigFuncResult,
+    TChartConfigResult<SciChartPieSurface>
+];
 
 const gridStyle: React.CSSProperties = {
     boxSizing: "border-box",
@@ -313,42 +278,42 @@ const gridStyle: React.CSSProperties = {
     display: "grid",
     gridTemplateColumns: "repeat(4, 1fr)",
     gap: "0.2em",
-    gridTemplateRows: "repeat(8, 1fr)"
+    gridTemplateRows: "repeat(8, 1fr)",
 };
 
 const mainChartStyle: CSSProperties = {
     gridRow: "1 / 4",
     gridColumn: "1/-1",
-    position: "relative"
+    position: "relative",
 };
 
 const innerContainerProps = {
     style: {
-        height: "80%"
-    }
+        height: "80%",
+    },
 };
 
 const overviewStyle = {
-    height: "20%"
+    height: "20%",
 };
 
 const pageChartStyle = {
-    gridRow: "4 / 8",
-    gridColumn: "1 / 3"
+    gridRow: "4 / 7",
+    gridColumn: "1 / 3",
 };
 
 const serverChartStyle = {
-    gridRow: "4 / 8",
-    gridColumn: "3 / -1"
+    gridRow: "4 / 7",
+    gridColumn: "3 / -1",
 };
 
 const columnChartStyle = {
-    gridRow: "8 / -1",
-    gridColumn: "span 3"
+    gridRow: "7 / -1",
+    gridColumn: "span 3",
 };
 const pieChartStyle = {
-    gridRow: "8 / -1",
-    gridColumn: "span 1"
+    gridRow: "7 / -1",
+    gridColumn: "span 1",
 };
 
 const hundredPercentCheckboxStyle: CSSProperties = {
@@ -358,7 +323,7 @@ const hundredPercentCheckboxStyle: CSSProperties = {
     justifySelf: "start",
     alignSelf: "start",
     marginTop: 10,
-    marginLeft: 10
+    marginLeft: 10,
 };
 
 const toggleGridLayoutCheckboxStyle: CSSProperties = {
@@ -368,7 +333,17 @@ const toggleGridLayoutCheckboxStyle: CSSProperties = {
     marginTop: 10,
     marginLeft: 10,
     color: appTheme.ForegroundColor,
-    zIndex: 2
+    zIndex: 2,
+};
+
+const visibleRangeSyncCheckboxStyle = {
+    gridArea: "1 / 1 / 2 / 2",
+    color: appTheme.ForegroundColor,
+    zIndex: 2,
+    justifySelf: "start",
+    alignSelf: "start",
+    marginTop: 10,
+    marginLeft: 10,
 };
 
 export default ServerTrafficDashboard;

@@ -21,13 +21,10 @@ const loadStyles = async (folderPath: string) => {
         const mixins = await fs.promises.readFile(mixinsPath, "utf8");
         const examplesPath = path.join(folderPath, "styles", "Examples.module.scss");
         const examples = await fs.promises.readFile(examplesPath, "utf8");
-        const componentPath = path.join(folderPath, "SciChartComponent.tsx");
-        const component = await fs.promises.readFile(componentPath, "utf8");
         csStyles = {
             "src/styles/_base.scss": { content: base, isBinary: false },
             "src/styles/mixins.scss": { content: mixins, isBinary: false },
             "src/styles/Examples.module.scss": { content: examples, isBinary: false },
-            "src/SciChartComponent.tsx": { content: component, isBinary: false }
         };
     }
 };
@@ -37,7 +34,6 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
     let code = await fs.promises.readFile(tsPath, "utf8");
     const localImports = Array.from(code.matchAll(/import.*from ["']\.\/(.*)["'];/g));
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
-    code = code.replace(/\.\.\/.*SciChartComponent/, `./SciChartComponent.tsx`);
     let files: IFiles = {
         "package.json": {
             // @ts-ignore
@@ -49,32 +45,33 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
                     start: "react-scripts start",
                     build: "react-scripts build",
                     test: "react-scripts test --env=jsdom",
-                    eject: "react-scripts eject"
+                    eject: "react-scripts eject",
                 },
                 dependencies: {
                     "@material-ui/core": "4.12.4",
                     "@material-ui/lab": "4.0.0-alpha.61",
-                    "sass": "^1.49.9",
+                    sass: "^1.49.9",
                     "loader-utils": "3.2.1",
-                    "react": "^17.0.2",
+                    react: "^17.0.2",
                     "react-dom": "^17.0.2",
                     "react-scripts": "5.0.1",
                     scichart: pj.dependencies.scichart,
+                    "scichart-react": pj.dependencies["scichart-react"],
                     "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
-                    ...currentExample.extraDependencies
+                    ...currentExample.extraDependencies,
                 },
                 devDependencies: {
                     "@types/react": "^17.0.52",
                     "@types/react-dom": "18.0.9",
                     "@babel/runtime": "7.13.8",
-                    "typescript": "4.9.5"
+                    typescript: "4.9.5",
                 },
-                browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
-            }
+                browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
+            },
         },
         "src/App.tsx": {
             content: code,
-            isBinary: false
+            isBinary: false,
         },
         "src/index.tsx": {
             content: `
@@ -88,7 +85,7 @@ SciChartSurface.useWasmFromCDN();
 SciChart3DSurface.useWasmFromCDN();
 hydrate( <App />, rootElement);
 `,
-            isBinary: false
+            isBinary: false,
         },
         "tsconfig.json": {
             content: `{
@@ -108,46 +105,46 @@ hydrate( <App />, rootElement);
       "jsx": "react-jsx"
   }
 }`,
-      isBinary: false
-    },
-      "sandbox.config.json": {
-          content: `{
+            isBinary: false,
+        },
+        "sandbox.config.json": {
+            content: `{
     "infiniteLoopProtection": false,
     "hardReloadOnChange": false,
     "view": "browser"
 }`,
-          isBinary: false
-      },
-      "src/types/declaration.d.ts": {
-        content: `declare module "*.scss" {
+            isBinary: false,
+        },
+        "src/types/declaration.d.ts": {
+            content: `declare module "*.scss" {
             const content: Record<string, string>;
             export default content;
         }`,
-        isBinary: false
-      },
-      "src/types/jpg.d.ts": {
-        content: `declare module "*.jpg" {
+            isBinary: false,
+        },
+        "src/types/jpg.d.ts": {
+            content: `declare module "*.jpg" {
             const value: any;
             export default value;
         }`,
-        isBinary: false
-      },
-      "src/types/png.d.ts": {
-        content: `declare module "*.png" {
+            isBinary: false,
+        },
+        "src/types/png.d.ts": {
+            content: `declare module "*.png" {
             const value: any;
             export default value;
         } `,
-        isBinary: false
-      },
-      "src/types/svg.d.ts": {
-        content: `declare module "*.svg" {
+            isBinary: false,
+        },
+        "src/types/svg.d.ts": {
+            content: `declare module "*.svg" {
             const value: any;
             export default value;
         }`,
-        isBinary: false
-      },
-      "public/index.html": {
-        content: `<!DOCTYPE html>
+            isBinary: false,
+        },
+        "public/index.html": {
+            content: `<!DOCTYPE html>
         <html lang="en">
           <head>
           <title>React App</title>
@@ -157,18 +154,18 @@ hydrate( <App />, rootElement);
             <div id="root"></div>
           </body>
         </html>`,
-        isBinary: false
-      }
-  };
-
-  if (currentExample.sandboxConfig) {
-    files["sandbox.config.json"] = {
-      // @ts-ignore
-      content: currentExample.sandboxConfig,
-      isBinary: false
+            isBinary: false,
+        },
     };
-  }
-  files = {...files, ...csStyles };
+
+    if (currentExample.sandboxConfig) {
+        files["sandbox.config.json"] = {
+            // @ts-ignore
+            content: currentExample.sandboxConfig,
+            isBinary: false,
+        };
+    }
+    files = { ...files, ...csStyles };
     for (const localImport of localImports) {
         if (localImport.length > 1) {
             let content: string = "";
@@ -221,7 +218,7 @@ export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => 
     // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
     const isIFrame = req.path.substring(1, 7) === "iframe";
     const pathname = isIFrame ? req.path.substring(7) : req.path;
-    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === pathname);
+    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     try {
         const folderPath = path.join(basePath, currentExample.filepath);

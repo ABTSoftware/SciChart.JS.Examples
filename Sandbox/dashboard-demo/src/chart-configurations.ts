@@ -7,7 +7,7 @@ import {
     chartBuilder,
 } from 'scichart';
 import { TDataEntry } from './data-generation';
-import { IInitResult, TInitFunction } from './SciChart';
+import { IInitResult, TInitFunction } from 'scichart-react';
 
 export type TUpdateDataFunc = (newData: TDataEntry[]) => void;
 
@@ -19,8 +19,6 @@ export type TChartConfigFunc<TSurface extends ISciChartSurfaceBase = SciChartSur
     ISciChartSurfaceBase,
     TChartConfigResult<TSurface>
 >;
-
-
 
 /** Synchronizes first X axes of the surfaces */
 export const synchronizeXVisibleRanges = (surfaces: SciChartSurface[], shouldSync: () => boolean) => {

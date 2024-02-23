@@ -21,11 +21,10 @@ import {
     WaveAnimation,
     ELabelProviderType
 } from "scichart";
+import { SciChartReact } from "scichart-react";
 
-const divElementId = "chart";
-
-const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: new SciChartJSLightTheme()
     });
 
@@ -125,33 +124,12 @@ const drawExample = async () => {
 };
 
 export default function TransparentBackground() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-        });
-
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
-
     return (
         <div
             className={classes.ChartWrapper}
             style={{ backgroundImage: `url(${BackgroundImage})`, backgroundSize: "100% 100%" }}
         >
-            <div id={divElementId} />
+            <SciChartReact initChart={drawExample} />
         </div>
     );
 }

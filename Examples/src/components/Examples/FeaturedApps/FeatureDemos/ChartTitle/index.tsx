@@ -11,14 +11,13 @@ import {
     ETitlePosition,
     FastLineRenderableSeries,
     XyDataSeries,
-    Thickness
+    Thickness,
 } from "scichart";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
-const divElementId = "chart";
-
-const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
+        theme: appTheme.SciChartJsTheme,
     });
 
     sciChartSurface.title = "Multiline\nChart Title";
@@ -30,16 +29,16 @@ const drawExample = async () => {
         placeWithinChart: false,
         multilineAlignment: EMultiLineAlignment.Center,
         alignment: ETextAlignment.Center,
-        position: ETitlePosition.Top
+        position: ETitlePosition.Top,
     };
 
     const xAxis = new NumericAxis(wasmContext, {
         axisTitle: "X Axis Title",
-        axisTitleStyle: { fontSize: 16, color: appTheme.ForegroundColor }
+        axisTitleStyle: { fontSize: 16, color: appTheme.ForegroundColor },
     });
     const yAxis = new NumericAxis(wasmContext, {
         axisTitle: "Y Axis",
-        axisTitleStyle: { fontSize: 16, color: appTheme.ForegroundColor }
+        axisTitleStyle: { fontSize: 16, color: appTheme.ForegroundColor },
     });
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxis);
@@ -48,17 +47,47 @@ const drawExample = async () => {
         new FastLineRenderableSeries(wasmContext, {
             strokeThickness: 3,
             stroke: "auto",
-            dataSeries: new XyDataSeries(wasmContext, new RandomWalkGenerator().getRandomWalkSeries(30))
+            dataSeries: new XyDataSeries(wasmContext, new RandomWalkGenerator().getRandomWalkSeries(30)),
         })
     );
 
-    return { sciChartSurface, wasmContext };
+    const updateTitleText = (value: string) => {
+        sciChartSurface.title = value;
+    };
+
+    const updateTitlePosition = (value: ETitlePosition) => {
+        sciChartSurface.titleStyle = { position: value };
+    };
+
+    const updateTitleMultilineAlignment = (value: EMultiLineAlignment) => {
+        sciChartSurface.titleStyle = { multilineAlignment: value };
+    };
+
+    const updateTitleAlignment = (value: ETextAlignment) => {
+        sciChartSurface.titleStyle = { alignment: value };
+    };
+
+    const updateTitlePlaceWithinChart = (value: boolean) => {
+        sciChartSurface.titleStyle = { placeWithinChart: value };
+    };
+
+    return {
+        sciChartSurface,
+        wasmContext,
+        controls: {
+            updateTitleText,
+            updateTitlePosition,
+            updateTitleMultilineAlignment,
+            updateTitleAlignment,
+            updateTitlePlaceWithinChart,
+        },
+    };
 };
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function FeatureChartTitle() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const controlsRef = React.useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
 
     const [titleText, setTitleText] = React.useState("Multiline\nChart Title");
     const [titlePosition, setTitlePosition] = React.useState(ETitlePosition.Top);
@@ -67,96 +96,74 @@ export default function FeatureChartTitle() {
     const [placeWithinChart, setPlaceWithinChart] = React.useState(false);
 
     const handleChangeTitleText = (event: React.ChangeEvent<{ value: string }>) => {
-        if (sciChartSurfaceRef.current) {
+        if (controlsRef.current) {
             const newValue = event.target.value;
             setTitleText(newValue);
-            sciChartSurfaceRef.current.title = newValue;
+            controlsRef.current.updateTitleText(newValue);
         }
     };
 
     const selectTitleTextPosition = (event: React.ChangeEvent<{ value: unknown }>) => {
-        if (sciChartSurfaceRef.current) {
+        if (controlsRef.current) {
             const { value } = event.target;
             setTitlePosition(value as ETitlePosition);
-            sciChartSurfaceRef.current.titleStyle = { position: value as ETitlePosition };
+            controlsRef.current.updateTitlePosition(value as ETitlePosition);
         }
     };
 
     const selectTitleTextMultilineAlignment = (event: React.ChangeEvent<{ value: unknown }>) => {
-        if (sciChartSurfaceRef.current) {
+        if (controlsRef.current) {
             const { value } = event.target;
             setMultilineAlignment(value as EMultiLineAlignment);
-            sciChartSurfaceRef.current.titleStyle = { multilineAlignment: value as EMultiLineAlignment };
+            controlsRef.current.updateTitleMultilineAlignment(value as EMultiLineAlignment);
         }
     };
 
     const selectTitleTextAlignment = (event: React.ChangeEvent<{ value: unknown }>) => {
-        if (sciChartSurfaceRef.current) {
+        if (controlsRef.current) {
             const { value } = event.target;
             setTitleAlignment(value as ETextAlignment);
-            sciChartSurfaceRef.current.titleStyle = { alignment: value as ETextAlignment };
+            controlsRef.current.updateTitleAlignment(value as ETextAlignment);
         }
     };
 
     const handleChangePlaceWithinChart = (event: React.ChangeEvent<{ checked: boolean }>) => {
-        if (sciChartSurfaceRef.current) {
+        if (controlsRef.current) {
             const newValue = event.target.checked;
             setPlaceWithinChart(newValue);
-            sciChartSurfaceRef.current.titleStyle = { placeWithinChart: newValue };
+            controlsRef.current.updateTitlePlaceWithinChart(newValue);
         }
     };
 
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                sciChartSurfaceRef.current = undefined;
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-                sciChartSurfaceRef.current = undefined;
-            });
-        };
-    }, []);
-
-    const useStyles = makeStyles(theme => ({
+    const useStyles = makeStyles((theme) => ({
         flexContainer: {
             display: "flex",
             flexDirection: "column",
             height: "100%",
-            width: "100%"
+            width: "100%",
         },
         toolbar: {
             minHeight: "70px",
             padding: "10px",
             color: appTheme.ForegroundColor,
             fontSize: "13px",
-            flex: "none"
+            flex: "none",
         },
         combobox: {
             color: "black",
             backgroundColor: appTheme.Background,
-            margin: "10px 20px 10px 10px"
+            margin: "10px 20px 10px 10px",
         },
         textarea: {
             color: "black",
             backgroundColor: appTheme.Background,
             margin: "10px 20px 10px 10px",
-            verticalAlign: "middle"
+            verticalAlign: "middle",
         },
         chartElement: {
             width: "100%",
-            flex: "auto"
-        }
+            flex: "auto",
+        },
     }));
     const localClasses = useStyles();
 
@@ -183,7 +190,7 @@ export default function FeatureChartTitle() {
                                 value={titleAlignment}
                                 onChange={selectTitleTextAlignment}
                             >
-                                {Object.values(ETextAlignment).map(value => (
+                                {Object.values(ETextAlignment).map((value) => (
                                     <option key={value} value={value}>
                                         {value}
                                     </option>
@@ -201,7 +208,7 @@ export default function FeatureChartTitle() {
                                 value={titlePosition}
                                 onChange={selectTitleTextPosition}
                             >
-                                {Object.values(ETitlePosition).map(value => (
+                                {Object.values(ETitlePosition).map((value) => (
                                     <option key={value} value={value}>
                                         {value}
                                     </option>
@@ -219,7 +226,7 @@ export default function FeatureChartTitle() {
                                 value={multilineAlignment}
                                 onChange={selectTitleTextMultilineAlignment}
                             >
-                                {Object.values(EMultiLineAlignment).map(value => (
+                                {Object.values(EMultiLineAlignment).map((value) => (
                                     <option key={value} value={value}>
                                         {value}
                                     </option>
@@ -244,7 +251,13 @@ export default function FeatureChartTitle() {
                 </div>
 
                 <div style={{ flex: "auto" }}>
-                    <div id={divElementId} style={{ width: "100%", height: "100%" }} />
+                    <SciChartReact
+                        style={{ width: "100%", height: "100%" }}
+                        initChart={drawExample}
+                        onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
+                            controlsRef.current = controls;
+                        }}
+                    />
                 </div>
             </div>
         </div>

@@ -22,25 +22,23 @@ import {
     TPointMarkerArgb,
     parseColorToUIntArgb,
     SeriesInfo,
-    CursorTooltipSvgAnnotation,
     EVerticalTextPosition,
     Thickness,
     BasePaletteProvider,
     EStrokePaletteMode,
     EFillPaletteMode,
-    parseArgbToHtmlColor,
 } from 'scichart';
 import { appTheme } from 'scichart-example-dependencies';
 import { TDataEntry, getData, getRequestsNumberPerTimestamp } from './data-generation';
-import { TInitFunction } from './SciChart';
 import { TChartConfigResult } from './chart-configurations';
+import { TInitFunction } from 'scichart-react';
 
 export type TMainChartConfigFunc = TInitFunction<
     SciChartSurface,
     TChartConfigResult<SciChartSurface> & { updateThreshold: (value: number) => void }
 >;
 
-export const createChart1: TMainChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
+export const createMainChart: TMainChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
@@ -49,9 +47,10 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         titleStyle: {
             placeWithinChart: true,
             fontSize: 16,
+            color: appTheme.ForegroundColor,
         },
     });
-    sciChartSurface.renderNativeAxisLabelsImmediately = true;
+
     const data = getData();
 
     const { xValues, yValues, groupedEntries } = getRequestsNumberPerTimestamp(data);
@@ -77,7 +76,7 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
     };
 
     const dataLabels: IDataLabelProviderOptions = {
-        color: appTheme.VividRed,
+        color: '#f6086c',
         style: {
             fontFamily: 'Arial',
             fontSize: 14,
@@ -96,8 +95,8 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         public readonly strokePaletteMode = EStrokePaletteMode.SOLID;
         public readonly fillPaletteMode = EFillPaletteMode.GRADIENT;
 
-        private highlightedFill = parseColorToUIntArgb(appTheme.MutedRed);
-        private highlightedStroke = parseColorToUIntArgb(appTheme.VividRed);
+        private highlightedFill = parseColorToUIntArgb('#ae418d');
+        private highlightedStroke = parseColorToUIntArgb('#f6086c');
 
         public overrideStrokeArgb(
             xValue: number,
@@ -129,16 +128,21 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         axisTitle: 'Date Axis',
         axisTitleStyle: {
             fontSize: 20,
+            color: appTheme.ForegroundColor,
         },
         visibleRangeLimit: dataSeries.getXRange(),
         labelFormat: ENumericFormat.Date_DDMM,
         isInnerAxis: true,
-        useNativeText: true,
+        // useNativeText: true,
     });
     const yAxis = new NumericAxis(wasmContext, {
         axisTitle: 'Requests',
         axisTitleStyle: {
             fontSize: 20,
+            color: appTheme.ForegroundColor,
+        },
+        labelStyle: {
+            color: appTheme.ForegroundColor,
         },
         visibleRangeLimit: new NumberRange(0, 1000),
         labelPrecision: 0,
@@ -156,16 +160,16 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 8,
             height: 8,
-            fill: appTheme.VividSkyBlue,
+            stroke: '#0bf4cd',
+            fill: '#17243d',
             strokeThickness: 2,
             opacity: 1,
         }),
-        stroke: appTheme.VividGreen,
+        stroke: '#34c19c',
         strokeThickness: 2,
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-            { color: appTheme.VividTeal, offset: 0 },
-            { color: parseArgbToHtmlColor(parseColorToUIntArgb(appTheme.VividTeal, 250)), offset: 0.2 },
-            { color: parseArgbToHtmlColor(parseColorToUIntArgb(appTheme.VividTeal, 0)), offset: 1 },
+            { color: '#67bdaf', offset: 0 },
+            { color: '#223459 ', offset: 1 },
         ]),
         paletteProvider,
     });
@@ -180,6 +184,9 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         showYLine: false,
         crosshairStrokeDashArray: [10, 20],
         crosshairStrokeThickness: 2,
+        axisLabelFill: '#e8c667',
+        axisLabelStroke: '#0d1523',
+        tooltipContainerBackground: '#34c19c',
         tooltipLegendOffsetX: 100,
         // tooltipLegendTemplate: getTooltipLegendTemplate,
     });

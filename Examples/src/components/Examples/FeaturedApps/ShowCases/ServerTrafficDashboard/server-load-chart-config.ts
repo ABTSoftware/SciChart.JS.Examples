@@ -31,7 +31,7 @@ import { appTheme } from "scichart-example-dependencies";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { getData, TDataEntry, availableServers, getRequestsNumberPerTimestamp } from "./data-generation";
 import { TChartConfigResult, tooltipDataTemplateKey } from "./chart-configurations";
-import { TInitFunction } from "./SciChart";
+import { TInitFunction } from "scichart-react";
 
 export type TServerStatsChartConfigFuncResult = TChartConfigResult<SciChartSurface> & {
     subscribeToServerSelection: (callback: (server: string, isChecked: boolean) => void) => void;
@@ -39,7 +39,7 @@ export type TServerStatsChartConfigFuncResult = TChartConfigResult<SciChartSurfa
 export type TServerStatsChartConfigFunc = TInitFunction<SciChartSurface, TServerStatsChartConfigFuncResult>;
 
 // per server
-export const createChart4: TServerStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
+export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
@@ -76,8 +76,6 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
 
     const data = getData();
 
-    // const stackedColumnCollection = new StackedColumnCollection(wasmContext);
-
     // filtered per server
     const filter = (data: TDataEntry[], server: string) => data.filter(entry => entry.server === server);
 
@@ -113,7 +111,6 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
         sciChartSurface.renderableSeries.add(rendSeries);
     });
 
-    // stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
 
     const seriesSelectionModifier = new SeriesSelectionModifier({
         enableHover: true,

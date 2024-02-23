@@ -16,15 +16,12 @@ import {
     SciChartSurface,
     XyDataSeries
 } from "scichart";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const AMPLITUDE = 200;
 
-const divElementId = "chart";
-
-let timerId: NodeJS.Timeout;
-
-const drawExample = async () => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+const drawExample = async (rootElement: string | HTMLDivElement) => {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -100,6 +97,8 @@ const drawExample = async () => {
     const series9 = addSeries(seriesColor, 0.2);
     const series10 = addSeries(seriesColor, 0.1);
 
+    let timerId: NodeJS.Timeout;
+
     const reassignRenderableSeries = () => {
         const oldSeries = series10.dataSeries;
         series10.dataSeries = series9.dataSeries;
@@ -162,56 +161,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function RealtimeGhostedTraces() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const controlsRef = React.useRef<{
         startAnimation: () => void;
         stopAnimation: () => void;
     }>();
 
     const [stats, setStats] = React.useState({ numberSeries: 0, numberPoints: 0, fps: 0 });
-
-    React.useEffect(() => {
-        let autoStartTimerId: NodeJS.Timeout;
-
-        const chartInitializationPromise = drawExample().then(res => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            controlsRef.current = res.controls;
-            let lastRendered = Date.now();
-            res.sciChartSurface.rendered.subscribe(() => {
-                const currentTime = Date.now();
-                const timeDiffSeconds = new Date(currentTime - lastRendered).getTime() / 1000;
-                lastRendered = currentTime;
-                const fps = 1 / timeDiffSeconds;
-                setStats({
-                    numberSeries: res.sciChartSurface.renderableSeries.size(),
-                    numberPoints:
-                        res.sciChartSurface.renderableSeries.size() *
-                        res.sciChartSurface.renderableSeries.get(0).dataSeries.count(),
-                    fps
-                });
-            });
-
-            autoStartTimerId = setTimeout(res.controls.startAnimation, 0);
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                clearTimeout(autoStartTimerId);
-                controlsRef.current.stopAnimation();
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                clearTimeout(autoStartTimerId);
-                controlsRef.current.stopAnimation();
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
 
     const localClasses = useStyles();
 
@@ -245,7 +200,33 @@ export default function RealtimeGhostedTraces() {
                         </span>
                         <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
                     </div>
-                    <div className={localClasses.chartArea} id={divElementId}></div>
+                    <SciChartReact
+                        className={localClasses.chartArea}
+                        initChart={drawExample}
+                        onInit={({ sciChartSurface, controls }: TResolvedReturnType<typeof drawExample>) => {
+                            controlsRef.current = controls;
+
+                            let lastRendered = Date.now();
+                            sciChartSurface.rendered.subscribe(() => {
+                                const currentTime = Date.now();
+                                const timeDiffSeconds = new Date(currentTime - lastRendered).getTime() / 1000;
+                                lastRendered = currentTime;
+                                const fps = 1 / timeDiffSeconds;
+                                setStats({
+                                    numberSeries: sciChartSurface.renderableSeries.size(),
+                                    numberPoints:
+                                        sciChartSurface.renderableSeries.size() *
+                                        sciChartSurface.renderableSeries.get(0).dataSeries.count(),
+                                    fps
+                                });
+                            });
+
+                            controls.startAnimation();
+                        }}
+                        onDelete={({ controls }: TResolvedReturnType<typeof drawExample>) => {
+                            controls.stopAnimation();
+                        }}
+                    />
                 </div>
             </div>
         </React.Fragment>

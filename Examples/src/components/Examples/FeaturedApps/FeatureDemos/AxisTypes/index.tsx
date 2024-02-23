@@ -32,8 +32,7 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier
 } from "scichart";
-
-const divElementId = "chart";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const colorStrings = [
     appTheme.VividSkyBlue,
@@ -44,9 +43,9 @@ const colorStrings = [
 ];
 const colors = colorStrings.map(c => parseColorToUIntArgb(c + "AA"));
 
-const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface with Theme
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme
     });
     const labelProvider = new TextLabelProvider({
@@ -176,36 +175,63 @@ const useStyles = makeStyles(theme => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function FeatureAxisTypes() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
+    const [labelProvider, setLabelProvider] = React.useState<TextLabelProvider>();
+    const [preset, setPreset] = React.useState<number>(0);
 
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(({ sciChartSurface, labelProvider }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                sciChartSurfaceRef.current = undefined
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-                sciChartSurfaceRef.current = undefined
-            });
-        };
-    }, []);
+    const handlePreset = (event: any, value: number) => {
+        setPreset(value);
+        switch (value) {
+            case 0:
+                labelProvider.rotation = 0;
+                labelProvider.maxLength = 9;
+                break;
+            case 1:
+                labelProvider.rotation = 20;
+                labelProvider.maxLength = 0;
+                break;
+            case 2:
+                labelProvider.rotation = 30;
+                labelProvider.maxLength = 12;
+                break;
+            default:
+                labelProvider.rotation = 0;
+                labelProvider.maxLength = 9;
+                break;
+        }
+    };
 
     const localClasses = useStyles();
 
     return (
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.chartArea} id={divElementId}></div>
+                <div className={localClasses.toolbarRow}>
+                    <ToggleButtonGroup
+                        exclusive
+                        value={preset}
+                        onChange={handlePreset}
+                        size="medium"
+                        color="primary"
+                        aria-label="small outlined button group"
+                    >
+                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
+                            Multi-Line
+                        </ToggleButton>
+                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
+                            Single Line Rotated
+                        </ToggleButton>
+                        <ToggleButton value={2} style={{ color: appTheme.ForegroundColor }}>
+                            Multi-Line Rotated
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+                </div>
+                <SciChartReact
+                    className={localClasses.chartArea}
+                    initChart={drawExample}
+                    onInit={({ labelProvider }: TResolvedReturnType<typeof drawExample>) => {
+                        setLabelProvider(labelProvider);
+                    }}
+                />
             </div>
         </div>
     );

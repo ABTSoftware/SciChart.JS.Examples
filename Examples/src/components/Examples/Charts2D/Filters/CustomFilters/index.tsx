@@ -1,263 +1,35 @@
 import * as React from "react";
 import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
-import {
-    BaseDataSeries,
-    NumericAxis,
-    EAutoRange,
-    EAxisAlignment,
-    ELabelAlignment,
-    FastColumnRenderableSeries,
-    FastLineRenderableSeries,
-    EllipsePointMarker,
-    LegendModifier,
-    NumberRange,
-    SciChartSurface,
-    XyCustomFilter,
-    XyDataSeries,
-    XyFilterBase,
-    XyScatterRenderableSeries
-} from "scichart";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
+import { drawExample } from "./drawExample";
 
-export const divElementId = "chart";
-
-// A custom filter which calculates the frequency distribution of the original data
-class AggregationFilter extends XyFilterBase {
-    private bins: Map<number, number> = new Map<number, number>();
-    private binWidthProperty = 1;
-
-    constructor(originalSeries: BaseDataSeries, binWidth: number, dataSeriesName: string) {
-        super(originalSeries, { dataSeriesName });
-        this.binWidthProperty = binWidth;
-        this.filterAll();
-    }
-
-    public get binWidth() {
-        return this.binWidthProperty;
-    }
-
-    public set binWidth(value: number) {
-        this.binWidthProperty = value;
-        this.filterAll();
-    }
-
-    protected filterAll() {
-        this.clear();
-        this.bins.clear();
-        this.filter(0, this.getOriginalCount());
-    }
-
-    protected filterOnAppend(count: number): void {
-        // Overriding this so we do not have to reprocess the entire series on append
-        this.filter(this.getOriginalCount() - count, count);
-    }
-
-    protected filter(start: number, count: number): void {
-        const numUtil = this.originalSeries.webAssemblyContext.NumberUtil;
-        for (let i = start; i < start + count; i++) {
-            const bin = numUtil.RoundDown(this.getOriginalYValues().get(i), this.binWidth);
-            if (this.bins.has(bin)) {
-                const newVal = this.bins.get(bin) + 1;
-                this.bins.set(bin, newVal);
-            } else {
-                this.bins.set(bin, 1);
-            }
-        }
-        // Map data is unsorted, so we must sort it before recreating the output series
-        const keys = Array.from(this.bins.keys()).sort((a, b) => a - b);
-        this.clear();
-        const yValues: number[] = [];
-        for (const key of keys) {
-            yValues.push(this.bins.get(key));
-        }
-        this.appendRange(keys, yValues);
-    }
-
-    protected onClear() {
-        this.clear();
-        this.bins.clear();
-    }
-}
-
-let lastX = 0;
-// Straight line data
-const getData = (n: number) => {
-    const xValues: number[] = [];
-    const yValues: number[] = [];
-    for (let i = 0; i < n; i++) {
-        xValues.push(lastX);
-        yValues.push(50 + lastX / 1000);
-        lastX++;
-    }
-    return { xValues, yValues };
-};
-
-export const drawExample = async () => {
-    // Define some constants
-    const numberOfPointsPerTimerTick = 500; // 1,000 points every timer tick
-    const timerInterval = 10; // timer tick every 10 milliseconds
-    const maxPoints = 100_000; // max points for a single series before the demo stops
-
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
-    });
-    const rawXAxis = new NumericAxis(wasmContext, { id: "rawX", isVisible: false, autoRange: EAutoRange.Always });
-    const aggXAxis = new NumericAxis(wasmContext, {
-        id: "aggX",
-        axisTitle: "Value",
-        autoRange: EAutoRange.Always,
-        labelPrecision: 0
-    });
-    sciChartSurface.xAxes.add(rawXAxis, aggXAxis);
-
-    const rawYAxis = new NumericAxis(wasmContext, {
-        autoRange: EAutoRange.Always,
-        axisTitle: "Raw Data",
-        id: "rawY",
-        labelPrecision: 0,
-        labelStyle: { alignment: ELabelAlignment.Right }
-    });
-    const aggYAxis = new NumericAxis(wasmContext, {
-        axisTitle: "Frequency (Aggregated)",
-        id: "aggY",
-        autoRange: EAutoRange.Always,
-        axisAlignment: EAxisAlignment.Left,
-        growBy: new NumberRange(0, 0.5),
-        labelPrecision: 0
-    });
-    sciChartSurface.yAxes.add(aggYAxis, rawYAxis);
-
-    const dataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "Original Data" });
-
-    // Create a simple custom filter.  We just have to specify the filter function and this will be applied efficiently to data changes
-    const gaussFilter = new XyCustomFilter(dataSeries, { dataSeriesName: "Custom Filter: Original x Gaussian Random" });
-    // This function exploits the central limit theorem to approximate a normal distribution
-    const gaussianRand = () => {
-        let rand = 0;
-        for (let i = 0; i < 6; i += 1) {
-            rand += Math.random() + 0.5;
-        }
-        return rand / 6;
-    };
-    gaussFilter.filterFunction = (i, y) => y * gaussianRand();
-
-    // Add the randomised data using a custom filter which takes original data * random value
-    sciChartSurface.renderableSeries.add(
-        new XyScatterRenderableSeries(wasmContext, {
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 3,
-                height: 3,
-                strokeThickness: 0,
-                fill: appTheme.VividOrange,
-                opacity: 0.77
-            }),
-            stroke: appTheme.VividOrange,
-            dataSeries: gaussFilter,
-            xAxisId: "rawX",
-            yAxisId: "rawY"
-        })
+export default function ChartComponent() {
+    return (
+        <div className={classes.ChartWrapper}>
+            <SciChartReact
+                style={{ width: "100%", height: "100%", float: "left" }}
+                initChart={drawExample}
+                onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    initResult.controls.startDemo();
+                }}
+                onDelete={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    initResult.controls.stopDemo();
+                }}
+            />
+            {/*Placeholder until we have a proper chart title (soon!)*/}
+            <span
+                style={{
+                    color: appTheme.ForegroundColor,
+                    fontSize: 20,
+                    position: "absolute",
+                    left: "50%",
+                    top: "20px",
+                    transform: "translate(-50%)",
+                }}
+            >
+                Market share of Mobile Phone Manufacturers (2022)
+            </span>
+        </div>
     );
-
-    // Add the original data to the chart
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries,
-            stroke: appTheme.VividTeal,
-            strokeThickness: 3,
-            xAxisId: "rawX",
-            yAxisId: "rawY"
-        })
-    );
-
-    // Pass the randomised data into the aggregation filter.
-    const aggFilter = new AggregationFilter(gaussFilter, 5, "Custom Filter: Aggregation");
-
-    // Plot the aggregation filter as a column chart
-    sciChartSurface.renderableSeries.add(
-        new FastColumnRenderableSeries(wasmContext, {
-            id: "col",
-            fill: appTheme.VividSkyBlue + "33",
-            stroke: appTheme.MutedSkyBlue,
-            dataSeries: aggFilter,
-            xAxisId: "aggX",
-            yAxisId: "aggY",
-            cornerRadius: 10
-        })
-    );
-
-    let timerId: NodeJS.Timeout;
-
-    // Function called when the user clicks stopDemo button
-    const stopDemo = () => {
-        clearTimeout(timerId);
-        timerId = undefined;
-        lastX = 0;
-    };
-
-    // Function called when the user clicks startDemo button
-    const startDemo = () => {
-        if (timerId) {
-            stopDemo();
-            dataSeries.clear();
-        }
-        const updateFunc = () => {
-            if (dataSeries.count() >= maxPoints) {
-                stopDemo();
-                return;
-            }
-
-            // Get the next N random walk x,y values
-            const { xValues, yValues } = getData(numberOfPointsPerTimerTick);
-            // Append these to the dataSeries. This will cause the chart to redraw
-            dataSeries.appendRange(xValues, yValues);
-
-            timerId = setTimeout(updateFunc, timerInterval);
-        };
-
-        dataSeries.clear();
-
-        timerId = setTimeout(updateFunc, timerInterval);
-    };
-
-    sciChartSurface.chartModifiers.add(new LegendModifier());
-
-    return { wasmContext, sciChartSurface, controls: { startDemo, stopDemo } };
-};
-
-export default function CustomFilters() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const chartControlsRef = React.useRef<{
-        startDemo: () => void;
-        stopDemo: () => void;
-    }>();
-
-    React.useEffect(() => {
-        let autoStartTimerId: NodeJS.Timeout;
-
-        const chartInitializationPromise = drawExample().then(res => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            chartControlsRef.current = res.controls;
-            autoStartTimerId = setTimeout(res.controls.startDemo, 0);
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                clearTimeout(autoStartTimerId);
-                chartControlsRef.current.stopDemo();
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                clearTimeout(autoStartTimerId);
-                chartControlsRef.current.stopDemo();
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
-
-    return <div id={divElementId} className={classes.ChartWrapper} />;
 }
