@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "sourceMap": false,
+        "strict": false,
+        "noImplicitAny": true,
+        "strictNullChecks": false,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": false,
+        "noImplicitThis": true,
+        "alwaysStrict": false,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "module": "ESNext",
+        "target": "ESNext",
+        "baseUrl": ".",
+        "moduleResolution": "NodeNext",
+        "downlevelIteration": true,
+        "allowJs": true,
+        "typeRoots": ["./src/types", "./node_modules/@types"],
+        "esModuleInterop": false,
+        "skipLibCheck": false,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src/**/vanilla.ts"],
+    "exclude": ["node_modules", "src/static/*"]
+}

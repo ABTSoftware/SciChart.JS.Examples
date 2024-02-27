@@ -20,6 +20,7 @@ import { api } from "./api";
 import { renderCodeSandBoxRedirect } from "./renderCodeSandboxRedirect";
 import { oembed } from "./oembed";
 import { findMissingExamples } from "./find-missing-examples";
+import { vanillaExamplesRouter } from "./vanillaDemo/vanillaExamplesRouter";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
@@ -81,6 +82,7 @@ app.use(
 app.use("/api", api);
 app.use("/services/oembed", oembed);
 app.use("/services/findMissingExamples", findMissingExamples);
+app.use("/vanillaDemo", vanillaExamplesRouter);
 
 app.get("*", (req: Request, res: Response) => {
     handleRender(req, res);
