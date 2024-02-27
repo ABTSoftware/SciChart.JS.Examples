@@ -1,24 +1,26 @@
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { WaveAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/WaveAnimation";
-import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import { SweepAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SweepAnimation";
-import { ScaleAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/ScaleAnimation";
-import { FadeAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
+import {
+    WaveAnimation,
+    SweepAnimation,
+    ScaleAnimation,
+    FadeAnimation,
+    TextAnnotation,
+    GenericAnimation,
+    SciChartSurface,
+    NumericAxis,
+    FastBubbleRenderableSeries,
+    EllipsePointMarker,
+    XyzDataSeries,
+    SplineLineRenderableSeries,
+    XyDataSeries,
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    SeriesAnimation,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+    MouseWheelZoomModifier,
+} from "scichart";
 import { appTheme } from "scichart-example-dependencies";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
-import { GenericAnimation } from "scichart/Core/Animations/GenericAnimation";
-import { SplineLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/SplineLineRenderableSeries";
-import { SeriesAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/SeriesAnimation";
 
 // Four Series Animations are defined below. We apply these to the chart sequentially
 const waveAnimation = new WaveAnimation({ zeroLine: 0, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true });

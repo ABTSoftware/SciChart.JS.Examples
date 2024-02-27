@@ -1,6 +1,6 @@
 import { appTheme } from "scichart-example-dependencies";
 
-import { TSciChart } from "scichart/types/TSciChart";
+import { TSciChart } from "scichart";
 
 import {
     EAxisAlignment,

@@ -9,7 +9,7 @@ import {
     EVerticalAnchorPoint,
     ECoordinateMode,
 } from "scichart";
-import { chartBuilder } from "scichart/Builder/chartBuilder";
+import { chartBuilder } from "scichart";
 import { appTheme } from "scichart-example-dependencies";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {

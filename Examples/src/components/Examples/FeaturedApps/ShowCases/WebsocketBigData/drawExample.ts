@@ -1,41 +1,42 @@
 import * as socketIOClient from "socket.io-client";
-import { MouseWheelZoomModifier } from "scichart/Charting/ChartModifiers/MouseWheelZoomModifier";
-import { ZoomExtentsModifier } from "scichart/Charting/ChartModifiers/ZoomExtentsModifier";
-import { ZoomPanModifier } from "scichart/Charting/ChartModifiers/ZoomPanModifier";
-import { LayoutManager } from "scichart/Charting/LayoutManager/LayoutManager";
-import { RightAlignedOuterVerticallyStackedAxisLayoutStrategy } from "scichart/Charting/LayoutManager/RightAlignedOuterVerticallyStackedAxisLayoutStrategy";
-import { BaseDataSeries, IBaseDataSeriesOptions } from "scichart/Charting/Model/BaseDataSeries";
-import { XyCustomFilter } from "scichart/Charting/Model/Filters/XyCustomFilter";
-import { EDataSeriesField } from "scichart/Charting/Model/Filters/XyFilterBase";
-import { EDataSeriesType } from "scichart/Charting/Model/IDataSeries";
-import { OhlcDataSeries } from "scichart/Charting/Model/OhlcDataSeries";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { XyTextDataSeries } from "scichart/Charting/Model/XyTextDataSeries";
-import { XyyDataSeries } from "scichart/Charting/Model/XyyDataSeries";
-import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
-import { AUTO_COLOR } from "scichart/Charting/Themes/IThemeProvider";
-import { SciChartJSLightTheme } from "scichart/Charting/Themes/SciChartJSLightTheme";
-import { INumericAxisOptions, NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { BaseRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/BaseRenderableSeries";
-import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBandRenderableSeries";
-import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import { FastCandlestickRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastCandlestickRenderableSeries";
-import { FastColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastColumnRenderableSeries";
-import { FastLineRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastLineRenderableSeries";
-import { FastTextRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastTextRenderableSeries";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { StackedColumnCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnCollection";
-import { StackedColumnRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/StackedColumnRenderableSeries";
-import { StackedMountainCollection } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainCollection";
-import { StackedMountainRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/StackedMountainRenderableSeries";
-import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-import { ENumericFormat } from "scichart/types/NumericFormat";
-import { ESeriesType } from "scichart/types/SeriesType";
-import { TSciChart } from "scichart/types/TSciChart";
 import { appTheme } from "scichart-example-dependencies";
-import classes from "../../../styles/Examples.module.scss";
+import {
+    IBaseDataSeriesOptions,
+    TSciChart,
+    ESeriesType,
+    BaseDataSeries,
+    BaseRenderableSeries,
+    XyDataSeries,
+    FastLineRenderableSeries,
+    AUTO_COLOR,
+    XyyDataSeries,
+    FastBandRenderableSeries,
+    FastColumnRenderableSeries,
+    StackedMountainRenderableSeries,
+    XyCustomFilter,
+    EDataSeriesField,
+    XyScatterRenderableSeries,
+    EllipsePointMarker,
+    OhlcDataSeries,
+    FastCandlestickRenderableSeries,
+    XyTextDataSeries,
+    FastTextRenderableSeries,
+    EDataSeriesType,
+    XyzDataSeries,
+    INumericAxisOptions,
+    ENumericFormat,
+    SciChartSurface,
+    NumericAxis,
+    LayoutManager,
+    IRenderableSeries,
+    StackedColumnCollection,
+    StackedColumnRenderableSeries,
+    StackedMountainCollection,
+    RightAlignedOuterVerticallyStackedAxisLayoutStrategy,
+    MouseWheelZoomModifier,
+    ZoomPanModifier,
+    ZoomExtentsModifier,
+} from "scichart";
 
 export type TMessage = {
     title: string;
@@ -108,7 +109,7 @@ const generateCandleDataForAppendRange = (open: number, closeValues: number[]) =
 
 const dsOptions: IBaseDataSeriesOptions = {
     isSorted: true,
-    containsNaN: false
+    containsNaN: false,
 };
 
 const createRenderableSeries = (
@@ -121,7 +122,7 @@ const createRenderableSeries = (
             dataSeries,
             stroke: AUTO_COLOR,
             strokeThickness: 3,
-            opacity: 0.8
+            opacity: 0.8,
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.BandSeries) {
@@ -133,7 +134,7 @@ const createRenderableSeries = (
             fillY1: AUTO_COLOR,
             dataSeries,
             strokeThickness: 2,
-            opacity: 0.8
+            opacity: 0.8,
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.ColumnSeries) {
@@ -142,7 +143,7 @@ const createRenderableSeries = (
             fill: AUTO_COLOR,
             stroke: AUTO_COLOR,
             dataSeries,
-            strokeThickness: 1
+            strokeThickness: 1,
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.StackedMountainSeries) {
@@ -150,7 +151,7 @@ const createRenderableSeries = (
         const rendSeries: StackedMountainRenderableSeries = new StackedMountainRenderableSeries(wasmContext, {
             stroke: AUTO_COLOR,
             fill: AUTO_COLOR,
-            dataSeries
+            dataSeries,
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.ScatterSeries) {
@@ -158,7 +159,7 @@ const createRenderableSeries = (
         // Use Y and Y1 as X and Y for scatter
         const filteredSeries: XyDataSeries = new XyCustomFilter(dataSeries, {
             xField: EDataSeriesField.Y,
-            field: EDataSeriesField.Y1
+            field: EDataSeriesField.Y1,
         });
         const rendSeries: XyScatterRenderableSeries = new XyScatterRenderableSeries(wasmContext, {
             pointMarker: new EllipsePointMarker(wasmContext, {
@@ -167,9 +168,9 @@ const createRenderableSeries = (
                 strokeThickness: 2,
                 fill: AUTO_COLOR,
                 stroke: AUTO_COLOR,
-                opacity: 0.8
+                opacity: 0.8,
             }),
-            dataSeries: filteredSeries
+            dataSeries: filteredSeries,
         });
         // return the unfiltered xyy series as that is the one we want to append to
         return { dataSeries, rendSeries };
@@ -183,7 +184,7 @@ const createRenderableSeries = (
             strokeUp: AUTO_COLOR,
             brushUp: AUTO_COLOR,
             strokeDown: AUTO_COLOR,
-            brushDown: AUTO_COLOR
+            brushDown: AUTO_COLOR,
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.TextSeries) {
@@ -193,11 +194,11 @@ const createRenderableSeries = (
             dataLabels: {
                 style: {
                     fontFamily: "Arial",
-                    fontSize: 6
+                    fontSize: 6,
                 },
                 color: AUTO_COLOR,
-                calculateTextBounds: false
-            }
+                calculateTextBounds: false,
+            },
         });
         return { dataSeries, rendSeries };
     }
@@ -222,7 +223,7 @@ const prePopulateData = (
             (dataSeries as XyzDataSeries).appendRange(
                 xValues,
                 yValues,
-                GetRandomData(xValues, positive).map(z => Math.abs(z / 5))
+                GetRandomData(xValues, positive).map((z) => Math.abs(z / 5))
             );
             break;
         case EDataSeriesType.Ohlc:
@@ -233,7 +234,7 @@ const prePopulateData = (
             (dataSeries as XyTextDataSeries).appendRange(
                 xValues,
                 yValues,
-                yValues.map(textval => textval.toFixed())
+                yValues.map((textval) => textval.toFixed())
             );
             break;
         default:
@@ -270,7 +271,7 @@ const appendData = (
             xyzSeries.appendRange(
                 xValues,
                 yArray[2 * index],
-                yArray[2 * index + 1].map(z => Math.abs(z / 5))
+                yArray[2 * index + 1].map((z) => Math.abs(z / 5))
             );
             if (xyzSeries.count() > pointsOnChart) {
                 xyzSeries.removeRange(0, pointsPerUpdate);
@@ -292,7 +293,7 @@ const appendData = (
             xytextSeries.appendRange(
                 xValues,
                 yArray[index],
-                yArray[index].map(obj => obj.toFixed())
+                yArray[index].map((obj) => obj.toFixed())
             );
             if (xytextSeries.count() > pointsOnChart) {
                 xytextSeries.removeRange(0, pointsPerUpdate);
@@ -308,7 +309,7 @@ const axisOptions: INumericAxisOptions = {
     drawMinorGridLines: false,
     drawMinorTickLines: false,
     labelFormat: ENumericFormat.Decimal,
-    labelPrecision: 0
+    labelPrecision: 0,
 };
 
 export const drawExample = async (updateMessages: (newMessages: TMessage[]) => void, seriesType: ESeriesType) => {
@@ -319,7 +320,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
     let initialPoints: number = 0;
 
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
     const xAxis = new NumericAxis(wasmContext, axisOptions);
     sciChartSurface.xAxes.add(xAxis);
@@ -338,11 +339,11 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
     }
 
     const initChart = () => {
-        sciChartSurface.renderableSeries.asArray().forEach(rs => rs.delete());
+        sciChartSurface.renderableSeries.asArray().forEach((rs) => rs.delete());
         sciChartSurface.renderableSeries.clear();
-        sciChartSurface.chartModifiers.asArray().forEach(cm => cm.delete());
+        sciChartSurface.chartModifiers.asArray().forEach((cm) => cm.delete());
         sciChartSurface.chartModifiers.clear();
-        sciChartSurface.yAxes.asArray().forEach(ya => ya.delete());
+        sciChartSurface.yAxes.asArray().forEach((ya) => ya.delete());
         sciChartSurface.yAxes.clear();
         sciChartSurface.layoutManager = new LayoutManager();
         yAxis = new NumericAxis(wasmContext, { ...axisOptions });
@@ -371,13 +372,14 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
                 // create stacked y axis
                 if (i === 0) {
                     // tslint:disable-next-line: max-line-length
-                    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy = new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
+                    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
+                        new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
                     yAxis.id = "0";
                 } else {
                     sciChartSurface.yAxes.add(
                         new NumericAxis(wasmContext, {
                             id: i.toString(),
-                            ...axisOptions
+                            ...axisOptions,
                         })
                     );
                 }
@@ -424,15 +426,15 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
         avgRenderTime = (avgRenderTime * loadCount + renderTime) / (loadCount + 1);
         newMessages.push({
             title: `Average Load Time `,
-            detail: `${avgLoadTime.toFixed(2)} ms`
+            detail: `${avgLoadTime.toFixed(2)} ms`,
         });
         newMessages.push({
             title: `Average Render Time `,
-            detail: `${avgRenderTime.toFixed(2)} ms`
+            detail: `${avgRenderTime.toFixed(2)} ms`,
         });
         newMessages.push({
             title: `Max FPS `,
-            detail: `${Math.min(60, 1000 / (avgLoadTime + avgRenderTime)).toFixed(1)}`
+            detail: `${Math.min(60, 1000 / (avgLoadTime + avgRenderTime)).toFixed(1)}`,
         });
         updateMessages(newMessages);
         newMessages.length = 0;
@@ -490,7 +492,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
             dataSeriesType === EDataSeriesType.XyText
         ) {
             if (index >= 0) {
-                series = dataSeriesArray.map(d => d.getNativeYValues().get(index));
+                series = dataSeriesArray.map((d) => d.getNativeYValues().get(index));
             } else {
                 series = Array.from(Array(seriesCount)).fill(0);
             }
@@ -527,7 +529,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
         pointsOnChart: 5000,
         pointsPerUpdate: 10,
         sendEvery: 100,
-        initialPoints: 5000
+        initialPoints: 5000,
     };
 
     const updateSettings = (newValues: ISettings) => {

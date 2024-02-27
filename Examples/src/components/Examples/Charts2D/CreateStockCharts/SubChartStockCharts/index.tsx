@@ -27,9 +27,8 @@ import {
     parseColorToUIntArgb,
     Rect,
     SciChartVerticalGroup,
-    Thickness
+    Thickness,
 } from "scichart";
-import { TWebAssemblyChart } from "scichart/Charting/Visuals/SciChartSurface";
 
 export const mainChartWrapper = "cc_chart";
 export const mainChartWrapper2 = "cc_chart2";
@@ -94,14 +93,14 @@ export const drawExample = async () => {
     const commonSubChartSurfaceOptions: I2DSubSurfaceOptions = {
         subChartPadding: Thickness.fromNumber(10),
         isTransparent: false,
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     };
 
     const subChartModifiers = [
         { type: EChart2DModifierType.ZoomPan, options: { xyDirection: EXyDirection.XDirection } },
         { type: EChart2DModifierType.PinchZoom, options: { xyDirection: EXyDirection.XDirection } },
         { type: EChart2DModifierType.ZoomExtents, options: { xyDirection: EXyDirection.XDirection } },
-        { type: EChart2DModifierType.MouseWheelZoom, options: { xyDirection: EXyDirection.XDirection } }
+        { type: EChart2DModifierType.MouseWheelZoom, options: { xyDirection: EXyDirection.XDirection } },
     ];
 
     const upCol = appTheme.VividGreen;
@@ -111,26 +110,26 @@ export const drawExample = async () => {
     const { sciChartSurface: mainSurface, wasmContext } = await chartBuilder.build2DChart(mainChartWrapper2, {
         surface: {
             id: "mainSurface",
-            theme: appTheme.SciChartJsTheme
+            theme: appTheme.SciChartJsTheme,
         },
         xAxes: {
             type: EAxisType.NumericAxis,
             options: {
-                isVisible: false
-            }
+                isVisible: false,
+            },
         },
         yAxes: {
             type: EAxisType.NumericAxis,
             options: {
-                isVisible: false
-            }
+                isVisible: false,
+            },
         },
         modifiers: {
             type: EChart2DModifierType.Custom,
             customType: FinChartLegendModifier.customType,
             options: {
-                crosshairStroke: appTheme.ForegroundColor
-            } as IFinanceLegendModifierOptions
+                crosshairStroke: appTheme.ForegroundColor,
+            } as IFinanceLegendModifierOptions,
         },
         subCharts: [
             {
@@ -138,7 +137,7 @@ export const drawExample = async () => {
                     ...commonSubChartSurfaceOptions,
                     position: new Rect(0, 0, 1, 0.5),
                     id: "subChart1",
-                    subChartContainerId: subChartWrapper1
+                    subChartContainerId: subChartWrapper1,
                 },
                 xAxes: {
                     type: EAxisType.CategoryAxis,
@@ -147,8 +146,8 @@ export const drawExample = async () => {
                         autoRange: EAutoRange.Once,
                         // maxAutoTicks: 20,
                         useNativeText: false,
-                        minorsPerMajor: 3
-                    }
+                        minorsPerMajor: 3,
+                    },
                 },
                 yAxes: [
                     {
@@ -160,8 +159,8 @@ export const drawExample = async () => {
                             labelPrecision: 2,
                             labelPrefix: "$",
                             axisAlignment,
-                            drawMinorGridLines: false
-                        }
+                            drawMinorGridLines: false,
+                        },
                     },
                     {
                         type: EAxisType.NumericAxis,
@@ -169,9 +168,9 @@ export const drawExample = async () => {
                             id: "yAxis2",
                             isVisible: false,
                             autoRange: EAutoRange.Always,
-                            growBy: new NumberRange(0, 3)
-                        }
-                    }
+                            growBy: new NumberRange(0, 3),
+                        },
+                    },
                 ],
                 series: [
                     {
@@ -182,14 +181,14 @@ export const drawExample = async () => {
                             openValues,
                             highValues,
                             lowValues,
-                            closeValues
+                            closeValues,
                         },
                         options: {
                             brushUp: upCol + opacity,
                             brushDown: downCol + opacity,
                             strokeUp: upCol,
-                            strokeDown: downCol
-                        }
+                            strokeDown: downCol,
+                        },
                     },
                     {
                         type: ESeriesType.LineSeries,
@@ -200,14 +199,14 @@ export const drawExample = async () => {
                                 type: EDataFilterType.XyMovingAverage,
                                 options: {
                                     dataSeriesName: "MA 50 Low",
-                                    length: 50
-                                }
-                            }
+                                    length: 50,
+                                },
+                            },
                         },
                         options: {
                             stroke: appTheme.VividSkyBlue,
-                            strokeThickness: 2
-                        }
+                            strokeThickness: 2,
+                        },
                     },
                     {
                         type: ESeriesType.LineSeries,
@@ -218,21 +217,21 @@ export const drawExample = async () => {
                                 type: EDataFilterType.XyMovingAverage,
                                 options: {
                                     dataSeriesName: "MA 200 High",
-                                    length: 200
-                                }
-                            }
+                                    length: 200,
+                                },
+                            },
                         },
                         options: {
                             stroke: appTheme.VividPink,
-                            strokeThickness: 2
-                        }
+                            strokeThickness: 2,
+                        },
                     },
                     {
                         type: ESeriesType.ColumnSeries,
                         xyData: {
                             dataSeriesName: "Volume",
                             xValues,
-                            yValues: volumeValues
+                            yValues: volumeValues,
                         },
                         options: {
                             yAxisId: "yAxis2",
@@ -243,20 +242,20 @@ export const drawExample = async () => {
                                 closeValues,
                                 upCol + opacity,
                                 downCol + opacity
-                            )
-                        }
-                    }
+                            ),
+                        },
+                    },
                 ],
 
                 modifiers: subChartModifiers,
-                sharedData: {}
+                sharedData: {},
             },
             {
                 surface: {
                     ...commonSubChartSurfaceOptions,
                     position: new Rect(0, 0.5, 1, 0.3),
                     subChartContainerId: subChartWrapper2,
-                    id: "subChart2"
+                    id: "subChart2",
                 },
                 xAxes: [
                     {
@@ -266,9 +265,9 @@ export const drawExample = async () => {
                             drawMajorTickLines: false,
                             drawMinorTickLines: false,
                             useNativeText: false,
-                            minorsPerMajor: 3
-                        }
-                    }
+                            minorsPerMajor: 3,
+                        },
+                    },
                 ],
                 yAxes: [
                     {
@@ -279,9 +278,9 @@ export const drawExample = async () => {
                             growBy: new NumberRange(0.1, 0.1),
                             axisAlignment,
                             labelPrecision: 2,
-                            drawMinorGridLines: false
-                        }
-                    }
+                            drawMinorGridLines: false,
+                        },
+                    },
                 ],
                 series: [
                     {
@@ -290,29 +289,29 @@ export const drawExample = async () => {
                             dataSeriesName: "MACD",
                             xValues,
                             yValues: signalArray,
-                            y1Values: macdArray
+                            y1Values: macdArray,
                         },
                         options: {
                             stroke: downCol,
                             strokeY1: upCol,
                             fill: upCol + opacity,
-                            fillY1: downCol + opacity
-                        }
+                            fillY1: downCol + opacity,
+                        },
                     },
                     {
                         type: ESeriesType.ColumnSeries,
                         xyData: {
                             dataSeriesName: "Divergence",
                             xValues,
-                            yValues: divergenceArray
+                            yValues: divergenceArray,
                         },
                         options: {
                             dataPointWidth: 0.5,
-                            paletteProvider: new MacdHistogramPaletteProvider(upCol + opacity, downCol + opacity)
-                        }
-                    }
+                            paletteProvider: new MacdHistogramPaletteProvider(upCol + opacity, downCol + opacity),
+                        },
+                    },
                 ],
-                modifiers: subChartModifiers
+                modifiers: subChartModifiers,
             },
             {
                 surface: {
@@ -321,7 +320,7 @@ export const drawExample = async () => {
                     subChartPadding: Thickness.fromNumber(10),
                     id: "subChart3",
                     isTransparent: false,
-                    subChartContainerId: subChartWrapper3
+                    subChartContainerId: subChartWrapper3,
                 },
                 xAxes: {
                     type: EAxisType.CategoryAxis,
@@ -330,8 +329,8 @@ export const drawExample = async () => {
                         drawMajorTickLines: true,
                         drawMinorTickLines: false,
                         useNativeText: false,
-                        minorsPerMajor: 3
-                    }
+                        minorsPerMajor: 3,
+                    },
                 },
                 yAxes: {
                     type: EAxisType.NumericAxis,
@@ -341,20 +340,20 @@ export const drawExample = async () => {
                         autoRange: EAutoRange.Always,
                         growBy: new NumberRange(0.1, 0.1),
                         axisAlignment,
-                        drawMinorGridLines: false
-                    }
+                        drawMinorGridLines: false,
+                    },
                 },
                 series: {
                     type: ESeriesType.LineSeries,
                     xyData: { dataSeriesName: "RSI", xValues, yValues: rsiArray },
                     options: {
                         stroke: appTheme.VividSkyBlue,
-                        strokeThickness: 2
-                    }
+                        strokeThickness: 2,
+                    },
                 },
-                modifiers: subChartModifiers
-            }
-        ]
+                modifiers: subChartModifiers,
+            },
+        ],
     });
 
     const [subSurface1, subSurface2, subSurface3] = mainSurface.subCharts;
@@ -368,15 +367,15 @@ export const drawExample = async () => {
     const chart3XAxis = subSurface3.xAxes.get(0);
 
     // Synchronize visible ranges
-    chart1XAxis.visibleRangeChanged.subscribe(data1 => {
+    chart1XAxis.visibleRangeChanged.subscribe((data1) => {
         chart2XAxis.visibleRange = data1.visibleRange;
         chart3XAxis.visibleRange = data1.visibleRange;
     });
-    chart2XAxis.visibleRangeChanged.subscribe(data1 => {
+    chart2XAxis.visibleRangeChanged.subscribe((data1) => {
         chart1XAxis.visibleRange = data1.visibleRange;
         chart3XAxis.visibleRange = data1.visibleRange;
     });
-    chart3XAxis.visibleRangeChanged.subscribe(data1 => {
+    chart3XAxis.visibleRangeChanged.subscribe((data1) => {
         chart1XAxis.visibleRange = data1.visibleRange;
         chart2XAxis.visibleRange = data1.visibleRange;
     });
@@ -561,7 +560,7 @@ const buyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
             'd="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,-7.408333 7.158904,-7.408333 l 7.158906,7.408333 H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"' +
             "/>" +
             "</g>" +
-            "</svg>"
+            "</svg>",
     });
 };
 
@@ -580,7 +579,7 @@ const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
             'd="m 55.47431,87.025547 c 7.158904,7.408333 7.158904,7.408333 7.158904,7.408333 L 69.79212,87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"' +
             "/>" +
             "</g>" +
-            "</svg>"
+            "</svg>",
     });
 };
 
@@ -614,13 +613,13 @@ export default function SubChartStockCharts() {
                 position: "relative",
                 width: "100%",
                 height: "100%",
-                touchAction: "none"
+                touchAction: "none",
             }}
         >
             <div
                 id={subChartWrapper1}
                 style={{
-                    position: "absolute" // important
+                    position: "absolute", // important
                 }}
             />
             <div
@@ -631,7 +630,7 @@ export default function SubChartStockCharts() {
                     backgroundColor: "#2B2D70",
                     cursor: "row-resize",
                     position: "absolute",
-                    zIndex: 1
+                    zIndex: 1,
                 }}
             >
                 <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
@@ -639,7 +638,7 @@ export default function SubChartStockCharts() {
             <div
                 id={subChartWrapper2}
                 style={{
-                    position: "absolute" // important
+                    position: "absolute", // important
                 }}
             />
             <div
@@ -650,7 +649,7 @@ export default function SubChartStockCharts() {
                     backgroundColor: "#2B2D70",
                     cursor: "row-resize",
                     position: "absolute",
-                    zIndex: 1
+                    zIndex: 1,
                 }}
             >
                 <div style={{ height: "4px", width: "100%", borderBottom: "2px dashed" }}></div>
@@ -658,7 +657,7 @@ export default function SubChartStockCharts() {
             <div
                 id={subChartWrapper3}
                 style={{
-                    position: "absolute" // important
+                    position: "absolute", // important
                 }}
             />
             <div
@@ -669,7 +668,7 @@ export default function SubChartStockCharts() {
                     width: "100%",
                     minHeight: "100%",
                     maxHeight: "100%",
-                    height: "100%"
+                    height: "100%",
                 }}
             ></div>
         </div>

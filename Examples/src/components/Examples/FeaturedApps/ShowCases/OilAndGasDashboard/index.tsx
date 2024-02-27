@@ -2,8 +2,7 @@ import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
 import "./OIlGasStyles.css";
 
-import { SciChartVerticalGroup } from "scichart/Charting/LayoutManager/SciChartVerticalGroup";
-import { NumberRange } from "scichart/Core/NumberRange";
+import { SciChartVerticalGroup } from "scichart";
 import init3dChart from "./charts/3d";
 import init2dFirstChart from "./charts/2dcharts/first";
 import init2dSecondChart from "./charts/2dcharts/second";
@@ -15,8 +14,8 @@ import init2dSeventhChart from "./charts/2dcharts/seventh";
 import init2dEighthChart from "./charts/2dcharts/eighth";
 import init2dNinthChart from "./charts/2dcharts/ninth";
 import { appTheme } from "./theme";
-import { SciChartSurfaceBase } from "scichart/Charting/Visuals/SciChartSurfaceBase";
-import { RolloverModifier } from "scichart/Charting/ChartModifiers/RolloverModifier";
+import { SciChartSurfaceBase } from "scichart";
+import { RolloverModifier } from "scichart";
 import { drawDensityChart } from "./charts/VerticalCharts/DensityChart";
 import { drawPoreSpaceChart } from "./charts/VerticalCharts/PoreSpaceChart";
 import { drawResistivityChart } from "./charts/VerticalCharts/ResistivityChart";
@@ -41,7 +40,7 @@ const drawExample = async () => {
         "2dSixth": "scichart-2d-sixth",
         "2dSeventh": "scichart-2d-seventh",
         "2dEighth": "scichart-2d-eighth",
-        "2dNinth": "scichart-2d-ninth"
+        "2dNinth": "scichart-2d-ninth",
     };
 
     const sidebar2d = document.getElementById("sidebar-charts-2d");
@@ -66,7 +65,7 @@ const drawExample = async () => {
             init2dSeventhChart(charts["2dSeventh"]),
             init2dEighthChart(charts["2dEighth"]),
             init2dNinthChart(charts["2dNinth"]),
-            init3dChart(charts["3d"])
+            init3dChart(charts["3d"]),
         ]);
 
     const surfaceGroup = new SciChartVerticalGroup();
@@ -78,14 +77,14 @@ const drawExample = async () => {
             drawResistivityChart(),
             drawPoreSpaceChart(),
             drawSonicChart(),
-            drawTextureChart()
-        ]).then(surfaces => {
-            surfaces.forEach(surface => {
+            drawTextureChart(),
+        ]).then((surfaces) => {
+            surfaces.forEach((surface) => {
                 surfaceGroup.addSurfaceToGroup(surface);
                 surface.chartModifiers.add(
                     new RolloverModifier({
                         modifierGroup: "VerticalChartsGroup",
-                        rolloverLineStroke: appTheme.RolloverLineColor
+                        rolloverLineStroke: appTheme.RolloverLineColor,
                     })
                 );
                 // surface.renderableSeries.asArray().forEach(rs => {
@@ -107,11 +106,11 @@ export default function OilAndGasDashboardShowcase() {
 
     React.useEffect(() => {
         const initChartsPromise = drawExample();
-        initChartsPromise.then(surfaces => (surfacesRef.current = surfaces));
+        initChartsPromise.then((surfaces) => (surfacesRef.current = surfaces));
 
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
-            initChartsPromise.then(surfaces => surfaces.forEach(scs => scs.delete()));
+            initChartsPromise.then((surfaces) => surfaces.forEach((scs) => scs.delete()));
             surfacesRef.current = null;
         };
     }, []);

@@ -1,15 +1,18 @@
-import { SciChartSurface } from "scichart";
-import { HitTestInfo } from "scichart/Charting/Visuals/RenderableSeries/HitTest/HitTestInfo";
+import {
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    EllipsePointMarker,
+    FadeAnimation,
+    GenericAnimation,
+    HitTestInfo,
+    LineAnnotation,
+    SciChartSurface,
+    TextAnnotation,
+    XyDataSeries,
+    XyScatterRenderableSeries,
+    easing,
+} from "scichart";
 import { appTheme } from "scichart-example-dependencies";
-import { XyScatterRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/XyScatterRenderableSeries";
-import { FadeAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/FadeAnimation";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
-import { GenericAnimation } from "scichart/Core/Animations/GenericAnimation";
-import { easing } from "scichart/Core/Animations/EasingFunctions";
 
 // This method hit-tests the series body
 const HIT_TEST = "hitTest";
@@ -35,18 +38,18 @@ export function visualiseHitTestPoint(
     // Use a scatter series to temporarily render a single point at the hitTestInfo.x/yValue
     const fill = hitTestInfo.isHit ? appTheme.PaleTeal : appTheme.VividPink;
     const series = new XyScatterRenderableSeries(sciChartSurface.webAssemblyContext2D, {
-        animation: new FadeAnimation({ duration: timeout, ease: t => 1 - t }),
+        animation: new FadeAnimation({ duration: timeout, ease: (t) => 1 - t }),
         opacity: 1,
         dataSeries: new XyDataSeries(sciChartSurface.webAssemblyContext2D, {
             xValues: [hitTestInfo.xValue],
-            yValues: [hitTestInfo.yValue]
+            yValues: [hitTestInfo.yValue],
         }),
         pointMarker: new EllipsePointMarker(sciChartSurface.webAssemblyContext2D, {
             width: 25,
             height: 25,
             strokeThickness: 0,
-            fill
-        })
+            fill,
+        }),
     });
     sciChartSurface.renderableSeries.add(series);
     const hitOrMissLabel = new TextAnnotation({
@@ -56,13 +59,13 @@ export function visualiseHitTestPoint(
         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
         verticalAnchorPoint: EVerticalAnchorPoint.Center,
         text: hitTestInfo.isHit ? "Hit!" : "miss...",
-        textColor: appTheme.ForegroundColor
+        textColor: appTheme.ForegroundColor,
     });
     sciChartSurface.annotations.add(hitOrMissLabel);
 
     const hitTestLine = new LineAnnotation({
         strokeThickness: 2,
-        stroke: fill
+        stroke: fill,
     });
     // Depending on the hitTestMethod, we want to position the lineAnnotation to show whats going on
     if (hitTestMethod === HIT_TEST_DATAPOINT) {
@@ -112,7 +115,7 @@ export function visualiseHitTestPoint(
                 hitOrMissLabel.delete();
                 hitTestLine.delete();
             },
-            ease: easing.linear
+            ease: easing.linear,
         })
     );
 }
