@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "noEmit": false,
         "sourceMap": false,
         "strict": false,
         "noImplicitAny": true,
@@ -18,7 +19,8 @@
         "baseUrl": ".",
         "moduleResolution": "NodeNext",
         "downlevelIteration": true,
-        "allowJs": true,
+        "allowJs": false,
+        "checkJs": false,
         "typeRoots": ["./src/types", "./node_modules/@types"],
         "esModuleInterop": false,
         "skipLibCheck": false,
