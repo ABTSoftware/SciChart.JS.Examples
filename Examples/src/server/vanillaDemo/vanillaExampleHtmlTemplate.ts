@@ -9,7 +9,7 @@ export const htmlTemplate = (options?: { body?: string; styles?: string }) =>
         <script type="importmap">
             {
                 "imports": {
-                    "drawExample": "drawExample.js",
+                    "./drawExample": "./drawExample.js",
                     "scichart-example-dependencies": "./exampleDependencies.browser.mjs",
                     "scichart": "./scichart.browser.mjs"
                 }
@@ -19,6 +19,7 @@ export const htmlTemplate = (options?: { body?: string; styles?: string }) =>
         <script async type="module" src="index.js"></script>
         <script async type="module" src="drawExample.js"></script>
         <script async type="module" src="common.js"></script>
+        <script async type="module" src="exampleDependencies.browser.mjs"></script>
         <style>
             body {
                 font-family: "Arial";
@@ -57,6 +58,7 @@ export const templateWithNav = (options?: { body?: string; styles?: string }) =>
         <script type="importmap">
             {
                 "imports": {
+                    "./drawExample": "./drawExample.js",
                     "scichart-example-dependencies": "./exampleDependencies.browser.mjs",
                     "scichart": "./scichart.browser.mjs"
                 }
@@ -64,8 +66,9 @@ export const templateWithNav = (options?: { body?: string; styles?: string }) =>
         </script>
         <script async type="module" src="scichart.browser.mjs"></script>
         <script async type="module" src="index.ts"></script>
-        <script async type="module" src="drawExample"></script>
+        <script async type="module" src="drawExample.js"></script>
         <script async type="module" src="common.js"></script>
+        <script async type="module" src="exampleDependencies.browser.mjs"></script>
             <style>
                 body {
                     font-family: "Arial";
