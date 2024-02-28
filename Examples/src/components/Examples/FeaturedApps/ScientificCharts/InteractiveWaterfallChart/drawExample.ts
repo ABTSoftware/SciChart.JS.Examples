@@ -398,14 +398,9 @@ export const getChartsInitializationAPI = () => {
         //Run it when user drags the annotation
         dragMeAnnotation.dragDelta.subscribe((args: AnnotationDragDeltaEventArgs) => {
             updateDragAnnotation();
-
-            //Run it when user drags the annotation
-            dragMeAnnotation.dragDelta.subscribe((args: AnnotationDragDeltaEventArgs) => {
-                updateDragAnnotation();
-            });
-
-            mainChartSurface.renderableSeries.get(0).isSelected = true;
         });
+
+        mainChartSurface.renderableSeries.get(0).isSelected = true;
     };
 
     return { initMainChart, initCrossSectionLeft, initCrossSectionRight, configureAfterInit };

@@ -91,13 +91,13 @@ const getData = (n: number) => {
     return { xValues, yValues };
 };
 
-export const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Define some constants
     const numberOfPointsPerTimerTick = 500; // 1,000 points every timer tick
     const timerInterval = 10; // timer tick every 10 milliseconds
     const maxPoints = 100_000; // max points for a single series before the demo stops
 
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
     const rawXAxis = new NumericAxis(wasmContext, { id: "rawX", isVisible: false, autoRange: EAutoRange.Always });
