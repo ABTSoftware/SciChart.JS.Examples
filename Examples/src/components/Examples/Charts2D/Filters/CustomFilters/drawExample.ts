@@ -18,8 +18,6 @@ import {
     XyScatterRenderableSeries,
 } from "scichart";
 
-export const divElementId = "chart";
-
 // A custom filter which calculates the frequency distribution of the original data
 class AggregationFilter extends XyFilterBase {
     private bins: Map<number, number> = new Map<number, number>();
