@@ -33,7 +33,7 @@ export const htmlTemplate = (options?: { body?: string; styles?: string }) =>
 </html>`;
 
 const generateLinkToVanillaExample = (entry: TExamplePage) => {
-    const link = `vanillaDemo/${entry.path}/index.html?nav=1`;
+    const link = `/vanillaDemo${entry.path}/index.html?nav=1`;
     return `<li><a href="${link}">${entry.title}</a>`;
 };
 
@@ -54,6 +54,7 @@ export const templateWithNav = (options?: { body?: string; styles?: string }) =>
         <head>
         <meta charset="utf-8" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <base href="vanillaDemo" />
         <title>SciChart Example</title>
         <script type="importmap">
             {
@@ -65,7 +66,7 @@ export const templateWithNav = (options?: { body?: string; styles?: string }) =>
             }
         </script>
         <script async type="module" src="scichart.browser.mjs"></script>
-        <script async type="module" src="index.ts"></script>
+        <script async type="module" src="index.js"></script>
         <script async type="module" src="drawExample.js"></script>
         <script async type="module" src="common.js"></script>
         <script async type="module" src="exampleDependencies.browser.mjs"></script>
