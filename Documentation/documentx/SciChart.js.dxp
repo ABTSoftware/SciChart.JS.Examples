@@ -2963,13 +2963,13 @@ Show external placement div</Notes>
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="09079101-6ba2-4cdb-9fe3-0fb603ff0486" Status="New Topic" CreatedOn="2016-06-20T21:10:43.7177795Z" ModifiedOn="2023-03-11T08:52:27.9445776Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Licensing SciChart.js" BuildFlags="">
+          <Topic Id="09079101-6ba2-4cdb-9fe3-0fb603ff0486" Status="New Topic" CreatedOn="2016-06-20T21:10:43.7177795Z" ModifiedOn="2024-03-13T11:03:29.7161343Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Licensing SciChart.js" BuildFlags="">
             <Title />
             <ContentsTitle m="2020-10-12T10:15:57.1777442Z">Licensing SciChart.js</ContentsTitle>
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2023-03-11T08:52:27.9445776Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                <Content m="2024-03-13T11:03:29.7161343Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;Are you new to SciChart? Check out our most popular pages to get started below:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="2247b20c-4be1-42cb-ad24-125310703f67"&gt;SciChart.js Vanilla JavaScript Tutorials&lt;/A&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
@@ -2982,16 +2982,15 @@ Show external placement div</Notes>
 &lt;LI&gt;&lt;A href="5760011e-fce8-440b-bdb5-470621e85012"&gt;Styling and Themeing&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="01b31f4f-bced-419a-a232-e11ae17a7255"&gt;3D charts Basics&lt;/A&gt;&amp;nbsp; &lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H1&gt;SciChart.js Licensing&lt;/H1&gt;
-&lt;P&gt;We have a walkthrough guide showing how to get started with a Trial License, or apply a purchased license for SciChart.js at&amp;nbsp;&lt;A href="https://www.scichart.com/licensing-scichart-js" target=_blank&gt;www.scichart.com/licensing-scichart-js&lt;/A&gt;&lt;/P&gt;
-&lt;H2&gt;Trial License&lt;/H2&gt;
-&lt;P&gt;SciChart.js comes with a fully-functional 30-day trial. The first time you run a SciChart.js application, you will need to set a trial license key. Full instructions can be found at&amp;nbsp;&lt;A href="https://www.scichart.com/licensing-scichart-js" target=_blank&gt;www.scichart.com/licensing-scichart-js&lt;/A&gt;. &lt;B&gt;The trial is a fully featured 30-day trial with no limitation in functionality&lt;/B&gt;.&lt;/P&gt;
-&lt;P&gt;The trial version of SciChart.js displays a watermark “Powered by SciChart” but this is not shown in the full licensed version of SciChart.&lt;/P&gt;
-&lt;P&gt;At the end of your 30-day trial, applications you have built with SciChart will cease to work and you will not be able to keep working on them.&lt;/P&gt;
+&lt;H2&gt;Community&amp;nbsp;License&lt;/H2&gt;
+&lt;P&gt;Starting from version 3.2 SciChart.js starts with a FREE,&amp;nbsp;fully featured,&amp;nbsp;community license.&amp;nbsp;&amp;nbsp;No need to sign up, start a trial, or enter a license key. This is for non-commercial use, and limited time commercial evaluation. For all the details on community licensing, including who can use it, features and restrictions, check out the&amp;nbsp;&lt;A href="https://www.scichart.com/community-licensing/" target=_blank&gt;community licensing&lt;/A&gt; page.&amp;nbsp; The main thing to be aware of is that any version of SciChart.js is only valid for community use for 6 months from the date of it's release, so you need to update your application regularly.&lt;/P&gt;
+&lt;P&gt;To use SciChart.js in commercial applications without a watermark, and without the need to regularly update it, purchase a full license from&amp;nbsp;&lt;A href="https://store.scichart.com" target=_blank&gt;store.scichart.com&lt;/A&gt;.&lt;/P&gt;
 &lt;P&gt;Once you purchased licenses, the license is perpetual with optional renewal to keep up to date (get support and get later builds).&lt;/P&gt;
 &lt;H2&gt;Activating a Purchased License&lt;/H2&gt;
 &lt;P&gt;If you have purchased licenses to SciChart, full instructions to license can be found on the web at&amp;nbsp;&lt;A href="https://www.scichart.com/licensing-scichart-js" target=_blank&gt;www.scichart.com/licensing-scichart-js&lt;/A&gt;&lt;/P&gt;
-&lt;P&gt;If your license has been applied correctly, you should be able to run your application on devices and without seeing the "Powered by SciChart" watermark.&lt;/P&gt;
-&lt;H2&gt;Troubleshooting Licensing &amp;amp; Activation&lt;/H2&gt;
+&lt;P&gt;If your license has been applied correctly, you should be able to run your application on devices and without seeing the "SciChart" watermark.&lt;/P&gt;
+&lt;H2&gt;Troubleshooting Licensing&lt;/H2&gt;
+&lt;P&gt;Please see the troubleshooting section at&amp;nbsp;&lt;A href="http://www.scichart.com/licensing-scichart-js" target=_blank&gt;www.scichart.com/licensing-scichart-js&lt;/A&gt;.&amp;nbsp; If you contact support with a licensing issue, we will ask you to enable license debug mode.&amp;nbsp; This is done by setting a local storage key called LICENSE_DEBUG with value 1.&amp;nbsp; Reload the page and the console will output detailed licensing information.&amp;nbsp; Please copy this log from the very beginning - it starts with the scichart version number.&lt;/P&gt;
 &lt;P&gt;If you have trouble with licensing or activation, please contact&amp;nbsp;&lt;A href="https://support.scichart.com/index.php?/Tickets/Submit" target=_blank&gt;SciChart.js Support&lt;/A&gt;.&lt;/P&gt;
 &lt;P&gt;&lt;/P&gt;</Content>
               </TopicSection>
@@ -15735,7 +15734,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">0</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">494</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
