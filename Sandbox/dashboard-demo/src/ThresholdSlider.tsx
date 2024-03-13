@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
-import { SurfaceContext } from './SurfaceContext';
 import { appTheme } from 'scichart-example-dependencies';
 import { Rect } from 'scichart';
 import { TMainChartConfigFunc } from './main-chart-config';
+import { SciChartSurfaceContext } from 'scichart-react';
 
 const ThresholdSlider = () => {
     // get reference to chart init result
-    const context = useContext(SurfaceContext) as Awaited<ReturnType<TMainChartConfigFunc>>;
+    const context = useContext(SciChartSurfaceContext) as Awaited<ReturnType<TMainChartConfigFunc>>;
     const [seriesViewRect, setSeriesViewRect] = useState(context.sciChartSurface.seriesViewRect);
     const viewport = context.sciChartSurface.renderSurface.viewportSize;
 

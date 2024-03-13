@@ -5,9 +5,9 @@ import {
     TRolloverTooltipDataTemplate,
     XySeriesInfo,
     chartBuilder,
-} from 'scichart';
-import { TDataEntry } from './data-generation';
-import { IInitResult, TInitFunction } from './SciChart';
+} from "scichart";
+import { TDataEntry } from "./data-generation";
+import { IInitResult, TInitFunction } from "scichart-react";
 
 export type TUpdateDataFunc = (newData: TDataEntry[]) => void;
 
@@ -19,8 +19,6 @@ export type TChartConfigFunc<TSurface extends ISciChartSurfaceBase = SciChartSur
     ISciChartSurfaceBase,
     TChartConfigResult<TSurface>
 >;
-
-
 
 /** Synchronizes first X axes of the surfaces */
 export const synchronizeXVisibleRanges = (surfaces: SciChartSurface[], shouldSync: () => boolean) => {
@@ -51,6 +49,6 @@ const tooltipDataTemplate: TRolloverTooltipDataTemplate = (seriesInfo: XySeriesI
     return valuesWithLabels;
 };
 
-export const tooltipDataTemplateKey = 'CommonTooltipDataTemplate';
+export const tooltipDataTemplateKey = "CommonTooltipDataTemplate";
 
 chartBuilder.registerFunction(EBaseType.OptionFunction, tooltipDataTemplateKey, tooltipDataTemplate);

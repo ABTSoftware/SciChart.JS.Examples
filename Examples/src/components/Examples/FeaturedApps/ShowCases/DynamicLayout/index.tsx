@@ -16,15 +16,15 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier
 } from "scichart";
-import {appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import { GridLayoutModifier } from "./GridLayoutModifier";
+import { SciChartReact, SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
+import { useContext } from "react";
 
-const divElementId = "chart";
-
-const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme
     });
 
@@ -39,7 +39,6 @@ const drawExample = async () => {
 
     const POINTS = 1000;
     for (let i = 0; i < 10; i++) {
-        
         // Create arrays of x, y values (just arrays of numbers)
         const { xValues, yValues } = new RandomWalkGenerator().getRandomWalkSeries(POINTS);
 
@@ -56,10 +55,10 @@ const drawExample = async () => {
 
     // Optional: Add some interactivity to the chart
     sciChartSurface.chartModifiers.add(
-        new ZoomExtentsModifier({ modifierGroup: "chart"}),
-        new MouseWheelZoomModifier({ modifierGroup: "chart"}),
-        new ZoomPanModifier({ modifierGroup: "chart"}),
-        new RolloverModifier({ modifierGroup: "chart"})
+        new ZoomExtentsModifier({ modifierGroup: "chart" }),
+        new MouseWheelZoomModifier({ modifierGroup: "chart" }),
+        new ZoomPanModifier({ modifierGroup: "chart" }),
+        new RolloverModifier({ modifierGroup: "chart" })
     );
 
     const glm = new GridLayoutModifier();
@@ -67,7 +66,11 @@ const drawExample = async () => {
 
     sciChartSurface.zoomExtents();
 
-    return { wasmContext, sciChartSurface, modifer: glm };
+    const setIsGridLayoutMode = (value: boolean) => {
+        glm.isGrid = value;
+    };
+
+    return { wasmContext, sciChartSurface, setIsGridLayoutMode };
 };
 
 const useStyles = makeStyles(theme => ({
@@ -80,6 +83,7 @@ const useStyles = makeStyles(theme => ({
     },
     toolbarRow: {
         display: "flex",
+        order: 1,
         // flex: "auto",
         flexBasis: "70px",
         padding: 10,
@@ -87,7 +91,8 @@ const useStyles = makeStyles(theme => ({
         color: appTheme.ForegroundColor
     },
     chartArea: {
-        flex: 1,
+        order: 2,
+        flex: 1
     }
 }));
 
@@ -95,55 +100,48 @@ const useStyles = makeStyles(theme => ({
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function DynamicLayout() {
     const localClasses = useStyles();
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const modiferRef = React.useRef<GridLayoutModifier>();
-    const [isGrid, setIsGrid] = React.useState<boolean>(false);
-
-    React.useEffect(() => {
-        const chartPromise = drawExample().then(res => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            modiferRef.current = res.modifer;
-        });
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                sciChartSurfaceRef.current = undefined;
-                modiferRef.current = undefined;
-            } else {
-                chartPromise.then(()=> {
-                    sciChartSurfaceRef.current.delete();
-                    sciChartSurfaceRef.current = undefined;
-                    modiferRef.current = undefined;
-                });
-            }
-        }
-    }, []);
-
-    const handleToggleButtonChanged = (event: any, value: boolean) => {
-        modiferRef.current.isGrid = value;
-        setIsGrid(value);
-    };
 
     return (
         <React.Fragment>
             <div className={classes.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
-                        <ToggleButtonGroup
-                            exclusive
-                            value={isGrid}
-                            onChange={handleToggleButtonChanged}
-                            size="medium"
-                            color="primary"
-                            aria-label="small outlined button group">
-                            <ToggleButton value={false} style={{color: appTheme.ForegroundColor}}>Single Chart</ToggleButton>
-                            <ToggleButton value={true} style={{color: appTheme.ForegroundColor}}>Chart Per Series</ToggleButton>
-                        </ToggleButtonGroup>
-                    </div>
-                    <div className={localClasses.chartArea} id={divElementId}></div>
-                </div>
+                <SciChartReact
+                    className={localClasses.flexOuterContainer}
+                    innerContainerProps={{ className: localClasses.chartArea }}
+                    initChart={drawExample}
+                >
+                    <ChartToolbar />
+                </SciChartReact>
             </div>
         </React.Fragment>
     );
 }
+
+const ChartToolbar = () => {
+    const localClasses = useStyles();
+    const initResult = useContext(SciChartSurfaceContext) as TResolvedReturnType<typeof drawExample>;
+    const [isGrid, setIsGrid] = React.useState<boolean>(false);
+
+    const handleToggleButtonChanged = (event: any, value: boolean) => {
+        initResult.setIsGridLayoutMode(value);
+        setIsGrid(value);
+    };
+    return (
+        <div className={localClasses.toolbarRow}>
+            <ToggleButtonGroup
+                exclusive
+                value={isGrid}
+                onChange={handleToggleButtonChanged}
+                size="medium"
+                color="primary"
+                aria-label="small outlined button group"
+            >
+                <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
+                    Single Chart
+                </ToggleButton>
+                <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
+                    Chart Per Series
+                </ToggleButton>
+            </ToggleButtonGroup>
+        </div>
+    );
+};

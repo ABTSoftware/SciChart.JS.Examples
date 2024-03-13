@@ -1,0 +1,11 @@
+.react-grid-item > .react-resizable-handle::after {
+    color: white;
+    content: '';
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 5px;
+    height: 5px;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}

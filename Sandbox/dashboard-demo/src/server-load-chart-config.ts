@@ -24,12 +24,14 @@ import {
     chartBuilder,
     ELegendOrientation,
     TCheckedChangedArgs,
+    GradientParams,
+    Point,
 } from 'scichart';
 import { appTheme } from 'scichart-example-dependencies';
 import { GridLayoutModifier } from './GridLayoutModifier';
 import { getData, TDataEntry, availableServers, getRequestsNumberPerTimestamp } from './data-generation';
 import { TChartConfigResult, tooltipDataTemplateKey } from './chart-configurations';
-import { TInitFunction } from './SciChart';
+import { TInitFunction } from 'scichart-react';
 
 export type TServerStatsChartConfigFuncResult = TChartConfigResult<SciChartSurface> & {
     subscribeToServerSelection: (callback: (server: string, isChecked: boolean) => void) => void;
@@ -37,7 +39,7 @@ export type TServerStatsChartConfigFuncResult = TChartConfigResult<SciChartSurfa
 export type TServerStatsChartConfigFunc = TInitFunction<SciChartSurface, TServerStatsChartConfigFuncResult>;
 
 // per server
-export const createChart4: TServerStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
+export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
@@ -47,13 +49,13 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
             useNativeText: true,
             padding: Thickness.fromString('15 0 0 0'),
             fontSize: 20,
+            color: appTheme.ForegroundColor,
         },
     });
-    sciChartSurface.renderNativeAxisLabelsImmediately = true;
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
         labelFormat: ENumericFormat.Date_DDMM,
-        useNativeText: true,
+        // useNativeText: true,
     });
 
     const yAxis = new NumericAxis(wasmContext, {
@@ -61,6 +63,10 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
         axisTitle: 'Requests',
         axisTitleStyle: {
             fontSize: 20,
+            color: appTheme.ForegroundColor,
+        },
+        labelStyle: {
+            color: appTheme.ForegroundColor,
         },
         useNativeText: true,
     });
@@ -70,13 +76,11 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
 
     const data = getData();
 
-    // const stackedColumnCollection = new StackedColumnCollection(wasmContext);
-
     // filtered per server
     const filter = (data: TDataEntry[], server: string) => data.filter((entry) => entry.server === server);
 
-    const seriesFillColors = [appTheme.MutedPink, appTheme.MutedOrange, appTheme.MutedPurple, appTheme.MutedTeal];
-    const seriesStrokeColors = [appTheme.VividPink, appTheme.VividOrange, appTheme.VividPurple, appTheme.VividTeal];
+    const seriesFillColors = ['#f6086c', '#9002a1', '#47bde6', '#34c19c'];
+    const seriesStrokeColors = ['#f6086c', '#9002a1', '#47bde6', '#34c19c'];
 
     availableServers.forEach((server, index) => {
         const pageData = filter(data, server);
@@ -91,8 +95,8 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
         const rendSeries = new FastMountainRenderableSeries(wasmContext, {
             dataSeries,
             fill: seriesFillColors[index],
-            stroke: seriesStrokeColors[index],
-            strokeThickness: 2,
+            stroke: seriesStrokeColors[index] + 'AA',
+            strokeThickness: 4,
             opacity: 0.5,
             pointMarker: new EllipsePointMarker(wasmContext, {
                 fill: appTheme.Indigo,
@@ -107,8 +111,6 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
         sciChartSurface.renderableSeries.add(rendSeries);
     });
 
-    // stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
-
     const seriesSelectionModifier = new SeriesSelectionModifier({
         enableHover: true,
         enableSelection: true,
@@ -121,22 +123,25 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
         orientation: ELegendOrientation.Horizontal,
         placement: ELegendPlacement.TopRight,
         showCheckboxes: true,
+        backgroundColor: '#0d1523',
     });
 
     const rolloverModifier = new RolloverModifier({
         id: 'ServerLoadCursorModifier',
         tooltipDataTemplate: tooltipDataTemplateKey,
         showTooltip: true,
-        snapToDataPoint: true
-    })
+        snapToDataPoint: true,
+    });
     rolloverModifier.rolloverLineAnnotation.showLabel = true;
+    rolloverModifier.rolloverLineAnnotation.axisLabelFill = '#e8c667';
+    rolloverModifier.rolloverLineAnnotation.axisLabelStroke = '#0d1523';
     sciChartSurface.chartModifiers.add(
         seriesSelectionModifier,
         legendModifier,
         new ZoomExtentsModifier({ xyDirection: EXyDirection.XDirection }),
         new ZoomPanModifier({ xyDirection: EXyDirection.XDirection }),
         new MouseWheelZoomModifier({ xyDirection: EXyDirection.XDirection }),
-        rolloverModifier  
+        rolloverModifier
     );
 
     const glm = new GridLayoutModifier({ id: 'GridLayoutModifier' });
@@ -175,11 +180,10 @@ export const createChart4: TServerStatsChartConfigFunc = async (divElementId: st
     return { sciChartSurface, updateData, subscribeToServerSelection };
 };
 
-
-
 const onSelectionChanged = (args: SelectionChangedArgs) => {
     args.allSeries.forEach((series) => {
         if (series.isSelected) {
+            console.log('onSelectionChanged');
             series.pointMarker.opacity = series.opacity;
         } else {
             series.pointMarker.opacity = 0;

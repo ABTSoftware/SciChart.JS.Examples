@@ -22,25 +22,23 @@ import {
     TPointMarkerArgb,
     parseColorToUIntArgb,
     SeriesInfo,
-    CursorTooltipSvgAnnotation,
     EVerticalTextPosition,
     Thickness,
     BasePaletteProvider,
     EStrokePaletteMode,
     EFillPaletteMode,
-    parseArgbToHtmlColor
 } from "scichart";
 import { appTheme } from "scichart-example-dependencies";
 import { TDataEntry, getData, getRequestsNumberPerTimestamp } from "./data-generation";
-import { TInitFunction } from "./SciChart";
 import { TChartConfigResult } from "./chart-configurations";
+import { TInitFunction } from "scichart-react";
 
 export type TMainChartConfigFunc = TInitFunction<
     SciChartSurface,
     TChartConfigResult<SciChartSurface> & { updateThreshold: (value: number) => void }
 >;
 
-export const createChart1: TMainChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
+export const createMainChart: TMainChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
@@ -49,16 +47,16 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         titleStyle: {
             placeWithinChart: true,
             fontSize: 16,
-            color: appTheme.ForegroundColor
-        }
+            color: appTheme.ForegroundColor,
+        },
     });
 
     const data = getData();
 
     const { xValues, yValues, groupedEntries } = getRequestsNumberPerTimestamp(data);
-    const metadata = groupedEntries.map(entries => ({
+    const metadata = groupedEntries.map((entries) => ({
         isSelected: false,
-        entries
+        entries,
     }));
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues,
@@ -66,13 +64,13 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         metadata,
         containsNaN: false,
         isSorted: true,
-        dataEvenlySpacedInX: true
+        dataEvenlySpacedInX: true,
     });
 
     let averageDurationThreshold = 1600;
 
     const getAverageDurationFromMetadata = (pointMetadata: IPointMetadata) => {
-        const { entries } = pointMetadata as typeof metadata[number];
+        const { entries } = pointMetadata as (typeof metadata)[number];
         const averageDuration = entries.reduce((acc, value) => acc + value.duration, 0) / entries.length;
         return Math.round(averageDuration);
     };
@@ -82,7 +80,7 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         style: {
             fontFamily: "Arial",
             fontSize: 14,
-            padding: Thickness.fromNumber(10)
+            padding: Thickness.fromNumber(10),
         },
         horizontalTextPosition: EHorizontalTextPosition.Center,
         verticalTextPosition: EVerticalTextPosition.Above,
@@ -90,7 +88,7 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         metaDataSelector: (pointMetadata: IPointMetadata) => {
             const averageDuration = getAverageDurationFromMetadata(pointMetadata);
             return averageDuration > averageDurationThreshold ? `${Math.round(averageDuration)}ms` : undefined;
-        }
+        },
     };
 
     class CustomPaletteProvider extends BasePaletteProvider implements IPointMarkerPaletteProvider {
@@ -130,25 +128,25 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         axisTitle: "Date Axis",
         axisTitleStyle: {
             fontSize: 20,
-            color: appTheme.ForegroundColor
+            color: appTheme.ForegroundColor,
         },
         visibleRangeLimit: dataSeries.getXRange(),
         labelFormat: ENumericFormat.Date_DDMM,
-        isInnerAxis: true
+        isInnerAxis: true,
         // useNativeText: true,
     });
     const yAxis = new NumericAxis(wasmContext, {
         axisTitle: "Requests",
         axisTitleStyle: {
             fontSize: 20,
-            color: appTheme.ForegroundColor
+            color: appTheme.ForegroundColor,
         },
         labelStyle: {
-            color: appTheme.ForegroundColor
+            color: appTheme.ForegroundColor,
         },
         visibleRangeLimit: new NumberRange(0, 1000),
         labelPrecision: 0,
-        useNativeText: true
+        useNativeText: true,
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -165,15 +163,15 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
             stroke: "#0bf4cd",
             fill: "#17243d",
             strokeThickness: 2,
-            opacity: 1
+            opacity: 1,
         }),
         stroke: "#34c19c",
         strokeThickness: 2,
         fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
             { color: "#67bdaf", offset: 0 },
-            { color: "#223459 ", offset: 1 }
+            { color: "#223459 ", offset: 1 },
         ]),
-        paletteProvider
+        paletteProvider,
     });
 
     sciChartSurface.renderableSeries.add(mountainSeries);
@@ -189,7 +187,7 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         axisLabelFill: "#e8c667",
         axisLabelStroke: "#0d1523",
         tooltipContainerBackground: "#34c19c",
-        tooltipLegendOffsetX: 100
+        tooltipLegendOffsetX: 100,
         // tooltipLegendTemplate: getTooltipLegendTemplate,
     });
 
@@ -202,7 +200,7 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         // Lines here are returned to the tooltip and displayed as text-line per tooltip
         const lines: string[] = [];
         // lines.push(tooltipTitle);
-        const metadataEntry = seriesInfo.pointMetadata as typeof metadata[number];
+        const metadataEntry = seriesInfo.pointMetadata as (typeof metadata)[number];
         const averageDuration = getAverageDurationFromMetadata(metadataEntry);
         lines.push(`Count: ${seriesInfo.formattedYValue}`);
         lines.push(`Avg. Time: ${averageDuration}ms`);
@@ -213,7 +211,7 @@ export const createChart1: TMainChartConfigFunc = async (divElementId: string | 
         id: "TotalRequestsRolloverModifier",
         showTooltip: true,
         showRolloverLine: false,
-        tooltipDataTemplate: getTooltipDataTemplate
+        tooltipDataTemplate: getTooltipDataTemplate,
     });
     sciChartSurface.chartModifiers.add(
         cursorModifier,

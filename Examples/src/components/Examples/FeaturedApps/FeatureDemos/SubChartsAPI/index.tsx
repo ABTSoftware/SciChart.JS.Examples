@@ -41,13 +41,12 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier
 } from "scichart";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 type TMessage = {
     title: string;
     detail: string;
 };
-
-export const divElementId = "chart";
 
 const axisOptions: INumericAxisOptions = {
     useNativeText: true,
@@ -66,7 +65,10 @@ const axisOptions: INumericAxisOptions = {
 // theme overrides
 const sciChartTheme = appTheme.SciChartJsTheme;
 
-export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) => void) => {
+export const drawGridExample = async (
+    rootElement: string | HTMLDivElement,
+    updateMessages: (newMessages: TMessage[]) => void
+) => {
     const subChartsNumber = 64;
     const columnsNumber = 8;
     const rowsNumber = 8;
@@ -94,7 +96,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
     };
     ///
 
-    const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.createSingle(divElementId, {
+    const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.createSingle(rootElement, {
         theme: sciChartTheme
     });
 
@@ -346,7 +348,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
 
     return {
         wasmContext,
-        subChartSurface: mainSurface,
+        sciChartSurface: mainSurface,
         controls: {
             startStreaming,
             stopStreaming,
@@ -388,40 +390,14 @@ const useStyles = makeStyles(theme => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function SubchartsGrid() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const controlsRef = React.useRef<{
-        startStreaming: () => void,
-        stopStreaming: () => void,
-        setLabels: (show: boolean) => void
+        startStreaming: () => void;
+        stopStreaming: () => void;
+        setLabels: (show: boolean) => void;
     }>();
     const [isDirty, setIsDirty] = React.useState<boolean>(false);
 
     const [messages, setMessages] = React.useState<TMessage[]>([]);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawGridExample((newMessages: TMessage[]) => {
-            setMessages([...newMessages]);
-        }).then(res => {
-            sciChartSurfaceRef.current = res.subChartSurface;
-            controlsRef.current = res.controls;
-        });
-
-        // Delete subChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                controlsRef.current.stopStreaming();
-                sciChartSurfaceRef.current?.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                controlsRef.current.stopStreaming();
-                sciChartSurfaceRef.current?.delete();
-            });
-        };
-    }, []);
 
     const localClasses = useStyles();
 
@@ -433,6 +409,11 @@ export default function SubchartsGrid() {
     const handleLabelsChange = (ev: any, checked: boolean) => {
         controlsRef.current.setLabels(checked);
     };
+
+    const drawExample = (rootElement: string | HTMLDivElement) =>
+        drawGridExample(rootElement, (newMessages: TMessage[]) => {
+            setMessages([...newMessages]);
+        });
 
     return (
         <div className={classes.ChartWrapper}>
@@ -463,7 +444,16 @@ export default function SubchartsGrid() {
                         ))}
                     </div>
                 </div>
-                <div className={localClasses.chartArea} id={divElementId}></div>
+                <SciChartReact
+                    className={localClasses.chartArea}
+                    initChart={drawExample}
+                    onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
+                        controlsRef.current = controls;
+                    }}
+                    onDelete={({controls} : TResolvedReturnType<typeof drawExample>) => {
+                        controls.stopStreaming()
+                    }}
+                />
             </div>
         </div>
     );
