@@ -1,4 +1,4 @@
-import * as React from "react";
+import { FC, useContext, useState, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -13,18 +13,17 @@ import Logo from "../../images/scichart-logo-app-bar.svg";
 import LogoSmall from "../../images/scichart-logo-app-bar-mobile.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import npm from "./npm.svg";
-import { EPageFramework } from "../AppRouter/pages";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 
 type TProps = {
     toggleDrawer: () => void;
     currentExample?: TExamplePage;
-    framework: EPageFramework;
 };
 
-const AppBarTop: React.FC<TProps> = (props) => {
+const AppBarTop: FC<TProps> = (props) => {
     const { toggleDrawer, currentExample } = props;
-    const [isMobile, setIsMobile] = React.useState(false);
-
+    const [isMobile, setIsMobile] = useState(false);
+    const selectedFramework = useContext(FrameworkContext);
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const contextualGithub =
         currentExample?.githubUrl !== undefined
@@ -42,7 +41,7 @@ const AppBarTop: React.FC<TProps> = (props) => {
     const contextualDocTitle =
         docLinks !== undefined && docLinks.length > 0 ? docLinks[0].title : "SciChart.js Documentation Home";
 
-    React.useEffect(() => {
+    useEffect(() => {
         setIsMobile(window.innerWidth <= 768);
     }, []);
 
@@ -79,7 +78,7 @@ const AppBarTop: React.FC<TProps> = (props) => {
                     <a
                         rel="nofollow external"
                         className={`MuiButtonBase-root MuiButton-root ${classes.PurpleButton}`}
-                        href={`${currentExample.path}?codesandbox=1&framework=${props.framework}`}
+                        href={`${currentExample.path(selectedFramework)}?codesandbox=1&framework=${selectedFramework}`}
                         title={`Edit ${currentExample.title} in CodeSandbox`}
                         target="_blank"
                     >

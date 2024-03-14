@@ -1,11 +1,11 @@
-import * as React from "react";
-import Button from "@material-ui/core/Button";
+import { FC, useContext } from "react";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Navigation from "../Navigation/Navigation";
 import { useNavigate } from "react-router-dom";
 import classes from "./DrawerContent.module.scss";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 
 // tslint:disable-next-line:no-var-requires
 const APP_VERSION = require("../../../package.json").dependencies.scichart;
@@ -16,16 +16,16 @@ type TProps = {
     toggleDrawer: () => void;
 };
 
-const DrawerContent: React.FC<TProps> = props => {
+const DrawerContent: FC<TProps> = (props) => {
     const navigate = useNavigate();
-
+    const framework = useContext(FrameworkContext);
     const { testIsOpened, toggleOpenedMenuItem, toggleDrawer } = props;
 
     return (
         <div className={classes.DrawerContent}>
             <div className={classes.DrawerTopSection}>
                 <div className={classes.toolbar}>
-                    <h6 className={classes.homepageLink} onClick={() => navigate("/")}>
+                    <h6 className={classes.homepageLink} onClick={() => navigate(`/${framework}`)}>
                         SciChart.js
                     </h6>
                     <span className={classes.versionCaption}>{`v${APP_VERSION}`}</span>

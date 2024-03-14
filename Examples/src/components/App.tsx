@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useMatch } from "react-router-dom";
 import { Theme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -23,18 +23,67 @@ import Gallery from "./Gallery/Gallery";
 import { EPageFramework, PAGES } from "./AppRouter/pages";
 import { GalleryItem } from "../helpers/types/types";
 import { allGalleryItems, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
+import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
+
+const isValidFramework = (framework: string | EPageFramework) =>
+    Object.values(EPageFramework).includes(framework as EPageFramework);
+
+// TODO refactor
+const getExamplePageKey = (framework: string | EPageFramework, examplePath: string) =>
+    Object.keys(EXAMPLES_PAGES).find(
+        (key) => EXAMPLES_PAGES[key].path(framework as EPageFramework) === `/${examplePath}`
+    );
+
+const useExampleRouteParams = () => {
+    let framework: EPageFramework;
+    let examplePageKey: string;
+
+    const matchIframeRoute = useMatch("/iframe/:example");
+    const matchWithFrameworkAndExample = useMatch("/:framework/:example");
+    const matchWithOneParam = useMatch("/:exampleOrFramework");
+    // console.log("matchIframeRoute", matchIframeRoute);
+    // console.log("matchWithFrameworkAndExample", matchWithFrameworkAndExample);
+    // console.log("matchWithOneParam", matchWithOneParam);
+    if (matchIframeRoute) {
+        examplePageKey = getExamplePageKey(EPageFramework.Vanilla, matchIframeRoute.params.example);
+        return { isIFrame: true, framework: EPageFramework.Vanilla, examplePageKey };
+    }
+
+    if (matchWithFrameworkAndExample) {
+        if (isValidFramework(matchWithFrameworkAndExample.params.framework)) {
+            framework = matchWithFrameworkAndExample.params.framework as EPageFramework;
+            examplePageKey = getExamplePageKey(framework, matchWithFrameworkAndExample.params.example);
+        }
+    } else if (matchWithOneParam) {
+        if (isValidFramework(matchWithOneParam.params.exampleOrFramework)) {
+            framework = matchWithOneParam.params.exampleOrFramework as EPageFramework;
+        } else {
+            examplePageKey = getExamplePageKey(EPageFramework.Vanilla, matchWithOneParam.params.exampleOrFramework);
+            framework = EPageFramework.Vanilla;
+        }
+    } else {
+        framework = EPageFramework.Vanilla;
+    }
+    // console.log("framework", framework);
+    // console.log("examplePageKey", examplePageKey);
+
+    return { isIFrame: false, framework, examplePageKey };
+};
 
 export default function App() {
     const location = useLocation();
-    const [searchParams, setSearchParams] = useSearchParams();
-    const frameworkFromUrl = searchParams.get("framework");
-    const selectedFramework = Object.values(EPageFramework).includes(frameworkFromUrl as EPageFramework)
-        ? (frameworkFromUrl as EPageFramework)
-        : EPageFramework.Vanilla;
+    let { isIFrame, examplePageKey, framework } = useExampleRouteParams();
+
     // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
-    const isIFrame = location.pathname.substring(1, 7) === "iframe";
-    let pathname = isIFrame ? location.pathname.substring(7) : location.pathname;
-    pathname = pathname.endsWith("/") ? pathname.substring(0, pathname.length - 1) : pathname;
+    // const isIFrame = location.pathname.substring(1, 7) === "iframe";
+    // let pathname = isIFrame ? location.pathname.substring(7) : location.pathname;
+    // pathname = pathname.endsWith("/") ? pathname.substring(0, pathname.length - 1) : pathname;
+
+    // pathname = `/${segments[segments.length - 1]}`;
+    // const frameworkFromUrl = segments[0] ?? EPageFramework.React;
+
+    const selectedFramework = framework;
+
     const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
     let initialOpenedMenuItems = {
@@ -56,8 +105,8 @@ export default function App() {
     const [openedMenuItems, setOpenedMenuItems] = React.useState<Record<string, boolean>>(initialOpenedMenuItems);
 
     const [isDrawerOpened, setIsDrawerOpened] = React.useState(false);
-
-    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === pathname);
+    const currentExampleKey = examplePageKey;
+    // console.log("currentExampleKey", currentExampleKey);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     const currentExampleId = currentExample?.id;
     // SeeAlso is now optional on exampleInfo. Return this if provided else auto-generate from menu
@@ -96,58 +145,53 @@ export default function App() {
     }, [currentExampleId]);
 
     if (isIFrame) {
-        return (
-            <AppRouter
-                currentExample={currentExample}
-                seeAlso={seeAlso}
-                isIFrame={true}
-                framework={selectedFramework}
-            />
-        );
+        return <AppRouter currentExample={currentExample} seeAlso={seeAlso} isIFrame={true} />;
     }
 
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
-        <div className={classes.App}>
-            <Drawer
-                className={classes.DrawerMobile}
-                variant="temporary"
-                classes={{ paper: classes.DrawerPaper }}
-                anchor="right"
-                open={isMedium && isDrawerOpened}
-                onClose={toggleDrawer}
-            >
-                <DrawerContent
-                    testIsOpened={testIsOpened}
-                    toggleOpenedMenuItem={toggleOpenedMenuItem}
-                    toggleDrawer={toggleDrawer}
-                />
-            </Drawer>
-            <div className={classes.MainAppContent}>
-                <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} framework={selectedFramework} />
-                {PAGES.homapage.path === location.pathname && (
-                    <AppRouter currentExample={currentExample} seeAlso={[]} framework={selectedFramework} />
-                )}
-
-                <div className={classes.MainAppWrapper}>
-                    <div className={classes.DrawerDesktop}>
-                        <DrawerContent
-                            testIsOpened={testIsOpened}
-                            toggleOpenedMenuItem={toggleOpenedMenuItem}
-                            toggleDrawer={() => {}}
-                        />
-                    </div>
-                    {PAGES.homapage.path === location.pathname ? (
-                        <div className={classes.GalleryAppWrapper}>
-                            <Gallery examples={allGalleryItems} />
-                        </div>
-                    ) : (
-                        <AppRouter currentExample={currentExample} seeAlso={seeAlso} framework={selectedFramework} />
+        <FrameworkContext.Provider value={selectedFramework}>
+            <div className={classes.App}>
+                <Drawer
+                    className={classes.DrawerMobile}
+                    variant="temporary"
+                    classes={{ paper: classes.DrawerPaper }}
+                    anchor="right"
+                    open={isMedium && isDrawerOpened}
+                    onClose={toggleDrawer}
+                >
+                    <DrawerContent
+                        testIsOpened={testIsOpened}
+                        toggleOpenedMenuItem={toggleOpenedMenuItem}
+                        toggleDrawer={toggleDrawer}
+                    />
+                </Drawer>
+                <div className={classes.MainAppContent}>
+                    <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
+                    {PAGES.homapage.path(selectedFramework) === location.pathname && (
+                        <AppRouter currentExample={currentExample} seeAlso={[]} />
                     )}
-                </div>
 
-                <AppFooter />
+                    <div className={classes.MainAppWrapper}>
+                        <div className={classes.DrawerDesktop}>
+                            <DrawerContent
+                                testIsOpened={testIsOpened}
+                                toggleOpenedMenuItem={toggleOpenedMenuItem}
+                                toggleDrawer={() => {}}
+                            />
+                        </div>
+                        {PAGES.homapage.path(selectedFramework) === location.pathname ? (
+                            <div className={classes.GalleryAppWrapper}>
+                                <Gallery examples={allGalleryItems} />
+                            </div>
+                        ) : (
+                            <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
+                        )}
+                    </div>
+
+                    <AppFooter />
+                </div>
             </div>
-        </div>
+        </FrameworkContext.Provider>
     );
 }

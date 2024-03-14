@@ -17,7 +17,6 @@ export const PAGES: Record<string, TPage> = {
     homapage: {
         id: "homepage",
         title: "Homepage",
-        // TODO use framework
-        path: (framework: EPageFramework) => "/",
+        path: (framework: EPageFramework) => `/${framework}`,
     },
 };

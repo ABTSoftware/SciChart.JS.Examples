@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useRef, useContext, FC, useState, useEffect } from "react";
 import SeoTags from "../SeoTags/SeoTags";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
@@ -16,24 +16,25 @@ import submit = Simulate.submit;
 import { Radio, SubdirectoryArrowRight } from "@material-ui/icons";
 import { InfoToolbar } from "./Toolbar";
 import { baseGithubPath } from "../../constants";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { EPageFramework } from "../AppRouter/pages";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 
 type TProps = {
     // example: () => JSX.Element;
     examplePage: TExamplePage;
     seeAlso: GalleryItem[];
-    framework: EPageFramework;
 };
 
-const ExamplesRoot: React.FC<TProps> = (props) => {
-    const [render, setRender] = React.useState(false);
+const ExamplesRoot: FC<TProps> = (props) => {
+    const [render, setRender] = useState(false);
     const { examplePage, seeAlso } = props;
-    const [showSource, setShowSource] = React.useState(false);
-    const [firstRender, setFirstRender] = React.useState(true);
+    const [showSource, setShowSource] = useState(false);
+    const [firstRender, setFirstRender] = useState(true);
+    const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
-
-    const myRef = React.useRef(null);
+    const framework = useContext(FrameworkContext);
+    const myRef = useRef(null);
     const executeScroll = () => myRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
     const ExampleComponent = getExampleComponent(examplePage.id);
     // const ChartComponent = getExampleComponent(examplePage.id);
@@ -52,9 +53,9 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = "https://demo.scichart.com";
     const exampleImage = examplePage ? `${basePath}/${examplePage.thumbnailImage}` : undefined;
-    const exampleUrl = examplePage ? examplePage.path : "";
+    const exampleUrl = examplePage ? examplePage.path(framework) : "";
 
-    React.useEffect(() => {
+    useEffect(() => {
         updateGoogleTagManagerPage();
         window.scrollTo(0, 0);
         window.Prism?.highlightAll();
@@ -70,7 +71,7 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
     //     );
     // };
 
-    React.useEffect(() => {
+    useEffect(() => {
         setRender(true);
         return () => {
             setRender(false);
@@ -194,7 +195,7 @@ const ExamplesRoot: React.FC<TProps> = (props) => {
                                     <Button className={classes.GitHubLink}>
                                         <SubdirectoryArrowRight />
                                         <a
-                                            href={`/iframe${examplePage.path}`}
+                                            href={`/iframe${examplePage.path(EPageFramework.Vanilla)}`}
                                             title="View this example in Full Screen"
                                             target="_blank"
                                             rel="nofollow"

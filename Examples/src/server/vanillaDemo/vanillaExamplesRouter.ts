@@ -3,6 +3,7 @@ import * as fs from "fs";
 import { htmlTemplate, templateWithNav } from "./vanillaExampleHtmlTemplate";
 import express = require("express");
 import { EXAMPLES_PAGES, TExamplePage } from "../../components/AppRouter/examplePages";
+import { EPageFramework } from "../../components/AppRouter/pages";
 
 export const vanillaExamplesRouter = express.Router();
 
@@ -27,7 +28,9 @@ vanillaExamplesRouter.get("*", async (req, res) => {
         return;
     }
 
-    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === examplePath);
+    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(
+        (key) => EXAMPLES_PAGES[key].path(EPageFramework.Vanilla) === examplePath
+    );
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
 
     if (currentExample) {

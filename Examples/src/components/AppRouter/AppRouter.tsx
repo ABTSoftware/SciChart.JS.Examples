@@ -9,11 +9,12 @@ import classes from "../Examples/styles/Examples.module.scss";
 import { GalleryItem } from "../../helpers/types/types";
 import NoIndexTag from "../SeoTags/NoIndexTag";
 import { InfoToolbar } from "../Examples/Toolbar";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { useContext } from "react";
 type TProps = {
     currentExample: TExamplePage;
     isIFrame?: boolean;
     seeAlso: GalleryItem[];
-    framework: EPageFramework;
 };
 
 const examplePagesKeys = Object.keys(EXAMPLES_PAGES);
@@ -29,6 +30,8 @@ const ExampleComponent = React.memo((props: { children: React.ReactNode; example
 
 export default function AppRouter(props: TProps) {
     const { currentExample, seeAlso, isIFrame = false } = props;
+    const selectedFramework = useContext(FrameworkContext);
+
     if (isIFrame) {
         const ChartComponent = getExampleComponent(currentExample.id);
 
@@ -41,7 +44,7 @@ export default function AppRouter(props: TProps) {
                         return (
                             <Route
                                 key={key}
-                                path={`/iframe${exPage.path}`}
+                                path={`/iframe${exPage.path(EPageFramework.Vanilla)}`}
                                 element={
                                     <ExampleComponent examplePage={currentExample}>
                                         <ChartComponent />
@@ -61,18 +64,13 @@ export default function AppRouter(props: TProps) {
                     return (
                         <Route
                             key={key}
-                            path={exPage.path}
-                            element={
-                                <ExamplesRoot
-                                    examplePage={currentExample}
-                                    seeAlso={seeAlso}
-                                    framework={props.framework}
-                                />
-                            }
+                            path={`/${selectedFramework}?${exPage.path(selectedFramework)}`}
+                            element={<ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />}
                         />
                     );
                 })}
-                <Route path={PAGES.homapage.path} element={<PageHome />} />
+                <Route path={PAGES.homapage.path(selectedFramework)} element={<PageHome />} />
+                <Route path={"/"} element={<PageHome />} />
             </Routes>
         );
     }

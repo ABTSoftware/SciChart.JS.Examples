@@ -1,4 +1,4 @@
-import * as React from "react";
+import { FC, Fragment, useContext } from "react";
 import ListItem from "@material-ui/core/ListItem";
 import Collapse from "@material-ui/core/Collapse";
 import List from "@material-ui/core/List";
@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import MenuListItemText from "../../helpers/shared/MenuListItemText/MenuListItemText";
 import classes from "./ListItemsBlock.module.scss";
 import ListItemCollapseArrowIcon from "./ListItemCollapseArrowIcon";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -17,9 +18,10 @@ type TProps = {
     menuItemsId: string;
 };
 
-const ListItemsBlock: React.FC<TProps> = props => {
+const ListItemsBlock: FC<TProps> = (props) => {
     const location = useLocation();
-
+    const selectedFramework = useContext(FrameworkContext);
+    console.log("ListItemsBlock selectedFramework", selectedFramework);
     const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId } = props;
 
     return (
@@ -33,8 +35,8 @@ const ListItemsBlock: React.FC<TProps> = props => {
             </div>
             <Collapse in={checkIsOpened(menuItemsId)} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    {menuItems.map(el => (
-                        <React.Fragment key={el.item.id}>
+                    {menuItems.map((el) => (
+                        <Fragment key={el.item.id}>
                             <div className={classes.CollapsibleMenuListItem} onClick={() => onExpandClick(el.item.id)}>
                                 <MenuListItemText text={el.item.name} className={classes.SecondLevelMenuListItemText} />
                                 <ListItemCollapseArrowIcon
@@ -45,17 +47,23 @@ const ListItemsBlock: React.FC<TProps> = props => {
                             </div>
                             <Collapse in={checkIsOpened(el.item.id)} timeout="auto" unmountOnExit>
                                 <List component="div" disablePadding>
-                                    {el.submenu.map(subEl => (
+                                    {el.submenu.map((subEl) => (
                                         <div
                                             key={subEl.id}
                                             className={
-                                                location.pathname === subEl.path
+                                                location.pathname === subEl.path(selectedFramework)
                                                     ? classes.SelectedBottomLevelListItem
                                                     : classes.BottomLevelListItem
                                             }
-                                            onClick={() => historyPushPath(subEl.path)}
+                                            onClick={() =>
+                                                historyPushPath(`${selectedFramework}${subEl.path(selectedFramework)}`)
+                                            }
                                         >
-                                            <a className={classes.ExampleLink} href={subEl.path} title={subEl.title}>
+                                            <a
+                                                className={classes.ExampleLink}
+                                                href={`${selectedFramework}${subEl.path(selectedFramework)}`}
+                                                title={subEl.title}
+                                            >
                                                 {subEl.title}
                                             </a>
                                             {/*<ListItemText*/}
@@ -67,7 +75,7 @@ const ListItemsBlock: React.FC<TProps> = props => {
                                     ))}
                                 </List>
                             </Collapse>
-                        </React.Fragment>
+                        </Fragment>
                     ))}
                 </List>
             </Collapse>

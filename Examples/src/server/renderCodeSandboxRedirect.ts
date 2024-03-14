@@ -24,21 +24,29 @@ const renderCodeSandBoxRedirectPage = (form: string) => {
   </html>`;
 };
 
+const basePath = path.join(__dirname, "Examples");
+
 export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => {
-    const basePath = path.join(__dirname, "Examples");
-    await loadStyles(basePath);
-    // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
-    const isIFrame = req.path.substring(1, 7) === "iframe";
-    const pathname = isIFrame ? req.path.substring(7) : req.path;
-    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === pathname);
-    const currentExample = EXAMPLES_PAGES[currentExampleKey];
     try {
-        const folderPath = path.join(basePath, currentExample.filepath);
+        await loadStyles(basePath);
+        // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
+        const isIFrame = req.path.substring(1, 7) === "iframe";
+        const pathname = isIFrame ? req.path.substring(7) : req.path;
+        // const segments = pathname.split("/");
+        // console.log("segments", segments);
+        // const framework = segments[1] as EPageFramework;
         const framework = req.query.framework as EPageFramework;
-        // const isValidFramework = true
-        // if (!isValidFramework) {
-        //   throw new Error(`Invalid framework parameter!`)
-        // }
+        const isValidFramework = Object.values(EPageFramework).includes(framework);
+        if (!isValidFramework) {
+            return res.send(400);
+        }
+        const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(
+            (key) => EXAMPLES_PAGES[key].path(framework) === pathname
+            // (key) => EXAMPLES_PAGES[key].path(framework) === `/${segments[2]}`
+        );
+        const currentExample = EXAMPLES_PAGES[currentExampleKey];
+        const folderPath = path.join(basePath, currentExample.filepath);
+
         console.log("framework", framework);
         const form = await getSandboxWithTemplate(folderPath, currentExample, framework);
         const page = renderCodeSandBoxRedirectPage(form);
