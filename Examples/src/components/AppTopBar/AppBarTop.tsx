@@ -13,13 +13,15 @@ import Logo from "../../images/scichart-logo-app-bar.svg";
 import LogoSmall from "../../images/scichart-logo-app-bar-mobile.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import npm from "./npm.svg";
+import { EPageFramework } from "../AppRouter/pages";
 
 type TProps = {
     toggleDrawer: () => void;
     currentExample?: TExamplePage;
+    framework: EPageFramework;
 };
 
-const AppBarTop: React.FC<TProps> = props => {
+const AppBarTop: React.FC<TProps> = (props) => {
     const { toggleDrawer, currentExample } = props;
     const [isMobile, setIsMobile] = React.useState(false);
 
@@ -75,13 +77,15 @@ const AppBarTop: React.FC<TProps> = props => {
                 </Button>
                 {currentExample !== undefined && (
                     <a
-                        className={`MuiButtonBase-root MuiButton-root ${classes.PurpleButton}`}
                         rel="nofollow external"
-                        href={`${currentExample.path}?codesandbox=1`}
+                        className={`MuiButtonBase-root MuiButton-root ${classes.PurpleButton}`}
+                        href={`${currentExample.path}?codesandbox=1&framework=${props.framework}`}
                         title={`Edit ${currentExample.title} in CodeSandbox`}
                         target="_blank"
                     >
-                        <span className={`MuiButton-label`}><CodeIcon fontSize="small" /> &nbsp;Code Sandbox</span>
+                        <span className={`MuiButton-label`}>
+                            <CodeIcon fontSize="small" /> &nbsp;Code Sandbox
+                        </span>
                     </a>
                 )}
                 <a className={classes.GitHubLink} href={contextualGithub} title={contextualGithubTitle} target="_blank">

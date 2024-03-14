@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Routes, Route, RouteProps } from "react-router-dom";
 import PageHome from "../PageHome/PageHome";
-import { PAGES } from "./pages";
+import { EPageFramework, PAGES } from "./pages";
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import ExamplesRoot from "../Examples/ExamplesRoot";
 import { getExampleComponent } from "./examples";
@@ -13,6 +13,7 @@ type TProps = {
     currentExample: TExamplePage;
     isIFrame?: boolean;
     seeAlso: GalleryItem[];
+    framework: EPageFramework;
 };
 
 const examplePagesKeys = Object.keys(EXAMPLES_PAGES);
@@ -35,7 +36,7 @@ export default function AppRouter(props: TProps) {
             <div className={classes.ExampleWrapperIFrame}>
                 <NoIndexTag />
                 <Routes>
-                    {examplePagesKeys.map(key => {
+                    {examplePagesKeys.map((key) => {
                         const exPage = EXAMPLES_PAGES[key];
                         return (
                             <Route
@@ -55,13 +56,19 @@ export default function AppRouter(props: TProps) {
     } else {
         return (
             <Routes>
-                {examplePagesKeys.map(key => {
+                {examplePagesKeys.map((key) => {
                     const exPage = EXAMPLES_PAGES[key];
                     return (
                         <Route
                             key={key}
                             path={exPage.path}
-                            element={<ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />}
+                            element={
+                                <ExamplesRoot
+                                    examplePage={currentExample}
+                                    seeAlso={seeAlso}
+                                    framework={props.framework}
+                                />
+                            }
                         />
                     );
                 })}
