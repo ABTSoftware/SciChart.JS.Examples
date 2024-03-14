@@ -155,28 +155,34 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                     {/*</Button>*/}
                                     <Button
                                         onClick={() => {
-                                            setSearchParams({ framework: EPageFramework.Vanilla });
+                                            navigate(
+                                                `/${EPageFramework.Vanilla}${examplePage.path(EPageFramework.Vanilla)}`
+                                            );
                                         }}
                                     >
                                         <span className={classes.ButtonsText}>Switch Framework to Vanilla TS</span>
                                     </Button>
                                     <Button
                                         onClick={() => {
-                                            setSearchParams({ framework: EPageFramework.React });
+                                            navigate(
+                                                `/${EPageFramework.React}${examplePage.path(EPageFramework.React)}`
+                                            );
                                         }}
                                     >
                                         <span className={classes.ButtonsText}>Switch Framework to React TS</span>
                                     </Button>
                                     <Button
                                         onClick={() => {
-                                            setSearchParams({ framework: EPageFramework.Angular });
+                                            navigate(
+                                                `/${EPageFramework.Angular}${examplePage.path(EPageFramework.Angular)}`
+                                            );
                                         }}
                                     >
                                         <span className={classes.ButtonsText}>Switch Framework to Angular TS</span>
                                     </Button>
                                     <Button
                                         onClick={() => {
-                                            setSearchParams({ framework: EPageFramework.Vue });
+                                            navigate(`/${EPageFramework.Vue}${examplePage.path(EPageFramework.Vue)}`);
                                         }}
                                     >
                                         <span className={classes.ButtonsText}>Switch Framework to Vue TS</span>
