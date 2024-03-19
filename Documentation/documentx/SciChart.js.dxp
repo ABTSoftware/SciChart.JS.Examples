@@ -12895,13 +12895,13 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="34fc166c-b0dc-4749-a87f-50854a179ca8" Status="New Topic" CreatedOn="2021-10-01T07:22:50.4060986Z" ModifiedOn="2021-10-01T13:08:24.8254128Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Hit-Test API for Heatmap Series" BuildFlags="">
+              <Topic Id="34fc166c-b0dc-4749-a87f-50854a179ca8" Status="New Topic" CreatedOn="2021-10-01T07:22:50.4060986Z" ModifiedOn="2024-03-19T17:29:05.692696Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Hit-Test API for Heatmap Series" BuildFlags="">
                 <Title />
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2021-10-01T12:26:43.9678221Z">&lt;H2&gt;The hitTest method on Heatmap Series&lt;/H2&gt;
+                    <Content m="2024-03-19T17:29:05.692696Z">&lt;H2&gt;The hitTest method on Heatmap Series&lt;/H2&gt;
 &lt;P&gt;The &lt;STRONG&gt;IHitTestProvider.hitTest&lt;/STRONG&gt; method on&amp;nbsp;&lt;A href="d53b2f8b-665d-4804-bb72-9e19b3c84ed0"&gt;UniformHeatmapRenderableSeries&lt;/A&gt; tests if the click was within the Heatmap.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;hitTest method on Heatmap Series&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;const hitTestInfo = heatmapSeries.hitTestProvider.hitTest(premultipliedX, premultipliedY);&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;The algorithm is as follows:&lt;/P&gt;
 &lt;OL&gt;
@@ -12932,7 +12932,7 @@ Show external placement div</Notes>
 &lt;P&gt;&lt;IMG border=0 alt="" src="images/HitTestApi_heatmap-chart1.png"&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;If to click inside the Heatmap surface it will be hit. In the browser console you will find output for the &lt;STRONG&gt;HitTestInfo&lt;/STRONG&gt; object containing &lt;STRONG&gt;heatmapValue&lt;/STRONG&gt;, &lt;STRONG&gt;heatmapXIndex&lt;/STRONG&gt; and &lt;STRONG&gt;heatmapYIndex&lt;/STRONG&gt; properties which are only for the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/uniformheatmapdataseries.html"&gt;UniformHeatmapDataSeries&lt;/A&gt;.&lt;/P&gt;
 &lt;H2&gt;The hitTestDataPoint method on Heatmap Series&lt;/H2&gt;
-&lt;P&gt;The &lt;STRONG&gt;IHitTestProvider.hitTestDataPoint&lt;/STRONG&gt; method is not supported for&amp;nbsp;&lt;A href="d53b2f8b-665d-4804-bb72-9e19b3c84ed0"&gt;UniformHeatmapRenderableSeries&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;The &lt;STRONG&gt;IHitTestProvider.hitTestDataPoint&lt;/STRONG&gt; method works identically as the &lt;STRONG&gt;IHitTestProvider.hitTest&lt;/STRONG&gt;.&lt;/P&gt;
 &lt;H2&gt;The hitTestXSlice method on Heatmap Series&lt;/H2&gt;
 &lt;P&gt;The &lt;STRONG&gt;IHitTestProvider.hitTestXSlice&lt;/STRONG&gt; method works identically as the &lt;STRONG&gt;IHitTestProvider.hitTest&lt;/STRONG&gt;.&lt;/P&gt;</Content>
                   </TopicSection>
