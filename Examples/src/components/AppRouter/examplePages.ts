@@ -54,7 +54,7 @@ import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/Medic
 import { lidar3DPointCloudExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/exampleInfo";
 import { audioAnalyzerExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/exampleInfo";
 import { waterfallChartExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/exampleInfo";
-import { TPage, TPathTemplate } from "./pages";
+import { TPage, TPathTemplate, TTitleTemplate } from "./pages";
 import { tenorCurvesExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/exampleInfo";
 import { loadOneMillionPointsExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/exampleInfo";
 import { dragAxisToScaleExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/exampleInfo";
@@ -109,12 +109,12 @@ export type TExampleInfo = {
     /**
      * Example title
      */
-    title: string;
+    title: TTitleTemplate;
     /**
      * Meta title
      */
-    pageTitle: string;
-    path: TPathTemplate;
+    pageTitle: TTitleTemplate;
+    path: string;
 
     documentationLinks: TDocumentationLink[];
     tips?: any;

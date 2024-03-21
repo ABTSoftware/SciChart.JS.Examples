@@ -20,33 +20,35 @@ import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";
 import classes from "./App.module.scss";
 import "./index.scss";
 import Gallery from "./Gallery/Gallery";
-import { EPageFramework, PAGES } from "./AppRouter/pages";
+import { EPageFramework, FRAMEWORK_NAME, PAGES } from "./AppRouter/pages";
 import { GalleryItem } from "../helpers/types/types";
-import { allGalleryItems, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
+import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 
 const isValidFramework = (framework: string | EPageFramework) =>
     Object.values(EPageFramework).includes(framework as EPageFramework);
 
 // TODO refactor
-const getExamplePageKey = (framework: string | EPageFramework, examplePath: string) =>
-    Object.keys(EXAMPLES_PAGES).find(
-        (key) => EXAMPLES_PAGES[key].path(framework as EPageFramework) === `/${examplePath}`
-    );
+const getExamplePageKey = (framework: string | EPageFramework, examplePath: string) => {
+    return Object.keys(EXAMPLES_PAGES).find((key) => {
+        const pagePath = EXAMPLES_PAGES[key].path;
+        const oldFormat = `javascript-${pagePath}`;
+        return pagePath === examplePath || oldFormat === examplePath;
+    });
+};
 
 const useExampleRouteParams = () => {
     let framework: EPageFramework;
     let examplePageKey: string;
+    let isHomePage = false;
 
     const matchIframeRoute = useMatch("/iframe/:example");
     const matchWithFrameworkAndExample = useMatch("/:framework/:example");
     const matchWithOneParam = useMatch("/:exampleOrFramework");
-    // console.log("matchIframeRoute", matchIframeRoute);
-    // console.log("matchWithFrameworkAndExample", matchWithFrameworkAndExample);
-    // console.log("matchWithOneParam", matchWithOneParam);
+
     if (matchIframeRoute) {
         examplePageKey = getExamplePageKey(EPageFramework.Vanilla, matchIframeRoute.params.example);
-        return { isIFrame: true, framework: EPageFramework.Vanilla, examplePageKey };
+        return { isIFrame: true, isHomePage: false, framework: EPageFramework.Vanilla, examplePageKey };
     }
 
     if (matchWithFrameworkAndExample) {
@@ -57,6 +59,7 @@ const useExampleRouteParams = () => {
     } else if (matchWithOneParam) {
         if (isValidFramework(matchWithOneParam.params.exampleOrFramework)) {
             framework = matchWithOneParam.params.exampleOrFramework as EPageFramework;
+            isHomePage = true;
         } else {
             examplePageKey = getExamplePageKey(EPageFramework.Vanilla, matchWithOneParam.params.exampleOrFramework);
             framework = EPageFramework.Vanilla;
@@ -64,23 +67,13 @@ const useExampleRouteParams = () => {
     } else {
         framework = EPageFramework.Vanilla;
     }
-    // console.log("framework", framework);
-    // console.log("examplePageKey", examplePageKey);
 
-    return { isIFrame: false, framework, examplePageKey };
+    return { isIFrame: false, isHomePage, framework, examplePageKey };
 };
 
 export default function App() {
     const location = useLocation();
-    let { isIFrame, examplePageKey, framework } = useExampleRouteParams();
-
-    // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
-    // const isIFrame = location.pathname.substring(1, 7) === "iframe";
-    // let pathname = isIFrame ? location.pathname.substring(7) : location.pathname;
-    // pathname = pathname.endsWith("/") ? pathname.substring(0, pathname.length - 1) : pathname;
-
-    // pathname = `/${segments[segments.length - 1]}`;
-    // const frameworkFromUrl = segments[0] ?? EPageFramework.React;
+    let { isIFrame, isHomePage, examplePageKey, framework } = useExampleRouteParams();
 
     const selectedFramework = framework;
 
@@ -110,7 +103,8 @@ export default function App() {
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     const currentExampleId = currentExample?.id;
     // SeeAlso is now optional on exampleInfo. Return this if provided else auto-generate from menu
-    const seeAlso: GalleryItem[] = currentExample?.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample);
+    const seeAlso: GalleryItem[] =
+        currentExample?.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample, FRAMEWORK_NAME[framework]);
 
     // // Find the example category
     // const exampleCategory = ALL_MENU_ITEMS.find(menuItem => {
@@ -148,6 +142,8 @@ export default function App() {
         return <AppRouter currentExample={currentExample} seeAlso={seeAlso} isIFrame={true} />;
     }
 
+    const allGalleryItems = generateExamplesGallery(FRAMEWORK_NAME[framework]);
+
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
         <FrameworkContext.Provider value={selectedFramework}>
@@ -168,9 +164,7 @@ export default function App() {
                 </Drawer>
                 <div className={classes.MainAppContent}>
                     <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
-                    {PAGES.homapage.path(selectedFramework) === location.pathname && (
-                        <AppRouter currentExample={currentExample} seeAlso={[]} />
-                    )}
+                    {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
                     <div className={classes.MainAppWrapper}>
                         <div className={classes.DrawerDesktop}>
@@ -180,7 +174,7 @@ export default function App() {
                                 toggleDrawer={() => {}}
                             />
                         </div>
-                        {PAGES.homapage.path(selectedFramework) === location.pathname ? (
+                        {isHomePage ? (
                             <div className={classes.GalleryAppWrapper}>
                                 <Gallery examples={allGalleryItems} />
                             </div>

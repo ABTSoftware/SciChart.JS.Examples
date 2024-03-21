@@ -33,7 +33,7 @@ export const htmlTemplate = (options?: { body?: string; styles?: string }) =>
 </html>`;
 
 const generateLinkToVanillaExample = (entry: TExamplePage) => {
-    const link = `/vanillaDemo${entry.path}/index.html?nav=1`;
+    const link = `/vanillaDemo/${entry.path}/index.html?nav=1`;
     return `<li><a href="${link}">${entry.title}</a>`;
 };
 

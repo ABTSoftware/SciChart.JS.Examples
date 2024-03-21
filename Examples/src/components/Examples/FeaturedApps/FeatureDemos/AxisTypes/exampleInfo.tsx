@@ -1,10 +1,8 @@
-import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-axis-types.jpg";
-import { EPageFramework } from "../../../../AppRouter/pages";
 
 const previewDescription = `Demonstrates The different axis types available in Scichart, and some of the options for configuring them`;
 const description = ``;
@@ -32,7 +30,7 @@ export const axisTypesExampleInfo: TExampleInfo = {
     // TODO add to example strings
     title: "Axis Types",
     pageTitle: "Axis Types" + ExampleStrings.exampleGenericTitleSuffix,
-    path: (framework: EPageFramework) => `/${framework}-axis-types`,
+    path: `axis-types`,
     filepath: "FeaturedApps/FeatureDemos/AxisTypes",
     subtitle: Subtitle,
     documentationLinks,

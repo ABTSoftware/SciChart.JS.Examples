@@ -1,13 +1,13 @@
 import { FC, Fragment, useContext } from "react";
-import ListItem from "@material-ui/core/ListItem";
 import Collapse from "@material-ui/core/Collapse";
 import List from "@material-ui/core/List";
 import { TMenuItem } from "../AppRouter/examples";
-import { useLocation } from "react-router-dom";
+import { useMatch } from "react-router-dom";
 import MenuListItemText from "../../helpers/shared/MenuListItemText/MenuListItemText";
 import classes from "./ListItemsBlock.module.scss";
 import ListItemCollapseArrowIcon from "./ListItemCollapseArrowIcon";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -19,9 +19,9 @@ type TProps = {
 };
 
 const ListItemsBlock: FC<TProps> = (props) => {
-    const location = useLocation();
+    const framework = useContext(FrameworkContext);
+    const match = useMatch(`/${framework}/:example`);
     const selectedFramework = useContext(FrameworkContext);
-    console.log("ListItemsBlock selectedFramework", selectedFramework);
     const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId } = props;
 
     return (
@@ -51,20 +51,18 @@ const ListItemsBlock: FC<TProps> = (props) => {
                                         <div
                                             key={subEl.id}
                                             className={
-                                                location.pathname === subEl.path(selectedFramework)
+                                                match?.params?.example === subEl.path
                                                     ? classes.SelectedBottomLevelListItem
                                                     : classes.BottomLevelListItem
                                             }
-                                            onClick={() =>
-                                                historyPushPath(`${selectedFramework}${subEl.path(selectedFramework)}`)
-                                            }
+                                            onClick={() => historyPushPath(`${selectedFramework}/${subEl.path}`)}
                                         >
                                             <a
                                                 className={classes.ExampleLink}
-                                                href={`${selectedFramework}${subEl.path(selectedFramework)}`}
-                                                title={subEl.title}
+                                                href={`${selectedFramework}/${subEl.path}`}
+                                                title={getTitle(subEl.title, selectedFramework)}
                                             >
-                                                {subEl.title}
+                                                {getTitle(subEl.title, selectedFramework)}
                                             </a>
                                             {/*<ListItemText*/}
                                             {/*    className={classes.listItemText2}*/}

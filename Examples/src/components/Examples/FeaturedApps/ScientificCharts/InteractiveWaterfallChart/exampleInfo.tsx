@@ -28,7 +28,7 @@ export const waterfallChartExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: "Interactive Waterfall Spectral Chart",
     pageTitle: "Interactive Waterfall Chart" + ExampleStrings.exampleGenericTitleSuffix,
-    path: (framework: string) => `/${framework}-interactive-waterfall-chart`,
+    path: `interactive-waterfall-chart`,
     filepath: "FeaturedApps/ScientificCharts/InteractiveWaterfallChart",
     subtitle: Subtitle,
     documentationLinks,

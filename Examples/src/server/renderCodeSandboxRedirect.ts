@@ -40,14 +40,10 @@ export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => 
         if (!isValidFramework) {
             return res.send(400);
         }
-        const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(
-            (key) => EXAMPLES_PAGES[key].path(framework) === pathname
-            // (key) => EXAMPLES_PAGES[key].path(framework) === `/${segments[2]}`
-        );
+        const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === pathname);
         const currentExample = EXAMPLES_PAGES[currentExampleKey];
         const folderPath = path.join(basePath, currentExample.filepath);
 
-        console.log("framework", framework);
         const form = await getSandboxWithTemplate(folderPath, currentExample, framework);
         const page = renderCodeSandBoxRedirectPage(form);
         res.send(page);

@@ -17,8 +17,9 @@ import { Radio, SubdirectoryArrowRight } from "@material-ui/icons";
 import { InfoToolbar } from "./Toolbar";
 import { baseGithubPath } from "../../constants";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { EPageFramework } from "../AppRouter/pages";
+import { EPageFramework, FRAMEWORK_NAME } from "../AppRouter/pages";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     // example: () => JSX.Element;
@@ -34,13 +35,16 @@ const ExamplesRoot: FC<TProps> = (props) => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const framework = useContext(FrameworkContext);
+    const frameworkName = FRAMEWORK_NAME[framework];
     const myRef = useRef(null);
     const executeScroll = () => myRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
     const ExampleComponent = getExampleComponent(examplePage.id);
     // const ChartComponent = getExampleComponent(examplePage.id);
 
-    const titleText = examplePage ? examplePage.title : ExampleStrings.siteHomeTitle;
-    const seoTitleText = examplePage.pageTitle;
+    const titleText = examplePage
+        ? getTitle(examplePage.title, framework)
+        : ExampleStrings.siteHomeTitle(frameworkName);
+    const seoTitleText = getTitle(examplePage.pageTitle, framework);
     const subtitleText = examplePage ? examplePage.subtitle() : undefined;
 
     const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;
@@ -53,7 +57,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = "https://demo.scichart.com";
     const exampleImage = examplePage ? `${basePath}/${examplePage.thumbnailImage}` : undefined;
-    const exampleUrl = examplePage ? examplePage.path(framework) : "";
+    const exampleUrl = examplePage ? examplePage.path : "";
 
     useEffect(() => {
         updateGoogleTagManagerPage();
@@ -97,7 +101,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                 <a
                                     className={classes.ExampleRootDescriptionLink}
                                     target="_blank"
-                                    href={`https://scichart.com/example/javascript-chart${exampleUrl}/`}
+                                    href={`https://scichart.com/example/javascript-chart/${exampleUrl}/`}
                                     title={titleText}
                                 >
                                     {titleText}
@@ -117,7 +121,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                     className={classes.ExampleRootDescriptionLink}
                                     target="_blank"
                                     rel="nofollow external"
-                                    href={`${exampleUrl}?codesandbox=1`}
+                                    href={`/${exampleUrl}?codesandbox=1`}
                                 >
                                     Open in CodeSandBox
                                 </a>
@@ -155,34 +159,28 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                     {/*</Button>*/}
                                     <Button
                                         onClick={() => {
-                                            navigate(
-                                                `/${EPageFramework.Vanilla}${examplePage.path(EPageFramework.Vanilla)}`
-                                            );
+                                            navigate(`/${EPageFramework.Vanilla}/${examplePage.path}`);
                                         }}
                                     >
                                         <span className={classes.ButtonsText}>Switch Framework to Vanilla TS</span>
                                     </Button>
                                     <Button
                                         onClick={() => {
-                                            navigate(
-                                                `/${EPageFramework.React}${examplePage.path(EPageFramework.React)}`
-                                            );
+                                            navigate(`/${EPageFramework.React}/${examplePage.path}`);
                                         }}
                                     >
                                         <span className={classes.ButtonsText}>Switch Framework to React TS</span>
                                     </Button>
                                     <Button
                                         onClick={() => {
-                                            navigate(
-                                                `/${EPageFramework.Angular}${examplePage.path(EPageFramework.Angular)}`
-                                            );
+                                            navigate(`/${EPageFramework.Angular}/${examplePage.path}`);
                                         }}
                                     >
                                         <span className={classes.ButtonsText}>Switch Framework to Angular TS</span>
                                     </Button>
                                     <Button
                                         onClick={() => {
-                                            navigate(`/${EPageFramework.Vue}${examplePage.path(EPageFramework.Vue)}`);
+                                            navigate(`/${EPageFramework.Vue}/${examplePage.path}`);
                                         }}
                                     >
                                         <span className={classes.ButtonsText}>Switch Framework to Vue TS</span>
@@ -201,7 +199,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                     <Button className={classes.GitHubLink}>
                                         <SubdirectoryArrowRight />
                                         <a
-                                            href={`/iframe${examplePage.path(EPageFramework.Vanilla)}`}
+                                            href={`/iframe/${examplePage.path}`}
                                             title="View this example in Full Screen"
                                             target="_blank"
                                             rel="nofollow"

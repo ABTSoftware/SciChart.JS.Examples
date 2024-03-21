@@ -4,6 +4,7 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-data-animation.jpg";
+import { TFrameworkName } from "../../../../AppRouter/pages";
 
 const previewDescription = ``; //`Demonstrates how to run data animation for a JavaScript Chart.`;
 const description = `Every second new random values are generated for the scatter series and transition from one state to another is animated`;
@@ -13,8 +14,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDataAnimationDocumentation,
         title: ExampleStrings.urlTitleDataAnimationDocumentation,
-        linkTitle: "JavaScript Data Animation Documentation"
-    }
+        linkTitle: "JavaScript Data Animation Documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -29,7 +30,8 @@ const Subtitle = () => (
 export const dataAnimationExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDataAnimation,
-    pageTitle: ExampleStrings.titleDataAnimation + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: (frameworkName: TFrameworkName) =>
+        ExampleStrings.titleDataAnimation(frameworkName) + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlDataAnimation,
     filepath: "Charts2D/Animations/DataAnimation",
     subtitle: Subtitle,
@@ -40,5 +42,5 @@ export const dataAnimationExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
     metaKeywords: "data, dataset, animation, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

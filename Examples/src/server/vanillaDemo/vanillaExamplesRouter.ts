@@ -28,9 +28,7 @@ vanillaExamplesRouter.get("*", async (req, res) => {
         return;
     }
 
-    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(
-        (key) => EXAMPLES_PAGES[key].path(EPageFramework.Vanilla) === examplePath
-    );
+    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === examplePath);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
 
     if (currentExample) {

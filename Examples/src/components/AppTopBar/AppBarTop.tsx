@@ -14,6 +14,7 @@ import LogoSmall from "../../images/scichart-logo-app-bar-mobile.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import npm from "./npm.svg";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     toggleDrawer: () => void;
@@ -31,7 +32,7 @@ const AppBarTop: FC<TProps> = (props) => {
             : "https://github.com/ABTSoftware/SciChart.JS.Examples";
     const contextualGithubTitle =
         currentExample !== undefined
-            ? `View source for ${currentExample.title} on Github`
+            ? `View source for ${getTitle(currentExample.title, selectedFramework)} on Github`
             : "Clone SciChart.js.examples on GitHub";
     const docLinks = currentExample?.documentationLinks;
     const contextualDocUrl =
@@ -78,8 +79,8 @@ const AppBarTop: FC<TProps> = (props) => {
                     <a
                         rel="nofollow external"
                         className={`MuiButtonBase-root MuiButton-root ${classes.PurpleButton}`}
-                        href={`${currentExample.path(selectedFramework)}?codesandbox=1&framework=${selectedFramework}`}
-                        title={`Edit ${currentExample.title} in CodeSandbox`}
+                        href={`${currentExample.path}?codesandbox=1&framework=${selectedFramework}`}
+                        title={`Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`}
                         target="_blank"
                     >
                         <span className={`MuiButton-label`}>

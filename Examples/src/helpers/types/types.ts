@@ -6,6 +6,6 @@ export type GalleryItem = {
         imgPath: string;
         title: string;
         seoTitle: string;
-        examplePath: TPathTemplate;
+        examplePath: string;
     }[];
 };

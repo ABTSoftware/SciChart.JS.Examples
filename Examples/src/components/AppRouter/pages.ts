@@ -5,18 +5,27 @@ export enum EPageFramework {
     Vue = "vue",
 }
 
-export type TPathTemplate = (framework: EPageFramework) => string;
+export const FRAMEWORK_NAME = {
+    [EPageFramework.Vanilla]: "JavaScript",
+    [EPageFramework.React]: "React",
+    [EPageFramework.Angular]: "Angular",
+    [EPageFramework.Vue]: "Vue",
+} as const;
+
+export type TPathTemplate = string | ((framework: EPageFramework) => string);
+export type TFrameworkName = "JavaScript" | "Angular" | "React" | "Vue";
+export type TTitleTemplate = string | ((framework: TFrameworkName) => string);
 
 export type TPage = {
     id: string;
-    title: string;
-    path: TPathTemplate;
+    title: TTitleTemplate;
+    path: string;
 };
 
 export const PAGES: Record<string, TPage> = {
     homapage: {
         id: "homepage",
         title: "Homepage",
-        path: (framework: EPageFramework) => `/${framework}`,
+        path: `/`,
     },
 };

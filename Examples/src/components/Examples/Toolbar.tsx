@@ -88,7 +88,7 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
     const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;
     const githubUrl = examplePage ? examplePage.githubUrl : "";
     const fullGithubUrl = baseGithubPath + githubUrl;
-    const exampleUrl = examplePage ? examplePage.path(framework) : "";
+    const exampleUrl = examplePage ? examplePage.path : "";
 
     if (!fullGithubUrl || !exampleUrl) {
         console.warn(`Missing URL for ${examplePage.title}!`);
