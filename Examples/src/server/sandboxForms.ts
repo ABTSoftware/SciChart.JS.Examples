@@ -123,6 +123,123 @@ hydrate( <App />, rootElement);
     </form>`;
 };
 
+const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
+    const tsPath = path.join(folderPath, "angular.ts");
+    let code = await fs.promises.readFile(tsPath, "utf8");
+    let files: IFiles = {};
+    await includeImportedModules(folderPath, files, code);
+
+    code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
+    files = {
+        ...commonFiles,
+        ...files,
+        "package.json": {
+            // @ts-ignore
+            content: {
+                name: currentExample.path(EPageFramework.Angular).replace("/", ""),
+                version: "1.0.0",
+                scripts: {
+                    ng: "ng",
+                    start: "ng serve",
+                    build: "ng build --prod",
+                    test: "ng test"
+                },
+                private: true,
+                dependencies: {
+                    "@angular/animations": "^17.1.0",
+                    "@angular/common": "^17.1.0",
+                    "@angular/compiler": "^17.1.0",
+                    "@angular/core": "^17.1.0",
+                    "@angular/forms": "^17.1.0",
+                    "@angular/platform-browser": "^17.1.0",
+                    "@angular/platform-browser-dynamic": "^17.1.0",
+                    "@angular/router": "^17.1.0",
+                    "rxjs": "~7.8.0",
+                    "tslib": "^2.3.0",
+                    "zone.js": "~0.14.3",
+                    scichart: pj.dependencies.scichart,
+                    "scichart-angular": pj.dependencies["scichart-angular"],
+                    "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
+                    ...currentExample.extraDependencies,
+                },
+                devDependencies: {
+                    "@angular-devkit/build-angular": "^17.1.2",
+                    "@angular/cli": "^17.1.2",
+                    "@angular/compiler-cli": "^17.1.0",
+                    "ng-packagr": "^17.1.0",
+                    "typescript": "~5.3.2"
+                },
+                browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
+            },
+        },
+        "src/app/app.routes.ts": {
+            content: `import { Routes } from '@angular/router';
+                      export const routes: Routes = [];
+                      `,
+            isBinary: false,
+        },
+        "src/app/app.config.ts": {
+            content: `
+                import { ApplicationConfig } from '@angular/core';
+                import { provideRouter } from '@angular/router';
+
+                import { routes } from './app.routes';
+
+                export const appConfig: ApplicationConfig = {
+                  providers: [provideRouter(routes)]
+                };
+            `,
+            isBinary: false,
+        },
+        "src/app/app.component.ts": {
+            content: code,
+            isBinary: false,
+        },
+        "src/app/app.component.html": {
+            content: `<scichart-angular [initChart]="drawExample"></scichart-angular>`,
+            isBinary: false,
+        },
+        "src/main.ts": {
+            content: `
+                import { bootstrapApplication } from '@angular/platform-browser';
+                import { appConfig } from './app/app.config';
+                import { AppComponent } from './app/app.component';
+
+                bootstrapApplication(AppComponent, appConfig)
+                  .catch((err) => console.error(err));
+            `,
+            isBinary: false,
+        },
+        "src/index.html": {
+            content: `<!DOCTYPE html>
+                <html lang="en">
+                  <head>
+                    <meta charset="utf-8" />
+                    <title>ScichartAngularApp</title>
+                  </head>
+                  <body>
+                    <app-root></app-root>
+                  </body>
+                </html>`,
+            isBinary: false,
+        },
+    };
+
+    if (currentExample.sandboxConfig) {
+        files["sandbox.config.json"] = {
+            // @ts-ignore
+            content: currentExample.sandboxConfig,
+            isBinary: false,
+        };
+    }
+    files = { ...files, ...csStyles };
+
+    const parameters = getParameters({ files });
+    return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
+        <input type="hidden" name="parameters" value="${parameters}" />
+    </form>`;
+};
+
 const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
     const tsPath = path.join(folderPath, "vanilla.ts");
     let code = await fs.promises.readFile(tsPath, "utf8");
@@ -310,7 +427,7 @@ const commonFiles: IFiles = {
 export const getSandboxWithTemplate = (folderPath: string, currentExample: TExampleInfo, framework: EPageFramework) => {
     switch (framework) {
         case EPageFramework.Angular:
-            throw new Error("Not Implemented");
+            return getAngularCodeSandBoxForm(folderPath, currentExample);
         case EPageFramework.Vue:
             throw new Error("Not Implemented");
         case EPageFramework.React:
