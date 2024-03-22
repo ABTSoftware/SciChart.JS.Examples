@@ -4,7 +4,7 @@ Standard SciChart.JS licenses allow for production deployment to a fixed host na
 
 Advanced licensing requires a BUNDLE license and a commitment to maintain an active license for the lifetime of the project. For full details please see the knowlegebase article [SciChart Advanced Licensing](https://support.scichart.com/support/solutions/articles/101000516558-scichart-standard-advanced-licensing).
 
-Once the necessary license type and agreement is in place, Advanced Licensing will be enabled for your license. This adds new functionality to the Licenses section of the [My Account Page](https://scichart.com/my-account) page which will enable you to generate the key pairs needed.
+Once the necessary license type and agreement is in place, Advanced Licensing will be enabled for your license. This adds new functionality to the Licenses section of the [My Account](https://scichart.com/my-account) page which will enable you to generate the key pairs needed.
 
 Before trying to implement any of these solutions we recommend [submitting a support request](https://support.scichart.com/support/tickets/new) or emailing [support@scichart.com](mailto:support@scichart.com) with details of your intended deployment, including the host requirement, the client and server tech stack and the target platform and architecture (eg windows/linux, x86/x64/arm/arm64), and we will make sure you get the correct solution.
 
