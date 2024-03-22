@@ -4,8 +4,6 @@ This project demonstrates how to use the SciChart Server Licensing package to li
 
 Server side licensing requires a BUNDLE license and an agreement to maintain an active license for the lifetime of the product. See [SciChart Advanced Licensing](https://support.scichart.com/support/solutions/articles/101000516558-scichart-standard-advanced-licensing)
 
-For node.js and other server technologies see the other folders under [AdvancedLicensing](/AdvancedLicensing/)
-
 ## Building the demo
 
 This demo uses typescript and webpack to manage the client side. See the tsconfig.json and webpack.config.js files to see how this is set up.

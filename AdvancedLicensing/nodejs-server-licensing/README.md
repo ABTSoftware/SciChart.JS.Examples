@@ -1,8 +1,6 @@
 # SciChart Server Licensing for Node.js
 
-This project demonstrates how to use the SciChart Server Licensing package to license an application that will be deployed into an environment where the hostname will be localhost, or will not be known by the application developer. In these cases, normal SciChart host-restricted licensing will not work. Server based licenses validate against the name of the application instead, and are usually only available to site license customers. If you think you may need this form of licensing, please contact support@scichart.com.
-
-Server side licensing is currently available for dotnet servers. For node.js and other server technologies see the other folders under [AdvancedLicensing](/AdvancedLicensing/)
+This project demonstrates how to use the SciChartLicenseServer native library to license an application that will be deployed into an environment where the hostname will be localhost, or will not be known by the application developer. In these cases, normal SciChart host-restricted licensing will not work. Server based licenses validate against the name of the application instead, and are usually only available to site license customers. If you think you may need this form of licensing, please contact support@scichart.com.
 
 Server side licensing requires a BUNDLE license and an agreement to maintain an active license for the lifetime of the product. See [SciChart Advanced Licensing](https://support.scichart.com/support/solutions/articles/101000516558-scichart-standard-advanced-licensing)
 
@@ -22,16 +20,17 @@ You can run the server with hot-reload using npm run dev.
 
 SciChart.JS will call the licensing endpoint on first chart load, and once per day thereafter, to get a validation token that will allow the client side charts to display.
 
-## How to add Scichart Server Licensing to your project
+## How to add ScichartLicenseServer to your project
 
 1.  Contact support@scichart.com with details about your intended deployment so we can ensure you are getting the correct licensing solution.
-2.  In the [My Account Page](https://scichart.com/my-account) Licenses section, add your server entry assembly name as an OEM or Embedded License App Name. For this demo that would be scichart-nodejs-server-licensing.
+2.  In the [My Account Page](https://scichart.com/my-account) Licenses section, add your app name as an OEM or Embedded License App Name. For this demo that would be scichart-nodejs-server-licensing.
 3.  Click Show Runtime Keys to access your OEM or Embedded Licensing key pair.
 4.  Add the following npm packages
     `npm install ffi-napi`
     `npm install --save-dev @types/ffi-napi`
-5.  ### Configure webpack to build the server
-    There are 3 important elemtns of the webpack.server.config
+5.  Get the native binaries.
+6.  Configure webpack to build the server
+    There are 3 important elements of the webpack.server.config
 
 #### Configure these externals
 
@@ -63,14 +62,31 @@ SciChart.JS will call the licensing endpoint on first chart load, and once per d
 
 #### Use the output folder as the dirname root
 
+This is so that the LicenseServer can locate the native binary properly
+
 ```js
 node: {
   __dirname: false;
 }
 ```
 
-6.  Add the licenseServer.ts file to your server and set the server key in it
-7.  Add the endpoint to your server
+7.  Add the licenseServer.ts file to your server and set the app name and server key in it
+
+```js
+// The app name you set here must match one you have added on the MyAccount page before generating a key pair.
+debug("app name", process.env.npm_package_name);
+nativeLicenseServer.SciChartLicenseServer_SetAssemblyName(
+  process.env.npm_package_name
+);
+
+// Set the Server key
+const isValid =
+  nativeLicenseServer.SciChartLicenseServer_SetRuntimeLicenseKey(
+    "server key here"
+  );
+```
+
+8.  Add the endpoint to your server
     in server.ts
 
 ```ts
@@ -83,7 +99,7 @@ const app = express();
 app.use("/api/license", licenseServer);
 ```
 
-8. ### Configure SciChart.js
+9. ### Configure SciChart.js
 
    see /src/index.ts
 
