@@ -136,7 +136,7 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
         "package.json": {
             // @ts-ignore
             content: {
-                name: currentExample.path(EPageFramework.Angular).replace("/", ""),
+                name: currentExample.path,
                 version: "1.0.0",
                 scripts: {
                     ng: "ng",
@@ -154,6 +154,7 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
                     "@angular/platform-browser": "^17.1.0",
                     "@angular/platform-browser-dynamic": "^17.1.0",
                     "@angular/router": "^17.1.0",
+                    "core-js": "3.26.1",
                     "rxjs": "~7.8.0",
                     "tslib": "^2.3.0",
                     "zone.js": "~0.14.3",
@@ -390,7 +391,11 @@ const commonFiles: IFiles = {
         content: `{
 "infiniteLoopProtection": false,
 "hardReloadOnChange": false,
-"view": "browser"
+"view": "browser",
+"constainer": {
+        "node": "18"
+    },
+    "node": "18"
 }`,
         isBinary: false,
     },

@@ -40,7 +40,7 @@ export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => 
         if (!isValidFramework) {
             return res.send(400);
         }
-        const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === pathname);
+        const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === pathname.replace("/", ""));
         const currentExample = EXAMPLES_PAGES[currentExampleKey];
         const folderPath = path.join(basePath, currentExample.filepath);
 
