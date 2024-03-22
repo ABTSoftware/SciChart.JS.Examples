@@ -1,4 +1,3 @@
-import Button from "@material-ui/core/Button";
 import * as React from "react";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import SeoTags from "../SeoTags/SeoTags";
@@ -7,17 +6,20 @@ import classes from "./PageHome.module.scss";
 
 import multiPaneStockImg from "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
 import ImageHeaderComponent from "./ImageHeader/ImageHeaderComponent";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { FRAMEWORK_NAME } from "../AppRouter/pages";
 export const HOME_PAGE_TITLE = "HOMEPAGE";
 
 let prev = 0;
 export default function PageHome() {
+    const framework = React.useContext(FrameworkContext);
     React.useEffect(() => {
         updateGoogleTagManagerPage();
     }, []);
     return (
         <div className={classes.PageHomeWrapper}>
             <SeoTags
-                title={ExampleStrings.siteHomeTitle}
+                title={ExampleStrings.siteHomeTitle(FRAMEWORK_NAME[framework])}
                 keywords={ExampleStrings.siteKeywords}
                 description={ExampleStrings.siteHomeDescription}
                 image={ExampleStrings.siteHomeMetaImage}

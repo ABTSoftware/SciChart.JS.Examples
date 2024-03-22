@@ -17,21 +17,21 @@ const description = `This allows data to be reused in the chart, but more import
 const tips = [
     ` To deserialize a definition before adding data, use JSON.parse(jsonString, chartBuilder.chartReviver)`,
     ` To convert a chart to a definition without data, use sciChartSurface.toJSON(true)`,
-    ` Data will be serialized to the individual series if the resulting chart is serialized`
+    ` Data will be serialized to the individual series if the resulting chart is serialized`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlBuilderApiDocumentation,
         title: ExampleStrings.urlTitleBuilderApiDocumentation,
-        linkTitle: "JavaScript Builder API Documentation"
-    }
+        linkTitle: "JavaScript Builder API Documentation",
+    },
 ];
 
 export const sharedDataExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleSharedData,
-    pageTitle: ExampleStrings.titleSharedData + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleSharedData,
     path: ExampleStrings.urlSharedData,
     filepath: "BuilderApi/SharedData",
     subtitle: Subtitle,
@@ -44,5 +44,5 @@ export const sharedDataExampleInfo: TExampleInfo = {
         "Demonstrates how to use the Builder Api to create Reusable Chart Templates." +
         "Data can be easily integrated into a definition and shared between series",
     metaKeywords: "template, chart, javascript, data, reuse",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

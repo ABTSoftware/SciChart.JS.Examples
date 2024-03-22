@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Routes, Route, RouteProps } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import PageHome from "../PageHome/PageHome";
 import { EPageFramework, PAGES } from "./pages";
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
@@ -44,7 +44,7 @@ export default function AppRouter(props: TProps) {
                         return (
                             <Route
                                 key={key}
-                                path={`/iframe${exPage.path(EPageFramework.Vanilla)}`}
+                                path={`/iframe/${exPage.path}`}
                                 element={
                                     <ExampleComponent examplePage={currentExample}>
                                         <ChartComponent />
@@ -64,13 +64,20 @@ export default function AppRouter(props: TProps) {
                     return (
                         <Route
                             key={key}
-                            path={`/${selectedFramework}?${exPage.path(selectedFramework)}`}
+                            path={`/${selectedFramework}?/${exPage.path}`}
                             element={<ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />}
                         />
                     );
                 })}
-                <Route path={PAGES.homapage.path(selectedFramework)} element={<PageHome />} />
-                <Route path={"/"} element={<PageHome />} />
+
+                {currentExample ? (
+                    <Route
+                        path={`/javascript-${currentExample?.path}`}
+                        element={<Navigate to={`/${selectedFramework}/${currentExample?.path}`} />}
+                    />
+                ) : null}
+
+                <Route path={`/${selectedFramework}?`} element={<PageHome />} />
             </Routes>
         );
     }

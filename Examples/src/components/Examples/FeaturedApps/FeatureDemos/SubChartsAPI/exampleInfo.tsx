@@ -4,7 +4,6 @@ import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-subcharts-grid.jpg";
-import { EPageFramework } from "../../../../AppRouter/pages";
 
 const previewDescription = `Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript`;
 const description = ``;
@@ -33,7 +32,7 @@ export const subchartsGridExampleInfo: TExampleInfo = {
     // TODO move to example strings
     title: "JavaScript 64-Chart Dashboard Performance Demo",
     pageTitle: "JavaScript 64-Chart Dashboard Performance Demo" + ExampleStrings.exampleGenericTitleSuffix,
-    path: (framework: EPageFramework) => `/${framework}-multiple-chart-dashboard-performance-demo`,
+    path: "multiple-chart-dashboard-performance-demo",
     filepath: "FeaturedApps/FeatureDemos/SubChartsAPI",
     subtitle: Subtitle,
     documentationLinks,

@@ -1,5 +1,5 @@
 import { TMenuItem } from "../AppRouter/examples";
-import { EPageFramework } from "../AppRouter/pages";
+import { EPageFramework, FRAMEWORK_NAME } from "../AppRouter/pages";
 
 export type TSearchItem = {
     category: string;
@@ -12,11 +12,13 @@ export const generateSearchItems = (allMenuItems: TMenuItem[], framework: EPageF
     const searchItemsList: TSearchItem[] = [];
     allMenuItems.forEach((menuItem) => {
         menuItem.submenu.forEach((smItem) => {
-            if (!searchItemsList.find((i) => i.title === smItem.title)) {
+            const smItemTitle =
+                typeof smItem.title === "string" ? smItem.title : smItem.title(FRAMEWORK_NAME[framework]);
+            if (!searchItemsList.find((i) => i.title === smItemTitle)) {
                 searchItemsList.push({
                     category: menuItem.item.name,
-                    title: smItem.title,
-                    link: smItem.path(framework),
+                    title: smItemTitle,
+                    link: smItem.path,
                     keywords: smItem.metaKeywords,
                 });
             }

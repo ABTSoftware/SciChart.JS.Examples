@@ -38,7 +38,9 @@ const Navigation: FC<TProps> = (props) => {
     return (
         <List className={classes.NavigationList} component="nav" aria-labelledby="nested-list-subheader">
             <div
-                className={location.pathname === "/" ? classes.SelectedHomepageListItem : classes.HomepageListItem}
+                className={
+                    location.pathname === `/${framework}` ? classes.SelectedHomepageListItem : classes.HomepageListItem
+                }
                 onClick={historyPushHomepage}
             >
                 Homepage

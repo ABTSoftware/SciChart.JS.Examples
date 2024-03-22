@@ -44,7 +44,7 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
         "package.json": {
             // @ts-ignore
             content: {
-                name: currentExample.path(EPageFramework.React).replace("/", ""),
+                name: currentExample.path.replace("/", ""),
                 version: "1.0.0",
                 main: "src/index.tsx",
                 scripts: {
@@ -250,7 +250,7 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
         "package.json": {
             // @ts-ignore
             content: {
-                name: currentExample.path(EPageFramework.Vanilla).replace("/", ""),
+                name: currentExample.path.replace("/", ""),
                 version: "1.0.0",
                 main: "src/index.ts",
                 scripts: {

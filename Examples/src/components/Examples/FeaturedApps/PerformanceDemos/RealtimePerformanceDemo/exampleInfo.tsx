@@ -5,6 +5,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import exampleImage from "./javascript-chart-realtime-performance-demo.jpg";
+import { TFrameworkName } from "../../../../AppRouter/pages";
 
 const Subtitle = () => (
     <p>
@@ -21,20 +22,21 @@ points every 10ms to 3 line series on the chart (300k points per second). The po
 the millions, and SciChart is still rendering!`;
 const tips = [
     `For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded
-    appendRange functions on dataseries.`
+    appendRange functions on dataseries.`,
 ];
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlPerformanceTipsDocumentation,
         title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
-        linkTitle: "SciChart.js Performance Tips and Tricks"
-    }
+        linkTitle: "SciChart.js Performance Tips and Tricks",
+    },
 ];
 
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
-    pageTitle: ExampleStrings.titleRealtimeJavaScriptChartDemo + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: (frameworkName: TFrameworkName) =>
+        ExampleStrings.titleRealtimeJavaScriptChartDemo(frameworkName) + ExampleStrings.exampleGenericTitleSuffix,
     path: ExampleStrings.urlRealtimeJavaScriptChartDemo,
     filepath: "FeaturedApps/PerformanceDemos/RealtimePerformanceDemo",
     subtitle: Subtitle,
@@ -46,5 +48,5 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     metaDescription:
         "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

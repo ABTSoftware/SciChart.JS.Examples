@@ -73,7 +73,7 @@ export default function GalleryList(props: TProps) {
                                     imgPath={item.imgPath}
                                     title={item.title}
                                     seoTitle={item.seoTitle}
-                                    examplePath={item.examplePath(framework)}
+                                    examplePath={item.examplePath}
                                 />
                             </li>
                         );
