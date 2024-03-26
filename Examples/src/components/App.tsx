@@ -24,56 +24,10 @@ import { EPageFramework, FRAMEWORK_NAME, PAGES } from "./AppRouter/pages";
 import { GalleryItem } from "../helpers/types/types";
 import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
-
-const isValidFramework = (framework: string | EPageFramework) =>
-    Object.values(EPageFramework).includes(framework as EPageFramework);
-
-// TODO refactor
-const getExamplePageKey = (framework: string | EPageFramework, examplePath: string) => {
-    return Object.keys(EXAMPLES_PAGES).find((key) => {
-        const pagePath = EXAMPLES_PAGES[key].path;
-        const oldFormat = `javascript-${pagePath}`;
-        return pagePath === examplePath || oldFormat === examplePath;
-    });
-};
-
-const useExampleRouteParams = () => {
-    let framework: EPageFramework;
-    let examplePageKey: string;
-    let isHomePage = false;
-
-    const matchIframeRoute = useMatch("/iframe/:example");
-    const matchWithFrameworkAndExample = useMatch("/:framework/:example");
-    const matchWithOneParam = useMatch("/:exampleOrFramework");
-
-    if (matchIframeRoute) {
-        examplePageKey = getExamplePageKey(EPageFramework.Vanilla, matchIframeRoute.params.example);
-        return { isIFrame: true, isHomePage: false, framework: EPageFramework.Vanilla, examplePageKey };
-    }
-
-    if (matchWithFrameworkAndExample) {
-        if (isValidFramework(matchWithFrameworkAndExample.params.framework)) {
-            framework = matchWithFrameworkAndExample.params.framework as EPageFramework;
-            examplePageKey = getExamplePageKey(framework, matchWithFrameworkAndExample.params.example);
-        }
-    } else if (matchWithOneParam) {
-        if (isValidFramework(matchWithOneParam.params.exampleOrFramework)) {
-            framework = matchWithOneParam.params.exampleOrFramework as EPageFramework;
-            isHomePage = true;
-        } else {
-            examplePageKey = getExamplePageKey(EPageFramework.Vanilla, matchWithOneParam.params.exampleOrFramework);
-            framework = EPageFramework.Vanilla;
-        }
-    } else {
-        framework = EPageFramework.Vanilla;
-    }
-
-    return { isIFrame: false, isHomePage, framework, examplePageKey };
-};
+import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
 
 export default function App() {
-    const location = useLocation();
-    let { isIFrame, isHomePage, examplePageKey, framework } = useExampleRouteParams();
+    let { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
 
     const selectedFramework = framework;
 
@@ -98,9 +52,7 @@ export default function App() {
     const [openedMenuItems, setOpenedMenuItems] = React.useState<Record<string, boolean>>(initialOpenedMenuItems);
 
     const [isDrawerOpened, setIsDrawerOpened] = React.useState(false);
-    const currentExampleKey = examplePageKey;
-    // console.log("currentExampleKey", currentExampleKey);
-    const currentExample = EXAMPLES_PAGES[currentExampleKey];
+
     const currentExampleId = currentExample?.id;
     // SeeAlso is now optional on exampleInfo. Return this if provided else auto-generate from menu
     const seeAlso: GalleryItem[] =

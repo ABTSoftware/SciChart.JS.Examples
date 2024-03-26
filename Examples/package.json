@@ -9,6 +9,7 @@
     "start": "node ./build/server.js",
     "buildServer": "webpack --config webpack.server.config.js",
     "buildClient": "webpack --config webpack.client.config.js",
+    "buildClient:watch": "webpack --config webpack.client.config.js --watch",
     "buildVanillaDemo": "npm run compileVanillaExamples && npm run buildSciChartExampleDependencies",
     "buildSciChartExampleDependencies": "webpack --config webpack.deps.config.ts --mode production",
     "compileVanillaExamples": "tsc --build tsconfig.vanilla.json",

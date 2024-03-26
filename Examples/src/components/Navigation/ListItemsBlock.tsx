@@ -7,7 +7,7 @@ import MenuListItemText from "../../helpers/shared/MenuListItemText/MenuListItem
 import classes from "./ListItemsBlock.module.scss";
 import ListItemCollapseArrowIcon from "./ListItemCollapseArrowIcon";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getTitle, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -20,7 +20,7 @@ type TProps = {
 
 const ListItemsBlock: FC<TProps> = (props) => {
     const framework = useContext(FrameworkContext);
-    const match = useMatch(`/${framework}/:example`);
+    const match = useExampleRouteParams();
     const selectedFramework = useContext(FrameworkContext);
     const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId } = props;
 
@@ -51,7 +51,7 @@ const ListItemsBlock: FC<TProps> = (props) => {
                                         <div
                                             key={subEl.id}
                                             className={
-                                                match?.params?.example === subEl.path
+                                                match?.currentExample?.path === subEl.path
                                                     ? classes.SelectedBottomLevelListItem
                                                     : classes.BottomLevelListItem
                                             }
