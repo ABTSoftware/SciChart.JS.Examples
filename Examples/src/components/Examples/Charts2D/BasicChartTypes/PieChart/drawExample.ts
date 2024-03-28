@@ -66,7 +66,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Optional Relative radius adjustment per segment
     const radiusSize = [0.8, 0.8, 0.8, 0.8, 0.85, 0.85, 0.85, 0.9, 0.9, 0.9, 0.95, 0.95, 0.95, 0.95, 0.95];
 
-    const toPieSegment = (name: string, value: number, radiusAdjustment: number, color1: string, color2?: string) => {
+    const toPieSegment = (name: string, value: number, radiusAdjustment: number, color1: string, color2: string) => {
         return new PieSegment({
             value,
             text: name,
@@ -75,7 +75,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             showLabel: value > 2,
             colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: color1, offset: 0 },
-                { color: color2 ?? color1 + "77", offset: 1 },
+                { color: color2 || (color1 + "77"), offset: 1 },
             ]),
         });
     };
