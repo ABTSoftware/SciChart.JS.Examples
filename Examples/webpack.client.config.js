@@ -82,7 +82,7 @@ module.exports = {
                 { from: "node_modules/scichart/_wasm/scichart3d.data", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
                 { from: "sitemap.xml", to: "" },
-                { from: "robots.txt", to: "" },
+                { from: process.env.NOINDEX ? "robotsNoIndex.txt" : "robots.txt", to: "robots.txt" },
             ],
         }),
         // new BundleAnalyzerPlugin()
