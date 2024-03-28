@@ -130,6 +130,7 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
     await includeImportedModules(folderPath, files, code);
 
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
+    code = code.replace('./drawExample', '../drawExample');
     files = {
         ...commonFiles,
         ...files,
@@ -139,57 +140,100 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
                 name: currentExample.path,
                 version: "1.0.0",
                 scripts: {
-                    ng: "ng",
-                    start: "ng serve",
-                    build: "ng build --prod",
-                    test: "ng test"
+                    "ng": "ng",
+                    "start": "ng serve",
+                    "build": "ng build --prod",
+                    "test": "ng test",
+                    "lint": "ng lint",
+                    "e2e": "ng e2e"
                 },
                 private: true,
                 dependencies: {
-                    "@angular/animations": "^17.1.0",
-                    "@angular/common": "^17.1.0",
-                    "@angular/compiler": "^17.1.0",
-                    "@angular/core": "^17.1.0",
-                    "@angular/forms": "^17.1.0",
-                    "@angular/platform-browser": "^17.1.0",
-                    "@angular/platform-browser-dynamic": "^17.1.0",
-                    "@angular/router": "^17.1.0",
+                    "@angular/animations": "15.0.3",
+                    "@angular/common": "15.0.3",
+                    "@angular/compiler": "15.0.3",
+                    "@angular/core": "15.0.3",
+                    "@angular/forms": "15.0.3",
+                    "@angular/platform-browser": "15.0.3",
+                    "@angular/platform-browser-dynamic": "15.0.3",
+                    "@angular/router": "15.0.3",
                     "core-js": "3.26.1",
-                    "rxjs": "~7.8.0",
-                    "tslib": "^2.3.0",
-                    "zone.js": "~0.14.3",
+                    "rxjs": "7.6.0",
+                    "zone.js": "0.12.0",
                     scichart: pj.dependencies.scichart,
                     "scichart-angular": pj.dependencies["scichart-angular"],
                     "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
                     ...currentExample.extraDependencies,
                 },
                 devDependencies: {
-                    "@angular-devkit/build-angular": "^17.1.2",
-                    "@angular/cli": "^17.1.2",
-                    "@angular/compiler-cli": "^17.1.0",
-                    "ng-packagr": "^17.1.0",
-                    "typescript": "~5.3.2"
+                    "@angular/cli": "1.6.6",
+                    "@angular/compiler-cli": "^5.2.0",
+                    "@angular/language-service": "^5.2.0",
+                    "@types/core-js": "0.9.46",
+                    "@types/jasmine": "~2.8.3",
+                    "@types/jasminewd2": "~2.0.2",
+                    "@types/node": "~6.0.60",
+                    "codelyzer": "^4.0.1",
+                    "jasmine-core": "~2.8.0",
+                    "jasmine-spec-reporter": "~4.2.1",
+                    "karma": "~2.0.0",
+                    "karma-chrome-launcher": "~2.2.0",
+                    "karma-coverage-istanbul-reporter": "^1.2.1",
+                    "karma-jasmine": "~1.1.0",
+                    "karma-jasmine-html-reporter": "^0.2.2",
+                    "protractor": "~5.1.2",
+                    "ts-node": "~4.1.0",
+                    "tslint": "~5.9.1",
+                    "typescript": "~2.5.3"
                 },
-                browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
             },
         },
-        "src/app/app.routes.ts": {
-            content: `import { Routes } from '@angular/router';
-                      export const routes: Routes = [];
-                      `,
+        ".angular-cli.json": {
+            content: `{
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "prefix": "app",
+      "styles": [],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ]
+}
+`,
             isBinary: false,
         },
-        "src/app/app.config.ts": {
-            content: `
-                import { ApplicationConfig } from '@angular/core';
-                import { provideRouter } from '@angular/router';
-
-                import { routes } from './app.routes';
-
-                export const appConfig: ApplicationConfig = {
-                  providers: [provideRouter(routes)]
-                };
-            `,
+        "src/typings.d.ts": {
+            content: `declare var module: NodeModule;
+interface NodeModule {
+  id: string;
+}`,
+            isBinary: false,
+        },
+        "src/polyfills.ts": {
+            content: `import "core-js/proposals/reflect-metadata";
+import "zone.js/dist/zone";`,
+            isBinary: false,
+        },
+        "src/environments/environment.prod.ts": {
+            content: `export const environment = {
+  production: true
+};`,
+            isBinary: false,
+        },
+        "src/environments/environment.ts": {
+            content: `export const environment = {
+  production: false
+};`,
             isBinary: false,
         },
         "src/app/app.component.ts": {
@@ -200,28 +244,55 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
             content: `<scichart-angular [initChart]="drawExample"></scichart-angular>`,
             isBinary: false,
         },
-        "src/main.ts": {
-            content: `
-                import { bootstrapApplication } from '@angular/platform-browser';
-                import { appConfig } from './app/app.config';
-                import { AppComponent } from './app/app.component';
+        "src/app/app.module.ts": {
+            content: `import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterOutlet } from '@angular/router';
+import { ScichartAngularComponent } from 'scichart-angular';
+import { AppComponent } from './app.component';
 
-                bootstrapApplication(AppComponent, appConfig)
-                  .catch((err) => console.error(err));
-            `,
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    RouterOutlet,
+    ScichartAngularComponent
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }`,
+            isBinary: false,
+        },
+        "src/main.ts": {
+            content: `import { enableProdMode } from "@angular/core";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { environment } from "./environments/environment";
+
+import { AppModule } from "./app/app.module";
+
+if (environment.production) {
+  enableProdMode();
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule);`,
             isBinary: false,
         },
         "src/index.html": {
             content: `<!DOCTYPE html>
-                <html lang="en">
-                  <head>
-                    <meta charset="utf-8" />
-                    <title>ScichartAngularApp</title>
-                  </head>
-                  <body>
-                    <app-root></app-root>
-                  </body>
-                </html>`,
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Angular Scichart App</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>`,
             isBinary: false,
         },
     };
@@ -391,11 +462,7 @@ const commonFiles: IFiles = {
         content: `{
 "infiniteLoopProtection": false,
 "hardReloadOnChange": false,
-"view": "browser",
-"constainer": {
-        "node": "18"
-    },
-    "node": "18"
+"view": "browser"
 }`,
         isBinary: false,
     },
