@@ -295,6 +295,13 @@ platformBrowserDynamic().bootstrapModule(AppModule);`,
 </html>`,
             isBinary: false,
         },
+        "readme.md": {
+            content: `# Angular ${currentExample.path} Example
+    This sandbox uses Angular 15 to be compatible with the codesandbox.io,
+    but you can use it with the latest Angular version.
+            `,
+            isBinary: false,
+        },
     };
 
     if (currentExample.sandboxConfig) {
@@ -309,6 +316,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);`,
     const parameters = getParameters({ files });
     return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
         <input type="hidden" name="parameters" value="${parameters}" />
+        <input type="hidden" name="query" value="file=readme.md" />
     </form>`;
 };
 
