@@ -35,7 +35,7 @@ const notFoundCodeSandBoxRedirectPage = (page: TExamplePage) => {
           <meta name="robots" content="noindex" />
           <title>CodeSandbox Redirect Form</title>
       </head>
-      <body>  
+      <body>
         <p>The requested codesandbox example version doesn't exist. Try selecting other framework</p>
         <a href="${alternativeLink}" >React Example</a>
       </body>
