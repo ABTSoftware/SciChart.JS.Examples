@@ -100,7 +100,7 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
         {
             icon: <CodeSandboxActionButton />,
             name: "Edit the example at CodeSandbox",
-            href: `${exampleUrl}?codesandbox=1`,
+            href: `codesandbox/${exampleUrl}?codesandbox=1`,
         },
         // { icon: <ShowSourceActionButton />, name: "ShowSourceIcon" }
     ];

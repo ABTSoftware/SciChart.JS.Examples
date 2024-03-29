@@ -21,6 +21,8 @@ import { renderCodeSandBoxRedirect } from "./renderCodeSandboxRedirect";
 import { oembed } from "./oembed";
 import { findMissingExamples } from "./find-missing-examples";
 import { vanillaExamplesRouter } from "./vanillaDemo/vanillaExamplesRouter";
+import { EPageFramework } from "../components/AppRouter/pages";
+import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
@@ -83,6 +85,57 @@ app.use("/api", api);
 app.use("/services/oembed", oembed);
 app.use("/services/findMissingExamples", findMissingExamples);
 app.use("/vanillaDemo", vanillaExamplesRouter);
+
+const isValidFramework = (framework: EPageFramework) => Object.values(EPageFramework).includes(framework);
+const getExamplePageKey = (examplePath: string) => {
+    return Object.keys(EXAMPLES_PAGES).find((key) => {
+        const pagePath = EXAMPLES_PAGES[key]?.path;
+        return pagePath === examplePath;
+    });
+};
+
+app.get("/codesandbox/:example", (req: Request, res: Response) => {
+    handleRender(req, res);
+});
+
+app.get("/iframe/codesandbox/:example", (req: Request, res: Response) => {
+    handleRender(req, res);
+});
+
+app.get("/iframe/javascript-:example", (req: Request, res: Response) => {
+    const params = req.params;
+    if (getExamplePageKey(params.example)) {
+        return res.redirect(301, `iframe/${params.example}`);
+    } else {
+        handleRender(req, res);
+    }
+});
+
+app.get("/iframe/:example?", (req: Request, res: Response) => {
+    handleRender(req, res);
+});
+
+app.get("/javascript-:example", (req: Request, res: Response) => {
+    const params = req.params;
+    if (getExamplePageKey(params.example)) {
+        return res.redirect(301, `javascript/${params.example}`);
+    } else {
+        handleRender(req, res);
+    }
+});
+
+app.get("/:example?", (req: Request, res: Response) => {
+    const params = req.params;
+    const exampleKey = getExamplePageKey(req.params.example);
+    if (isValidFramework(params.example as EPageFramework)) {
+        handleRender(req, res);
+    } else if (exampleKey) {
+        const redirectUrl = `javascript/${params.example}`;
+        res.redirect(301, redirectUrl);
+    } else {
+        res.redirect(301, `javascript`);
+    }
+});
 
 app.get("*", (req: Request, res: Response) => {
     handleRender(req, res);

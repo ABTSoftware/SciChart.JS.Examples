@@ -19,7 +19,7 @@ const GalleryCard: FC<TProps> = (props) => {
 
     return (
         <div className={classes.GalleryItemCard}>
-            <Link className={classes.GalleryItemCardImage} to={`${framework}/${examplePath}`}>
+            <Link className={classes.GalleryItemCardImage} to={`/${framework}/${examplePath}`}>
                 <Tooltip title={<img src={imgPath} width={600} height={600} alt={seoTitle} />}>
                     <img src={imgPath} data-title={seoTitle} alt={seoTitle} />
                 </Tooltip>
