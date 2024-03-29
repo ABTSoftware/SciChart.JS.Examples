@@ -1,0 +1,38 @@
+{
+  "name": "scichart-nodejs-server-licensing",
+  "version": "1.0.0",
+  "description": "SciChart Server Licensing for node.js",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf ./build && npm run buildServer && npm run buildClient",
+    "start": "node ./build/server.js",
+    "buildServer": "webpack --config webpack.server.config.js",
+    "buildClient": "webpack --config webpack.config.js",
+    "dev": "webpack --config webpack.server.dev.config.js"
+  },
+  "keywords": [],
+  "author": "SciChart Ltd",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.1",
+    "ffi-napi": "^4.0.3",
+    "scichart": "latest"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/ffi-napi": "^4.0.10",
+    "@types/node": "^20.11.30",
+    "copy-webpack-plugin": "^11.0.0",
+    "nodemon": "^3.1.0",
+    "nodemon-webpack-plugin": "^4.8.2",
+    "rimraf": "^5.0.5",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.59.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  }
+}

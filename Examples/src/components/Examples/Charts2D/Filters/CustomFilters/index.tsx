@@ -17,19 +17,6 @@ export default function ChartComponent() {
                     initResult.controls.stopDemo();
                 }}
             />
-            {/*Placeholder until we have a proper chart title (soon!)*/}
-            <span
-                style={{
-                    color: appTheme.ForegroundColor,
-                    fontSize: 20,
-                    position: "absolute",
-                    left: "50%",
-                    top: "20px",
-                    transform: "translate(-50%)",
-                }}
-            >
-                Market share of Mobile Phone Manufacturers (2022)
-            </span>
         </div>
     );
 }

@@ -14,7 +14,7 @@ import {
     NumericAxis,
     NumberRange,
     SciChartSurface,
-    XyDataSeries
+    XyDataSeries,
 } from "scichart";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
@@ -22,7 +22,7 @@ const AMPLITUDE = 200;
 
 const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Optional parameters to control exact placement of the axis
@@ -32,7 +32,7 @@ const drawExample = async (rootElement: string | HTMLDivElement) => {
         horizontalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Relative,
         verticalAxisPositionCoordinateMode: EInnerAxisPlacementCoordinateMode.Relative,
         horizontalAxisPosition: 0.5,
-        verticalAxisPosition: 0.5
+        verticalAxisPosition: 0.5,
     };
 
     // Configure x,y axis with central layout - oscilloscope style
@@ -42,12 +42,12 @@ const drawExample = async (rootElement: string | HTMLDivElement) => {
             isInnerAxis: true,
             axisAlignment: EAxisAlignment.Top,
             labelStyle: {
-                color: appTheme.PaleSkyBlue
+                color: appTheme.PaleSkyBlue,
             },
             axisBorder: {
                 borderTop: 1,
-                color: appTheme.VividSkyBlue
-            }
+                color: appTheme.VividSkyBlue,
+            },
         })
     );
 
@@ -57,12 +57,12 @@ const drawExample = async (rootElement: string | HTMLDivElement) => {
             isInnerAxis: true,
             axisAlignment: EAxisAlignment.Left,
             labelStyle: {
-                color: appTheme.PaleSkyBlue
+                color: appTheme.PaleSkyBlue,
             },
             axisBorder: {
                 borderLeft: 1,
-                color: appTheme.VividSkyBlue
-            }
+                color: appTheme.VividSkyBlue,
+            },
         })
     );
 
@@ -74,7 +74,7 @@ const drawExample = async (rootElement: string | HTMLDivElement) => {
         const amplitude = Math.random() * AMPLITUDE;
         const effect = new GlowEffect(wasmContext, {
             range: 0,
-            intensity: 0.5
+            intensity: 0.5,
         });
         const lineSeries = new FastLineRenderableSeries(wasmContext, { stroke, effect });
         lineSeries.strokeThickness = 3;
@@ -125,7 +125,6 @@ const drawExample = async (rootElement: string | HTMLDivElement) => {
         clearTimeout(timerId);
         timerId = undefined;
     };
-    document.getElementById("stopAnimation").addEventListener("click", stopAnimation);
 
     // Buttons for chart
     const startAnimation = () => {
@@ -134,18 +133,17 @@ const drawExample = async (rootElement: string | HTMLDivElement) => {
         }
         reassignRenderableSeries();
     };
-    document.getElementById("startAnimation").addEventListener("click", startAnimation);
 
     return { wasmContext, sciChartSurface, controls: { startAnimation, stopAnimation } };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -153,11 +151,11 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 export default function RealtimeGhostedTraces() {
@@ -193,7 +191,7 @@ export default function RealtimeGhostedTraces() {
                         <span
                             style={{
                                 margin: 12,
-                                minWidth: "200px"
+                                minWidth: "200px",
                             }}
                         >
                             # DataPoints: {stats.numberPoints.toLocaleString()}
@@ -217,7 +215,7 @@ export default function RealtimeGhostedTraces() {
                                     numberPoints:
                                         sciChartSurface.renderableSeries.size() *
                                         sciChartSurface.renderableSeries.get(0).dataSeries.count(),
-                                    fps
+                                    fps,
                                 });
                             });
 
