@@ -26,7 +26,7 @@ const renderCodeSandBoxRedirectPage = (form: string) => {
 };
 
 const notFoundCodeSandBoxRedirectPage = (page: TExamplePage) => {
-    const alternativeLink = `/${page.path}?codesandbox=1&framework=${EPageFramework.React}`;
+    const alternativeLink = `/codesandbox/${page.path}?codesandbox=1&framework=${EPageFramework.React}`;
     return `
     <html lang="en-us">
       <head>
