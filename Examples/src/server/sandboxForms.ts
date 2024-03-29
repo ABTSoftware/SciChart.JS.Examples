@@ -4,6 +4,7 @@ import { getParameters } from "codesandbox/lib/api/define";
 import { IFiles, csStyles } from "./sandboxDependencyUtils";
 import { type TExampleInfo } from "../components/AppRouter/examplePages";
 import { EPageFramework } from "../components/AppRouter/pages";
+import { NotFoundError } from "./Errors";
 const pj = require("../../package.json");
 
 const includeImportedModules = async (folderPath: string, files: IFiles, code: string) => {
@@ -125,7 +126,12 @@ hydrate( <App />, rootElement);
 
 const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
     const tsPath = path.join(folderPath, "vanilla.ts");
-    let code = await fs.promises.readFile(tsPath, "utf8");
+    let code: string;
+    try {
+        code = await fs.promises.readFile(tsPath, "utf8");
+    } catch (err) {
+        throw new NotFoundError("Vanilla version not found! Try using different framework.");
+    }
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     const template = "parcel";
 

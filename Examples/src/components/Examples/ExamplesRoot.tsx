@@ -121,7 +121,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                     className={classes.ExampleRootDescriptionLink}
                                     target="_blank"
                                     rel="nofollow external"
-                                    href={`/${exampleUrl}?codesandbox=1`}
+                                    href={`/codesandbox/${exampleUrl}?codesandbox=1`}
                                 >
                                     Open in CodeSandBox
                                 </a>
@@ -157,34 +157,6 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                     {/*    <CodeIcon />*/}
                                     {/*    <span className={classes.ButtonsText}>VIEW SOURCE CODE</span>*/}
                                     {/*</Button>*/}
-                                    <Button
-                                        onClick={() => {
-                                            navigate(`/${EPageFramework.Vanilla}/${examplePage.path}`);
-                                        }}
-                                    >
-                                        <span className={classes.ButtonsText}>Switch Framework to Vanilla TS</span>
-                                    </Button>
-                                    <Button
-                                        onClick={() => {
-                                            navigate(`/${EPageFramework.React}/${examplePage.path}`);
-                                        }}
-                                    >
-                                        <span className={classes.ButtonsText}>Switch Framework to React TS</span>
-                                    </Button>
-                                    <Button
-                                        onClick={() => {
-                                            navigate(`/${EPageFramework.Angular}/${examplePage.path}`);
-                                        }}
-                                    >
-                                        <span className={classes.ButtonsText}>Switch Framework to Angular TS</span>
-                                    </Button>
-                                    <Button
-                                        onClick={() => {
-                                            navigate(`/${EPageFramework.Vue}/${examplePage.path}`);
-                                        }}
-                                    >
-                                        <span className={classes.ButtonsText}>Switch Framework to Vue TS</span>
-                                    </Button>
                                     <Button className={classes.GitHubLink}>
                                         <GitHubIcon />
                                         <a
