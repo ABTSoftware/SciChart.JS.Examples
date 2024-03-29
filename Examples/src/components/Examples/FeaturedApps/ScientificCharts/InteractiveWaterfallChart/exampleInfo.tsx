@@ -13,8 +13,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
         title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "Scichart.js Documentation"
-    }
+        linkTitle: "Scichart.js Documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -28,7 +28,7 @@ export const waterfallChartExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: "Interactive Waterfall Spectral Chart",
     pageTitle: "Interactive Waterfall Chart" + ExampleStrings.exampleGenericTitleSuffix,
-    path: "/javascript-interactive-waterfall-chart",
+    path: `interactive-waterfall-chart`,
     filepath: "FeaturedApps/ScientificCharts/InteractiveWaterfallChart",
     subtitle: Subtitle,
     documentationLinks,
@@ -38,5 +38,5 @@ export const waterfallChartExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: previewDescription,
     metaKeywords: "waterfall, chart, interactive, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

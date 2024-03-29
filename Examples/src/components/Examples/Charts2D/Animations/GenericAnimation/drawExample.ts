@@ -1,18 +1,17 @@
-import { NumericAxis } from "scichart/Charting/Visuals/Axis/NumericAxis";
-import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
-
-import { NumberRange } from "scichart/Core/NumberRange";
-import { populationData } from "../../../Charts3D/Basic3DChartTypes/Bubble3DChart/data/PopulationData";
+import {
+    SciChartSurface,
+    NumericAxis,
+    NumberRange,
+    FastBubbleRenderableSeries,
+    XyzDataSeries,
+    EllipsePointMarker,
+    NativeTextAnnotation,
+    EVerticalAnchorPoint,
+    LineAnnotation,
+    GenericAnimation,
+} from "scichart";
 import { appTheme } from "scichart-example-dependencies";
-import { FastBubbleRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/FastBubbleRenderableSeries";
-import { XyzDataSeries } from "scichart/Charting/Model/XyzDataSeries";
-import { EllipsePointMarker } from "scichart/Charting/Visuals/PointMarkers/EllipsePointMarker";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { GenericAnimation } from "scichart/Core/Animations/GenericAnimation";
-import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
-import { NativeTextAnnotation } from "scichart";
+import { populationData } from "../../../Charts3D/Basic3DChartTypes/Bubble3DChart/data/PopulationData";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface with bubble chart

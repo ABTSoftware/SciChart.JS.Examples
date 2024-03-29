@@ -1,9 +1,11 @@
-import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
-import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
-import { XyDataSeries } from "scichart/Charting/Model/XyDataSeries";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
-import { translateFromCanvasToSeriesViewRect } from "scichart/utils/translate";
+import {
+    ChartModifierBase2D,
+    IRenderableSeries,
+    ModifierMouseArgs,
+    DpiHelper,
+    translateFromCanvasToSeriesViewRect,
+    XyDataSeries,
+} from "scichart";
 
 export class PointDragModifier extends ChartModifierBase2D {
     public readonly type = "PointDragModifier";

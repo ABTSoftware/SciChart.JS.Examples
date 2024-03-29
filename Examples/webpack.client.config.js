@@ -6,7 +6,7 @@ const autoprefixer = require("autoprefixer");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const filename = ext => `[name].[hash].${ext}`;
+const filename = (ext) => `[name].[hash].${ext}`;
 
 module.exports = {
     mode: "production",
@@ -16,7 +16,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"],
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.scss$/,
@@ -26,37 +26,37 @@ module.exports = {
                         loader: "css-loader",
                         options: {
                             modules: {
-                                localIdentName: "[hash:base64:5]"
-                            }
-                        }
+                                localIdentName: "[hash:base64:5]",
+                            },
+                        },
                     },
                     {
-                        loader: "postcss-loader"
+                        loader: "postcss-loader",
                     },
-                    { loader: "sass-loader" }
+                    { loader: "sass-loader" },
                 ],
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.tsx?$/,
                 use: "ts-loader",
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 loader: "file-loader",
                 options: {
-                    name: "images/[name].[ext]"
-                }
-            }
-        ]
+                    name: "images/[name].[ext]",
+                },
+            },
+        ],
     },
     resolve: {
-        extensions: [".tsx", ".ts", ".js", ".css"]
+        extensions: [".tsx", ".ts", ".js", ".css"],
     },
     output: {
         filename: "bundle.js",
-        path: path.resolve(__dirname, config.buildConfig.targetDir)
+        path: path.resolve(__dirname, config.buildConfig.targetDir),
     },
     plugins: [
         new CopyPlugin({
@@ -65,22 +65,30 @@ module.exports = {
                 { from: "src/static/webgl-intel.html", to: "" },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Shale.csv", to: "" },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Density.csv", to: "" },
-                { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Resistivity.csv", to: "" },
-                { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/PoreSpace.csv", to: "" },
+                {
+                    from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Resistivity.csv",
+                    to: "",
+                },
+                {
+                    from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/PoreSpace.csv",
+                    to: "",
+                },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Sonic.csv", to: "" },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Texture.csv", to: "" },
+                { from: "src/server/vanillaDemo/common.js", to: "" },
+                { from: "node_modules/scichart/_wasm/scichart.browser.mjs", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.wasm", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart3d.data", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
                 { from: "sitemap.xml", to: "" },
-                { from: "robots.txt", to: "" }
-            ]
+                { from: process.env.NOINDEX ? "robotsNoIndex.txt" : "robots.txt", to: "robots.txt" },
+            ],
         }),
         // new BundleAnalyzerPlugin()
         new MiniCssExtractPlugin({
-            filename: filename("styles.css")
+            filename: filename("styles.css"),
         }),
-        require("autoprefixer")
-    ]
+        require("autoprefixer"),
+    ],
 };

@@ -13,7 +13,7 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { SeriesInfo } from "scichart/Charting/Model/ChartData/SeriesInfo";
+import { SeriesInfo } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface with X,Y Axis

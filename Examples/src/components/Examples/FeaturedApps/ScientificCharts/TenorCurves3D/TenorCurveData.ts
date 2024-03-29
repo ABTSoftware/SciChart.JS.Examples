@@ -1,6 +1,6 @@
 // Function which creates some dummy data as a 2D array for the Tenor Curves example
 
-import { zeroArray2D } from "scichart/utils/zeroArray2D";
+import { zeroArray2D } from "scichart";
 
 export function getTenorCurveData(xSize: number, zSize: number): number[][] {
     // Creates a 2 dimnsational array of size [zSize][xSize]

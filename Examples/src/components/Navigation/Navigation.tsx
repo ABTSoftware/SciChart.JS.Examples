@@ -1,7 +1,5 @@
+import { FC, useContext } from "react";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import * as React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
     MENU_ITEMS_2D,
@@ -9,10 +7,11 @@ import {
     MENU_ITEMS_FEATURED_APPS,
     MENU_ITEMS_2D_ID,
     MENU_ITEMS_3D_ID,
-    MENU_ITEMS_FEATURED_APPS_ID
+    MENU_ITEMS_FEATURED_APPS_ID,
 } from "../AppRouter/examples";
 import ListItemsBlock from "./ListItemsBlock";
 import classes from "./Navigation.module.scss";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -20,11 +19,11 @@ type TProps = {
     toggleDrawer: () => void;
 };
 
-const Navigation: React.FC<TProps> = props => {
+const Navigation: FC<TProps> = (props) => {
     const { onExpandClick, testIsOpened, toggleDrawer } = props;
     const navigate = useNavigate();
     const location = useLocation();
-
+    const framework = useContext(FrameworkContext);
     const historyPushPath = (path: string) => {
         if (!path) return;
         navigate(path);
@@ -32,14 +31,16 @@ const Navigation: React.FC<TProps> = props => {
     };
 
     const historyPushHomepage = () => {
-        navigate("/");
+        navigate(`/${framework}`);
         toggleDrawer();
     };
 
     return (
         <List className={classes.NavigationList} component="nav" aria-labelledby="nested-list-subheader">
             <div
-                className={location.pathname === "/" ? classes.SelectedHomepageListItem : classes.HomepageListItem}
+                className={
+                    location.pathname === `/${framework}` ? classes.SelectedHomepageListItem : classes.HomepageListItem
+                }
                 onClick={historyPushHomepage}
             >
                 Homepage

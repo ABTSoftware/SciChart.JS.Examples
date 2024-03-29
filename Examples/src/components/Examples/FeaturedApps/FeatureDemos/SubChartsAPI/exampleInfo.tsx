@@ -13,8 +13,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlSubchartApiDocumentation,
         title: ExampleStrings.urlTitleSubCharstApiDocumentation,
-        linkTitle: "Scichart.js SubCharts API Documentation"
-    }
+        linkTitle: "Scichart.js SubCharts API Documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -29,9 +29,10 @@ const Subtitle = () => (
 
 export const subchartsGridExampleInfo: TExampleInfo = {
     onWebsite: false,
+    // TODO move to example strings
     title: "JavaScript 64-Chart Dashboard Performance Demo",
     pageTitle: "JavaScript 64-Chart Dashboard Performance Demo" + ExampleStrings.exampleGenericTitleSuffix,
-    path: "/javascript-multiple-chart-dashboard-performance-demo",
+    path: "multiple-chart-dashboard-performance-demo",
     filepath: "FeaturedApps/FeatureDemos/SubChartsAPI",
     subtitle: Subtitle,
     documentationLinks,
@@ -42,5 +43,5 @@ export const subchartsGridExampleInfo: TExampleInfo = {
     metaDescription:
         "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
     metaKeywords: "javascript, multichart, dashboard, performance, grid, realtime, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

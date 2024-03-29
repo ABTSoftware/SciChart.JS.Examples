@@ -1,4 +1,3 @@
-import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
@@ -13,8 +12,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlAxisDocumentation,
         title: ExampleStrings.urlTitleAxisDocumentation,
-        linkTitle: "Scichart.js Axis Documentation"
-    }
+        linkTitle: "Scichart.js Axis Documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -28,9 +27,10 @@ const Subtitle = () => (
 
 export const axisTypesExampleInfo: TExampleInfo = {
     onWebsite: true,
+    // TODO add to example strings
     title: "Axis Types",
     pageTitle: "Axis Types" + ExampleStrings.exampleGenericTitleSuffix,
-    path: "/javascript-axis-types",
+    path: `axis-types`,
     filepath: "FeaturedApps/FeatureDemos/AxisTypes",
     subtitle: Subtitle,
     documentationLinks,
@@ -41,5 +41,5 @@ export const axisTypesExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
     metaKeywords: "text, axis, date, logarithmic, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -1,7 +1,6 @@
-import * as React from "react";
+import { useState, useContext } from "react";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { Box, FormControlLabel, FormControl, FormLabel, RadioGroup, Switch } from "@material-ui/core";
-import { SpeedDialProps, SpeedDialIcon, SpeedDialAction, SpeedDial } from "@material-ui/lab";
+import { SpeedDialIcon, SpeedDialAction, SpeedDial } from "@material-ui/lab";
 import DescriptionIcon from "@material-ui/icons/Description";
 import InfoIcon from "@material-ui/icons/Info";
 import EditIcon from "@material-ui/icons/Edit";
@@ -11,6 +10,7 @@ import npmLogo from "../AppTopBar/npm.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { baseGithubPath } from "../../constants";
 import { appTheme } from "scichart-example-dependencies";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 
 const DocsActionButton = () => <DescriptionIcon></DescriptionIcon>;
 
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
         speedDial: {
             position: "absolute",
             top: 4,
-            right: 8
+            right: 8,
         },
         speedDialFab: {
             backgroundColor: appTheme.PaleBlue,
@@ -37,41 +37,42 @@ const useStyles = makeStyles((theme: Theme) =>
             opacity: (props: any) => (props.isOpen ? 1 : 0.5),
             "&:hover": {
                 backgroundColor: appTheme.MutedBlue,
-                opacity: 1
-            }
+                opacity: 1,
+            },
         },
         actionButtonFab: {
             backgroundColor: appTheme.PaleBlue,
             border: "1px solid black",
             color: appTheme.ForegroundColor,
             "&:hover": {
-                backgroundColor: appTheme.MutedBlue
-            }
+                backgroundColor: appTheme.MutedBlue,
+            },
         },
         fabIcon: {
             height: "unset",
-            width: "unset"
+            width: "unset",
         },
         iconOpen: {
             transform: "unset",
-            opacity: 1
+            opacity: 1,
         },
         icon: {
             position: "absolute",
             top: "50%",
             transform: "translate(-50%, -50%)",
             "&:hover": {
-                opacity: 1
-            }
+                opacity: 1,
+            },
         },
         actionLink: {
-            color: "inherit"
-        }
+            color: "inherit",
+        },
     })
 );
 
 export function InfoToolbar(props: { examplePage: TExamplePage }) {
-    const [isOpen, setIsOpen] = React.useState(false);
+    const framework = useContext(FrameworkContext);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleOpen = () => {
         setIsOpen(true);
@@ -99,8 +100,8 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
         {
             icon: <CodeSandboxActionButton />,
             name: "Edit the example at CodeSandbox",
-            href: `${exampleUrl}?codesandbox=1`
-        }
+            href: `codesandbox/${exampleUrl}?codesandbox=1`,
+        },
         // { icon: <ShowSourceActionButton />, name: "ShowSourceIcon" }
     ];
 
@@ -113,11 +114,11 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
             onOpen={handleOpen}
             ariaLabel="SpeedDial"
             FabProps={{
-                size: "medium"
+                size: "medium",
             }}
             TransitionProps={{
                 enter: false,
-                exit: false
+                exit: false,
             }}
             icon={
                 <SpeedDialIcon
@@ -127,10 +128,10 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
             }
             direction={"left"}
         >
-            {actions.map(action => (
+            {actions.map((action) => (
                 <SpeedDialAction
                     classes={{
-                        fab: classes.actionButtonFab
+                        fab: classes.actionButtonFab,
                     }}
                     key={action.name}
                     icon={
@@ -141,7 +142,7 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
                     tooltipTitle={action.name}
                     tooltipPlacement="bottom"
                     FabProps={{
-                        size: "small"
+                        size: "small",
                     }}
                 />
             ))}

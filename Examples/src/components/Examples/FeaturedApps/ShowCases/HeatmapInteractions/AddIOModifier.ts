@@ -1,11 +1,15 @@
-import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
-import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
-import { ECoordinateMode, EDraggingGripPoint } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
-import { Point } from "scichart/Core/Point";
-import { EVerticalAnchorPoint, EHorizontalAnchorPoint } from "scichart/types/AnchorPoint";
-import { translateFromCanvasToSeriesViewRect } from "scichart/utils/translate";
+import {
+    ChartModifierBase2D,
+    TextAnnotation,
+    Point,
+    ECoordinateMode,
+    EVerticalAnchorPoint,
+    EHorizontalAnchorPoint,
+    EDraggingGripPoint,
+    ModifierMouseArgs,
+    translateFromCanvasToSeriesViewRect,
+    DpiHelper,
+} from "scichart";
 
 export class AddIOModifier extends ChartModifierBase2D {
     public readonly type = "AddIOModifier";
@@ -23,7 +27,7 @@ export class AddIOModifier extends ChartModifierBase2D {
             yCoordinateMode: ECoordinateMode.Pixel,
             yCoordShift: -5,
             verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         });
         this.addInputAnnotation.canDragPoint = (draggingPoint: EDraggingGripPoint) => false;
         this.addOutputAnnotation = new TextAnnotation({
@@ -34,7 +38,7 @@ export class AddIOModifier extends ChartModifierBase2D {
             yCoordinateMode: ECoordinateMode.Pixel,
             yCoordShift: 5,
             verticalAnchorPoint: EVerticalAnchorPoint.Top,
-            horizontalAnchorPoint: EHorizontalAnchorPoint.Center
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         });
         this.addOutputAnnotation.canDragPoint = (draggingPoint: EDraggingGripPoint) => false;
         this.parentSurface.modifierAnnotations.add(this.addInputAnnotation, this.addOutputAnnotation);
