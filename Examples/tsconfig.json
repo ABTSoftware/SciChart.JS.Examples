@@ -23,8 +23,8 @@
         "esModuleInterop": false,
         "skipLibCheck": false,
         "forceConsistentCasingInFileNames": true,
-        "experimentalDecorators": true,
+        "experimentalDecorators": true
     },
     "include": ["src/**/*", "testUnit/**/*", "../ExampleDependencies/src/ExampleData/binanceRestClient.ts"],
-    "exclude": ["node_modules", "src/static/*"]
+    "exclude": ["node_modules", "src/static/*", "src/**/vanilla.ts", "src/**/angular.ts"]
 }
