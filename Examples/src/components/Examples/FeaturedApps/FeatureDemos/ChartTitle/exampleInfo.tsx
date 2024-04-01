@@ -13,8 +13,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
         title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
 const Subtitle = () => (
@@ -24,7 +24,7 @@ const Subtitle = () => (
 export const chartTitleExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleChartTitle,
-    pageTitle: ExampleStrings.titleChartTitle + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleChartTitle,
     path: ExampleStrings.urlChartTitle,
     subtitle: Subtitle,
     documentationLinks,
@@ -35,5 +35,5 @@ export const chartTitleExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates chart title with different position and alignment options",
     metaKeywords: "title, text, alignment, multiline, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

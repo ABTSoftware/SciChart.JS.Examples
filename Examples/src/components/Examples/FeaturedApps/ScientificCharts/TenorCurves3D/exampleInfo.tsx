@@ -12,15 +12,15 @@ const tips = [
     `This example uses a SurfaceMeshRenderable Series3D to render a 2-dimensional array as a heightmap. Line
 charts are shown on the same example to show that 2D & 3D charts can be combined.`,
     `You can also overlay contours if you use the SurfaceMeshRenderable Series3D and enable contours by setting
-    the DrawMeshAs property.`
+    the DrawMeshAs property.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlSurfaceMesh3DChartDocumentation,
         title: ExampleStrings.urlTitleSurfaceMesh3DChartDocumentation,
-        linkTitle: "JavaScript 3D Surface Mesh Chart Documentation"
-    }
+        linkTitle: "JavaScript 3D Surface Mesh Chart Documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -33,7 +33,7 @@ const Subtitle = () => (
 export const tenorCurvesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleTenorCurvesFeaturedApp,
-    pageTitle: ExampleStrings.titleTenorCurvesFeaturedApp + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleTenorCurvesFeaturedApp,
     path: ExampleStrings.urlTenorCurvesFeaturedApp,
     filepath: "FeaturedApps/ScientificCharts/TenorCurves3D",
     documentationLinks,
@@ -46,5 +46,5 @@ export const tenorCurvesExampleInfo: TExampleInfo = {
         "An example like this could be used to visualize Tenor curves in a financial setting, " +
         "or other 2D/3D data combined on a single screen.",
     metaKeywords: "tenor, curves, 3d, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

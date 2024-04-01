@@ -56,7 +56,7 @@ export default function App() {
     const currentExampleId = currentExample?.id;
     // SeeAlso is now optional on exampleInfo. Return this if provided else auto-generate from menu
     const seeAlso: GalleryItem[] =
-        currentExample?.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample, FRAMEWORK_NAME[framework]);
+        currentExample?.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample, framework);
 
     // // Find the example category
     // const exampleCategory = ALL_MENU_ITEMS.find(menuItem => {
@@ -94,7 +94,7 @@ export default function App() {
         return <AppRouter currentExample={currentExample} seeAlso={seeAlso} isIFrame={true} />;
     }
 
-    const allGalleryItems = generateExamplesGallery(FRAMEWORK_NAME[framework]);
+    const allGalleryItems = generateExamplesGallery(framework);
 
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (

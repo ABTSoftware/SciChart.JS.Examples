@@ -17,14 +17,14 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
         title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
 export const oilAndGasExplorerDashboard: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleOilAndGasExplorerDashboard,
-    pageTitle: ExampleStrings.titleOilAndGasExplorerDashboard + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleOilAndGasExplorerDashboard,
     path: ExampleStrings.urlOilAndGasExplorerDashboard,
     filepath: "FeaturedApps/ShowCases/OilAndGasDashboard",
     subtitle: Subtitle,
@@ -35,5 +35,5 @@ export const oilAndGasExplorerDashboard: TExampleInfo = {
     githubUrl,
     metaDescription: "Todo meta",
     metaKeywords: "Todo keywords",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

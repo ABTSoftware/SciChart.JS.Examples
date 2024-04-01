@@ -8,15 +8,15 @@ import exampleImage from "./javascript-chart-vertical-slice-modifier.jpg";
 const previewDescription = `Demonstrates using the VerticalSliceModifier, part of the ChartModifier API, to add tooltips at fixed positions on time-series to the user.`;
 const description = `Tooltips can be positioned absolutely, or by data value, and support dragging by the user.`;
 const tips = [
-    `The x1 property of the modifier.verticalLine is in pixels and can be used to synchronise the position of other annotations relative to the line`
+    `The x1 property of the modifier.verticalLine is in pixels and can be used to synchronise the position of other annotations relative to the line`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlVerticalSliceModifierDocumentation,
         title: ExampleStrings.urlTitleVerticalSliceModifierDocumentation,
-        linkTitle: "VerticalSliceModifier documentation"
-    }
+        linkTitle: "VerticalSliceModifier documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -31,7 +31,7 @@ const Subtitle = () => (
 export const usingVerticalSliceModifierExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVerticalSliceModifier,
-    pageTitle: ExampleStrings.titleVerticalSliceModifier + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleVerticalSliceModifier,
     path: ExampleStrings.urlVerticalSliceModifier,
     filepath: "Charts2D/TooltipsAndHittest/VerticalSliceModifier",
     subtitle: Subtitle,
@@ -43,5 +43,5 @@ export const usingVerticalSliceModifierExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates adding Tooltips at certain positions to a JavaScript Chart with SciChart.js VerticalSliceModifier",
     metaKeywords: "tooltips, modifier, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -29,7 +29,7 @@ export const axisTypesExampleInfo: TExampleInfo = {
     onWebsite: true,
     // TODO add to example strings
     title: "Axis Types",
-    pageTitle: "Axis Types" + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: "Axis Types",
     path: `axis-types`,
     filepath: "FeaturedApps/FeatureDemos/AxisTypes",
     subtitle: Subtitle,

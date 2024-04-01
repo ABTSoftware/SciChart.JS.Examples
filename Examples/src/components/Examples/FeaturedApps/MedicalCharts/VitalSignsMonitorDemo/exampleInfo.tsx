@@ -14,15 +14,15 @@ reliable charts for JavaScript medical and healthcare applications.`;
 const tips = [
     `This example uses the GlowShaderEffect - an effect that can be tagged onto BaseRenderableSeries in SciChart
     to add oscilloscope/VDU style glow effects. A single point-marker is added to render the latest point which
-    also has the glow applied. Try it out!`
+    also has the glow applied. Try it out!`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
         title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
 const Subtitle = () => (
@@ -38,7 +38,7 @@ const Subtitle = () => (
 export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVitalSigns,
-    pageTitle: ExampleStrings.titleVitalSigns + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleVitalSigns,
     path: ExampleStrings.urlVitalSigns,
     filepath: "FeaturedApps/MedicalCharts/VitalSignsMonitorDemo",
     subtitle: Subtitle,
@@ -51,5 +51,5 @@ export const vitalSignsMonitorDemoExampleInfo: TExampleInfo = {
         ECG/EKG charts and graphs to monitor heart reate, body temperature, blood pressure, pulse rate, SPO2 blood
         oxygen, volumetric flow and more.`,
     metaKeywords: "ecg, ekg, realtime, medical, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -9,15 +9,15 @@ const description = `This real-time performance demo shows persistence of old tr
 drawn older series are made increasingly transparent until they become invisible.`;
 const tips = [
     ` This example uses the GlowShaderEffect - an effect that can be tagged onto BaseRenderableSeries in SciChart
-    to add oscilloscope/VDU style glow effects. Try it out!`
+    to add oscilloscope/VDU style glow effects. Try it out!`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlPerformanceTipsDocumentation,
         title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
-        linkTitle: "SciChart.js Performance Tips and Tricks"
-    }
+        linkTitle: "SciChart.js Performance Tips and Tricks",
+    },
 ];
 
 const Subtitle = () => (
@@ -32,7 +32,7 @@ const Subtitle = () => (
 export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeGhostedTraces,
-    pageTitle: ExampleStrings.titleRealtimeGhostedTraces + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleRealtimeGhostedTraces,
     path: ExampleStrings.urlRealtimeGhostedTraces,
     filepath: "FeaturedApps/PerformanceDemos/RealtimeGhostedTraces",
     subtitle: Subtitle,
@@ -43,5 +43,5 @@ export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     metaDescription:
         "This demo showcases the realtime performance of our JavaScript Chart by animating several series with thousands of data-points at 60 FPS",
     metaKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

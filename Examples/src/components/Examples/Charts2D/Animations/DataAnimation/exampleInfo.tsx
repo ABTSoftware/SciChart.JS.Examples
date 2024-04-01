@@ -30,8 +30,7 @@ const Subtitle = () => (
 export const dataAnimationExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDataAnimation,
-    pageTitle: (frameworkName: TFrameworkName) =>
-        ExampleStrings.titleDataAnimation(frameworkName) + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: (frameworkName: TFrameworkName) => ExampleStrings.titleDataAnimation(frameworkName),
     path: ExampleStrings.urlDataAnimation,
     filepath: "Charts2D/Animations/DataAnimation",
     subtitle: Subtitle,

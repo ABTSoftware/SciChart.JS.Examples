@@ -15,8 +15,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlEditableAnnotationsDocumentation,
         title: ExampleStrings.urlTitleEditableAnnotations,
-        linkTitle: "Annotations API Documentation"
-    }
+        linkTitle: "Annotations API Documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -32,7 +32,7 @@ const Subtitle = () => (
 export const editableAnnotationsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleEditableAnnotations,
-    pageTitle: ExampleStrings.titleEditableAnnotations + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleEditableAnnotations,
     path: ExampleStrings.urlEditableAnnotations,
     filepath: "Charts2D/ChartAnnotations/EditableAnnotations",
     subtitle: Subtitle,
@@ -44,5 +44,5 @@ export const editableAnnotationsExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates how to edita Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a JavaScript Chart using SciChart.js Annotations API",
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas, drag and drop",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

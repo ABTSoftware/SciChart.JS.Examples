@@ -20,21 +20,21 @@ const description = `The builder api is designed to make it easier to discover t
 const tips = [
     `Axes, series, annotations and modifiers can all be a single definition object, or an array`,
     `The builder api supports all SciChart 2D features.`,
-    `Use the new TextLabelProvider for easy configuration of text labels on a category axis`
+    `Use the new TextLabelProvider for easy configuration of text labels on a category axis`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlBuilderApiDocumentation,
         title: ExampleStrings.urlTitleBuilderApiDocumentation,
-        linkTitle: "JavaScript Builder API Documentation"
-    }
+        linkTitle: "JavaScript Builder API Documentation",
+    },
 ];
 
 export const fullChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleBuilderFullChart,
-    pageTitle: ExampleStrings.titleBuilderFullChart + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleBuilderFullChart,
     path: ExampleStrings.urlBuilderFullChart,
     filepath: "BuilderApi/FullChart",
     subtitle: Subtitle,
@@ -47,5 +47,5 @@ export const fullChartExampleInfo: TExampleInfo = {
         "Demonstrates how to use the Builder Api to configure axes, series, annotations and modifiers using a definition object. " +
         "The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
     metaKeywords: "definition, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -35,8 +35,7 @@ const documentationLinks: TDocumentationLink[] = [
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
-    pageTitle: (frameworkName: TFrameworkName) =>
-        ExampleStrings.titleRealtimeJavaScriptChartDemo(frameworkName) + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: (frameworkName: TFrameworkName) => ExampleStrings.titleRealtimeJavaScriptChartDemo(frameworkName),
     path: ExampleStrings.urlRealtimeJavaScriptChartDemo,
     filepath: "FeaturedApps/PerformanceDemos/RealtimePerformanceDemo",
     subtitle: Subtitle,

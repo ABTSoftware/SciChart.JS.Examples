@@ -13,8 +13,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlGenericAnimationDocumentation,
         title: ExampleStrings.urlTitleGenericAnimationDocumentation,
-        linkTitle: "Generic Animation Documentation"
-    }
+        linkTitle: "Generic Animation Documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -29,7 +29,7 @@ const Subtitle = () => (
 export const genericAnimationExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleGenericAnimation,
-    pageTitle: ExampleStrings.titleGenericAnimation + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleGenericAnimation,
     path: ExampleStrings.urlGenericAnimation,
     filepath: "Charts2D/Animations/GenericAnimation",
     subtitle: Subtitle,
@@ -40,5 +40,5 @@ export const genericAnimationExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
     metaKeywords: "generic, animation, javascript",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

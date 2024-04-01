@@ -13,8 +13,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlStyleAnimationDocumentation,
         title: ExampleStrings.urlTitleStyleAnimationDocumentation,
-        linkTitle: "JavaScript Style Transition Animation Documentation"
-    }
+        linkTitle: "JavaScript Style Transition Animation Documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -29,7 +29,7 @@ const Subtitle = () => (
 export const styleAnimationExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleStyleAnimation,
-    pageTitle: ExampleStrings.titleStyleAnimation + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleStyleAnimation,
     path: ExampleStrings.urlStyleAnimation,
     filepath: "Charts2D/Animations/StyleAnimation",
     subtitle: Subtitle,
@@ -40,5 +40,5 @@ export const styleAnimationExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
     metaKeywords: "style, animation, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

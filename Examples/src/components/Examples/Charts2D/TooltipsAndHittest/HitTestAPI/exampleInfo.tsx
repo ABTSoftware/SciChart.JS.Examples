@@ -11,15 +11,15 @@ const description = `Click anywhere on the chart to call BaseRenderableSeries.hi
 accepts a mouse-point and returns the nearest data-point, plus its location in X,Y coordinate space.`;
 const tips = [
     `The hitTest function accepts parameters to control the hit-test logic. See the documentation on Hit-Testing
-    for more info!`
+    for more info!`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlHitTestDocumentation,
         title: ExampleStrings.urlTitleHitTestDocumentation,
-        linkTitle: "Hit-Test API documentation"
-    }
+        linkTitle: "Hit-Test API documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -35,7 +35,7 @@ const Subtitle = () => (
 export const hitTestApiExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleHitTestApi,
-    pageTitle: ExampleStrings.titleHitTestApi + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleHitTestApi,
     path: ExampleStrings.urlHitTestApi,
     filepath: "Charts2D/TooltipsAndHittest/HitTestApi",
     subtitle: Subtitle,
@@ -47,5 +47,5 @@ export const hitTestApiExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates Hit-Testing a JavaScript Chart - point and click on the chart and get feedback about what data-points were clicked",
     metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

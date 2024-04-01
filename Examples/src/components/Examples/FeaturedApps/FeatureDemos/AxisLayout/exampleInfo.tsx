@@ -13,8 +13,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlAxisDocumentation,
         title: ExampleStrings.urlTitleAxisDocumentation,
-        linkTitle: "Scichart.js Axis Documentation"
-    }
+        linkTitle: "Scichart.js Axis Documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -28,7 +28,7 @@ const Subtitle = () => (
 export const axisLayoutExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleAxisLayout,
-    pageTitle: ExampleStrings.titleAxisLayout + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleAxisLayout,
     path: ExampleStrings.urlAxisLayout,
     filepath: "FeaturedApps/FeatureDemos/AxisLayout",
     subtitle: Subtitle,
@@ -40,5 +40,5 @@ export const axisLayoutExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts",
     metaKeywords: "stacked, axis, layout, alignment, vertical, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

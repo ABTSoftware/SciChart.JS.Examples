@@ -14,8 +14,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlMultipleXAxisDocumentation,
         title: ExampleStrings.urlTitleMultipleXAxisDocumentation,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
 const Subtitle = () => (
@@ -31,7 +31,7 @@ const Subtitle = () => (
 export const multipleXAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleMultipleXAxis,
-    pageTitle: ExampleStrings.titleMultipleXAxis + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleMultipleXAxis,
     path: ExampleStrings.urlMultipleXAxis,
     filepath: "Charts2D/ModifyAxisBehavior/MultipleXAxes",
     subtitle: Subtitle,
@@ -42,5 +42,5 @@ export const multipleXAxesExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates Multiple X & Y Axis on a JavaScript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

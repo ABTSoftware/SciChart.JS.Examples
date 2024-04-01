@@ -14,8 +14,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlImageLabelsDocumentation,
         title: ExampleStrings.urlTitleImageLabelsDocumentation,
-        linkTitle: "SciChart.js Image Labels Documentation"
-    }
+        linkTitle: "SciChart.js Image Labels Documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -30,7 +30,7 @@ const Subtitle = () => (
 export const imageLabelsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleImageLabels,
-    pageTitle: ExampleStrings.titleImageLabels + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleImageLabels,
     path: ExampleStrings.urlImageLabels,
     filepath: "Charts2D/AxisLabelCustomization/ImageLabels",
     subtitle: Subtitle,
@@ -41,5 +41,5 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates how to use Images as Axis Labels",
     metaKeywords: "image, axis, label, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

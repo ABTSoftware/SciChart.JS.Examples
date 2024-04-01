@@ -11,15 +11,15 @@ const description = `This can be used to add Tooltips to a JavaScript chart as w
 as the user moves the mouse.`;
 const tips = [
     `The hitTest function accepts parameters to control the hit-test logic. See the documentation on Hit-Testing
-    for more info!`
+    for more info!`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlRolloverModifierDocumentation,
         title: ExampleStrings.urlTitleRolloverModifierDocumentation,
-        linkTitle: "RolloverModifier documentation"
-    }
+        linkTitle: "RolloverModifier documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -34,7 +34,7 @@ const Subtitle = () => (
 export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRolloverModifier,
-    pageTitle: ExampleStrings.titleRolloverModifier + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleRolloverModifier,
     path: ExampleStrings.urlRolloverModifier,
     filepath: "Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips",
     subtitle: Subtitle,
@@ -46,5 +46,5 @@ export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates adding Tooltips on mouse-move to a JavaScript Chart with SciChart.js RolloverModifier",
     metaKeywords: "rollover, modifier, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

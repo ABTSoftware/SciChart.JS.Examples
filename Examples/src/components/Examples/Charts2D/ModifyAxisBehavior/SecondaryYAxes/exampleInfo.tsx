@@ -14,8 +14,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlMultipleXAxisDocumentation,
         title: ExampleStrings.urlTitleMultipleXAxisDocumentation,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
 const Subtitle = () => (
@@ -31,7 +31,7 @@ const Subtitle = () => (
 export const secondaryYAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleSecondaryYAxis,
-    pageTitle: ExampleStrings.titleSecondaryYAxis + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleSecondaryYAxis,
     path: ExampleStrings.urlSecondaryYAxis,
     filepath: "Charts2D/ModifyAxisBehavior/SecondaryYAxes",
     subtitle: Subtitle,
@@ -42,5 +42,5 @@ export const secondaryYAxesExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates Secondary Y Axis on a JavaScript Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
     metaKeywords: "secondary, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

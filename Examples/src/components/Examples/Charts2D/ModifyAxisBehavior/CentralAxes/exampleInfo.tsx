@@ -13,8 +13,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlCentralAxesDocumentation,
         title: ExampleStrings.urlTitleCentralAxesDocumentation,
-        linkTitle: "Central Axis documentation"
-    }
+        linkTitle: "Central Axis documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -30,7 +30,7 @@ const Subtitle = () => (
 export const centralAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleCentralAxes,
-    pageTitle: ExampleStrings.titleCentralAxes + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleCentralAxes,
     path: ExampleStrings.urlCentralAxes,
     filepath: "Charts2D/ModifyAxisBehavior/CentralAxes",
     subtitle: Subtitle,
@@ -41,5 +41,5 @@ export const centralAxesExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates Central Axes on a JavaScript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout",
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

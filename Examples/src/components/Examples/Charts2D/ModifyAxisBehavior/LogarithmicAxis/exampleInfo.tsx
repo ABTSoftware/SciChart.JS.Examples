@@ -14,8 +14,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlLogarithmicAxisDocumentation,
         title: ExampleStrings.urlTitleLogarithmicAxisDocumentation,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
 const Subtitle = () => (
@@ -31,7 +31,7 @@ const Subtitle = () => (
 export const logarithmicAxisExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleLogarithmicAxis,
-    pageTitle: ExampleStrings.titleLogarithmicAxis + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleLogarithmicAxis,
     path: ExampleStrings.urlLogarithmicAxis,
     filepath: "Charts2D/ModifyAxisBehavior/LogarithmicAxis",
     subtitle: Subtitle,
@@ -42,5 +42,5 @@ export const logarithmicAxisExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates Logarithmic Axis on a JavaScript Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values",
     metaKeywords: "logarithmic, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

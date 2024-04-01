@@ -1,35 +1,35 @@
 import { GalleryItem } from "./types/types";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS, TMenuItem } from "../components/AppRouter/examples";
 import { TExamplePage } from "../components/AppRouter/examplePages";
-import { TFrameworkName } from "../components/AppRouter/pages";
+import { EPageFramework } from "../components/AppRouter/pages";
+import { getTitle } from "./shared/Helpers/frameworkParametrization";
+import { ExampleStrings } from "../components/Examples/ExampleStrings";
 
-const getGalleryItems = (category: string, menuItem: TMenuItem, frameworkName: TFrameworkName) => {
+const getGalleryItems = (category: string, menuItem: TMenuItem, framework: EPageFramework) => {
     return {
         chartGroupTitle: (category !== undefined ? `${category}: ` : "") + menuItem.item.name,
         items: menuItem.submenu.map((subMenu) => {
             return {
                 imgPath: subMenu.thumbnailImage,
-                title: typeof subMenu.title === "string" ? subMenu.title : subMenu.title(frameworkName),
-                seoTitle: typeof subMenu.pageTitle === "string" ? subMenu.pageTitle : subMenu.pageTitle(frameworkName),
+                title: getTitle(subMenu.title, framework),
+                seoTitle: getTitle(subMenu.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix,
                 examplePath: subMenu.path,
             };
         }),
     };
 };
 
-export const generateExamplesGallery = (frameworkName: TFrameworkName) => {
+export const generateExamplesGallery = (framework: EPageFramework) => {
     const items: GalleryItem[] = [];
 
     // Featured apps first
-    MENU_ITEMS_FEATURED_APPS.forEach((menuItem) =>
-        items.push(getGalleryItems("Featured Apps", menuItem, frameworkName))
-    );
+    MENU_ITEMS_FEATURED_APPS.forEach((menuItem) => items.push(getGalleryItems("Featured Apps", menuItem, framework)));
 
     // 2D Charts
-    MENU_ITEMS_2D.forEach((menuItem) => items.push(getGalleryItems("2D Charts", menuItem, frameworkName)));
+    MENU_ITEMS_2D.forEach((menuItem) => items.push(getGalleryItems("2D Charts", menuItem, framework)));
 
     // Then 3D Charts
-    MENU_ITEMS_3D.forEach((menuItem) => items.push(getGalleryItems("3D Charts", menuItem, frameworkName)));
+    MENU_ITEMS_3D.forEach((menuItem) => items.push(getGalleryItems("3D Charts", menuItem, framework)));
 
     return items;
 };
@@ -37,7 +37,7 @@ export const generateExamplesGallery = (frameworkName: TFrameworkName) => {
 export const getSeeAlsoGalleryItems = (
     allMenuItems: TMenuItem[],
     currentExample: TExamplePage,
-    frameworkName: TFrameworkName
+    framework: EPageFramework
 ) => {
     const galleryItems: GalleryItem[] = [];
     if (currentExample) {
@@ -56,7 +56,7 @@ export const getSeeAlsoGalleryItems = (
                     },
                     submenu: seeAlsoExamples,
                 },
-                frameworkName
+                framework
             )
         );
     }

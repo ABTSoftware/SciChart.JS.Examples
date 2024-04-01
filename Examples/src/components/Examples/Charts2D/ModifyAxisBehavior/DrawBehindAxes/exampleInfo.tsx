@@ -12,8 +12,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDrawBehindAxesDocumentation,
         title: ExampleStrings.urlTitleDrawBehindAxesDocumentation,
-        linkTitle: "Central Axis documentation"
-    }
+        linkTitle: "Central Axis documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -29,7 +29,7 @@ const Subtitle = () => (
 export const drawBehindAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDrawBehindAxes,
-    pageTitle: ExampleStrings.titleDrawBehindAxes + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleDrawBehindAxes,
     path: ExampleStrings.urlDrawBehindAxes,
     filepath: "Charts2D/ModifyAxisBehavior/DrawBehindAxes",
     subtitle: Subtitle,
@@ -40,5 +40,5 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates the option of the transparent Axes customization on a JavaScript Chart using SciChart.js.",
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

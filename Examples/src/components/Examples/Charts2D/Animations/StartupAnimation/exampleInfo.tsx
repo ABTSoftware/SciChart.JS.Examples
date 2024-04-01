@@ -13,8 +13,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlStartupAnimationDocumentation,
         title: ExampleStrings.urlTitleStartupAnimationDocumentation,
-        linkTitle: "JavaScript Startup Animation Documentation"
-    }
+        linkTitle: "JavaScript Startup Animation Documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -29,7 +29,7 @@ const Subtitle = () => (
 export const startupAnimationExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleStartupAnimation,
-    pageTitle: ExampleStrings.titleStartupAnimation + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleStartupAnimation,
     path: ExampleStrings.urlStartupAnimation,
     filepath: "Charts2D/Animations/StartupAnimation",
     subtitle: Subtitle,
@@ -40,5 +40,5 @@ export const startupAnimationExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates how to run Startup Animations with JavaScript.",
     metaKeywords: "startup, on-start, animation, javascript",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -10,15 +10,15 @@ and works with DataPointSelectionPaletteProvider to change the appearance of sel
 const description = `Click to select a single point.  Drag to select many points. CTRL + Click or Drag to Union. SHIFT + Click or Drag to subtract`;
 const tips = [
     `Adding DataPointSelectionModifier will automatically create the metadata required to track selection, but it does not stop you using your own metadata.`,
-    `You don't have to use DataPointSelectionPaletteProvider.  You can create your own and use the metadata.isSelected that is passed to the paletteProvider methods.`
+    `You don't have to use DataPointSelectionPaletteProvider.  You can create your own and use the metadata.isSelected that is passed to the paletteProvider methods.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDataPointSelectionDocumentation,
         title: ExampleStrings.urlTitleDataPointSelectionDocumentation,
-        linkTitle: "DataPointSelectionModifier documentation"
-    }
+        linkTitle: "DataPointSelectionModifier documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -33,7 +33,7 @@ const Subtitle = () => (
 export const dataPointSelectionExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDataPointSelection,
-    pageTitle: ExampleStrings.titleDataPointSelection + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleDataPointSelection,
     path: ExampleStrings.urlDataPointSelection,
     filepath: "Charts2D/TooltipsAndHittest/DatapointSelection",
     subtitle: Subtitle,
@@ -45,5 +45,5 @@ export const dataPointSelectionExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points",
     metaKeywords: "datapoint, selection, api, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

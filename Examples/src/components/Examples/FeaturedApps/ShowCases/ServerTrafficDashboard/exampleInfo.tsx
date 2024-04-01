@@ -19,20 +19,20 @@ Data is streamed from the server via websocket and buffered locally so it keeps 
 Stop the updates then zoom with the mousewheel to see all the data is really there.`;
 const tips = [
     `For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded
-    appendRange functions on dataseries.`
+    appendRange functions on dataseries.`,
 ];
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
         title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
 export const serverTrafficDashboardDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleServerTrafficDashboard,
-    pageTitle: ExampleStrings.titleServerTrafficDashboard + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleServerTrafficDashboard,
     path: ExampleStrings.urlServerTrafficDashboard,
     filepath: "FeaturedApps/ShowCases/ServerTrafficDashboard",
     subtitle: Subtitle,
@@ -45,5 +45,5 @@ export const serverTrafficDashboardDemoExampleInfo: TExampleInfo = {
         "This dashboard demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    extraDependencies: { "country-flag-icons": "^1.5.7" }
+    extraDependencies: { "country-flag-icons": "^1.5.7" },
 };

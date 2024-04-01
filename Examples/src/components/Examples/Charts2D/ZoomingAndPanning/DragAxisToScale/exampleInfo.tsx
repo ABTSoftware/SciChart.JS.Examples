@@ -13,8 +13,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDragAxisToScaleDocumentation,
         title: ExampleStrings.urlTitleDragAxisToScaleDocumentation,
-        linkTitle: "SciChart.js Axis Drag documentation"
-    }
+        linkTitle: "SciChart.js Axis Drag documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -30,7 +30,7 @@ const Subtitle = () => (
 export const dragAxisToScaleExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleDragAxisToScale,
-    pageTitle: ExampleStrings.titleDragAxisToScale + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleDragAxisToScale,
     path: ExampleStrings.urlDragAxisToScale,
     filepath: "Charts2D/ZoomingAndPanning/DragAxisToScale",
     subtitle: Subtitle,
@@ -41,5 +41,5 @@ export const dragAxisToScaleExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates how to Zoom, Scale or Pan individual Axis on a JavaScript Chart with SciChart.js AxisDragModifiers",
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

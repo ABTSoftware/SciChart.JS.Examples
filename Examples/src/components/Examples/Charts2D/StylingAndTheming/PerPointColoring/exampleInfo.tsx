@@ -14,8 +14,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlPaletteProviderDocumentation,
         title: ExampleStrings.urlTitlePaletteProviderDocumentation,
-        linkTitle: "SciChart.js PaletteProvider documentation"
-    }
+        linkTitle: "SciChart.js PaletteProvider documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -31,7 +31,7 @@ const Subtitle = () => (
 export const perPointColoringExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titlePaletteProvider,
-    pageTitle: ExampleStrings.titlePaletteProvider + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titlePaletteProvider,
     path: ExampleStrings.urlPaletteProvider,
     filepath: "Charts2D/StylingAndTheming/PerPointColoring",
     subtitle: Subtitle,
@@ -41,5 +41,5 @@ export const perPointColoringExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
     metaKeywords: "palette, provider, api, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

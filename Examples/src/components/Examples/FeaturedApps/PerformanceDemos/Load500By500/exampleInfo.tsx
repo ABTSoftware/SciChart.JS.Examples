@@ -9,8 +9,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlPerformanceTipsDocumentation,
         title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
-        linkTitle: "SciChart.js Performance Tips and Tricks"
-    }
+        linkTitle: "SciChart.js Performance Tips and Tricks",
+    },
 ];
 
 const previewDescription = `This demo showcases the loading or startup time of SciChart.js with many series by appending 500 series to a chart, each with 500 points and rendering instantly!`;
@@ -19,7 +19,7 @@ simulations. Anywhere you need hundreds (or even thousands) of line series on a 
 help!`;
 const tips = [
     `For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded
-    appendRange functions on dataseries.`
+    appendRange functions on dataseries.`,
 ];
 
 const Subtitle = () => (
@@ -32,7 +32,7 @@ const Subtitle = () => (
 export const load500By500ExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleLoad500By500,
-    pageTitle: ExampleStrings.titleLoad500By500 + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleLoad500By500,
     path: ExampleStrings.urlLoad500By500,
     filepath: "FeaturedApps/PerformanceDemos/Load500By500",
     subtitle: Subtitle,
@@ -43,5 +43,5 @@ export const load500By500ExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!`,
     metaKeywords: "performance, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

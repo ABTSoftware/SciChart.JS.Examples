@@ -12,15 +12,15 @@ example demonstrates how to use the ZoomState property to determine when to zoom
 user zooming.`;
 const tips = [
     `Check in the source-code for how we use the SciChartSurface.ZoomState property to determine when to scroll
-and when to allow user-zooming.`
+and when to allow user-zooming.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlZoomPanModifierDocumentation,
         title: ExampleStrings.urlTitleZoomPanModifierDocumentation,
-        linkTitle: "SciChart.js Zooming and Panning Documentation"
-    }
+        linkTitle: "SciChart.js Zooming and Panning Documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -33,7 +33,7 @@ const Subtitle = () => (
 export const realtimeZoomPanExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeZoomPan,
-    pageTitle: ExampleStrings.titleRealtimeZoomPan + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleRealtimeZoomPan,
     path: ExampleStrings.urlRealtimeZoomPan,
     filepath: "Charts2D/ZoomingAndPanning/RealtimeZoomPan",
     subtitle: Subtitle,
@@ -45,5 +45,5 @@ export const realtimeZoomPanExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates how to zoom and pan a realtime JavaScript Chart while it is updating, with SciChart.js ZoomState API",
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

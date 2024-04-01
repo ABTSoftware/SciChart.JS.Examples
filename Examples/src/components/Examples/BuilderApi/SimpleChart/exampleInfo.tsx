@@ -20,21 +20,21 @@ const description = `The builder api is designed to make it easier to discover t
 const tips = [
     `Everything in the definition is optional. SciChart will add numeric axes by default.`,
     `The builder api supports all SciChart 2D features.`,
-    `You can combine the builder api and normal api to utilize the strengths of each`
+    `You can combine the builder api and normal api to utilize the strengths of each`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlBuilderApiDocumentation,
         title: ExampleStrings.urlTitleBuilderApiDocumentation,
-        linkTitle: "JavaScript Builder API Documentation"
-    }
+        linkTitle: "JavaScript Builder API Documentation",
+    },
 ];
 
 export const simpleChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleBuilderSimpleChart,
-    pageTitle: ExampleStrings.titleBuilderSimpleChart + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleBuilderSimpleChart,
     path: ExampleStrings.urlBuilderSimpleChart,
     filepath: "BuilderApi/SimpleChart",
     subtitle: Subtitle,
@@ -47,5 +47,5 @@ export const simpleChartExampleInfo: TExampleInfo = {
         "Demonstrates how to use the Builder Api to create a simple chart using a definition object. " +
         "The builder api is designed to make it easier to discover the types and options available in SciChart JS.",
     metaKeywords: "definition, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -32,8 +32,7 @@ const Subtitle = () => (
 export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVerticallyStackedAxes,
-    pageTitle: (frameworkName: TFrameworkName) =>
-        ExampleStrings.titleVerticallyStackedAxes(frameworkName) + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: (frameworkName: TFrameworkName) => ExampleStrings.titleVerticallyStackedAxes(frameworkName),
     path: ExampleStrings.urlVerticallyStackedAxes,
     filepath: "Charts2D/ModifyAxisBehavior/VerticallyStackedAxes",
     subtitle: Subtitle,

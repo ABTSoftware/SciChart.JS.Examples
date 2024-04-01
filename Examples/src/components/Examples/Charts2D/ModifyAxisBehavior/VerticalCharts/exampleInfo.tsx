@@ -10,15 +10,15 @@ and Y axis and allows placement of any axis on the Left, Right, Top, Bottom of t
 const tips = [
     `The vertical chart, popular in Oil & Gas, Geo-surveying, is created by setting xAxis.axisAlignment =
 Left, and yAxis.axisAlignment = top.`,
-    `Try dragging an axis or the chart to zoom and pan around. Double clicking the chart resets the zoom!`
+    `Try dragging an axis or the chart to zoom and pan around. Double clicking the chart resets the zoom!`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlVerticalChartsDocumentation,
         title: ExampleStrings.urlTitleVerticalChartsDocumentation,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
 const Subtitle = () => (
@@ -34,7 +34,7 @@ const Subtitle = () => (
 export const verticalChartsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVerticalCharts,
-    pageTitle: ExampleStrings.titleVerticalCharts + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleVerticalCharts,
     path: ExampleStrings.urlVerticalCharts,
     filepath: "Charts2D/ModifyAxisBehavior/VerticalCharts",
     subtitle: Subtitle,
@@ -44,5 +44,5 @@ export const verticalChartsExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
     metaKeywords: "vertical, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -17,21 +17,21 @@ const previewDescription = `Charts can be built from pure data, and also seriali
 const description = `This example simply passes the json you specify into the chartBuilder.build2DChart method`;
 const tips = [
     ` Call sciChartSurface.toJSON() to get definition object, rather than a string.`,
-    ` See the documentation links for the types and options you can specify.`
+    ` See the documentation links for the types and options you can specify.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlBuilderApiDocumentation,
         title: ExampleStrings.urlTitleBuilderApiDocumentation,
-        linkTitle: "JavaScript Builder API Documentation"
-    }
+        linkTitle: "JavaScript Builder API Documentation",
+    },
 ];
 
 export const chartFromJSONExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleChartFromJSON,
-    pageTitle: ExampleStrings.titleChartFromJSON + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleChartFromJSON,
     path: ExampleStrings.urlChartFromJSON,
     filepath: "BuilderApi/ChartFromJSON",
     subtitle: Subtitle,
@@ -42,5 +42,5 @@ export const chartFromJSONExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates how to create a JavaScript Chart from JSON using the builder API. ",
     metaKeywords: "json, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

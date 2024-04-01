@@ -14,8 +14,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlPointMarkersDocumentation,
         title: ExampleStrings.urlTitlePointMarkersDocumentation,
-        linkTitle: "Point-Markers API documentation"
-    }
+        linkTitle: "Point-Markers API documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -30,7 +30,7 @@ const Subtitle = () => (
 export const usePointMarkersExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titlePointMarkers,
-    pageTitle: ExampleStrings.titlePointMarkers + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titlePointMarkers,
     path: ExampleStrings.urlPointMarkers,
     filepath: "Charts2D/StylingAndTheming/UsePointMarkers",
     subtitle: Subtitle,
@@ -41,5 +41,5 @@ export const usePointMarkersExampleInfo: TExampleInfo = {
     metaDescription:
         "Demonstrates the different point-marker types for JavaScript Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
     metaKeywords: "data, point, marker, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

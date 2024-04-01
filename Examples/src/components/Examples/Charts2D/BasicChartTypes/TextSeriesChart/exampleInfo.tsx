@@ -13,8 +13,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlTextSeriesDocumentation,
         title: ExampleStrings.urlTitleTextSeriesDocumentation,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
 const Subtitle = () => (
@@ -31,7 +31,7 @@ const Subtitle = () => (
 export const textChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleTextChart,
-    pageTitle: ExampleStrings.titleTextChart + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleTextChart,
     path: ExampleStrings.urlTextChart,
     filepath: "Charts2D/BasicChartTypes/TextSeriesChart",
     subtitle: Subtitle,
@@ -42,5 +42,5 @@ export const textChartExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Create JavaScript Text Chart with high performance SciChart.js.  ",
     metaKeywords: "text, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

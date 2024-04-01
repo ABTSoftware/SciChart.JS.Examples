@@ -14,8 +14,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlStylingInCodeDocumentation,
         title: ExampleStrings.urlTitleStylingInCodeDocumentation,
-        linkTitle: "Custom Theme documentation"
-    }
+        linkTitle: "Custom Theme documentation",
+    },
 ];
 
 const Subtitle = () => (
@@ -30,7 +30,7 @@ const Subtitle = () => (
 export const stylingInCodeExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleStylingInCode,
-    pageTitle: ExampleStrings.titleStylingInCode + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleStylingInCode,
     path: ExampleStrings.urlStylingInCode,
     filepath: "Charts2D/StylingAndTheming/StylingInCode",
     subtitle: Subtitle,
@@ -41,5 +41,5 @@ export const stylingInCodeExampleInfo: TExampleInfo = {
     githubUrl,
     metaDescription: "Demonstrates how to style a JavaScript Chart entirely in code with SciChart.js themeing API",
     metaKeywords: "styling, in, code, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

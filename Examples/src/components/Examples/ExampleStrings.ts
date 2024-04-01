@@ -633,7 +633,7 @@ export const ExampleStrings = {
     // BuilderApi, Shared Data
     urlSharedData: `reusable-templates-using-shared-data`,
     titleSharedData: (frameworkName: TFrameworkName) =>
-        `${frameworkName} Chart with Reusable Templates using Shared Data` + ExampleStrings.exampleGenericTitleSuffix,
+        `${frameworkName} Chart with Reusable Templates using Shared Data`,
 
     urlTextLabelProviderDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#TextStringAxis.html`,
     urlTitleTextLabelProviderDocumentation: `This specific page in the JavaScript TextLabelProvider documentation will help you to get started`,
