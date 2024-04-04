@@ -3,7 +3,6 @@ import * as fs from "fs";
 import { htmlTemplate, templateWithNav } from "./vanillaExampleHtmlTemplate";
 import express = require("express");
 import { EXAMPLES_PAGES, TExamplePage } from "../../components/AppRouter/examplePages";
-import { EPageFramework } from "../../components/AppRouter/pages";
 
 export const vanillaExamplesRouter = express.Router();
 

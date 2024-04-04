@@ -17,9 +17,8 @@ import { Radio, SubdirectoryArrowRight } from "@material-ui/icons";
 import { InfoToolbar } from "./Toolbar";
 import { baseGithubPath } from "../../constants";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { EPageFramework, FRAMEWORK_NAME } from "../AppRouter/pages";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getTitle, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     // example: () => JSX.Element;
@@ -53,7 +52,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
     const description = examplePage ? examplePage.description : undefined;
 
     const githubUrl = examplePage ? examplePage.githubUrl : "";
-    const seoDescription = examplePage ? examplePage.metaDescription : "";
+    const seoDescription = examplePage ? getTitle(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = "https://demo.scichart.com";
     const exampleImage = examplePage ? `${basePath}/${examplePage.thumbnailImage}` : undefined;

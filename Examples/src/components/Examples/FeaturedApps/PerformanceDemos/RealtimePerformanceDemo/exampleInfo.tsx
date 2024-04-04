@@ -3,9 +3,7 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import exampleImage from "./javascript-chart-realtime-performance-demo.jpg";
-import { TFrameworkName } from "../../../../AppRouter/pages";
 
 const Subtitle = () => (
     <p>
@@ -35,7 +33,7 @@ const documentationLinks: TDocumentationLink[] = [
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
-    pageTitle: (frameworkName: TFrameworkName) => ExampleStrings.titleRealtimeJavaScriptChartDemo(frameworkName),
+    pageTitle: ExampleStrings.titleRealtimeJavaScriptChartDemo,
     path: ExampleStrings.urlRealtimeJavaScriptChartDemo,
     filepath: "FeaturedApps/PerformanceDemos/RealtimePerformanceDemo",
     subtitle: Subtitle,

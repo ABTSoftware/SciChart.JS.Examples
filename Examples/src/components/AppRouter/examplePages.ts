@@ -54,7 +54,7 @@ import { vitalSignsMonitorDemoExampleInfo } from "../Examples/FeaturedApps/Medic
 import { lidar3DPointCloudExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/exampleInfo";
 import { audioAnalyzerExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/exampleInfo";
 import { waterfallChartExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/exampleInfo";
-import { TPage, TPathTemplate, TTitleTemplate } from "./pages";
+import { TPage } from "./pages";
 import { tenorCurvesExampleInfo } from "../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/exampleInfo";
 import { loadOneMillionPointsExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/exampleInfo";
 import { dragAxisToScaleExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/exampleInfo";
@@ -104,6 +104,7 @@ import { dynamicLayoutExampleInfo } from "../Examples/FeaturedApps/ShowCases/Dyn
 import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/exampleInfo";
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
+import { TMetaDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 export type TExampleInfo = {
     /**
@@ -132,7 +133,7 @@ export type TExampleInfo = {
     /**
      * Page meta description
      */
-    metaDescription: string;
+    metaDescription: TMetaDescriptionTemplate;
     /**
      * Page meta keywords
      */

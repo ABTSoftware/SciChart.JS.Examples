@@ -1,8 +1,7 @@
 import express = require("express");
 var url = require("url");
 import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
-import { EPageFramework, FRAMEWORK_NAME } from "../components/AppRouter/pages";
-import { getTitle } from "../helpers/shared/Helpers/frameworkParametrization";
+import { getTitle, EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 
 const router = express.Router();
 

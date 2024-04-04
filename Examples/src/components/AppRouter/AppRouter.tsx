@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import PageHome from "../PageHome/PageHome";
-import { EPageFramework, PAGES } from "./pages";
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import ExamplesRoot from "../Examples/ExamplesRoot";
 import { getExampleComponent } from "./examples";
@@ -11,6 +10,7 @@ import NoIndexTag from "../SeoTags/NoIndexTag";
 import { InfoToolbar } from "../Examples/Toolbar";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { useContext } from "react";
+
 type TProps = {
     currentExample: TExamplePage;
     isIFrame?: boolean;
@@ -77,7 +77,7 @@ export default function AppRouter(props: TProps) {
                     />
                 ) : null}
 
-                <Route path={`/${selectedFramework}?`} element={<PageHome />} />
+                <Route path={`/${selectedFramework}`} element={<PageHome />} />
             </Routes>
         );
     }

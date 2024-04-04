@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import { EXAMPLES_PAGES } from "./src/components/AppRouter/examplePages";
 import { TFooterlink } from "./src/components/AppFooter/AppFooter";
+import { getTitle, EPageFramework } from "./src/helpers/shared/Helpers/frameworkParametrization";
 
 console.log("Generating footer links...");
 
@@ -11,7 +12,7 @@ console.log("Generating footer links...");
     Object.values(EXAMPLES_PAGES).forEach(el => {
         links.push({
             link: el.path,
-            text: el.title
+            text: getTitle(el.title, EPageFramework.Vanilla)
         });
     });
 

@@ -3,8 +3,8 @@ import * as fs from "fs";
 import { getParameters } from "codesandbox/lib/api/define";
 import { IFiles, csStyles } from "./sandboxDependencyUtils";
 import { type TExampleInfo } from "../components/AppRouter/examplePages";
-import { EPageFramework } from "../components/AppRouter/pages";
 import { NotFoundError } from "./Errors";
+import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 const pj = require("../../package.json");
 
 const includeImportedModules = async (folderPath: string, files: IFiles, code: string) => {
@@ -131,7 +131,7 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
     await includeImportedModules(folderPath, files, code);
 
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
-    code = code.replace('./drawExample', '../drawExample');
+    code = code.replace("./drawExample", "../drawExample");
     files = {
         ...commonFiles,
         ...files,
@@ -141,12 +141,12 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
                 name: currentExample.path,
                 version: "1.0.0",
                 scripts: {
-                    "ng": "ng",
-                    "start": "ng serve",
-                    "build": "ng build --prod",
-                    "test": "ng test",
-                    "lint": "ng lint",
-                    "e2e": "ng e2e"
+                    ng: "ng",
+                    start: "ng serve",
+                    build: "ng build --prod",
+                    test: "ng test",
+                    lint: "ng lint",
+                    e2e: "ng e2e",
                 },
                 private: true,
                 dependencies: {
@@ -159,7 +159,7 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
                     "@angular/platform-browser-dynamic": "15.0.3",
                     "@angular/router": "15.0.3",
                     "core-js": "3.26.1",
-                    "rxjs": "7.6.0",
+                    rxjs: "7.6.0",
                     "zone.js": "0.12.0",
                     scichart: pj.dependencies.scichart,
                     "scichart-angular": pj.dependencies["scichart-angular"],
@@ -174,18 +174,18 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
                     "@types/jasmine": "~2.8.3",
                     "@types/jasminewd2": "~2.0.2",
                     "@types/node": "~6.0.60",
-                    "codelyzer": "^4.0.1",
+                    codelyzer: "^4.0.1",
                     "jasmine-core": "~2.8.0",
                     "jasmine-spec-reporter": "~4.2.1",
-                    "karma": "~2.0.0",
+                    karma: "~2.0.0",
                     "karma-chrome-launcher": "~2.2.0",
                     "karma-coverage-istanbul-reporter": "^1.2.1",
                     "karma-jasmine": "~1.1.0",
                     "karma-jasmine-html-reporter": "^0.2.2",
-                    "protractor": "~5.1.2",
+                    protractor: "~5.1.2",
                     "ts-node": "~4.1.0",
-                    "tslint": "~5.9.1",
-                    "typescript": "~2.5.3"
+                    tslint: "~5.9.1",
+                    typescript: "~2.5.3",
                 },
             },
         },

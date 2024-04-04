@@ -7,7 +7,7 @@ import classes from "./PageHome.module.scss";
 import multiPaneStockImg from "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/javascript-multi-pane-stock-charts.jpg";
 import ImageHeaderComponent from "./ImageHeader/ImageHeaderComponent";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { FRAMEWORK_NAME } from "../AppRouter/pages";
+import { FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 export const HOME_PAGE_TITLE = "HOMEPAGE";
 
 let prev = 0;

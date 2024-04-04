@@ -3,8 +3,8 @@ import { Request, Response } from "express";
 import { EXAMPLES_PAGES, TExamplePage } from "../components/AppRouter/examplePages";
 import { loadStyles } from "./sandboxDependencyUtils";
 import { getSandboxWithTemplate } from "./sandboxForms";
-import { EPageFramework } from "../components/AppRouter/pages";
 import { IHttpError, NotFoundError } from "./Errors";
+import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 
 const renderCodeSandBoxRedirectPage = (form: string) => {
     return `

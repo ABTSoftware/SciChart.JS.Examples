@@ -1,4 +1,4 @@
-import { TFrameworkName } from "../AppRouter/pages";
+import { TFrameworkName } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 export const ExampleStrings = {
     // Site title, description for meta

@@ -21,8 +21,8 @@ import { renderCodeSandBoxRedirect } from "./renderCodeSandboxRedirect";
 import { oembed } from "./oembed";
 import { findMissingExamples } from "./find-missing-examples";
 import { vanillaExamplesRouter } from "./vanillaDemo/vanillaExamplesRouter";
-import { EPageFramework } from "../components/AppRouter/pages";
 import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
+import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";

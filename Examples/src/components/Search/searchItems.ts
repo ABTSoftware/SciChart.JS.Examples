@@ -1,6 +1,5 @@
-import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getTitle, EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { TMenuItem } from "../AppRouter/examples";
-import { EPageFramework } from "../AppRouter/pages";
 
 export type TSearchItem = {
     category: string;

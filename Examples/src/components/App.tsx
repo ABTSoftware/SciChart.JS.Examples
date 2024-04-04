@@ -20,7 +20,6 @@ import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";
 import classes from "./App.module.scss";
 import "./index.scss";
 import Gallery from "./Gallery/Gallery";
-import { EPageFramework, FRAMEWORK_NAME, PAGES } from "./AppRouter/pages";
 import { GalleryItem } from "../helpers/types/types";
 import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";

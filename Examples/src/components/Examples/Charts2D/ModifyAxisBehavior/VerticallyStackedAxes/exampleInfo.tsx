@@ -4,7 +4,6 @@ import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-vertically-stacked-axes.jpg";
-import { TFrameworkName } from "../../../../AppRouter/pages";
 
 const description = `Stacked axes allow data to be drawn in different sections of the chart but still overlap.
 Zoom vertically using the mouse wheel, or by dragging individual axes.  Right-click and drag to zoom horizontally.  Double click to Reset`;
@@ -32,7 +31,7 @@ const Subtitle = () => (
 export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleVerticallyStackedAxes,
-    pageTitle: (frameworkName: TFrameworkName) => ExampleStrings.titleVerticallyStackedAxes(frameworkName),
+    pageTitle: ExampleStrings.titleVerticallyStackedAxes,
     path: ExampleStrings.urlVerticallyStackedAxes,
     filepath: "Charts2D/ModifyAxisBehavior/VerticallyStackedAxes",
     subtitle: Subtitle,

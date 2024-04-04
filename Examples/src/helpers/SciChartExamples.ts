@@ -1,8 +1,7 @@
 import { GalleryItem } from "./types/types";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS, TMenuItem } from "../components/AppRouter/examples";
 import { TExamplePage } from "../components/AppRouter/examplePages";
-import { EPageFramework } from "../components/AppRouter/pages";
-import { getTitle } from "./shared/Helpers/frameworkParametrization";
+import { getTitle, EPageFramework } from "./shared/Helpers/frameworkParametrization";
 import { ExampleStrings } from "../components/Examples/ExampleStrings";
 
 const getGalleryItems = (category: string, menuItem: TMenuItem, framework: EPageFramework) => {
