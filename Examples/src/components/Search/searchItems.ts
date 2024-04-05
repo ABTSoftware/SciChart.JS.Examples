@@ -17,7 +17,7 @@ export const generateSearchItems = (allMenuItems: TMenuItem[], framework: EPageF
                 searchItemsList.push({
                     category: menuItem.item.name,
                     title: smItemTitle,
-                    link: smItem.path,
+                    link: `${framework}/${smItem.path}`,
                     keywords: smItem.metaKeywords,
                 });
             }
