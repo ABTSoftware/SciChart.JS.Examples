@@ -21,7 +21,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to <strong>Select Data Points</strong> on a chart using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -42,8 +42,8 @@ export const dataPointSelectionExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates the DatapointSelectionModifier, which provides a UI to select one or many data points, and works with DataPointSelectionPaletteProvider to change the appearance of selected points`,
     metaKeywords: "datapoint, selection, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

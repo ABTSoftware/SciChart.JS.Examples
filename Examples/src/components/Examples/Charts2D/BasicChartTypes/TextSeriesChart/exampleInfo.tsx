@@ -17,7 +17,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         This example demonstrates <strong>FastTextRenderableSeries</strong> using{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
@@ -40,7 +40,8 @@ export const textChartExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Create JavaScript Text Chart with high performance SciChart.js.  ",
+    metaDescription: (frameworkName: string) =>
+        `Create ${frameworkName} Text Chart with high performance SciChart.js.  `,
     metaKeywords: "text, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

@@ -17,7 +17,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to run <strong>Generic Animation</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -38,7 +38,7 @@ export const genericAnimationExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Demonstrates how to run Generic Animation with JavaScript.",
+    metaDescription: (frameworkName: string) => `Demonstrates how to run Generic Animation with JavaScript.`,
     metaKeywords: "generic, animation, javascript",
     thumbnailImage: exampleImage,
 };

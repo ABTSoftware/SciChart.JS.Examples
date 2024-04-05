@@ -22,7 +22,7 @@ const tips = [
     appendRange functions on dataseries.`,
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates loading <strong>500 series, each with 500 points (250k points total) instantly</strong>. Click the{" "}
         <strong>Reload</strong> button at the bottom of the demo to see the chart draw again.
@@ -41,7 +41,8 @@ export const load500By500ExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading 500 series with 500 points (250k points) instantly!`,
+    metaDescription: (frameworkName: string) =>
+        `This demo showcases the incredible performance of our ${frameworkName} Chart by loading 500 series with 500 points (250k points) instantly!`,
     metaKeywords: "performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

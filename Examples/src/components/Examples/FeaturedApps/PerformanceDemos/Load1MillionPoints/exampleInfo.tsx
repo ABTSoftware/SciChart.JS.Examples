@@ -20,7 +20,7 @@ const tips = [
     appendRange functions on dataseries.`,
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Showcases how SciChart.js can load and display 1-Million Data-points in milliseconds. Click the{" "}
         <strong>Reload</strong> button at the bottom of the demo to see the chart draw again.

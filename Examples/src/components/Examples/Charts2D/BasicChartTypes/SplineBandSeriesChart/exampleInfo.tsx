@@ -9,13 +9,13 @@ const previewDescription = `Band Charts fill a polygon between two high and low 
 const description = `This variation on Band charts uses Spline interpolation (smoothing). This JS chart type can be used to draw thresholds, a fill between two lines or areas of interest on a chart.`;
 const tips = [
     `If you have data where Y1 is greater than Y2 always, you’ll get an envelope effect. Great for rendering
-    confidence intervals, error margins or Bollinger Bands!`
+    confidence intervals, error margins or Bollinger Bands!`,
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Spline Band Chart</strong> or High-Low Fill using SciChart.js,{" "}
-        our High Performance{" "}
+        Demonstrates how to create a <strong>{frameworkName} Spline Band Chart</strong> or High-Low Fill using
+        SciChart.js, our High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Chart Software
         </a>
@@ -26,8 +26,8 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlSplineBandChartDocumentation,
         title: ExampleStrings.urlTitleSplineBandChartDocumentation,
-        linkTitle: "JavaScript Spline Band Documentation"
-    }
+        linkTitle: "JavaScript Spline Band Documentation",
+    },
 ];
 
 export const splineBandSeriesChartExampleInfo: TExampleInfo = {
@@ -42,8 +42,8 @@ export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "SciChart's JavaScript Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.",
+    metaDescription: (frameworkName: string) =>
+        `SciChart's ${frameworkName} Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.`,
     metaKeywords: "band, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -22,7 +22,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to create <strong>tooltips on mouse-over</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -43,8 +43,8 @@ export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates adding Tooltips on mouse-move to a JavaScript Chart with SciChart.js RolloverModifier",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates adding Tooltips on mouse-move to a ${frameworkName} Chart with SciChart.js RolloverModifier`,
     metaKeywords: "rollover, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

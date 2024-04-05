@@ -18,7 +18,7 @@ export const FRAMEWORK_NAME = {
 export type TPathTemplate = string | ((framework: EPageFramework) => string);
 export type TFrameworkName = "JavaScript" | "Angular" | "React" | "Vue";
 export type TTitleTemplate = string | ((framework: TFrameworkName) => string);
-export type TMetaDescriptionTemplate = string | ((framework: TFrameworkName) => string);
+export type TDescriptionTemplate = string | ((framework: TFrameworkName) => string);
 
 export const getTitle = (title: TTitleTemplate, framework: EPageFramework) => {
     return typeof title === "string" ? title : title(FRAMEWORK_NAME[framework]);

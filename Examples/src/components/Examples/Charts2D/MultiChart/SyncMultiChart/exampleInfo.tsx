@@ -22,7 +22,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         This example demonstrates how to synchronise layout and visible range across multiple dynamic charts, and how to
         synchronise series with an overview chart.using SciChart.js, High Performance{" "}
@@ -44,7 +44,7 @@ export const syncMultiChartExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Synchronise multiple dynamic charts and overview",
+    metaDescription: (frameworkName: string) => `Synchronise multiple dynamic charts and overview`,
     metaKeywords: "axis, synchronise, multiple, charts, overview, zoom, pan, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

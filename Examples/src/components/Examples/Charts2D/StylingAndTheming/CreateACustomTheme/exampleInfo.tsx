@@ -16,7 +16,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to create a <strong>Custom Theme</strong> for SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -36,7 +36,7 @@ export const createACustomThemeExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to create a Custom Theme for a SciChart.js JavaScript Chart using our Theming API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to create a Custom Theme for a SciChart.js ${frameworkName} Chart using our Theming API`,
     metaKeywords: "theming, chart, javascript, webgl, canvas",
 };

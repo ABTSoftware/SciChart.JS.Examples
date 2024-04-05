@@ -23,10 +23,10 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to add Annotations (shapes, boxes, lines, text) to a <strong>JavaScript Chart</strong> using
-        SciChart.js, High Performance{" "}
+        Demonstrates how to add Annotations (shapes, boxes, lines, text) to a <strong>{frameworkName} Chart</strong>{" "}
+        using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -45,8 +45,8 @@ export const annotationsAreEasyExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to place Annotations (lines, arrows, markers, text) over a JavaScript Chart using SciChart.js Annotations API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to place Annotations (lines, arrows, markers, text) over a ${frameworkName} Chart using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

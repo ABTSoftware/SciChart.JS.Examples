@@ -20,7 +20,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js, High
         Performance{" "}
@@ -42,8 +42,8 @@ export const backgroundAnnotationsExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

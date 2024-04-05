@@ -18,9 +18,9 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how create <strong>JavaScript Charts with per-point coloring</strong> using SciChart.js, High
+        Demonstrates how create <strong>{frameworkName} Charts with per-point coloring</strong> using SciChart.js, High
         Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
@@ -39,7 +39,8 @@ export const perPointColoringExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription: "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API`,
     metaKeywords: "palette, provider, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

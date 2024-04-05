@@ -22,10 +22,10 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to add Buy/Sell Markers (annotations) and News/Dividend bullets to a{" "}
-        <strong>JavaScript Stock Chart</strong> using SciChart.js, High Performance{" "}
+        <strong>{frameworkName} Stock Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -44,8 +44,8 @@ export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to place Buy/Sell arrow markers on a JavaScript Stock Chart using SciChart.js - Annotations API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to place Buy/Sell arrow markers on a ${frameworkName} Stock Chart using SciChart.js - Annotations API`,
     metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

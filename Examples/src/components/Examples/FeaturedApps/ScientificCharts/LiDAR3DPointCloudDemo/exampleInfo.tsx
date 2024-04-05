@@ -22,7 +22,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to visualize <strong>LiDAR UAV Data</strong> from the Defra survey using SciChart.js. A 1km x
         1km slice of London is visualised as a 3D point-cloud with contour map overlaid. A heatmap legend on the right

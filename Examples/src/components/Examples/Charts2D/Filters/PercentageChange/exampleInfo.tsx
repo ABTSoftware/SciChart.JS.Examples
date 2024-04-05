@@ -5,7 +5,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-percentage-change.jpg";
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to use a ScaleOffsetFilter to convert data to a <strong>Percentage Change</strong> with
         realtime updates, using SciChart.js, High Performance{" "}
@@ -44,8 +44,8 @@ export const percentageChangeExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan",
+    metaDescription: (frameworkName: string) =>
+        `How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan`,
     metaKeywords: "real-time, updating, percentage, transform, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

@@ -16,7 +16,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Shows how you can add <strong>Data Labels</strong> to a chart using SciChart.js
     </p>
@@ -33,7 +33,7 @@ export const datalabelsExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription: "Show data labels on javascript chart. Get your free demo now.",
+    metaDescription: (frameworkName: string) => `Show data labels on ${frameworkName} Chart. Get your free demo now.`,
     metaKeywords: "data labels, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

@@ -5,7 +5,7 @@ import { ExampleStrings } from "../../ExampleStrings";
 import exampleImage from "./javascript-builder-full.jpg";
 import { TDocumentationLink } from "../../../../helpers/types/ExampleDescriptionTypes";
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to use the Builder Api to create a <strong>Fully Configured Chart</strong> using SciChart.js,
         High Performance{" "}

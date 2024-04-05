@@ -19,7 +19,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to use <strong>tooltips at fixed positions</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -40,8 +40,8 @@ export const usingVerticalSliceModifierExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates adding Tooltips at certain positions to a JavaScript Chart with SciChart.js VerticalSliceModifier",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates adding Tooltips at certain positions to a ${frameworkName} Chart with SciChart.js VerticalSliceModifier`,
     metaKeywords: "tooltips, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

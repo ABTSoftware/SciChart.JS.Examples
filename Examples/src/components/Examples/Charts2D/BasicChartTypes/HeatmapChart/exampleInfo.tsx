@@ -13,14 +13,14 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlHeatmapChartDocumentation,
         title: ExampleStrings.urlTitleHeatmapChartDocumentation,
-        linkTitle: "JavaScript Heatmap Chart Documentation"
-    }
+        linkTitle: "JavaScript Heatmap Chart Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         If you want to learn about heatmaps. this demo shows you how to create a{" "}
-        <strong>JavaScript Heatmap Chart</strong> using SciChart.js, our 5-star rated{" "}
+        <strong>{frameworkName} Heatmap Chart</strong> using SciChart.js, our 5-star rated{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Component">
             JavaScript Chart Component
         </a>
@@ -38,8 +38,8 @@ export const heatmapChartExampleInfo: TExampleInfo = {
     documentationLinks,
     description,
     githubUrl,
-    metaDescription:
-        "Easily create a high performance JavaScript Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.",
+    metaDescription: (frameworkName: string) =>
+        `Easily create a high performance ${frameworkName} Heatmap Chart with SciChart. Get your free trial of our 5-star rated JavaScript Chart Component today.`,
     metaKeywords: "heatmap, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

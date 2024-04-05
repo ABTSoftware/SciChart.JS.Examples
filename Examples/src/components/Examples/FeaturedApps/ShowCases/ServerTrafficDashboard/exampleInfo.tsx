@@ -4,7 +4,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-server-traffic-dashboard.jpg";
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates handling realtime big data with different chart types using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -41,8 +41,8 @@ export const serverTrafficDashboardDemoExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "This dashboard demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
+    metaDescription: (frameworkName: string) =>
+        `This dashboard demo showcases the incredible realtime performance of our ${frameworkName} charts by updating the series with millions of data-points!`,
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
     extraDependencies: { "country-flag-icons": "^1.5.7" },

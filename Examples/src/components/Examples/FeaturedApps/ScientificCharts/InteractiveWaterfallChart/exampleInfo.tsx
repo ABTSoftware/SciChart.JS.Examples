@@ -17,7 +17,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive
         selection of points.

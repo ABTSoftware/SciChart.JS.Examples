@@ -21,7 +21,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to add <strong>Series Selection</strong> to a chart using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -42,8 +42,8 @@ export const seriesSelectionExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates Hit-Testing a JavaScript Chart - point and click on the chart and get feedback about what data-points were clicked",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates Hit-Testing a ${frameworkName} Chart - point and click on the chart and get feedback about what data-points were clicked`,
     metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

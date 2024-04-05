@@ -18,7 +18,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to use <strong>Images as Labels</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -39,7 +39,7 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Demonstrates how to use Images as Axis Labels",
+    metaDescription: (frameworkName: string) => `Demonstrates how to use Images as Axis Labels`,
     metaKeywords: "image, axis, label, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

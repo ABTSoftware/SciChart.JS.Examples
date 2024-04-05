@@ -23,7 +23,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Zoom the real-time chart below by dragging on the surface. Right click and drag to pan. Then double-click to
         reset zoom and start automatically scrolling again.
@@ -42,8 +42,8 @@ export const realtimeZoomPanExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to zoom and pan a realtime JavaScript Chart while it is updating, with SciChart.js ZoomState API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to zoom and pan a realtime ${frameworkName} Chart while it is updating, with SciChart.js ZoomState API`,
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

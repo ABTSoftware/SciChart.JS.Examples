@@ -5,7 +5,7 @@ import { ExampleStrings } from "../../ExampleStrings";
 import exampleImage from "./javascript-chart-from-json.jpg";
 import { TDocumentationLink } from "../../../../helpers/types/ExampleDescriptionTypes";
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to use the Builder Api to create a <strong>Chart from JSON</strong> using SciChart.js. Adjust
         the JSON in the window below and the chart will re-build. Choose from pre-selected defaults to learn more about
@@ -40,7 +40,8 @@ export const chartFromJSONExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Demonstrates how to create a JavaScript Chart from JSON using the builder API. ",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to create a ${frameworkName} Chart from JSON using the builder API. `,
     metaKeywords: "json, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

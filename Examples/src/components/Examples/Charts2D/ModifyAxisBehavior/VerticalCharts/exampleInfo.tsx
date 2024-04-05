@@ -21,10 +21,10 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to create a <strong>rotated JavaScript Chart with vertical X-Axis</strong> using SciChart.js,
-        High Performance{" "}
+        Demonstrates how to create a <strong>rotated {frameworkName} Chart with vertical X-Axis</strong> using
+        SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -42,7 +42,8 @@ export const verticalChartsExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription: "Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates alignment of Axis to create a vertical chart with SciChart.js - JavaScript Charts.`,
     metaKeywords: "vertical, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

@@ -20,9 +20,9 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates different <strong>Zoom and Pan Modifiers on a JavaScript Chart</strong> including Mousewheel,
+        Demonstrates different <strong>Zoom and Pan Modifiers on a {frameworkName} Chart</strong> including Mousewheel,
         Pinchzoom, Rubber-band zoom.
     </p>
 );
@@ -38,7 +38,8 @@ export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription: "Demonstrates how to use multiple Zoom and Pan Modifiers on a JavaScript Chart with SciChart.js",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to use multiple Zoom and Pan Modifiers on a ${frameworkName} Chart with SciChart.js`,
     metaKeywords: "zoom, pan, pinch, touch, scale, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

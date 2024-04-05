@@ -20,7 +20,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates the <strong>light and dark theme</strong> in SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -40,7 +40,8 @@ export const usingThemeManagerExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription: "Demonstrates our Light and Dark Themes for JavaScript Charts with SciChart.js ThemeManager API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates our Light and Dark Themes for ${frameworkName} Charts with SciChart.js ThemeManager API`,
     metaKeywords: "theme, provider, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

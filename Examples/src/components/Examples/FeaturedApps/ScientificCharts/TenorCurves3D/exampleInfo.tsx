@@ -23,7 +23,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         In financial applications sometimes you want to visualise options-volatility smiles or interest-rate swap tenor
         curves. This can be done in SciChart.js using a 3D Surface Mesh (heightmap) chart type.

@@ -23,7 +23,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to zoom and pan with an <strong>Overview Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -44,7 +44,7 @@ export const overviewExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Demonstrates how to zoom and pan with an Overview Chart",
+    metaDescription: (frameworkName: string) => `Demonstrates how to zoom and pan with an Overview Chart`,
     metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

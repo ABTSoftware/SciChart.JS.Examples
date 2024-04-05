@@ -21,10 +21,10 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Band Chart</strong> or High-Low Fill using SciChart.js, our High
-        Performance{" "}
+        Demonstrates how to create a <strong>{frameworkName} Band Chart</strong> or High-Low Fill using SciChart.js, our
+        High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Framework">
             JavaScript Chart Framework
         </a>

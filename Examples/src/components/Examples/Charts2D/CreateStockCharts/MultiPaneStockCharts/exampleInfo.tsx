@@ -14,18 +14,18 @@ SciChartVerticalGroup type. Technical indicators are for demo purposes only. We 
 const tips = [
     `SciChart.js supports all the features you need to create rich, interactive, realtime JavaScript Stock Chart
     applications. Including Candlestick/OHLC charts, Band Series for bollinger bands, multi-panes, plus
-    incredible real-time performance.`
+    incredible real-time performance.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
         title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Using the default multi-chart sync APIs, create a multi-pane stock chart example with indicator panels. Zooming,
         panning, cursors are synchronised between the charts. This is a simpler way to create charts than subcharts, but
@@ -45,8 +45,8 @@ export const multiPaneStockChartsExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Create a JavaScript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+    metaDescription: (frameworkName: string) =>
+        `Create a ${frameworkName} Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.`,
     metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

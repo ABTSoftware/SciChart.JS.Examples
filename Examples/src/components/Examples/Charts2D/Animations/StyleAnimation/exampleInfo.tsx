@@ -17,7 +17,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to run <strong>Style Transition Animations</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -38,7 +38,7 @@ export const styleAnimationExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
+    metaDescription: (frameworkName: string) => `Demonstrates how to run Style Transition Animations with JavaScript.`,
     metaKeywords: "style, animation, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

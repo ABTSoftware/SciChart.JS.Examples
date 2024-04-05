@@ -17,7 +17,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Using the SubCharts API as part of{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -40,8 +40,8 @@ export const subchartsGridExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
+    metaDescription: (frameworkName: string) =>
+        `Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript`,
     metaKeywords: "javascript, multichart, dashboard, performance, grid, realtime, webgl, canvas",
     thumbnailImage: exampleImage,
 };

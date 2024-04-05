@@ -22,7 +22,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to create <strong>crosshairs on mouseover</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -43,7 +43,8 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Demonstrates adding a Cursor (Crosshair) to a JavaScript Chart with SciChart.js CursorModifier",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates adding a Cursor (Crosshair) to a ${frameworkName} Chart with SciChart.js CursorModifier`,
     metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

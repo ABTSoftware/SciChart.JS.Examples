@@ -22,9 +22,9 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to add a legend to a <strong>JavaScript Chart</strong> using SciChart.js, High Performance{" "}
+        Demonstrates how to add a legend to a <strong>{frameworkName} Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>

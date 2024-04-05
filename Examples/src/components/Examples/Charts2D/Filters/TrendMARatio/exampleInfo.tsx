@@ -19,7 +19,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how use <strong>Linear Trend, Moving Average and Ratio Filters</strong> with filter chaining, using
         SciChart.js, High Performance{" "}
@@ -41,7 +41,8 @@ export const trendMARatioExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining",
+    metaDescription: (frameworkName: string) =>
+        `Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining`,
     metaKeywords: "trend, line, moving, average, ratio, transform, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

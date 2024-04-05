@@ -5,7 +5,7 @@ import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-dynamic-layout.jpg";
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates a custom modifier which can convert from single chart to grid layout and back using SciChart.js,
         High Performance{" "}
@@ -38,7 +38,8 @@ export const dynamicLayoutExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Demonstrates a custom modifier which can convert from single chart to grid layout and back.",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates a custom modifier which can convert from single chart to grid layout and back.`,
     metaKeywords: "subcharts, layout, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

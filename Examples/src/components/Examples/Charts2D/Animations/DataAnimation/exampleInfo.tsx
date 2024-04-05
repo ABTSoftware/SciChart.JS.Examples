@@ -17,7 +17,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to run <strong>Dataset Animations</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -38,7 +38,7 @@ export const dataAnimationExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Demonstrates how to run Dataset Animations with JavaScript.",
+    metaDescription: (frameworkName: string) => `Demonstrates how to run Dataset Animations with JavaScript.`,
     metaKeywords: "data, dataset, animation, webgl, canvas",
     thumbnailImage: exampleImage,
 };

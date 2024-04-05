@@ -19,10 +19,10 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a{" "}
-        <strong>JavaScript Chart</strong> using SciChart.js, High Performance{" "}
+        <strong>{frameworkName} Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -41,8 +41,8 @@ export const editableAnnotationsExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to edita Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a JavaScript Chart using SciChart.js Annotations API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a ${frameworkName} Chart using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas, drag and drop",
     thumbnailImage: exampleImage,
 };

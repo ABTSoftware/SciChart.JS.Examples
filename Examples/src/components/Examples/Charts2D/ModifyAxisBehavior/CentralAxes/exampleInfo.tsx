@@ -17,9 +17,9 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Chart with central axes</strong> using SciChart.js, High
+        Demonstrates how to create a <strong>{frameworkName} Chart with central axes</strong> using SciChart.js, High
         Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
@@ -38,8 +38,8 @@ export const centralAxesExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription:
-        "Demonstrates Central Axes on a JavaScript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates Central Axes on a ${frameworkName} Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout`,
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

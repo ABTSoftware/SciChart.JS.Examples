@@ -13,14 +13,14 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlImpulseChartDocumentation,
         title: ExampleStrings.urlTitleImpulseChartDocumentation,
-        linkTitle: "JavaScript Impulse Chart Documentation"
-    }
+        linkTitle: "JavaScript Impulse Chart Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Use this demonstration to learn how to create a <strong>JavaScript Impulse Chart</strong> using SciChart.js, our
-        own High Performance{" "}
+        Use this demonstration to learn how to create a <strong>{frameworkName} Impulse Chart</strong> using
+        SciChart.js, our own High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
             JavaScript Chart Library
         </a>
@@ -39,8 +39,8 @@ export const impulseChartExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription:
-        "Easily create JavaScript Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. ",
+    metaDescription: (frameworkName: string) =>
+        `Easily create ${frameworkName} Impulse Chart or Stem Chart using SciChart.js - our own high performance JavaScript Chart Library. Get your free trial now. `,
     metaKeywords: "impulse, lollipop, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

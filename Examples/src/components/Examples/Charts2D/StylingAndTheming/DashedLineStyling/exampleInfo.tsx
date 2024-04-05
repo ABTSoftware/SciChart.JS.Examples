@@ -20,9 +20,10 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how create <strong>JavaScript Charts with dashed lines</strong> using SciChart.js, High Performance{" "}
+        Demonstrates how create <strong>{frameworkName} Charts with dashed lines</strong> using SciChart.js, High
+        Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -40,7 +41,8 @@ export const dashedLineStylingExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription: "Demonstrates dashed line series in JavaScript charts with SciChart.js",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates dashed line series in ${frameworkName} Charts with SciChart.js`,
     metaKeywords: "dash, dashed, dotted, line, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

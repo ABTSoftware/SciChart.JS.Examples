@@ -18,10 +18,10 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Chart with multiple X,Y axis</strong> using SciChart.js, High
-        Performance{" "}
+        Demonstrates how to create a <strong>{frameworkName} Chart with multiple X,Y axis</strong> using SciChart.js,
+        High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -39,8 +39,8 @@ export const multipleXAxesExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription:
-        "Demonstrates Multiple X & Y Axis on a JavaScript Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates Multiple X & Y Axis on a ${frameworkName} Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning`,
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

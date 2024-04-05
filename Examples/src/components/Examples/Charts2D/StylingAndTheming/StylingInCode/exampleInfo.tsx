@@ -18,9 +18,9 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to <strong>style or theme a JavaScript Chart</strong> using SciChart.js, High Performance{" "}
+        Demonstrates how to <strong>style or theme a {frameworkName} Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -39,7 +39,8 @@ export const stylingInCodeExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Demonstrates how to style a JavaScript Chart entirely in code with SciChart.js themeing API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to style a ${frameworkName} Chart entirely in code with SciChart.js themeing API`,
     metaKeywords: "styling, in, code, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

@@ -19,7 +19,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to create a <strong>Chart with Transparent Background</strong> using SciChart.js, High
         Performance{" "}
@@ -41,8 +41,8 @@ export const transparentBackgroundExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to create a JavaScript Chart with background image using transparency in SciChart.js",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to create a ${frameworkName} Chart with background image using transparency in SciChart.js`,
     metaKeywords: "styling, transparent, background, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

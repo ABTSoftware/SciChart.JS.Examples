@@ -22,7 +22,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates simple and advanced <strong>Custom Filters</strong>, with realtime updates using SciChart.js, High
         Performance{" "}
@@ -44,8 +44,8 @@ export const customFiltersExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates simple and advanced Custom Filters for data transformation and aggregation, with realtime updates`,
     metaKeywords: "real-time, filter, transform, updating, aggregation, custom, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

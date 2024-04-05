@@ -20,7 +20,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates real-time oscilloscope style effects with SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -40,8 +40,8 @@ export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription:
-        "This demo showcases the realtime performance of our JavaScript Chart by animating several series with thousands of data-points at 60 FPS",
+    metaDescription: (frameworkName: string) =>
+        `This demo showcases the realtime performance of our ${frameworkName} Chart by animating several series with thousands of data-points at 60 FPS`,
     metaKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

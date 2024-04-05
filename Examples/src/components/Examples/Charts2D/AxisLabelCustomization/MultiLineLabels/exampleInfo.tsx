@@ -21,7 +21,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to use <strong>Multi-Line Text</strong> for axis labels using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -42,8 +42,8 @@ export const multiLineLabelsExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider`,
     metaKeywords: "text, axis, label, wrap, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

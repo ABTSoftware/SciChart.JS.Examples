@@ -5,7 +5,7 @@ import { ExampleStrings } from "../../ExampleStrings";
 import exampleImage from "./javascript-custom-types.jpg";
 import { TDocumentationLink } from "../../../../helpers/types/ExampleDescriptionTypes";
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to use the Builder Api with <strong>Custom Types</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">

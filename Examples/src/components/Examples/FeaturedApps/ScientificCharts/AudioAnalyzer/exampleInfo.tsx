@@ -21,7 +21,7 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 // tslint:disable-next-line:max-line-length
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to create a <strong>JavaScript Frequency / Audio Analyzer</strong> with Fourier Transform
         (Frequency spectra) and a real-time frequency history using heatmaps.{" "}

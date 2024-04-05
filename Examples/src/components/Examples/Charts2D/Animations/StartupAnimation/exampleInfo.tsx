@@ -17,7 +17,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to run <strong>Startup Animations</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -38,7 +38,7 @@ export const startupAnimationExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Demonstrates how to run Startup Animations with JavaScript.",
+    metaDescription: (frameworkName: string) => `Demonstrates how to run Startup Animations with JavaScript.`,
     metaKeywords: "startup, on-start, animation, javascript",
     thumbnailImage: exampleImage,
 };

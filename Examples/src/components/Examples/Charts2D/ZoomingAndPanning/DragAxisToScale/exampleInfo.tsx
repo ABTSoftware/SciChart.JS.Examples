@@ -17,9 +17,9 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to <strong>scale or pan the Axis on a JavaScript Chart</strong> using SciChart.js, High
+        Demonstrates how to <strong>scale or pan the Axis on a {frameworkName} Chart</strong> using SciChart.js, High
         Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
@@ -38,8 +38,8 @@ export const dragAxisToScaleExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to Zoom, Scale or Pan individual Axis on a JavaScript Chart with SciChart.js AxisDragModifiers",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to Zoom, Scale or Pan individual Axis on a ${frameworkName} Chart with SciChart.js AxisDragModifiers`,
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

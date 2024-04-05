@@ -21,7 +21,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to add and use <strong>MetaData</strong> in a chart using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -42,8 +42,8 @@ export const metaDataExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates using MetaData in a JavaScript Chart - add custom data to points for display or to drive visual customisation",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates using MetaData in a ${frameworkName} Chart - add custom data to points for display or to drive visual customisation`,
     metaKeywords: "metaData, api, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

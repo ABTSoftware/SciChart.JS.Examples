@@ -104,7 +104,7 @@ import { dynamicLayoutExampleInfo } from "../Examples/FeaturedApps/ShowCases/Dyn
 import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/exampleInfo";
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
-import { TMetaDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 export type TExampleInfo = {
     /**
@@ -119,9 +119,9 @@ export type TExampleInfo = {
 
     documentationLinks: TDocumentationLink[];
     tips?: any;
-    description: any;
+    description: TDescriptionTemplate;
     previewDescription?: any;
-    subtitle: () => JSX.Element;
+    subtitle: (frameworkName: string) => JSX.Element;
     // If this example has been created on scichart.com
     onWebsite?: boolean;
     /**
@@ -133,7 +133,7 @@ export type TExampleInfo = {
     /**
      * Page meta description
      */
-    metaDescription: TMetaDescriptionTemplate;
+    metaDescription: TDescriptionTemplate;
     /**
      * Page meta keywords
      */

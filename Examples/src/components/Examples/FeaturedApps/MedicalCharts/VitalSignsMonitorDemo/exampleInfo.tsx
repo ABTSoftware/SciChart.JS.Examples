@@ -25,7 +25,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Showcases how SciChart.js can be used in a <strong>Medical context</strong>, drawing ECGs with our High
         Performance{" "}

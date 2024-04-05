@@ -19,7 +19,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates interaction by dragging vertical and horizontal line thresholds. As the thresholds move, the chart
         colour updates.
@@ -38,8 +38,8 @@ export const dragHorizontalThresholdExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to add draggable thresholds which change the series color in the chart in SciChart.js`,
     metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };
