@@ -29,10 +29,9 @@ const Subtitle = (frameworkName: string) => (
 
 export const subchartsGridExampleInfo: TExampleInfo = {
     onWebsite: false,
-    // TODO move to example strings
-    title: "JavaScript 64-Chart Dashboard Performance Demo",
-    pageTitle: "JavaScript 64-Chart Dashboard Performance Demo",
-    path: "multiple-chart-dashboard-performance-demo",
+    title: ExampleStrings.titleChartGrid,
+    pageTitle: ExampleStrings.titleChartGrid,
+    path: ExampleStrings.urlChartGrid,
     filepath: "FeaturedApps/FeatureDemos/SubChartsAPI",
     subtitle: Subtitle,
     documentationLinks,
