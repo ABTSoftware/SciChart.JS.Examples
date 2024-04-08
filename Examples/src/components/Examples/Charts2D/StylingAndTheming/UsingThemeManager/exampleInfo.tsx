@@ -9,18 +9,18 @@ const description = `SciChart.js ships with a light and a dark theme, which you 
 SciChartSurface.applyTheme() function.`;
 const tips = [
     `If you implement IThemeProvider you can create your own custom themes! It's also possible to style
-    chart-parts in code.`
+    chart-parts in code.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlThemeManagerDocumentation,
         title: ExampleStrings.urlTitleThemeManagerDocumentation,
-        linkTitle: "The ThemeManager documentation"
-    }
+        linkTitle: "The ThemeManager documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates the <strong>light and dark theme</strong> in SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -32,7 +32,7 @@ const Subtitle = () => (
 export const usingThemeManagerExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleThemeManager,
-    pageTitle: ExampleStrings.titleThemeManager + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleThemeManager,
     path: ExampleStrings.urlThemeManager,
     filepath: "Charts2D/StylingAndTheming/UsingThemeManager",
     subtitle: Subtitle,
@@ -40,7 +40,8 @@ export const usingThemeManagerExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription: "Demonstrates our Light and Dark Themes for JavaScript Charts with SciChart.js ThemeManager API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates our Light and Dark Themes for ${frameworkName} Charts with SciChart.js ThemeManager API`,
     metaKeywords: "theme, provider, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

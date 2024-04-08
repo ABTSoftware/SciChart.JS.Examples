@@ -1,5 +1,3 @@
-import { TPathTemplate } from "../../components/AppRouter/pages";
-
 export type GalleryItem = {
     chartGroupTitle: string;
     items: {

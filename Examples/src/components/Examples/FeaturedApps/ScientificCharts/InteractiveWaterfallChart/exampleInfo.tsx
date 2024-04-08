@@ -17,7 +17,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to create a Waterfall chart in SciChart.js, showing chromotragraphy data with interactive
         selection of points.
@@ -27,7 +27,7 @@ const Subtitle = () => (
 export const waterfallChartExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: "Interactive Waterfall Spectral Chart",
-    pageTitle: "Interactive Waterfall Chart" + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: "Interactive Waterfall Chart",
     path: `interactive-waterfall-chart`,
     filepath: "FeaturedApps/ScientificCharts/InteractiveWaterfallChart",
     subtitle: Subtitle,

@@ -15,9 +15,8 @@ import LogoSmall from "../../images/scichart-logo-app-bar-mobile.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import npm from "./npm.svg";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getTitle, EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
-import { EPageFramework, FRAMEWORK_NAME } from "../AppRouter/pages";
 import { useNavigate } from "react-router-dom";
 import { appTheme } from "scichart-example-dependencies";
 

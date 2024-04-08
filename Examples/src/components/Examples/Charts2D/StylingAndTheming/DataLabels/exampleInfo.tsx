@@ -12,11 +12,11 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDatalabelsDocumentation,
         title: ExampleStrings.urlTitleDatalabelsDocumentation,
-        linkTitle: "Common RenderableSeries Properties"
-    }
+        linkTitle: "Common RenderableSeries Properties",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Shows how you can add <strong>Data Labels</strong> to a chart using SciChart.js
     </p>
@@ -25,7 +25,7 @@ const Subtitle = () => (
 export const datalabelsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDatalabels,
-    pageTitle: ExampleStrings.titleDatalabels + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleDatalabels,
     path: ExampleStrings.urlDatalabels,
     filepath: "Charts2D/StylingAndTheming/DataLabels",
     subtitle: Subtitle,
@@ -33,7 +33,7 @@ export const datalabelsExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription: "Show data labels on javascript chart. Get your free demo now.",
+    metaDescription: (frameworkName: string) => `Show data labels on ${frameworkName} Chart. Get your free demo now.`,
     metaKeywords: "data labels, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

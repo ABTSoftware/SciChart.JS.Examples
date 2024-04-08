@@ -3,11 +3,9 @@ import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import exampleImage from "./javascript-chart-realtime-performance-demo.jpg";
-import { TFrameworkName } from "../../../../AppRouter/pages";
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates appending <strong>millions of points</strong> to a line chart with SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -35,8 +33,7 @@ const documentationLinks: TDocumentationLink[] = [
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
-    pageTitle: (frameworkName: TFrameworkName) =>
-        ExampleStrings.titleRealtimeJavaScriptChartDemo(frameworkName) + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleRealtimeJavaScriptChartDemo,
     path: ExampleStrings.urlRealtimeJavaScriptChartDemo,
     filepath: "FeaturedApps/PerformanceDemos/RealtimePerformanceDemo",
     subtitle: Subtitle,
@@ -45,8 +42,8 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
+    metaDescription: (frameworkName: string) =>
+        `This demo showcases the incredible realtime performance of our ${frameworkName} charts by updating the series with millions of data-points!`,
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

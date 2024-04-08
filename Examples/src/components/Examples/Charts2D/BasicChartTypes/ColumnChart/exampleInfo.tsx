@@ -9,21 +9,21 @@ const description = `Columns in SciChart.js are rendered with a stroke and fill,
 support gradient fill and paletteproviders for more custom coloring options.`;
 const tips = [
     `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much
-    space the column takes up.`
+    space the column takes up.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlColumnChartDocumentation,
         title: ExampleStrings.urlTitleColumnChartDocumentation,
-        linkTitle: "JavaScript Column Chart Documentation"
-    }
+        linkTitle: "JavaScript Column Chart Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Creates a <strong>JavaScript Column Chart</strong> using SciChart.js, with the following features: DataLabels,
-        Rounded corners, Gradient-palette fill, startup animations.
+        Creates a <strong>{frameworkName} Column Chart</strong> using SciChart.js, with the following features:
+        DataLabels, Rounded corners, Gradient-palette fill, startup animations.
     </p>
 );
 
@@ -38,8 +38,8 @@ export const columnChartExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription:
-        "JavaScript Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+    metaDescription: (frameworkName: string) =>
+        `${frameworkName} Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.`,
     metaKeywords: "column, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -59,7 +59,7 @@ export const drawExample = async (rootElement) => {
             showLabel: value > 2,
             colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: color1, offset: 0 },
-                { color: color2 ?? color1 + "77", offset: 1 },
+                { color: color2 || color1 + "77", offset: 1 },
             ]),
         });
     };

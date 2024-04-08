@@ -16,7 +16,7 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates the Numeric, Category, Date and Logarithmic axis types available SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -29,7 +29,7 @@ export const axisTypesExampleInfo: TExampleInfo = {
     onWebsite: true,
     // TODO add to example strings
     title: "Axis Types",
-    pageTitle: "Axis Types" + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: "Axis Types",
     path: `axis-types`,
     filepath: "FeaturedApps/FeatureDemos/AxisTypes",
     subtitle: Subtitle,
@@ -38,8 +38,8 @@ export const axisTypesExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider`,
     metaKeywords: "text, axis, date, logarithmic, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
 };

@@ -33,7 +33,7 @@ export const drawExample = async (rootElement) => {
         })
     );
     // data is { xValues: number[], yValues: number[], textValues: string[] }
-    const data = await fetch("/api/tweetData").then((r) => r.json());
+    const data = await fetch("https://demo.scichart.com/api/tweetData").then((r) => r.json());
     const series = new FastTextRenderableSeries(wasmContext, {
         dataLabels: { style: { fontFamily: "arial", fontSize: 10 }, calculateTextBounds: false },
         dataSeries: new XyTextDataSeries(wasmContext, data),

@@ -14,11 +14,11 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlPointMarkersDocumentation,
         title: ExampleStrings.urlTitlePointMarkersDocumentation,
-        linkTitle: "Point-Markers API documentation"
-    }
+        linkTitle: "Point-Markers API documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to create <strong>custom data-point markers</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -30,7 +30,7 @@ const Subtitle = () => (
 export const usePointMarkersExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titlePointMarkers,
-    pageTitle: ExampleStrings.titlePointMarkers + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titlePointMarkers,
     path: ExampleStrings.urlPointMarkers,
     filepath: "Charts2D/StylingAndTheming/UsePointMarkers",
     subtitle: Subtitle,
@@ -38,8 +38,8 @@ export const usePointMarkersExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates the different point-marker types for JavaScript Scatter charts (Square, Circle, Triangle and Custom image point-marker)",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates the different point-marker types for ${frameworkName} Scatter charts (Square, Circle, Triangle and Custom image point-marker)`,
     metaKeywords: "data, point, marker, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

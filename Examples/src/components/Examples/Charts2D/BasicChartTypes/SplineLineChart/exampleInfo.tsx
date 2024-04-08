@@ -12,20 +12,21 @@ few data-points and want a nicer looking, smoothed line series in your chart app
 const tips = [
     `As well as stroke, you can set strokeThickness, isVisible properties to change how the series is rendered.`,
     `You can add data-point markers to a line series using the PointMarker API. This is very performant and uses the
-    same WebGL rendering as our Scatter Charts.`
+    same WebGL rendering as our Scatter Charts.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlSplineLineChartDocumentation,
         title: ExampleStrings.titleSplineLineChart,
-        linkTitle: "JavaScript Spline Line Chart Documentation"
-    }
+        linkTitle: "JavaScript Spline Line Chart Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Spline Line Chart</strong> using SciChart.js, our feature-rich{" "}
+        Demonstrates how to create a <strong>{frameworkName} Spline Line Chart</strong> using SciChart.js, our
+        feature-rich{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
             JavaScript Chart Library
         </a>
@@ -44,8 +45,8 @@ export const splineLineChartExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Discover how to create a JavaScript Spline Line Chart with SciChart. Demo includes algorithm for smoother lines. Get your free trial now.",
+    metaDescription: (frameworkName: string) =>
+        `Discover how to create a ${frameworkName} Spline Line Chart with SciChart. Demo includes algorithm for smoother lines. Get your free trial now.`,
     metaKeywords: "spline, smoothed, line, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

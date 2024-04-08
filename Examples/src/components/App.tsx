@@ -20,14 +20,13 @@ import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";
 import classes from "./App.module.scss";
 import "./index.scss";
 import Gallery from "./Gallery/Gallery";
-import { EPageFramework, FRAMEWORK_NAME, PAGES } from "./AppRouter/pages";
 import { GalleryItem } from "../helpers/types/types";
 import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
 
 export default function App() {
-    let { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
+    const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
 
     const selectedFramework = framework;
 
@@ -56,7 +55,7 @@ export default function App() {
     const currentExampleId = currentExample?.id;
     // SeeAlso is now optional on exampleInfo. Return this if provided else auto-generate from menu
     const seeAlso: GalleryItem[] =
-        currentExample?.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample, FRAMEWORK_NAME[framework]);
+        currentExample?.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample, framework);
 
     // // Find the example category
     // const exampleCategory = ALL_MENU_ITEMS.find(menuItem => {
@@ -94,7 +93,7 @@ export default function App() {
         return <AppRouter currentExample={currentExample} seeAlso={seeAlso} isIFrame={true} />;
     }
 
-    const allGalleryItems = generateExamplesGallery(FRAMEWORK_NAME[framework]);
+    const allGalleryItems = generateExamplesGallery(framework);
 
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (

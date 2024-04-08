@@ -1,4 +1,4 @@
 import { createContext } from "react";
-import { EPageFramework } from "../../../components/AppRouter/pages";
+import { EPageFramework } from "./frameworkParametrization";
 
 export const FrameworkContext = createContext<EPageFramework>(EPageFramework.React);

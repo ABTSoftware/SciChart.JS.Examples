@@ -11,21 +11,21 @@ const description = `The CustomAnnotations are created and added using SVG to th
 may be placed above or below candles with our helpful API.`;
 const tips = [
     ` News/Event bullet annotations use AnnotationBase.${" "}yCoordinateMode = ECoordinateMode.${" "}RelativeY to always place
-the event bullet at the bottom of the chart.`
+the event bullet at the bottom of the chart.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlAnnotationsDocumentation,
         title: ExampleStrings.urlTitleAnnotationsDocumentation,
-        linkTitle: "Annotations API Documentation"
-    }
+        linkTitle: "Annotations API Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to add Buy/Sell Markers (annotations) and News/Dividend bullets to a{" "}
-        <strong>JavaScript Stock Chart</strong> using SciChart.js, High Performance{" "}
+        <strong>{frameworkName} Stock Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -35,7 +35,7 @@ const Subtitle = () => (
 export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleTradeMarkers,
-    pageTitle: ExampleStrings.titleTradeMarkers + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleTradeMarkers,
     path: ExampleStrings.urlTradeMarkers,
     filepath: "Charts2D/ChartAnnotations/TradeMarkers",
     subtitle: Subtitle,
@@ -44,8 +44,8 @@ export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to place Buy/Sell arrow markers on a JavaScript Stock Chart using SciChart.js - Annotations API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to place Buy/Sell arrow markers on a ${frameworkName} Stock Chart using SciChart.js - Annotations API`,
     metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

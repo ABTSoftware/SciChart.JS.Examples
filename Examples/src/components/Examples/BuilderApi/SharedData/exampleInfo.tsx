@@ -5,7 +5,7 @@ import { ExampleStrings } from "../../ExampleStrings";
 import exampleImage from "./javascript-shared-data.jpg";
 import { TDocumentationLink } from "../../../../helpers/types/ExampleDescriptionTypes";
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to use the Builder Api to create <strong>Reusable Chart Templates</strong> using SciChart.js
         Builder API. Use this method when you want to create a template for a chart and add data later.

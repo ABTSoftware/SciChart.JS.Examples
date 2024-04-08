@@ -9,20 +9,20 @@ const description = `Scroll Middle Mouse button to zoom in/zoom out. Use Right M
 const tips = [
     `Use 'executeOn' property to assign a Modifier to specific mouse button. `,
     `Use 'easingFunction' property to animate zoom. `,
-    `Use CSS 'touch-action' property to override browser default touch behavior. e.g., 'touch-action: none'. `
+    `Use CSS 'touch-action' property to override browser default touch behavior. e.g., 'touch-action: none'. `,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlZoomPanModifierDocumentation,
         title: ExampleStrings.urlTitleZoomPanModifierDocumentation,
-        linkTitle: "SciChart.js Zooming and Panning documentation"
-    }
+        linkTitle: "SciChart.js Zooming and Panning documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates different <strong>Zoom and Pan Modifiers on a JavaScript Chart</strong> including Mousewheel,
+        Demonstrates different <strong>Zoom and Pan Modifiers on a {frameworkName} Chart</strong> including Mousewheel,
         Pinchzoom, Rubber-band zoom.
     </p>
 );
@@ -30,7 +30,7 @@ const Subtitle = () => (
 export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
-    pageTitle: ExampleStrings.titleZoomPanWithMultipleChartModifiers + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleZoomPanWithMultipleChartModifiers,
     path: ExampleStrings.urlZoomPanWithMultipleChartModifiers,
     filepath: "Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers",
     subtitle: Subtitle,
@@ -38,7 +38,8 @@ export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription: "Demonstrates how to use multiple Zoom and Pan Modifiers on a JavaScript Chart with SciChart.js",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to use multiple Zoom and Pan Modifiers on a ${frameworkName} Chart with SciChart.js`,
     metaKeywords: "zoom, pan, pinch, touch, scale, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

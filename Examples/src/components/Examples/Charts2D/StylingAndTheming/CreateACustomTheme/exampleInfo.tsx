@@ -12,11 +12,11 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlCustomThemeDocumentation,
         title: ExampleStrings.urlTitleCustomThemeDocumentation,
-        linkTitle: "Custom Theme documentation"
-    }
+        linkTitle: "Custom Theme documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to create a <strong>Custom Theme</strong> for SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -28,7 +28,7 @@ const Subtitle = () => (
 export const createACustomThemeExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleCustomTheme,
-    pageTitle: ExampleStrings.titleCustomTheme + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleCustomTheme,
     path: ExampleStrings.urlCustomTheme,
     filepath: "Charts2D/StylingAndTheming/CreateACustomTheme",
     subtitle: Subtitle,
@@ -36,7 +36,7 @@ export const createACustomThemeExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription:
-        "Demonstrates how to create a Custom Theme for a SciChart.js JavaScript Chart using our Theming API",
-    metaKeywords: "theming, chart, javascript, webgl, canvas"
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to create a Custom Theme for a SciChart.js ${frameworkName} Chart using our Theming API`,
+    metaKeywords: "theming, chart, javascript, webgl, canvas",
 };

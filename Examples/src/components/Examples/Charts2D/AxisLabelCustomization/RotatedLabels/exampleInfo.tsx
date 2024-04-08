@@ -15,11 +15,11 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlRotatingLabelsDocumentation,
         title: ExampleStrings.urlTitleRotatingLabelsDocumentation,
-        linkTitle: "SciChart.js Axis Label Formatting Documentation"
-    }
+        linkTitle: "SciChart.js Axis Label Formatting Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to use <strong>Rotation and Alignment of Axis Labels</strong> with SciChart.js, High
         Performance{" "}
@@ -32,7 +32,7 @@ const Subtitle = () => (
 export const rotatedLabelsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRotatedLabels,
-    pageTitle: ExampleStrings.titleRotatedLabels + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleRotatedLabels,
     path: ExampleStrings.urlRotatedLabels,
     filepath: "Charts2D/AxisLabelCustomizationRotatedLabels",
     subtitle: Subtitle,
@@ -41,7 +41,7 @@ export const rotatedLabelsExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription: "Rotate to create vertical axis labels and fit more on an axis",
+    metaDescription: (frameworkName: string) => `Rotate to create vertical axis labels and fit more on an axis`,
     metaKeywords: "Axis, label, rotated, vertical, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

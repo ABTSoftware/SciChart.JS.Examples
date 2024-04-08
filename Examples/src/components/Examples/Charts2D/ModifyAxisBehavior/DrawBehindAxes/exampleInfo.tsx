@@ -12,14 +12,14 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDrawBehindAxesDocumentation,
         title: ExampleStrings.urlTitleDrawBehindAxesDocumentation,
-        linkTitle: "Central Axis documentation"
-    }
+        linkTitle: "Central Axis documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Chart with transparent axes</strong> using SciChart.js, High
-        Performance{" "}
+        Demonstrates how to create a <strong>{frameworkName} Chart with transparent axes</strong> using SciChart.js,
+        High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -29,7 +29,7 @@ const Subtitle = () => (
 export const drawBehindAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDrawBehindAxes,
-    pageTitle: ExampleStrings.titleDrawBehindAxes + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleDrawBehindAxes,
     path: ExampleStrings.urlDrawBehindAxes,
     filepath: "Charts2D/ModifyAxisBehavior/DrawBehindAxes",
     subtitle: Subtitle,
@@ -37,8 +37,8 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
     tips,
     description,
     githubUrl,
-    metaDescription:
-        "Demonstrates the option of the transparent Axes customization on a JavaScript Chart using SciChart.js.",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates the option of the transparent Axes customization on a ${frameworkName} Chart using SciChart.js.`,
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

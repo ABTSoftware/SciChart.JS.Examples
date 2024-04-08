@@ -10,20 +10,20 @@ const description = `In SciChart.js lines can be stepped, continuous or spline i
 const tips = [
     `As well as stroke, you can set strokeThickness, isVisible properties to change how the series is rendered.`,
     `You can add data-point markers to a line series using the PointMarker API. This is very performant and uses
-    the same WebGL rendering as our Scatter Charts.`
+    the same WebGL rendering as our Scatter Charts.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDigitalLineChartDocumentation,
         title: ExampleStrings.urlTitleDigitalLineChartDocumentation,
-        linkTitle: "JavaScript Digital Line Chart Documentation"
-    }
+        linkTitle: "JavaScript Digital Line Chart Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Digital Line Chart</strong> using SciChart.js, our powerful{" "}
+        Demonstrates how to create a <strong>{frameworkName} Digital Line Chart</strong> using SciChart.js, our powerful{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Charts">
             JavaScript Charts
         </a>
@@ -42,8 +42,8 @@ export const digitalLineChartExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     githubUrl,
-    metaDescription:
-        "Discover how to create a JavaScript Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.",
+    metaDescription: (frameworkName: string) =>
+        `Discover how to create a ${frameworkName} Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.`,
     metaKeywords: "digital, line, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -5,9 +5,12 @@ import { drawExample } from "./drawExample";
  * @returns cleanup function
  */
 const create = async () => {
-    const { sciChartSurface } = await drawExample("chart");
+    const { sciChartSurface, controls } = await drawExample("chart");
+
+    controls.startDemo();
 
     const destructor = () => {
+        controls.stopDemo();
         sciChartSurface.delete();
     };
 

@@ -1,4 +1,4 @@
-import { TFrameworkName } from "../AppRouter/pages";
+import { TFrameworkName } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 export const ExampleStrings = {
     // Site title, description for meta
@@ -633,7 +633,7 @@ export const ExampleStrings = {
     // BuilderApi, Shared Data
     urlSharedData: `reusable-templates-using-shared-data`,
     titleSharedData: (frameworkName: TFrameworkName) =>
-        `${frameworkName} Chart with Reusable Templates using Shared Data` + ExampleStrings.exampleGenericTitleSuffix,
+        `${frameworkName} Chart with Reusable Templates using Shared Data`,
 
     urlTextLabelProviderDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#TextStringAxis.html`,
     urlTitleTextLabelProviderDocumentation: `This specific page in the JavaScript TextLabelProvider documentation will help you to get started`,
@@ -696,6 +696,10 @@ export const ExampleStrings = {
     titleOilAndGasExplorerDashboard: (frameworkName: TFrameworkName) => `Oil & Gas Explorer ${frameworkName} Dashboard`,
     urlOilAndGasExplorerDashboard: `oil-and-gas-dashboard-showcase`,
 
+    // 64-Chart Dashboard
+    titleChartGrid: (frameworkName: TFrameworkName) => `${frameworkName} 64-Chart Dashboard Performance Demo`,
+    urlChartGrid: `multiple-chart-dashboard-performance-demo`,
+
     // Datalabels
     urlDatalabels: `datalabels`,
     titleDatalabels: (frameworkName: TFrameworkName) => `Data Labels`,
@@ -703,7 +707,8 @@ export const ExampleStrings = {
     urlTitleDatalabelsDocumentation: `SciChart.js DataLabels API Documentation`,
 
     urlVirtualizedData: `chart-with-virtualized-data`,
-    titleVirtualizedData: (frameworkName: TFrameworkName) => `Virtualized JS Charts: Load Data on Zoom/Pan`,
+    titleVirtualizedData: (frameworkName: TFrameworkName) =>
+        `Virtualized ${frameworkName} Charts: Load Data on Zoom/Pan`,
 
     urlHeatmapInteractionsData: `heatmap-interactions`,
     titleHeatmapInteractionsData: (frameworkName: TFrameworkName) => `Rich Interactions Showcase`,
@@ -715,7 +720,7 @@ export const ExampleStrings = {
     titleEventMarkers: (frameworkName: TFrameworkName) => `Dragabble Event Markers`,
 
     urlTextChart: `text-chart`,
-    titleTextChart: (frameworkName: TFrameworkName) => `Javascript Text Chart`,
+    titleTextChart: (frameworkName: TFrameworkName) => `${frameworkName} Text Chart`,
     urlTextSeriesDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#TheTextSeriesType.html`,
     urlTitleTextSeriesDocumentation: `The documentation page for the TextSeries in SciChart.js`,
 };

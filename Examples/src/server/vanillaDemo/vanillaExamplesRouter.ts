@@ -3,7 +3,6 @@ import * as fs from "fs";
 import { htmlTemplate, templateWithNav } from "./vanillaExampleHtmlTemplate";
 import express = require("express");
 import { EXAMPLES_PAGES, TExamplePage } from "../../components/AppRouter/examplePages";
-import { EPageFramework } from "../../components/AppRouter/pages";
 
 export const vanillaExamplesRouter = express.Router();
 
@@ -19,9 +18,9 @@ const availableFiles = [
 
 const basePath = path.join(__dirname, "Examples");
 
-vanillaExamplesRouter.get("*", async (req, res) => {
-    const examplePath = path.dirname(req.path);
-    const filename = path.basename(req.path) as (typeof availableFiles)[number];
+vanillaExamplesRouter.get("/:example/:file", async (req, res) => {
+    const examplePath = req.params.example;
+    const filename = req.params.file as (typeof availableFiles)[number];
 
     if (!availableFiles.includes(filename)) {
         res.sendStatus(400);

@@ -1,6 +1,24 @@
 import { useMatch } from "react-router-dom";
-import { EPageFramework, FRAMEWORK_NAME, TTitleTemplate } from "../../../components/AppRouter/pages";
 import { EXAMPLES_PAGES } from "../../../components/AppRouter/examplePages";
+
+export enum EPageFramework {
+    Vanilla = "javascript",
+    React = "react",
+    Angular = "angular",
+    Vue = "vue",
+}
+
+export const FRAMEWORK_NAME = {
+    [EPageFramework.Vanilla]: "JavaScript",
+    [EPageFramework.React]: "React",
+    [EPageFramework.Angular]: "Angular",
+    [EPageFramework.Vue]: "Vue",
+} as const;
+
+export type TPathTemplate = string | ((framework: EPageFramework) => string);
+export type TFrameworkName = "JavaScript" | "Angular" | "React" | "Vue";
+export type TTitleTemplate = string | ((framework: TFrameworkName) => string);
+export type TDescriptionTemplate = string | ((framework: TFrameworkName) => string);
 
 export const getTitle = (title: TTitleTemplate, framework: EPageFramework) => {
     return typeof title === "string" ? title : title(FRAMEWORK_NAME[framework]);
