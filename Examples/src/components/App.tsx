@@ -26,7 +26,7 @@ import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
 
 export default function App() {
-    let { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
+    const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
 
     const selectedFramework = framework;
 
