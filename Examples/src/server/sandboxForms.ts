@@ -321,6 +321,16 @@ platformBrowserDynamic().bootstrapModule(AppModule);`,
     </form>`;
 };
 
+const vanillaIndexCode = `import "./common";
+import "./app";
+`;
+
+const vanillaCommonCode = `import { SciChart3DSurface, SciChartSurface } from "scichart";
+
+SciChartSurface.loadWasmFromCDN();
+SciChart3DSurface.loadWasmFromCDN();
+`;
+
 const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
     const tsPath = path.join(folderPath, "vanilla.ts");
     let code: string;
@@ -360,6 +370,15 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
             },
         },
         "src/index.ts": {
+            content: vanillaIndexCode,
+            isBinary: false,
+        },
+        "src/common.ts": {
+            content: vanillaCommonCode,
+            isBinary: false,
+        },
+
+        "src/app.ts": {
             content: code,
             isBinary: false,
         },
