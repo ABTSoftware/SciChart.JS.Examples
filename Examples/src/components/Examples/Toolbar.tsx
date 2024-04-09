@@ -86,7 +86,7 @@ export function InfoToolbar(props: { examplePage: TExamplePage }) {
 
     const { examplePage } = props;
     const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;
-    const githubUrl = examplePage ? examplePage.githubUrl : "";
+    const githubUrl = examplePage ? "/components/Examples/" + examplePage.filepath : "";
     const fullGithubUrl = baseGithubPath + githubUrl;
     const exampleUrl = examplePage ? examplePage.path : "";
 

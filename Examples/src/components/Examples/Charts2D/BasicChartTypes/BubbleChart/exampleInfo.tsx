@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-bubble-chart.jpg";
@@ -41,7 +40,6 @@ export const bubbleChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Create a high performance ${frameworkName} Bubble Chart with Sci-Chart. Demo shows how to draw point-markers at X,Y locations. Get your free demo now.`,
     metaKeywords: "bubble, chart, javascript, webgl, canvas",

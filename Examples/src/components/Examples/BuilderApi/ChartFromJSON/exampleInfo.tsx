@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../ExampleStrings";
 import exampleImage from "./javascript-chart-from-json.jpg";
 import { TDocumentationLink } from "../../../../helpers/types/ExampleDescriptionTypes";
@@ -39,7 +38,6 @@ export const chartFromJSONExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to create a ${frameworkName} Chart from JSON using the builder API. `,
     metaKeywords: "json, chart, javascript, webgl, canvas",

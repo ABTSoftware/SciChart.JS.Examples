@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-axis-types.jpg";
@@ -37,7 +36,6 @@ export const axisTypesExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to use arbitrary text for axis labels, rather than formatted data values, using the new TextLabelProvider`,
     metaKeywords: "text, axis, date, logarithmic, javascript, webgl, canvas",

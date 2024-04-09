@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-performance-load-one-million-points.jpg";
@@ -37,7 +36,6 @@ export const loadOneMillionPointsExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: `This demo showcases the incredible performance of our JavaScript Chart by loading a million points instantly.`,
     metaKeywords: "performance, loading, million, points, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,

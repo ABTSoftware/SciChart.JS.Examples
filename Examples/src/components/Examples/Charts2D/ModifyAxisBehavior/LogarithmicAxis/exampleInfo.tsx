@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-logarithmic-axis.jpg";
@@ -38,7 +37,6 @@ export const logarithmicAxisExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates Logarithmic Axis on a ${frameworkName} Chart using SciChart.js. SciChart supports logarithmic axis with scientific or engineering notation and positive and negative values`,
     metaKeywords: "logarithmic, axis, chart, javascript, webgl, canvas",

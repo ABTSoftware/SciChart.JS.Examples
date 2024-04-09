@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-metadata.jpg";
@@ -41,7 +40,6 @@ export const metaDataExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates using MetaData in a ${frameworkName} Chart - add custom data to points for display or to drive visual customisation`,
     metaKeywords: "metaData, api, chart, javascript, webgl, canvas",

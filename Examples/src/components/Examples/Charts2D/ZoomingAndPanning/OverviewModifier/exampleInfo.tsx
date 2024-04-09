@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -43,7 +42,6 @@ export const overviewExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) => `Demonstrates how to zoom and pan with an Overview Chart`,
     metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",
     thumbnailImage: exampleImage,

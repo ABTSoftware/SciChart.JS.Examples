@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-generic-animation.jpg";
@@ -37,7 +36,6 @@ export const genericAnimationExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) => `Demonstrates how to run Generic Animation with JavaScript.`,
     metaKeywords: "generic, animation, javascript",
     thumbnailImage: exampleImage,

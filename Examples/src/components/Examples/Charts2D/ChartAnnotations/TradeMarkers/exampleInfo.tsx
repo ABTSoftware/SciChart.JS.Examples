@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-stock-chart-buy-sell-markers.jpg";
@@ -43,7 +42,6 @@ export const tradeMarkerAnnotationsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to place Buy/Sell arrow markers on a ${frameworkName} Stock Chart using SciChart.js - Annotations API`,
     metaKeywords: "trade, markers, demo, chart, javascript, webgl, canvas",

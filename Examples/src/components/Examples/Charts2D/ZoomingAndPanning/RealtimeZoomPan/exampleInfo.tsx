@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -41,7 +40,6 @@ export const realtimeZoomPanExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to zoom and pan a realtime ${frameworkName} Chart while it is updating, with SciChart.js ZoomState API`,
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",

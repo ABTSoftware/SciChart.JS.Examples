@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 
@@ -35,7 +34,6 @@ export const createACustomThemeExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to create a Custom Theme for a SciChart.js ${frameworkName} Chart using our Theming API`,
     metaKeywords: "theming, chart, javascript, webgl, canvas",

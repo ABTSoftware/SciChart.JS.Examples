@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-pie-chart.jpg";
@@ -41,7 +40,6 @@ export const pieChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Easily create and customise a high performance ${frameworkName} Pie Chart with 5-star rated SciChart.js. Get your free trial now to access the whole library. `,
     metaKeywords: "pie, chart, javascript, canvas",

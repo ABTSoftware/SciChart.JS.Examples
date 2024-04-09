@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-spline-mountain-chart.jpg";
@@ -42,7 +41,6 @@ export const splineMountainChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `${frameworkName} Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.`,
     metaKeywords: "mountain, chart, javascript, webgl, canvas",

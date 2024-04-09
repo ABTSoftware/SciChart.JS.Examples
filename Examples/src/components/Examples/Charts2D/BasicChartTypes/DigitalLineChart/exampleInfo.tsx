@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-digital-line-chart.jpg";
@@ -41,7 +40,6 @@ export const digitalLineChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Discover how to create a ${frameworkName} Digital Line Chart with SciChart - your feature-rich JavaScript Chart Library. Get your free demo now.`,
     metaKeywords: "digital, line, chart, javascript, webgl, canvas",

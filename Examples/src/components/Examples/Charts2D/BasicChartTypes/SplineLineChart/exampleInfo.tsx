@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-spline-smoothed-line-chart.jpg";
@@ -44,7 +43,6 @@ export const splineLineChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Discover how to create a ${frameworkName} Spline Line Chart with SciChart. Demo includes algorithm for smoother lines. Get your free trial now.`,
     metaKeywords: "spline, smoothed, line, chart, javascript, webgl, canvas",

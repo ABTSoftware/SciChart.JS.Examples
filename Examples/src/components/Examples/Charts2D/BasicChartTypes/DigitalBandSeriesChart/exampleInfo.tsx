@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-digital-band-chart.jpg";
@@ -41,7 +40,6 @@ export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Learn how to create a ${frameworkName} Digital Band Chart or High-Low Fill Chart with SciChart's easy-to-follow demos. Get your free trial today.`,
     metaKeywords: "digital, band, chart, javascript, webgl, canvas",

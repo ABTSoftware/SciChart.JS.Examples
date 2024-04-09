@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -36,7 +35,6 @@ export const drawBehindAxesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates the option of the transparent Axes customization on a ${frameworkName} Chart using SciChart.js.`,
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",

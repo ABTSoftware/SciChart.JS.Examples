@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-stacked-mountain-chart.jpg";
@@ -41,7 +40,6 @@ export const stackedMountainChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Design a high performance ${frameworkName} Stacked Mountain Chart with SciChart.js - your one-stop JavaScript chart library. Get free demo now to get started.`,
     metaKeywords: "stacked, mountain, chart, javascript, webgl, canvas",

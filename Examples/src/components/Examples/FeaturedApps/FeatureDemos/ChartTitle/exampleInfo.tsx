@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-title.jpg";
@@ -32,7 +31,6 @@ export const chartTitleExampleInfo: TExampleInfo = {
     description,
     previewDescription,
     filepath: "FeaturedApps/FeatureDemos/ChartTitle",
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates chart title with different position and alignment options`,
     metaKeywords: "title, text, alignment, multiline, javascript, webgl, canvas",

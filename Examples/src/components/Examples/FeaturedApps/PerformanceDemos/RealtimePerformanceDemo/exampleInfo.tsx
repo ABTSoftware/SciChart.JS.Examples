@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-realtime-performance-demo.jpg";
@@ -41,7 +40,6 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `This demo showcases the incredible realtime performance of our ${frameworkName} charts by updating the series with millions of data-points!`,
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",

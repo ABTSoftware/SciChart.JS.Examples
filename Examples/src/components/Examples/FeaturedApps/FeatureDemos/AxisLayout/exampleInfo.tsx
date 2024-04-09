@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-axis-layout.jpg";
@@ -36,7 +35,6 @@ export const axisLayoutExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates outer, inner, central and stacked axes, and use of axis alignment to create vertical charts`,
     metaKeywords: "stacked, axis, layout, alignment, vertical, javascript, webgl, canvas",

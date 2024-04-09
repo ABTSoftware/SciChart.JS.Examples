@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-background-annotations.jpg";
@@ -41,7 +40,6 @@ export const backgroundAnnotationsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to color areas of the chart surface using background Annotations using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas",

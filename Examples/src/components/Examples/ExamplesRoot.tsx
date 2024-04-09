@@ -51,7 +51,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
     const previewDescription = examplePage ? examplePage.previewDescription : undefined;
     const description = examplePage ? examplePage.description : undefined;
 
-    const githubUrl = examplePage ? examplePage.githubUrl : "";
+    const githubUrl = examplePage ? "/components/Examples/" + examplePage.filepath : "";
     const seoDescription = examplePage ? getTitle(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = "https://demo.scichart.com";

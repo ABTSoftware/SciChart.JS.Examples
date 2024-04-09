@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-trend-ma-ratio.jpg";
@@ -40,7 +39,6 @@ export const trendMARatioExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Chart with Linear Trendline, Moving Average and Ratio Filters with filter chaining`,
     metaKeywords: "trend, line, moving, average, ratio, transform, chart, javascript, webgl, canvas",
