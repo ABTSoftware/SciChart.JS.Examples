@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -38,7 +37,6 @@ export const verticallyStackedAxesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates Vertically Stacked Axes on a ${frameworkName} Chart using SciChart.js, allowing data to overlap`,
     metaKeywords: "multiple, stacked, overlap, axis, chart, javascript, webgl, canvas",

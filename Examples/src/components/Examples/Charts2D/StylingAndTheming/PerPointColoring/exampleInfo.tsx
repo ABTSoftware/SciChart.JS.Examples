@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-color-points-individually-with-paletteprovider.jpg";
@@ -38,7 +37,6 @@ export const perPointColoringExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API`,
     metaKeywords: "palette, provider, api, chart, javascript, webgl, canvas",

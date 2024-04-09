@@ -129,7 +129,6 @@ export type TExampleInfo = {
      * in the top level menu. See {@link getSeeAlsoGalleryItems}
      */
     seeAlso?: GalleryItem[];
-    githubUrl: string;
     /**
      * Page meta description
      */

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-realtime-ghosted-traces-oscilloscope-chart.jpg";
@@ -39,7 +38,6 @@ export const realtimeGhostedTracesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `This demo showcases the realtime performance of our ${frameworkName} Chart by animating several series with thousands of data-points at 60 FPS`,
     metaKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",

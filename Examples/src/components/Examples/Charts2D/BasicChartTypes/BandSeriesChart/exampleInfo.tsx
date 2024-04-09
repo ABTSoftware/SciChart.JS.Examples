@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-band-chart.jpg";
@@ -42,7 +41,6 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: TFrameworkName) =>
         `Easily create a ${frameworkName} Band Chart or High-Low Fill with SciChart - high performance JavaScript Chart Library. Get your free trial now.`,
     metaKeywords: "band, chart, javascript, webgl, canvas",

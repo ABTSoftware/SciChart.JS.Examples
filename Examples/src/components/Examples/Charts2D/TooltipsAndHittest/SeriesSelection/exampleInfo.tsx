@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-series-selection.jpg";
@@ -41,7 +40,6 @@ export const seriesSelectionExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates Hit-Testing a ${frameworkName} Chart - point and click on the chart and get feedback about what data-points were clicked`,
     metaKeywords: "hit, test, api, chart, javascript, webgl, canvas",

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../ExampleStrings";
 import exampleImage from "./javascript-builder-simple.jpg";
 import { TDocumentationLink } from "../../../../helpers/types/ExampleDescriptionTypes";
@@ -42,7 +41,6 @@ export const simpleChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription:
         "Demonstrates how to use the Builder Api to create a simple chart using a definition object. " +
         "The builder api is designed to make it easier to discover the types and options available in SciChart JS.",

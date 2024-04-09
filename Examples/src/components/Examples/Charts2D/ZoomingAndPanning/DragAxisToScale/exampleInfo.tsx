@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import exampleImage from "./drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
@@ -37,7 +36,6 @@ export const dragAxisToScaleExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to Zoom, Scale or Pan individual Axis on a ${frameworkName} Chart with SciChart.js AxisDragModifiers`,
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",

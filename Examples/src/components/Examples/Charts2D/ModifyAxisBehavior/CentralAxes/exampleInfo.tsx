@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -37,7 +36,6 @@ export const centralAxesExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates Central Axes on a ${frameworkName} Chart using SciChart.js. SciChart supports unlimited left, right, top, bottom X, Y axis with configurable layout`,
     metaKeywords: "multiple, axis, chart, javascript, webgl, canvas",

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-load-500-series-by-500-points.jpg";
@@ -40,7 +39,6 @@ export const load500By500ExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `This demo showcases the incredible performance of our ${frameworkName} Chart by loading 500 series with 500 points (250k points) instantly!`,
     metaKeywords: "performance, demo, chart, javascript, webgl, canvas",

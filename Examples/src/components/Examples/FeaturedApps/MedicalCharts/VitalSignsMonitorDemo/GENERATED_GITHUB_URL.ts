@@ -1,1 +1,0 @@
-export const githubUrl = "/components/Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/index.tsx";

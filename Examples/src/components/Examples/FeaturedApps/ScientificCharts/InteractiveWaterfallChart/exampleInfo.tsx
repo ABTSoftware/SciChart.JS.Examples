@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-interactive-waterfall-chart.jpg";
@@ -35,7 +34,6 @@ export const waterfallChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: previewDescription,
     metaKeywords: "waterfall, chart, interactive, javascript, webgl, canvas",
     thumbnailImage: exampleImage,

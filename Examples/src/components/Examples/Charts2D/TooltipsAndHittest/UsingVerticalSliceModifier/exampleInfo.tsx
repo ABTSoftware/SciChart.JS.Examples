@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -39,7 +38,6 @@ export const usingVerticalSliceModifierExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates adding Tooltips at certain positions to a ${frameworkName} Chart with SciChart.js VerticalSliceModifier`,
     metaKeywords: "tooltips, modifier, chart, javascript, webgl, canvas",

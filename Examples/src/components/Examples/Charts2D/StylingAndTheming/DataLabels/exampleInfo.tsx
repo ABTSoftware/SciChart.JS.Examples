@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-datalabels-chart.jpg";
@@ -32,7 +31,6 @@ export const datalabelsExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) => `Show data labels on ${frameworkName} Chart. Get your free demo now.`,
     metaKeywords: "data labels, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,

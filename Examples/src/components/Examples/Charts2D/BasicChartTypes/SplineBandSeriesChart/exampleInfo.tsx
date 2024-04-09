@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import exampleImage from "./javascript-spline-band-chart.jpg";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -41,7 +40,6 @@ export const splineBandSeriesChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `SciChart's ${frameworkName} Spline Band Chart makes it easy to draw thresholds or fills between two lines on a chart. Get your free demo today.`,
     metaKeywords: "band, chart, javascript, webgl, canvas",

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-themes.jpg";
@@ -39,7 +38,6 @@ export const usingThemeManagerExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates our Light and Dark Themes for ${frameworkName} Charts with SciChart.js ThemeManager API`,
     metaKeywords: "theme, provider, chart, javascript, webgl, canvas",

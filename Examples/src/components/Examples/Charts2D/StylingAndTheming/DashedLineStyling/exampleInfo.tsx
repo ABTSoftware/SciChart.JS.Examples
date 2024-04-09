@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-dashed-line-chart.jpg";
@@ -40,7 +39,6 @@ export const dashedLineStylingExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates dashed line series in ${frameworkName} Charts with SciChart.js`,
     metaKeywords: "dash, dashed, dotted, line, chart, javascript, webgl, canvas",

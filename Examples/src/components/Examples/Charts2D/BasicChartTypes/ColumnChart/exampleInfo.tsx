@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-column-chart.jpg";
@@ -37,7 +36,6 @@ export const columnChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `${frameworkName} Column Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.`,
     metaKeywords: "column, chart, javascript, webgl, canvas",
