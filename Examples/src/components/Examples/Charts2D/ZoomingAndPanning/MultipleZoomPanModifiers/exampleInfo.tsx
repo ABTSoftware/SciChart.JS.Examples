@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import exampleImage from "./zoom-pan-multiple-modifiers.jpg";
@@ -37,7 +36,6 @@ export const zoomAndPanWithMultipleChartModifiersExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to use multiple Zoom and Pan Modifiers on a ${frameworkName} Chart with SciChart.js`,
     metaKeywords: "zoom, pan, pinch, touch, scale, javascript, webgl, canvas",

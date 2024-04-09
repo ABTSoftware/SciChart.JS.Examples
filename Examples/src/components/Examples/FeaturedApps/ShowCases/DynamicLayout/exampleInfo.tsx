@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-dynamic-layout.jpg";
@@ -37,7 +36,6 @@ export const dynamicLayoutExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates a custom modifier which can convert from single chart to grid layout and back.`,
     metaKeywords: "subcharts, layout, demo, chart, javascript, webgl, canvas",

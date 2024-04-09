@@ -55,7 +55,6 @@ export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => 
         // console.log("segments", segments);
         // const framework = segments[1] as EPageFramework;
         const framework = req.query.framework as EPageFramework;
-
         const examplePath = req.params.example;
         const isValidFramework = Object.values(EPageFramework).includes(framework);
         if (!isValidFramework) {

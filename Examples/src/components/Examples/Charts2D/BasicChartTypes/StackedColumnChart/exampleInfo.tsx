@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-stacked-column-chart.jpg";
@@ -41,7 +40,6 @@ export const stackedColumnChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Discover how to create a ${frameworkName} Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!`,
     metaKeywords: "stacked, column, chart, javascript, webgl, canvas",

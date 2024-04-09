@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-custom-pointmarkers.jpg";
@@ -37,7 +36,6 @@ export const usePointMarkersExampleInfo: TExampleInfo = {
     documentationLinks,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates the different point-marker types for ${frameworkName} Scatter charts (Square, Circle, Triangle and Custom image point-marker)`,
     metaKeywords: "data, point, marker, chart, javascript, webgl, canvas",

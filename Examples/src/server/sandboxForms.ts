@@ -126,7 +126,12 @@ hydrate( <App />, rootElement);
 
 const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
     const tsPath = path.join(folderPath, "angular.ts");
-    let code = await fs.promises.readFile(tsPath, "utf8");
+    let code: string;
+    try {
+        code = await fs.promises.readFile(tsPath, "utf8");
+    } catch (err) {
+        throw new NotFoundError("Angular version not found! Try using different framework.");
+    }
     let files: IFiles = {};
     await includeImportedModules(folderPath, files, code);
 

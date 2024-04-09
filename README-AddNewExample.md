@@ -4,15 +4,15 @@
 
 To add an example to the SciChart.js Examples Suite, use the following steps:
 
-* **Update ExampleStrings** file with the new example data (Examples/src/components/Examples/ExampleStrings.ts)
-* **Create folder** for your example, (e.g. `Examples/src/components/Examples/Charts2D/BasicChartTypes/BandSeriesChart/`)
-* **Place example code**. In the example folder create `index.tsx` file and put code for your example into it.
-* **Add image**. In the example folder create add image file with example.
-* **Add metadata**. In the example folder create metadata file `exampleInfo.tsx` 
+- **Update ExampleStrings** file with the new example data (Examples/src/components/Examples/ExampleStrings.ts)
+- **Create folder** for your example, (e.g. `Examples/src/components/Examples/Charts2D/BasicChartTypes/BandSeriesChart/`)
+- **Place example code**. In the example folder create `index.tsx` file and put code for your example into it.
+- **Add image**. In the example folder create add image file with example.
+- **Add metadata**. In the example folder create metadata file `exampleInfo.tsx`
+
 ```ts
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { GalleryItem } from "../../../../../helpers/types/types";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -20,7 +20,7 @@ import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescript
 const previewDescription = `Demonstrates how to create a JavaScript Spline Band Chart. This is a chart type which draws an area (polygon
     or fill) between two lines. The FastBandRenderableSeries requires an XyyDataSeries, which contains one
     X-point and two Y-points`;
-    
+
 const description = `Dual lines are drawn by the stroke, strokeY1 properties and shaded bands are drawn by the fill and fillY1
 properties, depending on whether y1 is greater than y2`;
 
@@ -39,7 +39,8 @@ const documentationLinks: TDocumentationLink[] = [
    ...
 ];
 ```
-* **Add other examples on the page**
+
+- **Add other examples on the page**
 
 ```ts
 const seeAlso: GalleryItem[] = [
@@ -81,11 +82,10 @@ export const bandSeriesChartExampleInfo: TExampleInfo = {
     filepath: "Charts2D/BasicChartTypes/BandSeriesChart"
 };
 ```
-**filepath must point to the correct folder for the Open in CodeSandBox to work**
 
-* **Generate GENERATED_GITHUB_URL.ts files** - run `npm run generateExampleSrc` to generate `GENERATED_GITHUB_URL.ts`.
+**filepath must point to the correct folder for the Open in CodeSandBox and github links to work**
 
-* **Add example to menu**
+- **Add example to menu**
 
 Edit `Examples/src/components/AppRouter/examplePages.ts` to add new example
 
@@ -104,6 +104,7 @@ export const EXAMPLES_PAGES = asRecord({
 ```
 
 And this file `Examples/src/components/AppRouter/examples.ts`
+
 ```ts
 import BandSeriesChart from "../Examples/Charts2D/BasicChartTypes/BandSeriesChart";
 
@@ -131,7 +132,9 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
 }
 
 ```
-* **Add example to search** - edit `Examples/src/components/Search/searchItems.ts`
+
+- **Add example to search** - edit `Examples/src/components/Search/searchItems.ts`
+
 ```ts
 ...
 export const searchItems: TSearchItem[] = [
@@ -141,7 +144,8 @@ export const searchItems: TSearchItem[] = [
 
 ...
 ```
-* **Add example to main page**
+
+- **Add example to main page**
 
 Edit `Examples/src/helpers/SciChartExamples.ts` to add new example to main page
 
@@ -160,10 +164,10 @@ Edit `Examples/src/helpers/SciChartExamples.ts` to add new example to main page
     ...
 ```
 
-* **Update sitemap and footers**
-`npm run generateAll`
+- **Update sitemap and footers**
+  `npm run generateAll`
 
-* **Compress images**
-This will compress all images `npm run compressImages`.
-However, it is better to compress images only for newly created example. I created several examples here Examples/src/components/Examples/Charts2D/Animations and I run the script and pass the folder name into it
-`npm run compressImages Animations`
+- **Compress images**
+  This will compress all images `npm run compressImages`.
+  However, it is better to compress images only for newly created example. I created several examples here Examples/src/components/Examples/Charts2D/Animations and I run the script and pass the folder name into it
+  `npm run compressImages Animations`

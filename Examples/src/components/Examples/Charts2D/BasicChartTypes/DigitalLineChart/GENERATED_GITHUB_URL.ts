@@ -1,1 +1,0 @@
-export const githubUrl = "/components/Examples/Charts2D/BasicChartTypes/DigitalLineChart/index.tsx";

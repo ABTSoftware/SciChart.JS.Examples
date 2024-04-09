@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -36,7 +35,6 @@ export const virtualizedDataOverviewExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `shows how to load data on zoom/pan and how to create an overview chart for this case.`,
     metaKeywords: "zoom, pan, virtualize, server, overview, javascript, webgl, canvas",

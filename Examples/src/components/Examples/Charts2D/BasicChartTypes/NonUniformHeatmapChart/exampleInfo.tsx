@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-non-uniform-heatmap-chart.jpg";
@@ -40,7 +39,6 @@ export const nonUniformHeatmapExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Create ${frameworkName} Non Uniform Chart using high performance SciChart.js. Display Heatmap with variable cell sizes. Get free demo now.`,
     metaKeywords: "error, bars, javascript, webgl, canvas",

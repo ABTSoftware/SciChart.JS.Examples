@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-oil-gas-explorer-dashboard-charts.jpg";
@@ -32,7 +31,6 @@ export const oilAndGasExplorerDashboard: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) => `Demonstrates how to create Oil and Gas Dashboard`,
     metaKeywords: "Todo keywords",
     thumbnailImage: exampleImage,

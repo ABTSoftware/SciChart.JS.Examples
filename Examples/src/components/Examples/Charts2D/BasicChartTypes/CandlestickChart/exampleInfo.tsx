@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-candlestick-chart.jpg";
@@ -39,7 +38,6 @@ export const candlestickChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Discover how to create a ${frameworkName} Candlestick Chart or Stock Chart using SciChart.js. For high Performance JavaScript Charts, get your free demo now.`,
     metaKeywords: "candlestick, chart, javascript, webgl, canvas",

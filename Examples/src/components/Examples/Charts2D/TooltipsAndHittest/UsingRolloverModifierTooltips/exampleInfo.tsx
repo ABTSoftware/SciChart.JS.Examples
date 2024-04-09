@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -42,7 +41,6 @@ export const usingRolloverModifierTooltipsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates adding Tooltips on mouse-move to a ${frameworkName} Chart with SciChart.js RolloverModifier`,
     metaKeywords: "rollover, modifier, chart, javascript, webgl, canvas",

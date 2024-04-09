@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../ExampleStrings";
 import exampleImage from "./javascript-custom-types.jpg";
 import { TDocumentationLink } from "../../../../helpers/types/ExampleDescriptionTypes";
@@ -41,7 +40,6 @@ export const customTypesExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription:
         "Demonstrates how to make a custom type such as a PaletteProvider available for use with the Builder Api." +
         "You can call methods within the builder api to get references to the objects being built, so you can update them later.",

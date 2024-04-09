@@ -1,1 +1,0 @@
-export const githubUrl = "/components/Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces/index.tsx";

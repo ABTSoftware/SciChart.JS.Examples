@@ -1,5 +1,4 @@
 import * as React from "react";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -40,7 +39,6 @@ export const tenorCurvesExampleInfo: TExampleInfo = {
     tips,
     description,
     subtitle: Subtitle,
-    githubUrl,
     metaDescription:
         "Demonstrating the capability of SciChart.js to create a composite 2D &amp; 3D Chart application. " +
         "An example like this could be used to visualize Tenor curves in a financial setting, " +

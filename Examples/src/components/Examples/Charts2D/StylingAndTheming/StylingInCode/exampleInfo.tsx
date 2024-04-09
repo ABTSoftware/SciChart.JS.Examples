@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-styling-theming-in-code.jpg";
@@ -38,7 +37,6 @@ export const stylingInCodeExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to style a ${frameworkName} Chart entirely in code with SciChart.js themeing API`,
     metaKeywords: "styling, in, code, chart, javascript, webgl, canvas",

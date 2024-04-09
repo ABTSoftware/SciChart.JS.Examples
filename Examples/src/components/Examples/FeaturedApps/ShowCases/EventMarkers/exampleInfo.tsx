@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-draggable-event-markers.jpg";
@@ -41,7 +40,6 @@ export const eventMarkersExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to repurpose a Candlestick Series into dragabble, labled, event markers`,
     metaKeywords: "events, drag, edit, datalabels, , layout, demo, chart, javascript, webgl, canvas",

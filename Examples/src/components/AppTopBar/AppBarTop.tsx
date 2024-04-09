@@ -55,8 +55,8 @@ const AppBarTop: FC<TProps> = (props) => {
     const localClasses = useStyles();
     const baseGithubPath = "https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src";
     const contextualGithub =
-        currentExample?.githubUrl !== undefined
-            ? baseGithubPath + currentExample.githubUrl
+        currentExample?.filepath !== undefined
+            ? baseGithubPath + "/components/Examples/" + currentExample.filepath
             : "https://github.com/ABTSoftware/SciChart.JS.Examples";
     const contextualGithubTitle =
         currentExample !== undefined

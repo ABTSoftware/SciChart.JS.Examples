@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-line-chart.jpg";
@@ -45,7 +44,6 @@ export const lineChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
     metaDescription: (frameworkName: string) =>
         `Discover how to create a high performance ${frameworkName} Line Chart with SciChart - the leading JavaScript library. Get your free demo now.`,
     metaKeywords: "line, chart, javascript, webgl, canvas",
