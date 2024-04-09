@@ -1,0 +1,23 @@
+{
+  "copyFilesSettings": {
+    "whenFileExists": "overwrite"
+  },
+  "copyFiles": [
+    {
+      "from": "./node_modules/scichart/_wasm/scichart2d.data",
+      "to": "./public/scichart2d.data"
+    },
+    {
+      "from": "./node_modules/scichart/_wasm/scichart2d.wasm",
+      "to": "./public/scichart2d.wasm"
+    },
+    {
+      "from": "./node_modules/scichart/_wasm/scichart3d.data",
+      "to": "./public/scichart3d.data"
+    },
+    {
+      "from": "./node_modules/scichart/_wasm/scichart3d.wasm",
+      "to": "./public/scichart3d.wasm"
+    }
+  ]
+}
