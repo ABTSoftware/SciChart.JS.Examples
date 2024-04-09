@@ -467,6 +467,7 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
     const parameters = getParameters({ files, template });
     return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
         <input type="hidden" name="parameters" value="${parameters}" />
+        <input type="hidden" name="query" value="file=drawExample.ts" />
     </form>`;
 };
 
