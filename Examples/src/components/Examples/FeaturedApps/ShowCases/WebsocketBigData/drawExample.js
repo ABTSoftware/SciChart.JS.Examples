@@ -1,11 +1,7 @@
 import { io } from "socket.io-client";
 import { appTheme } from "scichart-example-dependencies";
 import {
-    IBaseDataSeriesOptions,
-    TSciChart,
     ESeriesType,
-    BaseDataSeries,
-    BaseRenderableSeries,
     XyDataSeries,
     FastLineRenderableSeries,
     AUTO_COLOR,
@@ -22,45 +18,25 @@ import {
     XyTextDataSeries,
     FastTextRenderableSeries,
     EDataSeriesType,
-    XyzDataSeries,
-    INumericAxisOptions,
     ENumericFormat,
     SciChartSurface,
     NumericAxis,
     LayoutManager,
-    IRenderableSeries,
     StackedColumnCollection,
-    StackedColumnRenderableSeries,
     StackedMountainCollection,
     RightAlignedOuterVerticallyStackedAxisLayoutStrategy,
     MouseWheelZoomModifier,
     ZoomPanModifier,
     ZoomExtentsModifier,
 } from "scichart";
-
-export type TMessage = {
-    title: string;
-    detail: string;
-};
-
-export interface ISettings {
-    seriesCount?: number;
-    pointsOnChart?: number;
-    pointsPerUpdate?: number;
-    sendEvery?: number;
-    initialPoints?: number;
-}
-
 export const divElementId = "chart";
-
-let loadCount: number = 0;
-let loadTimes: number[];
-let avgLoadTime: number = 0;
-let avgRenderTime: number = 0;
-
-function GetRandomData(xValues: number[], positive: boolean) {
+let loadCount = 0;
+let loadTimes;
+let avgLoadTime = 0;
+let avgRenderTime = 0;
+function GetRandomData(xValues, positive) {
     let prevYValue = Math.random();
-    const yValues: number[] = [];
+    const yValues = [];
     // tslint:disable-next-line: prefer-for-of
     for (let j = 0; j < xValues.length; j++) {
         const change = Math.random() * 10 - 5;
@@ -69,16 +45,13 @@ function GetRandomData(xValues: number[], positive: boolean) {
     }
     return yValues;
 }
-
-const extendRandom = (val: number, max: number) => val + Math.random() * max;
-
-const generateCandleData = (xValues: number[]) => {
+const extendRandom = (val, max) => val + Math.random() * max;
+const generateCandleData = (xValues) => {
     let open = 10;
     const openValues = [];
     const highValues = [];
     const lowValues = [];
     const closeValues = [];
-
     for (let i = 0; i < xValues.length; i++) {
         const close = open + Math.random() * 10 - 5;
         const high = Math.max(open, close);
@@ -91,8 +64,7 @@ const generateCandleData = (xValues: number[]) => {
     }
     return { openValues, highValues, lowValues, closeValues };
 };
-
-const generateCandleDataForAppendRange = (open: number, closeValues: number[]) => {
+const generateCandleDataForAppendRange = (open, closeValues) => {
     const openValues = [];
     const highValues = [];
     const lowValues = [];
@@ -106,19 +78,14 @@ const generateCandleDataForAppendRange = (open: number, closeValues: number[]) =
     }
     return { openValues, highValues, lowValues, closeValues };
 };
-
-const dsOptions: IBaseDataSeriesOptions = {
+const dsOptions = {
     isSorted: true,
     containsNaN: false,
 };
-
-const createRenderableSeries = (
-    wasmContext: TSciChart,
-    seriesType: ESeriesType
-): { dataSeries: BaseDataSeries; rendSeries: BaseRenderableSeries } => {
+const createRenderableSeries = (wasmContext, seriesType) => {
     if (seriesType === ESeriesType.LineSeries) {
-        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext, dsOptions);
-        const rendSeries: FastLineRenderableSeries = new FastLineRenderableSeries(wasmContext, {
+        const dataSeries = new XyDataSeries(wasmContext, dsOptions);
+        const rendSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries,
             stroke: AUTO_COLOR,
             strokeThickness: 3,
@@ -126,8 +93,8 @@ const createRenderableSeries = (
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.BandSeries) {
-        const dataSeries: XyyDataSeries = new XyyDataSeries(wasmContext, dsOptions);
-        const rendSeries: FastBandRenderableSeries = new FastBandRenderableSeries(wasmContext, {
+        const dataSeries = new XyyDataSeries(wasmContext, dsOptions);
+        const rendSeries = new FastBandRenderableSeries(wasmContext, {
             stroke: AUTO_COLOR,
             strokeY1: AUTO_COLOR,
             fill: AUTO_COLOR,
@@ -138,8 +105,8 @@ const createRenderableSeries = (
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.ColumnSeries) {
-        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext, dsOptions);
-        const rendSeries: FastColumnRenderableSeries = new FastColumnRenderableSeries(wasmContext, {
+        const dataSeries = new XyDataSeries(wasmContext, dsOptions);
+        const rendSeries = new FastColumnRenderableSeries(wasmContext, {
             fill: AUTO_COLOR,
             stroke: AUTO_COLOR,
             dataSeries,
@@ -147,21 +114,21 @@ const createRenderableSeries = (
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.StackedMountainSeries) {
-        const dataSeries: XyDataSeries = new XyDataSeries(wasmContext, dsOptions);
-        const rendSeries: StackedMountainRenderableSeries = new StackedMountainRenderableSeries(wasmContext, {
+        const dataSeries = new XyDataSeries(wasmContext, dsOptions);
+        const rendSeries = new StackedMountainRenderableSeries(wasmContext, {
             stroke: AUTO_COLOR,
             fill: AUTO_COLOR,
             dataSeries,
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.ScatterSeries) {
-        const dataSeries: XyyDataSeries = new XyyDataSeries(wasmContext, { containsNaN: false });
+        const dataSeries = new XyyDataSeries(wasmContext, { containsNaN: false });
         // Use Y and Y1 as X and Y for scatter
-        const filteredSeries: XyDataSeries = new XyCustomFilter(dataSeries, {
+        const filteredSeries = new XyCustomFilter(dataSeries, {
             xField: EDataSeriesField.Y,
             field: EDataSeriesField.Y1,
         });
-        const rendSeries: XyScatterRenderableSeries = new XyScatterRenderableSeries(wasmContext, {
+        const rendSeries = new XyScatterRenderableSeries(wasmContext, {
             pointMarker: new EllipsePointMarker(wasmContext, {
                 width: 9,
                 height: 9,
@@ -175,8 +142,8 @@ const createRenderableSeries = (
         // return the unfiltered xyy series as that is the one we want to append to
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.CandlestickSeries) {
-        const dataSeries: OhlcDataSeries = new OhlcDataSeries(wasmContext, dsOptions);
-        const rendSeries: FastCandlestickRenderableSeries = new FastCandlestickRenderableSeries(wasmContext, {
+        const dataSeries = new OhlcDataSeries(wasmContext, dsOptions);
+        const rendSeries = new FastCandlestickRenderableSeries(wasmContext, {
             strokeThickness: 1,
             dataSeries,
             dataPointWidth: 0.9,
@@ -188,8 +155,8 @@ const createRenderableSeries = (
         });
         return { dataSeries, rendSeries };
     } else if (seriesType === ESeriesType.TextSeries) {
-        const dataSeries: XyTextDataSeries = new XyTextDataSeries(wasmContext, dsOptions);
-        const rendSeries: FastTextRenderableSeries = new FastTextRenderableSeries(wasmContext, {
+        const dataSeries = new XyTextDataSeries(wasmContext, dsOptions);
+        const rendSeries = new FastTextRenderableSeries(wasmContext, {
             dataSeries,
             dataLabels: {
                 style: {
@@ -204,23 +171,17 @@ const createRenderableSeries = (
     }
     return { dataSeries: undefined, rendSeries: undefined };
 };
-
-const prePopulateData = (
-    dataSeries: BaseDataSeries,
-    dataSeriesType: EDataSeriesType,
-    xValues: number[],
-    positive: boolean
-) => {
-    const yValues: number[] = GetRandomData(xValues, positive);
+const prePopulateData = (dataSeries, dataSeriesType, xValues, positive) => {
+    const yValues = GetRandomData(xValues, positive);
     switch (dataSeriesType) {
         case EDataSeriesType.Xy:
-            (dataSeries as XyDataSeries).appendRange(xValues, yValues);
+            dataSeries.appendRange(xValues, yValues);
             break;
         case EDataSeriesType.Xyy:
-            (dataSeries as XyyDataSeries).appendRange(xValues, yValues, GetRandomData(xValues, positive));
+            dataSeries.appendRange(xValues, yValues, GetRandomData(xValues, positive));
             break;
         case EDataSeriesType.Xyz:
-            (dataSeries as XyzDataSeries).appendRange(
+            dataSeries.appendRange(
                 xValues,
                 yValues,
                 GetRandomData(xValues, positive).map((z) => Math.abs(z / 5))
@@ -228,10 +189,10 @@ const prePopulateData = (
             break;
         case EDataSeriesType.Ohlc:
             const { openValues, highValues, lowValues, closeValues } = generateCandleData(xValues);
-            (dataSeries as OhlcDataSeries).appendRange(xValues, openValues, highValues, lowValues, closeValues);
+            dataSeries.appendRange(xValues, openValues, highValues, lowValues, closeValues);
             break;
         case EDataSeriesType.XyText:
-            (dataSeries as XyTextDataSeries).appendRange(
+            dataSeries.appendRange(
                 xValues,
                 yValues,
                 yValues.map((textval) => textval.toFixed())
@@ -241,33 +202,24 @@ const prePopulateData = (
             break;
     }
 };
-
-const appendData = (
-    dataSeries: BaseDataSeries,
-    dataSeriesType: EDataSeriesType,
-    index: number,
-    xValues: number[],
-    yArray: number[][],
-    pointsOnChart: number,
-    pointsPerUpdate: number
-) => {
+const appendData = (dataSeries, dataSeriesType, index, xValues, yArray, pointsOnChart, pointsPerUpdate) => {
     switch (dataSeriesType) {
         case EDataSeriesType.Xy:
-            const xySeries = dataSeries as XyDataSeries;
+            const xySeries = dataSeries;
             xySeries.appendRange(xValues, yArray[index]);
             if (xySeries.count() > pointsOnChart) {
                 xySeries.removeRange(0, pointsPerUpdate);
             }
             break;
         case EDataSeriesType.Xyy:
-            const xyySeries = dataSeries as XyyDataSeries;
+            const xyySeries = dataSeries;
             xyySeries.appendRange(xValues, yArray[2 * index], yArray[2 * index + 1]);
             if (xyySeries.count() > pointsOnChart) {
                 xyySeries.removeRange(0, pointsPerUpdate);
             }
             break;
         case EDataSeriesType.Xyz:
-            const xyzSeries = dataSeries as XyzDataSeries;
+            const xyzSeries = dataSeries;
             xyzSeries.appendRange(
                 xValues,
                 yArray[2 * index],
@@ -278,7 +230,7 @@ const appendData = (
             }
             break;
         case EDataSeriesType.Ohlc:
-            const ohlcSeries = dataSeries as OhlcDataSeries;
+            const ohlcSeries = dataSeries;
             const { openValues, highValues, lowValues, closeValues } = generateCandleDataForAppendRange(
                 ohlcSeries.getNativeCloseValues().get(ohlcSeries.count() - 1),
                 yArray[index]
@@ -289,7 +241,7 @@ const appendData = (
             }
             break;
         case EDataSeriesType.XyText:
-            const xytextSeries = dataSeries as XyTextDataSeries;
+            const xytextSeries = dataSeries;
             xytextSeries.appendRange(
                 xValues,
                 yArray[index],
@@ -303,22 +255,19 @@ const appendData = (
             break;
     }
 };
-
-const axisOptions: INumericAxisOptions = {
+const axisOptions = {
     drawMajorBands: false,
     drawMinorGridLines: false,
     drawMinorTickLines: false,
     labelFormat: ENumericFormat.Decimal,
     labelPrecision: 0,
 };
-
-export const drawExample = async (updateMessages: (newMessages: TMessage[]) => void, seriesType: ESeriesType) => {
+export const drawExample = async (updateMessages, seriesType) => {
     let seriesCount = 10;
     let pointsOnChart = 1000;
     let pointsPerUpdate = 100;
     let sendEvery = 30;
-    let initialPoints: number = 0;
-
+    let initialPoints = 0;
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
     });
@@ -326,7 +275,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
     sciChartSurface.xAxes.add(xAxis);
     let yAxis = new NumericAxis(wasmContext, { ...axisOptions });
     sciChartSurface.yAxes.add(yAxis);
-    let dataSeriesArray: BaseDataSeries[];
+    let dataSeriesArray;
     let dataSeriesType = EDataSeriesType.Xy;
     if (seriesType === ESeriesType.BubbleSeries) {
         dataSeriesType = EDataSeriesType.Xyz;
@@ -337,7 +286,6 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
     } else if (seriesType === ESeriesType.TextSeries) {
         dataSeriesType = EDataSeriesType.XyText;
     }
-
     const initChart = () => {
         sciChartSurface.renderableSeries.asArray().forEach((rs) => rs.delete());
         sciChartSurface.renderableSeries.clear();
@@ -348,9 +296,9 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
         sciChartSurface.layoutManager = new LayoutManager();
         yAxis = new NumericAxis(wasmContext, { ...axisOptions });
         sciChartSurface.yAxes.add(yAxis);
-        dataSeriesArray = new Array<BaseDataSeries>(seriesCount);
-        let stackedCollection: IRenderableSeries;
-        let xValues: number[];
+        dataSeriesArray = new Array(seriesCount);
+        let stackedCollection;
+        let xValues;
         const positive = [ESeriesType.StackedColumnSeries, ESeriesType.StackedMountainSeries].includes(seriesType);
         for (let i = 0; i < seriesCount; i++) {
             const { dataSeries, rendSeries } = createRenderableSeries(wasmContext, seriesType);
@@ -360,14 +308,14 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
                     stackedCollection = new StackedColumnCollection(wasmContext, { dataPointWidth: 1 });
                     sciChartSurface.renderableSeries.add(stackedCollection);
                 }
-                (rendSeries as StackedColumnRenderableSeries).stackedGroupId = i.toString();
-                (stackedCollection as StackedColumnCollection).add(rendSeries as StackedColumnRenderableSeries);
+                rendSeries.stackedGroupId = i.toString();
+                stackedCollection.add(rendSeries);
             } else if (seriesType === ESeriesType.StackedMountainSeries) {
                 if (i === 0) {
                     stackedCollection = new StackedMountainCollection(wasmContext);
                     sciChartSurface.renderableSeries.add(stackedCollection);
                 }
-                (stackedCollection as StackedMountainCollection).add(rendSeries as StackedMountainRenderableSeries);
+                stackedCollection.add(rendSeries);
             } else if (seriesType === ESeriesType.ColumnSeries) {
                 // create stacked y axis
                 if (i === 0) {
@@ -388,7 +336,6 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
             } else {
                 sciChartSurface.renderableSeries.add(rendSeries);
             }
-
             if (i === 0) {
                 xValues = Array.from(Array(initialPoints).keys());
             }
@@ -398,27 +345,23 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
         }
         return positive;
     };
-
-    const dataBuffer: { x: number[]; ys: number[][]; sendTime: number }[] = [];
-    let isRunning: boolean = false;
-    const newMessages: TMessage[] = [];
+    const dataBuffer = [];
+    let isRunning = false;
+    const newMessages = [];
     let loadStart = 0;
     let loadTime = 0;
     let renderStart = 0;
     let renderTime = 0;
-
-    const loadData = (data: { x: number[]; ys: number[][]; sendTime: number }) => {
+    const loadData = (data) => {
         for (let i = 0; i < seriesCount; i++) {
             appendData(dataSeriesArray[i], dataSeriesType, i, data.x, data.ys, pointsOnChart, pointsPerUpdate);
         }
         sciChartSurface.zoomExtents(0);
         loadTime = new Date().getTime() - loadStart;
     };
-
     sciChartSurface.preRender.subscribe(() => {
         renderStart = new Date().getTime();
     });
-
     sciChartSurface.rendered.subscribe(() => {
         if (!isRunning || loadStart === 0) return;
         avgLoadTime = (avgLoadTime * loadCount + loadTime) / (loadCount + 1);
@@ -439,12 +382,11 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
         updateMessages(newMessages);
         newMessages.length = 0;
     });
-
     const loadFromBuffer = () => {
         if (dataBuffer.length > 0) {
             loadStart = new Date().getTime();
-            const x: number[] = dataBuffer[0].x;
-            const ys: number[][] = dataBuffer[0].ys;
+            const x = dataBuffer[0].x;
+            const ys = dataBuffer[0].ys;
             const sendTime = dataBuffer[0].sendTime;
             for (let i = 1; i < dataBuffer.length; i++) {
                 const el = dataBuffer[i];
@@ -460,10 +402,8 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
             setTimeout(loadFromBuffer, Math.min(1, 10 - renderTime));
         }
     };
-
-    let socket: ReturnType<typeof io>;
-
-    const initWebSocket = (positive: boolean) => {
+    let socket;
+    const initWebSocket = (positive) => {
         if (socket) {
             socket.disconnect();
             socket.connect();
@@ -475,17 +415,16 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
                 socket = io();
                 console.log("local");
             }
-            socket.on("data", (message: any) => {
+            socket.on("data", (message) => {
                 dataBuffer.push(message);
             });
             socket.on("finished", () => {
                 socket.disconnect();
             });
         }
-
         // If initial data has been generated, this should be an array of the last y values of each series
         const index = dataSeriesArray[0].count() - 1;
-        let series: number[];
+        let series;
         if (
             dataSeriesType === EDataSeriesType.Xy ||
             dataSeriesType === EDataSeriesType.Ohlc ||
@@ -500,7 +439,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
             if (index >= 0) {
                 series = [];
                 for (const dataSeries of dataSeriesArray) {
-                    const xyy = dataSeries as XyyDataSeries;
+                    const xyy = dataSeries;
                     series.push(xyy.getNativeYValues().get(index));
                     series.push(xyy.getNativeY1Values().get(index));
                 }
@@ -511,7 +450,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
             if (index >= 0) {
                 series = [];
                 for (const dataSeries of dataSeriesArray) {
-                    const xyy = dataSeries as XyzDataSeries;
+                    const xyy = dataSeries;
                     series.push(xyy.getNativeYValues().get(index));
                     series.push(xyy.getNativeZValues().get(index));
                 }
@@ -523,7 +462,6 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
         isRunning = true;
         loadFromBuffer();
     };
-
     const settings = {
         seriesCount: 10,
         pointsOnChart: 5000,
@@ -531,11 +469,9 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
         sendEvery: 100,
         initialPoints: 5000,
     };
-
-    const updateSettings = (newValues: ISettings) => {
+    const updateSettings = (newValues) => {
         Object.assign(settings, newValues);
     };
-
     // Buttons for chart
     const startStreaming = () => {
         console.log("start streaming");
@@ -552,7 +488,6 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
         const positive = initChart();
         initWebSocket(positive);
     };
-
     const stopStreaming = () => {
         console.log("stop streaming");
         socket?.disconnect();
