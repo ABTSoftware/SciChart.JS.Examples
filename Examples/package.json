@@ -10,7 +10,7 @@
     "buildServer": "webpack --config webpack.server.config.js",
     "buildClient": "webpack --config webpack.client.config.js",
     "buildClient:watch": "webpack --config webpack.client.config.js --watch",
-    "buildVanillaDemo": "npm run compileVanillaExamples && npm run buildSciChartExampleDependencies",
+    "buildVanillaDemo": "npm run compileVanillaExamples && npm run pretty-quick && npm run buildSciChartExampleDependencies",
     "buildSciChartExampleDependencies": "webpack --config webpack.deps.config.ts --mode production",
     "compileVanillaExamples": "tsc --build tsconfig.vanilla.json",
     "startServer": "webpack --config webpack.server.dev.config.js",
@@ -49,7 +49,7 @@
     "scichart-example-dependencies": "^0.1.7",
     "scichart-react": "^0.1.8",
     "socket.io": "^4.5.2",
-    "socket.io-client": "^4.5.2",
+    "socket.io-client": "^4.7.5",
     "websocket-ts": "^1.1.1"
   },
   "devDependencies": {
