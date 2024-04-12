@@ -4,6 +4,19 @@ This example provides a template for an application using scichart with React an
 
 It demonstrates how to create a generic React wrapper component for a chart.
 
+**NOTE** The component complexity and functionality needed for the chart may differ depending on the use case.  
+This example provides a possible solution which provides a flexible API and handles different potential pitfalls.  
+Also notice that there exists [SciChart.React](https://www.npmjs.com/package/scichart-react) component which is the recommended for usage with React. So consider checking out its usage in [BoilerPlates/react](./react), otherwise, if you need something custom or control the initialization explicitly, use this guide for the reference.
+
+## Licensing
+
+SciChart.js is commercial software with a [free community license](https://scichart.com/community-licensing).
+
+-   From SciChart.js v3.2 and onwards, trial licenses are not required. Instead the chart initialises with a [Community License](https://scichart.com/community-licensing)
+-   For commercial licensing, follow steps from [scichart.com/licensing-scichart-js](https://scichart.com/licensing-scichart-js).
+
+## Goal and implementation
+
 Main criteria and points to consider:
 
 1. A chart could be created with an initialization function or a config;

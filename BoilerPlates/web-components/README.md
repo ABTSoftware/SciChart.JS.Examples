@@ -3,9 +3,12 @@
 The example demonstrates how to use SciChart.js library alongside the WebComponents.  
 Specifically, it shows how to create a chart inside of a Shadow DOM by passing a div node reference.
 
-## Trial licensing
+## Licensing
 
-Ensure you have followed steps from our [getting-started](https://www.scichart.com/getting-started-scichart-js) guide to get a trial!
+SciChart.js is commercial software with a [free community license](https://scichart.com/community-licensing).
+
+- From SciChart.js v3.2 and onwards, trial licenses are not required. Instead the chart initialises with a [Community License](https://scichart.com/community-licensing)
+- For commercial licensing, follow steps from [scichart.com/licensing-scichart-js](https://scichart.com/licensing-scichart-js).
 
 ## How to run project
 
