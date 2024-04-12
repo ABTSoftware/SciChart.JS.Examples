@@ -9,25 +9,39 @@ const pj = require("../../package.json");
 
 const includeImportedModules = async (folderPath: string, files: IFiles, code: string) => {
     const localImports = Array.from(code.matchAll(/import.*from ["']\.\/(.*)["'];/g));
-
     for (const localImport of localImports) {
         if (localImport.length > 1) {
             let content: string = "";
+            let csPath: string = "";
             try {
                 const filepath = path.join(folderPath, localImport[1] + ".ts");
-                const csPath = "src/" + localImport[1] + ".ts";
+                csPath = "src/" + localImport[1] + ".ts";
                 content = await fs.promises.readFile(filepath, "utf8");
-                files[csPath] = { content, isBinary: false };
             } catch (e) {
                 const filepath = path.join(folderPath, localImport[1] + ".tsx");
-                const csPath = "src/" + localImport[1] + ".tsx";
+                csPath = "src/" + localImport[1] + ".tsx";
                 content = await fs.promises.readFile(filepath, "utf8");
-                files[csPath] = { content, isBinary: false };
             }
             const nestedImports = Array.from(content.matchAll(/import.*from "\.\/(.*)";/g));
             if (nestedImports.length > 0) {
                 localImports.push(...nestedImports);
             }
+            // Pull files outside the local folder into it and rewrite the import
+            const externalImports = Array.from(content.matchAll(/import.*from "\.\.\/(.*)";/g));
+            if (externalImports.length > 0) {
+                for (const externalImport of externalImports) {
+                    let externalContent: string = "";
+                    if (externalImport.length > 1) {
+                        const filepath = path.join(folderPath, "../" + externalImport[1] + ".ts");
+                        const filename = externalImport[1].substring(externalImport[1].lastIndexOf("/") + 1);
+                        const csPath = "src/" + filename + ".ts";
+                        content = content.replace("../" + externalImport[1], "./" + filename);
+                        externalContent = await fs.promises.readFile(filepath, "utf8");
+                        files[csPath] = { content: externalContent, isBinary: false };
+                    }
+                }
+            }
+            files[csPath] = { content, isBinary: false };
         }
     }
 };
