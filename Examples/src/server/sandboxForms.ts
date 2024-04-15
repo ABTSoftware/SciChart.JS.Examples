@@ -350,6 +350,18 @@ SciChartSurface.loadWasmFromCDN();
 SciChart3DSurface.loadWasmFromCDN();
 `;
 
+const indexHtmlTemplate = (customChartSetup?: string) => `<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>SciChart Example</title>
+    <script async type="text/javascript" src="src/index.ts"></script>
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        ${customChartSetup ?? `<div id="chart"></div>`}
+    </body>
+</html>`;
+
 const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
     const tsPath = path.join(folderPath, "vanilla.ts");
     let code: string;
@@ -360,6 +372,14 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
     }
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     const template = "parcel";
+
+    let htmlCode = indexHtmlTemplate();
+
+    try {
+        const indexHtmlPath = path.join(folderPath, "index.html");
+        const charHtmlSetup = await fs.promises.readFile(indexHtmlPath, "utf8");
+        htmlCode = indexHtmlTemplate(charHtmlSetup);
+    } catch (err) {}
 
     let files: IFiles = {
         "package.json": {
@@ -458,17 +478,7 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
             isBinary: false,
         },
         "index.html": {
-            content: `<!DOCTYPE html>
-        <html lang="en">
-          <head>
-          <title>SciChart Example</title>
-          <script async type="text/javascript" src="src/index.ts"></script>
-          </head>
-          <body>
-            <noscript>You need to enable JavaScript to run this app.</noscript>
-            <div id="chart"></div>
-          </body>
-        </html>`,
+            content: htmlCode,
             isBinary: false,
         },
     };
@@ -486,6 +496,7 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
     const parameters = getParameters({ files, template });
     return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
         <input type="hidden" name="parameters" value="${parameters}" />
+        <input type="hidden" name="query" value="file=src/drawExample.ts" />
     </form>`;
 };
 

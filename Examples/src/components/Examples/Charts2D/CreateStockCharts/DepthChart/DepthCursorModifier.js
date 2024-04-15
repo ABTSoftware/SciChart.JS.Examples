@@ -1,18 +1,20 @@
-import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
-import { ECoordinateMode } from "scichart/Charting/Visuals/Annotations/AnnotationBase";
-import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
-import { EMousePosition } from "scichart/types/MousePosition";
-import { translateFromCanvasToSeriesViewRect, translateToNotScaled } from "scichart/utils/translate";
-import { PROPERTY } from "scichart/Charting/ChartModifiers/constants";
-import { ELabelPlacement } from "scichart/types/LabelPlacement";
-import { DpiHelper } from "scichart/Charting/Visuals/TextureManager/DpiHelper";
-import { RolloverMarkerSvgAnnotation } from "scichart/Charting/Visuals/Annotations/RolloverMarkerSvgAnnotation";
-import { TextAnnotation } from "scichart/Charting/Visuals/Annotations/TextAnnotation";
-import { VerticalLineAnnotation } from "scichart/Charting/Visuals/Annotations/VerticalLineAnnotation";
-import { EHorizontalAnchorPoint, EVerticalAnchorPoint } from "scichart/types/AnchorPoint";
-import { BoxAnnotation } from "scichart/Charting/Visuals/Annotations/BoxAnnotation";
-export class DepthCursorModifier extends ChartModifierBase2D {
-    type = "DepthCursor";
+import {
+    CustomChartModifier2D,
+    LineAnnotation,
+    TextAnnotation,
+    VerticalLineAnnotation,
+    BoxAnnotation,
+    EMousePosition,
+    EHorizontalAnchorPoint,
+    ELabelPlacement,
+    ECoordinateMode,
+    translateFromCanvasToSeriesViewRect,
+    translateToNotScaled,
+    DpiHelper,
+    RolloverMarkerSvgAnnotation,
+    EVerticalAnchorPoint,
+} from "scichart";
+export class DepthCursorModifier extends CustomChartModifier2D {
     /**
      * Gets or sets the crosshair line strokethickness
      */
@@ -212,14 +214,14 @@ export class DepthCursorModifier extends ChartModifierBase2D {
     }
     notifyPropertyChanged(propertyName) {
         super.notifyPropertyChanged(propertyName);
-        if (propertyName === PROPERTY.X_AXIS_ID) {
+        if (propertyName === "X_AXIS_ID") {
             this.getAnnotations().forEach((l) => {
                 if (l) {
                     l.xAxisId = this.xAxisId;
                 }
             });
         }
-        if (propertyName === PROPERTY.Y_AXIS_ID) {
+        if (propertyName === "Y_AXIS_ID") {
             this.getAnnotations().forEach((l) => {
                 if (l) {
                     l.yAxisId = this.yAxisId;

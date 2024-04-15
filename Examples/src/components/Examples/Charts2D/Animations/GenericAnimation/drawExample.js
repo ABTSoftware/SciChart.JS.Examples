@@ -11,7 +11,7 @@ import {
     GenericAnimation,
 } from "scichart";
 import { appTheme } from "scichart-example-dependencies";
-import { populationData } from "../../../Charts3D/Basic3DChartTypes/Bubble3DChart/data/PopulationData";
+import { populationData } from "./data";
 export const drawExample = async (rootElement) => {
     // Create a SciChartSurface with bubble chart
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {

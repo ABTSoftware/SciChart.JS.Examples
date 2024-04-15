@@ -22,10 +22,11 @@
         "allowJs": false,
         "checkJs": false,
         "typeRoots": ["./src/types", "./node_modules/@types"],
-        "esModuleInterop": false,
-        "skipLibCheck": false,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
     },
-    "include": ["src/**/vanilla.ts"],
+    "include": ["src/**/vanilla.ts", "src/**/drawExample.ts", "src/**/*.d.ts"],
     "exclude": ["node_modules", "src/static/*"]
 }

@@ -1,4 +1,4 @@
-import * as socketIOClient from "socket.io-client";
+import { io } from "socket.io-client";
 import { appTheme } from "scichart-example-dependencies";
 import {
     IBaseDataSeriesOptions,
@@ -461,7 +461,7 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
         }
     };
 
-    let socket: socketIOClient.Socket;
+    let socket: ReturnType<typeof io>;
 
     const initWebSocket = (positive: boolean) => {
         if (socket) {
@@ -469,10 +469,10 @@ export const drawExample = async (updateMessages: (newMessages: TMessage[]) => v
             socket.connect();
         } else {
             if (window.location.hostname === "localhost" && parseInt(window.location.port) > 8000) {
-                socket = socketIOClient.io("http://localhost:3000");
+                socket = io("http://localhost:3000");
                 console.log("3000");
             } else {
-                socket = socketIOClient.io();
+                socket = io();
                 console.log("local");
             }
             socket.on("data", (message: any) => {

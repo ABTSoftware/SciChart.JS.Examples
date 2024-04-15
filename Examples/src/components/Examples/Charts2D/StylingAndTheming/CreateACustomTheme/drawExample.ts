@@ -1,4 +1,4 @@
-import { closeValues, dateValues, highValues, lowValues, openValues } from "./data/themeing2dData";
+import { closeValues, dateValues, highValues, lowValues, openValues } from "./data";
 
 import {
     FastCandlestickRenderableSeries,
