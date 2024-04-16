@@ -1,6 +1,8 @@
 import { EAxisType, EChart2DModifierType, ESeriesType, ISciChart2DDefinition, chartBuilder } from "scichart";
 
 const config: ISciChart2DDefinition = {
+    // createSuspended is required to get deterministic render state
+    surface: { createSuspended: true },
     xAxes: [{ type: EAxisType.NumericAxis }],
     yAxes: [{ type: EAxisType.NumericAxis }],
     series: [
@@ -22,7 +24,14 @@ const config: ISciChart2DDefinition = {
     ]
 };
 
-const initChart = () => chartBuilder.build2DChart("chart", config);
+const initChart = async () => {
+    const chartRoot = document.getElementById("chart") as HTMLDivElement;
+    const { sciChartSurface } = await chartBuilder.build2DChart(chartRoot, config);
+
+    // mark chart root element after it is fully rendered
+    await sciChartSurface.nextStateRender({ resumeBefore: true, invalidateOnResume: true });
+    chartRoot.classList.add("rendered");
+};
 
 initChart();
 
@@ -58,5 +67,5 @@ const onClick = () => {
         });
 };
 
-const exportButton = document.getElementById("export-button")
-exportButton.addEventListener("click", onClick)
+const exportButton = document.getElementById("export-button");
+exportButton.addEventListener("click", onClick);
