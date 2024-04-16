@@ -17,7 +17,7 @@ import {
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../theme";
 // Define a custom PaletteProvider
 export class ExampleMountainPaletteProvider {
     static Name;

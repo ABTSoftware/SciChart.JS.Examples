@@ -1,11 +1,12 @@
 import * as React from "react";
 import { IDeletable } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import { appTheme, simpleBinanceRestClient, TPriceBar } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import { createCandlestickChart } from "./createCandlestickChart";
 import { binanceSocketClient } from "./binanceSocketClient";
 import { Subscription } from "rxjs";
+import { simpleBinanceRestClient, TPriceBar } from "../../../ExampleData/binanceRestClient";
+import { appTheme } from "../../../theme";
 
 const divElementId = "chart";
 const divOverviewId = "overview";
@@ -32,14 +33,14 @@ const drawExample = async () => {
     controls.setXRange(startViewportRange, endDate);
 
     // Susbscribe to price updates from the exchange
-    const subscription = binanceSocketClient.getRealtimeCandleStream("BTCUSDT", "1m").subscribe(pb => {
+    const subscription = binanceSocketClient.getRealtimeCandleStream("BTCUSDT", "1m").subscribe((pb) => {
         const priceBar = {
             date: pb.openTime,
             open: pb.open,
             high: pb.high,
             low: pb.low,
             close: pb.close,
-            volume: pb.volume
+            volume: pb.volume,
         };
         controls.onNewTrade(priceBar, pb.lastTradeSize, pb.lastTradeBuyOrSell);
     });
@@ -73,14 +74,14 @@ export default function RealtimeTickingStockCharts() {
         return () => {
             // check if chart is already initialized
             if (itemsToDeleteRef.current) {
-                itemsToDeleteRef.current.forEach(item => item.delete());
+                itemsToDeleteRef.current.forEach((item) => item.delete());
                 websocketSubscriptionRef.current.unsubscribe();
                 return;
             }
 
             // else postpone deletion
             chartInitializationPromise.then(() => {
-                itemsToDeleteRef.current.forEach(item => item.delete());
+                itemsToDeleteRef.current.forEach((item) => item.delete());
                 websocketSubscriptionRef.current.unsubscribe();
             });
         };

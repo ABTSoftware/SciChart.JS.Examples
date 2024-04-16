@@ -10,9 +10,9 @@ import {
     MouseWheelZoomModifier,
     zeroArray2D,
     UniformContoursRenderableSeries,
-    HeatmapLegend
+    HeatmapLegend,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 
 const divElementId = "chart";
@@ -21,7 +21,7 @@ const divHeatmapLegend = "heatmapLegend";
 const drawExample = async () => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create an X & Y Axis
@@ -41,7 +41,7 @@ const drawExample = async () => {
         xStart: 0,
         xStep: 1,
         yStart: 0,
-        yStep: 1
+        yStep: 1,
     });
 
     // Add the contours series and add to the chart
@@ -52,7 +52,7 @@ const drawExample = async () => {
             zMax: colorPaletteMax,
             zStep: 20,
             strokeThickness: 1,
-            stroke: appTheme.PaleSkyBlue
+            stroke: appTheme.PaleSkyBlue,
         })
     );
 
@@ -72,9 +72,9 @@ const drawExample = async () => {
                     { offset: 0.5, color: appTheme.VividGreen },
                     { offset: 0.3, color: appTheme.VividSkyBlue },
                     { offset: 0.2, color: appTheme.Indigo },
-                    { offset: 0, color: appTheme.DarkIndigo }
-                ]
-            })
+                    { offset: 0, color: appTheme.DarkIndigo },
+                ],
+            }),
         })
     );
 
@@ -91,23 +91,23 @@ const drawHeatmapLegend = async () => {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB"
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
             axisBorder: {
                 borderLeft: 1,
-                color: appTheme.ForegroundColor + "77"
+                color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 6,
-                strokeThickness: 1
+                strokeThickness: 1,
             },
             minorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
-                strokeThickness: 1
-            }
+                strokeThickness: 1,
+            },
         },
         colorMap: {
             minimum: 0,
@@ -119,9 +119,9 @@ const drawHeatmapLegend = async () => {
                 { offset: 0.5, color: appTheme.VividGreen },
                 { offset: 0.3, color: appTheme.VividSkyBlue },
                 { offset: 0.2, color: appTheme.Indigo },
-                { offset: 0, color: appTheme.DarkIndigo }
-            ]
-        }
+                { offset: 0, color: appTheme.DarkIndigo },
+            ],
+        },
     });
 
     return heatmapLegend;
@@ -158,14 +158,13 @@ export default function ContourChart() {
     const heatmapLegendRef = React.useRef<HeatmapLegend>();
 
     React.useEffect(() => {
-            const chartInitializationPromise = Promise.all([
-                drawExample(),
-                drawHeatmapLegend()
-            ]).then(([{ sciChartSurface }, legend]) => {
+        const chartInitializationPromise = Promise.all([drawExample(), drawHeatmapLegend()]).then(
+            ([{ sciChartSurface }, legend]) => {
                 sciChartSurfaceRef.current = sciChartSurface;
                 heatmapLegendRef.current = legend;
-            })
-        
+            }
+        );
+
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {
             // check if chart is already initialized

@@ -15,7 +15,7 @@ import {
     SplineLineRenderableSeries,
     SweepAnimation,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 export const drawExample = async (rootElement) => {
     // Create a SciChartSurface with X,Y Axis
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {

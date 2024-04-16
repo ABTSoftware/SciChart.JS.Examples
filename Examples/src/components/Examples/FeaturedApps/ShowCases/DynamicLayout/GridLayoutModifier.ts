@@ -17,7 +17,7 @@ import {
     TModifierDefinition,
     TSeriesDefinition,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 export class GridLayoutModifier extends ChartModifierBase2D {
     public readonly type = "GridLayoutModifier";

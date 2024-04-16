@@ -1,4 +1,4 @@
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { happinessData } from "./data";
 import {
     SciChartSurface,

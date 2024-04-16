@@ -28,12 +28,12 @@ import {
     TSeriesDefinition,
     TTextStyle,
     TTickLineStyle,
-} from 'scichart';
-import { appTheme } from 'scichart-example-dependencies';
-import { ChartModifierBase2D } from 'scichart/Charting/ChartModifiers/ChartModifierBase2D';
+} from "scichart";
+import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
+import { appTheme } from "../../../theme";
 
 export class GridLayoutModifier extends ChartModifierBase2D {
-    public readonly type = 'GridLayoutModifier';
+    public readonly type = "GridLayoutModifier";
     public isGridProperty: boolean = false;
     public columns: number = 2;
     public transitionDuration = 500;
@@ -100,7 +100,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             // Start full size
             position: this.translateRectToRelativeCoordinates(subChartsAreaRect),
             coordinateMode: ECoordinateMode.Relative,
-            subChartPadding: Thickness.fromString('0 0 0 0'),
+            subChartPadding: Thickness.fromString("0 0 0 0"),
             viewportBorder: {
                 color: borderInitialColor,
                 borderRight: 2,
@@ -112,7 +112,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
             titleStyle: {
                 placeWithinChart: true,
                 fontSize: 12,
-                padding: Thickness.fromString('10 4 0 4'),
+                padding: Thickness.fromString("10 4 0 4"),
                 color: appTheme.ForegroundColor,
             },
         };
@@ -121,7 +121,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
         const xAxisDef = (surfaceDef.xAxes as TAxisDefinition[]).find((a) => a.options.id == rs.xAxisId);
         const yAxisDef = (surfaceDef.yAxes as TAxisDefinition[]).find((a) => a.options.id == rs.yAxisId);
         const modifiers = (surfaceDef.modifiers as TModifierDefinition[]).filter(
-            (m) => m.type.toString() !== 'GridLayoutModifier' && m.type !== EChart2DModifierType.Legend
+            (m) => m.type.toString() !== "GridLayoutModifier" && m.type !== EChart2DModifierType.Legend
         );
         const subSurfaceDef: ISciChart2DDefinition = {
             xAxes: xAxisDef,
@@ -143,8 +143,8 @@ export class GridLayoutModifier extends ChartModifierBase2D {
         yAxis.growBy = new NumberRange(0, 0.3);
         yAxis.autoRange = EAutoRange.Always;
 
-        xAxis.axisTitle = '';
-        yAxis.axisTitle = '';
+        xAxis.axisTitle = "";
+        yAxis.axisTitle = "";
 
         yAxis.axisBorder = {
             color: borderInitialColor,
@@ -200,7 +200,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
 
     private fadeOutMainSurface() {
         // hide legend
-        const legendModifier = this.parentSurface.chartModifiers.getById('LegendModifier') as LegendModifier;
+        const legendModifier = this.parentSurface.chartModifiers.getById("LegendModifier") as LegendModifier;
         legendModifier.sciChartLegend.showLegend = false;
 
         // animation setup to hide main surface
@@ -321,7 +321,7 @@ export class GridLayoutModifier extends ChartModifierBase2D {
                         this.parentSurface.renderableSeries.get(subChartIndex).isVisible = true;
 
                         const legendModifier = this.parentSurface.chartModifiers.getById(
-                            'LegendModifier'
+                            "LegendModifier"
                         ) as LegendModifier;
                         legendModifier.sciChartLegend.showLegend = true;
                     }, 0);

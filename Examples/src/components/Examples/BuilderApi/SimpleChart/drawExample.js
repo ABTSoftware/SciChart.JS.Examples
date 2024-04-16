@@ -9,7 +9,7 @@ import {
     ECoordinateMode,
 } from "scichart";
 import { chartBuilder } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../theme";
 export const drawExample = async (rootElement) => {
     // Create a chart using the Builder-API, an api that allows defining a chart
     // with javascript-objects or JSON

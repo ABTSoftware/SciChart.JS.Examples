@@ -1,5 +1,6 @@
 import * as React from "react";
-import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import classes from "../../../styles/Examples.module.scss";
 
 import {
@@ -21,7 +22,7 @@ import {
     XyDataSeries,
     XyScatterRenderableSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
 
 export const divElementId = "chart";
@@ -29,7 +30,7 @@ export const divOverviewId = "overview";
 
 export const drawExample = async () => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create and add an XAxis and YAxis
@@ -37,7 +38,7 @@ export const drawExample = async () => {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Always,
-            growBy: new NumberRange(0.1, 0.1)
+            growBy: new NumberRange(0.1, 0.1),
         })
     );
 
@@ -50,7 +51,7 @@ export const drawExample = async () => {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues: data0.xValues, yValues: data0.yValues }),
             strokeThickness: 3,
-            stroke: appTheme.VividSkyBlue
+            stroke: appTheme.VividSkyBlue,
         })
     );
 
@@ -61,7 +62,7 @@ export const drawExample = async () => {
         new XyScatterRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues }),
             pointMarker: new EllipsePointMarker(wasmContext, { fill: appTheme.VividPink, strokeThickness: 0 }),
-            strokeThickness: 3
+            strokeThickness: 3,
         })
     );
 
@@ -79,15 +80,14 @@ export const drawExample = async () => {
             fontSize: 18,
             opacity: 0.55,
             textColor: appTheme.ForegroundColor,
-            text:
-                "SciChart.js supports an Overview scrollbar. Zoom the main chart or drag the overview to see it update"
+            text: "SciChart.js supports an Overview scrollbar. Zoom the main chart or drag the overview to see it update",
         })
     );
 
     // Add Overview chart. This will automatically bind to the parent surface
     // displaying its series. Zooming the chart will zoom the overview and vice versa
     const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Optional: add some zoom pan interaction

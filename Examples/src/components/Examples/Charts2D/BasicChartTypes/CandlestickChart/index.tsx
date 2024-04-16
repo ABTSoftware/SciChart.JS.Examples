@@ -31,10 +31,11 @@ import {
     IFillPaletteProvider,
     IPointMetadata,
     parseColorToUIntArgb,
-    FastOhlcRenderableSeries
+    FastOhlcRenderableSeries,
 } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import { appTheme, simpleBinanceRestClient } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
+import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
 import classes from "../../../styles/Examples.module.scss";
 
 const divElementId = "chart";
@@ -45,7 +46,7 @@ const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
 const drawExample = async () => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Add an XAxis of type DateTimeAxis
@@ -53,7 +54,7 @@ const drawExample = async () => {
     // In future we have a hybrid IndexDateAxis which 'magically' solves problems of different # of points in stock market datasetd with gaps
     const xAxis = new DateTimeNumericAxis(wasmContext, {
         // autoRange.never as we're setting visibleRange explicitly below. If you dont do this, leave this flag default
-        autoRange: EAutoRange.Never
+        autoRange: EAutoRange.Never,
     });
     sciChartSurface.xAxes.add(xAxis);
 
@@ -64,7 +65,7 @@ const drawExample = async () => {
             labelFormat: ENumericFormat.Decimal,
             labelPrecision: 2,
             labelPrefix: "$",
-            autoRange: EAutoRange.Always
+            autoRange: EAutoRange.Always,
         })
     );
 
@@ -74,7 +75,7 @@ const drawExample = async () => {
             id: Y_AXIS_VOLUME_ID,
             growBy: new NumberRange(0, 4),
             isVisible: false,
-            autoRange: EAutoRange.Always
+            autoRange: EAutoRange.Always,
         })
     );
 
@@ -113,7 +114,7 @@ const drawExample = async () => {
         highValues,
         lowValues,
         closeValues,
-        dataSeriesName: "BTC/USDT"
+        dataSeriesName: "BTC/USDT",
     });
     const candlestickSeries = new FastCandlestickRenderableSeries(wasmContext, {
         dataSeries: candleDataSeries,
@@ -122,7 +123,7 @@ const drawExample = async () => {
         brushUp: appTheme.VividGreen + "77",
         brushDown: appTheme.MutedRed + "77",
         strokeUp: appTheme.VividGreen,
-        strokeDown: appTheme.MutedRed
+        strokeDown: appTheme.MutedRed,
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
 
@@ -134,7 +135,7 @@ const drawExample = async () => {
         dataPointWidth: 0.9,
         strokeUp: appTheme.VividGreen,
         strokeDown: appTheme.MutedRed,
-        isVisible: false
+        isVisible: false,
     });
     sciChartSurface.renderableSeries.add(ohlcSeries);
 
@@ -144,9 +145,9 @@ const drawExample = async () => {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyMovingAverageFilter(candleDataSeries, {
                 dataSeriesName: "Moving Average (20)",
-                length: 20
+                length: 20,
             }),
-            stroke: appTheme.VividSkyBlue
+            stroke: appTheme.VividSkyBlue,
         })
     );
 
@@ -154,9 +155,9 @@ const drawExample = async () => {
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyMovingAverageFilter(candleDataSeries, {
                 dataSeriesName: "Moving Average (50)",
-                length: 50
+                length: 50,
             }),
-            stroke: appTheme.VividPink
+            stroke: appTheme.VividPink,
         })
     );
 
@@ -172,7 +173,7 @@ const drawExample = async () => {
                 candleDataSeries,
                 appTheme.VividGreen + "77",
                 appTheme.MutedRed + "77"
-            )
+            ),
         })
     );
 
@@ -184,7 +185,7 @@ const drawExample = async () => {
         new CursorModifier({
             crosshairStroke: appTheme.VividOrange,
             axisLabelFill: appTheme.VividOrange,
-            tooltipLegendTemplate: getTooltipLegendTemplate
+            tooltipLegendTemplate: getTooltipLegendTemplate,
         })
     );
 
@@ -192,7 +193,7 @@ const drawExample = async () => {
     // displaying its series. Zooming the chart will zoom the overview and vice versa
     const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
         theme: appTheme.SciChartJsTheme,
-        transformRenderableSeries: getOverviewSeries
+        transformRenderableSeries: getOverviewSeries,
     });
 
     return { sciChartSurface, overview, candlestickSeries, ohlcSeries };
@@ -206,9 +207,9 @@ const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
             dataSeries: defaultSeries.dataSeries,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: appTheme.VividSkyBlue + "77", offset: 0 },
-                { color: "Transparent", offset: 1 }
+                { color: "Transparent", offset: 1 },
             ]),
-            stroke: appTheme.VividSkyBlue
+            stroke: appTheme.VividSkyBlue,
         });
     }
     // hide all other series

@@ -1,5 +1,6 @@
 import * as React from "react";
-import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import classes from "../../../styles/Examples.module.scss";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";

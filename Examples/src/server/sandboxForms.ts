@@ -78,7 +78,6 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
                     "react-scripts": "5.0.1",
                     scichart: pj.dependencies.scichart,
                     "scichart-react": pj.dependencies["scichart-react"],
-                    "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
                     ...currentExample.extraDependencies,
                 },
                 devDependencies: {
@@ -182,7 +181,6 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
                     "zone.js": "0.12.0",
                     scichart: pj.dependencies.scichart,
                     "scichart-angular": pj.dependencies["scichart-angular"],
-                    "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
                     ...currentExample.extraDependencies,
                 },
                 devDependencies: {
@@ -394,7 +392,6 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
                 },
                 dependencies: {
                     scichart: pj.dependencies.scichart,
-                    "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
                     "parcel-bundler": "1.6.1",
                     ...currentExample.extraDependencies,
                 },

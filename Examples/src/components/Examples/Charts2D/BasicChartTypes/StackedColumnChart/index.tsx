@@ -1,5 +1,5 @@
 import * as React from "react";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,7 +16,7 @@ import {
     WaveAnimation,
     XyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
 
 const divElementId = "chart";
@@ -24,7 +24,7 @@ const divElementId = "chart";
 const drawExample = async () => {
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create XAxis, YAxis
@@ -38,13 +38,13 @@ const drawExample = async () => {
             drawMajorGridLines: false,
             drawMinorGridLines: false,
             drawMajorBands: false,
-            axisTitle: "Year"
+            axisTitle: "Year",
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             labelPrecision: 0,
-            axisTitle: "Sales $USD (Billion)"
+            axisTitle: "Sales $USD (Billion)",
         })
     );
 
@@ -64,7 +64,7 @@ const drawExample = async () => {
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId"
+        stackedGroupId: "StackedGroupId",
     });
 
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
@@ -73,7 +73,7 @@ const drawExample = async () => {
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId"
+        stackedGroupId: "StackedGroupId",
     });
 
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
@@ -82,7 +82,7 @@ const drawExample = async () => {
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId"
+        stackedGroupId: "StackedGroupId",
     });
 
     const rendSeries4 = new StackedColumnRenderableSeries(wasmContext, {
@@ -91,7 +91,7 @@ const drawExample = async () => {
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId"
+        stackedGroupId: "StackedGroupId",
     });
 
     const rendSeries5 = new StackedColumnRenderableSeries(wasmContext, {
@@ -100,7 +100,7 @@ const drawExample = async () => {
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId"
+        stackedGroupId: "StackedGroupId",
     });
 
     // To add the series to the chart, put them in a StackedColumnCollection
@@ -122,7 +122,7 @@ const drawExample = async () => {
             orientation: ELegendOrientation.Vertical,
             showLegend: true,
             showCheckboxes: false,
-            showSeriesMarkers: true
+            showSeriesMarkers: true,
         })
     );
 
@@ -131,24 +131,24 @@ const drawExample = async () => {
     return { wasmContext, sciChartSurface, stackedColumnCollection };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
         // flex: "auto",
         flexBasis: "70px",
         padding: 10,
-        width: "100%"
+        width: "100%",
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 // React component needed as our examples app is react.
@@ -159,7 +159,7 @@ export default function StackedColumnChart() {
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
 
     React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(res => {
+        const chartInitializationPromise = drawExample().then((res) => {
             sciChartSurfaceRef.current = res.sciChartSurface;
             stackedColumnCollectionRef.current = res.stackedColumnCollection;
         });

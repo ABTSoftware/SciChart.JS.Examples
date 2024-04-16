@@ -1,5 +1,3 @@
-import { ExampleDataProvider } from "scichart-example-dependencies";
-
 import {
     EAnimationType,
     ECoordinateMode,
@@ -15,6 +13,7 @@ import {
     TextAnnotation,
     XyDataSeries,
 } from "scichart";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 export const getChartsInitializationAPI = () => {
     const createLineData = (whichSeries: number) => {

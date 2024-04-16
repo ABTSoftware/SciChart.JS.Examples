@@ -29,10 +29,12 @@ import {
     SeriesSelectionModifier,
     TextAnnotation,
     Thickness,
-    XyDataSeries
+    XyDataSeries,
 } from "scichart";
-import { appTheme, ExampleDataProvider, RandomWalkGenerator } from "scichart-example-dependencies";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import classes from "../../../styles/Examples.module.scss";
+import { appTheme } from "../../../theme";
 
 const divElementId1 = "chart1";
 const divElementId2 = "chart2";
@@ -54,8 +56,8 @@ const drawExample = async () => {
             titleStyle: {
                 placeWithinChart: true,
                 color: appTheme.ForegroundColor + "C4",
-                fontSize: 16
-            }
+                fontSize: 16,
+            },
         });
 
         // Create the X,Y Axis
@@ -76,7 +78,7 @@ const drawExample = async () => {
 
         return {
             xValues: data.xValues,
-            yValues: data.yValues.map(y => (whichSeries === 0 ? y : whichSeries === 1 ? y * 1.1 : y * 1.5))
+            yValues: data.yValues.map((y) => (whichSeries === 0 ? y : whichSeries === 1 ? y * 1.1 : y * 1.5)),
         };
     };
 
@@ -94,8 +96,8 @@ const drawExample = async () => {
                 opacity: 1,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -110,8 +112,8 @@ const drawExample = async () => {
                 opacity: 1,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -137,19 +139,19 @@ const drawExample = async () => {
                     width: 9,
                     height: 9,
                     fill: appTheme.ForegroundColor,
-                    strokeThickness: 0
+                    strokeThickness: 0,
                 }),
                 animation: {
                     type: EAnimationType.Wave,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 },
                 },
                 // Optional DataLabels may be added via this property.
                 dataLabels: {
                     style: { fontFamily: "Arial", fontSize: 11, padding: new Thickness(5, 5, 5, 5) },
                     color: appTheme.ForegroundColor,
                     aboveBelow: false,
-                    verticalTextPosition: EVerticalTextPosition.Above
-                }
+                    verticalTextPosition: EVerticalTextPosition.Above,
+                },
             })
         );
 
@@ -168,8 +170,8 @@ const drawExample = async () => {
                 strokeThickness: 3,
                 animation: {
                     type: EAnimationType.Wave,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 },
+                },
             })
         );
 
@@ -178,12 +180,12 @@ const drawExample = async () => {
             new RolloverModifier({
                 rolloverLineStroke: appTheme.VividOrange,
                 rolloverLineStrokeThickness: 2,
-                rolloverLineStrokeDashArray: [2, 2]
+                rolloverLineStrokeDashArray: [2, 2],
             })
         );
         // FOR DEMO PURPOSE ONLY - fake a mouse event so the tooltip shows without rollover.
         sciChartSurface.mouseManager.modifierMouseMove({
-            mousePoint: new Point((sciChartSurface.renderSurface.viewportSize.width * 2) / 3, 10)
+            mousePoint: new Point((sciChartSurface.renderSurface.viewportSize.width * 2) / 3, 10),
         } as ModifierMouseArgs);
         return sciChartSurface;
     };
@@ -204,8 +206,8 @@ const drawExample = async () => {
                 strokeDashArray: [2, 2],
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 },
+                },
             })
         );
 
@@ -221,8 +223,8 @@ const drawExample = async () => {
                 strokeDashArray: [3, 3],
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -238,8 +240,8 @@ const drawExample = async () => {
                 strokeDashArray: [10, 5],
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -259,7 +261,7 @@ const drawExample = async () => {
             new GradientParams(new Point(0, 0), new Point(1, 1), [
                 { offset: 0, color: appTheme.VividOrange },
                 { offset: 0.5, color: appTheme.VividTeal },
-                { offset: 1.0, color: appTheme.VividSkyBlue }
+                { offset: 1.0, color: appTheme.VividSkyBlue },
             ])
         );
 
@@ -270,8 +272,8 @@ const drawExample = async () => {
                 strokeThickness: 5,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -305,8 +307,8 @@ const drawExample = async () => {
                 onSelectedChanged,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 },
+                },
             })
         );
 
@@ -323,8 +325,8 @@ const drawExample = async () => {
                 onSelectedChanged,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -341,8 +343,8 @@ const drawExample = async () => {
                 onSelectedChanged,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -374,12 +376,12 @@ const drawExample = async () => {
                     width: 5,
                     height: 5,
                     fill: appTheme.VividOrange,
-                    strokeThickness: 0
+                    strokeThickness: 0,
                 }),
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 },
+                },
             })
         );
 
@@ -394,12 +396,12 @@ const drawExample = async () => {
                     width: 5,
                     height: 5,
                     fill: appTheme.VividTeal,
-                    strokeThickness: 0
+                    strokeThickness: 0,
                 }),
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 },
+                },
             })
         );
 
@@ -437,7 +439,7 @@ const drawExample = async () => {
             -1.1531512,
             -0.7264951,
             -0.9779677,
-            -0.5377044
+            -0.5377044,
         ];
 
         sciChartSurface.renderableSeries.add(
@@ -450,8 +452,8 @@ const drawExample = async () => {
                     width: 5,
                     height: 5,
                     fill: appTheme.VividTeal,
-                    strokeThickness: 0
-                })
+                    strokeThickness: 0,
+                }),
             })
         );
 
@@ -464,7 +466,7 @@ const drawExample = async () => {
                 y2: 1.0,
                 yCoordinateMode: ECoordinateMode.Relative,
                 fill: appTheme.MutedTeal + "33",
-                strokeThickness: 0
+                strokeThickness: 0,
             }),
             new BoxAnnotation({
                 x1: 17,
@@ -473,7 +475,7 @@ const drawExample = async () => {
                 y2: 1,
                 yCoordinateMode: ECoordinateMode.Relative,
                 fill: appTheme.MutedTeal + "33",
-                strokeThickness: 0
+                strokeThickness: 0,
             })
         );
 
@@ -512,7 +514,7 @@ const drawExample = async () => {
                 }
                 // Undefined means use default series stroke on this data-point
                 return undefined;
-            }
+            },
         };
 
         // Create a line series with threshold palette provider
@@ -527,8 +529,8 @@ const drawExample = async () => {
                 dataLabels: {
                     style: { fontFamily: "Arial", fontSize: 8 },
                     color: appTheme.PaleSkyBlue,
-                    skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious
-                }
+                    skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious,
+                },
             })
         );
 
@@ -541,7 +543,7 @@ const drawExample = async () => {
                 labelPlacement: ELabelPlacement.TopRight,
                 labelValue: "High warning",
                 axisLabelFill: appTheme.VividTeal,
-                showLabel: true
+                showLabel: true,
             })
         );
         sciChartSurface.annotations.add(
@@ -552,7 +554,7 @@ const drawExample = async () => {
                 y1: THRESHOLD_LOW_LEVEL,
                 labelValue: "Low warning",
                 axisLabelFill: appTheme.VividPink,
-                showLabel: true
+                showLabel: true,
             })
         );
 
@@ -569,21 +571,21 @@ const drawExample = async () => {
         initGapsInLineCharts(),
         initVerticalLineCharts(),
         initGapsInLineCharts(),
-        initThresholdedLineCharts()
+        initThresholdedLineCharts(),
     ]);
 
     return { charts };
 };
 
 // Styles for the 3x3 grid
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     flexContainerRow: {
         display: "flex",
@@ -592,12 +594,12 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         alignContent: "stretch",
         margin: 10,
-        width: "calc(100% - 10px)"
+        width: "calc(100% - 10px)",
     },
     item: {
         flex: "auto",
-        height: "100%"
-    }
+        height: "100%",
+    },
 }));
 
 // React component needed as our examples app is react.
@@ -614,13 +616,13 @@ export default function LineChart() {
         return () => {
             // check if chart is already initialized
             if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.forEach(sciChartSurface => sciChartSurface.delete());
+                sciChartSurfaceRef.current.forEach((sciChartSurface) => sciChartSurface.delete());
                 return;
             }
 
             // else postpone deletion
             chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.forEach(sciChartSurface => sciChartSurface.delete());
+                sciChartSurfaceRef.current.forEach((sciChartSurface) => sciChartSurface.delete());
             });
         };
     }, []);

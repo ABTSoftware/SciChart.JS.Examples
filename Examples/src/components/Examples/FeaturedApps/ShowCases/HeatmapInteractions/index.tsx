@@ -2,17 +2,17 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
 import { SciChartSurface } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { drawExample, divElementId, divCrossSection, divInput, divHistory } from "./drawExample";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -20,11 +20,11 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 export default function HeatmapInteractions() {
@@ -32,20 +32,20 @@ export default function HeatmapInteractions() {
     const surfacesRef = React.useRef<SciChartSurface[]>([]);
 
     React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(charts => {
+        const chartInitializationPromise = drawExample().then((charts) => {
             surfacesRef.current = charts;
         });
 
         return () => {
             // check if chart is already initialized
             if (surfacesRef.current) {
-                surfacesRef.current.forEach(surface => surface.delete());
+                surfacesRef.current.forEach((surface) => surface.delete());
                 return;
             }
 
             // else postpone deletion
             chartInitializationPromise.then(() => {
-                surfacesRef.current.forEach(surface => surface.delete());
+                surfacesRef.current.forEach((surface) => surface.delete());
             });
         };
     }, []);

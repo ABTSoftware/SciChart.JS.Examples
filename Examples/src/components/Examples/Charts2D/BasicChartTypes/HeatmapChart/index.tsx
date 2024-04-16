@@ -1,7 +1,7 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
 import { Button } from "@material-ui/core";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { makeStyles } from "@material-ui/core/styles";
 import {
     NumericAxis,
@@ -13,7 +13,7 @@ import {
     ZoomExtentsModifier,
     MouseWheelZoomModifier,
     zeroArray2D,
-    HeatmapLegend
+    HeatmapLegend,
 } from "scichart";
 
 const divElementId = "chart";
@@ -26,7 +26,7 @@ const HEIGHT = 200;
 const drawExample = async () => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Add XAxis and YAxis
@@ -40,7 +40,7 @@ const drawExample = async () => {
         xStep: 1,
         yStart: 0,
         yStep: 1,
-        zValues: initialZValues
+        zValues: initialZValues,
     });
 
     // Create a Heatmap RenderableSeries with the color map. ColorMap.minimum/maximum defines the values in
@@ -58,9 +58,9 @@ const drawExample = async () => {
                 { offset: 0.5, color: appTheme.VividGreen },
                 { offset: 0.3, color: appTheme.VividSkyBlue },
                 { offset: 0.2, color: appTheme.Indigo },
-                { offset: 0, color: appTheme.DarkIndigo }
-            ]
-        })
+                { offset: 0, color: appTheme.DarkIndigo },
+            ],
+        }),
     });
 
     // Add heatmap to the chart
@@ -106,23 +106,23 @@ const drawHeatmapLegend = async () => {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB"
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
             axisBorder: {
                 borderLeft: 1,
-                color: appTheme.ForegroundColor + "77"
+                color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 6,
-                strokeThickness: 1
+                strokeThickness: 1,
             },
             minorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
-                strokeThickness: 1
-            }
+                strokeThickness: 1,
+            },
         },
         colorMap: {
             minimum: 0,
@@ -134,9 +134,9 @@ const drawHeatmapLegend = async () => {
                 { offset: 0.5, color: appTheme.VividGreen },
                 { offset: 0.3, color: appTheme.VividSkyBlue },
                 { offset: 0.2, color: appTheme.Indigo },
-                { offset: 0, color: appTheme.DarkIndigo }
-            ]
-        }
+                { offset: 0, color: appTheme.DarkIndigo },
+            ],
+        },
     });
 
     return heatmapLegend;
@@ -182,13 +182,13 @@ function generateExampleData(
 }
 
 // Styles for layout of the toolbar / chart area
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -196,11 +196,11 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 // React component needed as our examples app is react.
@@ -208,7 +208,7 @@ const useStyles = makeStyles(theme => ({
 export default function HeatmapChart() {
     const controlsRef = React.useRef({
         startDemo: () => {},
-        stopDemo: () => {}
+        stopDemo: () => {},
     });
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const heatmapLegendRef = React.useRef<HeatmapLegend>();
@@ -230,7 +230,7 @@ export default function HeatmapChart() {
                 setStats({
                     xSize: res.heatmapDataSeries.arrayWidth,
                     ySize: res.heatmapDataSeries.arrayHeight,
-                    fps
+                    fps,
                 });
             });
             res.controls.startDemo();
@@ -289,7 +289,7 @@ export default function HeatmapChart() {
                                 width: "100px",
                                 top: 0,
                                 right: "75px",
-                                margin: "20"
+                                margin: "20",
                             }}
                         ></div>
                     </div>

@@ -14,7 +14,8 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {

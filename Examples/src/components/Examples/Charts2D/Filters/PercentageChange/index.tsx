@@ -1,7 +1,6 @@
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import {
     EAutoRange,
@@ -23,8 +22,10 @@ import {
     XyScaleOffsetFilter,
     XySeriesInfo,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
+import { appTheme } from "../../../theme";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 
 export const divElementId = "chart";
 
@@ -60,7 +61,7 @@ class TransformedSeries extends FastLineRenderableSeries {
 export const drawExample = async (usePercentage: boolean) => {
     // Create the SciChartSurface with Theme
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create an X and Y Axis
@@ -71,7 +72,7 @@ export const drawExample = async (usePercentage: boolean) => {
         autoRange: EAutoRange.Always,
         labelPostfix: usePercentage ? "%" : "",
         labelPrecision: usePercentage ? 0 : 1,
-        growBy: new NumberRange(0.1, 0.1)
+        growBy: new NumberRange(0.1, 0.1),
     });
     // Override the formatting of the cursor label as we don't want it to show the % postfix, since we're showing original data
     yAxis.labelProvider.formatCursorLabel = (value: number) => formatNumber(value, ENumericFormat.Decimal, 1);
@@ -80,7 +81,7 @@ export const drawExample = async (usePercentage: boolean) => {
     // Create a TransformedSeries which handles percentage changed. See above for definition.
     const lineSeries = new TransformedSeries(wasmContext, {
         strokeThickness: 3,
-        stroke: appTheme.VividSkyBlue
+        stroke: appTheme.VividSkyBlue,
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -92,7 +93,9 @@ export const drawExample = async (usePercentage: boolean) => {
     const transform1 = new XyScaleOffsetFilter(dataSeries1, { offset: -100 });
 
     // Update the scale of the data when the chart xAxis range changes
-    xAxis.visibleRangeChanged.subscribe(args => (transform1.scale = getScaleValue(dataSeries1, args.visibleRange.min)));
+    xAxis.visibleRangeChanged.subscribe(
+        (args) => (transform1.scale = getScaleValue(dataSeries1, args.visibleRange.min))
+    );
 
     // When use percentage changed mode, we use the transformed series above
     if (usePercentage) {
@@ -106,7 +109,7 @@ export const drawExample = async (usePercentage: boolean) => {
     // Repeat for the second series
     const lineSeries2 = new TransformedSeries(wasmContext, {
         strokeThickness: 3,
-        stroke: appTheme.VividOrange
+        stroke: appTheme.VividOrange,
     });
     sciChartSurface.renderableSeries.add(lineSeries2);
 
@@ -115,7 +118,9 @@ export const drawExample = async (usePercentage: boolean) => {
     const dataSeries2 = new XyDataSeries(wasmContext, { xValues: data1.xValues, yValues: data1.yValues });
 
     const transform2 = new XyScaleOffsetFilter(dataSeries2, { offset: -100 });
-    xAxis.visibleRangeChanged.subscribe(args => (transform2.scale = getScaleValue(dataSeries2, args.visibleRange.min)));
+    xAxis.visibleRangeChanged.subscribe(
+        (args) => (transform2.scale = getScaleValue(dataSeries2, args.visibleRange.min))
+    );
 
     // Choose which dataseries to use when percentage mode is enabled
     if (usePercentage) {
@@ -141,7 +146,7 @@ export const drawExample = async (usePercentage: boolean) => {
             opacity: 0.77,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative
+            yCoordinateMode: ECoordinateMode.Relative,
         })
     );
 
@@ -159,31 +164,31 @@ export const drawExample = async (usePercentage: boolean) => {
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
-            annotationLayer: EAnnotationLayer.BelowChart
+            annotationLayer: EAnnotationLayer.BelowChart,
         })
     );
 
     return { sciChartSurface, wasmContext };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
         // flex: "auto",
         flexBasis: "70px",
         padding: 10,
-        width: "100%"
+        width: "100%",
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 export default function PercentageChange() {
@@ -191,9 +196,9 @@ export default function PercentageChange() {
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
 
     React.useEffect(() => {
-        const chartInitializationPromise = drawExample(usePercentage).then(res => {
+        const chartInitializationPromise = drawExample(usePercentage).then((res) => {
             sciChartSurfaceRef.current = res.sciChartSurface;
-            return res.sciChartSurface
+            return res.sciChartSurface;
         });
 
         // Delete sciChartSurface on unmount component to prevent memory leak

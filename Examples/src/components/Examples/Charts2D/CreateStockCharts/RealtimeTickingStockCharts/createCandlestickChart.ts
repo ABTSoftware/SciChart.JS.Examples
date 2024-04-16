@@ -40,10 +40,11 @@ import {
     XyDataSeries,
     XyMovingAverageFilter,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
+import { TPriceBar } from "../../../ExampleData/binanceRestClient";
+import { appTheme } from "../../../theme";
 import { VolumePaletteProvider } from "./VolumePaletteProvider";
-import { appTheme, TPriceBar } from "scichart-example-dependencies";
 
 // Trades over this size will be rendered as bubbles on the chart
 export const LARGE_TRADE_THRESHOLD = 25_000;
@@ -51,7 +52,7 @@ export const LARGE_TRADE_THRESHOLD = 25_000;
 export const createCandlestickChart = async (divChartId: string, divOverviewId: string) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divChartId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Add an XAxis of type DateTimeAxis
@@ -68,7 +69,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
             labelFormat: ENumericFormat.Decimal,
             labelPrecision: 2,
             labelPrefix: "$",
-            autoRange: EAutoRange.Always
+            autoRange: EAutoRange.Always,
         })
     );
 
@@ -79,7 +80,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
             id: Y_AXIS_VOLUME_ID,
             growBy: new NumberRange(0, 4),
             isVisible: false,
-            autoRange: EAutoRange.Always
+            autoRange: EAutoRange.Always,
         })
     );
 
@@ -93,7 +94,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         brushUp: appTheme.VividGreen + "77",
         brushDown: appTheme.MutedRed + "77",
         strokeUp: appTheme.VividGreen,
-        strokeDown: appTheme.MutedRed
+        strokeDown: appTheme.MutedRed,
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
 
@@ -105,7 +106,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         dataPointWidth: 0.9,
         strokeUp: appTheme.VividGreen,
         strokeDown: appTheme.MutedRed,
-        isVisible: false
+        isVisible: false,
     });
     sciChartSurface.renderableSeries.add(ohlcSeries);
 
@@ -115,9 +116,9 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyMovingAverageFilter(candleDataSeries, {
                 dataSeriesName: "Moving Average (20)",
-                length: 20
+                length: 20,
             }),
-            stroke: appTheme.VividSkyBlue
+            stroke: appTheme.VividSkyBlue,
         })
     );
 
@@ -125,9 +126,9 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         new FastLineRenderableSeries(wasmContext, {
             dataSeries: new XyMovingAverageFilter(candleDataSeries, {
                 dataSeriesName: "Moving Average (50)",
-                length: 50
+                length: 50,
             }),
-            stroke: appTheme.VividPink
+            stroke: appTheme.VividPink,
         })
     );
 
@@ -144,13 +145,13 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
                 candleDataSeries,
                 appTheme.VividGreen + "77",
                 appTheme.MutedRed + "77"
-            )
+            ),
         })
     );
 
     // Add large trades data to the chart
     const largeTradesDataSeries = new XyzDataSeries(wasmContext, {
-        dataSeriesName: `Trades Size > $${LARGE_TRADE_THRESHOLD.toLocaleString()}`
+        dataSeriesName: `Trades Size > $${LARGE_TRADE_THRESHOLD.toLocaleString()}`,
     });
     sciChartSurface.renderableSeries.add(
         new FastBubbleRenderableSeries(wasmContext, {
@@ -160,9 +161,9 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
                 width: 64,
                 height: 64,
                 opacity: 0.23,
-                strokeThickness: 2
+                strokeThickness: 2,
             }),
-            paletteProvider: new LargeTradesPaletteProvider(appTheme.VividGreen, appTheme.MutedRed)
+            paletteProvider: new LargeTradesPaletteProvider(appTheme.VividGreen, appTheme.MutedRed),
         })
     );
 
@@ -174,7 +175,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         new CursorModifier({
             crosshairStroke: appTheme.VividOrange,
             axisLabelFill: appTheme.VividOrange,
-            tooltipLegendTemplate: getTooltipLegendTemplate
+            tooltipLegendTemplate: getTooltipLegendTemplate,
         })
     );
 
@@ -182,7 +183,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
     // displaying its series. Zooming the chart will zoom the overview and vice versa
     const sciChartOverview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
         theme: appTheme.SciChartJsTheme,
-        transformRenderableSeries: getOverviewSeries
+        transformRenderableSeries: getOverviewSeries,
     });
 
     // Add a watermark annotation, updated in setData() function
@@ -198,7 +199,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         fontSize: 48,
         fontWeight: "Bold",
         text: "",
-        annotationLayer: EAnnotationLayer.BelowChart
+        annotationLayer: EAnnotationLayer.BelowChart,
     });
     sciChartSurface.annotations.add(watermarkAnnotation);
 
@@ -209,7 +210,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         strokeThickness: 1,
         axisFontSize: 13,
         axisLabelStroke: appTheme.ForegroundColor,
-        showLabel: true
+        showLabel: true,
     });
     sciChartSurface.annotations.add(latestPriceAnnotation);
 
@@ -291,7 +292,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
             largeTradesDataSeries.append(priceBar.date / 1000, priceBar.close, tradeValueNormalised, {
                 isSelected: false,
                 // @ts-ignore
-                lastTradeBuyOrSell
+                lastTradeBuyOrSell,
             });
         }
         // Update the latest price line annotation
@@ -316,7 +317,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
     return {
         sciChartSurface,
         sciChartOverview,
-        controls: { setData, onNewTrade, setXRange, enableCandlestick, enableOhlc }
+        controls: { setData, onNewTrade, setXRange, enableCandlestick, enableOhlc },
     };
 };
 // Override the Renderableseries to display on the scichart overview
@@ -327,9 +328,9 @@ const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
             dataSeries: defaultSeries.dataSeries,
             fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: appTheme.VividSkyBlue + "77", offset: 0 },
-                { color: "Transparent", offset: 1 }
+                { color: "Transparent", offset: 1 },
             ]),
-            stroke: appTheme.VividSkyBlue
+            stroke: appTheme.VividSkyBlue,
         });
     }
     // hide all other series

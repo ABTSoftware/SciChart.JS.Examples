@@ -1,4 +1,3 @@
-import { ExampleDataProvider, appTheme } from "scichart-example-dependencies";
 import {
     SciChartVerticalGroup,
     CategoryAxis,
@@ -40,6 +39,8 @@ import {
     EVerticalAnchorPoint,
     EAnnotationLayer,
 } from "scichart";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
+import { appTheme } from "../../../theme";
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
 const divElementId3 = "cc_chart_3_3";

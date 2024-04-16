@@ -22,12 +22,12 @@ import {
     EVerticalAnchorPoint,
     ECoordinateMode,
     TextAnnotation,
-    Point
+    Point,
 } from "scichart";
 
 import { AudioDataProvider } from "./AudioDataProvider";
 import { Radix2FFT } from "./Radix2FFT";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 export const divElementIdAudioChart = "sciChart1";
 export const divElementIdFttChart = "sciChart2";
@@ -68,7 +68,7 @@ export const drawExample = async () => {
         horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
         text: "This example requires microphone permissions.  Please click Allow in the popup.",
-        textColor: "#FFFFFF88"
+        textColor: "#FFFFFF88",
     });
 
     function updateAnalysers(frame: number): void {
@@ -103,7 +103,7 @@ export const drawExample = async () => {
     const initAudioChart = async () => {
         // Create a chart for the audio
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementIdAudioChart, {
-            theme: appTheme.SciChartJsTheme
+            theme: appTheme.SciChartJsTheme,
         });
 
         // Create an XAxis for the live audio
@@ -115,7 +115,7 @@ export const drawExample = async () => {
             drawMajorTickLines: false,
             drawMajorBands: false,
             drawMinorGridLines: false,
-            drawMajorGridLines: false
+            drawMajorGridLines: false,
         });
         sciChartSurface.xAxes.add(xAxis);
 
@@ -125,7 +125,7 @@ export const drawExample = async () => {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorGridLines: false,
-            drawMajorTickLines: false
+            drawMajorTickLines: false,
         });
         sciChartSurface.xAxes.add(xhistAxis);
 
@@ -138,7 +138,7 @@ export const drawExample = async () => {
             drawMajorTickLines: false,
             drawMajorBands: false,
             drawMinorGridLines: false,
-            drawMajorGridLines: false
+            drawMajorGridLines: false,
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -156,7 +156,7 @@ export const drawExample = async () => {
             xAxisId: "audio",
             stroke: "#4FBEE6",
             strokeThickness: 2,
-            dataSeries: audioDS
+            dataSeries: audioDS,
         });
 
         sciChartSurface.renderableSeries.add(rs);
@@ -174,7 +174,7 @@ export const drawExample = async () => {
             strokeThickness: 1,
             opacity: 0.5,
             xAxisId: "history",
-            dataSeries: historyDS
+            dataSeries: historyDS,
         });
         sciChartSurface.renderableSeries.add(histrs);
 
@@ -187,7 +187,7 @@ export const drawExample = async () => {
     // FFT CHART
     const initFftChart = async () => {
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementIdFttChart, {
-            theme: appTheme.SciChartJsTheme
+            theme: appTheme.SciChartJsTheme,
         });
         const xAxis = new LogarithmicAxis(wasmContext, {
             logBase: 10,
@@ -196,7 +196,7 @@ export const drawExample = async () => {
             axisTitleStyle: { fontSize: 10 },
             drawMinorGridLines: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
+            drawMajorTickLines: false,
         });
         sciChartSurface.xAxes.add(xAxis);
 
@@ -208,7 +208,7 @@ export const drawExample = async () => {
             drawMinorTickLines: false,
             drawMajorTickLines: false,
             labelPrecision: 0,
-            axisTitleStyle: { fontSize: 10 }
+            axisTitleStyle: { fontSize: 10 },
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -230,16 +230,16 @@ export const drawExample = async () => {
                     { offset: 0.001, color: "#5D8CC2" },
                     { offset: 0.01, color: "#8166A2" },
                     { offset: 0.1, color: "#AE418C" },
-                    { offset: 1.0, color: "#CA5B79" }
+                    { offset: 1.0, color: "#CA5B79" },
                 ]),
                 {
                     enableStroke: true,
                     enableFill: true,
                     enablePointMarkers: true,
                     fillOpacity: 0.17,
-                    pointMarkerOpacity: 0.37
+                    pointMarkerOpacity: 0.37,
                 }
-            )
+            ),
         });
         sciChartSurface.renderableSeries.add(rs);
 
@@ -257,14 +257,14 @@ export const drawExample = async () => {
         }
 
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementIdChart3, {
-            theme: appTheme.SciChartJsTheme
+            theme: appTheme.SciChartJsTheme,
         });
 
         const xAxis = new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
+            drawMajorTickLines: false,
         });
         sciChartSurface.xAxes.add(xAxis);
 
@@ -272,7 +272,7 @@ export const drawExample = async () => {
             autoRange: EAutoRange.Always,
             drawLabels: false,
             drawMinorTickLines: false,
-            drawMajorTickLines: false
+            drawMajorTickLines: false,
         });
         sciChartSurface.yAxes.add(yAxis);
 
@@ -281,7 +281,7 @@ export const drawExample = async () => {
             xStep: 1,
             yStart: 0,
             yStep: 1,
-            zValues: spectrogramValues
+            zValues: spectrogramValues,
         });
 
         const rs = new UniformHeatmapRenderableSeries(wasmContext, {
@@ -294,9 +294,9 @@ export const drawExample = async () => {
                     { offset: 0.25, color: "#800080" },
                     { offset: 0.5, color: "#FF0000" },
                     { offset: 0.75, color: "#FFFF00" },
-                    { offset: 1, color: "#FFFFFF" }
-                ]
-            })
+                    { offset: 1, color: "#FFFFFF" },
+                ],
+            }),
         });
         sciChartSurface.renderableSeries.add(rs);
 
@@ -310,7 +310,8 @@ export const drawExample = async () => {
     const hasAudio = await dataProvider.initAudio();
     if (!hasAudio) {
         if (dataProvider.permissionError) {
-            helpText.text = "We were not able to access your microphone.  This may be because you did not accept the permissions.  Open your browser security settings and remove the block on microphone permissions from this site, then reload the page.";
+            helpText.text =
+                "We were not able to access your microphone.  This may be because you did not accept the permissions.  Open your browser security settings and remove the block on microphone permissions from this site, then reload the page.";
         } else if (!window.isSecureContext) {
             helpText.text = "Cannot get microphone access if the site is not localhost or on https";
         } else {
@@ -330,7 +331,7 @@ export const drawExample = async () => {
         };
         updateChart();
     }
-    return {charts, dataProvider};
+    return { charts, dataProvider };
 };
 
 export default function AudioAnalyzer() {
@@ -338,7 +339,7 @@ export default function AudioAnalyzer() {
     let dataProviderRef = React.useRef<AudioDataProvider>();
 
     React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(res => {
+        const chartInitializationPromise = drawExample().then((res) => {
             chartsRef.current = res.charts;
             dataProviderRef.current = res.dataProvider;
         });
@@ -347,7 +348,7 @@ export default function AudioAnalyzer() {
         return () => {
             // check if chart is already initialized
             if (chartsRef.current) {
-                chartsRef.current.forEach(c => c.delete());
+                chartsRef.current.forEach((c) => c.delete());
                 // ensure releasing audio data provider
                 dataProviderRef.current.closeAudio();
                 return;
@@ -355,7 +356,7 @@ export default function AudioAnalyzer() {
 
             // else postpone deletion
             chartInitializationPromise.then(() => {
-                chartsRef.current.forEach(c => c.delete());
+                chartsRef.current.forEach((c) => c.delete());
                 // ensure releasing audio data provider
                 dataProviderRef.current.closeAudio();
             });
@@ -371,7 +372,7 @@ export default function AudioAnalyzer() {
                         height: "100%",
                         display: "flex",
                         flexDirection: "column",
-                        background: appTheme.DarkIndigo
+                        background: appTheme.DarkIndigo,
                     }}
                 >
                     <div id={divElementIdAudioChart} style={{ flexBasis: "50%" }} />

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import {
     AUTO_COLOR,
     DataPointSelectionModifier,

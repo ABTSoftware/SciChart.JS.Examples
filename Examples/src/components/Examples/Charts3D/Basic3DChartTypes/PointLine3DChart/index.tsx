@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 import {
     SciChart3DSurface,
@@ -16,7 +16,7 @@ import {
     TGradientStop,
     parseColorToUIntArgb,
     PointLineRenderableSeries3D,
-    HeatmapLegend
+    HeatmapLegend,
 } from "scichart";
 import { Radix2FFT } from "../../../FeaturedApps/ScientificCharts/AudioAnalyzer/Radix2FFT";
 
@@ -63,12 +63,12 @@ const createSpectralData = (n: number) => {
 // SCICHART CODE
 const drawExample = async () => {
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
     sciChart3DSurface.worldDimensions = new Vector3(300, 100, 300);
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(-141.6, 310.29, 393.32),
-        target: new Vector3(0, 50, 0)
+        target: new Vector3(0, 50, 0),
     });
 
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
@@ -79,19 +79,19 @@ const drawExample = async () => {
         axisTitle: "Frequency (Hz)",
         drawMinorGridLines: false,
         drawMajorGridLines: false,
-        tickLabelsOffset: 20
+        tickLabelsOffset: 20,
     });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Power (dB)",
         drawMinorGridLines: false,
         drawMajorGridLines: false,
-        tickLabelsOffset: 20
+        tickLabelsOffset: 20,
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Time (s)",
         drawMinorGridLines: false,
         drawMajorGridLines: false,
-        tickLabelsOffset: 20
+        tickLabelsOffset: 20,
     });
 
     for (let i = 0; i < 50; i++) {
@@ -100,7 +100,7 @@ const drawExample = async () => {
         // yValues are heights or magnitude
         const { xValues, yValues } = createSpectralData(i);
         // zValues are the 3rd dimension where we will spread out our series in time
-        const zValues = Array.from({ length: xValues.length }).map(_ => i * 2);
+        const zValues = Array.from({ length: xValues.length }).map((_) => i * 2);
 
         // Metadata in scichart.js 3D controls color 3D line series. It can also hold additional optional properties
         // Below we format the data for yValues into metadata colour coded and scaled depending on the value
@@ -111,7 +111,7 @@ const drawExample = async () => {
             { offset: 0.5, color: appTheme.VividGreen },
             { offset: 0.3, color: appTheme.VividSkyBlue },
             { offset: 0.2, color: appTheme.Indigo },
-            { offset: 0, color: appTheme.DarkIndigo }
+            { offset: 0, color: appTheme.DarkIndigo },
         ]);
 
         // Add a 3D Point-Line chart
@@ -121,10 +121,10 @@ const drawExample = async () => {
                     xValues,
                     yValues,
                     zValues,
-                    metadata
+                    metadata,
                 }),
                 strokeThickness: 3,
-                opacity: 0.5
+                opacity: 0.5,
             })
         );
     }
@@ -139,11 +139,11 @@ function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): 
     const sGradientStops = gradientStops.sort((a, b) => (a.offset > b.offset ? 1 : -1));
     // Compute a scaling factor from 0...1 where values in valuesArray at the lower end correspond to 0 and
     // values at the higher end correspond to 1
-    return valuesArray.map(x => {
+    return valuesArray.map((x) => {
         // scale from 0..1 for the values
         const valueScale = (x - low) / (high - low);
         // Find the nearest gradient stop index
-        const index = sGradientStops.findIndex(gs => gs.offset >= valueScale);
+        const index = sGradientStops.findIndex((gs) => gs.offset >= valueScale);
         // const nextIndex = Math.min(index + 1, sGradientStops.length - 1);
         // work out the colour of this point
         const color1 = parseColorToUIntArgb(sGradientStops[index].color);
@@ -151,7 +151,7 @@ function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): 
         // const ratio = (valueScale - sGradientStops[index].offset) / (sGradientStops[nextIndex].offset - sGradientStops[index].offset)
         // const colorScale = uintArgbColorLerp(color1, color2, ratio)
         // console.log(`valueScale ${valueScale} low ${sGradientStops[index].offset} high ${sGradientStops[nextIndex].offset} ratio ${ratio}`);
-        return {pointScale: 0.1 + valueScale, vertexColor: color1};
+        return { pointScale: 0.1 + valueScale, vertexColor: color1 };
     });
 }
 
@@ -160,25 +160,25 @@ const drawHeatmapLegend = async () => {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB"
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
             axisBorder: {
                 borderLeft: 1,
-                color: appTheme.ForegroundColor + "77"
+                color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 6,
-                strokeThickness: 1
+                strokeThickness: 1,
             },
             minorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
-                strokeThickness: 1
+                strokeThickness: 1,
             },
             axisTitle: "Power (dB)",
-            axisTitleStyle: { fontSize: 14 }
+            axisTitleStyle: { fontSize: 14 },
         },
         colorMap: {
             minimum: -30,
@@ -190,9 +190,9 @@ const drawHeatmapLegend = async () => {
                 { offset: 0.5, color: appTheme.VividGreen },
                 { offset: 0.3, color: appTheme.VividSkyBlue },
                 { offset: 0.15, color: appTheme.Indigo },
-                { offset: 0, color: appTheme.DarkIndigo }
-            ]
-        }
+                { offset: 0, color: appTheme.DarkIndigo },
+            ],
+        },
     });
 
     return heatmapLegend;
@@ -204,13 +204,12 @@ export default function PointLine3DChart() {
     const heatmapLegendRef = React.useRef<HeatmapLegend>();
 
     React.useEffect(() => {
-        const chartInitializationPromise = Promise.all([
-            drawExample(),
-            drawHeatmapLegend()
-        ]).then(([{ sciChart3DSurface }, legend]) => {
-            sciChartSurfaceRef.current = sciChart3DSurface;
-            heatmapLegendRef.current = legend;
-        });
+        const chartInitializationPromise = Promise.all([drawExample(), drawHeatmapLegend()]).then(
+            ([{ sciChart3DSurface }, legend]) => {
+                sciChartSurfaceRef.current = sciChart3DSurface;
+                heatmapLegendRef.current = legend;
+            }
+        );
 
         return () => {
             // check if chart is already initialized

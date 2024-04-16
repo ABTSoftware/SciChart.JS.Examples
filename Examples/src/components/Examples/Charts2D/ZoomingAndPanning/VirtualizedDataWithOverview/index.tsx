@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { Subject, debounceTime } from "rxjs";
 
@@ -24,7 +24,7 @@ import {
     YAxisDragModifier,
     ZoomExtentsModifier,
     ZoomPanModifier,
-    ECoordinateMode
+    ECoordinateMode,
 } from "scichart";
 
 export const divElementId = "chart";
@@ -32,14 +32,14 @@ export const divOverviewId = "overview";
 
 export const drawExample = async () => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
     const xAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Bottom,
         visibleRange: new NumberRange(4000000, 5000000),
         autoRange: EAutoRange.Never,
         labelPrecision: 0,
-        useNativeText: true
+        useNativeText: true,
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -48,7 +48,7 @@ export const drawExample = async () => {
         visibleRange: new NumberRange(-5000, 5000),
         autoRange: EAutoRange.Never,
         labelPrecision: 0,
-        useNativeText: true
+        useNativeText: true,
     });
     sciChartSurface.yAxes.add(yAxis);
 
@@ -56,7 +56,7 @@ export const drawExample = async () => {
     const rendSeries = new FastLineRenderableSeries(wasmContext, {
         dataSeries,
         strokeThickness: 2,
-        stroke: appTheme.VividOrange
+        stroke: appTheme.VividOrange,
     });
     sciChartSurface.renderableSeries.add(rendSeries);
     rendSeries.rolloverModifierProps.tooltipTextColor = "black";
@@ -74,7 +74,7 @@ export const drawExample = async () => {
     const subject = new Subject<NumberRange>();
 
     // Push visible range changes into the observable
-    xAxis.visibleRangeChanged.subscribe(async args => {
+    xAxis.visibleRangeChanged.subscribe(async (args) => {
         subject.next(args.visibleRange);
     });
 
@@ -87,7 +87,7 @@ export const drawExample = async () => {
                 const yRange = yAxis.getWindowedYRange(null);
                 yAxis.animateVisibleRange(yRange, 250, easing.outExpo);
             })
-            .catch(err =>
+            .catch((err) =>
                 showError(
                     sciChartSurface,
                     "Server data is unavailable.  Please do npm run build, then npm start and access the site at localhost:3000"
@@ -98,7 +98,7 @@ export const drawExample = async () => {
     const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, { theme: appTheme.SciChartJsTheme });
     const overviewData = new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true });
     // Load the full dataSet
-    loadPoints(0, 10000000, overview.overviewSciChartSurface.domCanvas2D.width, overviewData).catch(err => {});
+    loadPoints(0, 10000000, overview.overviewSciChartSurface.domCanvas2D.width, overviewData).catch((err) => {});
     overview.overviewSciChartSurface.renderableSeries.get(0).dataSeries = overviewData;
     overview.overviewSciChartSurface.zoomExtents();
 
@@ -107,7 +107,7 @@ export const drawExample = async () => {
         .then(() => {
             sciChartSurface.zoomExtents();
         })
-        .catch(err =>
+        .catch((err) =>
             showError(
                 sciChartSurface,
                 "Server data is unavailable.  Please do npm run build, then npm start and access the site at localhost:3000"
@@ -142,7 +142,7 @@ const showError = (sciChartSurface: SciChartSurface, message: string) => {
                 xCoordinateMode: ECoordinateMode.Relative,
                 yCoordinateMode: ECoordinateMode.Relative,
                 lineSpacing: 5,
-                wrapTo: EWrapTo.ViewRect
+                wrapTo: EWrapTo.ViewRect,
             })
         );
     }

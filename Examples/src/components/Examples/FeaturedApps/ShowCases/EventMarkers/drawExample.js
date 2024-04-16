@@ -28,7 +28,8 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
+import { appTheme } from "../../../theme";
 const EventXStep = 6;
 // A custom modifier that allows selection and editing of candles.
 class CandleDragModifier extends CustomChartModifier2D {

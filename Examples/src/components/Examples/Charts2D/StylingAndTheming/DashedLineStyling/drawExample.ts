@@ -1,4 +1,5 @@
-import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 import {
     ENumericFormat,
