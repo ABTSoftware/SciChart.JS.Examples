@@ -9,25 +9,39 @@ const pj = require("../../package.json");
 
 const includeImportedModules = async (folderPath: string, files: IFiles, code: string) => {
     const localImports = Array.from(code.matchAll(/import.*from ["']\.\/(.*)["'];/g));
-
     for (const localImport of localImports) {
         if (localImport.length > 1) {
             let content: string = "";
+            let csPath: string = "";
             try {
                 const filepath = path.join(folderPath, localImport[1] + ".ts");
-                const csPath = "src/" + localImport[1] + ".ts";
+                csPath = "src/" + localImport[1] + ".ts";
                 content = await fs.promises.readFile(filepath, "utf8");
-                files[csPath] = { content, isBinary: false };
             } catch (e) {
                 const filepath = path.join(folderPath, localImport[1] + ".tsx");
-                const csPath = "src/" + localImport[1] + ".tsx";
+                csPath = "src/" + localImport[1] + ".tsx";
                 content = await fs.promises.readFile(filepath, "utf8");
-                files[csPath] = { content, isBinary: false };
             }
             const nestedImports = Array.from(content.matchAll(/import.*from "\.\/(.*)";/g));
             if (nestedImports.length > 0) {
                 localImports.push(...nestedImports);
             }
+            // Pull files outside the local folder into it and rewrite the import
+            const externalImports = Array.from(content.matchAll(/import.*from "\.\.\/(.*)";/g));
+            if (externalImports.length > 0) {
+                for (const externalImport of externalImports) {
+                    let externalContent: string = "";
+                    if (externalImport.length > 1) {
+                        const filepath = path.join(folderPath, "../" + externalImport[1] + ".ts");
+                        const filename = externalImport[1].substring(externalImport[1].lastIndexOf("/") + 1);
+                        const csPath = "src/" + filename + ".ts";
+                        content = content.replace("../" + externalImport[1], "./" + filename);
+                        externalContent = await fs.promises.readFile(filepath, "utf8");
+                        files[csPath] = { content: externalContent, isBinary: false };
+                    }
+                }
+            }
+            files[csPath] = { content, isBinary: false };
         }
     }
 };
@@ -336,6 +350,18 @@ SciChartSurface.loadWasmFromCDN();
 SciChart3DSurface.loadWasmFromCDN();
 `;
 
+const indexHtmlTemplate = (customChartSetup?: string) => `<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>SciChart Example</title>
+    <script async type="text/javascript" src="src/index.ts"></script>
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        ${customChartSetup ?? `<div id="chart"></div>`}
+    </body>
+</html>`;
+
 const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
     const tsPath = path.join(folderPath, "vanilla.ts");
     let code: string;
@@ -346,6 +372,14 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
     }
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     const template = "parcel";
+
+    let htmlCode = indexHtmlTemplate();
+
+    try {
+        const indexHtmlPath = path.join(folderPath, "index.html");
+        const charHtmlSetup = await fs.promises.readFile(indexHtmlPath, "utf8");
+        htmlCode = indexHtmlTemplate(charHtmlSetup);
+    } catch (err) {}
 
     let files: IFiles = {
         "package.json": {
@@ -444,17 +478,7 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
             isBinary: false,
         },
         "index.html": {
-            content: `<!DOCTYPE html>
-        <html lang="en">
-          <head>
-          <title>SciChart Example</title>
-          <script async type="text/javascript" src="src/index.ts"></script>
-          </head>
-          <body>
-            <noscript>You need to enable JavaScript to run this app.</noscript>
-            <div id="chart"></div>
-          </body>
-        </html>`,
+            content: htmlCode,
             isBinary: false,
         },
     };
@@ -472,6 +496,7 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
     const parameters = getParameters({ files, template });
     return `<form name="codesandbox" id="codesandbox" action="https://codesandbox.io/api/v1/sandboxes/define" method="POST">
         <input type="hidden" name="parameters" value="${parameters}" />
+        <input type="hidden" name="query" value="file=src/drawExample.ts" />
     </form>`;
 };
 

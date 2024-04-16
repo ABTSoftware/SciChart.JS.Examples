@@ -1,5 +1,5 @@
 import { appTheme } from "scichart-example-dependencies";
-import { populationData, PopulationData } from "./data/PopulationData";
+import { populationData, PopulationData } from "./data";
 
 import {
     SciChart3DSurface,

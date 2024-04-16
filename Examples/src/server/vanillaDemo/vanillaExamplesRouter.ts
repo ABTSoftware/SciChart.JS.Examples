@@ -1,6 +1,6 @@
 import * as path from "path";
 import * as fs from "fs";
-import { htmlTemplate, templateWithNav } from "./vanillaExampleHtmlTemplate";
+import { htmlTemplate } from "./vanillaExampleHtmlTemplate";
 import express = require("express");
 import { EXAMPLES_PAGES, TExamplePage } from "../../components/AppRouter/examplePages";
 
@@ -14,6 +14,8 @@ const availableFiles = [
     "scichart.browser.js",
     "scichart.browser.mjs",
     "exampleDependencies.browser.mjs",
+    "DepthCursorModifier.js",
+    "data.js",
 ] as const;
 
 const basePath = path.join(__dirname, "Examples");
@@ -57,8 +59,8 @@ vanillaExamplesRouter.get("/:example/:file", async (req, res) => {
                 return res.sendStatus(500);
             }
 
-            const showNav = req.query["nav"];
-            const generatedHtml = showNav ? templateWithNav({ body, styles }) : htmlTemplate({ body, styles });
+            const renderNav = !!req.query["nav"];
+            const generatedHtml = htmlTemplate({ body, styles, renderNav });
 
             return res.send(generatedHtml);
         } else {
@@ -81,18 +83,11 @@ const getExampleSourceFile = (filename: (typeof availableFiles)[number], current
             return path.join(__dirname, "scichart.browser.mjs");
         case "exampleDependencies.browser.mjs":
             return path.join(__dirname, "exampleDependencies.browser.mjs");
-        // TODO remove this, since HTML file is generated
-        case "index.html":
-            return path.join(basePath, currentExample.filepath, filename);
         case "index.js":
             return path.join(basePath, currentExample.filepath, "vanilla.js");
         case "drawExample.js":
             return path.join(basePath, currentExample.filepath, "drawExample.js");
-        default: {
-            const handleInvalidFilename = (filename: never): never => {
-                throw new Error(`Invalid file ${filename}!`);
-            };
-            return handleInvalidFilename(filename);
-        }
+        default:
+            return path.join(basePath, currentExample.filepath, filename);
     }
 };

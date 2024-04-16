@@ -1,12 +1,11 @@
 import {
     AUTO_COLOR,
-    ChartModifierBase2D,
+    CustomChartModifier2D,
     DataLabelProvider,
     DataPointSelectionPaletteProvider,
     deleteSafe,
     EAutoRange,
     EAxisAlignment,
-    EChart2DModifierType,
     ECoordinateMode,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
@@ -32,8 +31,7 @@ import {
 import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
 const EventXStep = 6;
 // A custom modifier that allows selection and editing of candles.
-class CandleDragModifier extends ChartModifierBase2D {
-    type = EChart2DModifierType.Custom;
+class CandleDragModifier extends CustomChartModifier2D {
     series;
     dataSeries;
     annotation;

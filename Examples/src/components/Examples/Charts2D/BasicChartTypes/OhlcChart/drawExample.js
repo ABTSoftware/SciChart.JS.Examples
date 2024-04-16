@@ -1,4 +1,4 @@
-import { closeValues, dateValues as xValues, highValues, lowValues, openValues } from "./data/data";
+import { closeValues, dateValues as xValues, highValues, lowValues, openValues } from "./data";
 import {
     CategoryAxis,
     ENumericFormat,

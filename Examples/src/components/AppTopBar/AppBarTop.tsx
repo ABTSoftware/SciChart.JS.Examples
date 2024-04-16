@@ -27,19 +27,31 @@ type TProps = {
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
-        // margin: theme.spacing(1),
-        color: appTheme.ForegroundColor,
-        background: "#030723", // #4a545b
         minWidth: 200,
         width: 200,
     },
     select: {
-        color: appTheme.ForegroundColor,
+        color: "#97a0a8",
         background: "#030723",
         width: 200,
-        // marginTop: theme.spacing(2),
+        paddingLeft: 10,
+        "&.Mui-focused": {
+            color: "#4a545b",
+        },
+        "&:hover": {
+            background: "#4a545b",
+            color: appTheme.ForegroundColor,
+        },
     },
     label: {
+        paddingLeft: 10,
+
+        color: appTheme.ForegroundColor,
+        "&.Mui-focused": {
+            color: appTheme.ForegroundColor,
+        },
+    },
+    selectIcon: {
         color: appTheme.ForegroundColor,
     },
     "MuiSelect-nativeInput": {
@@ -99,9 +111,11 @@ const AppBarTop: FC<TProps> = (props) => {
                         Framework
                     </InputLabel>
                     <Select
+                        inputProps={{ MenuProps: { disableScrollLock: true } }}
                         labelId="framework-select-label"
                         id="demo-simple-select"
                         className={localClasses.select}
+                        classes={{ icon: localClasses.selectIcon }}
                         value={selectedFramework}
                         label={FRAMEWORK_NAME[selectedFramework]}
                         onChange={handleChange}
