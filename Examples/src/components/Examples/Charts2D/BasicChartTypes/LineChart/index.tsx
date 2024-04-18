@@ -50,6 +50,7 @@ export default function LineChart() {
 
     React.useEffect(() => {
         const chartInitializationPromise = drawExample().then(({ charts }) => {
+            // @ts-ignore
             sciChartSurfaceRef.current = charts;
         });
 
