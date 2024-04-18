@@ -25,15 +25,15 @@ import {
 } from "scichart";
 import {appTheme, ExampleDataProvider, RandomWalkGenerator} from "scichart-example-dependencies";
 
-const divElementId1 = "chart1";
-const divElementId2 = "chart2";
-const divElementId3 = "chart3";
-const divElementId4 = "chart4";
-const divElementId5 = "chart5";
-const divElementId6 = "chart6";
-const divElementId7 = "chart7";
-const divElementId8 = "chart8";
-const divElementId9 = "chart9";
+export const divElementId1 = "chart1";
+export const divElementId2 = "chart2";
+export const divElementId3 = "chart3";
+export const divElementId4 = "chart4";
+export const divElementId5 = "chart5";
+export const divElementId6 = "chart6";
+export const divElementId7 = "chart7";
+export const divElementId8 = "chart8";
+export const divElementId9 = "chart9";
 
 export const drawExample = async () => {
     const createChartCommon = async (divId: string, title: string, isVertical: boolean = false) => {

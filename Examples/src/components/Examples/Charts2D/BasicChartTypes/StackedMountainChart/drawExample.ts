@@ -12,7 +12,7 @@ import {
 import {appTheme} from "scichart-example-dependencies";
 import {xValues, y1Values, y2Values, y3Values, y4Values} from "./data/stackedMountainChartData";
 
-const divElementId = "chart";
+export const divElementId = "chart";
 
 export const drawExample = async () => {
     // Create a SciChartSurface

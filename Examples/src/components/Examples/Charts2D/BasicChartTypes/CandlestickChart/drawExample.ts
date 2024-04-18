@@ -33,8 +33,8 @@ import {
 } from "scichart";
 import {appTheme, simpleBinanceRestClient} from "scichart-example-dependencies";
 
-const divElementId = "chart";
-const divOverviewId = "overview";
+export const divElementId = "chart";
+export const divOverviewId = "overview";
 const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
 
 export const drawExample = async () => {

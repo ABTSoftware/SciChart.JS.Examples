@@ -8,8 +8,8 @@ import {
 } from "scichart";
 import {appTheme} from "scichart-example-dependencies";
 
-const divElementId = "chart";
-const divHeatmapLegend = "heatmapLegend";
+export const divElementId = "chart";
+export const divHeatmapLegend = "heatmapLegend";
 
 export const drawExample = async () => {
     // Create a SciChartSurface
@@ -79,7 +79,7 @@ export const drawExample = async () => {
     return { sciChartSurface };
 };
 
-const drawHeatmapLegend = async () => {
+export const drawHeatmapLegend = async () => {
     const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
         theme: {
             ...appTheme.SciChartJsTheme,

@@ -8,8 +8,8 @@ import {
 import {appTheme} from "scichart-example-dependencies";
 import {makeStyles} from "@material-ui/core/styles";
 
-const divElementId = "chart";
-const divHeatmapLegend = "heatmapLegend";
+export const divElementId = "chart";
+export const divHeatmapLegend = "heatmapLegend";
 const MAX_SERIES = 100;
 const WIDTH = 300;
 const HEIGHT = 200;
@@ -93,7 +93,7 @@ export const drawExample = async () => {
 };
 
 // Draws a Heatmap legend over the <div id={divHeatmapLegend}></div>
-const drawHeatmapLegend = async () => {
+export const drawHeatmapLegend = async () => {
     const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
         theme: {
             ...appTheme.SciChartJsTheme,

@@ -10,7 +10,7 @@ import {
 } from "scichart";
 import {appTheme} from "scichart-example-dependencies";
 
-const divElementId = "chart";
+export const divElementId = "chart";
 
 export const drawExample = async () => {
     // Create a SciChartSurface
