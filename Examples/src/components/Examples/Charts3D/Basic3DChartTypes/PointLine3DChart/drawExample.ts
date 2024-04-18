@@ -9,8 +9,8 @@ import {
 } from "scichart";
 import {appTheme} from "scichart-example-dependencies";
 
-const divElementId = "chart";
-const divHeatmapLegend = "heatmapLegend";
+export const divElementId = "chart";
+export const divHeatmapLegend = "heatmapLegend";
 
 type TMetadata = {
     vertexColor: number;
@@ -144,7 +144,7 @@ function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): 
     });
 }
 
-const drawHeatmapLegend = async () => {
+export const drawHeatmapLegend = async () => {
     const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
         theme: {
             ...appTheme.SciChartJsTheme,

@@ -9,8 +9,7 @@ import {
 } from "scichart";
 import {appTheme} from "scichart-example-dependencies";
 
-const divElementId = "chart";
-const divHeatmapLegend = "heatmapLegend";
+export const divElementId = "chart";
 
 // SCICHART CODE
 export const drawExample = async () => {
