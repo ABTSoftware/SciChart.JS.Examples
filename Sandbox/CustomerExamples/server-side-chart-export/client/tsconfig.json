@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "sourceMap": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": false,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": false,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "module": "commonjs",
+        "target": "ESNext",
+        "jsx": "react-jsx",
+        "allowJs": true,
+        "typeRoots": ["./node_modules/@types"],
+        "esModuleInterop": true,
+        "skipLibCheck": false,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src/**/*", "index.ts"],
+    "exclude": ["node_modules"]
+}
