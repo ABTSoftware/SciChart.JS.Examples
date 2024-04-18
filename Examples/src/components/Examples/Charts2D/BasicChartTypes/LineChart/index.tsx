@@ -3,7 +3,7 @@ import * as React from "react";
 import {
     SciChartSurface,
 } from "scichart";
-import { appTheme, ExampleDataProvider, RandomWalkGenerator } from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import {
     drawExample,

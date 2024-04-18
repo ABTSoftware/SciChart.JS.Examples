@@ -140,12 +140,22 @@ hydrate( <App />, rootElement);
 
 const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
     const tsPath = path.join(folderPath, "angular.ts");
+    const templatePath = path.join(folderPath, "angular.html");
     let code: string;
+    let template: string;
+
     try {
         code = await fs.promises.readFile(tsPath, "utf8");
     } catch (err) {
         throw new NotFoundError("Angular version not found! Try using different framework.");
     }
+
+    try {
+        template = await fs.promises.readFile(templatePath, "utf8");
+    } catch (err) {
+        template = `<scichart-angular [initChart]="drawExample"></scichart-angular>`;
+    }
+
     let files: IFiles = {};
     await includeImportedModules(folderPath, files, code);
 
@@ -261,7 +271,7 @@ import "zone.js/dist/zone";`,
             isBinary: false,
         },
         "src/app/app.component.html": {
-            content: `<scichart-angular [initChart]="drawExample"></scichart-angular>`,
+            content: template,
             isBinary: false,
         },
         "src/app/app.module.ts": {
