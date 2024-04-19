@@ -18,7 +18,8 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
+import { appTheme } from "../../../theme";
 const ID_Y_AXIS_2 = "yAxis2";
 export const drawExample = async (rootElement) => {
     // Create the SciChartSurface with theme

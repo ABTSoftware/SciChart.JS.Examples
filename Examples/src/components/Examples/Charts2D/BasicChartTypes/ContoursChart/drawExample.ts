@@ -1,12 +1,17 @@
 import {
-    HeatmapColorMap, HeatmapLegend, MouseWheelZoomModifier,
+    HeatmapColorMap,
+    HeatmapLegend,
+    MouseWheelZoomModifier,
     NumericAxis,
     SciChartSurface,
     UniformContoursRenderableSeries,
     UniformHeatmapDataSeries,
-    UniformHeatmapRenderableSeries, zeroArray2D, ZoomExtentsModifier, ZoomPanModifier
+    UniformHeatmapRenderableSeries,
+    zeroArray2D,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
 } from "scichart";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 export const divElementId = "chart";
 export const divHeatmapLegend = "heatmapLegend";
@@ -14,7 +19,7 @@ export const divHeatmapLegend = "heatmapLegend";
 export const drawExample = async () => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create an X & Y Axis
@@ -34,7 +39,7 @@ export const drawExample = async () => {
         xStart: 0,
         xStep: 1,
         yStart: 0,
-        yStep: 1
+        yStep: 1,
     });
 
     // Add the contours series and add to the chart
@@ -45,7 +50,7 @@ export const drawExample = async () => {
             zMax: colorPaletteMax,
             zStep: 20,
             strokeThickness: 1,
-            stroke: appTheme.PaleSkyBlue
+            stroke: appTheme.PaleSkyBlue,
         })
     );
 
@@ -65,9 +70,9 @@ export const drawExample = async () => {
                     { offset: 0.5, color: appTheme.VividGreen },
                     { offset: 0.3, color: appTheme.VividSkyBlue },
                     { offset: 0.2, color: appTheme.Indigo },
-                    { offset: 0, color: appTheme.DarkIndigo }
-                ]
-            })
+                    { offset: 0, color: appTheme.DarkIndigo },
+                ],
+            }),
         })
     );
 
@@ -84,23 +89,23 @@ export const drawHeatmapLegend = async () => {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB"
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
             axisBorder: {
                 borderLeft: 1,
-                color: appTheme.ForegroundColor + "77"
+                color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 6,
-                strokeThickness: 1
+                strokeThickness: 1,
             },
             minorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
-                strokeThickness: 1
-            }
+                strokeThickness: 1,
+            },
         },
         colorMap: {
             minimum: 0,
@@ -112,9 +117,9 @@ export const drawHeatmapLegend = async () => {
                 { offset: 0.5, color: appTheme.VividGreen },
                 { offset: 0.3, color: appTheme.VividSkyBlue },
                 { offset: 0.2, color: appTheme.Indigo },
-                { offset: 0, color: appTheme.DarkIndigo }
-            ]
-        }
+                { offset: 0, color: appTheme.DarkIndigo },
+            ],
+        },
     });
 
     return heatmapLegend;

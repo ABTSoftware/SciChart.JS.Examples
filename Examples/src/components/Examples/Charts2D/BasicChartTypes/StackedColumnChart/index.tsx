@@ -1,32 +1,29 @@
 import * as React from "react";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-    SciChartSurface,
-    StackedColumnCollection,
-} from "scichart";
+import { SciChartSurface, StackedColumnCollection } from "scichart";
 import { drawExample, divElementId } from "./drawExample";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
         // flex: "auto",
         flexBasis: "70px",
         padding: 10,
-        width: "100%"
+        width: "100%",
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 // React component needed as our examples app is react.
@@ -37,7 +34,7 @@ export default function StackedColumnChart() {
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
 
     React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(res => {
+        const chartInitializationPromise = drawExample().then((res) => {
             sciChartSurfaceRef.current = res.sciChartSurface;
             stackedColumnCollectionRef.current = res.stackedColumnCollection;
         });

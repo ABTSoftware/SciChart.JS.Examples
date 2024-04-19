@@ -1,6 +1,5 @@
 import * as React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
-import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -13,28 +12,30 @@ import {
     NumberRange,
     SciChartSurface,
     XyDataSeries,
-    getLegendItemHtml
+    getLegendItemHtml,
 } from "scichart";
+import { appTheme } from "../../../theme";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 const divElementId = "chart";
 
 const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Add an X, Y Axis
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             labelFormat: ENumericFormat.Decimal,
-            labelPrecision: 2
+            labelPrecision: 2,
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             labelFormat: ENumericFormat.Decimal,
             labelPrecision: 2,
-            growBy: new NumberRange(0.1, 0.1)
+            growBy: new NumberRange(0.1, 0.1),
         })
     );
 
@@ -45,10 +46,10 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: data0.xValues,
                 yValues: data0.yValues,
-                dataSeriesName: "First Line Series"
+                dataSeriesName: "First Line Series",
             }),
             strokeThickness: 3,
-            stroke: "auto"
+            stroke: "auto",
         })
     );
 
@@ -58,10 +59,10 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: data1.xValues,
                 yValues: data1.yValues,
-                dataSeriesName: "Second Line Series"
+                dataSeriesName: "Second Line Series",
             }),
             strokeThickness: 3,
-            stroke: "auto"
+            stroke: "auto",
         })
     );
 
@@ -71,10 +72,10 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: data2.xValues,
                 yValues: data2.yValues,
-                dataSeriesName: "Third Line Series"
+                dataSeriesName: "Third Line Series",
             }),
             strokeThickness: 3,
-            stroke: "auto"
+            stroke: "auto",
         })
     );
 
@@ -84,10 +85,10 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: data3.xValues,
                 yValues: data3.yValues,
-                dataSeriesName: "Fourth Line Series"
+                dataSeriesName: "Fourth Line Series",
             }),
             strokeThickness: 3,
-            stroke: "auto"
+            stroke: "auto",
         })
     );
 
@@ -97,7 +98,7 @@ const drawExample = async () => {
         placement: ELegendPlacement.TopLeft,
         orientation: ELegendOrientation.Vertical,
         showCheckboxes: true,
-        showSeriesMarkers: true
+        showSeriesMarkers: true,
     });
 
     sciChartSurface.chartModifiers.add(legendModifier);
@@ -109,12 +110,12 @@ const placementSelect = [
     { value: ELegendPlacement.TopLeft, text: "Top-Left" },
     { value: ELegendPlacement.TopRight, text: "Top-Right" },
     { value: ELegendPlacement.BottomLeft, text: "Bottom-Left" },
-    { value: ELegendPlacement.BottomRight, text: "Bottom-Right" }
+    { value: ELegendPlacement.BottomRight, text: "Bottom-Right" },
 ];
 
 const orientationSelect = [
     { value: ELegendOrientation.Vertical, text: "Vertical" },
-    { value: ELegendOrientation.Horizontal, text: "Horizontal" }
+    { value: ELegendOrientation.Horizontal, text: "Horizontal" },
 ];
 
 export default function ChartLegendsAPI() {
@@ -191,30 +192,30 @@ export default function ChartLegendsAPI() {
         }
     };
 
-    const useStyles = makeStyles(theme => ({
+    const useStyles = makeStyles((theme) => ({
         flexContainer: {
             display: "flex",
             flexDirection: "column",
             height: "100%",
-            width: "100%"
+            width: "100%",
         },
         toolbar: {
             minHeight: "70px",
             padding: "10",
             color: appTheme.ForegroundColor,
             fontSize: "13px",
-            flex: "none"
+            flex: "none",
             // flexBasis: "70px"
         },
         combobox: {
             color: appTheme.Background,
             backgroundColor: appTheme.ForegroundColor,
-            margin: "10"
+            margin: "10",
         },
         chartElement: {
             width: "100%",
-            flex: "auto"
-        }
+            flex: "auto",
+        },
     }));
     const localClasses = useStyles();
 
@@ -238,7 +239,7 @@ export default function ChartLegendsAPI() {
                                 value={placementValue}
                                 onChange={handleChangePlacement}
                             >
-                                {placementSelect.map(el => (
+                                {placementSelect.map((el) => (
                                     <option key={el.value} value={el.value}>
                                         {el.text}
                                     </option>
@@ -253,7 +254,7 @@ export default function ChartLegendsAPI() {
                                 value={orientationValue}
                                 onChange={handleChangeOrientation}
                             >
-                                {orientationSelect.map(el => (
+                                {orientationSelect.map((el) => (
                                     <option key={el.value} value={el.value}>
                                         {el.text}
                                     </option>

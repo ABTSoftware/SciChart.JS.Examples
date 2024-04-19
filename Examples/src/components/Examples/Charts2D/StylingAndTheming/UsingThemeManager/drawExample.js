@@ -1,4 +1,3 @@
-import { ExampleDataProvider } from "scichart-example-dependencies";
 import {
     EAnimationType,
     ECoordinateMode,
@@ -13,6 +12,7 @@ import {
     TextAnnotation,
     XyDataSeries,
 } from "scichart";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 export const getChartsInitializationAPI = () => {
     const createLineData = (whichSeries) => {
         const data = ExampleDataProvider.getFourierSeriesZoomed(1.0, 0.1, 5.0, 5.15);

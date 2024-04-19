@@ -11,7 +11,8 @@ import {
     XyDataSeries,
     ZoomExtentsModifier,
 } from "scichart";
-import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface

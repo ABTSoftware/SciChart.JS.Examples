@@ -41,7 +41,7 @@ export class RangeFillPaletteProvider implements IFillPaletteProvider {
         opacity: number,
         metadata: IPointMetadata
     ): number {
-        const currentRange = this.paletteRanges.find(range => range.startIndex <= index && range.endIndex >= index);
+        const currentRange = this.paletteRanges.find((range) => range.startIndex <= index && range.endIndex >= index);
         return currentRange ? parseColorToUIntArgb(currentRange.fill) : undefined;
     }
 }

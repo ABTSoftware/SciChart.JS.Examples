@@ -1,21 +1,26 @@
 import {
     ELegendOrientation,
     ELegendPlacement,
-    ENumericFormat, LegendModifier, MouseWheelZoomModifier,
+    ENumericFormat,
+    LegendModifier,
+    MouseWheelZoomModifier,
     NumericAxis,
     SciChartSurface,
     StackedColumnCollection,
-    StackedColumnRenderableSeries, WaveAnimation,
-    XyDataSeries, ZoomExtentsModifier, ZoomPanModifier
+    StackedColumnRenderableSeries,
+    WaveAnimation,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
 } from "scichart";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 export const divElementId = "chart";
 
 export const drawExample = async () => {
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create XAxis, YAxis
@@ -29,13 +34,13 @@ export const drawExample = async () => {
             drawMajorGridLines: false,
             drawMinorGridLines: false,
             drawMajorBands: false,
-            axisTitle: "Year"
+            axisTitle: "Year",
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             labelPrecision: 0,
-            axisTitle: "Sales $USD (Billion)"
+            axisTitle: "Sales $USD (Billion)",
         })
     );
 
@@ -55,7 +60,7 @@ export const drawExample = async () => {
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId"
+        stackedGroupId: "StackedGroupId",
     });
 
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
@@ -64,7 +69,7 @@ export const drawExample = async () => {
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId"
+        stackedGroupId: "StackedGroupId",
     });
 
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
@@ -73,7 +78,7 @@ export const drawExample = async () => {
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId"
+        stackedGroupId: "StackedGroupId",
     });
 
     const rendSeries4 = new StackedColumnRenderableSeries(wasmContext, {
@@ -82,7 +87,7 @@ export const drawExample = async () => {
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId"
+        stackedGroupId: "StackedGroupId",
     });
 
     const rendSeries5 = new StackedColumnRenderableSeries(wasmContext, {
@@ -91,7 +96,7 @@ export const drawExample = async () => {
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,
         opacity: 0.8,
-        stackedGroupId: "StackedGroupId"
+        stackedGroupId: "StackedGroupId",
     });
 
     // To add the series to the chart, put them in a StackedColumnCollection
@@ -113,7 +118,7 @@ export const drawExample = async () => {
             orientation: ELegendOrientation.Vertical,
             showLegend: true,
             showCheckboxes: false,
-            showSeriesMarkers: true
+            showSeriesMarkers: true,
         })
     );
 

@@ -1,8 +1,5 @@
 import * as React from "react";
-import {
-    SciChartSurface,
-    HeatmapLegend
-} from "scichart";
+import { SciChartSurface, HeatmapLegend } from "scichart";
 import classes from "../../../styles/Examples.module.scss";
 import { drawExample, drawHeatmapLegend, divHeatmapLegend, divElementId } from "./drawExample";
 
@@ -11,13 +8,12 @@ export default function ContourChart() {
     const heatmapLegendRef = React.useRef<HeatmapLegend>();
 
     React.useEffect(() => {
-            const chartInitializationPromise = Promise.all([
-                drawExample(),
-                drawHeatmapLegend()
-            ]).then(([{ sciChartSurface }, legend]) => {
+        const chartInitializationPromise = Promise.all([drawExample(), drawHeatmapLegend()]).then(
+            ([{ sciChartSurface }, legend]) => {
                 sciChartSurfaceRef.current = sciChartSurface;
                 heatmapLegendRef.current = legend;
-            })
+            }
+        );
 
         // Delete sciChartSurface on unmount component to prevent memory leak
         return () => {

@@ -1,5 +1,5 @@
 import { getVarianceData } from "./data";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 import {
     MouseWheelZoomModifier,

@@ -18,9 +18,9 @@ import {
     EVerticalTextPosition,
     TextAnnotation,
     EHorizontalAnchorPoint,
-    ECoordinateMode
+    ECoordinateMode,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 
 const divElementId = "chart";
@@ -42,18 +42,18 @@ const drawExample = async () => {
         { name: "Tecno", percent: 1.09 },
         { name: "Infinix", percent: 0.96 },
         { name: "Google", percent: 0.77 },
-        { name: "Nokia", percent: 0.45 }
+        { name: "Nokia", percent: 0.45 },
     ];
 
     // Create the SciChartSurface with theme
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create the XAxis labelprovider (maps x-value to axis label)
     const labelProvider = new TextLabelProvider({
-        labels: dataset.map(row => "Manufacturer " + row.name + " (2022)"),
-        maxLength: 12
+        labels: dataset.map((row) => "Manufacturer " + row.name + " (2022)"),
+        maxLength: 12,
     });
 
     // Create an XAxis
@@ -63,13 +63,13 @@ const drawExample = async () => {
         labelStyle: {
             alignment: ELabelAlignment.Center,
             padding: new Thickness(2, 1, 2, 1),
-            fontSize: 11
+            fontSize: 11,
         },
         // Ensure there can be 1 label per item in the dataset.
         // Also see major/minor delta in the docs
         maxAutoTicks: 15,
         // add the title
-        axisTitle: "Mobile phone manufacturer"
+        axisTitle: "Mobile phone manufacturer",
     });
 
     // additional axis options
@@ -88,7 +88,7 @@ const drawExample = async () => {
             autoRange: EAutoRange.Always,
             axisTitle: "Market Share (%)",
             growBy: new NumberRange(0, 0.1),
-            labelPostfix: " %"
+            labelPostfix: " %",
         })
     );
 
@@ -100,7 +100,7 @@ const drawExample = async () => {
             // store the manufacturer name in the metadata (used to generate colors)
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: dataset.map((row, index) => index),
-                yValues: dataset.map(row => row.percent)
+                yValues: dataset.map((row) => row.percent),
             }),
             strokeThickness: 1,
             // Optional datalabels on series. To enable set a style and position
@@ -108,7 +108,7 @@ const drawExample = async () => {
                 horizontalTextPosition: EHorizontalTextPosition.Center,
                 verticalTextPosition: EVerticalTextPosition.Above,
                 style: { fontFamily: "Arial", fontSize: 16, padding: new Thickness(0, 0, 20, 0) },
-                color: appTheme.ForegroundColor
+                color: appTheme.ForegroundColor,
             },
             // each column occupies 50% of available space
             dataPointWidth: 0.5,
@@ -124,12 +124,12 @@ const drawExample = async () => {
                     { offset: 0.5, color: appTheme.VividGreen },
                     { offset: 0.7, color: appTheme.VividSkyBlue },
                     { offset: 0.9, color: appTheme.Indigo },
-                    { offset: 1, color: appTheme.DarkIndigo }
+                    { offset: 1, color: appTheme.DarkIndigo },
                 ]),
                 { enableFill: true }
             ),
             // Bit more eye candy ;)
-            animation: new WaveAnimation({ duration: 1000 })
+            animation: new WaveAnimation({ duration: 1000 }),
         })
     );
 
@@ -144,7 +144,7 @@ const drawExample = async () => {
             opacity: 0.77,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative
+            yCoordinateMode: ECoordinateMode.Relative,
         })
     );
 

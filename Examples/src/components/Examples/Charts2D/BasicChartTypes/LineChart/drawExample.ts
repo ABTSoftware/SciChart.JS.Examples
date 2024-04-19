@@ -2,13 +2,17 @@ import {
     BoxAnnotation,
     EAnimationType,
     EAxisAlignment,
-    ECoordinateMode, EDataLabelSkipMode, ELabelPlacement,
+    ECoordinateMode,
+    EDataLabelSkipMode,
+    ELabelPlacement,
     ELineDrawMode,
     EllipsePointMarker,
     EStrokePaletteMode,
     EVerticalTextPosition,
     FastLineRenderableSeries,
-    GradientParams, HorizontalLineAnnotation, IPointMetadata,
+    GradientParams,
+    HorizontalLineAnnotation,
+    IPointMetadata,
     IRenderableSeries,
     IStrokePaletteProvider,
     ModifierMouseArgs,
@@ -21,9 +25,11 @@ import {
     SciChartSurface,
     SeriesSelectionModifier,
     Thickness,
-    XyDataSeries
+    XyDataSeries,
 } from "scichart";
-import {appTheme, ExampleDataProvider, RandomWalkGenerator} from "scichart-example-dependencies";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
+import { appTheme } from "../../../theme";
 
 export const divElementId1 = "chart1";
 export const divElementId2 = "chart2";
@@ -45,8 +51,8 @@ export const drawExample = async (withContext = false) => {
             titleStyle: {
                 placeWithinChart: true,
                 color: appTheme.ForegroundColor + "C4",
-                fontSize: 16
-            }
+                fontSize: 16,
+            },
         });
 
         // Create the X,Y Axis
@@ -67,12 +73,15 @@ export const drawExample = async (withContext = false) => {
 
         return {
             xValues: data.xValues,
-            yValues: data.yValues.map(y => (whichSeries === 0 ? y : whichSeries === 1 ? y * 1.1 : y * 1.5))
+            yValues: data.yValues.map((y) => (whichSeries === 0 ? y : whichSeries === 1 ? y * 1.1 : y * 1.5)),
         };
     };
 
-    const initJustLineCharts = async (rootElement: string = '') => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement ? rootElement : divElementId1, "Simple Line Chart");
+    const initJustLineCharts = async (rootElement: string = "") => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(
+            rootElement ? rootElement : divElementId1,
+            "Simple Line Chart"
+        );
 
         let data = createLineData(2);
 
@@ -85,8 +94,8 @@ export const drawExample = async (withContext = false) => {
                 opacity: 1,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -101,8 +110,8 @@ export const drawExample = async (withContext = false) => {
                 opacity: 1,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -113,8 +122,11 @@ export const drawExample = async (withContext = false) => {
         return sciChartSurface;
     };
 
-    const initDigitalLineCharts = async (rootElement: string = '' ) => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement ? rootElement : divElementId2, "Digital (Step) Line Charts");
+    const initDigitalLineCharts = async (rootElement: string = "") => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(
+            rootElement ? rootElement : divElementId2,
+            "Digital (Step) Line Charts"
+        );
 
         const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
         const yValues = [1, 2, 3, 2, 0.5, 1, 2.5, 1, 1];
@@ -132,19 +144,19 @@ export const drawExample = async (withContext = false) => {
                     width: 9,
                     height: 9,
                     fill: appTheme.ForegroundColor,
-                    strokeThickness: 0
+                    strokeThickness: 0,
                 }),
                 animation: {
                     type: EAnimationType.Wave,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 },
                 },
                 // Optional DataLabels may be added via this property.
                 dataLabels: {
                     style: { fontFamily: "Arial", fontSize: 11, padding: new Thickness(5, 5, 5, 5) },
                     color: appTheme.ForegroundColor,
                     aboveBelow: false,
-                    verticalTextPosition: EVerticalTextPosition.Above
-                }
+                    verticalTextPosition: EVerticalTextPosition.Above,
+                },
             })
         );
 
@@ -155,8 +167,11 @@ export const drawExample = async (withContext = false) => {
         return sciChartSurface;
     };
 
-    const initTooltipsOnLineCharts = async (rootElement: string = '' ) => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement ? rootElement : divElementId3, "Tooltips on Line Charts");
+    const initTooltipsOnLineCharts = async (rootElement: string = "") => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(
+            rootElement ? rootElement : divElementId3,
+            "Tooltips on Line Charts"
+        );
 
         const { xValues, yValues } = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(25);
 
@@ -167,8 +182,8 @@ export const drawExample = async (withContext = false) => {
                 strokeThickness: 3,
                 animation: {
                     type: EAnimationType.Wave,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 },
+                },
             })
         );
 
@@ -177,12 +192,12 @@ export const drawExample = async (withContext = false) => {
             new RolloverModifier({
                 rolloverLineStroke: appTheme.VividOrange,
                 rolloverLineStrokeThickness: 2,
-                rolloverLineStrokeDashArray: [2, 2]
+                rolloverLineStrokeDashArray: [2, 2],
             })
         );
         // FOR DEMO PURPOSE ONLY - fake a mouse event so the tooltip shows without rollover.
         sciChartSurface.mouseManager.modifierMouseMove({
-            mousePoint: new Point((sciChartSurface.renderSurface.viewportSize.width * 2) / 3, 10)
+            mousePoint: new Point((sciChartSurface.renderSurface.viewportSize.width * 2) / 3, 10),
         } as ModifierMouseArgs);
 
         if (withContext) {
@@ -192,8 +207,11 @@ export const drawExample = async (withContext = false) => {
         return sciChartSurface;
     };
 
-    const initDashedLineCharts = async (rootElement: string = '' ) => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement ? rootElement : divElementId4, "Dashed Line Charts");
+    const initDashedLineCharts = async (rootElement: string = "") => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(
+            rootElement ? rootElement : divElementId4,
+            "Dashed Line Charts"
+        );
 
         // Create some xValues, yValues arrays
         let data = createLineData(0);
@@ -208,8 +226,8 @@ export const drawExample = async (withContext = false) => {
                 strokeDashArray: [2, 2],
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 },
+                },
             })
         );
 
@@ -225,8 +243,8 @@ export const drawExample = async (withContext = false) => {
                 strokeDashArray: [3, 3],
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -242,8 +260,8 @@ export const drawExample = async (withContext = false) => {
                 strokeDashArray: [10, 5],
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -254,8 +272,11 @@ export const drawExample = async (withContext = false) => {
         return sciChartSurface;
     };
 
-    const initPalettedLineCharts = async (rootElement: string = '' ) => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement ? rootElement : divElementId5, "Gradient Line Charts");
+    const initPalettedLineCharts = async (rootElement: string = "") => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(
+            rootElement ? rootElement : divElementId5,
+            "Gradient Line Charts"
+        );
 
         const data = createLineData(3);
 
@@ -267,7 +288,7 @@ export const drawExample = async (withContext = false) => {
             new GradientParams(new Point(0, 0), new Point(1, 1), [
                 { offset: 0, color: appTheme.VividOrange },
                 { offset: 0.5, color: appTheme.VividTeal },
-                { offset: 1.0, color: appTheme.VividSkyBlue }
+                { offset: 1.0, color: appTheme.VividSkyBlue },
             ])
         );
 
@@ -278,8 +299,8 @@ export const drawExample = async (withContext = false) => {
                 strokeThickness: 5,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -290,8 +311,11 @@ export const drawExample = async (withContext = false) => {
         return sciChartSurface;
     };
 
-    const initHoveredLineCharts = async (rootElement: string = '' ) => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement ? rootElement : divElementId6, "Hover/Select Line Charts");
+    const initHoveredLineCharts = async (rootElement: string = "") => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(
+            rootElement ? rootElement : divElementId6,
+            "Hover/Select Line Charts"
+        );
 
         // Create some xValues, yValues arrays
         let data = createLineData(0);
@@ -317,8 +341,8 @@ export const drawExample = async (withContext = false) => {
                 onSelectedChanged,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 },
+                },
             })
         );
 
@@ -335,8 +359,8 @@ export const drawExample = async (withContext = false) => {
                 onSelectedChanged,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -353,8 +377,8 @@ export const drawExample = async (withContext = false) => {
                 onSelectedChanged,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
             })
         );
 
@@ -371,8 +395,12 @@ export const drawExample = async (withContext = false) => {
         return sciChartSurface;
     };
 
-    const initVerticalLineCharts = async (rootElement: string = '' ) => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement ? rootElement : divElementId7, "Vertical Line Charts", true);
+    const initVerticalLineCharts = async (rootElement: string = "") => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(
+            rootElement ? rootElement : divElementId7,
+            "Vertical Line Charts",
+            true
+        );
 
         // Setting xAxis.alignment = left/right and yAxis.alignemnt = top/bottom
         // is all that's required to rotate a chart, including all drawing and interactions in scichart
@@ -390,12 +418,12 @@ export const drawExample = async (withContext = false) => {
                     width: 5,
                     height: 5,
                     fill: appTheme.VividOrange,
-                    strokeThickness: 0
+                    strokeThickness: 0,
                 }),
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 },
+                },
             })
         );
 
@@ -410,12 +438,12 @@ export const drawExample = async (withContext = false) => {
                     width: 5,
                     height: 5,
                     fill: appTheme.VividTeal,
-                    strokeThickness: 0
+                    strokeThickness: 0,
                 }),
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 }
-                }
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 },
+                },
             })
         );
 
@@ -426,8 +454,11 @@ export const drawExample = async (withContext = false) => {
         return sciChartSurface;
     };
 
-    const initGapsInLineCharts = async (rootElement: string = '' ) => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement ? rootElement : divElementId8, "Gaps in Line Charts");
+    const initGapsInLineCharts = async (rootElement: string = "") => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(
+            rootElement ? rootElement : divElementId8,
+            "Gaps in Line Charts"
+        );
 
         const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 
@@ -457,7 +488,7 @@ export const drawExample = async (withContext = false) => {
             -1.1531512,
             -0.7264951,
             -0.9779677,
-            -0.5377044
+            -0.5377044,
         ];
 
         sciChartSurface.renderableSeries.add(
@@ -470,8 +501,8 @@ export const drawExample = async (withContext = false) => {
                     width: 5,
                     height: 5,
                     fill: appTheme.VividTeal,
-                    strokeThickness: 0
-                })
+                    strokeThickness: 0,
+                }),
             })
         );
 
@@ -484,7 +515,7 @@ export const drawExample = async (withContext = false) => {
                 y2: 1.0,
                 yCoordinateMode: ECoordinateMode.Relative,
                 fill: appTheme.MutedTeal + "33",
-                strokeThickness: 0
+                strokeThickness: 0,
             }),
             new BoxAnnotation({
                 x1: 17,
@@ -493,7 +524,7 @@ export const drawExample = async (withContext = false) => {
                 y2: 1,
                 yCoordinateMode: ECoordinateMode.Relative,
                 fill: appTheme.MutedTeal + "33",
-                strokeThickness: 0
+                strokeThickness: 0,
             })
         );
 
@@ -504,8 +535,11 @@ export const drawExample = async (withContext = false) => {
         return sciChartSurface;
     };
 
-    const initThresholdedLineCharts = async (rootElement: string = '' ) => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement ? rootElement : divElementId9, "Thresholded Line Charts");
+    const initThresholdedLineCharts = async (rootElement: string = "") => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(
+            rootElement ? rootElement : divElementId9,
+            "Thresholded Line Charts"
+        );
 
         const { xValues, yValues } = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(50);
 
@@ -536,7 +570,7 @@ export const drawExample = async (withContext = false) => {
                 }
                 // Undefined means use default series stroke on this data-point
                 return undefined;
-            }
+            },
         };
 
         // Create a line series with threshold palette provider
@@ -551,8 +585,8 @@ export const drawExample = async (withContext = false) => {
                 dataLabels: {
                     style: { fontFamily: "Arial", fontSize: 8 },
                     color: appTheme.PaleSkyBlue,
-                    skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious
-                }
+                    skipMode: EDataLabelSkipMode.SkipIfOverlapPrevious,
+                },
             })
         );
 
@@ -565,7 +599,7 @@ export const drawExample = async (withContext = false) => {
                 labelPlacement: ELabelPlacement.TopRight,
                 labelValue: "High warning",
                 axisLabelFill: appTheme.VividTeal,
-                showLabel: true
+                showLabel: true,
             })
         );
         sciChartSurface.annotations.add(
@@ -576,7 +610,7 @@ export const drawExample = async (withContext = false) => {
                 y1: THRESHOLD_LOW_LEVEL,
                 labelValue: "Low warning",
                 axisLabelFill: appTheme.VividPink,
-                showLabel: true
+                showLabel: true,
             })
         );
 
@@ -593,7 +627,7 @@ export const drawExample = async (withContext = false) => {
             initHoveredLineCharts,
             initGapsInLineCharts,
             initVerticalLineCharts,
-            initThresholdedLineCharts
+            initThresholdedLineCharts,
         };
     }
 
@@ -607,7 +641,7 @@ export const drawExample = async (withContext = false) => {
         initGapsInLineCharts(),
         initVerticalLineCharts(),
         initGapsInLineCharts(),
-        initThresholdedLineCharts()
+        initThresholdedLineCharts(),
     ]);
 
     return { charts };

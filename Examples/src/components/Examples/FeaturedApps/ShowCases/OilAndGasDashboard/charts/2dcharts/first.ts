@@ -26,12 +26,12 @@ export default async function init2dFirstChart(id: string) {
     const dataR = getDataDiagonal(xValues, yValues, 50);
     const dataG = getDataDiagonal(
         xValues,
-        yValues.map(el => (el += 0.005)),
+        yValues.map((el) => (el += 0.005)),
         50
     );
     const dataB = getDataDiagonal(
         xValues,
-        yValues.map(el => (el += 0.01)),
+        yValues.map((el) => (el += 0.01)),
         50
     );
 
@@ -40,31 +40,31 @@ export default async function init2dFirstChart(id: string) {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: dataR.xValues,
             yValues: dataR.yValues,
-            dataSeriesName: "Red"
+            dataSeriesName: "Red",
         }),
         fill: getColor("red"),
         stroke: getColor("red"),
-        strokeThickness: 0
+        strokeThickness: 0,
     });
     const rendSeries2 = new StackedMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: dataG.xValues,
             yValues: dataG.yValues,
-            dataSeriesName: "Green"
+            dataSeriesName: "Green",
         }),
         fill: getColor("green"),
         stroke: getColor("green"),
-        strokeThickness: 0
+        strokeThickness: 0,
     });
     const rendSeries3 = new StackedMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: dataB.xValues,
             yValues: dataB.yValues,
-            dataSeriesName: "Blue"
+            dataSeriesName: "Blue",
         }),
         fill: getColor("blue"),
         stroke: getColor("blue"),
-        strokeThickness: 0
+        strokeThickness: 0,
     });
 
     // Group these StackedMountain series together in a StackedMountainCollection

@@ -20,7 +20,7 @@ import {
     ZoomExtentsModifier,
     MouseWheelZoomModifier,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 // Four Series Animations are defined below. We apply these to the chart sequentially
 const waveAnimation = new WaveAnimation({ zeroLine: 0, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true });

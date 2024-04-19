@@ -1,12 +1,7 @@
 import * as React from "react";
-import {
-    SciChartSurface,
-    FastCandlestickRenderableSeries,
-    SciChartOverview,
-    FastOhlcRenderableSeries
-} from "scichart";
+import { SciChartSurface, FastCandlestickRenderableSeries, SciChartOverview, FastOhlcRenderableSeries } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { drawExample, divOverviewId, divElementId } from "./drawExample";
 

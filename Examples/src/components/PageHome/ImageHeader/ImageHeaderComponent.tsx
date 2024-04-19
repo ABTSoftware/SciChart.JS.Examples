@@ -57,7 +57,7 @@ const images = [
     pointMarkersImg,
     dashedLineImg,
     hitTestApiImg,
-    bubble3dImg
+    bubble3dImg,
 ];
 
 export default function ImageHeaderComponent(props: TProps) {

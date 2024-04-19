@@ -1,10 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-
-import {
-    SciChart3DSurface,
-    HeatmapLegend
-} from "scichart";
+import { SciChart3DSurface, HeatmapLegend } from "scichart";
 import { drawExample, drawHeatmapLegend, divHeatmapLegend, divElementId } from "./drawExample";
 
 // REACT COMPONENT
@@ -13,13 +9,12 @@ export default function PointLine3DChart() {
     const heatmapLegendRef = React.useRef<HeatmapLegend>();
 
     React.useEffect(() => {
-        const chartInitializationPromise = Promise.all([
-            drawExample(),
-            drawHeatmapLegend()
-        ]).then(([{ sciChart3DSurface }, legend]) => {
-            sciChartSurfaceRef.current = sciChart3DSurface;
-            heatmapLegendRef.current = legend;
-        });
+        const chartInitializationPromise = Promise.all([drawExample(), drawHeatmapLegend()]).then(
+            ([{ sciChart3DSurface }, legend]) => {
+                sciChartSurfaceRef.current = sciChart3DSurface;
+                heatmapLegendRef.current = legend;
+            }
+        );
 
         return () => {
             // check if chart is already initialized

@@ -1,10 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
-import {
-    SciChartSurface,
-} from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { SciChartSurface } from "scichart";
 import classes from "../../../styles/Examples.module.scss";
+import { appTheme } from "../../../theme";
 import {
     drawExample,
     divElementId2,
@@ -15,18 +13,18 @@ import {
     divElementId6,
     divElementId7,
     divElementId8,
-    divElementId9
+    divElementId9,
 } from "./drawExample";
 
 // Styles for the 3x3 grid
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     flexContainerRow: {
         display: "flex",
@@ -35,12 +33,12 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         alignContent: "stretch",
         margin: 10,
-        width: "calc(100% - 10px)"
+        width: "calc(100% - 10px)",
     },
     item: {
         flex: "auto",
-        height: "100%"
-    }
+        height: "100%",
+    },
 }));
 
 // React component needed as our examples app is react.
@@ -58,13 +56,13 @@ export default function LineChart() {
         return () => {
             // check if chart is already initialized
             if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.forEach(sciChartSurface => sciChartSurface.delete());
+                sciChartSurfaceRef.current.forEach((sciChartSurface) => sciChartSurface.delete());
                 return;
             }
 
             // else postpone deletion
             chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.forEach(sciChartSurface => sciChartSurface.delete());
+                sciChartSurfaceRef.current.forEach((sciChartSurface) => sciChartSurface.delete());
             });
         };
     }, []);

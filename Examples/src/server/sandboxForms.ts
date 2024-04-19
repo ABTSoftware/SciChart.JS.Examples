@@ -7,8 +7,28 @@ import { NotFoundError } from "./Errors";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 const pj = require("../../package.json");
 
+const includeExternalModules = async(folderPath: string, files: IFiles, content: string) =>{
+    // Pull files outside the local folder into it and rewrite the import
+    const externalImports = Array.from(content.matchAll(/from "\.\.\/(.*)";/g));
+    if (externalImports.length > 0) {
+        for (const externalImport of externalImports) {
+            if (externalImport.length > 1) {
+                const filepath = path.join(folderPath, "../" + externalImport[1] + ".ts");
+                const filename = externalImport[1].substring(externalImport[1].lastIndexOf("/") + 1);
+                const csPath = "src/" + filename + ".ts";
+                content = content.replace("../" + externalImport[1], "./" + filename);
+                if (!files[csPath]) {
+                    const externalContent = await fs.promises.readFile(filepath, "utf8");
+                    files[csPath] = { content: externalContent, isBinary: false };
+                }
+            }
+        }
+    }
+    return content;
+}
+
 const includeImportedModules = async (folderPath: string, files: IFiles, code: string) => {
-    const localImports = Array.from(code.matchAll(/import.*from ["']\.\/(.*)["'];/g));
+    const localImports = Array.from(code.matchAll(/from ["']\.\/(.*)["'];/g));
     for (const localImport of localImports) {
         if (localImport.length > 1) {
             let content: string = "";
@@ -22,25 +42,11 @@ const includeImportedModules = async (folderPath: string, files: IFiles, code: s
                 csPath = "src/" + localImport[1] + ".tsx";
                 content = await fs.promises.readFile(filepath, "utf8");
             }
-            const nestedImports = Array.from(content.matchAll(/import.*from "\.\/(.*)";/g));
+            const nestedImports = Array.from(content.matchAll(/from "\.\/(.*)";/g));
             if (nestedImports.length > 0) {
                 localImports.push(...nestedImports);
             }
-            // Pull files outside the local folder into it and rewrite the import
-            const externalImports = Array.from(content.matchAll(/import.*from "\.\.\/(.*)";/g));
-            if (externalImports.length > 0) {
-                for (const externalImport of externalImports) {
-                    let externalContent: string = "";
-                    if (externalImport.length > 1) {
-                        const filepath = path.join(folderPath, "../" + externalImport[1] + ".ts");
-                        const filename = externalImport[1].substring(externalImport[1].lastIndexOf("/") + 1);
-                        const csPath = "src/" + filename + ".ts";
-                        content = content.replace("../" + externalImport[1], "./" + filename);
-                        externalContent = await fs.promises.readFile(filepath, "utf8");
-                        files[csPath] = { content: externalContent, isBinary: false };
-                    }
-                }
-            }
+            content = await includeExternalModules(folderPath, files, content);
             files[csPath] = { content, isBinary: false };
         }
     }
@@ -51,8 +57,9 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
     let code = await fs.promises.readFile(tsPath, "utf8");
     let files: IFiles = {};
     await includeImportedModules(folderPath, files, code);
-
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
+    code = await includeExternalModules(folderPath, files, code);
+
     files = {
         ...commonFiles,
         ...files,
@@ -78,7 +85,6 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
                     "react-scripts": "5.0.1",
                     scichart: pj.dependencies.scichart,
                     "scichart-react": pj.dependencies["scichart-react"],
-                    "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
                     ...currentExample.extraDependencies,
                 },
                 devDependencies: {
@@ -96,7 +102,7 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
         },
         "src/index.tsx": {
             content: `
-            import { hydrate } from "react-dom";
+import { hydrate } from "react-dom";
 import { SciChartSurface, SciChart3DSurface } from "scichart";
 
 import App from "./App";
@@ -192,7 +198,6 @@ const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TEx
                     "zone.js": "0.12.0",
                     scichart: pj.dependencies.scichart,
                     "scichart-angular": pj.dependencies["scichart-angular"],
-                    "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
                     ...currentExample.extraDependencies,
                 },
                 devDependencies: {
@@ -404,7 +409,6 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
                 },
                 dependencies: {
                     scichart: pj.dependencies.scichart,
-                    "scichart-example-dependencies": pj.dependencies["scichart-example-dependencies"],
                     "parcel-bundler": "1.6.1",
                     ...currentExample.extraDependencies,
                 },

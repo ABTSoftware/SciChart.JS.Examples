@@ -1,22 +1,19 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
 import { Button } from "@material-ui/core";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-    SciChartSurface,
-    HeatmapLegend
-} from "scichart";
-import {drawExample, divElementId, drawHeatmapLegend, divHeatmapLegend } from "./drawExample";
+import { SciChartSurface, HeatmapLegend } from "scichart";
+import { drawExample, divElementId, drawHeatmapLegend, divHeatmapLegend } from "./drawExample";
 
 // Styles for layout of the toolbar / chart area
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -24,11 +21,11 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 // React component needed as our examples app is react.
@@ -36,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 export default function HeatmapChart() {
     const controlsRef = React.useRef({
         startDemo: () => {},
-        stopDemo: () => {}
+        stopDemo: () => {},
     });
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const heatmapLegendRef = React.useRef<HeatmapLegend>();
@@ -58,7 +55,7 @@ export default function HeatmapChart() {
                 setStats({
                     xSize: res.heatmapDataSeries.arrayWidth,
                     ySize: res.heatmapDataSeries.arrayHeight,
-                    fps
+                    fps,
                 });
             });
             res.controls.startDemo();
@@ -117,7 +114,7 @@ export default function HeatmapChart() {
                                 width: "100px",
                                 top: 0,
                                 right: "75px",
-                                margin: "20"
+                                margin: "20",
                             }}
                         ></div>
                     </div>

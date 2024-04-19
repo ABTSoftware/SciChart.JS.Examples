@@ -32,7 +32,8 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
+import { appTheme } from "../../../theme";
 
 const EventXStep = 6;
 

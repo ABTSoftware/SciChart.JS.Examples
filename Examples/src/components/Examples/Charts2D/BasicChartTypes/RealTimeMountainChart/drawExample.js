@@ -1,5 +1,4 @@
-import { RandomWalkGenerator } from "../../../../../../../Sandbox/CustomerExamples/AnimateXyValuesOnSeries/src/RandomWalkGenerator";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import {
     CustomAnnotation,
     DoubleAnimator,
@@ -14,6 +13,7 @@ import {
     SciChartSurface,
     XyDataSeries,
 } from "scichart";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 export const drawExample = async (rootElement) => {
     // Create the SciChartSurface in the div 'scichart-root'
     // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext

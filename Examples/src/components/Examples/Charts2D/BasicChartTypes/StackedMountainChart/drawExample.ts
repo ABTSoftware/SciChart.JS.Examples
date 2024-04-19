@@ -6,18 +6,21 @@ import {
     NumericAxis,
     SciChartSurface,
     StackedMountainCollection,
-    StackedMountainRenderableSeries, WaveAnimation,
-    XyDataSeries, ZoomExtentsModifier, ZoomPanModifier
+    StackedMountainRenderableSeries,
+    WaveAnimation,
+    XyDataSeries,
+    ZoomExtentsModifier,
+    ZoomPanModifier,
 } from "scichart";
-import {appTheme} from "scichart-example-dependencies";
-import {xValues, y1Values, y2Values, y3Values, y4Values} from "./data/stackedMountainChartData";
+import { appTheme } from "../../../theme";
+import { xValues, y1Values, y2Values, y3Values, y4Values } from "./data/stackedMountainChartData";
 
 export const divElementId = "chart";
 
 export const drawExample = async () => {
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create an xAxis, yAxis
@@ -29,25 +32,25 @@ export const drawExample = async () => {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Apples" }),
         fill: appTheme.VividPurple + "AA",
         stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2
+        strokeThickness: 2,
     });
     const stackedMountain2 = new StackedMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Pears" }),
         fill: appTheme.VividPink + "AA",
         stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2
+        strokeThickness: 2,
     });
     const stackedMountain3 = new StackedMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Oranges" }),
         fill: appTheme.VividSkyBlue + "AA",
         stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2
+        strokeThickness: 2,
     });
     const stackedMountain4 = new StackedMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y4Values, dataSeriesName: "Oranges" }),
         fill: appTheme.VividOrange + "AA",
         stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2
+        strokeThickness: 2,
     });
 
     // Group these StackedMountain series together in a StackedMountainCollection
@@ -68,7 +71,7 @@ export const drawExample = async () => {
             orientation: ELegendOrientation.Vertical,
             showLegend: true,
             showCheckboxes: false,
-            showSeriesMarkers: true
+            showSeriesMarkers: true,
         })
     );
 

@@ -9,7 +9,7 @@ type TProps = {
     examples: GalleryItem[];
 };
 
-const Gallery: React.FC<TProps & WithWidth> = props => {
+const Gallery: React.FC<TProps & WithWidth> = (props) => {
     let slidersWidth = 5;
     if (props.width === "sm") {
         slidersWidth = 3;

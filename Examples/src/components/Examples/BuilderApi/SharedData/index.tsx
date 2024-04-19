@@ -1,5 +1,3 @@
-import * as React from "react";
-import { appTheme } from "scichart-example-dependencies";
 import { SciChartReact } from "scichart-react";
 import classes from "../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";

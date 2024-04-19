@@ -10,7 +10,7 @@ import {
     LineAnnotation,
     GenericAnimation,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { populationData } from "./data";
 export const drawExample = async (rootElement) => {
     // Create a SciChartSurface with bubble chart

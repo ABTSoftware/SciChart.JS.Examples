@@ -13,7 +13,7 @@ import {
     ZoomPanModifier,
 } from "scichart";
 
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create the SciChartSurface in the div 'scichart-root'

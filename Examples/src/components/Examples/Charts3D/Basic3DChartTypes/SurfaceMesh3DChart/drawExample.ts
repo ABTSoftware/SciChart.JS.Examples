@@ -1,13 +1,21 @@
 import {
-    CameraController, EDrawMeshAs, GradientColorPalette, HeatmapLegend, MouseWheelZoomModifier3D,
+    CameraController,
+    EDrawMeshAs,
+    GradientColorPalette,
+    HeatmapLegend,
+    MouseWheelZoomModifier3D,
     NumberRange,
-    NumericAxis3D, OrbitModifier3D, ResetCamera3DModifier,
-    SciChart3DSurface, SurfaceMeshRenderableSeries3D, TooltipModifier3D,
+    NumericAxis3D,
+    OrbitModifier3D,
+    ResetCamera3DModifier,
+    SciChart3DSurface,
+    SurfaceMeshRenderableSeries3D,
+    TooltipModifier3D,
     UniformGridDataSeries3D,
     Vector3,
-    zeroArray2D
+    zeroArray2D,
 } from "scichart";
-import {appTheme} from "scichart-example-dependencies";
+import { appTheme } from "scichart-example-dependencies";
 
 const divElementId = "chart";
 const divHeatmapLegend = "heatmapLegend";
@@ -16,13 +24,13 @@ const divHeatmapLegend = "heatmapLegend";
 export const drawExample = async () => {
     // Create a SciChart3DSurface
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create and position the camera in the 3D world
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(-200, 150, 200),
-        target: new Vector3(0, 50, 0)
+        target: new Vector3(0, 50, 0),
     });
     // Set the worlddimensions, which defines the Axis cube size
     sciChart3DSurface.worldDimensions = new Vector3(200, 100, 200);
@@ -31,7 +39,7 @@ export const drawExample = async () => {
     sciChart3DSurface.xAxis = new NumericAxis3D(wasmContext, { axisTitle: "X Axis" });
     sciChart3DSurface.yAxis = new NumericAxis3D(wasmContext, {
         axisTitle: "Y Axis",
-        visibleRange: new NumberRange(0, 0.3)
+        visibleRange: new NumberRange(0, 0.3),
     });
     sciChart3DSurface.zAxis = new NumericAxis3D(wasmContext, { axisTitle: "Z Axis" });
 
@@ -54,7 +62,7 @@ export const drawExample = async () => {
         yValues: heightmapArray,
         xStep: 1,
         zStep: 1,
-        dataSeriesName: "Uniform Surface Mesh"
+        dataSeriesName: "Uniform Surface Mesh",
     });
 
     // Create the color map
@@ -66,8 +74,8 @@ export const drawExample = async () => {
             { offset: 0.5, color: appTheme.VividGreen },
             { offset: 0.3, color: appTheme.VividSkyBlue },
             { offset: 0.15, color: appTheme.Indigo },
-            { offset: 0, color: appTheme.DarkIndigo }
-        ]
+            { offset: 0, color: appTheme.DarkIndigo },
+        ],
     });
 
     // Finally, create a SurfaceMeshRenderableSeries3D and add to the chart
@@ -89,7 +97,7 @@ export const drawExample = async () => {
         drawSkirt: false,
         drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME,
         meshColorPalette: colorMap,
-        isVisible: true
+        isVisible: true,
     });
 
     sciChart3DSurface.renderableSeries.add(series);
@@ -108,23 +116,23 @@ const drawHeatmapLegend = async () => {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB"
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
             axisBorder: {
                 borderLeft: 1,
-                color: appTheme.ForegroundColor + "77"
+                color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 6,
-                strokeThickness: 1
+                strokeThickness: 1,
             },
             minorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
-                strokeThickness: 1
-            }
+                strokeThickness: 1,
+            },
         },
         colorMap: {
             minimum: 0,
@@ -136,9 +144,9 @@ const drawHeatmapLegend = async () => {
                 { offset: 0.5, color: appTheme.VividGreen },
                 { offset: 0.3, color: appTheme.VividSkyBlue },
                 { offset: 0.15, color: appTheme.Indigo },
-                { offset: 0, color: appTheme.DarkIndigo }
-            ]
-        }
+                { offset: 0, color: appTheme.DarkIndigo },
+            ],
+        },
     });
 
     return heatmapLegend;

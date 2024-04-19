@@ -1,5 +1,4 @@
 import * as React from "react";
-import { appTheme, multiPaneData } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 import { FinChartLegendModifier, IFinanceLegendModifierOptions } from "./FinChartLegendModifier";
 
@@ -29,6 +28,8 @@ import {
     SciChartVerticalGroup,
     Thickness,
 } from "scichart";
+import { multiPaneData } from "../../../ExampleData/multiPaneData";
+import { appTheme } from "../../../theme";
 
 export const mainChartWrapper = "cc_chart";
 export const mainChartWrapper2 = "cc_chart2";

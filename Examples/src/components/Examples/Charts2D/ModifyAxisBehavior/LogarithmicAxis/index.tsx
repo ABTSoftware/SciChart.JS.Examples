@@ -1,5 +1,6 @@
 import * as React from "react";
-import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import classes from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,7 +21,7 @@ import {
     TextAnnotation,
     XyDataSeries,
     ZoomExtentsModifier,
-    Thickness
+    Thickness,
 } from "scichart";
 
 const divElementId = "chart1";
@@ -34,7 +35,7 @@ const drawExample = async () => {
         theme: {
             ...appTheme.SciChartJsTheme,
             majorGridLineBrush: appTheme.MutedSkyBlue + "55",
-            minorGridLineBrush: appTheme.MutedSkyBlue + "22"
+            minorGridLineBrush: appTheme.MutedSkyBlue + "22",
         },
         title: "Logarithmic X & Y Axis",
         titleStyle: {
@@ -42,8 +43,8 @@ const drawExample = async () => {
             fontWeight: "Bold",
             placeWithinChart: true,
             color: appTheme.ForegroundColor + "C4",
-            padding: Thickness.fromString("10 0 4 0")
-        }
+            padding: Thickness.fromString("10 0 4 0"),
+        },
     });
 
     // Create an X and Y Axis
@@ -51,7 +52,7 @@ const drawExample = async () => {
         logBase: 10,
         labelFormat: ENumericFormat.Scientific,
         labelPrecision: 2,
-        minorsPerMajor: 10
+        minorsPerMajor: 10,
     });
     sciChartSurface.xAxes.add(xAxisLogarithmic);
 
@@ -62,7 +63,7 @@ const drawExample = async () => {
         logBase: 10,
         labelFormat: ENumericFormat.Scientific,
         labelPrecision: 2,
-        minorsPerMajor: 10
+        minorsPerMajor: 10,
     });
     sciChartSurface.yAxes.add(yAxisLogarithmic);
 
@@ -70,7 +71,7 @@ const drawExample = async () => {
         labelFormat: ENumericFormat.Decimal,
         labelPrecision: 2,
         isVisible: false,
-        id: X_AXIS_LINEAR_ID
+        id: X_AXIS_LINEAR_ID,
     });
     sciChartSurface.xAxes.add(xAxisLinear);
 
@@ -78,7 +79,7 @@ const drawExample = async () => {
         labelFormat: ENumericFormat.Decimal,
         labelPrecision: 2,
         isVisible: false,
-        id: Y_AXIS_LINEAR_ID
+        id: Y_AXIS_LINEAR_ID,
     });
     sciChartSurface.yAxes.add(yAxisLinear);
 
@@ -92,7 +93,7 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: data0.xValues,
                 yValues: data0.yValues,
-                dataSeriesName: "y = x ^ 2"
+                dataSeriesName: "y = x ^ 2",
             }),
             stroke: appTheme.VividSkyBlue,
             strokeThickness: 3,
@@ -100,9 +101,9 @@ const drawExample = async () => {
                 width: 7,
                 height: 7,
                 fill: appTheme.VividSkyBlue,
-                strokeThickness: 0
+                strokeThickness: 0,
             }),
-            animation: new SweepAnimation({ duration: 800, delay: 0 })
+            animation: new SweepAnimation({ duration: 800, delay: 0 }),
         })
     );
 
@@ -111,7 +112,7 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: data1.xValues,
                 yValues: data1.yValues,
-                dataSeriesName: "y = x ^ 2.2"
+                dataSeriesName: "y = x ^ 2.2",
             }),
             stroke: appTheme.VividPink,
             strokeThickness: 3,
@@ -119,9 +120,9 @@ const drawExample = async () => {
                 width: 7,
                 height: 7,
                 fill: appTheme.VividPink,
-                strokeThickness: 0
+                strokeThickness: 0,
             }),
-            animation: new SweepAnimation({ duration: 800, delay: 0 })
+            animation: new SweepAnimation({ duration: 800, delay: 0 }),
         })
     );
 
@@ -130,7 +131,7 @@ const drawExample = async () => {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: data2.xValues,
                 yValues: data2.yValues,
-                dataSeriesName: "y = x ^ 2.4"
+                dataSeriesName: "y = x ^ 2.4",
             }),
             stroke: appTheme.VividOrange,
             strokeThickness: 3,
@@ -138,9 +139,9 @@ const drawExample = async () => {
                 width: 7,
                 height: 7,
                 fill: appTheme.VividOrange,
-                strokeThickness: 0
+                strokeThickness: 0,
             }),
-            animation: new SweepAnimation({ duration: 800, delay: 0 })
+            animation: new SweepAnimation({ duration: 800, delay: 0 }),
         })
     );
 
@@ -159,17 +160,17 @@ const drawExample = async () => {
         yAxisLogarithmic,
         yAxisLinear,
         xAxisLinear,
-        xAxisLogarithmic
+        xAxisLogarithmic,
     };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -177,11 +178,11 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 // React component needed as our examples app is react.
@@ -256,7 +257,7 @@ export default function LogarithmicAxisExample() {
         const activeYAxisId = logYAxis.isVisible ? logYAxis.id : linearYAxis.id;
 
         // After switching visibility of axis - we need to set the X/Y AxisId on series
-        sciChartSurface.renderableSeries.asArray().forEach(rs => {
+        sciChartSurface.renderableSeries.asArray().forEach((rs) => {
             rs.xAxisId = activeXAxisId;
             rs.yAxisId = activeYAxisId;
         });

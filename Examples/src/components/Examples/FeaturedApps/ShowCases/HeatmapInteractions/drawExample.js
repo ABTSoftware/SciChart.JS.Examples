@@ -1,4 +1,4 @@
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { AddIOModifier } from "./AddIOModifier";
 import { DiscreteAxisMarker } from "./DiscreteAxisMarker";
 import { PointDragModifier } from "./PointDragModifier";

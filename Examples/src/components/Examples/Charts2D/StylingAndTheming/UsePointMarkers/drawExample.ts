@@ -1,6 +1,6 @@
 import customPointImage from "./img/CustomMarkerImage.png";
 
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 import {
     SciChartSurface,

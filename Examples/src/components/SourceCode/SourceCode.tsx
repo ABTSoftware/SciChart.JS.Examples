@@ -9,7 +9,7 @@ type TProps = {
     onClose: () => void;
 };
 
-const SourceCode: React.FC<TProps> = props => {
+const SourceCode: React.FC<TProps> = (props) => {
     const code = `${props.code}`;
     React.useEffect(() => {
         window.Prism?.highlightAll();
@@ -25,7 +25,7 @@ const SourceCode: React.FC<TProps> = props => {
                 <pre className="language-javascript line-numbers">
                     <code
                         style={{
-                            fontFamily: "Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace"
+                            fontFamily: "Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace",
                         }}
                     >
                         {code}

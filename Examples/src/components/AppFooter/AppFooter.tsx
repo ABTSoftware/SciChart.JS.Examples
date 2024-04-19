@@ -5,7 +5,7 @@ import {
     MENU_ITEMS_3D,
     MENU_ITEMS_3D_ID,
     MENU_ITEMS_FEATURED_APPS,
-    MENU_ITEMS_FEATURED_APPS_ID
+    MENU_ITEMS_FEATURED_APPS_ID,
 } from "../AppRouter/examples";
 import FooterGrid from "./FooterGrid";
 import { useNavigate } from "react-router-dom";
