@@ -9,8 +9,7 @@ module.exports = {
   // Prevent webpack trying to build these
   externals: {
     express: "commonjs2 express",
-    "ffi-napi": "commonjs2 ffi-napi",
-    "ref-napi": "commonjs2 ref-napi",
+    "ffi-rs": "commonjs2 ffi-rs",
   },
   entry: "./src/server/server.ts",
   output: {

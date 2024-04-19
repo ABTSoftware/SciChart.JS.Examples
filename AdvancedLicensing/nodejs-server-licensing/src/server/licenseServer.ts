@@ -1,6 +1,5 @@
 import * as express from "express";
-import * as ffi from "ffi-napi";
-import * as ref from "ref-napi";
+import { DataType, open, close, define } from "ffi-rs";
 import path = require("path");
 import os = require("os");
 
@@ -19,42 +18,70 @@ const debug = (msg: string, ...args: any[]) => {
   }
 };
 
-var stringPtr = ref.refType(ref.types.CString);
-
+const library = "SciChartLicenseServer";
+// Open the dynamic library
+open({ library, path: libraryPath });
 // Configure the native api
-let nativeLicenseServer = new ffi.Library(libraryPath, {
-  SciChartLicenseServer_SetAssemblyName: ["bool", ["string"]],
-  SciChartLicenseServer_SetRuntimeLicenseKey: ["bool", ["string"]],
-  SciChartLicenseServer_ValidateChallenge: ["string", ["string"]],
-  SciChartLicenseServer_Dump: [stringPtr, []], // This outputs the full license details, similarly to what you see with LICENSE_DEBUG on in the client
-  SciChartLicenseServer_GetLicenseErrors: [stringPtr, []],
+let nativeLicenseServer = define({
+  SciChartLicenseServer_SetAssemblyName: {
+    library,
+    retType: DataType.Boolean,
+    paramsType: [DataType.String],
+  },
+  SciChartLicenseServer_SetRuntimeLicenseKey: {
+    library,
+    retType: DataType.Boolean,
+    paramsType: [DataType.String],
+  },
+  SciChartLicenseServer_ValidateChallenge: {
+    library,
+    retType: DataType.String,
+    paramsType: [DataType.String],
+  },
+  SciChartLicenseServer_Dump: {
+    library,
+    retType: DataType.String,
+    paramsType: [],
+  },
+  SciChartLicenseServer_GetLicenseErrors: {
+    library,
+    retType: DataType.String,
+    paramsType: [],
+  },
 });
+
 debug("nativeLicenseServer created");
 
 // The app name you set here must match one you have added on the MyAccount page before generating a key pair.
 debug("app name", process.env.npm_package_name);
-nativeLicenseServer.SciChartLicenseServer_SetAssemblyName(
-  process.env.npm_package_name
-);
+nativeLicenseServer.SciChartLicenseServer_SetAssemblyName([
+  process.env.npm_package_name,
+]);
 
 // Set the Server key
-const isValid =
-  nativeLicenseServer.SciChartLicenseServer_SetRuntimeLicenseKey(
-    "server key here"
-  );
+const isValid = nativeLicenseServer.SciChartLicenseServer_SetRuntimeLicenseKey([
+  "server key here",
+]);
 debug("SciChartLicenseServer_SetRuntimeLicenseKey", isValid);
 if (!isValid) {
-  const errors = nativeLicenseServer.SciChartLicenseServer_GetLicenseErrors();
-  console.error(errors.readCString());
+  const errors = nativeLicenseServer.SciChartLicenseServer_GetLicenseErrors([]);
+  console.error(errors);
 }
 
 router.get("/", (req, res) => {
   const challenge = req.query.challenge.toString();
   debug("Received license challenge: ", challenge);
-  const result =
-    nativeLicenseServer.SciChartLicenseServer_ValidateChallenge(challenge);
+  const result = nativeLicenseServer.SciChartLicenseServer_ValidateChallenge([
+    challenge,
+  ]);
   debug("returning response: ", result);
   res.end(result);
 });
 
-export { router as licenseServer };
+// Callback to close the library on shutdown
+const closeLicenseServer = () => {
+  debug("Closing licenseServer");
+  close(library);
+};
+
+export { router as licenseServer, closeLicenseServer };
