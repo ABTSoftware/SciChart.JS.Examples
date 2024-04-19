@@ -34,7 +34,8 @@ On a request to /api/license
 
 1. Extract the value of the querystring parameter 'challenge'.
 2. Pass this to ValidateChallenge which returns a response string.
-3. Return the response to the client as text, not json.
+3. Check that the response string does not start with "Error". If it does, the response will give some explanation for the error.
+4. Return the response to the client as text, not json.
 
 ## Api Details
 
@@ -50,6 +51,8 @@ int SciChartLicenseServer_SetRuntimeLicenseKey(char* key)
 char* SciChartLicenseServer_ValidateChallenge(char* challenge)
 char* SciChartLicenseServer_GetLicenseErrors()
 ```
+
+For the functions that return char\* you should free the buffer that is returned.
 
 ### Static linking header
 
@@ -114,4 +117,26 @@ namespace SciChart {
 
 ### C# Api
 
-For our .net integration there is a swig generated wrapper which exposes the methods prefixed with CSHARP\_, eg CSHARP_SetAssemblyName. It is not recommended to try and call these directly.
+For our .net integration there is a swig generated wrapper which exposes the methods prefixed with CSharp\_, eg CSharp_SetAssemblyName. These use a different method for passing string which involves registering a callback. In C# this is done as follows
+
+```C#
+  protected class SWIGStringHelper {
+
+    public delegate string SWIGStringDelegate(string message);
+    static SWIGStringDelegate stringDelegate = new SWIGStringDelegate(CreateString);
+
+    [global::System.Runtime.InteropServices.DllImport("SciChartLicenseServer", EntryPoint="SWIGRegisterStringCallback_SciChartLicenseServer")]
+    public static extern void SWIGRegisterStringCallback_SciChartLicenseServer(SWIGStringDelegate stringDelegate);
+
+    static string CreateString(string cString) {
+      return cString;
+    }
+
+    static SWIGStringHelper() {
+      SWIGRegisterStringCallback_SciChartLicenseServer(stringDelegate);
+    }
+  }
+```
+
+Then you can call CSharp_ValidateChallenge.
+You can also register a callback to enable exception handling, but there are no meaningful exception thrown.

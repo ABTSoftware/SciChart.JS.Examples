@@ -2,7 +2,7 @@ import * as chalk from "chalk";
 import * as cors from "cors";
 import * as express from "express";
 import * as http from "http";
-import { licenseServer } from "./licenseServer";
+import { licenseServer, closeLicenseServer } from "./licenseServer";
 
 const app = express();
 app.use(cors());
@@ -14,11 +14,25 @@ app.use(express.static("build"));
 app.use("/api/license", licenseServer);
 
 const server = http.createServer(app);
-
 server.listen(3000, "0.0.0.0", () => {
   console.log(
     `Serving at http://localhost:3000 ${chalk.green("✓")}. ${chalk.red(
       "To run in dev mode: npm run dev"
     )}`
   );
+});
+// Graceful Shutdown
+process.on("SIGINT", () => {
+  console.log("SIGINT signal received: closing HTTP server");
+  server.close(() => {
+    closeLicenseServer();
+    process.exit(0);
+  });
+});
+process.on("SIGTERM", () => {
+  console.log("SIGTERM signal received: closing HTTP server");
+  server.close(() => {
+    closeLicenseServer();
+    process.exit(0);
+  });
 });
