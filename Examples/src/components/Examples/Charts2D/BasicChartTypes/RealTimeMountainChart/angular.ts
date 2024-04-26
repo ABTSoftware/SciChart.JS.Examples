@@ -15,4 +15,12 @@ export class AppComponent {
     title = "scichart-angular-app";
 
     drawExample = drawExample;
+
+    onInitHandler = (initResult: any) => {
+        initResult.controls.handleStart();
+    };
+
+    onDeleteHandler = (initResult: any) => {
+        initResult.controls.handleStop();
+    };
 }

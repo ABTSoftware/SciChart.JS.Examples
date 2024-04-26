@@ -39,12 +39,26 @@ import {
     EVerticalAnchorPoint,
     EAnnotationLayer,
 } from "scichart";
-import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
+import { multiPaneData } from "../../../ExampleData/multiPaneData";
 import { appTheme } from "../../../theme";
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
 const divElementId3 = "cc_chart_3_3";
 const divOverviewId = "cc_overview";
+const getTradingData = (startPoints, maxPoints) => {
+    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
+    if (maxPoints !== undefined) {
+        return {
+            dateValues: dateValues.slice(startPoints, startPoints + maxPoints),
+            openValues: openValues.slice(startPoints, startPoints + maxPoints),
+            highValues: highValues.slice(startPoints, startPoints + maxPoints),
+            lowValues: lowValues.slice(startPoints, startPoints + maxPoints),
+            closeValues: closeValues.slice(startPoints, startPoints + maxPoints),
+            volumeValues: volumeValues.slice(startPoints, startPoints + maxPoints),
+        };
+    }
+    return { dateValues, openValues, highValues, lowValues, closeValues, volumeValues };
+};
 // Override the standard legend displayed by RolloverModifier
 const getTooltipLegendTemplate = (seriesInfos, svgAnnotation) => {
     let outputSvgString = "";
@@ -84,8 +98,7 @@ const getOverviewSeries = (defaultSeries) => {
 export const getChartsInitializationAPI = () => {
     // We can group together charts using VerticalChartGroup type
     const verticalGroup = new SciChartVerticalGroup();
-    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } =
-        ExampleDataProvider.getTradingData();
+    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = getTradingData();
     let chart1XAxis;
     let chart2XAxis;
     let chart3XAxis;

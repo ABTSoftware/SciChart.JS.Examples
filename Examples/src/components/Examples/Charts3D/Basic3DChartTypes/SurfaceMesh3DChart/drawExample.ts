@@ -15,7 +15,7 @@ import {
     Vector3,
     zeroArray2D,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 const divElementId = "chart";
 const divHeatmapLegend = "heatmapLegend";

@@ -31,23 +31,14 @@ import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
 
-export const divElementId1 = "chart1";
-export const divElementId2 = "chart2";
-export const divElementId3 = "chart3";
-export const divElementId4 = "chart4";
-export const divElementId5 = "chart5";
-export const divElementId6 = "chart6";
-export const divElementId7 = "chart7";
-export const divElementId8 = "chart8";
-export const divElementId9 = "chart9";
-
-export const drawExample = async (withContext = false) => {
-    const createChartCommon = async (divId: string, title: string, isVertical: boolean = false) => {
+export const getChartsInitializationAPI = () => {
+    const createChartCommon = async (divId: string | HTMLDivElement, title: string, isVertical: boolean = false) => {
         // Create a SciChartSurface
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId, {
             theme: appTheme.SciChartJsTheme,
             padding: new Thickness(5, 5, 5, 5),
             title,
+            disableAspect: false,
             titleStyle: {
                 placeWithinChart: true,
                 color: appTheme.ForegroundColor + "C4",
@@ -77,11 +68,8 @@ export const drawExample = async (withContext = false) => {
         };
     };
 
-    const initJustLineCharts = async (rootElement: string = "") => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(
-            rootElement ? rootElement : divElementId1,
-            "Simple Line Chart"
-        );
+    const initJustLineCharts = async (rootElement: string | HTMLDivElement) => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement, "Simple Line Chart");
 
         let data = createLineData(2);
 
@@ -115,18 +103,11 @@ export const drawExample = async (withContext = false) => {
             })
         );
 
-        if (withContext) {
-            return { sciChartSurface, wasmContext };
-        }
-
-        return sciChartSurface;
+        return { sciChartSurface, wasmContext };
     };
 
-    const initDigitalLineCharts = async (rootElement: string = "") => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(
-            rootElement ? rootElement : divElementId2,
-            "Digital (Step) Line Charts"
-        );
+    const initDigitalLineCharts = async (rootElement: string | HTMLDivElement) => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement, "Digital (Step) Line Charts");
 
         const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8];
         const yValues = [1, 2, 3, 2, 0.5, 1, 2.5, 1, 1];
@@ -160,18 +141,11 @@ export const drawExample = async (withContext = false) => {
             })
         );
 
-        if (withContext) {
-            return { sciChartSurface, wasmContext };
-        }
-
-        return sciChartSurface;
+        return { sciChartSurface, wasmContext };
     };
 
-    const initTooltipsOnLineCharts = async (rootElement: string = "") => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(
-            rootElement ? rootElement : divElementId3,
-            "Tooltips on Line Charts"
-        );
+    const initTooltipsOnLineCharts = async (rootElement: string | HTMLDivElement) => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement, "Tooltips on Line Charts");
 
         const { xValues, yValues } = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(25);
 
@@ -200,18 +174,11 @@ export const drawExample = async (withContext = false) => {
             mousePoint: new Point((sciChartSurface.renderSurface.viewportSize.width * 2) / 3, 10),
         } as ModifierMouseArgs);
 
-        if (withContext) {
-            return { sciChartSurface, wasmContext };
-        }
-
-        return sciChartSurface;
+        return { sciChartSurface, wasmContext };
     };
 
-    const initDashedLineCharts = async (rootElement: string = "") => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(
-            rootElement ? rootElement : divElementId4,
-            "Dashed Line Charts"
-        );
+    const initDashedLineCharts = async (rootElement: string | HTMLDivElement) => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement, "Dashed Line Charts");
 
         // Create some xValues, yValues arrays
         let data = createLineData(0);
@@ -265,18 +232,11 @@ export const drawExample = async (withContext = false) => {
             })
         );
 
-        if (withContext) {
-            return { sciChartSurface, wasmContext };
-        }
-
-        return sciChartSurface;
+        return { sciChartSurface, wasmContext };
     };
 
-    const initPalettedLineCharts = async (rootElement: string = "") => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(
-            rootElement ? rootElement : divElementId5,
-            "Gradient Line Charts"
-        );
+    const initPalettedLineCharts = async (rootElement: string | HTMLDivElement) => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement, "Gradient Line Charts");
 
         const data = createLineData(3);
 
@@ -304,18 +264,11 @@ export const drawExample = async (withContext = false) => {
             })
         );
 
-        if (withContext) {
-            return { sciChartSurface, wasmContext };
-        }
-
-        return sciChartSurface;
+        return { sciChartSurface, wasmContext };
     };
 
-    const initHoveredLineCharts = async (rootElement: string = "") => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(
-            rootElement ? rootElement : divElementId6,
-            "Hover/Select Line Charts"
-        );
+    const initHoveredLineCharts = async (rootElement: string | HTMLDivElement) => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement, "Hover/Select Line Charts");
 
         // Create some xValues, yValues arrays
         let data = createLineData(0);
@@ -388,19 +341,11 @@ export const drawExample = async (withContext = false) => {
 
         sciChartSurface.renderableSeries.get(2).isSelected = true;
 
-        if (withContext) {
-            return { sciChartSurface, wasmContext };
-        }
-
-        return sciChartSurface;
+        return { sciChartSurface, wasmContext };
     };
 
-    const initVerticalLineCharts = async (rootElement: string = "") => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(
-            rootElement ? rootElement : divElementId7,
-            "Vertical Line Charts",
-            true
-        );
+    const initVerticalLineCharts = async (rootElement: string | HTMLDivElement) => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement, "Vertical Line Charts", true);
 
         // Setting xAxis.alignment = left/right and yAxis.alignemnt = top/bottom
         // is all that's required to rotate a chart, including all drawing and interactions in scichart
@@ -447,18 +392,11 @@ export const drawExample = async (withContext = false) => {
             })
         );
 
-        if (withContext) {
-            return { sciChartSurface, wasmContext };
-        }
-
-        return sciChartSurface;
+        return { sciChartSurface, wasmContext };
     };
 
-    const initGapsInLineCharts = async (rootElement: string = "") => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(
-            rootElement ? rootElement : divElementId8,
-            "Gaps in Line Charts"
-        );
+    const initGapsInLineCharts = async (rootElement: string | HTMLDivElement) => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement, "Gaps in Line Charts");
 
         const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 
@@ -528,18 +466,11 @@ export const drawExample = async (withContext = false) => {
             })
         );
 
-        if (withContext) {
-            return { sciChartSurface, wasmContext };
-        }
-
-        return sciChartSurface;
+        return { sciChartSurface, wasmContext };
     };
 
-    const initThresholdedLineCharts = async (rootElement: string = "") => {
-        const { sciChartSurface, wasmContext } = await createChartCommon(
-            rootElement ? rootElement : divElementId9,
-            "Thresholded Line Charts"
-        );
+    const initThresholdedLineCharts = async (rootElement: string | HTMLDivElement) => {
+        const { sciChartSurface, wasmContext } = await createChartCommon(rootElement, "Thresholded Line Charts");
 
         const { xValues, yValues } = new RandomWalkGenerator().Seed(1337).getRandomWalkSeries(50);
 
@@ -614,35 +545,18 @@ export const drawExample = async (withContext = false) => {
             })
         );
 
-        return sciChartSurface;
+        return { sciChartSurface, wasmContext };
     };
 
-    if (withContext) {
-        return {
-            initJustLineCharts,
-            initDigitalLineCharts,
-            initTooltipsOnLineCharts,
-            initDashedLineCharts,
-            initPalettedLineCharts,
-            initHoveredLineCharts,
-            initGapsInLineCharts,
-            initVerticalLineCharts,
-            initThresholdedLineCharts,
-        };
-    }
-
-    const charts = await Promise.all([
-        initJustLineCharts(),
-        initDigitalLineCharts(),
-        initTooltipsOnLineCharts(),
-        initDashedLineCharts(),
-        initPalettedLineCharts(),
-        initHoveredLineCharts(),
-        initGapsInLineCharts(),
-        initVerticalLineCharts(),
-        initGapsInLineCharts(),
-        initThresholdedLineCharts(),
-    ]);
-
-    return { charts };
+    return {
+        initJustLineCharts,
+        initDigitalLineCharts,
+        initTooltipsOnLineCharts,
+        initDashedLineCharts,
+        initPalettedLineCharts,
+        initHoveredLineCharts,
+        initGapsInLineCharts,
+        initVerticalLineCharts,
+        initThresholdedLineCharts,
+    };
 };

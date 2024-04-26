@@ -1,4 +1,3 @@
-import { multiPaneData } from "./multiPaneData";
 /**
  * Helper class for the SciChart.Js JavaScript Chart examples to return datasets used throughout the examples
  */
@@ -96,20 +95,6 @@ export class ExampleDataProvider {
             );
         }
         return { xValues, yValues };
-    }
-    static getTradingData(startPoints, maxPoints) {
-        const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
-        if (maxPoints !== undefined) {
-            return {
-                dateValues: dateValues.slice(startPoints, startPoints + maxPoints),
-                openValues: openValues.slice(startPoints, startPoints + maxPoints),
-                highValues: highValues.slice(startPoints, startPoints + maxPoints),
-                lowValues: lowValues.slice(startPoints, startPoints + maxPoints),
-                closeValues: closeValues.slice(startPoints, startPoints + maxPoints),
-                volumeValues: volumeValues.slice(startPoints, startPoints + maxPoints),
-            };
-        }
-        return { dateValues, openValues, highValues, lowValues, closeValues, volumeValues };
     }
     static getExponentialCurve(power, pointCount) {
         const xValues = [];

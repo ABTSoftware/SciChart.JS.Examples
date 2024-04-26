@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { SciChartSurface, SciChart3DSurface } from "scichart";
 
 // @ts-ignore
-import { drawExample } from "./drawExample";
+import { getChartsInitializationAPI } from "./drawExample";
 
 SciChartSurface.loadWasmFromCDN();
 SciChart3DSurface.loadWasmFromCDN();
@@ -25,25 +25,15 @@ export class AppComponent {
     public initThresholdedLineCharts;
 
     ngOnInit(): void {
-        const chartInitializationPromise = drawExample(true).then(({ charts }) => {
-            // @ts-ignore
-            this.initJustLineCharts = charts.initJustLineCharts;
-            // @ts-ignore
-            this.initDigitalLineCharts = charts.initDigitalLineCharts;
-            // @ts-ignore
-            this.initTooltipsOnLineCharts = charts.initTooltipsOnLineCharts;
-            // @ts-ignore
-            this.initDashedLineCharts = charts.initDashedLineCharts;
-            // @ts-ignore
-            this.initPalettedLineCharts = charts.initPalettedLineCharts;
-            // @ts-ignore
-            this.initHoveredLineCharts = charts.initHoveredLineCharts;
-            // @ts-ignore
-            this.initGapsInLineCharts = charts.initGapsInLineCharts;
-            // @ts-ignore
-            this.initVerticalLineCharts = charts.initVerticalLineCharts;
-            // @ts-ignore
-            this.initThresholdedLineCharts = charts.initThresholdedLineCharts;
-        });
+        const charts = getChartsInitializationAPI();
+        this.initJustLineCharts = charts.initJustLineCharts;
+        this.initDigitalLineCharts = charts.initDigitalLineCharts;
+        this.initTooltipsOnLineCharts = charts.initTooltipsOnLineCharts;
+        this.initDashedLineCharts = charts.initDashedLineCharts;
+        this.initPalettedLineCharts = charts.initPalettedLineCharts;
+        this.initHoveredLineCharts = charts.initHoveredLineCharts;
+        this.initGapsInLineCharts = charts.initGapsInLineCharts;
+        this.initVerticalLineCharts = charts.initVerticalLineCharts;
+        this.initThresholdedLineCharts = charts.initThresholdedLineCharts;
     }
 }
