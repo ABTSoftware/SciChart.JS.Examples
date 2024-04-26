@@ -15,6 +15,8 @@ export const FRAMEWORK_NAME = {
     [EPageFramework.Vue]: "Vue",
 } as const;
 
+const DEFAULT_FRAMEWORK = EPageFramework.React;
+
 export type TPathTemplate = string | ((framework: EPageFramework) => string);
 export type TFrameworkName = "JavaScript" | "Angular" | "React" | "Vue";
 export type TTitleTemplate = string | ((framework: TFrameworkName) => string);
@@ -66,7 +68,7 @@ export const useExampleRouteParams = () => {
             framework = EPageFramework.Vanilla;
         }
     } else if (matchHome) {
-        framework = EPageFramework.Vanilla;
+        framework = DEFAULT_FRAMEWORK;
         isHomePage = true;
     }
 
