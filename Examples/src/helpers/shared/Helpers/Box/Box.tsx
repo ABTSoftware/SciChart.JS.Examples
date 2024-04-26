@@ -14,7 +14,7 @@ export default function Box(props: TProps) {
         marginBottom: props.mb ? `${props.mb}px` : "",
         marginTop: props.mt ? `${props.mt}px` : "",
         marginLeft: props.ml ? `${props.ml}px` : "",
-        marginRight: props.mr ? `${props.mr}px` : ""
+        marginRight: props.mr ? `${props.mr}px` : "",
     };
 
     return (

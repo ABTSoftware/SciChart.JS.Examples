@@ -4,7 +4,7 @@ export const updateGoogleTagManagerPage = () => {
         if (window.dataLayer)
             // @ts-ignore
             window.dataLayer.push({
-                event: "pageview"
+                event: "pageview",
             });
     }
 };

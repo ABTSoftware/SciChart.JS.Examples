@@ -13,9 +13,9 @@ import {
     TextAnnotation,
     XyDataSeries,
     ZoomPanModifier,
-    Thickness
+    Thickness,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 
 const divElementId = "chart1";
@@ -29,8 +29,8 @@ const drawExample = async () => {
             fontWeight: "Bold",
             placeWithinChart: true,
             padding: Thickness.fromString("14 2 10 0"),
-            color: appTheme.ForegroundColor + "C4"
-        }
+            color: appTheme.ForegroundColor + "C4",
+        },
     });
 
     // When true, Series are drawn behind axis (Axis inside chart)
@@ -42,12 +42,12 @@ const drawExample = async () => {
             visibleRange: new NumberRange(28.0, 42.6),
             axisTitle: "X Axis",
             labelStyle: {
-                fontSize: 20
+                fontSize: 20,
             },
             axisBorder: {
                 borderTop: 0,
-                color: appTheme.PaleSkyBlue + "33"
-            }
+                color: appTheme.PaleSkyBlue + "33",
+            },
         })
     );
     sciChartSurface.yAxes.add(
@@ -56,12 +56,12 @@ const drawExample = async () => {
             visibleRange: new NumberRange(-40.0, 140.0),
             axisTitle: "Y Axis",
             labelStyle: {
-                fontSize: 20
+                fontSize: 20,
             },
             axisBorder: {
                 borderLeft: 0,
-                color: appTheme.PaleSkyBlue + "33"
-            }
+                color: appTheme.PaleSkyBlue + "33",
+            },
         })
     );
 
@@ -80,7 +80,7 @@ const drawExample = async () => {
             drawNaNAs: ELineDrawMode.PolyLine,
             strokeThickness: 5,
             stroke: "rgba(255, 134, 72, .47)",
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues })
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
         })
     );
 
@@ -89,7 +89,7 @@ const drawExample = async () => {
             drawNaNAs: ELineDrawMode.PolyLine,
             strokeThickness: 3,
             stroke: "rgba(50, 134, 72, .47)",
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values })
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values }),
         })
     );
 

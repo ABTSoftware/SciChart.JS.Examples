@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { AscData, AscReader } from "./AscReader";
 import classes from "../../../styles/Examples.module.scss";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 import {
     CameraController,
@@ -23,7 +23,7 @@ import {
     UniformGridDataSeries3D,
     Vector3,
     XyzDataSeries3D,
-    zeroArray2D
+    zeroArray2D,
 } from "scichart";
 
 const div3DChart = "chart";
@@ -40,14 +40,14 @@ const drawExample = async () => {
 
     // Create a SciChart3DSurface
     const { wasmContext, sciChart3DSurface } = await SciChart3DSurface.create(div3DChart, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
     sciChart3DSurface.worldDimensions = new Vector3(1000, 200, 1000);
 
     // Create and attach a camera to the 3D Viewport
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(800, 1000, 800),
-        target: new Vector3(0, 50, 0)
+        target: new Vector3(0, 50, 0),
     });
 
     // Add an X,Y,Z axis to the viewport
@@ -63,9 +63,9 @@ const drawExample = async () => {
                 xValues: dataFromServer.ascData.XValues,
                 yValues: dataFromServer.ascData.YValues,
                 zValues: dataFromServer.ascData.ZValues,
-                metadata: dataFromServer.meta
+                metadata: dataFromServer.meta,
             }),
-            opacity: 1
+            opacity: 1,
         })
     );
 
@@ -77,7 +77,7 @@ const drawExample = async () => {
                 xStep: dataFromServer.ascData.CellSize,
                 zStart: 0,
                 zStep: dataFromServer.ascData.CellSize,
-                yValues: dataFromServer.heightValues2D
+                yValues: dataFromServer.heightValues2D,
             }),
             minimum: 0,
             maximum: 50,
@@ -91,13 +91,13 @@ const drawExample = async () => {
                     { offset: 0.5, color: appTheme.VividGreen },
                     { offset: 0.3, color: appTheme.VividSkyBlue },
                     { offset: 0.2, color: appTheme.Indigo },
-                    { offset: 0, color: appTheme.DarkIndigo }
-                ]
+                    { offset: 0, color: appTheme.DarkIndigo },
+                ],
             }),
             contourStroke: appTheme.PaleSkyBlue,
             meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_INTERPOLATED,
             contourStrokeThickness: 2,
-            drawMeshAs: EDrawMeshAs.SOLID_WITH_CONTOURS
+            drawMeshAs: EDrawMeshAs.SOLID_WITH_CONTOURS,
         })
     );
 
@@ -113,28 +113,28 @@ const drawHeatmapLegend = async () => {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB"
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
             axisBorder: {
                 borderLeft: 1,
-                color: appTheme.ForegroundColor + "77"
+                color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 6,
-                strokeThickness: 1
+                strokeThickness: 1,
             },
             minorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
-                strokeThickness: 1
+                strokeThickness: 1,
             },
             axisTitle: "Height (meters)",
             axisTitleStyle: {
                 fontSize: 13,
-                color: appTheme.ForegroundColor
-            }
+                color: appTheme.ForegroundColor,
+            },
         },
         colorMap: {
             minimum: 0,
@@ -146,9 +146,9 @@ const drawHeatmapLegend = async () => {
                 { offset: 0.5, color: appTheme.VividGreen },
                 { offset: 0.3, color: appTheme.VividSkyBlue },
                 { offset: 0.2, color: appTheme.Indigo },
-                { offset: 0, color: appTheme.DarkIndigo }
-            ]
-        }
+                { offset: 0, color: appTheme.DarkIndigo },
+            ],
+        },
     });
 
     return heatmapLegend;
@@ -169,12 +169,12 @@ async function getDataFromServer() {
             { color: appTheme.VividGreen, offset: 0.5 },
             { color: appTheme.MutedRed, offset: 0.7 },
             { color: appTheme.VividOrange, offset: 0.9 },
-            { color: appTheme.VividPink, offset: 0 }
-        ]
+            { color: appTheme.VividPink, offset: 0 },
+        ],
     };
 
     // Read the ASC Lidar data file with optional color map data
-    const reader: AscReader = new AscReader(height => {
+    const reader: AscReader = new AscReader((height) => {
         // Linearly interpolate each heightValue into a colour and return to the ASCReader
         // This will be injected into the SciChart XyzDataSeries3D to colour points in the point-cloud
         return linearColorMapLerp(colorMap, height);
@@ -186,9 +186,9 @@ async function getDataFromServer() {
     const ascData: AscData = reader.parse(await rawData.text());
 
     // Prepare metadata to contain the color values from ASCData
-    const meta: TMetadata[] = ascData.ColorValues.map(c => ({
+    const meta: TMetadata[] = ascData.ColorValues.map((c) => ({
         vertexColor: c,
-        pointScale: 0
+        pointScale: 0,
     }));
 
     // Prepare heightValues2D for the uniform surface mesh (transform point cloud to 2d array of heights)
@@ -202,7 +202,7 @@ async function getDataFromServer() {
     return {
         ascData,
         meta,
-        heightValues2D
+        heightValues2D,
     };
 }
 

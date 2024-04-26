@@ -10,7 +10,7 @@ import {
     XyScatterRenderableSeries,
     easing,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 // This method hit-tests the series body
 const HIT_TEST = "hitTest";
 // This method hit-tests the nearest data-point

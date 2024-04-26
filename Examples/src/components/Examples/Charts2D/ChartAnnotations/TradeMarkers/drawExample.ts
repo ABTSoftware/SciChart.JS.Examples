@@ -15,10 +15,29 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
+import { ExampleDataProvider, IOhlcvValues } from "../../../ExampleData/ExampleDataProvider";
+import { multiPaneData } from "../../../ExampleData/multiPaneData";
+import { appTheme } from "../../../theme";
 
 // tslint:disable:no-empty
 // tslint:disable:max-line-length
+
+const getTradingData = (startPoints?: number, maxPoints?: number): IOhlcvValues => {
+    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
+
+    if (maxPoints !== undefined) {
+        return {
+            dateValues: dateValues.slice(startPoints, startPoints + maxPoints),
+            openValues: openValues.slice(startPoints, startPoints + maxPoints),
+            highValues: highValues.slice(startPoints, startPoints + maxPoints),
+            lowValues: lowValues.slice(startPoints, startPoints + maxPoints),
+            closeValues: closeValues.slice(startPoints, startPoints + maxPoints),
+            volumeValues: volumeValues.slice(startPoints, startPoints + maxPoints),
+        };
+    }
+
+    return { dateValues, openValues, highValues, lowValues, closeValues, volumeValues };
+};
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
@@ -37,7 +56,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     // Add a Candlestick series with some values to the chart
-    const { dateValues, openValues, highValues, lowValues, closeValues } = ExampleDataProvider.getTradingData(775, 100);
+    const { dateValues, openValues, highValues, lowValues, closeValues } = getTradingData(775, 100);
 
     sciChartSurface.renderableSeries.add(
         new FastCandlestickRenderableSeries(wasmContext, {

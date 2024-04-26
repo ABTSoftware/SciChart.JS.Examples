@@ -1,4 +1,4 @@
-import { RandomWalkGenerator } from "scichart-example-dependencies";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 export function getVarianceData() {
     const varianceData = [];
     const startDate = 1546300800; // 1st Jan 2019

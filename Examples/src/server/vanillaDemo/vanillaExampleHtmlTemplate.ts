@@ -31,7 +31,6 @@ export const htmlTemplate = (options?: { body?: string; styles?: string; renderN
                     "./drawExample": "./drawExample.js",
                     "./data": "./data.js",
                     "./DepthCursorModifier": "./DepthCursorModifier.js",
-                    "scichart-example-dependencies": "./exampleDependencies.browser.mjs",
                     "scichart": "./scichart.browser.mjs"
                 }
             }

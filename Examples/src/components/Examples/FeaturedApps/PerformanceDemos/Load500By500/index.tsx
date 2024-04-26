@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { AlertTitle } from "@material-ui/lab";
 import { Button } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -21,7 +21,7 @@ import {
     TextAnnotation,
     XyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
@@ -39,7 +39,7 @@ export const drawExample = async (
 ) => {
     // Create the SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create an X,Y Axis
@@ -47,14 +47,14 @@ export const drawExample = async (
         new NumericAxis(wasmContext, {
             visibleRange: new NumberRange(0, POINTS),
             autoRange: EAutoRange.Never,
-            axisTitle: "X Axis"
+            axisTitle: "X Axis",
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             visibleRange: new NumberRange(-250, 250),
             autoRange: EAutoRange.Never,
-            axisTitle: "Y Axis"
+            axisTitle: "Y Axis",
         })
     );
 
@@ -72,7 +72,7 @@ export const drawExample = async (
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
-            annotationLayer: EAnnotationLayer.AboveChart
+            annotationLayer: EAnnotationLayer.AboveChart,
         });
     };
     // add a title annotation
@@ -103,7 +103,7 @@ export const drawExample = async (
         const rendSeries: FastLineRenderableSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries,
             strokeThickness: 2,
-            stroke: "auto"
+            stroke: "auto",
         });
 
         dataSeriesArray[i] = dataSeries;
@@ -147,7 +147,7 @@ export const drawExample = async (
         // Add the first time span: Generating 500 series x 500 points
         newTimeSpans.push({
             title: "Generate 500x500 Data Points",
-            durationMs: Date.now() - generateTimestamp
+            durationMs: Date.now() - generateTimestamp,
         });
 
         // Start counting batch append time
@@ -159,7 +159,7 @@ export const drawExample = async (
         // Add the second time span: Generation of data point
         newTimeSpans.push({
             title: "Append 500x500 Data Points",
-            durationMs: Date.now() - appendTimestamp
+            durationMs: Date.now() - appendTimestamp,
         });
 
         // Subscribe to sciChartSurface.rendered event,
@@ -173,7 +173,7 @@ export const drawExample = async (
                 // Add the third time span: Render the first frame
                 newTimeSpans.push({
                     title: "Render the frame",
-                    durationMs: Date.now() - firstFrameTimestamp
+                    durationMs: Date.now() - firstFrameTimestamp,
                 });
                 nextFramesTimestamp = Date.now();
             } else {
@@ -203,13 +203,13 @@ export const drawExample = async (
     return { wasmContext, sciChartSurface, controls: { startUpdate, stopUpdate } };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -217,11 +217,11 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 export default function Load500By500() {

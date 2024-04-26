@@ -18,7 +18,8 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 const titleStyle1 = {
     color: appTheme.VividSkyBlue,
     fontSize: 30,

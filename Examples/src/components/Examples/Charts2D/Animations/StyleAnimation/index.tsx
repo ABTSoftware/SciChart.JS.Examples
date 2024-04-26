@@ -12,7 +12,7 @@ import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { BandAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/BandAnimation";
 import { makeStyles } from "@material-ui/core/styles";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 const divElementId = "chart";
 
@@ -34,7 +34,7 @@ const STEP = (3 * Math.PI) / POINTS;
 const drawExample = async () => {
     // create a chart with X, Y axis
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.2, 0.2) }));
@@ -58,7 +58,7 @@ const drawExample = async () => {
         stroke: lineColor1,
         strokeY1: lineColor2,
         fill: fillColor1,
-        fillY1: fillColor2
+        fillY1: fillColor2,
     });
     sciChartSurface.renderableSeries.add(bandSeries);
 
@@ -105,10 +105,10 @@ const drawExample = async () => {
                     stroke: isStyle1 ? lineColor1 : lineColor1b,
                     strokeY1: isStyle1 ? lineColor2 : lineColor2b,
                     fill: isStyle1 ? fillColor1 : fillColor1b,
-                    fillY1: isStyle1 ? fillColor2 : fillColor2b
+                    fillY1: isStyle1 ? fillColor2 : fillColor2b,
                 },
                 // Don't create a new dataSeries here or it will leak and crash if run repeatedly
-                dataSeries: animationSeries
+                dataSeries: animationSeries,
             })
         );
     };
@@ -123,13 +123,13 @@ const drawExample = async () => {
     return { wasmContext, sciChartSurface, controls: { animateChartStyle } };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -137,11 +137,11 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 // React component needed as our examples app is react.

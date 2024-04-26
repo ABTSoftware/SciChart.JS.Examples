@@ -63,7 +63,7 @@ export const tradeToCandle = (
             close: price,
             volume: candle.lastTradeSize,
             lastTradeSize: candle.lastTradeSize,
-            lastTradeBuyOrSell: candle.lastTradeBuyOrSell
+            lastTradeBuyOrSell: candle.lastTradeBuyOrSell,
         };
     }
     return candle;
@@ -90,7 +90,7 @@ export const parseTrade = (trade: any) => {
         quantity: parseFloat(trade.q),
         maker: false,
         isBuyerMaker: trade.m,
-        tradeId: trade.a
+        tradeId: trade.a,
     };
     return t;
 };
@@ -132,7 +132,7 @@ const parseKline = (kline: any) => {
         volume: parseFloat(kline.k.v),
         closeTime: kline.k.T,
         lastTradeSize: parseFloat(kline.k.v),
-        lastTradeBuyOrSell: undefined
+        lastTradeBuyOrSell: undefined,
     };
     return pb;
 };
@@ -146,7 +146,7 @@ const parseKline = (kline: any) => {
  * Valid intervals are 1s, 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M
  */
 const getCandleStream = (symbol: string, interval: string) => {
-    const obs = new Observable<TRealtimePriceBar>(subscriber => {
+    const obs = new Observable<TRealtimePriceBar>((subscriber) => {
         console.log("Connecting to binance klines for ", symbol, interval);
         const ws = new WebsocketBuilder(`wss://stream.binance.us:9443/ws/${symbol.toLowerCase()}@kline_${interval}`)
             // .onOpen((i, ev) => { console.log("opened") })
@@ -163,7 +163,7 @@ const getCandleStream = (symbol: string, interval: string) => {
 };
 
 const getTradeStream = (symbol: string) => {
-    const obs = new Observable<TTrade>(subscriber => {
+    const obs = new Observable<TTrade>((subscriber) => {
         console.log("Connecting to binance trades for ", symbol);
         const ws = new WebsocketBuilder(`wss://stream.binance.us:9443/ws/${symbol.toLowerCase()}@aggTrade`)
             // .onOpen((i, ev) => { console.log("opened") })
@@ -197,5 +197,5 @@ const getRealtimeCandleStream = (symbol: string, interval: string) => {
 export const binanceSocketClient = {
     getCandleStream,
     getTradeStream,
-    getRealtimeCandleStream
+    getRealtimeCandleStream,
 };

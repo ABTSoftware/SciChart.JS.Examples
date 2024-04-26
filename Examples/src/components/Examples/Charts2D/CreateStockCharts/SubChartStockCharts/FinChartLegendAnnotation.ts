@@ -6,7 +6,7 @@ import {
     CoordinateCalculatorBase,
     EAnnotationType,
     ISvgAnnotationBaseOptions,
-    SvgAnnotationBase
+    SvgAnnotationBase,
 } from "scichart";
 
 export type TFinanceLegendTemplate = (legendAnnotation: FinChartLegendAnnotation) => string;
@@ -138,7 +138,7 @@ export class FinChartLegendAnnotation extends SvgAnnotationBase {
 /** @ignore */
 const defaultFinanceLegendTemplate: TFinanceLegendTemplate = (la: FinChartLegendAnnotation): string => {
     const outputStrings: string[] = [];
-    const subSurface = la.sciFinanceChart.subCharts.find(study => study.id === la.paneId);
+    const subSurface = la.sciFinanceChart.subCharts.find((study) => study.id === la.paneId);
     let outputStr = "";
     subSurface.renderableSeries.asArray().forEach(({ dataSeries }) => {
         switch (dataSeries.type) {

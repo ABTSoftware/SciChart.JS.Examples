@@ -1,4 +1,4 @@
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import {
     EPieType,
     ELegendOrientation,
@@ -75,7 +75,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             showLabel: value > 2,
             colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: color1, offset: 0 },
-                { color: color2 || (color1 + "77"), offset: 1 },
+                { color: color2 || color1 + "77", offset: 1 },
             ]),
         });
     };

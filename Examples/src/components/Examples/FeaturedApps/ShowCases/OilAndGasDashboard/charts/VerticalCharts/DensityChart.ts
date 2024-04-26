@@ -14,8 +14,8 @@ export const drawDensityChart = async () => {
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
-            padding: Thickness.fromNumber(0)
-        }
+            padding: Thickness.fromNumber(0),
+        },
     });
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(-0.2, 0.2);
@@ -23,7 +23,7 @@ export const drawDensityChart = async () => {
     const dataSeries = new XyyDataSeries(wasmContext, { dataIsSortedInX: true, containsNaN: false });
 
     const data = await getParsedData("Density.csv");
-    data.forEach(dataRow => {
+    data.forEach((dataRow) => {
         const x = dataRow[0];
         dataSeries.append(x, dataRow[1], dataRow[2]);
     });
@@ -36,13 +36,13 @@ export const drawDensityChart = async () => {
             stroke: appTheme.DensityStrokeY,
             strokeY1: appTheme.DensityStrokeY1,
             fill: appTheme.DensityFillY,
-            fillY1: appTheme.DensityFillY1
-        }
+            fillY1: appTheme.DensityFillY1,
+        },
     });
 
     sciChartSurface.renderableSeries.add(...renderableSeries);
 
-    renderableSeries.forEach(rs => {
+    renderableSeries.forEach((rs) => {
         rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
         rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
         rs.rolloverModifierProps.markerColor = appTheme.RolloverTooltipFill;

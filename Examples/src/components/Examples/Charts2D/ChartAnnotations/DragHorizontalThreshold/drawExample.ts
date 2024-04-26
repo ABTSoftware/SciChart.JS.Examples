@@ -23,7 +23,8 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
+import { appTheme } from "../../../theme";
 
 // tslint:disable:no-empty
 // tslint:disable:max-line-length

@@ -6,9 +6,9 @@ export interface TDataEntry {
     duration: number;
 }
 
-export const availablePages = ['Signup', 'Login', 'Signout', 'Content'];
-export const availableLocations = ['CN', 'IN', 'US', 'JP', 'DE', 'GB', 'FR', 'BR', 'CA', 'AU'];
-export const availableServers = ['server0', 'server1', 'server2', 'server3'];
+export const availablePages = ["Signup", "Login", "Signout", "Content"];
+export const availableLocations = ["CN", "IN", "US", "JP", "DE", "GB", "FR", "BR", "CA", "AU"];
+export const availableServers = ["server0", "server1", "server2", "server3"];
 
 function generateTimestampRange(daysAgo: number, numberOfDays: number) {
     const timestamps = [];
@@ -72,8 +72,8 @@ const groupItemsByProperty = (array: TDataEntry[], propertyName: string) => {
 };
 const distinctValues = (array: any[]): any[] => [...new Set(array)];
 
-const groupItemsByTimestamp = (array: TDataEntry[]) => groupItemsByProperty(array, 'timestamp');
-const groupItemsByLocation = (array: TDataEntry[]) => groupItemsByProperty(array, 'location');
+const groupItemsByTimestamp = (array: TDataEntry[]) => groupItemsByProperty(array, "timestamp");
+const groupItemsByLocation = (array: TDataEntry[]) => groupItemsByProperty(array, "location");
 
 export const getRequestsNumberPerTimestamp = (data: TDataEntry[]) => {
     const xValues = distinctValues(

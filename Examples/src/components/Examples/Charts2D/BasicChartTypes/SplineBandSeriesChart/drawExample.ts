@@ -11,7 +11,8 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
+import { appTheme } from "../../../theme";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface

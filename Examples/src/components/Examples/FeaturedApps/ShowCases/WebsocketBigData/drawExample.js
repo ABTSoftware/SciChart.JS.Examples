@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import {
     ESeriesType,
     XyDataSeries,

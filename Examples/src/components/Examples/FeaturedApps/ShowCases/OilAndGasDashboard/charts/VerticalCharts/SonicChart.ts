@@ -14,15 +14,15 @@ export const drawSonicChart = async () => {
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
-            padding: Thickness.fromNumber(0)
-        }
+            padding: Thickness.fromNumber(0),
+        },
     });
 
     let heatmapZValues: number[][] = [];
     let i = 0;
 
     const rows = await getDataRows("Sonic.csv");
-    rows.forEach(row => {
+    rows.forEach((row) => {
         const data = row.replace(",", ".").split(";");
         heatmapZValues.push([]);
         for (let j = 0; j < 1000; ++j) {
@@ -38,13 +38,13 @@ export const drawSonicChart = async () => {
         { offset: 0.4, color: appTheme.SonicGradient3 },
         { offset: 0.6, color: appTheme.SonicGradient4 },
         { offset: 0.8, color: appTheme.SonicGradient5 },
-        { offset: 1, color: appTheme.SonicGradient6 }
+        { offset: 1, color: appTheme.SonicGradient6 },
     ];
 
     const colorMap = new HeatmapColorMap({
         minimum: 0,
         maximum: 100,
-        gradientStops
+        gradientStops,
     });
 
     const dataSeries = new UniformHeatmapDataSeries(wasmContext, {
@@ -52,7 +52,7 @@ export const drawSonicChart = async () => {
         xStep: 1,
         yStart: 0,
         yStep: 1,
-        zValues: heatmapZValues
+        zValues: heatmapZValues,
     });
     dataSeries.hasNaNs = true;
 
@@ -61,11 +61,11 @@ export const drawSonicChart = async () => {
         options: {
             dataSeries,
             colorMap,
-            useLinearTextureFiltering: true
-        }
+            useLinearTextureFiltering: true,
+        },
     });
 
-    renderableSeries.forEach(rs => {
+    renderableSeries.forEach((rs) => {
         rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
         rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
         rs.rolloverModifierProps.markerColor = appTheme.RolloverTooltipFill;

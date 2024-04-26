@@ -3,7 +3,7 @@ import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 
 import {
@@ -21,7 +21,7 @@ import {
     TextAnnotation,
     XyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
 
 type TTimeSpan = {
@@ -33,14 +33,14 @@ const divElementId = "chart";
 
 const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
             axisTitle: "X Axis",
             visibleRange: new NumberRange(0, 1000000),
-            autoRange: EAutoRange.Never
+            autoRange: EAutoRange.Never,
         })
     );
     sciChartSurface.yAxes.add(
@@ -48,7 +48,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
             axisAlignment: EAxisAlignment.Left,
             visibleRange: new NumberRange(-5000, 5000),
             autoRange: EAutoRange.Never,
-            axisTitle: "Y Axis"
+            axisTitle: "Y Axis",
         })
     );
 
@@ -66,7 +66,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
-            annotationLayer: EAnnotationLayer.BelowChart
+            annotationLayer: EAnnotationLayer.BelowChart,
         });
     };
     // add a title annotation
@@ -78,7 +78,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         new FastLineRenderableSeries(wasmContext, {
             dataSeries,
             stroke: appTheme.VividSkyBlue,
-            strokeThickness: 2
+            strokeThickness: 2,
         })
     );
 
@@ -111,7 +111,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         // Add the first time span: Generating 1M data points
         newTimeSpans.push({
             title: "Generate 1M Data Points",
-            durationMs: Date.now() - generateTimestamp
+            durationMs: Date.now() - generateTimestamp,
         });
 
         // Start counting batch append time
@@ -121,7 +121,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         // Add the second time span: Generation of data point
         newTimeSpans.push({
             title: "Append 1M Data Points",
-            durationMs: Date.now() - appendTimestamp
+            durationMs: Date.now() - appendTimestamp,
         });
 
         // Subscribe to sciChartSurface.rendered event,
@@ -135,7 +135,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
                 // Add the third time span: Render the first frame
                 newTimeSpans.push({
                     title: "Render the frame",
-                    durationMs: Date.now() - firstFrameTimestamp
+                    durationMs: Date.now() - firstFrameTimestamp,
                 });
                 nextFramesTimestamp = Date.now();
             } else {
@@ -158,13 +158,13 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
     return { wasmContext, sciChartSurface, loadPoints };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -172,11 +172,11 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 export default function Load1MillionPointsChart() {

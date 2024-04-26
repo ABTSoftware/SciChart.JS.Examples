@@ -1,7 +1,7 @@
 import * as React from "react";
 import { getTenorCurveData } from "./TenorCurveData";
 import classes from "../../../styles/Examples.module.scss";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 import {
     EllipsePointMarker,
@@ -24,7 +24,7 @@ import {
     SciChart3DSurface,
     SurfaceMeshRenderableSeries3D,
     UniformGridDataSeries3D,
-    Vector3
+    Vector3,
 } from "scichart";
 
 export const div3DChart = "div3DChart";
@@ -38,13 +38,13 @@ const Z_DATA_SIZE = 25;
 export const draw3DChart = async () => {
     // Create the 3d chart
     const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(div3DChart, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create camerea, position, field of view
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(-225, 300, -225),
-        target: new Vector3(0, 50, 0)
+        target: new Vector3(0, 50, 0),
     });
     sciChart3DSurface.camera.aspectRatio = 1.333;
     sciChart3DSurface.camera.fieldOfView = 45;
@@ -72,7 +72,7 @@ export const draw3DChart = async () => {
         yValues: tenorCurvesData,
         xStep: 1,
         zStep: 1,
-        dataSeriesName: "Uniform Surface Mesh"
+        dataSeriesName: "Uniform Surface Mesh",
     });
 
     // Create a color map. Color at offset=0 is mapped to y-value at SurfaceMeshRenderableSeries3D.minimum
@@ -85,8 +85,8 @@ export const draw3DChart = async () => {
             { offset: 0.5, color: appTheme.VividGreen },
             { offset: 0.3, color: appTheme.VividSkyBlue },
             { offset: 0.2, color: appTheme.Indigo },
-            { offset: 0, color: appTheme.DarkIndigo }
-        ]
+            { offset: 0, color: appTheme.DarkIndigo },
+        ],
     });
 
     const series = new SurfaceMeshRenderableSeries3D(wasmContext, {
@@ -103,7 +103,7 @@ export const draw3DChart = async () => {
         drawSkirt: false,
         drawMeshAs: EDrawMeshAs.SOLID_WIREFRAME,
         meshPaletteMode: EMeshPaletteMode.HEIGHT_MAP_INTERPOLATED,
-        meshColorPalette: colorMap
+        meshColorPalette: colorMap,
     });
     sciChart3DSurface.renderableSeries.add(series);
 
@@ -112,7 +112,7 @@ export const draw3DChart = async () => {
 
 const drawLineChart1 = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(div2DChart1, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
     const xAxis = new NumericAxis(wasmContext);
     sciChartSurface.xAxes.add(xAxis);
@@ -127,16 +127,16 @@ const drawLineChart1 = async () => {
             height: 9,
             stroke: appTheme.VividSkyBlue,
             strokeThickness: 2,
-            fill: appTheme.ForegroundColor
+            fill: appTheme.ForegroundColor,
         }),
         fillLinearGradient: {
             startPoint: new Point(0, 0),
             endPoint: new Point(0, 1),
             gradientStops: [
                 { offset: 0, color: appTheme.VividSkyBlue },
-                { offset: 1, color: "Transparent" }
-            ]
-        }
+                { offset: 1, color: "Transparent" },
+            ],
+        },
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 
@@ -157,7 +157,7 @@ const drawLineChart1 = async () => {
 
 const drawLineChart2 = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(div2DChart2, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -171,16 +171,16 @@ const drawLineChart2 = async () => {
             endPoint: new Point(0, 1),
             gradientStops: [
                 { offset: 0, color: appTheme.VividTeal },
-                { offset: 1, color: "Transparent" }
-            ]
+                { offset: 1, color: "Transparent" },
+            ],
         },
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 9,
             height: 9,
             stroke: appTheme.PaleSkyBlue,
             strokeThickness: 2,
-            fill: appTheme.ForegroundColor
-        })
+            fill: appTheme.ForegroundColor,
+        }),
     });
     sciChartSurface.renderableSeries.add(mountainSeries);
 
@@ -200,23 +200,23 @@ const draw3DChartLegend = async () => {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
-            loadingAnimationBackground: appTheme.DarkIndigo + "BB"
+            loadingAnimationBackground: appTheme.DarkIndigo + "BB",
         },
         yAxisOptions: {
             axisBorder: {
                 borderLeft: 1,
-                color: appTheme.ForegroundColor + "77"
+                color: appTheme.ForegroundColor + "77",
             },
             majorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 6,
-                strokeThickness: 1
+                strokeThickness: 1,
             },
             minorTickLineStyle: {
                 color: appTheme.ForegroundColor,
                 tickSize: 3,
-                strokeThickness: 1
-            }
+                strokeThickness: 1,
+            },
         },
         colorMap: {
             minimum: 0,
@@ -228,9 +228,9 @@ const draw3DChartLegend = async () => {
                 { offset: 0.5, color: appTheme.VividGreen },
                 { offset: 0.3, color: appTheme.VividSkyBlue },
                 { offset: 0.2, color: appTheme.Indigo },
-                { offset: 0, color: appTheme.DarkIndigo }
-            ]
-        }
+                { offset: 0, color: appTheme.DarkIndigo },
+            ],
+        },
     });
 
     return heatmapLegend;
@@ -244,8 +244,8 @@ export default function TenorCurves3DChart() {
             draw3DChart(),
             draw3DChartLegend(),
             drawLineChart1(),
-            drawLineChart2()
-        ]).then(charts => {
+            drawLineChart2(),
+        ]).then((charts) => {
             sciChartSurfaceRef.current = charts;
         });
 
@@ -253,13 +253,13 @@ export default function TenorCurves3DChart() {
         return () => {
             // check if chart is already initialized
             if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.forEach(chart => chart.delete());
+                sciChartSurfaceRef.current.forEach((chart) => chart.delete());
                 return;
             }
 
             // else postpone deletion
             chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.forEach(chart => chart.delete());
+                sciChartSurfaceRef.current.forEach((chart) => chart.delete());
             });
         };
     }, []);

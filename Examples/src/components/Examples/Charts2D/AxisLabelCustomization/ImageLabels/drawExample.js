@@ -33,7 +33,7 @@ import tecnoLogo from "./images/tecno.png";
 import infinixLogo from "./images/infinix.png";
 import googleLogo from "./images/google.png";
 import nokiaLogo from "./images/nokia.png";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 export const drawExample = async (rootElement) => {
     // Dataset = 'percentage market share of phones, 2022'
     const dataset = [

@@ -35,7 +35,7 @@ import {
     IPieSegment,
 } from "scichart";
 import { CN, IN, US, JP, DE, GB, FR, BR, CA, AU } from "country-flag-icons/string/3x2";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { TDataEntry, availableLocations, getData, getRequestsNumberPerLocation } from "./data-generation";
 import { TChartConfigFunc, TChartConfigResult } from "./chart-configurations";
 import { TTextureObject } from "scichart/Charting/Visuals/TextureManager/TextureManager";

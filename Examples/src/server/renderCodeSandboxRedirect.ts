@@ -73,6 +73,7 @@ export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => 
             res.send(page);
         } catch (err) {
             // check if expected error type
+            console.warn(err);
             const error = err as IHttpError;
             if (error?.status === 404) {
                 const page = notFoundCodeSandBoxRedirectPage(currentExample);

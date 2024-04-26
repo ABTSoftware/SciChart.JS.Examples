@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useContext, useEffect, useState } from "react";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { SciChartSurfaceContext } from "scichart-react";
 import { Rect } from "scichart";
 import { TMainChartConfigFunc } from "./main-chart-config";

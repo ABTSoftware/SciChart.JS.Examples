@@ -9,7 +9,7 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import npmLogo from "../AppTopBar/npm.svg";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { baseGithubPath } from "../../constants";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "./theme";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 
 const DocsActionButton = () => <DescriptionIcon></DescriptionIcon>;

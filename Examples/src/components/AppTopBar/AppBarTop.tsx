@@ -18,7 +18,7 @@ import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext"
 import { getTitle, EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../Examples/theme";
 
 type TProps = {
     toggleDrawer: () => void;
@@ -122,7 +122,7 @@ const AppBarTop: FC<TProps> = (props) => {
                     >
                         <MenuItem value={EPageFramework.Vanilla}>{FRAMEWORK_NAME[EPageFramework.Vanilla]}</MenuItem>
                         <MenuItem value={EPageFramework.React}>{FRAMEWORK_NAME[EPageFramework.React]}</MenuItem>
-                        <MenuItem value={EPageFramework.Angular}>{FRAMEWORK_NAME[EPageFramework.Angular]}</MenuItem>
+                        {/* <MenuItem value={EPageFramework.Angular}>{FRAMEWORK_NAME[EPageFramework.Angular]}</MenuItem> */}
                         {/* <MenuItem value={EPageFramework.Vue}>{FRAMEWORK_NAME[EPageFramework.Vue]}</MenuItem> */}
                     </Select>
                 </FormControl>

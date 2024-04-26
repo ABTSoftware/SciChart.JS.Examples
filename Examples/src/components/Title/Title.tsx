@@ -6,7 +6,7 @@ type TProps = {
     subtitle?: string;
 };
 
-const Title: React.FC<TProps> = props => {
+const Title: React.FC<TProps> = (props) => {
     return (
         <React.Fragment>
             <Typography variant="h4" variantMapping={{ h4: "h1" }} gutterBottom>

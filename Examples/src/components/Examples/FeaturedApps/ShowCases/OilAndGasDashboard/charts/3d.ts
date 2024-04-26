@@ -16,7 +16,7 @@ export default async function init3dChart(id: string) {
 
     sciChart3DSurface.camera = new CameraController(wasmContext, {
         position: new Vector3(300, 300, 300),
-        target: new Vector3(0, 50, 0)
+        target: new Vector3(0, 50, 0),
     });
 
     sciChart3DSurface.chartModifiers.add(new MouseWheelZoomModifier3D());
@@ -29,13 +29,13 @@ export default async function init3dChart(id: string) {
     const defaultPointMarker = new SpherePointMarker3D(wasmContext, { size: 10, fill: "#00FF00" });
     const series = new ScatterRenderableSeries3D(wasmContext, { pointMarker: defaultPointMarker });
     const seriesX = new ScatterRenderableSeries3D(wasmContext, {
-        pointMarker: new QuadPointMarker(wasmContext, { size: 10, fill: "#00FF00" })
+        pointMarker: new QuadPointMarker(wasmContext, { size: 10, fill: "#00FF00" }),
     });
     const seriesY = new ScatterRenderableSeries3D(wasmContext, {
-        pointMarker: new QuadPointMarker(wasmContext, { size: 10, fill: "#00FF00" })
+        pointMarker: new QuadPointMarker(wasmContext, { size: 10, fill: "#00FF00" }),
     });
     const seriesZ = new ScatterRenderableSeries3D(wasmContext, {
-        pointMarker: new QuadPointMarker(wasmContext, { size: 10, fill: "#00FF00" })
+        pointMarker: new QuadPointMarker(wasmContext, { size: 10, fill: "#00FF00" }),
     });
     const data = getData(wasmContext);
     series.dataSeries = data.xyzDataSeries;
@@ -65,7 +65,7 @@ function getData(wasmContext: TSciChart3D) {
         parseColorToUIntArgb(appTheme.Chart3DColor4),
         parseColorToUIntArgb(appTheme.Chart3DColor5),
         parseColorToUIntArgb(appTheme.Chart3DColor6),
-        parseColorToUIntArgb(appTheme.Chart3DColor7)
+        parseColorToUIntArgb(appTheme.Chart3DColor7),
     ];
 
     for (let i = 0; i < count; i++) {
@@ -86,7 +86,7 @@ function getData(wasmContext: TSciChart3D) {
         xyzDataSeries,
         xyzDataSeriesX,
         xyzDataSeriesY,
-        xyzDataSeriesZ
+        xyzDataSeriesZ,
     };
 }
 

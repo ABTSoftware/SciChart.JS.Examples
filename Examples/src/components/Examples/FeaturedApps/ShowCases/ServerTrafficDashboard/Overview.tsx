@@ -7,7 +7,7 @@ import {
     Point,
     Thickness,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 // options used for current example
 export const overviewOptions: IOverviewOptions = {
