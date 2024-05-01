@@ -120,7 +120,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                     className={classes.ExampleRootDescriptionLink}
                                     target="_blank"
                                     rel="nofollow external"
-                                    href={`/codesandbox/${exampleUrl}?codesandbox=1`}
+                                    href={`/codesandbox/${exampleUrl}?codesandbox=1&framework=${framework}`}
                                 >
                                     Open in CodeSandBox
                                 </a>
