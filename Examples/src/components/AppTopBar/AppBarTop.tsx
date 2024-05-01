@@ -16,7 +16,7 @@ import { TExamplePage } from "../AppRouter/examplePages";
 import npm from "./npm.svg";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
 import { getTitle, EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import { FormControl, InputLabel, MenuItem, Select, Tooltip } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { appTheme } from "../Examples/theme";
 
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     formControl: {
         minWidth: 200,
         width: 200,
+        marginLeft: 10,
     },
     select: {
         color: "#97a0a8",
@@ -62,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 const AppBarTop: FC<TProps> = (props) => {
     const { toggleDrawer, currentExample } = props;
     const [isMobile, setIsMobile] = useState(false);
+    const [availableFrameworks, setAvailableFrameworks] = useState<EPageFramework[]>([EPageFramework.React]);
     const selectedFramework = useContext(FrameworkContext);
     const navigate = useNavigate();
     const localClasses = useStyles();
@@ -86,6 +88,27 @@ const AppBarTop: FC<TProps> = (props) => {
         setIsMobile(window.innerWidth <= 768);
     }, []);
 
+    type TAvailableFrameworkVariants = {
+        [key in EPageFramework]: string;
+    };
+    useEffect(() => {
+        const fetchAvailableVariants = async (example: TExamplePage): Promise<TAvailableFrameworkVariants> => {
+            const variantsUrl = `services/variants/${example.path}?framework=${selectedFramework}`;
+            const response = await fetch(variantsUrl);
+            const data = (await response.json()) as TAvailableFrameworkVariants;
+            return data;
+        };
+
+        if (currentExample) {
+            fetchAvailableVariants(currentExample).then((variants) => {
+                const frameworks = Object.keys(variants).filter((key) => variants[key as EPageFramework]);
+                setAvailableFrameworks([...(frameworks as EPageFramework[]), EPageFramework.React]);
+            });
+        }
+    }, [currentExample]);
+
+    const isFrameworkVariantAvailable = availableFrameworks?.includes(selectedFramework);
+
     const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
         if (currentExample) {
             navigate(`/${event.target.value as EPageFramework}/${currentExample.path}`);
@@ -93,6 +116,21 @@ const AppBarTop: FC<TProps> = (props) => {
             navigate(`/${event.target.value as EPageFramework}`);
         }
     };
+
+    const codeSandboxButton = currentExample ? (
+        <Button
+            disabled={!isFrameworkVariantAvailable}
+            rel="nofollow external"
+            className={
+                isFrameworkVariantAvailable ? classes.PurpleButton : `${classes.PurpleButton} ${classes.DisabledButton}`
+            }
+            href={`codesandbox/${currentExample.path}?codesandbox=1&framework=${selectedFramework}`}
+            title={`Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`}
+            target="_blank"
+        >
+            <CodeIcon fontSize="small" /> &nbsp;Code Sandbox
+        </Button>
+    ) : null;
 
     return (
         <AppBar position="sticky" className={classes.AppBar}>
@@ -143,19 +181,17 @@ const AppBarTop: FC<TProps> = (props) => {
                     <BookIcon fontSize="small" />
                     &nbsp;Docs
                 </Button>
-                {currentExample !== undefined && (
-                    <a
-                        rel="nofollow external"
-                        className={`MuiButtonBase-root MuiButton-root ${classes.PurpleButton}`}
-                        href={`codesandbox/${currentExample.path}?codesandbox=1&framework=${selectedFramework}`}
-                        title={`Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`}
-                        target="_blank"
-                    >
-                        <span className={`MuiButton-label`}>
-                            <CodeIcon fontSize="small" /> &nbsp;Code Sandbox
-                        </span>
-                    </a>
-                )}
+                {currentExample !== undefined &&
+                    (isFrameworkVariantAvailable ? (
+                        codeSandboxButton
+                    ) : (
+                        <div
+                            title={`Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet. Click GitHub button for the chart code. Contact support@scichart.com to request prioritisation of this example`}
+                            className={`${classes.PurpleButton} ${classes.DisabledButtonTooltipWrapper}`}
+                        >
+                            {codeSandboxButton}
+                        </div>
+                    ))}
                 <a className={classes.GitHubLink} href={contextualGithub} title={contextualGithubTitle} target="_blank">
                     <GitHubIcon fontSize="small" />
                 </a>

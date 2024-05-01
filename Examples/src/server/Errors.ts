@@ -9,3 +9,7 @@ abstract class HttpError extends Error implements IHttpError {
 export class NotFoundError extends HttpError {
     public readonly status = 404;
 }
+
+export class BadRequestError extends HttpError {
+    public readonly status = 400;
+}

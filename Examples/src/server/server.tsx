@@ -23,6 +23,7 @@ import { findMissingExamples } from "./find-missing-examples";
 import { vanillaExamplesRouter } from "./vanillaDemo/vanillaExamplesRouter";
 import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
+import { getAvailableVariants } from "./variants";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const host = process.env.HOST || "localhost";
@@ -84,6 +85,7 @@ app.use(
 app.use("/api", api);
 app.use("/services/oembed", oembed);
 app.use("/services/findMissingExamples", findMissingExamples);
+app.use("/services/variants", getAvailableVariants);
 app.use("/vanillaDemo", vanillaExamplesRouter);
 
 const isValidFramework = (framework: EPageFramework) => Object.values(EPageFramework).includes(framework);

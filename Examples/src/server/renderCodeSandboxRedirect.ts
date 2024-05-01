@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { EXAMPLES_PAGES, TExamplePage } from "../components/AppRouter/examplePages";
 import { loadStyles } from "./sandboxDependencyUtils";
 import { getSandboxWithTemplate } from "./sandboxForms";
-import { IHttpError, NotFoundError } from "./Errors";
+import { BadRequestError, IHttpError, NotFoundError } from "./Errors";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 
 const renderCodeSandBoxRedirectPage = (form: string) => {
@@ -44,31 +44,41 @@ const notFoundCodeSandBoxRedirectPage = (page: TExamplePage) => {
 
 const basePath = path.join(__dirname, "Examples");
 
+export const getRequestedExample = (req: Request, res: Response) => {
+    const framework = req.query.framework as EPageFramework;
+    const examplePath = req.params.example;
+    const isValidFramework = Object.values(EPageFramework).includes(framework);
+    if (!isValidFramework) {
+        throw new BadRequestError("Invalid framework param!");
+    }
+    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === examplePath);
+    const currentExample = EXAMPLES_PAGES[currentExampleKey];
+
+    if (!currentExample) {
+        throw new NotFoundError(`Example ${examplePath} doesn't exist!`);
+    }
+
+    return currentExample;
+};
+
 export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => {
     try {
         await loadStyles(basePath);
-        // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
-        const isIFrame = req.path.substring(1, 7) === "iframe";
-        const pathname = isIFrame ? req.path.substring(7) : req.path;
-        // const examplePath = pathname.replace("/", "");
-        // const segments = pathname.split("/");
-        // console.log("segments", segments);
-        // const framework = segments[1] as EPageFramework;
-        const framework = req.query.framework as EPageFramework;
-        const examplePath = req.params.example;
-        const isValidFramework = Object.values(EPageFramework).includes(framework);
-        if (!isValidFramework) {
-            return res.send(400);
+        let currentExample: TExamplePage;
+        try {
+            currentExample = getRequestedExample(req, res);
+        } catch (err) {
+            const error = err as IHttpError;
+            return res.status(error.status).send(error.status && error.message);
         }
-        const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === examplePath);
-        const currentExample = EXAMPLES_PAGES[currentExampleKey];
 
         try {
-            if (!currentExample) {
-                throw new NotFoundError(`Example ${examplePath} doesn't exist!`);
-            }
             const folderPath = path.join(basePath, currentExample.filepath);
-            const form = await getSandboxWithTemplate(folderPath, currentExample, framework);
+            const form = await getSandboxWithTemplate(
+                folderPath,
+                currentExample,
+                req.query.framework as EPageFramework
+            );
             const page = renderCodeSandBoxRedirectPage(form);
             res.send(page);
         } catch (err) {

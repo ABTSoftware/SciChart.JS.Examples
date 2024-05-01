@@ -7,7 +7,7 @@ import { NotFoundError } from "./Errors";
 import { EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 const pj = require("../../package.json");
 
-const includeExternalModules = async(folderPath: string, files: IFiles, content: string) =>{
+const includeExternalModules = async (folderPath: string, files: IFiles, content: string) => {
     // Pull files outside the local folder into it and rewrite the import
     const externalImports = Array.from(content.matchAll(/from "\.\.\/(.*)";/g));
     if (externalImports.length > 0) {
@@ -25,7 +25,7 @@ const includeExternalModules = async(folderPath: string, files: IFiles, content:
         }
     }
     return content;
-}
+};
 
 const includeImportedModules = async (folderPath: string, files: IFiles, code: string) => {
     const localImports = Array.from(code.matchAll(/from ["']\.\/(.*)["'];/g));
@@ -144,17 +144,22 @@ hydrate( <App />, rootElement);
     </form>`;
 };
 
-const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
-    const tsPath = path.join(folderPath, "angular.ts");
-    const templatePath = path.join(folderPath, "angular.html");
+export const getAngularSrc = async (folderPath: string) => {
     let code: string;
-    let template: string;
-
+    const tsPath = path.join(folderPath, "angular.ts");
     try {
         code = await fs.promises.readFile(tsPath, "utf8");
     } catch (err) {
         throw new NotFoundError("Angular version not found! Try using different framework.");
     }
+
+    return code;
+};
+
+const getAngularCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
+    const templatePath = path.join(folderPath, "angular.html");
+    let code = await getAngularSrc(folderPath);
+    let template: string;
 
     try {
         template = await fs.promises.readFile(templatePath, "utf8");
@@ -377,7 +382,7 @@ const indexHtmlTemplate = (customChartSetup?: string) => `<!DOCTYPE html>
     </body>
 </html>`;
 
-const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
+export const getVanillaSrc = async (folderPath: string) => {
     const tsPath = path.join(folderPath, "vanilla.ts");
     let code: string;
     try {
@@ -385,6 +390,13 @@ const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: T
     } catch (err) {
         throw new NotFoundError("Vanilla version not found! Try using different framework.");
     }
+
+    return code;
+};
+
+const getVanillaTsCodeSandBoxForm = async (folderPath: string, currentExample: TExampleInfo) => {
+    let code = await getVanillaSrc(folderPath);
+
     code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
     const template = "parcel";
 
