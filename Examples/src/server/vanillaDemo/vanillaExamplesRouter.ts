@@ -13,7 +13,6 @@ const availableFiles = [
     "common.js",
     "scichart.browser.js",
     "scichart.browser.mjs",
-    "exampleDependencies.browser.mjs",
     "DepthCursorModifier.js",
     "data.js",
 ] as const;
@@ -81,8 +80,6 @@ const getExampleSourceFile = (filename: (typeof availableFiles)[number], current
             return path.join(__dirname, "scichart.browser.js");
         case "scichart.browser.mjs":
             return path.join(__dirname, "scichart.browser.mjs");
-        case "exampleDependencies.browser.mjs":
-            return path.join(__dirname, "exampleDependencies.browser.mjs");
         case "index.js":
             return path.join(basePath, currentExample.filepath, "vanilla.js");
         case "drawExample.js":

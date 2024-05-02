@@ -39,7 +39,6 @@ export const htmlTemplate = (options?: { body?: string; styles?: string; renderN
         <script async type="module" src="index.js"></script>
         <script async type="module" src="drawExample.js"></script>
         <script async type="module" src="common.js"></script>
-        <script async type="module" src="exampleDependencies.browser.mjs"></script>
             <style>
                 body {
                     font-family: "Arial";
