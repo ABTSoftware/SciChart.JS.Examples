@@ -1,7 +1,7 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-annotations.jpg";
+import exampleImage from "./javascript-chart-annotation-layers.jpg";
 
 const previewDescription = `A demonstration of annotation layering.`;
 
