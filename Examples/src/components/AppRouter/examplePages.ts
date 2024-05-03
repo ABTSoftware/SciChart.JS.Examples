@@ -21,6 +21,7 @@ import { donutChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/Donu
 import { pieChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/PieChart/exampleInfo";
 import { realTimeMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/exampleInfo";
 import { annotationsAreEasyExampleInfo } from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/exampleInfo";
+import { annotationLayersExampleInfo } from "../Examples/Charts2D/ChartAnnotations/AnnotationLayers/exampleInfo";
 import { tradeMarkerAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/TradeMarkers/exampleInfo";
 import { realtimeGhostedTracesExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces/exampleInfo";
 import { multiPaneStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/exampleInfo";
@@ -268,6 +269,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_chartAnnotations_AnnotationsAreEasy: {
         id: "chart2D_chartAnnotations_AnnotationsAreEasy",
         ...annotationsAreEasyExampleInfo,
+    },
+    chart2D_chartAnnotations_AnnotationLayers: {
+        id: "chart2D_chartAnnotations_AnnotationLayers",
+        ...annotationLayersExampleInfo,
     },
     chart2D_chartAnnotations_EditableAnntations: {
         id: "chart2D_chartAnnotations_EditableAnntations",

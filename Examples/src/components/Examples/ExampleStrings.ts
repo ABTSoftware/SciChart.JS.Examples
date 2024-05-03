@@ -292,6 +292,10 @@ export const ExampleStrings = {
     urlEditableAnnotationsDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#EditableAnnotations.html`,
     urlTitleEditableAnnotations: `The specific page for the SciChart.js Annotations documentation will help you to get started`,
 
+    // Annotation Layers
+    urlAnnotationLayers: `annotation-layers`,
+    titleAnnotationLayers: (frameworkName: TFrameworkName) => `${frameworkName} Chart Annotation Layers`,
+
     // Trademarkers
     urlTradeMarkers: `stock-chart-buy-sell-markers`,
     titleTradeMarkers: (frameworkName: TFrameworkName) => `${frameworkName} Chart Trading Buy Sell Marker Annotations`,
