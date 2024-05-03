@@ -26,6 +26,7 @@ import StartupAnimation from "../Examples/Charts2D/Animations/StartupAnimation";
 import GenericAnimations from "../Examples/Charts2D/Animations/GenericAnimation";
 
 import AnnotationsAreEasy from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy";
+import AnnotationLayers from "../Examples/Charts2D/ChartAnnotations/AnnotationLayers";
 import EditableAnnotaions from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations";
 import TradeMarkers from "../Examples/Charts2D/ChartAnnotations/TradeMarkers";
 
@@ -208,6 +209,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_chartAnnotations_DragHorizontalThreshold,
             EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations,
             EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationLayers,
         ],
     },
     {
@@ -428,6 +430,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return TextChart;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationsAreEasy.id:
             return AnnotationsAreEasy;
+        case EXAMPLES_PAGES.chart2D_chartAnnotations_AnnotationLayers.id:
+            return AnnotationLayers;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_EditableAnntations.id:
             return EditableAnnotaions;
         case EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers.id:
