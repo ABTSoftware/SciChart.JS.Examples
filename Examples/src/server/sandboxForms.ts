@@ -13,13 +13,20 @@ const includeExternalModules = async (folderPath: string, files: IFiles, content
     if (externalImports.length > 0) {
         for (const externalImport of externalImports) {
             if (externalImport.length > 1) {
-                const filepath = path.join(folderPath, "../" + externalImport[1] + ".ts");
-                const filename = externalImport[1].substring(externalImport[1].lastIndexOf("/") + 1);
-                const csPath = "src/" + filename + ".ts";
-                content = content.replace("../" + externalImport[1], "./" + filename);
-                if (!files[csPath]) {
-                    const externalContent = await fs.promises.readFile(filepath, "utf8");
-                    files[csPath] = { content: externalContent, isBinary: false };
+                if (externalImport[1].endsWith(".png") || externalImport[1].endsWith(".jpg")) {
+                    // handle images
+                    const csPath = "src/" + externalImport[1];
+                    const filename = externalImport[1].substring(externalImport[1].lastIndexOf("/") + 1);
+                    files[csPath] = { content: "https://demo.scichart.com/images/" + filename, isBinary: true };
+                } else {
+                    const filepath = path.join(folderPath, "../" + externalImport[1] + ".ts");
+                    const filename = externalImport[1].substring(externalImport[1].lastIndexOf("/") + 1);
+                    const csPath = "src/" + filename + ".ts";
+                    content = content.replace("../" + externalImport[1], "./" + filename);
+                    if (!files[csPath]) {
+                        const externalContent = await fs.promises.readFile(filepath, "utf8");
+                        files[csPath] = { content: externalContent, isBinary: false };
+                    }
                 }
             }
         }
@@ -33,21 +40,29 @@ const includeImportedModules = async (folderPath: string, files: IFiles, code: s
         if (localImport.length > 1) {
             let content: string = "";
             let csPath: string = "";
-            try {
-                const filepath = path.join(folderPath, localImport[1] + ".ts");
-                csPath = "src/" + localImport[1] + ".ts";
-                content = await fs.promises.readFile(filepath, "utf8");
-            } catch (e) {
-                const filepath = path.join(folderPath, localImport[1] + ".tsx");
-                csPath = "src/" + localImport[1] + ".tsx";
-                content = await fs.promises.readFile(filepath, "utf8");
+            if (localImport[1].endsWith(".png") || localImport[1].endsWith(".jpg")) {
+                // handle images
+                csPath = "src/" + localImport[1];
+                const filename = localImport[1].substring(localImport[1].lastIndexOf("/") + 1);
+                console.log("https://demo.scichart.com/images/" + filename);
+                files[csPath] = { content: "https://demo.scichart.com/images/" + filename, isBinary: true };
+            } else {
+                try {
+                    const filepath = path.join(folderPath, localImport[1] + ".ts");
+                    csPath = "src/" + localImport[1] + ".ts";
+                    content = await fs.promises.readFile(filepath, "utf8");
+                } catch (e) {
+                    const filepath = path.join(folderPath, localImport[1] + ".tsx");
+                    csPath = "src/" + localImport[1] + ".tsx";
+                    content = await fs.promises.readFile(filepath, "utf8");
+                }
+                const nestedImports = Array.from(content.matchAll(/from "\.\/(.*)";/g));
+                if (nestedImports.length > 0) {
+                    localImports.push(...nestedImports);
+                }
+                content = await includeExternalModules(folderPath, files, content);
+                files[csPath] = { content, isBinary: false };
             }
-            const nestedImports = Array.from(content.matchAll(/from "\.\/(.*)";/g));
-            if (nestedImports.length > 0) {
-                localImports.push(...nestedImports);
-            }
-            content = await includeExternalModules(folderPath, files, content);
-            files[csPath] = { content, isBinary: false };
         }
     }
 };
@@ -95,6 +110,7 @@ const getCodeSandBoxForm = async (folderPath: string, currentExample: TExampleIn
                 },
                 browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
             },
+            isBinary: false
         },
         "src/App.tsx": {
             content: code,

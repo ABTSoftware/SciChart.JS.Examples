@@ -119,13 +119,20 @@ const AppBarTop: FC<TProps> = (props) => {
 
     const codeSandboxButton = currentExample ? (
         <Button
-            disabled={!isFrameworkVariantAvailable}
+            //disabled={!isFrameworkVariantAvailable}
             rel="nofollow external"
-            className={
-                isFrameworkVariantAvailable ? classes.PurpleButton : `${classes.PurpleButton} ${classes.DisabledButton}`
+            // className={
+            //     isFrameworkVariantAvailable ? classes.PurpleButton : `${classes.PurpleButton} ${classes.DisabledButton}`
+            // }
+            className={classes.PurpleButton}
+            href={`codesandbox/${currentExample.path}?codesandbox=1&framework=${
+                isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React
+            }`}
+            title={
+                isFrameworkVariantAvailable
+                    ? `Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`
+                    : `Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
             }
-            href={`codesandbox/${currentExample.path}?codesandbox=1&framework=${selectedFramework}`}
-            title={`Edit ${getTitle(currentExample.title, selectedFramework)} in CodeSandbox`}
             target="_blank"
         >
             <CodeIcon fontSize="small" /> &nbsp;Code Sandbox
@@ -181,17 +188,7 @@ const AppBarTop: FC<TProps> = (props) => {
                     <BookIcon fontSize="small" />
                     &nbsp;Docs
                 </Button>
-                {currentExample !== undefined &&
-                    (isFrameworkVariantAvailable ? (
-                        codeSandboxButton
-                    ) : (
-                        <div
-                            title={`Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet. Click GitHub button for the chart code. Contact support@scichart.com to request prioritisation of this example`}
-                            className={`${classes.PurpleButton} ${classes.DisabledButtonTooltipWrapper}`}
-                        >
-                            {codeSandboxButton}
-                        </div>
-                    ))}
+                {codeSandboxButton}
                 <a className={classes.GitHubLink} href={contextualGithub} title={contextualGithubTitle} target="_blank">
                     <GitHubIcon fontSize="small" />
                 </a>

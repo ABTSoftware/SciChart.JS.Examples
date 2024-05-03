@@ -1,5 +1,5 @@
 import { appTheme } from "../../../theme";
-import SciChartImage from "./scichart-logo-white.jpg";
+import SciChartImage from "./scichart-logo-white.png";
 import {
     SciChartSurface,
     NumericAxis,

@@ -132,10 +132,10 @@ app.get("/:example?", (req: Request, res: Response) => {
     if (isValidFramework(params.example as EPageFramework)) {
         handleRender(req, res);
     } else if (exampleKey) {
-        const redirectUrl = `javascript/${params.example}`;
+        const redirectUrl = `react/${params.example}`;
         res.redirect(301, redirectUrl);
     } else {
-        res.redirect(301, `javascript`);
+        res.redirect(301, `react`);
     }
 });
 

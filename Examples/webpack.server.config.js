@@ -72,7 +72,13 @@ module.exports = {
                     globOptions: {
                         dot: true,
                         gitignore: false,
-                        ignore: ["**/exampleInfo.*", "**/*.jpg", "**/ExamplesRoot.tsx", "**/ExampleStrings.ts"],
+                        ignore: [
+                            "**/exampleInfo.*",
+                            "**/*.jpg",
+                            "**/*.png",
+                            "**/ExamplesRoot.tsx",
+                            "**/ExampleStrings.ts",
+                        ],
                     },
                 },
             ],
