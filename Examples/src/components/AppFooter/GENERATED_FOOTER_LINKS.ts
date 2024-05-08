@@ -28,6 +28,7 @@ export const FOOTER_LINKS = [
     { link: "realtime-mountain-chart", text: "JavaScript Realtime Mountain Chart" },
     { link: "text-chart", text: "JavaScript Text Chart" },
     { link: "chart-annotations", text: "JavaScript Chart Annotations" },
+    { link: "annotation-layers", text: "JavaScript Chart Annotation Layers" },
     { link: "editable-annotations", text: "JavaScript Chart Editable Annotations" },
     { link: "stock-chart-buy-sell-markers", text: "JavaScript Chart Trading Buy Sell Marker Annotations" },
     { link: "chart-drag-horizontal-threshold", text: "JavaScript Chart Drag Horizontal Threshold" },

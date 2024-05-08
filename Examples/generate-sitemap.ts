@@ -3,6 +3,7 @@ import { Readable } from "stream";
 import * as fs from "fs";
 import { PAGES } from "./src/components/AppRouter/pages";
 import { EXAMPLES_PAGES } from "./src/components/AppRouter/examplePages";
+import { EPageFramework } from "./src/helpers/shared/Helpers/frameworkParametrization";
 
 enum EChangeFreq {
     Always = "always",
@@ -19,7 +20,7 @@ type TLink = {
     changefreq: EChangeFreq;
     priority: number;
     lastmod: string;
-    img?: { url: string; }[]
+    img?: { url: string }[];
 };
 
 const basePath = "https://demo.scichart.com";
@@ -44,24 +45,26 @@ console.log("Generating sitemap...");
     });
 
     // Add examples links
-    Object.values(EXAMPLES_PAGES).forEach((el) => {
-        if (el.thumbnailImage) {
-            links.push({
-                url: el.path,
-                changefreq: EChangeFreq.Weekly,
-                priority: 0.5,
-                lastmod,
-                img: [{url: `/images/${el.thumbnailImage}`}]
-            });
-        } else {
-            links.push({
-                url: el.path,
-                changefreq: EChangeFreq.Weekly,
-                priority: 0.5,
-                lastmod
-            });
-        }
-    });
+    for (const framework of ["react", "javascript"]) {
+        Object.values(EXAMPLES_PAGES).forEach((el) => {
+            if (el.thumbnailImage) {
+                links.push({
+                    url: framework + "/" + el.path,
+                    changefreq: EChangeFreq.Weekly,
+                    priority: 0.5,
+                    lastmod,
+                    img: [{ url: `/images/${el.thumbnailImage}` }],
+                });
+            } else {
+                links.push({
+                    url: framework + "/" + el.path,
+                    changefreq: EChangeFreq.Weekly,
+                    priority: 0.5,
+                    lastmod,
+                });
+            }
+        });
+    }
 
     // Create a stream to write to
     const stream = new SitemapStream({
