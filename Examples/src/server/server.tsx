@@ -100,6 +100,16 @@ app.get("/codesandbox/:example", (req: Request, res: Response) => {
     handleRender(req, res);
 });
 
+// to fix bad previous redirect
+app.get("/iframe/iframe/:example", (req: Request, res: Response) => {
+    const params = req.params;
+    if (getExamplePageKey(params.example)) {
+        return res.redirect(301, `../${params.example}`);
+    } else {
+        handleRender(req, res);
+    }
+});
+
 app.get("/iframe/codesandbox/:example", (req: Request, res: Response) => {
     handleRender(req, res);
 });
@@ -107,7 +117,7 @@ app.get("/iframe/codesandbox/:example", (req: Request, res: Response) => {
 app.get("/iframe/javascript-:example", (req: Request, res: Response) => {
     const params = req.params;
     if (getExamplePageKey(params.example)) {
-        return res.redirect(301, `iframe/${params.example}`);
+        return res.redirect(301, `${params.example}`);
     } else {
         handleRender(req, res);
     }
