@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SciChart.Server.Licensing" Version="0.2.2" />
+    <PackageReference Include="SciChart.Server.Licensing" Version="0.2.3" />
   </ItemGroup>
 
   <ItemGroup>

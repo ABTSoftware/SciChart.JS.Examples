@@ -21,7 +21,9 @@ namespace DotnetServerLicensing
         {
             services.AddRazorPages();
             services.AddLogging();
-            services.AddLicenseServer("server key here");
+            // Optional second parameter is the time tolerance for the validation.  This prevents reuse of license challenges.  Default is 300 seconds.
+            // If you cannot rely on the server having regular time sync, you can increase this value or disable time validation completely by setting this to 0
+            services.AddLicenseServer("server key here", 300);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

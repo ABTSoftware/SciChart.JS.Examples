@@ -50,6 +50,7 @@ void SciChartLicenseServer_SetAssemblyName(char* name)
 int SciChartLicenseServer_SetRuntimeLicenseKey(char* key)
 char* SciChartLicenseServer_ValidateChallenge(char* challenge)
 char* SciChartLicenseServer_GetLicenseErrors()
+void SciChartLicenseServer_SetTimeTolerance(int timeTolerance)
 ```
 
 For the functions that return char\* you should free the buffer that is returned.
@@ -93,6 +94,10 @@ namespace SciChart {
         /// Sets the Runtime License ( narrow string version ).
         /// Returns true passed license key is valid; otherwise false.
         bool SetRuntimeLicenseKey(const std::string& _strKey);
+
+        /// The tolerance in seconds between the time when the challenge was generated and when it was processed.  Default 300.
+        /// If your server does not have reliable time synchronisation you can increase this value or set it to 0 to disable time based validation completely.
+        void SetTimeTolerance(int timeTolerance)
 
         /// Gets a type of the Runtime License.
         SCRTLicenseType GetLicenseType();
