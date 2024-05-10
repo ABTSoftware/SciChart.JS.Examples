@@ -1,4 +1,4 @@
-# SciChart.js React Demo
+# SciChart.js Svelte + Vite Demo
 
 ## Licensing
 
@@ -7,14 +7,12 @@ SciChart.js is commercial software with a [free community license](https://scich
 - From SciChart.js v3.2 and onwards, trial licenses are not required. Instead the chart initialises with a [Community License](https://scichart.com/community-licensing)
 - For commercial licensing, follow steps from [scichart.com/licensing-scichart-js](https://scichart.com/licensing-scichart-js).
 
-## Step 1: Adding SciChart to your React Application with vite
+## Step 1: Adding SciChart to your Svelte Application with Vite
 
-If you haven't already done so, add SciChart.js to your react application.
+If you haven't already done so, add SciChart.js to your application.
 
 ```javascript
 npm install scichart
-// we strongly suggest to install scichart-react for easier integration
-npm install scichart-react
 ```
 
 ## Step 2: Wasm file deployment
@@ -23,16 +21,15 @@ SciChart.js uses WebAssembly files which must be served. In vite.config.js, add 
 
 ```javascript
 // vite.config.js
-
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { viteStaticCopy } from 'vite-plugin-static-copy' // for copying wasm files
+import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
-        react(),
-        viteStaticCopy({ // for serving wasm files
+        svelte(),
+        viteStaticCopy({
             targets: [
                 {
                     src: 'node_modules/scichart/_wasm/scichart2d.data',
@@ -42,7 +39,7 @@ export default defineConfig({
                     src: 'node_modules/scichart/_wasm/scichart2d.wasm',
                     dest: '/'
                 },
-                // do the same for 3d if needed
+                // same for scichart3d if needed
             ]
         }),
     ],
@@ -53,73 +50,118 @@ export default defineConfig({
 
 ## Step 3: Creating the chart
 
-After that, you can define a config object to create a SciChartSurface like this.
-
+###  drawExample.js:
 ```javascript
-import {
-    EAxisType,
-    EChart2DModifierType,
-    ESeriesType,
+import { 
+    SciChartSurface, 
+    NumericAxis, 
+    XyDataSeries, 
+    StackedColumnRenderableSeries, 
+    StackedColumnCollection, 
+    ZoomPanModifier, 
+    ZoomExtentsModifier, 
+    MouseWheelZoomModifier 
 } from "scichart";
 
-export const chartConfig = {
-    xAxes: [{ type: EAxisType.NumericAxis }],
-    yAxes: [{ type: EAxisType.NumericAxis }],
-    series: [
-        {
-            type: ESeriesType.SplineMountainSeries,
-            options: {
-                fill: "#3ca832",
-                stroke: "#eb911c",
-                strokeThickness: 4,
-                opacity: 0.4
-            },
-            xyData: { 
-                xValues: [1, 2, 3, 4], 
-                yValues: [1, 4, 7, 3] 
-            }
-        }
-    ],
-    modifiers: [
-        { type: EChart2DModifierType.ZoomPan, options: { enableZoom: true } },
-        { type: EChart2DModifierType.MouseWheelZoom },
-        { type: EChart2DModifierType.ZoomExtents }
-    ]
+export const drawExample = async (divId) => {
+    // Create a SciChartSurface
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId);
+
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
+    
+    // Data for the example
+    const xValues = [1992, 1993, 1994, 1995];
+    const yValues1 = [10, 13, 7, 16];
+    const yValues2 = [12, 17, 21, 15];
+    
+    // Create some RenderableSeries - for each part of the stacked column
+    const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues1, dataSeriesName: "EU" }),
+        fill: "#2277CC",
+        stackedGroupId: "StackedGroupId"
+    });
+    
+    const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues2, dataSeriesName: "Asia" }),
+        fill: "#EC5F6C",
+        stackedGroupId: "StackedGroupId2"
+    });
+
+    // To add the series to the chart, put them in a StackedColumnCollection
+    const stackedColumnCollection = new StackedColumnCollection(wasmContext);
+
+    // Add the series to the StackedColumnCollection
+    stackedColumnCollection.add(rendSeries1, rendSeries2);
+
+    // Add the Stacked Column collection to the chart
+    sciChartSurface.renderableSeries.add(
+        stackedColumnCollection
+    );
+
+    // Add zooming and panning behaviour
+    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
+    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+
+    return { sciChartSurface, wasmContext };
 };
 ```
 
-## Step 4: Create a React Component
+## Step 4: Using the chart in your Svelte app
 
-Charts can be initialized with the SciChartReact Component using the `config` property.
+```html
+<script>
+    import { onMount } from 'svelte';
+    import { drawExample } from './drawExample';
 
-```javascript
-function App() {
-  // LICENSING
-  // Commercial licenses set your license code here
-  // Purchased license keys can be viewed at https://www.scichart.com/profile
-  // How-to steps at https://www.scichart.com/licensing-scichart-js/
-  // SciChartSurface.setRuntimeLicenseKey("YOUR_RUNTIME_KEY");
+    const divID = 'scichart-root';
+    let sciChartSurface;
 
-  // to use WebAssembly and Data files from CDN instead of the same origin
-  // SciChartSurface.loadWasmFromCDN();
+    // recommended way to initialize SciChart, and delete on cleanup to avoid memory leaks
+    onMount(() => { 
+        let chartInitializationPromise = drawExample(divID).then(res => {
+            sciChartSurface = res.sciChartSurface;
+        });
 
-  // Note: for both licensing and WASM configurations - make sure they are set on the client side.
+        return () => {
+            // Check if chart is already initialized
+            if (sciChartSurface) {
+                sciChartSurface.delete();
+                return;
+            }
 
-  return (
-    <div>
-      <h1>SciChart with React + Vite</h1>
-      <SciChartReact config={chartConfig} style={{ width: 900 }} />
-    </div>
-  );
-}
+            // Else postpone deletion
+            chartInitializationPromise.then(() => {
+                sciChartSurface.delete();
+            });
+        };
+    });
+</script>
+
+<main>
+    <h1>Hello SciChart!</h1>
+    <div id={divID} style="width: 100%; height: 500px;"></div>
+</main>
 ```
 
 # Running the example
 
 ```
-npm install
 npm run dev
 ```
+
+Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+
+## Building and running in production mode
+
+To create an optimised version of the app:
+
+```bash
+npm run build
+```
+
+You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
 
 # SciChart.js Tutorials and Getting Started
 

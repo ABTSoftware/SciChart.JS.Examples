@@ -68,18 +68,7 @@ export default {
 				});
 			}
 		},
-		// scichart2d.js
-		{
-			name: 'wasm',
-			generateBundle() {
-				this.emitFile({
-					type: 'asset',
-					fileName: 'scichart2d.js',
-					source: fs.readFileSync('node_modules/scichart/_wasm/scichart2d.js')
-				});
-			}
-		},
-		// now again for scichart3d (only if you use 3D charts)
+		// similar for scichart3d (only if you use 3D charts) >>
 		{
 			name: 'wasm',
 			generateBundle() {
@@ -97,16 +86,6 @@ export default {
 					type: 'asset',
 					fileName: 'scichart3d.data',
 					source: fs.readFileSync('node_modules/scichart/_wasm/scichart3d.data')
-				});
-			}
-		},
-		{
-			name: 'wasm',
-			generateBundle() {
-				this.emitFile({
-					type: 'asset',
-					fileName: 'scichart3d.js',
-					source: fs.readFileSync('node_modules/scichart/_wasm/scichart3d.js')
 				});
 			}
 		},

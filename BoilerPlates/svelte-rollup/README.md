@@ -1,11 +1,4 @@
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template ./
-npm install
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+# SciChart.js Svelte + Rollup Demo
 
 ## Licensing
 
@@ -34,7 +27,7 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'public/bundle.js' // change, so that everything is served at "public", not "build"
+		file: 'public/bundle.js' // change this, so that everything is served at "public", not "build"
 	},
 	plugins: [
 		svelte({
@@ -67,18 +60,7 @@ export default {
 				});
 			}
 		},
-		// scichart2d.js
-		{
-			name: 'wasm',
-			generateBundle() {
-				this.emitFile({
-					type: 'asset',
-					fileName: 'scichart2d.js',
-					source: fs.readFileSync('node_modules/scichart/_wasm/scichart2d.js')
-				});
-			}
-		},
-        // if needed, do the same for 3d wasm/data/js files
+        // if needed, do the same for 3d .wasm/.data files
     ]
 };
 ```

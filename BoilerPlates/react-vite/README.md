@@ -1,4 +1,4 @@
-# SciChart.js React Demo
+# SciChart.js React + Vite Demo
 
 ## Licensing
 
@@ -116,7 +116,6 @@ function App() {
 # Running the example
 
 ```
-npm install
 npm run dev
 ```
 
