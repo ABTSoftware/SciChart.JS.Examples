@@ -21,6 +21,7 @@ import {
     EMultiLineAlignment,
     ETextAlignment,
     Thickness,
+    NativeTextAnnotation,
 } from "scichart";
 
 // This method hit-tests the series body
@@ -124,7 +125,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(lineSeries);
 
     const watermarkAnnotation = (text: string = "") => {
-        return new TextAnnotation({
+        return new NativeTextAnnotation({
             text,
             fontSize: 32,
             textColor: appTheme.ForegroundColor,
