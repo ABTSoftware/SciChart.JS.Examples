@@ -35,7 +35,7 @@ export const stackedColumnSideBySideExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleGroupedColumnChart,
     pageTitle: ExampleStrings.pageTitleGroupedColumnChart,
     path: ExampleStrings.urlGroupedColumnChart,
-    filepath: "Charts2D/BasicChartTypes/StackedColumnSideBySideChart",
+    filepath: "Charts2D/BasicChartTypes/StackedColumnSideBySide",
     subtitle: Subtitle,
     documentationLinks,
     tips,

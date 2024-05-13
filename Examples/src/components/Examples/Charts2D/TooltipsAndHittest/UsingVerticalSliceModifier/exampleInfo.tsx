@@ -32,7 +32,7 @@ export const usingVerticalSliceModifierExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleVerticalSliceModifier,
     pageTitle: ExampleStrings.titleVerticalSliceModifier,
     path: ExampleStrings.urlVerticalSliceModifier,
-    filepath: "Charts2D/TooltipsAndHittest/VerticalSliceModifier",
+    filepath: "Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier",
     subtitle: Subtitle,
     documentationLinks,
     tips,

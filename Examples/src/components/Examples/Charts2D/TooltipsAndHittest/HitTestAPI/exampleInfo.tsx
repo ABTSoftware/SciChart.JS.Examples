@@ -36,7 +36,7 @@ export const hitTestApiExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleHitTestApi,
     pageTitle: ExampleStrings.titleHitTestApi,
     path: ExampleStrings.urlHitTestApi,
-    filepath: "Charts2D/TooltipsAndHittest/HitTestApi",
+    filepath: "Charts2D/TooltipsAndHittest/HitTestAPI",
     subtitle: Subtitle,
     documentationLinks,
     tips,

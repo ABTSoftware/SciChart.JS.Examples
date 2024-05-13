@@ -32,7 +32,7 @@ export const candlestickChartExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleCandlestickChart,
     pageTitle: ExampleStrings.pageTitleCandlestickChart,
     path: ExampleStrings.urlCandlestickChart,
-    filepath: "Charts2D/BasicChartTypes/CandleStickChart",
+    filepath: "Charts2D/BasicChartTypes/CandlestickChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

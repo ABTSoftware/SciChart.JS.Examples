@@ -33,7 +33,7 @@ export const rotatedLabelsExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleRotatedLabels,
     pageTitle: ExampleStrings.titleRotatedLabels,
     path: ExampleStrings.urlRotatedLabels,
-    filepath: "Charts2D/AxisLabelCustomizationRotatedLabels",
+    filepath: "Charts2D/AxisLabelCustomization/RotatedLabels",
     subtitle: Subtitle,
     documentationLinks,
     tips,
