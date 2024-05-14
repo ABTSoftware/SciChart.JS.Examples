@@ -100,7 +100,7 @@ const ExamplesRoot: FC<TProps> = (props) => {
                                 <a
                                     className={classes.ExampleRootDescriptionLink}
                                     target="_blank"
-                                    href={`https://scichart.com/example/javascript-chart/${exampleUrl}/`}
+                                    href={`https://scichart.com/example/javascript-chart/javascript-${exampleUrl}/`}
                                     title={titleText}
                                 >
                                     {titleText}
