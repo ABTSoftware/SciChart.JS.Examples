@@ -22,7 +22,7 @@ export const ExampleStrings = {
     urlTitleRenderSeriesProperties: `Learn about common RenderableSeries properties in SciChart.js`,
     urlPerformanceTipsDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Common%20RenderableSeries%20Features.html`,
     urlTitlePerformanceTipsDocumentation: `Go to the Performance Tips and Tricks page in the SciChart.js Documentation`,
-    urlJavascriptChartFeatures: `https://www.scichart.com/javascript-charts`,
+    urlJavascriptChartFeatures: `https://www.scichart.com/javascript-chart-features/`,
 
     // Urls, example titles
     //

@@ -32,7 +32,7 @@ export default function PageHome() {
                         <h3 className={classes.PageHomeAboutText}>
                             The SciChart.js Demo app is where we host our showcases and demos for SciChart's{" "}
                             <a
-                                href="https://www.scichart.com/javascript-chart/"
+                                href="https://www.scichart.com/javascript-chart-features/"
                                 target="_blank"
                                 title="JavaScript Chart Library"
                             >
