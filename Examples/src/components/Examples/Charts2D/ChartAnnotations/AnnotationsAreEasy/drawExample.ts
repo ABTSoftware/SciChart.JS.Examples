@@ -108,7 +108,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         fontWeight: "Bold",
         xCoordinateMode: ECoordinateMode.Relative, // xCoordinateMode relative allows 0..1 to correspond to viewport left/right
         yCoordinateMode: ECoordinateMode.Relative, // yCoordinateMode relative allows 0..1 to correspond to viewport top/bottom
-        annotationLayer: EAnnotationLayer.BelowChart,
     });
 
     // Lines

@@ -199,7 +199,6 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         fontSize: 48,
         fontWeight: "Bold",
         text: "",
-        annotationLayer: EAnnotationLayer.BelowChart,
     });
     sciChartSurface.annotations.add(watermarkAnnotation);
 
