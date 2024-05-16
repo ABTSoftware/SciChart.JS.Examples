@@ -235,7 +235,6 @@ export const getChartsInitializationAPI = () => {
             fontSize: 48,
             fontWeight: "Bold",
             text: "Euro / U.S. Dollar - Daily",
-            annotationLayer: EAnnotationLayer.BelowChart,
         });
         sciChartSurface.annotations.add(watermarkAnnotation);
 
