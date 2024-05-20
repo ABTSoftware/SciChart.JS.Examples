@@ -45,12 +45,7 @@ const notFoundCodeSandBoxRedirectPage = (page: TExamplePage) => {
 const basePath = path.join(__dirname, "Examples");
 
 export const getRequestedExample = (req: Request, res: Response) => {
-    const framework = req.query.framework as EPageFramework;
     const examplePath = req.params.example;
-    const isValidFramework = Object.values(EPageFramework).includes(framework);
-    if (!isValidFramework) {
-        throw new BadRequestError("Invalid framework param!");
-    }
     const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === examplePath);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
 
@@ -73,6 +68,11 @@ export const renderCodeSandBoxRedirect = async (req: Request, res: Response) => 
         }
 
         try {
+            let framework = req.query.framework as EPageFramework;
+            const isValidFramework = Object.values(EPageFramework).includes(framework);
+            if (!isValidFramework) {
+                framework = EPageFramework.React;
+            }
             const folderPath = path.join(basePath, currentExample.filepath);
             const form = await getSandboxWithTemplate(
                 folderPath,

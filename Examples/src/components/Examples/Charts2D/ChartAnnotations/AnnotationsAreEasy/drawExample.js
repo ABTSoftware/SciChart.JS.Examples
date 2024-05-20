@@ -13,7 +13,6 @@ import {
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
     ECoordinateMode,
-    EAnnotationLayer,
     HorizontalLineAnnotation,
     ELabelPlacement,
     VerticalLineAnnotation,
@@ -97,8 +96,7 @@ export const drawExample = async (rootElement) => {
         fontSize: 48,
         fontWeight: "Bold",
         xCoordinateMode: ECoordinateMode.Relative,
-        yCoordinateMode: ECoordinateMode.Relative,
-        annotationLayer: EAnnotationLayer.BelowChart,
+        yCoordinateMode: ECoordinateMode.Relative, // yCoordinateMode relative allows 0..1 to correspond to viewport top/bottom
     });
     // Lines
     //
