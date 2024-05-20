@@ -97,7 +97,8 @@ const getExamplePageKey = (examplePath: string) => {
 };
 
 app.get("/codesandbox/:example", (req: Request, res: Response) => {
-    handleRender(req, res);
+    renderCodeSandBoxRedirect(req, res);
+    //handleRender(req, res);
 });
 
 // to fix bad previous redirect

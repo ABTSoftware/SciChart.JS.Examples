@@ -9,7 +9,6 @@ import {
     XyDataSeries,
     EllipsePointMarker,
     DpiHelper,
-    TextAnnotation,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
     ECoordinateMode,
@@ -17,6 +16,7 @@ import {
     EMultiLineAlignment,
     ETextAlignment,
     Thickness,
+    NativeTextAnnotation,
 } from "scichart";
 // This method hit-tests the series body
 export const HIT_TEST = "hitTest";
@@ -109,7 +109,7 @@ export const drawExample = async (rootElement) => {
     // Add the line series to the SciChartSurface
     sciChartSurface.renderableSeries.add(lineSeries);
     const watermarkAnnotation = (text = "") => {
-        return new TextAnnotation({
+        return new NativeTextAnnotation({
             text,
             fontSize: 32,
             textColor: appTheme.ForegroundColor,
