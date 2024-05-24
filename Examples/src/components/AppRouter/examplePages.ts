@@ -61,6 +61,7 @@ import { loadOneMillionPointsExampleInfo } from "../Examples/FeaturedApps/Perfor
 import { dragAxisToScaleExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/exampleInfo";
 import { realtimeZoomPanExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/exampleInfo";
 import { zoomAndPanWithMultipleChartModifiersExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/exampleInfo";
+import { zoomHighPrecisionExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/ZoomHighPrecision/exampleInfo";
 import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/exampleInfo";
 import { GalleryItem } from "../../helpers/types/types";
 import { dragHorizontalThresholdExampleInfo } from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
@@ -449,6 +450,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_zoomAndPanAChart_VirtualizedDataOverview: {
         id: "chart2D_zoomAndPanAChart_VirtualizedDataOverview",
         ...virtualizedDataOverviewExampleInfo,
+    },
+    chart2D_zoomAndPanAChart_ZoomHighPrecision: {
+        id: "chart2D_zoomAndPanAChart_ZoomHighPrecision",
+        ...zoomHighPrecisionExampleInfo
     },
     chart2D_filters_PercentageChange: {
         id: "chart2D_filters_PercentageChange",

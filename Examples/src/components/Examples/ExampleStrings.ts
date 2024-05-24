@@ -445,6 +445,10 @@ export const ExampleStrings = {
     urlZoomPanModifierDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#ZoomPanModifier.html`,
     urlTitleZoomPanModifierDocumentation: `Zoom and Pan Modifier Documentation`,
 
+    titleZoomHighPrecision: (frameworkName: TFrameworkName) => 
+        `Zoom High Precision in ${frameworkName} Chart`,
+        urlZoomHighPrecision: `zoom-high-precision`,
+
     // PaletteProvider
     titlePaletteProvider: `Coloring Series per-point using the PaletteProvider`,
     urlPaletteProvider: `chart-color-points-individually-with-paletteprovider`,
