@@ -106,6 +106,7 @@ import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/Tool
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
 import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { sharedChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/ShareableCharts/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -313,6 +314,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_createStockCharts_DepthChart: {
         id: "chart2D_createStockCharts_DepthChart",
         ...depthChartExampleInfo,
+    },
+    chart2D_createStockCharts_SharedChart: {
+        id: "chart2D_createStockCharts_SharedChart",
+        ...sharedChartExampleInfo,
     },
     chart2D_legends_ChartLegendsAPI: {
         id: "chart2D_legends_ChartLegendsAPI",

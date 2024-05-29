@@ -336,6 +336,13 @@ export const ExampleStrings = {
     pageTitleSubChartStockChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Multi-Pane Stock Chart using Subcharts | View JavaScript Charts`,
 
+    urlShareableChart: `shareable-stock-chart`,
+    titleShareableChart: (frameworkName: TFrameworkName) => `${frameworkName} Shareable Stock Chart`,
+    pageTitleShareableChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Shareable Stock Chart | Chart Examples | SciChart.js`,
+    urlTitleShareableChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Shareable Stock Chart example demonstrates how to create Stock Charts which can be annotated and shared with SciChart.js`,
+
     // Subcharts Grid
     urlSubChartsGrid: `subcharts-grid`,
     urlTitleSubChartsGridChart: `The Subcharts grid chart example demonstrates different series types placed in a grid of small charts using the new Subcharts API`,

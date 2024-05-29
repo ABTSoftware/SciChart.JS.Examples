@@ -1,6 +1,8 @@
 import { WebsocketBuilder } from "websocket-ts";
 import { combineLatest, map, Observable, scan, skipWhile, take } from "rxjs";
 
+const binanceUrl = "stream.binance.com"; //stream.binance.us
+
 // NOTE: THIS IS NOT PRODUCTION CODE, FOR DEMONSTRATION PURPOSE ONLY
 //       IF USING IN PRODUCTION, USE A FULL OR OFFICIAL BINANCE / EXCHANGE LIBRARY
 
@@ -148,7 +150,7 @@ const parseKline = (kline: any) => {
 const getCandleStream = (symbol: string, interval: string) => {
     const obs = new Observable<TRealtimePriceBar>((subscriber) => {
         console.log("Connecting to binance klines for ", symbol, interval);
-        const ws = new WebsocketBuilder(`wss://stream.binance.us:9443/ws/${symbol.toLowerCase()}@kline_${interval}`)
+        const ws = new WebsocketBuilder(`wss://${binanceUrl}:9443/ws/${symbol.toLowerCase()}@kline_${interval}`)
             // .onOpen((i, ev) => { console.log("opened") })
             // .onClose((i, ev) => { console.log("closed") })
             // .onError((i, ev) => { console.log("error") })
@@ -165,7 +167,7 @@ const getCandleStream = (symbol: string, interval: string) => {
 const getTradeStream = (symbol: string) => {
     const obs = new Observable<TTrade>((subscriber) => {
         console.log("Connecting to binance trades for ", symbol);
-        const ws = new WebsocketBuilder(`wss://stream.binance.us:9443/ws/${symbol.toLowerCase()}@aggTrade`)
+        const ws = new WebsocketBuilder(`wss://${binanceUrl}:9443/ws/${symbol.toLowerCase()}@aggTrade`)
             // .onOpen((i, ev) => { console.log("opened") })
             // .onClose((i, ev) => { console.log("closed") })
             // .onError((i, ev) => { console.log("error") })
