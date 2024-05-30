@@ -47,6 +47,7 @@ export class CreateLineAnnotationModifier extends ChartModifierBase2D {
     }
 
     private beginCreateAnnotation(mousePoint: Point) {
+        if (!mousePoint) return;
         // Assumes that the parent chart has a single x & y axis.
         // You will need to include more logic here for multi axis surfaces
         const xAxis = this.parentSurface.xAxes.get(0);
@@ -78,6 +79,7 @@ export class CreateLineAnnotationModifier extends ChartModifierBase2D {
     }
 
     private updateAnnotation(mousePoint: Point) {
+        if (!mousePoint) return;
         // Update the position of an annotation using its X,Y Axis and the
         // coordinate calculator to transform to coordinate
         const xAxis = this.parentSurface.getXAxisById(this.editingAnnotation.xAxisId);

@@ -9,8 +9,19 @@ import {
     EHorizontalAnchorPoint,
     EExecuteOn,
     translateFromCanvasToSeriesViewRect,
+    AnnotationClickEventArgs,
+    registerFunction,
+    EBaseType,
 } from "scichart";
 import { appTheme } from "../../../theme";
+
+const deleteOnClick = (args: AnnotationClickEventArgs) => {
+    if (args.sender.isSelected && args.mouseArgs.ctrlKey) {
+        args.sender.parentSurface.annotations.remove(args.sender, true);
+    }
+};
+
+registerFunction(EBaseType.OptionFunction, "deleteOnClick", deleteOnClick);
 
 // Returns a CustomAnnotation that represents a buy marker arrow
 const buyMarkerAnnotation = (): CustomAnnotation => {
@@ -18,6 +29,7 @@ const buyMarkerAnnotation = (): CustomAnnotation => {
         verticalAnchorPoint: EVerticalAnchorPoint.Top,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         isEditable: true,
+        onClick: "deleteOnClick",
         svgString: `<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">
                 <g transform="translate(-54.867218,-75.091687)">
                     <path style="fill:${appTheme.VividGreen};fill-opacity:0.77;stroke:${appTheme.VividGreen};stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -34,6 +46,7 @@ const sellMarkerAnnotation = (): CustomAnnotation => {
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         isEditable: true,
+        onClick: "deleteOnClick",
         svgString: `<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">
                 <g transform="translate(-54.616083,-75.548914)">
                     <path style="fill:${appTheme.VividRed};fill-opacity:0.77;stroke:${appTheme.VividRed};stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -56,8 +69,7 @@ export class CreateTradeMarkerModifier extends ChartModifierBase2D {
     // Called when mouse-down on the chart
     public modifierMouseDown(args: ModifierMouseArgs): void {
         super.modifierMouseDown(args);
-        if (!this.isEnabled) return;
-        if (!this.editingAnnotation) {
+        if (!this.editingAnnotation && !args.ctrlKey) {
             // If no editingAnnotation, then begin create one
             this.editingAnnotation = this.createAnnotation(args.button === EExecuteOn.MouseLeftButton);
 
