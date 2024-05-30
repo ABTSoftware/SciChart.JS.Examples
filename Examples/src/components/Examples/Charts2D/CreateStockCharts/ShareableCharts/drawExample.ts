@@ -1,5 +1,7 @@
 // SCICHART EXAMPLE
 import {
+    chartReviver,
+    configure2DSurface,
     CursorModifier,
     CursorTooltipSvgAnnotation,
     CustomAnnotation,
@@ -40,12 +42,14 @@ import { appTheme } from "../../../theme";
 import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
 import { CreateTradeMarkerModifier } from "./CreateTradeMarkerModifier";
 import { CreateLineAnnotationModifier } from "./CreateLineAnnotationModifier";
-import { cursorTo } from "readline";
-export const divElementId = "chart";
-export const divOverviewId = "overview";
-const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
 
-export const drawExample = async () => {
+export interface IChartControls {
+    getDefinition: () => object;
+    applyDefinition: (definition: any) => void;
+    resetChart: () => void;
+}
+
+export const drawExample = async (divElementId: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
@@ -92,11 +96,6 @@ export const drawExample = async () => {
         closeValues.push(priceBar.close);
         volumeValues.push(priceBar.volume);
     });
-
-    // Zoom to the latest 100 candles
-    const startViewportRange = new Date();
-    startViewportRange.setHours(startDate.getHours() - 100);
-    xAxis.visibleRange = new NumberRange(startViewportRange.getTime() / 1000, endDate.getTime() / 1000);
 
     // Create and add the Candlestick series
     // The Candlestick Series requires a special dataseries type called OhlcDataSeries with o,h,l,c and date values
@@ -158,7 +157,28 @@ export const drawExample = async () => {
     sciChartSurface.chartModifiers.getById("marker").isEnabled = false;
     sciChartSurface.chartModifiers.getById("line").isEnabled = false;
 
-    return { sciChartSurface };
+    const getDefinition = () => {
+        return {
+            visibleRange: xAxis.visibleRange,
+            annotations: sciChartSurface.annotations.asArray().map((annotation) => annotation.toJSON()),
+        };
+    };
+    const applyDefinition = (definition: any) => {
+        configure2DSurface({ annotations: definition.annotations }, sciChartSurface, wasmContext);
+        xAxis.visibleRange = definition.visibleRange;
+    };
+
+    const resetChart = () => {
+        sciChartSurface.annotations.clear(true);
+        // Zoom to the latest 100 candles
+        const startViewportRange = new Date();
+        startViewportRange.setHours(startDate.getHours() - 100);
+        xAxis.visibleRange = new NumberRange(startViewportRange.getTime() / 1000, endDate.getTime() / 1000);
+    };
+
+    resetChart();
+
+    return { sciChartSurface, controls: { getDefinition, applyDefinition, resetChart } as IChartControls };
 };
 
 // Override the standard tooltip displayed by CursorModifier
