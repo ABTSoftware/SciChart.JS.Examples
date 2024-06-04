@@ -20,16 +20,17 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = (frameworkName: string) => (
     <p>
-        This demo shows you how to create a <strong>{frameworkName} Shareable Stock Chart</strong> using SciChart.js.
+        This demo shows you how to create a <strong>{frameworkName} User Annotated Stock Chart</strong> using
+        SciChart.js.
     </p>
 );
 
-export const sharedChartExampleInfo: TExampleInfo = {
+export const userAnnotatedStockChartExampleInfo: TExampleInfo = {
     onWebsite: true,
-    title: ExampleStrings.titleShareableChart,
-    pageTitle: ExampleStrings.pageTitleShareableChart,
-    path: ExampleStrings.urlShareableChart,
-    filepath: "Charts2D/CreateStockCharts/ShareableCharts",
+    title: ExampleStrings.titleuserAnnotatedStockChart,
+    pageTitle: ExampleStrings.pageTitleuserAnnotatedStockChart,
+    path: ExampleStrings.urluserAnnotatedStockChart,
+    filepath: "Charts2D/CreateStockCharts/UserAnnotatedStockChart",
     subtitle: Subtitle,
     documentationLinks,
     tips,

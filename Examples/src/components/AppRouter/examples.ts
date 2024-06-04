@@ -114,8 +114,8 @@ import UsingVerticalSliceModifier from "../Examples/Charts2D/TooltipsAndHittest/
 import ServerTrafficDashboard from "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard";
 import SyncMultiChart from "../Examples/Charts2D/MultiChart/SyncMultiChart";
 import EventMarkers from "../Examples/FeaturedApps/ShowCases/EventMarkers";
-import { sharedChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/ShareableCharts/exampleInfo";
-import ShareableChart from "../Examples/Charts2D/CreateStockCharts/ShareableCharts";
+import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
+import UserAnnotatedStockChart from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart";
 
 export type TMenuItem = {
     item: {
@@ -455,7 +455,7 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
         case EXAMPLES_PAGES.chart2D_createStockCharts_DepthChart.id:
             return DepthChart;
         case EXAMPLES_PAGES.chart2D_createStockCharts_SharedChart.id:
-            return ShareableChart;
+            return UserAnnotatedStockChart;
         case EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.id:
             return ChartLegendsAPI;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes.id:
