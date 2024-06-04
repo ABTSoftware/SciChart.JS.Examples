@@ -1,37 +1,27 @@
 // SCICHART EXAMPLE
 import {
+    configure2DSurface,
     CursorModifier,
     DateTimeNumericAxis,
     EAutoRange,
     EDataSeriesType,
-    EFillPaletteMode,
     ENumericFormat,
-    ESeriesType,
     FastCandlestickRenderableSeries,
-    FastColumnRenderableSeries,
     FastLineRenderableSeries,
-    FastMountainRenderableSeries,
-    FastOhlcRenderableSeries,
-    GradientParams,
     MouseWheelZoomModifier,
     NumberRange,
     NumericAxis,
     OhlcDataSeries,
-    parseColorToUIntArgb,
-    Point,
-    SciChartOverview,
     SciChartSurface,
-    XyDataSeries,
     XyMovingAverageFilter,
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
-export const divElementId = "chart";
-export const divOverviewId = "overview";
-const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
-export const drawExample = async () => {
+import { CreateTradeMarkerModifier } from "./CreateTradeMarkerModifier";
+import { CreateLineAnnotationModifier } from "./CreateLineAnnotationModifier";
+export const drawExample = async (divElementId) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
@@ -51,15 +41,6 @@ export const drawExample = async () => {
             labelFormat: ENumericFormat.Decimal,
             labelPrecision: 2,
             labelPrefix: "$",
-            autoRange: EAutoRange.Always,
-        })
-    );
-    // Create a secondary YAxis to host volume data on its own scale
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
-            id: Y_AXIS_VOLUME_ID,
-            growBy: new NumberRange(0, 4),
-            isVisible: false,
             autoRange: EAutoRange.Always,
         })
     );
@@ -83,10 +64,6 @@ export const drawExample = async () => {
         closeValues.push(priceBar.close);
         volumeValues.push(priceBar.volume);
     });
-    // Zoom to the latest 100 candles
-    const startViewportRange = new Date();
-    startViewportRange.setHours(startDate.getHours() - 100);
-    xAxis.visibleRange = new NumberRange(startViewportRange.getTime() / 1000, endDate.getTime() / 1000);
     // Create and add the Candlestick series
     // The Candlestick Series requires a special dataseries type called OhlcDataSeries with o,h,l,c and date values
     const candleDataSeries = new OhlcDataSeries(wasmContext, {
@@ -107,17 +84,6 @@ export const drawExample = async () => {
         strokeDown: appTheme.MutedRed,
     });
     sciChartSurface.renderableSeries.add(candlestickSeries);
-    // Add an Ohlcseries. this will be invisible to begin with
-    const ohlcSeries = new FastOhlcRenderableSeries(wasmContext, {
-        dataSeries: candleDataSeries,
-        stroke: appTheme.ForegroundColor,
-        strokeThickness: 1,
-        dataPointWidth: 0.9,
-        strokeUp: appTheme.VividGreen,
-        strokeDown: appTheme.MutedRed,
-        isVisible: false,
-    });
-    sciChartSurface.renderableSeries.add(ohlcSeries);
     // Add some moving averages using SciChart's filters/transforms API
     // when candleDataSeries updates, XyMovingAverageFilter automatically recomputes
     sciChartSurface.renderableSeries.add(
@@ -138,64 +104,42 @@ export const drawExample = async () => {
             stroke: appTheme.VividPink,
         })
     );
-    // Add volume data onto the chart
-    sciChartSurface.renderableSeries.add(
-        new FastColumnRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: volumeValues, dataSeriesName: "Volume" }),
-            strokeThickness: 0,
-            // This is how we get volume to scale - on a hidden YAxis
-            yAxisId: Y_AXIS_VOLUME_ID,
-            // This is how we colour volume bars red or green
-            paletteProvider: new VolumePaletteProvider(
-                candleDataSeries,
-                appTheme.VividGreen + "77",
-                appTheme.MutedRed + "77"
-            ),
-        })
-    );
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(
         new ZoomExtentsModifier(),
-        new ZoomPanModifier(),
         new MouseWheelZoomModifier(),
+        new ZoomPanModifier({ id: "pan" }),
         new CursorModifier({
+            id: "cursor",
             crosshairStroke: appTheme.VividOrange,
             axisLabelFill: appTheme.VividOrange,
             tooltipLegendTemplate: getTooltipLegendTemplate,
-        })
+        }),
+        new CreateTradeMarkerModifier({ id: "marker" }),
+        new CreateLineAnnotationModifier({ id: "line" })
     );
-    // Add Overview chart. This will automatically bind to the parent surface
-    // displaying its series. Zooming the chart will zoom the overview and vice versa
-    const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
-        theme: appTheme.SciChartJsTheme,
-        transformRenderableSeries: getOverviewSeries,
-    });
-    return { sciChartSurface, overview, candlestickSeries, ohlcSeries };
+    sciChartSurface.chartModifiers.getById("marker").isEnabled = false;
+    sciChartSurface.chartModifiers.getById("line").isEnabled = false;
+    const getDefinition = () => {
+        return {
+            visibleRange: xAxis.visibleRange,
+            annotations: sciChartSurface.annotations.asArray().map((annotation) => annotation.toJSON()),
+        };
+    };
+    const applyDefinition = (definition) => {
+        configure2DSurface({ annotations: definition.annotations }, sciChartSurface, wasmContext);
+        xAxis.visibleRange = definition.visibleRange;
+    };
+    const resetChart = () => {
+        sciChartSurface.annotations.clear(true);
+        // Zoom to the latest 100 candles
+        const startViewportRange = new Date();
+        startViewportRange.setHours(startDate.getHours() - 100);
+        xAxis.visibleRange = new NumberRange(startViewportRange.getTime() / 1000, endDate.getTime() / 1000);
+    };
+    resetChart();
+    return { sciChartSurface, controls: { getDefinition, applyDefinition, resetChart } };
 };
-class VolumePaletteProvider {
-    fillPaletteMode = EFillPaletteMode.SOLID;
-    ohlcDataSeries;
-    upColorArgb;
-    downColorArgb;
-    constructor(masterData, upColor, downColor) {
-        this.upColorArgb = parseColorToUIntArgb(upColor);
-        this.downColorArgb = parseColorToUIntArgb(downColor);
-        this.ohlcDataSeries = masterData;
-    }
-    onAttached(parentSeries) {}
-    onDetached() {}
-    // Return up or down color for the volume bars depending on Ohlc data
-    overrideFillArgb(xValue, yValue, index, opacity, metadata) {
-        const isUpCandle =
-            this.ohlcDataSeries.getNativeOpenValues().get(index) >=
-            this.ohlcDataSeries.getNativeCloseValues().get(index);
-        return isUpCandle ? this.upColorArgb : this.downColorArgb;
-    }
-    // Override stroke as well, even though strokethickness is 0, because stroke is used if column thickness goes to 0.
-    overrideStrokeArgb(xValue, yValue, index, opacity, metadata) {
-        return this.overrideFillArgb(xValue, yValue, index, opacity, metadata);
-    }
-}
 // Override the standard tooltip displayed by CursorModifier
 const getTooltipLegendTemplate = (seriesInfos, svgAnnotation) => {
     let outputSvgString = "";
@@ -215,20 +159,4 @@ const getTooltipLegendTemplate = (seriesInfos, svgAnnotation) => {
     return `<svg width="100%" height="100%">
                 ${outputSvgString}
             </svg>`;
-};
-// Override the Renderableseries to display on the scichart overview
-const getOverviewSeries = (defaultSeries) => {
-    if (defaultSeries.type === ESeriesType.CandlestickSeries) {
-        // Swap the default candlestick series on the overview chart for a mountain series. Same data
-        return new FastMountainRenderableSeries(defaultSeries.parentSurface.webAssemblyContext2D, {
-            dataSeries: defaultSeries.dataSeries,
-            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
-                { color: appTheme.VividSkyBlue + "77", offset: 0 },
-                { color: "Transparent", offset: 1 },
-            ]),
-            stroke: appTheme.VividSkyBlue,
-        });
-    }
-    // hide all other series
-    return undefined;
 };
