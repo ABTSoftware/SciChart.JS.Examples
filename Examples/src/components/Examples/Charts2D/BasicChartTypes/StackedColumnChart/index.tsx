@@ -4,7 +4,8 @@ import classes from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/core/styles";
 import { SciChartSurface, StackedColumnCollection } from "scichart";
-import { drawExample, divElementId } from "./drawExample";
+import { drawExample } from "./drawExample";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
@@ -32,27 +33,6 @@ export default function StackedColumnChart() {
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const stackedColumnCollectionRef = React.useRef<StackedColumnCollection>();
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then((res) => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            stackedColumnCollectionRef.current = res.stackedColumnCollection;
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
 
     const handleUsePercentage = (event: any, value: boolean) => {
         if (value !== null) {
@@ -84,7 +64,15 @@ export default function StackedColumnChart() {
                         100% Stacked mode
                     </ToggleButton>
                 </ToggleButtonGroup>
-                <div id={divElementId} className={localClasses.chartArea} />
+                <SciChartReact<SciChartSurface, TResolvedReturnType<typeof drawExample>>
+                    initChart={drawExample}
+                    className={localClasses.chartArea}
+                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                        const { sciChartSurface, stackedColumnCollection } = initResult;
+                        stackedColumnCollectionRef.current = stackedColumnCollection;
+                        sciChartSurfaceRef.current = sciChartSurface;
+                    }}
+                />
             </div>
         </div>
     );

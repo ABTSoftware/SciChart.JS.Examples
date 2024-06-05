@@ -15,11 +15,9 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-export const divElementId = "chart";
-
-export const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
