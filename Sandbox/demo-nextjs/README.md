@@ -1,17 +1,18 @@
 # Next.js Scichart Demo
 
-Shows how to use SciChart.js in a Next.js project with TypeScript
+Shows how to use SciChart.js in a Next.js project with TypeScript.
+
+A newer updated version of the boilerplate as well as more detailed info could be found at [../../BoilerPlates/next](../../BoilerPlates/next).
 
 ## Trial licensing
 
 Ensure you have followed steps from our [getting-started](https://www.scichart.com/getting-started-scichart-js) guide to get a trial!
 
-
 ## Wasm file deployment
 
 SciChart.js has a Wasm (webAssembly) and Data file which must be deployed to output folders for correct operation of our Js chart library.
 
-Next.js requires *.data file to be in /public and wasm file to be in the build output .next/static/chunks/pages
+Next.js requires \*.data file to be in /public and wasm file to be in the build output .next/static/chunks/pages
 
 To do this, we use next.config.js and webpack to copy the wasm file
 
@@ -37,16 +38,19 @@ Also the npm package copy-files-from-to (see copy-foiles-from-to.json) to move s
 If building 3D Charts ensure that 3D wasm files and 3D Data are also copied to the output directory.
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run dev
 ```
 
 ### Run production build
+
 ```
 npm run build
 npm start
@@ -58,8 +62,7 @@ We have a wealth of information on our site showing how to get started with SciC
 
 Take a look at:
 
-* [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
-* [Javascript / npm tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2002%20-%20Adding%20Series%20and%20Data.html): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
-* [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2001%20-%20Including%20SciChart.js%20in%20an%20HTML%20Page.html): using only vanilla javascript and HTML,
-* [Official scichart.js demos](https://demo.scichart.com): view our demos online! Full github source code also available at [github.com/abtsoftware/scichart.js.examples](https://github.com/abtsoftware/scichart.js.examples)
-
+- [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
+- [Javascript / npm tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2002%20-%20Adding%20Series%20and%20Data.html): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
+- [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2001%20-%20Including%20SciChart.js%20in%20an%20HTML%20Page.html): using only vanilla javascript and HTML,
+- [Official scichart.js demos](https://demo.scichart.com): view our demos online! Full github source code also available at [github.com/abtsoftware/scichart.js.examples](https://github.com/abtsoftware/scichart.js.examples)
