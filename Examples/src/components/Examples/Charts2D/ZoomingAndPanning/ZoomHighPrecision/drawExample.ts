@@ -80,44 +80,45 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         dataSeries: xyDataSeries,
         pointMarker: new EllipsePointMarker(wasmContext)
     });
-    // lineSeries.getYRange = (visibleRange, isCategoryAxis) => {
-    //     const xValues = xyDataSeries.getNativeXValues();
-    //     const yValues = xyDataSeries.getNativeYValues();
-    //     // TODO: getPositiveRange
-    //     const count = xValues.size();
-    //     // if one point
-    //     // We will expand zero width ranges in the axis
-    //     if (count === 1) {
-    //         const y = yValues.get(0);
-    //         return new NumberRange(y, y);
-    //     }
 
-    //     const indicesRange = getIndicesRange(
-    //         wasmContext,
-    //         xValues,
-    //         visibleRange,
-    //         xyDataSeries.dataDistributionCalculator.isSortedAscending
-    //     );
+    lineSeries.getYRange = (visibleRange, isCategoryAxis) => {
+        const xValues = xyDataSeries.getNativeXValues();
+        const yValues = xyDataSeries.getNativeYValues();
+        // TODO: getPositiveRange
+        const count = xValues.size();
+        // if one point
+        // We will expand zero width ranges in the axis
+        if (count === 1) {
+            const y = yValues.get(0);
+            return new NumberRange(y, y);
+        }
 
-    //     const iMin = Math.max(Math.floor(indicesRange.min + 1), 0);
-    //     const iMax = Math.min(Math.ceil(indicesRange.max - 1), count - 1);
-    //     if (iMax < iMin) {
-    //         return undefined;
-    //     }
+        const indicesRange = getIndicesRange(
+            wasmContext,
+            xValues,
+            visibleRange,
+            xyDataSeries.dataDistributionCalculator.isSortedAscending
+        );
 
-    //     let minMax: DoubleRange;
+        const iMin = Math.max(Math.floor(indicesRange.min + 1), 0);
+        const iMax = Math.min(Math.ceil(indicesRange.max - 1), count - 1);
+        if (iMax < iMin) {
+            return undefined;
+        }
+
+        let minMax: DoubleRange;
         
-    //     try {
-    //         minMax = wasmContext.NumberUtil.MinMaxWithIndex(yValues, iMin, iMax - iMin + 1) as DoubleRange;
-    //         if (!isRealNumber(minMax.min) || !isRealNumber(minMax.max)) {
-    //             return undefined;
-    //         }
-    //         return new NumberRange(minMax.min, minMax.max);
-    //     } finally {
-    //         // @ts-ignore
-    //         deleteSafe(minMax);
-    //     }
-    // };
+        try {
+            minMax = wasmContext.NumberUtil.MinMaxWithIndex(yValues, iMin, iMax - iMin + 1) as DoubleRange;
+            if (!isRealNumber(minMax.min) || !isRealNumber(minMax.max)) {
+                return undefined;
+            }
+            return new NumberRange(minMax.min, minMax.max);
+        } finally {
+            // @ts-ignore
+            deleteSafe(minMax);
+        }
+    };
 
     sciChartSurface.renderableSeries.add(lineSeries);
 
