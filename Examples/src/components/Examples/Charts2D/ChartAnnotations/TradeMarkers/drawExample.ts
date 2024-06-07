@@ -1,17 +1,31 @@
 import {
+    AnnotationHoverEventArgs,
+    AnnotationHoverModifier,
+    AUTO_COLOR,
     CategoryAxis,
     CustomAnnotation,
+    EAnnotationType,
+    EAxisAlignment,
     ECoordinateMode,
     EHorizontalAnchorPoint,
+    ELineType,
     ENumericFormat,
     EVerticalAnchorPoint,
     FastCandlestickRenderableSeries,
+    FastLineRenderableSeries,
+    FastMountainRenderableSeries,
+    IAnnotation,
+    LegendModifier,
     MouseWheelZoomModifier,
     NumberRange,
     NumericAxis,
     OhlcDataSeries,
+    RightAlignedOuterVerticallyStackedAxisLayoutStrategy,
     SciChartSurface,
     SmartDateLabelProvider,
+    TextAnnotation,
+    TTargetsSelector,
+    XyDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
@@ -52,6 +66,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         new NumericAxis(wasmContext, {
             growBy: new NumberRange(0.1, 0.1),
             labelFormat: ENumericFormat.Decimal,
+            labelPrecision: 2,
         })
     );
 
@@ -74,63 +89,180 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    // Add some trades to the chart using the Annotations API
+    const trades: any[] = [];
+    let position = 0;
+    let equity = 0;
+    let balance = 100;
+    let avgPrice = 0;
+
+    const positionDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "Position" });
+    const balanceDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "Balance" });
+
+    // Trade at random!
     for (let i = 0; i < dateValues.length; i++) {
-        // Every 10th bar, add a buy annotation
-        if (i % 10 === 0) {
-            sciChartSurface.annotations.add(buyMarkerAnnotation(i, lowValues[i]));
+        const low = lowValues[i];
+        const high = highValues[i];
+        const price = low + Math.random() * (high - low);
+        if (Math.random() < 0.2) {
+            const t = equity / (equity + balance);
+            if (Math.random() > t) {
+                // Buy
+                const quantity = Math.floor((Math.random() * balance) / price);
+                const size = quantity * price;
+                avgPrice = (avgPrice * position + size) / (position + quantity);
+                position += quantity;
+                balance -= size;
+                sciChartSurface.annotations.add(new TradeAnnotation(i, true, quantity, price, low, avgPrice));
+            } else {
+                // Sell
+                const quantity = Math.floor((Math.random() * equity) / price);
+                const size = quantity * price;
+                position -= quantity;
+                balance += size;
+                const pnl = (price - avgPrice) * quantity;
+                sciChartSurface.annotations.add(new TradeAnnotation(i, false, quantity, price, high, pnl));
+            }
         }
-        // Every 10th bar between buys, add a sell annotation
-        if ((i + 5) % 10 === 0) {
-            sciChartSurface.annotations.add(sellMarkerAnnotation(i, highValues[i]));
-        }
+        equity = position * closeValues[i];
+        positionDataSeries.append(i, position);
+        balanceDataSeries.append(i, balance + equity);
+
         // Every 25th bar, add a news bullet
         if (i % 20 === 0) {
             sciChartSurface.annotations.add(newsBulletAnnotation(i));
         }
     }
 
+    //const positionAxis = new NumericAxis(wasmContext, { id: "Position", axisAlignment: EAxisAlignment.Left });
+    const balanceAxis = new NumericAxis(wasmContext, {
+        id: "Balance",
+        //visibleRange: new NumberRange(90, 110),
+        growBy: new NumberRange(0.1, 0.1),
+        stackedAxisLength: "20%",
+    });
+    sciChartSurface.yAxes.add(balanceAxis);
+    sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
+        new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
+
+    const positionSeries = new FastLineRenderableSeries(wasmContext, {
+        dataSeries: positionDataSeries,
+        stroke: AUTO_COLOR,
+        yAxisId: "Position",
+        lineType: ELineType.Digital,
+    });
+    const balanceSeries = new FastMountainRenderableSeries(wasmContext, {
+        dataSeries: balanceDataSeries,
+        stroke: appTheme.VividPurple,
+        fill: appTheme.MutedPurple,
+        yAxisId: "Balance",
+        zeroLineY: 100,
+    });
+    sciChartSurface.renderableSeries.add(balanceSeries);
+
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+    const targetsSelector: TTargetsSelector<IAnnotation> = (modifer) => {
+        return modifer.getAllTargets().filter((t) => "quantity" in t);
+    };
+    sciChartSurface.chartModifiers.add(
+        new AnnotationHoverModifier({
+            targets: targetsSelector,
+        })
+    );
 
     return { sciChartSurface, wasmContext };
 };
 
-// Returns a CustomAnnotation that represents a buy marker arrow
-// The CustomAnnotation supports SVG as content. Using Inkscape or similar you can create SVG content for annotations
-const buyMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
-    return new CustomAnnotation({
-        x1,
-        y1,
-        verticalAnchorPoint: EVerticalAnchorPoint.Top,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        svgString: `<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">
-                <g transform="translate(-54.867218,-75.091687)">
-                    <path style="fill:${appTheme.VividGreen};fill-opacity:0.77;stroke:${appTheme.VividGreen};stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                        d="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,-7.408333 7.158904,-7.408333 l 7.158906,7.408333 H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"
-                    "/>
-                </g>
-            </svg>`,
-    });
-};
+class TradeAnnotation extends CustomAnnotation {
+    public isBuy: boolean;
+    public quantity: number;
+    public price: number;
+    public change: number;
 
-// Returns a CustomAnnotation that represents a sell marker arrow
-// The CustomAnnotation supports SVG as content. Using Inkscape or similar you can create SVG content for annotations
-const sellMarkerAnnotation = (x1: number, y1: number): CustomAnnotation => {
+    private priceAnnotation: CustomAnnotation;
+    private toolTipAnnotation: TextAnnotation;
+
+    public onHover(args: AnnotationHoverEventArgs) {
+        if (args.isHovered && !this.priceAnnotation) {
+            this.priceAnnotation = tradePriceAnnotation(this.x1, this.price, this.isBuy);
+            this.toolTipAnnotation = new TextAnnotation({
+                x1: this.x1,
+                y1: this.isBuy ? this.y1 + 20 : this.y1 - 20,
+                verticalAnchorPoint: this.isBuy ? EVerticalAnchorPoint.Top : EVerticalAnchorPoint.Bottom,
+                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+                background: this.isBuy ? appTheme.VividGreen : appTheme.VividRed,
+                textColor: "black",
+                fontFamily: "arial",
+                fontSize: 16,
+                text: `${this.quantity} @${this.price.toFixed(3)} ${
+                    this.isBuy ? "Avg Price" : "PnL"
+                } ${this.change.toFixed(3)}`,
+            });
+            this.parentSurface.annotations.add(this.priceAnnotation, this.toolTipAnnotation);
+        } else if (this.priceAnnotation) {
+            this.parentSurface.annotations.remove(this.priceAnnotation, true);
+            this.parentSurface.annotations.remove(this.toolTipAnnotation, true);
+            this.priceAnnotation = undefined;
+            this.toolTipAnnotation = undefined;
+        }
+    }
+
+    public constructor(
+        timeStamp: number,
+        isBuy: boolean,
+        quantity: number,
+        tradePrice: number,
+        markerPrice: number,
+        change: number
+    ) {
+        super({
+            x1: timeStamp,
+            y1: markerPrice,
+            verticalAnchorPoint: isBuy ? EVerticalAnchorPoint.Top : EVerticalAnchorPoint.Bottom,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+        });
+        this.isBuy = isBuy;
+        this.quantity = quantity;
+        this.price = tradePrice;
+        this.change = change;
+        this.onHover = this.onHover.bind(this);
+        this.hovered.subscribe(this.onHover);
+    }
+
+    public getSvgString(annotation: CustomAnnotation): string {
+        if (this.isBuy) {
+            return `<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(-54.867218,-75.091687)">
+                <path style="fill:${appTheme.VividGreen};fill-opacity:0.77;stroke:${appTheme.VividGreen};stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                    d="m 55.47431,83.481251 c 7.158904,-7.408333 7.158904,-7.408333 7.158904,-7.408333 l 7.158906,7.408333 H 66.212668 V 94.593756 H 59.053761 V 83.481251 Z"
+                "/>
+            </g>
+        </svg>`;
+        } else {
+            return `<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(-54.616083,-75.548914)">
+                <path style="fill:${appTheme.VividRed};fill-opacity:0.77;stroke:${appTheme.VividRed};stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                d="m 55.47431,87.025547 c 7.158904,7.408333 7.158904,7.408333 7.158904,7.408333 L 69.79212,87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"
+                />
+            </g>
+        </svg>`;
+        }
+    }
+}
+
+const tradePriceAnnotation = (timestamp: number, price: number, isBuy: boolean): CustomAnnotation => {
     return new CustomAnnotation({
-        x1,
-        y1,
-        verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
-        horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
-        svgString: `<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">
-                <g transform="translate(-54.616083,-75.548914)">
-                    <path style="fill:${appTheme.VividRed};fill-opacity:0.77;stroke:${appTheme.VividRed};stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-                    d="m 55.47431,87.025547 c 7.158904,7.408333 7.158904,7.408333 7.158904,7.408333 L 69.79212,87.025547 H 66.212668 V 75.913042 h -7.158907 v 11.112505 z"
-                    />
-                </g>
-            </svg>`,
+        x1: timestamp,
+        y1: price,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
+        svgString: `<svg xmlns="http://www.w3.org/2000/svg">
+            <path style="fill: transparent; stroke:${
+                isBuy ? appTheme.VividGreen : appTheme.VividRed
+            }; stroke-width: 3px;" d="M 0 0 L 10 10 L 0 20"></path>
+        </svg>`,
     });
 };
 
