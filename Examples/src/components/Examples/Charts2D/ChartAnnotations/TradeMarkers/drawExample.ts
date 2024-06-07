@@ -24,6 +24,7 @@ import {
     SciChartSurface,
     SmartDateLabelProvider,
     TextAnnotation,
+    Thickness,
     TTargetsSelector,
     XyDataSeries,
     ZoomExtentsModifier,
@@ -185,18 +186,24 @@ class TradeAnnotation extends CustomAnnotation {
     private toolTipAnnotation: TextAnnotation;
 
     public onHover(args: AnnotationHoverEventArgs) {
+        const { x1, x2 } = this.getAdornerAnnotationBorders(true);
+        const viewRect = this.parentSurface.seriesViewRect;
         if (args.isHovered && !this.priceAnnotation) {
             this.priceAnnotation = tradePriceAnnotation(this.x1, this.price, this.isBuy);
             this.toolTipAnnotation = new TextAnnotation({
-                xCoordShift: 20,
                 yCoordShift: this.isBuy ? 20 : -20,
                 x1: this.x1,
                 y1: this.y1,
                 verticalAnchorPoint: this.isBuy ? EVerticalAnchorPoint.Top : EVerticalAnchorPoint.Bottom,
-                horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+                horizontalAnchorPoint:
+                    x1 < viewRect.left + 50
+                        ? EHorizontalAnchorPoint.Left
+                        : x2 > viewRect.right - 50
+                        ? EHorizontalAnchorPoint.Right
+                        : EHorizontalAnchorPoint.Center,
                 background: this.isBuy ? appTheme.VividGreen : appTheme.VividRed,
                 textColor: "black",
-                fontFamily: "arial",
+                padding: new Thickness(0, 0, 5, 0),
                 fontSize: 16,
                 text: `${this.quantity} @${this.price.toFixed(3)} ${
                     this.isBuy ? "Avg Price" : "PnL"
