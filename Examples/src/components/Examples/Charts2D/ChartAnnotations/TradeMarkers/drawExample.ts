@@ -188,8 +188,10 @@ class TradeAnnotation extends CustomAnnotation {
         if (args.isHovered && !this.priceAnnotation) {
             this.priceAnnotation = tradePriceAnnotation(this.x1, this.price, this.isBuy);
             this.toolTipAnnotation = new TextAnnotation({
+                xCoordShift: 20,
+                yCoordShift: this.isBuy ? 20 : -20,
                 x1: this.x1,
-                y1: this.isBuy ? this.y1 + 20 : this.y1 - 20,
+                y1: this.y1,
                 verticalAnchorPoint: this.isBuy ? EVerticalAnchorPoint.Top : EVerticalAnchorPoint.Bottom,
                 horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
                 background: this.isBuy ? appTheme.VividGreen : appTheme.VividRed,
