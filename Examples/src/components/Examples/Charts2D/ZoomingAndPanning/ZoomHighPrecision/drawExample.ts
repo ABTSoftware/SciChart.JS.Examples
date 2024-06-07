@@ -20,10 +20,12 @@ import {
     EAxisAlignment,
     EExecuteOn,
     formatUnixDateToHumanString,
-    formatUnixDateToHumanStringHHMMSS
-} from "scichart"
+    formatUnixDateToHumanStringHHMMSS,
+    EYRangeMode,
+} from "scichart";
 
-import { getIndicesRange } from "scichart/Charting/Model/BaseDataSeries"
+import { getIndicesRange } from "scichart/Charting/Model/BaseDataSeries";
+import { DoubleRange } from "scichart/types/TSciChart";
 
 // Unix Timestamps - 300 year data range with 1ms precision
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -33,10 +35,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         useNativeText: true,
     });
     (xAxis.labelProvider as SmartDateLabelProvider).showYearOnWiderDate = true;
-    xAxis.labelProvider.formatCursorLabel = dataValue => {
+    xAxis.labelProvider.formatCursorLabel = (dataValue) => {
         const d = new Date(dataValue * 1000);
         const s = (dataValue * 1000).toString();
-    const ds = d.getTime().toString();
+        const ds = d.getTime().toString();
         const r = s.replace(ds, "");
         return formatUnixDateToHumanString(dataValue) + " " + formatUnixDateToHumanStringHHMMSS(dataValue) + r;
     };
@@ -44,12 +46,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            visibleRange: new NumberRange(-1, 1),
+            //visibleRange: new NumberRange(-1, 1),
             axisAlignment: EAxisAlignment.Left,
             growBy: new NumberRange(0.1, 0.1),
             labelPrecision: 3,
             labelFormat: ENumericFormat.SignificantFigures,
-            autoRange: EAutoRange.Always
+            autoRange: EAutoRange.Always,
         })
     );
 
@@ -71,54 +73,18 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         xValues,
         yValues,
         isSorted: true,
-        containsNaN: false
+        containsNaN: false,
     });
 
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#FF6600",
         strokeThickness: 2,
         dataSeries: xyDataSeries,
-        pointMarker: new EllipsePointMarker(wasmContext)
+        pointMarker: new EllipsePointMarker(wasmContext),
+        // Use this mode so that the axis ranges sensible when zoomed really far in.
+        // TODO add a UI option to toggle this
+        yRangeMode: EYRangeMode.Visible,
     });
-
-    lineSeries.getYRange = (visibleRange, isCategoryAxis) => {
-        const xValues = xyDataSeries.getNativeXValues();
-        const yValues = xyDataSeries.getNativeYValues();
-        // TODO: getPositiveRange
-        const count = xValues.size();
-        // if one point
-        // We will expand zero width ranges in the axis
-        if (count === 1) {
-            const y = yValues.get(0);
-            return new NumberRange(y, y);
-        }
-
-        const indicesRange = getIndicesRange(
-            wasmContext,
-            xValues,
-            visibleRange,
-            xyDataSeries.dataDistributionCalculator.isSortedAscending
-        );
-
-        const iMin = Math.max(Math.floor(indicesRange.min + 1), 0);
-        const iMax = Math.min(Math.ceil(indicesRange.max - 1), count - 1);
-        if (iMax < iMin) {
-            return undefined;
-        }
-
-        let minMax: DoubleRange;
-        
-        try {
-            minMax = wasmContext.NumberUtil.MinMaxWithIndex(yValues, iMin, iMax - iMin + 1) as DoubleRange;
-            if (!isRealNumber(minMax.min) || !isRealNumber(minMax.max)) {
-                return undefined;
-            }
-            return new NumberRange(minMax.min, minMax.max);
-        } finally {
-            // @ts-ignore
-            deleteSafe(minMax);
-        }
-    };
 
     sciChartSurface.renderableSeries.add(lineSeries);
 
@@ -147,10 +113,10 @@ export const drawExample2 = async (rootElement: string | HTMLDivElement) => {
     const xAxis = new DateTimeNumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Bottom,
         useNativeText: true,
-        dateOffset: baseDate
+        dateOffset: baseDate,
     });
 
-    xAxis.labelProvider.formatCursorLabel = dataValue => {
+    xAxis.labelProvider.formatCursorLabel = (dataValue) => {
         const d = dataValue.toString();
         return (
             formatUnixDateToHumanString(baseDate + dataValue) +
@@ -167,7 +133,7 @@ export const drawExample2 = async (rootElement: string | HTMLDivElement) => {
             growBy: new NumberRange(0.1, 0.1),
             labelPrecision: 3,
             labelFormat: ENumericFormat.SignificantFigures,
-            autoRange: EAutoRange.Always
+            autoRange: EAutoRange.Always,
         })
     );
 
@@ -186,14 +152,14 @@ export const drawExample2 = async (rootElement: string | HTMLDivElement) => {
         xValues,
         yValues,
         isSorted: true,
-        containsNaN: false
+        containsNaN: false,
     });
 
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#FF6600",
         strokeThickness: 2,
         dataSeries: xyDataSeries,
-        pointMarker: new EllipsePointMarker(wasmContext)
+        pointMarker: new EllipsePointMarker(wasmContext),
     });
 
     sciChartSurface.renderableSeries.add(lineSeries);
