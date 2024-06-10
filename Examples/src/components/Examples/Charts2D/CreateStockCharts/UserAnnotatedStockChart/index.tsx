@@ -43,6 +43,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const STORAGE_KEY = "Annotated-Charts";
+
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function UserAnnotatedStockChart() {
@@ -51,7 +53,7 @@ export default function UserAnnotatedStockChart() {
     const [name, setName] = React.useState<string>("");
     const [chartMode, setChartMode] = React.useState<string>("pan");
     const [savedCharts, setSavedCharts] = React.useState<Record<string, object>>(() =>
-        JSON.parse(localStorage.getItem("shared-charts") ?? "{}", chartReviver)
+        JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}", chartReviver)
     );
     const [selectedChart, setSelectedChart] = React.useState<string>("");
 
@@ -62,17 +64,14 @@ export default function UserAnnotatedStockChart() {
             sciChartSurfaceRef.current.chartModifiers.getById("marker").isEnabled = false;
             sciChartSurfaceRef.current.chartModifiers.getById("line").isEnabled = false;
             sciChartSurfaceRef.current.chartModifiers.getById("pan").isEnabled = true;
-            sciChartSurfaceRef.current.chartModifiers.getById("cursor").isEnabled = true;
         } else if (state === "line") {
             sciChartSurfaceRef.current.chartModifiers.getById("marker").isEnabled = false;
             sciChartSurfaceRef.current.chartModifiers.getById("line").isEnabled = true;
             sciChartSurfaceRef.current.chartModifiers.getById("pan").isEnabled = false;
-            sciChartSurfaceRef.current.chartModifiers.getById("cursor").isEnabled = false;
         } else if (state === "marker") {
             sciChartSurfaceRef.current.chartModifiers.getById("marker").isEnabled = true;
             sciChartSurfaceRef.current.chartModifiers.getById("line").isEnabled = false;
             sciChartSurfaceRef.current.chartModifiers.getById("pan").isEnabled = false;
-            sciChartSurfaceRef.current.chartModifiers.getById("cursor").isEnabled = false;
         }
     };
 
@@ -86,7 +85,7 @@ export default function UserAnnotatedStockChart() {
 
     const saveChart = (event: any) => {
         savedCharts[name] = controlsRef.current.getDefinition();
-        localStorage.setItem("shared-charts", JSON.stringify(savedCharts));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(savedCharts));
         setSavedCharts(savedCharts);
         setSelectedChart(name);
     };
@@ -117,7 +116,7 @@ export default function UserAnnotatedStockChart() {
                             aria-label="small outlined button group"
                         >
                             <ToggleButton value={"pan"} style={{ color: appTheme.ForegroundColor }}>
-                                Pan/Cursor
+                                Pan
                             </ToggleButton>
                             <ToggleButton value={"line"} style={{ color: appTheme.ForegroundColor }}>
                                 Lines

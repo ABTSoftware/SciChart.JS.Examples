@@ -10,7 +10,7 @@ export type TPriceBar = {
     volume: number;
 };
 
-const binanceUrl = "api.binance.com"; //api.binance.us
+const binanceUrl = "api.binance.us";
 
 /**
  * Parses JSON candles into TPriceBar array
