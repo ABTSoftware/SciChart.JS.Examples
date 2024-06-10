@@ -12,6 +12,7 @@ import {
     AnnotationClickEventArgs,
     registerFunction,
     EBaseType,
+    OhlcSeriesInfo,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -61,8 +62,10 @@ const sellMarkerAnnotation = (): CustomAnnotation => {
 export class CreateTradeMarkerModifier extends ChartModifierBase2D {
     public readonly type: string = "CreateTradeMarkerModifier";
     private editingAnnotation: IAnnotation;
+    private isBuy: boolean;
 
     public createAnnotation(isBuy: boolean) {
+        this.isBuy = isBuy;
         return isBuy ? buyMarkerAnnotation() : sellMarkerAnnotation();
     }
 
@@ -73,11 +76,11 @@ export class CreateTradeMarkerModifier extends ChartModifierBase2D {
             // If no editingAnnotation, then begin create one
             this.editingAnnotation = this.createAnnotation(args.button === EExecuteOn.MouseLeftButton);
 
-            const hitTestInfo = this.parentSurface.renderableSeries
-                .get(0)
-                .hitTestProvider.hitTestXSlice(args.mousePoint.x, args.mousePoint.y);
-
-            this.beginCreateAnnotation(new Point(hitTestInfo.xCoord, hitTestInfo.yCoord));
+            const seriesInfo = this.getSeriesInfo(args.mousePoint) as OhlcSeriesInfo;
+            console.log(seriesInfo);
+            this.beginCreateAnnotation(
+                new Point(seriesInfo.dataSeriesIndex, this.isBuy ? seriesInfo.lowValue : seriesInfo.highValue)
+            );
         }
     }
 
@@ -87,10 +90,10 @@ export class CreateTradeMarkerModifier extends ChartModifierBase2D {
 
         // Update the annotation
         if (this.editingAnnotation) {
-            const hitTestInfo = this.parentSurface.renderableSeries
-                .get(0)
-                .hitTestProvider.hitTestXSlice(args.mousePoint.x, args.mousePoint.y);
-            this.updateAnnotation(new Point(hitTestInfo.xCoord, hitTestInfo.yCoord));
+            const seriesInfo = this.getSeriesInfo(args.mousePoint) as OhlcSeriesInfo;
+            this.updateAnnotation(
+                new Point(seriesInfo.dataSeriesIndex, this.isBuy ? seriesInfo.lowValue : seriesInfo.highValue)
+            );
         }
     }
 
@@ -99,15 +102,21 @@ export class CreateTradeMarkerModifier extends ChartModifierBase2D {
         super.modifierMouseUp(args);
         if (this.editingAnnotation) {
             // If already editingAnnotation, then end the creation and reset flags
-            const hitTestInfo = this.parentSurface.renderableSeries
-                .get(0)
-                .hitTestProvider.hitTestXSlice(args.mousePoint.x, args.mousePoint.y);
-            this.updateAnnotation(new Point(hitTestInfo.xCoord, hitTestInfo.yCoord));
+            const seriesInfo = this.getSeriesInfo(args.mousePoint) as OhlcSeriesInfo;
+            this.updateAnnotation(
+                new Point(seriesInfo.dataSeriesIndex, this.isBuy ? seriesInfo.lowValue : seriesInfo.highValue)
+            );
             this.editingAnnotation = undefined;
         }
     }
 
-    private beginCreateAnnotation(mousePoint: Point) {
+    private getSeriesInfo(mousePoint: Point) {
+        const rs = this.parentSurface.renderableSeries.get(0);
+        const hitTestInfo = rs.hitTestProvider.hitTestXSlice(mousePoint.x, mousePoint.y);
+        return rs.getSeriesInfo(hitTestInfo) as OhlcSeriesInfo;
+    }
+
+    private beginCreateAnnotation(dataPoint: Point) {
         // Assumes that the parent chart has a single x & y axis.
         // You will need to include more logic here for multi axis surfaces
         const xAxis = this.parentSurface.xAxes.get(0);
@@ -116,23 +125,15 @@ export class CreateTradeMarkerModifier extends ChartModifierBase2D {
         // assign X,Y axis id
         this.editingAnnotation.xAxisId = xAxis.id;
         this.editingAnnotation.yAxisId = yAxis.id;
-        // Set the X,Y coords of the annotation. Note that the pixel coordinates of the mouse-down
-        // event must be translated to data-coordinates so that the annotation is placed on the chart
-        this.editingAnnotation.x1 = xAxis.getCurrentCoordinateCalculator().getDataValue(mousePoint.x);
-        //this.editingAnnotation.x2 = xAxis.getCurrentCoordinateCalculator().getDataValue(mousePoint.x);
-        this.editingAnnotation.y1 = yAxis.getCurrentCoordinateCalculator().getDataValue(mousePoint.y);
-        //this.editingAnnotation.y2 = yAxis.getCurrentCoordinateCalculator().getDataValue(mousePoint.y);
+        this.editingAnnotation.x1 = dataPoint.x;
+        this.editingAnnotation.y1 = dataPoint.y;
 
         // Add the annotation to the surface
         this.parentSurface.annotations.add(this.editingAnnotation);
     }
 
-    private updateAnnotation(mousePoint: Point) {
-        // Update the position of an annotation using its X,Y Axis and the
-        // coordinate calculator to transform to coordinate
-        const xAxis = this.parentSurface.getXAxisById(this.editingAnnotation.xAxisId);
-        const yAxis = this.parentSurface.getYAxisById(this.editingAnnotation.yAxisId);
-        this.editingAnnotation.x1 = xAxis.getCurrentCoordinateCalculator().getDataValue(mousePoint.x);
-        this.editingAnnotation.y1 = yAxis.getCurrentCoordinateCalculator().getDataValue(mousePoint.y);
+    private updateAnnotation(dataPoint: Point) {
+        this.editingAnnotation.x1 = dataPoint.x;
+        this.editingAnnotation.y1 = dataPoint.y;
     }
 }

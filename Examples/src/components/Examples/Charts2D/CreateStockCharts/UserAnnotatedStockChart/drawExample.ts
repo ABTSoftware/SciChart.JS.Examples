@@ -1,5 +1,6 @@
 // SCICHART EXAMPLE
 import {
+    CategoryAxis,
     chartReviver,
     configure2DSurface,
     CursorModifier,
@@ -33,15 +34,17 @@ import {
     SciChartOverview,
     SciChartSurface,
     SeriesInfo,
+    SmartDateLabelProvider,
     XyDataSeries,
     XyMovingAverageFilter,
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
-import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
 import { CreateTradeMarkerModifier } from "./CreateTradeMarkerModifier";
 import { CreateLineAnnotationModifier } from "./CreateLineAnnotationModifier";
+import { VerticalYRulerModifier } from "./RulerModifier";
+import { multiPaneData } from "../../../ExampleData/multiPaneData";
 
 export interface IChartControls {
     getDefinition: () => object;
@@ -55,12 +58,10 @@ export const drawExample = async (divElementId: string | HTMLDivElement) => {
         theme: appTheme.SciChartJsTheme,
     });
 
-    // Add an XAxis of type DateTimeAxis
-    // Note for crypto data this is fine, but for stocks/forex you will need to use CategoryAxis which collapses gaps at weekends
-    // In future we have a hybrid IndexDateAxis which 'magically' solves problems of different # of points in stock market datasetd with gaps
-    const xAxis = new DateTimeNumericAxis(wasmContext, {
+    const xAxis = new CategoryAxis(wasmContext, {
         // autoRange.never as we're setting visibleRange explicitly below. If you dont do this, leave this flag default
         autoRange: EAutoRange.Never,
+        labelProvider: new SmartDateLabelProvider(),
     });
     sciChartSurface.xAxes.add(xAxis);
 
@@ -75,27 +76,7 @@ export const drawExample = async (divElementId: string | HTMLDivElement) => {
         })
     );
 
-    // Fetch data from now to 300 1hr candles ago
-    const endDate = new Date(Date.now());
-    const startDate = new Date();
-    startDate.setHours(endDate.getHours() - 300);
-    const priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1h", startDate, endDate);
-
-    // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
-    const xValues: number[] = [];
-    const openValues: number[] = [];
-    const highValues: number[] = [];
-    const lowValues: number[] = [];
-    const closeValues: number[] = [];
-    const volumeValues: number[] = [];
-    priceBars.forEach((priceBar: any) => {
-        xValues.push(priceBar.date);
-        openValues.push(priceBar.open);
-        highValues.push(priceBar.high);
-        lowValues.push(priceBar.low);
-        closeValues.push(priceBar.close);
-        volumeValues.push(priceBar.volume);
-    });
+    const { dateValues: xValues, openValues, highValues, lowValues, closeValues } = multiPaneData;
 
     // Create and add the Candlestick series
     // The Candlestick Series requires a special dataseries type called OhlcDataSeries with o,h,l,c and date values
@@ -145,12 +126,6 @@ export const drawExample = async (divElementId: string | HTMLDivElement) => {
         new ZoomExtentsModifier(),
         new MouseWheelZoomModifier(),
         new ZoomPanModifier({ id: "pan" }),
-        new CursorModifier({
-            id: "cursor",
-            crosshairStroke: appTheme.VividOrange,
-            axisLabelFill: appTheme.VividOrange,
-            tooltipLegendTemplate: getTooltipLegendTemplate,
-        }),
         new CreateTradeMarkerModifier({ id: "marker" }),
         new CreateLineAnnotationModifier({ id: "line" })
     );
@@ -171,35 +146,10 @@ export const drawExample = async (divElementId: string | HTMLDivElement) => {
     const resetChart = () => {
         sciChartSurface.annotations.clear(true);
         // Zoom to the latest 100 candles
-        const startViewportRange = new Date();
-        startViewportRange.setHours(startDate.getHours() - 100);
-        xAxis.visibleRange = new NumberRange(startViewportRange.getTime() / 1000, endDate.getTime() / 1000);
+        xAxis.visibleRange = new NumberRange(xValues.length - 100, xValues.length - 1);
     };
 
     resetChart();
 
     return { sciChartSurface, controls: { getDefinition, applyDefinition, resetChart } as IChartControls };
-};
-
-// Override the standard tooltip displayed by CursorModifier
-const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: CursorTooltipSvgAnnotation) => {
-    let outputSvgString = "";
-
-    // Foreach series there will be a seriesInfo supplied by SciChart. This contains info about the series under the house
-    seriesInfos.forEach((seriesInfo, index) => {
-        const y = 20 + index * 20;
-        const textColor = seriesInfo.stroke;
-        let legendText = seriesInfo.formattedYValue;
-        if (seriesInfo.dataSeriesType === EDataSeriesType.Ohlc) {
-            const o = seriesInfo as OhlcSeriesInfo;
-            legendText = `Open=${o.formattedOpenValue} High=${o.formattedHighValue} Low=${o.formattedLowValue} Close=${o.formattedCloseValue}`;
-        }
-        outputSvgString += `<text x="8" y="${y}" font-size="13" font-family="Verdana" fill="${textColor}">
-            ${seriesInfo.seriesName}: ${legendText}
-        </text>`;
-    });
-
-    return `<svg width="100%" height="100%">
-                ${outputSvgString}
-            </svg>`;
 };
