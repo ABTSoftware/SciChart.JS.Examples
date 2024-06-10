@@ -62,7 +62,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         scrollbarViewportBorderBrush: "white",
         shadowEffectColor: "white",
         textAnnotationBackground: "#6495EDAA",
-        textAnnotationForeground: "#EEEEEE",
+        textAnnotationForeground: "#333333",
         tickTextBrush: "#6495ED",
         upBandSeriesFillColor: "white",
         upBandSeriesLineColor: "white",
