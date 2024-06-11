@@ -10,8 +10,6 @@ export type TPriceBar = {
     volume: number;
 };
 
-const binanceUrl = "api.binance.us";
-
 /**
  * Parses JSON candles into TPriceBar array
  * @param candles
@@ -48,9 +46,10 @@ const getCandles = async (
     interval: string,
     startTime?: Date,
     endTime?: Date,
-    limit: number = 500
+    limit: number = 500,
+    binanceDomain = "us"
 ): Promise<TPriceBar[]> => {
-    let url = `https://${binanceUrl}/api/v3/klines?symbol=${symbol}&interval=${interval}`;
+    let url = `https://api.binance.${binanceDomain}/api/v3/klines?symbol=${symbol}&interval=${interval}`;
     if (startTime) {
         url += `&startTime=${startTime.getTime()}`;
     }
@@ -71,6 +70,38 @@ const getCandles = async (
     }
 };
 
+const getRandomCandles = (count: number, startPrice: number, startDate: Date, interval: number) => {
+    let p: TPriceBar = {
+        date: startDate.getTime() / 1000,
+        open: startPrice,
+        high: startPrice,
+        low: startPrice,
+        close: startPrice,
+        volume: 0,
+    };
+    const bars: TPriceBar[] = [];
+    for (let c = 0; c < count; c++) {
+        for (let t = 0; t < 20; t++) {
+            const r = Math.random() - 0.5;
+            p.close += p.close * (r / 1000);
+            p.high = Math.max(p.high, p.close);
+            p.low = Math.min(p.low, p.close);
+            p.volume += Math.abs(r) * 200;
+        }
+        bars.push(p);
+        p = {
+            date: (p.date += interval),
+            open: p.close,
+            high: p.close,
+            low: p.close,
+            close: p.close,
+            volume: 0,
+        };
+    }
+    return bars;
+};
+
 export const simpleBinanceRestClient = {
     getCandles,
+    getRandomCandles,
 };

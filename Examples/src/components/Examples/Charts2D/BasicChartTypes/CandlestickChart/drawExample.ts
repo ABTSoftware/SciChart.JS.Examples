@@ -33,12 +33,12 @@ import {
     ZoomPanModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
-import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
+import { simpleBinanceRestClient, TPriceBar } from "../../../ExampleData/binanceRestClient";
 export const divElementId = "chart";
 export const divOverviewId = "overview";
 const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
 
-export const drawExample = async () => {
+export const drawExample = async (dataSource: string) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
@@ -74,19 +74,24 @@ export const drawExample = async () => {
         })
     );
 
-    // Fetch data from now to 300 1hr candles ago
-    const endDate = new Date(Date.now());
-    const startDate = new Date();
-    startDate.setHours(endDate.getHours() - 300);
-    const priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1h", startDate, endDate);
-
-    // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
     const xValues: number[] = [];
     const openValues: number[] = [];
     const highValues: number[] = [];
     const lowValues: number[] = [];
     const closeValues: number[] = [];
     const volumeValues: number[] = [];
+
+    // Fetch data from now to 300 1hr candles ago
+    const endDate = new Date(Date.now());
+    const startDate = new Date();
+    startDate.setHours(endDate.getHours() - 300);
+    let priceBars: TPriceBar[];
+    if (dataSource !== "Random") {
+        priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1h", startDate, endDate, 500, dataSource);
+    } else {
+        priceBars = simpleBinanceRestClient.getRandomCandles(300, 60000, startDate, 60 * 60);
+    }
+    // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
     priceBars.forEach((priceBar: any) => {
         xValues.push(priceBar.date);
         openValues.push(priceBar.open);
@@ -95,7 +100,6 @@ export const drawExample = async () => {
         closeValues.push(priceBar.close);
         volumeValues.push(priceBar.volume);
     });
-
     // Zoom to the latest 100 candles
     const startViewportRange = new Date();
     startViewportRange.setHours(startDate.getHours() - 100);
@@ -109,7 +113,7 @@ export const drawExample = async () => {
         highValues,
         lowValues,
         closeValues,
-        dataSeriesName: "BTC/USDT",
+        dataSeriesName: dataSource === "Random" ? "Random" : "BTC/USDT",
     });
     const candlestickSeries = new FastCandlestickRenderableSeries(wasmContext, {
         dataSeries: candleDataSeries,
