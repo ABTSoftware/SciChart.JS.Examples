@@ -58,11 +58,7 @@ export class CreateLineAnnotationModifier extends ChartModifierBase2D {
         // adding a property to CreateAnnotationModifier to allow you to select type, and a switch statement here.
         this.editingAnnotation = new LineAnnotation({
             isEditable: true,
-            onClick: (args) => {
-                if (args.mouseArgs.button === EExecuteOn.MouseRightButton) {
-                    this.parentSurface.annotations.remove(args.sender, true);
-                }
-            },
+            onClick: "deleteOnClick",
         });
         this.editingAnnotation.xAxisId = xAxis.id;
         this.editingAnnotation.yAxisId = yAxis.id;

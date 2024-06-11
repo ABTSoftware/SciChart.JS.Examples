@@ -16,14 +16,6 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-const deleteOnClick = (args: AnnotationClickEventArgs) => {
-    if (args.sender.isSelected && args.mouseArgs.ctrlKey) {
-        args.sender.parentSurface.annotations.remove(args.sender, true);
-    }
-};
-
-registerFunction(EBaseType.OptionFunction, "deleteOnClick", deleteOnClick);
-
 // Returns a CustomAnnotation that represents a buy marker arrow
 const buyMarkerAnnotation = (): CustomAnnotation => {
     return new CustomAnnotation({

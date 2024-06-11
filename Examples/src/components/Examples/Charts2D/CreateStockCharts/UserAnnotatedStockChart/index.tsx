@@ -51,7 +51,7 @@ export default function UserAnnotatedStockChart() {
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const controlsRef = React.useRef<IChartControls>();
     const [name, setName] = React.useState<string>("");
-    const [chartMode, setChartMode] = React.useState<string>("pan");
+    const [chartMode, setChartMode] = React.useState<string>("line");
     const [savedCharts, setSavedCharts] = React.useState<Record<string, object>>(() =>
         JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}", chartReviver)
     );
@@ -60,19 +60,7 @@ export default function UserAnnotatedStockChart() {
     const handleToggleButtonChanged = (event: any, state: string) => {
         if (state === null) return;
         setChartMode(state);
-        if (state === "pan") {
-            sciChartSurfaceRef.current.chartModifiers.getById("marker").isEnabled = false;
-            sciChartSurfaceRef.current.chartModifiers.getById("line").isEnabled = false;
-            sciChartSurfaceRef.current.chartModifiers.getById("pan").isEnabled = true;
-        } else if (state === "line") {
-            sciChartSurfaceRef.current.chartModifiers.getById("marker").isEnabled = false;
-            sciChartSurfaceRef.current.chartModifiers.getById("line").isEnabled = true;
-            sciChartSurfaceRef.current.chartModifiers.getById("pan").isEnabled = false;
-        } else if (state === "marker") {
-            sciChartSurfaceRef.current.chartModifiers.getById("marker").isEnabled = true;
-            sciChartSurfaceRef.current.chartModifiers.getById("line").isEnabled = false;
-            sciChartSurfaceRef.current.chartModifiers.getById("pan").isEnabled = false;
-        }
+        controlsRef.current.setChartMode(state);
     };
 
     const handleNameChanged = (event: any) => {
