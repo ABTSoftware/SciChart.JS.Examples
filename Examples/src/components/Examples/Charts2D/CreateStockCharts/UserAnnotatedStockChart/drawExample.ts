@@ -1,5 +1,6 @@
 // SCICHART EXAMPLE
 import {
+    AnnotationClickEventArgs,
     CategoryAxis,
     chartReviver,
     configure2DSurface,
@@ -8,10 +9,13 @@ import {
     CustomAnnotation,
     DateTimeNumericAxis,
     EAutoRange,
+    EBaseType,
+    ECoordinateMode,
     EDataSeriesType,
     EExecuteOn,
     EFillPaletteMode,
     EHorizontalAnchorPoint,
+    EMultiLineAlignment,
     ENumericFormat,
     ESeriesType,
     EVerticalAnchorPoint,
@@ -25,12 +29,14 @@ import {
     IPointMetadata,
     IRenderableSeries,
     MouseWheelZoomModifier,
+    NativeTextAnnotation,
     NumberRange,
     NumericAxis,
     OhlcDataSeries,
     OhlcSeriesInfo,
     parseColorToUIntArgb,
     Point,
+    registerFunction,
     SciChartOverview,
     SciChartSurface,
     SeriesInfo,
@@ -50,7 +56,16 @@ export interface IChartControls {
     getDefinition: () => object;
     applyDefinition: (definition: any) => void;
     resetChart: () => void;
+    setChartMode: (mode: string) => void;
 }
+
+const deleteOnClick = (args: AnnotationClickEventArgs) => {
+    if (args.sender.isSelected && args.mouseArgs.ctrlKey) {
+        args.sender.parentSurface.annotations.remove(args.sender, true);
+    }
+};
+
+registerFunction(EBaseType.OptionFunction, "deleteOnClick", deleteOnClick);
 
 export const drawExample = async (divElementId: string | HTMLDivElement) => {
     // Create a SciChartSurface
@@ -132,6 +147,18 @@ export const drawExample = async (divElementId: string | HTMLDivElement) => {
     sciChartSurface.chartModifiers.getById("marker").isEnabled = false;
     sciChartSurface.chartModifiers.getById("line").isEnabled = false;
 
+    const helpAnnotation = new NativeTextAnnotation({
+        x1: 20,
+        y1: 20,
+        xCoordinateMode: ECoordinateMode.Pixel,
+        yCoordinateMode: ECoordinateMode.Pixel,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        multiLineAlignment: EMultiLineAlignment.Left,
+        textColor: appTheme.ForegroundColor,
+    });
+    // Add this to modifierAnnotations so it is not saved/loaded
+    sciChartSurface.modifierAnnotations.add(helpAnnotation);
+
     const getDefinition = () => {
         return {
             visibleRange: xAxis.visibleRange,
@@ -139,8 +166,32 @@ export const drawExample = async (divElementId: string | HTMLDivElement) => {
         };
     };
     const applyDefinition = (definition: any) => {
-        configure2DSurface({ annotations: definition.annotations }, sciChartSurface, wasmContext);
-        xAxis.visibleRange = definition.visibleRange;
+        if (definition) {
+            configure2DSurface({ annotations: definition.annotations }, sciChartSurface, wasmContext);
+            xAxis.visibleRange = definition.visibleRange;
+        }
+    };
+
+    const setChartMode = (mode: string) => {
+        if (mode === "pan") {
+            sciChartSurface.chartModifiers.getById("marker").isEnabled = false;
+            sciChartSurface.chartModifiers.getById("line").isEnabled = false;
+            sciChartSurface.chartModifiers.getById("pan").isEnabled = true;
+            helpAnnotation.text = `Click and drag to pan the chart`;
+        } else if (mode === "line") {
+            sciChartSurface.chartModifiers.getById("marker").isEnabled = false;
+            sciChartSurface.chartModifiers.getById("line").isEnabled = true;
+            sciChartSurface.chartModifiers.getById("pan").isEnabled = false;
+            helpAnnotation.text = `Click and drag to draw a line.
+Ctrl + click a line to delete it`;
+        } else if (mode === "marker") {
+            sciChartSurface.chartModifiers.getById("marker").isEnabled = true;
+            sciChartSurface.chartModifiers.getById("line").isEnabled = false;
+            sciChartSurface.chartModifiers.getById("pan").isEnabled = false;
+            helpAnnotation.text = `Left click to place a buy marker.
+Right click to place a sell marker
+Ctrl + Click to delete a marker`;
+        }
     };
 
     const resetChart = () => {
@@ -150,6 +201,10 @@ export const drawExample = async (divElementId: string | HTMLDivElement) => {
     };
 
     resetChart();
+    setChartMode("line");
 
-    return { sciChartSurface, controls: { getDefinition, applyDefinition, resetChart } as IChartControls };
+    return {
+        sciChartSurface,
+        controls: { getDefinition, applyDefinition, resetChart, setChartMode } as IChartControls,
+    };
 };
