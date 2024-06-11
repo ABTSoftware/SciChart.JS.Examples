@@ -3,16 +3,17 @@ import { IDeletable } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import classes from "../../../styles/Examples.module.scss";
 import { createCandlestickChart } from "./createCandlestickChart";
-import { binanceSocketClient } from "./binanceSocketClient";
-import { Subscription } from "rxjs";
+import { binanceSocketClient, TRealtimePriceBar } from "./binanceSocketClient";
+import { Observable, Subscription } from "rxjs";
 import { simpleBinanceRestClient, TPriceBar } from "../../../ExampleData/binanceRestClient";
 import { appTheme } from "../../../theme";
+import { FormLabel } from "@material-ui/core";
 
 const divElementId = "chart";
 const divOverviewId = "overview";
 
 // SCICHART EXAMPLE
-const drawExample = async () => {
+const drawExample = async (dataSource: string) => {
     // Create the candlestick chart example. Contains Candlestick series, tooltips, volume, zooming panning behaviour and more
     const { sciChartSurface, sciChartOverview, controls } = await createCandlestickChart(divElementId, divOverviewId);
 
@@ -20,11 +21,15 @@ const drawExample = async () => {
     const startDate = new Date();
     startDate.setMinutes(endDate.getMinutes() - 300);
 
-    // Fetch data Binance exchange: 300 1-minute candles
-    const priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1m", startDate, endDate);
-
-    // Set the candles data on the chart
-    controls.setData("BTC/USDT", "Bitcoin / US Dollar - 1 Minute", priceBars);
+    let priceBars: TPriceBar[];
+    if (dataSource !== "Random") {
+        priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1m", startDate, endDate, 500, dataSource);
+        // Set the candles data on the chart
+        controls.setData("BTC/USDT", "Bitcoin / US Dollar - 1 Minute", priceBars);
+    } else {
+        priceBars = simpleBinanceRestClient.getRandomCandles(300, 60000, startDate, 60);
+        controls.setData("Random", "Random Data - 1 Minute", priceBars);
+    }
 
     // Zoom to the latest 100 candles
     const startViewportRange = new Date();
@@ -33,7 +38,28 @@ const drawExample = async () => {
     controls.setXRange(startViewportRange, endDate);
 
     // Susbscribe to price updates from the exchange
-    const subscription = binanceSocketClient.getRealtimeCandleStream("BTCUSDT", "1m").subscribe((pb) => {
+    let obs: Observable<TRealtimePriceBar>;
+    if (dataSource !== "Random") {
+        obs = binanceSocketClient.getRealtimeCandleStream("BTCUSDT", "1m");
+    } else {
+        const lastBar = priceBars[priceBars.length - 1];
+        const startBar: TRealtimePriceBar = {
+            symbol: "Random",
+            close: lastBar.close,
+            high: lastBar.high,
+            low: lastBar.low,
+            volume: lastBar.volume,
+            eventTime: new Date().getTime(),
+            open: lastBar.open,
+            openTime: lastBar.date * 1000,
+            closeTime: (lastBar.date + 60) * 1000,
+            interval: "1m",
+            lastTradeSize: 0,
+            lastTradeBuyOrSell: false,
+        };
+        obs = binanceSocketClient.getRandomCandleStream(startBar, 60);
+    }
+    const subscription = obs.subscribe((pb) => {
         const priceBar = {
             date: pb.openTime,
             open: pb.open,
@@ -61,9 +87,10 @@ export default function RealtimeTickingStockCharts() {
         enableCandlestick: () => void;
         enableOhlc: () => void;
     }>();
+    const [dataSource, setDataSource] = React.useState<string>("Random");
 
     React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(
+        const chartInitializationPromise = drawExample(dataSource).then(
             ({ sciChartSurface, sciChartOverview, subscription, controls }) => {
                 chartControlsRef.current = controls;
                 websocketSubscriptionRef.current = subscription;
@@ -85,7 +112,7 @@ export default function RealtimeTickingStockCharts() {
                 websocketSubscriptionRef.current.unsubscribe();
             });
         };
-    }, []);
+    }, [dataSource]);
 
     const handleToggleButtonChanged = (event: any, state: number) => {
         if (state === null || chartControlsRef.current === undefined) return;
@@ -93,6 +120,10 @@ export default function RealtimeTickingStockCharts() {
         console.log(`Toggling Candle/Ohlc state: ${state}`);
         if (state === 0) chartControlsRef.current.enableCandlestick();
         if (state === 1) chartControlsRef.current.enableOhlc();
+    };
+
+    const handleDataSourceChanged = (event: any, source: string) => {
+        setDataSource(source);
     };
 
     return (
@@ -112,6 +143,26 @@ export default function RealtimeTickingStockCharts() {
                     </ToggleButton>
                     <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
                         OHLC Series
+                    </ToggleButton>
+                </ToggleButtonGroup>
+                <FormLabel style={{ color: appTheme.VividGreen }}>Data Source</FormLabel>
+                <ToggleButtonGroup
+                    style={{ height: "70px", padding: "10" }}
+                    exclusive
+                    value={dataSource}
+                    onChange={handleDataSourceChanged}
+                    size="small"
+                    color="primary"
+                    aria-label="small outlined button group"
+                >
+                    <ToggleButton value={"Random"} style={{ color: appTheme.ForegroundColor }}>
+                        Random
+                    </ToggleButton>
+                    <ToggleButton value={"com"} style={{ color: appTheme.ForegroundColor }}>
+                        Binance.com
+                    </ToggleButton>
+                    <ToggleButton value={"us"} style={{ color: appTheme.ForegroundColor }}>
+                        Binance.us
                     </ToggleButton>
                 </ToggleButtonGroup>
                 <div style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}>
