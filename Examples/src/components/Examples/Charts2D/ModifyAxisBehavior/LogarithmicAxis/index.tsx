@@ -1,168 +1,11 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
-import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import classes from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-    AxisBase2D,
-    ECoordinateMode,
-    EHorizontalAnchorPoint,
-    ENumericFormat,
-    EllipsePointMarker,
-    FastLineRenderableSeries,
-    LegendModifier,
-    LogarithmicAxis,
-    MouseWheelZoomModifier,
-    NumericAxis,
-    RubberBandXyZoomModifier,
-    SciChartSurface,
-    SweepAnimation,
-    TextAnnotation,
-    XyDataSeries,
-    ZoomExtentsModifier,
-    Thickness,
-} from "scichart";
-
-const divElementId = "chart1";
-
-const Y_AXIS_LINEAR_ID = "Y_AXIS_LINEAR_ID";
-const X_AXIS_LINEAR_ID = "X_AXIS_LINEAR_ID";
-
-const drawExample = async () => {
-    // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: {
-            ...appTheme.SciChartJsTheme,
-            majorGridLineBrush: appTheme.MutedSkyBlue + "55",
-            minorGridLineBrush: appTheme.MutedSkyBlue + "22",
-        },
-        title: "Logarithmic X & Y Axis",
-        titleStyle: {
-            fontSize: 20,
-            fontWeight: "Bold",
-            placeWithinChart: true,
-            color: appTheme.ForegroundColor + "C4",
-            padding: Thickness.fromString("10 0 4 0"),
-        },
-    });
-
-    // Create an X and Y Axis
-    const xAxisLogarithmic = new LogarithmicAxis(wasmContext, {
-        logBase: 10,
-        labelFormat: ENumericFormat.Scientific,
-        labelPrecision: 2,
-        minorsPerMajor: 10,
-    });
-    sciChartSurface.xAxes.add(xAxisLogarithmic);
-
-    // The LogarithmicAxis will apply logarithmic scaling and labelling to your data.
-    // Simply replace a NumericAxis for a LogarithmicAxis on X or Y to apply this scaling
-    // Note options logBase, labelFormat which lets you specify exponent on labels
-    const yAxisLogarithmic = new LogarithmicAxis(wasmContext, {
-        logBase: 10,
-        labelFormat: ENumericFormat.Scientific,
-        labelPrecision: 2,
-        minorsPerMajor: 10,
-    });
-    sciChartSurface.yAxes.add(yAxisLogarithmic);
-
-    const xAxisLinear = new NumericAxis(wasmContext, {
-        labelFormat: ENumericFormat.Decimal,
-        labelPrecision: 2,
-        isVisible: false,
-        id: X_AXIS_LINEAR_ID,
-    });
-    sciChartSurface.xAxes.add(xAxisLinear);
-
-    const yAxisLinear = new NumericAxis(wasmContext, {
-        labelFormat: ENumericFormat.Decimal,
-        labelPrecision: 2,
-        isVisible: false,
-        id: Y_AXIS_LINEAR_ID,
-    });
-    sciChartSurface.yAxes.add(yAxisLinear);
-
-    // Create some data
-    const data0 = ExampleDataProvider.getExponentialCurve(2, 100);
-    const data1 = ExampleDataProvider.getExponentialCurve(2.2, 100);
-    const data2 = ExampleDataProvider.getExponentialCurve(2.4, 100);
-
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, {
-                xValues: data0.xValues,
-                yValues: data0.yValues,
-                dataSeriesName: "y = x ^ 2",
-            }),
-            stroke: appTheme.VividSkyBlue,
-            strokeThickness: 3,
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 7,
-                height: 7,
-                fill: appTheme.VividSkyBlue,
-                strokeThickness: 0,
-            }),
-            animation: new SweepAnimation({ duration: 800, delay: 0 }),
-        })
-    );
-
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, {
-                xValues: data1.xValues,
-                yValues: data1.yValues,
-                dataSeriesName: "y = x ^ 2.2",
-            }),
-            stroke: appTheme.VividPink,
-            strokeThickness: 3,
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 7,
-                height: 7,
-                fill: appTheme.VividPink,
-                strokeThickness: 0,
-            }),
-            animation: new SweepAnimation({ duration: 800, delay: 0 }),
-        })
-    );
-
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, {
-                xValues: data2.xValues,
-                yValues: data2.yValues,
-                dataSeriesName: "y = x ^ 2.4",
-            }),
-            stroke: appTheme.VividOrange,
-            strokeThickness: 3,
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 7,
-                height: 7,
-                fill: appTheme.VividOrange,
-                strokeThickness: 0,
-            }),
-            animation: new SweepAnimation({ duration: 800, delay: 0 }),
-        })
-    );
-
-    // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(
-        new RubberBandXyZoomModifier(),
-        new MouseWheelZoomModifier(),
-        new ZoomExtentsModifier(),
-        new LegendModifier({ showCheckboxes: false })
-    );
-
-    sciChartSurface.zoomExtents();
-    return {
-        sciChartSurface,
-        wasmContext,
-        yAxisLogarithmic,
-        yAxisLinear,
-        xAxisLinear,
-        xAxisLogarithmic,
-    };
-};
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
+import { AxisBase2D, LogarithmicAxis, NumericAxis, SciChartSurface } from "scichart";
+import { drawExample } from "./drawExample";
 
 const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
@@ -195,29 +38,6 @@ export default function LogarithmicAxisExample() {
     const [linearYAxis, setLinearYAxis] = React.useState<NumericAxis>();
     const [logYAxis, setLogYAxis] = React.useState<LogarithmicAxis>();
     const [preset, setPreset] = React.useState<number>(0);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then((res) => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            setLogXAxis(res.xAxisLogarithmic);
-            setLogYAxis(res.yAxisLogarithmic);
-            setLinearXAxis(res.xAxisLinear);
-            setLinearYAxis(res.yAxisLinear);
-        });
-
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
 
     const handleToggleButtonChanged = (event: any, state: number) => {
         const sciChartSurface = sciChartSurfaceRef.current;
@@ -290,7 +110,18 @@ export default function LogarithmicAxisExample() {
                         </ToggleButton>
                     </ToggleButtonGroup>
                 </div>
-                <div className={localClasses.chartArea} id={divElementId}></div>
+                <SciChartReact
+                    initChart={drawExample}
+                    className={localClasses.chartArea}
+                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                        const { sciChartSurface } = initResult;
+                        sciChartSurfaceRef.current = sciChartSurface;
+                        setLogXAxis(initResult.xAxisLogarithmic);
+                        setLogYAxis(initResult.yAxisLogarithmic);
+                        setLinearXAxis(initResult.xAxisLinear);
+                        setLinearYAxis(initResult.yAxisLinear);
+                    }}
+                />
             </div>
         </div>
     );
