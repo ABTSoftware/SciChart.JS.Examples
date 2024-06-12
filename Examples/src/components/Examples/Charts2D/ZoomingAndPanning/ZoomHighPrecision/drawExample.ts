@@ -24,10 +24,12 @@ import {
     DpiHelper,
     BoxAnnotation,
     HitTestInfo,
+    GenericAnimation,
+    NumberRangeAnimator,
 } from "scichart";
 
 // Unix Timestamps - 300 year data range with 1ms precision
-export const drawExample = async (rootElement: string | HTMLDivElement, isYRangeModeVisible: boolean) => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement);
 
     const xAxis = new DateTimeNumericAxis(wasmContext, {
@@ -52,10 +54,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement, isYRange
         labelFormat: ENumericFormat.SignificantFigures,
         autoRange: EAutoRange.Always,
     });
-
-    // yAxis.visibleRangeChanged.subscribe(() => { // limit the range to -1.5, 1.5
-    //     yAxis.visibleRange = new NumberRange(-1.5, 1.5);
-    // })
 
     sciChartSurface.yAxes.add(yAxis);
 
@@ -85,7 +83,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement, isYRange
         dataSeries: xyDataSeries,
         pointMarker: new EllipsePointMarker(wasmContext),
         // Use this mode so that the axis ranges sensible when zoomed really far in.
-        yRangeMode: isYRangeModeVisible ? EYRangeMode.Visible : EYRangeMode.Drawn,
+        yRangeMode: EYRangeMode.Visible,
     });
 
     sciChartSurface.renderableSeries.add(lineSeries);
@@ -110,17 +108,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement, isYRange
 
         // animate:
         if (hitTestInfo.isHit) {
-            ZoomIn(hitTestInfo.xValue);
+            ZoomIn(hitTestInfo.xValue, hitTestInfo.yValue);
         }
-
-        console.log(hitTestInfo);
     });
 
     /**
      * Zooms in on a specific xValue
      * @param xValue
      */
-    function ZoomIn(xValue: number): void {
+    function ZoomIn(xValue: number, yValue: number): void {
         const xAxis = sciChartSurface.xAxes.get(0) as DateTimeNumericAxis;
         const newRange = new NumberRange(xValue - 10, xValue + 10);
 
@@ -128,21 +124,40 @@ export const drawExample = async (rootElement: string | HTMLDivElement, isYRange
             fill: "#FFFFFF33",
             stroke: "#FFFFFFaa",
             strokeThickness: 1,
-            x1: xValue - 20000000,
-            x2: xValue + 20000000,
+            x1: xAxis.visibleRange.min,
+            x2: xAxis.visibleRange.max,
             y1: -1.5,
             y2: 1.5,
         });
 
         sciChartSurface.annotations.add(newBox);
-
-        setTimeout(() => {
-            xAxis.animateVisibleRange(newRange, 1500, easing.outSine);
-        }, 200);
-
-        setTimeout(() => {
-            sciChartSurface.annotations.remove(newBox);
-        }, 2000);
+        const targetXSize = xAxis.visibleRange.diff / 75;
+        const targetYSize = yAxis.visibleRange.diff / 50;
+        const zoomBox = new GenericAnimation<NumberRange>({
+            from: xAxis.visibleRange,
+            to: new NumberRange(xValue - targetXSize, xValue + targetXSize),
+            duration: 250,
+            ease: easing.outCirc,
+            onAnimate: (from, to, progress) => {
+                const xRange = NumberRangeAnimator.interpolate(from, to, progress);
+                newBox.x1 = xRange.min;
+                newBox.x2 = xRange.max;
+                const yRange = NumberRangeAnimator.interpolate(
+                    new NumberRange(-1.5, 1.5),
+                    new NumberRange(yValue - targetYSize, yValue + targetYSize),
+                    progress
+                );
+                newBox.y1 = yRange.min;
+                newBox.y2 = yRange.max;
+            },
+            onCompleted: () => {
+                xAxis.animateVisibleRange(newRange, 500, easing.outCirc, () => {
+                    sciChartSurface.annotations.remove(newBox);
+                });
+                yAxis.animateVisibleRange(lineSeries.getYRange(newRange), 500, easing.outCirc);
+            },
+        });
+        sciChartSurface.addAnimation(zoomBox);
     }
 
     /**
@@ -152,19 +167,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement, isYRange
         // simulate a random point on the chart
         const mousePointX = Math.random() * sciChartSurface.seriesViewRect.width + DpiHelper.PIXEL_RATIO;
         const mousePointY = Math.random() * sciChartSurface.seriesViewRect.height + DpiHelper.PIXEL_RATIO;
-        // const translatedPoint = translateFromCanvasToSeriesViewRect(mousePoint, sciChartSurface.seriesViewRect);
-        const HIT_TEST_RADIUS = 10 * DpiHelper.PIXEL_RATIO;
 
         // call renderableSeries.hitTestProvider.hitTest passing in the mouse point
-        const hitTestInfo: HitTestInfo = lineSeries.hitTestProvider.hitTestDataPoint(
-            mousePointX,
-            mousePointY,
-            HIT_TEST_RADIUS
-        );
+        const hitTestInfo: HitTestInfo = lineSeries.hitTestProvider.hitTestXSlice(mousePointX, mousePointY);
 
         // animate:
         if (hitTestInfo.isHit) {
-            ZoomIn(hitTestInfo.xValue);
+            ZoomIn(hitTestInfo.xValue, hitTestInfo.yValue);
         }
     }
 
@@ -174,7 +183,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement, isYRange
     function ZoomOut(): void {
         const xAxis = sciChartSurface.xAxes.get(0) as DateTimeNumericAxis;
         const newRange = lineSeries.dataSeries.xRange;
-        xAxis.animateVisibleRange(newRange, 1500, easing.inSine);
+        xAxis.animateVisibleRange(newRange, 500, easing.inSine);
     }
 
     const tooltipDataTemplate: TRolloverTooltipDataTemplate = (si, title, labelX, labelY) => {

@@ -2,7 +2,7 @@ import classes from "../../../styles/Examples.module.scss";
 import { drawExample, drawExample2 } from "./drawExample";
 import Button from "@material-ui/core/Button";
 import { useState, useEffect, useRef } from "react";
-import { SciChartSurface } from "scichart";
+import { EYRangeMode, SciChartSurface } from "scichart";
 import { TResolvedReturnType } from "scichart-react";
 
 const divID = "scichart-root";
@@ -16,7 +16,7 @@ export default function ChartComponent() {
     const sciChartSurfaceRef2 = useRef<SciChartSurface>();
 
     const [startingRange, setStartingRange] = useState<{ min: number; max: number }>({ min: 0, max: 0 });
-    const [isYRangeModeVisible, setIsYRangeModeVisible] = useState(false);
+    const [isYRangeModeVisible, setIsYRangeModeVisible] = useState(true);
 
     function handleZoomChange(shouldZoomIn: boolean) {
         if (sciChartSurfaceRef.current) {
@@ -31,17 +31,15 @@ export default function ChartComponent() {
     }
 
     useEffect(() => {
-        const chartInitializationPromise = drawExample(divID, isYRangeModeVisible).then(
-            ({ sciChartSurface, controls }) => {
-                sciChartSurfaceRef.current = sciChartSurface;
-                controlsRef.current = controls;
+        const chartInitializationPromise = drawExample(divID).then(({ sciChartSurface, controls }) => {
+            sciChartSurfaceRef.current = sciChartSurface;
+            controlsRef.current = controls;
 
-                setStartingRange({
-                    min: sciChartSurface.xAxes.get(0).visibleRange.min,
-                    max: sciChartSurface.xAxes.get(0).visibleRange.max,
-                });
-            }
-        );
+            setStartingRange({
+                min: sciChartSurface.xAxes.get(0).visibleRange.min,
+                max: sciChartSurface.xAxes.get(0).visibleRange.max,
+            });
+        });
 
         const chartInitializationPromise2 = drawExample2(divID2).then(({ sciChartSurface }) => {
             sciChartSurfaceRef2.current = sciChartSurface;
@@ -70,6 +68,14 @@ export default function ChartComponent() {
             });
         };
     }, []);
+
+    function handleVisibleChanged(visible: boolean) {
+        sciChartSurfaceRef.current.renderableSeries.get(0).yRangeMode = visible
+            ? EYRangeMode.Visible
+            : EYRangeMode.Drawn;
+        setIsYRangeModeVisible(visible);
+    }
+
     return (
         <div>
             <h4>Unix Timestamps</h4>
@@ -77,7 +83,7 @@ export default function ChartComponent() {
             <div className={classes.ButtonsWrapper} style={{ marginBottom: 10 }}>
                 <Button onClick={() => handleZoomChange(true)}>Zoom in on random point</Button>
                 <Button onClick={() => handleZoomChange(false)}>Zoom out</Button>
-                <Button style={{ marginLeft: "auto" }} onClick={() => setIsYRangeModeVisible(!isYRangeModeVisible)}>
+                <Button style={{ marginLeft: "auto" }} onClick={() => handleVisibleChanged(!isYRangeModeVisible)}>
                     Y Range Mode: {isYRangeModeVisible ? "Visible" : "Drawn"}
                 </Button>
             </div>
