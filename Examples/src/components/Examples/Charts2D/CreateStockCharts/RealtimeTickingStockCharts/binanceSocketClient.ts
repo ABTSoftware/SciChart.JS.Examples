@@ -210,7 +210,7 @@ const getRandomCandleStream = (startBar: TRealtimePriceBar, interval: number) =>
             const close = p.close + p.close * (r / 3000);
             const size = Math.abs(r);
             const eventTime = p.eventTime + rate;
-            const lastTradeSize = 20000 * Math.pow(size, 14);
+            const lastTradeSize = 10000 * Math.pow(size, 14);
             if (p.closeTime > eventTime) {
                 p = {
                     symbol: startBar.symbol,

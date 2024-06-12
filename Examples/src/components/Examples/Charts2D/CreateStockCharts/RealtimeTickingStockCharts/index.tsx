@@ -57,7 +57,7 @@ const drawExample = async (dataSource: string) => {
             lastTradeSize: 0,
             lastTradeBuyOrSell: false,
         };
-        obs = binanceSocketClient.getRandomCandleStream(startBar, 60);
+        obs = binanceSocketClient.getRandomCandleStream(startBar, 60000);
     }
     const subscription = obs.subscribe((pb) => {
         const priceBar = {
