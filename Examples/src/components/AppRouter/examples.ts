@@ -115,6 +115,7 @@ import UsingVerticalSliceModifier from "../Examples/Charts2D/TooltipsAndHittest/
 import ServerTrafficDashboard from "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard";
 import SyncMultiChart from "../Examples/Charts2D/MultiChart/SyncMultiChart";
 import EventMarkers from "../Examples/FeaturedApps/ShowCases/EventMarkers";
+import PopulationPyramid from "../Examples/FeaturedApps/ShowCases/PopulationPyramid";
 
 export type TMenuItem = {
     item: {
@@ -140,6 +141,7 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_showcases_richInteractions,
             EXAMPLES_PAGES.featuredApps_showcases_dynamicLayout,
             EXAMPLES_PAGES.featuredApps_showcases_eventMarkers,
+            EXAMPLES_PAGES.featuredApps_showcases_populationPyramid,
         ],
     },
     {
@@ -566,6 +568,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return DynamicLayout;
         case EXAMPLES_PAGES.featuredApps_showcases_eventMarkers.id:
             return EventMarkers;
+        case EXAMPLES_PAGES.featuredApps_showcases_populationPyramid.id:
+            return PopulationPyramid;
         case EXAMPLES_PAGES.chart2D_multiChart_syncMultiChart.id:
             return SyncMultiChart;
         case EXAMPLES_PAGES.builderApi_simplechart.id:

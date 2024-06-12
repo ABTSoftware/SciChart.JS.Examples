@@ -106,6 +106,7 @@ import { dynamicLayoutExampleInfo } from "../Examples/FeaturedApps/ShowCases/Dyn
 import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/exampleInfo";
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
+import { populationPyramidExampleInfo } from "../Examples/FeaturedApps/ShowCases/PopulationPyramid/exampleInfo";
 import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 export type TExampleInfo = {
@@ -554,6 +555,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_showcases_eventMarkers: {
         id: "featuredApps_showcases_eventMarkers",
         ...eventMarkersExampleInfo,
+    },
+    featuredApps_showcases_populationPyramid: {
+        id: "featuredApps_showcases_populationPyramid",
+        ...populationPyramidExampleInfo,
     },
     builderApi_simplechart: {
         id: "builderApi_simplechart",

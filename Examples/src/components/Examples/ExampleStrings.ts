@@ -727,6 +727,9 @@ export const ExampleStrings = {
     urlEventMarkers: `dragabble-event-markers`,
     titleEventMarkers: (frameworkName: TFrameworkName) => `Dragabble Event Markers`,
 
+    urlPopulationPyramid: `population-pyramid`,
+    titlePopulationPyramid: (frameworkName: TFrameworkName) => `Population Pyramid`,
+
     urlTextChart: `text-chart`,
     titleTextChart: (frameworkName: TFrameworkName) => `${frameworkName} Text Chart`,
     urlTextSeriesDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#TheTextSeriesType.html`,
