@@ -2,7 +2,8 @@ import classes from "../../../styles/Examples.module.scss";
 import { drawExample, drawExample2 } from "./drawExample";
 import Button from "@material-ui/core/Button";
 import { useState, useEffect, useRef } from "react";
-import { SciChartSurface, NumberRange, easing } from "scichart";
+import { SciChartSurface } from "scichart";
+import { TResolvedReturnType } from "scichart-react";
 
 const divID = "scichart-root";
 const divID2 = "scichart-root2";
@@ -10,50 +11,37 @@ const divID2 = "scichart-root2";
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>();
     const sciChartSurfaceRef = useRef<SciChartSurface>();
     const sciChartSurfaceRef2 = useRef<SciChartSurface>();
 
-    const [ startingRange, setStartingRange ] = useState<{min: number, max: number}>({min: 0, max: 100});
+    const [startingRange, setStartingRange] = useState<{ min: number; max: number }>({ min: 0, max: 0 });
+    const [isYRangeModeVisible, setIsYRangeModeVisible] = useState(false);
 
     function handleZoomChange(shouldZoomIn: boolean) {
         if (sciChartSurfaceRef.current) {
             const xAxis = sciChartSurfaceRef.current.xAxes.get(0);
-            
+
             if (shouldZoomIn) {
-                xAxis.animateVisibleRange(
-                    new NumberRange(
-                        6596553507.41382,
-                        6596553528.236896
-                    ), 
-                    1500, // duration
-                    easing.outCirc
-                );
+                controlsRef.current.ZoomInRandomly();
             } else {
-                xAxis.animateVisibleRange(
-                    new NumberRange(
-                        startingRange.min,
-                        startingRange.max
-                    ), 
-                    1500, // duration
-                    easing.outCirc
-                );
+                controlsRef.current.ZoomOut();
             }
         }
     }
 
-    setInterval(() => {
-        console.log(sciChartSurfaceRef.current?.xAxes.get(0).visibleRange);
-    }, 3000);
-
     useEffect(() => {
-        const chartInitializationPromise = drawExample(divID).then(({ sciChartSurface }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-            
-            setStartingRange({
-                min: sciChartSurface.xAxes.get(0).visibleRange.min,
-                max: sciChartSurface.xAxes.get(0).visibleRange.max
-            });
-        });
+        const chartInitializationPromise = drawExample(divID, isYRangeModeVisible).then(
+            ({ sciChartSurface, controls }) => {
+                sciChartSurfaceRef.current = sciChartSurface;
+                controlsRef.current = controls;
+
+                setStartingRange({
+                    min: sciChartSurface.xAxes.get(0).visibleRange.min,
+                    max: sciChartSurface.xAxes.get(0).visibleRange.max,
+                });
+            }
+        );
 
         const chartInitializationPromise2 = drawExample2(divID2).then(({ sciChartSurface }) => {
             sciChartSurfaceRef2.current = sciChartSurface;
@@ -86,16 +74,11 @@ export default function ChartComponent() {
         <div>
             <h4>Unix Timestamps</h4>
             <p>300 year data range with 1ms precision</p>
-            <div className={classes.ButtonsWrapper} style={{marginBottom: 10}}>
-                <Button onClick={() => 
-                    handleZoomChange(true)
-                }>
-                    Zoom in
-                </Button>
-                <Button onClick={() => 
-                    handleZoomChange(false)
-                }>
-                    Zoom out
+            <div className={classes.ButtonsWrapper} style={{ marginBottom: 10 }}>
+                <Button onClick={() => handleZoomChange(true)}>Zoom in on random point</Button>
+                <Button onClick={() => handleZoomChange(false)}>Zoom out</Button>
+                <Button style={{ marginLeft: "auto" }} onClick={() => setIsYRangeModeVisible(!isYRangeModeVisible)}>
+                    Y Range Mode: {isYRangeModeVisible ? "Visible" : "Drawn"}
                 </Button>
             </div>
             {/*The chart will be located here*/}

@@ -453,9 +453,8 @@ export const ExampleStrings = {
     urlZoomPanModifierDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#ZoomPanModifier.html`,
     urlTitleZoomPanModifierDocumentation: `Zoom and Pan Modifier Documentation`,
 
-    titleZoomHighPrecision: (frameworkName: TFrameworkName) => 
-        `Zoom High Precision in ${frameworkName} Chart`,
-        urlZoomHighPrecision: `zoom-high-precision`,
+    titleZoomHighPrecision: (frameworkName: TFrameworkName) => `Zoom High Precision in ${frameworkName} Chart`,
+    urlZoomHighPrecision: `zoom-high-precision`,
 
     // PaletteProvider
     titlePaletteProvider: `Coloring Series per-point using the PaletteProvider`,
@@ -734,6 +733,9 @@ export const ExampleStrings = {
 
     urlEventMarkers: `dragabble-event-markers`,
     titleEventMarkers: (frameworkName: TFrameworkName) => `Dragabble Event Markers`,
+
+    urlPopulationPyramid: `population-pyramid`,
+    titlePopulationPyramid: (frameworkName: TFrameworkName) => `Population Pyramid`,
 
     urlTextChart: `text-chart`,
     titleTextChart: (frameworkName: TFrameworkName) => `${frameworkName} Text Chart`,

@@ -106,6 +106,7 @@ import { dynamicLayoutExampleInfo } from "../Examples/FeaturedApps/ShowCases/Dyn
 import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/exampleInfo";
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
+import { populationPyramidExampleInfo } from "../Examples/FeaturedApps/ShowCases/PopulationPyramid/exampleInfo";
 import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
 
@@ -458,7 +459,7 @@ export const EXAMPLES_PAGES = asRecord({
     },
     chart2D_zoomAndPanAChart_ZoomHighPrecision: {
         id: "chart2D_zoomAndPanAChart_ZoomHighPrecision",
-        ...zoomHighPrecisionExampleInfo
+        ...zoomHighPrecisionExampleInfo,
     },
     chart2D_filters_PercentageChange: {
         id: "chart2D_filters_PercentageChange",
@@ -559,6 +560,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_showcases_eventMarkers: {
         id: "featuredApps_showcases_eventMarkers",
         ...eventMarkersExampleInfo,
+    },
+    featuredApps_showcases_populationPyramid: {
+        id: "featuredApps_showcases_populationPyramid",
+        ...populationPyramidExampleInfo,
     },
     builderApi_simplechart: {
         id: "builderApi_simplechart",
