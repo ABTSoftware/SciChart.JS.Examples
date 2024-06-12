@@ -114,6 +114,8 @@ import UsingVerticalSliceModifier from "../Examples/Charts2D/TooltipsAndHittest/
 import ServerTrafficDashboard from "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard";
 import SyncMultiChart from "../Examples/Charts2D/MultiChart/SyncMultiChart";
 import EventMarkers from "../Examples/FeaturedApps/ShowCases/EventMarkers";
+import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
+import UserAnnotatedStockChart from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart";
 
 export type TMenuItem = {
     item: {
@@ -162,6 +164,8 @@ export const MENU_ITEMS_FEATURED_APPS: TMenuItem[] = [
             EXAMPLES_PAGES.featuredApps_scientificCharts_TenorCurvesDemo,
             EXAMPLES_PAGES.chart2D_createStockCharts_MultiPaneStockCharts,
             EXAMPLES_PAGES.chart2D_createStockCharts_DepthChart,
+            EXAMPLES_PAGES.chart2D_chartAnnotations_TradeMarkers,
+            EXAMPLES_PAGES.chart2D_createStockCharts_SharedChart,
         ],
     },
 ];
@@ -450,6 +454,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return SubChartStockCharts;
         case EXAMPLES_PAGES.chart2D_createStockCharts_DepthChart.id:
             return DepthChart;
+        case EXAMPLES_PAGES.chart2D_createStockCharts_SharedChart.id:
+            return UserAnnotatedStockChart;
         case EXAMPLES_PAGES.chart2D_legends_ChartLegendsAPI.id:
             return ChartLegendsAPI;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_MultipleXAxes.id:

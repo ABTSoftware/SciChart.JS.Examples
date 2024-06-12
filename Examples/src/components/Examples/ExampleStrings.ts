@@ -336,6 +336,13 @@ export const ExampleStrings = {
     pageTitleSubChartStockChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Multi-Pane Stock Chart using Subcharts | View JavaScript Charts`,
 
+    urluserAnnotatedStockChart: `user-annotated-stock-chart`,
+    titleuserAnnotatedStockChart: (frameworkName: TFrameworkName) => `${frameworkName} User Annotated Stock Chart`,
+    pageTitleuserAnnotatedStockChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} User Annotated Stock Chart | Chart Examples | SciChart.js`,
+    urlTitleuserAnnotatedStockChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} User Annotated Stock Chart example demonstrates how to allow users to annotate a Stock Chart with SciChart.js`,
+
     // Subcharts Grid
     urlSubChartsGrid: `subcharts-grid`,
     urlTitleSubChartsGridChart: `The Subcharts grid chart example demonstrates different series types placed in a grid of small charts using the new Subcharts API`,
