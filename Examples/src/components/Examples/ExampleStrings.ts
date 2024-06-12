@@ -298,9 +298,10 @@ export const ExampleStrings = {
 
     // Trademarkers
     urlTradeMarkers: `stock-chart-buy-sell-markers`,
-    titleTradeMarkers: (frameworkName: TFrameworkName) => `${frameworkName} Chart Trading Buy Sell Marker Annotations`,
+    titleTradeMarkers: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Chart Hoverable Buy Sell Marker Annotations`,
     urlTitleTradeMarkers: (frameworkName: TFrameworkName) =>
-        `${frameworkName} Chart Trade Markers example demonstrates how to add buy/sell arrows and markers to a trading application`,
+        `${frameworkName} Chart Trade Markers example demonstrates how to add hoverable buy/sell arrows and markers to a trading application`,
 
     // Drag horizontal threshold
     titleDragHorizontalThreshold: (frameworkName: TFrameworkName) => `${frameworkName} Chart Drag Horizontal Threshold`,
@@ -335,6 +336,13 @@ export const ExampleStrings = {
         `${frameworkName} Multi-Pane Stock Charts using Subcharts`,
     pageTitleSubChartStockChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Multi-Pane Stock Chart using Subcharts | View JavaScript Charts`,
+
+    urluserAnnotatedStockChart: `user-annotated-stock-chart`,
+    titleuserAnnotatedStockChart: (frameworkName: TFrameworkName) => `${frameworkName} User Annotated Stock Chart`,
+    pageTitleuserAnnotatedStockChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} User Annotated Stock Chart | Chart Examples | SciChart.js`,
+    urlTitleuserAnnotatedStockChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} User Annotated Stock Chart example demonstrates how to allow users to annotate a Stock Chart with SciChart.js`,
 
     // Subcharts Grid
     urlSubChartsGrid: `subcharts-grid`,

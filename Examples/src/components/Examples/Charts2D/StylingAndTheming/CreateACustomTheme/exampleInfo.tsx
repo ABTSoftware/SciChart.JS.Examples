@@ -2,6 +2,7 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-custom-themed.jpg";
 
 const description = `With our ThemeManager API you can create a custom theme. To do this, create a type that implements all the
 properties of the IThemeProvider interface and pass to sciChartSurface.applyTheme.`;
@@ -37,4 +38,5 @@ export const createACustomThemeExampleInfo: TExampleInfo = {
     metaDescription: (frameworkName: string) =>
         `Demonstrates how to create a Custom Theme for a SciChart.js ${frameworkName} Chart using our Theming API`,
     metaKeywords: "theming, chart, javascript, webgl, canvas",
+    thumbnailImage: exampleImage,
 };

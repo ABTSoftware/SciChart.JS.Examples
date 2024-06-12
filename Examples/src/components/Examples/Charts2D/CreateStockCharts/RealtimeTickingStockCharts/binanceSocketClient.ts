@@ -1,6 +1,8 @@
 import { WebsocketBuilder } from "websocket-ts";
 import { combineLatest, map, Observable, scan, skipWhile, take } from "rxjs";
 
+const binanceDomain = "com";
+
 // NOTE: THIS IS NOT PRODUCTION CODE, FOR DEMONSTRATION PURPOSE ONLY
 //       IF USING IN PRODUCTION, USE A FULL OR OFFICIAL BINANCE / EXCHANGE LIBRARY
 
@@ -148,7 +150,9 @@ const parseKline = (kline: any) => {
 const getCandleStream = (symbol: string, interval: string) => {
     const obs = new Observable<TRealtimePriceBar>((subscriber) => {
         console.log("Connecting to binance klines for ", symbol, interval);
-        const ws = new WebsocketBuilder(`wss://stream.binance.us:9443/ws/${symbol.toLowerCase()}@kline_${interval}`)
+        const ws = new WebsocketBuilder(
+            `wss://stream.binance.${binanceDomain}:9443/ws/${symbol.toLowerCase()}@kline_${interval}`
+        )
             // .onOpen((i, ev) => { console.log("opened") })
             // .onClose((i, ev) => { console.log("closed") })
             // .onError((i, ev) => { console.log("error") })
@@ -165,7 +169,9 @@ const getCandleStream = (symbol: string, interval: string) => {
 const getTradeStream = (symbol: string) => {
     const obs = new Observable<TTrade>((subscriber) => {
         console.log("Connecting to binance trades for ", symbol);
-        const ws = new WebsocketBuilder(`wss://stream.binance.us:9443/ws/${symbol.toLowerCase()}@aggTrade`)
+        const ws = new WebsocketBuilder(
+            `wss://stream.binance.${binanceDomain}:9443/ws/${symbol.toLowerCase()}@aggTrade`
+        )
             // .onOpen((i, ev) => { console.log("opened") })
             // .onClose((i, ev) => { console.log("closed") })
             // .onError((i, ev) => { console.log("error") })
@@ -194,8 +200,62 @@ const getRealtimeCandleStream = (symbol: string, interval: string) => {
     );
 };
 
+const getRandomCandleStream = (startBar: TRealtimePriceBar, interval: number) => {
+    let p: TRealtimePriceBar = startBar;
+    const rate = 300;
+    const observable = new Observable<TRealtimePriceBar>(function subscribe(subscriber) {
+        // Keep track of the interval resource
+        const intervalId = setInterval(() => {
+            let r = Math.random() - 0.5;
+            const close = p.close + p.close * (r / 3000);
+            const size = Math.abs(r);
+            const eventTime = p.eventTime + rate;
+            const lastTradeSize = 10000 * Math.pow(size, 14);
+            if (p.closeTime > eventTime) {
+                p = {
+                    symbol: startBar.symbol,
+                    close,
+                    high: Math.max(p.high, close),
+                    low: Math.min(p.low, close),
+                    volume: p.volume + size,
+                    eventTime,
+                    open: p.open,
+                    openTime: p.openTime,
+                    closeTime: p.closeTime,
+                    interval: p.interval,
+                    lastTradeSize,
+                    lastTradeBuyOrSell: r > 0,
+                };
+            } else {
+                p = {
+                    symbol: startBar.symbol,
+                    close,
+                    high: close,
+                    low: close,
+                    volume: size,
+                    eventTime,
+                    open: close,
+                    openTime: p.closeTime,
+                    closeTime: p.closeTime + interval,
+                    interval: p.interval,
+                    lastTradeSize,
+                    lastTradeBuyOrSell: r > 0,
+                };
+            }
+            subscriber.next(p);
+        }, rate);
+
+        // Provide a way of canceling and disposing the interval resource
+        return function unsubscribe() {
+            clearInterval(intervalId);
+        };
+    });
+    return observable;
+};
+
 export const binanceSocketClient = {
     getCandleStream,
     getTradeStream,
     getRealtimeCandleStream,
+    getRandomCandleStream,
 };
