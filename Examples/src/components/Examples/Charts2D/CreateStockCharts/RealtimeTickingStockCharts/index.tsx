@@ -8,6 +8,7 @@ import { Observable, Subscription } from "rxjs";
 import { simpleBinanceRestClient, TPriceBar } from "../../../ExampleData/binanceRestClient";
 import { appTheme } from "../../../theme";
 import { FormLabel } from "@material-ui/core";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 const divElementId = "chart";
 const divOverviewId = "overview";
@@ -27,7 +28,7 @@ const drawExample = async (dataSource: string) => {
         // Set the candles data on the chart
         controls.setData("BTC/USDT", "Bitcoin / US Dollar - 1 Minute", priceBars);
     } else {
-        priceBars = simpleBinanceRestClient.getRandomCandles(300, 60000, startDate, 60);
+        priceBars = ExampleDataProvider.getRandomCandles(300, 60000, startDate, 60);
         controls.setData("Random", "Random Data - 1 Minute", priceBars);
     }
 
