@@ -17,6 +17,7 @@ import {
     IAnnotation,
     LegendModifier,
     MouseWheelZoomModifier,
+    NativeTextAnnotation,
     NumberRange,
     NumericAxis,
     OhlcDataSeries,
@@ -90,7 +91,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         })
     );
 
-    const trades: any[] = [];
+    sciChartSurface.annotations.add(
+        new NativeTextAnnotation({
+            x1: 20,
+            y1: 20,
+            xCoordinateMode: ECoordinateMode.Pixel,
+            yCoordinateMode: ECoordinateMode.Pixel,
+            text: "Hover over the markers to see how well the random trading algorithm did.",
+        })
+    );
+
     let position = 0;
     let equity = 0;
     let balance = 100;
@@ -142,6 +152,19 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         stackedAxisLength: "20%",
     });
     sciChartSurface.yAxes.add(balanceAxis);
+
+    sciChartSurface.annotations.add(
+        new NativeTextAnnotation({
+            x1: 20,
+            y1: 0.99,
+            xCoordinateMode: ECoordinateMode.Pixel,
+            yCoordinateMode: ECoordinateMode.Relative,
+            yAxisId: balanceAxis.id,
+            verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
+            text: "Profit and Loss Curve",
+        })
+    );
+
     sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
         new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
 
@@ -160,10 +183,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     sciChartSurface.renderableSeries.add(balanceSeries);
 
-    // Optional: Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     const targetsSelector: TTargetsSelector<IAnnotation> = (modifer) => {
         return modifer.getAllTargets().filter((t) => "quantity" in t);
     };
