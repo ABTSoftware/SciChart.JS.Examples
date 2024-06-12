@@ -59,6 +59,7 @@ export class CreateLineAnnotationModifier extends ChartModifierBase2D {
         this.editingAnnotation = new LineAnnotation({
             isEditable: true,
             onClick: "deleteOnClick",
+            strokeThickness: 2, // gives much smoother lines than 1
         });
         this.editingAnnotation.xAxisId = xAxis.id;
         this.editingAnnotation.yAxisId = yAxis.id;

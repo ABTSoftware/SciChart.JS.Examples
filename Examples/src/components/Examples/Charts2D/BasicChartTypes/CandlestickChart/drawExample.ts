@@ -34,6 +34,7 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { simpleBinanceRestClient, TPriceBar } from "../../../ExampleData/binanceRestClient";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 export const divElementId = "chart";
 export const divOverviewId = "overview";
 const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
@@ -89,7 +90,7 @@ export const drawExample = async (dataSource: string) => {
     if (dataSource !== "Random") {
         priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1h", startDate, endDate, 500, dataSource);
     } else {
-        priceBars = simpleBinanceRestClient.getRandomCandles(300, 60000, startDate, 60 * 60);
+        priceBars = ExampleDataProvider.getRandomCandles(300, 60000, startDate, 60 * 60);
     }
     // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
     priceBars.forEach((priceBar: any) => {

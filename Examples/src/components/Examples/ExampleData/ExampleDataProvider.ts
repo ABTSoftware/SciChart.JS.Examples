@@ -14,6 +14,15 @@ export interface IOhlcvValues {
     volumeValues: number[];
 }
 
+export type TPriceBar = {
+    date: number;
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+    volume: number;
+};
+
 /**
  * Helper class for the SciChart.Js JavaScript Chart examples to return datasets used throughout the examples
  */
@@ -191,5 +200,55 @@ export class ExampleDataProvider {
             values.push(y);
         }
         return values;
+    };
+
+    static getRandomCandles = (count: number, startPrice: number, startDate: Date, interval: number) => {
+        let p: TPriceBar = {
+            date: startDate.getTime() / 1000,
+            open: startPrice,
+            high: startPrice,
+            low: startPrice,
+            close: startPrice,
+            volume: 0,
+        };
+        const bars: TPriceBar[] = [];
+        for (let c = 0; c < count; c++) {
+            for (let t = 0; t < 20; t++) {
+                const r = Math.random() - 0.5;
+                p.close += p.close * (r / 1000);
+                p.high = Math.max(p.high, p.close);
+                p.low = Math.min(p.low, p.close);
+                p.volume += Math.abs(r) * 200;
+            }
+            bars.push(p);
+            p = {
+                date: (p.date += interval),
+                open: p.close,
+                high: p.close,
+                low: p.close,
+                close: p.close,
+                volume: 0,
+            };
+        }
+        return bars;
+    };
+
+    static getRandomOHLCVData = (count: number, startPrice: number, startDate: Date, interval: number) => {
+        const xValues: number[] = [];
+        const openValues: number[] = [];
+        const highValues: number[] = [];
+        const lowValues: number[] = [];
+        const closeValues: number[] = [];
+        const volumeValues: number[] = [];
+        const priceBars = ExampleDataProvider.getRandomCandles(count, startPrice, startDate, interval);
+        priceBars.forEach((priceBar: any) => {
+            xValues.push(priceBar.date);
+            openValues.push(priceBar.open);
+            highValues.push(priceBar.high);
+            lowValues.push(priceBar.low);
+            closeValues.push(priceBar.close);
+            volumeValues.push(priceBar.volume);
+        });
+        return { xValues, openValues, highValues, lowValues, closeValues, volumeValues };
     };
 }

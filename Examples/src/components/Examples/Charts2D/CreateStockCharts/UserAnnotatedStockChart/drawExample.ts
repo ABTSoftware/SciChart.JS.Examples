@@ -1,6 +1,7 @@
 // SCICHART EXAMPLE
 import {
     AnnotationClickEventArgs,
+    buildDataSeries,
     CategoryAxis,
     chartReviver,
     configure2DSurface,
@@ -41,6 +42,7 @@ import {
     SciChartSurface,
     SeriesInfo,
     SmartDateLabelProvider,
+    TOhlcSeriesData,
     XyDataSeries,
     XyMovingAverageFilter,
     ZoomExtentsModifier,
@@ -50,7 +52,8 @@ import { appTheme } from "../../../theme";
 import { CreateTradeMarkerModifier } from "./CreateTradeMarkerModifier";
 import { CreateLineAnnotationModifier } from "./CreateLineAnnotationModifier";
 import { VerticalYRulerModifier } from "./RulerModifier";
-import { multiPaneData } from "../../../ExampleData/multiPaneData";
+import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 export interface IChartControls {
     getDefinition: () => object;
@@ -91,7 +94,14 @@ export const drawExample = async (divElementId: string | HTMLDivElement) => {
         })
     );
 
-    const { dateValues: xValues, openValues, highValues, lowValues, closeValues } = multiPaneData;
+    const day = 24 * 60 * 60;
+    const startDate = new Date(Date.now() - 300 * day);
+    const { xValues, openValues, highValues, lowValues, closeValues } = ExampleDataProvider.getRandomOHLCVData(
+        300,
+        1.5,
+        startDate,
+        day
+    );
 
     // Create and add the Candlestick series
     // The Candlestick Series requires a special dataseries type called OhlcDataSeries with o,h,l,c and date values
@@ -104,6 +114,7 @@ export const drawExample = async (divElementId: string | HTMLDivElement) => {
         dataSeriesName: "BTC/USDT",
     });
     const candlestickSeries = new FastCandlestickRenderableSeries(wasmContext, {
+        id: "Candles",
         dataSeries: candleDataSeries,
         stroke: appTheme.ForegroundColor, // used by cursorModifier below
         strokeThickness: 1,
@@ -163,12 +174,22 @@ export const drawExample = async (divElementId: string | HTMLDivElement) => {
         return {
             visibleRange: xAxis.visibleRange,
             annotations: sciChartSurface.annotations.asArray().map((annotation) => annotation.toJSON()),
+            data: candleDataSeries.toJSON(),
         };
     };
     const applyDefinition = (definition: any) => {
         if (definition) {
             configure2DSurface({ annotations: definition.annotations }, sciChartSurface, wasmContext);
             xAxis.visibleRange = definition.visibleRange;
+            const newData = definition.data.options as TOhlcSeriesData;
+            candleDataSeries.clear();
+            candleDataSeries.appendRange(
+                newData.xValues,
+                newData.openValues,
+                newData.highValues,
+                newData.lowValues,
+                newData.closeValues
+            );
         }
     };
 
