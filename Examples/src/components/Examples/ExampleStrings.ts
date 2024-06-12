@@ -298,9 +298,10 @@ export const ExampleStrings = {
 
     // Trademarkers
     urlTradeMarkers: `stock-chart-buy-sell-markers`,
-    titleTradeMarkers: (frameworkName: TFrameworkName) => `${frameworkName} Chart Trading Buy Sell Marker Annotations`,
+    titleTradeMarkers: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Chart Hoverable Buy Sell Marker Annotations`,
     urlTitleTradeMarkers: (frameworkName: TFrameworkName) =>
-        `${frameworkName} Chart Trade Markers example demonstrates how to add buy/sell arrows and markers to a trading application`,
+        `${frameworkName} Chart Trade Markers example demonstrates how to add hoverable buy/sell arrows and markers to a trading application`,
 
     // Drag horizontal threshold
     titleDragHorizontalThreshold: (frameworkName: TFrameworkName) => `${frameworkName} Chart Drag Horizontal Threshold`,
