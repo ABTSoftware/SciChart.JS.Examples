@@ -8,7 +8,6 @@ import {
     ZoomPanModifier,
     SciChartSurface,
     ENumericFormat,
-    // IStackedColumnSeriesDataLabelProviderOptions,
     EColumnDataLabelPosition,
     StackedColumnRenderableSeries,
     Thickness,
@@ -17,7 +16,6 @@ import {
     IDataLabelLayoutManager,
     RenderPassInfo,
     IRenderableSeries,
-    // @ts-ignore
     IStackedColumnSeriesDataLabelProviderOptions,
     BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy,
 } from "scichart";
@@ -140,7 +138,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             fontSize: 12,
         },
         growBy: new NumberRange(0, 0.1), // to have the furthest right labels visible
-        // labelFormat: ENumericFormat.Engineering,
+        labelFormat: ENumericFormat.Engineering,
     });
 
     yAxisRight.visibleRangeChanged.subscribe((args) => {
@@ -157,7 +155,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             fontSize: 12,
         },
         growBy: new NumberRange(0, 0.1), // to have the furthest left labels visible
-        // labelFormat: ENumericFormat.Engineering,
+        labelFormat: ENumericFormat.Engineering,
         id: "femaleAxis",
     });
 
@@ -171,16 +169,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxisLeft, yAxisRight);
 
-    // @ts-ignore
     const dataLabels: IStackedColumnSeriesDataLabelProviderOptions = {
         positionMode: EColumnDataLabelPosition.Outside,
         style: { fontFamily: "Arial", fontSize: 12, padding: new Thickness(0, 3, 0, 3) },
         color: "#EEEEEE",
-        // numericFormat: ENumericFormat.Engineering,
-        // engineeringPrefix: {
-        //     large: ["K", "Mill", "B"] // "M" changed to "Mill"
-        //     // this particular example does not need "small" array since don't have subunitary values
-        // }
+        numericFormat: ENumericFormat.Engineering,
+        engineeringPrefix: {
+            large: ["K", "M", "B"] // this is the same as the default large prefixes
+            // this particular example does not need "small" array since don't have subunitary values
+        }
     };
 
     // Create some RenderableSeries or each part of the stacked column
@@ -192,7 +189,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         fill: "#255080",
         stackedGroupId: "MaleSeries",
-        // dataLabels
+        dataLabels
     });
 
     const maleChartAfrica = new StackedColumnRenderableSeries(wasmContext, {
@@ -203,7 +200,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         fill: "#4570b0",
         stackedGroupId: "MaleSeries",
-        // dataLabels
+        dataLabels
     });
 
     // female charts
@@ -215,7 +212,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         fill: "#af4f5a",
         stackedGroupId: "FemaleSeries",
-        // dataLabels
+        dataLabels
     });
 
     const femaleChartAfrica = new StackedColumnRenderableSeries(wasmContext, {
@@ -226,7 +223,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         }),
         fill: "#df7f8a",
         stackedGroupId: "FemaleSeries",
-        // dataLabels
+        dataLabels
     });
 
     const stackedColumnCollectionMale = new StackedColumnCollection(wasmContext, {
