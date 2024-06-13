@@ -2267,6 +2267,12 @@ Show external placement div</Notes>
                   <TargetItemId>135e80f7-4f28-45c9-a7a2-4ae99818bbef</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
+                <TocNode Name="" Id="48b3f62b-ff3c-441d-b988-8b035660090b" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>73209a6a-d296-4e1c-867a-e19ebe5ab0ca</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
               </ChildNodes>
             </TocNode>
             <TocNode Name="" Id="fdd6b38f-c2ce-46e4-929c-0618f670517f" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
@@ -2400,7 +2406,7 @@ Show external placement div</Notes>
                   </ChildNodes>
                 </TocNode>
                 <TocNode Name="" Id="52523b3f-68ca-43ca-b47f-661cfc2683ca" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
-                  <CaptionTemplate m="2021-09-02T07:48:10.6616479Z">Selection</CaptionTemplate>
+                  <CaptionTemplate m="2024-06-13T14:14:04.2966674Z">Selection and Hover</CaptionTemplate>
                   <ChildNodes>
                     <TocNode Name="" Id="34b81072-c0c1-400a-94d2-5f3d38db5b4f" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
@@ -2412,6 +2418,12 @@ Show external placement div</Notes>
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>ae9b10e1-f5ba-444e-9835-6b0f95806007</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="c558ddf3-e9d4-4845-8323-31713be4eea2" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>73209a6a-d296-4e1c-867a-e19ebe5ab0ca</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -8808,6 +8820,58 @@ Show external placement div</Notes>
                         <Category />
                       </TopicLink>
                     </TopicLinks>
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="73209a6a-d296-4e1c-867a-e19ebe5ab0ca" Status="New Topic" CreatedOn="2024-06-13T10:06:43.1938996Z" ModifiedOn="2024-06-13T16:21:36.8152836Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AnnotationHover" BuildFlags="">
+                    <Title />
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2024-06-13T16:21:36.8152836Z">&lt;P&gt;Annotations Hover API is an opt-in functionality that allows detecting hover events on chart annotations and adding event handlers.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;The &lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript/stock-chart-buy-sell-markers" target=_blank&gt;JavaScript Hoverable Trade Markers Example&lt;/A&gt; can be found in the&amp;nbsp;&lt;A href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;SciChart.Js Examples Suite&lt;/A&gt;&amp;nbsp;on Github, or our live demo at&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;demo.scichart.com&lt;/A&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameWidth"&gt;100%&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameHeight"&gt;500px&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/stock-chart-buy-sell-markers&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P align=center&gt;&amp;nbsp;&lt;EM&gt;&lt;STRONG&gt;Above&lt;/STRONG&gt;: The&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript/stock-chart-buy-sell-markers" target=_blank&gt;JavaScript Hoverable Trade Markers Example&lt;/A&gt;&lt;/EM&gt; &lt;EM&gt;from the SciChart.js Demo, showing trade markers with tooltips on hover .&lt;/EM&gt;&lt;/P&gt;
+&lt;H2&gt;Using AnnotationHoverModifier&lt;/H2&gt;
+&lt;P&gt;To enable the hover detection we need to add the &lt;STRONG&gt;AnnotationHoverModifier.&lt;/STRONG&gt;&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\Annotations\AnnotationHover\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;PrimaryExample&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\Annotations\AnnotationHover\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;Example1WithBuilderAPI&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Adding Hover Event Handlers&lt;/H2&gt;
+&lt;P&gt;There are several different options for adding a callback for the hover event.&lt;/P&gt;
+&lt;P&gt;1. By passing &lt;STRONG&gt;onHover&lt;/STRONG&gt; via an &lt;STRONG&gt;annotation&lt;/STRONG&gt; constructor options, or&amp;nbsp;subscribing to the &lt;STRONG&gt;hovered&lt;/STRONG&gt; event handler on an &lt;STRONG&gt;annotation&lt;/STRONG&gt;.&amp;nbsp; This allows you to have different hover behaviour for each annotation, and the args has a method which allows you to find out where on the annotation the over occurred.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/Annotations/AnnotationHover/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;2. By passing &lt;STRONG&gt;onHover&lt;/STRONG&gt; via the constructor of the &lt;STRONG&gt;AnnotationHoverModifier&lt;/STRONG&gt; or subscribing to the &lt;STRONG&gt;hoverChanged&lt;/STRONG&gt; event handler on an instance&amp;nbsp;of &lt;STRONG&gt;AnnotationHoverModifier.&lt;/STRONG&gt;&amp;nbsp; This gives you a single callback with access to&amp;nbsp;both the&amp;nbsp;hovered and unhovered annotations, allowing you to define common hover&amp;nbsp;behaviour in one place, and&amp;nbsp;enabling you to update other annotations when one is hovered.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Hover on modifier&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Typescript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;// onHover in constructor.&amp;nbsp; Internally this just subcribes to the hovered event using the function you pass in.&lt;/P&gt;
+&lt;P&gt;&amp;nbsp; const annotationHoverModifier = new AnnotationHoverModifier({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; onHover: (args: IHoverCallbackArgs&amp;lt;IAnnotation&amp;gt;) =&amp;gt; {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const { mouseArgs, includedEntities, hoveredEntities, unhoveredEntities } = args;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // ...&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;BR&gt;&amp;nbsp; });&lt;/P&gt;
+&lt;P&gt;// subscribe to hovered event directly&lt;BR&gt;annotationHoverModifier.hoverChanged.subscribe((args: IHoverCallbackArgs&amp;lt;IAnnotation&amp;gt;) =&amp;gt; {&lt;BR&gt;&amp;nbsp; // ... &lt;BR&gt;});&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;These approaches could be used simultaneously.&lt;/P&gt;
+&lt;H2&gt;Hover Detection Options&lt;/H2&gt;
+&lt;P&gt;The hover detection functionality is managed by the AnnotationHoverModifier.&amp;nbsp;&lt;BR&gt;By default, the modifier checks every annotation within &lt;STRONG&gt;SciChartSurface.annotations&lt;/STRONG&gt; that is visible upon mouse move.&amp;nbsp;&amp;nbsp;&lt;BR&gt;Then if the mouse position is over any of the annotations, only the one that is above all others is considered to be hovered.&amp;nbsp;&lt;BR&gt;An event will be raised if the hovered state of annotation has changed (e.g. it became hovered or unhovered).&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;These behaviors can be modified via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/iannotationhovermodifieroptions.html" target=_blank&gt;IAnnotationHoverModifierOptions&lt;/A&gt;.&lt;/P&gt;
+&lt;H3&gt;Hover Detection Mode&lt;/H3&gt;
+&lt;P&gt;The hover detection rules are defined by the &lt;STRONG&gt;hoverMode&lt;/STRONG&gt; property accepting values from &lt;STRONG&gt;EHoverMode&lt;/STRONG&gt; enum.&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;AbsoluteTopmost (default) - selects only one annotation that is not overlayed by any other annotation at the mouse position; the mode checks both included and ignored targets, but can select only an included one. 
+&lt;LI&gt;TopmostIncluded - selects only one annotation that is not overlayed by any other annotation at the mouse position; the mode checks and selects only included targets. 
+&lt;LI&gt;Multi - selects multiple included annotations at the mouse position. &lt;/LI&gt;&lt;/UL&gt;
+&lt;H3&gt;Types of actions that trigger event&lt;/H3&gt;
+&lt;P&gt;To modify the hover change condition when an event should be raised use &lt;STRONG&gt;notifyOutEvent&lt;/STRONG&gt; and &lt;STRONG&gt;notifyPositionUpdate&lt;/STRONG&gt; flags.&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;notifyOutEvent - defines whether an event should be raised when any of the annotations has become unhovered. For example, if set to false an event won't be raised when all of the annotations are unhovered. Defaults to true. 
+&lt;LI&gt;notifyPositionUpdate - defines whether an event should be raised when the list of hovered and unhovered annotations haven't changed. E.g. the mouse position changed within the bounds of an already hovered annotation. Defaults to false. &lt;/LI&gt;&lt;/UL&gt;
+&lt;H2&gt;Hover Targets&lt;/H2&gt;
+&lt;P&gt;To check only a specific set of annotations use the &lt;STRONG&gt;targets&lt;/STRONG&gt; property. It&amp;nbsp;can accept either&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;an array of annotations 
+&lt;LI&gt;and array of&amp;nbsp;annotation ids 
+&lt;LI&gt;a&amp;nbsp;function returning an array of annotations 
+&lt;LI&gt;the name of a function registered with the&amp;nbsp;&lt;A href="295dec01-f48c-4caf-a4c8-5b5ed765ba9f"&gt;Builder API&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Target Selector&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Typescript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\Annotations\AnnotationHoverTargets\demo.ts&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ModifierTargetsSelector&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;Here is a simple&amp;nbsp;example using the methods described above&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/Annotations/AnnotationHoverTargets/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
                     <TopicKeywords />
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
@@ -15734,7 +15798,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">494</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">1605</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
