@@ -253,6 +253,16 @@ export const ExampleStrings = {
     urlStackedMountainChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Stacked%20Mountain%20Series%20Type.html`,
     urlTitleStackedMountainChartDocumentation: `The specific page for the JavaScript Stacked Mountain Chart documentation will help you to get started`,
 
+    // Smooth Stacked Mountain Chart
+    urlSmoothStackedMountainChart: `smooth-stacked-mountain-chart`,
+    urlSmoothTitleStackedMountainChart: `The Smooth Stacked Mountain Chart and 100% Smooth Stacked Mountain Chart example in SciChart.js`,
+    titleSmoothStackedMountainChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Smooth Stacked Mountain Chart`,
+    pageTitleSmoothStackedMountainChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Smooth Stacked Mountain Chart | JavaScript Chart Library`,
+    urlSmoothStackedMountainChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Stacked%20Mountain%20Series%20Type.html`,
+    urlTitleSmoothStackedMountainChartDocumentation: `The specific page for the JavaScript Smooth Stacked Mountain Chart documentation will help you to get started`,
+
     // Heatmap Chart
     urlHeatmapChart: `heatmap-chart`,
     urlTitleHeatmapChart: (frameworkName: TFrameworkName) => `${frameworkName} Heatmap Chart example in SciChart.js`,

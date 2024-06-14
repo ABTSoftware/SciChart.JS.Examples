@@ -116,6 +116,7 @@ import SyncMultiChart from "../Examples/Charts2D/MultiChart/SyncMultiChart";
 import EventMarkers from "../Examples/FeaturedApps/ShowCases/EventMarkers";
 import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
 import UserAnnotatedStockChart from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart";
+import SmoothStackedMountainChart from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart";
 
 export type TMenuItem = {
     item: {
@@ -199,6 +200,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart,
             EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide,
             EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_SmoothStackedMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_PieChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DonutChart,
             EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations,
@@ -478,6 +480,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return StackedColumnSideBySide;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart.id:
             return StackedMountainChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_SmoothStackedMountainChart.id:
+            return SmoothStackedMountainChart;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.id:
             return UsePointMarkers;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.id:

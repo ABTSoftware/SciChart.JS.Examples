@@ -5,6 +5,7 @@ import {
     SciChartOverview,
     FastOhlcRenderableSeries,
     chartReviver,
+    localStorageApi,
 } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { appTheme } from "../../../theme";
@@ -52,10 +53,14 @@ export default function UserAnnotatedStockChart() {
     const controlsRef = React.useRef<IChartControls>();
     const [name, setName] = React.useState<string>("");
     const [chartMode, setChartMode] = React.useState<string>("line");
-    const [savedCharts, setSavedCharts] = React.useState<Record<string, object>>(() =>
-        JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}", chartReviver)
-    );
+    const [savedCharts, setSavedCharts] = React.useState<Record<string, object>>({});
     const [selectedChart, setSelectedChart] = React.useState<string>("");
+
+    React.useEffect(() => {
+        if (localStorageApi.storageAvailable()) {
+            setSavedCharts(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{}", chartReviver));
+        }
+    }, []);
 
     const handleToggleButtonChanged = (event: any, state: string) => {
         if (state === null) return;
@@ -73,7 +78,9 @@ export default function UserAnnotatedStockChart() {
 
     const saveChart = (event: any) => {
         savedCharts[name] = controlsRef.current.getDefinition();
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(savedCharts));
+        if (localStorageApi.storageAvailable()) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(savedCharts));
+        }
         setSavedCharts(savedCharts);
         setSelectedChart(name);
     };
