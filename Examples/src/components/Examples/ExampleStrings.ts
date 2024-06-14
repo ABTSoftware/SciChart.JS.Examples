@@ -456,6 +456,9 @@ export const ExampleStrings = {
     titleZoomHighPrecision: (frameworkName: TFrameworkName) => `Zoom High Precision in ${frameworkName} Chart`,
     urlZoomHighPrecision: `zoom-high-precision`,
 
+    titleZoomHighPrecision2: (frameworkName: TFrameworkName) => `2 Zoom High Precision in ${frameworkName} Chart`,
+    urlZoomHighPrecision2: `zoom-high-precision-2`,
+
     // PaletteProvider
     titlePaletteProvider: `Coloring Series per-point using the PaletteProvider`,
     urlPaletteProvider: `chart-color-points-individually-with-paletteprovider`,

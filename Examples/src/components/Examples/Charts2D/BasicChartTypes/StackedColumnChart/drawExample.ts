@@ -12,6 +12,8 @@ import {
     XyDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier,
+    EColumnDataLabelPosition,
+    IStackedColumnSeriesDataLabelProviderOptions
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -52,6 +54,10 @@ export const drawExample = async () => {
     const yValues4 = [16, 10, 9, 8, 22, 14, 12, 27, 25, 23, 17, 17];
     const yValues5 = [7, 24, 21, 11, 19, 17, 14, 27, 26, 22, 28, 16];
 
+    const dataLabels: IStackedColumnSeriesDataLabelProviderOptions = {
+        positionMode: EColumnDataLabelPosition.Outside
+    }
+
     // Create some RenderableSeries - for each part of the stacked column
     // Notice the stackedGroupId. This defines if series are stacked (same), or grouped side by side (different)
     const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
@@ -61,6 +67,7 @@ export const drawExample = async () => {
         strokeThickness: 2,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
+        dataLabels
     });
 
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
@@ -70,6 +77,7 @@ export const drawExample = async () => {
         strokeThickness: 2,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
+        dataLabels
     });
 
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
@@ -79,6 +87,7 @@ export const drawExample = async () => {
         strokeThickness: 2,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
+        dataLabels
     });
 
     const rendSeries4 = new StackedColumnRenderableSeries(wasmContext, {
@@ -88,6 +97,7 @@ export const drawExample = async () => {
         strokeThickness: 2,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
+        dataLabels
     });
 
     const rendSeries5 = new StackedColumnRenderableSeries(wasmContext, {
@@ -97,6 +107,7 @@ export const drawExample = async () => {
         strokeThickness: 2,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
+        dataLabels
     });
 
     // To add the series to the chart, put them in a StackedColumnCollection
