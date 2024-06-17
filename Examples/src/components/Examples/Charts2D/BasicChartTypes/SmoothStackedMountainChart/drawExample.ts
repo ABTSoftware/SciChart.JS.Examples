@@ -49,14 +49,13 @@ export const drawExample = async () => {
     ];
     for (let i = 0; i < 10; i++) {
         const yValues = xValues.map((x) => Math.random() * 10);
-
-        // Create the three Stacked Mountain series
         const stackedMountain = new SmoothStackedMountainRenderableSeries(wasmContext, {
             id: i.toString(),
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
             fill: AUTO_COLOR,
             stroke: AUTO_COLOR,
             strokeThickness: 2,
+            // From 3.4 Animations can be added to individual stacked series
             animation: new ScaleAnimation({ duration: 500, delay: i * 200 }),
         });
         stackedMountainCollection.add(stackedMountain);
@@ -81,18 +80,18 @@ export const drawExample = async () => {
     stackedMountainCollection.asArray().forEach((series) =>
         series.isVisibleChanged.subscribe((data) => {
             if (data.isVisible) {
-                stackedMountainCollection.setAccumulatedValuesDirty();
-                stackedMountainCollection.updateAccumulatedVectors();
-                sciChartSurface.zoomExtents();
+                // If you want to zoom to the new range when making a series visible, you need to force a recalculation of the Accumulated values first
+                //stackedMountainCollection.setAccumulatedValuesDirty();
+                //stackedMountainCollection.updateAccumulatedVectors();
+                //sciChartSurface.zoomExtents();
                 data.sourceSeries.runAnimation(
                     new ScaleAnimation({
                         duration: 500,
-                        onCompleted: () => {
-                            legendModifier.sciChartLegend.invalidateLegend();
-                        },
                     })
                 );
             } else {
+                // To animate out, we have to trick the series into remaining visible while the animation runs.
+                // We set the backing value of isVisible to true, and only set it false when the animation completes
                 // @ts-ignore
                 data.sourceSeries.isVisibleProperty = true;
                 data.sourceSeries.runAnimation(
@@ -103,6 +102,7 @@ export const drawExample = async () => {
                             (data.sourceSeries.dataSeries as BaseDataSeries).revertAnimationVectors();
                             // @ts-ignore
                             data.sourceSeries.isVisibleProperty = false;
+                            // Force the legend to update
                             legendModifier.sciChartLegend.invalidateLegend();
                             //sciChartSurface.zoomExtents();
                         },
