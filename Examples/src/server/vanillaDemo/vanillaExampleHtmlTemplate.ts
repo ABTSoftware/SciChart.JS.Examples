@@ -28,6 +28,7 @@ export const htmlTemplate = (options?: { body?: string; styles?: string; renderN
         <script type="importmap">
             {
                 "imports": {
+                    "../../../theme": "./theme.js",
                     "./drawExample": "./drawExample.js",
                     "./data": "./data.js",
                     "./DepthCursorModifier": "./DepthCursorModifier.js",
@@ -35,10 +36,10 @@ export const htmlTemplate = (options?: { body?: string; styles?: string; renderN
                 }
             }
         </script>
-        <script async type="module" src="scichart.browser.mjs"></script>
-        <script async type="module" src="index.js"></script>
-        <script async type="module" src="drawExample.js"></script>
-        <script async type="module" src="common.js"></script>
+        <script type="module" src="scichart.browser.mjs"></script>
+        <script type="module" src="common.js"></script>
+        <script type="module" src="index.js"></script>
+        <script type="module" src="drawExample.js"></script>
             <style>
                 body {
                     font-family: "Arial";
