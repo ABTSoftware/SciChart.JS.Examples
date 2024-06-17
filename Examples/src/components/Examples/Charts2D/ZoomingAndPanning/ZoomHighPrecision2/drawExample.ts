@@ -22,10 +22,9 @@ import {
     BoxAnnotation,
     GenericAnimation,
     NumberRangeAnimator,
+    RolloverModifier,
     VerticalSliceModifier,
-    ECoordinateMode,
-    SeriesInfo,
-    RolloverLegendSvgAnnotation
+    ECoordinateMode
 } from "scichart";
 
 // Seconds since midnight. 2 weeks range with nanosecond precsion
@@ -85,7 +84,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
-        stroke: "#FF6600",
+        stroke: "#3388ff",
         strokeThickness: 2,
         dataSeries: xyDataSeries,
         // pointMarker: new EllipsePointMarker(wasmContext),
@@ -93,24 +92,28 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.renderableSeries.add(lineSeries);
 
-    const vSlice1 = new VerticalSliceModifier({
-        x1: 10000,
-        xCoordinateMode: ECoordinateMode.DataValue,
-        isDraggable: true,
-        showRolloverLine: true,
-        rolloverLineStrokeThickness: 1,
-        rolloverLineStroke: "#fff",
-        lineSelectionColor: "#888",
-        showTooltip: true,
-    });
-
-    sciChartSurface.chartModifiers.add(vSlice1);
+    const tooltipDataTemplate: TRolloverTooltipDataTemplate = (si, title, labelX, labelY) => {
+        let d = si.formattedXValue.split(" ");
+        return ["Date: " + d[0], "Time: " + d[1], "Y: " + si.formattedYValue];
+    };
 
     // Optional: add zooming, panning for the example
     sciChartSurface.chartModifiers.add(
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier(),
-        new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton })
+        // new RolloverModifier({ tooltipDataTemplate }),
+        new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton }),
+        new VerticalSliceModifier({
+            tooltipDataTemplate,
+            x1: 10000,
+            xCoordinateMode: ECoordinateMode.DataValue,
+            isDraggable: true,
+            showRolloverLine: true,
+            rolloverLineStrokeThickness: 1,
+            rolloverLineStroke: "#fff",
+            lineSelectionColor: "#888",
+            showTooltip: true,
+        })
     );
 
     sciChartSurface.zoomExtents();
