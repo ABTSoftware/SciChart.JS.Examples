@@ -28,6 +28,7 @@ import {
     GenericAnimation,
     easing,
     Thickness,
+    translateToNotScaled,
 } from "scichart";
 
 const getImageAnnotation = (x1: number, y1: number, image: any, width: number, height: number): CustomAnnotation => {
@@ -249,6 +250,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     let currentTooltipAnimation: GenericAnimation<number>;
     const animateTooltip = () => {
         currentTooltipAnimation?.cancel();
+        tooltipAnnotation.isHidden = true;
         currentTooltipAnimation = new GenericAnimation<number>({
             from: 0,
             to: 1,
@@ -285,6 +287,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 }
 
                 const borders = tooltipAnnotation.getAnnotationBorders(true);
+                // TODO this could be mapped to a proper Annotation class name
                 tooltipAnnotation.text = hoveredAnnotation.type;
 
                 const handleAnnotationsOutsideSeriesViewRect = true;
@@ -293,20 +296,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     sciChartSurface.seriesViewRect,
                     handleAnnotationsOutsideSeriesViewRect
                 );
-                tooltipAnnotation.x1 = translatedMousePoint.x / DpiHelper.PIXEL_RATIO;
-                tooltipAnnotation.y1 = translatedMousePoint.y / DpiHelper.PIXEL_RATIO;
+                tooltipAnnotation.x1 = translateToNotScaled(translatedMousePoint.x);
+                tooltipAnnotation.y1 = translateToNotScaled(translatedMousePoint.y);
 
-                tooltipAnnotation.xCoordShift = 20 / DpiHelper.PIXEL_RATIO;
-                tooltipAnnotation.horizontalAnchorPoint = EHorizontalAnchorPoint.Left;
-
-                const width = borders.x2 - borders.x1;
-
-                if (
-                    tooltipAnnotation.x1 + tooltipAnnotation.xCoordShift + width >
-                    sciChartSurface.seriesViewRect.width / DpiHelper.PIXEL_RATIO
-                ) {
-                    tooltipAnnotation.horizontalAnchorPoint = EHorizontalAnchorPoint.Right;
-                    tooltipAnnotation.xCoordShift = -20;
+                // initial default offset from pointer
+                tooltipAnnotation.xCoordShift = 20;
+                const width = Math.abs(borders.x2 - borders.x1);
+                const expectedX2Coordinate = tooltipAnnotation.x1 + tooltipAnnotation.xCoordShift + width;
+                const unscaledViewWidth = translateToNotScaled(sciChartSurface.seriesViewRect.width);
+                if (expectedX2Coordinate > unscaledViewWidth) {
+                    tooltipAnnotation.xCoordShift = unscaledViewWidth - width - tooltipAnnotation.x1;
                 }
 
                 animateTooltip();
