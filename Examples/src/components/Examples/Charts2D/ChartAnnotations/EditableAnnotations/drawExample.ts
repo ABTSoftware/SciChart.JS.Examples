@@ -29,6 +29,7 @@ import {
     easing,
     Thickness,
     translateToNotScaled,
+    EAnnotationType,
 } from "scichart";
 
 const getImageAnnotation = (x1: number, y1: number, image: any, width: number, height: number): CustomAnnotation => {
@@ -208,6 +209,18 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         scaleOnResize: true,
     });
 
+    const tooltipPreviewAnnotation = new TextAnnotation({
+        x1: 1,
+        y1: 8,
+        xCoordinateMode: ECoordinateMode.DataValue,
+        yCoordinateMode: ECoordinateMode.DataValue,
+        textColor: appTheme.ForegroundColor,
+        fontSize: 16,
+        text: `Move mouse over an annotation to get a tooltip with its type.<tspan x="4" dy="1.2em">The tooltip itself is also an annotation.</tspan>`,
+        padding: Thickness.fromNumber(4),
+        background: "black",
+    });
+
     const tooltipAnnotation = new TextAnnotation({
         x1: 0,
         y1: 0,
@@ -240,6 +253,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         nativetextScale,
         hoverableTextAnnotation,
         // customAnnotation,
+        tooltipPreviewAnnotation,
         tooltipAnnotation
     );
 
@@ -280,15 +294,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 if (hoveredAnnotation.isEditable) {
                     sciChartSurface.domChartRoot.style.cursor = "grab";
                 }
-                console.log(hoveredAnnotation.isDraggingStarted);
                 if (hoveredAnnotation.isDraggingStarted) {
                     tooltipAnnotation.isHidden = true;
                     return;
                 }
 
                 const borders = tooltipAnnotation.getAnnotationBorders(true);
-                // TODO this could be mapped to a proper Annotation class name
-                tooltipAnnotation.text = hoveredAnnotation.type;
+                tooltipAnnotation.text = mapAnnotationTypeToName(hoveredAnnotation.type);
 
                 const handleAnnotationsOutsideSeriesViewRect = true;
                 const translatedMousePoint = translateFromCanvasToSeriesViewRect(
@@ -320,4 +332,33 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.chartModifiers.add(annotationHoverModifier);
 
     return { sciChartSurface, wasmContext };
+};
+
+const mapAnnotationTypeToName = (type: EAnnotationType): string => {
+    switch (type) {
+        case EAnnotationType.RenderContextAxisMarkerAnnotation:
+            return "AxisMarkerAnnotation";
+        case EAnnotationType.RenderContextBoxAnnotation:
+            return "BoxAnnotation";
+        case EAnnotationType.RenderContextLineAnnotation:
+            return "LineAnnotation";
+        case EAnnotationType.RenderContextHorizontalLineAnnotation:
+            return "HorizontalLineAnnotation";
+        case EAnnotationType.RenderContextVerticalLineAnnotation:
+            return "VerticalLineAnnotation";
+        case EAnnotationType.SVGTextAnnotation:
+            return "TextAnnotation";
+        case EAnnotationType.RenderContextNativeTextAnnotation:
+            return "NativeTextAnnotation";
+        case EAnnotationType.SVGCustomAnnotation:
+            return "CustomAnnotation";
+        case EAnnotationType.SVG:
+            return "SvgAnnotation";
+        default: {
+            const handleInvalidType = (value: never): never => {
+                throw new Error(`Invalid annotation type: ${value}`);
+            };
+            return handleInvalidType(type);
+        }
+    }
 };
