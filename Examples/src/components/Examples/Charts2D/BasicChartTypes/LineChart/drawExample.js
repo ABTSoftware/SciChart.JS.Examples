@@ -208,7 +208,7 @@ export const getChartsInitializationAPI = () => {
         // Returns IStrokePaletteProvider, preconfigured to colour each point with a gradient
         // Can be fully customised to execute any rule on x,y,index or metadata per-point to colour the series
         // See PaletteProvider documentation for more details
-        const gradientPalette = PaletteFactory.createGradient(
+        const xGradientPalette = PaletteFactory.createGradient(
             wasmContext,
             new GradientParams(new Point(0, 0), new Point(1, 1), [
                 { offset: 0, color: appTheme.VividOrange },
@@ -216,10 +216,41 @@ export const getChartsInitializationAPI = () => {
                 { offset: 1.0, color: appTheme.VividSkyBlue },
             ])
         );
+        // Y gradient
+        const yGradientPalette = PaletteFactory.createYGradient(
+            wasmContext,
+            new GradientParams(
+                new Point(0, 0),
+                new Point(1, 1),
+                [
+                    { offset: 0, color: appTheme.VividOrange },
+                    { offset: 0.5, color: appTheme.VividSkyBlue },
+                    { offset: 1, color: appTheme.VividTeal },
+                ]
+            ),
+            new NumberRange(2, 4) // the range of y-values to apply the gradient to
+        );
+
+        // decreasing Sine wave
+        var yValues = [];
+        for (var i = 0; i < 75; i++) {
+            yValues.push(3 + Math.sin(i * Math.PI / 16) * (2 - i/50) );
+        }
+
         sciChartSurface.renderableSeries.add(
             new FastLineRenderableSeries(wasmContext, {
                 dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
-                paletteProvider: gradientPalette,
+                paletteProvider: xGradientPalette,
+                strokeThickness: 5,
+                animation: {
+                    type: EAnimationType.Sweep,
+                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                },
+            }),
+
+            new FastLineRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: yValues}),
+                paletteProvider: yGradientPalette,
                 strokeThickness: 5,
                 animation: {
                     type: EAnimationType.Sweep,
