@@ -38,9 +38,9 @@ export const divElementId = "chart";
 export const divOverviewId = "overview";
 const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
 
-export const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
@@ -186,12 +186,14 @@ export const drawExample = async () => {
 
     // Add Overview chart. This will automatically bind to the parent surface
     // displaying its series. Zooming the chart will zoom the overview and vice versa
-    const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
-        theme: appTheme.SciChartJsTheme,
-        transformRenderableSeries: getOverviewSeries,
-    });
 
-    return { sciChartSurface, overview, candlestickSeries, ohlcSeries };
+    //Exporting at the bottom by an object-
+    // const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
+    //     theme: appTheme.SciChartJsTheme,
+    //     transformRenderableSeries: getOverviewSeries,
+    // });
+
+    return { sciChartSurface, candlestickSeries, ohlcSeries };
 };
 
 class VolumePaletteProvider implements IFillPaletteProvider {
@@ -272,4 +274,9 @@ const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
     }
     // hide all other series
     return undefined;
+};
+
+export const overviewOptions = {
+    theme: appTheme.SciChartJsTheme,
+    transformRenderableSeries: getOverviewSeries,
 };
