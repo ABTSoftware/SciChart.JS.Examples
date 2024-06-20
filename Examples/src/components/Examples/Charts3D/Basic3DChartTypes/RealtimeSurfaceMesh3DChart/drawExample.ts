@@ -15,12 +15,10 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-export const divElementId = "chart";
-
 // SCICHART CODE
-export const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChart3DSurface
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, {
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
@@ -124,5 +122,5 @@ export const drawExample = async () => {
         clearInterval(timer);
     };
 
-    return { sciChart3DSurface, wasmContext, controls: { startAnimation, stopAnimation } };
+    return { sciChartSurface: sciChart3DSurface, wasmContext, controls: { startAnimation, stopAnimation } };
 };
