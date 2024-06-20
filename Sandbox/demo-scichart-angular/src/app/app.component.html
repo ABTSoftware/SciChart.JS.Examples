@@ -1,29 +1,4 @@
-<h1>Hello, {{ title }}</h1>
-<p>Animation Chart</p>
-
-<div style="width: 50%">
-  <scichart-angular
+<scichart-angular
     [initChart]="drawExampleAnimation"
-    (onInit)="onInitHandler($event)"
-    [innerContainerStyles]="{ border: '2px solid red' }"
   >
   </scichart-angular>
-  <scichart-angular
-    [initChart]="drawExampleanimation"
-    (onInit)="onInitHandler($event)"
-    [innerContainerStyles]="{ border: '2px solid red' }"
-  >
-  </scichart-angular>
-  <!-- <scichart-angular [initChart]="drawExample" (onInit)="onInitHandler($event)" [innerContainerStyles]="{border: '2px solid red'}">
-  </scichart-angular>
-
-  <scichart-angular [initChart]="drawExample3D" (onInit)="onInitHandler($event)" [innerContainerStyles]="{border: '2px solid red'}">
-  </scichart-angular>
-
-  <scichart-angular [initChart]="drawExampleAnimation" (onInit)="onInitHandler($event)" [innerContainerStyles]="{border: '2px solid red'}">
-  </scichart-angular>
-
-  <scichart-angular [config]="config" (onInit)="onInitHandler($event)" [innerContainerStyles]="{border: '2px solid green'}">
-    <button>Custom button</button>
-  </scichart-angular> -->
-</div>

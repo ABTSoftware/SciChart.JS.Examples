@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { ScichartAngularComponent } from 'scichart-angular';
 import { appTheme } from './theme';
 import {
@@ -60,27 +59,24 @@ SciChart3DSurface.loadWasmFromCDN();
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, ScichartAngularComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'scichart-angular-app';
-
+  title = 'CodeSandbox';
   drawExampleanimation = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(
       rootElement,
       {
         theme: appTheme.SciChartJsTheme,
-      }
+      },
     );
 
     // Add an XAxis, YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(
-      new NumericAxis(wasmContext, { growBy: new NumberRange(0.4, 0.4) })
+      new NumericAxis(wasmContext, { growBy: new NumberRange(0.4, 0.4) }),
     );
 
     // Create some data for the example. We need X, Y and Y1 values
@@ -111,14 +107,14 @@ export class AppComponent {
         stroke: appTheme.VividOrange,
         strokeY1: appTheme.VividSkyBlue,
         animation: new SweepAnimation({ duration: 1900 }),
-      })
+      }),
     );
 
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(
       new ZoomExtentsModifier(),
       new ZoomPanModifier(),
-      new MouseWheelZoomModifier()
+      new MouseWheelZoomModifier(),
     );
 
     sciChartSurface.zoomExtents();
@@ -126,9 +122,8 @@ export class AppComponent {
   };
 
   drawExample3D = async (rootElement: string | HTMLDivElement) => {
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(
-      rootElement
-    );
+    const { sciChart3DSurface, wasmContext } =
+      await SciChart3DSurface.create(rootElement);
 
     // Create and position the camera in the 3D world
     sciChart3DSurface.camera = new CameraController(wasmContext, {
@@ -231,16 +226,16 @@ export class AppComponent {
         theme: new SciChartJsNavyTheme(),
         title: 'SciChart.js First Chart',
         titleStyle: { fontSize: 22 },
-      }
+      },
     );
 
     // Create an XAxis and YAxis with growBy padding
     const growBy = new NumberRange(0.1, 0.1);
     sciChartSurface.xAxes.add(
-      new NumericAxis(wasmContext, { axisTitle: 'X Axis', growBy })
+      new NumericAxis(wasmContext, { axisTitle: 'X Axis', growBy }),
     );
     sciChartSurface.yAxes.add(
-      new NumericAxis(wasmContext, { axisTitle: 'Y Axis', growBy })
+      new NumericAxis(wasmContext, { axisTitle: 'Y Axis', growBy }),
     );
 
     // Create a line series with some initial data
@@ -261,14 +256,14 @@ export class AppComponent {
           fill: '#fff',
         }),
         animation: new SweepAnimation({ duration: 300, fadeEffect: true }),
-      })
+      }),
     );
 
     // Add some interaction modifiers to show zooming and panning
     sciChartSurface.chartModifiers.add(
       new MouseWheelZoomModifier(),
       new ZoomPanModifier(),
-      new ZoomExtentsModifier()
+      new ZoomExtentsModifier(),
     );
 
     return { sciChartSurface, wasmContext };
@@ -280,7 +275,7 @@ export class AppComponent {
       rootElement,
       {
         theme: appTheme.SciChartJsTheme,
-      }
+      },
     );
     // Create X and Y Axis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
@@ -349,7 +344,7 @@ export class AppComponent {
         horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
         xCoordinateMode: ECoordinateMode.Relative,
         yCoordinateMode: ECoordinateMode.Relative,
-      })
+      }),
     );
 
     // Loop forever and update animations
@@ -360,28 +355,28 @@ export class AppComponent {
         case 0:
           currentAnimation = waveAnimation;
           sciChartSurface.addAnimation(
-            typeWriterAnimation(watermark, 'Wave Animation')
+            typeWriterAnimation(watermark, 'Wave Animation'),
           );
           animationState++;
           break;
         case 1:
           currentAnimation = sweepAnimation;
           sciChartSurface.addAnimation(
-            typeWriterAnimation(watermark, 'Sweep Animation')
+            typeWriterAnimation(watermark, 'Sweep Animation'),
           );
           animationState++;
           break;
         case 2:
           currentAnimation = scaleAnimation;
           sciChartSurface.addAnimation(
-            typeWriterAnimation(watermark, 'Scale Animation')
+            typeWriterAnimation(watermark, 'Scale Animation'),
           );
           animationState++;
           break;
         case 3:
           currentAnimation = fadeAnimation;
           sciChartSurface.addAnimation(
-            typeWriterAnimation(watermark, 'Fade Animation')
+            typeWriterAnimation(watermark, 'Fade Animation'),
           );
           animationState = 0;
           break;
@@ -428,7 +423,7 @@ export class AppComponent {
 }
 const typeWriterAnimation = (
   textAnnotation: TextAnnotation,
-  finalText: string
+  finalText: string,
 ) =>
   new GenericAnimation<string>({
     from: '',
@@ -440,6 +435,3 @@ const typeWriterAnimation = (
     duration: 1000,
     setInitialValueImmediately: true,
   });
-// function typeWriterAnimation(watermark: TextAnnotation, arg1: string): import("scichart").IGenericAnimation {
-//   throw new Error('Function not implemented.');
-// }
