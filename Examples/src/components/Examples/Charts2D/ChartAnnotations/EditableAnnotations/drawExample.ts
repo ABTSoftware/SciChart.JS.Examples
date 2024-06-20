@@ -158,7 +158,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         onHover: (args: AnnotationHoverEventArgs) => {
             const { isHovered, sender } = args;
             if (isHovered) {
-                sender.isSelected = true;
+                sender.parentSurface.adornerLayer.selectAnnotation(args.mouseArgs);
             }
         },
     });
