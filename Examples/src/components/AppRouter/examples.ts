@@ -75,7 +75,6 @@ import Load1MillionPointsChart from "../Examples/FeaturedApps/PerformanceDemos/L
 import DragAxisToScale from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToScale";
 import RealtimeZoomPan from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan";
 import MultipleZoomPanModifiers from "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers";
-import ZoomHighPrecision from "../Examples/Charts2D/ZoomingAndPanning/ZoomHighPrecision";
 import SplineLineChart from "../Examples/Charts2D/BasicChartTypes/SplineLineChart";
 import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/SplineMountainChart";
 import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart";
@@ -117,6 +116,7 @@ import SyncMultiChart from "../Examples/Charts2D/MultiChart/SyncMultiChart";
 import EventMarkers from "../Examples/FeaturedApps/ShowCases/EventMarkers";
 import UserAnnotatedStockChart from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart";
 import PopulationPyramid from "../Examples/FeaturedApps/ShowCases/PopulationPyramid";
+import SmoothStackedMountainChart from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart";
 
 export type TMenuItem = {
     item: {
@@ -202,6 +202,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnChart,
             EXAMPLES_PAGES.chart2D_basicCharts_StackedColumnSideBySide,
             EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart,
+            EXAMPLES_PAGES.chart2D_basicCharts_SmoothStackedMountainChart,
             EXAMPLES_PAGES.chart2D_basicCharts_PieChart,
             EXAMPLES_PAGES.chart2D_basicCharts_DonutChart,
             EXAMPLES_PAGES.chart2D_chartAnnotations_BackgroundAnnotations,
@@ -482,6 +483,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return StackedColumnSideBySide;
         case EXAMPLES_PAGES.chart2D_basicCharts_StackedMountainChart.id:
             return StackedMountainChart;
+        case EXAMPLES_PAGES.chart2D_basicCharts_SmoothStackedMountainChart.id:
+            return SmoothStackedMountainChart;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.id:
             return UsePointMarkers;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.id:

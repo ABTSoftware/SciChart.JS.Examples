@@ -109,6 +109,7 @@ import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/Even
 import { populationPyramidExampleInfo } from "../Examples/FeaturedApps/ShowCases/PopulationPyramid/exampleInfo";
 import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
+import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -376,6 +377,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_basicCharts_StackedMountainChart: {
         id: "chart2D_basicCharts_StackedMountainChart",
         ...stackedMountainChartExampleInfo,
+    },
+    chart2D_basicCharts_SmoothStackedMountainChart: {
+        id: "chart2D_basicCharts_SmoothStackedMountainChart",
+        ...smoothStackedMountainChartExampleInfo,
     },
     chart2D_stylingAndTheming_UsePointMarkers: {
         id: "chart2D_stylingAndTheming_UsePointMarkers",
