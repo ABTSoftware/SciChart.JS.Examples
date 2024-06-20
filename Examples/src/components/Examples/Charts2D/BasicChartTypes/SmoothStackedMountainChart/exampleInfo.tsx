@@ -2,7 +2,7 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-stacked-mountain-chart.jpg";
+import exampleImage from "./javascript-smooth-stacked-mountain-chart.jpg";
 
 const description = `Smooth Stacked Mountain Charts can be created in JavaScript using SciChart.js. An mountain or area is rendered from the
     Y-value of each stacked mountain series to the Y-value of the next.

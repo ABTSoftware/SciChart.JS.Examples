@@ -72,7 +72,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Notice the stackedGroupId. This defines if series are stacked (same), or grouped side by side (different)
     const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: tomatoesData, dataSeriesName: "Tomato" }),
-        fill: appTheme.VividRed,
+        fill: appTheme.VividPink,
         stroke: "white",
         stackedGroupId: "Group0",
         dataLabels
@@ -80,7 +80,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: pepperData, dataSeriesName: "Pepper" }),
-        fill: appTheme.MutedOrange,
+        fill: appTheme.VividOrange,
         stroke: "white",
         stackedGroupId: "Group1",
         dataLabels
@@ -88,7 +88,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: cucumberData, dataSeriesName: "Cucumber" }),
-        fill: appTheme.VividTeal,
+        fill: appTheme.VividSkyBlue,
         stroke: "white",
         stackedGroupId: "Group2",
         dataLabels
@@ -114,8 +114,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             showLegend: true,
             showCheckboxes: false,
             showSeriesMarkers: true,
-            backgroundColor: "#FFFFFFEE",
-            textColor: "black",
         })
     );
 
