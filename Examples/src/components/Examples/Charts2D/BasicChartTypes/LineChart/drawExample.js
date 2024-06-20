@@ -219,22 +219,18 @@ export const getChartsInitializationAPI = () => {
         // Y gradient
         const yGradientPalette = PaletteFactory.createYGradient(
             wasmContext,
-            new GradientParams(
-                new Point(0, 0),
-                new Point(1, 1),
-                [
-                    { offset: 0, color: appTheme.VividOrange },
-                    { offset: 0.5, color: appTheme.VividSkyBlue },
-                    { offset: 1, color: appTheme.VividTeal },
-                ]
-            ),
+            new GradientParams(new Point(0, 0), new Point(1, 1), [
+                { offset: 0, color: appTheme.VividOrange },
+                { offset: 0.5, color: appTheme.VividSkyBlue },
+                { offset: 1, color: appTheme.VividTeal },
+            ]),
             new NumberRange(2, 4) // the range of y-values to apply the gradient to
         );
 
         // decreasing Sine wave
         var yValues = [];
         for (var i = 0; i < 75; i++) {
-            yValues.push(3 + Math.sin(i * Math.PI / 16) * (2 - i/50) );
+            yValues.push(3 + Math.sin((i * Math.PI) / 16) * (2 - i / 50));
         }
 
         sciChartSurface.renderableSeries.add(
@@ -249,7 +245,7 @@ export const getChartsInitializationAPI = () => {
             }),
 
             new FastLineRenderableSeries(wasmContext, {
-                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: yValues}),
+                dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: yValues }),
                 paletteProvider: yGradientPalette,
                 strokeThickness: 5,
                 animation: {

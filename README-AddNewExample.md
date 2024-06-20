@@ -133,37 +133,6 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
 
 ```
 
-- **Add example to search** - edit `Examples/src/components/Search/searchItems.ts`
-
-```ts
-...
-export const searchItems: TSearchItem[] = [
-    ...
-    { title: EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.title, link: EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.path }
-];
-
-...
-```
-
-- **Add example to main page**
-
-Edit `Examples/src/helpers/SciChartExamples.ts` to add new example to main page
-
-```ts
-    ...
-
-    chartGroupTitle: "2D Chart Types",
-            items: [
-                ...
-                {
-                    imgPath: bandChartImg,
-                    title: ExampleStrings.titleBandChart,
-                    seoTitle: "JavaScript Band Chart Example",
-                    examplePath: EXAMPLES_PAGES.chart2D_basicCharts_BandSeriesChart.path
-                },
-    ...
-```
-
 - **Update sitemap and footers**
   `npm run generateAll`
 
