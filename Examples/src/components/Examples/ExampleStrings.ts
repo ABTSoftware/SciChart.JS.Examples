@@ -152,7 +152,7 @@ export const ExampleStrings = {
     urlDigitalMountainChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Digital%20(Step)%20Mountain%20Series%20Type.html`,
     urlTitleDigitalMountainChartDocumentation: `This specific page in the JavaScript Digital Mountain Chart documentation will help you to get started`,
     urlDigitalMountainChart: `digital-mountain-chart`,
-    titleDigitalMountainChart: `Digital Mountain Chart`,
+    titleDigitalMountainChart: (frameworkName: TFrameworkName) => `${frameworkName} Digital Mountain Chart`,
     pageTitleDigitalMountainChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Digital Mountain Chart | JavaScript Chart Example`,
     urlTitleDigitalMountainChart: `The JavaScript Digital Mountain Chart example demonstrates how to create a Digital Mountain Chart with SciChart.js`,
@@ -196,7 +196,7 @@ export const ExampleStrings = {
     // Spline line series
     urlSplineLineChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Spline%20(Smoothed)%20Line%20Series%20Type.html`,
     urlTitleSplineLineChartDocumentation: `The specific page for the JavaScript Spline Line Chart documentation will help you to get started`,
-    titleSplineLineChart: `Spline Line Chart`,
+    titleSplineLineChart: (frameworkName: TFrameworkName) => `${frameworkName} Spline Line Chart`,
     pageTitleSplineLineChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Spline Line Chart | JavaScript Chart Library`,
     urlSplineLineChart: `spline-line-chart`,
@@ -221,7 +221,7 @@ export const ExampleStrings = {
 
     // Donut Chart
     urlDonutChart: `donut-chart`,
-    titleDonutChart: `Donut Chart`,
+    titleDonutChart: (frameworkName: TFrameworkName) => `${frameworkName} Donut Chart`,
     pageTitleDonutChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Donut Chart | JavaScript Charts | SciChart.js`,
     urlDonutChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Donut%20Chart%20Type.html`,
@@ -453,11 +453,8 @@ export const ExampleStrings = {
     urlZoomPanModifierDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#ZoomPanModifier.html`,
     urlTitleZoomPanModifierDocumentation: `Zoom and Pan Modifier Documentation`,
 
-    titleZoomHighPrecision: (frameworkName: TFrameworkName) => `Zoom High Precision in ${frameworkName} Chart`,
+    titleZoomHighPrecision: (frameworkName: TFrameworkName) => `Range vs Precision on a DateTimeNumericAxis`,
     urlZoomHighPrecision: `zoom-high-precision`,
-
-    titleZoomHighPrecision2: (frameworkName: TFrameworkName) => `2 Zoom High Precision in ${frameworkName} Chart`,
-    urlZoomHighPrecision2: `zoom-high-precision-2`,
 
     // PaletteProvider
     titlePaletteProvider: `Coloring Series per-point using the PaletteProvider`,
@@ -738,7 +735,7 @@ export const ExampleStrings = {
     titleEventMarkers: (frameworkName: TFrameworkName) => `Dragabble Event Markers`,
 
     urlPopulationPyramid: `population-pyramid`,
-    titlePopulationPyramid: (frameworkName: TFrameworkName) => `Population Pyramid`,
+    titlePopulationPyramid: (frameworkName: TFrameworkName) => `${frameworkName} Population Pyramid`,
 
     urlTextChart: `text-chart`,
     titleTextChart: (frameworkName: TFrameworkName) => `${frameworkName} Text Chart`,

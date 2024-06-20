@@ -16,7 +16,11 @@ const documentationLinks: TDocumentationLink[] = [
 ];
 
 const Subtitle = () => (
-    <p>Demonstrates the <strong>SmartDateLabelProvider</strong> in SciChart.js.</p>
+    <p>
+        SciChart uses full 64 bit precision for all rendering. For a date axis, this means that you can plot 300 years
+        of data with 1ms precision. By using the dateOffset property on the DateTimeNumericAxis, you can trade range for
+        precision, allowing for date values with nanosecond precision
+    </p>
 );
 
 export const zoomHighPrecisionExampleInfo: TExampleInfo = {

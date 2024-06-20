@@ -14,7 +14,7 @@ const tips = [
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDonutChartDocumentation,
-        title: ExampleStrings.titleDonutChart,
+        title: "Donut Chart",
         linkTitle: "JavaScript Donut Chart Documentation",
     },
 ];

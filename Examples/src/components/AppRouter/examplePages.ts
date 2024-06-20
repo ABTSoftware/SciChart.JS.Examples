@@ -62,7 +62,6 @@ import { dragAxisToScaleExampleInfo } from "../Examples/Charts2D/ZoomingAndPanni
 import { realtimeZoomPanExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/exampleInfo";
 import { zoomAndPanWithMultipleChartModifiersExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/exampleInfo";
 import { zoomHighPrecisionExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/ZoomHighPrecision/exampleInfo";
-import { zoomHighPrecision2ExampleInfo } from "../Examples/Charts2D/ZoomingAndPanning/ZoomHighPrecision2/exampleInfo";
 import { editableAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/EditableAnnotations/exampleInfo";
 import { GalleryItem } from "../../helpers/types/types";
 import { dragHorizontalThresholdExampleInfo } from "../Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/exampleInfo";
@@ -458,14 +457,10 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart2D_zoomAndPanAChart_VirtualizedDataOverview",
         ...virtualizedDataOverviewExampleInfo,
     },
-    chart2D_zoomAndPanAChart_ZoomHighPrecision: {
-        id: "chart2D_zoomAndPanAChart_ZoomHighPrecision",
-        ...zoomHighPrecisionExampleInfo,
-    },
-    chart2D_zoomAndPanAChart_ZoomHighPrecision2: {
-        id: "chart2D_zoomAndPanAChart_ZoomHighPrecision2",
-        ...zoomHighPrecision2ExampleInfo,
-    },
+    // chart2D_zoomAndPanAChart_ZoomHighPrecision: {
+    //     id: "chart2D_zoomAndPanAChart_ZoomHighPrecision",
+    //     ...zoomHighPrecisionExampleInfo,
+    // },
     chart2D_filters_PercentageChange: {
         id: "chart2D_filters_PercentageChange",
         ...percentageChangeExampleInfo,

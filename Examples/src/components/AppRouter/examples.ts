@@ -76,7 +76,6 @@ import DragAxisToScale from "../Examples/Charts2D/ZoomingAndPanning/DragAxisToSc
 import RealtimeZoomPan from "../Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan";
 import MultipleZoomPanModifiers from "../Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers";
 import ZoomHighPrecision from "../Examples/Charts2D/ZoomingAndPanning/ZoomHighPrecision";
-import ZoomHighPrecision2 from "../Examples/Charts2D/ZoomingAndPanning/ZoomHighPrecision2";
 import SplineLineChart from "../Examples/Charts2D/BasicChartTypes/SplineLineChart";
 import SplineMountainChart from "../Examples/Charts2D/BasicChartTypes/SplineMountainChart";
 import SplineBandSeriesChart from "../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart";
@@ -187,6 +186,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_basicCharts_BubbleChart,
             EXAMPLES_PAGES.chart2D_basicCharts_CandlestickChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ColumnChart,
+            EXAMPLES_PAGES.featuredApps_showcases_populationPyramid,
             EXAMPLES_PAGES.chart2D_basicCharts_ErrorBarsChart,
             EXAMPLES_PAGES.chart2D_basicCharts_ImpulseChart,
             EXAMPLES_PAGES.chart2D_basicCharts_TextChart,
@@ -281,8 +281,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_MultipleChartModifiers,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_Overview,
             EXAMPLES_PAGES.chart2D_zoomAndPanAChart_VirtualizedDataOverview,
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision,
-            EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision2,
+            //EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision,
         ],
     },
     {
@@ -523,10 +522,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return Overview;
         case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_VirtualizedDataOverview.id:
             return VirtualizedDataOverview;
-        case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision.id:
-            return ZoomHighPrecision;
-        case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision2.id:
-            return ZoomHighPrecision2;
+        // case EXAMPLES_PAGES.chart2D_zoomAndPanAChart_ZoomHighPrecision.id:
+        //     return ZoomHighPrecision;
         case EXAMPLES_PAGES.chart2D_axisLabelCustomization_MultiLineLabels.id:
             return MultiLineLabels;
         case EXAMPLES_PAGES.chart2D_axisLabelCustomization_RotatedLabels.id:

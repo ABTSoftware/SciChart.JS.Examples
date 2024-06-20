@@ -2,14 +2,16 @@ import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-draggable-event-markers.jpg";
+import exampleImage from "./javascript-population-pyramid.jpg";
 
 const Subtitle = (frameworkName: string) => (
     <p>
-        Population Pyramid of Europe and Africa Performance{" "}
+        Population Pyramid of Europe and Africa using SciChart.js High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
+        . This also demonstrates the use of DataLabelLayoutManager to Modify the positions of data labels from different
+        series to prevent overlap
     </p>
 );
 
