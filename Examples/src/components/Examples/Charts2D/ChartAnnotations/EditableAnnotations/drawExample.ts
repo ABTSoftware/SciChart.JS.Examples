@@ -158,7 +158,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         onHover: (args: AnnotationHoverEventArgs) => {
             const { isHovered, sender } = args;
             if (isHovered) {
+                // This sets isSelected on the target annotation
                 sender.parentSurface.adornerLayer.selectAnnotation(args.mouseArgs);
+            } else {
+                // this does not actually deselect the annotation on the surface
+                sender.isSelected = false;
+                // so we manually deselect it
+                sender.parentSurface.adornerLayer.deselectAnnotation(sender);
             }
         },
     });
