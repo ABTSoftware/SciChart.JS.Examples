@@ -2,10 +2,12 @@ import {
     DateTimeNumericAxis,
     EllipsePointMarker,
     ENumericFormat,
+    SmartDateLabelProvider,
     MouseWheelZoomModifier,
     RolloverModifier,
     RubberBandXyZoomModifier,
     ZoomExtentsModifier,
+    ZoomPanModifier,
     XyDataSeries,
     NumericAxis,
     FastLineRenderableSeries,
@@ -18,60 +20,132 @@ import {
     formatUnixDateToHumanStringHHMMSS,
     EYRangeMode,
     easing,
-    NumberRangeAnimator,
     DpiHelper,
     BoxAnnotation,
-    HitTestInfo,
+    GenericAnimation,
+    NumberRangeAnimator,
+    NativeTextAnnotation,
+    ECoordinateMode,
+    EHorizontalAnchorPoint,
+    EVerticalAnchorPoint,
+    EWrapTo,
+    VerticalSliceModifier,
+    ETradeChartLabelFormat,
+    formatUnixDateToHumanStringDDMM,
 } from "scichart";
-
+import { appTheme } from "../../../theme";
+/**
+ * Zooms in on a specific xValue
+ * @param xValue
+ */
+function ZoomIn(sciChartSurface, xValue, yValue, range, nextRange) {
+    const xAxis = sciChartSurface.xAxes.get(0);
+    const yAxis = sciChartSurface.yAxes.get(0);
+    const lineSeries = sciChartSurface.renderableSeries.get(0);
+    const newRange = new NumberRange(xValue - range, xValue + range);
+    const newBox = new BoxAnnotation({
+        fill: "#FFFFFF33",
+        stroke: "#FFFFFFaa",
+        strokeThickness: 1,
+        x1: xAxis.visibleRange.min,
+        x2: xAxis.visibleRange.max,
+        y1: -1.5,
+        y2: 1.5,
+    });
+    sciChartSurface.annotations.add(newBox);
+    const targetXSize = xAxis.visibleRange.diff / 150;
+    const targetYSize = yAxis.visibleRange.diff / 30;
+    const zoomTime = 750;
+    const zoomBox = new GenericAnimation({
+        from: xAxis.visibleRange,
+        to: new NumberRange(xValue - targetXSize, xValue + targetXSize),
+        duration: 350,
+        ease: easing.outCirc,
+        onAnimate: (from, to, progress) => {
+            const xRange = NumberRangeAnimator.interpolate(from, to, progress);
+            newBox.x1 = xRange.min;
+            newBox.x2 = xRange.max;
+            const yRange = NumberRangeAnimator.interpolate(
+                yAxis.visibleRange,
+                new NumberRange(yValue - targetYSize, yValue + targetYSize),
+                progress
+            );
+            newBox.y1 = yRange.min;
+            newBox.y2 = yRange.max;
+        },
+        onCompleted: () => {
+            xAxis.animateVisibleRange(newRange, zoomTime, easing.outCirc, () => {
+                sciChartSurface.annotations.remove(newBox);
+                if (nextRange) {
+                    setTimeout(() => ZoomIn(sciChartSurface, xValue, yValue, nextRange), 500);
+                }
+            });
+            yAxis.animateVisibleRange(lineSeries.getYRange(newRange, false), zoomTime, easing.outCirc);
+        },
+    });
+    sciChartSurface.addAnimation(zoomBox);
+}
+/**
+ * Zooms out on the line series
+ */
+function ZoomOut(sciChartSurface) {
+    sciChartSurface.zoomExtents(500, easing.inSine);
+}
+/**
+ * Zooms in on a random point on the line series
+ */
+function ZoomInRandomly(sciChartSurface, firstRange, secondRange) {
+    // simulate a random point on the chart
+    const mousePointX = Math.random() * sciChartSurface.seriesViewRect.width + DpiHelper.PIXEL_RATIO;
+    const mousePointY = Math.random() * sciChartSurface.seriesViewRect.height + DpiHelper.PIXEL_RATIO;
+    // call renderableSeries.hitTestProvider.hitTest passing in the mouse point
+    const hitTestInfo = sciChartSurface.renderableSeries.get(0).hitTestProvider.hitTestXSlice(mousePointX, mousePointY);
+    // animate:
+    if (hitTestInfo.isHit) {
+        ZoomIn(sciChartSurface, hitTestInfo.xValue, hitTestInfo.yValue, firstRange, secondRange);
+    }
+}
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
 // Unix Timestamps - 300 year data range with 1ms precision
-export const drawExample = async (rootElement, isYRangeModeVisible) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement);
-
+export const drawExample = async (rootElement) => {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
+        theme: appTheme.SciChartJsTheme,
+    });
     const xAxis = new DateTimeNumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Bottom,
         useNativeText: true,
     });
     xAxis.labelProvider.showYearOnWiderDate = true;
     xAxis.labelProvider.formatCursorLabel = (dataValue) => {
-        const d = new Date(dataValue * 1000);
-        const s = (dataValue * 1000).toString();
-        const ds = d.getTime().toString();
-        const r = s.replace(ds, "");
-        return formatUnixDateToHumanString(dataValue) + " " + formatUnixDateToHumanStringHHMMSS(dataValue) + r;
+        const d = dataValue.toString();
+        const s = d.substring(d.indexOf("."));
+        return formatUnixDateToHumanString(dataValue) + " " + formatUnixDateToHumanStringHHMMSS(dataValue) + s;
     };
     sciChartSurface.xAxes.add(xAxis);
-
     const yAxis = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Left,
         growBy: new NumberRange(0.1, 0.1),
-        visibleRange: new NumberRange(-1.5, 1.5),
         labelPrecision: 3,
         labelFormat: ENumericFormat.SignificantFigures,
-        autoRange: EAutoRange.Once,
+        autoRange: EAutoRange.Always,
+        useNativeText: true,
     });
-
-    yAxis.visibleRangeChanged.subscribe(() => {
-        // limit the range to -1.5, 1.5
-        yAxis.visibleRange = new NumberRange(-1.5, 1.5);
-    });
-
     sciChartSurface.yAxes.add(yAxis);
-
-    const base = Date.now() / 1000;
+    // Create some data with clusters of points
+    const base = 0;
     const xValues = [];
     const yValues = [];
     let x = base;
+    const majorPointGap = 1000000000;
     for (let i = 0; i < 1000; i++) {
-        x = x + 10000000;
+        x = x + majorPointGap;
         for (let j = 0; j < 10; j++) {
-            x = x + Math.random();
-            let y = 0.5 * Math.sin(i) - Math.cos(i * 0.3) + Math.random() / 100;
+            x = x + Math.random() / (j + 1);
+            let y = 0.5 * Math.sin(i * 0.1) - Math.cos(i * 0.03) * (2 - i / 500) + Math.random() / 10;
             xValues.push(x);
             yValues.push(y);
         }
     }
-
     const xyDataSeries = new XyDataSeries(wasmContext, {
         xValues,
         yValues,
@@ -79,152 +153,108 @@ export const drawExample = async (rootElement, isYRangeModeVisible) => {
         containsNaN: false,
     });
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
-        stroke: "#FF6600",
+        stroke: appTheme.VividOrange,
         strokeThickness: 2,
         dataSeries: xyDataSeries,
-        pointMarker: new EllipsePointMarker(wasmContext),
+        pointMarker: new EllipsePointMarker(wasmContext, { fill: appTheme.MutedBlue }),
         // Use this mode so that the axis ranges sensible when zoomed really far in.
-        yRangeMode: isYRangeModeVisible ? EYRangeMode.Visible : EYRangeMode.Drawn,
+        yRangeMode: EYRangeMode.Visible,
     });
-
     sciChartSurface.renderableSeries.add(lineSeries);
-
-    // add an event listener for mousedown
-    sciChartSurface.domCanvas2D.addEventListener("mousedown", (mouseEvent) => {
-        // Translate the point to the series viewrect before hit-testing
-        // Attention!
-        // We need to multiply it by DpiHelper.PIXEL_RATIO
-        // DpiHelper.PIXEL_RATIO is used for High DPI and Retina screen support and also for the browser scaling
-        const mousePointX = mouseEvent.offsetX * DpiHelper.PIXEL_RATIO;
-        const mousePointY = mouseEvent.offsetY * DpiHelper.PIXEL_RATIO;
-        // const translatedPoint = translateFromCanvasToSeriesViewRect(mousePoint, sciChartSurface.seriesViewRect);
-        const HIT_TEST_RADIUS = 10 * DpiHelper.PIXEL_RATIO;
-
-        // call renderableSeries.hitTestProvider.hitTest passing in the mouse point
-        const hitTestInfo = lineSeries.hitTestProvider.hitTestDataPoint(mousePointX, mousePointY, HIT_TEST_RADIUS);
-
-        // animate:
-        if (hitTestInfo.isHit) {
-            ZoomIn(hitTestInfo.xValue);
-        }
-
-        console.log(hitTestInfo);
-    });
-
-    /**
-     * Zooms in on a specific xValue
-     * @param xValue
-     */
-    function ZoomIn(xValue) {
-        const xAxis = sciChartSurface.xAxes.get(0);
-        const newRange = new NumberRange(xValue - 10, xValue + 10);
-
-        const newBox = new BoxAnnotation({
-            fill: "#FFFFFF33",
-            stroke: "#FFFFFFaa",
-            strokeThickness: 1,
-            x1: xValue - 20000000,
-            x2: xValue + 20000000,
-            y1: -1.5,
-            y2: 1.5,
-        });
-
-        sciChartSurface.annotations.add(newBox);
-
-        setTimeout(() => {
-            xAxis.animateVisibleRange(newRange, 1500, easing.outSine);
-        }, 200);
-
-        setTimeout(() => {
-            sciChartSurface.annotations.remove(newBox);
-        }, 2000);
-    }
-
-    /**
-     * Zooms in on a random point on the line series
-     */
-    function ZoomInRandomly() {
-        // simulate a random point on the chart
-        const mousePointX = Math.random() * sciChartSurface.seriesViewRect.width + DpiHelper.PIXEL_RATIO;
-        const mousePointY = Math.random() * sciChartSurface.seriesViewRect.height + DpiHelper.PIXEL_RATIO;
-        // const translatedPoint = translateFromCanvasToSeriesViewRect(mousePoint, sciChartSurface.seriesViewRect);
-        const HIT_TEST_RADIUS = 10 * DpiHelper.PIXEL_RATIO;
-
-        // call renderableSeries.hitTestProvider.hitTest passing in the mouse point
-        const hitTestInfo = lineSeries.hitTestProvider.hitTestDataPoint(mousePointX, mousePointY, HIT_TEST_RADIUS);
-
-        // animate:
-        if (hitTestInfo.isHit) {
-            ZoomIn(hitTestInfo.xValue);
-        }
-    }
-
-    /**
-     * Zooms out on the line series
-     */
-    function ZoomOut() {
-        const xAxis = sciChartSurface.xAxes.get(0);
-        const newRange = lineSeries.dataSeries.xRange;
-        xAxis.animateVisibleRange(newRange, 1500, easing.inSine);
-    }
-
+    sciChartSurface.annotations.add(
+        new NativeTextAnnotation({
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            x1: 0.5,
+            y1: 0.1,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            fontSize: 24,
+            opacity: 0.5,
+            text: "Unix Timestamps - 300 years range with millisecond precision",
+            wrapTo: EWrapTo.ViewRect,
+        })
+    );
     const tooltipDataTemplate = (si, title, labelX, labelY) => {
         let d = si.formattedXValue.split(" ");
-        return ["Date: " + d[0], "Time: " + d[1], "Y: " + si.formattedYValue];
+        return ["Date: " + d[0], "Time: " + d[1], "X: " + si.xValue.toString(), "Y: " + si.yValue.toString()];
     };
-
     // Optional: add zooming modifiers
     sciChartSurface.chartModifiers.add(
         new MouseWheelZoomModifier(),
         new ZoomExtentsModifier(),
         new RolloverModifier({ tooltipDataTemplate }),
+        new VerticalSliceModifier({
+            tooltipDataTemplate,
+            x1: 0.2,
+            xCoordinateMode: ECoordinateMode.Relative,
+            isDraggable: true,
+        }),
+        new ZoomPanModifier(),
         new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton })
     );
-
-    // const buildFrom = (xAxis:any) => ({
-    //     minX: xAxis.visibleRange.min,
-    //     maxX: xAxis.visibleRange.max
-    // });
-    // const buildTo = (xAxis:any) => ({
-    //     minX: xAxis.visibleRange.min - 100000,
-    //     maxX: xAxis.visibleRange.max + 100000
-    // });
-    // const visibleRangeAnimation = new GenericAnimation({
-    //     from: buildFrom(xAxis),
-    //     to: buildTo(xAxis),
-    //     delay: 5000,
-    //     duration: 3000,
-    //     ease: easing.inSine,
-    //     onAnimate: (from, to, progress) => {
-    //         const xInterpolate = NumberRangeAnimator.interpolate(new NumberRange(from.minX, from.maxX), new NumberRange(to.minX, to.maxX), progress);
-    //         xAxis.visibleRange = new NumberRange(xInterpolate.min, xInterpolate.max);
-    //     },
-    //     onCompleted: () => {
-    //         visibleRangeAnimation.delay = 0;
-    //         visibleRangeAnimation.from = visibleRangeAnimation.to;
-    //         visibleRangeAnimation.to = buildTo(xAxis);
-    //         visibleRangeAnimation.reset();
-    //     }
-    // });
-    // add animation to the chart
-    // sciChartSurface.animations.add(visibleRangeAnimation);
-
     sciChartSurface.zoomExtents();
-    return { wasmContext, sciChartSurface, controls: { ZoomInRandomly, ZoomOut } };
+    return {
+        wasmContext,
+        sciChartSurface,
+        controls: {
+            ZoomInRandomly: () => ZoomInRandomly(sciChartSurface, majorPointGap * 3, 10),
+            ZoomOut: () => ZoomOut(sciChartSurface),
+        },
+    };
 };
-
-// vertical slice modifier
+class MicroSecondSmartLabelProvider extends SmartDateLabelProvider {
+    formatDateWide(labelRange, value) {
+        if (labelRange === ETradeChartLabelFormat.MilliSeconds) {
+            let date = formatUnixDateToHumanStringDDMM(value);
+            date = date + "\n" + formatUnixDateToHumanStringHHMMSS(value);
+            return date;
+        } else {
+            return super.formatDateWide(labelRange, value);
+        }
+    }
+    formatDatePrecise(labelRange, value) {
+        if (labelRange === ETradeChartLabelFormat.MilliSeconds) {
+            const seconds = value.toString();
+            const sstring = seconds.substring(seconds.indexOf(".") - 2);
+            const sVal = Number.parseFloat(sstring);
+            console.log(value, sstring, sVal);
+            return sVal.toPrecision(7);
+        } else {
+            return super.formatDatePrecise(labelRange, value);
+        }
+    }
+    formatSmartLabel(labelRange, value, prevValue, prevPrevValue, originalValue) {
+        console.log(labelRange);
+        const wideDate = this.formatDateWide(labelRange, value);
+        if (labelRange === ETradeChartLabelFormat.MilliSeconds) {
+            const newDate = prevValue === undefined || wideDate !== this.formatDateWide(labelRange, prevValue);
+            if (newDate) {
+                return wideDate;
+            } else {
+                return this.formatDatePrecise(labelRange, originalValue) + "s";
+            }
+        } else {
+            let label = super.formatSmartLabel(labelRange, value, prevValue, prevPrevValue, originalValue);
+            if (labelRange === ETradeChartLabelFormat.Seconds || labelRange === ETradeChartLabelFormat.MilliSeconds) {
+                label += "s";
+            }
+            return label;
+        }
+    }
+}
 // Seconds since midnight. 2 weeks range with nanosecond precsion
 export const drawExample2 = async (rootElement) => {
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement);
-    const baseDate = Date.now() / 1000;
-
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
+        theme: appTheme.SciChartJsTheme,
+    });
+    const baseDate = new Date(2024, 0, 1).getTime() / 1000;
     const xAxis = new DateTimeNumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Bottom,
         useNativeText: true,
-        dateOffset: baseDate,
+        //dateOffset: baseDate
+        labelProvider: new MicroSecondSmartLabelProvider({ dateOffset: baseDate }),
     });
-
     xAxis.labelProvider.formatCursorLabel = (dataValue) => {
         const d = dataValue.toString();
         return (
@@ -234,7 +264,6 @@ export const drawExample2 = async (rootElement) => {
             d.substring(d.indexOf("."))
         );
     };
-
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
@@ -243,49 +272,79 @@ export const drawExample2 = async (rootElement) => {
             labelPrecision: 3,
             labelFormat: ENumericFormat.SignificantFigures,
             autoRange: EAutoRange.Always,
+            useNativeText: true,
         })
     );
-
     const xValues = [];
     const yValues = [];
     let x = 0;
-    let y = 0;
-    for (let i = 0; i < 1000; i++) {
-        x = x + Math.random() * 2500;
-        y = y + Math.random() - 0.5;
-        xValues.push(x);
-        yValues.push(y);
+    const majorPointGap = 4000;
+    for (let i = 0; i < 300; i++) {
+        x = x + majorPointGap;
+        for (let j = 0; j < 3; j++) {
+            x = x + Math.random() * 100;
+            for (let k = 0; k < 8; k++) {
+                x = x + Math.random() / 10000;
+                const l = i * 3 + j;
+                let y = 0.5 * Math.sin(l * 0.02) - (Math.cos(l * 0.1) * l) / 500 + Math.random() / 10;
+                xValues.push(x);
+                yValues.push(y);
+            }
+        }
     }
-
     const xyDataSeries = new XyDataSeries(wasmContext, {
         xValues,
         yValues,
         isSorted: true,
         containsNaN: false,
     });
-
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: "#FF6600",
         strokeThickness: 2,
         dataSeries: xyDataSeries,
         pointMarker: new EllipsePointMarker(wasmContext),
+        yRangeMode: EYRangeMode.Visible,
     });
-
     sciChartSurface.renderableSeries.add(lineSeries);
-
+    sciChartSurface.annotations.add(
+        new NativeTextAnnotation({
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            x1: 0.5,
+            y1: 0.1,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
+            verticalAnchorPoint: EVerticalAnchorPoint.Center,
+            fontSize: 24,
+            opacity: 0.5,
+            text: "Using dateOffset - 2 weeks range with nanosecond precision",
+            wrapTo: EWrapTo.ViewRect,
+        })
+    );
     const tooltipDataTemplate = (si, title, labelX, labelY) => {
+        // si.formattedXValue is xValue + dateOffset
         let d = si.formattedXValue.split(" ");
-        return ["X: " + si.xValue.toString(), "Date: " + d[0], "Time: " + d[1], "Y: " + si.formattedYValue];
+        return ["Date: " + d[0], "Time: " + d[1], "X: " + si.xValue.toString(), "Y: " + si.yValue.toString()];
     };
-    // Optional: add zooming, panning for the example
     sciChartSurface.chartModifiers.add(
         new MouseWheelZoomModifier(),
-        // new ZoomPanModifier(),
         new ZoomExtentsModifier(),
+        new ZoomPanModifier(),
         new RolloverModifier({ tooltipDataTemplate }),
+        new VerticalSliceModifier({
+            tooltipDataTemplate,
+            x1: 0.2,
+            xCoordinateMode: ECoordinateMode.Relative,
+            isDraggable: true,
+        }),
         new RubberBandXyZoomModifier({ executeOn: EExecuteOn.MouseRightButton })
     );
-
     sciChartSurface.zoomExtents();
-    return { wasmContext, sciChartSurface };
+    return {
+        wasmContext,
+        sciChartSurface,
+        controls: {
+            ZoomInRandomly: () => ZoomInRandomly(sciChartSurface, majorPointGap, 0.0003),
+            ZoomOut: () => ZoomOut(sciChartSurface),
+        },
+    };
 };

@@ -1,6 +1,6 @@
 import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
 import { LineAnnotation } from "scichart/Charting/Visuals/Annotations/LineAnnotation";
-import { EExecuteOn, translateFromCanvasToSeriesViewRect } from "scichart";
+import { translateFromCanvasToSeriesViewRect } from "scichart";
 // Create a TypeScript class which inherits ChartModifierbase2D to insert into SciChartSurface.chartModifiers collection
 export class CreateLineAnnotationModifier extends ChartModifierBase2D {
     type = "CreateLineAnnotationModifier";
@@ -48,11 +48,8 @@ export class CreateLineAnnotationModifier extends ChartModifierBase2D {
         // adding a property to CreateAnnotationModifier to allow you to select type, and a switch statement here.
         this.editingAnnotation = new LineAnnotation({
             isEditable: true,
-            onClick: (args) => {
-                if (args.mouseArgs.button === EExecuteOn.MouseRightButton) {
-                    this.parentSurface.annotations.remove(args.sender, true);
-                }
-            },
+            onClick: "deleteOnClick",
+            strokeThickness: 2, // gives much smoother lines than 1
         });
         this.editingAnnotation.xAxisId = xAxis.id;
         this.editingAnnotation.yAxisId = yAxis.id;

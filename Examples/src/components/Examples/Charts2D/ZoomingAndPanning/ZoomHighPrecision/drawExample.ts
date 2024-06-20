@@ -1,5 +1,3 @@
-import { EC } from "country-flag-icons/string/3x2";
-import { kill } from "process";
 import {
     DateTimeNumericAxis,
     EllipsePointMarker,
@@ -38,10 +36,6 @@ import {
     EWrapTo,
     VerticalSliceModifier,
     ETradeChartLabelFormat,
-    formatNumber,
-    formatUnixDateToHumanStringDDMMHHMM,
-    formatUnixDateToHumanStringSSms,
-    formatUnixDateToHumanStringDDMMYY,
     formatUnixDateToHumanStringDDMM,
 } from "scichart";
 import { appTheme } from "../../../theme";

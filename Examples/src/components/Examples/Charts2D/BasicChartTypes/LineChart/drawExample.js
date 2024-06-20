@@ -226,13 +226,11 @@ export const getChartsInitializationAPI = () => {
             ]),
             new NumberRange(2, 4) // the range of y-values to apply the gradient to
         );
-
-        // decreasing Sine wave
+        // decresing Sine wave
         var yValues = [];
         for (var i = 0; i < 75; i++) {
             yValues.push(3 + Math.sin((i * Math.PI) / 16) * (2 - i / 50));
         }
-
         sciChartSurface.renderableSeries.add(
             new FastLineRenderableSeries(wasmContext, {
                 dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: data.yValues }),
@@ -243,7 +241,6 @@ export const getChartsInitializationAPI = () => {
                     options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
                 },
             }),
-
             new FastLineRenderableSeries(wasmContext, {
                 dataSeries: new XyDataSeries(wasmContext, { xValues: data.xValues, yValues: yValues }),
                 paletteProvider: yGradientPalette,

@@ -1,19 +1,20 @@
 import {
+    AUTO_COLOR,
     ELegendOrientation,
     ELegendPlacement,
     LegendModifier,
+    makeIncArray,
     MouseWheelZoomModifier,
     NumericAxis,
+    ScaleAnimation,
     SciChartSurface,
     StackedMountainCollection,
-    StackedMountainRenderableSeries,
-    WaveAnimation,
+    SmoothStackedMountainRenderableSeries,
     XyDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
-import { xValues, y1Values, y2Values, y3Values, y4Values } from "./data/stackedMountainChartData";
 export const divElementId = "chart";
 export const drawExample = async () => {
     // Create a SciChartSurface
@@ -23,47 +24,79 @@ export const drawExample = async () => {
     // Create an xAxis, yAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelPrecision: 0 }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { labelPrecision: 0 }));
-    // Create the three Stacked Mountain series
-    const stackedMountain1 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Apples" }),
-        fill: appTheme.VividPurple + "AA",
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
-    });
-    const stackedMountain2 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Pears" }),
-        fill: appTheme.VividPink + "AA",
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
-    });
-    const stackedMountain3 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Oranges" }),
-        fill: appTheme.VividSkyBlue + "AA",
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
-    });
-    const stackedMountain4 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y4Values, dataSeriesName: "Oranges" }),
-        fill: appTheme.VividOrange + "AA",
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
-    });
     // Group these StackedMountain series together in a StackedMountainCollection
     const stackedMountainCollection = new StackedMountainCollection(wasmContext);
-    stackedMountainCollection.add(stackedMountain1, stackedMountain2, stackedMountain3, stackedMountain4);
-    stackedMountainCollection.animation = new WaveAnimation({ duration: 600, fadeEffect: true });
+    const xValues = makeIncArray(20);
+    const strokes = [
+        "#274b92ff",
+        "#3784bcff",
+        "#47bce5ff",
+        "#7a7eb9ff",
+        "#ae418cff",
+        "#cb5878ff",
+        "#e86f64ff",
+        "#a89588ff",
+        "#68bbadff",
+        "#6585a2ff",
+    ];
+    for (let i = 0; i < 10; i++) {
+        const yValues = xValues.map((x) => Math.random() * 10);
+        const stackedMountain = new SmoothStackedMountainRenderableSeries(wasmContext, {
+            id: i.toString(),
+            dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
+            fill: AUTO_COLOR,
+            stroke: AUTO_COLOR,
+            strokeThickness: 2,
+            // From 3.4 Animations can be added to individual stacked series
+            animation: new ScaleAnimation({ duration: 500, delay: i * 200 }),
+        });
+        stackedMountainCollection.add(stackedMountain);
+    }
     // Add the StackedMountainCollection to the chart
     sciChartSurface.renderableSeries.add(stackedMountainCollection);
     // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
+    const legendModifier = new LegendModifier({
+        placement: ELegendPlacement.TopLeft,
+        orientation: ELegendOrientation.Vertical,
+        showLegend: true,
+        showCheckboxes: true,
+        showSeriesMarkers: true,
+    });
     // Add a legend to the chart to show the series
-    sciChartSurface.chartModifiers.add(
-        new LegendModifier({
-            placement: ELegendPlacement.TopLeft,
-            orientation: ELegendOrientation.Vertical,
-            showLegend: true,
-            showCheckboxes: false,
-            showSeriesMarkers: true,
+    sciChartSurface.chartModifiers.add(legendModifier);
+    stackedMountainCollection.asArray().forEach((series) =>
+        series.isVisibleChanged.subscribe((data) => {
+            if (data.isVisible) {
+                // If you want to zoom to the new range when making a series visible, you need to force a recalculation of the Accumulated values first
+                //stackedMountainCollection.setAccumulatedValuesDirty();
+                //stackedMountainCollection.updateAccumulatedVectors();
+                //sciChartSurface.zoomExtents();
+                data.sourceSeries.runAnimation(
+                    new ScaleAnimation({
+                        duration: 500,
+                    })
+                );
+            } else {
+                // To animate out, we have to trick the series into remaining visible while the animation runs.
+                // We set the backing value of isVisible to true, and only set it false when the animation completes
+                // @ts-ignore
+                data.sourceSeries.isVisibleProperty = true;
+                data.sourceSeries.runAnimation(
+                    new ScaleAnimation({
+                        duration: 500,
+                        reverse: true,
+                        onCompleted: () => {
+                            data.sourceSeries.dataSeries.revertAnimationVectors();
+                            // @ts-ignore
+                            data.sourceSeries.isVisibleProperty = false;
+                            // Force the legend to update
+                            legendModifier.sciChartLegend.invalidateLegend();
+                            //sciChartSurface.zoomExtents();
+                        },
+                    })
+                );
+            }
         })
     );
     sciChartSurface.zoomExtents();

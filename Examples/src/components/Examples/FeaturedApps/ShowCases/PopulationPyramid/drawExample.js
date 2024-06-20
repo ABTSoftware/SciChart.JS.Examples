@@ -5,7 +5,6 @@ import {
     NumericAxis,
     XyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier,
     SciChartSurface,
     ENumericFormat,
     EColumnDataLabelPosition,
@@ -13,56 +12,42 @@ import {
     Thickness,
     LegendModifier,
     StackedColumnCollection,
-    RenderPassInfo,
-    IRenderableSeries,
-    IStackedColumnSeriesDataLabelProviderOptions,
     BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy,
+    ELegendPlacement,
 } from "scichart";
-
+import { appTheme } from "../../../theme";
 // custom label manager to avoid overlapping labels
-class CustomDataLabelManager extends IDataLabelLayoutManager {
+class CustomDataLabelManager {
     performTextLayout(sciChartSurface, renderPassInfo) {
         const renderableSeries = sciChartSurface.renderableSeries.asArray();
-
         for (let i = 0; i < renderableSeries.length; i++) {
             // loop through all series (i.e. 2 stacked series - Male and Female)
-
             const currentSeries = renderableSeries[i];
             if (currentSeries instanceof StackedColumnCollection) {
+                // @ts-ignore
                 const stackedSeries = currentSeries.asArray();
-
                 const outerSeries = stackedSeries[1]; // the outer Series (i.e. Africa),
                 const innerSeries = stackedSeries[0]; // the inner Series (i.e. Europe)
-
                 if (!innerSeries.isVisible) {
                     continue; // to NOT use accumulated value to outer series if inner series is hidden
                 }
-
                 const outerLabels = outerSeries.dataLabelProvider?.dataLabels || [];
                 const innerLabels = innerSeries.dataLabelProvider?.dataLabels || [];
-
                 let outerIndex = 0; // used to sync the outer labels with the inner labels
-
                 for (let k = 0; k < innerLabels.length; k++) {
                     const outerLabel = outerLabels[outerIndex];
                     const innerLabel = innerLabels[k];
-
                     if (outerLabel && innerLabel) {
                         const outerLabelPosition = outerLabel.position;
                         const innerLabelPosition = innerLabel.position;
-
                         if (outerLabelPosition.y !== innerLabelPosition.y) {
                             continue; // do not align labels if they are not on the same level
                         }
-
                         outerIndex++;
-
                         // calculate threshold for overlapping
                         const limitWidth = i == 0 ? outerLabel.rect.width : innerLabel.rect.width;
-
                         // minimum margin between 2 labels, feel free to experiment with different values
                         const marginBetweenLabels = 12;
-
                         if (Math.abs(outerLabelPosition.x - innerLabelPosition.x) < limitWidth) {
                             let newX;
                             if (i == 0) {
@@ -72,7 +57,6 @@ class CustomDataLabelManager extends IDataLabelLayoutManager {
                                 // if we are in Female (right) chart, draw right
                                 newX = innerLabel.rect.right + marginBetweenLabels;
                             }
-
                             outerLabel.position = {
                                 x: newX,
                                 y: outerLabel.position.y,
@@ -84,7 +68,6 @@ class CustomDataLabelManager extends IDataLabelLayoutManager {
         }
     }
 }
-
 // Population Pyramid Data
 const PopulationData = {
     xValues: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
@@ -111,22 +94,22 @@ const PopulationData = {
         },
     },
 };
-
 export const drawExample = async (rootElement) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement);
-
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
+        theme: appTheme.SciChartJsTheme,
+    });
     const xAxis = new NumericAxis(wasmContext, {
         labelPrecision: 0,
         autoTicks: false,
         majorDelta: 5,
         flippedCoordinates: true,
         axisAlignment: EAxisAlignment.Left,
+        axisTitle: "Age",
     });
-
+    // Force the visible range to always be a fixed value, overriding any zoom behaviour
     xAxis.visibleRangeChanged.subscribe(() => {
-        xAxis.visibleRange = new NumberRange(-3, 103); // extend the vertical range a bit over 0-100
+        xAxis.visibleRange = new NumberRange(-3, 103);
     });
-
     // 2 Y Axes (left and right)
     const yAxisRight = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Bottom,
@@ -135,49 +118,40 @@ export const drawExample = async (rootElement) => {
         labelStyle: {
             fontSize: 12,
         },
-        growBy: new NumberRange(0, 0.1), // to have the furthest right labels visible
+        growBy: new NumberRange(0, 0.15),
         labelFormat: ENumericFormat.Engineering,
+        id: "femaleAxis",
     });
-
     yAxisRight.visibleRangeChanged.subscribe((args) => {
         if (args.visibleRange.min > 0) {
             yAxisRight.visibleRange = new NumberRange(0, args.visibleRange.max);
         }
         yAxisLeft.visibleRange = new NumberRange(0, args.visibleRange.max);
     });
-
     const yAxisLeft = new NumericAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Bottom,
         axisTitle: "Male",
         labelStyle: {
             fontSize: 12,
         },
-        growBy: new NumberRange(0, 0.1), // to have the furthest left labels visible
+        growBy: new NumberRange(0, 0.15),
         labelFormat: ENumericFormat.Engineering,
-        id: "femaleAxis",
+        id: "maleAxis",
     });
-
     yAxisLeft.visibleRangeChanged.subscribe((args) => {
         if (args.visibleRange.min > 0) {
             yAxisLeft.visibleRange = new NumberRange(0, args.visibleRange.max);
         }
         yAxisRight.visibleRange = new NumberRange(0, args.visibleRange.max);
     });
-
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(yAxisLeft, yAxisRight);
-
     const dataLabels = {
         positionMode: EColumnDataLabelPosition.Outside,
         style: { fontFamily: "Arial", fontSize: 12, padding: new Thickness(0, 3, 0, 3) },
         color: "#EEEEEE",
         numericFormat: ENumericFormat.Engineering,
-        engineeringPrefix: {
-            large: ["K", "M", "B"] // this is the same as the default large prefixes
-            // this particular example does not need "small" array since don't have subunitary values
-        }
     };
-
     // Create some RenderableSeries or each part of the stacked column
     const maleChartEurope = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
@@ -185,22 +159,20 @@ export const drawExample = async (rootElement) => {
             yValues: PopulationData.yValues.Europe.male,
             dataSeriesName: "Male Europe",
         }),
-        fill: "#255080",
+        fill: appTheme.VividBlue + "99",
         stackedGroupId: "MaleSeries",
-        dataLabels
+        dataLabels,
     });
-
     const maleChartAfrica = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: PopulationData.xValues,
             yValues: PopulationData.yValues.Africa.male,
             dataSeriesName: "Male Africa",
         }),
-        fill: "#4570b0",
+        fill: appTheme.VividBlue,
         stackedGroupId: "MaleSeries",
-        dataLabels
+        dataLabels,
     });
-
     // female charts
     const femaleChartEurope = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
@@ -208,56 +180,61 @@ export const drawExample = async (rootElement) => {
             yValues: PopulationData.yValues.Europe.female,
             dataSeriesName: "Female Europe",
         }),
-        fill: "#af4f5a",
+        fill: appTheme.VividRed + "99",
         stackedGroupId: "FemaleSeries",
-        dataLabels
+        dataLabels,
     });
-
     const femaleChartAfrica = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: PopulationData.xValues,
             yValues: PopulationData.yValues.Africa.female,
             dataSeriesName: "Female Africa",
         }),
-        fill: "#df7f8a",
+        fill: appTheme.VividRed,
         stackedGroupId: "FemaleSeries",
-        dataLabels
+        dataLabels,
     });
-
     const stackedColumnCollectionMale = new StackedColumnCollection(wasmContext, {
         dataPointWidth: 0.9,
-        yAxisId: "femaleAxis",
+        yAxisId: "maleAxis",
     });
     const stackedColumnCollectionFemale = new StackedColumnCollection(wasmContext, {
         dataPointWidth: 0.9,
+        yAxisId: "femaleAxis",
     });
-
     stackedColumnCollectionMale.add(maleChartEurope, maleChartAfrica);
     stackedColumnCollectionFemale.add(femaleChartEurope, femaleChartAfrica);
-
     // manage data labels overlapping with custom layout manager
     sciChartSurface.dataLabelLayoutManager = new CustomDataLabelManager();
-
     // Add the Stacked Column collection to the chart
     sciChartSurface.renderableSeries.add(stackedColumnCollectionMale, stackedColumnCollectionFemale);
-
     sciChartSurface.layoutManager.bottomOuterAxesLayoutStrategy =
         new BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy(); // stack and sync the 2 Y axes
-
+    const maleLegend = new LegendModifier({
+        showCheckboxes: true,
+        showSeriesMarkers: true,
+        showLegend: true,
+        backgroundColor: "#222",
+        placement: ELegendPlacement.TopLeft,
+    });
+    const femaleLegend = new LegendModifier({
+        showCheckboxes: true,
+        showSeriesMarkers: true,
+        showLegend: true,
+        backgroundColor: "#222",
+        placement: ELegendPlacement.TopRight,
+    });
     // Add zooming and panning behaviour
     sciChartSurface.chartModifiers.add(
-        new ZoomPanModifier(),
         new ZoomExtentsModifier(),
         new MouseWheelZoomModifier(),
-        new LegendModifier({
-            showCheckboxes: true,
-            showSeriesMarkers: true,
-            showLegend: true,
-            backgroundColor: "#222",
-        })
+        maleLegend,
+        femaleLegend
     );
-
+    femaleLegend.includeSeries(maleChartEurope, false);
+    femaleLegend.includeSeries(maleChartAfrica, false);
+    maleLegend.includeSeries(femaleChartEurope, false);
+    maleLegend.includeSeries(femaleChartAfrica, false);
     sciChartSurface.zoomExtents();
-
     return { sciChartSurface, wasmContext };
 };

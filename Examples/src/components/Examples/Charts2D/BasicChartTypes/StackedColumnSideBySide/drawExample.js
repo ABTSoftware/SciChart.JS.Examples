@@ -18,16 +18,15 @@ import {
     EColumnDataLabelPosition,
     Thickness,
 } from "scichart";
-
 const xValues = [1997, 1998, 1999, 2000, 2001, 2002, 2003];
 const tomatoesData = [15, 17, 26, 22, 28, 21, 22];
 const cucumberData = [14, 12, 27, 25, 23, 17, 17];
 const pepperData = [17, 14, 27, 26, 22, 28, 16];
-
 export const drawExample = async (rootElement) => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement);
-
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
+        theme: appTheme.SciChartJsTheme,
+    });
     // Create XAxis, YAxis
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
@@ -52,7 +51,6 @@ export const drawExample = async (rootElement) => {
             growBy: new NumberRange(0.02, 0.05),
         })
     );
-
     const dataLabels = {
         style: {
             fontSize: 12,
@@ -63,46 +61,39 @@ export const drawExample = async (rootElement) => {
         positionMode: EColumnDataLabelPosition.Outside,
         verticalTextPosition: EVerticalTextPosition.Center,
         precision: 0,
-    }
-
+    };
     // Create some RenderableSeries - for each part of the stacked column
     // Notice the stackedGroupId. This defines if series are stacked (same), or grouped side by side (different)
     const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: tomatoesData, dataSeriesName: "Tomato" }),
-        fill: appTheme.VividRed,
+        fill: appTheme.VividPink,
         stroke: "white",
         stackedGroupId: "Group0",
-        dataLabels
+        dataLabels,
     });
-
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: pepperData, dataSeriesName: "Pepper" }),
-        fill: appTheme.MutedOrange,
+        fill: appTheme.VividOrange,
         stroke: "white",
         stackedGroupId: "Group1",
-        dataLabels
+        dataLabels,
     });
-
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: cucumberData, dataSeriesName: "Cucumber" }),
-        fill: appTheme.VividTeal,
+        fill: appTheme.VividSkyBlue,
         stroke: "white",
         stackedGroupId: "Group2",
-        dataLabels
+        dataLabels,
     });
-
     // To add the series to the chart, put them in a StackedColumnCollection
     const stackedColumnCollection = new StackedColumnCollection(wasmContext);
     stackedColumnCollection.dataPointWidth = 0.5;
     stackedColumnCollection.add(rendSeries1, rendSeries2, rendSeries3);
     stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
-
     // Add the Stacked Column collection to the chart
     sciChartSurface.renderableSeries.add(stackedColumnCollection);
-
     // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
-
     // Add a legend to the chart to show the series
     sciChartSurface.chartModifiers.add(
         new LegendModifier({
@@ -111,12 +102,8 @@ export const drawExample = async (rootElement) => {
             showLegend: true,
             showCheckboxes: false,
             showSeriesMarkers: true,
-            backgroundColor: "#FFFFFFEE",
-            textColor: "black",
         })
     );
-
     sciChartSurface.zoomExtents();
-
     return { wasmContext, sciChartSurface };
 };

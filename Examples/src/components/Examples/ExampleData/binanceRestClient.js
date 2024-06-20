@@ -1,4 +1,3 @@
-const binanceUrl = "api.binance.com"; //api.binance.us
 /**
  * Parses JSON candles into TPriceBar array
  * @param candles
@@ -26,8 +25,8 @@ const parseCandles = (candles) => {
 /**
  * Fetches candles from Binance Rest API
  */
-const getCandles = async (symbol, interval, startTime, endTime, limit = 500) => {
-    let url = `https://${binanceUrl}/api/v3/klines?symbol=${symbol}&interval=${interval}`;
+const getCandles = async (symbol, interval, startTime, endTime, limit = 500, binanceDomain = "us") => {
+    let url = `https://api.binance.${binanceDomain}/api/v3/klines?symbol=${symbol}&interval=${interval}`;
     if (startTime) {
         url += `&startTime=${startTime.getTime()}`;
     }
