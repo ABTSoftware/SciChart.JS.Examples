@@ -69,3 +69,38 @@ const onClick = () => {
 
 const exportButton = document.getElementById("export-button");
 exportButton.addEventListener("click", onClick);
+
+const onExportPdfClick = () => {
+    // @ts-ignore
+    const body = {
+        appUrl: "http://localhost:3000"
+    };
+    fetch("http://localhost:3000/export-pdf", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body) // body data type must match "Content-Type" header
+    })
+        .then(response => {
+            // Check if the response is successful (status code 200)
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            // Assuming the response contains the image data, you can convert it to a Blob
+            return response.blob();
+        })
+        .then(blob => {
+            // Create a temporary link and trigger the download
+            var link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = "exported-page.pdf";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+};
+
+const exportPdfButton = document.getElementById("export-pdf-button");
+exportPdfButton.addEventListener("click", onExportPdfClick);
