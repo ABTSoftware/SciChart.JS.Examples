@@ -34,7 +34,6 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
-// export const divOverviewId = "overview";
 const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
