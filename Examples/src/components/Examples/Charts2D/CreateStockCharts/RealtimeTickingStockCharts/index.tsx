@@ -2,19 +2,17 @@ import * as React from "react";
 import { IDeletable } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import classes from "../../../styles/Examples.module.scss";
-import { createCandlestickChart } from "./createCandlestickChart";
+import { createCandlestickChart, sciChartOverview } from "./createCandlestickChart";
 import { binanceSocketClient } from "./binanceSocketClient";
 import { Subscription } from "rxjs";
+import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { simpleBinanceRestClient, TPriceBar } from "../../../ExampleData/binanceRestClient";
 import { appTheme } from "../../../theme";
 
-const divElementId = "chart";
-const divOverviewId = "overview";
-
 // SCICHART EXAMPLE
-const drawExample = async () => {
+const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create the candlestick chart example. Contains Candlestick series, tooltips, volume, zooming panning behaviour and more
-    const { sciChartSurface, sciChartOverview, controls } = await createCandlestickChart(divElementId, divOverviewId);
+    const { sciChartSurface, sciChartOverview, controls } = await createCandlestickChart(rootElement);
 
     const endDate = new Date(Date.now());
     const startDate = new Date();
@@ -62,31 +60,6 @@ export default function RealtimeTickingStockCharts() {
         enableOhlc: () => void;
     }>();
 
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(
-            ({ sciChartSurface, sciChartOverview, subscription, controls }) => {
-                chartControlsRef.current = controls;
-                websocketSubscriptionRef.current = subscription;
-                itemsToDeleteRef.current = [sciChartSurface, sciChartOverview];
-            }
-        );
-
-        return () => {
-            // check if chart is already initialized
-            if (itemsToDeleteRef.current) {
-                itemsToDeleteRef.current.forEach((item) => item.delete());
-                websocketSubscriptionRef.current.unsubscribe();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                itemsToDeleteRef.current.forEach((item) => item.delete());
-                websocketSubscriptionRef.current.unsubscribe();
-            });
-        };
-    }, []);
-
     const handleToggleButtonChanged = (event: any, state: number) => {
         if (state === null || chartControlsRef.current === undefined) return;
         setPreset(state);
@@ -115,8 +88,21 @@ export default function RealtimeTickingStockCharts() {
                     </ToggleButton>
                 </ToggleButtonGroup>
                 <div style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}>
-                    <div id={divElementId} style={{ flexBasis: "80%", flexGrow: 1, flexShrink: 1 }} />
-                    <div id={divOverviewId} style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }} />
+                    <SciChartReact
+                        initChart={drawExample}
+                        onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                            const { sciChartSurface, subscription, controls } = initResult;
+                            chartControlsRef.current = controls;
+                            websocketSubscriptionRef.current = subscription;
+                            itemsToDeleteRef.current = [sciChartSurface];
+                        }}
+                        style={{ flexBasis: "80%", flexGrow: 1, flexShrink: 1 }}
+                    >
+                        <SciChartNestedOverview
+                            style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }}
+                            options={sciChartOverview}
+                        />
+                    </SciChartReact>
                 </div>
             </div>
         </React.Fragment>
