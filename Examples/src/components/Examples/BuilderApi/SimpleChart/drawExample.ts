@@ -31,7 +31,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     strokeThickness: 5,
                     interpolationPoints: 20,
                     stroke: appTheme.VividTeal,
-                    animation: { type: EAnimationType.Sweep, options: { duration: 500 } },
+                    animation: { type: EAnimationType.Scale, options: { duration: 500 } },
                 },
                 xyData: {
                     xValues: [1, 3, 4, 7, 9],
