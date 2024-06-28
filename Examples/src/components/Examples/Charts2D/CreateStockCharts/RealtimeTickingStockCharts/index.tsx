@@ -91,10 +91,9 @@ export default function RealtimeTickingStockCharts() {
                     <SciChartReact
                         initChart={drawExample}
                         onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                            const { sciChartSurface, subscription, controls } = initResult;
+                            const { subscription, controls } = initResult;
                             chartControlsRef.current = controls;
                             websocketSubscriptionRef.current = subscription;
-                            itemsToDeleteRef.current = [sciChartSurface];
                         }}
                         style={{ flexBasis: "80%", flexGrow: 1, flexShrink: 1 }}
                     >

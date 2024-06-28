@@ -10,10 +10,6 @@ export default function SurfaceMesh3DChart() {
     const sciChartSurfaceRef = React.useRef<SciChart3DSurface>();
 
     const handleChartInit = (initResult: TResolvedReturnType<typeof drawExample>) => {
-        // Cleanup previous instance if it exists
-        if (sciChartSurfaceRef.current) {
-            sciChartSurfaceRef.current.delete();
-        }
         // Set the new instance
         sciChartSurfaceRef.current = initResult.sciChartSurface;
     };

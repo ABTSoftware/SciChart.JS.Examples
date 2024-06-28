@@ -65,17 +65,6 @@ export default function PercentageChange() {
                     key={chartKey} // Change the key to force re-render
                     initChart={(rootElement) => drawExample(rootElement, usePercentage)}
                     className={classes.ChartWrapper}
-                    onInit={(initResult: { sciChartSurface: SciChartSurface; wasmContext: any }) => {
-                        const { sciChartSurface } = initResult;
-                        sciChartSurfaceRef.current = sciChartSurface;
-
-                        // Cleanup on unmount
-                        return () => {
-                            if (sciChartSurfaceRef.current) {
-                                sciChartSurfaceRef.current.delete();
-                            }
-                        };
-                    }}
                 />
             </div>
         </div>

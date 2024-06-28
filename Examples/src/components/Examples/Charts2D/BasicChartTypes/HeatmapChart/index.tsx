@@ -95,10 +95,6 @@ export default function HeatmapChart() {
                                 // Cleanup function
                                 return () => {
                                     controls.stopDemo();
-                                    sciChartSurface.delete();
-                                    if (heatmapLegendRef.current) {
-                                        heatmapLegendRef.current.delete();
-                                    }
                                 };
                             }}
                         />
