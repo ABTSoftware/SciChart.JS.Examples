@@ -40,7 +40,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     const splineXyDataSeries = new XyDataSeries(wasmContext, {
-        dataSeriesName: "Cubic Spline",
+        dataSeriesName: "Default Spline",
         xValues,
         yValues,
     });
@@ -72,7 +72,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(splineSeries);
 
     const bezierDataSeries = new XyDataSeries(wasmContext, {
-        dataSeriesName: "Range Restricted Bezier",
+        dataSeriesName: "Bezier (Range Restricted)",
         xValues,
         yValues,
     });
