@@ -1,11 +1,15 @@
 import {
     EAxisAlignment,
+    ECoordinateMode,
     EDragMode,
+    EHorizontalAnchorPoint,
     ELegendOrientation,
+    ELegendPlacement,
     EllipsePointMarker,
     FadeAnimation,
     LegendModifier,
     MouseWheelZoomModifier,
+    NativeTextAnnotation,
     NumberRange,
     NumericAxis,
     ScaleAnimation,
@@ -30,27 +34,27 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Add an XAxis, YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Top }));
     sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Left, visibleRange: new NumberRange(-1.5, 1) })
+        new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Left, visibleRange: new NumberRange(-1.75, 0.75) })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisAlignment: EAxisAlignment.Right,
             id: "y2",
-            visibleRange: new NumberRange(-0.5, 2),
+            visibleRange: new NumberRange(-0.9, 1.6),
         })
     );
 
     // The spline bandseries requires a special dataseries type called XyyDataSeries
     // This stores X, Y1, Y2 point data for the two lines in the band
-    const yData = ExampleDataProvider.getDampedSinewave(0, 1.0, 0, 0.005, 1000, 13);
-    const y1Data = ExampleDataProvider.getDampedSinewave(0, 1.0, 0, 0.005, 1000, 12);
+    const yData = ExampleDataProvider.getDampedSinewave(0, 0.9, 0, 0.002, 1000, 17);
+    const y1Data = ExampleDataProvider.getDampedSinewave(0, 0.9, 0, 0.002, 1000, 16);
 
     const xValues: number[] = [];
     const yValues: number[] = [];
     const y1Values: number[] = [];
 
-    for (let i = 0; i < 10; i++) {
-        const index = i * 100;
+    for (let i = 0; i < 20; i++) {
+        const index = i * 50;
         xValues.push(yData.xValues[index]);
         yValues.push(yData.yValues[index]);
         y1Values.push(y1Data.yValues[index]);
@@ -58,7 +62,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Create the band series and add to the chart
     const rendSeries = new SplineBandRenderableSeries(wasmContext, {
-        dataSeries: new XyyDataSeries(wasmContext, { xValues, yValues, y1Values, dataSeriesName: "Cubic Spline" }),
+        dataSeries: new XyyDataSeries(wasmContext, { xValues, yValues, y1Values, dataSeriesName: "Default Spline" }),
         strokeThickness: 3,
         fill: appTheme.VividOrange + "33",
         fillY1: appTheme.VividSkyBlue + "33",
@@ -81,7 +85,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             xValues,
             yValues,
             y1Values,
-            dataSeriesName: "Range Restricted bezier",
+            dataSeriesName: "XyyBezier (Range Restricted)",
         }),
         stroke: appTheme.VividPurple,
         strokeY1: appTheme.VividRed,
@@ -106,11 +110,27 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
     sciChartSurface.renderableSeries.add(bezierSeries);
 
+    sciChartSurface.annotations.add(
+        new NativeTextAnnotation({
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
+            x1: 0.9,
+            y1: 0.9,
+            horizontalAnchorPoint: EHorizontalAnchorPoint.Right,
+            text: "Drag the left or right y axis to overlay and compare the series",
+            fontSize: 16,
+        })
+    );
+
     // Optional: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(
         new YAxisDragModifier({ dragMode: EDragMode.Panning }),
         new MouseWheelZoomModifier(),
-        new LegendModifier({ orientation: ELegendOrientation.Vertical, showCheckboxes: true })
+        new LegendModifier({
+            orientation: ELegendOrientation.Vertical,
+            placement: ELegendPlacement.TopRight,
+            showCheckboxes: true,
+        })
     );
 
     return { wasmContext, sciChartSurface };
