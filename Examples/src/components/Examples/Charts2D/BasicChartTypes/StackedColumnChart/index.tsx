@@ -1,10 +1,11 @@
 import * as React from "react";
+import { useState } from "react";
 import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/core/styles";
-import { SciChartSurface, StackedColumnCollection } from "scichart";
-import { drawExample, divElementId } from "./drawExample";
+import { drawExample } from "./drawExample";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
@@ -29,38 +30,15 @@ const useStyles = makeStyles((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function StackedColumnChart() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const stackedColumnCollectionRef = React.useRef<StackedColumnCollection>();
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then((res) => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            stackedColumnCollectionRef.current = res.stackedColumnCollection;
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
+    const [controls, setControls] = useState<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
 
     const handleUsePercentage = (event: any, value: boolean) => {
-        if (value !== null) {
+        if (value !== null && controls) {
             console.log(`100% stacked? ${value}`);
             setUse100PercentStackedMode(value);
             // Toggle 100% mode on click
-            stackedColumnCollectionRef.current.isOneHundredPercent = value;
-            sciChartSurfaceRef.current.zoomExtents(200);
+            controls.toggleHundredPercentMode(value);
         }
     };
 
@@ -77,14 +55,20 @@ export default function StackedColumnChart() {
                     color="primary"
                     aria-label="small outlined button group"
                 >
-                    <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
+                    <ToggleButton disabled={!controls} value={false} style={{ color: appTheme.ForegroundColor }}>
                         Stacked mode
                     </ToggleButton>
-                    <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
+                    <ToggleButton disabled={!controls} value={true} style={{ color: appTheme.ForegroundColor }}>
                         100% Stacked mode
                     </ToggleButton>
                 </ToggleButtonGroup>
-                <div id={divElementId} className={localClasses.chartArea} />
+                <SciChartReact
+                    initChart={drawExample}
+                    className={localClasses.chartArea}
+                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                        setControls(initResult.controls);
+                    }}
+                />
             </div>
         </div>
     );
