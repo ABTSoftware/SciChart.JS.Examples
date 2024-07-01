@@ -13,6 +13,7 @@ import {
     XyDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier,
+    BezierRenderDataTransform,
 } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -39,25 +40,25 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     const splineXyDataSeries = new XyDataSeries(wasmContext, {
-        dataSeriesName: "Spline Data ",
+        dataSeriesName: "Cubic Spline",
         xValues,
         yValues,
     });
 
     // Create and add a standard line series to the chart.
-    // This will be used to compare the spline (smoothed) algorothm
+    // This will be used to compare the spline (smoothed) algorithm
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: appTheme.VividOrange,
         strokeThickness: 3,
         dataSeries: xyDataSeries,
-        animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true }),
+        animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000 }),
     });
     sciChartSurface.renderableSeries.add(lineSeries);
 
     // Create and add a Spline line series to the chart
     const splineSeries = new SplineLineRenderableSeries(wasmContext, {
         stroke: appTheme.VividSkyBlue,
-        strokeThickness: 5,
+        strokeThickness: 4,
         dataSeries: splineXyDataSeries,
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 11,
@@ -70,11 +71,30 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
     sciChartSurface.renderableSeries.add(splineSeries);
 
+    const bezierDataSeries = new XyDataSeries(wasmContext, {
+        dataSeriesName: "Range Restricted Bezier",
+        xValues,
+        yValues,
+    });
+
+    const bezierSeries = new FastLineRenderableSeries(wasmContext, {
+        stroke: appTheme.VividPurple,
+        strokeThickness: 4,
+        dataSeries: bezierDataSeries,
+        animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true }),
+    });
+    bezierSeries.renderDataTransform = new BezierRenderDataTransform(bezierSeries, wasmContext, [
+        bezierSeries.drawingProviders[0],
+    ]);
+    sciChartSurface.renderableSeries.add(bezierSeries);
+
     // OPTIONAL: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    sciChartSurface.chartModifiers.add(new LegendModifier({ orientation: ELegendOrientation.Horizontal }));
+    sciChartSurface.chartModifiers.add(
+        new LegendModifier({ orientation: ELegendOrientation.Vertical, showCheckboxes: true })
+    );
 
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
