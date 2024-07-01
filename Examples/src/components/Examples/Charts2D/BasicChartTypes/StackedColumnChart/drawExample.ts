@@ -122,5 +122,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     sciChartSurface.zoomExtents();
 
-    return { wasmContext, sciChartSurface, stackedColumnCollection };
+    const toggleHundredPercentMode = (value: boolean) => {
+        stackedColumnCollection.isOneHundredPercent = value;
+        sciChartSurface.zoomExtents(200);
+    };
+
+    return { sciChartSurface, controls: { toggleHundredPercentMode } };
 };
