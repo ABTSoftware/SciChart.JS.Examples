@@ -49,9 +49,9 @@ import { VolumePaletteProvider } from "./VolumePaletteProvider";
 // Trades over this size will be rendered as bubbles on the chart
 export const LARGE_TRADE_THRESHOLD = 25_000;
 
-export const createCandlestickChart = async (divChartId: string, divOverviewId: string) => {
+export const createCandlestickChart = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divChartId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
@@ -181,10 +181,11 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
 
     // Add Overview chart. This will automatically bind to the parent surface
     // displaying its series. Zooming the chart will zoom the overview and vice versa
-    const sciChartOverview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
-        theme: appTheme.SciChartJsTheme,
-        transformRenderableSeries: getOverviewSeries,
-    });
+    // commenting this and exporing this out of the function
+    // const sciChartOverview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
+    //     theme: appTheme.SciChartJsTheme,
+    //     transformRenderableSeries: getOverviewSeries,
+    // });
 
     // Add a watermark annotation, updated in setData() function
     const watermarkAnnotation = new TextAnnotation({
@@ -319,6 +320,7 @@ export const createCandlestickChart = async (divChartId: string, divOverviewId: 
         controls: { setData, onNewTrade, setXRange, enableCandlestick, enableOhlc },
     };
 };
+
 // Override the Renderableseries to display on the scichart overview
 const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
     if (defaultSeries.type === ESeriesType.CandlestickSeries) {
@@ -334,6 +336,11 @@ const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
     }
     // hide all other series
     return undefined;
+};
+
+export const sciChartOverview = {
+    theme: appTheme.SciChartJsTheme,
+    transformRenderableSeries: getOverviewSeries,
 };
 
 // Override the standard tooltip displayed by CursorModifier
