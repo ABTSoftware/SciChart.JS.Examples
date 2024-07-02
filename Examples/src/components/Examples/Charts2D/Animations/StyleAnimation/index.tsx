@@ -8,10 +8,10 @@ import { FastBandRenderableSeries } from "scichart/Charting/Visuals/RenderableSe
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { NumberRange } from "scichart/Core/NumberRange";
 import classes from "../../../styles/Examples.module.scss";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
 import { BandAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/BandAnimation";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import { appTheme } from "../../../theme";
 
 const divElementId = "chart";

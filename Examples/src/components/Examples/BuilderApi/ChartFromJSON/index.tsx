@@ -1,8 +1,8 @@
 import * as React from "react";
 import { SciChartSurface, chartBuilder, TWebAssemblyChart } from "scichart";
 import classes from "../../styles/Examples.module.scss";
-import { ButtonGroup, Button, TextField } from "@material-ui/core";
-import { Alert, AlertTitle } from "@material-ui/lab";
+import { ButtonGroup, Button, TextField } from "@mui/material";
+import { Alert, AlertTitle } from "@mui/material";
 import { SciChartReact } from "scichart-react";
 
 const drawExample = async (
