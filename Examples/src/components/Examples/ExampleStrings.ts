@@ -416,6 +416,14 @@ export const ExampleStrings = {
     urlCentralAxesDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#CentralAxisLayout.html`,
     urlTitleCentralAxesDocumentation: `SciChart.js Central Axis Documentation page`,
 
+    // StaticAxis
+    titleStaticAxis: (frameworkName: TFrameworkName) => `${frameworkName} Chart with Static X Axis`,
+    urlStaticAxis: `static-x-axis`,
+    urlTitleStaticAxis: (frameworkName: TFrameworkName) =>
+        `The Static XAxis example shows how to use isStaticAxis to create a static xAxis on a ${frameworkName} Chart.`,
+    urlStaticAxisDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Static%20Axis.html`,
+    urlTitleStaticAxisDocumentation: `SciChart.js Static xAxis Documentation page`,
+
     // Vertically Stacked axes
     titleVerticallyStackedAxes: (frameworkName: TFrameworkName) =>
         `${frameworkName} Chart with Vertically Stacked Axes`,

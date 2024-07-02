@@ -1,8 +1,5 @@
 import {
-    ELegendOrientation,
-    ELegendPlacement,
     ENumericFormat,
-    LegendModifier,
     MouseWheelZoomModifier,
     NumericAxis,
     SciChartSurface,
@@ -13,11 +10,9 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
     EColumnDataLabelPosition,
-    StackedColumnSeriesDataLabelProvider,
     IStackedColumnSeriesDataLabelProviderOptions,
     EVerticalTextPosition,
     NumberRange,
-    DataLabelState,
     Thickness,
 } from "scichart";
 import { appTheme } from "../../../theme";
@@ -60,41 +55,6 @@ export const drawExample = async () => {
     const yValues4 = [16, 10, 9, 8, 22, 14, 12, 27, 25, 23, 17, 17];
     const yValues5 = [7, 24, 21, 11, 19, 17, 14, 27, 26, 22, 28, 16];
 
-    class CustomDataLabelProvider extends StackedColumnSeriesDataLabelProvider {
-        constructor(options: IStackedColumnSeriesDataLabelProviderOptions) {
-            super(options);
-        }
-
-        getText(state: DataLabelState): string {
-            if (this.metaDataSelector) {
-                return this.metaDataSelector(state.getMetaData());
-            }
-            const usefinal = !this.updateTextInAnimation && state.parentSeries.isRunningAnimation;
-            const yval = usefinal ? state.yValAfterAnimation() : state.yVal();
-            if (yval === yval) { //isNaN check
-                if(this.isOneHundredPercent){
-                    const sum = 50; // TODO calculate sum of all columns from one stack
-
-                    // sum = seriesList.reduce((prev, cur) => prev + cur.dataSeries.getNativeYValues().get(i), 0);
-
-                    return `${(yval * 100 / sum).toFixed(1)}%`;
-                }
-                else {
-                    return yval.toFixed(1);
-                }
-            } else {
-                return undefined;
-            }
-        }
-    }
-
-    const customDataLabelProvider = new CustomDataLabelProvider({
-        style: { fontFamily: "Arial", fontSize: 12 },
-        verticalTextPosition: EVerticalTextPosition.Center,
-        positionMode: EColumnDataLabelPosition.Outside,
-        color: "white",
-    });
-
     const dataLabels:IStackedColumnSeriesDataLabelProviderOptions = {
         color: "#FFfFFF",
         style: { fontSize: 12, fontFamily: 'Arial', padding: new Thickness(0, 0, 2, 0)},
@@ -112,7 +72,6 @@ export const drawExample = async () => {
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
         dataLabels,
-        // dataLabelProvider: customDataLabelProvider
     });
 
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
@@ -122,8 +81,6 @@ export const drawExample = async () => {
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
         dataLabels,
-        // dataLabelProvider: customDataLabelProvider
-
     });
 
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
@@ -133,8 +90,6 @@ export const drawExample = async () => {
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
         dataLabels,
-        // dataLabelProvider: customDataLabelProvider
-
     });
 
     const rendSeries4 = new StackedColumnRenderableSeries(wasmContext, {
@@ -144,7 +99,6 @@ export const drawExample = async () => {
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
         dataLabels,
-        // dataLabelProvider: customDataLabelProvider
     });
 
     const rendSeries5 = new StackedColumnRenderableSeries(wasmContext, {
@@ -154,7 +108,6 @@ export const drawExample = async () => {
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
         dataLabels,
-        // dataLabelProvider: customDataLabelProvider
     });
 
     // To add the series to the chart, put them in a StackedColumnCollection
@@ -164,38 +117,6 @@ export const drawExample = async () => {
 
     stackedColumnCollection.add(rendSeries1, rendSeries2, rendSeries3, rendSeries4, rendSeries5);
     stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
-
-    // (rendSeries1.dataLabelProvider as DataLabelProvider).getText = (state) => {
-    //     if(!stackedColumnCollection.isOneHundredPercent) return `${state.yVal()}`;
-    //     console.log(state.yValues.get(0), state.yValues.get(1));
-    //     const stackSum = state.yValues.get(0) + state.yValues.get(1);
-    //     const percentage = state.yVal() * 100 / stackSum;
-    //     return `${percentage.toFixed(1)}%`;
-    // };
-    // (rendSeries2.dataLabelProvider as DataLabelProvider).getText = (state) => {
-    //     if(!stackedColumnCollection.isOneHundredPercent) return `${state.yVal()}`;
-    //     const stackSum = state.yValues.get(0) + state.yValues.get(1);
-    //     const percentage = state.yVal() * 100 / stackSum;
-    //     return `${percentage.toFixed(1)}%`;
-    // };
-    // (rendSeries3.dataLabelProvider as DataLabelProvider).getText = (state) => {
-    //     if(!stackedColumnCollection.isOneHundredPercent) return `${state.yVal()}`;
-    //     const stackSum = state.yValues.get(0) + state.yValues.get(1);
-    //     const percentage = state.yVal() * 100 / stackSum;
-    //     return `${percentage.toFixed(1)}%`;
-    // };
-    // (rendSeries4.dataLabelProvider as DataLabelProvider).getText = (state) => {
-    //     if(!stackedColumnCollection.isOneHundredPercent) return `${state.yVal()}`;
-    //     const stackSum = state.yValues.get(0) + state.yValues.get(1);
-    //     const percentage = state.yVal() * 100 / stackSum;
-    //     return `${percentage.toFixed(1)}%`;
-    // };
-    // (rendSeries5.dataLabelProvider as DataLabelProvider).getText = (state) => {
-    //     if(!stackedColumnCollection.isOneHundredPercent) return `${state.yVal()}`;
-    //     const stackSum = state.yValues.get(0) + state.yValues.get(1);
-    //     const percentage = state.yVal() * 100 / stackSum;
-    //     return `${percentage.toFixed(1)}%`;
-    // };
     
     sciChartSurface.renderableSeries.add(stackedColumnCollection);
 

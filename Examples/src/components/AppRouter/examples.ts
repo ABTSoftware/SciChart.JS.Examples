@@ -41,6 +41,7 @@ import MultipleXAxes from "../Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes
 import SecondaryYAxes from "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes";
 import VerticalCharts from "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts";
 import CentralAxes from "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes";
+import StaticAxis from "../Examples/Charts2D/ModifyAxisBehavior/StaticAxis";
 import VerticallyStackedAxes from "../Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes";
 import LogarithmicAxisExample from "../Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis";
 import DrawBehindAxes from "../Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes";
@@ -231,6 +232,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_SecondaryYAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticalCharts,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes,
+            EXAMPLES_PAGES.chart2D_modifyAxisBehavior_StaticAxis,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis,
             EXAMPLES_PAGES.chart2D_modifyAxisBehavior_DrawBehindAxes,
@@ -471,6 +473,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return VerticalCharts;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_CentralAxes.id:
             return CentralAxes;
+        case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_StaticAxis.id:
+            return StaticAxis;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_VerticallyStackedAxes.id:
             return VerticallyStackedAxes;
         case EXAMPLES_PAGES.chart2D_modifyAxisBehavior_LogarithmicAxis.id:
