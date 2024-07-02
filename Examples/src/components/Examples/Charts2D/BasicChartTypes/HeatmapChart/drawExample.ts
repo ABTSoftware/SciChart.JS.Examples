@@ -12,16 +12,14 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-export const divElementId = "chart";
-export const divHeatmapLegend = "heatmapLegend";
 const MAX_SERIES = 100;
 const WIDTH = 300;
 const HEIGHT = 200;
 
 // Draws a Heatmap chart in real-time over the <div id={divElementId}>
-export const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
@@ -97,8 +95,8 @@ export const drawExample = async () => {
 };
 
 // Draws a Heatmap legend over the <div id={divHeatmapLegend}></div>
-export const drawHeatmapLegend = async () => {
-    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
+export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) => {
+    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(rootElement, {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
@@ -135,7 +133,7 @@ export const drawHeatmapLegend = async () => {
         },
     });
 
-    return heatmapLegend;
+    return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };
 };
 
 // This function generates data for the heatmap series example

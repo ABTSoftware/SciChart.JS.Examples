@@ -1,10 +1,10 @@
-import * as express from "express";
-import * as compression from "compression";
+import express from "express";
+import cors from "cors";
+import compression from "compression";
 import { Request, Response, NextFunction } from "express";
 import * as bodyParser from "body-parser";
 
 import * as chalk from "chalk";
-import * as cors from "cors";
 import * as React from "react";
 import { Helmet } from "react-helmet";
 import * as ReactDOMServer from "react-dom/server";
