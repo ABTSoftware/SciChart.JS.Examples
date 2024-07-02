@@ -1,7 +1,7 @@
 import * as React from "react";
-import List from "@material-ui/core/List";
+import List from "@mui/material/List";
 import { TMenuItem } from "../AppRouter/examples";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import Box from "../../helpers/shared/Helpers/Box/Box";
 import classes from "./FooterGrid.module.scss";
 import { useContext } from "react";
