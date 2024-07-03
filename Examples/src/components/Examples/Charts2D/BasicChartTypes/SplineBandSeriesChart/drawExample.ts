@@ -1,4 +1,5 @@
 import {
+    AxisMarkerAnnotation,
     EAxisAlignment,
     ECoordinateMode,
     EDragMode,
@@ -34,13 +35,22 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Add an XAxis, YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Top }));
     sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, { axisAlignment: EAxisAlignment.Left, visibleRange: new NumberRange(-1.75, 0.75) })
+        new NumericAxis(wasmContext, {
+            axisAlignment: EAxisAlignment.Left,
+            visibleRange: new NumberRange(-1.75, 0.75),
+            backgroundColor: appTheme.VividSkyBlue + "33",
+            labelStyle: { color: appTheme.VividOrange },
+            majorTickLineStyle: { color: appTheme.VividOrange },
+        })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisAlignment: EAxisAlignment.Right,
             id: "y2",
             visibleRange: new NumberRange(-0.9, 1.6),
+            backgroundColor: appTheme.VividPurple + "33",
+            labelStyle: { color: appTheme.VividRed },
+            majorTickLineStyle: { color: appTheme.VividRed },
         })
     );
 
@@ -70,8 +80,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeY1: appTheme.VividSkyBlue,
         interpolationPoints: 20, // Choose the number of points to interpolate for smoothing
         pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 9,
-            height: 9,
+            width: 7,
+            height: 7,
             fill: appTheme.PaleSkyBlue,
             stroke: appTheme.VividSkyBlue,
         }),
@@ -92,8 +102,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         fill: appTheme.VividPurple + "33",
         fillY1: appTheme.VividRed + "33",
         pointMarker: new EllipsePointMarker(wasmContext, {
-            width: 9,
-            height: 9,
+            width: 7,
+            height: 7,
             fill: appTheme.PaleSkyBlue,
             stroke: appTheme.VividSkyBlue,
         }),
@@ -102,13 +112,28 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         interpolationPoints: 20, // Choose the number of points to interpolate for smoothing
         animation: new ScaleAnimation({ duration: 800, zeroLine: 0, fadeEffect: true }),
     });
-    bezierSeries.renderDataTransform = new XyyBezierRenderDataTransform(
+    const bezierTransform = new XyyBezierRenderDataTransform(
         bezierSeries,
         wasmContext,
         [bezierSeries.drawingProviders[0]],
-        { interpolationPoints: 20, curvature: 0.3 }
+        { interpolationPoints: 20, curvature: 0.5 }
     );
+    bezierSeries.renderDataTransform = bezierTransform;
     sciChartSurface.renderableSeries.add(bezierSeries);
+
+    const curvatureAnnotation = new AxisMarkerAnnotation({
+        yCoordinateMode: ECoordinateMode.Relative,
+        y1: 0.5,
+        yAxisId: "y2",
+        formattedValue: "Bezier Curvature 0.5",
+        backgroundColor: appTheme.VividPurple,
+        isEditable: true,
+        onDrag: (args) => {
+            bezierTransform.curvature = curvatureAnnotation.y1;
+            curvatureAnnotation.formattedValue = "Bezier Curvature " + curvatureAnnotation.y1.toFixed(2);
+        },
+    });
+    sciChartSurface.annotations.add(curvatureAnnotation);
 
     sciChartSurface.annotations.add(
         new NativeTextAnnotation({
