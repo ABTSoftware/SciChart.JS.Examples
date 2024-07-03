@@ -25,9 +25,6 @@ export default function RealtimeSurfaceMesh3DChart() {
                             if (controls) {
                                 controls.stopAnimation();
                             }
-                            if (sciChartSurface) {
-                                sciChartSurface.delete();
-                            }
                         };
                     }}
                     style={{ position: "absolute", height: "100%", width: "100%" }}

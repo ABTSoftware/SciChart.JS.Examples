@@ -11,26 +11,21 @@ import { appTheme } from "../../../theme";
 
 // SCICHART EXAMPLE
 const drawExample = async (rootElement: string | HTMLDivElement) => {
-    // Create the candlestick chart example. Contains Candlestick series, tooltips, volume, zooming panning behaviour and more
     const { sciChartSurface, sciChartOverview, controls } = await createCandlestickChart(rootElement);
 
     const endDate = new Date(Date.now());
     const startDate = new Date();
     startDate.setMinutes(endDate.getMinutes() - 300);
 
-    // Fetch data Binance exchange: 300 1-minute candles
     const priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1m", startDate, endDate);
 
-    // Set the candles data on the chart
     controls.setData("BTC/USDT", "Bitcoin / US Dollar - 1 Minute", priceBars);
 
-    // Zoom to the latest 100 candles
     const startViewportRange = new Date();
     startViewportRange.setMinutes(endDate.getMinutes() - 100);
     endDate.setMinutes(endDate.getMinutes() + 10);
     controls.setXRange(startViewportRange, endDate);
 
-    // Susbscribe to price updates from the exchange
     const subscription = binanceSocketClient.getRealtimeCandleStream("BTCUSDT", "1m").subscribe((pb) => {
         const priceBar = {
             date: pb.openTime,
@@ -46,8 +41,6 @@ const drawExample = async (rootElement: string | HTMLDivElement) => {
     return { sciChartSurface, sciChartOverview, subscription, controls };
 };
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function RealtimeTickingStockCharts() {
     const itemsToDeleteRef = React.useRef<IDeletable[]>();
     const websocketSubscriptionRef = React.useRef<Subscription>();
@@ -94,6 +87,9 @@ export default function RealtimeTickingStockCharts() {
                             const { subscription, controls } = initResult;
                             chartControlsRef.current = controls;
                             websocketSubscriptionRef.current = subscription;
+                            if (websocketSubscriptionRef.current) {
+                                websocketSubscriptionRef.current.unsubscribe();
+                            }
                         }}
                         style={{ flexBasis: "80%", flexGrow: 1, flexShrink: 1 }}
                     >
