@@ -1,8 +1,8 @@
-import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import * as React from "react";
+import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-central-axes.jpg";
+import exampleImage from "./javascript-static-axis.jpg";
 
 const description = `Demonstrates a realtime chart where the ticks and gridlines are fixed, but the labels change.  
 This is achieved by setting the isStaticAxis property to true on the X axis.`;

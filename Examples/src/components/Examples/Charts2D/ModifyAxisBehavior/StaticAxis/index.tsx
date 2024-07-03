@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Button } from "@material-ui/core";
+import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { drawExample } from "./drawExample";
 import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     },
     toolbarRow: {
         display: "flex",
-        // flex: "auto",
         flexBasis: "70px",
         padding: 10,
         width: "100%",
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
-    const [isStaticAxis, setIsStaticAxis] = React.useState(true);
+    const [isStaticAxis, setIsStaticAxis] = React.useState(false);
 
     const controlsRef = React.useRef<{toggleStaticAxis: () => void;}>();
 
@@ -40,15 +39,24 @@ export default function ChartComponent() {
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
                 <div className={localClasses.toolbarRow}>
-                    <Button 
-                        onClick={() => {
+                    <ToggleButtonGroup
+                        exclusive
+                        value={isStaticAxis ? 1 : 0}
+                        onChange={() => {
                             controlsRef.current.toggleStaticAxis()
                             setIsStaticAxis(!isStaticAxis)
                         }}
-                        style={{ color: appTheme.ForegroundColor }}
+                        size="medium"
+                        color="primary"
+                        aria-label="small outlined button group"
                     >
-                        IsStaticAxis: {isStaticAxis ? "true" : "false"}
-                    </Button>
+                        <ToggleButton value={1} style={{ color: appTheme.ForegroundColor }}>
+                            Normal Axis
+                        </ToggleButton>
+                        <ToggleButton value={0} style={{ color: appTheme.ForegroundColor }}>
+                            Static Axis
+                        </ToggleButton>
+                    </ToggleButtonGroup>
                 </div>
 
                 <SciChartReact

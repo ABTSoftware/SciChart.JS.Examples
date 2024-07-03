@@ -5,22 +5,27 @@ import {
     SciChartSurface, 
     EAutoRange, 
     HorizontalLineAnnotation, 
-    NumberRange
+    NumberRange,
+    EAxisAlignment
 } from "scichart";
 import { appTheme } from "../../../theme";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme,
+        theme: {
+            ...appTheme.SciChartJsTheme,
+            majorGridLineBrush: "#FFFFFF22" // make gridlines more noticeable
+        },
     });
     
     // Create X Axis
     const xAxis = new NumericAxis(wasmContext, {
         labelPrecision: 0,
         autoRange: EAutoRange.Always,
+        axisAlignment: EAxisAlignment.Top,
 
-        isStaticAxis: true, // gridlines and axis labels keep their initial position on visible range change
-        drawMajorBands: false, // helps to avoid flickering - when visible range changes fast
+        isStaticAxis: true, // when true, gridlines and axis labels keep their initial position on visible range change
+        // drawMajorBands: false, // avoids flickering - when values change fast and isStaticAxis is true
     });
     sciChartSurface.xAxes.add(xAxis);
     
@@ -37,7 +42,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     // build data series
-    let height = 0.1;
+    let height = 1;
+    var shouldGrow = true;
     const xValues = [];
     const yValues = [];
     const fifoCapacity = 1000;
@@ -57,7 +63,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.renderableSeries.add(
         new FastLineRenderableSeries(wasmContext, {
             dataSeries,
-            stroke: appTheme.VividPurple,
+            stroke: appTheme.VividOrange,
             strokeThickness: 4,
         })
     );
@@ -65,7 +71,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const updateCallback = () => {
         const xUpdate = [];
         const yUpdate = [];
-        height *= 1.005;
+
+        if(height > 100) shouldGrow = false;
+        if(height < 0.1) shouldGrow = true;
+        height *= shouldGrow ? 1.005 : 0.995; // fluctuate height
+
         for (let j = 0; j < 2; i++, j++) {
             xUpdate.push(i);
             yUpdate.push(height * (Math.sin(i * 0.01) - Math.cos(i * 0.01)));
@@ -77,9 +87,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // line annotation at x = 0
     sciChartSurface.annotations.add(new HorizontalLineAnnotation({
-        stroke: "white",
-        opacity: 0.5,
-        strokeThickness: 2,
+        stroke: "#FFFFFF44",
+        strokeThickness: 1,
         y1: 0
     }));
 
