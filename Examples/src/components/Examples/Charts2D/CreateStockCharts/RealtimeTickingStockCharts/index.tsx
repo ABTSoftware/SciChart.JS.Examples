@@ -42,8 +42,6 @@ const drawExample = async (rootElement: string | HTMLDivElement) => {
 };
 
 export default function RealtimeTickingStockCharts() {
-    const itemsToDeleteRef = React.useRef<IDeletable[]>();
-    const websocketSubscriptionRef = React.useRef<Subscription>();
     const [preset, setPreset] = React.useState<number>(0);
     const chartControlsRef = React.useRef<{
         setData: (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => void;
@@ -86,10 +84,10 @@ export default function RealtimeTickingStockCharts() {
                         onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                             const { subscription, controls } = initResult;
                             chartControlsRef.current = controls;
-                            websocketSubscriptionRef.current = subscription;
-                            if (websocketSubscriptionRef.current) {
-                                websocketSubscriptionRef.current.unsubscribe();
-                            }
+
+                            return () => {
+                                subscription.unsubscribe();
+                            };
                         }}
                         style={{ flexBasis: "80%", flexGrow: 1, flexShrink: 1 }}
                     >
