@@ -14,6 +14,8 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
     BezierRenderDataTransform,
+    AxisMarkerAnnotation,
+    ECoordinateMode,
 } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
@@ -51,6 +53,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         stroke: appTheme.VividOrange,
         strokeThickness: 3,
         dataSeries: xyDataSeries,
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 11,
+            height: 11,
+            fill: appTheme.ForegroundColor,
+            stroke: appTheme.VividSkyBlue,
+        }),
         animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000 }),
     });
     sciChartSurface.renderableSeries.add(lineSeries);
@@ -81,12 +89,32 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         stroke: appTheme.VividPurple,
         strokeThickness: 4,
         dataSeries: bezierDataSeries,
+        pointMarker: new EllipsePointMarker(wasmContext, {
+            width: 11,
+            height: 11,
+            fill: appTheme.ForegroundColor,
+            stroke: appTheme.VividSkyBlue,
+        }),
         animation: new WaveAnimation({ zeroLine: 10, pointDurationFraction: 0.5, duration: 1000, fadeEffect: true }),
     });
-    bezierSeries.renderDataTransform = new BezierRenderDataTransform(bezierSeries, wasmContext, [
+    const bezierTransform = new BezierRenderDataTransform(bezierSeries, wasmContext, [
         bezierSeries.drawingProviders[0],
     ]);
+    bezierSeries.renderDataTransform = bezierTransform;
     sciChartSurface.renderableSeries.add(bezierSeries);
+
+    const curvatureAnnotation = new AxisMarkerAnnotation({
+        yCoordinateMode: ECoordinateMode.Relative,
+        y1: 0.5,
+        formattedValue: "Bezier Curvature 0.5",
+        backgroundColor: appTheme.VividPurple,
+        isEditable: true,
+        onDrag: (args) => {
+            bezierTransform.curvature = curvatureAnnotation.y1;
+            curvatureAnnotation.formattedValue = "Bezier Curvature " + curvatureAnnotation.y1.toFixed(2);
+        },
+    });
+    sciChartSurface.annotations.add(curvatureAnnotation);
 
     // OPTIONAL: Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
