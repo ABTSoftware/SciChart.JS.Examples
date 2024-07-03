@@ -2,109 +2,10 @@ import * as React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import classes from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-    ELegendOrientation,
-    ELegendPlacement,
-    ENumericFormat,
-    FastLineRenderableSeries,
-    LegendModifier,
-    NumericAxis,
-    NumberRange,
-    SciChartSurface,
-    XyDataSeries,
-    getLegendItemHtml,
-} from "scichart";
+import { ELegendOrientation, ELegendPlacement, LegendModifier, SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
-import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
-
-const divElementId = "chart";
-
-const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme,
-    });
-
-    // Add an X, Y Axis
-    sciChartSurface.xAxes.add(
-        new NumericAxis(wasmContext, {
-            labelFormat: ENumericFormat.Decimal,
-            labelPrecision: 2,
-        })
-    );
-    sciChartSurface.yAxes.add(
-        new NumericAxis(wasmContext, {
-            labelFormat: ENumericFormat.Decimal,
-            labelPrecision: 2,
-            growBy: new NumberRange(0.1, 0.1),
-        })
-    );
-
-    // Add some data
-    const data0 = ExampleDataProvider.getFourierSeriesZoomed(1.0, 0.1, 5.0, 5.15);
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, {
-                xValues: data0.xValues,
-                yValues: data0.yValues,
-                dataSeriesName: "First Line Series",
-            }),
-            strokeThickness: 3,
-            stroke: "auto",
-        })
-    );
-
-    const data1 = ExampleDataProvider.getFourierSeriesZoomed(0.6, 0.13, 5.0, 5.15);
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, {
-                xValues: data1.xValues,
-                yValues: data1.yValues,
-                dataSeriesName: "Second Line Series",
-            }),
-            strokeThickness: 3,
-            stroke: "auto",
-        })
-    );
-
-    const data2 = ExampleDataProvider.getFourierSeriesZoomed(0.5, 0.12, 5.0, 5.15);
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, {
-                xValues: data2.xValues,
-                yValues: data2.yValues,
-                dataSeriesName: "Third Line Series",
-            }),
-            strokeThickness: 3,
-            stroke: "auto",
-        })
-    );
-
-    const data3 = ExampleDataProvider.getFourierSeriesZoomed(0.4, 0.11, 5.0, 5.15);
-    sciChartSurface.renderableSeries.add(
-        new FastLineRenderableSeries(wasmContext, {
-            dataSeries: new XyDataSeries(wasmContext, {
-                xValues: data3.xValues,
-                yValues: data3.yValues,
-                dataSeriesName: "Fourth Line Series",
-            }),
-            strokeThickness: 3,
-            stroke: "auto",
-        })
-    );
-
-    // add the legend modifier and show legend in the top left
-    const legendModifier = new LegendModifier({
-        showLegend: true,
-        placement: ELegendPlacement.TopLeft,
-        orientation: ELegendOrientation.Vertical,
-        showCheckboxes: true,
-        showSeriesMarkers: true,
-    });
-
-    sciChartSurface.chartModifiers.add(legendModifier);
-
-    return { sciChartSurface, wasmContext, legendModifier };
-};
+import { drawExample } from "./drawExample";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const placementSelect = [
     { value: ELegendPlacement.TopLeft, text: "Top-Left" },
@@ -127,30 +28,6 @@ export default function ChartLegendsAPI() {
     const [showLegendValue, setShowLegendValue] = React.useState(true);
     const [showCheckboxesValue, setShowCheckboxesValue] = React.useState(true);
     const [showSeriesMarkersValue, setShowSeriesMarkersValue] = React.useState(true);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(({ sciChartSurface, legendModifier }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-            legendModifierRef.current = legendModifier;
-        });
-
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                sciChartSurfaceRef.current = undefined;
-                legendModifierRef.current = undefined;
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-                sciChartSurfaceRef.current = undefined;
-                legendModifierRef.current = undefined;
-            });
-        };
-    }, []);
 
     const handleChangePlacement = (event: React.ChangeEvent<{ value: unknown }>) => {
         if (legendModifierRef.current) {
@@ -262,9 +139,17 @@ export default function ChartLegendsAPI() {
                             </select>
                         </label>
                     </div>
-                    {/*The chart will be located here*/}
                     <div style={{ flex: "auto" }}>
-                        <div id={divElementId} style={{ width: "100%", height: "100%" }} />
+                        <SciChartReact
+                            initChart={drawExample}
+                            style={{ width: "100%", height: "100%" }}
+                            className={classes.ChartWrapper}
+                            onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                                const { sciChartSurface, legendModifier } = initResult;
+                                legendModifierRef.current = legendModifier;
+                                sciChartSurfaceRef.current = sciChartSurface;
+                            }}
+                        />
                     </div>
                 </div>
             </div>
