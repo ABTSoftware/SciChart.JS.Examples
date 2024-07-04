@@ -17,7 +17,7 @@ const tips = [
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlSplineLineChartDocumentation,
-        title: ExampleStrings.titleSplineLineChart,
+        title: "Spline Line Chart",
         linkTitle: "JavaScript Spline Line Chart Documentation",
     },
 ];

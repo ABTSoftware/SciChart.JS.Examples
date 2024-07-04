@@ -128,4 +128,52 @@ export class ExampleDataProvider {
         }
         return values;
     };
+    static getRandomCandles = (count, startPrice, startDate, interval) => {
+        let p = {
+            date: startDate.getTime() / 1000,
+            open: startPrice,
+            high: startPrice,
+            low: startPrice,
+            close: startPrice,
+            volume: 0,
+        };
+        const bars = [];
+        for (let c = 0; c < count; c++) {
+            for (let t = 0; t < 20; t++) {
+                const r = Math.random() - 0.5;
+                p.close += p.close * (r / 1000);
+                p.high = Math.max(p.high, p.close);
+                p.low = Math.min(p.low, p.close);
+                p.volume += Math.abs(r) * 200;
+            }
+            bars.push(p);
+            p = {
+                date: (p.date += interval),
+                open: p.close,
+                high: p.close,
+                low: p.close,
+                close: p.close,
+                volume: 0,
+            };
+        }
+        return bars;
+    };
+    static getRandomOHLCVData = (count, startPrice, startDate, interval) => {
+        const xValues = [];
+        const openValues = [];
+        const highValues = [];
+        const lowValues = [];
+        const closeValues = [];
+        const volumeValues = [];
+        const priceBars = ExampleDataProvider.getRandomCandles(count, startPrice, startDate, interval);
+        priceBars.forEach((priceBar) => {
+            xValues.push(priceBar.date);
+            openValues.push(priceBar.open);
+            highValues.push(priceBar.high);
+            lowValues.push(priceBar.low);
+            closeValues.push(priceBar.close);
+            volumeValues.push(priceBar.volume);
+        });
+        return { xValues, openValues, highValues, lowValues, closeValues, volumeValues };
+    };
 }

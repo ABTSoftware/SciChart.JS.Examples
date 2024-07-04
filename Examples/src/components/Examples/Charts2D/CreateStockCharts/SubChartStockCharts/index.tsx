@@ -148,6 +148,7 @@ export const drawExample = async () => {
                         // maxAutoTicks: 20,
                         useNativeText: false,
                         minorsPerMajor: 3,
+                        visibleRangeLimit: new NumberRange(0, xValues.length - 1),
                     },
                 },
                 yAxes: [
@@ -267,6 +268,7 @@ export const drawExample = async () => {
                             drawMinorTickLines: false,
                             useNativeText: false,
                             minorsPerMajor: 3,
+                            visibleRangeLimit: new NumberRange(0, xValues.length - 1),
                         },
                     },
                 ],
@@ -331,6 +333,7 @@ export const drawExample = async () => {
                         drawMinorTickLines: false,
                         useNativeText: false,
                         minorsPerMajor: 3,
+                        visibleRangeLimit: new NumberRange(0, xValues.length - 1),
                     },
                 },
                 yAxes: {

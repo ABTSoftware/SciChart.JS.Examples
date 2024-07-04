@@ -39,7 +39,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeThickness: 2,
     });
     const stackedMountain3 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Oranges" }),
+        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Bananas" }),
         fill: appTheme.VividSkyBlue + "AA",
         stroke: appTheme.PaleSkyBlue,
         strokeThickness: 2,

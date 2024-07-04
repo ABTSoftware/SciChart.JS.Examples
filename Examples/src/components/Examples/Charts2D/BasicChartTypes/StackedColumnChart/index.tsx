@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 export default function StackedColumnChart() {
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
     const [controls, setControls] = useState<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
+    const [areDataLabelsVisible, setAreDataLabelsVisible] = React.useState(true);
 
     const handleUsePercentage = (event: any, value: boolean) => {
         if (value !== null && controls) {
@@ -42,26 +43,43 @@ export default function StackedColumnChart() {
         }
     };
 
+    const handleToggleDataLabels = () => {
+        setAreDataLabelsVisible(!areDataLabelsVisible);
+        controls.toggleDataLabels(areDataLabelsVisible);
+    };
+
     const localClasses = useStyles();
     return (
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
-                <ToggleButtonGroup
-                    className={localClasses.toolbarRow}
-                    exclusive
-                    value={use100PercentStackedMode}
-                    onChange={handleUsePercentage}
-                    size="small"
-                    color="primary"
-                    aria-label="small outlined button group"
-                >
-                    <ToggleButton disabled={!controls} value={false} style={{ color: appTheme.ForegroundColor }}>
-                        Stacked mode
-                    </ToggleButton>
-                    <ToggleButton disabled={!controls} value={true} style={{ color: appTheme.ForegroundColor }}>
-                        100% Stacked mode
-                    </ToggleButton>
-                </ToggleButtonGroup>
+                <div className={localClasses.toolbarRow}>
+                    <ToggleButtonGroup
+                        className={localClasses.toolbarRow}
+                        exclusive
+                        size="small"
+                        value={use100PercentStackedMode}
+                        onChange={handleUsePercentage}
+                        color="primary"
+                        aria-label="small outlined button group"
+                    >
+                        <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
+                            Stacked&nbsp;mode
+                        </ToggleButton>
+                        <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
+                            100%&nbsp;Stacked&nbsp;mode
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+
+                    <ToggleButtonGroup style={{ marginLeft: "auto" }} className={localClasses.toolbarRow} size="small">
+                        <ToggleButton
+                            value={areDataLabelsVisible}
+                            style={{ color: appTheme.ForegroundColor }}
+                            onClick={handleToggleDataLabels}
+                        >
+                            {areDataLabelsVisible ? "Hide" : "Show"}&nbsp;Data&nbsp;Labels
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+                </div>
                 <SciChartReact
                     initChart={drawExample}
                     className={localClasses.chartArea}

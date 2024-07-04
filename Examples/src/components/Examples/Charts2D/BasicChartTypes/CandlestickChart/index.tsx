@@ -5,6 +5,8 @@ import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { drawExample, overviewOptions } from "./drawExample";
+import { Label } from "@material-ui/icons";
+import { FormLabel } from "@material-ui/core";
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
@@ -12,6 +14,7 @@ export default function CandlestickChart() {
     const [preset, setPreset] = React.useState<number>(0);
     const [candlestickChartSeries, setCandlestickChartSeries] = React.useState<FastCandlestickRenderableSeries>();
     const [ohlcChartSeries, setOhlcChartSeries] = React.useState<FastOhlcRenderableSeries>();
+    const [dataSource, setDataSource] = React.useState<string>("Random");
 
     const handleToggleButtonChanged = (event: any, state: number) => {
         if (state === null) return;
@@ -21,6 +24,12 @@ export default function CandlestickChart() {
         candlestickChartSeries.isVisible = state === 0;
         ohlcChartSeries.isVisible = state === 1;
     };
+
+    const handleDataSourceChanged = (event: any, source: string) => {
+        setDataSource(source);
+    };
+
+    const initFunc = drawExample(dataSource);
 
     return (
         <React.Fragment>
@@ -41,9 +50,30 @@ export default function CandlestickChart() {
                         OHLC Series
                     </ToggleButton>
                 </ToggleButtonGroup>
+                <FormLabel style={{ color: appTheme.VividGreen }}>Data Source</FormLabel>
+                <ToggleButtonGroup
+                    style={{ height: "70px", padding: "10" }}
+                    exclusive
+                    value={dataSource}
+                    onChange={handleDataSourceChanged}
+                    size="small"
+                    color="primary"
+                    aria-label="small outlined button group"
+                >
+                    <ToggleButton value={"Random"} style={{ color: appTheme.ForegroundColor }}>
+                        Random
+                    </ToggleButton>
+                    <ToggleButton value={"com"} style={{ color: appTheme.ForegroundColor }}>
+                        Binance.com
+                    </ToggleButton>
+                    <ToggleButton value={"us"} style={{ color: appTheme.ForegroundColor }}>
+                        Binance.us
+                    </ToggleButton>
+                </ToggleButtonGroup>
                 <SciChartReact
-                    initChart={drawExample}
-                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                    key={dataSource}
+                    initChart={initFunc}
+                    onInit={(initResult: TResolvedReturnType<typeof initFunc>) => {
                         const { ohlcSeries, candlestickSeries } = initResult;
                         setCandlestickChartSeries(candlestickSeries);
                         setOhlcChartSeries(ohlcSeries);

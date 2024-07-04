@@ -46,9 +46,10 @@ const getCandles = async (
     interval: string,
     startTime?: Date,
     endTime?: Date,
-    limit: number = 500
+    limit: number = 500,
+    binanceDomain = "us"
 ): Promise<TPriceBar[]> => {
-    let url = `https://api.binance.us/api/v3/klines?symbol=${symbol}&interval=${interval}`;
+    let url = `https://api.binance.${binanceDomain}/api/v3/klines?symbol=${symbol}&interval=${interval}`;
     if (startTime) {
         url += `&startTime=${startTime.getTime()}`;
     }
