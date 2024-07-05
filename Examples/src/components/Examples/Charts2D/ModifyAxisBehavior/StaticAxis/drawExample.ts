@@ -1,12 +1,12 @@
-import { 
-    XyDataSeries, 
-    NumericAxis, 
-    FastLineRenderableSeries, 
-    SciChartSurface, 
-    EAutoRange, 
-    HorizontalLineAnnotation, 
+import {
+    XyDataSeries,
+    NumericAxis,
+    FastLineRenderableSeries,
+    SciChartSurface,
+    EAutoRange,
+    HorizontalLineAnnotation,
     NumberRange,
-    EAxisAlignment
+    EAxisAlignment,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -14,50 +14,55 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: {
             ...appTheme.SciChartJsTheme,
-            majorGridLineBrush: "#FFFFFF22" // make gridlines more noticeable
+            majorGridLineBrush: "#FFFFFF22", // make gridlines more noticeable
         },
     });
-    
+
     // Create X Axis
-    const xAxis = new NumericAxis(wasmContext, {
+    const staticXAxis = new NumericAxis(wasmContext, {
         labelPrecision: 0,
         autoRange: EAutoRange.Always,
         axisAlignment: EAxisAlignment.Top,
-
+        axisTitle: "Static Axis",
         isStaticAxis: true, // when true, gridlines and axis labels keep their initial position on visible range change
         // drawMajorBands: false, // avoids flickering - when values change fast and isStaticAxis is true
     });
-    sciChartSurface.xAxes.add(xAxis);
-    
+
+    const xAxis = new NumericAxis(wasmContext, {
+        labelPrecision: 0,
+        autoRange: EAutoRange.Always,
+        axisAlignment: EAxisAlignment.Bottom,
+        axisTitle: "Normal Axis",
+        id: "Normal",
+        isStaticAxis: false, // when true, gridlines and axis labels keep their initial position on visible range change
+        // drawMajorBands: false, // avoids flickering - when values change fast and isStaticAxis is true
+    });
+    staticXAxis.visibleRangeChanged.subscribe((data) => (xAxis.visibleRange = data.visibleRange));
+
+    sciChartSurface.xAxes.add(staticXAxis, xAxis);
+
     // Create Y Axis
     const yAxis = new NumericAxis(wasmContext, {
-        autoRange: EAutoRange.Always,
+        visibleRange: new NumberRange(-2, 2),
     });
     sciChartSurface.yAxes.add(yAxis);
 
-    // fix the visible range of the Y axis to always be symmetrical around 0
-    yAxis.visibleRangeChanged.subscribe(() => {
-        const max = Math.max(Math.abs(yAxis.visibleRange.min), Math.abs(yAxis.visibleRange.max));
-        yAxis.visibleRange = new NumberRange(-max, max);
-    });
-
     // build data series
-    let height = 1;
-    var shouldGrow = true;
     const xValues = [];
     const yValues = [];
     const fifoCapacity = 1000;
     let i = 0;
+    const makeY = (x: number) => Math.sin(x * 0.05) - 0.1 * Math.sin(x * 0.1) - Math.cos(x * 0.005);
     for (; i < fifoCapacity; i++) {
         xValues.push(i);
-        yValues.push(height * (Math.sin(i * 0.01) - Math.cos(i * 0.01)));
+        yValues.push(makeY(i));
     }
 
     // Add a line series with initial data
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues,
         yValues,
-        fifoCapacity
+        fifoCapacity,
     });
 
     sciChartSurface.renderableSeries.add(
@@ -72,30 +77,30 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         const xUpdate = [];
         const yUpdate = [];
 
-        if(height > 100) shouldGrow = false;
-        if(height < 0.1) shouldGrow = true;
-        height *= shouldGrow ? 1.005 : 0.995; // fluctuate height
-
         for (let j = 0; j < 2; i++, j++) {
             xUpdate.push(i);
-            yUpdate.push(height * (Math.sin(i * 0.01) - Math.cos(i * 0.01)));
+            yUpdate.push(makeY(i));
         }
         dataSeries.appendRange(xUpdate, yUpdate);
-    }
+    };
 
     setInterval(updateCallback, 10);
 
     // line annotation at x = 0
-    sciChartSurface.annotations.add(new HorizontalLineAnnotation({
-        stroke: "#FFFFFF44",
-        strokeThickness: 1,
-        y1: 0
-    }));
+    sciChartSurface.annotations.add(
+        new HorizontalLineAnnotation({
+            stroke: "#FFFFFF44",
+            strokeThickness: 1,
+            y1: 0,
+        })
+    );
 
-    sciChartSurface.zoomExtents();
-
-    function toggleStaticAxis(){
-        xAxis.isStaticAxis = !xAxis.isStaticAxis;
+    function toggleStaticAxis() {
+        if (staticXAxis.isPrimaryAxis) {
+            xAxis.isPrimaryAxis = true;
+        } else {
+            staticXAxis.isPrimaryAxis = true;
+        }
     }
 
     return { sciChartSurface, wasmContext, controls: { toggleStaticAxis } };
