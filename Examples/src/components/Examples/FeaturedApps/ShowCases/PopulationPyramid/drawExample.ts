@@ -5,7 +5,6 @@ import {
     NumericAxis,
     XyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier,
     SciChartSurface,
     ENumericFormat,
     EColumnDataLabelPosition,
@@ -19,6 +18,7 @@ import {
     IStackedColumnSeriesDataLabelProviderOptions,
     BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy,
     ELegendPlacement,
+    WaveAnimation
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -94,24 +94,12 @@ const PopulationData = {
     xValues: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
     yValues: {
         Africa: {
-            male: [
-                35754890, 31813896, 28672207, 24967595, 20935790, 17178324, 14422055, 12271907, 10608417, 8608183,
-                6579937, 5035598, 3832420, 2738448, 1769284, 1013988, 470834, 144795, 26494, 2652, 140,
-            ],
-            female: [
-                34834623, 31000760, 27861135, 24206021, 20338468, 16815440, 14207659, 12167437, 10585531, 8658614,
-                6721555, 5291815, 4176910, 3076943, 2039952, 1199203, 591092, 203922, 45501, 5961, 425,
-            ],
+            male: [ 35754890, 31813896, 28672207, 24967595, 20935790, 17178324, 14422055, 12271907, 10608417, 8608183, 6579937, 5035598, 3832420, 2738448, 1769284, 1013988, 470834, 144795, 26494, 2652, 140 ],
+            female: [ 34834623, 31000760, 27861135, 24206021, 20338468, 16815440, 14207659, 12167437, 10585531, 8658614, 6721555, 5291815, 4176910, 3076943, 2039952, 1199203, 591092, 203922, 45501, 5961, 425 ],
         },
         Europe: {
-            male: [
-                4869936, 5186991, 5275063, 5286053, 5449038, 5752398, 6168124, 6375035, 6265554, 5900833, 6465830,
-                7108184, 6769524, 5676968, 4828153, 3734266, 2732054, 1633630, 587324, 128003, 12023,
-            ],
-            female: [
-                4641147, 4940521, 5010242, 5010526, 5160160, 5501673, 6022599, 6329356, 6299693, 5930345, 6509757,
-                7178487, 7011569, 6157651, 5547296, 4519433, 3704145, 2671974, 1276597, 399148, 60035,
-            ],
+            male: [ 4869936, 5186991, 5275063, 5286053, 5449038, 5752398, 6168124, 6375035, 6265554, 5900833, 6465830, 7108184, 6769524, 5676968, 4828153, 3734266, 2732054, 1633630, 587324, 128003, 12023 ],
+            female: [ 4641147, 4940521, 5010242, 5010526, 5160160, 5501673, 6022599, 6329356, 6299693, 5930345, 6509757, 7178487, 7011569, 6157651, 5547296, 4519433, 3704145, 2671974, 1276597, 399148, 60035 ],
         },
     },
 };
@@ -121,6 +109,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         theme: appTheme.SciChartJsTheme,
     });
 
+    // Create XAxis, and the 2 YAxes
     const xAxis = new NumericAxis(wasmContext, {
         labelPrecision: 0,
         autoTicks: false,
@@ -132,7 +121,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Force the visible range to always be a fixed value, overriding any zoom behaviour
     xAxis.visibleRangeChanged.subscribe(() => {
-        xAxis.visibleRange = new NumberRange(-3, 103);
+        xAxis.visibleRange = new NumberRange(-3, 103); // +-3 for extra padding
     });
 
     // 2 Y Axes (left and right)
@@ -148,7 +137,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         id: "femaleAxis",
     });
 
-    yAxisRight.visibleRangeChanged.subscribe((args) => {
+    // Sync the visible range of the 2 Y axes
+    yAxisRight.visibleRangeChanged.subscribe((args: any) => {
         if (args.visibleRange.min > 0) {
             yAxisRight.visibleRange = new NumberRange(0, args.visibleRange.max);
         }
@@ -166,7 +156,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         id: "maleAxis",
     });
 
-    yAxisLeft.visibleRangeChanged.subscribe((args) => {
+    // Sync the visible range of the 2 Y axes
+    yAxisLeft.visibleRangeChanged.subscribe((args: any) => {
         if (args.visibleRange.min > 0) {
             yAxisLeft.visibleRange = new NumberRange(0, args.visibleRange.max);
         }
@@ -178,7 +169,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const dataLabels: IStackedColumnSeriesDataLabelProviderOptions = {
         positionMode: EColumnDataLabelPosition.Outside,
-        style: { fontFamily: "Arial", fontSize: 12, padding: new Thickness(0, 3, 0, 3) },
+        style: { 
+            fontFamily: "Arial", 
+            fontSize: 12, 
+            padding: new Thickness(0, 3, 0, 3)
+        },
         color: "#EEEEEE",
         numericFormat: ENumericFormat.Engineering,
     };
@@ -241,6 +236,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     stackedColumnCollectionMale.add(maleChartEurope, maleChartAfrica);
     stackedColumnCollectionFemale.add(femaleChartEurope, femaleChartAfrica);
 
+    // add wave animation to the series
+    stackedColumnCollectionMale.animation = new WaveAnimation({ duration: 1000 });
+    stackedColumnCollectionFemale.animation = new WaveAnimation({ duration: 1000 });
+
     // manage data labels overlapping with custom layout manager
     sciChartSurface.dataLabelLayoutManager = new CustomDataLabelManager();
 
@@ -273,8 +272,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         maleLegend,
         femaleLegend
     );
+
+    // exclude Male series for the Female legend
     femaleLegend.includeSeries(maleChartEurope, false);
     femaleLegend.includeSeries(maleChartAfrica, false);
+
+    // exclude Female series for the Male legend
     maleLegend.includeSeries(femaleChartEurope, false);
     maleLegend.includeSeries(femaleChartAfrica, false);
 
