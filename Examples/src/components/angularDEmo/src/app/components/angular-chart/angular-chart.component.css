@@ -2,3 +2,66 @@
     width: 100%;
     /* height: 900px; */
 }
+    /* .flexOuterContainer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: #14233C;
+    }
+
+    .flexContainerRow {
+        display: flex;
+        flex: auto;
+        flex-basis: 33%;
+        justify-content: space-between;
+        align-content: stretch;
+        margin: 10px;
+        width: calc(100% - 10px);
+    }
+    .item {
+        flex: auto;
+        height: 100%
+    } */
+/* stacked-column-chart.component.css */
+.ChartWrapper {
+    /* Styles for ChartWrapper */
+}
+
+.flexOuterContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* Replace with your background styles */
+}
+
+.toolbarRow {
+    display: flex;
+    flex-basis: 70px;
+    padding: 10px;
+    width: 100%;
+    /* Additional toolbar row styles */
+}
+
+.chartArea {
+    flex: 1;
+    /* Additional chart area styles */
+}
+
+.btn-outer{
+    padding: 0.5rem;
+    background-color: #141b39;
+    color: #ffffff;
+}
+::ng-deep .mat-button-toggle-button{
+    padding: 1rem !important;
+    background-color: transparent;
+}
+::ng-deep .mat-button-toggle-button:focus-visible{
+    background-color: transparent !important;
+}
+::ng-deep .mat-pseudo-checkbox{
+    display: none !important;
+}

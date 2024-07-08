@@ -1,20 +1,34 @@
-import { Component } from '@angular/core';
-import { SciChart3DSurface, SciChartSurface } from 'scichart';
+// import { Component, OnInit } from '@angular/core';
+import { SciChart3DSurface, SciChartSurface,StackedColumnCollection } from 'scichart';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EXAMPLES_PAGES } from '../../services/angularExample';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Component, ElementRef, OnInit ,ViewChild, ViewContainerRef,NgZone } from "@angular/core";
+
 
 SciChartSurface.loadWasmFromCDN();
 SciChart3DSurface.loadWasmFromCDN();
 @Component({
   selector: 'app-angular-chart',
   templateUrl: './angular-chart.component.html',
-  styleUrl: './angular-chart.component.css'
+  styleUrl: './angular-chart.component.css',
+  
 })
-export class AngularChartComponent {
+export class AngularChartComponent implements OnInit{
+  
+
   drawChart:any;
   isreload:boolean = false;
+  html:boolean=false;
+  onInitHandler:any
+  onDeleteHandler:any;
+  initJustLineCharts:any;
+  additinal:any = false;
   
-  constructor(private router: Router,private route: ActivatedRoute){
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private zone: NgZone,private sanitizer: DomSanitizer,private viewContainerRef: ViewContainerRef){
+    
     
     route.params.subscribe((res:any)=>{
       let key = res.example;
@@ -26,6 +40,9 @@ export class AngularChartComponent {
     })
     
   }
+  ngOnInit(){
+ 
+  }
   checkChild(){
     const element = document.getElementById('chart') as HTMLDivElement;
 
@@ -35,11 +52,21 @@ if (element.childElementCount > 0) {
   return true;
 }
   }
+  selector:any = '';
   initChart(key:string){
     let exampleArr:any = EXAMPLES_PAGES;
     Object.values(exampleArr).forEach((page:any) => {
       if(page.path == key){
-        this.drawChart = page.drawExample
+        this.drawChart = page.drawExample;
+        
+        if(page.additinal){
+          this.html=true
+          this.additinal = page.additinal;
+        }
+        // if(page.json){
+        //   this.html = true;
+        //   this.fetchJsonData(page.json);
+        // }
       }
   });
     this.isreload = true;
@@ -50,4 +77,17 @@ if (element.childElementCount > 0) {
         this.router.navigate([currentUrl]);
     });
 }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -1,10 +1,22 @@
-<div id="chart"></div>
-<div class="chartCss">
-<ng-container *ngIf="checkChild()">
-    <scichart-angular
-    [initChart]="drawChart"
-    >
-</scichart-angular>
-</ng-container>
+
+<div class="chart-wrapper" *ngIf="additinal=='stackedColumnChart'">
+    <app-stack-chart></app-stack-chart>
+  </div>
+  <div id="chart"></div>
+  <ng-container *ngIf="!html">
+    <div class="chartCss">
+        <ng-container *ngIf="checkChild()">
+            <scichart-angular
+            [initChart]="drawChart"
+            >
+        </scichart-angular>
+    </ng-container>
 </div>
-  
+</ng-container>
+<!-- <div id="html"></div> -->
+<ng-container *ngIf="additinal=='lineChart'">
+    <app-line-chart></app-line-chart>
+</ng-container>
+<ng-container *ngIf="additinal=='realTimeMountainChart'">
+    <app-realTimeMountain-chart></app-realTimeMountain-chart>
+</ng-container>

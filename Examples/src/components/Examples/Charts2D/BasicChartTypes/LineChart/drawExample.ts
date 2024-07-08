@@ -30,8 +30,15 @@ import {
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
+// import { AppComponent } from "./angular";
+
 
 export const getChartsInitializationAPI = () => {
+    // const initTs = async () =>{ 
+    //     let method = new AppComponent();
+    //     console.log('method :', method);
+    //     method.initializeChart();
+    // }
     const createChartCommon = async (divId: string | HTMLDivElement, title: string, isVertical: boolean = false) => {
         // Create a SciChartSurface
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(divId, {
@@ -82,7 +89,7 @@ export const getChartsInitializationAPI = () => {
                 opacity: 1,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -98,7 +105,7 @@ export const getChartsInitializationAPI = () => {
                 opacity: 1,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -129,7 +136,7 @@ export const getChartsInitializationAPI = () => {
                 }),
                 animation: {
                     type: EAnimationType.Wave,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 },
+                    options: { duration: 500, delay: 200 },
                 },
                 // Optional DataLabels may be added via this property.
                 dataLabels: {
@@ -156,7 +163,7 @@ export const getChartsInitializationAPI = () => {
                 strokeThickness: 3,
                 animation: {
                     type: EAnimationType.Wave,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500, delay: 200 },
+                    options: { duration: 500, delay: 200 },
                 },
             })
         );
@@ -193,7 +200,7 @@ export const getChartsInitializationAPI = () => {
                 strokeDashArray: [2, 2],
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 },
+                    options: { duration: 750 },
                 },
             })
         );
@@ -210,7 +217,7 @@ export const getChartsInitializationAPI = () => {
                 strokeDashArray: [3, 3],
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -227,7 +234,7 @@ export const getChartsInitializationAPI = () => {
                 strokeDashArray: [10, 5],
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -286,7 +293,7 @@ export const getChartsInitializationAPI = () => {
                 strokeThickness: 5,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -321,7 +328,7 @@ export const getChartsInitializationAPI = () => {
                 onSelectedChanged,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 750 },
+                    options: { duration: 750 },
                 },
             })
         );
@@ -339,7 +346,7 @@ export const getChartsInitializationAPI = () => {
                 onSelectedChanged,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -357,7 +364,7 @@ export const getChartsInitializationAPI = () => {
                 onSelectedChanged,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             })
         );
@@ -394,7 +401,7 @@ export const getChartsInitializationAPI = () => {
                 }),
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 },
+                    options: { duration: 400, delay: 250 },
                 },
             })
         );
@@ -414,7 +421,7 @@ export const getChartsInitializationAPI = () => {
                 }),
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 400, delay: 250 },
+                    options: { duration: 400, delay: 250 },
                 },
             })
         );
@@ -574,6 +581,52 @@ export const getChartsInitializationAPI = () => {
 
         return { sciChartSurface, wasmContext };
     };
+//     const html = `<style>
+//     .flexOuterContainer {
+//         width: 100%;
+//         height: 100%;
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: space-between;
+//         background: #14233C;
+//     }
+
+//     .flexContainerRow {
+//         display: flex;
+//         flex: auto;
+//         flex-basis: 33%;
+//         justify-content: space-between;
+//         align-content: stretch;
+//         margin: 10px;
+//         width: calc(100% - 10px);
+//     }
+
+//     .item {
+//         flex: auto;
+//         height: 100%;
+//     }
+//   </style>
+//   <div style="aspect-ratio: 3/2">
+//      <div class="flexOuterContainer">
+//          <div class="flexContainerRow">
+//              <div class="item"><scichart-angular [initChart]="${initJustLineCharts}"></scichart-angular></div>
+//              <div class="item"><scichart-angular [initChart]="${initDigitalLineCharts}"></scichart-angular></div>
+//              <div class="item"><scichart-angular [initChart]="${initTooltipsOnLineCharts}"></scichart-angular></div>
+//          </div>
+//          <div class="flexContainerRow">
+//              <div class="item"><scichart-angular [initChart]="this.drawChart.initDashedLineCharts"></scichart-angular></div>
+//              <div class="item"><scichart-angular [initChart]="this.drawChart.initPalettedLineCharts"></scichart-angular></div>
+//              <div class="item"><scichart-angular [initChart]="this.drawChart.initHoveredLineCharts"></scichart-angular></div>
+//          </div>
+//          <div class="flexContainerRow">
+//              <div class="item"><scichart-angular [initChart]="this.drawChart.initGapsInLineCharts"></scichart-angular></div>
+//              <div class="item"><scichart-angular [initChart]="this.drawChart.initVerticalLineCharts"></scichart-angular></div>
+//              <div class="item"><scichart-angular [initChart]="drawChart.initThresholdedLineCharts"></scichart-angular></div>
+//          </div>
+//      </div>
+//   </div>
+
+//         `;
 
     return {
         initJustLineCharts,
@@ -585,5 +638,7 @@ export const getChartsInitializationAPI = () => {
         initGapsInLineCharts,
         initVerticalLineCharts,
         initThresholdedLineCharts,
+        // html,
+        // initTs
     };
 };
