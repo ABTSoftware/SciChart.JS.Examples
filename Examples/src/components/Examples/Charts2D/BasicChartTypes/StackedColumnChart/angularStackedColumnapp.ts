@@ -47,7 +47,10 @@ SciChart3DSurface.loadWasmFromCDN();
           <mat-button-toggle [value]="true" color="primary">100% Stacked mode</mat-button-toggle>
         </mat-button-toggle-group>
     </div>
-    <div id="chart"></div>`,
+    <scichart-angular
+            [initChart]="drawChart"
+            >
+        </scichart-angular>`,
 })
 export class StackeAppComponent  {
     title = "scichart-angular-app";
@@ -55,7 +58,7 @@ export class StackeAppComponent  {
     drawExample = drawExample;
 
     ngAfterViewInit(): void {
-          this.initializeChart();
+        //   this.initializeChart();
     }
       
 
@@ -64,12 +67,12 @@ export class StackeAppComponent  {
   private use100PercentStackedMode = false;
   
   
-  private async initializeChart(): Promise<void> {
-      const { sciChartSurface, stackedColumnCollection } = await this.drawExample();
-      this.sciChartSurface = sciChartSurface;
-      this.stackedColumnCollection = stackedColumnCollection;
+//   private async initializeChart(): Promise<void> {
+//       const { sciChartSurface, stackedColumnCollection } = await this.drawExample;
+//       this.sciChartSurface = sciChartSurface;
+//       this.stackedColumnCollection = stackedColumnCollection;
   
-  }
+//   }
   ngOnDestroy(){
     this.disposeChart()
   }

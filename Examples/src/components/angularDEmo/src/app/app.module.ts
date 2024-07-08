@@ -10,7 +10,7 @@ import { ScichartAngularComponent } from 'scichart-angular';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
 import {AppLineChartComponent } from '../../../Examples/Charts2D/BasicChartTypes/LineChart/angularLineApp';
-import {StackeAppComponent} from '../.././../Examples/Charts2D/BasicChartTypes/StackedColumnChart/angularStackedColumnapp';
+// import {StackeAppComponent} from '../.././../Examples/Charts2D/BasicChartTypes/StackedColumnChart/angularStackedColumnapp';
 import {AppRealTimeMountainComponent} from '../../../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/angularrealTimeMountainapp'
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import {AppRealTimeMountainComponent} from '../../../Examples/Charts2D/BasicChar
     AngularExamplesComponent,
     AngularChartComponent,
     AppLineChartComponent,
-    StackeAppComponent,
+    // StackeAppComponent,
     AppRealTimeMountainComponent
   ],
   imports: [

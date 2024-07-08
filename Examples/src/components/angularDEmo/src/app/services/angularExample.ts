@@ -1,6 +1,6 @@
 import { ExampleStrings } from "./ExampleStrings";
 import * as bandSeriesChartExampleInfo from "../../../../Examples/Charts2D/BasicChartTypes/BandSeriesChart/drawExample";
-import * as splineBandSeriesChartExampleInfo from "../../../../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart/drawExample";
+// import * as splineBandSeriesChartExampleInfo from "../../../../Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart/drawExample";
 import * as digitalBandSeriesChartExampleInfo from "../../../../Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart/drawExample";
 import * as fanChartExampleInfo  from "../../../../Examples/Charts2D/BasicChartTypes/FanChart/drawExample";
 import * as ohlcChartExampleInfo from "../../../../Examples/Charts2D/BasicChartTypes/OhlcChart/drawExample";
@@ -18,7 +18,7 @@ import * as secondaryYAxesExampleInfo from "../../../../Examples/Charts2D/Modify
 import * as verticalChartsExampleInfo from "../../../../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/drawExample";
 import * as centralAxesExampleInfo from "../../../../Examples/Charts2D/ModifyAxisBehavior/CentralAxes/drawExample";
 import * as verticallyStackedAxesExampleInfo from "../../../../Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/drawExample";
-import * as stackedColumnChartExampleInfo from "../../../../Examples/Charts2D/BasicChartTypes/StackedColumnChart/drawExample";
+// import * as stackedColumnChartExampleInfo from "../../../../Examples/Charts2D/BasicChartTypes/StackedColumnChart/drawExample";
 
 // import * as stackedColumnChartExampleInfoTs from "../../../../Examples/Charts2D/BasicChartTypes/StackedColumnChart/angular-chart";
 import * as stackedMountainChartExampleInfo from "../../../../Examples/Charts2D/BasicChartTypes/StackedMountainChart/drawExample";
@@ -49,7 +49,7 @@ import * as donutChartExampleInfo from "../../../../Examples/Charts2D/BasicChart
 import * as pieChartExampleInfo from "../../../../Examples/Charts2D/BasicChartTypes/PieChart/drawExample";
 import * as realTimeMountainChartExampleInfo from "../../../../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/drawExample";
 // import * as annotationsAreEasyExampleInfo from "../../../../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/drawExample";
-import * as tradeMarkerAnnotationsExampleInfo from "../../../../Examples/Charts2D/ChartAnnotations/TradeMarkers/drawExample";
+// import * as tradeMarkerAnnotationsExampleInfo from "../../../../Examples/Charts2D/ChartAnnotations/TradeMarkers/drawExample";
 // import * as realtimeGhostedTracesExampleInfo from "../../../../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces/drawExample";
 import * as multiPaneStockChartsExampleInfo from "../../../../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/drawExample";
 // import * as realtimeTickingStockChartsExampleInfo from "../../../../Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts/drawExample";
@@ -116,12 +116,12 @@ export const EXAMPLES_PAGES = {
         title: ExampleStrings.titleBandChart(framework),
         drawExample: bandSeriesChartExampleInfo.drawExample
     },
-    chart2D_basicCharts_SplineBandChart: {
-        id: "chart2D_basicCharts_SplineBandChart",
-        path: "spline-band-chart",
-        title: "Angular Spline Band Chart",
-        drawExample: splineBandSeriesChartExampleInfo.drawExample
-    },
+    // chart2D_basicCharts_SplineBandChart: {
+    //     id: "chart2D_basicCharts_SplineBandChart",
+    //     path: "spline-band-chart",
+    //     title: "Angular Spline Band Chart",
+    //     drawExample: splineBandSeriesChartExampleInfo.drawExample
+    // },
     chart2D_basicCharts_DigitalBandSeriesChart: {
         id: "chart2D_basicCharts_DigitalBandSeriesChart",
         path: "digital-band-chart",
@@ -256,13 +256,13 @@ export const EXAMPLES_PAGES = {
         path: ExampleStrings.urlRotatedLabels,
         drawExample: rotatedLabelsExampleInfo.drawExample,
     },
-    chart2D_basicCharts_StackedColumnChart: {
-        id: "chart2D_basicCharts_StackedColumnChart",
-        title: ExampleStrings.titleStackedColumnChart(framework),
-        path: ExampleStrings.urlStackedColumnChart,
-        additinal: 'stackedColumnChart',
-        drawExample: stackedColumnChartExampleInfo,
-    },
+    // chart2D_basicCharts_StackedColumnChart: {
+    //     id: "chart2D_basicCharts_StackedColumnChart",
+    //     title: ExampleStrings.titleStackedColumnChart(framework),
+    //     path: ExampleStrings.urlStackedColumnChart,
+    //     additinal: 'stackedColumnChart',
+    //     drawExample: stackedColumnChartExampleInfo,
+    // },
     chart2D_basicCharts_StackedMountainChart: {
         id: "chart2D_basicCharts_StackedMountainChart",
         title: ExampleStrings.titleStackedMountainChart(framework),
@@ -421,12 +421,12 @@ export const EXAMPLES_PAGES = {
     //     path: ExampleStrings.urlEditableAnnotations,
     //     drawExample:editableAnnotationsExampleInfo.drawExample,
     // },
-    chart2D_chartAnnotations_TradeMarkers: {
-        id: "chart2D_chartAnnotations_TradeMarkers",
-        title: ExampleStrings.titleTradeMarkers(framework),
-        path: ExampleStrings.urlTradeMarkers,
-        drawExample:tradeMarkerAnnotationsExampleInfo.drawExample,
-    },
+    // chart2D_chartAnnotations_TradeMarkers: {
+    //     id: "chart2D_chartAnnotations_TradeMarkers",
+    //     title: ExampleStrings.titleTradeMarkers(framework),
+    //     path: ExampleStrings.urlTradeMarkers,
+    //     drawExample:tradeMarkerAnnotationsExampleInfo.drawExample,
+    // },
     chart2D_chartAnnotations_DragHorizontalThreshold: {
         id: "chart2D_chartAnnotations_DragHorizontalThreshold",
         title: ExampleStrings.titleDragHorizontalThreshold(framework),

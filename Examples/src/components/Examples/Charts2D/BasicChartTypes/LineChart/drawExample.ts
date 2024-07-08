@@ -283,7 +283,7 @@ export const getChartsInitializationAPI = () => {
                 strokeThickness: 5,
                 animation: {
                     type: EAnimationType.Sweep,
-                    options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 },
+                    options: { duration: 500 },
                 },
             }),
 
