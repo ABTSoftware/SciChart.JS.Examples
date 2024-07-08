@@ -1,21 +1,24 @@
-import {
-    FormControlLabel,
-    FormLabel,
-    InputLabel,
-    Mark,
-    MenuItem,
-    Radio,
-    RadioGroup,
-    Select,
-    Slider,
-} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import FormControl from "@material-ui/core/FormControl";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Alert from "@material-ui/lab/Alert";
-import AlertTitle from "@material-ui/lab/AlertTitle";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import Select from "@mui/material/Select";
+import Slider from "@mui/material/Slider";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import FormControl from "@mui/material/FormControl";
+import { makeStyles } from "@mui/styles";
+import Typography from "@mui/material/Typography";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+
+// Note: `Mark` needs to be imported directly from the module as it is no longer exported from `@mui/material`.
+// The direct import for Mark is as follows:
+import { Slider as MuiSlider } from "@mui/material";
+type Mark = typeof MuiSlider.prototype.defaultProps.marks;
+
 import * as React from "react";
 import { ESeriesType, SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";

@@ -1,7 +1,7 @@
 import * as React from "react";
-import Checkbox from "@material-ui/core/Checkbox";
+import Checkbox from "@mui/material/Checkbox";
 import classes from "../../../styles/Examples.module.scss";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import { ELegendOrientation, ELegendPlacement, LegendModifier, SciChartSurface } from "scichart";
 import { appTheme } from "../../../theme";
 import { drawExample } from "./drawExample";

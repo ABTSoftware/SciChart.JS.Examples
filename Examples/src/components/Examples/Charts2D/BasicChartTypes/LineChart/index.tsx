@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import * as React from "react";
 import { SciChartSurface } from "scichart";
 import classes from "../../../styles/Examples.module.scss";

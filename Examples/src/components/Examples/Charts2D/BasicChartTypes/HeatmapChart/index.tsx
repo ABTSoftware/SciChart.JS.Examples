@@ -1,8 +1,8 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
 import { appTheme } from "../../../theme";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import { SciChartSurface, HeatmapLegend } from "scichart";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, drawHeatmapLegend } from "./drawExample";

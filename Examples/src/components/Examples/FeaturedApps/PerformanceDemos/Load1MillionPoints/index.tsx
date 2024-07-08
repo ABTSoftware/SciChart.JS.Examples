@@ -1,8 +1,8 @@
-import Button from "@material-ui/core/Button";
-import Alert from "@material-ui/lab/Alert";
-import AlertTitle from "@material-ui/lab/AlertTitle";
+import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 import * as React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 
