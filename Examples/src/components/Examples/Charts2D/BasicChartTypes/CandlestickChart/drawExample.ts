@@ -34,13 +34,13 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { simpleBinanceRestClient } from "../../../ExampleData/binanceRestClient";
-export const divElementId = "chart";
-export const divOverviewId = "overview";
+import { ExampleDataProvider, TPriceBar } from "../../../ExampleData/ExampleDataProvider";
+
 const Y_AXIS_VOLUME_ID = "Y_AXIS_VOLUME_ID";
 
-export const drawExample = async () => {
+export const drawExample = (dataSource: string) => async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
@@ -74,19 +74,24 @@ export const drawExample = async () => {
         })
     );
 
-    // Fetch data from now to 300 1hr candles ago
-    const endDate = new Date(Date.now());
-    const startDate = new Date();
-    startDate.setHours(endDate.getHours() - 300);
-    const priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1h", startDate, endDate);
-
-    // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
     const xValues: number[] = [];
     const openValues: number[] = [];
     const highValues: number[] = [];
     const lowValues: number[] = [];
     const closeValues: number[] = [];
     const volumeValues: number[] = [];
+
+    // Fetch data from now to 300 1hr candles ago
+    const endDate = new Date(Date.now());
+    const startDate = new Date();
+    startDate.setHours(endDate.getHours() - 300);
+    let priceBars: TPriceBar[];
+    if (dataSource !== "Random") {
+        priceBars = await simpleBinanceRestClient.getCandles("BTCUSDT", "1h", startDate, endDate, 500, dataSource);
+    } else {
+        priceBars = ExampleDataProvider.getRandomCandles(300, 60000, startDate, 60 * 60);
+    }
+    // Maps PriceBar { date, open, high, low, close, volume } to structure-of-arrays expected by scichart
     priceBars.forEach((priceBar: any) => {
         xValues.push(priceBar.date);
         openValues.push(priceBar.open);
@@ -95,7 +100,6 @@ export const drawExample = async () => {
         closeValues.push(priceBar.close);
         volumeValues.push(priceBar.volume);
     });
-
     // Zoom to the latest 100 candles
     const startViewportRange = new Date();
     startViewportRange.setHours(startDate.getHours() - 100);
@@ -109,7 +113,7 @@ export const drawExample = async () => {
         highValues,
         lowValues,
         closeValues,
-        dataSeriesName: "BTC/USDT",
+        dataSeriesName: dataSource === "Random" ? "Random" : "BTC/USDT",
     });
     const candlestickSeries = new FastCandlestickRenderableSeries(wasmContext, {
         dataSeries: candleDataSeries,
@@ -186,12 +190,14 @@ export const drawExample = async () => {
 
     // Add Overview chart. This will automatically bind to the parent surface
     // displaying its series. Zooming the chart will zoom the overview and vice versa
-    const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
-        theme: appTheme.SciChartJsTheme,
-        transformRenderableSeries: getOverviewSeries,
-    });
 
-    return { sciChartSurface, overview, candlestickSeries, ohlcSeries };
+    //Exporting at the bottom by an object-
+    // const overview = await SciChartOverview.create(sciChartSurface, divOverviewId, {
+    //     theme: appTheme.SciChartJsTheme,
+    //     transformRenderableSeries: getOverviewSeries,
+    // });
+
+    return { sciChartSurface, candlestickSeries, ohlcSeries };
 };
 
 class VolumePaletteProvider implements IFillPaletteProvider {
@@ -272,4 +278,9 @@ const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
     }
     // hide all other series
     return undefined;
+};
+
+export const overviewOptions = {
+    theme: appTheme.SciChartJsTheme,
+    transformRenderableSeries: getOverviewSeries,
 };

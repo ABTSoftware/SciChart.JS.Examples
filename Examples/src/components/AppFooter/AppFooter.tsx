@@ -44,13 +44,27 @@ export default function AppFooter() {
                     menuItems={MENU_ITEMS_2D}
                     menuItemsId={MENU_ITEMS_2D_ID}
                 />
+                <FooterGrid
+                    historyPushPath={historyPushPath}
+                    title="3D Charts"
+                    menuItems={MENU_ITEMS_3D}
+                    menuItemsId={MENU_ITEMS_3D_ID}
+                />
                 <div className={classes.FooterBottomSection}>
-                    <FooterGrid
-                        historyPushPath={historyPushPath}
-                        title="3D Charts"
-                        menuItems={MENU_ITEMS_3D}
-                        menuItemsId={MENU_ITEMS_3D_ID}
-                    />
+                    <div className={classes.LinksBox}>
+                        <h5>Frameworks</h5>
+                        <div className={classes.divider}>
+                            <div className={classes.dividerBox}></div>
+                        </div>
+                        <div className={classes.RelatedLinks}>
+                            <a href="https://demo.scichart.com/react" title="SciChart Javascript Demos">
+                                SciChart Javascript Demos
+                            </a>
+                            <a href="https://demo.scichart.com/javascript" title="SciChart React Demos">
+                                SciChart React Demos
+                            </a>
+                        </div>
+                    </div>
                     <div className={classes.LinksBox}>
                         <h5>Quick Links</h5>
                         <div className={classes.divider}>

@@ -1,4 +1,4 @@
-import { generateChart } from "./generateChartImage";
+import { generateChart, generatePdf } from "./generateChartImage";
 import cors from "cors";
 import express from "express";
 import bodyParser from "body-parser";
@@ -19,6 +19,12 @@ app.use(compression());
 app.post("/export-chart", async (req, res, next) => {
     const buffer = await generateChart(req.body.appUrl);
     res.set("Content-Type", "image/png");
+    res.send(buffer);
+});
+
+app.post("/export-pdf", async (req, res, next) => {
+    const buffer = await generatePdf(req.body.appUrl);
+    res.set("Content-Type", "application/pdf");
     res.send(buffer);
 });
 
