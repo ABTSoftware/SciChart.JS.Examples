@@ -1,13 +1,13 @@
 import { FC, useContext, useState, useEffect, ChangeEvent } from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import CodeIcon from "@material-ui/icons/Code";
-import BookIcon from "@material-ui/icons/Book";
-import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import CodeIcon from "@mui/icons-material/Code";
+import BookIcon from "@mui/icons-material/Book";
+import { makeStyles } from "@mui/styles";
 import Search from "../Search/Search";
 import classes from "./AppTopBar.module.scss";
 import Logo from "../../images/scichart-logo-app-bar.svg";
@@ -134,6 +134,7 @@ const AppBarTop: FC<TProps> = (props) => {
                     : `Sorry, we have not got ${FRAMEWORK_NAME[selectedFramework]} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
             }
             target="_blank"
+            style={{ color: "white" }}
         >
             <CodeIcon fontSize="small" /> &nbsp;Code Sandbox
         </Button>
@@ -152,7 +153,7 @@ const AppBarTop: FC<TProps> = (props) => {
                 <Search />
                 <div className={classes.FlexPlaceholder}></div>
                 <FormControl className={localClasses.formControl}>
-                    <InputLabel id="framework-select-label" className={localClasses.label}>
+                    <InputLabel id="framework-select-label" className={localClasses.label} style={{ color: "white" }}>
                         Framework
                     </InputLabel>
                     <Select
@@ -176,6 +177,7 @@ const AppBarTop: FC<TProps> = (props) => {
                     href="https://www.scichart.com/getting-started/scichart-javascript/"
                     target="_blank"
                     title="Get a FREE Community license"
+                    style={{ color: "white" }}
                 >
                     Get it FREE
                 </Button>
@@ -184,8 +186,9 @@ const AppBarTop: FC<TProps> = (props) => {
                     href={contextualDocUrl}
                     title={contextualDocTitle}
                     target="_blank"
+                    style={{ color: "white" }}
                 >
-                    <BookIcon fontSize="small" />
+                    <BookIcon fontSize="small" style={{ color: "white" }} />
                     &nbsp;Docs
                 </Button>
                 {codeSandboxButton}
