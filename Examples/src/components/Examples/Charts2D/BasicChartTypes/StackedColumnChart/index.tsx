@@ -1,10 +1,11 @@
 import * as React from "react";
+import { useState } from "react";
 import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { SciChartSurface, StackedColumnCollection } from "scichart";
-import { drawExample, divElementId } from "./drawExample";
+import { drawExample } from "./drawExample";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
@@ -29,62 +30,63 @@ const useStyles = makeStyles((theme) => ({
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function StackedColumnChart() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const stackedColumnCollectionRef = React.useRef<StackedColumnCollection>();
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then((res) => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            stackedColumnCollectionRef.current = res.stackedColumnCollection;
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
+    const [controls, setControls] = useState<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
+    const [areDataLabelsVisible, setAreDataLabelsVisible] = React.useState(true);
 
     const handleUsePercentage = (event: any, value: boolean) => {
-        if (value !== null) {
+        if (value !== null && controls) {
             console.log(`100% stacked? ${value}`);
             setUse100PercentStackedMode(value);
             // Toggle 100% mode on click
-            stackedColumnCollectionRef.current.isOneHundredPercent = value;
-            sciChartSurfaceRef.current.zoomExtents(200);
+            controls.toggleHundredPercentMode(value);
         }
+    };
+
+    const handleToggleDataLabels = () => {
+        setAreDataLabelsVisible(!areDataLabelsVisible);
+        controls.toggleDataLabels(areDataLabelsVisible);
     };
 
     const localClasses = useStyles();
     return (
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
-                <ToggleButtonGroup
-                    className={localClasses.toolbarRow}
-                    exclusive
-                    value={use100PercentStackedMode}
-                    onChange={handleUsePercentage}
-                    size="small"
-                    color="primary"
-                    aria-label="small outlined button group"
-                >
-                    <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
-                        Stacked mode
-                    </ToggleButton>
-                    <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
-                        100% Stacked mode
-                    </ToggleButton>
-                </ToggleButtonGroup>
-                <div id={divElementId} className={localClasses.chartArea} />
+                <div className={localClasses.toolbarRow}>
+                    <ToggleButtonGroup
+                        className={localClasses.toolbarRow}
+                        exclusive
+                        size="small"
+                        value={use100PercentStackedMode}
+                        onChange={handleUsePercentage}
+                        color="primary"
+                        aria-label="small outlined button group"
+                    >
+                        <ToggleButton value={false} style={{ color: appTheme.ForegroundColor }}>
+                            Stacked&nbsp;mode
+                        </ToggleButton>
+                        <ToggleButton value={true} style={{ color: appTheme.ForegroundColor }}>
+                            100%&nbsp;Stacked&nbsp;mode
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+
+                    <ToggleButtonGroup style={{ marginLeft: "auto" }} className={localClasses.toolbarRow} size="small">
+                        <ToggleButton
+                            value={areDataLabelsVisible}
+                            style={{ color: appTheme.ForegroundColor }}
+                            onClick={handleToggleDataLabels}
+                        >
+                            {areDataLabelsVisible ? "Hide" : "Show"}&nbsp;Data&nbsp;Labels
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+                </div>
+                <SciChartReact
+                    initChart={drawExample}
+                    className={localClasses.chartArea}
+                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                        setControls(initResult.controls);
+                    }}
+                />
             </div>
         </div>
     );

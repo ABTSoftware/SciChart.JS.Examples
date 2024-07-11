@@ -34,27 +34,6 @@ export default function StackedMountainChart() {
     const stackedMountainCollectionRef = React.useRef<StackedMountainCollection>();
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
 
-    // React.useEffect(() => {
-    //     const chartInitializationPromise = drawExample().then((res) => {
-    //         sciChartSurfaceRef.current = res.sciChartSurface;
-    //         stackedMountainCollectionRef.current = res.stackedMountainCollection;
-    //     });
-
-    //     // Delete sciChartSurface on unmount component to prevent memory leak
-    //     return () => {
-    //         // check if chart is already initialized
-    //         if (sciChartSurfaceRef.current) {
-    //             sciChartSurfaceRef.current.delete();
-    //             return;
-    //         }
-
-    //         // else postpone deletion
-    //         chartInitializationPromise.then(() => {
-    //             sciChartSurfaceRef.current.delete();
-    //         });
-    //     };
-    // }, []);
-
     const handleUsePercentage = (event: any, value: boolean) => {
         if (value !== null) {
             console.log(`100% stacked? ${value}`);

@@ -28,6 +28,7 @@ import {
     MouseWheelZoomModifier,
     ZoomPanModifier,
     ZoomExtentsModifier,
+    NumberRange,
 } from "scichart";
 export const divElementId = "chart";
 let loadCount = 0;
@@ -356,7 +357,14 @@ export const drawExample = async (updateMessages, seriesType) => {
         for (let i = 0; i < seriesCount; i++) {
             appendData(dataSeriesArray[i], dataSeriesType, i, data.x, data.ys, pointsOnChart, pointsPerUpdate);
         }
-        sciChartSurface.zoomExtents(0);
+        if (dataSeriesArray[0].count() < pointsOnChart) {
+            xAxis.visibleRange = new NumberRange(xAxis.visibleRange.min, xAxis.visibleRange.max + pointsPerUpdate);
+        } else {
+            xAxis.visibleRange = new NumberRange(
+                xAxis.visibleRange.min + pointsPerUpdate,
+                xAxis.visibleRange.max + pointsPerUpdate
+            );
+        }
         loadTime = new Date().getTime() - loadStart;
     };
     sciChartSurface.preRender.subscribe(() => {

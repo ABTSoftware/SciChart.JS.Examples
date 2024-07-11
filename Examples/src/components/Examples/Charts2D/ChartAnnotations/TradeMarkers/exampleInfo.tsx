@@ -23,7 +23,7 @@ const documentationLinks: TDocumentationLink[] = [
 
 const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to add Buy/Sell Markers (annotations) and News/Dividend bullets to a{" "}
+        Demonstrates how to add Hoverable Buy/Sell Markers (annotations) and News/Dividend bullets to a{" "}
         <strong>{frameworkName} Stock Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts

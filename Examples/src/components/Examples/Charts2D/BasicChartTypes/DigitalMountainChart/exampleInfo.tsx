@@ -14,7 +14,7 @@ const tips = [
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDigitalMountainChartDocumentation,
-        title: ExampleStrings.titleDigitalMountainChart,
+        title: "Digital Mountain Chart",
         linkTitle: "JavaScript Digital Mountain Chart Documentation",
     },
 ];

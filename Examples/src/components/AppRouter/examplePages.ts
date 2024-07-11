@@ -31,6 +31,7 @@ import { multipleXAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavio
 import { secondaryYAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/exampleInfo";
 import { verticalChartsExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/exampleInfo";
 import { centralAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes/exampleInfo";
+import { staticAxisExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/StaticAxis/exampleInfo";
 import { verticallyStackedAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/exampleInfo";
 import { stackedColumnChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedColumnChart/exampleInfo";
 import { stackedColumnSideBySideExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide/exampleInfo";
@@ -105,7 +106,10 @@ import { dynamicLayoutExampleInfo } from "../Examples/FeaturedApps/ShowCases/Dyn
 import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/exampleInfo";
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
+import { populationPyramidExampleInfo } from "../Examples/FeaturedApps/ShowCases/PopulationPyramid/exampleInfo";
 import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
+import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -314,6 +318,10 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart2D_createStockCharts_DepthChart",
         ...depthChartExampleInfo,
     },
+    chart2D_createStockCharts_SharedChart: {
+        id: "chart2D_createStockCharts_SharedChart",
+        ...userAnnotatedStockChartExampleInfo,
+    },
     chart2D_legends_ChartLegendsAPI: {
         id: "chart2D_legends_ChartLegendsAPI",
         ...chartLegendsAPIExampleInfo,
@@ -333,6 +341,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_modifyAxisBehavior_CentralAxes: {
         id: "chart2D_modifyAxisBehavior_CentralAxes",
         ...centralAxesExampleInfo,
+    },
+    chart2D_modifyAxisBehavior_StaticAxis: {
+        id: "chart2D_modifyAxisBehavior_StaticAxis",
+        ...staticAxisExampleInfo,
     },
     chart2D_modifyAxisBehavior_VerticallyStackedAxes: {
         id: "chart2D_modifyAxisBehavior_VerticallyStackedAxes",
@@ -369,6 +381,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_basicCharts_StackedMountainChart: {
         id: "chart2D_basicCharts_StackedMountainChart",
         ...stackedMountainChartExampleInfo,
+    },
+    chart2D_basicCharts_SmoothStackedMountainChart: {
+        id: "chart2D_basicCharts_SmoothStackedMountainChart",
+        ...smoothStackedMountainChartExampleInfo,
     },
     chart2D_stylingAndTheming_UsePointMarkers: {
         id: "chart2D_stylingAndTheming_UsePointMarkers",
@@ -450,6 +466,10 @@ export const EXAMPLES_PAGES = asRecord({
         id: "chart2D_zoomAndPanAChart_VirtualizedDataOverview",
         ...virtualizedDataOverviewExampleInfo,
     },
+    // chart2D_zoomAndPanAChart_ZoomHighPrecision: {
+    //     id: "chart2D_zoomAndPanAChart_ZoomHighPrecision",
+    //     ...zoomHighPrecisionExampleInfo,
+    // },
     chart2D_filters_PercentageChange: {
         id: "chart2D_filters_PercentageChange",
         ...percentageChangeExampleInfo,
@@ -549,6 +569,10 @@ export const EXAMPLES_PAGES = asRecord({
     featuredApps_showcases_eventMarkers: {
         id: "featuredApps_showcases_eventMarkers",
         ...eventMarkersExampleInfo,
+    },
+    featuredApps_showcases_populationPyramid: {
+        id: "featuredApps_showcases_populationPyramid",
+        ...populationPyramidExampleInfo,
     },
     builderApi_simplechart: {
         id: "builderApi_simplechart",

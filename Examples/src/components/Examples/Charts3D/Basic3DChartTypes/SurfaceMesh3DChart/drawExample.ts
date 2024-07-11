@@ -106,7 +106,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
     sciChart3DSurface.chartModifiers.add(new TooltipModifier3D({ tooltipContainerBackground: appTheme.PaleBlue }));
 
-    // return { sciChart3DSurface, wasmContext };
     return { sciChartSurface: sciChart3DSurface, wasmContext };
 };
 

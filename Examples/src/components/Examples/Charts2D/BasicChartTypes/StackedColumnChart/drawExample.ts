@@ -1,8 +1,5 @@
 import {
-    ELegendOrientation,
-    ELegendPlacement,
     ENumericFormat,
-    LegendModifier,
     MouseWheelZoomModifier,
     NumericAxis,
     SciChartSurface,
@@ -12,14 +9,17 @@ import {
     XyDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier,
+    EColumnDataLabelPosition,
+    IStackedColumnSeriesDataLabelProviderOptions,
+    EVerticalTextPosition,
+    NumberRange,
+    Thickness,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-export const divElementId = "chart";
-
-export const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
@@ -40,6 +40,7 @@ export const drawExample = async () => {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             labelPrecision: 0,
+            growBy: new NumberRange(0, 0.05),
             axisTitle: "Sales $USD (Billion)",
         })
     );
@@ -52,77 +53,88 @@ export const drawExample = async () => {
     const yValues4 = [16, 10, 9, 8, 22, 14, 12, 27, 25, 23, 17, 17];
     const yValues5 = [7, 24, 21, 11, 19, 17, 14, 27, 26, 22, 28, 16];
 
+    const dataLabels: IStackedColumnSeriesDataLabelProviderOptions = {
+        color: "#FFfFFF",
+        style: { fontSize: 12, fontFamily: "Arial", padding: new Thickness(0, 0, 2, 0) },
+        precision: 0,
+        positionMode: EColumnDataLabelPosition.Outside,
+        verticalTextPosition: EVerticalTextPosition.Center,
+    };
+
     // Create some RenderableSeries - for each part of the stacked column
     // Notice the stackedGroupId. This defines if series are stacked (same), or grouped side by side (different)
     const rendSeries1 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues1, dataSeriesName: "EU" }),
         fill: appTheme.VividPurple,
         stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
+        dataLabels,
     });
 
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues2, dataSeriesName: "Asia" }),
         fill: appTheme.VividPink,
         stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
+        dataLabels,
     });
 
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues3, dataSeriesName: "USA" }),
         fill: appTheme.VividOrange,
         stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
+        dataLabels,
     });
 
     const rendSeries4 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues4, dataSeriesName: "UK" }),
         fill: appTheme.VividSkyBlue,
         stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
+        dataLabels,
     });
 
     const rendSeries5 = new StackedColumnRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: yValues5, dataSeriesName: "Latam" }),
         fill: appTheme.VividTeal,
         stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
         opacity: 0.8,
         stackedGroupId: "StackedGroupId",
+        dataLabels,
     });
 
     // To add the series to the chart, put them in a StackedColumnCollection
-    const stackedColumnCollection = new StackedColumnCollection(wasmContext);
-    stackedColumnCollection.dataPointWidth = 0.6;
+    const stackedColumnCollection = new StackedColumnCollection(wasmContext, {
+        dataPointWidth: 0.6,
+    });
+
     stackedColumnCollection.add(rendSeries1, rendSeries2, rendSeries3, rendSeries4, rendSeries5);
     stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
 
-    // Add the Stacked Column collection to the chart
     sciChartSurface.renderableSeries.add(stackedColumnCollection);
 
     // Add some interactivity modifiers
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
-    // Add a legend to the chart to show the series
-    sciChartSurface.chartModifiers.add(
-        new LegendModifier({
-            placement: ELegendPlacement.TopLeft,
-            orientation: ELegendOrientation.Vertical,
-            showLegend: true,
-            showCheckboxes: false,
-            showSeriesMarkers: true,
-        })
-    );
-
     sciChartSurface.zoomExtents();
 
-    return { wasmContext, sciChartSurface, stackedColumnCollection };
+    const toggleHundredPercentMode = (value: boolean) => {
+        stackedColumnCollection.isOneHundredPercent = value;
+        sciChartSurface.zoomExtents(200);
+    };
+
+    const toggleDataLabels = (areDataLabelsVisible: boolean) => {
+        for (let i = 0; i < 5; i++) {
+            const columnSeries = stackedColumnCollection.get(i);
+            columnSeries.dataLabelProvider.style.fontSize = areDataLabelsVisible ? 0 : 12;
+        }
+        sciChartSurface.invalidateElement();
+    };
+
+    return { sciChartSurface, controls: { toggleHundredPercentMode, toggleDataLabels } };
 };
