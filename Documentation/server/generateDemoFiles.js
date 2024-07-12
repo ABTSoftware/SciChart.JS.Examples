@@ -106,7 +106,7 @@ const makeNav = (entry) => {
     let html = `<li><a href="${entry.url}">${entry.name}</a>
 `;
     if (!entry.isDemo && entry.entries.length > 0) {
-        html += `<ul>
+        html += `<ul class="list">
 `;
         for (const folder of entry.entries) {
             html += makeNav(folder);
@@ -122,7 +122,89 @@ walk(baseDir, (err, entry) => {
     if (!entry)
         return;
     //console.log(JSON.stringify(entry, undefined, 2));
-    let html = `<ul>
+    let html = `<style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #searchContainer {
+            position: relative;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        #searchBox {
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
+        #clearButton {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 4px 8px;
+        }
+        li.hidden {
+            display: none;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+    <div id="searchContainer">
+        <input type="text" id="searchBox" placeholder="Search...">
+        <button id="clearButton">&times;</button>
+    </div>
+    <script>
+        console.log("Adding search event listener");
+        document.getElementById('searchBox').addEventListener('keyup', filterList);
+        document.getElementById('clearButton').addEventListener('click', clearSearch);
+
+        function filterList() {
+            let filter = document.getElementById('searchBox').value.toLowerCase();
+            let items = document.querySelectorAll('#list li');
+
+            items.forEach(function(item) {
+                let text = item.textContent.toLowerCase();
+                let originalText = item.textContent;
+
+                if (text.includes(filter) && filter !== '') {
+                    item.classList.remove('hidden');
+                    // let index = text.lastIndexOf(filter);
+                    // let match = originalText.substring(index, index + filter.length);                             
+                    // @ts-ignore
+                    // item.innerHTML = originalText.replace(match, \`<span class="highlight">\` + match + \`</span>\`);                    
+                } else {
+                    item.classList.add('hidden');
+                }
+                if (filter === '') {
+                    item.classList.remove('hidden');
+                    // Clear previous highlights
+                    // item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');
+                }
+            });
+        }
+
+        function clearSearch() {
+            document.getElementById('searchBox').value = '';
+            let items = document.querySelectorAll('#list li');
+            items.forEach(function(item) {
+                item.classList.remove('hidden');
+                // Clear previous highlights
+                // item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');
+            });
+        }
+    </script>
+`;
+    html += `<ul id="list">
 `;
     for (const folder of entry.entries) {
         html += makeNav(folder);
