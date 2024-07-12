@@ -5,7 +5,6 @@ import { EXAMPLES_PAGES } from '../../services/angularExample';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Component, ElementRef, OnInit ,ViewChild, ViewContainerRef,NgZone } from "@angular/core";
 
-
 SciChartSurface.loadWasmFromCDN();
 SciChart3DSurface.loadWasmFromCDN();
 @Component({
@@ -58,10 +57,10 @@ if (element.childElementCount > 0) {
     Object.values(exampleArr).forEach((page:any) => {
       if(page.path == key){
         this.drawChart = page.drawExample;
-        
+        // console.log("page.additinal", page.additinal)
         if(page.additinal){
           this.html=true
-          this.additinal = page.additinal;
+          this.additinal = page.id;
         }
         // if(page.json){
         //   this.html = true;

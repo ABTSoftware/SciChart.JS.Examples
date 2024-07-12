@@ -35,10 +35,16 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./Examples/Charts2D/AxisLabelCustomization/ImageLabels/images/",
+                "output": "./Examples/Charts2D/AxisLabelCustomization/ImageLabels/images/"
+              }
             ],
             "styles": [
               "src/styles.css"
+              
             ],
             "scripts": []
           },

@@ -1,7 +1,4 @@
 
-<!-- <div class="chart-wrapper" *ngIf="additinal=='stackedColumnChart'">
-    <app-stack-chart></app-stack-chart>
-  </div> -->
   <div id="chart"></div>
   <ng-container *ngIf="!html">
     <div class="chartCss">
@@ -13,10 +10,9 @@
     </ng-container>
 </div>
 </ng-container>
-<!-- <div id="html"></div> -->
-<ng-container *ngIf="additinal=='lineChart'">
+<ng-container *ngIf="additinal=='chart2D_basicCharts_LineChart'">
     <app-line-chart></app-line-chart>
 </ng-container>
-<ng-container *ngIf="additinal=='realTimeMountainChart'">
+<ng-container *ngIf="additinal=='chart2D_basicCharts_RealtimeMountainChart'">
     <app-realTimeMountain-chart></app-realTimeMountain-chart>
 </ng-container>
