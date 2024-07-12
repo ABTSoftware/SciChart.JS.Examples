@@ -45,7 +45,7 @@
     "react-transition-group": "^4.4.5",
     "request": "^2.88.2",
     "rxjs": "^7.5.6",
-    "scichart": "^3.3.592",
+    "scichart": "^3.4.643",
     "scichart-angular": "^0.0.2",
     "scichart-react": "^0.1.8",
     "socket.io": "^4.5.2",
