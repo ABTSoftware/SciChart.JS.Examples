@@ -25,6 +25,7 @@ import {
     SciChartSurface,
     SeriesSelectionModifier,
     Thickness,
+    VerticalSliceModifier,
     XyDataSeries,
 } from "scichart";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
@@ -167,12 +168,14 @@ export const getChartsInitializationAPI = () => {
                 rolloverLineStroke: appTheme.VividOrange,
                 rolloverLineStrokeThickness: 2,
                 rolloverLineStrokeDashArray: [2, 2],
+            }),
+            new VerticalSliceModifier({
+                rolloverLineStroke: appTheme.VividOrange,
+                rolloverLineStrokeThickness: 2,
+                xCoordinateMode: ECoordinateMode.DataValue,
+                x1: 15,
             })
         );
-        // FOR DEMO PURPOSE ONLY - fake a mouse event so the tooltip shows without rollover.
-        sciChartSurface.mouseManager.modifierMouseMove({
-            mousePoint: new Point((sciChartSurface.renderSurface.viewportSize.width * 2) / 3, 10),
-        } as ModifierMouseArgs);
 
         return { sciChartSurface, wasmContext };
     };
