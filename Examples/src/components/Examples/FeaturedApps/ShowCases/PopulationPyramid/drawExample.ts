@@ -5,7 +5,6 @@ import {
     NumericAxis,
     XyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier,
     SciChartSurface,
     ENumericFormat,
     EColumnDataLabelPosition,
@@ -19,6 +18,7 @@ import {
     IStackedColumnSeriesDataLabelProviderOptions,
     BottomAlignedOuterHorizontallyStackedAxisLayoutStrategy,
     ELegendPlacement,
+    WaveAnimation,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -121,6 +121,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         theme: appTheme.SciChartJsTheme,
     });
 
+    // Create XAxis, and the 2 YAxes
     const xAxis = new NumericAxis(wasmContext, {
         labelPrecision: 0,
         autoTicks: false,
@@ -132,7 +133,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // Force the visible range to always be a fixed value, overriding any zoom behaviour
     xAxis.visibleRangeChanged.subscribe(() => {
-        xAxis.visibleRange = new NumberRange(-3, 103);
+        xAxis.visibleRange = new NumberRange(-3, 103); // +-3 for extra padding
     });
 
     // 2 Y Axes (left and right)
@@ -148,7 +149,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         id: "femaleAxis",
     });
 
-    yAxisRight.visibleRangeChanged.subscribe((args) => {
+    // Sync the visible range of the 2 Y axes
+    yAxisRight.visibleRangeChanged.subscribe((args: any) => {
         if (args.visibleRange.min > 0) {
             yAxisRight.visibleRange = new NumberRange(0, args.visibleRange.max);
         }
@@ -166,7 +168,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         id: "maleAxis",
     });
 
-    yAxisLeft.visibleRangeChanged.subscribe((args) => {
+    // Sync the visible range of the 2 Y axes
+    yAxisLeft.visibleRangeChanged.subscribe((args: any) => {
         if (args.visibleRange.min > 0) {
             yAxisLeft.visibleRange = new NumberRange(0, args.visibleRange.max);
         }
@@ -178,7 +181,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     const dataLabels: IStackedColumnSeriesDataLabelProviderOptions = {
         positionMode: EColumnDataLabelPosition.Outside,
-        style: { fontFamily: "Arial", fontSize: 12, padding: new Thickness(0, 3, 0, 3) },
+        style: {
+            fontFamily: "Arial",
+            fontSize: 12,
+            padding: new Thickness(0, 3, 0, 3),
+        },
         color: "#EEEEEE",
         numericFormat: ENumericFormat.Engineering,
     };
@@ -241,6 +248,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     stackedColumnCollectionMale.add(maleChartEurope, maleChartAfrica);
     stackedColumnCollectionFemale.add(femaleChartEurope, femaleChartAfrica);
 
+    // add wave animation to the series
+    stackedColumnCollectionMale.animation = new WaveAnimation({ duration: 1000 });
+    stackedColumnCollectionFemale.animation = new WaveAnimation({ duration: 1000 });
+
     // manage data labels overlapping with custom layout manager
     sciChartSurface.dataLabelLayoutManager = new CustomDataLabelManager();
 
@@ -273,8 +284,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         maleLegend,
         femaleLegend
     );
+
+    // exclude Male series for the Female legend
     femaleLegend.includeSeries(maleChartEurope, false);
     femaleLegend.includeSeries(maleChartAfrica, false);
+
+    // exclude Female series for the Male legend
     maleLegend.includeSeries(femaleChartEurope, false);
     maleLegend.includeSeries(femaleChartAfrica, false);
 
