@@ -66,7 +66,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         positionMode: EColumnDataLabelPosition.Outside,
         verticalTextPosition: EVerticalTextPosition.Center,
         precision: 0,
-    }
+    };
 
     // Create some RenderableSeries - for each part of the stacked column
     // Notice the stackedGroupId. This defines if series are stacked (same), or grouped side by side (different)
@@ -75,7 +75,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         fill: appTheme.VividPink,
         stroke: "white",
         stackedGroupId: "Group0",
-        dataLabels
+        dataLabels,
     });
 
     const rendSeries2 = new StackedColumnRenderableSeries(wasmContext, {
@@ -83,7 +83,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         fill: appTheme.VividOrange,
         stroke: "white",
         stackedGroupId: "Group1",
-        dataLabels
+        dataLabels,
     });
 
     const rendSeries3 = new StackedColumnRenderableSeries(wasmContext, {
@@ -91,7 +91,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         fill: appTheme.VividSkyBlue,
         stroke: "white",
         stackedGroupId: "Group2",
-        dataLabels
+        dataLabels,
     });
 
     // To add the series to the chart, put them in a StackedColumnCollection

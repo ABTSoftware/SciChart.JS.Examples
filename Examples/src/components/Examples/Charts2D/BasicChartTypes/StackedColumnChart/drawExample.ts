@@ -17,11 +17,9 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-export const divElementId = "chart";
-
-export const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 
@@ -55,13 +53,13 @@ export const drawExample = async () => {
     const yValues4 = [16, 10, 9, 8, 22, 14, 12, 27, 25, 23, 17, 17];
     const yValues5 = [7, 24, 21, 11, 19, 17, 14, 27, 26, 22, 28, 16];
 
-    const dataLabels:IStackedColumnSeriesDataLabelProviderOptions = {
+    const dataLabels: IStackedColumnSeriesDataLabelProviderOptions = {
         color: "#FFfFFF",
-        style: { fontSize: 12, fontFamily: 'Arial', padding: new Thickness(0, 0, 2, 0)},
+        style: { fontSize: 12, fontFamily: "Arial", padding: new Thickness(0, 0, 2, 0) },
         precision: 0,
         positionMode: EColumnDataLabelPosition.Outside,
-        verticalTextPosition: EVerticalTextPosition.Center
-    }
+        verticalTextPosition: EVerticalTextPosition.Center,
+    };
 
     // Create some RenderableSeries - for each part of the stacked column
     // Notice the stackedGroupId. This defines if series are stacked (same), or grouped side by side (different)
@@ -117,17 +115,26 @@ export const drawExample = async () => {
 
     stackedColumnCollection.add(rendSeries1, rendSeries2, rendSeries3, rendSeries4, rendSeries5);
     stackedColumnCollection.animation = new WaveAnimation({ duration: 1000, fadeEffect: true });
-    
+
     sciChartSurface.renderableSeries.add(stackedColumnCollection);
 
     // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(
-        new ZoomExtentsModifier(), 
-        new ZoomPanModifier(), 
-        new MouseWheelZoomModifier()
-    );
+    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
 
     sciChartSurface.zoomExtents();
 
-    return { wasmContext, sciChartSurface, stackedColumnCollection };
+    const toggleHundredPercentMode = (value: boolean) => {
+        stackedColumnCollection.isOneHundredPercent = value;
+        sciChartSurface.zoomExtents(200);
+    };
+
+    const toggleDataLabels = (areDataLabelsVisible: boolean) => {
+        for (let i = 0; i < 5; i++) {
+            const columnSeries = stackedColumnCollection.get(i);
+            columnSeries.dataLabelProvider.style.fontSize = areDataLabelsVisible ? 0 : 12;
+        }
+        sciChartSurface.invalidateElement();
+    };
+
+    return { sciChartSurface, controls: { toggleHundredPercentMode, toggleDataLabels } };
 };

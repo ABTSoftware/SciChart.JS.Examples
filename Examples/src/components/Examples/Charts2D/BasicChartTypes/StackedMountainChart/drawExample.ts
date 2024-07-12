@@ -15,11 +15,9 @@ import {
 import { appTheme } from "../../../theme";
 import { xValues, y1Values, y2Values, y3Values, y4Values } from "./data/stackedMountainChartData";
 
-export const divElementId = "chart";
-
-export const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
 

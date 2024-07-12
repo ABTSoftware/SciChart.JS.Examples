@@ -11,7 +11,7 @@ const availableFiles = [
     "index.js",
     "drawExample.js",
     "common.js",
-    "scichart.browser.js",
+    "theme.js",
     "scichart.browser.mjs",
     "DepthCursorModifier.js",
     "data.js",
@@ -19,11 +19,18 @@ const availableFiles = [
 
 const basePath = path.join(__dirname, "Examples");
 
+const isValidFilePath = (requestedPath: string) => {
+    const absoluteRootFolderPath = path.resolve(basePath);
+    const absoluteRequestedFilePath = path.resolve(path.join(basePath, requestedPath));
+
+    return absoluteRequestedFilePath.startsWith(absoluteRootFolderPath);
+};
+
 vanillaExamplesRouter.get("/:example/:file", async (req, res) => {
     const examplePath = req.params.example;
     const filename = req.params.file as (typeof availableFiles)[number];
 
-    if (!availableFiles.includes(filename)) {
+    if (!isValidFilePath(filename)) {
         res.sendStatus(400);
         return;
     }
@@ -76,8 +83,8 @@ const getExampleSourceFile = (filename: (typeof availableFiles)[number], current
     switch (filename) {
         case "common.js":
             return path.join(__dirname, "common.js");
-        case "scichart.browser.js":
-            return path.join(__dirname, "scichart.browser.js");
+        case "theme.js":
+            return path.join(__dirname, "Examples/theme.js");
         case "scichart.browser.mjs":
             return path.join(__dirname, "scichart.browser.mjs");
         case "index.js":

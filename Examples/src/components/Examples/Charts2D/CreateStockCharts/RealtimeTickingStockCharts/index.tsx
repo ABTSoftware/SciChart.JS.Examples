@@ -2,7 +2,8 @@ import * as React from "react";
 import { IDeletable } from "scichart";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import classes from "../../../styles/Examples.module.scss";
-import { createCandlestickChart } from "./createCandlestickChart";
+import { createCandlestickChart, sciChartOverview } from "./createCandlestickChart";
+import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";
 import { binanceSocketClient, TRealtimePriceBar } from "./binanceSocketClient";
 import { Observable, Subscription } from "rxjs";
 import { simpleBinanceRestClient, TPriceBar } from "../../../ExampleData/binanceRestClient";
@@ -10,13 +11,12 @@ import { appTheme } from "../../../theme";
 import { FormLabel } from "@material-ui/core";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
-const divElementId = "chart";
-const divOverviewId = "overview";
-
 // SCICHART EXAMPLE
-const drawExample = async (dataSource: string) => {
+// const drawExample = async (rootElement: string | HTMLDivElement) => {
+//     const { sciChartSurface, sciChartOverview, controls } = await createCandlestickChart(rootElement);
+export const drawExample = (dataSource: string) => async (rootElement: string | HTMLDivElement) => {
     // Create the candlestick chart example. Contains Candlestick series, tooltips, volume, zooming panning behaviour and more
-    const { sciChartSurface, sciChartOverview, controls } = await createCandlestickChart(divElementId, divOverviewId);
+    const { sciChartSurface, controls } = await createCandlestickChart(rootElement);
 
     const endDate = new Date(Date.now());
     const startDate = new Date();
@@ -32,7 +32,6 @@ const drawExample = async (dataSource: string) => {
         controls.setData("Random", "Random Data - 1 Minute", priceBars);
     }
 
-    // Zoom to the latest 100 candles
     const startViewportRange = new Date();
     startViewportRange.setMinutes(endDate.getMinutes() - 100);
     endDate.setMinutes(endDate.getMinutes() + 10);
@@ -72,14 +71,10 @@ const drawExample = async (dataSource: string) => {
         controls.onNewTrade(priceBar, pb.lastTradeSize, pb.lastTradeBuyOrSell);
     });
 
-    return { sciChartSurface, sciChartOverview, subscription, controls };
+    return { sciChartSurface, subscription, controls };
 };
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function RealtimeTickingStockCharts() {
-    const itemsToDeleteRef = React.useRef<IDeletable[]>();
-    const websocketSubscriptionRef = React.useRef<Subscription>();
     const [preset, setPreset] = React.useState<number>(0);
     const chartControlsRef = React.useRef<{
         setData: (symbolName: string, watermarkText: string, priceBars: TPriceBar[]) => void;
@@ -89,31 +84,6 @@ export default function RealtimeTickingStockCharts() {
         enableOhlc: () => void;
     }>();
     const [dataSource, setDataSource] = React.useState<string>("Random");
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample(dataSource).then(
-            ({ sciChartSurface, sciChartOverview, subscription, controls }) => {
-                chartControlsRef.current = controls;
-                websocketSubscriptionRef.current = subscription;
-                itemsToDeleteRef.current = [sciChartSurface, sciChartOverview];
-            }
-        );
-
-        return () => {
-            // check if chart is already initialized
-            if (itemsToDeleteRef.current) {
-                itemsToDeleteRef.current.forEach((item) => item.delete());
-                websocketSubscriptionRef.current.unsubscribe();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                itemsToDeleteRef.current.forEach((item) => item.delete());
-                websocketSubscriptionRef.current.unsubscribe();
-            });
-        };
-    }, [dataSource]);
 
     const handleToggleButtonChanged = (event: any, state: number) => {
         if (state === null || chartControlsRef.current === undefined) return;
@@ -126,6 +96,8 @@ export default function RealtimeTickingStockCharts() {
     const handleDataSourceChanged = (event: any, source: string) => {
         setDataSource(source);
     };
+
+    const initFunc = drawExample(dataSource);
 
     return (
         <React.Fragment>
@@ -166,9 +138,26 @@ export default function RealtimeTickingStockCharts() {
                         Binance.us
                     </ToggleButton>
                 </ToggleButtonGroup>
-                <div style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}>
-                    <div id={divElementId} style={{ flexBasis: "80%", flexGrow: 1, flexShrink: 1 }} />
-                    <div id={divOverviewId} style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }} />
+                <div>
+                    <SciChartReact
+                        key={dataSource}
+                        initChart={initFunc}
+                        onInit={(initResult: TResolvedReturnType<typeof initFunc>) => {
+                            const { subscription, controls } = initResult;
+                            chartControlsRef.current = controls;
+
+                            return () => {
+                                subscription.unsubscribe();
+                            };
+                        }}
+                        style={{ display: "flex", flexDirection: "column", height: "calc(100% - 70px)", width: "100%" }}
+                        innerContainerProps={{ style: { flexBasis: "80%", flexGrow: 1, flexShrink: 1 } }}
+                    >
+                        <SciChartNestedOverview
+                            style={{ flexBasis: "20%", flexGrow: 1, flexShrink: 1 }}
+                            options={sciChartOverview}
+                        />
+                    </SciChartReact>
                 </div>
             </div>
         </React.Fragment>
