@@ -14,9 +14,10 @@ import {
     WaveAnimation,
     XyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
-import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { SciChartReact, SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
@@ -25,7 +26,7 @@ import { useContext } from "react";
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create an XAxis and YAxis
@@ -33,7 +34,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             axisAlignment: EAxisAlignment.Left,
-            growBy: new NumberRange(0.05, 0.05)
+            growBy: new NumberRange(0.05, 0.05),
         })
     );
 
@@ -48,7 +49,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: `Series ${i + 1}` }),
                 stroke: AUTO_COLOR,
                 strokeThickness: 3,
-                animation: new SweepAnimation({ duration: 500, fadeEffect: true })
+                animation: new SweepAnimation({ duration: 500, fadeEffect: true }),
             })
         );
     }
@@ -73,13 +74,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     return { wasmContext, sciChartSurface, setIsGridLayoutMode };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -88,12 +89,12 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
         order: 2,
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 // React component needed as our examples app is react.

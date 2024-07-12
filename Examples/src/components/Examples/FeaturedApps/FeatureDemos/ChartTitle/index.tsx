@@ -2,7 +2,8 @@ import * as React from "react";
 import { FormControl, FormControlLabel, Checkbox, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import classes from "../../../styles/Examples.module.scss";
-import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import {
     NumericAxis,
     SciChartSurface,

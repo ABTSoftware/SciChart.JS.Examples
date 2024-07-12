@@ -1,7 +1,4 @@
-import { ModifierMouseArgs } from "scichart/Charting/ChartModifiers/ModifierMouseArgs";
-import { AnnotationDragDeltaEventArgs } from "scichart/Charting/Visuals/Annotations/AnnotationDragDeltaEventArgs";
-import { AxisMarkerAnnotation } from "scichart/Charting/Visuals/Annotations/AxisMarkerAnnotation";
-import { Point } from "scichart/Core/Point";
+import { AxisMarkerAnnotation, ModifierMouseArgs, Point, AnnotationDragDeltaEventArgs } from "scichart";
 
 export class DiscreteAxisMarker extends AxisMarkerAnnotation {
     public stepSize = 500;

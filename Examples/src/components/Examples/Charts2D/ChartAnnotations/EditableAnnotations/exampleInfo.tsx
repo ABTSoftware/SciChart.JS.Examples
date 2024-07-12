@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-editable-annotations.jpg";
@@ -15,14 +14,14 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlEditableAnnotationsDocumentation,
         title: ExampleStrings.urlTitleEditableAnnotations,
-        linkTitle: "Annotations API Documentation"
-    }
+        linkTitle: "Annotations API Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) to a{" "}
-        <strong>JavaScript Chart</strong> using SciChart.js, High Performance{" "}
+        <strong>{frameworkName} Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -32,7 +31,7 @@ const Subtitle = () => (
 export const editableAnnotationsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleEditableAnnotations,
-    pageTitle: ExampleStrings.titleEditableAnnotations + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleEditableAnnotations,
     path: ExampleStrings.urlEditableAnnotations,
     filepath: "Charts2D/ChartAnnotations/EditableAnnotations",
     subtitle: Subtitle,
@@ -40,9 +39,8 @@ export const editableAnnotationsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription:
-        "Demonstrates how to edita Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a JavaScript Chart using SciChart.js Annotations API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to edit Annotations (shapes, boxes, lines, text, horizontal and vertical line) over a ${frameworkName} Chart using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas, drag and drop",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

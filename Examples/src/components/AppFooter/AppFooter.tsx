@@ -5,7 +5,7 @@ import {
     MENU_ITEMS_3D,
     MENU_ITEMS_3D_ID,
     MENU_ITEMS_FEATURED_APPS,
-    MENU_ITEMS_FEATURED_APPS_ID
+    MENU_ITEMS_FEATURED_APPS_ID,
 } from "../AppRouter/examples";
 import FooterGrid from "./FooterGrid";
 import { useNavigate } from "react-router-dom";
@@ -44,13 +44,27 @@ export default function AppFooter() {
                     menuItems={MENU_ITEMS_2D}
                     menuItemsId={MENU_ITEMS_2D_ID}
                 />
+                <FooterGrid
+                    historyPushPath={historyPushPath}
+                    title="3D Charts"
+                    menuItems={MENU_ITEMS_3D}
+                    menuItemsId={MENU_ITEMS_3D_ID}
+                />
                 <div className={classes.FooterBottomSection}>
-                    <FooterGrid
-                        historyPushPath={historyPushPath}
-                        title="3D Charts"
-                        menuItems={MENU_ITEMS_3D}
-                        menuItemsId={MENU_ITEMS_3D_ID}
-                    />
+                    <div className={classes.LinksBox}>
+                        <h5>Frameworks</h5>
+                        <div className={classes.divider}>
+                            <div className={classes.dividerBox}></div>
+                        </div>
+                        <div className={classes.RelatedLinks}>
+                            <a href="https://demo.scichart.com/react" title="SciChart Javascript Demos">
+                                SciChart Javascript Demos
+                            </a>
+                            <a href="https://demo.scichart.com/javascript" title="SciChart React Demos">
+                                SciChart React Demos
+                            </a>
+                        </div>
+                    </div>
                     <div className={classes.LinksBox}>
                         <h5>Quick Links</h5>
                         <div className={classes.divider}>
@@ -60,28 +74,28 @@ export default function AppFooter() {
                             <a href="https://www.scichart.com/" title="Home Page" aria-current="page">
                                 Home
                             </a>
-                            <a href="https://www.scichart.com/wpf-chart-features" title="WPF Charts">
+                            <a href="https://www.scichart.com/wpf-chart-features/" title="WPF Charts">
                                 WPF Charts
                             </a>
-                            <a href="https://www.scichart.com/wpf-3d-chart-features" title="WPF 3D Charts">
+                            <a href="https://www.scichart.com/wpf-3d-chart-features/" title="WPF 3D Charts">
                                 WPF 3D Charts
                             </a>
-                            <a href="https://www.scichart.com/ios-chart-features" title="iOS &amp; macOS Charts">
+                            <a href="https://www.scichart.com/ios-chart-features/" title="iOS &amp; macOS Charts">
                                 iOS &amp; macOS Charts
                             </a>
-                            <a href="https://www.scichart.com/android-chart-features" title="Android Charts">
+                            <a href="https://www.scichart.com/android-chart-features/" title="Android Charts">
                                 Android Charts
                             </a>
                             <a href="https://www.scichart.com/javascript-chart-features/" title="JavaScript Charts">
                                 JavaScript Charts
                             </a>
-                            <a href="https://store.scichart.com" title="Pricing">
+                            <a href="https://www.scichart.com/shop/" title="Pricing">
                                 Pricing
                             </a>
                             <a href="https://www.scichart.com/news/" title="News">
                                 News &amp; Releases
                             </a>
-                            <a href="https://scichart.com/blog" title="SciChart Blog">
+                            <a href="https://scichart.com/blog/" title="SciChart Blog">
                                 NEW! SciChart Blog
                             </a>
                             <a href="https://www.scichart.com/about-us/" title="About Us">
@@ -101,25 +115,25 @@ export default function AppFooter() {
                             <div className={classes.dividerBox}></div>
                         </div>
                         <div className={classes.RelatedLinks}>
-                            <a href="https://www.scichart.com/downloads" title="Download FREE Trials">
+                            <a href="https://www.scichart.com/downloads/" title="Download FREE Trials">
                                 Download FREE Trials
                             </a>
                             <a href="https://www.scichart.com/read-testimonials/" title="Testimonials &amp; Reviews">
                                 Testimonials &amp; Reviews
                             </a>
-                            <a href="https://support.scichart.com/" title="Community &amp; Support">
+                            <a href="https://support.scichart.com/support/home" title="Community &amp; Support">
                                 Community &amp; Support
                             </a>
-                            <a href="https://www.scichart.com/wpf-chart-examples" title="WPF Chart Examples">
+                            <a href="https://www.scichart.com/examples/wpf-chart/" title="WPF Chart Examples">
                                 WPF Chart Examples
                             </a>
                             <a
-                                href="https://www.scichart.com/ios-chart-examples"
+                                href="https://www.scichart.com/examples/ios-chart/"
                                 title="iOS &amp; macOS Chart Examples"
                             >
                                 iOS &amp; macOS Chart Examples
                             </a>
-                            <a href="https://www.scichart.com/android-chart-examples" title="Android Chart Examples">
+                            <a href="https://www.scichart.com/examples/android-chart/" title="Android Chart Examples">
                                 Android Chart Examples
                             </a>
                             <a href="https://demo.scichart.com" title="JavaScript Chart Examples">

@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "outDir": "./wwwroot",
+    "noImplicitAny": true
+  },
+  "include": ["src/*"],
+  "exclude": ["node_modules", "wwwroot"]
+}

@@ -1,107 +1,30 @@
 import * as React from "react";
-import { xValues, y1Values, y2Values, y3Values, y4Values } from "./data/stackedMountainChartData";
 import classes from "../../../styles/Examples.module.scss";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-    SciChartSurface,
-    NumericAxis,
-    XyDataSeries,
-    StackedMountainRenderableSeries,
-    StackedMountainCollection,
-    ZoomExtentsModifier,
-    ZoomPanModifier,
-    MouseWheelZoomModifier,
-    LegendModifier,
-    ELegendOrientation,
-    ELegendPlacement,
-    WaveAnimation
-} from "scichart";
+import { SciChartSurface, StackedMountainCollection } from "scichart";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
+import { drawExample } from "./drawExample";
 
-const divElementId = "chart";
-
-const drawExample = async () => {
-    // Create a SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
-    });
-
-    // Create an xAxis, yAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelPrecision: 0 }));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { labelPrecision: 0 }));
-
-    // Create the three Stacked Mountain series
-    const stackedMountain1 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Apples" }),
-        fill: appTheme.VividPurple + "AA",
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2
-    });
-    const stackedMountain2 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Pears" }),
-        fill: appTheme.VividPink + "AA",
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2
-    });
-    const stackedMountain3 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Oranges" }),
-        fill: appTheme.VividSkyBlue + "AA",
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2
-    });
-    const stackedMountain4 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y4Values, dataSeriesName: "Oranges" }),
-        fill: appTheme.VividOrange + "AA",
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2
-    });
-
-    // Group these StackedMountain series together in a StackedMountainCollection
-    const stackedMountainCollection = new StackedMountainCollection(wasmContext);
-    stackedMountainCollection.add(stackedMountain1, stackedMountain2, stackedMountain3, stackedMountain4);
-    stackedMountainCollection.animation = new WaveAnimation({ duration: 600, fadeEffect: true });
-
-    // Add the StackedMountainCollection to the chart
-    sciChartSurface.renderableSeries.add(stackedMountainCollection);
-
-    // Add some interactivity modifiers
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier(), new ZoomPanModifier(), new MouseWheelZoomModifier());
-
-    // Add a legend to the chart to show the series
-    sciChartSurface.chartModifiers.add(
-        new LegendModifier({
-            placement: ELegendPlacement.TopLeft,
-            orientation: ELegendOrientation.Vertical,
-            showLegend: true,
-            showCheckboxes: false,
-            showSeriesMarkers: true
-        })
-    );
-
-    sciChartSurface.zoomExtents();
-
-    return { wasmContext, sciChartSurface, stackedMountainCollection };
-};
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
         // flex: "auto",
         flexBasis: "70px",
         padding: 10,
-        width: "100%"
+        width: "100%",
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 // React component needed as our examples app is react.
@@ -110,27 +33,6 @@ export default function StackedMountainChart() {
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const stackedMountainCollectionRef = React.useRef<StackedMountainCollection>();
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(res => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            stackedMountainCollectionRef.current = res.stackedMountainCollection;
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
 
     const handleUsePercentage = (event: any, value: boolean) => {
         if (value !== null) {
@@ -162,7 +64,15 @@ export default function StackedMountainChart() {
                         100% Stacked mode
                     </ToggleButton>
                 </ToggleButtonGroup>
-                <div id={divElementId} className={localClasses.chartArea} />
+                <SciChartReact
+                    initChart={drawExample}
+                    className={localClasses.chartArea}
+                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                        const { sciChartSurface, stackedMountainCollection } = initResult;
+                        stackedMountainCollectionRef.current = stackedMountainCollection;
+                        sciChartSurfaceRef.current = sciChartSurface;
+                    }}
+                />
             </div>
         </div>
     );

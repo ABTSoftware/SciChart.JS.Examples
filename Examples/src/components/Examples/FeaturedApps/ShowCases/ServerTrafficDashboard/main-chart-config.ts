@@ -28,7 +28,7 @@ import {
     EStrokePaletteMode,
     EFillPaletteMode,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { TDataEntry, getData, getRequestsNumberPerTimestamp } from "./data-generation";
 import { TChartConfigResult } from "./chart-configurations";
 import { TInitFunction } from "scichart-react";

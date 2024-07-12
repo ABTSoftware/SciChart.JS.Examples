@@ -1,5 +1,3 @@
-import { ExampleDataProvider, appTheme } from "scichart-example-dependencies";
-
 import {
     SciChartVerticalGroup,
     CategoryAxis,
@@ -47,13 +45,31 @@ import {
     EVerticalAnchorPoint,
     EAnnotationLayer,
 } from "scichart";
-import { SciChartGroup, SciChartReact } from "scichart-react";
-import { useState } from "react";
+import { ExampleDataProvider, IOhlcvValues } from "../../../ExampleData/ExampleDataProvider";
+import { multiPaneData } from "../../../ExampleData/multiPaneData";
+import { appTheme } from "../../../theme";
 
 const divElementId1 = "cc_chart_3_1";
 const divElementId2 = "cc_chart_3_2";
 const divElementId3 = "cc_chart_3_3";
 const divOverviewId = "cc_overview";
+
+const getTradingData = (startPoints?: number, maxPoints?: number): IOhlcvValues => {
+    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = multiPaneData;
+
+    if (maxPoints !== undefined) {
+        return {
+            dateValues: dateValues.slice(startPoints, startPoints + maxPoints),
+            openValues: openValues.slice(startPoints, startPoints + maxPoints),
+            highValues: highValues.slice(startPoints, startPoints + maxPoints),
+            lowValues: lowValues.slice(startPoints, startPoints + maxPoints),
+            closeValues: closeValues.slice(startPoints, startPoints + maxPoints),
+            volumeValues: volumeValues.slice(startPoints, startPoints + maxPoints),
+        };
+    }
+
+    return { dateValues, openValues, highValues, lowValues, closeValues, volumeValues };
+};
 
 // Override the standard legend displayed by RolloverModifier
 const getTooltipLegendTemplate = (seriesInfos: SeriesInfo[], svgAnnotation: RolloverLegendSvgAnnotation) => {
@@ -98,8 +114,7 @@ const getOverviewSeries = (defaultSeries: IRenderableSeries) => {
 export const getChartsInitializationAPI = () => {
     // We can group together charts using VerticalChartGroup type
     const verticalGroup = new SciChartVerticalGroup();
-    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } =
-        ExampleDataProvider.getTradingData();
+    const { dateValues, openValues, highValues, lowValues, closeValues, volumeValues } = getTradingData();
 
     let chart1XAxis: CategoryAxis;
     let chart2XAxis: CategoryAxis;
@@ -220,7 +235,6 @@ export const getChartsInitializationAPI = () => {
             fontSize: 48,
             fontWeight: "Bold",
             text: "Euro / U.S. Dollar - Daily",
-            annotationLayer: EAnnotationLayer.BelowChart,
         });
         sciChartSurface.annotations.add(watermarkAnnotation);
 

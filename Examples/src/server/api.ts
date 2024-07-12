@@ -31,8 +31,8 @@ for (let i = 0; i < POINTS; i++) {
 
 // Data route
 router.get("/data/:xfrom-:xto/:pointCount", (req, res) => {
-    let xStart = xValues.findIndex(x => x === Number.parseInt(req.params.xfrom));
-    let xEnd = xValues.findIndex(x => x === Number.parseInt(req.params.xto));
+    let xStart = xValues.findIndex((x) => x === Number.parseInt(req.params.xfrom));
+    let xEnd = xValues.findIndex((x) => x === Number.parseInt(req.params.xto));
     xStart = Math.max(0, xStart);
     xEnd = Math.min(xEnd, POINTS);
     const pointCount = Number.parseInt(req.params.pointCount);

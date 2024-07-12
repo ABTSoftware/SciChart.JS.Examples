@@ -1,17 +1,12 @@
 import {
     AUTO_COLOR,
-    AxisBase2D,
-    BaseHitTestProvider,
     BaseOhlcRenderableSeries,
-    BoxAnnotation,
-    ChartModifierBase2D,
+    CustomChartModifier2D,
     DataLabelProvider,
-    DataPointSelectionModifier,
     DataPointSelectionPaletteProvider,
     deleteSafe,
     EAutoRange,
     EAxisAlignment,
-    EChart2DModifierType,
     ECoordinateMode,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
@@ -22,35 +17,28 @@ import {
     HitTestInfo,
     IChartModifierBaseOptions,
     IOhlcPointSeries,
-    IRenderableSeries,
     LineAnnotation,
     ModifierMouseArgs,
     MouseWheelZoomModifier,
-    NonUniformHeatMapDataLabelProvider,
     NumberRange,
     NumericAxis,
     OhlcDataSeries,
     Point,
-    RolloverModifier,
     SciChartSurface,
-    SeriesSelectionModifier,
     SweepAnimation,
     TextAnnotation,
-    THoveredChangedCallback,
     translateFromCanvasToSeriesViewRect,
-    WaveAnimation,
     XyDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { appTheme, RandomWalkGenerator } from "scichart-example-dependencies";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
+import { appTheme } from "../../../theme";
 
 const EventXStep = 6;
 
 // A custom modifier that allows selection and editing of candles.
-class CandleDragModifier extends ChartModifierBase2D {
-    type: string = EChart2DModifierType.Custom;
-
+class CandleDragModifier extends CustomChartModifier2D {
     private series: BaseOhlcRenderableSeries;
     private dataSeries: OhlcDataSeries;
     private annotation: LineAnnotation;

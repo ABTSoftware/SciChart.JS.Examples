@@ -1,7 +1,7 @@
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import * as React from "react";
 import { TBinanceCandleData } from "../../../../../commonTypes/TBinanceCandleData";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -30,7 +30,7 @@ import {
     Thickness,
     XyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
@@ -39,17 +39,17 @@ const colorStrings = [
     appTheme.VividPink,
     appTheme.MutedTeal,
     appTheme.VividOrange,
-    appTheme.VividBlue
+    appTheme.VividBlue,
 ];
-const colors = colorStrings.map(c => parseColorToUIntArgb(c + "AA"));
+const colors = colorStrings.map((c) => parseColorToUIntArgb(c + "AA"));
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface with Theme
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
     const labelProvider = new TextLabelProvider({
-        labels: ["Bitcoin", "Ethereum", "XRP", "Cardano", "Dogecoin"]
+        labels: ["Bitcoin", "Ethereum", "XRP", "Cardano", "Dogecoin"],
     });
     // Category Axis - measures using index not value.
     const xAxis = new CategoryAxis(wasmContext, { id: "XCategory", labelProvider });
@@ -74,7 +74,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelPostfix: "B",
         labelPrecision: 0,
         axisAlignment: EAxisAlignment.Left,
-        labelStyle: { fontSize: 18 }
+        labelStyle: { fontSize: 18 },
     });
     // Pass array to axisTitle to make it multiline
     yAxis.axisTitle = ["Market Cap - Numeric Axis", "formatting using prefix and postfix"];
@@ -87,7 +87,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         dataPointWidth: 0.5,
         paletteProvider: new AxisTypesPaletteProvider(),
         xAxisId: xAxis.id,
-        yAxisId: yAxis.id
+        yAxisId: yAxis.id,
     });
     sciChartSurface.renderableSeries.add(columnSeries);
 
@@ -102,7 +102,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         labelStyle: { fontSize: 18 },
         axisTitle: ["Date Axis", "Auto formats based on the date range"],
         axisTitleStyle: { fontSize: 18 },
-        visibleRangeLimit: new NumberRange(startTime, endDate.getTime() / 1000)
+        visibleRangeLimit: new NumberRange(startTime, endDate.getTime() / 1000),
     });
     sciChartSurface.xAxes.add(dateXAxis);
 
@@ -115,7 +115,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         axisAlignment: EAxisAlignment.Right,
         labelStyle: { fontSize: 18 },
         axisTitle: ["Price - Logarithmic Axis", "base 2, labelFormat: SignificantFigures"],
-        axisTitleStyle: { fontSize: 18 }
+        axisTitleStyle: { fontSize: 18 },
     });
     sciChartSurface.yAxes.add(logYAxis);
 
@@ -129,7 +129,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             xAxisId: dateXAxis.id,
             yAxisId: logYAxis.id,
             stroke: colorStrings[index],
-            dataSeries: priceDataSeries
+            dataSeries: priceDataSeries,
         });
         sciChartSurface.renderableSeries.add(series);
 
@@ -151,13 +151,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     return { sciChartSurface, wasmContext, labelProvider };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -165,11 +165,11 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 // React component needed as our examples app is react.

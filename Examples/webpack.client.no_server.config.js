@@ -10,33 +10,18 @@ const { candlesETHUSDT } = require("./src/server/BinanceData/candlesETHUSDT");
 const { candlesXRPUSDT } = require("./src/server/BinanceData/candlesXRPUSDT");
 const TweetData = require("./src/server/Data/tweetData");
 
-// LICENSING //
-// Set your license code here to license the SciChart.js Examples app
-// You can get a trial license key from https://www.scichart.com/licensing-scichart-js/
-// Purchased license keys can be viewed at https://www.scichart.com/profile
-//
-// e.g.
-//
-// const betaTrialKey = "YOUR_RUNTIME_KEY";
-//
-// Also, once activated (trial or paid license) having the licensing wizard open on your machine
-// will mean any or all applications you run locally will be fully licensed.
-
-// Set your runtime key here
-const betaTrialKey = "";
-
 module.exports = {
     ...webpackClientConfig,
     mode: "development",
     resolve: {
         extensions: [".tsx", ".ts", ".js", ".css"],
-        fallback : {
+        fallback: {
             child_process: false,
             fs: false,
             crypto: false,
             net: false,
-            tls: false
-        }
+            tls: false,
+        },
     },
     devtool: "inline-source-map",
     module: {
@@ -44,7 +29,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"],
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.scss$/,
@@ -54,30 +39,30 @@ module.exports = {
                         loader: "css-loader",
                         options: {
                             modules: {
-                                localIdentName: "[name]__[local]--[hash:base64:5]"
-                            }
-                        }
+                                localIdentName: "[name]__[local]--[hash:base64:5]",
+                            },
+                        },
                     },
                     {
-                        loader: "postcss-loader"
+                        loader: "postcss-loader",
                     },
-                    { loader: "sass-loader" }
+                    { loader: "sass-loader" },
                 ],
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.tsx?$/,
                 use: "ts-loader",
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 loader: "file-loader",
                 options: {
-                    name: "images/[name].[ext]"
-                }
-            }
-        ]
+                    name: "images/[name].[ext]",
+                },
+            },
+        ],
     },
     plugins: [
         new CopyPlugin({
@@ -87,8 +72,14 @@ module.exports = {
                 { from: "src/static/favicon.ico", to: "" },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Shale.csv", to: "" },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Density.csv", to: "" },
-                { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Resistivity.csv", to: "" },
-                { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/PoreSpace.csv", to: "" },
+                {
+                    from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Resistivity.csv",
+                    to: "",
+                },
+                {
+                    from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/PoreSpace.csv",
+                    to: "",
+                },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Sonic.csv", to: "" },
                 { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Texture.csv", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart2d.data", to: "" },
@@ -96,9 +87,9 @@ module.exports = {
                 { from: "node_modules/scichart/_wasm/scichart3d.data", to: "" },
                 { from: "node_modules/scichart/_wasm/scichart3d.wasm", to: "" },
                 { from: "sitemap.xml", to: "" },
-                { from: "robots.txt", to: "" }
-            ]
-        })
+                { from: "robots.txt", to: "" },
+            ],
+        }),
         // new CopyPlugin({
         //     patterns: [{ from: "src/static/no_server.index.html", to: "index.html" }]
         // })
@@ -111,18 +102,15 @@ module.exports = {
         // hot: true,
         allowedHosts: "all",
         historyApiFallback: true,
-        onBeforeSetupMiddleware: function(devServer) {
+        onBeforeSetupMiddleware: function (devServer) {
             const { app } = devServer;
-            app.get("/api/license", function(req, res) {
-                res.send(betaTrialKey);
-            });
-            app.get("/api/lidarData", function(req, res) {
+            app.get("/api/lidarData", function (req, res) {
                 res.send(tq3080_DSM_2M.tq3080_DSM_2M);
             });
-            app.get("/api/tweetData", function(req, res) {
+            app.get("/api/tweetData", function (req, res) {
                 res.send(TweetData.TweetData);
             });
-            app.get("/api/get-binance-candles", function(req, res) {
+            app.get("/api/get-binance-candles", function (req, res) {
                 const params = req.query;
                 let data;
                 switch (params.symbol) {
@@ -144,8 +132,8 @@ module.exports = {
                 }
                 res.send(data);
             });
-        }
-    }
+        },
+    },
 };
 
 // , {

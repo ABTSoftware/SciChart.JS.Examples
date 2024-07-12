@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useMatch } from "react-router-dom";
 import { Theme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -9,7 +9,7 @@ import {
     getParentMenuIds,
     MENU_ITEMS_2D,
     MENU_ITEMS_3D,
-    MENU_ITEMS_FEATURED_APPS
+    MENU_ITEMS_FEATURED_APPS,
 } from "./AppRouter/examples";
 import AppBarTop from "./AppTopBar/AppBarTop";
 import DrawerContent from "./DrawerContent/DrawerContent";
@@ -20,31 +20,31 @@ import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";
 import classes from "./App.module.scss";
 import "./index.scss";
 import Gallery from "./Gallery/Gallery";
-import { PAGES } from "./AppRouter/pages";
 import { GalleryItem } from "../helpers/types/types";
-import { allGalleryItems, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
+import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
+import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
+import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
 
 export default function App() {
-    const location = useLocation();
-    // For charts without layout we use '/iframe' prefix, for example '/iframe/javascript-multiline-labels'
-    const isIFrame = location.pathname.substring(1, 7) === "iframe";
-    let pathname = isIFrame ? location.pathname.substring(7) : location.pathname;
-    pathname = pathname.endsWith("/") ? pathname.substring(0, pathname.length - 1) : pathname;
+    const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
+
+    const selectedFramework = framework;
+
     const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
     let initialOpenedMenuItems = {
         MENU_ITEMS_FEATURED_APPS_ID: true,
         MENU_ITEMS_3D_ID: true,
-        MENU_ITEMS_2D_ID: true
+        MENU_ITEMS_2D_ID: true,
     };
 
-    MENU_ITEMS_FEATURED_APPS.forEach(item => {
+    MENU_ITEMS_FEATURED_APPS.forEach((item) => {
         initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
     });
-    MENU_ITEMS_3D.forEach(item => {
+    MENU_ITEMS_3D.forEach((item) => {
         initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
     });
-    MENU_ITEMS_2D.forEach(item => {
+    MENU_ITEMS_2D.forEach((item) => {
         initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.item.id]: true };
     });
 
@@ -52,11 +52,10 @@ export default function App() {
 
     const [isDrawerOpened, setIsDrawerOpened] = React.useState(false);
 
-    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === pathname);
-    const currentExample = EXAMPLES_PAGES[currentExampleKey];
     const currentExampleId = currentExample?.id;
     // SeeAlso is now optional on exampleInfo. Return this if provided else auto-generate from menu
-    const seeAlso: GalleryItem[] = currentExample?.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample);
+    const seeAlso: GalleryItem[] =
+        currentExample?.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample, framework);
 
     // // Find the example category
     // const exampleCategory = ALL_MENU_ITEMS.find(menuItem => {
@@ -83,7 +82,7 @@ export default function App() {
         if (currentExample) {
             const parentMenuIds = getParentMenuIds(currentExample.id);
             const updatedOpenedItems: Record<string, boolean> = { ...openedMenuItems };
-            parentMenuIds.forEach(elId => {
+            parentMenuIds.forEach((elId) => {
                 updatedOpenedItems[elId] = true;
             });
             setOpenedMenuItems(updatedOpenedItems);
@@ -94,48 +93,50 @@ export default function App() {
         return <AppRouter currentExample={currentExample} seeAlso={seeAlso} isIFrame={true} />;
     }
 
+    const allGalleryItems = generateExamplesGallery(framework);
+
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
-        <div className={classes.App}>
-            <Drawer
-                className={classes.DrawerMobile}
-                variant="temporary"
-                classes={{ paper: classes.DrawerPaper }}
-                anchor="right"
-                open={isMedium && isDrawerOpened}
-                onClose={toggleDrawer}
-            >
-                <DrawerContent
-                    testIsOpened={testIsOpened}
-                    toggleOpenedMenuItem={toggleOpenedMenuItem}
-                    toggleDrawer={toggleDrawer}
-                />
-            </Drawer>
-            <div className={classes.MainAppContent}>
-                <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
-                {PAGES.homapage.path === location.pathname && (
-                    <AppRouter currentExample={currentExample} seeAlso={[]} />
-                )}
+        <FrameworkContext.Provider value={selectedFramework}>
+            <div className={classes.App}>
+                <Drawer
+                    className={classes.DrawerMobile}
+                    variant="temporary"
+                    classes={{ paper: classes.DrawerPaper }}
+                    anchor="right"
+                    open={isMedium && isDrawerOpened}
+                    onClose={toggleDrawer}
+                >
+                    <DrawerContent
+                        testIsOpened={testIsOpened}
+                        toggleOpenedMenuItem={toggleOpenedMenuItem}
+                        toggleDrawer={toggleDrawer}
+                    />
+                </Drawer>
+                <div className={classes.MainAppContent}>
+                    <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
+                    {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
-                <div className={classes.MainAppWrapper}>
-                    <div className={classes.DrawerDesktop}>
-                        <DrawerContent
-                            testIsOpened={testIsOpened}
-                            toggleOpenedMenuItem={toggleOpenedMenuItem}
-                            toggleDrawer={() => {}}
-                        />
-                    </div>
-                    {PAGES.homapage.path === location.pathname ? (
-                        <div className={classes.GalleryAppWrapper}>
-                            <Gallery examples={allGalleryItems} />
+                    <div className={classes.MainAppWrapper}>
+                        <div className={classes.DrawerDesktop}>
+                            <DrawerContent
+                                testIsOpened={testIsOpened}
+                                toggleOpenedMenuItem={toggleOpenedMenuItem}
+                                toggleDrawer={() => {}}
+                            />
                         </div>
-                    ) : (
-                        <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
-                    )}
-                </div>
+                        {isHomePage ? (
+                            <div className={classes.GalleryAppWrapper}>
+                                <Gallery examples={allGalleryItems} />
+                            </div>
+                        ) : (
+                            <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
+                        )}
+                    </div>
 
-                <AppFooter />
+                    <AppFooter />
+                </div>
             </div>
-        </div>
+        </FrameworkContext.Provider>
     );
 }

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-annotations.jpg";
@@ -12,21 +11,21 @@ we provide a CustomAnnotation and SVGAnnotation which allows for custom shapes t
 const tips = [
     `The AnnotationBase type has properties for x,yCoordinateMode which allow you to place annotations are
     relative or absolute values. Great for docking annotations to the top,left,right,bottom of a chart, or
-    creating watermarks!`
+    creating watermarks!`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlAnnotationsDocumentation,
         title: ExampleStrings.urlTitleAnnotationsDocumentation,
-        linkTitle: "Annotations API Documentation"
-    }
+        linkTitle: "Annotations API Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to add Annotations (shapes, boxes, lines, text) to a <strong>JavaScript Chart</strong> using
-        SciChart.js, High Performance{" "}
+        Demonstrates how to add Annotations (shapes, boxes, lines, text) to a <strong>{frameworkName} Chart</strong>{" "}
+        using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -36,7 +35,7 @@ const Subtitle = () => (
 export const annotationsAreEasyExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleAnnotationsAreEasy,
-    pageTitle: ExampleStrings.titleAnnotationsAreEasy + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleAnnotationsAreEasy,
     path: ExampleStrings.urlAnnotationsAreEasy,
     filepath: "Charts2D/ChartAnnotations/AnnotationsAreEasy",
     subtitle: Subtitle,
@@ -44,9 +43,8 @@ export const annotationsAreEasyExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription:
-        "Demonstrates how to place Annotations (lines, arrows, markers, text) over a JavaScript Chart using SciChart.js Annotations API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to place Annotations (lines, arrows, markers, text) over a ${frameworkName} Chart using SciChart.js Annotations API`,
     metaKeywords: "annotations, chart, api, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

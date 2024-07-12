@@ -14,7 +14,7 @@
 originalModule="index.tsx"
 logicModule="drawExample.ts"
 # Specify the content for the file to be added
-file_content="import * as React from \"react\";\nimport { appTheme } from \"scichart-example-dependencies\";\nimport { SciChartReact } from \"scichart-react\";\nimport classes from \"../../../styles/Examples.module.scss\";\nimport { drawExample } from \"./drawExample\";\n\n// React component needed as our examples app is react.\n// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info\nexport default function ChartComponent() {\n    return <SciChartReact initChart={drawExample} className={classes.ChartWrapper} />;\n}"
+file_content="import * as React from \"react\";\n\nimport { SciChartReact } from \"scichart-react\";\nimport classes from \"../../../styles/Examples.module.scss\";\nimport { drawExample } from \"./drawExample\";\n\n// React component needed as our examples app is react.\n// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info\nexport default function ChartComponent() {\n    return <SciChartReact initChart={drawExample} className={classes.ChartWrapper} />;\n}"
 
 # Specify the file containing the search text
 search_text_file="./text-replacement-patterns/search-text.txt"

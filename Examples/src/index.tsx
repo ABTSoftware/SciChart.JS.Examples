@@ -23,7 +23,7 @@ function Main() {
         </ThemeProvider>
     );
 }
-hydrate( <Main />, document.querySelector("#react-root"));
+hydrate(<Main />, document.querySelector("#react-root"));
 
 // TODO use with React 18
 // if (process.env.NODE_ENV === "production") {

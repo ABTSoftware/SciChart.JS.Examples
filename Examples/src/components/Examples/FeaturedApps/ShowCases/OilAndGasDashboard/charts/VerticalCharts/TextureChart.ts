@@ -15,8 +15,8 @@ export const drawTextureChart = async () => {
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
-            padding: Thickness.fromNumber(0)
-        }
+            padding: Thickness.fromNumber(0),
+        },
     });
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(-5, 30);
@@ -25,7 +25,7 @@ export const drawTextureChart = async () => {
     const dataSeries2 = new XyDataSeries(wasmContext, { dataIsSortedInX: true, containsNaN: false });
 
     const data = await getParsedData("Texture.csv");
-    data.forEach(dataRow => {
+    data.forEach((dataRow) => {
         const x = dataRow[0];
         dataSeries1.append(x, dataRow[1]);
         dataSeries2.append(x, 0);
@@ -42,7 +42,7 @@ export const drawTextureChart = async () => {
         new PaletteRange(55, 58, appTheme.TextureGrainFill),
         new PaletteRange(70, 75, appTheme.TextureSandFill),
         new PaletteRange(75, 76, appTheme.TextureGravelFill),
-        new PaletteRange(85, 97, appTheme.TextureGrainFill)
+        new PaletteRange(85, 97, appTheme.TextureGrainFill),
     ]);
 
     const renderableSeries = chartBuilder.buildSeries(wasmContext, [
@@ -53,17 +53,17 @@ export const drawTextureChart = async () => {
                 paletteProvider: rangePaletteProvider,
                 isDigitalLine: true,
                 strokeThickness: 0,
-                fill: appTheme.TextureFill
-            }
+                fill: appTheme.TextureFill,
+            },
         },
         {
             type: ESeriesType.LineSeries,
             options: {
                 dataSeries: dataSeries2,
                 strokeThickness: 4,
-                stroke: appTheme.TextureLine
-            }
-        }
+                stroke: appTheme.TextureLine,
+            },
+        },
     ]);
 
     renderableSeries[0].rolloverModifierProps.showRollover = false;

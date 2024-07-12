@@ -1,5 +1,5 @@
-import { appTheme } from "scichart-example-dependencies";
-import CustomImage from "./scichart-logo-white.jpg";
+import { appTheme } from "../../../theme";
+import CustomImage from "./scichart-logo-white.png";
 import { rocketSvg } from "./416398_exploration_fuel_nasa_rocket_space_icon";
 import {
     SciChartSurface,
@@ -108,7 +108,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         fontWeight: "Bold",
         xCoordinateMode: ECoordinateMode.Relative, // xCoordinateMode relative allows 0..1 to correspond to viewport left/right
         yCoordinateMode: ECoordinateMode.Relative, // yCoordinateMode relative allows 0..1 to correspond to viewport top/bottom
-        annotationLayer: EAnnotationLayer.BelowChart,
     });
 
     // Lines

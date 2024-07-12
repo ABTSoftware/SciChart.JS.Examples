@@ -25,9 +25,9 @@ import {
     ELegendOrientation,
     TCheckedChangedArgs,
     GradientParams,
-    Point
+    Point,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { GridLayoutModifier } from "./GridLayoutModifier";
 import { getData, TDataEntry, availableServers, getRequestsNumberPerTimestamp } from "./data-generation";
 import { TChartConfigResult, tooltipDataTemplateKey } from "./chart-configurations";
@@ -49,12 +49,12 @@ export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElem
             useNativeText: true,
             padding: Thickness.fromString("15 0 0 0"),
             fontSize: 20,
-            color: appTheme.ForegroundColor
-        }
+            color: appTheme.ForegroundColor,
+        },
     });
     // Create an X,Y Axis and add to the chart
     const xAxis = new NumericAxis(wasmContext, {
-        labelFormat: ENumericFormat.Date_DDMM
+        labelFormat: ENumericFormat.Date_DDMM,
         // useNativeText: true,
     });
 
@@ -63,12 +63,12 @@ export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElem
         axisTitle: "Requests",
         axisTitleStyle: {
             fontSize: 20,
-            color: appTheme.ForegroundColor
+            color: appTheme.ForegroundColor,
         },
         labelStyle: {
-            color: appTheme.ForegroundColor
+            color: appTheme.ForegroundColor,
         },
-        useNativeText: true
+        useNativeText: true,
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -77,7 +77,7 @@ export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElem
     const data = getData();
 
     // filtered per server
-    const filter = (data: TDataEntry[], server: string) => data.filter(entry => entry.server === server);
+    const filter = (data: TDataEntry[], server: string) => data.filter((entry) => entry.server === server);
 
     const seriesFillColors = ["#f6086c", "#9002a1", "#47bde6", "#34c19c"];
     const seriesStrokeColors = ["#f6086c", "#9002a1", "#47bde6", "#34c19c"];
@@ -89,7 +89,7 @@ export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElem
             containsNaN: false,
             dataEvenlySpacedInX: true,
             isSorted: true,
-            ...getRequestsNumberPerTimestamp(pageData)
+            ...getRequestsNumberPerTimestamp(pageData),
         });
 
         const rendSeries = new FastMountainRenderableSeries(wasmContext, {
@@ -104,19 +104,18 @@ export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElem
                 opacity: 0,
                 width: 10,
                 height: 10,
-                strokeThickness: 1
+                strokeThickness: 1,
             }),
-            animation: new WaveAnimation({ duration: 1000, fadeEffect: true })
+            animation: new WaveAnimation({ duration: 1000, fadeEffect: true }),
         });
         sciChartSurface.renderableSeries.add(rendSeries);
     });
-
 
     const seriesSelectionModifier = new SeriesSelectionModifier({
         enableHover: true,
         enableSelection: true,
         onHoverChanged: "onServerHoverChanged",
-        onSelectionChanged: "onServerSelectionChanged"
+        onSelectionChanged: "onServerSelectionChanged",
     });
 
     const legendModifier = new LegendModifier({
@@ -124,14 +123,14 @@ export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElem
         orientation: ELegendOrientation.Horizontal,
         placement: ELegendPlacement.TopRight,
         showCheckboxes: true,
-        backgroundColor: "#0d1523"
+        backgroundColor: "#0d1523",
     });
 
     const rolloverModifier = new RolloverModifier({
         id: "ServerLoadCursorModifier",
         tooltipDataTemplate: tooltipDataTemplateKey,
         showTooltip: true,
-        snapToDataPoint: true
+        snapToDataPoint: true,
     });
     rolloverModifier.rolloverLineAnnotation.showLabel = true;
     rolloverModifier.rolloverLineAnnotation.axisLabelFill = "#e8c667";
@@ -182,9 +181,9 @@ export const createServerLoadChart: TServerStatsChartConfigFunc = async (divElem
 };
 
 const onSelectionChanged = (args: SelectionChangedArgs) => {
-    args.allSeries.forEach(series => {
+    args.allSeries.forEach((series) => {
         if (series.isSelected) {
-            console.log("onSelectionChanged")
+            console.log("onSelectionChanged");
             series.pointMarker.opacity = series.opacity;
         } else {
             series.pointMarker.opacity = 0;
@@ -195,7 +194,7 @@ const onSelectionChanged = (args: SelectionChangedArgs) => {
 const onHoverChanged = (args: HoveredChangedArgs) => {
     const sciChartSurface = args.source.parentSurface;
     const hoverAnimationDuration = 500;
-    args.allSeries.forEach(series => {
+    args.allSeries.forEach((series) => {
         if (series.isHovered) {
             sciChartSurface.addAnimation(
                 new GenericAnimation({
@@ -208,7 +207,7 @@ const onHoverChanged = (args: HoveredChangedArgs) => {
                         if (series.isSelected) {
                             series.pointMarker.opacity = opacity;
                         }
-                    }
+                    },
                 })
             );
 
@@ -225,7 +224,7 @@ const onHoverChanged = (args: HoveredChangedArgs) => {
                         if (series.isSelected) {
                             series.pointMarker.opacity = opacity;
                         }
-                    }
+                    },
                 })
             );
             series.strokeThickness = 2;
@@ -241,7 +240,7 @@ const onHoverChanged = (args: HoveredChangedArgs) => {
                         if (series.isSelected) {
                             series.pointMarker.opacity = opacity;
                         }
-                    }
+                    },
                 })
             );
             series.strokeThickness = 2;

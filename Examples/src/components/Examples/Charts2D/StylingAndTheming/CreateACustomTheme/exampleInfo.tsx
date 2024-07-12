@@ -1,8 +1,8 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
+import exampleImage from "./javascript-chart-custom-themed.jpg";
 
 const description = `With our ThemeManager API you can create a custom theme. To do this, create a type that implements all the
 properties of the IThemeProvider interface and pass to sciChartSurface.applyTheme.`;
@@ -12,11 +12,11 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlCustomThemeDocumentation,
         title: ExampleStrings.urlTitleCustomThemeDocumentation,
-        linkTitle: "Custom Theme documentation"
-    }
+        linkTitle: "Custom Theme documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to create a <strong>Custom Theme</strong> for SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -28,15 +28,15 @@ const Subtitle = () => (
 export const createACustomThemeExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleCustomTheme,
-    pageTitle: ExampleStrings.titleCustomTheme + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleCustomTheme,
     path: ExampleStrings.urlCustomTheme,
     filepath: "Charts2D/StylingAndTheming/CreateACustomTheme",
     subtitle: Subtitle,
     documentationLinks,
     tips,
     description,
-    githubUrl,
-    metaDescription:
-        "Demonstrates how to create a Custom Theme for a SciChart.js JavaScript Chart using our Theming API",
-    metaKeywords: "theming, chart, javascript, webgl, canvas"
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to create a Custom Theme for a SciChart.js ${frameworkName} Chart using our Theming API`,
+    metaKeywords: "theming, chart, javascript, webgl, canvas",
+    thumbnailImage: exampleImage,
 };

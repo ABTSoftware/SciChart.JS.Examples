@@ -20,7 +20,7 @@ import {
     SweepAnimation,
 } from "scichart";
 
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface with X,Y Axis

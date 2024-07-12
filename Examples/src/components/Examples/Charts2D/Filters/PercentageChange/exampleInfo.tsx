@@ -1,11 +1,10 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-percentage-change.jpg";
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to use a ScaleOffsetFilter to convert data to a <strong>Percentage Change</strong> with
         realtime updates, using SciChart.js, High Performance{" "}
@@ -21,21 +20,21 @@ const description = `The zero value for change is the visible start of the chart
 Click the Add Data button to see that data is automatically transformed when the original data is updated.
 A simple extention to the RenderableSeries allows us to show the original values for the transformed series in the rollover tooltip`;
 const tips = [
-    `ScaleOffsetFilters are available for all DataSeries types, so you could do the same thing for a band or candlestick chart`
+    `ScaleOffsetFilters are available for all DataSeries types, so you could do the same thing for a band or candlestick chart`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlScaleOffsetDocumentation,
         title: ExampleStrings.urlTitleFiltersApiDocumentation,
-        linkTitle: "SciChart.js ScaleOffsetFilter Documentation"
-    }
+        linkTitle: "SciChart.js ScaleOffsetFilter Documentation",
+    },
 ];
 
 export const percentageChangeExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titlePercentageChange,
-    pageTitle: ExampleStrings.titlePercentageChange + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titlePercentageChange,
     path: ExampleStrings.urlPercentageChange,
     filepath: "Charts2D/Filters/PercentageChange",
     subtitle: Subtitle,
@@ -43,9 +42,8 @@ export const percentageChangeExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription:
-        "How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan",
+    metaDescription: (frameworkName: string) =>
+        `How to use a ScaleOffsetFilter to convert data to a percentage change, with realtime updates, rescale on pan`,
     metaKeywords: "real-time, updating, percentage, transform, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

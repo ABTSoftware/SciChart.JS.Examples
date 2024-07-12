@@ -1,4 +1,4 @@
-import { closeValues, dateValues, highValues, lowValues, openValues } from "./data/themeing2dData";
+import { closeValues, dateValues, highValues, lowValues, openValues } from "./data";
 
 import {
     FastCandlestickRenderableSeries,
@@ -62,7 +62,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         scrollbarViewportBorderBrush: "white",
         shadowEffectColor: "white",
         textAnnotationBackground: "#6495EDAA",
-        textAnnotationForeground: "#EEEEEE",
+        textAnnotationForeground: "#333333",
         tickTextBrush: "#6495ED",
         upBandSeriesFillColor: "white",
         upBandSeriesLineColor: "white",

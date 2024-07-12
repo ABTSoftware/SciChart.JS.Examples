@@ -40,8 +40,7 @@ import tecnoLogo from "./images/tecno.png";
 import infinixLogo from "./images/infinix.png";
 import googleLogo from "./images/google.png";
 import nokiaLogo from "./images/nokia.png";
-import { appTheme } from "scichart-example-dependencies";
-import { TTextureObject } from "scichart/Charting/Visuals/TextureManager/TextureManager";
+import { appTheme } from "../../../theme";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Dataset = 'percentage market share of phones, 2022'
@@ -96,11 +95,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     ]);
 
     // Override labelProvider.getLabelTexture() to return animage
-    const getLabelTexture = (
-        labelText: string,
-        textureManager: TextureManager,
-        labelStyle: TTextStyle
-    ): TTextureObject => {
+    const getLabelTexture = (labelText: string, textureManager: TextureManager, labelStyle: TTextStyle) => {
         const index = parseInt(labelText);
         if (!isNaN(index)) {
             const emoji = emojies[index];

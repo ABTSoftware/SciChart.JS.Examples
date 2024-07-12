@@ -1,4 +1,5 @@
-import { appTheme, ExampleDataProvider } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
+import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 import {
     EllipsePointMarker,
     ENumericFormat,
@@ -13,7 +14,7 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { SeriesInfo } from "scichart/Charting/Model/ChartData/SeriesInfo";
+import { SeriesInfo } from "scichart";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface with X,Y Axis

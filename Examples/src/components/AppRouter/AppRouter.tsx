@@ -1,7 +1,6 @@
 import * as React from "react";
-import { Routes, Route, RouteProps } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import PageHome from "../PageHome/PageHome";
-import { PAGES } from "./pages";
 import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
 import ExamplesRoot from "../Examples/ExamplesRoot";
 import { getExampleComponent } from "./examples";
@@ -9,6 +8,9 @@ import classes from "../Examples/styles/Examples.module.scss";
 import { GalleryItem } from "../../helpers/types/types";
 import NoIndexTag from "../SeoTags/NoIndexTag";
 import { InfoToolbar } from "../Examples/Toolbar";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { useContext } from "react";
+
 type TProps = {
     currentExample: TExamplePage;
     isIFrame?: boolean;
@@ -28,6 +30,8 @@ const ExampleComponent = React.memo((props: { children: React.ReactNode; example
 
 export default function AppRouter(props: TProps) {
     const { currentExample, seeAlso, isIFrame = false } = props;
+    const selectedFramework = useContext(FrameworkContext);
+
     if (isIFrame) {
         const ChartComponent = getExampleComponent(currentExample.id);
 
@@ -35,12 +39,12 @@ export default function AppRouter(props: TProps) {
             <div className={classes.ExampleWrapperIFrame}>
                 <NoIndexTag />
                 <Routes>
-                    {examplePagesKeys.map(key => {
+                    {examplePagesKeys.map((key) => {
                         const exPage = EXAMPLES_PAGES[key];
                         return (
                             <Route
                                 key={key}
-                                path={`/iframe${exPage.path}`}
+                                path={`/iframe/${exPage.path}`}
                                 element={
                                     <ExampleComponent examplePage={currentExample}>
                                         <ChartComponent />
@@ -55,17 +59,25 @@ export default function AppRouter(props: TProps) {
     } else {
         return (
             <Routes>
-                {examplePagesKeys.map(key => {
+                {examplePagesKeys.map((key) => {
                     const exPage = EXAMPLES_PAGES[key];
                     return (
                         <Route
                             key={key}
-                            path={exPage.path}
+                            path={`/${selectedFramework}?/${exPage.path}`}
                             element={<ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />}
                         />
                     );
                 })}
-                <Route path={PAGES.homapage.path} element={<PageHome />} />
+
+                {currentExample ? (
+                    <Route
+                        path={`/javascript-${currentExample?.path}`}
+                        element={<Navigate to={`/${selectedFramework}/${currentExample?.path}`} />}
+                    />
+                ) : null}
+
+                <Route path={`/${selectedFramework}`} element={<PageHome />} />
             </Routes>
         );
     }

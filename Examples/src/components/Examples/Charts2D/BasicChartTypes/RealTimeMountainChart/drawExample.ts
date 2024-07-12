@@ -1,6 +1,4 @@
-import { RandomWalkGenerator } from "../../../../../../../Sandbox/CustomerExamples/AnimateXyValuesOnSeries/src/RandomWalkGenerator";
-
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import {
     AnimationToken,
     CustomAnnotation,
@@ -17,6 +15,7 @@ import {
     SciChartSurface,
     XyDataSeries,
 } from "scichart";
+import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create the SciChartSurface in the div 'scichart-root'

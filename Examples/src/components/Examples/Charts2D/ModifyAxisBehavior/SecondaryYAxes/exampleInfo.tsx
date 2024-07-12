@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-with-secondary-y-axis.jpg";
@@ -14,14 +13,14 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlMultipleXAxisDocumentation,
         title: ExampleStrings.urlTitleMultipleXAxisDocumentation,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Chart with Secondary Y axis</strong> using SciChart.js, High
-        Performance{" "}
+        Demonstrates how to create a <strong>{frameworkName} Chart with Secondary Y axis</strong> using SciChart.js,
+        High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -31,16 +30,15 @@ const Subtitle = () => (
 export const secondaryYAxesExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleSecondaryYAxis,
-    pageTitle: ExampleStrings.titleSecondaryYAxis + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleSecondaryYAxis,
     path: ExampleStrings.urlSecondaryYAxis,
     filepath: "Charts2D/ModifyAxisBehavior/SecondaryYAxes",
     subtitle: Subtitle,
     documentationLinks,
     tips,
     description,
-    githubUrl,
-    metaDescription:
-        "Demonstrates Secondary Y Axis on a JavaScript Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates Secondary Y Axis on a ${frameworkName} Chart using SciChart.js. SciChart supports unlimited, multiple left, right, top, bottom X, Y axis with configurable alignment and individual zooming, panning`,
     metaKeywords: "secondary, axis, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

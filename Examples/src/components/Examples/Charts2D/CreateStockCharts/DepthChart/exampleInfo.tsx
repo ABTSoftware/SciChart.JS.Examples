@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-depth-chart.jpg";
@@ -13,18 +12,18 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
         title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
-const Subtitle = () => (
-    <p>How to create a market depth (order book) chart using mountain series and a custom modifier</p>
+const Subtitle = (frameworkName: string) => (
+    <p>How to create a Market Depth (Order Book) {frameworkName} Chart using Mountain Series and a Custom Modifier</p>
 );
 
 export const depthChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleDepthChart,
-    pageTitle: ExampleStrings.titleDepthChart + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleDepthChart,
     path: ExampleStrings.urlDepthChart,
     filepath: "Charts2D/CreateStockCharts/DepthChart",
     subtitle: Subtitle,
@@ -32,9 +31,8 @@ export const depthChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription:
-        "Create a JavaScript Depth Chart, using the high performance SciChart.js chart library. Get free demo now.",
+    metaDescription: (frameworkName: string) =>
+        `Create a ${frameworkName} Depth Chart, using the high performance SciChart.js chart library. Get free demo now.`,
     metaKeywords: "depth, orderbook, stock, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

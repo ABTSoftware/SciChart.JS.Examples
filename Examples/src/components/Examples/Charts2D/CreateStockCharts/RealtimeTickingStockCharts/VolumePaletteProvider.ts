@@ -4,7 +4,7 @@ import {
     IPointMetadata,
     parseColorToUIntArgb,
     EFillPaletteMode,
-    IFillPaletteProvider
+    IFillPaletteProvider,
 } from "scichart";
 
 // Class which manages red/green fill colouring on Volume column series depending on if the candle is up or down

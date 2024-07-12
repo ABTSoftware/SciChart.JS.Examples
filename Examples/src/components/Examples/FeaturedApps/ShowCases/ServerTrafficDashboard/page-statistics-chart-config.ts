@@ -22,7 +22,7 @@ import {
     TRolloverTooltipDataTemplate,
     XySeriesInfo,
 } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { getData, TDataEntry, availablePages, getRequestsNumberPerTimestamp } from "./data-generation";
 import { TChartConfigResult, tooltipDataTemplateKey } from "./chart-configurations";
 import { TInitFunction } from "scichart-react";

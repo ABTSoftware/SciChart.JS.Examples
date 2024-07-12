@@ -1,4 +1,4 @@
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import {
     SciChartSurface,
     NumericAxis,
@@ -36,9 +36,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     );
 
     // data is { xValues: number[], yValues: number[], textValues: string[] }
-    const data: { xValues: number[]; yValues: number[]; textValues: string[] } = await fetch("/api/tweetData").then(
-        (r) => r.json()
-    );
+    const data: { xValues: number[]; yValues: number[]; textValues: string[] } = await fetch(
+        "https://demo.scichart.com/api/tweetData"
+    ).then((r) => r.json());
     const series = new FastTextRenderableSeries(wasmContext, {
         dataLabels: { style: { fontFamily: "arial", fontSize: 10 }, calculateTextBounds: false },
         dataSeries: new XyTextDataSeries(wasmContext, data),

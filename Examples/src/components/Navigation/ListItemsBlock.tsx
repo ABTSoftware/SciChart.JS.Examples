@@ -1,12 +1,13 @@
-import * as React from "react";
-import ListItem from "@material-ui/core/ListItem";
+import { FC, Fragment, useContext } from "react";
 import Collapse from "@material-ui/core/Collapse";
 import List from "@material-ui/core/List";
 import { TMenuItem } from "../AppRouter/examples";
-import { useLocation } from "react-router-dom";
+import { useMatch } from "react-router-dom";
 import MenuListItemText from "../../helpers/shared/MenuListItemText/MenuListItemText";
 import classes from "./ListItemsBlock.module.scss";
 import ListItemCollapseArrowIcon from "./ListItemCollapseArrowIcon";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { getTitle, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     onExpandClick: (id: string) => void;
@@ -17,9 +18,10 @@ type TProps = {
     menuItemsId: string;
 };
 
-const ListItemsBlock: React.FC<TProps> = props => {
-    const location = useLocation();
-
+const ListItemsBlock: FC<TProps> = (props) => {
+    const framework = useContext(FrameworkContext);
+    const match = useExampleRouteParams();
+    const selectedFramework = useContext(FrameworkContext);
     const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId } = props;
 
     return (
@@ -33,8 +35,8 @@ const ListItemsBlock: React.FC<TProps> = props => {
             </div>
             <Collapse in={checkIsOpened(menuItemsId)} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    {menuItems.map(el => (
-                        <React.Fragment key={el.item.id}>
+                    {menuItems.map((el) => (
+                        <Fragment key={el.item.id}>
                             <div className={classes.CollapsibleMenuListItem} onClick={() => onExpandClick(el.item.id)}>
                                 <MenuListItemText text={el.item.name} className={classes.SecondLevelMenuListItemText} />
                                 <ListItemCollapseArrowIcon
@@ -45,18 +47,22 @@ const ListItemsBlock: React.FC<TProps> = props => {
                             </div>
                             <Collapse in={checkIsOpened(el.item.id)} timeout="auto" unmountOnExit>
                                 <List component="div" disablePadding>
-                                    {el.submenu.map(subEl => (
+                                    {el.submenu.map((subEl) => (
                                         <div
                                             key={subEl.id}
                                             className={
-                                                location.pathname === subEl.path
+                                                match?.currentExample?.path === subEl.path
                                                     ? classes.SelectedBottomLevelListItem
                                                     : classes.BottomLevelListItem
                                             }
-                                            onClick={() => historyPushPath(subEl.path)}
+                                            onClick={() => historyPushPath(`${selectedFramework}/${subEl.path}`)}
                                         >
-                                            <a className={classes.ExampleLink} href={subEl.path} title={subEl.title}>
-                                                {subEl.title}
+                                            <a
+                                                className={classes.ExampleLink}
+                                                href={`${selectedFramework}/${subEl.path}`}
+                                                title={getTitle(subEl.title, selectedFramework)}
+                                            >
+                                                {getTitle(subEl.title, selectedFramework)}
                                             </a>
                                             {/*<ListItemText*/}
                                             {/*    className={classes.listItemText2}*/}
@@ -67,7 +73,7 @@ const ListItemsBlock: React.FC<TProps> = props => {
                                     ))}
                                 </List>
                             </Collapse>
-                        </React.Fragment>
+                        </Fragment>
                     ))}
                 </List>
             </Collapse>

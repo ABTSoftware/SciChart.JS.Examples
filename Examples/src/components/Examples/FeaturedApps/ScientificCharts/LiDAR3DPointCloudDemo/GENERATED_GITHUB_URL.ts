@@ -1,1 +1,0 @@
-export const githubUrl = "/components/Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/index.tsx";

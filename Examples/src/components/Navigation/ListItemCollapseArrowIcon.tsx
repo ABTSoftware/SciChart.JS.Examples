@@ -7,7 +7,7 @@ type TProps = {
     isCollapseOpened: boolean;
 };
 
-const ListItemCollapseArrowIcon: React.FC<TProps> = props => {
+const ListItemCollapseArrowIcon: React.FC<TProps> = (props) => {
     const { className, isCollapseOpened } = props;
     return <div className={className}>{isCollapseOpened ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}</div>;
 };

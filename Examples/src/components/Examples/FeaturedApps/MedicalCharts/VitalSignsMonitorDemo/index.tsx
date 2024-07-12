@@ -1,7 +1,7 @@
 import * as React from "react";
 import { vitalSignsEcgData } from "./data/vitalSignsEcgData";
 import classes from "../../../styles/Examples.module.scss";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 import {
     CategoryAxis,
@@ -22,12 +22,7 @@ const POINTS_LOOP = 5200;
 const GAP_POINTS = 50;
 const DATA_LENGTH = vitalSignsEcgData.xValues.length;
 
-const {
-    ecgHeartRateValues,
-    bloodPressureValues,
-    bloodVolumeValues,
-    bloodOxygenationValues
-} = vitalSignsEcgData;
+const { ecgHeartRateValues, bloodPressureValues, bloodVolumeValues, bloodOxygenationValues } = vitalSignsEcgData;
 
 // HELPER FUNCTIONS
 const getValuesFromData = (xIndex: number) => {
@@ -50,7 +45,7 @@ const getValuesFromData = (xIndex: number) => {
         ecgHeartRateArr,
         bloodPressureArr,
         bloodVolumeArr,
-        bloodOxygenationArr
+        bloodOxygenationArr,
     };
 };
 
@@ -63,7 +58,7 @@ const drawExample = async (
     setInfoBloodOxygenation: React.Dispatch<React.SetStateAction<number>>
 ) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create a single, shared X-axis, pre-sized to fit the data in X, and is invisible
@@ -73,7 +68,7 @@ const drawExample = async (
     //      See more info in the docs
     const xAxis = new CategoryAxis(wasmContext, {
         visibleRange: new NumberRange(0, POINTS_LOOP),
-        isVisible: false
+        isVisible: false,
     });
     sciChartSurface.xAxes.add(xAxis);
 
@@ -81,24 +76,25 @@ const drawExample = async (
     const yAxisHeartRate = new NumericAxis(wasmContext, {
         id: "yHeartRate",
         visibleRange: new NumberRange(0.7, 1.0),
-        isVisible: false
+        isVisible: false,
     });
     const yAxisBloodPressure = new NumericAxis(wasmContext, {
         id: "yBloodPressure",
         visibleRange: new NumberRange(0.4, 0.8),
-        isVisible: false
+        isVisible: false,
     });
     const yAxisBloodVolume = new NumericAxis(wasmContext, {
         id: "yBloodVolume",
         visibleRange: new NumberRange(0.1, 0.5),
-        isVisible: false
+        isVisible: false,
     });
     const yAxisBloodOxygenation = new NumericAxis(wasmContext, {
         id: "yBloodOxygenation",
         visibleRange: new NumberRange(0, 0.2),
-        isVisible: false
+        isVisible: false,
     });
-    sciChartSurface.layoutManager!.rightOuterAxesLayoutStrategy = new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
+    sciChartSurface.layoutManager!.rightOuterAxesLayoutStrategy =
+        new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
     sciChartSurface.yAxes.add(yAxisHeartRate, yAxisBloodPressure, yAxisBloodVolume, yAxisBloodOxygenation);
 
     // Using the NEW fifoCapacity, fifoSweeping mode in SciChart.js v3.2 we specify a number of points
@@ -108,22 +104,22 @@ const drawExample = async (
     const dataSeries1 = new XyDataSeries(wasmContext, {
         fifoCapacity: POINTS_LOOP,
         fifoSweeping: true,
-        fifoSweepingGap
+        fifoSweepingGap,
     });
     const dataSeries2 = new XyDataSeries(wasmContext, {
         fifoCapacity: POINTS_LOOP,
         fifoSweeping: true,
-        fifoSweepingGap
+        fifoSweepingGap,
     });
     const dataSeries3 = new XyDataSeries(wasmContext, {
         fifoCapacity: POINTS_LOOP,
         fifoSweeping: true,
-        fifoSweepingGap
+        fifoSweepingGap,
     });
     const dataSeries4 = new XyDataSeries(wasmContext, {
         fifoCapacity: POINTS_LOOP,
         fifoSweeping: true,
-        fifoSweepingGap
+        fifoSweepingGap,
     });
 
     // A pointmarker with lastPointOnly = true will be used for all series to mark the last point
@@ -132,7 +128,7 @@ const drawExample = async (
         height: 7,
         strokeThickness: 2,
         fill: appTheme.MutedSkyBlue,
-        lastPointOnly: true
+        lastPointOnly: true,
     };
 
     // Create four RenderableSeries which render the data
@@ -142,7 +138,7 @@ const drawExample = async (
             strokeThickness: STROKE_THICKNESS,
             stroke: appTheme.VividOrange,
             dataSeries: dataSeries1,
-            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividOrange })
+            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividOrange }),
         })
     );
 
@@ -152,7 +148,7 @@ const drawExample = async (
             strokeThickness: STROKE_THICKNESS,
             stroke: appTheme.VividSkyBlue,
             dataSeries: dataSeries2,
-            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividSkyBlue })
+            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividSkyBlue }),
         })
     );
 
@@ -162,7 +158,7 @@ const drawExample = async (
             strokeThickness: STROKE_THICKNESS,
             stroke: appTheme.VividPink,
             dataSeries: dataSeries3,
-            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividPink })
+            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividPink }),
         })
     );
 
@@ -172,7 +168,7 @@ const drawExample = async (
             strokeThickness: STROKE_THICKNESS,
             stroke: appTheme.VividTeal,
             dataSeries: dataSeries4,
-            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividTeal })
+            pointMarker: new EllipsePointMarker(wasmContext, { ...pointMarkerOptions, stroke: appTheme.VividTeal }),
         })
     );
 
@@ -182,9 +178,8 @@ const drawExample = async (
     // Here you would subsitute your own callback to receive data from your data feed or sensors
     const runUpdateDataOnTimeout = () => {
         // Get data
-        const { xArr, ecgHeartRateArr, bloodPressureArr, bloodVolumeArr, bloodOxygenationArr } = getValuesFromData(
-            currentPoint
-        );
+        const { xArr, ecgHeartRateArr, bloodPressureArr, bloodVolumeArr, bloodOxygenationArr } =
+            getValuesFromData(currentPoint);
         currentPoint += STEP;
 
         // appendRange when fifoSweepingMode = true and fifoCapacity is reached will cause the series to wrap around
@@ -245,7 +240,7 @@ export default function VitalSignsMonitorDemo() {
             setInfoBloodPressure2,
             setInfoBloodVolume,
             setInfoBloodOxygenation
-        ).then(res => {
+        ).then((res) => {
             sciChartSurfaceRef.current = res.sciChartSurface;
             controlsRef.current = res.controls;
             autoStartTimerId = setTimeout(res.controls.handleStart, 0);

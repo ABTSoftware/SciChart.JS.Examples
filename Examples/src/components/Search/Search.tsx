@@ -1,14 +1,18 @@
-import * as React from "react";
+import { useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { searchItems, TSearchItem } from "./searchItems";
+import { generateSearchItems, TSearchItem } from "./searchItems";
 import classes from "./Search.module.scss";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { ALL_MENU_ITEMS } from "../AppRouter/examples";
 
 export default function Search() {
     const navigate = useNavigate();
+    const framework = useContext(FrameworkContext);
+    const searchItems: TSearchItem[] = useMemo(() => generateSearchItems(ALL_MENU_ITEMS, framework), [framework]);
 
     const handleChange = (_e: any, value: TSearchItem | string) => {
         if (value && value.link) {
@@ -22,10 +26,10 @@ export default function Search() {
             <Autocomplete
                 id="someElement1"
                 freeSolo
-                options={searchItems.map(option => option)}
-                getOptionLabel={option => option.title}
+                options={searchItems.map((option) => option)}
+                getOptionLabel={(option) => option.title}
                 onChange={handleChange}
-                renderInput={params => (
+                renderInput={(params) => (
                     <TextField
                         {...params}
                         size="small"
@@ -42,7 +46,7 @@ export default function Search() {
                                     &nbsp;
                                     <SearchIcon />
                                 </InputAdornment>
-                            )
+                            ),
                         }}
                     />
                 )}

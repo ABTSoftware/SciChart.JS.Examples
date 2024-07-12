@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-startup-animations.jpg";
@@ -13,11 +12,11 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlStartupAnimationDocumentation,
         title: ExampleStrings.urlTitleStartupAnimationDocumentation,
-        linkTitle: "JavaScript Startup Animation Documentation"
-    }
+        linkTitle: "JavaScript Startup Animation Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to run <strong>Startup Animations</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -29,7 +28,7 @@ const Subtitle = () => (
 export const startupAnimationExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleStartupAnimation,
-    pageTitle: ExampleStrings.titleStartupAnimation + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleStartupAnimation,
     path: ExampleStrings.urlStartupAnimation,
     filepath: "Charts2D/Animations/StartupAnimation",
     subtitle: Subtitle,
@@ -37,8 +36,7 @@ export const startupAnimationExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription: "Demonstrates how to run Startup Animations with JavaScript.",
+    metaDescription: (frameworkName: string) => `Demonstrates how to run Startup Animations with JavaScript.`,
     metaKeywords: "startup, on-start, animation, javascript",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

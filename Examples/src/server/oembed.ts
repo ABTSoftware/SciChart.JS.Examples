@@ -1,6 +1,7 @@
 import express = require("express");
-var url = require('url');
+var url = require("url");
 import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
+import { getTitle, EPageFramework } from "../helpers/shared/Helpers/frameworkParametrization";
 
 const router = express.Router();
 
@@ -17,16 +18,16 @@ class OEmbedResponse {
     thumbnail_height: string = "900";
     description: string;
     //html: string;
-
 }
 
 router.get("/", (req, res) => {
+    // TODO test
     const requestUrl = req.query["url"];
-    const location = url.parse( requestUrl, true);
-    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find(key => EXAMPLES_PAGES[key].path === location.pathname);
+    const location = url.parse(requestUrl, true);
+    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === location.pathname);
     const currentExample = EXAMPLES_PAGES[currentExampleKey];
     const oEmbedResponse = new OEmbedResponse();
-    oEmbedResponse.title = currentExample.title;
+    oEmbedResponse.title = getTitle(currentExample.title, EPageFramework.Vanilla);
     oEmbedResponse.description = currentExample.previewDescription;
     oEmbedResponse.author_url = oEmbedResponse.provider_url + currentExample.path;
     oEmbedResponse.thumbnail_url = oEmbedResponse.provider_url + "/" + currentExample.thumbnailImage;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { CSSProperties } from "react";
 import classes from "../../../styles/Examples.module.scss";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 import {
     SciChartSurface,
@@ -20,7 +20,7 @@ import {
     ECoordinateMode,
     LegendModifier,
     LineSeriesDataLabelProvider,
-    DataLabelState
+    DataLabelState,
 } from "scichart";
 import { SciChartReact } from "scichart-react";
 
@@ -41,15 +41,18 @@ for (let i = 0; i < dataSize; i++) {
     yValues.push(Math.random() + 3.6);
 }
 
-const drawExample = async (rootElement:string | HTMLDivElement, setSelectedPoints: (selectedPoints: DataPointInfo[]) => void) => {
+const drawExample = async (
+    rootElement: string | HTMLDivElement,
+    setSelectedPoints: (selectedPoints: DataPointInfo[]) => void
+) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            growBy: new NumberRange(0.1, 0.1)
+            growBy: new NumberRange(0.1, 0.1),
         })
     );
 
@@ -78,14 +81,14 @@ const drawExample = async (rootElement:string | HTMLDivElement, setSelectedPoint
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: "First Series" }),
             pointMarker: {
                 type: EPointMarkerType.Ellipse,
-                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 }
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
             },
             strokeThickness: 3,
             // Optional visual feedback for selected points can be provided by the DataPointSelectionPaletteProvider
             // When dataSeries.metadata[i].isSelected, this still is applied
             paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
             // Optional: show datalabels but only for selected points
-            dataLabelProvider: getDataLabelProvider()
+            dataLabelProvider: getDataLabelProvider(),
         })
     );
 
@@ -95,13 +98,13 @@ const drawExample = async (rootElement:string | HTMLDivElement, setSelectedPoint
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Second Series" }),
             pointMarker: {
                 type: EPointMarkerType.Ellipse,
-                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 }
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
             },
             strokeThickness: 3,
             // Optional visual feedback for selected points
             paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
             // Optional: show datalabels but only for selected points
-            dataLabelProvider: getDataLabelProvider()
+            dataLabelProvider: getDataLabelProvider(),
         })
     );
 
@@ -111,13 +114,13 @@ const drawExample = async (rootElement:string | HTMLDivElement, setSelectedPoint
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Third Series" }),
             pointMarker: {
                 type: EPointMarkerType.Ellipse,
-                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 }
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
             },
             strokeThickness: 3,
             // Optional visual feedback for selected points
             paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
             // Optional: show datalabels but only for selected points
-            dataLabelProvider: getDataLabelProvider()
+            dataLabelProvider: getDataLabelProvider(),
         })
     );
 
@@ -127,13 +130,13 @@ const drawExample = async (rootElement:string | HTMLDivElement, setSelectedPoint
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Fourth Series" }),
             pointMarker: {
                 type: EPointMarkerType.Ellipse,
-                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 }
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
             },
             strokeThickness: 3,
             // Optional visual feedback for selected points
             paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
             // Optional: show datalabels but only for selected points
-            dataLabelProvider: getDataLabelProvider()
+            dataLabelProvider: getDataLabelProvider(),
         })
     );
 
@@ -149,7 +152,7 @@ const drawExample = async (rootElement:string | HTMLDivElement, setSelectedPoint
             opacity: 0.77,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative
+            yCoordinateMode: ECoordinateMode.Relative,
         })
     );
 
@@ -163,7 +166,7 @@ const drawExample = async (rootElement:string | HTMLDivElement, setSelectedPoint
             opacity: 0.77,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative
+            yCoordinateMode: ECoordinateMode.Relative,
         })
     );
 
@@ -187,7 +190,7 @@ export default function DatapointSelection() {
 
     const rowStyle = {
         height: "30px",
-        display: "flex"
+        display: "flex",
     };
 
     const pointsBoxStyle: CSSProperties = {
@@ -195,13 +198,13 @@ export default function DatapointSelection() {
         flexGrow: 1,
         flexShrink: 1,
         color: appTheme.PaleSkyBlue,
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     };
 
     const chartStyle: CSSProperties = {
         flexBasis: 400,
         flexGrow: 1,
-        flexShrink: 1
+        flexShrink: 1,
     };
 
     const columnItemStyle: CSSProperties = {
@@ -210,27 +213,27 @@ export default function DatapointSelection() {
         borderRight: `solid 1px ${appTheme.MutedSkyBlue}`,
         borderBottom: `solid 1px ${appTheme.MutedSkyBlue}`,
         textAlign: "center",
-        fontSize: 14
+        fontSize: 14,
     };
     const columnItemStyleRight: CSSProperties = {
         flex: "auto",
         width: "100px",
         borderBottom: `solid 1px ${appTheme.MutedSkyBlue}`,
         textAlign: "center",
-        fontSize: 14
+        fontSize: 14,
     };
 
     const scrollbarStyle: CSSProperties = {
         height: "100%",
         overflow: "scroll",
-        overflowX: "hidden"
+        overflowX: "hidden",
     };
 
     return (
         <div className={classes.FullHeightChartWrapper}>
             <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
-                <SciChartReact 
-                    style={chartStyle} 
+                <SciChartReact
+                    style={chartStyle}
                     initChart={(rootElement) => drawExample(rootElement, setSelectedPoints)}
                 />
                 <div style={pointsBoxStyle}>

@@ -1,11 +1,10 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-heatmap-interactions.jpg";
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates rich interactivity with custom modifiers using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -20,20 +19,20 @@ Data is streamed from the server via websocket and buffered locally so it keeps 
 Stop the updates then zoom with the mousewheel to see all the data is really there.`;
 const tips = [
     `For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded
-    appendRange functions on dataseries.`
+    appendRange functions on dataseries.`,
 ];
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
         title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
 export const heatmapInteractionsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleHeatmapInteractionsData,
-    pageTitle: ExampleStrings.titleHeatmapInteractionsData + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleHeatmapInteractionsData,
     path: ExampleStrings.urlHeatmapInteractionsData,
     filepath: "FeaturedApps/ShowCases/HeatmapInteractions",
     subtitle: Subtitle,
@@ -41,9 +40,8 @@ export const heatmapInteractionsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription:
-        "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
+    metaDescription: (frameworkName: string) =>
+        `This demo showcases the incredible realtime performance of our ${frameworkName} charts by updating the series with millions of data-points!`,
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-stacked-column-chart.jpg";
@@ -9,20 +8,21 @@ const description = `Stacked Column Charts can be created in JavaScript using Sc
     Y-value of each stacked column series to the Y-value of the next.
     Each column can have a different color and you can stack to 100% using our library.`;
 const tips = [
-    `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much space the column takes up.`
+    `To change the width of the column, set the dataPointWidth property from 0.0 to 1.0. This alters how much space the column takes up.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlStackedColumnChartDocumentation,
         title: ExampleStrings.urlTitleStackedColumnChartDocumentation,
-        linkTitle: "JavaScript Stacked Column Chart Documentation"
-    }
+        linkTitle: "JavaScript Stacked Column Chart Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        The example on this page demonstrates how to create a <strong>JavaScript Stacked Column Chart</strong> using our{" "}
+        The example on this page demonstrates how to create a <strong>{frameworkName} Stacked Column Chart</strong>{" "}
+        using our{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
             feature-rich JavaScript Chart Library
         </a>
@@ -40,9 +40,8 @@ export const stackedColumnChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
-    metaDescription:
-        "Discover how to create a JavaScript Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!",
+    metaDescription: (frameworkName: string) =>
+        `Discover how to create a ${frameworkName} Stacked Column Chart using our feature-rich JavaScript Chart Library, SciChart.js. Get your free demo today!`,
     metaKeywords: "stacked, column, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

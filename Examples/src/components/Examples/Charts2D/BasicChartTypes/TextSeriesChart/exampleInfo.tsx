@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-text-chart.jpg";
@@ -13,11 +12,11 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlTextSeriesDocumentation,
         title: ExampleStrings.urlTitleTextSeriesDocumentation,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         This example demonstrates <strong>FastTextRenderableSeries</strong> using{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
@@ -31,7 +30,7 @@ const Subtitle = () => (
 export const textChartExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleTextChart,
-    pageTitle: ExampleStrings.titleTextChart + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleTextChart,
     path: ExampleStrings.urlTextChart,
     filepath: "Charts2D/BasicChartTypes/TextSeriesChart",
     subtitle: Subtitle,
@@ -39,8 +38,8 @@ export const textChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription: "Create JavaScript Text Chart with high performance SciChart.js.  ",
+    metaDescription: (frameworkName: string) =>
+        `Create ${frameworkName} Text Chart with high performance SciChart.js.  `,
     metaKeywords: "text, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

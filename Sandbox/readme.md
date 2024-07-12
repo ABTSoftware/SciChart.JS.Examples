@@ -1,8 +1,8 @@
-# SciChart.js Sandbox & Boilerplates 
+# SciChart.js Sandbox & Boilerplates
 
-## Boilerplates 
+## Boilerplates
 
-Boilerplates for popular JavaScript frameworks can be found here. If you are using one of the following frameworks, go straight to the appropriate folder to get started quickly. 
+Boilerplates for popular JavaScript frameworks can be found here. If you are using one of the following frameworks, go straight to the appropriate folder to get started quickly.
 
 - [webpack + SciChart.js](demo-simple-chart)
 - [webpack + typescript + SciChart.js](demo-webpack-typescript)
@@ -17,16 +17,18 @@ Boilerplates for popular JavaScript frameworks can be found here. If you are usi
 - [Vue.js + SciChart.js](demo-vue-scichart)
 - [Web Components + SciChart.js](demo-web-components)
 
-> Using a wierd and wonderful javascript framework and need a boilerplate?   
+The latest boilerplates could be found at [BoilerPlates](../BoilerPlates/)
+
+> Using a wierd and wonderful javascript framework and need a boilerplate?  
 > Or, found a bug or issue in one of our boilerplates?
-> 
+>
 > Then please [Contact us](https://scichart.com/contact-us)
 
 ## Customer Examples
 
-When a customer asks us a question 'How do I do this?' we sometimes create an example here in Customer Exampless. 
+When a customer asks us a question 'How do I do this?' we sometimes create an example here in Customer Exampless.
 
-Browse the [Customer Examples](CustomerExamples) folder to see use-cases that have been requested by our users. 
+Browse the [Customer Examples](CustomerExamples) folder to see use-cases that have been requested by our users.
 
 > Have a custom requirement you'd like to implement in SciChart.js?
 >
@@ -34,7 +36,7 @@ Browse the [Customer Examples](CustomerExamples) folder to see use-cases that ha
 
 ## [Documentation Snippets](DocumentationSnippets)
 
-The folder [Documentation Snippets](DocumentationSnippets) contains code used in the [SciChart.js documentation](https://scichart.com/javascript-chart-documentation). 
+The folder [Documentation Snippets](DocumentationSnippets) contains code used in the [SciChart.js documentation](https://scichart.com/javascript-chart-documentation).
 
 We publish here on Github so the code is versioned, testable and then included into the documentation.
 

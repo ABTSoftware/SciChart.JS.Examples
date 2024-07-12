@@ -10,7 +10,7 @@ import {
     generateGuid,
     translateFromCanvasToSeriesViewRect,
     translateFromSeriesViewRectToCanvas,
-} from 'scichart';
+} from "scichart";
 
 export class ModifierGroup extends ObservableArray<ChartModifierBase2D> {
     public readonly name = `ModifierGroup${generateGuid()}`;

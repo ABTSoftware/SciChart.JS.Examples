@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-subcharts-grid.jpg";
@@ -13,11 +12,11 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlSubchartApiDocumentation,
         title: ExampleStrings.urlTitleSubCharstApiDocumentation,
-        linkTitle: "Scichart.js SubCharts API Documentation"
-    }
+        linkTitle: "Scichart.js SubCharts API Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Using the SubCharts API as part of{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -29,18 +28,17 @@ const Subtitle = () => (
 
 export const subchartsGridExampleInfo: TExampleInfo = {
     onWebsite: false,
-    title: "JavaScript 64-Chart Dashboard Performance Demo",
-    pageTitle: "JavaScript 64-Chart Dashboard Performance Demo" + ExampleStrings.exampleGenericTitleSuffix,
-    path: "/javascript-multiple-chart-dashboard-performance-demo",
+    title: ExampleStrings.titleChartGrid,
+    pageTitle: ExampleStrings.titleChartGrid,
+    path: ExampleStrings.urlChartGrid,
     filepath: "FeaturedApps/FeatureDemos/SubChartsAPI",
     subtitle: Subtitle,
     documentationLinks,
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription:
-        "Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript",
+    metaDescription: (frameworkName: string) =>
+        `Using the SubCharts API as part of SciChart.js, this demo showcases an 8x8 grid of 64 charts updating in realtime in JavaScript`,
     metaKeywords: "javascript, multichart, dashboard, performance, grid, realtime, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

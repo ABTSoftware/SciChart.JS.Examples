@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useRef, useContext, FC, useState, useEffect } from "react";
 import SeoTags from "../SeoTags/SeoTags";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
@@ -16,6 +16,9 @@ import submit = Simulate.submit;
 import { Radio, SubdirectoryArrowRight } from "@material-ui/icons";
 import { InfoToolbar } from "./Toolbar";
 import { baseGithubPath } from "../../constants";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
+import { getTitle, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TProps = {
     // example: () => JSX.Element;
@@ -23,34 +26,39 @@ type TProps = {
     seeAlso: GalleryItem[];
 };
 
-const ExamplesRoot: React.FC<TProps> = props => {
-    const [render, setRender] = React.useState(false);
+const ExamplesRoot: FC<TProps> = (props) => {
+    const [render, setRender] = useState(false);
     const { examplePage, seeAlso } = props;
-    const [showSource, setShowSource] = React.useState(false);
-    const [firstRender, setFirstRender] = React.useState(true);
-
-    const myRef = React.useRef(null);
+    const [showSource, setShowSource] = useState(false);
+    const [firstRender, setFirstRender] = useState(true);
+    const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const framework = useContext(FrameworkContext);
+    const frameworkName = FRAMEWORK_NAME[framework];
+    const myRef = useRef(null);
     const executeScroll = () => myRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
     const ExampleComponent = getExampleComponent(examplePage.id);
     // const ChartComponent = getExampleComponent(examplePage.id);
 
-    const titleText = examplePage ? examplePage.title : ExampleStrings.siteHomeTitle;
-    const seoTitleText = examplePage.pageTitle;
-    const subtitleText = examplePage ? examplePage.subtitle() : undefined;
+    const titleText = examplePage
+        ? getTitle(examplePage.title, framework)
+        : ExampleStrings.siteHomeTitle(frameworkName);
+    const seoTitleText = getTitle(examplePage.pageTitle, framework) + ExampleStrings.exampleGenericTitleSuffix;
+    const subtitleText = examplePage ? examplePage.subtitle(frameworkName) : undefined;
 
     const documentationLinks = examplePage ? examplePage.documentationLinks : undefined;
     const tips = examplePage ? examplePage.tips : undefined;
     const previewDescription = examplePage ? examplePage.previewDescription : undefined;
     const description = examplePage ? examplePage.description : undefined;
 
-    const githubUrl = examplePage ? examplePage.githubUrl : "";
-    const seoDescription = examplePage ? examplePage.metaDescription : "";
+    const githubUrl = examplePage ? "/components/Examples/" + examplePage.filepath : "";
+    const seoDescription = examplePage ? getTitle(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage ? examplePage.metaKeywords : "";
     const basePath = "https://demo.scichart.com";
     const exampleImage = examplePage ? `${basePath}/${examplePage.thumbnailImage}` : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";
 
-    React.useEffect(() => {
+    useEffect(() => {
         updateGoogleTagManagerPage();
         window.scrollTo(0, 0);
         window.Prism?.highlightAll();
@@ -66,7 +74,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
     //     );
     // };
 
-    React.useEffect(() => {
+    useEffect(() => {
         setRender(true);
         return () => {
             setRender(false);
@@ -92,7 +100,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                 <a
                                     className={classes.ExampleRootDescriptionLink}
                                     target="_blank"
-                                    href={`https://scichart.com/example/javascript-chart${exampleUrl}/`}
+                                    href={`https://scichart.com/example/javascript-chart/javascript-${exampleUrl}/`}
                                     title={titleText}
                                 >
                                     {titleText}
@@ -112,7 +120,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                     className={classes.ExampleRootDescriptionLink}
                                     target="_blank"
                                     rel="nofollow external"
-                                    href={`${exampleUrl}?codesandbox=1`}
+                                    href={`/codesandbox/${exampleUrl}?codesandbox=1&framework=${framework}`}
                                 >
                                     Open in CodeSandBox
                                 </a>
@@ -162,7 +170,7 @@ const ExamplesRoot: React.FC<TProps> = props => {
                                     <Button className={classes.GitHubLink}>
                                         <SubdirectoryArrowRight />
                                         <a
-                                            href={`/iframe${examplePage.path}`}
+                                            href={`/iframe/${examplePage.path}`}
                                             title="View this example in Full Screen"
                                             target="_blank"
                                             rel="nofollow"

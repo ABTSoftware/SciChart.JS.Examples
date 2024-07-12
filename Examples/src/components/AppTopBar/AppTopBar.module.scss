@@ -88,6 +88,20 @@
             background-position: 0 100%;
         }
 
+        .DisabledButton {
+            background: $color-grey;
+            margin: 0;
+        }
+
+        // overrides MuiButton-label
+        .DisabledButton > span {
+            color: $color-light-grey;
+        }
+
+        .DisabledButtonTooltipWrapper {
+            padding: 0;
+        }
+
         .BlueButton {
             background: $gradient-blue;
             border-radius: 14px;

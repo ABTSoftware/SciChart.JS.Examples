@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-color-points-individually-with-paletteprovider.jpg";
@@ -14,13 +13,13 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlPaletteProviderDocumentation,
         title: ExampleStrings.urlTitlePaletteProviderDocumentation,
-        linkTitle: "SciChart.js PaletteProvider documentation"
-    }
+        linkTitle: "SciChart.js PaletteProvider documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how create <strong>JavaScript Charts with per-point coloring</strong> using SciChart.js, High
+        Demonstrates how create <strong>{frameworkName} Charts with per-point coloring</strong> using SciChart.js, High
         Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
@@ -31,15 +30,15 @@ const Subtitle = () => (
 export const perPointColoringExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titlePaletteProvider,
-    pageTitle: ExampleStrings.titlePaletteProvider + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titlePaletteProvider,
     path: ExampleStrings.urlPaletteProvider,
     filepath: "Charts2D/StylingAndTheming/PerPointColoring",
     subtitle: Subtitle,
     documentationLinks,
     tips,
     description,
-    githubUrl,
-    metaDescription: "Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates per-point coloring in JavaScript chart types with SciChart.js PaletteProvider API`,
     metaKeywords: "palette, provider, api, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { CSSProperties, ChangeEventHandler, MouseEventHandler, useEffect, useRef, useState } from "react";
-import { appTheme } from "scichart-example-dependencies/lib/theme";
 import classes from "../../../styles/Examples.module.scss";
 import { TChartConfigResult, synchronizeXVisibleRanges } from "./chart-configurations";
 import {
@@ -26,6 +25,7 @@ import { overviewOptions } from "./Overview";
 import DashboardOverlay from "./DashboardOverlay";
 import ThresholdSlider from "./ThresholdSlider";
 import { IInitResult, SciChartReact as SciChart, SciChartGroup, SciChartNestedOverview } from "scichart-react";
+import { appTheme } from "../../../theme";
 
 function ServerTrafficDashboard() {
     const [isVisibleRangeSynced, setIsVisibleRangeSynced] = useState(true);

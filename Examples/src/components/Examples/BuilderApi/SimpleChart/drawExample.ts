@@ -9,8 +9,8 @@ import {
     EVerticalAnchorPoint,
     ECoordinateMode,
 } from "scichart";
-import { chartBuilder } from "scichart/Builder/chartBuilder";
-import { appTheme } from "scichart-example-dependencies";
+import { chartBuilder } from "scichart";
+import { appTheme } from "../../theme";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a chart using the Builder-API, an api that allows defining a chart
@@ -31,7 +31,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     strokeThickness: 5,
                     interpolationPoints: 20,
                     stroke: appTheme.VividTeal,
-                    animation: { type: EAnimationType.Sweep, options: { duration: 500 } },
+                    animation: { type: EAnimationType.Scale, options: { duration: 500 } },
                 },
                 xyData: {
                     xValues: [1, 3, 4, 7, 9],

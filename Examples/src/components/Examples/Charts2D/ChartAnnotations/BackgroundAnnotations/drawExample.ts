@@ -1,5 +1,5 @@
-import { appTheme } from "scichart-example-dependencies";
-import { happinessData } from "./happinessData";
+import { appTheme } from "../../../theme";
+import { happinessData } from "./data";
 import {
     SciChartSurface,
     NumericAxis,

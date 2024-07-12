@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-realtime-ticking-stock-charts.jpg";
@@ -15,11 +14,11 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlCandlestickChartDocumentation,
         title: ExampleStrings.urlTitleCandlestickChartDocumentation,
-        linkTitle: "JavaScript Candlestick Chart Documentation"
-    }
+        linkTitle: "JavaScript Candlestick Chart Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Connects to Binance Exchange to fetch historical data on 1-minute timeframe. Subscribes to WebSocket and listens
         to candles & trades. Candles are updated in realtime. You can zoom, pan the example or use tooltips.{" "}
@@ -40,10 +39,9 @@ export const realtimeTickingStockChartsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription:
-        "Create a JavaScript Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.",
+    metaDescription: (frameworkName: string) =>
+        `Create a ${frameworkName} Realtime Ticking Candlestick / Stock Chart with live ticking and updating, using the high performance SciChart.js chart library. Get free demo now.`,
     metaKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
-    extraDependencies: { "websocket-ts": "^1.1.1", rxjs: "^7.5.6" }
+    extraDependencies: { "websocket-ts": "^1.1.1", rxjs: "^7.5.6" },
 };

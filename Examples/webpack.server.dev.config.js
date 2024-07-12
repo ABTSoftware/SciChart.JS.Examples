@@ -5,10 +5,12 @@ const NodemonPlugin = require("nodemon-webpack-plugin");
 
 module.exports = merge(webpackServerConfig, {
     mode: "development",
-    plugins: [new NodemonPlugin({
-        script: './build/server.js',
-        watch: path.resolve('./src/server'),
-        ext: 'js,ts',
-    })],
-    watch: true
+    plugins: [
+        new NodemonPlugin({
+            script: "./build/server.js",
+            watch: path.resolve("./src/server"),
+            ext: "js,ts,tsx",
+        }),
+    ],
+    watch: true,
 });

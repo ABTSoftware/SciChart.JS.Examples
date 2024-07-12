@@ -20,7 +20,7 @@ export default async function initGrChart(
     let color1 = Math.round(Math.random() * 250);
     let color2 = Math.round(Math.random() * 250);
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
-        stroke: `rgba(${255 - color1},${color1},${(color1 + 125) % 255},0.7)`
+        stroke: `rgba(${255 - color1},${color1},${(color1 + 125) % 255},0.7)`,
     });
     const lineDataSeries = getRandomSinewave(wasmContext, 0, Math.random() * 3, Math.random() * 50, pointsCount, 1);
     lineDataSeries.dataSeries.dataSeriesName = "GR";
@@ -28,7 +28,7 @@ export default async function initGrChart(
     const dashedSeries = new FastLineRenderableSeries(wasmContext, {
         stroke: `rgba(${255 - color2},${color2},${(color2 + 125) % 255},0.7)`,
         strokeThickness: 2,
-        strokeDashArray: [10, 3]
+        strokeDashArray: [10, 3],
     });
     const dashedDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "CALI" });
     for (let i = 0; i < pointsCount; i += pointsCount / 10) {
