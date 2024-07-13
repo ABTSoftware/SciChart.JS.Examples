@@ -94,17 +94,18 @@ panel_css: 0`);
     }
 }
 
-const makeNav = (entry: Entry) => {
+const makeNav = (entry: Entry, categoryName: string) => {
     if (entry.isDemo) {
         makeDemoFiles(entry);
     }
-    let html = `<li><a href="${entry.url}">${entry.name}</a>
+    const category = categoryName ? `data-category=${categoryName}` : "";
+    let html = `<li ${category}><a href="${entry.url}">${entry.name}</a>
 `;
     if (!entry.isDemo && entry.entries.length > 0) {
         html += `<ul class="list">
 `;
         for (const folder of entry.entries) {
-            html += makeNav(folder);
+            html += makeNav(folder, entry.name);
         }
         html += `</ul>
  `;
@@ -169,9 +170,9 @@ walk(baseDir, (err, entry) => {
 
             items.forEach(function(item) {
                 let text = item.textContent.toLowerCase();
-                let originalText = item.textContent;
+                let category = item.getAttribute('data-category')?.toLowerCase() ?? "";
 
-                if (text.includes(filter) && filter !== '') {
+                if ((text.includes(filter) || category.includes(filter)) && filter !== '') {
                     item.classList.remove('hidden');
                     // let index = text.lastIndexOf(filter);
                     // let match = originalText.substring(index, index + filter.length);                             
@@ -202,7 +203,7 @@ walk(baseDir, (err, entry) => {
     html += `<ul id="list">
 `;
     for (const folder of entry.entries) {
-        html += makeNav(folder);
+        html += makeNav(folder, undefined);
     }
     html += `</ul>
 `;
