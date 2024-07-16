@@ -23,7 +23,7 @@ var walk = function (dir, done) {
         const entry = new Entry(dir);
         if (!pending)
             return done(null, entry);
-        list.forEach((file) => {
+        list.slice(0, 20).forEach((file) => {
             file = path.resolve(dir, file);
             fs.stat(file, (err, stat) => {
                 if (stat && stat.isDirectory()) {
@@ -169,16 +169,35 @@ walk(baseDir, (err, entry) => {
         document.getElementById('searchBox').addEventListener('keyup', filterList);
         document.getElementById('clearButton').addEventListener('click', clearSearch);
 
+        function clearSearch() {
+            document.getElementById('searchBox').value = '';
+            let items = document.querySelectorAll('#list li.hidden');
+            console.log("Clearing search, items ", items.length);
+            items.forEach(function(item) {
+                item.classList.remove('hidden');
+                // Clear previous highlights
+                item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');
+            });
+        }
+        
         function filterList() {
             let filter = document.getElementById('searchBox').value.toLowerCase();
             let items = document.querySelectorAll('#list li');
+            console.log("Filtering, items ", items.length);
 
+            if (filter === '') {
+                clearSearch();
+                return;
+            }
+            let unhidden = 0;
             items.forEach(function(item) {
                 let text = item.textContent.toLowerCase();
                 let category = item.getAttribute('data-category')?.toLowerCase() ?? "";
 
-                if ((text.includes(filter) || category.includes(filter)) && filter !== '') {
+                console.log("Filter is ", filter);
+                if ((text.includes(filter) || category.includes(filter))) {
                     item.classList.remove('hidden');
+                    unhidden++;
                     // Highlight search text
                     const link = item.querySelector('a');
                     const linkText = link.innerText;
@@ -189,28 +208,11 @@ walk(baseDir, (err, entry) => {
                         link.innerHTML = linkText.replace(match, \`<span class="highlight">\` + match + \`</span>\`);
                     }
                 } else {
-                    console.log("Hiding ", item);
+                    unhidden--;
                     item.classList.add('hidden');
-                }
-                if (filter === '') {
-                    item.classList.remove('hidden');
-                    // console.log("Unhiding (1)", item);
-                    // Clear previous highlights
-                    item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');
-                }
+                }                
             });
-        }
-
-        function clearSearch() {
-            document.getElementById('searchBox').value = '';
-            let items = document.querySelectorAll('#list li');
-            console.log("Clearing search");
-            items.forEach(function(item) {
-                item.classList.remove('hidden');
-                // console.log("Unhiding (2)", item);
-                // Clear previous highlights
-                item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');
-            });
+            console.log("Unhidden ", unhidden);
         }
     </script>
 `;

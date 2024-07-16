@@ -1,6 +1,6 @@
 "use strict";
-
-const scichart_1 = SciChart;
+Object.defineProperty(exports, "__esModule", { value: true });
+const scichart_1 = require("scichart");
 // Custom PaletteProvider for line series
 class LinePaletteProvider {
     constructor(stroke, rule) {
