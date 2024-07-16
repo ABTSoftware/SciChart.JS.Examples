@@ -174,17 +174,24 @@ walk(baseDir, (err, entry) => {
 
                 if ((text.includes(filter) || category.includes(filter)) && filter !== '') {
                     item.classList.remove('hidden');
-                    // let index = text.lastIndexOf(filter);
-                    // let match = originalText.substring(index, index + filter.length);                             
-                    // @ts-ignore
-                    // item.innerHTML = originalText.replace(match, \`<span class="highlight">\` + match + \`</span>\`);                    
+                    // Highlight search text
+                    const link = item.querySelector('a');
+                    const linkText = link.innerText;
+                    let index = linkText.toLowerCase().lastIndexOf(filter);
+                    if (index !== -1) {
+                        let match = linkText.substring(index, index + filter.length);
+                        // @ts-ignore
+                        link.innerHTML = linkText.replace(match, \`<span class="highlight">\` + match + \`</span>\`);
+                    }
                 } else {
+                    console.log("Hiding ", item);
                     item.classList.add('hidden');
                 }
                 if (filter === '') {
                     item.classList.remove('hidden');
+                    // console.log("Unhiding (1)", item);
                     // Clear previous highlights
-                    // item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');
+                    item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');
                 }
             });
         }
@@ -192,10 +199,12 @@ walk(baseDir, (err, entry) => {
         function clearSearch() {
             document.getElementById('searchBox').value = '';
             let items = document.querySelectorAll('#list li');
+            console.log("Clearing search");
             items.forEach(function(item) {
                 item.classList.remove('hidden');
+                // console.log("Unhiding (2)", item);
                 // Clear previous highlights
-                // item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');
+                item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');
             });
         }
     </script>
