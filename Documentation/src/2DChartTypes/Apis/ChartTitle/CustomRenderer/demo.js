@@ -1,6 +1,6 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const scichart_1 = require("scichart");
+
+const scichart_1 = SciChart;
 async function customChartTitleRenderer(divElementId) {
     // Demonstrates how to add a basic chart title in SciChart.js
     const { wasmContext, sciChartSurface } = await scichart_1.SciChartSurface.create(divElementId, {

@@ -23,7 +23,7 @@ var walk = function (dir, done) {
         const entry = new Entry(dir);
         if (!pending)
             return done(null, entry);
-        list.slice(0, 20).forEach((file) => {
+        list.forEach((file) => {
             file = path.resolve(dir, file);
             fs.stat(file, (err, stat) => {
                 if (stat && stat.isDirectory()) {
@@ -165,19 +165,20 @@ walk(baseDir, (err, entry) => {
         <button id="clearButton">&times;</button>
     </div>
     <script>
-        console.log("Adding search event listener");
         document.getElementById('searchBox').addEventListener('keyup', filterList);
         document.getElementById('clearButton').addEventListener('click', clearSearch);
 
         function clearSearch() {
             document.getElementById('searchBox').value = '';
-            let items = document.querySelectorAll('#list li.hidden');
-            console.log("Clearing search, items ", items.length);
+            let items = document.querySelectorAll('#list li');
             items.forEach(function(item) {
-                item.classList.remove('hidden');
-                // Clear previous highlights
-                item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');
+                item.classList.remove('hidden');                                
             });
+            items.forEach(function(item) {                
+                // Clear previous highlights
+                item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');                
+            });
+            console.log("Cleared search from " + items.length + " items");
         }
         
         function filterList() {
@@ -189,30 +190,32 @@ walk(baseDir, (err, entry) => {
                 clearSearch();
                 return;
             }
-            let unhidden = 0;
             items.forEach(function(item) {
                 let text = item.textContent.toLowerCase();
                 let category = item.getAttribute('data-category')?.toLowerCase() ?? "";
 
-                console.log("Filter is ", filter);
                 if ((text.includes(filter) || category.includes(filter))) {
                     item.classList.remove('hidden');
-                    unhidden++;
+                    console.log("Cleared search from " + item);
                     // Highlight search text
                     const link = item.querySelector('a');
                     const linkText = link.innerText;
                     let index = linkText.toLowerCase().lastIndexOf(filter);
                     if (index !== -1) {
-                        let match = linkText.substring(index, index + filter.length);
-                        // @ts-ignore
+                        let match = linkText.substring(index, index + filter.length);                      
+                        // Add highlights
                         link.innerHTML = linkText.replace(match, \`<span class="highlight">\` + match + \`</span>\`);
                     }
                 } else {
-                    unhidden--;
-                    item.classList.add('hidden');
-                }                
+                    if (item.classList.contains('hidden') === false) {
+                        item.classList.add('hidden');
+                        // Clear previous highlights
+                        item.innerHTML = item.innerHTML.replace(/<span class="highlight">(.*?)<\\/span>/g, '$1');
+                    } else {
+                        console.log("Already hidden: " + item);
+                    }
+                }
             });
-            console.log("Unhidden ", unhidden);
         }
     </script>
 `;

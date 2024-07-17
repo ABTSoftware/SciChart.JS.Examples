@@ -1,6 +1,6 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const scichart_1 = require("scichart");
+
+const scichart_1 = SciChart;
 async function lineChartWithyGradient(divElementId) {
     const { sciChartSurface, wasmContext } = await scichart_1.SciChartSurface.create(divElementId);
     // Create XAxis
