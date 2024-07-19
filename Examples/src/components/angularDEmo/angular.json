@@ -38,8 +38,8 @@
               "src/assets",
               {
                 "glob": "**/*",
-                "input": "./Examples/Charts2D/AxisLabelCustomization/ImageLabels/images/",
-                "output": "./Examples/Charts2D/AxisLabelCustomization/ImageLabels/images/"
+                "input": "assets/images/",
+                "output": "assets/images/"
               }
             ],
             "styles": [

@@ -23,6 +23,7 @@ export class AngularChartComponent implements OnInit{
   onDeleteHandler:any;
   initJustLineCharts:any;
   additinal:any = false;
+  // appleLogoPath = applelogo;
   
   constructor(private router: Router,
     private route: ActivatedRoute,

@@ -11,7 +11,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
 import {AppLineChartComponent } from '../../../Examples/Charts2D/BasicChartTypes/LineChart/angularLineApp';
 // import {StackeAppComponent} from '../.././../Examples/Charts2D/BasicChartTypes/StackedColumnChart/angularStackedColumnapp';
-import {AppRealTimeMountainComponent} from '../../../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/angularrealTimeMountainapp'
+import {AppRealTimeMountainComponent} from '../../../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/angularrealTimeMountainapp';
+import {ChartComponent} from '../../../Examples/Charts2D/AxisLabelCustomization/ImageLabels/angularImageLabels';
+import {ChartExampleComponent} from '../../../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/angularAnnotations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,9 @@ import {AppRealTimeMountainComponent} from '../../../Examples/Charts2D/BasicChar
     AngularChartComponent,
     AppLineChartComponent,
     // StackeAppComponent,
-    AppRealTimeMountainComponent
+    AppRealTimeMountainComponent,
+    ChartComponent,
+    ChartExampleComponent
   ],
   imports: [
     BrowserModule,

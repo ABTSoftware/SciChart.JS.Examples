@@ -81,7 +81,7 @@ import * as logarithmicAxisExampleInfo from "../../../../Examples/Charts2D/Modif
 // import * as editableAnnotationsExampleInfo from "../../../../Examples/Charts2D/ChartAnnotations/EditableAnnotations/drawExample";
 // import * as GalleryItem from "../../../../../../../../helpers/types/types";
 // import * as chartFromJSONExampleInfo from "../../../../Examples/BuilderApi/ChartFromJSON/drawExample";
-// import * as imageLabelsExampleInfo from "../../../../Examples/Charts2D/AxisLabelCustomization/ImageLabels/drawExample";
+// import * as imageLabelsExampleInfo from "../../../../Examples/Charts2D/AxisLabelCustomization/ImageLabels/angulardraw";
 // import * as percentageChangeExampleInfo from "../../../../Examples/Charts2D/Filters/PercentageChange/drawExample";
 // import * as customFiltersExampleInfo from "../../../../Examples/Charts2D/Filters/CustomFilters/drawExample";
 // import * as dataAnimationExampleInfo from "../../../../Examples/Charts2D/Animations/DataAnimation/drawExample";
@@ -110,8 +110,16 @@ import * as logarithmicAxisExampleInfo from "../../../../Examples/Charts2D/Modif
 // import * as waterfallChartExampleInfo from "../../../../Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/drawExample"
 // import * as tenorCurvesExampleInfo from "../../../../Examples/FeaturedApps/ScientificCharts/TenorCurves3D/drawExaple"
 
+// import * as appleLogo from "../../../../Examples/Charts2D/AxisLabelCustomization/ImageLabels/images/apple.png";
+
+
+// /home/cnadmin/cn/SciChart.JS.Examples/Examples/src/components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/images
+
 import { title } from "process";
 export const framework = 'Angular'
+
+
+
 export const EXAMPLES_PAGES = {
     chart2D_basicCharts_BandSeriesChart: {
         id: "chart2D_basicCharts_BandSeriesChart",
@@ -541,12 +549,13 @@ export const EXAMPLES_PAGES = {
     //     path: ExampleStrings.urlErrorBarsChart,
     //     drawExample:errorBarsChartExampleInfo.drawExample
     // },
-    // chart2D_chartAnnotations_AnnotationsAreEasy: {                                              // This is the issue of png Image import 
-    //     id: "chart2D_chartAnnotations_AnnotationsAreEasy",
-    //     title: ExampleStrings.titleAnnotationsAreEasy(framework),
-    //     path: ExampleStrings.urlAnnotationsAreEasy,
-    //     drawExample:annotationsAreEasyExampleInfo.drawExample,
-    // },
+    chart2D_chartAnnotations_AnnotationsAreEasy: {                                              // This is the issue of png Image import 
+        id: "chart2D_chartAnnotations_AnnotationsAreEasy",
+        title: ExampleStrings.titleAnnotationsAreEasy(framework),
+        path: ExampleStrings.urlAnnotationsAreEasy,
+        additinal: true,
+        // drawExample:annotationsAreEasyExampleInfo.drawExample,
+    },
     // chart2D_chartAnnotations_EditableAnntations: {
     //     id: "chart2D_chartAnnotations_EditableAnntations",
     //     title: ExampleStrings.titleEditableAnnotations(framework),
@@ -595,12 +604,12 @@ export const EXAMPLES_PAGES = {
     //     path: ExampleStrings.urlDepthChart,
     //     drawExample: depthChartExampleInfo.drawExample,
     // },
-    // chart2D_axisLabelCustomization_ImageLabels: {                                            // image not found
-    //     id: "chart2D_axisLabelCustomization_ImageLabels",
-    //     title: ExampleStrings.titleImageLabels,
-    //     path: ExampleStrings.urlImageLabels,
-    //     drawExample: imageLabelsExampleInfo.drawExample,
-    // },
+    chart2D_axisLabelCustomization_ImageLabels: {                                            // image not found
+        id: "chart2D_axisLabelCustomization_ImageLabels",
+        title: ExampleStrings.titleImageLabels,
+        path: ExampleStrings.urlImageLabels,
+        additinal: true,
+    },
     // chart2D_basicCharts_StackedColumnSideBySide: {
     //     id: "chart2D_basicCharts_StackedColumnSideBySide",
     //     title: ExampleStrings.titleStackedColumnSideBySide(framework),
