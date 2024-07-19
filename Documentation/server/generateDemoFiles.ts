@@ -106,7 +106,8 @@ const makeNav = (entry: Entry, categoryName: string) => {
         html += `<ul class="list">
 `;
         for (const folder of entry.entries) {
-            html += makeNav(folder, entry.name);
+            console.log(`Folder ${folder.name} in ${entry.name}`);
+            html += makeNav(folder, (categoryName ? categoryName + "_" : "") + entry.name);
         }
         html += `</ul>
  `;
