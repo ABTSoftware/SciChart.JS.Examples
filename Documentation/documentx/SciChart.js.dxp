@@ -1149,10 +1149,10 @@ Show external placement div</Notes>
         <TaskItem Id="c1d6634b-e95b-4dcf-a75a-eeb995bc4a39" Priority="High" AssignedTo="">
           <Title>v3.3 Add IsStaticAxis Documentation</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2024-02-02T09:26:34.3557426Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2024-07-17T09:48:59.9020753Z</ModifiedOn>
+          <ModifiedOn>2024-07-19T12:14:49.3473382Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -1169,20 +1169,20 @@ Show external placement div</Notes>
         <TaskItem Id="ea00f88f-e86f-47cb-94de-ee9c91d85e43" Priority="" AssignedTo="">
           <Title>v3.4 Update DataLabels docs to mention stacked series</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2024-07-17T09:45:06.5560301Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2024-07-17T09:45:12.6145726Z</ModifiedOn>
+          <ModifiedOn>2024-07-19T12:56:14.4045642Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
         <TaskItem Id="84df3f02-cb76-4cde-a881-7d46c0d002fe" Priority="" AssignedTo="">
           <Title>v3.4 Add Smoothed Stacked series docs</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2024-07-17T09:45:16.9120203Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2024-07-17T09:45:21.8455958Z</ModifiedOn>
+          <ModifiedOn>2024-07-20T13:54:06.2350754Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -1970,6 +1970,12 @@ Show external placement div</Notes>
                   <CaptionTemplate />
                   <ChildNodes />
                   <TargetItemId>9c421b30-f025-4432-b235-4bd365e4545d</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+                <TocNode Name="" Id="c7624803-d275-4a90-9a8c-2d2336094547" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>b1e893b0-24ac-4845-ba57-99bc759b49d5</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
                 <TocNode Name="" Id="bb7d91b1-ccaf-4bca-b958-a6e9f340122c" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
@@ -7879,6 +7885,39 @@ Show external placement div</Notes>
                     <Category />
                   </TopicLink>
                 </TopicLinks>
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="b1e893b0-24ac-4845-ba57-99bc759b49d5" Status="New Topic" CreatedOn="2024-07-19T12:56:49.6738004Z" ModifiedOn="2024-07-20T13:52:29.3242142Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TheSmoothStackedMountainSeriesType" BuildFlags="">
+                <Title m="2024-07-19T12:57:30.3731259Z">The Bezier (Smoothed) Stacked Mountain Series Type</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2024-07-20T13:52:29.3242142Z">&lt;P&gt;A variation on the&amp;nbsp;&lt;A href="eb3d636b-673c-4f1b-a0cc-1fa8ff7242c1"&gt;Stacked Mountain Series&lt;/A&gt; is the SmoothStackedMountainRenderableSeries. This uses a custom Bezier smoothing algorithm to create a smoothed line (spline line) to interpolate between datapoints. &lt;/P&gt;
+&lt;P&gt;Smoothed Stacked Mountain&amp;nbsp;Charts can be created by a combination of the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/smoothstackedmountainrenderableseries.html"&gt;SmothStackedMountainRenderableSeries&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedmountaincollection.html"&gt;StackedMountainCollection&lt;/A&gt;&amp;nbsp;types.&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;SPAN style='FONT-SIZE: 16px; FONT-FAMILY: Roboto, "Helvetica Neue", Helvetica, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(33,33,33); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'&gt;The&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-stacked-mountain-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-stacked-mountain-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript/smooth-stacked-mountain-chart" target=_blank&gt;JavaScript Smooth Stacked Mountain Chart Example&lt;/A&gt; can be found in the&amp;nbsp;&lt;A href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;SciChart.Js Examples Suite&lt;/A&gt;&amp;nbsp;on Github, or our live demo at&amp;nbsp;&lt;A href="https://demo.scichart.com/" target=_blank&gt;demo.scichart.com&lt;/A&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/smooth-stacked-mountain-chart&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above&lt;/STRONG&gt;: The &lt;A href="https://demo.scichart.com/javascript-stacked-mountain-chart" target=_blank&gt;JavaScript Smoothed Stacked Mountain Chart example&lt;/A&gt; from the SciChart.js Demo.&lt;/EM&gt;&lt;/P&gt;
+&lt;H2&gt;Create a Bezier Smoothed Stacked Mountain Series&lt;/H2&gt;
+&lt;P&gt;To create a&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/smooth-stacked-mountain-chart" target=_blank&gt;JavaScript Smoothed Stacked Mountain Series&lt;/A&gt;, use the following code:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\2DChartTypes\SmoothStackedMountain\Basic\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\2DChartTypes\SmoothStackedMountain\Basic\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Above:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;We created 3&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedmountainrenderableseries.html"&gt;StackedMountainRenderableSeries&lt;/A&gt; and added them to a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedmountaincollection.html"&gt;StackedMountainCollection&lt;/A&gt; 
+&lt;LI&gt;The StackedMountainCollection itself is added to&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#renderableseries"&gt;sciChartSurface.renderableSeries&lt;/A&gt; collection, not the individual mountain series. &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/2DChartTypes/SmoothStackedMountain/Basic/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Creating 100% Stacked Mountain Charts&lt;/H2&gt;
+&lt;P&gt;SciChart.js also supports a&amp;nbsp;JavaScript 100% Smoothed Stacked Mountain chart, which can be enabled by setting a single flag:&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedmountaincollection.html#isonehundredpercent"&gt;StackedMountainCollection.isOneHundredPercent&lt;/A&gt;&lt;STRONG&gt;.&lt;/STRONG&gt;&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\2DChartTypes\SmoothStackedMountain\GroupingOptions\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Setting this flag results in the following output.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/2DChartTypes/SmoothStackedMountain/GroupingOptions/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;DIV align=left&gt;&lt;/DIV&gt;
+&lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above:&lt;/STRONG&gt; a&amp;nbsp;JavaScript 100% Smoothed Stacked Mountain chart when&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedmountaincollection.html#isonehundredpercent"&gt;StackedMountainCollection.isOneHundredPercent&lt;/A&gt; is true&lt;/EM&gt;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
                 <TopicKeywords />
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
@@ -14095,22 +14134,23 @@ Show external placement div</Notes>
             <Caption m="2023-01-07T19:21:31.3139063Z">DataLabels API</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="7ded97cf-3870-4fdf-b8b9-b6e74e1d8225" Status="New Topic" CreatedOn="2022-08-16T15:56:02.4169013Z" ModifiedOn="2023-07-07T20:24:57.4200676Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AddingDataLabels" BuildFlags="">
+              <Topic Id="7ded97cf-3870-4fdf-b8b9-b6e74e1d8225" Status="New Topic" CreatedOn="2022-08-16T15:56:02.4169013Z" ModifiedOn="2024-07-19T12:45:04.3625926Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AddingDataLabels" BuildFlags="">
                 <Title m="2023-01-07T19:26:48.6150907Z">Adding DataLabels to a Chart Series</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-07T20:24:57.4200676Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-07-19T12:45:04.3625926Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;The Line Chart example&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;The Column Chart example&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; and 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;
-&lt;P&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;&lt;/A&gt;&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/stacked-column-chart" target=_blank&gt;The Stacked Column Chart demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/population-pyramid" target=_blank&gt;The Population Pyramid demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;The DataLabels API&lt;/H2&gt;
 &lt;P&gt;Each RenderableSeries as a&amp;nbsp;&lt;SPAN style="COLOR: rgb(255,0,0)"&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#datalabelprovider"&gt;dataLabelProvider&lt;/A&gt;&lt;/SPAN&gt; property. Many also accept Data Label configuration via&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ibaserenderableseriesoptions.html#datalabelprovider"&gt;constructor options&lt;/A&gt;.&lt;/P&gt;
 &lt;P&gt;These defines whether text labels are rendered for data-points, and the style and positioning of these text labels.&lt;/P&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-datalabels&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
@@ -14132,21 +14172,23 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="8c0b3ec1-a34e-4f4c-b58e-4ff6074362a0" Status="New Topic" CreatedOn="2023-01-07T19:29:31.9548041Z" ModifiedOn="2023-07-08T08:36:27.8007364Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelsFromMetadata" BuildFlags="">
+              <Topic Id="8c0b3ec1-a34e-4f4c-b58e-4ff6074362a0" Status="New Topic" CreatedOn="2023-01-07T19:29:31.9548041Z" ModifiedOn="2024-07-19T12:45:04.4059191Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelsFromMetadata" BuildFlags="">
                 <Title m="2023-01-07T19:29:39.2556944Z">Getting Labels from Metadata</Title>
                 <ContentsTitle m="2023-01-07T19:42:03.4814979Z">Getting Labels from Metadata</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-08T08:36:27.8007364Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-07-19T12:45:04.4059191Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;The Line Chart example&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;The Column Chart example&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; and 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;Explore these for some rich examples of how to use this API.&amp;nbsp;&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/stacked-column-chart" target=_blank&gt;The Stacked Column Chart demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/population-pyramid" target=_blank&gt;The Population Pyramid demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Formatting a DataLabel using metaDataSelector&lt;/H2&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Metadata allows you to assign optional&amp;nbsp;javascript objects to individual x,y datapoints. To learn more about the&amp;nbsp;&lt;A href="8990ef25-dc00-4e2f-a07a-0d4cb1d8dc71"&gt;Metadata API, see here&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;DataLabels support rendering text from metadata as standard. You just need to provide a function to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#metadataselector"&gt;metaDataSelector&lt;/A&gt; option that tells SciChart how to turn your metaData into text.&lt;/P&gt;
 &lt;P&gt;Find an example below:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
@@ -14155,7 +14197,7 @@ Show external placement div</Notes>
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;H2&gt;Accessing Metadata from getText() and DataLabelState&lt;/H2&gt;
 &lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#metadataselector"&gt;metaDataSelector&lt;/A&gt;&amp;nbsp;option allows you to return values stored in the metadata of a dataSeries, but what if you wanted to have more complex formatting mixing index, x, y value or the metadata values?&lt;/P&gt;
-&lt;P&gt;You can also access metadata via a custom&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#gettext"&gt;DataLabelProvider.getText()&lt;/A&gt; function. This technique is covered in the article Custom DataLabel Formatting. &lt;/P&gt;
+&lt;P&gt;You can also access metadata via a custom&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#gettext"&gt;DataLabelProvider.getText()&lt;/A&gt; function. This technique is covered in the article Custom DataLabel Formatting.&lt;/P&gt;
 &lt;P&gt;Once you've setup a custom formatting function, you can&amp;nbsp;then use&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelstate.html#getmetadata"&gt;dataLabelState.getMetaData()&lt;/A&gt; to get the metaData for the current point.&lt;/P&gt;
 &lt;P&gt;Here's an example:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\DataLabels\MetadataViaGetText\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
@@ -14168,20 +14210,22 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="6c10b207-c6b8-4550-b2b9-5eda54932801" Status="New Topic" CreatedOn="2023-01-07T19:35:43.1098796Z" ModifiedOn="2023-07-07T21:09:58.02569Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelFormattingAdvanced" BuildFlags="">
+              <Topic Id="6c10b207-c6b8-4550-b2b9-5eda54932801" Status="New Topic" CreatedOn="2023-01-07T19:35:43.1098796Z" ModifiedOn="2024-07-19T12:45:04.3907468Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelFormattingAdvanced" BuildFlags="">
                 <Title m="2023-01-07T19:35:52.0159451Z">Custom DataLabel Formatting with getText()</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-07T21:09:58.02569Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-07-19T12:45:04.3907468Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;The Line Chart example&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;The Column Chart example&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; and 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/stacked-column-chart" target=_blank&gt;The Stacked Column Chart demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/population-pyramid" target=_blank&gt;The Population Pyramid demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;In the article&amp;nbsp;&lt;A href="7ded97cf-3870-4fdf-b8b9-b6e74e1d8225"&gt;Adding DataLabels to Chart Series&lt;/A&gt; we showed you how to apply simple formatting rules to change the number of decimal places on Data Labels. What if you needed more complex Data Label formatting rules? Enter custom label formatting...&lt;/P&gt;
 &lt;H2&gt;Custom Label Formatting&lt;/H2&gt;
@@ -14197,20 +14241,22 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="57b160a9-3476-4f80-89aa-ff7182023873" Status="New Topic" CreatedOn="2023-01-07T19:44:17.6040827Z" ModifiedOn="2023-07-08T12:28:54.3453984Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelPositioning" BuildFlags="">
+              <Topic Id="57b160a9-3476-4f80-89aa-ff7182023873" Status="New Topic" CreatedOn="2023-01-07T19:44:17.6040827Z" ModifiedOn="2024-07-19T12:45:04.3770253Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelPositioning" BuildFlags="">
                 <Title m="2023-07-07T21:16:12.5080755Z">Data Label Positioning</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-08T12:28:54.3444002Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-07-19T12:45:04.3770253Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;The Line Chart example&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;The Column Chart example&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; and 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/stacked-column-chart" target=_blank&gt;The Stacked Column Chart demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/population-pyramid" target=_blank&gt;The Population Pyramid demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Label Positioning&lt;/H2&gt;
 &lt;P&gt;The text positioning rules vary a little for different series. For line series the default behaviour is to place the label above the line if it is moving down, and below if it is moving up. This avoids the text overlapping the line in many situations, but often you will want to take more control.&lt;/P&gt;
@@ -14281,8 +14327,10 @@ Show external placement div</Notes>
 &lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;Labels placed above, right of the close value&lt;/TD&gt;
 &lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR class=code-line style="POSITION: relative" data-line="165"&gt;
-&lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;Stacked Series&lt;/TD&gt;
-&lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;DataLabels not yet supported&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;BR class=Apple-interchange-newline&gt;
+&lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;Stacked Column&lt;/TD&gt;
+&lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedcollectiondatalabelprovider.html" target=_blank&gt;StackedCollectionDataLabelProvider&lt;/A&gt;&lt;/TD&gt;
+&lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;Label is centered and outside the column (above for columns above the zeroLine, below if below). &lt;STRONG&gt;positionMode&lt;/STRONG&gt; can be set to Inside to reverse this, or to position to use the value of the &lt;STRONG&gt;verticalTextPosition&lt;/STRONG&gt; (or &lt;STRONG&gt;horizontalTextPosition&lt;/STRONG&gt; for a vertical chart) property.&lt;/TD&gt;
+&lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;positionMode:&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/ecolumndatalabelposition.html"&gt;EColumnDataLabelPosition&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;BR class=Apple-interchange-newline&gt;
 &lt;H2&gt;Custom Positioning&lt;/H2&gt;
 &lt;P&gt;To take full control of label positioning, override the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#getposition"&gt;dataLabelProvider.getPosition()&lt;/A&gt; function. This takes&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelstate.html"&gt;DataLabelState&lt;/A&gt; and a &lt;STRONG&gt;TSRTextBounds&lt;/STRONG&gt; (a WebAssembly exported type) which describes the size of the label.&lt;/P&gt;
 &lt;P&gt;It should return a Point { x: number, y: number } which will be the left, baseline point for the label. See &lt;STRONG&gt;Native Text Api&lt;/STRONG&gt; for details on &lt;STRONG&gt;TSRTextBounds&lt;/STRONG&gt;.&lt;/P&gt;
@@ -14300,20 +14348,22 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="35a4bfc3-eb1d-4c83-a168-49b68f225ff4" Status="New Topic" CreatedOn="2023-01-07T19:48:04.3315485Z" ModifiedOn="2023-07-07T21:49:40.3084124Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelColouring" BuildFlags="">
+              <Topic Id="35a4bfc3-eb1d-4c83-a168-49b68f225ff4" Status="New Topic" CreatedOn="2023-01-07T19:48:04.3315485Z" ModifiedOn="2024-07-19T12:45:04.383757Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelColouring" BuildFlags="">
                 <Title m="2023-01-07T19:48:18.128374Z">Data Label Colouring</Title>
                 <ContentsTitle m="2023-07-07T21:37:47.1950944Z">Data Label Colouring</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-07T21:49:40.3084124Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-07-19T12:45:04.383757Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;The Line Chart example&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;The Column Chart example&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; and 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/stacked-column-chart" target=_blank&gt;The Stacked Column Chart demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/population-pyramid" target=_blank&gt;The Population Pyramid demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Label Colouring&lt;/H2&gt;
 &lt;P&gt;The color property on the dataLabels option sets the color for all labels, but you can do per-label coloring by overriding the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#getcolor"&gt;getColor()&lt;/A&gt; function on the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html"&gt;dataLabelProvider&lt;/A&gt;.&lt;/P&gt;
@@ -14327,20 +14377,22 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="b0932024-2071-49b7-be0a-d6a9a37ec6d1" Status="New Topic" CreatedOn="2023-01-07T19:51:32.3681967Z" ModifiedOn="2023-07-08T09:52:22.2259444Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelCulling" BuildFlags="">
+              <Topic Id="b0932024-2071-49b7-be0a-d6a9a37ec6d1" Status="New Topic" CreatedOn="2023-01-07T19:51:32.3681967Z" ModifiedOn="2024-07-19T12:45:04.4108139Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelCulling" BuildFlags="">
                 <Title m="2023-01-07T19:51:39.9173079Z">DataLabel SkipModes and Culling</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-08T09:52:22.2259444Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-07-19T12:45:04.4108139Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;The Line Chart example&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;The Column Chart example&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; and 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/stacked-column-chart" target=_blank&gt;The Stacked Column Chart demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/population-pyramid" target=_blank&gt;The Population Pyramid demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Labels for Many Points&lt;/H2&gt;
 &lt;P&gt;SciChart's native text rendering means that it can potentially draw tens of thousands of labels relatively fast, but in practise with many points there is no point drawing so many labels that they become unreadable. SciChart has a number of options for dealing with this. If you really want to show all labels even if they overlap, set&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#skipmode"&gt;skipMode&lt;/A&gt; to &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/edatalabelskipmode.html"&gt;EDataLabelSkipMode.ShowAll&lt;/A&gt;&lt;/P&gt;
