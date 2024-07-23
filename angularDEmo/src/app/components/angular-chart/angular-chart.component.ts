@@ -6,7 +6,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Component, ElementRef, OnInit ,ViewChild, ViewContainerRef,NgZone } from "@angular/core";
 
 SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
+SciChart3DSurface.loadWasmFromCDN()
 @Component({
   selector: 'app-angular-chart',
   templateUrl: './angular-chart.component.html',
