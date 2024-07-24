@@ -35,21 +35,35 @@ function addRedirect() {
 }
 
 function addLinkIcons() {	
-	const links = document.querySelectorAll('a[href*="js/current/typedoc"]');
-	links.forEach(link => {
-	  // Create the icon element
-	  const icon = document.createElement('i');
-	  icon.className = 'fas fa-book'; // Font Awesome book icon class
-	  icon.style.marginLeft = '5px'; // Space between link and icon	  
-  
-	  // Extract the text inside the <a> element
-	  const linkText = link.textContent.trim();
-
-	  // Set the title attribute on the <a> element
-	  link.title = `View ${linkText} on the TypeDoc API Documentation`;
-
-	  // Append the icon to the link
-	  link.appendChild(icon);
+	// Find and modify all Typedoc links
+	const typedocLinks = document.querySelectorAll('a[href*="js/current/typedoc"]');
+	typedocLinks.forEach(link => {
+		const icon = document.createElement('i');
+		icon.className = 'fa-regular fa-bookmark'; 
+		icon.style.marginLeft = '5px';
+		icon.style.marginRight = '3px';
+		const linkText = link.textContent.trim();				
+		const em = document.createElement('em');
+		em.textContent = linkText;
+		link.innerHTML = '';
+		link.appendChild(em);
+		link.title = `${linkText} TypeDoc API`;
+		link.appendChild(icon);
+	});
+	// Find and modify all internal links to doicumentation
+	const docLinks = Array.from(document.querySelectorAll('a[href$=".html"]')).filter(l => {
+		const href = l.getAttribute('href');
+        return !href.includes('/') && !href.includes('://');
+	});
+	docLinks.forEach(link => {		
+		const icon = document.createElement('i');
+		icon.className = 'fa-solid fa-bookmark';
+		icon.style.marginLeft = '5px';
+		icon.style.marginRight = '3px';
+		const linkText = link.textContent.trim();
+		console.log(`Processing ${linkText}`);		
+		link.title = `${linkText} Documentation Page`;
+		link.appendChild(icon);
 	});
 }
 		
