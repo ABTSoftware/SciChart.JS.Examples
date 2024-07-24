@@ -1,5 +1,5 @@
 import express = require("express");
-var url = require('url');
+var url = require("url");
 import { EXAMPLES_PAGES } from "../components/AppRouter/examplePages";
 
 const router = express.Router();
@@ -19,13 +19,13 @@ router.get("/", async (req, res) => {
             const result = await fetch(scUrl);
             if (result.ok) {
                 console.log("exists");
-                existing.push( { title: exampleInfo.title, path: exampleInfo.path, filePath: exampleInfo.filepath });
+                existing.push({ title: exampleInfo.title, path: exampleInfo.path, filePath: exampleInfo.filepath });
             } else {
                 console.log("missing");
-                missing.push( { title: exampleInfo.title, path: exampleInfo.path, filePath: exampleInfo.filepath });
+                missing.push({ title: exampleInfo.title, path: exampleInfo.path, filePath: exampleInfo.filepath });
             }
         } else {
-            notChecked.push( { title: exampleInfo.title, path: exampleInfo.path, filePath: exampleInfo.filepath });
+            notChecked.push({ title: exampleInfo.title, path: exampleInfo.path, filePath: exampleInfo.filepath });
         }
     }
     res.send({ missing, existing, notChecked });

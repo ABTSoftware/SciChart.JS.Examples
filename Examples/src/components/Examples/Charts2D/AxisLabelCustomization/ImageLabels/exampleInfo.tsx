@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-image-labels.jpg";
@@ -14,11 +13,11 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlImageLabelsDocumentation,
         title: ExampleStrings.urlTitleImageLabelsDocumentation,
-        linkTitle: "SciChart.js Image Labels Documentation"
-    }
+        linkTitle: "SciChart.js Image Labels Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to use <strong>Images as Labels</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -30,7 +29,7 @@ const Subtitle = () => (
 export const imageLabelsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleImageLabels,
-    pageTitle: ExampleStrings.titleImageLabels + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleImageLabels,
     path: ExampleStrings.urlImageLabels,
     filepath: "Charts2D/AxisLabelCustomization/ImageLabels",
     subtitle: Subtitle,
@@ -38,8 +37,7 @@ export const imageLabelsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription: "Demonstrates how to use Images as Axis Labels",
+    metaDescription: (frameworkName: string) => `Demonstrates how to use Images as Axis Labels`,
     metaKeywords: "image, axis, label, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -21,6 +21,7 @@ import { donutChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/Donu
 import { pieChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/PieChart/exampleInfo";
 import { realTimeMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/exampleInfo";
 import { annotationsAreEasyExampleInfo } from "../Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/exampleInfo";
+import { annotationLayersExampleInfo } from "../Examples/Charts2D/ChartAnnotations/AnnotationLayers/exampleInfo";
 import { tradeMarkerAnnotationsExampleInfo } from "../Examples/Charts2D/ChartAnnotations/TradeMarkers/exampleInfo";
 import { realtimeGhostedTracesExampleInfo } from "../Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces/exampleInfo";
 import { multiPaneStockChartsExampleInfo } from "../Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/exampleInfo";
@@ -30,6 +31,7 @@ import { multipleXAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavio
 import { secondaryYAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/exampleInfo";
 import { verticalChartsExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/exampleInfo";
 import { centralAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/CentralAxes/exampleInfo";
+import { staticAxisExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/StaticAxis/exampleInfo";
 import { verticallyStackedAxesExampleInfo } from "../Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/exampleInfo";
 import { stackedColumnChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedColumnChart/exampleInfo";
 import { stackedColumnSideBySideExampleInfo } from "../Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide/exampleInfo";
@@ -105,23 +107,27 @@ import { usingVerticalSliceModifierExampleInfo } from "../Examples/Charts2D/Tool
 import { syncMultiChartExampleInfo } from "../Examples/Charts2D/MultiChart/SyncMultiChart/exampleInfo";
 import { eventMarkersExampleInfo } from "../Examples/FeaturedApps/ShowCases/EventMarkers/exampleInfo";
 import { multiplePointMarkersExampleInfo } from "../Examples/Charts2D/StylingAndTheming/MultiplePointMarkers/exampleInfo";
+import { populationPyramidExampleInfo } from "../Examples/FeaturedApps/ShowCases/PopulationPyramid/exampleInfo";
+import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
+import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo";
 
 export type TExampleInfo = {
     /**
      * Example title
      */
-    title: string;
+    title: TTitleTemplate;
     /**
      * Meta title
      */
-    pageTitle: string;
+    pageTitle: TTitleTemplate;
     path: string;
 
     documentationLinks: TDocumentationLink[];
     tips?: any;
-    description: any;
+    description: TDescriptionTemplate;
     previewDescription?: any;
-    subtitle: () => JSX.Element;
+    subtitle: (frameworkName: string) => JSX.Element;
     // If this example has been created on scichart.com
     onWebsite?: boolean;
     /**
@@ -129,11 +135,10 @@ export type TExampleInfo = {
      * in the top level menu. See {@link getSeeAlsoGalleryItems}
      */
     seeAlso?: GalleryItem[];
-    githubUrl: string;
     /**
      * Page meta description
      */
-    metaDescription: string;
+    metaDescription: TDescriptionTemplate;
     /**
      * Page meta keywords
      */
@@ -156,418 +161,442 @@ function asRecord<T extends Record<string, TExamplePage>>(arg: T): T & Record<st
 export const EXAMPLES_PAGES = asRecord({
     chart2D_Animations_DataAnimation: {
         id: "chart2D_Animations_DataAnimation",
-        ...dataAnimationExampleInfo
+        ...dataAnimationExampleInfo,
     },
     chart2D_Animations_StyleAnimation: {
         id: "chart2D_Animations_StyleAnimation",
-        ...styleAnimationExampleInfo
+        ...styleAnimationExampleInfo,
     },
     chart2D_Animations_StartupAnimation: {
         id: "chart2D_Animations_StartupAnimation",
-        ...startupAnimationExampleInfo
+        ...startupAnimationExampleInfo,
     },
     chart2D_Animations_GenericAnimation: {
         id: "chart2D_Animations_GenericAnimation",
-        ...genericAnimationExampleInfo
+        ...genericAnimationExampleInfo,
     },
     chart2D_basicCharts_BandSeriesChart: {
         id: "chart2D_basicCharts_BandSeriesChart",
-        ...bandSeriesChartExampleInfo
+        ...bandSeriesChartExampleInfo,
     },
     chart2D_basicCharts_SplineBandChart: {
         id: "chart2D_basicCharts_SplineBandChart",
-        ...splineBandSeriesChartExampleInfo
+        ...splineBandSeriesChartExampleInfo,
     },
     chart2D_basicCharts_DigitalBandSeriesChart: {
         id: "chart2D_basicCharts_DigitalBandSeriesChart",
-        ...digitalBandSeriesChartExampleInfo
+        ...digitalBandSeriesChartExampleInfo,
     },
     chart2D_basicCharts_FanChart: {
         id: "chart2D_basicCharts_FanChart",
-        ...fanChartExampleInfo
+        ...fanChartExampleInfo,
     },
     chart2D_basicCharts_BubbleChart: {
         id: "chart2D_basicCharts_BubbleChart",
-        ...bubbleChartExampleInfo
+        ...bubbleChartExampleInfo,
     },
     chart2D_basicCharts_CandlestickChart: {
         id: "chart2D_basicCharts_CandlestickChart",
-        ...candlestickChartExampleInfo
+        ...candlestickChartExampleInfo,
     },
     chart2D_basicCharts_OhlcChart: {
         id: "chart2D_basicCharts_OhlcChart",
-        ...ohlcChartExampleInfo
+        ...ohlcChartExampleInfo,
     },
     chart2D_basicCharts_ErrorBarsChart: {
         id: "chart2D_basicCharts_ErrorBarsChart",
-        ...errorBarsChartExampleInfo
+        ...errorBarsChartExampleInfo,
     },
     chart2D_basicCharts_ColumnChart: {
         id: "chart2D_basicCharts_ColumnChart",
-        ...columnChartExampleInfo
+        ...columnChartExampleInfo,
     },
     chart2D_basicCharts_ImpulseChart: {
         id: "chart2D_basicCharts_ImpulseChart",
-        ...impulseChartExampleInfo
+        ...impulseChartExampleInfo,
     },
     chart2D_basicCharts_HeatmapChart: {
         id: "chart2D_basicCharts_HeatmapChart",
-        ...heatmapChartExampleInfo
+        ...heatmapChartExampleInfo,
     },
     chart2D_basicCharts_NonUniformHeatmapChart: {
         id: "chart2D_basicCharts_NonUniformHeatmapChart",
-        ...nonUniformHeatmapExampleInfo
+        ...nonUniformHeatmapExampleInfo,
     },
     chart2D_basicCharts_ContourChart: {
         id: "chart2D_basicCharts_ContourChart",
-        ...contourChartExampleInfo
+        ...contourChartExampleInfo,
     },
     chart2D_basicCharts_LineChart: {
         id: "chart2D_basicCharts_LineChart",
-        ...lineChartExampleInfo
+        ...lineChartExampleInfo,
     },
     chart2D_basicCharts_SplineLineChart: {
         id: "chart2D_basicCharts_SplineLineChart",
-        ...splineLineChartExampleInfo
+        ...splineLineChartExampleInfo,
     },
     chart2D_basicCharts_DigitalLineChart: {
         id: "chart2D_basicCharts_DigitalLineChart",
-        ...digitalLineChartExampleInfo
+        ...digitalLineChartExampleInfo,
     },
     chart2D_basicCharts_MountainChart: {
         id: "chart2D_basicCharts_MountainChart",
-        ...mountainChartExampleInfo
+        ...mountainChartExampleInfo,
     },
     chart2D_basicCharts_SplineMountainChart: {
         id: "chart2D_basicCharts_SplineMountainChart",
-        ...splineMountainChartExampleInfo
+        ...splineMountainChartExampleInfo,
     },
     chart2D_basicCharts_DigitalMountainChart: {
         id: "chart2D_basicCharts_DigitalMountainChart",
-        ...digitalMountainChartExampleInfo
+        ...digitalMountainChartExampleInfo,
     },
     chart2D_basicCharts_ScatterChart: {
         id: "chart2D_basicCharts_ScatterChart",
-        ...scatterChartExampleInfo
+        ...scatterChartExampleInfo,
     },
     chart2D_basicCharts_DonutChart: {
         id: "chart2D_basicCharts_DonutChart",
-        ...donutChartExampleInfo
+        ...donutChartExampleInfo,
     },
     chart2D_basicCharts_PieChart: {
         id: "chart2D_basicCharts_PieChart",
-        ...pieChartExampleInfo
+        ...pieChartExampleInfo,
     },
     chart2D_basicCharts_RealtimeMountainChart: {
         id: "chart2D_basicCharts_RealtimeMountainChart",
-        ...realTimeMountainChartExampleInfo
+        ...realTimeMountainChartExampleInfo,
     },
     chart2D_basicCharts_TextChart: {
         id: "chart2D_basicCharts_TextChart",
-        ...textChartExampleInfo
+        ...textChartExampleInfo,
     },
     chart2D_chartAnnotations_AnnotationsAreEasy: {
         id: "chart2D_chartAnnotations_AnnotationsAreEasy",
-        ...annotationsAreEasyExampleInfo
+        ...annotationsAreEasyExampleInfo,
+    },
+    chart2D_chartAnnotations_AnnotationLayers: {
+        id: "chart2D_chartAnnotations_AnnotationLayers",
+        ...annotationLayersExampleInfo,
     },
     chart2D_chartAnnotations_EditableAnntations: {
         id: "chart2D_chartAnnotations_EditableAnntations",
-        ...editableAnnotationsExampleInfo
+        ...editableAnnotationsExampleInfo,
     },
     chart2D_chartAnnotations_TradeMarkers: {
         id: "chart2D_chartAnnotations_TradeMarkers",
-        ...tradeMarkerAnnotationsExampleInfo
+        ...tradeMarkerAnnotationsExampleInfo,
     },
     chart2D_chartAnnotations_DragHorizontalThreshold: {
         id: "chart2D_chartAnnotations_DragHorizontalThreshold",
-        ...dragHorizontalThresholdExampleInfo
+        ...dragHorizontalThresholdExampleInfo,
     },
     chart2D_chartAnnotations_BackgroundAnnotations: {
         id: "chart2D_chartAnnotations_BackgroundAnnotations",
-        ...backgroundAnnotationsExampleInfo
+        ...backgroundAnnotationsExampleInfo,
     },
     featuredApps_performanceDemos_RealtimeGhostedTraces: {
         id: "featuredApps_performanceDemos_RealtimeGhostedTraces",
-        ...realtimeGhostedTracesExampleInfo
+        ...realtimeGhostedTracesExampleInfo,
     },
     featuredApps_performanceDemos_LoadOneMillionPoints: {
         id: "featuredApps_performanceDemos_LoadOneMillionPoints",
-        ...loadOneMillionPointsExampleInfo
+        ...loadOneMillionPointsExampleInfo,
     },
     chart2D_createStockCharts_MultiPaneStockCharts: {
         id: "chart2D_createStockCharts_MultiPaneStockCharts",
-        ...multiPaneStockChartsExampleInfo
+        ...multiPaneStockChartsExampleInfo,
     },
     chart2D_createStockCharts_RealtimeTickingStockCharts: {
         id: "chart2D_createStockCharts_RealtimeTickingStockCharts",
-        ...realtimeTickingStockChartsExampleInfo
+        ...realtimeTickingStockChartsExampleInfo,
     },
     chart2D_createStockCharts_SubchartStockCharts: {
         id: "chart2D_createStockCharts_SubchartStockCharts",
-        ...subChartStockChartsExampleInfo
+        ...subChartStockChartsExampleInfo,
     },
     chart2D_createStockCharts_DepthChart: {
         id: "chart2D_createStockCharts_DepthChart",
-        ...depthChartExampleInfo
+        ...depthChartExampleInfo,
+    },
+    chart2D_createStockCharts_SharedChart: {
+        id: "chart2D_createStockCharts_SharedChart",
+        ...userAnnotatedStockChartExampleInfo,
     },
     chart2D_legends_ChartLegendsAPI: {
         id: "chart2D_legends_ChartLegendsAPI",
-        ...chartLegendsAPIExampleInfo
+        ...chartLegendsAPIExampleInfo,
     },
     chart2D_modifyAxisBehavior_MultipleXAxes: {
         id: "chart2D_modifyAxisBehavior_MultipleXAxes",
-        ...multipleXAxesExampleInfo
+        ...multipleXAxesExampleInfo,
     },
     chart2D_modifyAxisBehavior_SecondaryYAxes: {
         id: "chart2D_modifyAxisBehavior_SecondaryYAxes",
-        ...secondaryYAxesExampleInfo
+        ...secondaryYAxesExampleInfo,
     },
     chart2D_modifyAxisBehavior_VerticalCharts: {
         id: "chart2D_modifyAxisBehavior_VerticalCharts",
-        ...verticalChartsExampleInfo
+        ...verticalChartsExampleInfo,
     },
     chart2D_modifyAxisBehavior_CentralAxes: {
         id: "chart2D_modifyAxisBehavior_CentralAxes",
-        ...centralAxesExampleInfo
+        ...centralAxesExampleInfo,
+    },
+    chart2D_modifyAxisBehavior_StaticAxis: {
+        id: "chart2D_modifyAxisBehavior_StaticAxis",
+        ...staticAxisExampleInfo,
     },
     chart2D_modifyAxisBehavior_VerticallyStackedAxes: {
         id: "chart2D_modifyAxisBehavior_VerticallyStackedAxes",
-        ...verticallyStackedAxesExampleInfo
+        ...verticallyStackedAxesExampleInfo,
     },
     chart2D_modifyAxisBehavior_LogarithmicAxis: {
         id: "chart2D_modifyAxisBehavior_LogarithmicAxis",
-        ...logarithmicAxisExampleInfo
+        ...logarithmicAxisExampleInfo,
     },
     chart2D_modifyAxisBehavior_DrawBehindAxes: {
         id: "chart2D_modifyAxisBehavior_DrawBehindAxes",
-        ...drawBehindAxesExampleInfo
+        ...drawBehindAxesExampleInfo,
     },
     chart2D_axisLabelCustomization_MultiLineLabels: {
         id: "chart2D_axisLabelCustomization_MultiLineLabels",
-        ...multiLineLabelsExampleInfo
+        ...multiLineLabelsExampleInfo,
     },
     chart2D_axisLabelCustomization_ImageLabels: {
         id: "chart2D_axisLabelCustomization_ImageLabels",
-        ...imageLabelsExampleInfo
+        ...imageLabelsExampleInfo,
     },
     chart2D_axisLabelCustomization_RotatedLabels: {
         id: "chart2D_axisLabelCustomization_RotatedLabels",
-        ...rotatedLabelsExampleInfo
+        ...rotatedLabelsExampleInfo,
     },
     chart2D_basicCharts_StackedColumnChart: {
         id: "chart2D_basicCharts_StackedColumnChart",
-        ...stackedColumnChartExampleInfo
+        ...stackedColumnChartExampleInfo,
     },
     chart2D_basicCharts_StackedColumnSideBySide: {
         id: "chart2D_basicCharts_StackedColumnSideBySide",
-        ...stackedColumnSideBySideExampleInfo
+        ...stackedColumnSideBySideExampleInfo,
     },
     chart2D_basicCharts_StackedMountainChart: {
         id: "chart2D_basicCharts_StackedMountainChart",
-        ...stackedMountainChartExampleInfo
+        ...stackedMountainChartExampleInfo,
+    },
+    chart2D_basicCharts_SmoothStackedMountainChart: {
+        id: "chart2D_basicCharts_SmoothStackedMountainChart",
+        ...smoothStackedMountainChartExampleInfo,
     },
     chart2D_stylingAndTheming_UsePointMarkers: {
         id: "chart2D_stylingAndTheming_UsePointMarkers",
-        ...usePointMarkersExampleInfo
+        ...usePointMarkersExampleInfo,
     },
     chart2D_stylingAndTheming_UsingThemeManager: {
         id: "chart2D_stylingAndTheming_UsingThemeManager",
-        ...usingThemeManagerExampleInfo
+        ...usingThemeManagerExampleInfo,
     },
     chart2D_stylingAndTheming_CustomTheme: {
         id: "chart2D_stylingAndTheming_CustomTheme",
-        ...createACustomThemeExampleInfo
+        ...createACustomThemeExampleInfo,
     },
     chart2D_stylingAndTheming_StylingInCode: {
         id: "chart2D_stylingAndTheming_StylingInCode",
-        ...stylingInCodeExampleInfo
+        ...stylingInCodeExampleInfo,
     },
     chart2D_stylingAndTheming_PerPointColoring: {
         id: "chart2D_stylingAndTheming_PerPointColoring",
-        ...perPointColoringExampleInfo
+        ...perPointColoringExampleInfo,
     },
     chart2D_stylingAndTheming_DashedLineStyling: {
         id: "chart2D_stylingAndTheming_DashedLineStyling",
-        ...dashedLineStylingExampleInfo
+        ...dashedLineStylingExampleInfo,
     },
     chart2D_stylingAndTheming_TransparentBackground: {
         id: "chart2D_stylingAndTheming_TransparentBackground",
-        ...transparentBackgroundExampleInfo
+        ...transparentBackgroundExampleInfo,
     },
     chart2D_stylingAndTheming_DataLabels: {
         id: "chart2D_stylingAndTheming_DataLabels",
-        ...datalabelsExampleInfo
+        ...datalabelsExampleInfo,
     },
     chart2D_stylingAndTheming_MultiplePointMarkers: {
         id: "chart2D_stylingAndTheming_MultiplePointMarkers",
-        ...multiplePointMarkersExampleInfo
+        ...multiplePointMarkersExampleInfo,
     },
     chart2D_tooltipsAndHittest_HitTestApi: {
         id: "chart2D_tooltipsAndHittest_HitTestApi",
-        ...hitTestApiExampleInfo
+        ...hitTestApiExampleInfo,
     },
     chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips: {
         id: "chart2D_tooltipsAndHittest_UsingRolloverModifierTooltips",
-        ...usingRolloverModifierTooltipsExampleInfo
+        ...usingRolloverModifierTooltipsExampleInfo,
     },
     chart2D_tooltipsAndHittest_UsingCursorModifierTooltips: {
         id: "chart2D_tooltipsAndHittest_UsingCursorModifierTooltips",
-        ...usingCursorModifierTooltipsExampleInfo
+        ...usingCursorModifierTooltipsExampleInfo,
     },
     chart2D_tooltipsAndHittest_MetaData: {
         id: "chart2D_tooltipsAndHittest_MetaData",
-        ...metaDataExampleInfo
+        ...metaDataExampleInfo,
     },
     chart2D_tooltipsAndHittest_DataPointSelection: {
         id: "chart2D_tooltipsAndHittest_DataPointSelection",
-        ...dataPointSelectionExampleInfo
+        ...dataPointSelectionExampleInfo,
     },
     chart2D_tooltipsAndHittest_SeriesSelection: {
         id: "chart2D_tooltipsAndHittest_SeriesSelection",
-        ...seriesSelectionExampleInfo
+        ...seriesSelectionExampleInfo,
     },
     chart2D_tooltipsAndHittest_VerticalSliceModifier: {
         id: "chart2D_tooltipsAndHittest_VerticalSliceModifier",
-        ...usingVerticalSliceModifierExampleInfo
+        ...usingVerticalSliceModifierExampleInfo,
     },
     chart2D_zoomAndPanAChart_DragAxisToScale: {
         id: "chart2D_zoomAndPanAChart_DragAxisToScale",
-        ...dragAxisToScaleExampleInfo
+        ...dragAxisToScaleExampleInfo,
     },
     chart2D_zoomAndPanAChart_RealtimeZoomPan: {
         id: "chart2D_zoomAndPanAChart_RealtimeZoomPan",
-        ...realtimeZoomPanExampleInfo
+        ...realtimeZoomPanExampleInfo,
     },
     chart2D_zoomAndPanAChart_MultipleChartModifiers: {
         id: "chart2D_zoomAndPanAChart_MultipleChartModifiers",
-        ...zoomAndPanWithMultipleChartModifiersExampleInfo
+        ...zoomAndPanWithMultipleChartModifiersExampleInfo,
     },
     chart2D_zoomAndPanAChart_Overview: {
         id: "chart2D_zoomAndPanAChart_Overview",
-        ...overviewExampleInfo
+        ...overviewExampleInfo,
     },
     chart2D_zoomAndPanAChart_VirtualizedDataOverview: {
         id: "chart2D_zoomAndPanAChart_VirtualizedDataOverview",
-        ...virtualizedDataOverviewExampleInfo
+        ...virtualizedDataOverviewExampleInfo,
     },
+    // chart2D_zoomAndPanAChart_ZoomHighPrecision: {
+    //     id: "chart2D_zoomAndPanAChart_ZoomHighPrecision",
+    //     ...zoomHighPrecisionExampleInfo,
+    // },
     chart2D_filters_PercentageChange: {
         id: "chart2D_filters_PercentageChange",
-        ...percentageChangeExampleInfo
+        ...percentageChangeExampleInfo,
     },
     chart2D_filters_TrendMARatio: {
         id: "chart2D_filters_TrendMARatio",
-        ...trendMARatioExampleInfo
+        ...trendMARatioExampleInfo,
     },
     chart2D_filters_CustomFilters: {
         id: "chart2D_filters_CustomFilters",
-        ...customFiltersExampleInfo
+        ...customFiltersExampleInfo,
     },
     chart2D_multiChart_syncMultiChart: {
         id: "chart2D_multiChart_syncMultiChart",
-        ...syncMultiChartExampleInfo
+        ...syncMultiChartExampleInfo,
     },
     chart3D_basic3DChartTypes_Bubble3DChart: {
         id: "chart3D_basic3DChartTypes_Bubble3DChart",
-        ...bubble3DChartExampleInfo
+        ...bubble3DChartExampleInfo,
     },
     chart3D_basic3DChartTypes_SurfaceMesh3DChart: {
         id: "chart3D_basic3DChartTypes_SurfaceMesh3DChart",
-        ...surfaceMesh3DChartExampleInfo
+        ...surfaceMesh3DChartExampleInfo,
     },
     chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart: {
         id: "chart3D_basic3DChartTypes_RealtimeSurfaceMesh3DChart",
-        ...realtimeSurfaceMesh3DChartExampleInfo
+        ...realtimeSurfaceMesh3DChartExampleInfo,
     },
     chart3D_basic3DChartTypes_PointLine3DChart: {
         id: "chart3D_basic3DChartTypes_PointLine3DChart",
-        ...pointLine3DChartExampleInfo
+        ...pointLine3DChartExampleInfo,
     },
     featuredApps_performanceDemos_Load500By500: {
         id: "featuredApps_performanceDemos_Load500By500",
-        ...load500By500ExampleInfo
+        ...load500By500ExampleInfo,
     },
     featuredApps_performanceDemos_RealtimePerformanceDemo: {
         id: "featuredApps_performanceDemos_RealtimePerformanceDemo",
-        ...realtimePerformanceDemoExampleInfo
+        ...realtimePerformanceDemoExampleInfo,
     },
     featuredApps_medicalCharts_VitalSignsMonitorDemo: {
         id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
-        ...vitalSignsMonitorDemoExampleInfo
+        ...vitalSignsMonitorDemoExampleInfo,
     },
     featuredApps_featureDemos_axisTypes: {
         id: "featuredApps_featureDemos_axisTypes",
-        ...axisTypesExampleInfo
+        ...axisTypesExampleInfo,
     },
     featuredApps_featureDemos_axisLayout: {
         id: "featuredApps_featureDemos_axisLayout",
-        ...axisLayoutExampleInfo
+        ...axisLayoutExampleInfo,
     },
     featuredApps_featureDemos_chartTitle: {
         id: "featuredApps_featureDemos_chartTitle",
-        ...chartTitleExampleInfo
+        ...chartTitleExampleInfo,
     },
     featuredApps_featureDemos_subchartsGrid: {
         id: "featuredApps_featureDemos_subchartsGrid",
-        ...subchartsGridExampleInfo
+        ...subchartsGridExampleInfo,
     },
     featuredApps_scientificCharts_Lidar3DPointCloudDemo: {
         id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",
-        ...lidar3DPointCloudExampleInfo
+        ...lidar3DPointCloudExampleInfo,
     },
     featuredApps_scientificCharts_AudioAnalyzerDemo: {
         id: "featuredApps_scientificCharts_AudioAnalyzerDemo",
-        ...audioAnalyzerExampleInfo
+        ...audioAnalyzerExampleInfo,
     },
     featuredApps_scientificCharts_WaterfallChartDemo: {
         id: "featuredApps_scientificCharts_WaterfallChartDemo",
-        ...waterfallChartExampleInfo
+        ...waterfallChartExampleInfo,
     },
     featuredApps_scientificCharts_TenorCurvesDemo: {
         id: "featuredApps_scientificCharts_TenorCurvesDemo",
-        ...tenorCurvesExampleInfo
+        ...tenorCurvesExampleInfo,
     },
     featuredApps_showcases_realtimebigdata: {
         id: "featuredApps_showcases_realtimebigdata",
-        ...websocketBigDataDemoExampleInfo
+        ...websocketBigDataDemoExampleInfo,
     },
     featuredApps_showcases_servertrafficdashboard: {
         id: "featuredApps_showcases_servertrafficdashboard",
-        ...serverTrafficDashboardDemoExampleInfo
+        ...serverTrafficDashboardDemoExampleInfo,
     },
     featuredApps_showcases_oilandgasdashboard: {
         id: "featuredApps_showcases_oilandgasdashboard",
-        ...oilAndGasExplorerDashboard
+        ...oilAndGasExplorerDashboard,
     },
     featuredApps_showcases_richInteractions: {
         id: "featuredApps_showcases_richInteractions",
-        ...heatmapInteractionsExampleInfo
+        ...heatmapInteractionsExampleInfo,
     },
-    featuredApps_showcases_dynamicLayout : {
+    featuredApps_showcases_dynamicLayout: {
         id: "featuredApps_showcases_dynamicLayout",
-        ...dynamicLayoutExampleInfo
+        ...dynamicLayoutExampleInfo,
     },
-    featuredApps_showcases_eventMarkers : {
+    featuredApps_showcases_eventMarkers: {
         id: "featuredApps_showcases_eventMarkers",
-        ...eventMarkersExampleInfo
+        ...eventMarkersExampleInfo,
+    },
+    featuredApps_showcases_populationPyramid: {
+        id: "featuredApps_showcases_populationPyramid",
+        ...populationPyramidExampleInfo,
     },
     builderApi_simplechart: {
         id: "builderApi_simplechart",
-        ...simpleChartExampleInfo
+        ...simpleChartExampleInfo,
     },
     builderApi_fullchart: {
         id: "builderApi_fullchart",
-        ...fullChartExampleInfo
+        ...fullChartExampleInfo,
     },
     builderApi_chartFromJSON: {
         id: "builderApi_chartFromJSON",
-        ...chartFromJSONExampleInfo
+        ...chartFromJSONExampleInfo,
     },
     builderApi_SharedData: {
         id: "builderApi_SharedData",
-        ...sharedDataExampleInfo
+        ...sharedDataExampleInfo,
     },
     builderApi_CustomTypes: {
         id: "builderApi_CustomTypes",
-        ...customTypesExampleInfo
-    }
+        ...customTypesExampleInfo,
+    },
 });

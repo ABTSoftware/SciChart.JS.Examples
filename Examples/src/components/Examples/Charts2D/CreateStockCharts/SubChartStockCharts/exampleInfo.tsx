@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-subcharts-multi-pane-stock-charts.jpg";
@@ -13,18 +12,18 @@ SciChartVerticalGroup type. Technical indicators are for demo purposes only. We 
 const tips = [
     `SciChart.js supports all the features you need to create rich, interactive, realtime JavaScript Stock Chart
     applications. Including Candlestick/OHLC charts, Band Series for bollinger bands, multi-panes, plus
-    incredible real-time performance.`
+    incredible real-time performance.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDocumentationHome,
         title: ExampleStrings.titleDocumentationHome,
-        linkTitle: "SciChart.js Documentation Home"
-    }
+        linkTitle: "SciChart.js Documentation Home",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Using the new Sub-Charts API, create a multi-pane stock chart example with indicator panels on a single WebGL
         chart surface. This allows for higher-performance since the WebGL context is shared. Zooming, panning, cursors
@@ -43,9 +42,8 @@ export const subChartStockChartsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription:
-        "Create a JavaScript Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.",
+    metaDescription: (frameworkName: string) =>
+        `Create a ${frameworkName} Multi-Pane Candlestick / Stock Chart with indicator panels, synchronized zooming, panning and cursors. Get your free trial of SciChart.js now.`,
     metaKeywords: "multi-pane, stock, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

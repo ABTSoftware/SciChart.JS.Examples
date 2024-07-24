@@ -5,7 +5,7 @@ type TProps = {
     children: React.ReactNode;
 };
 
-const Description: React.FC<TProps> = props => {
+const Description: React.FC<TProps> = (props) => {
     return (
         <React.Fragment>
             <p className={classes.description}>Description</p>

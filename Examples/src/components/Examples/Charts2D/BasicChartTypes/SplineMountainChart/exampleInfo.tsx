@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-spline-mountain-chart.jpg";
@@ -10,20 +9,20 @@ const description = `This chart type features a spline or smoothed line which be
 few points on the chart.`;
 const tips = [
     `By setting the stroke property you alter the line color, and fill alters the fill. The Mountain-series also
-    supports semi-transparent and linear gradient brush fills and looks great!.`
+    supports semi-transparent and linear gradient brush fills and looks great!.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlSplineMountainChartDocumentation,
         title: ExampleStrings.urlTitleSplineMountainChartDocumentation,
-        linkTitle: "JavaScript Mountain Chart Documentation"
-    }
+        linkTitle: "JavaScript Mountain Chart Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        This example showcases how to create a <strong>JavaScript Spline Mountain Chart</strong> using{" "}
+        This example showcases how to create a <strong>{frameworkName} Spline Mountain Chart</strong> using{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
             SciChart.js
         </a>
@@ -42,9 +41,8 @@ export const splineMountainChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription:
-        "JavaScript Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.",
+    metaDescription: (frameworkName: string) =>
+        `${frameworkName} Spline Mountain Chart design made easy. Use SciChart.js' JavaScript Charts for high performance, feature-rich designs. Get free demo now.`,
     metaKeywords: "mountain, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

@@ -8,8 +8,8 @@ export const customTheme = createTheme({
             sm: 600,
             md: 960,
             lg: 1460,
-            xl: 1920
-        }
+            xl: 1920,
+        },
     },
     typography: {
         fontFamily: [
@@ -23,10 +23,10 @@ export const customTheme = createTheme({
             "sans-serif",
             '"Apple Color Emoji"',
             '"Segoe UI Emoji"',
-            '"Segoe UI Symbol"'
-        ].join(",")
+            '"Segoe UI Symbol"',
+        ].join(","),
     },
     palette: {
-        primary: themeColor
-    }
+        primary: themeColor,
+    },
 });

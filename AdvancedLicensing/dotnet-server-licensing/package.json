@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "name": "jsdotnet",
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "scichart": "^3.3.575"
+  },
+  "devDependencies": {
+    "typescript": "4.9.5",
+    "copy-webpack-plugin": "^11.0.0",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
+}

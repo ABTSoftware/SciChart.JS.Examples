@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-style-animation.jpg";
@@ -13,11 +12,11 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlStyleAnimationDocumentation,
         title: ExampleStrings.urlTitleStyleAnimationDocumentation,
-        linkTitle: "JavaScript Style Transition Animation Documentation"
-    }
+        linkTitle: "JavaScript Style Transition Animation Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to run <strong>Style Transition Animations</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -29,7 +28,7 @@ const Subtitle = () => (
 export const styleAnimationExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleStyleAnimation,
-    pageTitle: ExampleStrings.titleStyleAnimation + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleStyleAnimation,
     path: ExampleStrings.urlStyleAnimation,
     filepath: "Charts2D/Animations/StyleAnimation",
     subtitle: Subtitle,
@@ -37,8 +36,7 @@ export const styleAnimationExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription: "Demonstrates how to run Style Transition Animations with JavaScript.",
+    metaDescription: (frameworkName: string) => `Demonstrates how to run Style Transition Animations with JavaScript.`,
     metaKeywords: "style, animation, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

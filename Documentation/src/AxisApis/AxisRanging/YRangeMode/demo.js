@@ -16,7 +16,7 @@ async function yRangeMode(divElementId) {
     NativeTextAnnotation,
     ECoordinateMode,
     EHorizontalAnchorPoint,
-    EVerticalAnchorPoint
+    EVerticalAnchorPoint,
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -30,7 +30,8 @@ async function yRangeMode(divElementId) {
     }
   );
 
-  sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy = new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
+  sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
+    new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
 
   const yAxis1 = new NumericAxis(wasmContext, { id: "y1", isVisible: false });
   const yAxis2 = new NumericAxis(wasmContext, {
@@ -76,44 +77,52 @@ async function yRangeMode(divElementId) {
   });
   sciChartSurface.renderableSeries.add(lineSeriesVisible);
 
-  sciChartSurface.annotations.add(new NativeTextAnnotation({
-    xCoordinateMode: ECoordinateMode.Relative,
-    yCoordinateMode: ECoordinateMode.Relative,
-    horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-    verticalAnchorPoint: EVerticalAnchorPoint.Top,
-    yAxisId: "y1",
-    x1: 0.1,
-    y1: 0.1,
-    text: "Click to set outlying point just outside visible range",
-    onClick: (args) => xAxis.visibleRange = new NumberRange(0, 19.5)
-  }));
+  sciChartSurface.annotations.add(
+    new NativeTextAnnotation({
+      xCoordinateMode: ECoordinateMode.Relative,
+      yCoordinateMode: ECoordinateMode.Relative,
+      horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+      verticalAnchorPoint: EVerticalAnchorPoint.Top,
+      yAxisId: "y1",
+      x1: 0.1,
+      y1: 0.1,
+      text: "Click to set outlying point just outside visible range",
+      onClick: (args) => (xAxis.visibleRange = new NumberRange(0, 19.5)),
+    })
+  );
 
-  sciChartSurface.annotations.add(new NativeTextAnnotation({
-    xCoordinateMode: ECoordinateMode.Relative,
-    yCoordinateMode: ECoordinateMode.Relative,
-    horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-    verticalAnchorPoint: EVerticalAnchorPoint.Top,
-    yAxisId: "y1",
-    x1: 0.1,
-    y1: 0.5,
-    text: "Click to show yRangeMode.Visible issue when zoomed in",
-    onClick: (args) => xAxis.visibleRange = new NumberRange(5.1, 9.9)
-  }));
+  sciChartSurface.annotations.add(
+    new NativeTextAnnotation({
+      xCoordinateMode: ECoordinateMode.Relative,
+      yCoordinateMode: ECoordinateMode.Relative,
+      horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+      verticalAnchorPoint: EVerticalAnchorPoint.Top,
+      yAxisId: "y1",
+      x1: 0.1,
+      y1: 0.5,
+      text: "Click to show yRangeMode.Visible issue when zoomed in",
+      onClick: (args) => (xAxis.visibleRange = new NumberRange(5.1, 9.9)),
+    })
+  );
 
-  sciChartSurface.annotations.add(new NativeTextAnnotation({
-    xCoordinateMode: ECoordinateMode.Relative,
-    yCoordinateMode: ECoordinateMode.Relative,
-    horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
-    verticalAnchorPoint: EVerticalAnchorPoint.Top,
-    yAxisId: "y3",
-    x1: 0.1,
-    y1: 0.5,
-    text: "ClipToYRange is Off.  Click to toggle.",
-    onClick: (args) => {
-      lineSeriesVisible.clipToYRange = !lineSeriesVisible.clipToYRange;
-      args.sender.text = `ClipToYRange is ${lineSeriesVisible.clipToYRange ? "On" : "Off"}.  Click to toggle.`;
-    }
-  }));
+  sciChartSurface.annotations.add(
+    new NativeTextAnnotation({
+      xCoordinateMode: ECoordinateMode.Relative,
+      yCoordinateMode: ECoordinateMode.Relative,
+      horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+      verticalAnchorPoint: EVerticalAnchorPoint.Top,
+      yAxisId: "y3",
+      x1: 0.1,
+      y1: 0.5,
+      text: "ClipToYRange is Off.  Click to toggle.",
+      onClick: (args) => {
+        lineSeriesVisible.clipToYRange = !lineSeriesVisible.clipToYRange;
+        args.sender.text = `ClipToYRange is ${
+          lineSeriesVisible.clipToYRange ? "On" : "Off"
+        }.  Click to toggle.`;
+      },
+    })
+  );
 
   sciChartSurface.chartModifiers.add(
     new ZoomPanModifier(),

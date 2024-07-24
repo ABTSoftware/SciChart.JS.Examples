@@ -21,33 +21,30 @@ import {
     EAxisAlignment,
     TRolloverTooltipDataTemplate,
     XySeriesInfo,
-} from 'scichart';
-import { appTheme } from 'scichart-example-dependencies';
-import { getData, TDataEntry, availablePages, getRequestsNumberPerTimestamp } from './data-generation';
-import {  TChartConfigResult, tooltipDataTemplateKey } from './chart-configurations';
-import { TInitFunction } from './SciChart';
+} from "scichart";
+import { appTheme } from "../../../theme";
+import { getData, TDataEntry, availablePages, getRequestsNumberPerTimestamp } from "./data-generation";
+import { TChartConfigResult, tooltipDataTemplateKey } from "./chart-configurations";
+import { TInitFunction } from "scichart-react";
 
-export type TPageStatsConfigFuncResult =  TChartConfigResult<SciChartSurface> & { toggleIsHundredPercent: () => void }
-export type TPageStatsChartConfigFunc = TInitFunction<
-    SciChartSurface,
-    TPageStatsConfigFuncResult
->;
+export type TPageStatsConfigFuncResult = TChartConfigResult<SciChartSurface> & { toggleIsHundredPercent: () => void };
+export type TPageStatsChartConfigFunc = TInitFunction<SciChartSurface, TPageStatsConfigFuncResult>;
 
 const fillColors = ["#f6086c", "#47bde6", "#34c19c", "#f4840b"];
 
 // per page
-export const createChart2: TPageStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
+export const createPageStatisticsChart: TPageStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
-        title: 'URL statistics',
+        title: "URL statistics",
         titleStyle: {
             useNativeText: true,
-            padding: Thickness.fromString('15 0 0 0'),
+            padding: Thickness.fromString("15 0 0 0"),
             // placeWithinChart: true,
             alignment: ETextAlignment.Center,
             fontSize: 20,
-            color: appTheme.ForegroundColor
+            color: appTheme.ForegroundColor,
         },
     });
 
@@ -57,13 +54,13 @@ export const createChart2: TPageStatsChartConfigFunc = async (divElementId: stri
         // useNativeText: true,
     });
     const yAxis = new NumericAxis(wasmContext, {
-        axisTitle: 'Requests',
+        axisTitle: "Requests",
         axisTitleStyle: {
             fontSize: 20,
-            color: appTheme.ForegroundColor
+            color: appTheme.ForegroundColor,
         },
         labelStyle: {
-            color : appTheme.ForegroundColor
+            color: appTheme.ForegroundColor,
         },
         axisAlignment: EAxisAlignment.Left,
         growBy: new NumberRange(0, 0.3),
@@ -99,7 +96,7 @@ export const createChart2: TPageStatsChartConfigFunc = async (divElementId: stri
             stroke: fillColors[index],
             strokeThickness: 0,
             opacity: 0.8,
-            stackedGroupId: 'StackedGroupId',
+            stackedGroupId: "StackedGroupId",
         });
 
         stackedColumnCollection.add(rendSeries);
@@ -112,13 +109,13 @@ export const createChart2: TPageStatsChartConfigFunc = async (divElementId: stri
     const legendModifier = new LegendModifier({
         placement: ELegendPlacement.TopLeft,
         orientation: ELegendOrientation.Vertical,
-        backgroundColor: "#0d1523"
+        backgroundColor: "#0d1523",
     });
 
     const zoomAndScrollDirection = EXyDirection.XDirection;
 
     const rolloverModifier = new RolloverModifier({
-        id: 'PageStatisticsRolloverModifier',
+        id: "PageStatisticsRolloverModifier",
         showTooltip: true,
         snapToDataPoint: true,
         tooltipDataTemplate: tooltipDataTemplateKey,

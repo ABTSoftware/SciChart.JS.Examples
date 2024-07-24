@@ -15,8 +15,8 @@ export const drawPoreSpaceChart = async () => {
         modifiers: getCommonChartModifiersConfig(),
         surface: {
             theme: appTheme.SciChartJsTheme,
-            padding: Thickness.fromNumber(0)
-        }
+            padding: Thickness.fromNumber(0),
+        },
     });
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(-0.2, 1.6);
@@ -26,7 +26,7 @@ export const drawPoreSpaceChart = async () => {
     const dataSeries3 = new XyDataSeries(wasmContext, { dataIsSortedInX: true, containsNaN: false });
 
     const rows = await getDataRows("PoreSpace.csv");
-    rows.forEach(row => {
+    rows.forEach((row) => {
         const data = row.replace(",", ".").split(";");
 
         const x = Number.parseFloat(data[0]);
@@ -48,8 +48,8 @@ export const drawPoreSpaceChart = async () => {
                 dataSeries: dataSeries1,
                 strokeThickness: 2,
                 stroke: appTheme.PoreSpaceStroke1,
-                fill: appTheme.PoreSpacePhieFill
-            }
+                fill: appTheme.PoreSpacePhieFill,
+            },
         },
         {
             type: ESeriesType.StackedMountainSeries,
@@ -57,8 +57,8 @@ export const drawPoreSpaceChart = async () => {
                 dataSeries: dataSeries2,
                 strokeThickness: 2,
                 stroke: appTheme.PoreSpaceStroke2,
-                fill: appTheme.PoreSpacePhitFill
-            }
+                fill: appTheme.PoreSpacePhitFill,
+            },
         },
         {
             type: ESeriesType.ScatterSeries,
@@ -69,15 +69,15 @@ export const drawPoreSpaceChart = async () => {
                     stroke: appTheme.PoreSpaceScatterStroke,
                     fill: appTheme.PoreSpaceScatterFill,
                     width: 8,
-                    height: 8
-                })
-            }
-        }
+                    height: 8,
+                }),
+            },
+        },
     ]);
 
     sciChartSurface.renderableSeries.add(...renderableSeries);
 
-    renderableSeries.forEach(rs => {
+    renderableSeries.forEach((rs) => {
         rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
         rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
         rs.rolloverModifierProps.markerColor = appTheme.RolloverTooltipFill;

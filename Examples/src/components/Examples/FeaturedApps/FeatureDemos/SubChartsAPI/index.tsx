@@ -1,5 +1,5 @@
 import * as React from "react";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import { FormControl, ButtonGroup, Button, FormControlLabel, Checkbox } from "@material-ui/core";
@@ -8,7 +8,7 @@ import {
     createRenderableSeries,
     getDataSeriesTypeForRenderableSeries,
     getSubChartPositionIndexes,
-    prePopulateData
+    prePopulateData,
 } from "./helpers";
 
 import {
@@ -39,15 +39,14 @@ import {
     Thickness,
     TSciChart,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 type TMessage = {
     title: string;
     detail: string;
 };
-
-export const divElementId = "chart";
 
 const axisOptions: INumericAxisOptions = {
     useNativeText: true,
@@ -60,13 +59,16 @@ const axisOptions: INumericAxisOptions = {
     labelStyle: { fontSize: 8 },
     labelFormat: ENumericFormat.Decimal,
     labelPrecision: 0,
-    autoRange: EAutoRange.Always
+    autoRange: EAutoRange.Always,
 };
 
 // theme overrides
 const sciChartTheme = appTheme.SciChartJsTheme;
 
-export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) => void) => {
+export const drawGridExample = async (
+    rootElement: string | HTMLDivElement,
+    updateMessages: (newMessages: TMessage[]) => void
+) => {
     const subChartsNumber = 64;
     const columnsNumber = 8;
     const rowsNumber = 8;
@@ -75,7 +77,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
         seriesCount: 3,
         pointsOnChart: 5000,
         sendEvery: 30,
-        initialPoints: 20
+        initialPoints: 20,
     };
 
     const originalGetStrokeColor = sciChartTheme.getStrokeColor;
@@ -94,19 +96,19 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
     };
     ///
 
-    const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.createSingle(divElementId, {
-        theme: sciChartTheme
+    const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.createSingle(rootElement, {
+        theme: sciChartTheme,
     });
 
     const mainXAxis = new NumericAxis(wasmContext, {
         isVisible: false,
-        id: "mainXAxis"
+        id: "mainXAxis",
     });
 
     mainSurface.xAxes.add(mainXAxis);
     const mainYAxis = new NumericAxis(wasmContext, {
         isVisible: false,
-        id: "mainYAxis"
+        id: "mainYAxis",
     });
     mainSurface.yAxes.add(mainYAxis);
 
@@ -116,7 +118,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
         [ESeriesType.ColumnSeries]: "Column",
         [ESeriesType.StackedMountainSeries]: "Mountain",
         [ESeriesType.BandSeries]: "Band",
-        [ESeriesType.CandlestickSeries]: "Candle"
+        [ESeriesType.CandlestickSeries]: "Candle",
     };
 
     const seriesTypes = [
@@ -127,7 +129,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
         ESeriesType.StackedMountainSeries,
         ESeriesType.BandSeries,
         // ESeriesType.ScatterSeries,
-        ESeriesType.CandlestickSeries
+        ESeriesType.CandlestickSeries,
         // ESeriesType.TextSeries
     ];
 
@@ -159,15 +161,15 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
             subChartPadding: Thickness.fromNumber(3),
             viewportBorder: {
                 color: "rgba(150, 74, 148, 0.51)",
-                border: 2
+                border: 2,
             },
             title: seriesNamesMap[seriesType],
             titleStyle: {
                 placeWithinChart: true,
                 fontSize: 12,
                 padding: Thickness.fromString("10 4 0 4"),
-                color: appTheme.ForegroundColor
-            }
+                color: appTheme.ForegroundColor,
+            },
         };
 
         // create sub-surface
@@ -177,7 +179,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
         const subChartXAxis = new NumericAxis(wasmContext, {
             ...axisOptions,
             id: `${subChartSurface.id}-XAxis`,
-            growBy: new NumberRange(0.0, 0.0)
+            growBy: new NumberRange(0.0, 0.0),
         });
 
         subChartSurface.xAxes.add(subChartXAxis);
@@ -185,7 +187,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
         const subChartYAxis = new NumericAxis(wasmContext, {
             ...axisOptions,
             id: `${subChartSurface.id}-YAxis`,
-            growBy: new NumberRange(0.01, 0.1)
+            growBy: new NumberRange(0.01, 0.1),
         });
         subChartSurface.yAxes.add(subChartYAxis);
 
@@ -212,7 +214,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
                     stackedCollection = new StackedColumnCollection(wasmContext, {
                         dataPointWidth: 1,
                         xAxisId: subChartXAxis.id,
-                        yAxisId: subChartYAxis.id
+                        yAxisId: subChartYAxis.id,
                     });
                     subChartSurface.renderableSeries.add(stackedCollection);
                 }
@@ -222,7 +224,7 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
                 if (i === 0) {
                     stackedCollection = new StackedMountainCollection(wasmContext, {
                         xAxisId: subChartXAxis.id,
-                        yAxisId: subChartYAxis.id
+                        yAxisId: subChartYAxis.id,
                     });
                     subChartSurface.renderableSeries.add(stackedCollection);
                 }
@@ -230,12 +232,13 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
             } else if (seriesType === ESeriesType.ColumnSeries) {
                 // create Stacked Y Axis
                 if (i === 0) {
-                    subChartSurface.layoutManager.rightOuterAxesLayoutStrategy = new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
+                    subChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
+                        new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
                     rendSeries.yAxisId = subChartYAxis.id;
                 } else {
                     const additionalYAxis = new NumericAxis(wasmContext, {
                         ...axisOptions,
-                        id: `${subChartSurface.id}-YAxis${i}`
+                        id: `${subChartSurface.id}-YAxis${i}`,
                     });
                     subChartSurface.yAxes.add(additionalYAxis);
                     rendSeries.yAxisId = additionalYAxis.id;
@@ -301,15 +304,15 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
         const totalPoints = charts[0].dataSeriesArray[0].count() * 3 * charts.length;
         newMessages.push({
             title: `Total Points `,
-            detail: `${totalPoints}`
+            detail: `${totalPoints}`,
         });
         newMessages.push({
             title: `Average Render Time `,
-            detail: `${avgRenderTime.toFixed(2)} ms`
+            detail: `${avgRenderTime.toFixed(2)} ms`,
         });
         newMessages.push({
             title: `Max FPS `,
-            detail: `${Math.min(60, 1000 / avgRenderTime).toFixed(1)}`
+            detail: `${Math.min(60, 1000 / avgRenderTime).toFixed(1)}`,
         });
         updateMessages(newMessages);
         newMessages.length = 0;
@@ -340,28 +343,28 @@ export const drawGridExample = async (updateMessages: (newMessages: TMessage[]) 
     const setLabels = (show: boolean) => {
         subChartsMap.forEach((v, k) => {
             k.xAxes.get(0).isVisible = show;
-            k.yAxes.asArray().forEach(y => (y.isVisible = show));
+            k.yAxes.asArray().forEach((y) => (y.isVisible = show));
         });
     };
 
     return {
         wasmContext,
-        subChartSurface: mainSurface,
+        sciChartSurface: mainSurface,
         controls: {
             startStreaming,
             stopStreaming,
-            setLabels
-        }
+            setLabels,
+        },
     };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -369,59 +372,33 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
+        flex: 1,
     },
     infoBlock: {
         display: "flex",
         flex: "auto",
         marginLeft: 10,
-        marginTop: 6
+        marginTop: 6,
     },
     infoItem: {
-        flex: "auto"
-    }
+        flex: "auto",
+    },
 }));
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function SubchartsGrid() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const controlsRef = React.useRef<{
-        startStreaming: () => void,
-        stopStreaming: () => void,
-        setLabels: (show: boolean) => void
+        startStreaming: () => void;
+        stopStreaming: () => void;
+        setLabels: (show: boolean) => void;
     }>();
     const [isDirty, setIsDirty] = React.useState<boolean>(false);
 
     const [messages, setMessages] = React.useState<TMessage[]>([]);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawGridExample((newMessages: TMessage[]) => {
-            setMessages([...newMessages]);
-        }).then(res => {
-            sciChartSurfaceRef.current = res.subChartSurface;
-            controlsRef.current = res.controls;
-        });
-
-        // Delete subChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                controlsRef.current.stopStreaming();
-                sciChartSurfaceRef.current?.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                controlsRef.current.stopStreaming();
-                sciChartSurfaceRef.current?.delete();
-            });
-        };
-    }, []);
 
     const localClasses = useStyles();
 
@@ -433,6 +410,11 @@ export default function SubchartsGrid() {
     const handleLabelsChange = (ev: any, checked: boolean) => {
         controlsRef.current.setLabels(checked);
     };
+
+    const drawExample = (rootElement: string | HTMLDivElement) =>
+        drawGridExample(rootElement, (newMessages: TMessage[]) => {
+            setMessages([...newMessages]);
+        });
 
     return (
         <div className={classes.ChartWrapper}>
@@ -463,7 +445,16 @@ export default function SubchartsGrid() {
                         ))}
                     </div>
                 </div>
-                <div className={localClasses.chartArea} id={divElementId}></div>
+                <SciChartReact
+                    className={localClasses.chartArea}
+                    initChart={drawExample}
+                    onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
+                        controlsRef.current = controls;
+                    }}
+                    onDelete={({ controls }: TResolvedReturnType<typeof drawExample>) => {
+                        controls.stopStreaming();
+                    }}
+                />
             </div>
         </div>
     );

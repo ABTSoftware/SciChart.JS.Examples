@@ -43,7 +43,7 @@ export class AscReader {
             XValues: [],
             YValues: [],
             ZValues: [],
-            ColorValues: []
+            ColorValues: [],
         };
 
         // Generate X-values based off cell position

@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -12,18 +11,18 @@ Right click and drag on the main chart to zoom.`;
 const tips = [
     `The overview is a normal sciChartSurface so you can add annotations to it, or customise it any way you want.`,
     `You can easily customise which series appear in the overview, and how they are rendered, with the transformRenderableSeries option.`,
-    `You can also apply the overview to vertical charts.`
+    `You can also apply the overview to vertical charts.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlOverviewDocumentation,
         title: ExampleStrings.urlTitleOverviewDocumentation,
-        linkTitle: "SciChart.js Overview Documentation"
-    }
+        linkTitle: "SciChart.js Overview Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to zoom and pan with an <strong>Overview Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -35,7 +34,7 @@ const Subtitle = () => (
 export const overviewExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleOverview,
-    pageTitle: ExampleStrings.titleOverview + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleOverview,
     path: ExampleStrings.urlOverview,
     filepath: "Charts2D/ZoomingAndPanning/OverviewModifier",
     subtitle: Subtitle,
@@ -43,8 +42,7 @@ export const overviewExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription: "Demonstrates how to zoom and pan with an Overview Chart",
+    metaDescription: (frameworkName: string) => `Demonstrates how to zoom and pan with an Overview Chart`,
     metaKeywords: "drag, axis, scale, overview, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

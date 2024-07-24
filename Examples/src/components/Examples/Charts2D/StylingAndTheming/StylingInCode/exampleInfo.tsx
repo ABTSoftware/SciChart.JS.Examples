@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-chart-styling-theming-in-code.jpg";
@@ -14,13 +13,13 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlStylingInCodeDocumentation,
         title: ExampleStrings.urlTitleStylingInCodeDocumentation,
-        linkTitle: "Custom Theme documentation"
-    }
+        linkTitle: "Custom Theme documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to <strong>style or theme a JavaScript Chart</strong> using SciChart.js, High Performance{" "}
+        Demonstrates how to <strong>style or theme a {frameworkName} Chart</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
@@ -30,7 +29,7 @@ const Subtitle = () => (
 export const stylingInCodeExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleStylingInCode,
-    pageTitle: ExampleStrings.titleStylingInCode + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleStylingInCode,
     path: ExampleStrings.urlStylingInCode,
     filepath: "Charts2D/StylingAndTheming/StylingInCode",
     subtitle: Subtitle,
@@ -38,8 +37,8 @@ export const stylingInCodeExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription: "Demonstrates how to style a JavaScript Chart entirely in code with SciChart.js themeing API",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to style a ${frameworkName} Chart entirely in code with SciChart.js themeing API`,
     metaKeywords: "styling, in, code, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

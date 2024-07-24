@@ -1,12 +1,10 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import { GalleryItem } from "../../../../../helpers/types/types";
 import exampleImage from "./javascript-chart-realtime-performance-demo.jpg";
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates appending <strong>millions of points</strong> to a line chart with SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -21,20 +19,20 @@ points every 10ms to 3 line series on the chart (300k points per second). The po
 the millions, and SciChart is still rendering!`;
 const tips = [
     `For the fastest possible way of creating and appending data to a SciChartSurface, use the overloaded
-    appendRange functions on dataseries.`
+    appendRange functions on dataseries.`,
 ];
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlPerformanceTipsDocumentation,
         title: ExampleStrings.urlTitlePerformanceTipsDocumentation,
-        linkTitle: "SciChart.js Performance Tips and Tricks"
-    }
+        linkTitle: "SciChart.js Performance Tips and Tricks",
+    },
 ];
 
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
-    pageTitle: ExampleStrings.titleRealtimeJavaScriptChartDemo + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleRealtimeJavaScriptChartDemo,
     path: ExampleStrings.urlRealtimeJavaScriptChartDemo,
     filepath: "FeaturedApps/PerformanceDemos/RealtimePerformanceDemo",
     subtitle: Subtitle,
@@ -42,9 +40,8 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription:
-        "This demo showcases the incredible realtime performance of our JavaScript charts by updating the series with millions of data-points!",
+    metaDescription: (frameworkName: string) =>
+        `This demo showcases the incredible realtime performance of our ${frameworkName} charts by updating the series with millions of data-points!`,
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

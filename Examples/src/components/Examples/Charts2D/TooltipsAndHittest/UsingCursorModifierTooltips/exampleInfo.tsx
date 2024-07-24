@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
@@ -11,18 +10,18 @@ const description = `This can be used to add Tooltips to a JavaScript chart as w
 values as the user moves the mouse.`;
 const tips = [
     `The hitTest function accepts parameters to control the hit-test logic. See the documentation on Hit-Testing
-    for more info!`
+    for more info!`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlCursorModifierDocumentation,
         title: ExampleStrings.urlTitleCursorModifierDocumentation,
-        linkTitle: "CursorModifier documentation"
-    }
+        linkTitle: "CursorModifier documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
         Demonstrates how to create <strong>crosshairs on mouseover</strong> using SciChart.js, High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
@@ -34,7 +33,7 @@ const Subtitle = () => (
 export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleCursorModifier,
-    pageTitle: ExampleStrings.titleCursorModifier + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleCursorModifier,
     path: ExampleStrings.urlCursorModifier,
     filepath: "Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips",
     subtitle: Subtitle,
@@ -42,8 +41,8 @@ export const usingCursorModifierTooltipsExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription: "Demonstrates adding a Cursor (Crosshair) to a JavaScript Chart with SciChart.js CursorModifier",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates adding a Cursor (Crosshair) to a ${frameworkName} Chart with SciChart.js CursorModifier`,
     metaKeywords: "cursor, modifier, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

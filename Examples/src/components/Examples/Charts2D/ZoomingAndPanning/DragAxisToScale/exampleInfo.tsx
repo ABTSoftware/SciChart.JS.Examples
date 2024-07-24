@@ -1,5 +1,4 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import * as React from "react";
 import { ExampleStrings } from "../../../ExampleStrings";
 import exampleImage from "./drag-axis-on-javascript-charts-to-scale-or-pan.jpg";
@@ -13,13 +12,13 @@ const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDragAxisToScaleDocumentation,
         title: ExampleStrings.urlTitleDragAxisToScaleDocumentation,
-        linkTitle: "SciChart.js Axis Drag documentation"
-    }
+        linkTitle: "SciChart.js Axis Drag documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to <strong>scale or pan the Axis on a JavaScript Chart</strong> using SciChart.js, High
+        Demonstrates how to <strong>scale or pan the Axis on a {frameworkName} Chart</strong> using SciChart.js, High
         Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
@@ -30,16 +29,15 @@ const Subtitle = () => (
 export const dragAxisToScaleExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleDragAxisToScale,
-    pageTitle: ExampleStrings.titleDragAxisToScale + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleDragAxisToScale,
     path: ExampleStrings.urlDragAxisToScale,
     filepath: "Charts2D/ZoomingAndPanning/DragAxisToScale",
     subtitle: Subtitle,
     documentationLinks,
     tips,
     description,
-    githubUrl,
-    metaDescription:
-        "Demonstrates how to Zoom, Scale or Pan individual Axis on a JavaScript Chart with SciChart.js AxisDragModifiers",
+    metaDescription: (frameworkName: string) =>
+        `Demonstrates how to Zoom, Scale or Pan individual Axis on a ${frameworkName} Chart with SciChart.js AxisDragModifiers`,
     metaKeywords: "drag, axis, scale, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

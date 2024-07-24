@@ -9,6 +9,8 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ComponentWrapper from "../../ComponentWrapper/ComponentWrapper";
 import { GalleryItem } from "../../../helpers/types/types";
+import { FrameworkContext } from "../../../helpers/shared/Helpers/FrameworkContext";
+import { useContext } from "react";
 
 type TProps = {
     example: GalleryItem;
@@ -19,7 +21,7 @@ export default function GalleryList(props: TProps) {
     const [index, setIndex] = React.useState(0);
     const [showAll, setShowAll] = React.useState(false);
     const slideWidth = (1 / props.slidersNumber) * 100;
-
+    const framework = useContext(FrameworkContext);
     const moveR = () => {
         if (index <= props.slidersNumber - props.example.items.length) {
             setIndex(0);
@@ -64,7 +66,7 @@ export default function GalleryList(props: TProps) {
                                 style={{
                                     transform: `translateX(${index * 100}%)`,
                                     minWidth: `${slideWidth}%`,
-                                    maxWidth: `${slideWidth}%`
+                                    maxWidth: `${slideWidth}%`,
                                 }}
                             >
                                 <GalleryCard

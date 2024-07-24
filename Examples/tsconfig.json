@@ -22,8 +22,9 @@
         "typeRoots": ["./src/types", "./node_modules/@types"],
         "esModuleInterop": false,
         "skipLibCheck": false,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "experimentalDecorators": true
     },
     "include": ["src/**/*", "testUnit/**/*", "../ExampleDependencies/src/ExampleData/binanceRestClient.ts"],
-    "exclude": ["node_modules", "src/static/*"]
+    "exclude": ["node_modules", "src/static/*", "src/**/vanilla.ts", "src/**/angular.ts"]
 }

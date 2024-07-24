@@ -3,6 +3,7 @@ import {
     DpiHelper,
     ECoordinateMode,
     EModifierType,
+    EMousePosition,
     EBaseType,
     EChart2DModifierType,
     IChartModifierBaseOptions,
@@ -15,10 +16,9 @@ import {
     translateFromCanvasToSeriesViewRect,
     translateToNotScaled,
     registerType,
-    testIsInBounds
+    testIsInBounds,
 } from "scichart";
 import { TFinanceLegendTemplate, FinChartLegendAnnotation } from "./FinChartLegendAnnotation";
-import { EMousePosition } from "scichart/types/MousePosition";
 
 /**
  * Optional parameters used to configure a {@link CursorModifier} at construct time
@@ -147,7 +147,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
     }
 
     private getSciChartSurface(paneId: string) {
-        return this.parentSurface.subCharts.find(subChart => subChart.id === paneId);
+        return this.parentSurface.subCharts.find((subChart) => subChart.id === paneId);
     }
 
     private newLineAnnotation() {
@@ -159,18 +159,18 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
             stroke: this.crosshairStroke,
             isHidden: true,
             axisLabelFill: this.axisLabelFill,
-            axisLabelStroke: this.axisLabelStroke
+            axisLabelStroke: this.axisLabelStroke,
         });
     }
 
-    private updateMousePosition(scs: SciChartSubSurface) {     
+    private updateMousePosition(scs: SciChartSubSurface) {
         const { left, right, top, bottom } = scs.getSubChartRect();
         if (testIsInBounds(this.mousePoint.x, this.mousePoint.y, left, bottom, right, top)) {
             this.mousePositionPaneId = scs.id;
             this.mousePositionSciChartSurface = scs;
             if (!this.mousePoint) {
                 this.mousePosition = EMousePosition.OutOfCanvas;
-            } else {           
+            } else {
                 this.translatedMousePoint = translateFromCanvasToSeriesViewRect(this.mousePoint, scs.seriesViewRect);
                 if (!this.translatedMousePoint) {
                     this.mousePosition = EMousePosition.AxisArea;
@@ -189,7 +189,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
             const x = translateToNotScaled(scaledX);
             const y = translateToNotScaled(scaledY);
 
-            this.parentSurface.subCharts.forEach(scs => {
+            this.parentSurface.subCharts.forEach((scs) => {
                 const xLineAnnotation = this.xLineAnnotations.get(scs.id);
                 const yLineAnnotation = this.yLineAnnotations.get(scs.id);
 
@@ -216,7 +216,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
                 legendAnnotation.activeSciChartSurface = this.mousePositionSciChartSurface as SciChartSurface;
             });
         } else {
-            this.parentSurface.subCharts.forEach(scs => {
+            this.parentSurface.subCharts.forEach((scs) => {
                 this.xLineAnnotations.get(scs.id).isHidden = true;
                 this.yLineAnnotations.get(scs.id).isHidden = true;
 
@@ -255,7 +255,7 @@ export class FinChartLegendModifier extends ChartModifierBase2D {
             template: this.legendTemplate,
             offsetX: this.legendOffsetX,
             offsetY: 0,
-            paneId
+            paneId,
         });
         this.legendAnnotations.set(paneId, legendAnnotation);
         subChart.annotations.add(legendAnnotation);

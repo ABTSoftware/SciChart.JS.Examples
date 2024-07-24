@@ -1,1 +1,0 @@
-export const githubUrl = "/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/index.tsx";

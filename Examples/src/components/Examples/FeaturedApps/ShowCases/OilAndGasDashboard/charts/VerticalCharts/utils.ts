@@ -23,7 +23,7 @@ export const getParsedData = async (source: string) => {
 
         const x = Number.parseFloat(data[0]);
         if (!isNaN(x)) {
-            acc.push(data.map(value => Number.parseFloat(value)));
+            acc.push(data.map((value) => Number.parseFloat(value)));
         }
 
         return acc;
@@ -33,7 +33,7 @@ export const getParsedData = async (source: string) => {
 export const getCommonChartConfigs = (axisTitle: string): ISciChart2DDefinition => ({
     surface: {
         padding: Thickness.fromNumber(0),
-        theme: { type: EThemeProviderType.Dark }
+        theme: { type: EThemeProviderType.Dark },
     },
     xAxes: {
         type: EAxisType.NumericAxis,
@@ -45,8 +45,8 @@ export const getCommonChartConfigs = (axisTitle: string): ISciChart2DDefinition 
             drawMajorTickLines: false,
             drawMinorTickLines: false,
             autoRange: EAutoRange.Once,
-            visibleRangeLimit: new NumberRange(0, 1000)
-        }
+            visibleRangeLimit: new NumberRange(0, 1000),
+        },
     },
     yAxes: {
         type: EAxisType.NumericAxis,
@@ -60,15 +60,15 @@ export const getCommonChartConfigs = (axisTitle: string): ISciChart2DDefinition 
             drawMinorGridLines: false,
             drawMajorTickLines: false,
             drawMinorTickLines: false,
-            autoRange: EAutoRange.Once
-        }
-    }
+            autoRange: EAutoRange.Once,
+        },
+    },
 });
 
 export const getCommonChartModifiersConfig = (): TModifierDefinition[] => [
     {
         type: EChart2DModifierType.ZoomExtents,
-        options: { modifierGroup: "VerticalChartsGroup", xyDirection: EXyDirection.XDirection }
+        options: { modifierGroup: "VerticalChartsGroup", xyDirection: EXyDirection.XDirection },
     },
     // TODO: Uncomment after v2.1 scichart.js release
     // { type: EChart2DModifierType.ZoomPan, options: { modifierGroup: "VerticalChartsGroup", excludedYAxisIds: [AxisCore.DEFAULT_AXIS_ID] } },
@@ -78,7 +78,7 @@ export const getCommonChartModifiersConfig = (): TModifierDefinition[] => [
         options: {
             modifierGroup: "VerticalChartsGroup",
             excludedYAxisIds: [AxisCore.DEFAULT_AXIS_ID],
-            xyDirection: EXyDirection.XDirection
-        }
-    }
+            xyDirection: EXyDirection.XDirection,
+        },
+    },
 ];

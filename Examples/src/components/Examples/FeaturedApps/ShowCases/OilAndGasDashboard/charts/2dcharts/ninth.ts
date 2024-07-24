@@ -24,12 +24,12 @@ export default async function init2dNinthChart(id: string) {
     const dataR = getDataDiagonal(xValues, yValues, 100);
     const dataG = getDataDiagonal(
         xValues,
-        yValues.map(el => (el += 1)),
+        yValues.map((el) => (el += 1)),
         100
     );
     const dataB = getDataDiagonal(
         xValues,
-        yValues.map(el => (el += 2)),
+        yValues.map((el) => (el += 2)),
         100
     );
 
@@ -38,31 +38,31 @@ export default async function init2dNinthChart(id: string) {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: dataR.xValues,
             yValues: dataR.yValues,
-            dataSeriesName: "Red"
+            dataSeriesName: "Red",
         }),
         fill: getColor("red"),
         stroke: getColor("red"),
-        strokeThickness: 0
+        strokeThickness: 0,
     });
     const rendSeriesG = new FastMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: dataG.xValues,
             yValues: dataG.yValues,
-            dataSeriesName: "Green"
+            dataSeriesName: "Green",
         }),
         fill: getColor("green"),
         stroke: getColor("green"),
-        strokeThickness: 0
+        strokeThickness: 0,
     });
     const rendSeriesB = new FastMountainRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues: dataB.xValues,
             yValues: dataB.yValues,
-            dataSeriesName: "Blue"
+            dataSeriesName: "Blue",
         }),
         fill: getColor("blue"),
         stroke: getColor("blue"),
-        strokeThickness: 0
+        strokeThickness: 0,
     });
 
     // Add the StackedMountainCollection to the chart

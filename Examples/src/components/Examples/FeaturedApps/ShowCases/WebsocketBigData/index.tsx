@@ -7,7 +7,7 @@ import {
     Radio,
     RadioGroup,
     Select,
-    Slider
+    Slider,
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
@@ -18,17 +18,17 @@ import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import * as React from "react";
 import { ESeriesType, SciChartSurface } from "scichart";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { divElementId, drawExample, ISettings, TMessage } from "./drawExample";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "row",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -36,11 +36,11 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 export default function RealtimeBigDataShowcase() {
@@ -58,14 +58,14 @@ export default function RealtimeBigDataShowcase() {
         pointsOnChart: 4, // 10000
         pointsPerUpdate: 1, // 10
         sendEvery: 100,
-        initialPoints: 4 // 10000
+        initialPoints: 4, // 10000
     });
     const [maxSettings, setMaxSettings] = React.useState<ISettings>({
         seriesCount: 100,
         pointsOnChart: 6, // 1000000
         pointsPerUpdate: 4, // 10000
         sendEvery: 5, // Minimum
-        initialPoints: 6 // 1000000
+        initialPoints: 6, // 1000000
     });
     const maxPoints = 10000000;
     const localClasses = useStyles();
@@ -75,7 +75,7 @@ export default function RealtimeBigDataShowcase() {
         measures: null,
         dataset: null,
         startDate: null,
-        endDate: null
+        endDate: null,
     });
 
     const [messages, setMessages] = React.useState<TMessage[]>([]);
@@ -88,14 +88,14 @@ export default function RealtimeBigDataShowcase() {
     React.useEffect(() => {
         const chartInitializationPromise = drawExample((newMessages: TMessage[]) => {
             setMessages([...newMessages]);
-        }, seriesType).then(res => {
+        }, seriesType).then((res) => {
             sciChartSurfaceRef.current = res.sciChartSurface;
             controlsRef.current = res.controls;
             res.controls.updateSettings({
                 ...settings,
                 initialPoints: logScale(settings.initialPoints),
                 pointsOnChart: logScale(settings.pointsOnChart),
-                pointsPerUpdate: logScale(settings.pointsPerUpdate)
+                pointsPerUpdate: logScale(settings.pointsPerUpdate),
             });
         });
 
@@ -127,7 +127,7 @@ export default function RealtimeBigDataShowcase() {
             controlsRef.current.updateSettings({
                 seriesCount,
                 pointsOnChart: logScale(pointsOnChart),
-                initialPoints: logScale(initialPoints)
+                initialPoints: logScale(initialPoints),
             });
             setIsDirty(true);
         }
@@ -165,7 +165,7 @@ export default function RealtimeBigDataShowcase() {
             controlsRef.current.updateSettings({
                 seriesCount,
                 pointsOnChart: logScale(pointsOnChart),
-                initialPoints: logScale(initialPoints)
+                initialPoints: logScale(initialPoints),
             });
             setIsDirty(true);
         }
@@ -189,9 +189,9 @@ export default function RealtimeBigDataShowcase() {
         const marks: number[] = [1, 2, 5, 10];
         for (let i = 1; i <= maxPower; i++) {
             const base = Math.pow(10, i);
-            marks.push(...[2, 5, 10].map(m => m * base));
+            marks.push(...[2, 5, 10].map((m) => m * base));
         }
-        return marks.map(m => ({ value: Math.log10(m) })) as Mark[];
+        return marks.map((m) => ({ value: Math.log10(m) })) as Mark[];
     };
 
     const logScale = (value: number) => {
@@ -213,7 +213,7 @@ export default function RealtimeBigDataShowcase() {
                         color: appTheme.ForegroundColor,
                         flexBasis: 100,
                         flexGrow: 1,
-                        flexShrink: 1
+                        flexShrink: 1,
                     }}
                 >
                     <div>

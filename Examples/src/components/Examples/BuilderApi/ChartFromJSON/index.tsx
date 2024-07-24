@@ -3,10 +3,10 @@ import { SciChartSurface, chartBuilder, TWebAssemblyChart } from "scichart";
 import classes from "../../styles/Examples.module.scss";
 import { ButtonGroup, Button, TextField } from "@material-ui/core";
 import { Alert, AlertTitle } from "@material-ui/lab";
-import { SciChartComponent } from "../../SciChartComponent";
+import { SciChartReact } from "scichart-react";
 
 const drawExample = async (
-    divElementId: string,
+    divElementId: string | HTMLDivElement,
     json: string,
     setErrors: (error: any) => void
 ): Promise<TWebAssemblyChart> => {
@@ -57,8 +57,8 @@ export default function ChartFromJSON() {
             React.memo((props: { chartConfig: string }) => {
                 console.log("Rebuild");
                 return (
-                    <SciChartComponent
-                        initFunction={(divId: string) => drawExample(divId, props.chartConfig, setErrors)}
+                    <SciChartReact
+                        initChart={(divId: string | HTMLDivElement) => drawExample(divId, props.chartConfig, setErrors)}
                         style={{ flexBasis: 400, flexGrow: 1, flexShrink: 1 }}
                     />
                 );

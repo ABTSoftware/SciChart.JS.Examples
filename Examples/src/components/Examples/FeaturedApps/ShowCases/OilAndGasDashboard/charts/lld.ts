@@ -17,7 +17,7 @@ export default async function initLldChart(
     // Create some data and set on a line series
     let color = Math.round(Math.random() * 250);
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
-        stroke: `rgba(${255 - color},${color},${(color + 125) % 255},0.7)`
+        stroke: `rgba(${255 - color},${color},${(color + 125) % 255},0.7)`,
     });
     lineSeries.dataSeries = getRandomSinewave(
         wasmContext,

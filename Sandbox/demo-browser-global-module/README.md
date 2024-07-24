@@ -10,31 +10,34 @@ Please note to use scichart.js you need to have a server to serve html. Just ope
 
 To run the project, use:
 
-* `npm install`
-* `npm start`
+- `npm install`
+- `npm start`
 
 ![Annotations Demo](img/line-chart.png)
 
 ## How to add scichart.browser.js to your project
 
 1. Add script pointing to a specific version into the **head** section of your html file. For instance to add version `2.1.2261` add this script:
+
 ```html
-<script src="https://cdn.jsdelivr.net/npm/scichart@2.1.2290/_wasm/scichart.browser.js" crossorigin="anonymous"></script>
-```
-2. Configure SciChartSurface to download .data and .wasm files from the CDN. Library versions in the script and in the configure method must be the same!
-```typescript
-SciChart.SciChartSurface.configure({
-    dataUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.2290/_wasm/scichart2d.data",
-    wasmUrl: "https://cdn.jsdelivr.net/npm/scichart@2.1.2290/_wasm/scichart2d.wasm"
-});
+<script
+  src="https://cdn.jsdelivr.net/npm/scichart@3.4.644/_wasm/scichart.browser.js"
+  crossorigin="anonymous"
+></script>
 ```
 
-Note: For newer versions of SciChart we have included the library version as a field, so you can use code like this instead to avoid version mismatches:
+2. Configure SciChartSurface to download .data and .wasm files from the CDN.
+
+```typescript
+SciChart.SciChartSurface.loadWasmFromCDN();
+```
+
+If you want to use a different cdn, or serve the wasm files locally you can configure them in detail like this
 
 ```typescript
 SciChart.SciChartSurface.configure({
-    dataUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.data`,
-    wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.wasm`
+  dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.644${SciChart.libraryVersion}/_wasm/scichart2d.data`,
+  wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.644${SciChart.libraryVersion}/_wasm/scichart2d.wasm`,
 });
 ```
 
@@ -48,7 +51,7 @@ We have a wealth of information on our site showing how to get started with SciC
 
 Take a look at:
 
- * [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
- * [Javascript / npm tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2002%20-%20Adding%20Series%20and%20Data.html): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
- * [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2001%20-%20Including%20SciChart.js%20in%20an%20HTML%20Page.html): using only vanilla javascript and HTML,
- * [Official scichart.js demos](https://demo.scichart.com): view our demos online! Full github source code also available at [github.com/abtsoftware/scichart.js.examples](https://github.com/abtsoftware/scichart.js.examples)
+- [Getting-Started with SciChart.js](https://www.scichart.com/getting-started-scichart-js): includes trial licensing, first steps and more
+- [Javascript / npm tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2002%20-%20Adding%20Series%20and%20Data.html): using npm, webpack, and scichart.js, create static and dynamic charts with zooming, panning tooltips and more
+- [Vanilla Javascript tutorials](https://www.scichart.com/documentation/js/current/Tutorial%2001%20-%20Including%20SciChart.js%20in%20an%20HTML%20Page.html): using only vanilla javascript and HTML,
+- [Official scichart.js demos](https://demo.scichart.com): view our demos online! Full github source code also available at [github.com/abtsoftware/scichart.js.examples](https://github.com/abtsoftware/scichart.js.examples)

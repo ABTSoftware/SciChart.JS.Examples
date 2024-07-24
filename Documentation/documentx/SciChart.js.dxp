@@ -1116,6 +1116,136 @@ Show external placement div</Notes>
 
 7/ Doing the same thing with subcharts API?</Notes>
         </TaskItem>
+        <TaskItem Id="aa646516-38a5-43e3-b8cf-49fdfd56c9a1" Priority="High" AssignedTo="">
+          <Title>v3.3 Add RenderDataTransforms documentation</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2024-02-02T09:25:52.8061039Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-17T09:49:05.9820259Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="b793460b-78be-4102-b135-e69d06c8b602" Priority="High" AssignedTo="">
+          <Title>v3.3 Add IAdvancedPaletteProvider documentation</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2024-02-02T09:26:06.6383105Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-17T09:48:49.814296Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="0cb64b18-227e-4527-a001-a0db1d314fe1" Priority="High" AssignedTo="">
+          <Title>v3.3 Add VerticalSliceModifier Documentation</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Complete</Status>
+          <CreatedOn>2024-02-02T09:26:22.3720312Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-24T14:14:41.9759935Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="c1d6634b-e95b-4dcf-a75a-eeb995bc4a39" Priority="High" AssignedTo="">
+          <Title>v3.3 Add IsStaticAxis Documentation</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Complete</Status>
+          <CreatedOn>2024-02-02T09:26:34.3557426Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-19T12:14:49.3473382Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="995de2f4-a092-44ab-a6e5-2a9d8169f528" Priority="" AssignedTo="">
+          <Title>v3.4 Hoverable Annotations docs</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2024-07-17T09:44:51.9187453Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-17T09:44:56.6290227Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="ea00f88f-e86f-47cb-94de-ee9c91d85e43" Priority="" AssignedTo="">
+          <Title>v3.4 Update DataLabels docs to mention stacked series</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Complete</Status>
+          <CreatedOn>2024-07-17T09:45:06.5560301Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-19T12:56:14.4045642Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="84df3f02-cb76-4cde-a881-7d46c0d002fe" Priority="" AssignedTo="">
+          <Title>v3.4 Add Smoothed Stacked series docs</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Complete</Status>
+          <CreatedOn>2024-07-17T09:45:16.9120203Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-20T13:54:06.2350754Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="937020a5-1974-4118-b117-48dd3b437c73" Priority="" AssignedTo="">
+          <Title>v3.4 add Bezier smoothing and alternative smoothing docs</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2024-07-17T09:45:25.4150859Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-17T09:45:35.508377Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="31446207-6a61-45a9-99c6-df06256863e3" Priority="" AssignedTo="">
+          <Title>v3.4 Update animations to mention reversible and onComplete</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2024-07-17T09:45:38.6078859Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-17T09:45:47.1565682Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="53c5dc57-142a-428d-87db-7aab060e5654" Priority="" AssignedTo="">
+          <Title>v3.4 update Axis Formatting to include ENumericFormat.Engineering</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Complete</Status>
+          <CreatedOn>2024-07-17T09:45:49.6501292Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-22T16:08:41.110474Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="747f6e55-7966-439e-b737-47553ec73132" Priority="" AssignedTo="">
+          <Title>v3.4 show how to disable loader animation</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2024-07-17T09:47:12.8739993Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-17T09:47:19.8281003Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="dad3ee2e-269c-4e80-9cd1-608ab272635e" Priority="" AssignedTo="">
+          <Title>v3.4 PaletteFactory docs</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Complete</Status>
+          <CreatedOn>2024-07-17T09:47:26.5299866Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-20T17:54:51.3682048Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
+        <TaskItem Id="13832e5b-d7bf-4834-97b9-1215b849d36b" Priority="" AssignedTo="">
+          <Title>v3.4 mention how SVG Annotations can be placed behind chart</Title>
+          <AssociatedItemId></AssociatedItemId>
+          <Status>Not Started</Status>
+          <CreatedOn>2024-07-17T09:47:40.7704891Z</CreatedOn>
+          <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
+          <ModifiedOn>2024-07-17T09:47:49.9817363Z</ModifiedOn>
+          <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
+          <Notes></Notes>
+        </TaskItem>
       </TaskItems>
     </Tasks>
   </TasksProjectPlugin>
@@ -1319,10 +1449,22 @@ Show external placement div</Notes>
               <TargetItemId>7a45fe78-35ce-448b-9754-fc8cd77be464</TargetItemId>
               <TargetItemBookmark></TargetItemBookmark>
             </TocNode>
-            <TocNode Name="" Id="f1fe20c6-cc54-4958-a986-4d9cf0a3f4dd" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+            <TocNode Name="" Id="f1fe20c6-cc54-4958-a986-4d9cf0a3f4dd" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
               <CaptionTemplate />
               <ChildNodes />
               <TargetItemId>bddab365-84a3-44b1-a3f5-10ef3d2136c1</TargetItemId>
+              <TargetItemBookmark></TargetItemBookmark>
+            </TocNode>
+            <TocNode Name="" Id="430c1d00-2afd-4126-a167-646b62dd0fc2" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+              <CaptionTemplate />
+              <ChildNodes />
+              <TargetItemId>a5ce66b6-4949-40bd-8097-49b4a82206a6</TargetItemId>
+              <TargetItemBookmark></TargetItemBookmark>
+            </TocNode>
+            <TocNode Name="" Id="5a73c6c4-04a2-4c01-9a7e-9f42a456e524" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+              <CaptionTemplate />
+              <ChildNodes />
+              <TargetItemId>d341b414-0d0b-4bcd-8782-e2da1b0b71ec</TargetItemId>
               <TargetItemBookmark></TargetItemBookmark>
             </TocNode>
             <TocNode Name="" Id="2abce70a-fead-4140-8520-c6aa419358bd" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
@@ -1493,6 +1635,12 @@ Show external placement div</Notes>
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>71c23100-837e-47c7-af5d-667c153ff3a3</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="4f58d86f-996e-4704-b3a8-9efa73b12ec5" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>86569192-72d7-4363-90ff-fde602943a69</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -1842,6 +1990,12 @@ Show external placement div</Notes>
                   <TargetItemId>9c421b30-f025-4432-b235-4bd365e4545d</TargetItemId>
                   <TargetItemBookmark></TargetItemBookmark>
                 </TocNode>
+                <TocNode Name="" Id="c7624803-d275-4a90-9a8c-2d2336094547" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>b1e893b0-24ac-4845-ba57-99bc759b49d5</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
                 <TocNode Name="" Id="bb7d91b1-ccaf-4bca-b958-a6e9f340122c" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                   <CaptionTemplate />
                   <ChildNodes />
@@ -1979,6 +2133,12 @@ Show external placement div</Notes>
                       <TargetItemId>1325dcad-b236-42e7-8491-af7a8137d6e7</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
+                    <TocNode Name="" Id="d6bd4738-d3d4-4247-8774-73ab1b87e353" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>779669ba-7505-42fd-b1ab-f55dad161f96</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
                     <TocNode Name="" Id="1f816952-43e1-440b-8f52-278c85d9a839" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
                       <CaptionTemplate />
                       <ChildNodes />
@@ -2036,6 +2196,12 @@ Show external placement div</Notes>
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>31e819ca-a224-4e7a-8fa1-4c8301fb6108</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="660bcb07-a773-41c4-968f-b20f2e111d99" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>bedb02d6-75f3-488d-be71-67fc57df5666</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -2344,6 +2510,23 @@ Show external placement div</Notes>
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>fac601dc-5435-4c51-abec-1c267f55f193</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                  </ChildNodes>
+                </TocNode>
+                <TocNode Name="" Id="71cffad5-f0f7-44cd-bd71-b15aa4766402" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+                  <CaptionTemplate m="2024-07-22T16:15:09.4760113Z">VerticalSliceModifier (Multiple Vertical Lines + Tooltips)</CaptionTemplate>
+                  <ChildNodes>
+                    <TocNode Name="" Id="1e2dc053-6608-4d3c-82b7-a50f7e39ca60" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>b3c269a6-633c-4b2f-b340-af31bde661a7</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="36784787-6e3a-4014-abd3-55408d92519a" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>208f846b-239f-469d-952f-ed0c28dd781a</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -3672,14 +3855,14 @@ Show external placement div</Notes>
 &lt;H2&gt;How to add SciChart.Browser.js to your project&lt;/H2&gt;
 &lt;OL&gt;
 &lt;LI&gt;Choose what version of SciChart you want to use. To find out which versions are available, head over to &lt;A href="https://www.npmjs.com/package/scichart" target=_blank&gt;npmjs.com/package/scichart&lt;/A&gt; and click on versions. For example, the&amp;nbsp;&lt;A href="https://www.npmjs.com/package/scichart" target=_blank&gt;latest version today is 2.1.2290&lt;/A&gt; 
-&lt;LI&gt;Add script pointing to a specific version into the head section of your html file. For instance to add version 2.1.2290 add this script: &lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Include SciChart.js Script&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;lt;script src="https://cdn.jsdelivr.net/npm/scichart@2.1.2290/_wasm/scichart.browser.js" crossorigin="anonymous"&amp;gt;&amp;lt;/script&amp;gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;LI&gt;Configure SciChart.js to load the wasm and data files from CDN &lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Configure SciChart.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// libraryVersion is a constant hard coded into the library. This ensures a match between wasm/data versions&lt;BR&gt;SciChart.SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;});&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/LI&gt;&lt;/OL&gt;
+&lt;LI&gt;Add script pointing to a specific version into the head section of your html file. For instance to add version 2.1.2290 add this script: &lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Include SciChart.js Script&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;lt;script src="https://cdn.jsdelivr.net/npm/scichart@3.3.571/_wasm/scichart.browser.js" crossorigin="anonymous"&amp;gt;&amp;lt;/script&amp;gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;LI&gt;Configure SciChart.js to load the wasm and data files from CDN &lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Configure SciChart.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// libraryVersion is a constant hard coded into the library. This ensures a match between wasm/data versions&lt;BR&gt;SciChart.SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.3.571${SciChart.libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.3.571${SciChart.libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;});&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/LI&gt;&lt;/OL&gt;
 &lt;P&gt;4. Next, add some series, axis and behaviours to the SciChartSurface (more on that below) &amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Caution Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;NOTE: Version numbers in the call to SciChartSurface.configure()&amp;nbsp;must be the same for the Script version, Wasm and Data file. SciChart will download and cache these files in your browser.&amp;nbsp;&lt;A href="https://www.npmjs.com/package/scichart" target=_blank&gt;Find the latest version of SciChart over at npmjs&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Worked Example using SciChart.browser.js&lt;/H2&gt;
 &lt;P&gt;We have a worked example over at&amp;nbsp;&lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Sandbox/demo-browser-global-module" target=_blank&gt;Github&lt;/A&gt; of how to use this, but for the sake of ease let's include the code below.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;SciChart.js Example&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;HTML&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;BR&gt;&amp;lt;html lang="en"&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;head&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- Required meta tags --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta charset="utf-8" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta name="viewport" content="width=device-width, initial-scale=1" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- Include SciChart.js --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; src="https://cdn.jsdelivr.net/npm/scichart@2.1.2290/_wasm/scichart.browser.js"&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; crossorigin="anonymous"&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;title&amp;gt;Hello, SciChart.js world!&amp;lt;/title&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;/head&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;body&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;h1&amp;gt;Hello, SciChart.js world!&amp;lt;/h1&amp;gt;&lt;/P&gt;
+&lt;P&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;BR&gt;&amp;lt;html lang="en"&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;head&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- Required meta tags --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta charset="utf-8" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta name="viewport" content="width=device-width, initial-scale=1" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- Include SciChart.js --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; src="https://cdn.jsdelivr.net/npm/scichart@3.3.571/_wasm/scichart.browser.js"&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; crossorigin="anonymous"&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;title&amp;gt;Hello, SciChart.js world!&amp;lt;/title&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;/head&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;body&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;h1&amp;gt;Hello, SciChart.js world!&amp;lt;/h1&amp;gt;&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- Create the Div to host the SciChartSurface --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;div id="scichart-root" style="width: 800px; height: 600px;"&amp;gt;&amp;lt;/div&amp;gt;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- The JavaScript to create a SciChartSurface --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script&amp;gt;&lt;BR&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // In order to load data file from the CDN we need to set dataUrl&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; });&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Create a SciChartSurface inside the div&amp;nbsp;with id 'scichart-root'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmContext&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; } = await &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;SciChartSurface.create("scichart-root");&lt;BR&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Add an X and a Y Axis&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const xAxis = new &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;NumericAxis(wasmContext);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.xAxes.add(xAxis);&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- The JavaScript to create a SciChartSurface --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script&amp;gt;&lt;BR&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // In order to load data file from the CDN we need to set dataUrl&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.3.571${SciChart.libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.3.571${SciChart.libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; });&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Create a SciChartSurface inside the div&amp;nbsp;with id 'scichart-root'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmContext&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; } = await &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;SciChartSurface.create("scichart-root");&lt;BR&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Add an X and a Y Axis&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const xAxis = new &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;NumericAxis(wasmContext);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.xAxes.add(xAxis);&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const yAxis = new &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;NumericAxis(wasmContext);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.yAxes.add(yAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; initSciChart();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;/body&amp;gt;&lt;BR&gt;&amp;lt;/html&amp;gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;This results in the following output:&lt;/P&gt;
@@ -3726,9 +3909,9 @@ Show external placement div</Notes>
 &lt;P&gt;In this tutorial, we are going to add&amp;nbsp;some Line series onto the chart.&lt;/P&gt;
 &lt;P&gt;First, we will add a&amp;nbsp;&lt;A href="e280ed77-6cc5-49cd-84be-ecd143139ca6"&gt;FastLineRenderableSeries&lt;/A&gt; and add this to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#renderableseries"&gt;SciChartSurface.renderableSeries&lt;/A&gt; collection.&lt;/P&gt;
 &lt;P&gt;Next,&amp;nbsp;we create an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xydataseries.html"&gt;XyDataSeries&lt;/A&gt; &lt;STRONG&gt;-&lt;/STRONG&gt; which&amp;nbsp;is&amp;nbsp;the type which stores the data, and can accept dynamic updates (real-time updates) and manipulation of data. We will assign the dataseries to the FastLineRenderableSeries.&lt;/P&gt;
-&lt;P&gt;Try the code below:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;index.html&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;HTML&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;lt;html lang="en-us"&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;head&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta charset="utf-8" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta content="text/html; charset=utf-8" http-equiv="Content-Type" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;title&amp;gt;SciChart.js Browser Bundle Tutorial 2&amp;lt;/title&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script src="&lt;A href="https://cdn.jsdelivr.net/npm/scichart@2.1.2290/_wasm/scichart.browser.js"&gt;https://cdn.jsdelivr.net/npm/scichart@2.1.2290/_wasm/scichart.browser.js&lt;/A&gt;" crossorigin="anonymous"&amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script async type="text/javascript" src="index.js"&amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;style&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; body { font-family: 'Arial'}&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/style&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/head&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;body&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;h1&amp;gt;Hello SciChart.js world!&amp;lt;/h1&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;p&amp;gt;In this example we add series &amp;amp;amp; data to a SciChart Chart using pure JS and a CDN&amp;lt;/p&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- the Div where the SciChartSurface will reside --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;div id="scichart-root" style="width: 800px; height: 600px;"&amp;gt;&amp;lt;/div&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/body&amp;gt;&lt;BR&gt;&amp;lt;/html&amp;gt;&lt;BR&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Try the code below:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;index.html&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;HTML&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;lt;html lang="en-us"&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;head&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta charset="utf-8" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta content="text/html; charset=utf-8" http-equiv="Content-Type" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;title&amp;gt;SciChart.js Browser Bundle Tutorial 2&amp;lt;/title&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script src="&lt;A href="https://cdn.jsdelivr.net/npm/scichart@3.3.571/_wasm/scichart.browser.js"&gt;https://cdn.jsdelivr.net/npm/scichart@3.3.571/_wasm/scichart.browser.js&lt;/A&gt;" crossorigin="anonymous"&amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script async type="text/javascript" src="index.js"&amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;style&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; body { font-family: 'Arial'}&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/style&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/head&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;body&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;h1&amp;gt;Hello SciChart.js world!&amp;lt;/h1&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;p&amp;gt;In this example we add series &amp;amp;amp; data to a SciChart Chart using pure JS and a CDN&amp;lt;/p&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- the Div where the SciChartSurface will reside --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;div id="scichart-root" style="width: 800px; height: 600px;"&amp;gt;&amp;lt;/div&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/body&amp;gt;&lt;BR&gt;&amp;lt;/html&amp;gt;&lt;BR&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;index.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&lt;BR&gt;async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // LICENSING //&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Set your license code here. See &lt;A href="https://www.scichart.com/licensing-scichart-js/"&gt;https://www.scichart.com/licensing-scichart-js/&lt;/A&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // for instructions&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Load SciChart.js from CDN. Ensure version numbers match the script in index.html&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChart.SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${SciChart.libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; });&lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // LICENSING //&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Set your license code here. See &lt;A href="https://www.scichart.com/licensing-scichart-js/"&gt;https://www.scichart.com/licensing-scichart-js/&lt;/A&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // for instructions&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Load SciChart.js from CDN. Ensure version numbers match the script in index.html&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChart.SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.3.571${SciChart.libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.3.571${SciChart.libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; });&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Create the SciChartSurface in the div 'scichart-root'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // instance must be passed to other types that exist on the same surface.&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const {sciChartSurface, wasmContext} = await SciChart.SciChartSurface.create("scichart-root");&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Create an X,Y Axis and add to the chart&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const xAxis = new SciChart.NumericAxis(wasmContext);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const yAxis = new SciChart.NumericAxis(wasmContext);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.xAxes.add(xAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.yAxes.add(yAxis);&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Create 100 dataseries, each with 10k points&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; for (let seriesCount = 0; seriesCount &amp;lt; 100; seriesCount++) {&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const xyDataSeries = new SciChart.XyDataSeries(wasmContext);&lt;/P&gt;
@@ -3766,20 +3949,23 @@ Show external placement div</Notes>
             <Caption m="2023-07-24T18:13:53.6489646Z">Tutorials React</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="a5d48d77-152d-4142-b184-811540804fde" Status="New Topic" CreatedOn="2023-07-24T09:15:58.4265193Z" ModifiedOn="2023-12-22T14:34:26.2589025Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TutorialReusableReactComponent" BuildFlags="">
-                <Title m="2023-07-24T18:14:14.2438355Z">Tutorial - Creating a Reusable React Component</Title>
+              <Topic Id="a5d48d77-152d-4142-b184-811540804fde" Status="New Topic" CreatedOn="2023-07-24T09:15:58.4265193Z" ModifiedOn="2024-01-12T17:24:08.5767921Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TutorialReusableReactComponent" BuildFlags="">
+                <Title m="2024-01-12T17:12:32.3820528Z">Tutorial - Creating a SciChart React Component from the Ground Up</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-12-22T14:34:26.2589025Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
-&lt;P&gt;&lt;STRONG&gt;NEW! We have now published an open source scichart-react library&lt;/STRONG&gt; which neatly wraps up this entire tutorial and more. Handling component lifecycle, proper disposal of the SciChartSurface and with a nice API too :)&lt;/P&gt;
-&lt;P&gt;Head over to the following pages to learn more:&lt;/P&gt;
-&lt;UL&gt;&lt;STRONG&gt;&lt;/STRONG&gt;
+                    <Content m="2024-01-12T17:24:08.5767921Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;STRONG&gt;NEW! We have now published an open source&amp;nbsp;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;scichart-react&lt;/A&gt; library&lt;/STRONG&gt; which neatly wraps up this entire tutorial and more. Handling component lifecycle, proper disposal of the SciChartSurface and with a nice API too :)&lt;/P&gt;
+&lt;P&gt;Head over to the following page to learn more:&lt;/P&gt;
+&lt;P&gt;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;&lt;A href="https://www.scichart.com/blog/react-charts-with-scichart-js/" target=_blank&gt;React Charts with SciChart.js: Introducing the scichart-react library&lt;/A&gt;&lt;/A&gt;&lt;/P&gt;
+&lt;P&gt;Also see:&lt;/P&gt;
+&lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://github.com/ABTSoftware/scichart-react" target=_blank&gt;SciChart-React on Github&lt;/A&gt;: official React component wrapper for SciChart.js 
-&lt;LI&gt;&lt;A href="https://www.npmjs.com/package/scichart-react" target=_blank&gt;SciChart-React on npm&lt;/A&gt;&lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;Blog posts will be published on the scichart site soon showing how to use &lt;STRONG&gt;scichart-react&lt;/STRONG&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P md-src-pos="2198..2365"&gt;The idea of this tutorial is to create a reusable React component which could be used as a core setup for instantiating a SciChart.js chart and properly disposing of memory once the chart is no longer needed.&amp;nbsp;Source code for this tutorial can be found at &lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/dev_v3.2/Tutorials/React/reusable-react-component" target=_blank&gt;SciChart.Js.Examples Github Repository&lt;/A&gt;&lt;/P&gt;
+&lt;LI&gt;&lt;A href="https://www.npmjs.com/package/scichart-react" target=_blank&gt;SciChart-React on npm&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P md-src-pos="2198..2365"&gt;The idea of this tutorial is to create a reusable React component which could be used as a core setup for instantiating a SciChart.js chart and properly disposing of memory once the chart is no longer needed.&amp;nbsp;&lt;/P&gt;
+&lt;P md-src-pos="2198..2365"&gt;Source code for this tutorial can be found at &lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/dev_v3.2/Tutorials/React/reusable-react-component" target=_blank&gt;SciChart.Js.Examples Github Repository&lt;/A&gt;&lt;/P&gt;
 &lt;P md-src-pos="2198..2365"&gt;Main criteria and points to consider:&lt;/P&gt;
 &lt;UL md-src-pos="2366..2833"&gt;
 &lt;LI md-src-pos="2366..2436"&gt;The component should be &lt;STRONG&gt;reusable&lt;/STRONG&gt; for different chart configurations 
@@ -4351,8 +4537,8 @@ Show external placement div</Notes>
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="bddab365-84a3-44b1-a3f5-10ef3d2136c1" Status="New Topic" CreatedOn="2023-08-01T15:57:19.7770218Z" ModifiedOn="2023-08-02T15:01:46.7731626Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WhatsNewSciChartJs3-2" BuildFlags="">
-            <Title m="2023-08-01T15:57:41.2929299Z">What's New in SciChart.js SDKv 3.2</Title>
+          <Topic Id="bddab365-84a3-44b1-a3f5-10ef3d2136c1" Status="New Topic" CreatedOn="2023-08-01T15:57:19.7770218Z" ModifiedOn="2024-07-22T12:07:57.0526867Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WhatsNewSciChartJs3-2" BuildFlags="">
+            <Title m="2024-07-22T12:07:57.0516873Z">What's New in SciChart.js SDK v3.2</Title>
             <ContentsTitle />
             <Notes></Notes>
             <TopicSections>
@@ -4385,6 +4571,63 @@ Show external placement div</Notes>
 &lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/#feature-22"&gt;Multiple New Examples created&lt;/A&gt; &lt;/LI&gt;&lt;/OL&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Read the full release note at&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-2-released/" target=_blank&gt;scichart.com/scichart-js-v3-2-released&lt;/A&gt;!&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="a5ce66b6-4949-40bd-8097-49b4a82206a6" Status="New Topic" CreatedOn="2024-07-22T12:07:14.624744Z" ModifiedOn="2024-07-22T12:49:29.1906734Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WhatsNewSciChartJs3-3" BuildFlags="">
+            <Title m="2024-07-22T12:07:53.6183391Z">What's New in SciChart.js SDK v3.3</Title>
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2024-07-22T12:49:29.1906734Z">&lt;P&gt;SciChart.js v3.3 is minor update to our JavaScript Chart Library which is backward compatible to &lt;A href="048e8b8c-3acd-4ad6-93c6-034a8d79b14a"&gt;version 3.0&lt;/A&gt;. Our team has added lots of features to improve SciChart, which are detailed below.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Read the full release note at&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released/" target=_blank&gt;scichart.com/scichart-js-v3-3-released&lt;/A&gt;!&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Version 3.3 at a glance&lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature1" target=_blank&gt;Critical Fix&lt;/A&gt; - Community licensing error in versions 3.2.446 - 3.2.555 has been fixed in this version.&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released/" target=_blank&gt;Read the release note for more info&lt;/A&gt; and update is mandatory.
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature2" target=_blank&gt;VerticalSliceModifier feature&lt;/A&gt; - allows placing multiple draggable vertical lines with tooltips on the chart
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature3" target=_blank&gt;IAdvancedPaletteProvider&lt;/A&gt; feature - better performance and more control when applying custom colouring (paletteproviders) to charts 
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature4" target=_blank&gt;Axis.isStaticAxis&lt;/A&gt; feature - allows fixing label position &amp;amp; numbers on the axis regardless of zoom or pan
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature5" target=_blank&gt;RenderDataTransforms feature&lt;/A&gt; - low level API that allows you to modify data right before it's drawn
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;New Demos&lt;/A&gt; - multiple new demos have been created, including
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;Server Traffic Dashboard demo&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;Draggable Range Bar event markers&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;VerticalSliceModifier demo&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-3-released#feature6" target=_blank&gt;Dynamically Add/Remove Synchronized Charts demo&lt;/A&gt;&lt;/LI&gt;&lt;/UL&gt;&lt;/LI&gt;&lt;/OL&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+              </TopicSection>
+            </TopicSections>
+            <TopicLinks />
+            <TopicKeywords />
+            <PropertyDefinitionValues />
+            <ExcludedOtherFiles />
+          </Topic>
+          <Topic Id="d341b414-0d0b-4bcd-8782-e2da1b0b71ec" Status="New Topic" CreatedOn="2024-07-22T12:07:34.6359459Z" ModifiedOn="2024-07-22T12:57:15.8686324Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WhatsNewSciChartJs3-4" BuildFlags="">
+            <Title m="2024-07-22T12:07:48.9886028Z">What's New in SciChart.js SDK v3.4</Title>
+            <ContentsTitle />
+            <Notes></Notes>
+            <TopicSections>
+              <TopicSection Name="BodyText">
+                <Content m="2024-07-22T12:57:15.8686324Z">&lt;P&gt;SciChart.js v3.4 is minor update to our JavaScript Chart Library which is backward compatible to &lt;A href="048e8b8c-3acd-4ad6-93c6-034a8d79b14a"&gt;version 3.0&lt;/A&gt;. Our team has added lots of features to improve SciChart, which are detailed below.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Read the full release note at&amp;nbsp;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released/" target=_blank&gt;scichart.com/scichart-js-v3-4-released&lt;/A&gt;!&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Version 3.4 at a glance&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature1" target=_blank&gt;Hoverable Annotations&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature2" target=_blank&gt;DataLabels support for Stacked Column Series&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature3" target=_blank&gt;New Chart Type! Smooth Stacked Mountain Series&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature4" target=_blank&gt;Alternative Line Smoothing algorithms&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature5" target=_blank&gt;Animations improvements&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature6" target=_blank&gt;Engineering formatting for Axis Labels&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature7" target=_blank&gt;Optionally disable loader animations&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature8" target=_blank&gt;CursorModifier now supports non-uniform heatmap and contour series&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature9" target=_blank&gt;PaletteFactory.createYGradient - helper method for creating paletteproviders that depend on y-value&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature10" target=_blank&gt;SVG Annotations can now be placed behind the chart&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature11" target=_blank&gt;SS.ms format for displaying milliseconds and seconds in SmartDateLabelProvider&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature12" target=_blank&gt;createSuspended and nextStateRender for visual testing and chart image export improvements&lt;/A&gt;
+&lt;LI&gt;&lt;A href="https://www.scichart.com/scichart-js-v3-4-released#feature13" target=_blank&gt;Gradient fill for band series&lt;/A&gt;&lt;/LI&gt;&lt;/OL&gt;</Content>
               </TopicSection>
             </TopicSections>
             <TopicLinks />
@@ -4588,7 +4831,7 @@ Show external placement div</Notes>
 &lt;P&gt;The easiest way for SciChart.js to load WebAssembly and Data files are to load them from our CDN&amp;nbsp;(see &lt;A href="https://www.jsdelivr.com/package/npm/scichart" target=_blank&gt;jsdelivr.com/package/npm/scichart&lt;/A&gt;). This method is particularly useful in projects or frameworks that don't have a package manager or module bundler.&lt;/P&gt;
 &lt;P&gt;To do load SciChart's Wasm and Data file from CDN, call&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;SciChartSurface.configure()&lt;/A&gt; once before any SciChartSurface is shown:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Configure Wasm and Data File URLs&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
 &lt;P&gt;import { SciChartSurface, libraryVersion } from "scichart";&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;// Load Wasm &amp;amp; Data files from URL&lt;BR&gt;// This URL can be anything, but for example purposes we are loading from JSDelivr CDN&lt;BR&gt;SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@${libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@${libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;// Load Wasm &amp;amp; Data files from URL&lt;BR&gt;// This URL can be anything, but for example purposes we are loading from JSDelivr CDN&lt;BR&gt;SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.3.571${libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.3.571${libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;We've packaged a helpful function that automatically loads the latest &amp;amp; correct version of SciChart's Wasm &amp;amp; Data files from CDN. To use this, instead of calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;SciChartSurface.configure()&lt;/A&gt;&amp;nbsp;passing in a URL, call &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#usewasmfromcdn" target=_blank&gt;SciChartSurface.useWasmFromCDN()&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Load Wasm from CDN&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";&lt;BR&gt;&lt;BR&gt;export async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Call this once before any SciChartSurface is shown.&lt;BR&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp;// This&amp;nbsp;is equivalent to calling SciChartSurface.configure() with the CDN URL (JSDelivr)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChartSurface.useWasmFromCDN();&lt;BR&gt;}&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Loading Wasm for 3D Charts&lt;/H2&gt;
 &lt;P&gt;The process for loading Wasm files for 3D Charts is exactly the same, except you must configure SciChart.js to load scichart3d.wasm and scichart3d.data.&lt;/P&gt;
@@ -5023,7 +5266,7 @@ Show external placement div</Notes>
                 <Caption m="2023-03-08T19:08:11.0073032Z">Axis Labels</Caption>
                 <ChildTopicCategories />
                 <Topics>
-                  <Topic Id="1325dcad-b236-42e7-8491-af7a8137d6e7" Status="New Topic" CreatedOn="2016-08-04T12:05:46.0398385Z" ModifiedOn="2023-06-26T20:19:33.9230956Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Label Formatting - LabelProvider API" BuildFlags="">
+                  <Topic Id="1325dcad-b236-42e7-8491-af7a8137d6e7" Status="New Topic" CreatedOn="2016-08-04T12:05:46.0398385Z" ModifiedOn="2024-07-22T12:59:09.2100187Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Axis Label Formatting - LabelProvider API" BuildFlags="">
                     <Title m="2023-03-16T19:08:39.0084978Z">Axis LabelProviders</Title>
                     <ContentsTitle m="2023-06-26T20:19:33.9218209Z">LabelProvider API Overview</ContentsTitle>
                     <Notes></Notes>
@@ -5130,10 +5373,6 @@ Show external placement div</Notes>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks>
-                      <TopicLink Id="7cf79670-263f-4fc7-8fd1-d050e0036a5e" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="e4489a79-987b-4a06-ac98-586190c47ec5" BuildFlags="">
-                        <Title />
-                        <Category />
-                      </TopicLink>
                       <TopicLink Id="3176ed65-8021-48c5-a10c-f5678c0b70d8" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="29f7d41d-5dae-4b16-9f75-a090b3f02630" BuildFlags="">
                         <Title />
                         <Category />
@@ -5396,6 +5635,31 @@ Show external placement div</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
+                  <Topic Id="bedb02d6-75f3-488d-be71-67fc57df5666" Status="New Topic" CreatedOn="2024-02-11T08:49:22.5808924Z" ModifiedOn="2024-02-11T09:46:20.0403384Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="StaticAxisFeature" BuildFlags="">
+                    <Title m="2024-02-11T08:49:44.2869477Z">Fixed Label Intervals - Static Axis Feature</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2024-02-11T09:46:20.0403384Z">&lt;P&gt;Sometimes you want to have a fixed number of labels and major gridlines displayed on a chart, at specific values. &lt;/P&gt;
+&lt;P&gt;Consider the case where you have a chart with&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#visiblerange"&gt;xAxis.visibleRange&lt;/A&gt; from 0 to 10, and you want to display labels precisely at 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10. Zooming and panning should not change the number or spacing of the labels. In this case, you can set the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#isstaticaxis"&gt;axis.isStaticAxis&lt;/A&gt; property.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;When in this mode, the major gridline positions / label positions and spacing are fixed. If the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#visiblerange"&gt;axis.visibleRange&lt;/A&gt; changes then the label values update, not the position or spacing. &lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Enabling Static Axis&lt;/H2&gt;
+&lt;P&gt;To enable the static axis mode, use the following code:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisTicks\StaticAxis\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisTicks\StaticAxis\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisTicks/StaticAxis/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Varying the number of Static Axis Ticks &amp;amp; Labels&lt;/H2&gt;
+&lt;P&gt;When&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#isstaticaxis"&gt;axis.isStaticAxis&lt;/A&gt; is set to true, the number of major ticks (major gridlines, axis labels) are constrained by&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#maxautoticks"&gt;axis.maxAutoTicks&lt;/A&gt;. &lt;/P&gt;
+&lt;P&gt;For example setting&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#maxautoticks"&gt;axis.maxAutoTicks&lt;/A&gt; = 5 will ensure there are always 5 labels and 5 major gridlines on the chart. These wil be at fixed spacings no matter the zoom level of the chart. Label values will update instead. &lt;/P&gt;
+&lt;H2&gt;Formatting Labels and Precision (Decimal Places)&lt;/H2&gt;
+&lt;P&gt;When in static axis mode, the axis stil obeys formatting rules provided by the LabelProvider. Read the&amp;nbsp;&lt;A href="bf3b144b-2153-4d7c-ab74-152f839df85f"&gt;NumericAxis Docs&lt;/A&gt; or the&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;LabelProvider API Docs&lt;/A&gt; for more info on how to vary label precision.&lt;/P&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
                   <Topic Id="43eff091-2936-4343-b875-8bf40d36b2c2" Status="New Topic" CreatedOn="2023-03-16T21:46:58.5751564Z" ModifiedOn="2023-03-20T18:00:47.7653685Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="RotatingAxisLabels" BuildFlags="">
                     <Title />
                     <ContentsTitle />
@@ -5485,6 +5749,28 @@ Show external placement div</Notes>
 &lt;P&gt;Note: Label alignment only applies to vertical axis.&amp;nbsp;&amp;nbsp;Labels for horizontal axes&amp;nbsp;are always centered horizontally.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="779669ba-7505-42fd-b1ab-f55dad161f96" Status="New Topic" CreatedOn="2024-07-22T12:58:50.7428236Z" ModifiedOn="2024-07-22T16:07:49.2735909Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AxisLabels-ENumericFormats" BuildFlags="">
+                    <Title m="2024-07-22T15:39:30.2878348Z">Axis Labels - The ENumericFormat Enum</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2024-07-22T16:07:49.2735909Z">&lt;P&gt;In the previous article we gave you an overview of the LabelProvider feature and how this is used to format labels on axis. &lt;/P&gt;
+&lt;P&gt;You'll notice in the many axis label code samples, labels are formatted by passing in&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/enumericformat.html"&gt;ENumericFormat&lt;/A&gt;&amp;nbsp;to the constructor options of the axis. What's actually happening here is parameters are being passed to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#labelprovider"&gt;AxisCore.labelProvider&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;&lt;A href="bf3b144b-2153-4d7c-ab74-152f839df85f"&gt;NumericAxis&lt;/A&gt; is quite versatile, it can format decimals with label prefix and postfix to any number of decimal places or significant figures. It can even format numbers as dates (assuming number is a unix stamp). You can find out all the options of the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/enumericformat.html"&gt;ENumericFormat&lt;/A&gt;&amp;nbsp;enum below, or on our&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/enumericformat.html"&gt;TypeDoc&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;ENumericFormat&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;// import {ENumericFormat} from "scichart";&lt;/P&gt;
+&lt;P&gt;export enum ENumericFormat {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** No format, return the string representation unchanged */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; NoFormat = "NoFormat",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format to a specified number of decimal places */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Decimal = "Decimal",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format to a specified number of significant figures */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SignificantFigures = "SignificantFigures",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format as a date in format DD/MM/YYYY */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Date_DDMMYYYY = "Date_DDMMYYYY",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format as a date in format DD/MM/YY */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Date_DDMMYY = "Date_DDMMYY",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format as a date in format DD/MM HH:MM */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Date_DDMMHHMM = "Date_DDMMHHMM",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format as a date in format DD/MM */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Date_DDMM = "Date_DDMM",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format as a date in format HH:MM */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Date_HHMM = "Date_HHMM",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format as a date in format HH:MM:SS */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Date_HHMMSS = "Date_HHMMSS",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format as a date in format SS.ms */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Date_SSms = "Date_SSms",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /**&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; * Format using Exponential notation to a specified number of significant figures eg 1.0E0, 1.5E1, 2.7E2&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; * Note that this will ALWAYS be base 10, even when used on a Logarithmic axis&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Exponential = "Exponential",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /**&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; * Format using Scientific notation to a specified number of significant figures eg 1.0x10^1, 1.5x10^2, 2.7x10^3&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; * On a Logarithmic axis, the base will be the same as the axis logarithmic base&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Scientific = "Scientific",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /**&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; * Engineering notation, eg 12.32K, 1.5M, 2.7G&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; * @feature You can pass your custom prefixes as &lt;A href="mailto:%7B@link"&gt;{@link&lt;/A&gt; IEngineeringPrefix}&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Engineering = "Engineering"&lt;BR&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Demonstrating the Different ENumericFormats&lt;/H2&gt;
+&lt;P&gt;Below we've created an example that demonstrates four of the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/enumericformat.html"&gt;ENumericFormat&lt;/A&gt;&amp;nbsp;values: &lt;STRONG&gt;Date_DDMMYYYY&lt;/STRONG&gt;, &lt;STRONG&gt;Engineering&lt;/STRONG&gt;, &lt;STRONG&gt;Scientific&lt;/STRONG&gt; and &lt;STRONG&gt;Decimal&lt;/STRONG&gt;. &lt;/P&gt;
+&lt;P&gt;Try to edit the code in the Codepen below and pan the chart to see the effect of different ENumericFormat values.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisTypes\NumericAxis\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisLabels\ENumericFormats\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Codepen Embed from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisLabels/ENumericFormats/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Further enhancement of the NumericAxis labels including custom formatting, string formatting or dynamic formatting can be achieved with the&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;LabelProvider API&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks />
@@ -5759,23 +6045,20 @@ Show external placement div</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="bf3b144b-2153-4d7c-ab74-152f839df85f" Status="New Topic" CreatedOn="2023-03-09T17:52:18.6637476Z" ModifiedOn="2023-03-29T17:17:19.7182183Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="NumericAxis" BuildFlags="">
+                  <Topic Id="bf3b144b-2153-4d7c-ab74-152f839df85f" Status="New Topic" CreatedOn="2023-03-09T17:52:18.6637476Z" ModifiedOn="2024-07-22T14:43:38.4626048Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="NumericAxis" BuildFlags="">
                     <Title m="2023-03-09T17:52:35.3276177Z">The Numeric Axis</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-03-29T17:17:19.7182183Z">&lt;P&gt;&lt;SPAN&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/numericaxis.html"&gt;NumericAxis&lt;/A&gt;&lt;/SPAN&gt;&lt;SPAN&gt;&amp;nbsp;is a Value axis and is suitable for X and Y Axis when the data on that axis is numeric (e.g. number in TypeScript). It is not suitable for non-numeric data types.&lt;/SPAN&gt;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Learn more about the&amp;nbsp;&lt;A href="59423216-5246-4365-a936-f76b487bd181"&gt;commonalities between axis here&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+                        <Content m="2024-07-22T14:43:38.4626048Z">&lt;P&gt;&lt;SPAN&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/numericaxis.html"&gt;NumericAxis&lt;/A&gt;&lt;/SPAN&gt;&lt;SPAN&gt;&amp;nbsp;is a Value axis and is suitable for X and Y Axis when the data on that axis is numeric (e.g. number in TypeScript). It is not suitable for non-numeric data types.&lt;/SPAN&gt;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Learn more about the&amp;nbsp;&lt;A href="59423216-5246-4365-a936-f76b487bd181"&gt;commonalities between axis here&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Create and Configure a NumericAxis&lt;/H2&gt;
 &lt;P&gt;&lt;SPAN&gt;There are lots of options that can be passed to the constructor of a NumericAxis to configure it. Some of these are in the&amp;nbsp;&lt;A href="59423216-5246-4365-a936-f76b487bd181"&gt;common AxisBase2D type&lt;/A&gt;.&lt;/SPAN&gt;&lt;/P&gt;
 &lt;P&gt;&lt;SPAN&gt;To create and configure&amp;nbsp;a&amp;nbsp;NumericAxis, use the following code:&amp;nbsp;&lt;/SPAN&gt;&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisTypes\NumericAxis\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;SPAN&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/SPAN&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\AxisApis\AxisTypes\NumericAxis\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;P&gt;&lt;SPAN&gt;This results in the following output:&lt;/SPAN&gt;&lt;/P&gt;&lt;innovasys:widget type="Codepen Embed from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisTypes/NumericAxis/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;Label Formatting with ENumericFormat enum&lt;/H2&gt;
-&lt;P&gt;You'll notice in the code sample above labels are formatted by passing in&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/enumericformat.html"&gt;ENumericFormat&lt;/A&gt;&amp;nbsp;to the constructor options of the axis. What's actually happening here is parameters are being passed to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axiscore.html#labelprovider"&gt;AxisCore.labelProvider&lt;/A&gt;.&lt;/P&gt;
-&lt;P&gt;NumericAxis is quite versatile, it can format decimals with label prefix and postfix to any number of decimal places or significant figures. It can even format numbers as dates (assuming number is a unix stamp). You can find out all the options of the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/enumericformat.html"&gt;ENumericFormat&lt;/A&gt;&amp;nbsp;enum below, or on our&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/enumericformat.html"&gt;TypeDoc&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;ENumericFormat&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;// import {ENumericFormat} from "scichart/types/NumericFormat";&lt;/P&gt;
-&lt;P&gt;export declare enum ENumericFormat {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** No format, return the string representation unchanged */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; NoFormat = "NoFormat",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format to a specified number of decimal places */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Decimal = "Decimal",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format to a specified number of significant figures */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SignificantFigures = "SignificantFigures",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format as a date in format DD/MM/YYYY&amp;nbsp; */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Date_DDMMYYYY = "Date_DDMMYYYY",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format as a date in format DD/MM/YY */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Date_DDMMYY = "Date_DDMMYY",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format as a date in format DD/MM HH:MM */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Date_DDMMHHMM = "Date_DDMMHHMM",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format as a date in format DD/MM&amp;nbsp; */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Date_DDMM = "Date_DDMM",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /** Format as a date in format HH:MM */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Date_HHMM = "Date_HHMM",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /**&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; * Format using Exponential notation to a specified number of significant figures eg 1.0E0, 1.5E1, 2.7E2&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; * Note that this will ALWAYS be base 10, even when used on a Logarithmic axis&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Exponential = "Exponential",&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; /**&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; * Format using Scientific notation to a specified number of significant figures eg 1.0x10^1, 1.5x10^2, 2.7x10^3&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; * On a Logarithmic axis, the base will be the same as the axis logarithmic base&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; */&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Scientific = "Scientific"&lt;BR&gt;}&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Further enhancement of the NumericAxis labels including custom formatting, string formatting or dynamic formatting can be achieved with the&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;LabelProvider API&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+&lt;P&gt;&lt;SPAN&gt;This results in the following output:&lt;/SPAN&gt;&lt;/P&gt;&lt;innovasys:widget type="Codepen Embed from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/AxisApis/AxisTypes/NumericAxis/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;Further enhancement of the NumericAxis labels including custom formatting, string formatting or dynamic formatting can be achieved with the&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;LabelProvider API&lt;/A&gt;.&lt;/P&gt;
+&lt;P&gt;Also see the documentation page on ENumericFormat &lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks />
@@ -7719,6 +8002,39 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
+              <Topic Id="b1e893b0-24ac-4845-ba57-99bc759b49d5" Status="New Topic" CreatedOn="2024-07-19T12:56:49.6738004Z" ModifiedOn="2024-07-20T13:52:29.3242142Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="TheSmoothStackedMountainSeriesType" BuildFlags="">
+                <Title m="2024-07-19T12:57:30.3731259Z">The Bezier (Smoothed) Stacked Mountain Series Type</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2024-07-20T13:52:29.3242142Z">&lt;P&gt;A variation on the&amp;nbsp;&lt;A href="eb3d636b-673c-4f1b-a0cc-1fa8ff7242c1"&gt;Stacked Mountain Series&lt;/A&gt; is the SmoothStackedMountainRenderableSeries. This uses a custom Bezier smoothing algorithm to create a smoothed line (spline line) to interpolate between datapoints. &lt;/P&gt;
+&lt;P&gt;Smoothed Stacked Mountain&amp;nbsp;Charts can be created by a combination of the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/smoothstackedmountainrenderableseries.html"&gt;SmothStackedMountainRenderableSeries&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedmountaincollection.html"&gt;StackedMountainCollection&lt;/A&gt;&amp;nbsp;types.&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;SPAN style='FONT-SIZE: 16px; FONT-FAMILY: Roboto, "Helvetica Neue", Helvetica, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FLOAT: none; FONT-WEIGHT: 400; COLOR: rgb(33,33,33); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !important; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial'&gt;The&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-stacked-mountain-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-stacked-mountain-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript/smooth-stacked-mountain-chart" target=_blank&gt;JavaScript Smooth Stacked Mountain Chart Example&lt;/A&gt; can be found in the&amp;nbsp;&lt;A href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;SciChart.Js Examples Suite&lt;/A&gt;&amp;nbsp;on Github, or our live demo at&amp;nbsp;&lt;A href="https://demo.scichart.com/" target=_blank&gt;demo.scichart.com&lt;/A&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/smooth-stacked-mountain-chart&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above&lt;/STRONG&gt;: The &lt;A href="https://demo.scichart.com/javascript-stacked-mountain-chart" target=_blank&gt;JavaScript Smoothed Stacked Mountain Chart example&lt;/A&gt; from the SciChart.js Demo.&lt;/EM&gt;&lt;/P&gt;
+&lt;H2&gt;Create a Bezier Smoothed Stacked Mountain Series&lt;/H2&gt;
+&lt;P&gt;To create a&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/smooth-stacked-mountain-chart" target=_blank&gt;JavaScript Smoothed Stacked Mountain Series&lt;/A&gt;, use the following code:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\2DChartTypes\SmoothStackedMountain\Basic\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\2DChartTypes\SmoothStackedMountain\Basic\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Above:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;We created 3&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedmountainrenderableseries.html"&gt;StackedMountainRenderableSeries&lt;/A&gt; and added them to a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedmountaincollection.html"&gt;StackedMountainCollection&lt;/A&gt; 
+&lt;LI&gt;The StackedMountainCollection itself is added to&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#renderableseries"&gt;sciChartSurface.renderableSeries&lt;/A&gt; collection, not the individual mountain series. &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/2DChartTypes/SmoothStackedMountain/Basic/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Creating 100% Stacked Mountain Charts&lt;/H2&gt;
+&lt;P&gt;SciChart.js also supports a&amp;nbsp;JavaScript 100% Smoothed Stacked Mountain chart, which can be enabled by setting a single flag:&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedmountaincollection.html#isonehundredpercent"&gt;StackedMountainCollection.isOneHundredPercent&lt;/A&gt;&lt;STRONG&gt;.&lt;/STRONG&gt;&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\2DChartTypes\SmoothStackedMountain\GroupingOptions\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Setting this flag results in the following output.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/2DChartTypes/SmoothStackedMountain/GroupingOptions/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;DIV align=left&gt;&lt;/DIV&gt;
+&lt;P align=center&gt;&lt;EM&gt;&lt;STRONG&gt;Above:&lt;/STRONG&gt; a&amp;nbsp;JavaScript 100% Smoothed Stacked Mountain chart when&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedmountaincollection.html#isonehundredpercent"&gt;StackedMountainCollection.isOneHundredPercent&lt;/A&gt; is true&lt;/EM&gt;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
             </Topics>
           </TopicCategory>
           <TopicCategory Id="e9434bfa-ad33-4ed5-a634-942029097f55" AutoIndex="false">
@@ -8291,15 +8607,15 @@ Show external placement div</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="f5e77a55-f317-420d-9781-f8de2522f889" Status="New Topic" CreatedOn="2023-09-13T15:35:07.8301221Z" ModifiedOn="2023-09-13T15:50:57.7141689Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier_Formatting" BuildFlags="">
+                  <Topic Id="f5e77a55-f317-420d-9781-f8de2522f889" Status="New Topic" CreatedOn="2023-09-13T15:35:07.8301221Z" ModifiedOn="2024-07-24T09:04:14.54462Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier_Formatting" BuildFlags="">
                     <Title m="2023-09-13T15:38:43.9743309Z">Formatting CursorModifier Tooltip Items</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-09-13T15:49:49.3527462Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                        <Content m="2024-07-24T09:04:14.54462Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;Background reading:&lt;/P&gt;
-&lt;P&gt;If you haven't already, read the article&amp;nbsp;&lt;A href="ff5c9d10-4cdb-49f2-9e5b-45a4c611ed62"&gt;The CursorModifier Type&lt;/A&gt;&amp;nbsp;which will show you how to setup a CursorModifier with default options for tooltips. This article goes into further detail on customising the tooltip items (formatting, text content)&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;If you haven't already, read the article&amp;nbsp;&lt;A href="ff5c9d10-4cdb-49f2-9e5b-45a4c611ed62"&gt;The CursorModifier Type&lt;/A&gt;&amp;nbsp;which will show you how to setup a &lt;STRONG&gt;CursorModifier&lt;/STRONG&gt; with default options for tooltips. This article goes into further detail on customising the tooltip items (formatting, text content)&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Basic CursorModifier Tooltip Formatting Options&lt;/H2&gt;
 &lt;P&gt;Tooltip and Axis Label formatting comes from the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/labelprovider.html#formatcursorlabel"&gt;axis.labelprovider.formatCursorLabel()&lt;/A&gt; function&amp;nbsp;and is axis-specific. You can read more about the&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Axis.LabelProvider API here&lt;/A&gt;, including how to specify formats from Enums and override formatting programmatically.&lt;/P&gt;
 &lt;P&gt;Below we're going to show you how to apply cursor formatting to enable four-decimal places on tooltips.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
@@ -8514,6 +8830,133 @@ Show external placement div</Notes>
                         <Category />
                       </TopicLink>
                     </TopicLinks>
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="b3c269a6-633c-4b2f-b340-af31bde661a7" Status="New Topic" CreatedOn="2024-07-22T16:14:34.6548874Z" ModifiedOn="2024-07-24T14:49:47.4157823Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="VerticalSliceModifier" BuildFlags="">
+                    <Title m="2024-07-22T16:14:44.4001388Z">The VerticalSliceModifier Type</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2024-07-24T14:49:47.4157823Z">&lt;P&gt;With the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt;, SciChart.js provides the ability to place multiple vertical lines on the chart, which can show tooltips intersecting chart series.&lt;/P&gt;
+&lt;P&gt;This provides a similar behaviour to the&amp;nbsp;&lt;A href="fac601dc-5435-4c51-abec-1c267f55f193"&gt;RolloverModifier&lt;/A&gt;, except instead of a single vertical line plus tooltips which track the mouse, you can place multiple draggable vertical lines on the chart, which intersect line series and display tooltips.&lt;/P&gt;
+&lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt; allows you to:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;Place one or more vertical lines on the chart at data-values, relative coordinates or pixel coordinates 
+&lt;LI&gt;Vertical lines intersect chart series 
+&lt;LI&gt;Tooltips may be displayed at the intersections 
+&lt;LI&gt;Optionally show/hide or customize the tooltip content 
+&lt;LI&gt;Vertical lines may be dragged or edited 
+&lt;LI&gt;Vertical lines may be removed from the chart. &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P style='BOX-SIZING: border-box; FONT-SIZE: 16px; FONT-FAMILY: Roboto, "helvetica neue", Helvetica, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(33,33,33); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 10px; LETTER-SPACING: normal; TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial'&gt;The&lt;SPAN&gt;&amp;nbsp;&lt;/SPAN&gt;&lt;A style="BOX-SIZING: border-box; TEXT-DECORATION: none; COLOR: rgb(0,105,217); BACKGROUND-COLOR: transparent" href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A style="BOX-SIZING: border-box; TEXT-DECORATION: none; COLOR: rgb(0,105,217); BACKGROUND-COLOR: transparent" href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A style="BOX-SIZING: border-box; TEXT-DECORATION: none; COLOR: rgb(0,105,217); BACKGROUND-COLOR: transparent" href="https://demo.scichart.com/javascript/chart-vertical-slice-modifier" target=_blank&gt;Using VerticalSliceModifier Example&lt;/A&gt;&lt;SPAN&gt;&amp;nbsp;&lt;/SPAN&gt;can be found in the&amp;nbsp;&lt;A style="BOX-SIZING: border-box; TEXT-DECORATION: none; COLOR: rgb(0,105,217); BACKGROUND-COLOR: transparent" href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;SciChart.Js Examples Suite&lt;/A&gt;&amp;nbsp;on Github, or our live demo at&amp;nbsp;&lt;A style="BOX-SIZING: border-box; TEXT-DECORATION: none; COLOR: rgb(0,105,217); BACKGROUND-COLOR: transparent" href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;demo.scichart.com&lt;/A&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameWidth"&gt;100%&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameHeight"&gt;500px&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/chart-vertical-slice-modifier&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Adding a VerticalSliceModifier to a Chart&lt;/H2&gt;
+&lt;P style='BOX-SIZING: border-box; FONT-SIZE: 16px; FONT-FAMILY: Roboto, "helvetica neue", Helvetica, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(33,33,33); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 10px; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial'&gt;One or more&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifiers&lt;/A&gt; can be added to the&amp;nbsp;&lt;A style="BOX-SIZING: border-box; TEXT-DECORATION: none; COLOR: rgb(0,105,217); BACKGROUND-COLOR: transparent" href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#chartmodifiers"&gt;sciChartSurface.chartModifiers&lt;/A&gt;&lt;SPAN&gt;&amp;nbsp;&lt;/SPAN&gt;collection to enable draggable lines with crosshair/cursor behavior. For example, this code adds a crosshair, enables default&amp;nbsp;tooltips and allows dragging of the vertical lines.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\VerticalSliceModifier\Basic\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\VerticalSliceModifier\Basic\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/VerticalSliceModifier/Basic/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Many of the properties here are optional - they have been included to show the configuration possibilities for the cursor. See&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/iverticalsliceoptions.html"&gt;IVerticalSliceOptions&lt;/A&gt; for more.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Styling &amp;amp; Visibility of&amp;nbsp;VerticalSliceModifier Elements&lt;/H2&gt;
+&lt;P&gt;The following elements can be turned on or off when using the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;VerticalSliceModifier visibility&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;verticalSliceModifier.showTooltip = true; // Show or hide the tooltip&lt;BR&gt;verticalSliceModifier.showRolloverLine = true; // Show or hide the vertical line&lt;BR&gt;verticalSliceModifier.verticalLine.showLabel = true; // Show or hide the X-Axis label&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;In addition, the line may be made editable (draggable) by setting the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#isdraggable" target=_blank&gt;isDraggable&lt;/A&gt; property&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;VerticalSliceModifier editing&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;verticalSliceModifier.isDraggable = true; // Enable or disable dragging of the line&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The line colour, dash pattern, strokethickness and selection color of the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt;&amp;nbsp;can also be set. e.g.&lt;/P&gt;
+&lt;TABLE&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;Property&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Description&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#rolloverlinestroke" target=_blank&gt;VerticalSliceModifier.rolloverLineStroke&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Sets the colour of the rollover line as an HTML colour code&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#rolloverlinestrokedasharray" target=_blank&gt;VerticalSliceModifier.rolloverLineStrokeDashArray&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Sets the dash pattern (see&lt;A href="e23972b6-27ca-4b68-aded-d48c12aa1230"&gt; Dash Line Styling&lt;/A&gt; for guidelines)&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#rolloverlinestrokethickness" target=_blank&gt;VerticalSliceModifier.rolloverLineStrokeThickness&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Sets the rollover line thickness&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;VerticalSliceModifier styling&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;verticalSliceModifier.rolloverLineStrokeThickness = 1; // Sets the line thickness&lt;BR&gt;verticalSliceModifier.rolloverLineStroke = "Orange"; // Sets the line colour&lt;BR&gt;verticalSliceModifier.lineSelectionColor = "Red"; // Change the highlight color when selected&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Properties of the tooltip can be controlled on a per-series basis as per the&amp;nbsp;&lt;A href="fac601dc-5435-4c51-abec-1c267f55f193"&gt;RolloverModifier&lt;/A&gt; via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rollovermodifierrenderableseriesprops.html" target=_blank&gt;RenderableSeries.rolloverModifierProps&lt;/A&gt; property&lt;/P&gt;
+&lt;TABLE&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;Property&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Description&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rollovermodifierrenderableseriesprops.html#tooltiptextcolor" target=_blank&gt;series.rolloverModifierProps.tooltipTextColor&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;The text foreground color of the tooltip, on a per-series basis&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rollovermodifierrenderableseriesprops.html#tooltipcolor" target=_blank&gt;series.rolloverModifierProps.tooltipColor&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;The tooltip container color on a per-series basis&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rollovermodifierrenderableseriesprops.html#tooltiplabelx" target=_blank&gt;series.rolloverModifierProps.tooltipLabelX&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Prefix label in the tooltip for X values. Defaults to 'X: '&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rollovermodifierrenderableseriesprops.html#tooltiplabely" target=_blank&gt;series.rolloverModifierProps.tooltipLabelY&lt;/A&gt;&lt;/TD&gt;
+&lt;TD&gt;Prefix label in the tooltip for&amp;nbsp;Y values. Defaults to 'Y: '&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;VerticalSliceModifier Tooltip styling&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;// On a per series basis, you can control the tooltip background/foreground&lt;BR&gt;series.rolloverModifierProps.tooltipTextColor = "White";&lt;BR&gt;series.rolloverModifierProps.tooltipColor = "Red";&lt;BR&gt;series.rolloverModifierProps.tooltipLabelX = "X Value:";&lt;BR&gt;series.rolloverModifierProps.tooltipLabelY = "Y Value:";&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Finally, the vertical line&amp;nbsp;itself is simply a&amp;nbsp;&lt;A href="963d03d5-c2f0-4143-9817-8b37186bfe69"&gt;LineAnnotation&lt;/A&gt;&amp;nbsp;so all the properties there may be accessed via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#verticalline" target=_blank&gt;verticalSliceModifier.verticalLine&lt;/A&gt; property after instantiation.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;VerticalSliceModifier.verticalLine Styling&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// Add some vertical slices to the chart&lt;BR&gt;const vSlice1 = new VerticalSliceModifier({&lt;BR&gt;&amp;nbsp;&amp;nbsp; // options ...&lt;BR&gt;});&lt;BR&gt;vSlice1.verticalLine.showLabel = true; // Show axis label&lt;BR&gt;vSlice1.verticalLine.axisLabelFill = "#FF6600"; // Style axis label outline&amp;nbsp;and font&lt;BR&gt;vSlice1.verticalLine.axisLabelStroke = "White";&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks>
+                      <TopicLink Id="c52f0bcd-ee42-405a-b03d-d61e135cbfe3" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="208f846b-239f-469d-952f-ed0c28dd781a" BuildFlags="">
+                        <Title />
+                        <Category />
+                      </TopicLink>
+                    </TopicLinks>
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="208f846b-239f-469d-952f-ed0c28dd781a" Status="New Topic" CreatedOn="2024-07-24T08:38:30.0201027Z" ModifiedOn="2024-07-24T14:57:43.3752919Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="VerticalSliceModifier_Formatting" BuildFlags="">
+                    <Title m="2024-07-24T08:38:50.7641792Z">Formatting VerticalSlice Tooltip Items</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2024-07-24T14:57:43.3752919Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;STRONG&gt;Background reading: &lt;/STRONG&gt;If you haven't already, read the article&amp;nbsp;&lt;A href="b3c269a6-633c-4b2f-b340-af31bde661a7"&gt;The VerticalSliceModifier Type&lt;/A&gt;&amp;nbsp;which will show you how to setup a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt; with default options for tooltips.&lt;/P&gt;
+&lt;P&gt;This article goes into further detail on customising the tooltip items (formatting, text content)&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Basic VerticalSliceModifier Tooltip Formatting Options&lt;/H2&gt;
+&lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt; obeys similar rules to the&amp;nbsp;&lt;A href="ff5c9d10-4cdb-49f2-9e5b-45a4c611ed62"&gt;CursorModifier&lt;/A&gt; and&amp;nbsp;&lt;A href="fac601dc-5435-4c51-abec-1c267f55f193"&gt;RolloverModifier&lt;/A&gt; for customizing the tooltip content and appearance.&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;EM&gt;Tooltip and Axis Label formatting comes from the&amp;nbsp;&lt;/EM&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/labelprovider.html#formatcursorlabel"&gt;&lt;EM&gt;axis.labelprovider.formatCursorLabel()&lt;/EM&gt;&lt;/A&gt; &lt;EM&gt;function&amp;nbsp;and is axis-specific. You can read more about the&amp;nbsp;&lt;/EM&gt;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;&lt;EM&gt;Axis.LabelProvider API here&lt;/EM&gt;&lt;/A&gt;&lt;EM&gt;, including how to specify formats from Enums and override formatting programmatically.&lt;/EM&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Below we're going to show you how to apply tooltip formatting to enable four-decimal places on&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt; tooltips.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\VerticalSliceModifier\Formatting\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\VerticalSliceModifier\Formatting\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Here's a &lt;STRONG&gt;Codepen&lt;/STRONG&gt; which shows the effect of these properties on the axis on cursor tooltips.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/VerticalSliceModifier/Formatting/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;For further customisation on a per-axis basis, consider using the&amp;nbsp;&lt;A href="e9747ecc-a3cd-456b-9180-c47daead66ef"&gt;LabelProvider feature&lt;/A&gt; to create a custom labelprovider, and override formatCursorLabel.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Tooltip DataTemplates&lt;/H2&gt;
+&lt;P&gt;Further customisation of&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt; tooltip content can be achieved with the &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#tooltipdatatemplate"&gt;VerticalSliceModifier.tooltipDataTemplate&lt;/A&gt; property. This defines the content inside the tooltip e.g. what values are shown (x, y, values from metadata), if the series name is shown and so on.&lt;/P&gt;
+&lt;P&gt;This property expects a function in the following format (see&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#trollovertooltipdatatemplate"&gt;TRolloverTooltipDataTemplate&lt;/A&gt;):&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;tooltipDataTemplateFunction&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;TRolloverTooltipDataTemplate: (seriesInfo: SeriesInfo, &lt;BR&gt;&amp;nbsp;&amp;nbsp; tooltipTitle: string, &lt;BR&gt;&amp;nbsp;&amp;nbsp; tooltipLabelX: string, &lt;BR&gt;&amp;nbsp;&amp;nbsp; tooltipLabelY: string) =&amp;gt; string[]&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The&amp;nbsp;input/output parameters are:&lt;/P&gt;
+&lt;TABLE&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD&gt;&lt;STRONG&gt;In/Out&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Parameter&lt;/STRONG&gt;&lt;/TD&gt;
+&lt;TD&gt;&lt;STRONG&gt;Description&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;Input&lt;/TD&gt;
+&lt;TD&gt;seriesInfo&lt;/TD&gt;
+&lt;TD&gt;an&amp;nbsp;instance of&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/seriesinfo.html"&gt;SeriesInfo&lt;/A&gt;: a data object which stores info about the series under the mouse.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;Input&lt;/TD&gt;
+&lt;TD&gt;tooltipTitle&lt;/TD&gt;
+&lt;TD&gt;a tooltipTitle (string) which comes from&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rollovermodifierrenderableseriesprops.html#tooltiptitle"&gt;renderableSeries.rolloverModifierProps.tooltipTitle&lt;/A&gt;.&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;Input&lt;/TD&gt;
+&lt;TD&gt;tooltipLabelX&lt;/TD&gt;
+&lt;TD&gt;A prefix (string) which comes from&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rollovermodifierrenderableseriesprops.html#tooltiplabelx" target=_blank&gt;renderableSeries.rolloverModifierProps.tooltipLabelX&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;Input&lt;/TD&gt;
+&lt;TD&gt;tooltipLabelY&lt;/TD&gt;
+&lt;TD&gt;A prefix (string) which comes from&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rollovermodifierrenderableseriesprops.html#tooltiplabely" target=_blank&gt;renderableSeries.rolloverModifierProps.tooltipLabelY&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD&gt;Return&lt;/TD&gt;
+&lt;TD&gt;string[]&lt;/TD&gt;
+&lt;TD&gt;An array of strings, each one corresponding to a line in the tooltip&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;
+&lt;UL&gt;&amp;nbsp;&amp;nbsp; &lt;/UL&gt;
+&lt;P&gt;Let's create a simple example which shows you how to access properties on&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xyseriesinfo.html"&gt;XySeriesInfo&lt;/A&gt; and output to tooltips.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\VerticalSliceModifier\DataTemplate\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\VerticalSliceModifier\DataTemplate\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/VerticalSliceModifier/DataTemplate/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
                     <TopicKeywords />
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
@@ -13655,6 +14098,33 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
+              <Topic Id="86569192-72d7-4363-90ff-fde602943a69" Status="New Topic" CreatedOn="2024-07-20T14:00:34.7170364Z" ModifiedOn="2024-07-20T17:54:52.8522822Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="PaletteFactoryHelperClass" BuildFlags="">
+                <Title m="2024-07-20T14:00:50.559031Z">The PaletteFactory Helper Class</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2024-07-20T17:54:52.8522822Z">&lt;P&gt;We've created a helper class called&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/palettefactory.html" target=_blank&gt;PaletteFactory&lt;/A&gt; to create some commonly used PaletteProviders. These work with all series types in SciChart.js that support the PaletteProvider API.&lt;/P&gt;
+&lt;H2&gt;PaletteFactory.createYGradient&lt;/H2&gt;
+&lt;P&gt;The function&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/palettefactory.html#createygradient" target=_blank&gt;PaletteFactory.createYGradient&lt;/A&gt; generates a&amp;nbsp;&lt;A href="3fb757b4-70d4-4a57-8c0d-97485cb8b722"&gt;IPaletteProvider&lt;/A&gt; for use in renderable series which applies a gradient fill dependent on Y-value.&lt;/P&gt;
+&lt;P&gt;Below find an example of usage:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\PaletteProvider\CreateYGradient\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This creates a Y-Gradient from blue, to green to red for Y-values ranging from&amp;nbsp;0 to +1.5. Values outside that range are clamped to the colours at the start/end of the list of gradient stops.&lt;/P&gt;
+&lt;P&gt;Here's an example output &amp;amp; codepen you can edit to try this out:&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/PaletteProvider/CreateYGradient/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;To separately control the output of the generated&amp;nbsp;&lt;A href="3fb757b4-70d4-4a57-8c0d-97485cb8b722"&gt;IPaletteProvider&lt;/A&gt;, check the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/igradientpaletteoptions.html" target=_blank&gt;IGradientPaletteOptions&lt;/A&gt; parameter passed in. Using this, you can enable fill, stroke, pointmarkers and opacity for different elements of the series.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;PaletteFactory.createGradient&lt;/H2&gt;
+&lt;P&gt;Another helper function&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/palettefactory.html#creategradient" target=_blank&gt;PaletteFactory.createGradient&lt;/A&gt; allows you to create gradient fills in the X-Direction. The parameters for this are largely the same.&lt;/P&gt;
+&lt;P&gt;Below find an example of usage:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\PaletteProvider\CreateYGradient\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This creates a X-Gradient from Red, to Yellow, Purple to Green for X-values ranging from&amp;nbsp;the start of the series to the end. Values outside that range are clamped to the colours at the start/end of the list of gradient stops.&lt;/P&gt;
+&lt;P&gt;Here's an example output &amp;amp; codepen you can edit to try this out:&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/PaletteProvider/CreateGradient/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
             </Topics>
           </TopicCategory>
           <TopicCategory Id="fce94f13-bbc9-4d9d-9675-4eccddb02187" AutoIndex="false">
@@ -13931,22 +14401,23 @@ Show external placement div</Notes>
             <Caption m="2023-01-07T19:21:31.3139063Z">DataLabels API</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="7ded97cf-3870-4fdf-b8b9-b6e74e1d8225" Status="New Topic" CreatedOn="2022-08-16T15:56:02.4169013Z" ModifiedOn="2023-07-07T20:24:57.4200676Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AddingDataLabels" BuildFlags="">
+              <Topic Id="7ded97cf-3870-4fdf-b8b9-b6e74e1d8225" Status="New Topic" CreatedOn="2022-08-16T15:56:02.4169013Z" ModifiedOn="2024-07-19T12:45:04.3625926Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="AddingDataLabels" BuildFlags="">
                 <Title m="2023-01-07T19:26:48.6150907Z">Adding DataLabels to a Chart Series</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-07T20:24:57.4200676Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-07-19T12:45:04.3625926Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;The Line Chart example&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;The Column Chart example&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; and 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;
-&lt;P&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;&lt;/A&gt;&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/stacked-column-chart" target=_blank&gt;The Stacked Column Chart demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/population-pyramid" target=_blank&gt;The Population Pyramid demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;The DataLabels API&lt;/H2&gt;
 &lt;P&gt;Each RenderableSeries as a&amp;nbsp;&lt;SPAN style="COLOR: rgb(255,0,0)"&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#datalabelprovider"&gt;dataLabelProvider&lt;/A&gt;&lt;/SPAN&gt; property. Many also accept Data Label configuration via&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/ibaserenderableseriesoptions.html#datalabelprovider"&gt;constructor options&lt;/A&gt;.&lt;/P&gt;
 &lt;P&gt;These defines whether text labels are rendered for data-points, and the style and positioning of these text labels.&lt;/P&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/javascript-datalabels&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
@@ -13968,21 +14439,23 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="8c0b3ec1-a34e-4f4c-b58e-4ff6074362a0" Status="New Topic" CreatedOn="2023-01-07T19:29:31.9548041Z" ModifiedOn="2023-07-08T08:36:27.8007364Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelsFromMetadata" BuildFlags="">
+              <Topic Id="8c0b3ec1-a34e-4f4c-b58e-4ff6074362a0" Status="New Topic" CreatedOn="2023-01-07T19:29:31.9548041Z" ModifiedOn="2024-07-19T12:45:04.4059191Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelsFromMetadata" BuildFlags="">
                 <Title m="2023-01-07T19:29:39.2556944Z">Getting Labels from Metadata</Title>
                 <ContentsTitle m="2023-01-07T19:42:03.4814979Z">Getting Labels from Metadata</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-08T08:36:27.8007364Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-07-19T12:45:04.4059191Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;The Line Chart example&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;The Column Chart example&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; and 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
-&lt;P&gt;Explore these for some rich examples of how to use this API.&amp;nbsp;&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/stacked-column-chart" target=_blank&gt;The Stacked Column Chart demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/population-pyramid" target=_blank&gt;The Population Pyramid demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Formatting a DataLabel using metaDataSelector&lt;/H2&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Metadata allows you to assign optional&amp;nbsp;javascript objects to individual x,y datapoints. To learn more about the&amp;nbsp;&lt;A href="8990ef25-dc00-4e2f-a07a-0d4cb1d8dc71"&gt;Metadata API, see here&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;DataLabels support rendering text from metadata as standard. You just need to provide a function to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#metadataselector"&gt;metaDataSelector&lt;/A&gt; option that tells SciChart how to turn your metaData into text.&lt;/P&gt;
 &lt;P&gt;Find an example below:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
@@ -13991,7 +14464,7 @@ Show external placement div</Notes>
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;H2&gt;Accessing Metadata from getText() and DataLabelState&lt;/H2&gt;
 &lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#metadataselector"&gt;metaDataSelector&lt;/A&gt;&amp;nbsp;option allows you to return values stored in the metadata of a dataSeries, but what if you wanted to have more complex formatting mixing index, x, y value or the metadata values?&lt;/P&gt;
-&lt;P&gt;You can also access metadata via a custom&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#gettext"&gt;DataLabelProvider.getText()&lt;/A&gt; function. This technique is covered in the article Custom DataLabel Formatting. &lt;/P&gt;
+&lt;P&gt;You can also access metadata via a custom&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#gettext"&gt;DataLabelProvider.getText()&lt;/A&gt; function. This technique is covered in the article Custom DataLabel Formatting.&lt;/P&gt;
 &lt;P&gt;Once you've setup a custom formatting function, you can&amp;nbsp;then use&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelstate.html#getmetadata"&gt;dataLabelState.getMetaData()&lt;/A&gt; to get the metaData for the current point.&lt;/P&gt;
 &lt;P&gt;Here's an example:&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\DataLabels\MetadataViaGetText\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
@@ -14004,20 +14477,22 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="6c10b207-c6b8-4550-b2b9-5eda54932801" Status="New Topic" CreatedOn="2023-01-07T19:35:43.1098796Z" ModifiedOn="2023-07-07T21:09:58.02569Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelFormattingAdvanced" BuildFlags="">
+              <Topic Id="6c10b207-c6b8-4550-b2b9-5eda54932801" Status="New Topic" CreatedOn="2023-01-07T19:35:43.1098796Z" ModifiedOn="2024-07-19T12:45:04.3907468Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelFormattingAdvanced" BuildFlags="">
                 <Title m="2023-01-07T19:35:52.0159451Z">Custom DataLabel Formatting with getText()</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-07T21:09:58.02569Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-07-19T12:45:04.3907468Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;The Line Chart example&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;The Column Chart example&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; and 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/stacked-column-chart" target=_blank&gt;The Stacked Column Chart demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/population-pyramid" target=_blank&gt;The Population Pyramid demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;In the article&amp;nbsp;&lt;A href="7ded97cf-3870-4fdf-b8b9-b6e74e1d8225"&gt;Adding DataLabels to Chart Series&lt;/A&gt; we showed you how to apply simple formatting rules to change the number of decimal places on Data Labels. What if you needed more complex Data Label formatting rules? Enter custom label formatting...&lt;/P&gt;
 &lt;H2&gt;Custom Label Formatting&lt;/H2&gt;
@@ -14033,20 +14508,22 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="57b160a9-3476-4f80-89aa-ff7182023873" Status="New Topic" CreatedOn="2023-01-07T19:44:17.6040827Z" ModifiedOn="2023-07-08T12:28:54.3453984Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelPositioning" BuildFlags="">
+              <Topic Id="57b160a9-3476-4f80-89aa-ff7182023873" Status="New Topic" CreatedOn="2023-01-07T19:44:17.6040827Z" ModifiedOn="2024-07-19T12:45:04.3770253Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelPositioning" BuildFlags="">
                 <Title m="2023-07-07T21:16:12.5080755Z">Data Label Positioning</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-08T12:28:54.3444002Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-07-19T12:45:04.3770253Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;The Line Chart example&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;The Column Chart example&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; and 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/stacked-column-chart" target=_blank&gt;The Stacked Column Chart demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/population-pyramid" target=_blank&gt;The Population Pyramid demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Label Positioning&lt;/H2&gt;
 &lt;P&gt;The text positioning rules vary a little for different series. For line series the default behaviour is to place the label above the line if it is moving down, and below if it is moving up. This avoids the text overlapping the line in many situations, but often you will want to take more control.&lt;/P&gt;
@@ -14117,8 +14594,10 @@ Show external placement div</Notes>
 &lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;Labels placed above, right of the close value&lt;/TD&gt;
 &lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;&lt;/TD&gt;&lt;/TR&gt;
 &lt;TR class=code-line style="POSITION: relative" data-line="165"&gt;
-&lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;Stacked Series&lt;/TD&gt;
-&lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;DataLabels not yet supported&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;BR class=Apple-interchange-newline&gt;
+&lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;Stacked Column&lt;/TD&gt;
+&lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/stackedcollectiondatalabelprovider.html" target=_blank&gt;StackedCollectionDataLabelProvider&lt;/A&gt;&lt;/TD&gt;
+&lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;Label is centered and outside the column (above for columns above the zeroLine, below if below). &lt;STRONG&gt;positionMode&lt;/STRONG&gt; can be set to Inside to reverse this, or to position to use the value of the &lt;STRONG&gt;verticalTextPosition&lt;/STRONG&gt; (or &lt;STRONG&gt;horizontalTextPosition&lt;/STRONG&gt; for a vertical chart) property.&lt;/TD&gt;
+&lt;TD style="BORDER-TOP: 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px"&gt;positionMode:&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/ecolumndatalabelposition.html"&gt;EColumnDataLabelPosition&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;BR class=Apple-interchange-newline&gt;
 &lt;H2&gt;Custom Positioning&lt;/H2&gt;
 &lt;P&gt;To take full control of label positioning, override the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#getposition"&gt;dataLabelProvider.getPosition()&lt;/A&gt; function. This takes&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelstate.html"&gt;DataLabelState&lt;/A&gt; and a &lt;STRONG&gt;TSRTextBounds&lt;/STRONG&gt; (a WebAssembly exported type) which describes the size of the label.&lt;/P&gt;
 &lt;P&gt;It should return a Point { x: number, y: number } which will be the left, baseline point for the label. See &lt;STRONG&gt;Native Text Api&lt;/STRONG&gt; for details on &lt;STRONG&gt;TSRTextBounds&lt;/STRONG&gt;.&lt;/P&gt;
@@ -14136,20 +14615,22 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="35a4bfc3-eb1d-4c83-a168-49b68f225ff4" Status="New Topic" CreatedOn="2023-01-07T19:48:04.3315485Z" ModifiedOn="2023-07-07T21:49:40.3084124Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelColouring" BuildFlags="">
+              <Topic Id="35a4bfc3-eb1d-4c83-a168-49b68f225ff4" Status="New Topic" CreatedOn="2023-01-07T19:48:04.3315485Z" ModifiedOn="2024-07-19T12:45:04.383757Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelColouring" BuildFlags="">
                 <Title m="2023-01-07T19:48:18.128374Z">Data Label Colouring</Title>
                 <ContentsTitle m="2023-07-07T21:37:47.1950944Z">Data Label Colouring</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-07T21:49:40.3084124Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-07-19T12:45:04.383757Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;The Line Chart example&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;The Column Chart example&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; and 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/stacked-column-chart" target=_blank&gt;The Stacked Column Chart demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/population-pyramid" target=_blank&gt;The Population Pyramid demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Label Colouring&lt;/H2&gt;
 &lt;P&gt;The color property on the dataLabels option sets the color for all labels, but you can do per-label coloring by overriding the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#getcolor"&gt;getColor()&lt;/A&gt; function on the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html"&gt;dataLabelProvider&lt;/A&gt;.&lt;/P&gt;
@@ -14163,20 +14644,22 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="b0932024-2071-49b7-be0a-d6a9a37ec6d1" Status="New Topic" CreatedOn="2023-01-07T19:51:32.3681967Z" ModifiedOn="2023-07-08T09:52:22.2259444Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelCulling" BuildFlags="">
+              <Topic Id="b0932024-2071-49b7-be0a-d6a9a37ec6d1" Status="New Topic" CreatedOn="2023-01-07T19:51:32.3681967Z" ModifiedOn="2024-07-19T12:45:04.4108139Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataLabelCulling" BuildFlags="">
                 <Title m="2023-01-07T19:51:39.9173079Z">DataLabel SkipModes and Culling</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-07-08T09:52:22.2259444Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-07-19T12:45:04.4108139Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;New to SciChart.js v3! DataLabels allow per data-point text labels to be drawn on series, or arbitrary text labels at x,y positions on the chart.&lt;/P&gt;
 &lt;P&gt;You can see several datalabel examples on the SciChart.js demo:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;The Line Chart example&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-column-chart" target=_blank&gt;The Column Chart example&lt;/A&gt; 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; and 
-&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-chart-color-points-individually-with-paletteprovider" target=_blank&gt;The PaletteProvider example&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="https://demo.scichart.com/javascript-datalabels" target=_blank&gt;The DataLabels demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/stacked-column-chart" target=_blank&gt;The Stacked Column Chart demo&lt;/A&gt; 
+&lt;LI&gt;&lt;STRONG&gt;NEW in v3.4!&lt;/STRONG&gt;&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript/population-pyramid" target=_blank&gt;The Population Pyramid demo&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;
 &lt;P&gt;Explore these for some rich examples of how to use this API.&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Labels for Many Points&lt;/H2&gt;
 &lt;P&gt;SciChart's native text rendering means that it can potentially draw tens of thousands of labels relatively fast, but in practise with many points there is no point drawing so many labels that they become unreadable. SciChart has a number of options for dealing with this. If you really want to show all labels even if they overlap, set&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/datalabelprovider.html#skipmode"&gt;skipMode&lt;/A&gt; to &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/enums/edatalabelskipmode.html"&gt;EDataLabelSkipMode.ShowAll&lt;/A&gt;&lt;/P&gt;
@@ -15692,7 +16175,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">2610</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">310</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
@@ -15754,7 +16237,7 @@ Show external placement div</Notes>
           <PropertyValue m="2023-01-13T17:13:13.9884312Z">v3.x</PropertyValue>
         </PropertyDefinitionValue>
         <PropertyDefinitionValue PropertyDefinitionId="08de2c63-c533-49c3-a1d7-52b3995b9bec">
-          <PropertyValue m="2022-12-30T23:56:02.7527975Z">SCICHART ® is a Registered Trademark in the UK, US and EU. Copyright SciChart Ltd 2011-2023.</PropertyValue>
+          <PropertyValue m="2024-01-12T16:58:30.920619Z">SCICHART ® is a Registered Trademark in the UK, US and EU. Copyright SciChart Ltd 2011-2024.</PropertyValue>
         </PropertyDefinitionValue>
         <PropertyDefinitionValue PropertyDefinitionId="76de16a8-8dcb-462c-b636-b20ff0b3c3a1">
           <PropertyValue m="2023-12-11T16:20:11.3037271Z">&lt;a href="%%DocumentationRoot%%sitemap.xml" target="_blank"&gt;Sitemap&lt;/a&gt; | &lt;a href="mailto:support@scichart.com?subject=Documentation Feedback: %%FileName%%"&gt;Send Feedback&lt;/a&gt;</PropertyValue>
@@ -16506,16 +16989,25 @@ Show external placement div</Notes>
 &lt;meta name="twitter:description" content="JavaScript Chart Documentation for the SciChart JavaScript v3.x SDK. Featuring many JavaScript Chart Types, you can create rich JavaScript, React and TypeScript applications with our powerful API"/&gt;
 &lt;meta name="twitter:site" content="@scichart"/&gt;
 &lt;meta name="twitter:creator" content="@scichart"/&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"&gt;
 &lt;!-- Script to embed codepens at runtime only --&gt;
 &lt;script&gt;
 	var isDesigner = location.protocol === 'about:';
 	if (!isDesigner) {
-	   	var head = document.getElementsByTagName('head')[0];
-		var script = document.createElement('script');
-		script.type = 'text/javascript';
-		script.src = 'https://static.codepen.io/assets/embed/ei.js';
-		head.appendChild(script);
-		console.log("Inserted codepen script!");
+		function appendScript(scriptSrc, charSet) {
+			var head = document.getElementsByTagName('head')[0];
+			var script = document.createElement('script');
+			script.type = 'text/javascript';
+			script.src = scriptSrc;
+			if (charSet) {
+				script.charset = charSet;
+			}
+			head.appendChild(script);
+			// console.log(`appended script ` + scriptSrc + `!`);
+		}
+	   	
+		appendScript('https://static.codepen.io/assets/embed/ei.js', undefined);
+		// appendScript('https://scichart.activehosted.com/f/embed.php?id=25', 'utf-8');	
 	}
 &lt;/script&gt;
 &lt;style&gt;.cp_embed_iframe { aspect-ratio:1.333 }&lt;/style&gt;</OtherHeadContent>

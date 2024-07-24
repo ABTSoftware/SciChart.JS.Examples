@@ -1,4 +1,4 @@
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { AddIOModifier } from "./AddIOModifier";
 import { DiscreteAxisMarker } from "./DiscreteAxisMarker";
 import { PointDragModifier } from "./PointDragModifier";
@@ -46,7 +46,7 @@ import {
     EVerticalAnchorPoint,
     GenericAnimation,
     formatNumber,
-    EllipsePointMarker
+    EllipsePointMarker,
 } from "scichart";
 
 export const divElementId = "chart";
@@ -61,7 +61,7 @@ const gradientStops = [
     { offset: 0.5, color: appTheme.DarkIndigo },
     { offset: 0.55, color: "#68bcae" },
     { offset: 0.7, color: "#e97064" },
-    { offset: 1.0, color: "#ae418d" }
+    { offset: 1.0, color: "#ae418d" },
 ];
 
 const csGradientStops = [
@@ -71,7 +71,7 @@ const csGradientStops = [
     { offset: 0.5, color: "#45AEC3" },
     { offset: 0.55, color: "#68bcae" },
     { offset: 0.7, color: "#e97064" },
-    { offset: 1.0, color: "#ae418d" }
+    { offset: 1.0, color: "#ae418d" },
 ];
 
 let width = 700;
@@ -79,7 +79,7 @@ let height = 500;
 
 export const drawExample = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
     const xAxis = new NumericAxis(wasmContext, { isVisible: false });
     sciChartSurface.xAxes.add(xAxis);
@@ -91,28 +91,28 @@ export const drawExample = async () => {
         drawMajorBands: false,
         drawMajorTickLines: false,
         drawMinorTickLines: false,
-        drawMinorGridLines: false
+        drawMinorGridLines: false,
     });
     sciChartSurface.yAxes.add(yAxis);
 
     width = Math.floor(sciChartSurface.domCanvas2D.width);
     height = Math.floor(sciChartSurface.domCanvas2D.height);
-    let initialZValues = Array.from(Array(height), _ => Array(width).fill(0));
-    let velocities = Array.from(Array(height), _ => Array(width).fill(0));
+    let initialZValues = Array.from(Array(height), (_) => Array(width).fill(0));
+    let velocities = Array.from(Array(height), (_) => Array(width).fill(0));
 
     const heatmapDataSeries = new UniformHeatmapDataSeries(wasmContext, {
         xStart: 1,
         xStep: 1,
         yStart: 1,
         yStep: 1,
-        zValues: initialZValues
+        zValues: initialZValues,
     });
 
     const heatmapSeries = new UniformHeatmapRenderableSeries(wasmContext, {
         opacity: 0.8,
         dataSeries: heatmapDataSeries,
         useLinearTextureFiltering: true,
-        colorMap: new HeatmapColorMap({ minimum: -80, maximum: 80, gradientStops })
+        colorMap: new HeatmapColorMap({ minimum: -80, maximum: 80, gradientStops }),
     });
 
     const crossSectionSurface = await createCrossSectionChart();
@@ -136,7 +136,7 @@ export const drawExample = async () => {
             if (yVals) {
                 lineDataSeries.appendRange(lineXValues, yVals);
             }
-        }
+        },
     });
 
     const vline = new VerticalLineAnnotation({
@@ -149,11 +149,11 @@ export const drawExample = async () => {
         isEditable: true,
         onDrag: () => {
             vlineDataSeries.clear();
-            const yVals = initialZValues.map(r => r[Math.floor(vline.x1)]);
+            const yVals = initialZValues.map((r) => r[Math.floor(vline.x1)]);
             if (yVals) {
                 vlineDataSeries.appendRange(vlineXValues, yVals);
             }
-        }
+        },
     });
 
     const inputs: BoxAnnotation[] = [];
@@ -196,13 +196,13 @@ export const drawExample = async () => {
             onClick: (args: AnnotationClickEventArgs) => {
                 if (args.mouseArgs.button !== EExecuteOn.MouseRightButton) return;
                 removeInput(boxInput);
-            }
+            },
         });
 
         boxInput.selectedChanged.subscribe((isSelected: boolean) => {
             inputSurface.renderableSeries.getById(color).isSelected = isSelected;
         });
-        boxInput.dragDelta.subscribe(data => {
+        boxInput.dragDelta.subscribe((data) => {
             if (boxInput.x1 < 1) boxInput.x1 = 1;
             if (boxInput.x2 >= width) boxInput.x1 = width - 1;
             if (boxInput.y1 < 1) boxInput.y1 = 1;
@@ -244,27 +244,27 @@ export const drawExample = async () => {
             onClick: (args: AnnotationClickEventArgs) => {
                 if (args.mouseArgs.button !== EExecuteOn.MouseRightButton) return;
                 removeOutput(output);
-            }
+            },
         });
         output.selectedChanged.subscribe((isSelected: boolean) => {
             if (isSelected) {
                 outputSurface.renderableSeries
                     .asArray()
-                    .filter(rs => rs.type === ESeriesType.LineSeries)
-                    .forEach(rs => {
+                    .filter((rs) => rs.type === ESeriesType.LineSeries)
+                    .forEach((rs) => {
                         rs.opacity = rs.id === color ? 1 : 0.3;
                     });
             } else {
                 outputSurface.renderableSeries
                     .asArray()
-                    .filter(rs => rs.type === ESeriesType.LineSeries)
-                    .forEach(rs => (rs.opacity = 0.8));
+                    .filter((rs) => rs.type === ESeriesType.LineSeries)
+                    .forEach((rs) => (rs.opacity = 0.8));
             }
             outputSurface.renderableSeries.getById(color).isSelected = isSelected;
         });
         // @ts-ignore
         output.updateAdornerInner = () => {};
-        output.dragDelta.subscribe(data => {
+        output.dragDelta.subscribe((data) => {
             if (output.x1 < 1) output.x1 = 1;
             if (output.x1 >= width) output.x1 = width - 1;
             if (output.y1 < 1) output.y1 = 1;
@@ -289,7 +289,7 @@ export const drawExample = async () => {
         y1: 100,
         backgroundColor: "#E97064",
         isEditable: true,
-        formattedValue: "Damping"
+        formattedValue: "Damping",
     });
     // hack to disable selection box while dragging
     // @ts-ignore
@@ -308,7 +308,7 @@ export const drawExample = async () => {
             fontSize: 18,
             textColor: appTheme.ForegroundColor,
             opacity: 0.5,
-            wrapTo: EWrapTo.ViewRect
+            wrapTo: EWrapTo.ViewRect,
         })
     );
 
@@ -328,7 +328,7 @@ export const drawExample = async () => {
     const timestep = 20;
     const updateChart = () => {
         damping = 1 - Math.abs(dampingMarker.y1 / 10000);
-        const newZValues: number[][] = Array.from(Array(height), _ => Array(width));
+        const newZValues: number[][] = Array.from(Array(height), (_) => Array(width));
         for (let r = 0; r < height; r++) {
             for (let c = 0; c < width; c++) {
                 const a =
@@ -376,7 +376,7 @@ export const drawExample = async () => {
         }
         if (!vline.isHidden) {
             vlineDataSeries.clear();
-            const yVals = initialZValues.map(r => r[Math.floor(vline.x1)]);
+            const yVals = initialZValues.map((r) => r[Math.floor(vline.x1)]);
             if (yVals) {
                 vlineDataSeries.appendRange(vlineXValues, yVals);
             }
@@ -407,8 +407,8 @@ export const drawExample = async () => {
     document.querySelector("#stopAnimation").addEventListener("click", stopAnimation);
 
     sciChartSurface.addDeletable({
-        delete: () => stopAnimation()
-    })
+        delete: () => stopAnimation(),
+    });
 
     const showHelp = () => {
         const anim = getHelpAnnotation(
@@ -447,8 +447,8 @@ export const drawExample = async () => {
     document.querySelector("#showHelp").addEventListener("click", showHelp);
 
     const clearHeatmap = () => {
-        initialZValues = Array.from(Array(height), _ => Array(width).fill(0));
-        velocities = Array.from(Array(height), _ => Array(width).fill(0));
+        initialZValues = Array.from(Array(height), (_) => Array(width).fill(0));
+        velocities = Array.from(Array(height), (_) => Array(width).fill(0));
         while (inputs.length > 0) {
             const i = inputs[0];
             removeInput(i);
@@ -504,10 +504,10 @@ const getHelpAnnotation = (text: string, surface: SciChartSurface) => {
         opacity: 0,
         fontSize: 18,
         textColor: appTheme.ForegroundColor,
-        wrapTo: EWrapTo.ViewRect
+        wrapTo: EWrapTo.ViewRect,
     });
     const next = {
-        onNext: () => {}
+        onNext: () => {},
     };
     const startAnim = new GenericAnimation<number>({
         from: 0,
@@ -534,10 +534,10 @@ const getHelpAnnotation = (text: string, surface: SciChartSurface) => {
                         ann.delete();
                         surface.annotations.remove(ann);
                         if (next.onNext) next.onNext();
-                    }
+                    },
                 })
             );
-        }
+        },
     });
     return { startAnim, next };
 };
@@ -575,7 +575,7 @@ class YPalette extends BasePaletteProvider implements IStrokePaletteProvider {
 
 const createCrossSectionChart = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divCrossSection, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
     sciChartSurface.xAxes.add(
         new NumericAxis(wasmContext, {
@@ -585,7 +585,7 @@ const createCrossSectionChart = async () => {
             visibleRangeLimit: new NumberRange(0, width),
             drawMinorGridLines: false,
             zoomExtentsToInitialRange: true,
-            drawLabels: false
+            drawLabels: false,
         })
     );
 
@@ -597,7 +597,7 @@ const createCrossSectionChart = async () => {
             axisAlignment: EAxisAlignment.Right,
             drawMinorGridLines: false,
             labelPrecision: 0,
-            zoomExtentsToInitialRange: true
+            zoomExtentsToInitialRange: true,
         })
     );
 
@@ -610,7 +610,7 @@ const createCrossSectionChart = async () => {
             flippedCoordinates: true,
             axisAlignment: EAxisAlignment.Left,
             zoomExtentsToInitialRange: true,
-            drawLabels: false
+            drawLabels: false,
         })
     );
 
@@ -623,7 +623,7 @@ const createCrossSectionChart = async () => {
             axisAlignment: EAxisAlignment.Top,
             flippedCoordinates: true,
             labelPrecision: 0,
-            zoomExtentsToInitialRange: true
+            zoomExtentsToInitialRange: true,
         })
     );
 
@@ -634,7 +634,7 @@ const createCrossSectionChart = async () => {
         dataSeries: new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true }),
         paletteProvider: new YPalette(wasmContext, csGradientStops),
         xAxisId: "xh",
-        yAxisId: "yh"
+        yAxisId: "yh",
     });
     sciChartSurface.renderableSeries.add(lineSeriesh);
     const lineSeriesv = new FastLineRenderableSeries(wasmContext, {
@@ -644,7 +644,7 @@ const createCrossSectionChart = async () => {
         dataSeries: new XyDataSeries(wasmContext, { containsNaN: false, isSorted: true }),
         paletteProvider: new YPalette(wasmContext, csGradientStops),
         xAxisId: "xv",
-        yAxisId: "yv"
+        yAxisId: "yv",
     });
     sciChartSurface.renderableSeries.add(lineSeriesv);
 
@@ -660,7 +660,7 @@ const createCrossSectionChart = async () => {
             fontSize: 18,
             textColor: appTheme.ForegroundColor,
             opacity: 0.5,
-            wrapTo: EWrapTo.ViewRect
+            wrapTo: EWrapTo.ViewRect,
         })
     );
 
@@ -676,15 +676,15 @@ const createCrossSectionChart = async () => {
 
 const inputChart = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divInput, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
     const xAxis = new NumericAxis(wasmContext, {
         drawMinorGridLines: false,
         visibleRange: new NumberRange(0, 30000),
         visibleRangeLimit: new NumberRange(0, 30000),
-        axisAlignment: EAxisAlignment.Top
+        axisAlignment: EAxisAlignment.Top,
     });
-    xAxis.labelProvider.formatLabel = dataValue =>
+    xAxis.labelProvider.formatLabel = (dataValue) =>
         xAxis.labelProvider.applyFormat(formatNumber(dataValue / 1000, xAxis.labelProvider.numericFormat, 0));
 
     sciChartSurface.xAxes.add(xAxis);
@@ -694,7 +694,7 @@ const inputChart = async () => {
         visibleRangeLimit: new NumberRange(-100, 100),
         axisAlignment: EAxisAlignment.Left,
         labelPrecision: 0,
-        drawMinorGridLines: false
+        drawMinorGridLines: false,
     });
 
     sciChartSurface.yAxes.add(yAxis);
@@ -709,7 +709,7 @@ const inputChart = async () => {
             x1: freq,
             backgroundColor: color,
             isEditable: true,
-            formattedValue: "Frequency"
+            formattedValue: "Frequency",
         });
         frequencyMarker.stepSize = 250;
         // hack to disable selection box while dragging
@@ -720,7 +720,7 @@ const inputChart = async () => {
             isSorted: true,
             xValues,
             yValues: makeYValues(freq),
-            metadata: { isSelected: false }
+            metadata: { isSelected: false },
         });
         const lineSeries = new SplineLineRenderableSeries(wasmContext, {
             id: color,
@@ -729,15 +729,15 @@ const inputChart = async () => {
                 stroke: color,
                 fill: color,
                 width: 5,
-                height: 5
+                height: 5,
             }),
             dataSeries,
             onSelectedChanged: (sourceSeries: IRenderableSeries, isSelected: boolean) => {
                 lineSeries.strokeThickness = isSelected ? 4 : 2;
                 lineSeries.pointMarker.fill = isSelected ? "red" : color;
-            }
+            },
         });
-        frequencyMarker.dragDelta.subscribe(args => {
+        frequencyMarker.dragDelta.subscribe((args) => {
             dataSeries.clear();
             dataSeries.appendRange(xValues, makeYValues(frequencyMarker.x1));
         });
@@ -748,7 +748,7 @@ const inputChart = async () => {
     const timerLine = new VerticalLineAnnotation({
         id: "timerLine",
         stroke: "green",
-        x1: 0
+        x1: 0,
     });
     sciChartSurface.annotations.add(timerLine);
 
@@ -764,7 +764,7 @@ const inputChart = async () => {
             fontSize: 18,
             textColor: appTheme.ForegroundColor,
             opacity: 0.5,
-            wrapTo: EWrapTo.ViewRect
+            wrapTo: EWrapTo.ViewRect,
         })
     );
 
@@ -778,16 +778,16 @@ const inputChart = async () => {
 
 const createHistoryChart = async () => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divHistory, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
     const xAxis = new NumericAxis(wasmContext, {
         visibleRange: new NumberRange(0, 30000),
         visibleRangeLimit: new NumberRange(0, 30000),
         drawMinorGridLines: false,
         zoomExtentsToInitialRange: true,
-        axisAlignment: EAxisAlignment.Top
+        axisAlignment: EAxisAlignment.Top,
     });
-    xAxis.labelProvider.formatLabel = dataValue =>
+    xAxis.labelProvider.formatLabel = (dataValue) =>
         xAxis.labelProvider.applyFormat(formatNumber(dataValue / 1000, xAxis.labelProvider.numericFormat, 0));
     sciChartSurface.xAxes.add(xAxis);
 
@@ -798,7 +798,7 @@ const createHistoryChart = async () => {
             axisAlignment: EAxisAlignment.Right,
             drawMinorGridLines: false,
             labelPrecision: 0,
-            cursorLabelPrecision: 1
+            cursorLabelPrecision: 1,
         })
     );
 
@@ -808,14 +808,14 @@ const createHistoryChart = async () => {
     const addOutputSeries = (color: string) => {
         const lineData = new XyDataSeries(wasmContext, { containsNaN: true, isSorted: true });
         const xarr = Array.from(Array(1500)).map((_, i) => i * 20);
-        const nanArr = xarr.map(x => NaN);
+        const nanArr = xarr.map((x) => NaN);
         lineData.appendRange(xarr, nanArr);
         const lineSeries = new FastLineRenderableSeries(wasmContext, {
             id: color,
             strokeThickness: 3,
             stroke: color,
             dataSeries: lineData,
-            opacity: 0.8
+            opacity: 0.8,
         });
 
         const dotSeries = new XyDataSeries(wasmContext, { containsNaN: true, isSorted: true });
@@ -826,12 +826,12 @@ const createHistoryChart = async () => {
                 height: 8,
                 strokeThickness: 2,
                 fill: color,
-                stroke: color
+                stroke: color,
             }),
-            dataSeries: dotSeries
+            dataSeries: dotSeries,
         });
         rollover.includeSeries(leadingDot, false);
-        lineData.dataChanged.subscribe(data => {
+        lineData.dataChanged.subscribe((data) => {
             const changeIndex = data.changeType === EDataChangeType.Append ? lineData.count() - 1 : data.index;
             dotSeries.clear();
             dotSeries.append(
@@ -854,7 +854,7 @@ const createHistoryChart = async () => {
             fontSize: 18,
             textColor: appTheme.ForegroundColor,
             opacity: 0.5,
-            wrapTo: EWrapTo.ViewRect
+            wrapTo: EWrapTo.ViewRect,
         })
     );
 

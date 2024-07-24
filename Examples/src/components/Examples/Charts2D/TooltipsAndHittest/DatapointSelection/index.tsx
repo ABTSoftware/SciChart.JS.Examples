@@ -1,7 +1,7 @@
 import * as React from "react";
 import { CSSProperties } from "react";
 import classes from "../../../styles/Examples.module.scss";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 
 import {
     SciChartSurface,
@@ -20,10 +20,9 @@ import {
     ECoordinateMode,
     LegendModifier,
     LineSeriesDataLabelProvider,
-    DataLabelState
+    DataLabelState,
 } from "scichart";
-
-const divElementId = "chart";
+import { SciChartReact } from "scichart-react";
 
 // Generate some data for the example
 const dataSize = 30;
@@ -42,15 +41,18 @@ for (let i = 0; i < dataSize; i++) {
     yValues.push(Math.random() + 3.6);
 }
 
-const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) => void) => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+const drawExample = async (
+    rootElement: string | HTMLDivElement,
+    setSelectedPoints: (selectedPoints: DataPointInfo[]) => void
+) => {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
+        theme: appTheme.SciChartJsTheme,
     });
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
-            growBy: new NumberRange(0.1, 0.1)
+            growBy: new NumberRange(0.1, 0.1),
         })
     );
 
@@ -79,14 +81,14 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName: "First Series" }),
             pointMarker: {
                 type: EPointMarkerType.Ellipse,
-                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 }
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
             },
             strokeThickness: 3,
             // Optional visual feedback for selected points can be provided by the DataPointSelectionPaletteProvider
             // When dataSeries.metadata[i].isSelected, this still is applied
             paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
             // Optional: show datalabels but only for selected points
-            dataLabelProvider: getDataLabelProvider()
+            dataLabelProvider: getDataLabelProvider(),
         })
     );
 
@@ -96,13 +98,13 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Second Series" }),
             pointMarker: {
                 type: EPointMarkerType.Ellipse,
-                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 }
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
             },
             strokeThickness: 3,
             // Optional visual feedback for selected points
             paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
             // Optional: show datalabels but only for selected points
-            dataLabelProvider: getDataLabelProvider()
+            dataLabelProvider: getDataLabelProvider(),
         })
     );
 
@@ -112,13 +114,13 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Third Series" }),
             pointMarker: {
                 type: EPointMarkerType.Ellipse,
-                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 }
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
             },
             strokeThickness: 3,
             // Optional visual feedback for selected points
             paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
             // Optional: show datalabels but only for selected points
-            dataLabelProvider: getDataLabelProvider()
+            dataLabelProvider: getDataLabelProvider(),
         })
     );
 
@@ -128,13 +130,13 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Fourth Series" }),
             pointMarker: {
                 type: EPointMarkerType.Ellipse,
-                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 }
+                options: { fill: AUTO_COLOR, stroke: AUTO_COLOR, strokeThickness: 3, width: 20, height: 20 },
             },
             strokeThickness: 3,
             // Optional visual feedback for selected points
             paletteProvider: new DataPointSelectionPaletteProvider({ stroke, fill }),
             // Optional: show datalabels but only for selected points
-            dataLabelProvider: getDataLabelProvider()
+            dataLabelProvider: getDataLabelProvider(),
         })
     );
 
@@ -150,7 +152,7 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
             opacity: 0.77,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative
+            yCoordinateMode: ECoordinateMode.Relative,
         })
     );
 
@@ -164,7 +166,7 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
             opacity: 0.77,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
-            yCoordinateMode: ECoordinateMode.Relative
+            yCoordinateMode: ECoordinateMode.Relative,
         })
     );
 
@@ -184,32 +186,11 @@ const drawExample = async (setSelectedPoints: (selectedPoints: DataPointInfo[]) 
 };
 
 export default function DatapointSelection() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-
     const [selectedPoints, setSelectedPoints] = React.useState<DataPointInfo[]>([]);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample(setSelectedPoints).then(({ sciChartSurface }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-        });
-
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
 
     const rowStyle = {
         height: "30px",
-        display: "flex"
+        display: "flex",
     };
 
     const pointsBoxStyle: CSSProperties = {
@@ -217,13 +198,13 @@ export default function DatapointSelection() {
         flexGrow: 1,
         flexShrink: 1,
         color: appTheme.PaleSkyBlue,
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     };
 
     const chartStyle: CSSProperties = {
         flexBasis: 400,
         flexGrow: 1,
-        flexShrink: 1
+        flexShrink: 1,
     };
 
     const columnItemStyle: CSSProperties = {
@@ -232,26 +213,29 @@ export default function DatapointSelection() {
         borderRight: `solid 1px ${appTheme.MutedSkyBlue}`,
         borderBottom: `solid 1px ${appTheme.MutedSkyBlue}`,
         textAlign: "center",
-        fontSize: 14
+        fontSize: 14,
     };
     const columnItemStyleRight: CSSProperties = {
         flex: "auto",
         width: "100px",
         borderBottom: `solid 1px ${appTheme.MutedSkyBlue}`,
         textAlign: "center",
-        fontSize: 14
+        fontSize: 14,
     };
 
     const scrollbarStyle: CSSProperties = {
         height: "100%",
         overflow: "scroll",
-        overflowX: "hidden"
+        overflowX: "hidden",
     };
 
     return (
         <div className={classes.FullHeightChartWrapper}>
             <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
-                <div id={divElementId} style={chartStyle} />
+                <SciChartReact
+                    style={chartStyle}
+                    initChart={(rootElement) => drawExample(rootElement, setSelectedPoints)}
+                />
                 <div style={pointsBoxStyle}>
                     <h3 style={{ color: appTheme.PaleSkyBlue, margin: 5 }}>Selected Points</h3>
                     <div style={{ ...rowStyle, marginRight: "17px" }}>

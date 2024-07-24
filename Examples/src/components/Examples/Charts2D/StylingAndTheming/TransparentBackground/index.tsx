@@ -1,6 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import BackgroundImage from "./BackgroundGradient.jpg";
 
 import {
@@ -19,14 +19,13 @@ import {
     FastColumnRenderableSeries,
     XyDataSeries,
     WaveAnimation,
-    ELabelProviderType
+    ELabelProviderType,
 } from "scichart";
+import { SciChartReact } from "scichart-react";
 
-const divElementId = "chart";
-
-const drawExample = async () => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: new SciChartJSLightTheme()
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
+        theme: new SciChartJSLightTheme(),
     });
 
     // Set the background to Transparent to show the underlying DOM through
@@ -37,7 +36,7 @@ const drawExample = async () => {
         majorGridLineStyle: { color: "#FFFFFF55" },
         minorGridLineStyle: { color: "#FFFFFF22" },
         labelStyle: { color: "#EEE" },
-        axisTitleStyle: { color: "#EEE" }
+        axisTitleStyle: { color: "#EEE" },
     };
 
     // Add X,Y axis. Note that Axis.axisBandsFill must be modified to show the background through.
@@ -51,9 +50,9 @@ const drawExample = async () => {
             labelProvider: {
                 type: ELabelProviderType.Text,
                 options: {
-                    labels: ["Q1 (2020)", "Q1 (2021)", "Q1 (2022)", "Q1 (2023)"]
-                }
-            }
+                    labels: ["Q1 (2020)", "Q1 (2021)", "Q1 (2022)", "Q1 (2023)"],
+                },
+            },
         })
     );
     sciChartSurface.yAxes.add(
@@ -61,7 +60,7 @@ const drawExample = async () => {
             ...axisOptionsCommon,
             axisBorder: { borderLeft: 1, color: "#ccc" },
             growBy: new NumberRange(0.0, 0.1),
-            axisTitle: "Sales $(Billions)"
+            axisTitle: "Sales $(Billions)",
         })
     );
 
@@ -73,11 +72,11 @@ const drawExample = async () => {
         new SplineLineRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: [0, 1, 2, 3],
-                yValues: [2, 3.5, 3.0, 5]
+                yValues: [2, 3.5, 3.0, 5],
             }),
             stroke: appTheme.VividSkyBlue,
             strokeThickness: 3,
-            animation: new SweepAnimation({ duration: 500 })
+            animation: new SweepAnimation({ duration: 500 }),
         })
     );
 
@@ -87,16 +86,16 @@ const drawExample = async () => {
             dataSeries: new XyzDataSeries(wasmContext, {
                 xValues: [0, 1, 2, 3],
                 yValues: [2, 3.5, 3.0, 5],
-                zValues: [30, 90, 40, 60]
+                zValues: [30, 90, 40, 60],
             }),
             pointMarker: new EllipsePointMarker(wasmContext, {
                 width: 64,
                 height: 64,
                 strokeThickness: 2,
                 stroke: appTheme.PaleSkyBlue,
-                fill: appTheme.VividSkyBlue + "33"
+                fill: appTheme.VividSkyBlue + "33",
             }),
-            animation: new SweepAnimation({ delay: 200, duration: 500, fadeEffect: true })
+            animation: new SweepAnimation({ delay: 200, duration: 500, fadeEffect: true }),
         })
     );
 
@@ -105,14 +104,14 @@ const drawExample = async () => {
         new FastColumnRenderableSeries(wasmContext, {
             dataSeries: new XyDataSeries(wasmContext, {
                 xValues: [0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3],
-                yValues: [0.8, 1, 1, 1.1, 1.2, 5.2, 2.8, 2.7, 2.6, 2.6, 2.5, 2.5, 2.5, 2.6, 3.2, 4]
+                yValues: [0.8, 1, 1, 1.1, 1.2, 5.2, 2.8, 2.7, 2.6, 2.6, 2.5, 2.5, 2.5, 2.6, 3.2, 4],
             }),
             stroke: appTheme.MutedSkyBlue,
             fill: appTheme.VividSkyBlue + "33",
             strokeThickness: 2,
             dataPointWidth: 0.57,
             cornerRadius: 10,
-            animation: new WaveAnimation({ delay: 400, duration: 600, fadeEffect: true })
+            animation: new WaveAnimation({ delay: 400, duration: 600, fadeEffect: true }),
         })
     );
 
@@ -125,33 +124,12 @@ const drawExample = async () => {
 };
 
 export default function TransparentBackground() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(({ sciChartSurface }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-        });
-
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
-
     return (
         <div
             className={classes.ChartWrapper}
             style={{ backgroundImage: `url(${BackgroundImage})`, backgroundSize: "100% 100%" }}
         >
-            <div id={divElementId} />
+            <SciChartReact initChart={drawExample} />
         </div>
     );
 }

@@ -32,14 +32,14 @@ import {
     SeriesSelectionModifier,
     HoveredChangedArgs,
     DataPointSelectionChangedArgs,
-    IPieSegment
+    IPieSegment,
 } from "scichart";
 import { CN, IN, US, JP, DE, GB, FR, BR, CA, AU } from "country-flag-icons/string/3x2";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import { TDataEntry, availableLocations, getData, getRequestsNumberPerLocation } from "./data-generation";
 import { TChartConfigFunc, TChartConfigResult } from "./chart-configurations";
 import { TTextureObject } from "scichart/Charting/Visuals/TextureManager/TextureManager";
-import { TInitFunction } from "./SciChart";
+import { TInitFunction } from "scichart-react";
 
 type TCustomMetadata = IPointMetadata & {
     isHovered: boolean;
@@ -63,7 +63,7 @@ const createImageFromSvgString = async (svg: string) => {
 };
 
 const getIcons = () => {
-    const icons = [CN, IN, US, JP, DE, GB, FR, BR, CA, AU].map(async svg => {
+    const icons = [CN, IN, US, JP, DE, GB, FR, BR, CA, AU].map(async (svg) => {
         const icon = createImageFromSvgString(svg);
 
         return icon;
@@ -82,7 +82,7 @@ const regionFillColors = [
     "#634e96",
     "#0bdef4",
     "#f6086c",
-    "#68bcae"
+    "#68bcae",
 ];
 const regionStrokeColors = [
     "#c43360",
@@ -94,7 +94,7 @@ const regionStrokeColors = [
     "#634e96",
     "#0bdef4",
     "#f6086c",
-    "#68bcae"
+    "#68bcae",
 ];
 
 class CustomColumnPaletteProvider extends BasePaletteProvider implements IStrokePaletteProvider, IFillPaletteProvider {
@@ -132,12 +132,14 @@ export type TLocationStatsChartConfigFuncResult = TChartConfigResult<SciChartSur
 export type TLocationStatsChartConfigFunc = TInitFunction<SciChartSurface, TLocationStatsChartConfigFuncResult>;
 
 // location stats
-export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: string | HTMLDivElement) => {
+export const createRegionStatisticsColumnChart: TLocationStatsChartConfigFunc = async (
+    divElementId: string | HTMLDivElement
+) => {
     const icons = await getIcons();
 
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
-        disableAspect: true
+        disableAspect: true,
     });
 
     // Create an X,Y Axis and add to the chart
@@ -146,7 +148,7 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
         // visibleRangeLimit: new NumberRange(0, availableLocations.length),
         growBy: new NumberRange(0.1, 0.1),
         autoTicks: false,
-        majorDelta: 1
+        majorDelta: 1,
     });
 
     // Required to stop these country textures showing up on other charts
@@ -170,13 +172,13 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
         axisTitle: "Requests",
         axisTitleStyle: {
             fontSize: 18,
-            color: appTheme.ForegroundColor
+            color: appTheme.ForegroundColor,
         },
         labelStyle: {
-            color: appTheme.ForegroundColor
+            color: appTheme.ForegroundColor,
         },
         labelPrecision: 0,
-        growBy: new NumberRange(0.05, 0.25)
+        growBy: new NumberRange(0.05, 0.25),
     });
 
     sciChartSurface.xAxes.add(xAxis);
@@ -192,7 +194,7 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
         metadata: xValues.map(() => ({ isSelected: false, isHovered: false })),
         containsNaN: false,
         isSorted: true,
-        dataEvenlySpacedInX: true
+        dataEvenlySpacedInX: true,
     });
 
     // filtered per location
@@ -208,17 +210,17 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
             style: {
                 padding: Thickness.fromString("6 0 6 0"),
                 fontFamily: "Arial",
-                fontSize: 18
+                fontSize: 18,
             },
-            color: appTheme.ForegroundColor
+            color: appTheme.ForegroundColor,
         },
-        animation: new WaveAnimation({ duration: 1000, fadeEffect: false })
+        animation: new WaveAnimation({ duration: 1000, fadeEffect: false }),
     });
     sciChartSurface.renderableSeries.add(rendSeries);
 
     const dataPointSelectionModifier = new DataPointSelectionModifier({
         id: "DataPointSelectionModifier",
-        allowDragSelect: false
+        allowDragSelect: false,
     });
 
     let lastSelectedDataPointIndex = -1;
@@ -241,7 +243,7 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
     const seriesSelectionModifier = new SeriesSelectionModifier({
         enableHover: true,
         enableSelection: false,
-        onHoverChanged
+        onHoverChanged,
     });
     sciChartSurface.chartModifiers.add(dataPointSelectionModifier, seriesSelectionModifier);
 
@@ -266,7 +268,9 @@ export const createChart5: TLocationStatsChartConfigFunc = async (divElementId: 
     return { sciChartSurface, updateData, subscribeToLocationSelection };
 };
 
-export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElementId: string | HTMLDivElement) => {
+export const createRegionStatisticsPieChart: TChartConfigFunc<SciChartPieSurface> = async (
+    divElementId: string | HTMLDivElement
+) => {
     // Create the pie chart
     const sciChartPieSurface = await SciChartPieSurface.create(divElementId, {
         theme: appTheme.SciChartJsTheme,
@@ -277,7 +281,7 @@ export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElem
         seriesSpacing: 1,
         showLegend: false,
         showLegendSeriesMarkers: true,
-        animateLegend: true
+        animateLegend: true,
     });
     sciChartPieSurface.labelRadiusAdjustment = 1.7;
     // Optional placement of legend
@@ -291,14 +295,14 @@ export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElem
     const dataset = requestsPerLocation.xValues.map((value, index) => {
         return {
             name: availableLocations[index],
-            percent: (requestsPerLocation.yValues[index] * 100) / totalRequests
+            percent: (requestsPerLocation.yValues[index] * 100) / totalRequests,
         };
     });
 
     // Colors are just hex strings, supporting #FFFFFF (RBG) or 8-digit with RGBA or CSS color strings e.g. rgba()
     const colors = dataset.map((_, index) => ({
         color1: regionFillColors[index],
-        color2: regionStrokeColors[index]
+        color2: regionStrokeColors[index],
     }));
 
     // Optional Relative radius adjustment per segment
@@ -314,8 +318,8 @@ export const createChart3: TChartConfigFunc<SciChartPieSurface> = async (divElem
             showLabel: true,
             colorLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
                 { color: color1, offset: 0 },
-                { color: (color2 ?? color1) + "77", offset: 1 }
-            ])
+                { color: (color2 ?? color1) + "77", offset: 1 },
+            ]),
         });
     };
 

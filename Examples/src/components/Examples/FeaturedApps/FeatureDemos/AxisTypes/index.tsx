@@ -1,7 +1,7 @@
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import * as React from "react";
 import { TBinanceCandleData } from "../../../../../commonTypes/TBinanceCandleData";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -30,27 +30,26 @@ import {
     Thickness,
     XyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
-
-const divElementId = "chart";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 const colorStrings = [
     appTheme.VividSkyBlue,
     appTheme.VividPink,
     appTheme.MutedTeal,
     appTheme.VividOrange,
-    appTheme.VividBlue
+    appTheme.VividBlue,
 ];
-const colors = colorStrings.map(c => parseColorToUIntArgb(c + "AA"));
+const colors = colorStrings.map((c) => parseColorToUIntArgb(c + "AA"));
 
-const drawExample = async () => {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface with Theme
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
+        theme: appTheme.SciChartJsTheme,
     });
     const labelProvider = new TextLabelProvider({
-        labels: ["Bitcoin", "Ethereum", "XRP", "Cardano", "Dogecoin"]
+        labels: ["Bitcoin", "Ethereum", "XRP", "Cardano", "Dogecoin"],
     });
     // Category Axis - measures using index not value.
     const xAxis = new CategoryAxis(wasmContext, { id: "XCategory", labelProvider });
@@ -75,7 +74,7 @@ const drawExample = async () => {
         labelPostfix: "B",
         labelPrecision: 0,
         axisAlignment: EAxisAlignment.Left,
-        labelStyle: { fontSize: 18 }
+        labelStyle: { fontSize: 18 },
     });
     // Pass array to axisTitle to make it multiline
     yAxis.axisTitle = ["Market Cap - Numeric Axis", "formatting using prefix and postfix"];
@@ -88,7 +87,7 @@ const drawExample = async () => {
         dataPointWidth: 0.5,
         paletteProvider: new AxisTypesPaletteProvider(),
         xAxisId: xAxis.id,
-        yAxisId: yAxis.id
+        yAxisId: yAxis.id,
     });
     sciChartSurface.renderableSeries.add(columnSeries);
 
@@ -103,7 +102,7 @@ const drawExample = async () => {
         labelStyle: { fontSize: 18 },
         axisTitle: ["Date Axis", "Auto formats based on the date range"],
         axisTitleStyle: { fontSize: 18 },
-        visibleRangeLimit: new NumberRange(startTime, endDate.getTime() / 1000)
+        visibleRangeLimit: new NumberRange(startTime, endDate.getTime() / 1000),
     });
     sciChartSurface.xAxes.add(dateXAxis);
 
@@ -116,7 +115,7 @@ const drawExample = async () => {
         axisAlignment: EAxisAlignment.Right,
         labelStyle: { fontSize: 18 },
         axisTitle: ["Price - Logarithmic Axis", "base 2, labelFormat: SignificantFigures"],
-        axisTitleStyle: { fontSize: 18 }
+        axisTitleStyle: { fontSize: 18 },
     });
     sciChartSurface.yAxes.add(logYAxis);
 
@@ -130,7 +129,7 @@ const drawExample = async () => {
             xAxisId: dateXAxis.id,
             yAxisId: logYAxis.id,
             stroke: colorStrings[index],
-            dataSeries: priceDataSeries
+            dataSeries: priceDataSeries,
         });
         sciChartSurface.renderableSeries.add(series);
 
@@ -152,13 +151,13 @@ const drawExample = async () => {
     return { sciChartSurface, wasmContext, labelProvider };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -166,43 +165,18 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 // React component needed as our examples app is react.
 // SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function FeatureAxisTypes() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-
     const [labelProvider, setLabelProvider] = React.useState<TextLabelProvider>();
     const [preset, setPreset] = React.useState<number>(0);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then(({ sciChartSurface, labelProvider }) => {
-            sciChartSurfaceRef.current = sciChartSurface;
-            setLabelProvider(labelProvider);
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                sciChartSurfaceRef.current = undefined
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-                sciChartSurfaceRef.current = undefined
-            });
-        };
-    }, []);
 
     const handlePreset = (event: any, value: number) => {
         setPreset(value);
@@ -251,7 +225,13 @@ export default function FeatureAxisTypes() {
                         </ToggleButton>
                     </ToggleButtonGroup>
                 </div>
-                <div className={localClasses.chartArea} id={divElementId}></div>
+                <SciChartReact
+                    className={localClasses.chartArea}
+                    initChart={drawExample}
+                    onInit={({ labelProvider }: TResolvedReturnType<typeof drawExample>) => {
+                        setLabelProvider(labelProvider);
+                    }}
+                />
             </div>
         </div>
     );

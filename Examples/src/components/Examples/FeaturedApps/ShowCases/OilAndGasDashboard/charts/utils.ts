@@ -94,7 +94,7 @@ export function getColor(name: string): string {
     const colors: any = {
         red: appTheme.ChartsGridStroke1,
         green: appTheme.ChartsGridStroke2,
-        blue: appTheme.ChartsGridStroke3
+        blue: appTheme.ChartsGridStroke3,
     };
     return colors[name];
 }
@@ -166,6 +166,6 @@ export function getDataDiagonal(
     }
     return {
         xValues: updatedXValues,
-        yValues: updatedYValues
+        yValues: updatedYValues,
     };
 }

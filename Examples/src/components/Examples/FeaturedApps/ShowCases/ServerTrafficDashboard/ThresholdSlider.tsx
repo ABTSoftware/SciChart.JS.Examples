@@ -1,21 +1,17 @@
-import { useContext, useEffect, useState } from "react";
-import { SurfaceContext } from "./SurfaceContext";
-import { appTheme } from "scichart-example-dependencies";
+import { ChangeEventHandler, useContext, useEffect, useState } from "react";
+import { appTheme } from "../../../theme";
+import { SciChartSurfaceContext } from "scichart-react";
 import { Rect } from "scichart";
 import { TMainChartConfigFunc } from "./main-chart-config";
 
 const ThresholdSlider = () => {
     // get reference to chart init result
-    const context = useContext(SurfaceContext) as Awaited<ReturnType<TMainChartConfigFunc>>;
+    const context = useContext(SciChartSurfaceContext) as Awaited<ReturnType<TMainChartConfigFunc>>;
     const [seriesViewRect, setSeriesViewRect] = useState(context.sciChartSurface.seriesViewRect);
     const viewport = context.sciChartSurface.renderSurface.viewportSize;
 
     // subscribe to seriesViewRectChange
     useEffect(() => {
-        if (!context) {
-            return null;
-        }
-
         let previousViewRect = seriesViewRect;
         const checkViewRectChange = () => {
             const currentSeriesViewRect = context.sciChartSurface.seriesViewRect;
@@ -30,10 +26,10 @@ const ThresholdSlider = () => {
         return () => {
             context.sciChartSurface.rendered.unsubscribe(checkViewRectChange);
         };
-    }, [context]);
+    }, []);
 
     const [width, setWidth] = useState("1600");
-    const changeWidth: React.ChangeEventHandler<HTMLInputElement> = event => {
+    const changeWidth: ChangeEventHandler<HTMLInputElement> = (event) => {
         setWidth(event.target.value);
         context.updateThreshold(parseInt(event.target.value));
     };
@@ -48,7 +44,7 @@ const ThresholdSlider = () => {
                 top: seriesViewRect.top,
                 right: viewport.width - seriesViewRect.right,
                 position: "absolute",
-                color: appTheme.ForegroundColor
+                color: appTheme.ForegroundColor,
             }}
         >
             Duration Threshold

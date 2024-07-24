@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-donut-chart.jpg";
@@ -9,20 +8,20 @@ const description = `Donut Charts in SciChart.js support selection, legends, dif
     gradient or solid fills and more.`;
 const tips = [
     `You can change the fill color of every segment and the style of its label.`,
-    `Every segment can be highlighted by clicking on it or when selected in the legend.`
+    `Every segment can be highlighted by clicking on it or when selected in the legend.`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDonutChartDocumentation,
-        title: ExampleStrings.titleDonutChart,
-        linkTitle: "JavaScript Donut Chart Documentation"
-    }
+        title: "Donut Chart",
+        linkTitle: "JavaScript Donut Chart Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        This demo demonstrates how create a <strong>JavaScript Donut Chart</strong> with our powerful JavaScript
+        This demo demonstrates how create a <strong>{frameworkName} Donut Chart</strong> with our powerful JavaScript
         library,{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="SciChart.js">
             SciChart.js
@@ -41,9 +40,8 @@ export const donutChartExampleInfo: TExampleInfo = {
     documentationLinks,
     tips,
     description,
-    githubUrl,
-    metaDescription:
-        "Create JavaScript Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.",
+    metaDescription: (frameworkName: string) =>
+        `Create ${frameworkName} Donut Chart with 5-star rated SciChart.js chart library. Supports legends, text labels, animated updates and more. Get free trial now.`,
     metaKeywords: "donut, chart, javascript, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

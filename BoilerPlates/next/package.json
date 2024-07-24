@@ -1,0 +1,25 @@
+{
+  "name": "learn-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "copyWasm": "copy-files-from-to --config copy-files-from-to.json",
+    "dev": "npm run copyWasm && next dev",
+    "build": "npm run copyWasm && next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^14.1.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "scichart": "^3.3.586"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.10",
+    "@types/react": "^18.0.30",
+    "copy-files-from-to": "^3.8.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "typescript": "^5.0.2",
+    "webpack": "^5.76.3"
+  }
+}

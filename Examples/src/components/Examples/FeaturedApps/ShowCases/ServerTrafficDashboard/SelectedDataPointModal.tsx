@@ -1,6 +1,5 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { SurfaceContext } from './SurfaceContext';
-import { appTheme } from 'scichart-example-dependencies';
+import { useContext, useEffect, useRef, useState } from "react";
+import { appTheme } from "../../../theme";
 import {
     AUTO_COLOR,
     DataPointSelectionModifier,
@@ -18,19 +17,19 @@ import {
     NumberRange,
     NumericLabelProvider,
     Point,
-    Rect,
     SciChartSurface,
     TModifierKeys,
     TSurfaceDefinition,
-    TXySeriesData,
-} from 'scichart';
-import SciChart from './SciChart';
-import { TDataEntry } from './data-generation';
-import { TMainChartConfigFunc } from './main-chart-config';
+    SelectionChangedArgs,
+    DataPointSelectionChangedArgs,
+} from "scichart";
+import { TDataEntry } from "./data-generation";
+import { TMainChartConfigFunc } from "./main-chart-config";
+import { SciChartReact, SciChartSurfaceContext } from "scichart-react";
 
 const SelectedDataPointModal = () => {
     // get reference to chart init result
-    const context = useContext(SurfaceContext) as Awaited<ReturnType<TMainChartConfigFunc>>;
+    const context = useContext(SciChartSurfaceContext) as Awaited<ReturnType<TMainChartConfigFunc>>;
     const [seriesViewRect, setSeriesViewRect] = useState(context.sciChartSurface.seriesViewRect);
     const viewport = context.sciChartSurface.renderSurface.viewportSize;
     const [showModal, setShowModal] = useState(false);
@@ -48,10 +47,10 @@ const SelectedDataPointModal = () => {
     useEffect(() => {
         dataPointSelectionModifierRef.current = new DataPointSelectionModifier({
             allowDragSelect: false,
-            getSelectionMode: (modifierKeys: TModifierKeys, isAreaSelection) => {
+            getSelectionMode: (modifierKeys: TModifierKeys, isAreaSelection: boolean) => {
                 return ESelectionMode.Replace;
             },
-            onSelectionChanged: (args) => {
+            onSelectionChanged: (args: DataPointSelectionChangedArgs) => {
                 const [selectedPoint] = args.selectedDataPoints;
                 const pointMetadata = selectedPoint?.metadata as {
                     isSelected: boolean;
@@ -182,44 +181,44 @@ const SelectedDataPointModal = () => {
     return (
         <div
             style={{
-                top: '10em',
-                left: '10em',
-                width: 'calc(100% - 20em)',
-                height: 'calc(100% - 20em)',
-                position: 'fixed',
+                top: "10em",
+                left: "10em",
+                width: "calc(100% - 20em)",
+                height: "calc(100% - 20em)",
+                position: "fixed",
                 zIndex: 10,
                 color: appTheme.ForegroundColor,
-                pointerEvents: 'none',
+                pointerEvents: "none",
             }}
         >
             {showModal ? (
                 <div
                     style={{
-                        width: '100%',
-                        height: '100%',
-                        pointerEvents: 'all',
+                        width: "100%",
+                        height: "100%",
+                        pointerEvents: "all",
                         backgroundColor: appTheme.MutedSkyBlue,
-                        padding: '1em',
-                        boxSizing: 'border-box',
+                        padding: "1em",
+                        boxSizing: "border-box",
                     }}
                 >
                     <button
                         style={{
-                            position: 'absolute',
-                            right: '1em',
+                            position: "absolute",
+                            right: "1em",
                             zIndex: 1,
                         }}
                         onClick={handleClose}
                     >
                         Close
                     </button>
-                    <SciChart<SciChartSurface>
+                    <SciChartReact<SciChartSurface>
                         style={{
-                            width: '100%',
-                            height: '100%',
+                            width: "100%",
+                            height: "100%",
                         }}
                         config={chartConfig}
-                    ></SciChart>
+                    />
                 </div>
             ) : null}
         </div>

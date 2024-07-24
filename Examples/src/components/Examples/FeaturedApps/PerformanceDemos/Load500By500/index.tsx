@@ -1,8 +1,9 @@
 import * as React from "react";
+import { useRef } from "react";
 import { AlertTitle } from "@material-ui/lab";
 import { Button } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import { appTheme } from "scichart-example-dependencies";
+import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -20,10 +21,9 @@ import {
     TextAnnotation,
     XyDataSeries,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
-
-const divElementId = "chart";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 
 type TTimeSpan = {
     title: string;
@@ -33,10 +33,13 @@ type TTimeSpan = {
 const SERIES = 500;
 const POINTS = 500;
 
-const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void) => {
+export const drawExample = async (
+    rootElement: string | HTMLDivElement,
+    updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void
+) => {
     // Create the SciChartSurface
-    const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+    const { wasmContext, sciChartSurface } = await SciChartSurface.create(rootElement, {
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create an X,Y Axis
@@ -44,14 +47,14 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         new NumericAxis(wasmContext, {
             visibleRange: new NumberRange(0, POINTS),
             autoRange: EAutoRange.Never,
-            axisTitle: "X Axis"
+            axisTitle: "X Axis",
         })
     );
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             visibleRange: new NumberRange(-250, 250),
             autoRange: EAutoRange.Never,
-            axisTitle: "Y Axis"
+            axisTitle: "Y Axis",
         })
     );
 
@@ -69,7 +72,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
             xCoordinateMode: ECoordinateMode.Relative,
             yCoordinateMode: ECoordinateMode.Relative,
-            annotationLayer: EAnnotationLayer.AboveChart
+            annotationLayer: EAnnotationLayer.AboveChart,
         });
     };
     // add a title annotation
@@ -100,7 +103,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         const rendSeries: FastLineRenderableSeries = new FastLineRenderableSeries(wasmContext, {
             dataSeries,
             strokeThickness: 2,
-            stroke: "auto"
+            stroke: "auto",
         });
 
         dataSeriesArray[i] = dataSeries;
@@ -144,7 +147,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         // Add the first time span: Generating 500 series x 500 points
         newTimeSpans.push({
             title: "Generate 500x500 Data Points",
-            durationMs: Date.now() - generateTimestamp
+            durationMs: Date.now() - generateTimestamp,
         });
 
         // Start counting batch append time
@@ -156,7 +159,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         // Add the second time span: Generation of data point
         newTimeSpans.push({
             title: "Append 500x500 Data Points",
-            durationMs: Date.now() - appendTimestamp
+            durationMs: Date.now() - appendTimestamp,
         });
 
         // Subscribe to sciChartSurface.rendered event,
@@ -170,7 +173,7 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
                 // Add the third time span: Render the first frame
                 newTimeSpans.push({
                     title: "Render the frame",
-                    durationMs: Date.now() - firstFrameTimestamp
+                    durationMs: Date.now() - firstFrameTimestamp,
                 });
                 nextFramesTimestamp = Date.now();
             } else {
@@ -188,18 +191,25 @@ const drawExample = async (updateTimeSpans: (newTimeSpans: TTimeSpan[]) => void)
         sciChartSurface.rendered.subscribe(handler);
     };
 
-    document.getElementById("loadPoints").addEventListener("click", loadPoints);
+    let autoStartTimerId: NodeJS.Timeout;
+    const startUpdate = () => {
+        autoStartTimerId = setTimeout(loadPoints, 0);
+    };
 
-    return { wasmContext, sciChartSurface, loadPoints };
+    const stopUpdate = () => {
+        clearTimeout(autoStartTimerId);
+    };
+
+    return { wasmContext, sciChartSurface, controls: { startUpdate, stopUpdate } };
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
         width: "100%",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: appTheme.DarkIndigo
+        background: appTheme.DarkIndigo,
     },
     toolbarRow: {
         display: "flex",
@@ -207,53 +217,44 @@ const useStyles = makeStyles(theme => ({
         flexBasis: "70px",
         padding: 10,
         width: "100%",
-        color: appTheme.ForegroundColor
+        color: appTheme.ForegroundColor,
     },
     chartArea: {
-        flex: 1
-    }
+        flex: 1,
+    },
 }));
 
 export default function Load500By500() {
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-
+    const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(null);
     const [timeSpans, setTimeSpans] = React.useState<TTimeSpan[]>([]);
-
-    React.useEffect(() => {
-        let autoStartTimerId: NodeJS.Timeout;
-
-        const chartInitializationPromise = drawExample((newTimeSpans: TTimeSpan[]) => {
-            setTimeSpans([...newTimeSpans]);
-        }).then((res) => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            autoStartTimerId = setTimeout(res.loadPoints, 0);
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                clearTimeout(autoStartTimerId);
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                clearTimeout(autoStartTimerId);
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
 
     const localClasses = useStyles();
 
     return (
         <div className={classes.ChartWrapper}>
             <div className={localClasses.flexOuterContainer}>
-                <div className={localClasses.chartArea} id={divElementId}></div>
+                <SciChartReact<SciChartSurface, TResolvedReturnType<typeof drawExample>>
+                    className={localClasses.chartArea}
+                    initChart={(rootElement: string | HTMLDivElement) =>
+                        drawExample(rootElement, (newTimeSpans: TTimeSpan[]) => {
+                            setTimeSpans([...newTimeSpans]);
+                        })
+                    }
+                    onInit={({ controls }: TResolvedReturnType<typeof drawExample>) => {
+                        controls.startUpdate();
+                        controlsRef.current = controls;
+                    }}
+                    onDelete={({ controls }: TResolvedReturnType<typeof drawExample>) => {
+                        controls.stopUpdate();
+                    }}
+                />
                 <div className={localClasses.toolbarRow} style={{ minHeight: "140px" }}>
-                    <Button id="loadPoints" style={{ color: appTheme.ForegroundColor }}>
+                    <Button
+                        onClick={() => {
+                            controlsRef.current?.startUpdate();
+                        }}
+                        style={{ color: appTheme.ForegroundColor }}
+                    >
                         🗘 Reload Test
                     </Button>
                     <div style={{ width: "100%", marginLeft: "10px" }}>

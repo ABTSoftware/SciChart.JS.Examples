@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
-import { githubUrl } from "./GENERATED_GITHUB_URL";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
 import exampleImage from "./javascript-digital-band-chart.jpg";
@@ -9,21 +8,21 @@ const previewDescription = `Step bands or Digital bands are created in SciChart.
 const description = `Band series (also known as High-Low fill or Poylgon Fill) can be used to draw thresholds, a fill between two lines or areas of interest on a chart.`;
 const tips = [
     `If you have data where Y1 is greater than Y2 always, you’ll get an envelope effect. Great for rendering
-    confidence intervals, error margins or Bollinger Bands!`
+    confidence intervals, error margins or Bollinger Bands!`,
 ];
 
 const documentationLinks: TDocumentationLink[] = [
     {
         href: ExampleStrings.urlDigitalBandChartDocumentation,
         title: ExampleStrings.urlTitleDigitalBandChart,
-        linkTitle: "JavaScript Digital Band Documentation"
-    }
+        linkTitle: "JavaScript Digital Band Documentation",
+    },
 ];
 
-const Subtitle = () => (
+const Subtitle = (frameworkName: string) => (
     <p>
-        Demonstrates how to create a <strong>JavaScript Digital Band Chart</strong> or High-Low Fill using SciChart.js.{" "}
-        This is our High Performance{" "}
+        Demonstrates how to create a <strong>{frameworkName} Digital Band Chart</strong> or High-Low Fill using
+        SciChart.js. This is our High Performance{" "}
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank" title="JavaScript Chart Library">
             JavaScript Chart Library
         </a>
@@ -41,9 +40,8 @@ export const digitalBandSeriesChartExampleInfo: TExampleInfo = {
     tips,
     description,
     previewDescription,
-    githubUrl,
-    metaDescription:
-        "Learn how to create a JavaScript Digital Band Chart or High-Low Fill Chart with SciChart's easy-to-follow demos. Get your free trial today.",
+    metaDescription: (frameworkName: string) =>
+        `Learn how to create a ${frameworkName} Digital Band Chart or High-Low Fill Chart with SciChart's easy-to-follow demos. Get your free trial today.`,
     metaKeywords: "digital, band, chart, javascript, webgl, canvas",
-    thumbnailImage: exampleImage
+    thumbnailImage: exampleImage,
 };

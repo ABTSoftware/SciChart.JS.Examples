@@ -14,9 +14,9 @@ export const drawShaleChart = async () => {
         ...getCommonChartConfigs("Shale"),
         surface: {
             padding: Thickness.fromNumber(0),
-            theme: { type: appTheme.SciChartJsTheme.type, sciChartBackground: "Transparent" }
+            theme: { type: appTheme.SciChartJsTheme.type, sciChartBackground: "Transparent" },
         },
-        modifiers: getCommonChartModifiersConfig()
+        modifiers: getCommonChartModifiersConfig(),
     });
 
     sciChartSurface.yAxes.get(0).visibleRange = new NumberRange(0, 100);
@@ -28,7 +28,7 @@ export const drawShaleChart = async () => {
     const dataSeries3 = new XyDataSeries(wasmContext, { dataIsSortedInX: true, containsNaN: false });
 
     const data = await getParsedData("Shale.csv");
-    data.forEach(dataRow => {
+    data.forEach((dataRow) => {
         const x = dataRow[0];
         dataSeries1.append(x, dataRow[1]);
         dataSeries2.append(x, dataRow[2]);
@@ -44,8 +44,8 @@ export const drawShaleChart = async () => {
                     fill: "transparent",
                     stroke: appTheme.ShaleSeriesStroke,
                     strokeThickness: 2,
-                    dataSeries: dataSeries1
-                }
+                    dataSeries: dataSeries1,
+                },
             },
             {
                 type: ESeriesType.StackedMountainSeries,
@@ -53,7 +53,7 @@ export const drawShaleChart = async () => {
                     fill: appTheme.ShaleWaterSeries,
                     stroke: appTheme.ShaleSeriesStroke,
                     strokeThickness: 2,
-                    dataSeries: dataSeries2
+                    dataSeries: dataSeries2,
                     // TODO: Uncomment after chart.js v2.2 release
                     // paletteProvider: new RangeFillPaletteProvider([
                     //     new PaletteRange(0, 100, EColor.Orange),
@@ -68,7 +68,7 @@ export const drawShaleChart = async () => {
                     //     new PaletteRange(820, 840, EColor.LimeGreen),
                     //     new PaletteRange(900, 950, EColor.Aqua)
                     // ])
-                }
+                },
             },
             {
                 type: ESeriesType.StackedMountainSeries,
@@ -76,18 +76,18 @@ export const drawShaleChart = async () => {
                     fill: appTheme.ShaleOilLegendColor,
                     stroke: appTheme.ShaleSeriesStroke,
                     strokeThickness: 0,
-                    dataSeries: dataSeries3
-                }
-            }
+                    dataSeries: dataSeries3,
+                },
+            },
         ],
         options: {
-            isOneHundredPercent: true
-        }
+            isOneHundredPercent: true,
+        },
     });
 
     const stackedMountainCollection = renderableSeries[0] as StackedMountainCollection;
     stackedMountainCollection.get(2).rolloverModifierProps.showRollover = false;
-    stackedMountainCollection.asArray().forEach(rs => {
+    stackedMountainCollection.asArray().forEach((rs) => {
         rs.rolloverModifierProps.tooltipColor = appTheme.RolloverTooltipFill;
         rs.rolloverModifierProps.tooltipTextColor = appTheme.RolloverTooltipText;
         rs.rolloverModifierProps.markerColor = appTheme.RolloverTooltipFill;

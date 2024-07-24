@@ -1,0 +1,43 @@
+<style>
+    .flexOuterContainer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: #14233c;
+    }
+
+    .flexContainerRow {
+        display: flex;
+        flex: auto;
+        flex-basis: 33%;
+        justify-content: space-between;
+        align-content: stretch;
+        margin: 10px;
+        width: calc(100% - 10px);
+    }
+    .item {
+        flex: auto;
+        height: 100%;
+    }
+</style>
+<div style="aspect-ratio: 3/2">
+    <div class="flexOuterContainer">
+        <div class="flexContainerRow">
+            <div class="item"><scichart-angular [initChart]="initJustLineCharts"></scichart-angular></div>
+            <div class="item"><scichart-angular [initChart]="initDigitalLineCharts"></scichart-angular></div>
+            <div class="item"><scichart-angular [initChart]="initTooltipsOnLineCharts"></scichart-angular></div>
+        </div>
+        <div class="flexContainerRow">
+            <div class="item"><scichart-angular [initChart]="initDashedLineCharts"></scichart-angular></div>
+            <div class="item"><scichart-angular [initChart]="initPalettedLineCharts"></scichart-angular></div>
+            <div class="item"><scichart-angular [initChart]="initHoveredLineCharts"></scichart-angular></div>
+        </div>
+        <div class="flexContainerRow">
+            <div class="item"><scichart-angular [initChart]="initGapsInLineCharts"></scichart-angular></div>
+            <div class="item"><scichart-angular [initChart]="initVerticalLineCharts"></scichart-angular></div>
+            <div class="item"><scichart-angular [initChart]="initThresholdedLineCharts"></scichart-angular></div>
+        </div>
+    </div>
+</div>
