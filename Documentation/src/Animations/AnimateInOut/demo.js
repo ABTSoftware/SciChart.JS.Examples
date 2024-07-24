@@ -10,11 +10,13 @@ const animateInOut = async (divElementId) => {
     ZoomPanModifier,
     MouseWheelZoomModifier,
     SplineLineRenderableSeries,
+    SciChartJsNavyTheme
   } = SciChart;
 
   // Create a SciChartSurface
-  const { wasmContext, sciChartSurface } = await SciChartSurface.create(
-    divElementId
+  const { wasmContext, sciChartSurface } = await SciChartSurface.create(divElementId, {
+      theme: new SciChartJsNavyTheme()
+    }
   );
 
   // Create an xAxis, yAxis
