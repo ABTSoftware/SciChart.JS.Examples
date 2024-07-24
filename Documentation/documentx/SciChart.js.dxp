@@ -1139,10 +1139,10 @@ Show external placement div</Notes>
         <TaskItem Id="0cb64b18-227e-4527-a001-a0db1d314fe1" Priority="High" AssignedTo="">
           <Title>v3.3 Add VerticalSliceModifier Documentation</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2024-02-02T09:26:22.3720312Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2024-07-17T09:48:41.7013356Z</ModifiedOn>
+          <ModifiedOn>2024-07-24T14:14:41.9759935Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -1209,10 +1209,10 @@ Show external placement div</Notes>
         <TaskItem Id="53c5dc57-142a-428d-87db-7aab060e5654" Priority="" AssignedTo="">
           <Title>v3.4 update Axis Formatting to include ENumericFormat.Engineering</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2024-07-17T09:45:49.6501292Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2024-07-17T09:46:00.6283727Z</ModifiedOn>
+          <ModifiedOn>2024-07-22T16:08:41.110474Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -2510,6 +2510,23 @@ Show external placement div</Notes>
                       <CaptionTemplate />
                       <ChildNodes />
                       <TargetItemId>fac601dc-5435-4c51-abec-1c267f55f193</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                  </ChildNodes>
+                </TocNode>
+                <TocNode Name="" Id="71cffad5-f0f7-44cd-bd71-b15aa4766402" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+                  <CaptionTemplate m="2024-07-22T16:15:09.4760113Z">VerticalSliceModifier (Multiple Vertical Lines + Tooltips)</CaptionTemplate>
+                  <ChildNodes>
+                    <TocNode Name="" Id="1e2dc053-6608-4d3c-82b7-a50f7e39ca60" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>b3c269a6-633c-4b2f-b340-af31bde661a7</TargetItemId>
+                      <TargetItemBookmark></TargetItemBookmark>
+                    </TocNode>
+                    <TocNode Name="" Id="36784787-6e3a-4014-abd3-55408d92519a" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                      <CaptionTemplate />
+                      <ChildNodes />
+                      <TargetItemId>208f846b-239f-469d-952f-ed0c28dd781a</TargetItemId>
                       <TargetItemBookmark></TargetItemBookmark>
                     </TocNode>
                   </ChildNodes>
@@ -8590,15 +8607,15 @@ Show external placement div</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="f5e77a55-f317-420d-9781-f8de2522f889" Status="New Topic" CreatedOn="2023-09-13T15:35:07.8301221Z" ModifiedOn="2023-09-13T15:50:57.7141689Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier_Formatting" BuildFlags="">
+                  <Topic Id="f5e77a55-f317-420d-9781-f8de2522f889" Status="New Topic" CreatedOn="2023-09-13T15:35:07.8301221Z" ModifiedOn="2024-07-24T09:04:14.54462Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier_Formatting" BuildFlags="">
                     <Title m="2023-09-13T15:38:43.9743309Z">Formatting CursorModifier Tooltip Items</Title>
                     <ContentsTitle />
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2023-09-13T15:49:49.3527462Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                        <Content m="2024-07-24T09:04:14.54462Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;Background reading:&lt;/P&gt;
-&lt;P&gt;If you haven't already, read the article&amp;nbsp;&lt;A href="ff5c9d10-4cdb-49f2-9e5b-45a4c611ed62"&gt;The CursorModifier Type&lt;/A&gt;&amp;nbsp;which will show you how to setup a CursorModifier with default options for tooltips. This article goes into further detail on customising the tooltip items (formatting, text content)&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;If you haven't already, read the article&amp;nbsp;&lt;A href="ff5c9d10-4cdb-49f2-9e5b-45a4c611ed62"&gt;The CursorModifier Type&lt;/A&gt;&amp;nbsp;which will show you how to setup a &lt;STRONG&gt;CursorModifier&lt;/STRONG&gt; with default options for tooltips. This article goes into further detail on customising the tooltip items (formatting, text content)&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Basic CursorModifier Tooltip Formatting Options&lt;/H2&gt;
 &lt;P&gt;Tooltip and Axis Label formatting comes from the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/labelprovider.html#formatcursorlabel"&gt;axis.labelprovider.formatCursorLabel()&lt;/A&gt; function&amp;nbsp;and is axis-specific. You can read more about the&amp;nbsp;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;Axis.LabelProvider API here&lt;/A&gt;, including how to specify formats from Enums and override formatting programmatically.&lt;/P&gt;
 &lt;P&gt;Below we're going to show you how to apply cursor formatting to enable four-decimal places on tooltips.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
@@ -8813,6 +8830,77 @@ Show external placement div</Notes>
                         <Category />
                       </TopicLink>
                     </TopicLinks>
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="b3c269a6-633c-4b2f-b340-af31bde661a7" Status="New Topic" CreatedOn="2024-07-22T16:14:34.6548874Z" ModifiedOn="2024-07-24T13:19:16.94175Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="VerticalSliceModifier" BuildFlags="">
+                    <Title m="2024-07-22T16:14:44.4001388Z">The VerticalSliceModifier Type</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2024-07-24T13:19:16.9085927Z">&lt;P&gt;With the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt;, SciChart.js provides the ability to place multiple vertical lines on the chart, which can show tooltips intersecting chart series.&lt;/P&gt;
+&lt;P&gt;This provides a similar behaviour to the&amp;nbsp;&lt;A href="fac601dc-5435-4c51-abec-1c267f55f193"&gt;RolloverModifier&lt;/A&gt;, except instead of a single vertical line plus tooltips which track the mouse, you can place multiple draggable vertical lines on the chart, which intersect line series and display tooltips.&lt;/P&gt;
+&lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt; allows you to:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;Place one or more vertical lines on the chart at data-values, relative coordinates or pixel coordinates 
+&lt;LI&gt;Vertical lines intersect chart series 
+&lt;LI&gt;Tooltips may be displayed at the intersections 
+&lt;LI&gt;Optionally show/hide or customize the tooltip content 
+&lt;LI&gt;Vertical lines may be dragged or edited 
+&lt;LI&gt;Vertical lines may be removed from the chart. &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P style='BOX-SIZING: border-box; FONT-SIZE: 16px; FONT-FAMILY: Roboto, "helvetica neue", Helvetica, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(33,33,33); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 10px; LETTER-SPACING: normal; TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial'&gt;The&lt;SPAN&gt;&amp;nbsp;&lt;/SPAN&gt;&lt;A style="BOX-SIZING: border-box; TEXT-DECORATION: none; COLOR: rgb(0,105,217); BACKGROUND-COLOR: transparent" href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A style="BOX-SIZING: border-box; TEXT-DECORATION: none; COLOR: rgb(0,105,217); BACKGROUND-COLOR: transparent" href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A style="BOX-SIZING: border-box; TEXT-DECORATION: none; COLOR: rgb(0,105,217); BACKGROUND-COLOR: transparent" href="https://demo.scichart.com/javascript/chart-vertical-slice-modifier" target=_blank&gt;Using VerticalSliceModifier Example&lt;/A&gt;&lt;SPAN&gt;&amp;nbsp;&lt;/SPAN&gt;can be found in the&amp;nbsp;&lt;A style="BOX-SIZING: border-box; TEXT-DECORATION: none; COLOR: rgb(0,105,217); BACKGROUND-COLOR: transparent" href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;SciChart.Js Examples Suite&lt;/A&gt;&amp;nbsp;on Github, or our live demo at&amp;nbsp;&lt;A style="BOX-SIZING: border-box; TEXT-DECORATION: none; COLOR: rgb(0,105,217); BACKGROUND-COLOR: transparent" href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;demo.scichart.com&lt;/A&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="iFrame" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="iFrameAllow"&gt;&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameWidth"&gt;100%&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameHeight"&gt;500px&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="iFrameUrl"&gt;https://demo.scichart.com/iframe/chart-vertical-slice-modifier&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Adding a VerticalSliceModifier to a Chart&lt;/H2&gt;
+&lt;P style='BOX-SIZING: border-box; FONT-SIZE: 16px; FONT-FAMILY: Roboto, "helvetica neue", Helvetica, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(33,33,33); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 10px; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial'&gt;One or more&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifiers&lt;/A&gt; can be added to the&amp;nbsp;&lt;A style="BOX-SIZING: border-box; TEXT-DECORATION: none; COLOR: rgb(0,105,217); BACKGROUND-COLOR: transparent" href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#chartmodifiers"&gt;sciChartSurface.chartModifiers&lt;/A&gt;&lt;SPAN&gt;&amp;nbsp;&lt;/SPAN&gt;collection to enable draggable lines with crosshair/cursor behavior. For example, this code adds a crosshair, enables default&amp;nbsp;tooltips and allows dragging of the vertical lines.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\VerticalSliceModifier\Basic\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\VerticalSliceModifier\Basic\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/VerticalSliceModifier/Basic/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Many of the properties here are optional - they have been included to show the configuration possibilities for the cursor. See&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/interfaces/iverticalsliceoptions.html"&gt;IVerticalSliceOptions&lt;/A&gt; for more.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Showing or Hiding VerticalSliceModifier Elements&lt;/H2&gt;
+&lt;P&gt;The following elements can be turned on or off when using the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;VerticalSliceModifier visibility&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;verticalSliceModifier.showTooltip = true; // Show or hide the tooltip&lt;BR&gt;verticalSliceModifier.showRolloverLine = true; // Show or hide the vertical line&lt;BR&gt;verticalSliceModifier.verticalLine.showLabel = true; // Show or hide the X-Axis label&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;In addition, the line may be made editable (draggable) by setting the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#isdraggable" target=_blank&gt;isDraggable&lt;/A&gt; property&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;VerticalSliceModifier editing&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
+&lt;P&gt;verticalSliceModifier.isDraggable = true; // Enable or disable dragging of the line&lt;BR&gt;verticalSliceModifier.lineSelectionColor = "Red"; // Change the highlight color when selected&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The vertical line&amp;nbsp;itself is simply a&amp;nbsp;&lt;A href="963d03d5-c2f0-4143-9817-8b37186bfe69"&gt;LineAnnotation&lt;/A&gt;&amp;nbsp;so all the properties there may be accessed via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#verticalline" target=_blank&gt;verticalSliceModifier.verticalLine&lt;/A&gt; property after instantiation.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;VerticalSliceModifier.verticalLine Styling&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;nbsp; // Add some vertical slices to the chart&lt;BR&gt;&amp;nbsp; const vSlice1 = new VerticalSliceModifier({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;// options ... &lt;BR&gt;&amp;nbsp; });&lt;BR&gt;&amp;nbsp; vSlice1.verticalLine.showLabel = true; // Show axis label&lt;BR&gt;&amp;nbsp; vSlice1.verticalLine.axisLabelFill = "#FF6600"; // Style axis label outline&amp;nbsp;and font&lt;BR&gt;&amp;nbsp; vSlice1.verticalLine.axisLabelStroke = "White";&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks>
+                      <TopicLink Id="c52f0bcd-ee42-405a-b03d-d61e135cbfe3" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="208f846b-239f-469d-952f-ed0c28dd781a" BuildFlags="">
+                        <Title />
+                        <Category />
+                      </TopicLink>
+                    </TopicLinks>
+                    <TopicKeywords />
+                    <PropertyDefinitionValues />
+                    <ExcludedOtherFiles />
+                  </Topic>
+                  <Topic Id="208f846b-239f-469d-952f-ed0c28dd781a" Status="New Topic" CreatedOn="2024-07-24T08:38:30.0201027Z" ModifiedOn="2024-07-24T13:59:20.4711807Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="VerticalSliceModifier_Formatting" BuildFlags="">
+                    <Title m="2024-07-24T08:38:50.7641792Z">Formatting VerticalSlice Tooltip Items</Title>
+                    <ContentsTitle />
+                    <Notes></Notes>
+                    <TopicSections>
+                      <TopicSection Name="BodyText">
+                        <Content m="2024-07-24T13:59:20.4711807Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;STRONG&gt;Background reading: &lt;/STRONG&gt;If you haven't already, read the article&amp;nbsp;&lt;A href="b3c269a6-633c-4b2f-b340-af31bde661a7"&gt;The VerticalSliceModifier Type&lt;/A&gt;&amp;nbsp;which will show you how to setup a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt; with default options for tooltips.&lt;/P&gt;
+&lt;P&gt;This article goes into further detail on customising the tooltip items (formatting, text content)&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Basic VerticalSliceModifier Tooltip Formatting Options&lt;/H2&gt;
+&lt;P&gt;The&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt; obeys similar rules to the&amp;nbsp;&lt;A href="ff5c9d10-4cdb-49f2-9e5b-45a4c611ed62"&gt;CursorModifier&lt;/A&gt; and&amp;nbsp;&lt;A href="fac601dc-5435-4c51-abec-1c267f55f193"&gt;RolloverModifier&lt;/A&gt; for customizing the tooltip content and appearance.&lt;/P&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;EM&gt;Tooltip and Axis Label formatting comes from the&amp;nbsp;&lt;/EM&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/labelprovider.html#formatcursorlabel"&gt;&lt;EM&gt;axis.labelprovider.formatCursorLabel()&lt;/EM&gt;&lt;/A&gt; &lt;EM&gt;function&amp;nbsp;and is axis-specific. You can read more about the&amp;nbsp;&lt;/EM&gt;&lt;A href="1325dcad-b236-42e7-8491-af7a8137d6e7"&gt;&lt;EM&gt;Axis.LabelProvider API here&lt;/EM&gt;&lt;/A&gt;&lt;EM&gt;, including how to specify formats from Enums and override formatting programmatically.&lt;/EM&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Below we're going to show you how to apply tooltip formatting to enable four-decimal places on&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt; tooltips.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\VerticalSliceModifier\Formatting\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\VerticalSliceModifier\Formatting\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Here's a &lt;STRONG&gt;Codepen&lt;/STRONG&gt; which shows the effect of these properties on the axis on cursor tooltips.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/VerticalSliceModifier/Formatting/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;For further customisation on a per-axis basis, consider using the&amp;nbsp;&lt;A href="e9747ecc-a3cd-456b-9180-c47daead66ef"&gt;LabelProvider feature&lt;/A&gt; to create a custom labelprovider, and override formatCursorLabel.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Tooltip DataTemplates&lt;/H2&gt;
+&lt;P&gt;Further customisation of&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt; tooltip content can be achieved with the &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#tooltipdatatemplate"&gt;VerticalSliceModifier.tooltipDataTemplate&lt;/A&gt; property. This defines the content inside the tooltip e.g. what values are shown (x, y, values from metadata), if the series name is shown and so on.&lt;/P&gt;
+&lt;P&gt;This property expects a function in the following format (see&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#trollovertooltipdatatemplate"&gt;TRolloverTooltipDataTemplate&lt;/A&gt;):&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;tooltipDataTemplateFunction&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;TRolloverTooltipDataTemplate: (seriesInfo: SeriesInfo, &lt;BR&gt;&amp;nbsp;&amp;nbsp; tooltipTitle: string, &lt;BR&gt;&amp;nbsp;&amp;nbsp; tooltipLabelX: string, &lt;BR&gt;&amp;nbsp;&amp;nbsp; tooltipLabelY: string) =&amp;gt; string[]&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The&amp;nbsp;input/output parameters are:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;STRONG&gt;Input&lt;/STRONG&gt;: an&amp;nbsp;instance of&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/seriesinfo.html"&gt;SeriesInfo&lt;/A&gt;: a data object which stores info about the series under the mouse. 
+&lt;LI&gt;&lt;STRONG&gt;Input&lt;/STRONG&gt;: a tooltipTitle (string) which comes from&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rollovermodifierrenderableseriesprops.html#tooltiptitle"&gt;renderableSeries.rolloverModifierProps.tooltipTitle&lt;/A&gt;.
+&lt;LI&gt;&lt;STRONG&gt;Input:&lt;/STRONG&gt; The label prefix before the X-value in the tooltip.
+&lt;LI&gt;&lt;STRONG&gt;Input:&lt;/STRONG&gt; The label prefix before the Y-value in the tooltip. 
+&lt;LI&gt;&lt;STRONG&gt;Output&lt;/STRONG&gt;:&amp;nbsp;an array of strings, each one corresponding to a line in the tooltip. &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Let's create a simple example which shows you how to access properties on&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xyseriesinfo.html"&gt;XySeriesInfo&lt;/A&gt; and output to tooltips.&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\VerticalSliceModifier\DataTemplate\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;json-builder&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;jS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\VerticalSliceModifier\DataTemplate\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/VerticalSliceModifier/DataTemplate/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;</Content>
+                      </TopicSection>
+                    </TopicSections>
+                    <TopicLinks />
                     <TopicKeywords />
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
@@ -16031,7 +16119,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">744</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">3236</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
@@ -16845,6 +16933,7 @@ Show external placement div</Notes>
 &lt;meta name="twitter:description" content="JavaScript Chart Documentation for the SciChart JavaScript v3.x SDK. Featuring many JavaScript Chart Types, you can create rich JavaScript, React and TypeScript applications with our powerful API"/&gt;
 &lt;meta name="twitter:site" content="@scichart"/&gt;
 &lt;meta name="twitter:creator" content="@scichart"/&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"&gt;
 &lt;!-- Script to embed codepens at runtime only --&gt;
 &lt;script&gt;
 	var isDesigner = location.protocol === 'about:';
