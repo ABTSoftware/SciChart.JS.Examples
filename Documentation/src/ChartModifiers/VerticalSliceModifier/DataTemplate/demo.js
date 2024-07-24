@@ -20,7 +20,6 @@ async function formattingVerticalSliceModifier(divElementId) {
 
   // or for npm import { SciChartSurface, ... } from "scichart"
 
-  // #region ExampleA
   // Create a chart surface
   const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
     theme: new SciChartJsNavyTheme(),
@@ -30,24 +29,13 @@ async function formattingVerticalSliceModifier(divElementId) {
   // For the example to work, axis must have EAutoRange.Always
   sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
     axisTitle: "X Axis",
-    // label format options applied to the X-Axis
-    labelPrecision: 1,
-    labelFormat: ENumericFormat.Decimal,
-    // label format options applied to cursors & tooltips
-    cursorLabelPrecision: 2,
-    cursorLabelFormat: ENumericFormat.Decimal
   }));
   sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
     visibleRange: new NumberRange(-2, 0.5),
     axisTitle: "Y Axis",
-    // label format options applied to the X-Axis
-    labelPrecision: 1,
-    labelFormat: ENumericFormat.Decimal,
-    // label format options applied to cursors & tooltips
-    cursorLabelPrecision: 6,
-    cursorLabelFormat: ENumericFormat.Decimal
   }));
 
+  // #region ExampleA
   // Add a custom tooltip data template
   const tooltipDataTemplate = (seriesInfo, tooltipTitle, tooltipLabelX, tooltipLabelY) => {
     // each element in this array = 1 line in the tooltip
@@ -183,33 +171,28 @@ async function builderExample(divElementId) {
 
   // or, for npm, import { chartBuilder, ... } from "scichart"
 
+  // Add a custom tooltip data template
+  const tooltipDataTemplate = (seriesInfo, tooltipTitle, tooltipLabelX, tooltipLabelY) => {
+    // each element in this array = 1 line in the tooltip
+    const lineItems = [];
+    // See SeriesInfo docs at https://scichart.com/documentation/js/current/typedoc/classes/xyseriesinfo.html
+    // SeriesInfo.seriesName comes from dataSeries.dataSeriesName
+    lineItems.push(`${seriesInfo.seriesName}`);
+    // seriesInfo.xValue, yValue are available to be formatted
+    // Or, preformatted values are available as si.formattedXValue, si.formattedYValue
+    lineItems.push(`X: ${seriesInfo.xValue.toFixed(2)}`);
+    lineItems.push(`Y: ${seriesInfo.yValue.toFixed(2)}`);
+    // index to the dataseries is available
+    lineItems.push(`Index: ${seriesInfo.dataSeriesIndex}`);
+    // Which can be used to get anything from the dataseries
+    lineItems.push(`Y-value from dataSeries: ${seriesInfo.renderableSeries.dataSeries.getNativeYValues().get(seriesInfo.dataSeriesIndex).toFixed(4)}`);
+    // Location of the hit in pixels is available
+    lineItems.push(`Location: ${seriesInfo.xCoordinate.toFixed(0)}, ${seriesInfo.yCoordinate.toFixed(0)}`);
+    return lineItems;
+  };
+
   const { wasmContext, sciChartSurface } = await chartBuilder.build2DChart(divElementId, {
     surface: { theme: { type: EThemeProviderType.Dark } },
-    xAxes: {
-      type: EAxisType.NumericAxis,
-      options: {
-        axisTitle: "X Axis",
-        // label format options applied to the X-Axis
-        labelPrecision: 1,
-        labelFormat: ENumericFormat.Decimal,
-        // label format options applied to cursors & tooltips
-        cursorLabelPrecision: 2,
-        cursorLabelFormat: ENumericFormat.Decimal
-      }
-    },
-    yAxes: {
-      type: EAxisType.NumericAxis,
-      options: {
-        visibleRange: new NumberRange(-2, 0.5),
-        axisTitle: "Y Axis",
-        // label format options applied to the X-Axis
-        labelPrecision: 1,
-        labelFormat: ENumericFormat.Decimal,
-        // label format options applied to cursors & tooltips
-        cursorLabelPrecision: 6,
-        cursorLabelFormat: ENumericFormat.Decimal
-      }
-    },
     modifiers: [{
       type: EChart2DModifierType.VerticalSlice,
       options: {
@@ -223,6 +206,8 @@ async function builderExample(divElementId) {
         lineSelectionColor: "#FF6600",
         // Shows the default tooltip
         showTooltip: true,
+        // Add the tooltip data template
+        tooltipDataTemplate
       }
     },
       {
@@ -238,6 +223,8 @@ async function builderExample(divElementId) {
           lineSelectionColor: "#50C7E0",
           // Shows the default tooltip
           showTooltip: true,
+          // Add the tooltip data template
+          tooltipDataTemplate
         }
       }]
   });

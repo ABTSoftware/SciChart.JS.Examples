@@ -115,7 +115,7 @@ basicCursorModifier("scichart-root");
 
 async function builderExample(divElementId) {
   // #region ExampleB
-  // Demonstrates how to configure the PinchZoomModifier in SciChart.js using the Builder API
+  // Demonstrates how to configure the CursorModifier in SciChart.js using the Builder API
   const {
     chartBuilder,
     EThemeProviderType,
