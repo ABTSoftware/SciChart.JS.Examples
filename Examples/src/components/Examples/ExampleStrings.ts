@@ -152,7 +152,7 @@ export const ExampleStrings = {
     urlDigitalMountainChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Digital%20(Step)%20Mountain%20Series%20Type.html`,
     urlTitleDigitalMountainChartDocumentation: `This specific page in the JavaScript Digital Mountain Chart documentation will help you to get started`,
     urlDigitalMountainChart: `digital-mountain-chart`,
-    titleDigitalMountainChart: `Digital Mountain Chart`,
+    titleDigitalMountainChart: (frameworkName: TFrameworkName) => `${frameworkName} Digital Mountain Chart`,
     pageTitleDigitalMountainChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Digital Mountain Chart | JavaScript Chart Example`,
     urlTitleDigitalMountainChart: `The JavaScript Digital Mountain Chart example demonstrates how to create a Digital Mountain Chart with SciChart.js`,
@@ -196,7 +196,7 @@ export const ExampleStrings = {
     // Spline line series
     urlSplineLineChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Spline%20(Smoothed)%20Line%20Series%20Type.html`,
     urlTitleSplineLineChartDocumentation: `The specific page for the JavaScript Spline Line Chart documentation will help you to get started`,
-    titleSplineLineChart: `Spline Line Chart`,
+    titleSplineLineChart: (frameworkName: TFrameworkName) => `${frameworkName} Spline Line Chart`,
     pageTitleSplineLineChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Spline Line Chart | JavaScript Chart Library`,
     urlSplineLineChart: `spline-line-chart`,
@@ -221,7 +221,7 @@ export const ExampleStrings = {
 
     // Donut Chart
     urlDonutChart: `donut-chart`,
-    titleDonutChart: `Donut Chart`,
+    titleDonutChart: (frameworkName: TFrameworkName) => `${frameworkName} Donut Chart`,
     pageTitleDonutChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Donut Chart | JavaScript Charts | SciChart.js`,
     urlDonutChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Donut%20Chart%20Type.html`,
@@ -252,6 +252,16 @@ export const ExampleStrings = {
         `${frameworkName} Stacked Mountain Chart | JavaScript Chart Library`,
     urlStackedMountainChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Stacked%20Mountain%20Series%20Type.html`,
     urlTitleStackedMountainChartDocumentation: `The specific page for the JavaScript Stacked Mountain Chart documentation will help you to get started`,
+
+    // Smooth Stacked Mountain Chart
+    urlSmoothStackedMountainChart: `smooth-stacked-mountain-chart`,
+    urlSmoothTitleStackedMountainChart: `The Smooth Stacked Mountain Chart and 100% Smooth Stacked Mountain Chart example in SciChart.js`,
+    titleSmoothStackedMountainChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Smooth Stacked Mountain Chart`,
+    pageTitleSmoothStackedMountainChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Smooth Stacked Mountain Chart | JavaScript Chart Library`,
+    urlSmoothStackedMountainChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Stacked%20Mountain%20Series%20Type.html`,
+    urlTitleSmoothStackedMountainChartDocumentation: `The specific page for the JavaScript Smooth Stacked Mountain Chart documentation will help you to get started`,
 
     // Heatmap Chart
     urlHeatmapChart: `heatmap-chart`,
@@ -298,9 +308,10 @@ export const ExampleStrings = {
 
     // Trademarkers
     urlTradeMarkers: `stock-chart-buy-sell-markers`,
-    titleTradeMarkers: (frameworkName: TFrameworkName) => `${frameworkName} Chart Trading Buy Sell Marker Annotations`,
+    titleTradeMarkers: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Chart Hoverable Buy Sell Marker Annotations`,
     urlTitleTradeMarkers: (frameworkName: TFrameworkName) =>
-        `${frameworkName} Chart Trade Markers example demonstrates how to add buy/sell arrows and markers to a trading application`,
+        `${frameworkName} Chart Trade Markers example demonstrates how to add hoverable buy/sell arrows and markers to a trading application`,
 
     // Drag horizontal threshold
     titleDragHorizontalThreshold: (frameworkName: TFrameworkName) => `${frameworkName} Chart Drag Horizontal Threshold`,
@@ -335,6 +346,13 @@ export const ExampleStrings = {
         `${frameworkName} Multi-Pane Stock Charts using Subcharts`,
     pageTitleSubChartStockChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Multi-Pane Stock Chart using Subcharts | View JavaScript Charts`,
+
+    urluserAnnotatedStockChart: `user-annotated-stock-chart`,
+    titleuserAnnotatedStockChart: (frameworkName: TFrameworkName) => `${frameworkName} User Annotated Stock Chart`,
+    pageTitleuserAnnotatedStockChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} User Annotated Stock Chart | Chart Examples | SciChart.js`,
+    urlTitleuserAnnotatedStockChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} User Annotated Stock Chart example demonstrates how to allow users to annotate a Stock Chart with SciChart.js`,
 
     // Subcharts Grid
     urlSubChartsGrid: `subcharts-grid`,
@@ -398,6 +416,14 @@ export const ExampleStrings = {
     urlCentralAxesDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#CentralAxisLayout.html`,
     urlTitleCentralAxesDocumentation: `SciChart.js Central Axis Documentation page`,
 
+    // StaticAxis
+    titleStaticAxis: (frameworkName: TFrameworkName) => `${frameworkName} Chart with Static X Axis`,
+    urlStaticAxis: `static-x-axis`,
+    urlTitleStaticAxis: (frameworkName: TFrameworkName) =>
+        `The Static XAxis example shows how to use isStaticAxis to create a static xAxis on a ${frameworkName} Chart.`,
+    urlStaticAxisDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Static%20Axis.html`,
+    urlTitleStaticAxisDocumentation: `SciChart.js Static xAxis Documentation page`,
+
     // Vertically Stacked axes
     titleVerticallyStackedAxes: (frameworkName: TFrameworkName) =>
         `${frameworkName} Chart with Vertically Stacked Axes`,
@@ -444,6 +470,9 @@ export const ExampleStrings = {
     urlZoomPanWithMultipleChartModifiers: `zoom-pan-multiple-modifiers`,
     urlZoomPanModifierDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#ZoomPanModifier.html`,
     urlTitleZoomPanModifierDocumentation: `Zoom and Pan Modifier Documentation`,
+
+    titleZoomHighPrecision: (frameworkName: TFrameworkName) => `Range vs Precision on a DateTimeNumericAxis`,
+    urlZoomHighPrecision: `zoom-high-precision`,
 
     // PaletteProvider
     titlePaletteProvider: `Coloring Series per-point using the PaletteProvider`,
@@ -722,6 +751,9 @@ export const ExampleStrings = {
 
     urlEventMarkers: `dragabble-event-markers`,
     titleEventMarkers: (frameworkName: TFrameworkName) => `Dragabble Event Markers`,
+
+    urlPopulationPyramid: `population-pyramid`,
+    titlePopulationPyramid: (frameworkName: TFrameworkName) => `${frameworkName} Population Pyramid`,
 
     urlTextChart: `text-chart`,
     titleTextChart: (frameworkName: TFrameworkName) => `${frameworkName} Text Chart`,

@@ -19,6 +19,14 @@ import {
     ZoomExtentsModifier,
     EWrapTo,
     NativeTextAnnotation,
+    AnnotationHoverModifier,
+    EHoverMode,
+    translateFromCanvasToSeriesViewRect,
+    GenericAnimation,
+    easing,
+    Thickness,
+    translateToNotScaled,
+    EAnnotationType,
 } from "scichart";
 const getImageAnnotation = (x1, y1, image, width, height) => {
     return new CustomAnnotation({
@@ -120,6 +128,31 @@ export const drawExample = async (rootElement) => {
         text: "Unmovable text",
         isEditable: false,
     });
+    const hoverableTextAnnotation = new TextAnnotation({
+        x1: 1,
+        y1: 1,
+        xCoordinateMode: ECoordinateMode.DataValue,
+        yCoordinateMode: ECoordinateMode.DataValue,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        verticalAnchorPoint: EVerticalAnchorPoint.Center,
+        textColor,
+        fontSize: 26,
+        fontFamily: "Arial",
+        text: "Hover me to select",
+        isEditable: true,
+        onHover: (args) => {
+            const { isHovered, sender } = args;
+            if (isHovered) {
+                // This sets isSelected on the target annotation
+                sender.parentSurface.adornerLayer.selectAnnotation(args.mouseArgs);
+            } else {
+                // this does not actually deselect the annotation on the surface
+                sender.isSelected = false;
+                // so we manually deselect it
+                sender.parentSurface.adornerLayer.deselectAnnotation(sender);
+            }
+        },
+    });
     const textAnnotationSciChart = new TextAnnotation({
         x1: 1,
         y1: 3,
@@ -163,6 +196,33 @@ export const drawExample = async (rootElement) => {
         isEditable: true,
         scaleOnResize: true,
     });
+    const tooltipPreviewAnnotation = new TextAnnotation({
+        x1: 1,
+        y1: 8,
+        xCoordinateMode: ECoordinateMode.DataValue,
+        yCoordinateMode: ECoordinateMode.DataValue,
+        textColor: appTheme.ForegroundColor,
+        fontSize: 16,
+        text: `Move mouse over an annotation to get a tooltip with its type.<tspan x="4" dy="1.2em">The tooltip itself is also an annotation.</tspan>`,
+        padding: Thickness.fromNumber(4),
+        background: "black",
+    });
+    const tooltipAnnotation = new TextAnnotation({
+        x1: 0,
+        y1: 0,
+        xCoordShift: 20,
+        yCoordShift: 20,
+        xCoordinateMode: ECoordinateMode.Pixel,
+        yCoordinateMode: ECoordinateMode.Pixel,
+        horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
+        verticalAnchorPoint: EVerticalAnchorPoint.Top,
+        textColor: appTheme.ForegroundColor,
+        fontSize: 16,
+        text: "",
+        padding: Thickness.fromNumber(4),
+        background: "black",
+        isHidden: true,
+    });
     sciChartSurface.annotations.add(
         text1,
         text2,
@@ -175,10 +235,105 @@ export const drawExample = async (rootElement) => {
         textAnnotation,
         textAnnotationSciChart,
         nativetextWrap,
-        nativetextScale
+        nativetextScale,
+        hoverableTextAnnotation,
+        // customAnnotation,
+        tooltipPreviewAnnotation,
+        tooltipAnnotation
     );
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
+    let currentTooltipAnimation;
+    const animateTooltip = () => {
+        currentTooltipAnimation?.cancel();
+        tooltipAnnotation.isHidden = true;
+        currentTooltipAnimation = new GenericAnimation({
+            from: 0,
+            to: 1,
+            duration: 0,
+            delay: 500,
+            ease: easing.linear,
+            onAnimate: (from, to, progress) => {},
+            onCompleted: () => {
+                tooltipAnnotation.isHidden = false;
+            },
+        });
+        sciChartSurface.addAnimation(currentTooltipAnimation);
+    };
+    const annotationHoverModifier = new AnnotationHoverModifier({
+        // check hover on all annotations except the one used for tooltip
+        targets: (modifier) =>
+            modifier.parentSurface.annotations.asArray().filter((annotation) => annotation !== tooltipAnnotation),
+        // ignore tooltip annotation if it is overlapping with other
+        hoverMode: EHoverMode.TopmostIncluded,
+        // needed to update tooltip position when moving the cursor within an annotation
+        notifyPositionUpdate: true,
+        // manage tooltip visibility and position
+        onHover: (args) => {
+            const [hoveredAnnotation] = args.hoveredEntities;
+            if (hoveredAnnotation) {
+                if (hoveredAnnotation.isEditable) {
+                    sciChartSurface.domChartRoot.style.cursor = "grab";
+                }
+                if (hoveredAnnotation.isDraggingStarted) {
+                    tooltipAnnotation.isHidden = true;
+                    return;
+                }
+                const borders = tooltipAnnotation.getAnnotationBorders(true);
+                tooltipAnnotation.text = mapAnnotationTypeToName(hoveredAnnotation.type);
+                const handleAnnotationsOutsideSeriesViewRect = true;
+                const translatedMousePoint = translateFromCanvasToSeriesViewRect(
+                    args.mouseArgs.mousePoint,
+                    sciChartSurface.seriesViewRect,
+                    handleAnnotationsOutsideSeriesViewRect
+                );
+                tooltipAnnotation.x1 = translateToNotScaled(translatedMousePoint.x);
+                tooltipAnnotation.y1 = translateToNotScaled(translatedMousePoint.y);
+                // initial default offset from pointer
+                tooltipAnnotation.xCoordShift = 20;
+                const width = Math.abs(borders.x2 - borders.x1);
+                const expectedX2Coordinate = tooltipAnnotation.x1 + tooltipAnnotation.xCoordShift + width;
+                const unscaledViewWidth = translateToNotScaled(sciChartSurface.seriesViewRect.width);
+                if (expectedX2Coordinate > unscaledViewWidth) {
+                    tooltipAnnotation.xCoordShift = unscaledViewWidth - width - tooltipAnnotation.x1;
+                }
+                animateTooltip();
+            } else {
+                sciChartSurface.domChartRoot.style.cursor = "auto";
+                tooltipAnnotation.isHidden = true;
+                currentTooltipAnimation?.cancel();
+            }
+        },
+    });
+    sciChartSurface.chartModifiers.add(annotationHoverModifier);
     return { sciChartSurface, wasmContext };
+};
+const mapAnnotationTypeToName = (type) => {
+    switch (type) {
+        case EAnnotationType.RenderContextAxisMarkerAnnotation:
+            return "AxisMarkerAnnotation";
+        case EAnnotationType.RenderContextBoxAnnotation:
+            return "BoxAnnotation";
+        case EAnnotationType.RenderContextLineAnnotation:
+            return "LineAnnotation";
+        case EAnnotationType.RenderContextHorizontalLineAnnotation:
+            return "HorizontalLineAnnotation";
+        case EAnnotationType.RenderContextVerticalLineAnnotation:
+            return "VerticalLineAnnotation";
+        case EAnnotationType.SVGTextAnnotation:
+            return "TextAnnotation";
+        case EAnnotationType.RenderContextNativeTextAnnotation:
+            return "NativeTextAnnotation";
+        case EAnnotationType.SVGCustomAnnotation:
+            return "CustomAnnotation";
+        case EAnnotationType.SVG:
+            return "SvgAnnotation";
+        default: {
+            const handleInvalidType = (value) => {
+                throw new Error(`Invalid annotation type: ${value}`);
+            };
+            return handleInvalidType(type);
+        }
+    }
 };

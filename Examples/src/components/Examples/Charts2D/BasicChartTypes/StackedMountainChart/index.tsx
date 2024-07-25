@@ -4,7 +4,8 @@ import { appTheme } from "../../../theme";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/core/styles";
 import { SciChartSurface, StackedMountainCollection } from "scichart";
-import { drawExample, divElementId } from "./drawExample";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
+import { drawExample } from "./drawExample";
 
 const useStyles = makeStyles((theme) => ({
     flexOuterContainer: {
@@ -32,27 +33,6 @@ export default function StackedMountainChart() {
     const sciChartSurfaceRef = React.useRef<SciChartSurface>();
     const stackedMountainCollectionRef = React.useRef<StackedMountainCollection>();
     const [use100PercentStackedMode, setUse100PercentStackedMode] = React.useState(false);
-
-    React.useEffect(() => {
-        const chartInitializationPromise = drawExample().then((res) => {
-            sciChartSurfaceRef.current = res.sciChartSurface;
-            stackedMountainCollectionRef.current = res.stackedMountainCollection;
-        });
-
-        // Delete sciChartSurface on unmount component to prevent memory leak
-        return () => {
-            // check if chart is already initialized
-            if (sciChartSurfaceRef.current) {
-                sciChartSurfaceRef.current.delete();
-                return;
-            }
-
-            // else postpone deletion
-            chartInitializationPromise.then(() => {
-                sciChartSurfaceRef.current.delete();
-            });
-        };
-    }, []);
 
     const handleUsePercentage = (event: any, value: boolean) => {
         if (value !== null) {
@@ -84,7 +64,15 @@ export default function StackedMountainChart() {
                         100% Stacked mode
                     </ToggleButton>
                 </ToggleButtonGroup>
-                <div id={divElementId} className={localClasses.chartArea} />
+                <SciChartReact
+                    initChart={drawExample}
+                    className={localClasses.chartArea}
+                    onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                        const { sciChartSurface, stackedMountainCollection } = initResult;
+                        stackedMountainCollectionRef.current = stackedMountainCollection;
+                        sciChartSurfaceRef.current = sciChartSurface;
+                    }}
+                />
             </div>
         </div>
     );
