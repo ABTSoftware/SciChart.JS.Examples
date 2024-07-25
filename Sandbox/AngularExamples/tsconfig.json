@@ -23,10 +23,6 @@
       "dom"
     ],
   },
-  "include": [
-    "src/**/*",
-    "src/png.d.ts"
-  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

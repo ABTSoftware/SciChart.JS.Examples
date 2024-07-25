@@ -1,117 +1,116 @@
 import { ExampleStrings } from "./ExampleStrings";
-// import * as bandSeriesChartExampleInfo from "../../../../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/BandSeriesChart/drawExample";
-import * as bandSeriesChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/BandSeriesChart/drawExample";
-// import * as splineBandSeriesChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart/drawExample";
-import * as digitalBandSeriesChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart/drawExample";
-import * as fanChartExampleInfo  from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/FanChart/drawExample";
-import * as ohlcChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/OhlcChart/drawExample";
-import * as  columnChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/ColumnChart/drawExample";
-import * as impulseChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/ImpulseChart/drawExample";
-import * as splineLineChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/SplineLineChart/drawExample";
-import * as digitalLineChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/DigitalLineChart/drawExample";
-import * as mountainChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/MountainChart/drawExample";
-import * as splineMountainChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/SplineMountainChart/drawExample";
-import * as digitalMountainChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/DigitalMountainChart/drawExample";
-import * as scatterChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/ScatterChart/drawExample";
-import * as contourChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/ContoursChart/drawExample";
-import * as multipleXAxesExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes/drawExample";
-import * as secondaryYAxesExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/drawExample";
-import * as verticalChartsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/drawExample";
-import * as centralAxesExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/CentralAxes/drawExample";
-import * as verticallyStackedAxesExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/drawExample";
-// import * as stackedColumnChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedColumnChart/drawExample";
-// import * as stackedColumnChartExampleInfoTs from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedColumnChart/angular-chart";
-import * as stackedMountainChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedMountainChart/drawExample";
-import * as bubble3DChartExampleInfo from "../../../../Examples/src/components/Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/drawExample";
-import * as surfaceMesh3DChartExampleInfo from "../../../../Examples/src/components/Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/drawExample";
-import * as pointLine3DChartExampleInfo from "../../../../Examples/src/components/Examples/Charts3D/Basic3DChartTypes/PointLine3DChart/drawExample";
-import * as createACustomThemeExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/CreateACustomTheme/drawExample";
-import * as stylingInCodeExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/StylingInCode/drawExample";
-import * as usingRolloverModifierTooltipsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/drawExample";
-import * as simpleChartExampleInfo from "../../../../Examples/src/components/Examples/BuilderApi/SimpleChart/drawExample";
-import * as fullChartExampleInfo from "../../../../Examples/src/components/Examples/BuilderApi/FullChart/drawExample";
-import * as sharedDataExampleInfo from "../../../../Examples/src/components/Examples/BuilderApi/SharedData/drawExample";
-import * as rotatedLabelsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/RotatedLabels/drawExample";
-import * as nonUniformHeatmapExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/NonUniformHeatmapChart/drawExample";
-import * as textChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/TextSeriesChart/drawExample";
-import * as realtimeSurfaceMesh3DChartExampleInfo from "../../../../Examples/src/components/Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart/drawExample";
-import * as annotationLayersExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/AnnotationLayers/drawExample";
-// import * as candlestickChartExampleInfo  from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/CandlestickChart/drawExample";
-import * as logarithmicAxisExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/drawExample";
- import * as  bubbleChartExampleInfo  from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/BubbleChart/drawExample";
- import * as heatmapChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/HeatmapChart/drawExample";
- import * as lineChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/LineChart/drawExample";
- import * as donutChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/DonutChart/drawExample";
- import * as pieChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/PieChart/drawExample";
- import * as realTimeMountainChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/drawExample";
- import * as multiPaneStockChartsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/drawExample";
- import * as chartLegendsAPIExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/Legends/ChartLegendsAPI/drawExample";
- import * as seriesSelectionExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/SeriesSelection/drawExample";
- import * as usingCursorModifierTooltipsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips/drawExample";
- import * as realtimePerformanceDemoExampleInfo  from "../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo/drawExample";
- import * as dragAxisToScaleExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/drawExample";
- import * as realtimeZoomPanExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/drawExample";
- import * as zoomAndPanWithMultipleChartModifiersExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/drawExample";
- import * as dragHorizontalThresholdExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/drawExample";
- import * as metaDataExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/MetaData/drawExample";
- import * as customTypesExampleInfo from "../../../../Examples/src/components/Examples/BuilderApi/CustomTypes/drawExample";
- import * as multiLineLabelsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/MultiLineLabels/drawExample";
- import * as trendMARatioExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/Filters/TrendMARatio/drawExample";
- import * as overviewExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ZoomingAndPanning/OverviewModifier/drawExample";
- import * as drawBehindAxesExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes/drawExample";
- import * as axisLayoutExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/FeatureDemos/AxisLayout/drawExample";
-//  import * as websocketBigDataDemoExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/WebsocketBigData/drawExample";
- import * as usingVerticalSliceModifierExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/drawExample";
- import * as lidar3DPointCloudExampleInfo  from "../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/drawExample";
-// import * as errorBarsChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/ErrorBarsChart/drawExample";
+import * as bandSeriesChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/BandSeriesChart/drawExample" ;
+import * as digitalBandSeriesChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/DigitalBandSeriesChart/drawExample";
+import * as fanChartExampleInfo  from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/FanChart/drawExample";
+import * as ohlcChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/OhlcChart/drawExample";
+import * as  columnChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/ColumnChart/drawExample";
+import * as impulseChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/ImpulseChart/drawExample";
+import * as splineLineChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/SplineLineChart/drawExample";
+import * as digitalLineChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/DigitalLineChart/drawExample";
+import * as mountainChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/MountainChart/drawExample";
+import * as splineMountainChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/SplineMountainChart/drawExample";
+import * as digitalMountainChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/DigitalMountainChart/drawExample";
+import * as scatterChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/ScatterChart/drawExample";
+import * as contourChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/ContoursChart/drawExample";
+import * as multipleXAxesExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/MultipleXAxes/drawExample";
+import * as secondaryYAxesExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/SecondaryYAxes/drawExample";
+import * as verticalChartsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/VerticalCharts/drawExample";
+import * as centralAxesExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/CentralAxes/drawExample";
+import * as verticallyStackedAxesExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/VerticallyStackedAxes/drawExample";
+import * as stackedMountainChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedMountainChart/drawExample";
+import * as bubble3DChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts3D/Basic3DChartTypes/Bubble3DChart/drawExample";
+import * as surfaceMesh3DChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts3D/Basic3DChartTypes/SurfaceMesh3DChart/drawExample";
+import * as pointLine3DChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts3D/Basic3DChartTypes/PointLine3DChart/drawExample";
+import * as createACustomThemeExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/CreateACustomTheme/drawExample";
+import * as stylingInCodeExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/StylingInCode/drawExample";
+import * as usingRolloverModifierTooltipsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/UsingRolloverModifierTooltips/drawExample";
+import * as simpleChartExampleInfo from "../../../../../Examples/src/components/Examples/BuilderApi/SimpleChart/drawExample";
+import * as fullChartExampleInfo from "../../../../../Examples/src/components/Examples/BuilderApi/FullChart/drawExample";
+import * as sharedDataExampleInfo from "../../../../../Examples/src/components/Examples/BuilderApi/SharedData/drawExample";
+import * as rotatedLabelsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/RotatedLabels/drawExample";
+import * as nonUniformHeatmapExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/NonUniformHeatmapChart/drawExample";
+import * as textChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/TextSeriesChart/drawExample";
+import * as realtimeSurfaceMesh3DChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts3D/Basic3DChartTypes/RealtimeSurfaceMesh3DChart/drawExample";
+import * as annotationLayersExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/AnnotationLayers/drawExample";
+import * as logarithmicAxisExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/LogarithmicAxis/drawExample";
+import * as  bubbleChartExampleInfo  from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/BubbleChart/drawExample";
+import * as heatmapChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/HeatmapChart/drawExample";
+import * as lineChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/LineChart/drawExample";
+import * as donutChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/DonutChart/drawExample";
+import * as pieChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/PieChart/drawExample";
+import * as realTimeMountainChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/drawExample";
+import * as multiPaneStockChartsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/drawExample";
+import * as chartLegendsAPIExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Legends/ChartLegendsAPI/drawExample";
+import * as seriesSelectionExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/SeriesSelection/drawExample";
+import * as usingCursorModifierTooltipsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips/drawExample";
+import * as realtimePerformanceDemoExampleInfo  from "../../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo/drawExample";
+import * as dragAxisToScaleExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ZoomingAndPanning/DragAxisToScale/drawExample";
+import * as realtimeZoomPanExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ZoomingAndPanning/RealtimeZoomPan/drawExample";
+import * as zoomAndPanWithMultipleChartModifiersExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ZoomingAndPanning/MultipleZoomPanModifiers/drawExample";
+import * as dragHorizontalThresholdExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/DragHorizontalThreshold/drawExample";
+import * as metaDataExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/MetaData/drawExample";
+import * as customTypesExampleInfo from "../../../../../Examples/src/components/Examples/BuilderApi/CustomTypes/drawExample";
+import * as multiLineLabelsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/MultiLineLabels/drawExample";
+import * as trendMARatioExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Filters/TrendMARatio/drawExample";
+import * as overviewExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ZoomingAndPanning/OverviewModifier/drawExample";
+import * as drawBehindAxesExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ModifyAxisBehavior/DrawBehindAxes/drawExample";
+import * as axisLayoutExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/FeatureDemos/AxisLayout/drawExample";
+import * as usingVerticalSliceModifierExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/UsingVerticalSliceModifier/drawExample";
+// import * as lidar3DPointCloudExampleInfo  from "../../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/drawExample";
+import * as datalabelsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/DataLabels/drawExample";
+import * as perPointColoringExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/PerPointColoring/drawExample";
+import * as dashedLineStylingExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/DashedLineStyling/drawExample";
+// import * as candlestickChartExampleInfo  from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/CandlestickChart/drawExample";
+//  import * as websocketBigDataDemoExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/WebsocketBigData/drawExample";
+// import * as errorBarsChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/ErrorBarsChart/drawExample";
+// import * as splineBandSeriesChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/SplineBandSeriesChart/drawExample";
+ // import * as stackedColumnChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedColumnChart/drawExample";
+ // import * as stackedColumnChartExampleInfoTs from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedColumnChart/angular-chart";
+ 
+// import * as lineChartExampleInfots from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/LineChart/angular-chart";
 
-// import * as lineChartExampleInfots from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/LineChart/angular-chart";
+// import * as annotationsAreEasyExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/drawExample";
+// import * as tradeMarkerAnnotationsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/TradeMarkers/drawExample";
+// import * as realtimeGhostedTracesExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces/drawExample";
+// import * as realtimeTickingStockChartsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts/drawExample";
+// import * as stackedColumnSideBySideExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide/drawExample";
+// import * as usePointMarkersExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/drawExample";
+// import * as usingThemeManagerExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsingThemeManager/drawExample";
+// import * as transparentBackgroundExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/TransparentBackground";
+import * as hitTestApiExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/HitTestAPI/drawExample";
+// import * as load500By500ExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load500By500/drawExample";
+// import * as editableAnnotationsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/EditableAnnotations/drawExample";
+// import * as GalleryItem from "../../../../../../../../../../helpers/types/types";
+// import * as chartFromJSONExampleInfo from "../../../../../Examples/src/components/Examples/BuilderApi/ChartFromJSON/";
+// import * as imageLabelsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/angulardraw";
+// import * as percentageChangeExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Filters/PercentageChange/drawExample";
+import * as customFiltersExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Filters/CustomFilters/drawExample";
+// import * as dataAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/DataAnimation/drawExample";
+// import * as styleAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/StyleAnimation/drawExample";
+// import * as startupAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/StartupAnimation/drawExample";
+// import * as dataPointSelectionExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/DatapointSelection/drawExample";
+// import * as genericAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/GenericAnimation/drawExample";
+// import * as axisTypesExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/FeatureDemos/AxisTypes/drawExample";
+// import * as subChartStockChartsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/SubChartStockCharts/drawExample";
+// import * as subchartsGridExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/FeatureDemos/SubChartsAPI/drawExample";
+// import * as serverTrafficDashboardDemoExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/ServerTrafficDashboard/drawExample";
+// import * as oilAndGasExplorerDashboard from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/drawExample";
+// import * as TDocumentationLink from "../../../../../../../../../../helpers/types/ExampleDescriptionTypes";
+// import * as virtualizedDataOverviewExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview";
+// import * as heatmapInteractionsExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/HeatmapInteractions/drawExample";
+// import * as depthChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/DepthChart/drawExample";
+// import * as chartTitleExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/FeatureDemos/ChartTitle/drawExample";
+// import * as backgroundAnnotationsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/BackgroundAnnotations/drawExample";
+// import * as dynamicLayoutExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/DynamicLayout/drawExample";
+// import * as syncMultiChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/MultiChart/SyncMultiChart/drawExample";
+// import * as eventMarkersExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/EventMarkers/drawExample";
+// import * as TDescriptionTemplate, TTitleTemplate from "../../../../../../../../../../helpers/shared/Helpers/frameworkParametrization";
+// import * as loadOneMillionPointsExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints";
 
-// import * as annotationsAreEasyExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/drawExample";
-// import * as tradeMarkerAnnotationsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/TradeMarkers/drawExample";
-// import * as realtimeGhostedTracesExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/RealtimeGhostedTraces/drawExample";
-// import * as realtimeTickingStockChartsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/RealtimeTickingStockCharts/drawExample";
-// import * as stackedColumnSideBySideExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedColumnSideBySide/drawExample";
-// import * as usePointMarkersExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/drawExample";
-// import * as usingThemeManagerExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsingThemeManager/drawExample";
-import * as perPointColoringExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/PerPointColoring/drawExample";
-import * as dashedLineStylingExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/DashedLineStyling/drawExample";
-// import * as transparentBackgroundExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/TransparentBackground";
-// import * as hitTestApiExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/HitTestAPI/drawExample";
-// import * as load500By500ExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load500By500/drawExample";
-// import * as editableAnnotationsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/EditableAnnotations/drawExample";
-// import * as GalleryItem from "../../../../../../../../helpers/types/types";
-// import * as chartFromJSONExampleInfo from "../../../../Examples/src/components/Examples/BuilderApi/ChartFromJSON/";
-// import * as imageLabelsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/angulardraw";
-import * as percentageChangeExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/Filters/PercentageChange/drawExample";
-// import * as customFiltersExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/Filters/CustomFilters/drawExample";
-// import * as dataAnimationExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/Animations/DataAnimation/drawExample";
-// import * as styleAnimationExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/Animations/StyleAnimation/drawExample";
-// import * as startupAnimationExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/Animations/StartupAnimation/drawExample";
-// import * as dataPointSelectionExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/DatapointSelection/drawExample";
-// import * as genericAnimationExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/Animations/GenericAnimation/drawExample";
-// import * as axisTypesExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/FeatureDemos/AxisTypes/drawExample";
-// import * as subChartStockChartsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/SubChartStockCharts/drawExample";
-// import * as subchartsGridExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/FeatureDemos/SubChartsAPI/drawExample";
-// import * as serverTrafficDashboardDemoExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/ServerTrafficDashboard/drawExample";
-// import * as oilAndGasExplorerDashboard from "../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/drawExample";
-// import * as TDocumentationLink from "../../../../../../../../helpers/types/ExampleDescriptionTypes";
-import * as datalabelsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/DataLabels/drawExample";
-// import * as virtualizedDataOverviewExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview";
-// import * as heatmapInteractionsExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/HeatmapInteractions/drawExample";
-// import * as depthChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/DepthChart/drawExample";
-// import * as chartTitleExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/FeatureDemos/ChartTitle/drawExample";
-// import * as backgroundAnnotationsExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/BackgroundAnnotations/drawExample";
-// import * as dynamicLayoutExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/DynamicLayout/drawExample";
-// import * as syncMultiChartExampleInfo from "../../../../Examples/src/components/Examples/Charts2D/MultiChart/SyncMultiChart/drawExample";
-// import * as eventMarkersExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/EventMarkers/drawExample";
-// import * as TDescriptionTemplate, TTitleTemplate from "../../../../../../../../helpers/shared/Helpers/frameworkParametrization";
-// import * as loadOneMillionPointsExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints";
+import * as waterfallChartExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/drawExample"
+// import * as tenorCurvesExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/TenorCurves3D/drawExaple"
 
-// import * as waterfallChartExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/drawExample"
-// import * as tenorCurvesExampleInfo from "../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/TenorCurves3D/drawExaple"
-
-// import * as appleLogo from "../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/images/apple.png";
+// import * as appleLogo from "../../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/images/apple.png";
 
 
 // /home/cnadmin/cn/SciChart.JS.Examples/Examples/src/components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/images
@@ -509,14 +508,14 @@ export const EXAMPLES_PAGES = {
     path: ExampleStrings.urlCustomTypes,
     drawExample: customTypesExampleInfo.drawExample,
     },
-    featuredApps_scientificCharts_Lidar3DPointCloudDemo: {
-    id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",
-    title: ExampleStrings.titleLidarFeaturedApp,
-    path: ExampleStrings.urlLidarFeaturedApp,
-    drawExample: lidar3DPointCloudExampleInfo.drawExample,
+    // featuredApps_scientificCharts_Lidar3DPointCloudDemo: {
+    // id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",
+    // title: ExampleStrings.titleLidarFeaturedApp,
+    // path: ExampleStrings.urlLidarFeaturedApp,
+    // drawExample: lidar3DPointCloudExampleInfo.drawExample,
     
-    },
-    chart2D_chartAnnotations_AnnotationsAreEasy: {                                              // This is the issue of png Image import 
+    // },
+    chart2D_chartAnnotations_AnnotationsAreEasy: {                                             
         id: "chart2D_chartAnnotations_AnnotationsAreEasy",
         title: ExampleStrings.titleAnnotationsAreEasy(framework),
         path: ExampleStrings.urlAnnotationsAreEasy,
@@ -663,12 +662,12 @@ export const EXAMPLES_PAGES = {
     // }, // Not applicable 
     
 
-//     chart2D_tooltipsAndHittest_HitTestApi: {
-//         id: "chart2D_tooltipsAndHittest_HitTestApi",
-//         title: ExampleStrings.titleHitTestApi(framework),
-//         path: ExampleStrings.urlHitTestApi,
-//         drawExample: hitTestApiExampleInfo.drawExample, 
-//    }, // Simple changes 
+    chart2D_tooltipsAndHittest_HitTestApi: {
+        id: "chart2D_tooltipsAndHittest_HitTestApi",
+        title: ExampleStrings.titleHitTestApi(framework),
+        path: ExampleStrings.urlHitTestApi,
+        drawExample: hitTestApiExampleInfo.drawExample, 
+   }, // Simple changes 
 
 
     // chart2D_tooltipsAndHittest_DataPointSelection: {
@@ -686,19 +685,19 @@ export const EXAMPLES_PAGES = {
     //     drawExample: virtualizedDataOverviewExampleInfo.drawExample,
     // },            // No DrawExample 
 
-    chart2D_filters_PercentageChange: {
-        id: "chart2D_filters_PercentageChange",
-        title: ExampleStrings.titlePercentageChange,
-        path: ExampleStrings.urlPercentageChange,
-        drawExample: percentageChangeExampleInfo.drawExample,
-    }, // Remove the override method and do the neccassary changes 
+    // chart2D_filters_PercentageChange: {
+    //     id: "chart2D_filters_PercentageChange",
+    //     title: ExampleStrings.titlePercentageChange,
+    //     path: ExampleStrings.urlPercentageChange,
+    //     drawExample: percentageChangeExampleInfo.drawExample,
+    // }, // Remove the override method and do the neccassary changes 
 
-    // chart2D_filters_CustomFilters: {
-    //     id: "chart2D_filters_CustomFilters",
-    //     title: ExampleStrings.titleCustomFilters,
-    //     path: ExampleStrings.urlCustomFilters,
-    //     drawExample: customFiltersExampleInfo.drawExample,
-    //     },                                     // OverRide Issue 
+    chart2D_filters_CustomFilters: {
+        id: "chart2D_filters_CustomFilters",
+        title: ExampleStrings.titleCustomFilters,
+        path: ExampleStrings.urlCustomFilters,
+        drawExample: customFiltersExampleInfo.drawExample,
+        },                                     // OverRide Issue 
     // chart2D_multiChart_syncMultiChart: {
     //     id: "chart2D_multiChart_syncMultiChart",
     //     title: ExampleStrings.titleSyncMultiChart(framework),
@@ -755,7 +754,8 @@ export const EXAMPLES_PAGES = {
     //     title: "Interactive Waterfall Spectral Chart",
     //     path:  `interactive-waterfall-chart`,
     //     drawExample: waterfallChartExampleInfo.getChartsInitializationAPI(),
-    // },                                                   // Override changes 
+    // },         
+                                            //   Override changes 
     // featuredApps_showcases_servertrafficdashboard: {
     //     id: "featuredApps_showcases_servertrafficdashboard",
     //     title: ExampleStrings.titleServerTrafficDashboardDemo(framework),
