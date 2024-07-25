@@ -115,7 +115,7 @@ import UsingVerticalSliceModifier from "../Examples/Charts2D/TooltipsAndHittest/
 import ServerTrafficDashboard from "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard";
 import SyncMultiChart from "../Examples/Charts2D/MultiChart/SyncMultiChart";
 import EventMarkers from "../Examples/FeaturedApps/ShowCases/EventMarkers";
-import MultiplePointMarkers from "../Examples/Charts2D/StylingAndTheming/MultiplePointMarkers";
+import MultiplePointMarkers from "../Examples/Charts2D/StylingAndTheming/MultiStyleSeries";
 import UserAnnotatedStockChart from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart";
 import PopulationPyramid from "../Examples/FeaturedApps/ShowCases/PopulationPyramid";
 import SmoothStackedMountainChart from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart";

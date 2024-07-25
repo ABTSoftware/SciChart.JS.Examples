@@ -1,11 +1,12 @@
 import * as React from "react";
-import { appTheme } from "scichart-example-dependencies";
 import classes from "../../../styles/Examples.module.scss";
 
 import {
     BaseRenderDataTransform,
     DataPointSelectionModifier,
     EllipsePointMarker,
+    FastColumnRenderableSeries,
+    GradientParams,
     IPointMarker,
     IPointMetadata,
     IPointSeries,
@@ -14,6 +15,7 @@ import {
     MouseWheelZoomModifier,
     NumberRange,
     NumericAxis,
+    Point,
     PointMarkerDrawingProvider,
     RenderPassData,
     RolloverModifier,
@@ -25,8 +27,10 @@ import {
     XyScatterRenderableSeries,
     XyyPointSeriesResampled,
     ZoomExtentsModifier,
-    ZoomPanModifier
+    ZoomPanModifier,
 } from "scichart";
+import { appTheme } from "../../../theme";
+import { ColumnSeriesDrawingProvider } from "scichart";
 
 const divElementId = "chart";
 
@@ -64,7 +68,7 @@ class SplitRenderDataTransform extends BaseRenderDataTransform<XyyPointSeriesRes
 const drawExample = async () => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
-        theme: appTheme.SciChartJsTheme
+        theme: appTheme.SciChartJsTheme,
     });
 
     // Create X,Y Axis
@@ -73,16 +77,16 @@ const drawExample = async () => {
 
     // Create some xValues, yValues arrays
     const xValues = Array.from({ length: 20 }, (x, i) => i);
-    const yValues = xValues.map(x => 3 * x + x * Math.random());
-    const metadata = xValues.map(x => ({
-        isSelected: Math.random() < 0.5
+    const yValues = xValues.map((x) => 3 * x + x * Math.random());
+    const metadata = xValues.map((x) => ({
+        isSelected: Math.random() < 0.5,
     }));
 
     const trianglePM = new TrianglePointMarker(wasmContext, {
         width: 15,
         height: 15,
         strokeThickness: 0,
-        fill: appTheme.VividOrange
+        fill: appTheme.VividOrange,
     });
 
     // Create a Scatter Series with Multiple point markers
@@ -92,14 +96,14 @@ const drawExample = async () => {
             width: 14,
             height: 14,
             strokeThickness: 0,
-            fill: appTheme.VividSkyBlue
+            fill: appTheme.VividSkyBlue,
         }),
         opacity: 0.67,
         //animation: new SweepAnimation({ duration: 600, fadeEffect: true })
     });
     // Additional DrawingProvider that uses y1Values and different pointMarker config.
-    const triangleDP = new PointMarkerDrawingProvider(wasmContext, series, ps => (ps as IXyyPointSeries).y1Values);
-    triangleDP.getProperties = series => {
+    const triangleDP = new PointMarkerDrawingProvider(wasmContext, series, (ps) => (ps as IXyyPointSeries).y1Values);
+    triangleDP.getProperties = (series) => {
         return { pointMarker: trianglePM as IPointMarker };
     };
     series.drawingProviders.push(triangleDP);
@@ -108,22 +112,71 @@ const drawExample = async () => {
 
     sciChartSurface.renderableSeries.add(series);
 
+    const colxValues = [2, 4, 6, 8, 10, 12, 14, 16, 18];
+    const colyValues = colxValues.map((x) => Math.random() * 50);
+    const colmetadata = colxValues.map((x) => ({
+        isSelected: Math.random() < 0.5,
+    }));
+    const columnSeries = new FastColumnRenderableSeries(wasmContext, {
+        fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+            { color: appTheme.MutedRed, offset: 0 },
+            { color: appTheme.MutedTeal, offset: 1 },
+        ]),
+        dataSeries: new XyDataSeries(wasmContext, {
+            xValues: colxValues,
+            yValues: colyValues,
+            metadata: colmetadata,
+        }),
+        stroke: undefined,
+    });
+    const selectedColDP = new ColumnSeriesDrawingProvider(
+        wasmContext,
+        columnSeries,
+        (ps) => (ps as IXyyPointSeries).y1Values
+    );
+    selectedColDP.getProperties = (parentSeries) => {
+        const { stroke, strokeThickness, fill } = parentSeries;
+        return {
+            fillLinearGradient: new GradientParams(new Point(0, 0), new Point(0, 1), [
+                { color: appTheme.MutedRed + "66", offset: 0 },
+                { color: appTheme.MutedTeal + "66", offset: 1 },
+            ]),
+            opacity: 1,
+            stroke,
+            strokeThickness,
+            fill,
+        };
+    };
+    columnSeries.drawingProviders.push(selectedColDP);
+    columnSeries.renderDataTransform = new SplitRenderDataTransform(
+        columnSeries,
+        wasmContext,
+        columnSeries.drawingProviders
+    );
+    sciChartSurface.renderableSeries.add(columnSeries);
+
     // Optional: Add Interactivity Modifiers
     //sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    sciChartSurface.chartModifiers.add(new DataPointSelectionModifier({ allowClickSelect: true, onSelectionChanged: (args) => {
-        series.renderDataTransform.requiresTransform = true;
-    } }));
-    sciChartSurface.chartModifiers.add(new RolloverModifier({
-        tooltipDataTemplate: (seriesInfo: SeriesInfo) => {
-            const vals: string[] = [];
-            vals.push(`X ${seriesInfo.formattedXValue}`);
-            vals.push(`Y ${seriesInfo.formattedYValue}`);
-            vals.push(`selected ${(seriesInfo.pointMetadata as IPointMetadata).isSelected}`);
-            return vals;
-        }
-    }));
+    sciChartSurface.chartModifiers.add(
+        new DataPointSelectionModifier({
+            allowClickSelect: true,
+            onSelectionChanged: (args) => {
+                series.renderDataTransform.requiresTransform = true;
+                columnSeries.renderDataTransform.requiresTransform = true;
+            },
+        })
+    );
+    // sciChartSurface.chartModifiers.add(new RolloverModifier({
+    //     tooltipDataTemplate: (seriesInfo: SeriesInfo) => {
+    //         const vals: string[] = [];
+    //         vals.push(`X ${seriesInfo.formattedXValue}`);
+    //         vals.push(`Y ${seriesInfo.formattedYValue}`);
+    //         vals.push(`selected ${(seriesInfo.pointMetadata as IPointMetadata).isSelected}`);
+    //         return vals;
+    //     }
+    // }));
 
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };

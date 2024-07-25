@@ -480,9 +480,9 @@ export const ExampleStrings = {
     urlPaletteProviderDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20PaletteProvider%20API.html`,
     urlTitlePaletteProviderDocumentation: `The PaletteProvider API documentation`,
 
-    // MultiplePointMarkers
-    titleMultiplePointMarkers: "Multiple Point Markers using RenderDataTransform",
-    urlMultiplePointMarkers: "/javascript-multiple-pointmarkers-with-renderdatatransform",
+    // MultiStyleSeries
+    titleMultiStyleSeries: (frameworkName: TFrameworkName) => `${frameworkName} Chart with Multi-Style Series`,
+    urlMultiStyleSeries: "multi-style-series",
 
     // Dashed line styling
     titleDashedLineStyling: `Dashed Line Styling`,
