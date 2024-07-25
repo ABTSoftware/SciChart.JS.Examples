@@ -84,7 +84,7 @@ import * as hitTestApiExampleInfo from "../../../../../Examples/src/components/E
 // import * as chartFromJSONExampleInfo from "../../../../../Examples/src/components/Examples/BuilderApi/ChartFromJSON/";
 // import * as imageLabelsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/angulardraw";
 // import * as percentageChangeExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Filters/PercentageChange/drawExample";
-import * as customFiltersExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Filters/CustomFilters/drawExample";
+// import * as customFiltersExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Filters/CustomFilters/drawExample";
 // import * as dataAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/DataAnimation/drawExample";
 // import * as styleAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/StyleAnimation/drawExample";
 // import * as startupAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/StartupAnimation/drawExample";
@@ -107,7 +107,7 @@ import * as customFiltersExampleInfo from "../../../../../Examples/src/component
 // import * as TDescriptionTemplate, TTitleTemplate from "../../../../../../../../../../helpers/shared/Helpers/frameworkParametrization";
 // import * as loadOneMillionPointsExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints";
 
-import * as waterfallChartExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/drawExample"
+// import * as waterfallChartExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/drawExample"
 // import * as tenorCurvesExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/TenorCurves3D/drawExaple"
 
 // import * as appleLogo from "../../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/images/apple.png";
@@ -692,12 +692,12 @@ export const EXAMPLES_PAGES = {
     //     drawExample: percentageChangeExampleInfo.drawExample,
     // }, // Remove the override method and do the neccassary changes 
 
-    chart2D_filters_CustomFilters: {
-        id: "chart2D_filters_CustomFilters",
-        title: ExampleStrings.titleCustomFilters,
-        path: ExampleStrings.urlCustomFilters,
-        drawExample: customFiltersExampleInfo.drawExample,
-        },                                     // OverRide Issue 
+    // chart2D_filters_CustomFilters: {
+    //     id: "chart2D_filters_CustomFilters",
+    //     title: ExampleStrings.titleCustomFilters,
+    //     path: ExampleStrings.urlCustomFilters,
+    //     drawExample: customFiltersExampleInfo.drawExample,
+    //     },                                     // OverRide Issue 
     // chart2D_multiChart_syncMultiChart: {
     //     id: "chart2D_multiChart_syncMultiChart",
     //     title: ExampleStrings.titleSyncMultiChart(framework),
