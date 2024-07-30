@@ -1,5 +1,5 @@
 import { appTheme } from "../../../theme";
-import CustomImage from "./scichart-logo-white.png";
+// import CustomImage from "./scichart-logo-white.png";
 import { rocketSvg } from "./416398_exploration_fuel_nasa_rocket_space_icon";
 import {
     SciChartSurface,
@@ -23,7 +23,7 @@ import {
     NativeTextAnnotation,
 } from "scichart";
 
-export const drawExample = async (rootElement: string | HTMLDivElement) => {
+export const drawExample = (emojiUrls: string) => async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
@@ -163,7 +163,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         textColor,
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
     });
-    const image = getImageAnnotation(0.3, 2.8, CustomImage, 241, 62);
+    const image = getImageAnnotation(0.3, 2.8, emojiUrls, 241, 62);
 
     // Vectors (SVG)
     const testCustomSvg = new TextAnnotation({

@@ -28,4 +28,15 @@
 <ng-container *ngIf="additinal=='featuredApps_scientificCharts_TenorCurvesDemo'">
  <app-Tenor-curves></app-Tenor-curves>
 </ng-container>
-<!-- <app-custom-filter></app-custom-filter> -->
+<ng-container *ngIf="additinal== 'featuredApps_scientificCharts_WaterfallChartDemo'">
+  <app-interactive-waterfall-chart></app-interactive-waterfall-chart>
+</ng-container>
+<ng-container *ngIf="additinal=='chart2D_filters_CustomFilters'">
+ <app-custom-filter></app-custom-filter>
+</ng-container>
+<ng-container *ngIf="additinal=='chart2D_basicCharts_StackedColumnChart'">
+    <app-stack-chart></app-stack-chart>
+</ng-container>
+    <!-- <ng-container *ngIf="additinal ='chart2D_basicCharts_StackedColumnChart'">
+    <app-stack-chart></app-stack-chart>
+    </ng-container> -->

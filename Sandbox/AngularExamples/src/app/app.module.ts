@@ -14,24 +14,29 @@ import {ChartComponent} from '../../../../Examples/src/components/Examples/Chart
 import {ChartExampleComponent} from '../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/angularAnnotations';
 import { UsePointMarkers }  from '../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/angular';
 import {TenorCurves3D} from '../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/TenorCurves3D/angular';
-// import {CustomFilters} from '../../../../Examples/src/components/Examples/Charts2D/Filters/CustomFilters/angular'
+import {CustomFilters} from '../../../../Examples/src/components/Examples/Charts2D/Filters/CustomFilters/angular'
 
-// import {StackeAppComponent} from '../.././../Examples/Charts2D/BasicChartTypes/StackedColumnChart/angularStackedColumnapp';
+// import {StackeAppComponent} from '../../../../Examples/Charts2D/BasicChartTypes/StackedColumnChart/angularStackedColumnapp';
+import {StackeAppComponent } from '../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedColumnChart/angularStackedColumnapp'
 // import {AppLineChartComponent } from '../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/LineChart/angularLineApp';
 // import {UsePointMarkers} from '../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsePointMarkers';
+
+import {InteractiveWaterfallChartComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/angular'
+
 @NgModule({
   declarations: [
     AppComponent,
     AngularExamplesComponent,
     AngularChartComponent,
     AppLineChartComponent,
-    // StackeAppComponent,
+    StackeAppComponent,
     AppRealTimeMountainComponent,
     ChartComponent,
     ChartExampleComponent,
     UsePointMarkers,
     TenorCurves3D,
-    // CustomFilters
+    CustomFilters,
+    InteractiveWaterfallChartComponent
   ],
   imports: [
     BrowserModule,

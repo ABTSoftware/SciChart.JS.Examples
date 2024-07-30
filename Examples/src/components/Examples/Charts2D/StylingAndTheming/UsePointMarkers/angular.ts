@@ -1,119 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from "@angular/core";
 import { SciChartSurface, XyDataSeries, NumericAxis, NumberRange, EllipsePointMarker, SquarePointMarker, CrossPointMarker, SpritePointMarker, TrianglePointMarker, createImageAsync, ZoomPanModifier, ZoomExtentsModifier, MouseWheelZoomModifier, SplineLineRenderableSeries, LegendModifier, ELegendOrientation, ELegendPlacement } from 'scichart';
 
 import { appTheme } from '../../../theme'; // Adjust path as necessary
 
+const emojiUrls =  "/assets/images/apple.png";
+import { drawExample } from "./drawExample";
+
 @Component({
   selector: 'app-use-pointer',
-  template: `<div id="usepointmarkers" style="width: 100%; height: 600px;"></div>`
+   template: `<div #sciChartDiv style="width: 100%; height: 500px;"></div>`,
   })
-export class UsePointMarkers implements OnInit {
+export class UsePointMarkers implements AfterViewInit {
 
-  constructor() { }
 
-  async ngOnInit() {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create('usepointmarkers', {
-      theme: appTheme.SciChartJsTheme,
-    });
+    @ViewChild("sciChartDiv", { static: true })
+    sciChartDiv!: ElementRef;
 
-    const dataSeriesArr = this.createData(wasmContext);
+    ngAfterViewInit(): void {
+        this.drawChart();
+    }
 
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
+    async drawChart() {
+        drawExample(emojiUrls)(this.sciChartDiv.nativeElement);
+    }
 
-    // Add your renderable series here
-
-    sciChartSurface.renderableSeries.add(
-        new SplineLineRenderableSeries(wasmContext, {
-            stroke: appTheme.VividSkyBlue,
-            strokeThickness: 3,
-            pointMarker: new EllipsePointMarker(wasmContext, {
-                width: 13,
-                height: 13,
-                strokeThickness: 2,
-                fill: appTheme.VividSkyBlue,
-                stroke: appTheme.ForegroundColor,
-            }),
-            dataSeries: dataSeriesArr[0],
-        })
-    );
-
-    // Add a scatter series with SquarePointMarker
-    sciChartSurface.renderableSeries.add(
-        new SplineLineRenderableSeries(wasmContext, {
-            stroke: appTheme.VividPink,
-            strokeThickness: 3,
-            pointMarker: new SquarePointMarker(wasmContext, {
-                width: 11,
-                height: 11,
-                strokeThickness: 2,
-                fill: appTheme.MutedPink,
-                stroke: appTheme.VividPink,
-            }),
-            dataSeries: dataSeriesArr[1],
-        })
-    );
-
-    // Add a scatter series with TrianglePointMarker
-    sciChartSurface.renderableSeries.add(
-        new SplineLineRenderableSeries(wasmContext, {
-            stroke: appTheme.VividOrange,
-            strokeThickness: 3,
-            pointMarker: new TrianglePointMarker(wasmContext, {
-                width: 13,
-                height: 13,
-                strokeThickness: 2,
-                fill: appTheme.VividOrange,
-                stroke: appTheme.VividOrange,
-            }),
-            dataSeries: dataSeriesArr[2],
-        })
-    );
-
-    // Add a scatter series with CrossPointMarker
-    sciChartSurface.renderableSeries.add(
-        new SplineLineRenderableSeries(wasmContext, {
-            stroke: appTheme.VividPurple,
-            strokeThickness: 3,
-            pointMarker: new CrossPointMarker(wasmContext, {
-                width: 13,
-                height: 13,
-                strokeThickness: 3,
-                stroke: appTheme.VividPurple,
-            }),
-            dataSeries: dataSeriesArr[3],
-        })
-    );
-
-    // Add a scatter series with Custom Image using SpritePointMarker
-    const imageBitmap = await createImageAsync('/assets/images/CustomMarkerImage.png');
-
-    sciChartSurface.renderableSeries.add(
-        new SplineLineRenderableSeries(wasmContext, {
-            stroke: appTheme.MutedOrange,
-            strokeThickness: 2,
-            pointMarker: new SpritePointMarker(wasmContext, {
-                image: imageBitmap,
-            }),
-            dataSeries: dataSeriesArr[4],
-        })
-    );
-
-    sciChartSurface.chartModifiers.add(new ZoomPanModifier());
-    sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
-
-    sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-    sciChartSurface.chartModifiers.add(
-        new LegendModifier({
-            orientation: ELegendOrientation.Horizontal,
-            placement: ELegendPlacement.TopLeft,
-        })
-    );
-
-    sciChartSurface.zoomExtents();
-
-    return { sciChartSurface, wasmContext };
-  }
 
   createData(wasmContext:any) {
        // Create some dataseries

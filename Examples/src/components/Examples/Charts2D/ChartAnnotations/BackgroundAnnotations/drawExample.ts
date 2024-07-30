@@ -41,7 +41,7 @@ class ContinentPaletteProvider extends DefaultPaletteProvider {
     SouthAmerica = parseColorToUIntArgb(appTheme.VividGreen);
     Africa = parseColorToUIntArgb(appTheme.VividOrange);
 
-    overridePointMarkerArgb(
+  override  overridePointMarkerArgb(
         xValue: number,
         yValue: number,
         index: number,
