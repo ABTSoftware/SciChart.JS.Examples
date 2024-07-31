@@ -181,8 +181,6 @@ xAxis.labelProvider.useCache = false;
 yAxis.labelProvider.useCache = false;
 ```
 
-Caching is disabled when the Native Text is used.
-
 ## Debugging Memory usage and leaks
 
 The dev tools provided by browsers are pretty useful for debugging memory leaks,  

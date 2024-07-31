@@ -83,15 +83,15 @@ const init2dChartWithSharedContext = async (rootElement: HTMLDivElement) => {
     },
   });
 
-  sciChartSurface.xAxes.add(
-    new NumericAxis(wasmContext, { autoRange: EAutoRange.Always })
-  );
-  sciChartSurface.yAxes.add(
-    new NumericAxis(wasmContext, {
-      autoRange: EAutoRange.Always,
-      growBy: new NumberRange(0.3, 0.3),
-    })
-  );
+  const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
+  xAxis.labelProvider.useCache = false;
+  sciChartSurface.xAxes.add(xAxis);
+  const yAxis = new NumericAxis(wasmContext, {
+    autoRange: EAutoRange.Always,
+    growBy: new NumberRange(0.3, 0.3),
+  });
+  yAxis.labelProvider.useCache = false;
+  sciChartSurface.yAxes.add(yAxis);
 
   // Create a DataSeries
   const xyDataSeries = new XyDataSeries(wasmContext, {
@@ -118,8 +118,6 @@ const init2dChartWithSharedContext = async (rootElement: HTMLDivElement) => {
       xValues[i] = dataPointCount++;
       yValues[i] = 0.2 * Math.sin(i * 0.1) - Math.cos(i * 0.01);
     }
-
-    console.log(xValues);
 
     xyDataSeries.appendRange(xValues, yValues);
   };

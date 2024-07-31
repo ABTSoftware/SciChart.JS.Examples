@@ -4,7 +4,7 @@
   "description": "SciChart.js FIFO Memory Test",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode production",
     "watch": "webpack watch --mode production",
     "dev": "webpack serve --open --mode development",
     "start": "ts-node server"
