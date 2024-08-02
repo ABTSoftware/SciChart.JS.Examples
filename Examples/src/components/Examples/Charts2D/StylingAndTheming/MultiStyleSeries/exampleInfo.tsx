@@ -1,7 +1,7 @@
 import { TExampleInfo } from "../../../../AppRouter/examplePages";
 import { ExampleStrings } from "../../../ExampleStrings";
 import { TDocumentationLink } from "../../../../../helpers/types/ExampleDescriptionTypes";
-import exampleImage from "./javascript-chart-color-points-individually-with-paletteprovider.jpg";
+import exampleImage from "./javascript-chart-multi-style-series.jpg";
 
 const description = `Demonstrates how to apply multiple different styles to a single series using RenderDataTransform`;
 const tips = [``];
@@ -21,6 +21,8 @@ const Subtitle = (frameworkName: string) => (
         <a href={ExampleStrings.urlJavascriptChartFeatures} target="_blank">
             JavaScript Charts
         </a>
+        . This uses a RenderDataTransform to split the data so that we can draw the selected points using additional
+        customised drawingProviders. This means that modifiers still see a single series with the original data.
     </p>
 );
 
