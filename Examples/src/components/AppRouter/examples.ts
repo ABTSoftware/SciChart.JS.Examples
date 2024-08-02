@@ -115,6 +115,7 @@ import UsingVerticalSliceModifier from "../Examples/Charts2D/TooltipsAndHittest/
 import ServerTrafficDashboard from "../Examples/FeaturedApps/ShowCases/ServerTrafficDashboard";
 import SyncMultiChart from "../Examples/Charts2D/MultiChart/SyncMultiChart";
 import EventMarkers from "../Examples/FeaturedApps/ShowCases/EventMarkers";
+import MultiplePointMarkers from "../Examples/Charts2D/StylingAndTheming/MultiStyleSeries";
 import UserAnnotatedStockChart from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart";
 import PopulationPyramid from "../Examples/FeaturedApps/ShowCases/PopulationPyramid";
 import SmoothStackedMountainChart from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart";
@@ -259,6 +260,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_DataLabels,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_MultiplePointMarkers,
             EXAMPLES_PAGES.featuredApps_featureDemos_chartTitle,
         ],
     },
@@ -491,6 +493,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return SmoothStackedMountainChart;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_UsePointMarkers.id:
             return UsePointMarkers;
+        case EXAMPLES_PAGES.chart2D_stylingAndTheming_MultiplePointMarkers.id:
+            return MultiplePointMarkers;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.id:
             return UsingThemeManager;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTheme.id:
