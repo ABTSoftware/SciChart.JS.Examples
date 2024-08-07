@@ -41,6 +41,16 @@ $drawerWidthMobile: 100%;
     max-width: 100vw;
 }
 
+.tabsection {
+    margin: 50px 0 0 0;
+}
+
+.container {
+    max-width: 1238px;
+    width: 100%;
+    margin: 0 auto;
+}
+
 .MainAppWrapper {
     @extend %Container;
     display: flex;

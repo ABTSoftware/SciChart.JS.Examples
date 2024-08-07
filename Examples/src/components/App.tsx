@@ -24,6 +24,7 @@ import { GalleryItem } from "../helpers/types/types";
 import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
+import NewTabs from "./NewTabs";
 
 export default function App() {
     const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
@@ -117,7 +118,20 @@ export default function App() {
                     <AppBarTop toggleDrawer={toggleDrawer} currentExample={currentExample} />
                     {isHomePage && <AppRouter currentExample={currentExample} seeAlso={[]} />}
 
-                    <div className={classes.MainAppWrapper}>
+                    {isHomePage ? (
+                        <div className={classes.tabsection}>
+                            <div className={classes.container}>
+                                <NewTabs />
+                            </div>
+                        </div>
+                    ) : (
+                        <div className={classes.tabsection}>
+                            <div className={classes.container}>
+                                <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
+                            </div>
+                        </div>
+                    )}
+                    {/* <div className={classes.MainAppWrapper}>
                         <div className={classes.DrawerDesktop}>
                             <DrawerContent
                                 testIsOpened={testIsOpened}
@@ -132,7 +146,8 @@ export default function App() {
                         ) : (
                             <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
                         )}
-                    </div>
+                    </div> */}
+                    {/* <AppRouter currentExample={currentExample} seeAlso={seeAlso} /> */}
 
                     <AppFooter />
                 </div>
