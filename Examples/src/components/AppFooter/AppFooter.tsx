@@ -10,11 +10,11 @@ import {
 import FooterGrid from "./FooterGrid";
 import { useNavigate } from "react-router-dom";
 import classes from "./AppFooter.module.scss";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import YouTubeIcon from "@material-ui/icons/YouTube";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import Button from "@material-ui/core/Button";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import Button from "@mui/material/Button";
 
 export type TFooterlink = {
     link: string;

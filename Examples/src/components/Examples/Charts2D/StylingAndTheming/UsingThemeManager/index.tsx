@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import * as React from "react";
 import { SciChartReact } from "scichart-react";
 import { appTheme } from "../../../theme";
