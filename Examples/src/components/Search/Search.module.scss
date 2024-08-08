@@ -3,6 +3,7 @@
 .Search {
     display: block;
     width: 700px;
+    margin-top: 7px;
 
     @include sm {
         display: none;
