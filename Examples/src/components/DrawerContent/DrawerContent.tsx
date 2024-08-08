@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import Navigation from "../Navigation/Navigation";
 import { useNavigate } from "react-router-dom";
 import classes from "./DrawerContent.module.scss";

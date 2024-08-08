@@ -1,8 +1,8 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
-import { makeStyles } from "@material-ui/core/styles";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { AxisBase2D, LogarithmicAxis, NumericAxis, SciChartSurface } from "scichart";
 import { drawExample } from "./drawExample";

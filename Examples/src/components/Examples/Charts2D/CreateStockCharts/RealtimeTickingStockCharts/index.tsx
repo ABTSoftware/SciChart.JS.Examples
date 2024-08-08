@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IDeletable } from "scichart";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import classes from "../../../styles/Examples.module.scss";
 import { createCandlestickChart, sciChartOverview } from "./createCandlestickChart";
 import { SciChartReact, SciChartNestedOverview, TResolvedReturnType } from "scichart-react";

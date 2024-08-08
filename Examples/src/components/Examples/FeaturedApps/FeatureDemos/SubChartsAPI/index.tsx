@@ -1,8 +1,8 @@
 import * as React from "react";
 import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
-import { makeStyles } from "@material-ui/core/styles";
-import { FormControl, ButtonGroup, Button, FormControlLabel, Checkbox } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { FormControl, ButtonGroup, Button, FormControlLabel, Checkbox } from "@mui/material";
 import {
     appendData,
     createRenderableSeries,

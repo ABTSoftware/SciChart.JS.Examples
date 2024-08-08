@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useRef } from "react";
-import { AlertTitle } from "@material-ui/lab";
-import { Button } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
 import { appTheme } from "../../../theme";
 import classes from "../../../styles/Examples.module.scss";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 
 import {
     EAutoRange,
