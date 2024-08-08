@@ -1,8 +1,6 @@
 import * as React from "react";
 import classes from "../../../styles/Examples.module.scss";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { IRenderableSeries } from "scichart/Charting/Visuals/RenderableSeries/IRenderableSeries";
-import { BandAnimation } from "scichart/Charting/Visuals/RenderableSeries/Animations/BandAnimation";
 import { makeStyles } from "@mui/styles";
 import { appTheme } from "../../../theme";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
