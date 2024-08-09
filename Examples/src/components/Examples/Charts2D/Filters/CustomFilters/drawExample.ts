@@ -44,7 +44,7 @@ class AggregationFilter extends XyFilterBase {
         this.filter(0, this.getOriginalCount());
     }
 
-    protected filterOnAppend(count: number): void {
+    protected override filterOnAppend(count: number): void {
         // Overriding this so we do not have to reprocess the entire series on append
         this.filter(this.getOriginalCount() - count, count);
     }
@@ -70,7 +70,7 @@ class AggregationFilter extends XyFilterBase {
         this.appendRange(keys, yValues);
     }
 
-    protected onClear() {
+    protected override onClear() {
         this.clear();
         this.bins.clear();
     }

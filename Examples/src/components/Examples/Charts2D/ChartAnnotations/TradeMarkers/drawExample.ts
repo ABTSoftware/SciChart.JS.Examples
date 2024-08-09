@@ -259,7 +259,7 @@ class TradeAnnotation extends CustomAnnotation {
         this.hovered.subscribe(this.onHover);
     }
 
-    public getSvgString(annotation: CustomAnnotation): string {
+    public override getSvgString(annotation: CustomAnnotation): string {
         if (this.isBuy) {
             return `<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg">
             <g transform="translate(-54.867218,-75.091687)">

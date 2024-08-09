@@ -1,0 +1,7 @@
+.list{
+    flex-basis: 400px;
+    border: 1;
+    height: 100vh;
+    overflow-x: auto;
+    overflow-y: auto;
+}
