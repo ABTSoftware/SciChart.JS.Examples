@@ -37,6 +37,16 @@
 <ng-container *ngIf="additinal=='chart2D_basicCharts_StackedColumnChart'">
     <app-stack-chart></app-stack-chart>
 </ng-container>
-    <!-- <ng-container *ngIf="additinal ='chart2D_basicCharts_StackedColumnChart'">
-    <app-stack-chart></app-stack-chart>
-    </ng-container> -->
+<ng-container *ngIf="additinal=='chart2D_chartAnnotations_EditableAnntations'">
+    <app-editchart-example></app-editchart-example>
+</ng-container>
+<ng-container *ngIf="additinal=='chart2D_performanceDemos_LoadOneMillionPoints'">
+    <app-load1-million-points-chart></app-load1-million-points-chart>
+</ng-container>
+<ng-container *ngIf= "additinal=='featuredApps_performanceDemos_RealtimePerformanceDemo'">
+    <app-realtime-performance></app-realtime-performance>
+</ng-container>
+<ng-container *ngIf= "additinal=='featuredApps_scientificCharts_Lidar3DPointCloudDemo'">
+    <!-- <app-li-dar3d-point-cloud></app-li-dar3d-point-cloud> -->
+</ng-container>
+<!-- <app-lidar-3d-point-cloud-demo></app-lidar-3d-point-cloud-demo> -->

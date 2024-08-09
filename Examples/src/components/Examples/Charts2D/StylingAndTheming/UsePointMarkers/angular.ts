@@ -1,29 +1,18 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from "@angular/core";
 import { SciChartSurface, XyDataSeries, NumericAxis, NumberRange, EllipsePointMarker, SquarePointMarker, CrossPointMarker, SpritePointMarker, TrianglePointMarker, createImageAsync, ZoomPanModifier, ZoomExtentsModifier, MouseWheelZoomModifier, SplineLineRenderableSeries, LegendModifier, ELegendOrientation, ELegendPlacement } from 'scichart';
-
-import { appTheme } from '../../../theme'; // Adjust path as necessary
-
-const emojiUrls =  "/assets/images/apple.png";
+const customPointImage =  "/assets/images/CustomMarkerImage.png";
 import { drawExample } from "./drawExample";
 
 @Component({
   selector: 'app-use-pointer',
-   template: `<div #sciChartDiv style="width: 100%; height: 500px;"></div>`,
+   template: `<scichart-angular
+      [initChart]="drawExample"
+      style="flex: 1; flex-basis: 50%;">
+      </scichart-angular>`,
   })
-export class UsePointMarkers implements AfterViewInit {
+export class UsePointMarkers  {
 
-
-    @ViewChild("sciChartDiv", { static: true })
-    sciChartDiv!: ElementRef;
-
-    ngAfterViewInit(): void {
-        this.drawChart();
-    }
-
-    async drawChart() {
-        drawExample(emojiUrls)(this.sciChartDiv.nativeElement);
-    }
-
+  drawExample = drawExample(customPointImage)
 
   createData(wasmContext:any) {
        // Create some dataseries

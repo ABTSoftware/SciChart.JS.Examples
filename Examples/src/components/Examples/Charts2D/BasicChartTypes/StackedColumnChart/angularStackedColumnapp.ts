@@ -17,7 +17,6 @@ SciChart3DSurface.loadWasmFromCDN();
       <mat-button-toggle [value]="false">Stacked mode</mat-button-toggle>
       <mat-button-toggle [value]="true">100% Stacked mode</mat-button-toggle>
     </mat-button-toggle-group>
-
     <mat-button-toggle-group
       (change)="toggleDataLabels()">
       <mat-button-toggle [value]="areDataLabelsVisible">
@@ -25,12 +24,15 @@ SciChart3DSurface.loadWasmFromCDN();
       </mat-button-toggle>
     </mat-button-toggle-group>
   </div>
-  <div id="chart-root" style="width: 100%; height: 100%;"></div>
+   <scichart-angular
+      [initChart]="drawExample"
+      (onInit)="onInit($event)"
+      (onDelete)="onDelete($event)"
+      style="flex: 1; flex-basis: 50%;">
+     </scichart-angular>
 </div>
  `,
 })
-
-
 
 export class StackeAppComponent  {
     title = "scichart-angular-app"
@@ -40,28 +42,25 @@ export class StackeAppComponent  {
   controls: any;
 
   constructor() { }
+  private initResult: any;
 
-  ngOnInit(): void {
-    this.initChart();
-  }
+  drawExample = drawExample;
 
-  async initChart() {
-    const container = document.getElementById('chart-root') as HTMLDivElement; 
-    const { controls } = await drawExample(container);
-    this.controls = controls;
+  async onInit(initResult: any) {
+    this.initResult = initResult;
   }
 
   togglePercentageMode(value: boolean) {
     this.use100PercentStackedMode = value;
-    if (this.controls) {
-      this.controls.toggleHundredPercentMode(value);
+    if (this.initResult.controls) {
+      this.initResult.controls.toggleHundredPercentMode(value);
     }
   }
 
   toggleDataLabels() {
     this.areDataLabelsVisible = !this.areDataLabelsVisible;
-    if (this.controls) {
-      this.controls.toggleDataLabels(this.areDataLabelsVisible);
+    if (this.initResult.controls) {
+      this.initResult.controls.toggleDataLabels(this.areDataLabelsVisible);
     }
   }
 

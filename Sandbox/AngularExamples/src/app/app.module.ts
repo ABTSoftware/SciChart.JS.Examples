@@ -10,18 +10,19 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
 import {AppLineChartComponent } from '../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/LineChart/angularLineApp';
 import {AppRealTimeMountainComponent} from '../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/angularrealTimeMountainapp';
-import {ChartComponent} from '../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/angularImageLabels';
-import {ChartExampleComponent} from '../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/angularAnnotations';
-import { UsePointMarkers }  from '../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/angular';
+import {ChartComponent} from '../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/angular';
+import {ChartExampleComponent} from '../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/angular';
+import {UsePointMarkers }  from '../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/angular';
 import {TenorCurves3D} from '../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/TenorCurves3D/angular';
 import {CustomFilters} from '../../../../Examples/src/components/Examples/Charts2D/Filters/CustomFilters/angular'
-
-// import {StackeAppComponent} from '../../../../Examples/Charts2D/BasicChartTypes/StackedColumnChart/angularStackedColumnapp';
 import {StackeAppComponent } from '../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedColumnChart/angularStackedColumnapp'
-// import {AppLineChartComponent } from '../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/LineChart/angularLineApp';
-// import {UsePointMarkers} from '../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsePointMarkers';
-
 import {InteractiveWaterfallChartComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/angular'
+import {EditChartExampleComponent} from '../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/EditableAnnotations/angular';
+import {Load1MillionPointsChartComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/angular';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import {RealtimePerformanceDemoComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo/angular';
+import {LiDAR3DPointCloudDemoComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/angulartest'
 
 @NgModule({
   declarations: [
@@ -36,7 +37,12 @@ import {InteractiveWaterfallChartComponent} from '../../../../Examples/src/compo
     UsePointMarkers,
     TenorCurves3D,
     CustomFilters,
-    InteractiveWaterfallChartComponent
+    InteractiveWaterfallChartComponent,
+    EditChartExampleComponent,
+    Load1MillionPointsChartComponent,
+    RealtimePerformanceDemoComponent,
+    LiDAR3DPointCloudDemoComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,9 @@ import {InteractiveWaterfallChartComponent} from '../../../../Examples/src/compo
     HttpClientModule,
     ScichartAngularComponent,
     MatButtonToggleModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

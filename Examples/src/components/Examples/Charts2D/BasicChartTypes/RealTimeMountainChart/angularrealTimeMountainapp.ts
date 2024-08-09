@@ -18,8 +18,7 @@ SciChart3DSurface.loadWasmFromCDN();
 export class AppRealTimeMountainComponent {
     title = "scichart-angular-app";
 
-    private sciChartSurface:any;
-    
+       
     drawExample = drawExample;
     
     onInitHandler = (initResult: any) => {
@@ -30,13 +29,4 @@ export class AppRealTimeMountainComponent {
         initResult.controls.handleStop();
     };
 
-    ngOnDestroy(){
-        this.disposeChart()
-      }
-    
-      private disposeChart(): void {
-        if (this.sciChartSurface) {
-          this.sciChartSurface.delete();
-        }
-      }
 }

@@ -554,7 +554,7 @@ class YPalette extends BasePaletteProvider implements IStrokePaletteProvider {
         this.colorData = PaletteFactory.createColorMap(wasmContext, stops);
     }
 
-    public onAttached(parentSeries: IRenderableSeries): void {
+    public override onAttached(parentSeries: IRenderableSeries): void {
         this.dataSeries = parentSeries.dataSeries as XyDataSeries;
     }
 

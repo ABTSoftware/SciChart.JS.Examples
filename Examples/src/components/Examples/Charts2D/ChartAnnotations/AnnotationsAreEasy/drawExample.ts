@@ -23,7 +23,7 @@ import {
     NativeTextAnnotation,
 } from "scichart";
 
-export const drawExample = (emojiUrls: string) => async (rootElement: string | HTMLDivElement) => {
+export const drawExample = (CustomImage: string) => async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
@@ -163,7 +163,7 @@ export const drawExample = (emojiUrls: string) => async (rootElement: string | H
         textColor,
         verticalAnchorPoint: EVerticalAnchorPoint.Bottom,
     });
-    const image = getImageAnnotation(0.3, 2.8, emojiUrls, 241, 62);
+    const image = getImageAnnotation(0.3, 2.8, CustomImage, 241, 62);
 
     // Vectors (SVG)
     const testCustomSvg = new TextAnnotation({

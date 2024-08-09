@@ -1,5 +1,5 @@
 import { appTheme } from "../../../theme";
-import SciChartImage from "./scichart-logo-white.png";
+// import SciChartImage from "./scichart-logo-white.png";
 import {
     SciChartSurface,
     NumericAxis,
@@ -44,7 +44,7 @@ const getImageAnnotation = (x1: number, y1: number, image: any, width: number, h
     });
 };
 
-export const drawExample = async (rootElement: string | HTMLDivElement) => {
+export const drawExample = (SciChartImage: string) => async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });

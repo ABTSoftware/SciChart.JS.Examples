@@ -21,16 +21,14 @@ const emojiUrls = [
 
 @Component({
     selector: "app-Image-labels",
-    template: `<div #sciChartDiv style="width: 100%; height: 500px;"></div>`,
+    template: `
+    <scichart-angular
+      [initChart]="drawExample"
+      style="flex: 1; flex-basis: 50%;">
+     </scichart-angular>`,
 })
-export class ChartComponent implements AfterViewInit {
-    @ViewChild("sciChartDiv", { static: true }) sciChartDiv: ElementRef;
+export class ChartComponent  {
 
-    ngAfterViewInit(): void {
-        this.drawChart();
-    }
+    drawExample = drawExample(emojiUrls); 
 
-    async drawChart() {
-        drawExample(emojiUrls)(this.sciChartDiv.nativeElement);
-    }
 }

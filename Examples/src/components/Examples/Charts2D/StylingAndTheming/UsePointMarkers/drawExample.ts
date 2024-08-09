@@ -50,7 +50,7 @@ function createData(wasmContext: TSciChart) {
     return [dataSeries1, dataSeries2, dataSeries3, dataSeries4, dataSeries5];
 }
 
-export const drawExample = (emojiUrls: string) =>  async (rootElement: string | HTMLDivElement) => {
+export const drawExample = (customPointImage: string) =>  async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
@@ -124,7 +124,7 @@ export const drawExample = (emojiUrls: string) =>  async (rootElement: string | 
     );
 
     // Add a scatter series with Custom Image using SpritePointMarker
-    const imageBitmap = await createImageAsync(emojiUrls);
+    const imageBitmap = await createImageAsync(customPointImage);
 
     sciChartSurface.renderableSeries.add(
         new SplineLineRenderableSeries(wasmContext, {
