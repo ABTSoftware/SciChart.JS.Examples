@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, ViewChild, ElementRef,ChangeDetectorRef } from '@angular/core';
 import { SciChart3DSurface } from 'scichart';
-import { drawExample, drawHeatmapLegend } from './drawExample'; // Adjust import path as needed
+import { drawExample, drawHeatmapLegend } from './drawExample'; 
 
 @Component({
   selector: 'app-li-dar3d-point-cloud',
