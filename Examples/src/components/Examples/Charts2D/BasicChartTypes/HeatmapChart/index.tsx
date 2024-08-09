@@ -3,7 +3,6 @@ import classes from "../../../styles/Examples.module.scss";
 import { Button } from "@mui/material";
 import { appTheme } from "../../../theme";
 import { makeStyles } from "@mui/styles";
-import { SciChartSurface, HeatmapLegend } from "scichart";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 
@@ -33,85 +32,57 @@ export default function HeatmapChart() {
         startDemo: () => {},
         stopDemo: () => {},
     });
-    const sciChartSurfaceRef = React.useRef<SciChartSurface>();
-    const heatmapLegendRef = React.useRef<HeatmapLegend>();
     const [stats, setStats] = React.useState({ xSize: 0, ySize: 0, fps: 0 });
 
     const localClasses = useStyles();
 
     return (
-        <React.Fragment>
-            <div className={classes.ChartWrapper}>
-                <div className={localClasses.flexOuterContainer}>
-                    <div className={localClasses.toolbarRow}>
-                        <Button
-                            onClick={() => controlsRef.current.startDemo()}
-                            style={{ color: appTheme.ForegroundColor }}
-                        >
-                            Start
-                        </Button>
-                        <Button
-                            onClick={() => controlsRef.current.stopDemo()}
-                            style={{ color: appTheme.ForegroundColor }}
-                        >
-                            Stop
-                        </Button>
-                        <span style={{ margin: 12, minWidth: "200px" }}>
-                            # Heatmap Size: {stats.xSize} x {stats.ySize}
-                        </span>
-                        <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
-                    </div>
-                    <div className={localClasses.chartArea} style={{ position: "relative" }}>
-                        <SciChartReact
-                            initChart={drawExample}
-                            style={{ width: "100%", height: "100%" }}
-                            onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
-                                const { sciChartSurface, heatmapDataSeries, controls } = initResult;
-                                sciChartSurfaceRef.current = sciChartSurface;
-                                controlsRef.current = controls;
+        <div className={classes.ChartWrapper}>
+            <div className={localClasses.flexOuterContainer}>
+                <div className={localClasses.toolbarRow}>
+                    <Button onClick={() => controlsRef.current.startDemo()} style={{ color: appTheme.ForegroundColor }}>
+                        Start
+                    </Button>
+                    <Button onClick={() => controlsRef.current.stopDemo()} style={{ color: appTheme.ForegroundColor }}>
+                        Stop
+                    </Button>
+                    <span style={{ margin: 12, minWidth: "200px" }}>
+                        # Heatmap Size: {stats.xSize} x {stats.ySize}
+                    </span>
+                    <span style={{ margin: 12 }}>FPS: {stats.fps.toFixed(0)}</span>
+                </div>
+                <div className={localClasses.chartArea} style={{ position: "relative" }}>
+                    <SciChartReact
+                        initChart={drawExample}
+                        style={{ width: "100%", height: "100%" }}
+                        onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
+                            const { subscribeToRenderStats, controls } = initResult;
+                            controlsRef.current = controls;
 
-                                // Initialize heatmap legend not required for now
-                                // drawHeatmapLegend().then((legend) => {
-                                //     heatmapLegendRef.current = legend;
-                                // });
+                            subscribeToRenderStats((stats) => setStats(stats));
 
-                                // Handle drawing/updating FPS
-                                let lastRendered = Date.now();
-                                sciChartSurface.rendered.subscribe(() => {
-                                    const currentTime = Date.now();
-                                    const timeDiffSeconds = (currentTime - lastRendered) / 1000;
-                                    lastRendered = currentTime;
-                                    const fps = 1 / timeDiffSeconds;
-                                    setStats({
-                                        xSize: heatmapDataSeries.arrayWidth,
-                                        ySize: heatmapDataSeries.arrayHeight,
-                                        fps,
-                                    });
-                                });
+                            // Start the demo
+                            controls.startDemo();
 
-                                // Start the demo
-                                controls.startDemo();
-
-                                // Cleanup function
-                                return () => {
-                                    controls.stopDemo();
-                                };
-                            }}
-                        />
-                        <SciChartReact
-                            initChart={drawHeatmapLegend}
-                            style={{
-                                position: "absolute",
-                                height: "90%",
-                                width: "100px",
-                                top: 0,
-                                right: "75px",
-                                margin: "20px",
-                            }}
-                        />
-                    </div>
+                            // Cleanup function
+                            return () => {
+                                controls.stopDemo();
+                            };
+                        }}
+                    />
+                    <SciChartReact
+                        initChart={drawHeatmapLegend}
+                        style={{
+                            position: "absolute",
+                            height: "90%",
+                            width: "100px",
+                            top: 0,
+                            right: "75px",
+                            margin: "20px",
+                        }}
+                    />
                 </div>
             </div>
-        </React.Fragment>
+        </div>
     );
 }

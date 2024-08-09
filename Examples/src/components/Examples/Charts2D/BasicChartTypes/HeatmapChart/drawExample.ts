@@ -16,7 +16,7 @@ const MAX_SERIES = 100;
 const WIDTH = 300;
 const HEIGHT = 200;
 
-// Draws a Heatmap chart in real-time over the <div id={divElementId}>
+// Draws a Heatmap chart in real-time
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
@@ -91,7 +91,23 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         timerId = undefined;
     };
 
-    return { sciChartSurface, wasmContext, heatmapDataSeries, controls: { startDemo, stopDemo } };
+    const subscribeToRenderStats = (callback: (stats: { xSize: number; ySize: number; fps: number }) => void) => {
+        // Handle drawing/updating FPS
+        let lastRendered = Date.now();
+        sciChartSurface.rendered.subscribe(() => {
+            const currentTime = Date.now();
+            const timeDiffSeconds = (currentTime - lastRendered) / 1000;
+            lastRendered = currentTime;
+            const fps = 1 / timeDiffSeconds;
+            callback({
+                xSize: heatmapDataSeries.arrayWidth,
+                ySize: heatmapDataSeries.arrayHeight,
+                fps,
+            });
+        });
+    };
+
+    return { sciChartSurface, subscribeToRenderStats, controls: { startDemo, stopDemo } };
 };
 
 // Draws a Heatmap legend over the <div id={divHeatmapLegend}></div>
