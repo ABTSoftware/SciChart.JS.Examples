@@ -15,9 +15,6 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-export const divElementId = "chart";
-export const divHeatmapLegend = "heatmapLegend";
-
 type TMetadata = {
     vertexColor: number;
     pointScale: number;
@@ -56,8 +53,8 @@ const createSpectralData = (n: number) => {
 };
 
 // SCICHART CODE
-export const drawExample = async () => {
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, {
+export const drawExample = async (rootElement: string | HTMLDivElement) => {
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
     sciChart3DSurface.worldDimensions = new Vector3(300, 100, 300);
@@ -124,7 +121,7 @@ export const drawExample = async () => {
         );
     }
 
-    return { sciChart3DSurface, wasmContext };
+    return { sciChartSurface: sciChart3DSurface, wasmContext };
 };
 
 function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): TMetadata[] {
@@ -150,8 +147,8 @@ function formatMetadata(valuesArray: number[], gradientStops: TGradientStop[]): 
     });
 }
 
-export const drawHeatmapLegend = async () => {
-    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
+export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) => {
+    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(rootElement, {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
@@ -190,5 +187,5 @@ export const drawHeatmapLegend = async () => {
         },
     });
 
-    return heatmapLegend;
+    return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };
 };
