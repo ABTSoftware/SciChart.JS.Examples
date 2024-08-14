@@ -729,4 +729,11 @@ export const ExampleStrings = {
     titleTextChart: (frameworkName: TFrameworkName) => `${frameworkName} Text Chart`,
     urlTextSeriesDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#TheTextSeriesType.html`,
     urlTitleTextSeriesDocumentation: `The documentation page for the TextSeries in SciChart.js`,
+
+    urluserAnnotatedStockChart: `user-annotated-stock-chart`,
+    titleuserAnnotatedStockChart: (frameworkName: TFrameworkName) => `${frameworkName} User Annotated Stock Chart`,
+    pageTitleuserAnnotatedStockChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} User Annotated Stock Chart | Chart Examples | SciChart.js`,
+    urlTitleuserAnnotatedStockChart: (frameworkName: TFrameworkName) =>
+        `${frameworkName} User Annotated Stock Chart example demonstrates how to allow users to annotate a Stock Chart with SciChart.js`,
 };

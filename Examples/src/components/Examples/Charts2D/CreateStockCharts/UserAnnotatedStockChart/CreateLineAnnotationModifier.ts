@@ -11,7 +11,7 @@ export class CreateLineAnnotationModifier extends ChartModifierBase2D {
     private editingAnnotation: IAnnotation;
 
     // Called when mouse-down on the chart
-    public modifierMouseDown(args: ModifierMouseArgs): void {
+    public override modifierMouseDown(args: ModifierMouseArgs): void {
         super.modifierMouseDown(args);
         if (!this.isEnabled) return;
         if (!this.editingAnnotation) {
@@ -23,7 +23,7 @@ export class CreateLineAnnotationModifier extends ChartModifierBase2D {
     }
 
     // Called when mouse-move on the chart
-    public modifierMouseMove(args: ModifierMouseArgs): void {
+    public override modifierMouseMove(args: ModifierMouseArgs): void {
         super.modifierMouseMove(args);
 
         // Update the annotation
@@ -35,7 +35,7 @@ export class CreateLineAnnotationModifier extends ChartModifierBase2D {
     }
 
     // Called when mouse-up on the chart
-    public modifierMouseUp(args: ModifierMouseArgs) {
+    public override modifierMouseUp(args: ModifierMouseArgs) {
         super.modifierMouseUp(args);
         if (this.editingAnnotation) {
             // If already editingAnnotation, then end the creation and reset flags

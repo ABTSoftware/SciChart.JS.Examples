@@ -19,10 +19,17 @@ import {StackeAppComponent } from '../../../../Examples/src/components/Examples/
 import {InteractiveWaterfallChartComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/InteractiveWaterfallChart/angular'
 import {EditChartExampleComponent} from '../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/EditableAnnotations/angular';
 import {Load1MillionPointsChartComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load1MillionPoints/angular';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
+import {MatCardModule } from '@angular/material/card';
+import {MatButtonModule } from '@angular/material/button';
 import {RealtimePerformanceDemoComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/RealtimePerformanceDemo/angular';
-import {LiDAR3DPointCloudDemoComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/angular'
+import {LiDAR3DPointCloudDemoComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/angular';
+import {ScichartComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo/angulartest'
+import {UserAnnotatedStockChartComponent}  from '../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/angular'
+import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule } from '@angular/material/input';
+import {MatSelectModule } from '@angular/material/select';
+import {MultiPaneStockChartsComponent} from  '../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/angular'
 
 @NgModule({
   declarations: [
@@ -41,7 +48,10 @@ import {LiDAR3DPointCloudDemoComponent} from '../../../../Examples/src/component
     EditChartExampleComponent,
     Load1MillionPointsChartComponent,
     RealtimePerformanceDemoComponent,
-    LiDAR3DPointCloudDemoComponent
+    LiDAR3DPointCloudDemoComponent,
+    ScichartComponent,
+    UserAnnotatedStockChartComponent,
+    MultiPaneStockChartsComponent
     
   ],
   imports: [
@@ -53,6 +63,10 @@ import {LiDAR3DPointCloudDemoComponent} from '../../../../Examples/src/component
     FormsModule,
     MatCardModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

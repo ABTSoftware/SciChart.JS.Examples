@@ -69,7 +69,7 @@ interface Controls {
   }
   `]
 })
-export class RealtimePerformanceDemoComponent implements OnDestroy {
+export class RealtimePerformanceDemoComponent {
   stats = { numberPoints: 0, fps: 0 };
   
   constructor() {}
@@ -83,11 +83,6 @@ export class RealtimePerformanceDemoComponent implements OnDestroy {
     this.startDemo();
   }
 
-  ngOnDestroy(): void {
-    if (this.initResult && this.initResult.controls) {
-      this.initResult.controls.stopDemo();
-    }
-  }
 
   startDemo() {
     if (this.initResult && this.initResult.controls) {
@@ -96,6 +91,11 @@ export class RealtimePerformanceDemoComponent implements OnDestroy {
   }
 
   stopDemo() {
+    if (this.initResult && this.initResult.controls) {
+      this.initResult.controls.stopDemo();
+    }
+  }
+  onDelete(){
     if (this.initResult && this.initResult.controls) {
       this.initResult.controls.stopDemo();
     }

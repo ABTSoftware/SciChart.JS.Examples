@@ -39,7 +39,7 @@ import * as lineChartExampleInfo from "../../../../../Examples/src/components/Ex
 import * as donutChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/DonutChart/drawExample";
 import * as pieChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/PieChart/drawExample";
 import * as realTimeMountainChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/drawExample";
-import * as multiPaneStockChartsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/drawExample";
+// import * as multiPaneStockChartsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/drawExample";
 import * as chartLegendsAPIExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Legends/ChartLegendsAPI/drawExample";
 import * as seriesSelectionExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/SeriesSelection/drawExample";
 import * as usingCursorModifierTooltipsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/TooltipsAndHittest/UsingCursorModifierTooltips/drawExample";
@@ -70,9 +70,11 @@ import * as dataAnimationExampleInfo from "../../../../../Examples/src/component
 import * as depthChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/DepthChart/drawExample";
 import * as backgroundAnnotationsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/BackgroundAnnotations/drawExample";
 import * as eventMarkersExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/EventMarkers/drawExample";
-import * as styleAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/StyleAnimation/drawExample"
-import * as genericAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/GenericAnimation/drawExample"
-import * as startupAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/StartupAnimation/drawExample"
+import * as styleAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/StyleAnimation/drawExample";
+import * as genericAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/GenericAnimation/drawExample";
+import * as startupAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/StartupAnimation/drawExample";
+import * as userAnnotatedStockChartExampleInfo from  "../../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/drawExample";
+
 // import * as candlestickChartExampleInfo  from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/CandlestickChart/drawExample";
 //  import * as websocketBigDataDemoExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/WebsocketBigData/drawExample";
 //  import * as stackedColumnChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedColumnChart/drawExample";
@@ -107,6 +109,7 @@ import * as startupAnimationExampleInfo from "../../../../../Examples/src/compon
 // import * as syncMultiChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/MultiChart/SyncMultiChart/drawExample";
 
 import { title } from "process";
+import { from } from "rxjs";
 export const framework = 'Angular'
 
 
@@ -389,12 +392,13 @@ export const EXAMPLES_PAGES = {
         path: ExampleStrings.urlDragHorizontalThreshold,
         drawExample:dragHorizontalThresholdExampleInfo.drawExample,
     },
-    chart2D_createStockCharts_MultiPaneStockCharts: {
-        id: "chart2D_createStockCharts_MultiPaneStockCharts",
-        title: ExampleStrings.titleMultiPaneStockChart(framework),
-        path: ExampleStrings.urlMultiPaneStockChart,
-        drawExample: multiPaneStockChartsExampleInfo.getChartsInitializationAPI,
-    },
+    // chart2D_createStockCharts_MultiPaneStockCharts: {
+    //     id: "chart2D_createStockCharts_MultiPaneStockCharts",
+    //     title: ExampleStrings.titleMultiPaneStockChart(framework),
+    //     path: ExampleStrings.urlMultiPaneStockChart,
+    //     drawExample: multiPaneStockChartsExampleInfo.getChartsInitializationAPI,
+    // },
+  
     chart2D_legends_ChartLegendsAPI: {
         id: "chart2D_legends_ChartLegendsAPI",
         title: ExampleStrings.titleChartLegends,
@@ -673,6 +677,27 @@ export const EXAMPLES_PAGES = {
         path: ExampleStrings.urlDepthChart,
         drawExample: depthChartExampleInfo.drawExample,
     },
+
+    chart2D_createStockCharts_SharedChart: {
+        id: "chart2D_createStockCharts_SharedChart",
+        title: ExampleStrings.titleuserAnnotatedStockChart(framework),
+        pageTitle: ExampleStrings.pageTitleuserAnnotatedStockChart,
+        path: ExampleStrings.urluserAnnotatedStockChart,
+        additinal: true,
+     //   drawExample: userAnnotatedStockChartExampleInfo.drawExample,
+      
+    },
+    chart2D_createStockCharts_MultiPaneStockCharts: {
+        id: "chart2D_createStockCharts_MultiPaneStockCharts",
+        title: ExampleStrings.titleMultiPaneStockChart(framework),
+        path: ExampleStrings.urlMultiPaneStockChart,
+        additinal: true,
+        // drawExample: multiPaneStockChartsExampleInfo.getChartsInitializationAPI,
+    },
+    // chart2D_createStockCharts_MultiPaneStockCharts: {
+    //     id: "chart2D_createStockCharts_MultiPaneStockCharts",
+    //     ...multiPaneStockChartsExampleInfo,
+    // },
     // chart2D_stylingAndTheming_UsingThemeManager: {                                               
     //     id: "chart2D_stylingAndTheming_UsingThemeManager",
     //     title: ExampleStrings.titleThemeManager(framework),
@@ -787,5 +812,5 @@ export const EXAMPLES_PAGES = {
     //     path: ExampleStrings.urlChartFromJSON,
     //     drawExample: chartFromJSONExampleInfo.drawExample,
     // },                                                       // No DrawExample 
-    
+   
 };

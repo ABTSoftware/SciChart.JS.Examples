@@ -47,6 +47,12 @@
     <app-realtime-performance></app-realtime-performance>
 </ng-container>
 <ng-container *ngIf= "additinal=='featuredApps_scientificCharts_Lidar3DPointCloudDemo'">
-    <!-- <app-li-dar3d-point-cloud></app-li-dar3d-point-cloud> -->
+    <app-li-dar3d-point-cloud></app-li-dar3d-point-cloud>
 </ng-container>
-<!-- <app-lidar-3d-point-cloud-demo></app-lidar-3d-point-cloud-demo> -->
+<ng-container *ngIf= "additinal=='chart2D_createStockCharts_SharedChart'">
+    <app-user-annotated-stock-chart></app-user-annotated-stock-chart>
+</ng-container>
+<ng-container *ngIf= "additinal=='chart2D_createStockCharts_MultiPaneStockCharts'">
+    <!-- <app-multi-pane-stock-charts></app-multi-pane-stock-charts> -->
+    <app-multi-pane-stock-charts></app-multi-pane-stock-charts>
+</ng-container>

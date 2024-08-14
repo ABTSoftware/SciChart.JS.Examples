@@ -62,6 +62,10 @@ interface SciChartControls {
   margin-bottom: 8px; 
 }
 
+.mat-mdc-card {
+  background-color:#264B93 !important
+}
+
   </style>
   <div class="chart-wrapper">
     <div class="flex-outer-container">
