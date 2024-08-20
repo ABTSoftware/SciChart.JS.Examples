@@ -8794,9 +8794,9 @@ Show external placement div</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="bc9cfc5a-28fb-4fd8-9649-59e5c8357e7f" Status="New Topic" CreatedOn="2023-09-13T15:37:07.961403Z" ModifiedOn="2023-10-30T15:01:15.6821535Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier_CustomisingContainer" BuildFlags="">
-                    <Title m="2023-09-13T15:37:43.2538476Z">Customizing the Tooltip Container Appearance</Title>
-                    <ContentsTitle />
+                  <Topic Id="bc9cfc5a-28fb-4fd8-9649-59e5c8357e7f" Status="New Topic" CreatedOn="2023-09-13T15:37:07.961403Z" ModifiedOn="2024-07-25T12:45:50.7680252Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="CursorModifier_CustomisingContainer" BuildFlags="">
+                    <Title m="2024-07-25T12:45:45.1838259Z">Customizing the CursorModifier Tooltip Container Appearance</Title>
+                    <ContentsTitle m="2024-07-25T12:45:50.7680252Z">Customizing the CursorModifier Tooltip Container Appearance</ContentsTitle>
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
@@ -9047,13 +9047,38 @@ Show external placement div</Notes>
                     <PropertyDefinitionValues />
                     <ExcludedOtherFiles />
                   </Topic>
-                  <Topic Id="ac61e660-827d-4f2a-af59-091f8f78cb60" Status="New Topic" CreatedOn="2024-07-25T09:05:18.8388917Z" ModifiedOn="2024-07-25T09:05:49.5927219Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="VerticalSliceModifier_CustomisingContainer" BuildFlags="">
-                    <Title m="2024-07-25T09:05:45.9549679Z">Customising VerticalSliceModifier Tooltip Containers</Title>
-                    <ContentsTitle m="2024-07-25T09:05:49.5917221Z">Customising VerticalSliceModifier Tooltip Containers</ContentsTitle>
+                  <Topic Id="ac61e660-827d-4f2a-af59-091f8f78cb60" Status="New Topic" CreatedOn="2024-07-25T09:05:18.8388917Z" ModifiedOn="2024-07-30T16:17:07.8220744Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="VerticalSliceModifier_CustomisingContainer" BuildFlags="">
+                    <Title m="2024-07-25T12:09:13.306716Z">Customizing VerticalSliceModifier Tooltip Containers</Title>
+                    <ContentsTitle m="2024-07-25T12:09:14.6620015Z">Customizing VerticalSliceModifier Tooltip Containers</ContentsTitle>
                     <Notes></Notes>
                     <TopicSections>
                       <TopicSection Name="BodyText">
-                        <Content m="2024-07-25T09:05:18.8398967Z">&lt;p&gt; &lt;/p&gt;</Content>
+                        <Content m="2024-07-30T16:17:07.8220744Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;STRONG&gt;Background reading:&lt;/STRONG&gt; If you haven't already, read the article&amp;nbsp;&lt;A href="b3c269a6-633c-4b2f-b340-af31bde661a7"&gt;The VerticalSliceModifier Type&lt;/A&gt;&amp;nbsp;which will show you how to setup a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt; with default options for tooltips.&lt;/P&gt;
+&lt;P&gt;This article goes into further detail on customising the tooltip items (formatting, text content)&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Basic Customization of VerticalSliceModifier Tooltips via properties&lt;/H2&gt;
+&lt;P&gt;Basic customisation of the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html" target=_blank&gt;VerticalSliceModifier&lt;/A&gt;&amp;nbsp;appearance can be made through the following properties.&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;The vertical line thickness, dash and stroke color can be changed with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#rolloverlinestroke"&gt;VerticalSliceModifier.rolloverLineStroke&lt;/A&gt;,&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#rolloverlinestrokethickness"&gt;VerticalSliceModifier.rolloverLineStrokeThickness&lt;/A&gt;&amp;nbsp;and &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#rolloverlinestrokedasharray"&gt;VerticalSliceModifier.rolloverLineStrokeDashArray&lt;/A&gt; properties.
+&lt;LI&gt;The line selection color can be set via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#lineselectioncolor"&gt;VerticalSliceModifier.lineSelectionColor&lt;/A&gt; property.
+&lt;LI&gt;The tooltip can be turned on/off (to have a simple cursor) with the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#showtooltip"&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;VerticalSliceModifier.showTooltip&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt; property.
+&lt;LI&gt;The tooltip background and text color can be changed with&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rollovermodifierrenderableseriesprops.html#tooltipcolor"&gt;tooltipColor&lt;/A&gt; and&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/rollovermodifierrenderableseriesprops.html#tooltiptextcolor"&gt;tooltipTextColor&lt;/A&gt; properties, found on&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/baserenderableseries.html#rollovermodifierprops"&gt;RenderableSeries.rolloverModifierProps&lt;/A&gt; on a per-series basis.
+&lt;LI&gt;Axis labels can be turned on/off via the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/lineannotation.html#showlabel"&gt;VerticalSliceModifier.verticalLine.showLabel&lt;/A&gt; property, (where&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#verticalline"&gt;VerticalSliceModifier.verticalLine&lt;/A&gt; is simply a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/lineannotation.html"&gt;LineAnnotation&lt;/A&gt;).
+&lt;LI&gt;Axis Label backgrounds and text color can be changed with the properties found on &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/verticalslicemodifier.html#verticalline"&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;VerticalSliceModifier.verticalLine&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt;, such as&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#axislabelstroke"&gt;&lt;U&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/lineannotation.html#axislabelstroke"&gt;axisLabelStroke&lt;/A&gt;&lt;/U&gt;&lt;/A&gt;,&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#axislabelfill"&gt;&lt;U&gt;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/lineannotation.html#axislabelfill"&gt;axisLabelFill&lt;/A&gt;&lt;/U&gt;&lt;/A&gt;. &amp;nbsp;&amp;nbsp; &lt;/LI&gt;&lt;/UL&gt;
+&lt;H2&gt;Deep Customization of VerticalSliceModifier Tooltips via SVG Templates&lt;/H2&gt;
+&lt;P&gt;Deeper customisation of the tooltip appearance can be achieved via the &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/cursormodifier.html#tooltipsvgtemplate"&gt;tooltipSvgTemplate&lt;/A&gt; property.&lt;/P&gt;
+&lt;P&gt;This defines the actual SVG used to host the tooltip container. This property expects a function in the following format (see&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#tcursortooltipsvgtemplate"&gt;TCursorTooltipSvgTemplate&lt;/A&gt;):&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;cursotTooltipSvgTemplate function&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;TypeScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;(seriesInfos: SeriesInfo[], svgAnnotation: CursorTooltipSvgAnnotation) =&amp;gt; string&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The&amp;nbsp;input/output parameters are:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;STRONG&gt;Input&lt;/STRONG&gt;: an array of&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/seriesinfo.html"&gt;SeriesInfo&lt;/A&gt;: a data object which stores info about the series under the mouse. 
+&lt;LI&gt;&lt;STRONG&gt;Input&lt;/STRONG&gt;: svgAnnotation (&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/index.html#tcursortooltipsvgtemplate"&gt;CursorTooltipSvgAnnotation&lt;/A&gt;) which is the current tooltip SVG annotation 
+&lt;LI&gt;&lt;STRONG&gt;Output&lt;/STRONG&gt;:&amp;nbsp;string, containing the new SVG to define the tooltip container. &lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Let's create a simple example which shows you how to customize the tooltip container.&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Example Code Tab Strip" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\ChartModifiers\CursorModifier\Svgtemplate\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This results in the following output:&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/ChartModifiers/CursorModifier/SvgTemplate/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&lt;/P&gt;</Content>
                       </TopicSection>
                     </TopicSections>
                     <TopicLinks />
@@ -16327,7 +16352,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">1660</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">360</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
