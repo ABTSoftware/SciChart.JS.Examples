@@ -21,7 +21,106 @@ import {
     GenericAnimation,
     EWrapTo,
     NativeTextAnnotation,
+    CoordinateCalculatorBase,
+    Rect,
+    WebGlRenderContext2D,
+    annotationHelpers,
+    translateFromSeriesViewRectToCanvas,
+    DpiHelper,
+    Point,
 } from "scichart";
+
+class InfiniteLineAnnotation extends LineAnnotation {
+    private gradient: number;
+    private x1Draw: number;
+    private y1Draw: number;
+    private x2Draw: number;
+    private y2Draw: number;
+
+    public drawWithContext(
+        renderContext: WebGlRenderContext2D,
+        xCalc: CoordinateCalculatorBase,
+        yCalc: CoordinateCalculatorBase,
+        viewRect: Rect
+    ): void {
+        const xVisibleRange = this.parentSurface.getXAxisById(this.xAxisId).visibleRange;
+        const yVisibleRange = this.parentSurface.getYAxisById(this.yAxisId).visibleRange;
+        // Assume DataValue coordinate mode
+        this.gradient = (this.y2 - this.y1) / (this.x2 - this.x1);
+        const yAtXMin = this.y1 - this.gradient * (this.x1 - xVisibleRange.min);
+        const yAtXMax = this.y2 + this.gradient * (xVisibleRange.max - this.x2);
+        console.log(yAtXMin, yAtXMax);
+        if (yAtXMin < yVisibleRange.min) {
+            this.y1Draw = yVisibleRange.min;
+            this.x1Draw = (yVisibleRange.min - this.y1 + this.x1 * this.gradient) / this.gradient;
+        } else if (yAtXMin > yVisibleRange.max) {
+            this.y1Draw = yVisibleRange.max;
+            this.x1Draw = (yVisibleRange.max - this.y1 + this.x1 * this.gradient) / this.gradient;
+        } else {
+            this.x1Draw = xVisibleRange.min;
+            this.y1Draw = yAtXMin;
+        }
+        if (yAtXMax < yVisibleRange.min) {
+            this.y2Draw = yVisibleRange.min;
+            this.x2Draw = (yVisibleRange.min - this.y2 + this.x2 * this.gradient) / this.gradient;
+        } else if (yAtXMax > yVisibleRange.max) {
+            this.y2Draw = yVisibleRange.max;
+            this.x2Draw = (yVisibleRange.max - this.y2 + this.x2 * this.gradient) / this.gradient;
+        } else {
+            this.x2Draw = xVisibleRange.max;
+            this.y2Draw = yAtXMax;
+        }
+        console.log(this.x1Draw, this.y1Draw, this.x2Draw, this.y2Draw);
+        super.drawWithContext(renderContext, xCalc, yCalc, viewRect);
+    }
+
+    // These are called from drawWithContext to get pixel values.  We use draw values rather than the user values.
+    protected getX1Coordinate(xCalc: CoordinateCalculatorBase, yCalc: CoordinateCalculatorBase) {
+        return this.getCoordinate(this.x1Draw ?? 0, xCalc, this.xCoordinateMode);
+    }
+    protected getX2Coordinate(xCalc: CoordinateCalculatorBase, yCalc: CoordinateCalculatorBase) {
+        return this.getCoordinate(this.x2Draw ?? 0, xCalc, this.xCoordinateMode);
+    }
+    protected getY1Coordinate(xCalc: CoordinateCalculatorBase, yCalc: CoordinateCalculatorBase) {
+        return this.getCoordinate(this.y1Draw ?? 0, yCalc, this.xCoordinateMode);
+    }
+    protected getY2Coordinate(xCalc: CoordinateCalculatorBase, yCalc: CoordinateCalculatorBase) {
+        return this.getCoordinate(this.y2Draw ?? 0, yCalc, this.xCoordinateMode);
+    }
+
+    // Show the drag handles at the user-provided values
+    protected updateAdornerInner() {
+        this.deleteAdorner();
+        if (this.isSelected) {
+            const xCalc = this.parentSurface.getXAxisById(this.xAxisId).getCurrentCoordinateCalculator();
+            const yCalc = this.parentSurface.getYAxisById(this.yAxisId).getCurrentCoordinateCalculator();
+            // Call the parent versions which will use the user-provided x and y
+            const x1 = super.getX1Coordinate(xCalc, yCalc);
+            const y1 = super.getY1Coordinate(xCalc, yCalc);
+            const x2 = super.getX2Coordinate(xCalc, yCalc);
+            const y2 = super.getY2Coordinate(xCalc, yCalc);
+            // Adjust for the viewRect
+            const point1 = translateFromSeriesViewRectToCanvas(
+                new Point(x1, y1),
+                this.parentSurface.seriesViewRect,
+                true
+            );
+            const point2 = translateFromSeriesViewRectToCanvas(
+                new Point(x2, y2),
+                this.parentSurface.seriesViewRect,
+                true
+            );
+            // Adjust for DPI
+            const svgString = this.svgStringAdornerTemplate(
+                point1.x / DpiHelper.PIXEL_RATIO,
+                point1.y / DpiHelper.PIXEL_RATIO,
+                point2.x / DpiHelper.PIXEL_RATIO,
+                point2.y / DpiHelper.PIXEL_RATIO
+            );
+            this.svgAdorner = annotationHelpers.createSvg(svgString, this.svgAdornerRoot);
+        }
+    }
+}
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
@@ -44,6 +143,19 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const textColor = appTheme.ForegroundColor;
     const stroke = appTheme.VividSkyBlue;
     const strokeDashArray = [3, 3];
+
+    sciChartSurface.annotations.add(
+        new InfiniteLineAnnotation({
+            x1: 2,
+            y1: 2,
+            x2: 7,
+            y2: 7,
+            stroke: "blue",
+            strokeThickness: 2,
+            isEditable: true,
+            selectionBoxStroke: "transparent", // hide the selection box for the line, so it only shows the drag handles
+        })
+    );
 
     // Add TextAnnotations in the top left of the chart
     //
@@ -241,29 +353,29 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     ];
 
     // Add all the annotations to the chart
-    sciChartSurface.annotations.add(...allAnnotations);
+    //sciChartSurface.annotations.add(...allAnnotations);
 
     // Just for fun, let's animate some animations using Scichart's GenericAnimation feature
     const duration = 1000;
     const delay = 800;
-    sciChartSurface.addAnimation(
-        addTypewriterEffect(duration, 0, text1),
-        addTypewriterEffect(duration, delay, text2),
-        addFadeEffect(duration, delay * 2, lineDash, textAlignCenter, textAlignLeft, textAlignRight),
-        addTypewriterEffect(duration, delay * 3, textAlignCenter),
-        addTypewriterEffect(duration, delay * 4, textAlignLeft),
-        addTypewriterEffect(duration, delay * 5, textAlignRight),
-        addTypewriterEffect(duration, delay * 2, nativeText),
-        addRotateEffect(duration, delay * 4, nativeText),
-        addFadeEffect(duration, delay * 6, textWatermark),
-        addFadeEffect(duration, delay * 7, textLines, line1, line2),
-        addFadeEffect(duration, delay * 8, textBoxes, box1, box2, box3),
-        addFadeEffect(duration, delay * 9, textCustomShapes, customAnnotationBuyMarker, customAnnotationSellMarker),
-        addFadeEffect(duration, delay * 10, textImage, image),
-        addFadeEffect(duration, delay * 11, testCustomSvg, customSvgAnnotation),
-        addTypewriterEffect(duration, delay * 12, textVerticalLine),
-        addFadeEffect(duration, delay * 12, textVerticalLine, verticalLineStretched, horizontalLineStretched)
-    );
+    // sciChartSurface.addAnimation(
+    //     addTypewriterEffect(duration, 0, text1),
+    //     addTypewriterEffect(duration, delay, text2),
+    //     addFadeEffect(duration, delay * 2, lineDash, textAlignCenter, textAlignLeft, textAlignRight),
+    //     addTypewriterEffect(duration, delay * 3, textAlignCenter),
+    //     addTypewriterEffect(duration, delay * 4, textAlignLeft),
+    //     addTypewriterEffect(duration, delay * 5, textAlignRight),
+    //     addTypewriterEffect(duration, delay * 2, nativeText),
+    //     addRotateEffect(duration, delay * 4, nativeText),
+    //     addFadeEffect(duration, delay * 6, textWatermark),
+    //     addFadeEffect(duration, delay * 7, textLines, line1, line2),
+    //     addFadeEffect(duration, delay * 8, textBoxes, box1, box2, box3),
+    //     addFadeEffect(duration, delay * 9, textCustomShapes, customAnnotationBuyMarker, customAnnotationSellMarker),
+    //     addFadeEffect(duration, delay * 10, textImage, image),
+    //     addFadeEffect(duration, delay * 11, testCustomSvg, customSvgAnnotation),
+    //     addTypewriterEffect(duration, delay * 12, textVerticalLine),
+    //     addFadeEffect(duration, delay * 12, textVerticalLine, verticalLineStretched, horizontalLineStretched)
+    // );
 
     return { sciChartSurface, wasmContext };
 };
