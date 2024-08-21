@@ -25,6 +25,7 @@ import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciC
 import { FrameworkContext } from "../helpers/shared/Helpers/FrameworkContext";
 import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
 import NewTabs from "./NewTabs";
+import AppNewRouter from "./AppNewRouter/AppNewRouter";
 
 export default function App() {
     const { isIFrame, isHomePage, currentExample, framework } = useExampleRouteParams();
@@ -125,12 +126,9 @@ export default function App() {
                             </div>
                         </div>
                     ) : (
-                        <div className={classes.tabsection}>
-                            <div className={classes.container}>
-                                <AppRouter currentExample={currentExample} seeAlso={seeAlso} />
-                            </div>
-                        </div>
+                        <AppNewRouter currentExample={currentExample} seeAlso={seeAlso} />
                     )}
+                    {/* <AppRouter currentExample={currentExample} seeAlso={seeAlso} /> */}
                     {/* <div className={classes.MainAppWrapper}>
                         <div className={classes.DrawerDesktop}>
                             <DrawerContent

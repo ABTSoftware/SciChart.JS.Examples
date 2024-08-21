@@ -20,7 +20,6 @@ const NewGalleryItems: React.FC<TProps> = (props) => {
     const navigate = useNavigate();
     const framework = useContext(FrameworkContext);
     const [groupedItems, setGroupedItems] = useState<any[]>([]);
-    console.log(groupedItems, "group");
     const [activeFilter, setActiveFilter] = useState<string>("filter1");
 
     const handleSubmenuClick = (path: string) => {

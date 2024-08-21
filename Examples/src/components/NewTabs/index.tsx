@@ -8,6 +8,7 @@ import { getTitle, useExampleRouteParams } from "../../helpers/shared/Helpers/fr
 import { generateExamplesGallery } from "../../helpers/SciChartExamples";
 import NewGalleryItems from "../NewGalleryitems";
 import Iconleft from "./images/icon-left-arrow.svg";
+import SubMenuItems from "../AppNewRouter/SubMenuItems";
 
 type TabName = "Featured Apps" | "2D Charts" | "3D Charts";
 
@@ -76,46 +77,13 @@ const NewTabs: FC = () => {
             </div>
             <div className={classes.contentwrapper}>
                 <div id="tab-1" className={`${classes.tabcontent} ${classes.active}`}>
-                    <div className={classes.contertlistwrap}>
-                        <div className={`${classes.contentlist} ${classes.graybg}`}>
-                            {currentMenuItems.map((item) => (
-                                <ul key={item.item.id}>
-                                    <li
-                                        className={selectedItemId == item.item.id ? classes.active : ""}
-                                        onClick={() => handleClick(item.item.id)}
-                                    >
-                                        {item.item.name}{" "}
-                                        {selectedItemId == item.item.id ? (
-                                            <img style={{ marginTop: "2px", float: "right" }} src={Iconleft} />
-                                        ) : null}
-                                        <div
-                                            className={`${classes.contentlist} ${classes.columncount} ${classes.desktophidden}`}
-                                        >
-                                            <ul>
-                                                {SubmenuTitle?.map((submenuItem, index) => (
-                                                    <li
-                                                        key={index}
-                                                        onClick={() => handleSubmenuClick(submenuItem.path)}
-                                                    >
-                                                        {submenuItem.title}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            ))}
-                        </div>
-                        <div className={`${classes.contentlist} ${classes.columncount} ${classes.mobilehidden}`}>
-                            <ul>
-                                {SubmenuTitle?.map((submenuItem, index) => (
-                                    <li key={index} onClick={() => handleSubmenuClick(submenuItem.path)}>
-                                        {submenuItem.title}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
+                    <SubMenuItems
+                        currentMenuItems={currentMenuItems}
+                        selectedItemId={selectedItemId}
+                        handleClicks={handleClick}
+                        SubmenuTitle={SubmenuTitle}
+                        handleSubmenuClick={handleSubmenuClick}
+                    />
                     <NewGalleryItems examples={allGalleryItems} currentMenuItems={currentMenuItems} />
                 </div>
             </div>
