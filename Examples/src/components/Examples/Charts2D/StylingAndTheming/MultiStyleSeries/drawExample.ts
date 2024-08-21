@@ -33,6 +33,10 @@ import {
     ECoordinateMode,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
+    IStrokePaletteProvider,
+    parseColorToUIntArgb,
+    EStrokePaletteMode,
+    IRenderableSeries,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -62,18 +66,18 @@ class SplitRenderDataTransform extends BaseRenderDataTransform<OhlcPointSeriesRe
         for (let i = iStart; i <= iEnd; i++) {
             const index = resampled ? oldI.get(i) : i;
             const md = ds.getMetadataAt(index);
-            xValues.push_back(oldX.get(index));
-            indexes.push_back(oldI.get(index));
+            xValues.push_back(oldX.get(i));
+            indexes.push_back(oldI.get(i));
             let nextSelected = false;
             if (i < iEnd) {
                 const nextmd = ds.getMetadataAt(index + 1);
                 nextSelected = nextmd.isSelected;
             }
-            yValues.push_back(md.isSelected ? NaN : oldY.get(index));
+            yValues.push_back(md.isSelected ? NaN : oldY.get(i));
             // For pointmarkers we just need the point itself
-            lowValues.push_back(md.isSelected ? oldY.get(index) : NaN);
+            lowValues.push_back(md.isSelected ? oldY.get(i) : NaN);
             // need points either side of the selected value for the line to draw.
-            highValues.push_back(prevSelected || md.isSelected || nextSelected ? oldY.get(index) : NaN);
+            highValues.push_back(prevSelected || md.isSelected || nextSelected ? oldY.get(i) : NaN);
             prevSelected = md.isSelected;
         }
         return this.pointSeries;
