@@ -29,7 +29,7 @@ const Subtitle = (frameworkName: string) => (
 export const multiplePointMarkersExampleInfo: TExampleInfo = {
     onWebsite: false,
     title: ExampleStrings.titleMultiStyleSeries,
-    pageTitle: ExampleStrings.titleMultiStyleSeries + ExampleStrings.exampleGenericTitleSuffix,
+    pageTitle: ExampleStrings.titleMultiStyleSeries,
     path: ExampleStrings.urlMultiStyleSeries,
     filepath: "Charts2D/StylingAndTheming/MultStyleSeries",
     subtitle: Subtitle,
