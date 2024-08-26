@@ -95,6 +95,8 @@ export class RealtimePerformanceDemoComponent {
       this.initResult.controls.stopDemo();
     }
   }
+
+  
   onDelete(){
     if (this.initResult && this.initResult.controls) {
       this.initResult.controls.stopDemo();

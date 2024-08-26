@@ -74,7 +74,7 @@ import * as styleAnimationExampleInfo from "../../../../../Examples/src/componen
 import * as genericAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/GenericAnimation/drawExample";
 import * as startupAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/StartupAnimation/drawExample";
 import * as userAnnotatedStockChartExampleInfo from  "../../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/drawExample";
-
+import * as vitalSignsMonitorDemoExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/drawExample";
 // import * as candlestickChartExampleInfo  from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/CandlestickChart/drawExample";
 //  import * as websocketBigDataDemoExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/WebsocketBigData/drawExample";
 //  import * as stackedColumnChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedColumnChart/drawExample";
@@ -86,7 +86,7 @@ import * as userAnnotatedStockChartExampleInfo from  "../../../../../Examples/sr
 // import * as usePointMarkersExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/drawExample";
 // import * as usingThemeManagerExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsingThemeManager/drawExample";
 // import * as transparentBackgroundExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/TransparentBackground";
-// import * as load500By500ExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load500By500/drawExample";
+import * as load500By500ExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load500By500/drawExample";
 // import * as editableAnnotationsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/EditableAnnotations/drawExample";
 // import * as GalleryItem from "../../../../../../../../../../helpers/types/types";
 // import * as chartFromJSONExampleInfo from "../../../../../Examples/src/components/Examples/BuilderApi/ChartFromJSON/";
@@ -103,11 +103,12 @@ import * as userAnnotatedStockChartExampleInfo from  "../../../../../Examples/sr
 // import * as oilAndGasExplorerDashboard from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/drawExample";
 // import * as TDocumentationLink from "../../../../../../../../../../helpers/types/ExampleDescriptionTypes";
 // import * as virtualizedDataOverviewExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview";
-// import * as heatmapInteractionsExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/HeatmapInteractions/drawExample";
+import * as heatmapInteractionsExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/HeatmapInteractions/drawExample";
 // import * as chartTitleExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/FeatureDemos/ChartTitle/drawExample";
 // import * as dynamicLayoutExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/DynamicLayout/drawExample";
 // import * as syncMultiChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/MultiChart/SyncMultiChart/drawExample";
-
+// import * as audioAnalyzerExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/drawExample"
+// import * as pointLine3DChartExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/drawExample"
 import { title } from "process";
 import { from } from "rxjs";
 export const framework = 'Angular'
@@ -324,8 +325,7 @@ export const EXAMPLES_PAGES = {
         id: "chart3D_basic3DChartTypes_PointLine3DChart",
         title: ExampleStrings.titlePointLine3DChart(framework),
         path: ExampleStrings.urlPointLine3DChart,
-        drawExample: pointLine3DChartExampleInfo.drawExample,
-        // ...pointLine3DChartExampleInfo,
+        additinal: true,
     },
     builderApi_simplechart: {
         id: "builderApi_simplechart",
@@ -358,7 +358,8 @@ export const EXAMPLES_PAGES = {
         id: "chart2D_basicCharts_HeatmapChart",
         title: ExampleStrings.titleHeatmapChart(framework),
         path: ExampleStrings.urlHeatmapChart,
-        drawExample:heatmapChartExampleInfo.drawExample
+        additinal: true,
+        // drawExample:heatmapChartExampleInfo.drawExample
     },
     chart2D_basicCharts_LineChart: {
         id: "chart2D_basicCharts_LineChart",
@@ -509,7 +510,6 @@ export const EXAMPLES_PAGES = {
         title: ExampleStrings.titleAnnotationsAreEasy(framework),
         path: ExampleStrings.urlAnnotationsAreEasy,
         additinal: true,
-        // drawExample:annotationsAreEasyExampleInfo.drawExample,
     },
     chart2D_axisLabelCustomization_ImageLabels: {                                          
         id: "chart2D_axisLabelCustomization_ImageLabels",
@@ -522,7 +522,6 @@ export const EXAMPLES_PAGES = {
         title: ExampleStrings.titlePointMarkers(framework),
         path: ExampleStrings.urlPointMarkers,
         additinal: true,
-        // drawExample: usePointMarkersExampleInfo.drawExample,
     },
     chart2D_stylingAndTheming_PerPointColoring: {
         id: "chart2D_stylingAndTheming_PerPointColoring",
@@ -644,7 +643,6 @@ export const EXAMPLES_PAGES = {
         title: ExampleStrings.titleEditableAnnotations(framework),
         path: ExampleStrings.urlEditableAnnotations,
         additinal: true,
-        // drawExample:editableAnnotationsExampleInfo.drawExample,
     },
     // featuredApps_performanceDemos_RealtimeGhostedTraces: {
     //     id: "chart2D_performanceDemos_RealtimeGhostedTraces",
@@ -657,7 +655,6 @@ export const EXAMPLES_PAGES = {
         title: ExampleStrings.titleLoadOneMillionPoints,
         path: ExampleStrings.urlLoadOneMillionPoints,
         additinal: true,
-        // drawExample: loadOneMillionPointsExampleInfo.drawExample,
     },
     // chart2D_createStockCharts_RealtimeTickingStockCharts: {                               // No DrawExample 
     //     id: "chart2D_createStockCharts_RealtimeTickingStockCharts",
@@ -684,7 +681,7 @@ export const EXAMPLES_PAGES = {
         pageTitle: ExampleStrings.pageTitleuserAnnotatedStockChart,
         path: ExampleStrings.urluserAnnotatedStockChart,
         additinal: true,
-     //   drawExample: userAnnotatedStockChartExampleInfo.drawExample,
+  
       
     },
     chart2D_createStockCharts_MultiPaneStockCharts: {
@@ -692,8 +689,12 @@ export const EXAMPLES_PAGES = {
         title: ExampleStrings.titleMultiPaneStockChart(framework),
         path: ExampleStrings.urlMultiPaneStockChart,
         additinal: true,
-        // drawExample: multiPaneStockChartsExampleInfo.getChartsInitializationAPI,
     },
+
+    // featuredApps_showcases_richInteractions: {
+    //     id: "featuredApps_showcases_richInteractions",
+    //     ...heatmapInteractionsExampleInfo,
+    // },
     // chart2D_createStockCharts_MultiPaneStockCharts: {
     //     id: "chart2D_createStockCharts_MultiPaneStockCharts",
     //     ...multiPaneStockChartsExampleInfo,
@@ -735,23 +736,13 @@ export const EXAMPLES_PAGES = {
     //     drawExample: syncMultiChartExampleInfo.drawExample,
     // },                                                                    // No DrawExample 
      
-    // featuredApps_performanceDemos_Load500By500: {
-    //     id: "featuredApps_performanceDemos_Load500By500",
-    //     title: ExampleStrings.titleLoad500By500(framework),
-    //     path: ExampleStrings.urlLoad500By500,
-    //     drawExample: load500By500ExampleInfo.drawExample,
-    //     // ...load500By500ExampleInfo,                                   // No DrawExample 
-    // },
-
-
-    // featuredApps_medicalCharts_VitalSignsMonitorDemo: {
-    //     id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
-    //     title: ExampleStrings.titleVitalSigns(framework),
-    //     path: ExampleStrings.urlVitalSigns,
-    //     drawExample: vitalSignsMonitorDemoExampleInfo.drawExample,
-    //     // ...vitalSignsMonitorDemoExampleInfo,                         // No DrawExample 
-    // },
-    
+    featuredApps_performanceDemos_Load500By500: {
+        id: "featuredApps_performanceDemos_Load500By500",
+        title: ExampleStrings.titleLoad500By500,
+        path: ExampleStrings.urlLoad500By500,
+        additinal: true,
+    },
+ 
     // featuredApps_featureDemos_axisTypes: {
     //         id: "featuredApps_featureDemos_axisTypes",
     //         title: ExampleStrings.titleAxisTypes(framework),
@@ -771,13 +762,12 @@ export const EXAMPLES_PAGES = {
     //         drawExample: subchartsGridExampleInfo.drawExample,
     //         ...subchartsGridExampleInfo,
     //     },                                                          // No DrawExample 
-    // featuredApps_scientificCharts_AudioAnalyzerDemo: {
-    //     id: "featuredApps_scientificCharts_AudioAnalyzerDemo",
-    //     title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
-    //     path: ExampleStrings.urlAudioAnalyzerFeaturedApp,
-    //     drawExample: audioAnalyzerExampleInfo.drawExample,
-    //     // ...audioAnalyzerExampleInfo,                            // No DrawExample 
-    // },                                           
+    featuredApps_scientificCharts_AudioAnalyzerDemo: {
+        id: "featuredApps_scientificCharts_AudioAnalyzerDemo",
+        title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
+        path: ExampleStrings.urlAudioAnalyzerFeaturedApp,
+        additinal: true,
+    },                                           
     // featuredApps_showcases_servertrafficdashboard: {
     //     id: "featuredApps_showcases_servertrafficdashboard",
     //     title: ExampleStrings.titleServerTrafficDashboardDemo(framework),
@@ -792,13 +782,12 @@ export const EXAMPLES_PAGES = {
     //     drawExample: oilAndGasExplorerDashboard.drawExample,
     //     // ...oilAndGasExplorerDashboard,
     // },                                                           // No DrawExample
-    // featuredApps_showcases_richInteractions: {
-    //     id: "featuredApps_showcases_richInteractions",
-    //     title: ExampleStrings.titleHeatmapInteractionsData(framework),
-    //     path: ExampleStrings.urlHeatmapInteractionsData,
-    //     drawExample: heatmapInteractionsExampleInfo.drawExample,
-    //     // ...heatmapInteractionsExampleInfo,
-    // },                                                         // Override changes 
+    featuredApps_showcases_richInteractions: {
+        id: "featuredApps_showcases_richInteractions",
+        title: ExampleStrings.titleHeatmapInteractionsData(framework),
+        path: ExampleStrings.urlHeatmapInteractionsData,
+        additinal: true,
+    },                                                         // Override changes 
     // featuredApps_showcases_dynamicLayout: {
     //     id: "featuredApps_showcases_dynamicLayout",
     //     title: ExampleStrings.titleDynamicLayout(framework),
@@ -811,6 +800,12 @@ export const EXAMPLES_PAGES = {
     //     title: ExampleStrings.titleChartFromJSON,
     //     path: ExampleStrings.urlChartFromJSON,
     //     drawExample: chartFromJSONExampleInfo.drawExample,
-    // },                                                       // No DrawExample 
+    // },   
+    featuredApps_medicalCharts_VitalSignsMonitorDemo: {
+        id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
+        title: ExampleStrings.titleVitalSigns(framework),
+        path: ExampleStrings.urlVitalSigns,
+        additinal: true,
+   },                                                    // No DrawExample 
    
 };

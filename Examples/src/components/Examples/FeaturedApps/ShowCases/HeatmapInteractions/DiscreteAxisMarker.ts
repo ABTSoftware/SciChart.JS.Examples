@@ -5,7 +5,7 @@ export class DiscreteAxisMarker extends AxisMarkerAnnotation {
     public minValue = 0;
     public maxValue = 30000;
 
-    public onDragAdorner(args: ModifierMouseArgs): void {
+    public override onDragAdorner(args: ModifierMouseArgs): void {
         const xyValues = this.getValuesFromCoordinates(args.mousePoint, true);
         if (xyValues) {
             let { x, y } = xyValues;

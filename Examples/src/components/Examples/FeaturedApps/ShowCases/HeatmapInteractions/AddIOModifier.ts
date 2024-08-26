@@ -17,7 +17,7 @@ export class AddIOModifier extends ChartModifierBase2D {
     private addOutputAnnotation: TextAnnotation;
     private originalPoint: Point;
 
-    public onAttach(): void {
+    public override onAttach(): void {
         super.onAttach();
         this.addInputAnnotation = new TextAnnotation({
             text: "Add Input",
@@ -44,13 +44,13 @@ export class AddIOModifier extends ChartModifierBase2D {
         this.parentSurface.modifierAnnotations.add(this.addInputAnnotation, this.addOutputAnnotation);
     }
 
-    public onDetach(): void {
+    public override onDetach(): void {
         super.onDetach();
         this.parentSurface.modifierAnnotations.remove(this.addInputAnnotation);
         this.parentSurface.modifierAnnotations.remove(this.addOutputAnnotation);
     }
 
-    public modifierMouseDown(args: ModifierMouseArgs): void {
+    public override modifierMouseDown(args: ModifierMouseArgs): void {
         super.modifierMouseDown(args);
         if (args.button !== this.executeOn) return;
 
@@ -72,14 +72,14 @@ export class AddIOModifier extends ChartModifierBase2D {
         args.handled = true;
     }
 
-    public modifierMouseMove(args: ModifierMouseArgs): void {
+    public override modifierMouseMove(args: ModifierMouseArgs): void {
         super.modifierMouseMove(args);
         if (!this.originalPoint) return;
         this.addInputAnnotation.isSelected = this.addInputAnnotation.clickToSelect(args);
         this.addOutputAnnotation.isSelected = this.addOutputAnnotation.clickToSelect(args);
     }
 
-    public modifierMouseUp(args: ModifierMouseArgs): void {
+    public override modifierMouseUp(args: ModifierMouseArgs): void {
         super.modifierMouseUp(args);
         if (this.addInputAnnotation.isSelected) {
             const x = this.parentSurface.xAxes
