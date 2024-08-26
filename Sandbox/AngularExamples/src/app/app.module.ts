@@ -30,6 +30,14 @@ import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule } from '@angular/material/input';
 import {MatSelectModule } from '@angular/material/select';
 import {MultiPaneStockChartsComponent} from  '../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/angular'
+import {HeatmapInteractionsComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/HeatmapInteractions/angular';
+import {AudioAnalyzerComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ScientificCharts/AudioAnalyzer/angular'
+import {VitalSignsMonitorComponent} from "../../../../Examples/src/components/Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/angular"
+import {HeatmapChartComponent} from '../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/HeatmapChart/angulartest';
+import {Load500By500ChartComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load500By500/angular';
+import {PointLine3DChartComponent} from '../../../../Examples/src/components/Examples/Charts3D/Basic3DChartTypes/PointLine3DChart/angular3D'
+import {ReactiveFormsModule } from '@angular/forms';
+// import {RealtimeBigDataShowcaseComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/WebsocketBigData/angular'
 
 @NgModule({
   declarations: [
@@ -51,7 +59,14 @@ import {MultiPaneStockChartsComponent} from  '../../../../Examples/src/component
     LiDAR3DPointCloudDemoComponent,
     ScichartComponent,
     UserAnnotatedStockChartComponent,
-    MultiPaneStockChartsComponent
+    MultiPaneStockChartsComponent,
+    HeatmapInteractionsComponent,
+    VitalSignsMonitorComponent,
+    AudioAnalyzerComponent,
+    HeatmapChartComponent,
+    Load500By500ChartComponent,
+    PointLine3DChartComponent,
+    // RealtimeBigDataShowcaseComponent
     
   ],
   imports: [
@@ -61,12 +76,14 @@ import {MultiPaneStockChartsComponent} from  '../../../../Examples/src/component
     ScichartAngularComponent,
     MatButtonToggleModule,
     FormsModule,
+  
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

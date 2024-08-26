@@ -12,7 +12,7 @@ export class PointDragModifier extends ChartModifierBase2D {
     private selectedRS: IRenderableSeries;
     private selectedIndex: number = undefined;
 
-    public modifierMouseDown(args: ModifierMouseArgs): void {
+    public override modifierMouseDown(args: ModifierMouseArgs): void {
         super.modifierMouseDown(args);
         if (args.button !== this.executeOn) return;
         const rsList = this.parentSurface.renderableSeries.asArray();
@@ -55,7 +55,7 @@ export class PointDragModifier extends ChartModifierBase2D {
         args.handled = true;
     }
 
-    public modifierMouseMove(args: ModifierMouseArgs): void {
+    public override modifierMouseMove(args: ModifierMouseArgs): void {
         super.modifierMouseMove(args);
 
         const currentPoint = translateFromCanvasToSeriesViewRect(
@@ -81,7 +81,7 @@ export class PointDragModifier extends ChartModifierBase2D {
         // }
     }
 
-    public modifierMouseUp(args: ModifierMouseArgs): void {
+    public override modifierMouseUp(args: ModifierMouseArgs): void {
         super.modifierMouseUp(args);
 
         if (!this.selectedRS) return;
@@ -101,7 +101,7 @@ export class PointDragModifier extends ChartModifierBase2D {
         this.selectedRS = undefined;
     }
 
-    public modifierPointerCancel(args: ModifierMouseArgs): void {
+    public override modifierPointerCancel(args: ModifierMouseArgs): void {
         super.modifierPointerCancel(args);
 
         this.modifierMouseUp(args);

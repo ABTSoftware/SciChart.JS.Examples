@@ -892,7 +892,7 @@ class YPalette extends BasePaletteProvider implements IStrokePaletteProvider {
         this.dataSeries = parentSeries.dataSeries as XyDataSeries;
     }
 
-    public onDetached(): void {}
+    public override onDetached(): void {}
 
     public overrideStrokeArgb(xValue: number, yValue: number, index: number): number {
         const y = this.dataSeries.getNativeYValues().get(index);
