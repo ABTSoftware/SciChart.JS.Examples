@@ -2,3 +2,5 @@
 /node_modules
 /build
 copy-to-server.sh
+drawExample.js
+vanilla.js
