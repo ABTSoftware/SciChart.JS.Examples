@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ApplicationWorkspace>
   <RecentItems>
+    <RecentItem Key="73209a6a-d296-4e1c-867a-e19ebe5ab0ca.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
+      <HandlerName>TOPICS</HandlerName>
+      <Category>Topics</Category>
+    </RecentItem>
+    <RecentItem Key="779669ba-7505-42fd-b1ab-f55dad161f96.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
+      <HandlerName>TOPICS</HandlerName>
+      <Category>Topics</Category>
+    </RecentItem>
     <RecentItem Key="135e80f7-4f28-45c9-a7a2-4ae99818bbef.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
@@ -26,10 +34,6 @@
       <Category>Topics</Category>
     </RecentItem>
     <RecentItem Key="bf3b144b-2153-4d7c-ab74-152f839df85f.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
-      <HandlerName>TOPICS</HandlerName>
-      <Category>Topics</Category>
-    </RecentItem>
-    <RecentItem Key="779669ba-7505-42fd-b1ab-f55dad161f96.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
     </RecentItem>
@@ -74,10 +78,6 @@
       <Category>Topics</Category>
     </RecentItem>
     <RecentItem Key="eb3d636b-673c-4f1b-a0cc-1fa8ff7242c1.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
-      <HandlerName>TOPICS</HandlerName>
-      <Category>Topics</Category>
-    </RecentItem>
-    <RecentItem Key="b1e893b0-24ac-4845-ba57-99bc759b49d5.-" IsPinned="false" Type="Innovasys.ContentAuthoring.Topics.RecentTopic" Assembly="Innovasys.ContentAuthoring.Topics">
       <HandlerName>TOPICS</HandlerName>
       <Category>Topics</Category>
     </RecentItem>

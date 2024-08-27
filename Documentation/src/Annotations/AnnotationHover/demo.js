@@ -1,18 +1,25 @@
-"use strict";
+const {
+  SciChartSurface,
+  SciChartJsNavyTheme,
+  NumericAxis,
+  BoxAnnotation,
+  ECoordinateMode,
+  AnnotationHoverModifier,
+  EHoverMode
+} = SciChart;
 
-const scichart_1 = SciChart;
 async function annotationHover(divElementId) {
   const { wasmContext, sciChartSurface } =
-    await scichart_1.SciChartSurface.create(divElementId, {
-      theme: new scichart_1.SciChartJsNavyTheme(),
+    await SciChartSurface.create(divElementId, {
+      theme: new SciChartJsNavyTheme(),
     });
-  sciChartSurface.xAxes.add(new scichart_1.NumericAxis(wasmContext));
-  sciChartSurface.yAxes.add(new scichart_1.NumericAxis(wasmContext));
+  sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+  sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
   // #region PrimaryExample
   // Add an annotation with hover behaviour
-  const boxAnnotation = new scichart_1.BoxAnnotation({
-    xCoordinateMode: scichart_1.ECoordinateMode.Relative,
-    yCoordinateMode: scichart_1.ECoordinateMode.Relative,
+  const boxAnnotation = new BoxAnnotation({
+    xCoordinateMode: ECoordinateMode.Relative,
+    yCoordinateMode: ECoordinateMode.Relative,
     fill: "#3d34eb",
     strokeThickness: 1,
     x1: 0.1,
@@ -29,10 +36,10 @@ async function annotationHover(divElementId) {
   });
   sciChartSurface.annotations.add(boxAnnotation);
   // Add AnnotationHoverModifier to enable hover behaviour
-  const annotationHoverModifier = new scichart_1.AnnotationHoverModifier({
+  const annotationHoverModifier = new AnnotationHoverModifier({
     enableHover: true,
     targets: [boxAnnotation],
-    hoverMode: scichart_1.EHoverMode.AbsoluteTopmost,
+    hoverMode: EHoverMode.AbsoluteTopmost,
     notifyOutEvent: true,
     notifyPositionUpdate: true,
     onHover: (args) => {
@@ -73,12 +80,17 @@ async function annotationHover(divElementId) {
 
 annotationHover("scichart-root");
 
+const {
+  chartBuilder,
+  EChart2DModifierType
+} = SciChart;
+
 async function builderExample(divElementId) {
   // #region Example1WithBuilderAPI
   const { wasmContext, sciChartSurface } =
-    await scichart_1.chartBuilder.build2DChart(divElementId, {
+    await chartBuilder.build2DChart(divElementId, {
       surface: {
-        theme: new scichart_1.SciChartJsNavyTheme(),
+        theme: new SciChartJsNavyTheme(),
       },
       // Add an annotation with hover behaviour
       annotations: [
@@ -86,8 +98,8 @@ async function builderExample(divElementId) {
           type: scichart_1.EAnnotationType.RenderContextBoxAnnotation,
           options: {
             id: "boxAnnotation",
-            xCoordinateMode: scichart_1.ECoordinateMode.Relative,
-            yCoordinateMode: scichart_1.ECoordinateMode.Relative,
+            xCoordinateMode: ECoordinateMode.Relative,
+            yCoordinateMode: ECoordinateMode.Relative,
             fill: "#3d34eb",
             strokeThickness: 1,
             x1: 0.1,
@@ -110,11 +122,11 @@ async function builderExample(divElementId) {
       // Add AnnotationHoverModifier to enable hover behaviour
       modifiers: [
         {
-          type: scichart_1.EChart2DModifierType.AnnotationHover,
+          type: EChart2DModifierType.AnnotationHover,
           options: {
             enableHover: true,
             targets: ["boxAnnotation"],
-            hoverMode: scichart_1.EHoverMode.AbsoluteTopmost,
+            hoverMode: EHoverMode.AbsoluteTopmost,
             notifyOutEvent: true,
             notifyPositionUpdate: true,
             onHover: (args) => {
