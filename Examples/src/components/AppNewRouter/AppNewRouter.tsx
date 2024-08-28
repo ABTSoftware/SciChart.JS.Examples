@@ -1,23 +1,16 @@
-import React, { useState, FC, useContext, useMemo } from "react";
-// import "./AppNewRouter.scss";
+import React, { useState, FC, useContext, useMemo, useEffect } from "react";
 import classes from "./AppNewRouter.scss";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
-import { getTitle, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getTitle } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { FrameworkContext } from "../../helpers/shared/Helpers/FrameworkContext";
-import Iconleft from "../NewTabs/images/icon-left-arrow.svg";
 import SearchIcon from "../NewTabs/images/icon-search.svg";
-import Chart from "../NewTabs/images/chart-d.jpg";
-import Chartleft from "../NewTabs/images/cm-left.png";
-import Chartright from "../NewTabs/images/cm-right.png";
-import Chart_Left from "../NewTabs/images/c-left.png";
-import Chart_Right from "../NewTabs/images/c-right.png";
-import Chart_Code from "../NewTabs/images/code-type.png";
-import { EXAMPLES_PAGES, TExamplePage } from "../AppRouter/examplePages";
+import { TExamplePage } from "../AppRouter/examplePages";
 import { GalleryItem } from "../../helpers/types/types";
 import { generateSearchItems, TSearchItem } from "../Search/searchItems";
 import { ALL_MENU_ITEMS } from "../AppRouter/examples";
 import SubMenuItems from "./SubMenuItems";
+import SourceCode from "../SourceCode/SourceCode";
 
 type TabName = "Featured Apps" | "2D Charts" | "3D Charts";
 
@@ -31,6 +24,8 @@ const options = ["Option 1", "Option 2", "Option 3", "Another Option"];
 
 const AppNewRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso, isIFrame = false } = props;
+    const [code, setCode] = useState<string>("");
+    const [selectedFile, setSelectedFile] = useState<string>("index.tsx");
     const currentPath = location.pathname.substring(1); // Get the path without the leading "/"
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState<TabName>("Featured Apps");
@@ -68,6 +63,37 @@ const AppNewRouter: FC<TProps> = (props) => {
         } else {
             setFilteredOptions([]);
         }
+    };
+
+    const getGithubRawUrl = (username: string, repository: string, branch: string, filePath: string): string => {
+        return `https://raw.githubusercontent.com/${username}/${repository}/${branch}/${filePath}`;
+    };
+
+    const fetchCodeFromGithub = (fileName: string) => {
+        const username = "ABTSoftware";
+        const repository = "SciChart.JS.Examples";
+        const branch = "master";
+        const filePath = `Examples/src/components/Examples/${currentExample.filepath}/${fileName}`;
+
+        const rawUrl = getGithubRawUrl(username, repository, branch, filePath);
+
+        fetch(rawUrl)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.text();
+            })
+            .then((text) => setCode(text))
+            .catch((error) => console.error("Error loading code:", error));
+    };
+
+    useEffect(() => {
+        fetchCodeFromGithub(selectedFile);
+    }, [selectedFile]);
+
+    const handleFileClick = (fileName: string) => {
+        setSelectedFile(fileName);
     };
 
     const handleOptionClick = (option: any) => {
@@ -227,7 +253,11 @@ const AppNewRouter: FC<TProps> = (props) => {
                                     >
                                         View Full Screen
                                     </a>
-                                    <a href="" className={classes.btnsecondary}>
+                                    <a
+                                        target="_blank"
+                                        href={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}/${selectedFile}`}
+                                        className={classes.btnsecondary}
+                                    >
                                         View Source in Github
                                     </a>
                                 </div>
@@ -235,35 +265,58 @@ const AppNewRouter: FC<TProps> = (props) => {
                             <div className={classes.editortabwrap}>
                                 <div className={classes.tabwrapper}>
                                     <ul className={`${classes.tabs} ${classes.mobilehidden}`}>
-                                        <li className={classes.tablink}>angular.ts</li>
-                                        <li className={`${classes.tablink} ${classes.active}`}>drawExample.js</li>
-                                        <li className={classes.tablink}>drawExample.ts</li>
-                                        <li className={classes.tablink}>exampleInfo.tsx</li>
-                                        <li className={classes.tablink}>index.tsx</li>
-                                        <li className={classes.tablink}>javascript-spline-smoothed-line-chart.jpg</li>
-                                        <li className={classes.tablink}>vanilla.js</li>
-                                        <li className={classes.tablink}>vanilla.ts</li>
+                                        {[
+                                            "angular.ts",
+                                            "drawExample.js",
+                                            "drawExample.ts",
+                                            "exampleInfo.tsx",
+                                            "index.tsx",
+                                            "javascript-spline-smoothed-line-chart.jpg",
+                                            "vanilla.js",
+                                            "vanilla.ts",
+                                        ].map((file) => (
+                                            <li
+                                                key={file}
+                                                className={`${classes.tablink} ${
+                                                    selectedFile === file ? classes.active : ""
+                                                }`}
+                                                onClick={() => handleFileClick(file)}
+                                            >
+                                                {file}
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                                 <div className={classes.contentwrapper}>
                                     <div id="tab-a" className={`${classes.tabcontent} ${classes.active}`}>
                                         <div className={classes.codeeditorwrap}>
-                                            <div className={`${classes.codetopbartxt} ${classes.desktophidden}`}>
-                                                <p>19 lines (14 loc) 427 Bytes</p>
-                                            </div>
-                                            <div className={`${classes.codetopbar} ${classes.desktophidden}`}>
-                                                <img src={Chartleft} />
-                                                <img src={Chartright} />
-                                            </div>
-                                            <div className={`${classes.codetopbar} ${classes.mobilehidden}`}>
-                                                <img src={Chart_Left} />
-                                                <img src={Chart_Right} />
-                                            </div>
                                             <div className={classes.codeedit}>
-                                                <img src={Chart_Code} />
+                                                <SourceCode
+                                                    code={code}
+                                                    githubUrl={`https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Examples/src/components/Examples/${currentExample.filepath}/${selectedFile}`}
+                                                    onClose={() => console.log("Close clicked")}
+                                                />
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div className="showcasewrap">
+                                <h2 className={classes.headingtxt}>{seeAlso[0].chartGroupTitle}</h2>
+                                <div className={`${classes.showcaserow} ${classes.tabmultiple}`}>
+                                    {seeAlso[0].items.map((item, index) => (
+                                        <div key={index} className={classes.showcasecol}>
+                                            <div className={classes.showcasethumb}>
+                                                <img src={item.imgPath} alt="" title="" />
+                                            </div>
+                                            <h3
+                                                style={{ cursor: "pointer" }}
+                                                onClick={() => handleSubmenuClick(item.examplePath)}
+                                            >
+                                                {item.title}
+                                            </h3>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
