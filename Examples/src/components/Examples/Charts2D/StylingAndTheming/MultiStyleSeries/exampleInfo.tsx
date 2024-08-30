@@ -31,7 +31,7 @@ export const multiplePointMarkersExampleInfo: TExampleInfo = {
     title: ExampleStrings.titleMultiStyleSeries,
     pageTitle: ExampleStrings.titleMultiStyleSeries,
     path: ExampleStrings.urlMultiStyleSeries,
-    filepath: "Charts2D/StylingAndTheming/MultStyleSeries",
+    filepath: "Charts2D/StylingAndTheming/MultiStyleSeries",
     subtitle: Subtitle,
     documentationLinks,
     tips,
