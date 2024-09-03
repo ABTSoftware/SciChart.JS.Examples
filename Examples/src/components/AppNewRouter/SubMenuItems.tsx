@@ -56,7 +56,7 @@ const SubMenuItems: FC<TProps> = ({
                 ))}
             </div>
             <div className={`${classes.contentlist} ${classes.columncount} ${classes.mobilehidden}`}>
-                <ul>
+                <ul style={{ fontSize: "17px", fontFamily: "Popins" }}>
                     {SubmenuTitle?.map((submenuItem, index) => (
                         <li key={index} onClick={() => handleSubmenuClick(submenuItem.path)}>
                             {submenuItem.title}

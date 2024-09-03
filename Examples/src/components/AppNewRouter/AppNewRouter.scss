@@ -6,6 +6,7 @@
     max-width: 1238px;
     width: 100%;
     margin: 0 auto;
+    font-family: Poppins;
 }
 
 .FrameworkList {
@@ -263,6 +264,9 @@
     border-radius: 18px;
     display: flex;
     gap: 40px;
+    font-family: Popins !important;
+    font-weight: 400 !important;
+    font-size: 17px !important;
 
     @media only screen and (max-width: 768px) {
         border-radius: 18px 18px 0 0;
@@ -272,6 +276,9 @@
         &.graybg {
             background: #f3f7fc;
             border-radius: 18px 0px 0px 18px;
+            font-family: Popins;
+            font-weight: 400;
+            font-size: 17px;
             width: 30%;
             height: 220px;
             overflow-y: auto;
@@ -311,6 +318,7 @@
                         background-color: #fff;
                         font-weight: 500;
                         color: #506775;
+
                         &::after {
                             content: "";
                             background-image: url("../NewTabs/images/icon-left-arrow.svg");
@@ -493,6 +501,7 @@
     position: relative; // This ensures the dropdown is positioned relative to this div
     align-items: center;
     display: flex;
+
     .searchinput {
         background: #f3f7fc;
         border: none;
@@ -504,16 +513,19 @@
         font-size: 16px;
         line-height: 24px;
         color: #7593a4;
+
         &:focus {
             border: none;
             outline: none;
         }
     }
+
     .btnsearch {
         width: 40px;
         margin-left: auto;
     }
 }
+
 .dropdown {
     position: absolute;
     top: 100%;
@@ -527,9 +539,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
+
 .dropdownItem {
     padding: 10px;
     cursor: pointer;
+
     &:hover {
         background-color: #f0f0f0;
     }
@@ -542,6 +556,7 @@
     padding: 30px;
     margin-bottom: 45px;
     position: relative;
+
     @media only screen and (max-width: 768px) {
         padding: 15px;
         margin-bottom: 15px;
@@ -554,6 +569,7 @@
         line-height: 28px;
         color: #212121;
         margin-bottom: 25px;
+
         @media only screen and (max-width: 768px) {
             font-size: 12px;
             line-height: 20px;
@@ -565,20 +581,25 @@
             color: #2eacdb;
         }
     }
+
     .tabbtnwrap {
         justify-content: flex-end;
     }
 }
+
 .chartimgwrap {
     margin: 0 auto 10px;
     text-align: center;
+
     @media only screen and (max-width: 768px) {
         margin: 0 auto 50px;
     }
+
     img {
         max-width: 100%;
     }
 }
+
 .headingtxt {
     font-family: "Poppins";
     font-weight: 600;
@@ -587,6 +608,7 @@
     color: #050a30;
     text-align: center;
     margin-bottom: 35px;
+
     @media only screen and (max-width: 768px) {
         font-size: 20px;
         line-height: 28px;
@@ -606,6 +628,7 @@
         right: 0;
         margin: 0 auto;
     }
+
     .btnprimary {
         background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
         border-radius: 6px;
@@ -617,6 +640,7 @@
         color: #ffffff;
         text-decoration: none;
         padding: 14px 32px;
+
         @media only screen and (max-width: 768px) {
             font-size: 12px;
             padding: 0;
@@ -625,6 +649,7 @@
             width: 50%;
         }
     }
+
     .btnsecondary {
         background: linear-gradient(90deg, #3578a9 0%, #a8218c 100%);
         border-radius: 6px;
@@ -636,6 +661,7 @@
         text-decoration: none;
         padding: 14px 32px;
         color: #ffffff;
+
         @media only screen and (max-width: 768px) {
             font-size: 12px;
             padding: 0;
@@ -651,6 +677,7 @@
         border-bottom: 1px solid #b4d0db;
         border-radius: 25px;
         margin-bottom: 45px;
+
         @media only screen and (max-width: 768px) {
             border: 1px solid #b4d0db;
             border-radius: 11px;
@@ -658,11 +685,13 @@
             padding: 15px;
         }
     }
+
     .tabwrapper {
         margin: 0 40px;
 
         .tabs {
             gap: 5px;
+
             .tablink {
                 font-weight: 500;
                 font-size: 14px;
@@ -676,10 +705,12 @@
                 height: 45px;
                 display: flex;
                 align-items: center;
+
                 &.active {
                     color: #7593a4;
                     background-color: #fff;
                 }
+
                 &:hover {
                     color: #7593a4;
                     background-color: #fff;
@@ -694,8 +725,10 @@
         display: none !important;
     }
 }
+
 .desktophidden {
     display: none !important;
+
     @media only screen and (max-width: 768px) {
         display: block !important;
     }
@@ -710,29 +743,36 @@
         justify-content: space-between;
         padding: 5px;
         align-items: center;
+
         @media only screen and (max-width: 768px) {
             &.desktophidden {
                 display: flex !important;
             }
         }
     }
+
     .codeedit {
         padding: 30px 10px;
         overflow-y: scroll;
         min-height: 450px;
+
         @media only screen and (max-width: 768px) {
             min-height: 250px;
+
             img {
                 max-width: 275px;
             }
         }
+
         &::-webkit-scrollbar-track {
             background-color: #a0c2d4;
         }
+
         &::-webkit-scrollbar {
             width: 5px;
             background-color: #a0c2d4;
         }
+
         &::-webkit-scrollbar-thumb {
             background-color: #7593a4;
             // border: 2px solid #7593a4;
@@ -749,6 +789,7 @@
     color: #050a30;
     text-align: center;
     margin-bottom: 35px;
+
     @media only screen and (max-width: 768px) {
         font-size: 20px;
         line-height: 28px;
@@ -761,24 +802,31 @@
     gap: 15px;
     justify-content: center;
     flex-wrap: wrap;
+
     &.tabmultiple {
         @media only screen and (max-width: 768px) {
             gap: 5px;
         }
+
         .showcasecol {
             width: 18.97%;
+
             @media screen and (min-width: 991px) and (max-width: 1200px) {
                 width: 17.97%;
             }
+
             @media screen and (min-width: 768px) and (max-width: 991px) {
                 width: 31%;
             }
+
             @media only screen and (max-width: 768px) {
                 width: 49%;
             }
+
             h3 {
                 font-size: 16px;
                 line-height: 22px;
+
                 @media only screen and (max-width: 768px) {
                     font-size: 13px;
                     line-height: 18px;
@@ -786,6 +834,7 @@
                 }
             }
         }
+
         .showcasethumb {
             padding: 10px;
             margin-bottom: 10px;
@@ -796,9 +845,11 @@
         width: 32.4%;
         text-align: center;
         margin-bottom: 20px;
+
         @media screen and (min-width: 768px) and (max-width: 1200px) {
             width: 31.4%;
         }
+
         @media only screen and (max-width: 768px) {
             width: 100%;
         }
@@ -816,6 +867,7 @@
         }
     }
 }
+
 .showcasethumb {
     background: #fff;
     border: 1px solid #eee;
@@ -828,8 +880,335 @@
         padding: 15px;
         border-radius: 16px;
     }
+
     img {
         border-radius: 14px;
         width: 100%;
+    }
+}
+
+.scichartcontainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-family: Poppins;
+    line-height: 28.5px;
+    font-size: 19px;
+
+    .scichartinfo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(97.32deg, #150b3b 20.12%, #4a348f 68.86%, #b330aa 85.96%, #d86886 99.96%);
+        border-radius: 10px;
+        padding: 20px;
+        color: white;
+
+        p {
+            flex: 1;
+            margin-right: 20px; // Space between text and button
+        }
+
+        a {
+            color: blue;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .gettingstartedbtn {
+            padding: 10px 20px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: #ffdd67;
+            }
+        }
+    }
+
+    .scichartdescription {
+        margin-top: 20px;
+
+        p {
+            margin-bottom: 15px;
+
+            a {
+                color: #5514b4;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .documentationlinkscontainer {
+        margin-top: 30px;
+
+        h3 {
+            text-align: center;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 32px;
+        }
+
+        .documentationlinks {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            background-color: #2d5a8c;
+            border-radius: 10px;
+            padding: 20px;
+
+            a {
+                display: block;
+                width: calc(50% - 10px);
+                background-color: #f3f4f6;
+                color: #2d5a8c;
+                padding: 15px;
+                margin-bottom: 10px;
+                text-align: center;
+                border-radius: 5px;
+                text-decoration: none;
+                transition: background-color 0.3s ease, color 0.3s ease;
+
+                &:hover {
+                    background-color: #e0e7ef;
+                    color: #1a1a1a;
+                }
+            }
+        }
+    }
+
+    .candlestickchartscontainer {
+        margin-top: 30px;
+        color: #1a1a1a;
+        font-family: Poppins;
+
+        h2 {
+            text-align: center;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+
+            a {
+                color: #5514b4;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        h3 {
+            margin-top: 30px;
+            color: #1a1a1a;
+            font-size: 1.5rem;
+        }
+
+        ul {
+            margin-top: 20px;
+            padding-left: 20px;
+            list-style: none;
+            list-style-type: disc !important;
+
+            li {
+                margin-bottom: 10px;
+                font-size: 1rem;
+                line-height: 1.5;
+                list-style-type: inherit;
+            }
+        }
+    }
+
+    .whyusescichart {
+        background: linear-gradient(97.32deg, #150b3b 20.12%, #4a348f 68.86%, #b330aa 85.96%, #d86886 99.96%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        font-family: Poppins;
+
+        h3 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .benefits {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            ul {
+                list-style-type: none;
+                padding: 0;
+
+                li {
+                    margin: 10px 0;
+                    display: flex;
+                    align-items: center;
+
+                    &::before {
+                        content: "●";
+                        color: white;
+                        margin-right: 10px;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .Questions {
+        h2 {
+            display: flex;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-family: Popins;
+            font-size: 32px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+    }
+
+    .QuestionsBack {
+        border: 1px solid rgba(180, 208, 219, 1);
+        background: rgba(243, 247, 252, 1);
+        color: rgba(5, 10, 48, 1);
+        padding: 30px;
+        border-radius: 10px;
+        margin: 20px 0;
+        font-family: Poppins;
+
+        h3 {
+            color: rgba(5, 10, 48, 1);
+            font-weight: 600;
+            font-size: 24px;
+            margin-bottom: 20px;
+            line-height: 36px;
+        }
+    }
+
+    // Existing styles
+
+    .newblockcontainer {
+        font-family: Popins;
+        display: flex;
+        margin-top: 20px; // Adjust spacing as needed
+        background: rgba(5, 10, 48, 1);
+        border: 1px solid rgba(199, 199, 199, 1);
+        border-radius: 8px; // Optional: for rounded corners
+
+        .imagecontainer {
+            flex: 1;
+            border-radius: 8%;
+
+            img {
+                max-width: 100%;
+                height: auto;
+                background: rgba(5, 10, 48, 1);
+            }
+        }
+
+        .buttoncontainer {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; // Align buttons vertically
+            gap: 10px; // Spacing between buttons
+
+            h3 {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: 600;
+                font-size: 32px;
+            }
+
+            button {
+                padding: 17px 5px;
+                background-color: #4a90e2;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                font-weight: 500;
+                width: 88%;
+                margin-left: 30px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #357abd;
+                }
+            }
+        }
+    }
+
+    .codecardscontainer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        .codecard {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid rgba(180, 208, 219, 1);
+            background: rgba(255, 255, 255, 1);
+            border-radius: 8px;
+            text-align: center;
+            margin-right: 20px;
+
+            img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+            }
+
+            h4 {
+                margin-top: 10px;
+                font-size: 20px;
+                font-weight: bold;
+                font-family: Popins;
+                color: rgba(42, 99, 151, 1);
+                margin-bottom: 10px;
+            }
+
+            .viewsourcebutton {
+                margin-top: 10px;
+                padding: 15px 25px;
+                font-size: 16px;
+                width: 70%;
+                background: linear-gradient(90deg, #1aa2d5 15.5%, #35bfb7 100%);
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #0088cc;
+                }
+            }
+        }
     }
 }

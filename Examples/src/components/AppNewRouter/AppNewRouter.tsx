@@ -11,6 +11,7 @@ import { generateSearchItems, TSearchItem } from "../Search/searchItems";
 import { ALL_MENU_ITEMS } from "../AppRouter/examples";
 import SubMenuItems from "./SubMenuItems";
 import SourceCode from "../SourceCode/SourceCode";
+import DetailsCom from "./DetailsComp";
 
 type TabName = "Featured Apps" | "2D Charts" | "3D Charts";
 
@@ -301,7 +302,8 @@ const AppNewRouter: FC<TProps> = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="showcasewrap">
+                            {/* this is not required in this branch ...  */}
+                            {/* <div className="showcasewrap">
                                 <h2 className={classes.headingtxt}>{seeAlso[0].chartGroupTitle}</h2>
                                 <div className={`${classes.showcaserow} ${classes.tabmultiple}`}>
                                     {seeAlso[0].items.map((item, index) => (
@@ -318,7 +320,8 @@ const AppNewRouter: FC<TProps> = (props) => {
                                         </div>
                                     ))}
                                 </div>
-                            </div>
+                            </div> */}
+                            <DetailsCom />
                         </div>
                     </div>
                 </div>
