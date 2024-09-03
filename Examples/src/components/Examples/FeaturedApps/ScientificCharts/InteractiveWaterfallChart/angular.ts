@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { getChartsInitializationAPI } from './drawExample'; // Adjust path as needed
+import { getChartsInitializationAPI } from './drawExample';
 
 
 @Component({
@@ -41,12 +41,10 @@ export class InteractiveWaterfallChartComponent implements OnInit, AfterViewInit
       this.chartsInitializationAPI.initMainChart
     }
     ngOnInit() {
-      // Initialization logic can go here
       this.chartsInitializationAPI.configureAfterInit()
-    }
+     }
   
-      
-      ngAfterViewInit(): void {
+    ngAfterViewInit(): void {
         this.chartsInitializationAPI.configureAfterInit();
       }
 }

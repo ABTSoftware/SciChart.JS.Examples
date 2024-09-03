@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit,AfterViewInit,ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { drawExample } from "./drawExample";
 
 @Component({
@@ -39,15 +39,6 @@ export class CustomFilters {
       }
     }
   
-  
-    ngOnDestroy() {
-      // Cleanup logic can go here
-      if (this.initResult && this.initResult.controls) {
-        this.initResult.controls.stopDemo();
-      }
-    }
-
-
     drawExample = drawExample;
    
 }

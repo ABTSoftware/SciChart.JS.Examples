@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild,AfterViewInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { getChartsInitializationApi } from './drawExample';
 import { appTheme } from '../../../theme';
 
@@ -11,7 +11,6 @@ import { appTheme } from '../../../theme';
   flex-direction: column;
   height: 100vh;
 }
-
 .chart-container {
   display: flex;
   flex-direction: column;
@@ -25,16 +24,18 @@ import { appTheme } from '../../../theme';
   </style>
   <div [ngStyle]="{'background': appTheme.Background}" class="chart-wrapper">
   <div class="chart-container">
-    <div #audioChart style="width: 100%; height: 50%; background: appTheme.DarkIndigo;"></div>
+   <scichart-angular
+      [initChart]="chartsInitializationAPI.initAudioChart"
+      (onInit)="onChartInit($event)"
+       style="flex: 1;">
+   </scichart-angular>
     <div class="fft-spectrogram-container">
      <scichart-angular
         [initChart]="chartsInitializationAPI.initFftChart"
-        (onInit)="onChartInit($event)"
         style="flex: 1;">
       </scichart-angular>
         <scichart-angular
         [initChart]="chartsInitializationAPI.initSpectogramChart"
-        (onInit)="onChartInit($event)"
         style="flex: 1;">
       </scichart-angular>
     </div>
@@ -44,25 +45,15 @@ import { appTheme } from '../../../theme';
  
 })
 
-export class AudioAnalyzerComponent implements AfterViewInit {
-    @ViewChild('audioChart') audioChart!: ElementRef;
-    
+
+export class AudioAnalyzerComponent  {    
     private chartsInitializationAPI = getChartsInitializationApi();
     private controlsRef: any;
     appTheme = appTheme;
-    ngAfterViewInit() {
-      this.initializeCharts();
-    }
-    private async initializeCharts() {
-      try {
-        await this.chartsInitializationAPI.initAudioChart(this.audioChart.nativeElement);
-        this.controlsRef = this.chartsInitializationAPI.onAllChartsInit();
-        this.controlsRef.handleStart();
-        if (this.controlsRef) {
-          this.controlsRef.handleStart();
-        }
-      } catch (error) {
-        console.error('Error initializing charts:', error);
-      }
-    }
+
+    onChartInit(){
+      this.controlsRef = this.chartsInitializationAPI.onAllChartsInit();
+      this.controlsRef.handleStart();
+  }
+      
 }

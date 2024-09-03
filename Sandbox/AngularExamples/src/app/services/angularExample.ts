@@ -73,8 +73,8 @@ import * as eventMarkersExampleInfo from "../../../../../Examples/src/components
 import * as styleAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/StyleAnimation/drawExample";
 import * as genericAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/GenericAnimation/drawExample";
 import * as startupAnimationExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/Animations/StartupAnimation/drawExample";
-import * as userAnnotatedStockChartExampleInfo from  "../../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/drawExample";
-import * as vitalSignsMonitorDemoExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/drawExample";
+// import * as userAnnotatedStockChartExampleInfo from  "../../../../../Examples/src/components/Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/drawExample";
+// import * as vitalSignsMonitorDemoExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/drawExample";
 // import * as candlestickChartExampleInfo  from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/CandlestickChart/drawExample";
 //  import * as websocketBigDataDemoExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/WebsocketBigData/drawExample";
 //  import * as stackedColumnChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/StackedColumnChart/drawExample";
@@ -86,7 +86,7 @@ import * as vitalSignsMonitorDemoExampleInfo from "../../../../../Examples/src/c
 // import * as usePointMarkersExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/drawExample";
 // import * as usingThemeManagerExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsingThemeManager/drawExample";
 // import * as transparentBackgroundExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/TransparentBackground";
-import * as load500By500ExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load500By500/drawExample";
+// import * as load500By500ExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load500By500/drawExample";
 // import * as editableAnnotationsExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/EditableAnnotations/drawExample";
 // import * as GalleryItem from "../../../../../../../../../../helpers/types/types";
 // import * as chartFromJSONExampleInfo from "../../../../../Examples/src/components/Examples/BuilderApi/ChartFromJSON/";
@@ -103,7 +103,7 @@ import * as load500By500ExampleInfo from "../../../../../Examples/src/components
 // import * as oilAndGasExplorerDashboard from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/drawExample";
 // import * as TDocumentationLink from "../../../../../../../../../../helpers/types/ExampleDescriptionTypes";
 // import * as virtualizedDataOverviewExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/ZoomingAndPanning/VirtualizedDataWithOverview";
-import * as heatmapInteractionsExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/HeatmapInteractions/drawExample";
+// import * as heatmapInteractionsExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/HeatmapInteractions/drawExample";
 // import * as chartTitleExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/FeatureDemos/ChartTitle/drawExample";
 // import * as dynamicLayoutExampleInfo from "../../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/DynamicLayout/drawExample";
 // import * as syncMultiChartExampleInfo from "../../../../../Examples/src/components/Examples/Charts2D/MultiChart/SyncMultiChart/drawExample";
@@ -151,6 +151,7 @@ export const EXAMPLES_PAGES = {
     //     id: "chart2D_basicCharts_CandlestickChart",
     //     title: ExampleStrings.titleCandlestickChart(framework),
     //     path: ExampleStrings.urlCandlestickChart,
+    //     // additinal: true,
     //     drawExample:candlestickChartExampleInfo.drawExample,
     // },
     chart2D_basicCharts_OhlcChart: {
@@ -385,7 +386,7 @@ export const EXAMPLES_PAGES = {
         title: ExampleStrings.titleRealtimeMountainChart(framework),
         path: ExampleStrings.urlRealtimeMountainChart,
         additinal: true,
-        // drawExample:realTimeMountainChartExampleInfo.drawExample,
+
     },
     chart2D_chartAnnotations_DragHorizontalThreshold: {
         id: "chart2D_chartAnnotations_DragHorizontalThreshold",
@@ -491,7 +492,6 @@ export const EXAMPLES_PAGES = {
         title: ExampleStrings.titleRealtimeJavaScriptChartDemo(framework),
         path: ExampleStrings.urlRealtimeJavaScriptChartDemo,
         additinal: true,
-        // drawExample: realtimePerformanceDemoExampleInfo.drawExample,
     },
     featuredApps_featureDemos_axisLayout: {
         id: "featuredApps_featureDemos_axisLayout",
@@ -559,7 +559,7 @@ export const EXAMPLES_PAGES = {
         path: ExampleStrings.urlTradeMarkers,
         drawExample:tradeMarkerAnnotationsExampleInfo.drawExample,
     },
-    chart2D_chartAnnotations_BackgroundAnnotations: {                               // This is an issue with drawExample 
+    chart2D_chartAnnotations_BackgroundAnnotations: {                           
         id: "chart2D_chartAnnotations_BackgroundAnnotations",
         title: ExampleStrings.titleBackgroundAnnotations(framework),
         path: ExampleStrings.urlBackgroundAnnotations,
@@ -618,12 +618,6 @@ export const EXAMPLES_PAGES = {
         path: ExampleStrings.urlGenericAnimation,
         drawExample: genericAnimationExampleInfo.drawExample
     },                 
-    // featuredApps_showcases_realtimebigdata: {
-    // id: "featuredApps_showcases_realtimebigdata",
-    // title: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo,
-    // path: ExampleStrings.urlRealtimeBigDataJavaScriptChartDemo,
-    // drawExample: websocketBigDataDemoExampleInfo.drawExample,
-    // },
     featuredApps_scientificCharts_Lidar3DPointCloudDemo: {
         id: "featuredApps_scientificCharts_Lidar3DPointCloudDemo",
         title: ExampleStrings.titleLidarFeaturedApp,
@@ -681,8 +675,7 @@ export const EXAMPLES_PAGES = {
         pageTitle: ExampleStrings.pageTitleuserAnnotatedStockChart,
         path: ExampleStrings.urluserAnnotatedStockChart,
         additinal: true,
-  
-      
+        
     },
     chart2D_createStockCharts_MultiPaneStockCharts: {
         id: "chart2D_createStockCharts_MultiPaneStockCharts",
@@ -690,7 +683,37 @@ export const EXAMPLES_PAGES = {
         path: ExampleStrings.urlMultiPaneStockChart,
         additinal: true,
     },
-
+    featuredApps_performanceDemos_Load500By500: {
+        id: "featuredApps_performanceDemos_Load500By500",
+        title: ExampleStrings.titleLoad500By500,
+        path: ExampleStrings.urlLoad500By500,
+        additinal: true,
+    },
+    featuredApps_scientificCharts_AudioAnalyzerDemo: {
+        id: "featuredApps_scientificCharts_AudioAnalyzerDemo",
+        title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
+        path: ExampleStrings.urlAudioAnalyzerFeaturedApp,
+        additinal: true,
+    },  
+    featuredApps_showcases_richInteractions: {
+        id: "featuredApps_showcases_richInteractions",
+        title: ExampleStrings.titleHeatmapInteractionsData(framework),
+        path: ExampleStrings.urlHeatmapInteractionsData,
+        additinal: true,
+    }, 
+    featuredApps_medicalCharts_VitalSignsMonitorDemo: {
+        id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
+        title: ExampleStrings.titleVitalSigns(framework),
+        path: ExampleStrings.urlVitalSigns,
+        additinal: true,
+    },  
+    featuredApps_showcases_realtimebigdata: {
+        id: "featuredApps_showcases_realtimebigdata",
+        title: ExampleStrings.titleRealtimeBigDataJavaScriptChartDemo,
+        path: ExampleStrings.urlRealtimeBigDataJavaScriptChartDemo,
+        additinal: true,
+        },
+    
     // featuredApps_showcases_richInteractions: {
     //     id: "featuredApps_showcases_richInteractions",
     //     ...heatmapInteractionsExampleInfo,
@@ -736,13 +759,6 @@ export const EXAMPLES_PAGES = {
     //     drawExample: syncMultiChartExampleInfo.drawExample,
     // },                                                                    // No DrawExample 
      
-    featuredApps_performanceDemos_Load500By500: {
-        id: "featuredApps_performanceDemos_Load500By500",
-        title: ExampleStrings.titleLoad500By500,
-        path: ExampleStrings.urlLoad500By500,
-        additinal: true,
-    },
- 
     // featuredApps_featureDemos_axisTypes: {
     //         id: "featuredApps_featureDemos_axisTypes",
     //         title: ExampleStrings.titleAxisTypes(framework),
@@ -762,12 +778,7 @@ export const EXAMPLES_PAGES = {
     //         drawExample: subchartsGridExampleInfo.drawExample,
     //         ...subchartsGridExampleInfo,
     //     },                                                          // No DrawExample 
-    featuredApps_scientificCharts_AudioAnalyzerDemo: {
-        id: "featuredApps_scientificCharts_AudioAnalyzerDemo",
-        title: ExampleStrings.titleAudioAnalyzerFeaturedApp,
-        path: ExampleStrings.urlAudioAnalyzerFeaturedApp,
-        additinal: true,
-    },                                           
+                                         
     // featuredApps_showcases_servertrafficdashboard: {
     //     id: "featuredApps_showcases_servertrafficdashboard",
     //     title: ExampleStrings.titleServerTrafficDashboardDemo(framework),
@@ -782,12 +793,7 @@ export const EXAMPLES_PAGES = {
     //     drawExample: oilAndGasExplorerDashboard.drawExample,
     //     // ...oilAndGasExplorerDashboard,
     // },                                                           // No DrawExample
-    featuredApps_showcases_richInteractions: {
-        id: "featuredApps_showcases_richInteractions",
-        title: ExampleStrings.titleHeatmapInteractionsData(framework),
-        path: ExampleStrings.urlHeatmapInteractionsData,
-        additinal: true,
-    },                                                         // Override changes 
+                                                         // Override changes 
     // featuredApps_showcases_dynamicLayout: {
     //     id: "featuredApps_showcases_dynamicLayout",
     //     title: ExampleStrings.titleDynamicLayout(framework),
@@ -801,11 +807,6 @@ export const EXAMPLES_PAGES = {
     //     path: ExampleStrings.urlChartFromJSON,
     //     drawExample: chartFromJSONExampleInfo.drawExample,
     // },   
-    featuredApps_medicalCharts_VitalSignsMonitorDemo: {
-        id: "featuredApps_medicalCharts_VitalSignsMonitorDemo",
-        title: ExampleStrings.titleVitalSigns(framework),
-        path: ExampleStrings.urlVitalSigns,
-        additinal: true,
-   },                                                    // No DrawExample 
+                                                      
    
 };

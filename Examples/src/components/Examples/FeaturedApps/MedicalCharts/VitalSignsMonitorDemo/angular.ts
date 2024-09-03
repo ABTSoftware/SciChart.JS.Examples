@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { appTheme } from '../../../theme'; 
 import { TDataUpdateInfo,drawExample } from './drawExample';
 
@@ -10,48 +10,39 @@ import { TDataUpdateInfo,drawExample } from './drawExample';
   .chart-wrapper {
   height: 100%;
 }
-
 .chart-container {
   flex: 1;
 }
-
 .info-box-container {
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
+  // margin-left: 20px;
 }
-
 .info-box {
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
+  // margin-bottom: 10px;
+  padding: 58px;
+  // border-radius: 5px;
 }
-
 .ib-row1 {
   display: flex;
   justify-content: space-between;
 }
-
 .ib-row1-col1 {
   font-weight: bold;
 }
-
 .ib-row2 {
   display: flex;
   justify-content: space-between;
 }
-
 .ib-row2-col1 {
   width: 50%;
 }
-
 .ib-row2-col2 {
   width: 50%;
 }
-
   </style>
   <div class="chart-wrapper">
-  <div style="display: flex; height: 100%;">
+  <div style="display: flex; height: 80%;">
      <scichart-angular
         [initChart]="drawExample"
         (onInit)="onChartInit($event)"
@@ -126,9 +117,6 @@ import { TDataUpdateInfo,drawExample } from './drawExample';
 `,
 })
 export class VitalSignsMonitorComponent {
-
-  private timerId: any;
-  private currentPoint = 0;
   appTheme = appTheme;
   public infoEcg: number = 0;
   public infoBloodPressure1: number = 0;

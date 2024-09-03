@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { drawExample } from "./drawExample";
 
 const emojiUrls = [

@@ -172,6 +172,7 @@ export const getChartsInitializationApi = () => {
         sciChartSurface.annotations.add(helpText);
 
         hasAudio = await dataProvider.initAudio();
+        console.log("hasAudio",hasAudio);
 
         return { sciChartSurface };
     };
@@ -297,6 +298,7 @@ export const getChartsInitializationApi = () => {
 
     const onAllChartsInit = () => {
         if (!hasAudio) {
+            console.log("dataProvider",dataProvider);
             if (dataProvider.permissionError) {
                 helpText.text =
                     "We were not able to access your microphone.  This may be because you did not accept the permissions.  Open your browser security settings and remove the block on microphone permissions from this site, then reload the page.";

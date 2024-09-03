@@ -1,149 +1,88 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
+import { appTheme } from '../../../theme';
 import { getChartsInitializationApi, IChartControls } from './drawExample';
 
 @Component({
   selector: 'app-heatmap-interactions',
   template: `
-  <style>
-  .flex-outer-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background: #4a148c;
-  }
-
-  .toolbar-row {
-    display: flex;
-    flex-basis: 70px;
-    padding: 10px;
-    width: 100%;
-    color: #ffffff;
-  }
-
-  .chart-area {
-    flex: 1;
-  }
-  </style>
-  <div class="flex-outer-container">
-    <div class="toolbar-row">
-      <button mat-button [ngStyle]="{ 'color': ForegroundColor }" (click)="startAnimation()">
-        Start
-      </button>
-      <button mat-button [ngStyle]="{ 'color': ForegroundColor }" (click)="stopAnimation()" >
-        Stop
-      </button>
-      <button mat-button [ngStyle]="{ 'color': ForegroundColor }" (click)="loadBasicExample()" >
-        Load basic example
-      </button>
-      <button mat-button [ngStyle]="{ 'color': ForegroundColor }" (click)="loadDoubleSlitExample()" >
-        Load double slit example
-      </button>
-      <button mat-button [ngStyle]="{ 'color': ForegroundColor }" (click)="showHelp()" >
-        Show Help
-      </button>
+    <div class="chart-wrapper">
+      <div [ngStyle]="localStyles.flexOuterContainer">
+        <div [ngStyle]="localStyles.toolbarRow">
+          <button mat-button (click)="startAnimation()" [ngStyle]="{ color: appTheme.ForegroundColor }" [disabled]="!controlsRef">Start</button>
+          <button mat-button (click)="stopAnimation()" [ngStyle]="{ color: appTheme.ForegroundColor }" [disabled]="!controlsRef">Stop</button>
+          <button mat-button (click)="loadBasicExample()" [ngStyle]="{ color: appTheme.ForegroundColor }" [disabled]="!controlsRef">Load basic example</button>
+          <button mat-button (click)="loadDoubleSlitExample()" [ngStyle]="{ color: appTheme.ForegroundColor }" [disabled]="!controlsRef">Load double slit example</button>
+          <button mat-button (click)="showHelp()" [ngStyle]="{ color: appTheme.ForegroundColor }" [disabled]="!controlsRef">Show Help</button>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+          <scichart-angular  [initChart]="chartsInitializationAPI.initMainChart"
+               (onInit)="onChartInit($event)"
+            style="flex: 1; flex-basis: 50%;"></scichart-angular>
+          <scichart-angular  [initChart]="chartsInitializationAPI.initCrossSectionChart"
+            style="flex-basis: 500px; flex-grow: 1; flex-shrink: 1;"></scichart-angular>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+          <scichart-angular  [initChart]="chartsInitializationAPI.inputChart"
+            style="flex-basis: 500px; flex-grow: 1; flex-shrink: 1;"></scichart-angular>
+          <scichart-angular  [initChart]="chartsInitializationAPI.initHistoryChart"
+            style="flex-basis: 500px; flex-grow: 1; flex-shrink: 1;"></scichart-angular>
+        </div>
+      </div>
     </div>
-    <div style="display: flex; flex-direction: row; flex-basis: 500px;">
-      <scichart-angular
-        [initChart]="chartsInitializationAPI.initMainChart"
-        (onInit)="onChartInit($event, 'main')"
-        style="flex: 1; flex-basis: 50%;">
-      </scichart-angular>
-      <scichart-angular
-        #crossSectionChart
-        [initChart]="chartsInitializationAPI.initCrossSectionChart"
-        (onInit)="onChartInit($event, 'crossSection')"
-        style="flex: 1; flex-basis: 50%;">
-      </scichart-angular>
-    </div>
-    <div style="display: flex; flex-direction: row; flex-basis: 500px;">
-      <scichart-angular
-        #inputChart
-        [initChart]="chartsInitializationAPI.inputChart"
-        (onInit)="onChartInit($event, 'input')"
-        style="flex: 1; flex-basis: 50%;">
-      </scichart-angular>
-      <scichart-angular
-        #historyChart
-        [initChart]="chartsInitializationAPI.initHistoryChart"
-        (onInit)="onChartInit($event, 'history')"
-        style="flex: 1; flex-basis: 50%;">
-      </scichart-angular>
-    </div>
-  </div>
-  `
+  `,
+  styles: [`
+    .chart-wrapper {
+      height: 100%;
+      width: 100%;
+    }
+  `]
 })
-export class HeatmapInteractionsComponent implements AfterViewInit {
-  ForegroundColor = '#FFFFFF';
-  DarkIndigo = '#4a148c'; 
+
+export class HeatmapInteractionsComponent {
+  localStyles = {
+    flexOuterContainer: {
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      background: appTheme.DarkIndigo,
+    },
+    toolbarRow: {
+      display: 'flex',
+      flexBasis: '70px',
+      padding: 10,
+      width: '100%',
+      color: appTheme.ForegroundColor,
+    },
+  };
+
   chartsInitializationAPI = getChartsInitializationApi();
-  controlsRef: IChartControls | undefined;
-
-  @ViewChild('mainChart', { static: false }) mainChart: ElementRef | undefined;
-  @ViewChild('crossSectionChart', { static: false }) crossSectionChart: ElementRef | undefined;
-  @ViewChild('inputChart', { static: false }) inputChart: ElementRef | undefined;
-  @ViewChild('historyChart', { static: false }) historyChart: ElementRef | undefined;
-
-  ngAfterViewInit(): void {
-    console.log('View Initialized');
-    console.log('Main Chart:', this.mainChart?.nativeElement);
-    console.log('Cross Section Chart:', this.crossSectionChart?.nativeElement);
-    console.log('Input Chart:', this.inputChart?.nativeElement);
-    console.log('History Chart:', this.historyChart?.nativeElement);
-
-    this.controlsRef = this.chartsInitializationAPI.onAllChartsInit();
-
-    if (this.mainChart && this.crossSectionChart && this.inputChart && this.historyChart) {
-      try {
-        this.chartsInitializationAPI.initMainChart(this.mainChart.nativeElement);
-        this.chartsInitializationAPI.initCrossSectionChart(this.crossSectionChart.nativeElement);
-        this.chartsInitializationAPI.inputChart(this.inputChart.nativeElement);
-        this.chartsInitializationAPI.initHistoryChart(this.historyChart.nativeElement);
+  controlsRef?: IChartControls;
+  appTheme = appTheme;
+ 
+  onChartInit(){
+    setTimeout(()=>{
         this.controlsRef = this.chartsInitializationAPI.onAllChartsInit();
-        this.startAnimation()
-      } catch (error) {
-        console.error('Error initializing charts:', error);
-      }
-    } else {
-      console.error('One or more chart elements are not available');
-    }
-  }
-
+      },1000)
+  
+}
   startAnimation(): void {
-    if (this.controlsRef) {
-      this.controlsRef.startAnimation();
-    }
+    this.controlsRef?.startAnimation();
   }
 
   stopAnimation(): void {
-    if (this.controlsRef) {
-      this.controlsRef.stopAnimation();
-    }
+    this.controlsRef?.stopAnimation();
   }
 
   loadBasicExample(): void {
-    if (this.controlsRef) {
-      this.controlsRef.twoPoint();
-    }
+    this.controlsRef?.twoPoint();
   }
 
   loadDoubleSlitExample(): void {
-    if (this.controlsRef) {
-      this.controlsRef.interference();
-    }
+    this.controlsRef?.interference();
   }
 
   showHelp(): void {
-    if (this.controlsRef) {
-      this.controlsRef.showHelp();
-    }
-  }
-
-  onChartInit(ctx: any, chartType: string): void {
-    if (ctx && typeof ctx.onChartInit === 'function') {
-      ctx.onChartInit();
-    } else {
-      console.error('ctx.onChartInit is not a function or ctx is undefined');
-    }
+    this.controlsRef?.showHelp();
   }
 }

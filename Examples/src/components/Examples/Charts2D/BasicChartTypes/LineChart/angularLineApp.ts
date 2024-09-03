@@ -53,7 +53,6 @@ SciChart3DSurface.loadWasmFromCDN();
         </div>
     </div>
 </div>`,
-// templateUrl: "./angular.html",
 })
 export class AppLineChartComponent {
     title = "scichart-angular-app";

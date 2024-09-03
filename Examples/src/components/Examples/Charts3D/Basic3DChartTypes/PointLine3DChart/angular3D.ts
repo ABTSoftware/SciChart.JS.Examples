@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { drawExample, drawHeatmapLegend } from "./drawExample";
 @Component({
   selector: 'app-point-line-3d-chart',

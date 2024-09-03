@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component,AfterViewInit } from '@angular/core';
 import { SciChartSurface } from 'scichart';
 import { getChartsInitializationAPI } from './drawExample'; 
 
@@ -7,89 +7,68 @@ import { getChartsInitializationAPI } from './drawExample';
   template: `
     <div style="display: flex; flex-direction: column; height: 100%;">
       <scichart-angular
-        #priceChart
-        [initChart]="drawPriceChart"
+        id="priceChart"
+        [initChart]="chartsInitializationAPI.drawPriceChart"
         (onInit)="onChartInit($event, 'price')"
         style="flex: 1; flex-basis: 50%;">
       </scichart-angular>
       <scichart-angular
-        #macdChart
-        [initChart]="drawMacdChart"
+        id="macdChart"
+        [initChart]="chartsInitializationAPI.drawMacdChart"
         (onInit)="onChartInit($event, 'macd')"
         style="flex: 1; flex-basis: 50%;">
       </scichart-angular>
       <scichart-angular
-        #rsiChart
-        [initChart]="drawRsiChart"
+        id="rsiChart"
+        [initChart]="chartsInitializationAPI.drawRsiChart"
         (onInit)="onChartInit($event, 'rsi')"
         style="flex: 1; flex-basis: 50%;">
       </scichart-angular>
-      <scichart-angular
-        #overviewChart
-        *ngIf="mainChartInitialized && macdChart && rsiChart"
-        [initChart]="drawOverviewChart"
+      <scichart-angular *ngIf="mainChart"
+        id="rsiChart"
+        [initChart]="chartsInitializationAPI.drawOverview(this.mainChart)"
+        (onInit)="onChartInit($event, 'rsi')"
         style="flex: 1; flex-basis: 50%;">
       </scichart-angular>
     </div>
   `
 })
-export class MultiPaneStockChartsComponent  {
-  @ViewChild('priceChart', { static: false }) priceChartRef!: ElementRef;
-  @ViewChild('macdChart', { static: false }) macdChartRef!: ElementRef;
-  @ViewChild('rsiChart', { static: false }) rsiChartRef!: ElementRef;
-  @ViewChild('overviewChart', { static: false }) overviewChartRef!: ElementRef;
-
+//drawOverview
+export class MultiPaneStockChartsComponent implements AfterViewInit {
   private chartsInitializationAPI = getChartsInitializationAPI();
-
   mainChart?: SciChartSurface;
   macdChart?: SciChartSurface;
   rsiChart?: SciChartSurface;
-  mainChartInitialized = false;
 
-  drawPriceChart = this.chartsInitializationAPI.drawPriceChart;
-  drawMacdChart = this.chartsInitializationAPI.drawMacdChart;
-  drawRsiChart = this.chartsInitializationAPI.drawRsiChart;
-
-  drawOverviewChart = async (rootElement: HTMLElement) => {
-    if (this.mainChart && rootElement) {
-      try {
-        const divElement = rootElement as HTMLDivElement;
-        const overviewFunc = this.chartsInitializationAPI.drawOverview(this.mainChart);
-        
-        if (typeof overviewFunc === 'function') {
-          const result = await overviewFunc(divElement);
-        }
-      } catch (error) {
-         console.log("error",error);
-      }
-    } 
+  ngAfterViewInit() {
+    this.configureCharts();
   }
 
   async onChartInit(event: any, chartType: 'price' | 'macd' | 'rsi') {
     if (event?.sciChartSurface) {
-      if (chartType === 'price') {
-        this.mainChart = event.sciChartSurface;
-        this.mainChartInitialized = true;
-        if (this.mainChartInitialized && this.macdChart && this.rsiChart && this.priceChartRef?.nativeElement) {
-          this.drawOverviewChart(this.priceChartRef.nativeElement);
-        }
-      } else if (chartType === 'macd') {
-        this.macdChart = event.sciChartSurface;
-      } else if (chartType === 'rsi') {
-        this.rsiChart = event.sciChartSurface;
+      switch (chartType) {
+        case 'price':
+          this.mainChart = event.sciChartSurface;
+          break;
+        case 'macd':
+          this.macdChart = event.sciChartSurface;
+          break;
+        case 'rsi':
+          this.rsiChart = event.sciChartSurface;
+          break;
       }
+
       if (this.mainChart && this.macdChart && this.rsiChart) {
         this.configureCharts();
       }
     } else {
-      console.log("All Chart not Init !")
+      console.log("Chart not initialized!");
     }
   }
 
-  configureCharts() {
+  private configureCharts() {
     if (this.mainChart && this.macdChart && this.rsiChart) {
       this.chartsInitializationAPI.configureAfterInit();
     }
   }
-
 }
