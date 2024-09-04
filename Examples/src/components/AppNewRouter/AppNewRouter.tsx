@@ -169,18 +169,21 @@ const AppNewRouter: FC<TProps> = (props) => {
                             <li
                                 className={`${classes.tablink} ${activeTab === "Featured Apps" ? classes.active : ""}`}
                                 onClick={() => handleTabClick("Featured Apps")}
+                                style={{ fontWeight: "500", fontSize: "18px", fontFamily: "Popins" }}
                             >
                                 Featured Apps
                             </li>
                             <li
                                 className={`${classes.tablink} ${activeTab === "2D Charts" ? classes.active : ""}`}
                                 onClick={() => handleTabClick("2D Charts")}
+                                style={{ fontWeight: "500", fontSize: "18px", fontFamily: "Popins" }}
                             >
                                 2D Charts
                             </li>
                             <li
                                 className={`${classes.tablink} ${activeTab === "3D Charts" ? classes.active : ""}`}
                                 onClick={() => handleTabClick("3D Charts")}
+                                style={{ fontWeight: "500", fontSize: "18px", fontFamily: "Popins" }}
                             >
                                 3D Charts
                             </li>
