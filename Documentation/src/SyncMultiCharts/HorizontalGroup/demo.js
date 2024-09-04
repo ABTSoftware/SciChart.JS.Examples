@@ -1,12 +1,13 @@
-async function synchronizeTwoChartsBasicExample() {
+async function synchronizeVerticalChartsBasicExample() {
   // #region ExampleA
-  // Create two charts for Synchronization
+  // Create Vertical Charts for synchronization
   const {
     SciChartSurface,
     NumericAxis,
     FastLineRenderableSeries,
     XyDataSeries,
     SciChartJsNavyTheme,
+    EAxisAlignment
   } = SciChart;
 
   // or, for npm, import { SciChartSurface, ... } from "scichart"
@@ -18,15 +19,20 @@ async function synchronizeTwoChartsBasicExample() {
     });
     // Create some deliberate differences between chart 0 and chart 1
     sciChartSurface.background = isFirstChart ? "#22365B" : "#18304A";
-    sciChartSurface.canvasBorder = isFirstChart ? { borderBottom: 4, color: "#55698E"} : undefined;
+    sciChartSurface.canvasBorder = isFirstChart ? { borderRight: 4, color: "#55698E"} : undefined;
 
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
       axisTitle: isFirstChart ? "XAxis 0" : "XAxis 1",
+      axisAlignment: EAxisAlignment.Right
     }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, {
       // Create some deliberate differences between chart 0 and chart 1
-      labelPrecision: isFirstChart ? 2 : 4,
-      axisTitle: isFirstChart ? "YAxis 0" : "YAxis 1"
+      labelPrecision: isFirstChart ? 1 : 4,
+      axisTitle: isFirstChart ? "YAxis 0" : "YAxis 1",
+      axisAlignment: EAxisAlignment.Top,
+      rotation: -90,
+      fontSize: 16,
+      axisBorder: { borderBottom: 3, color: "#55698E" }
     }));
 
     const xValues = [];
@@ -60,13 +66,15 @@ async function synchronizeTwoChartsBasicExample() {
 
   // #region ExampleB
   const {
-    SciChartVerticalGroup,
+    SciChartHorizontalGroup,
     ZoomPanModifier,
     MouseWheelZoomModifier,
     RolloverModifier,
   } = SciChart;
-  
-  // Step1: Synchronize the two chart visibleRanges
+
+  // or, for npm, import { SciChartHorizontalGroup, ... } from "scichart"
+
+  // Step 1: Synchronize the two chart visibleRanges
   sciChartSurface0.xAxes.get(0).visibleRangeChanged.subscribe((data1) => {
     sciChartSurface1.xAxes.get(0).visibleRange = data1.visibleRange;
   });
@@ -74,12 +82,12 @@ async function synchronizeTwoChartsBasicExample() {
     sciChartSurface0.xAxes.get(0).visibleRange = data1.visibleRange;
   });
 
-  // Step 2: Synchronize the two chart axis sizes using SciChartVerticalGroup
-  // this is useful in case the Y-axis have different sizes due to differing visibleRange
-  // text formatting or size
-  const verticalGroup = new SciChartVerticalGroup();
-  verticalGroup.addSurfaceToGroup(sciChartSurface0);
-  verticalGroup.addSurfaceToGroup(sciChartSurface1);
+  // Step 2: Synchronize the two chart axis sizes using SciChartHorizontalGroup
+  // this is useful in case the Y-axis have different sizes (heights) due to text formatting
+  // or visibleRange differences
+  const horizontalGroup = new SciChartHorizontalGroup();
+  horizontalGroup.addSurfaceToGroup(sciChartSurface0);
+  horizontalGroup.addSurfaceToGroup(sciChartSurface1);
 
   // Step 3: Add some cursors, zooming behaviours and link them with a modifier group
   // This ensures mouse events on one chart are sent to the other chart
@@ -125,7 +133,7 @@ async function synchronizeTwoChartsBasicExample() {
     }));
     scs.annotations.add(new TextAnnotation({
       ...watermarkOptions,
-      text: "Drag to zoom, or mousewheel the chart to view synchronization",
+      text: "Drag to zoom, or mousewheel",
       textColor: "#FFFFFF44",
       fontSize: 16,
     }));
@@ -135,4 +143,5 @@ async function synchronizeTwoChartsBasicExample() {
   enrichChart(sciChartSurface1, false);
 };
 
-synchronizeTwoChartsBasicExample("chart0", "chart1");
+synchronizeVerticalChartsBasicExample("chart0", "chart1");
+
