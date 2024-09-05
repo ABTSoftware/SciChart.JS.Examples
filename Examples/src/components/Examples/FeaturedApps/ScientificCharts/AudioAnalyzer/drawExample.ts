@@ -172,7 +172,6 @@ export const getChartsInitializationApi = () => {
         sciChartSurface.annotations.add(helpText);
 
         hasAudio = await dataProvider.initAudio();
-        console.log("hasAudio",hasAudio);
 
         return { sciChartSurface };
     };

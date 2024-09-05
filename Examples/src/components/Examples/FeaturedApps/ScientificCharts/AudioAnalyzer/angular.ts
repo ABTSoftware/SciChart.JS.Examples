@@ -23,37 +23,66 @@ import { appTheme } from '../../../theme';
 }
   </style>
   <div [ngStyle]="{'background': appTheme.Background}" class="chart-wrapper">
-  <div class="chart-container">
-   <scichart-angular
-      [initChart]="chartsInitializationAPI.initAudioChart"
-      (onInit)="onChartInit($event)"
-       style="flex: 1;">
-   </scichart-angular>
-    <div class="fft-spectrogram-container">
-     <scichart-angular
-        [initChart]="chartsInitializationAPI.initFftChart"
-        style="flex: 1;">
-      </scichart-angular>
-        <scichart-angular
-        [initChart]="chartsInitializationAPI.initSpectogramChart"
-        style="flex: 1;">
-      </scichart-angular>
-    </div>
+<div class="chart-container">
+  <scichart-angular
+    [initChart]="chartsInitializationAPI.initAudioChart"
+    (onInit)="onChartInit($event, 'audio')"
+    style="flex: 1;">
+  </scichart-angular>
+  <div class="fft-spectrogram-container">
+    <scichart-angular
+      [initChart]="chartsInitializationAPI.initFftChart"
+      (onInit)="onChartInit($event, 'fft')"
+      style="flex: 1;">
+    </scichart-angular>
+    <scichart-angular
+      [initChart]="chartsInitializationAPI.initSpectogramChart"
+      (onInit)="onChartInit($event, 'spectrogram')"
+      style="flex: 1;">
+    </scichart-angular>
   </div>
+</div>
+
 </div>
 `,
  
 })
 
 
-export class AudioAnalyzerComponent  {    
-    private chartsInitializationAPI = getChartsInitializationApi();
-    private controlsRef: any;
-    appTheme = appTheme;
+export class AudioAnalyzerComponent {
+  private chartsInitializationAPI = getChartsInitializationApi();
+  private audioChart: any;
+  private fftChart: any;
+  private spectrogramChart: any;
+  private controlsRef: any;
+  appTheme = appTheme;
 
-    onChartInit(){
-      this.controlsRef = this.chartsInitializationAPI.onAllChartsInit();
-      this.controlsRef.handleStart();
+  async onChartInit(event: any, chartType: 'audio' | 'fft' | 'spectrogram') {
+      if (event?.sciChartSurface) {
+          switch (chartType) {
+              case 'audio':
+                  this.audioChart = event.sciChartSurface;
+                  break;
+              case 'fft':
+                  this.fftChart = event.sciChartSurface;
+                  break;
+              case 'spectrogram':
+                  this.spectrogramChart = event.sciChartSurface;
+                  break;
+          }
+
+          if (this.audioChart && this.fftChart && this.spectrogramChart) {
+              this.configureCharts();
+          }
+      } else {
+          console.log("Chart not initialized!");
+      }
   }
-      
+
+  private configureCharts() {
+      if (this.audioChart && this.fftChart && this.spectrogramChart) {
+          this.controlsRef = this.chartsInitializationAPI.onAllChartsInit();
+          this.controlsRef.handleStart();
+      }
+  }
 }
