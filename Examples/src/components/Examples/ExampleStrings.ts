@@ -484,6 +484,11 @@ export const ExampleStrings = {
     titleMultiStyleSeries: (frameworkName: TFrameworkName) => `${frameworkName} Chart with Multi-Style Series`,
     urlMultiStyleSeries: "multi-style-series",
 
+    // LineSplittingThresholds
+    titleLineSplittingThresholds: (frameworkName: TFrameworkName) =>
+        `${frameworkName} Chart with lines split by thresholds`,
+    urlLineSplittingThresholds: "line-splitting-thresholds",
+
     // Dashed line styling
     titleDashedLineStyling: `Dashed Line Styling`,
     urlDashedLineStyling: `dashed-line-chart`,

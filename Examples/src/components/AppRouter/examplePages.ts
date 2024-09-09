@@ -111,6 +111,7 @@ import { populationPyramidExampleInfo } from "../Examples/FeaturedApps/ShowCases
 import { TDescriptionTemplate, TTitleTemplate } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { userAnnotatedStockChartExampleInfo } from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart/exampleInfo";
 import { smoothStackedMountainChartExampleInfo } from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart/exampleInfo";
+import { lineSplittingThresholdsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds/exampleInfo";
 
 export type TExampleInfo = {
     /**
@@ -422,6 +423,10 @@ export const EXAMPLES_PAGES = asRecord({
     chart2D_stylingAndTheming_MultiplePointMarkers: {
         id: "chart2D_stylingAndTheming_MultiplePointMarkers",
         ...multiplePointMarkersExampleInfo,
+    },
+    chart2D_stylingAndTheming_LineSplittingThresholds: {
+        id: "chart2D_stylingAndTheming_LineSplittingThresholds",
+        ...lineSplittingThresholdsExampleInfo,
     },
     chart2D_tooltipsAndHittest_HitTestApi: {
         id: "chart2D_tooltipsAndHittest_HitTestApi",
