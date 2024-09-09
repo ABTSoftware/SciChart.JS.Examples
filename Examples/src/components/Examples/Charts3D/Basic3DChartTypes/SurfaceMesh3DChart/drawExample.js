@@ -16,12 +16,10 @@ import {
     zeroArray2D,
 } from "scichart";
 import { appTheme } from "../../../theme";
-const divElementId = "chart";
-const divHeatmapLegend = "heatmapLegend";
 // SCICHART CODE
-export const drawExample = async () => {
+export const drawExample = async (rootElement) => {
     // Create a SciChart3DSurface
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, {
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
     // Create and position the camera in the 3D world
@@ -97,10 +95,10 @@ export const drawExample = async () => {
     sciChart3DSurface.chartModifiers.add(new OrbitModifier3D());
     sciChart3DSurface.chartModifiers.add(new ResetCamera3DModifier());
     sciChart3DSurface.chartModifiers.add(new TooltipModifier3D({ tooltipContainerBackground: appTheme.PaleBlue }));
-    return { sciChart3DSurface, wasmContext };
+    return { sciChartSurface: sciChart3DSurface, wasmContext };
 };
-const drawHeatmapLegend = async () => {
-    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
+export const drawHeatmapLegend = async (rootElement) => {
+    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(rootElement, {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
@@ -136,5 +134,5 @@ const drawHeatmapLegend = async () => {
             ],
         },
     });
-    return heatmapLegend;
+    return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };
 };

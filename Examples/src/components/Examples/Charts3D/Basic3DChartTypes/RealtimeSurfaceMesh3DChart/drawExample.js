@@ -14,11 +14,10 @@ import {
     zeroArray2D,
 } from "scichart";
 import { appTheme } from "../../../theme";
-export const divElementId = "chart";
 // SCICHART CODE
-export const drawExample = async () => {
+export const drawExample = async (rootElement) => {
     // Create a SciChart3DSurface
-    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(divElementId, {
+    const { sciChart3DSurface, wasmContext } = await SciChart3DSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
     // Create and position the camera in the 3D world
@@ -111,5 +110,5 @@ export const drawExample = async () => {
     const stopAnimation = () => {
         clearInterval(timer);
     };
-    return { sciChart3DSurface, wasmContext, controls: { startAnimation, stopAnimation } };
+    return { sciChartSurface: sciChart3DSurface, wasmContext, controls: { startAnimation, stopAnimation } };
 };

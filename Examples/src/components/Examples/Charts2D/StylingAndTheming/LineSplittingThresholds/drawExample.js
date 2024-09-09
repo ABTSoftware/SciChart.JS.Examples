@@ -1,5 +1,4 @@
 import {
-    BaseRenderableSeries,
     BaseRenderDataTransform,
     DefaultPaletteProvider,
     ECoordinateMode,
@@ -9,53 +8,42 @@ import {
     EVerticalAnchorPoint,
     FastLineRenderableSeries,
     HorizontalLineAnnotation,
-    IPointMetadata,
-    IPointSeries,
     MouseWheelZoomModifier,
     NativeTextAnnotation,
     NumberRange,
     NumericAxis,
     ObservableArrayBase,
-    ObservableArrayChangedArgs,
     parseColorToUIntArgb,
-    RenderPassData,
-    RolloverModifier,
     SciChartJsNavyTheme,
     SciChartSurface,
-    TSciChart,
     XyDataSeries,
     XyPointSeriesResampled,
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
-
-class ThresholdRenderDataTransform extends BaseRenderDataTransform<XyPointSeriesResampled> {
-    public thresholds: ObservableArrayBase<number> = new ObservableArrayBase();
-
-    public constructor(parentSeries: BaseRenderableSeries, wasmContext: TSciChart, thresholds: number[]) {
+class ThresholdRenderDataTransform extends BaseRenderDataTransform {
+    thresholds = new ObservableArrayBase();
+    constructor(parentSeries, wasmContext, thresholds) {
         super(parentSeries, wasmContext, [parentSeries.drawingProviders[0]]);
         this.thresholds.add(...thresholds);
         this.onThresholdsChanged = this.onThresholdsChanged.bind(this);
         this.thresholds.collectionChanged.subscribe(this.onThresholdsChanged);
     }
-
-    private onThresholdsChanged(data: ObservableArrayChangedArgs) {
+    onThresholdsChanged(data) {
         this.requiresTransform = true;
         if (this.parentSeries.invalidateParentCallback) {
             this.parentSeries.invalidateParentCallback();
         }
     }
-
-    public delete(): void {
+    delete() {
         this.thresholds.collectionChanged.unsubscribeAll();
         super.delete();
     }
-
-    protected createPointSeries(): XyPointSeriesResampled {
+    createPointSeries() {
         return new XyPointSeriesResampled(this.wasmContext, new NumberRange(0, 0));
     }
-    protected runTransformInternal(renderPassData: RenderPassData): IPointSeries {
+    runTransformInternal(renderPassData) {
         const numThresholds = this.thresholds.size();
         if (numThresholds === 0) {
             return renderPassData.pointSeries;
@@ -132,35 +120,23 @@ class ThresholdRenderDataTransform extends BaseRenderDataTransform<XyPointSeries
             yValues.push_back(lastY);
             indexes.push_back(newI);
         }
-
         return this.pointSeries;
     }
 }
-
 const colorNames = [appTheme.MutedTeal, appTheme.MutedBlue, appTheme.MutedOrange, appTheme.MutedRed];
 const colors = colorNames.map((c) => parseColorToUIntArgb(c));
-
 class ThresholdPaletteProvider extends DefaultPaletteProvider {
     strokePaletteMode = EStrokePaletteMode.SOLID;
-    lastY: number;
-    public thresholds: number[];
-
-    public override get isRangeIndependant(): boolean {
+    lastY;
+    thresholds;
+    get isRangeIndependant() {
         return true;
     }
-
-    public constructor(thresholds: number[]) {
+    constructor(thresholds) {
         super();
         this.thresholds = thresholds;
     }
-
-    overrideStrokeArgb(
-        xValue: number,
-        yValue: number,
-        index: number,
-        opacity: number,
-        metadata: IPointMetadata
-    ): number {
+    overrideStrokeArgb(xValue, yValue, index, opacity, metadata) {
         if (index == 0) {
             this.lastY = yValue;
         }
@@ -177,8 +153,7 @@ class ThresholdPaletteProvider extends DefaultPaletteProvider {
         return colors[this.thresholds.length];
     }
 }
-
-export const drawExample = async (rootElement: string | HTMLDivElement) => {
+export const drawExample = async (rootElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: new SciChartJsNavyTheme(),
     });
@@ -187,12 +162,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         growBy: new NumberRange(0.02, 0.02),
     });
     sciChartSurface.xAxes.add(xAxis);
-
     const yAxis = new NumericAxis(wasmContext, {
         growBy: new NumberRange(0.05, 0.05),
     });
     sciChartSurface.yAxes.add(yAxis);
-
     const lineSeries = new FastLineRenderableSeries(wasmContext, {
         pointMarker: new EllipsePointMarker(wasmContext, {
             stroke: "black",
@@ -211,21 +184,17 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         strokeThickness: 5,
     });
     sciChartSurface.renderableSeries.add(lineSeries);
-
     const thresholds = [1.5, 3, 5];
     const transform = new ThresholdRenderDataTransform(lineSeries, wasmContext, thresholds);
     lineSeries.renderDataTransform = transform;
     const paletteProvider = new ThresholdPaletteProvider(thresholds);
     lineSeries.paletteProvider = paletteProvider;
-
     const dataSeries = new XyDataSeries(wasmContext, {
         xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         yValues: [0, 0.8, 2, 3, 6, 4, 1, 1, 7, 5, 4],
     });
-
     lineSeries.dataSeries = dataSeries;
-
-    const makeThresholdAnnotation = (i: number) => {
+    const makeThresholdAnnotation = (i) => {
         const thresholdAnn = new HorizontalLineAnnotation({
             isEditable: true,
             stroke: colorNames[i + 1],
@@ -253,7 +222,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     for (let i = 0; i < thresholds.length; i++) {
         makeThresholdAnnotation(i);
     }
-
     sciChartSurface.annotations.add(
         new NativeTextAnnotation({
             xCoordinateMode: ECoordinateMode.Pixel,
@@ -267,11 +235,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             textColor: appTheme.ForegroundColor,
         })
     );
-
     sciChartSurface.chartModifiers.add(new ZoomPanModifier());
     sciChartSurface.chartModifiers.add(new ZoomExtentsModifier());
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
-
     sciChartSurface.zoomExtents();
     return { sciChartSurface, wasmContext };
 };

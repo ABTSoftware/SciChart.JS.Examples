@@ -44,7 +44,7 @@ export const drawExample = async (rootElement) => {
             { offset: 0, color: appTheme.VividSkyBlue + "77" },
             { offset: 1, color: "Transparent" },
         ]),
-        animation: { type: EAnimationType.Sweep, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 } },
+        animation: { type: EAnimationType.Scale, options: { zeroLine: -1, pointDurationFraction: 0.5, duration: 500 } },
     });
     sciChartSurface.renderableSeries.add(lineSeries);
     // Define Horizontal Error Bars Series, Error bars require HLC data with absolute values for error whiskers
@@ -61,7 +61,7 @@ export const drawExample = async (rootElement) => {
         dataPointWidth: 0.3,
         strokeThickness: 4,
         stroke: appTheme.VividSkyBlue + "77",
-        animation: { type: EAnimationType.Sweep, options: { zeroLine: 0, pointDurationFraction: 0.5, duration: 500 } },
+        animation: { type: EAnimationType.Scale, options: { zeroLine: 0, pointDurationFraction: 0.5, duration: 500 } },
     });
     sciChartSurface.renderableSeries.add(errorBarsHorizontalSeries);
     // Define Vertical Error Bars Series, Error bars require HLC data with absolute values for error whiskers
@@ -73,7 +73,7 @@ export const drawExample = async (rootElement) => {
         dataPointWidth: 0.3,
         strokeThickness: 4,
         stroke: appTheme.VividSkyBlue,
-        animation: { type: EAnimationType.Sweep, options: { zeroLine: 0, pointDurationFraction: 0.5, duration: 500 } },
+        animation: { type: EAnimationType.Scale, options: { zeroLine: 0, pointDurationFraction: 0.5, duration: 500 } },
         // Add optional pointmarker (or use separate XyScatterRenderableSeries)
         pointMarker: new EllipsePointMarker(wasmContext, {
             width: 9,
