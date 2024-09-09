@@ -99,22 +99,26 @@ async function simpleSplit(divElementId: string) {
     }),
   });
 
+  // Create a second PointMarkerDrawingProvider with a ySelector so that it uses y1Values
   const selectedPointDrawingProvider = new PointMarkerDrawingProvider(
     wasmContext,
     renderableSeries,
     (ps) => (ps as IXyyPointSeries).y1Values
   );
+  // Create a different pointMarker
   const squarePM = new SquarePointMarker(wasmContext, {
     width: 10,
     height: 10,
     stroke: "red",
     fill: "red",
   });
+  // Tell the new drawingProvider to use the new pointmarker instead of the one from the series.
   selectedPointDrawingProvider.getProperties = () => ({
     pointMarker: squarePM as IPointMarker,
   });
-
+  // Add the new drawingProvider to the series
   renderableSeries.drawingProviders.push(selectedPointDrawingProvider);
+  // Create the transform and add it to the series.  Pass the drawingProviders array as this transform applies to all of them
   renderableSeries.renderDataTransform = new SplitBySelectedDataTransform(
     renderableSeries,
     wasmContext,

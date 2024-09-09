@@ -10005,23 +10005,32 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
-              <Topic Id="72295505-46d0-4b28-b14d-7afe2b323f30" Status="New Topic" CreatedOn="2024-09-02T16:15:26.5855993Z" ModifiedOn="2024-09-02T17:24:42.158301Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="RenderDataTransform API" BuildFlags="">
+              <Topic Id="72295505-46d0-4b28-b14d-7afe2b323f30" Status="New Topic" CreatedOn="2024-09-02T16:15:26.5855993Z" ModifiedOn="2024-09-09T17:27:30.7317091Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="RenderDataTransform API" BuildFlags="">
                 <Title m="2024-09-02T16:15:49.2673963Z">RenderDataTransform API</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2024-09-02T17:24:42.158301Z">&lt;P&gt;RenderDataTransforms allow you to transform your data immediately before it is drawn.&amp;nbsp; This means that the drawn data can differ from what is seen by rollover, cursors and legends.&amp;nbsp; Some examples of uses of RenderDataTransforms are:&lt;/P&gt;
+                    <Content m="2024-09-09T17:27:30.7317091Z">&lt;P&gt;RenderDataTransforms allow you to transform your data immediately before it is drawn.&amp;nbsp; This means that the drawn data can differ from what is seen by rollover, cursors and legends.&amp;nbsp; Some examples of uses of RenderDataTransforms are:&lt;/P&gt;
 &lt;UL&gt;
-&lt;LI&gt;Interpolating the data.&amp;nbsp; SciChart uses this api internally to draw the spline series
-&lt;LI&gt;Rendering points on the same series with different pointmarkers or line styles.
-&lt;LI&gt;Adding points into the data to be able to draw a single line segment in multiple colors
-&lt;LI&gt;Manipulating NaN values to add gaps to a series.&lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;RenderDataTransforms have very different use cases from the&amp;nbsp;&lt;A href="681061b4-68ce-47a5-8b9c-920651d9dc6c"&gt;Filters Api&lt;/A&gt;.&amp;nbsp; Filters operate at the point you append or update data, so they change the data that is stored in the dataSeries.&amp;nbsp; RenderDataTransforms create a completely separate view of the data which is then used for drawing.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;H2&gt;The RenderDataTransform interface&lt;/H2&gt;
+&lt;LI&gt;Interpolating the data.&amp;nbsp; SciChart uses this api internally to draw the spline series 
+&lt;LI&gt;Rendering points on the same series with different pointmarkers or line styles. 
+&lt;LI&gt;Adding points into the data to be able to draw a single line segment in multiple colors 
+&lt;LI&gt;Manipulating NaN values to add gaps to a series. &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;RenderDataTransforms have very different use cases from the&amp;nbsp;&lt;A href="681061b4-68ce-47a5-8b9c-920651d9dc6c"&gt;Filters Api&lt;/A&gt;.&amp;nbsp; Filters operate at the point you append or update data, so they change the data that is stored in the dataSeries.&amp;nbsp; RenderDataTransforms create a completely separate view of the data which is then used for drawing.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;In this documentation we are going to walk through some examples of RenderDataTransforms, but to understand them, we first need to understand some details of the SciChart render process and the difference between DataSeries and PointSeries.&amp;nbsp; The SciChart render function goes through roughly the following stages:&lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;Layout.&amp;nbsp; Here we calculate the size and position of the axes
+&lt;LI&gt;AutoRange.&amp;nbsp; If required, we measure the data range and update the visibleRange of the axes
+&lt;LI&gt;Prepare series data.&amp;nbsp; Here we convert from the DataSeries to a PointSeries.&amp;nbsp; A PointSeries has arrays of vectors like a DataSeries, but not other functionality.&amp;nbsp; The PointSeries may be just a wrapper&amp;nbsp;(&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/basepointserieswrapped.html" target=_blank&gt;basePointSeriesWrapped&lt;/A&gt;)&amp;nbsp;- pointing to the vectors in the dataSeries, or it may be the result of a resampling operation (&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/basepointseriesresampled.html" target=_blank&gt;basePointSeriesResampled&lt;/A&gt;), in which case it has completely separate sets of vectors.&amp;nbsp; This, along with an indexRange which indicates what part of the data should be drawn, is put together into&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/renderpassdata.html" target=_blank&gt;RenderPassData&lt;/A&gt;.
+&lt;LI&gt;Draw series. The renderPassData is passed to the draw method of each drawingProvider on the renderableSeries.&amp;nbsp; Lines and pointMarkers have separate drawingProviders.&amp;nbsp; This is where the renderDataTransform can come into play.&amp;nbsp; If the current drawingProvider is in the list on the transform, then the transform is run and the resulting renderPassData is given to the drawingProvider instead.&lt;/LI&gt;&lt;/OL&gt;
+&lt;P&gt;The point here is that the renderDataTransform only applies to drawing.&amp;nbsp; It does not change the dataSeries, and is not seen by hitTest or modifiers.&amp;nbsp; It can however be used by AutoRange if required.&amp;nbsp; To make all this efficient, there is a base class for renderDataTransforms which holds the result of the transform and only runs it if necessary.&lt;/P&gt;
+&lt;H2&gt;BaseRenderDataTransform&lt;/H2&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
-&lt;H2&gt;Example of using RenderContext API&lt;/H2&gt;
-&lt;P&gt;For example we'll create a simple example of&amp;nbsp;&lt;A href="SciChart.Drawing~com.scichart.drawing.common.IRenderSurfaceRenderer.html"&gt;IRenderSurfaceRenderer&lt;/A&gt; which can be&amp;nbsp;&lt;A href="SciChart.Drawing~com.scichart.drawing.common.IRenderSurface~setRenderer.html"&gt;set as renderer for RenderSurface&lt;/A&gt;:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Custom RenderSurface Renderer&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;Java&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
-&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Splitting Data to Multiple DrawingProviders&lt;/H2&gt;
+&lt;P&gt;This is a simplified version of the&amp;nbsp;&lt;A href="https://demo.scichart.com/react/multi-style-series" target=_blank&gt;Multi Style Series&lt;/A&gt; demo.&amp;nbsp; Below is the transform&amp;nbsp;which takes xy data and returns an xyyPointSeries with the unselected points in the yValues and selected points in the y1Values.&amp;nbsp; &lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\RenderDataTransforms\SimpleSplit\demo.ts&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;To use this, we set up a second drawingProvider which uses a different pointMarker and draws the y1Values of the pointSeries.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\RenderDataTransforms\SimpleSplit\demo.ts&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The output looks like this&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/RenderDataTransforms/SimpleSplit/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
                   </TopicSection>
                 </TopicSections>
@@ -16519,7 +16528,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">1199</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">3333</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>
