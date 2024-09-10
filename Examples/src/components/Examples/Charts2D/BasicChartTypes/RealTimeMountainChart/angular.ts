@@ -8,19 +8,25 @@ SciChartSurface.loadWasmFromCDN();
 SciChart3DSurface.loadWasmFromCDN();
 
 @Component({
-    selector: "app-root",
-    templateUrl: "./app.component.html",
+    selector: "app-realTimeMountain-chart",
+    template: `<scichart-angular
+    [initChart]="drawExample"
+    (onInit)="onInitHandler($event)"
+    (onDelete)="onDeleteHandler($event)"
+></scichart-angular>`,
 })
-export class AppComponent {
+export class AppRealTimeMountainComponent {
     title = "scichart-angular-app";
 
+       
     drawExample = drawExample;
-
+    
     onInitHandler = (initResult: any) => {
         initResult.controls.handleStart();
     };
-
+  
     onDeleteHandler = (initResult: any) => {
         initResult.controls.handleStop();
     };
+
 }

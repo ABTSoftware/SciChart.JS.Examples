@@ -122,12 +122,12 @@ export const EXAMPLES_PAGES = {
         title: ExampleStrings.titleBandChart(framework),
         drawExample: bandSeriesChartExampleInfo.drawExample
     },
-    chart2D_basicCharts_SplineBandChart: {
-        id: "chart2D_basicCharts_SplineBandChart",
-        path: "spline-band-chart",
-        title: "Angular Spline Band Chart",
-        drawExample: splineBandSeriesChartExampleInfo.drawExample
-    },
+    // chart2D_basicCharts_SplineBandChart: {
+    //     id: "chart2D_basicCharts_SplineBandChart",
+    //     path: "spline-band-chart",
+    //     title: "Angular Spline Band Chart",
+    //     drawExample: splineBandSeriesChartExampleInfo.drawExample
+    // },
     chart2D_basicCharts_DigitalBandSeriesChart: {
         id: "chart2D_basicCharts_DigitalBandSeriesChart",
         path: "digital-band-chart",
