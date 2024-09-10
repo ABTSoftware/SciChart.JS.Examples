@@ -1,5 +1,5 @@
-import { Button, makeStyles } from "@material-ui/core";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
+import { makeStyles } from "@mui/styles";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
 import {
     AUTO_COLOR,

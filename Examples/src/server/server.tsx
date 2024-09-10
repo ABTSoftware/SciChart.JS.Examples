@@ -1,10 +1,10 @@
-import * as express from "express";
-import * as compression from "compression";
+import express from "express";
+import cors from "cors";
+import compression from "compression";
 import { Request, Response, NextFunction } from "express";
 import * as bodyParser from "body-parser";
 
-import * as chalk from "chalk";
-import * as cors from "cors";
+import { green, red } from "chalk";
 import * as React from "react";
 import { Helmet } from "react-helmet";
 import * as ReactDOMServer from "react-dom/server";
@@ -155,7 +155,5 @@ app.get("*", (req: Request, res: Response) => {
 });
 
 server.listen(port, () => {
-    console.log(
-        `Serving at http://${host}:${port} ${chalk.green("✓")}. ${chalk.red("To run in dev mode: npm run dev")}`
-    );
+    console.log(`Serving at http://${host}:${port} ${green("✓")}. ${red("To run in dev mode: npm run dev")}`);
 });

@@ -1,6 +1,6 @@
-import { ToggleButton, ToggleButtonGroup, ToggleButtonGroupProps } from "@material-ui/lab";
+import { ToggleButton, ToggleButtonGroup, ToggleButtonGroupProps } from "@mui/material";
 import * as React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import classes from "../../../styles/Examples.module.scss";
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { SciChartSurface } from "scichart";
