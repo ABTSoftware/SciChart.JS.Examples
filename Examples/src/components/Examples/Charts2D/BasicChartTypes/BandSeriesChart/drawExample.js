@@ -8,6 +8,8 @@ import {
     SciChartSurface,
     NumberRange,
     SweepAnimation,
+    GradientParams,
+    Point,
 } from "scichart";
 import { appTheme } from "../../../theme";
 export const drawExample = async (rootElement) => {
@@ -17,7 +19,7 @@ export const drawExample = async (rootElement) => {
     });
     // Add an XAxis, YAxis
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
-    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.4, 0.4) }));
+    sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { growBy: new NumberRange(0.1, 0.1) }));
     // Create some data for the example. We need X, Y and Y1 values
     const xValues = [];
     const yValues = [];
@@ -40,6 +42,27 @@ export const drawExample = async (rootElement) => {
             fillY1: appTheme.VividSkyBlue + "33",
             stroke: appTheme.VividOrange,
             strokeY1: appTheme.VividSkyBlue,
+            animation: new SweepAnimation({ duration: 800 }),
+        })
+    );
+    sciChartSurface.renderableSeries.add(
+        new FastBandRenderableSeries(wasmContext, {
+            dataSeries: new XyyDataSeries(wasmContext, {
+                xValues,
+                yValues: yValues.map((y) => y - 2),
+                y1Values: y1Values.map((y) => y - 2),
+            }),
+            strokeThickness: 3,
+            stroke: appTheme.VividOrange,
+            strokeY1: appTheme.VividSkyBlue,
+            fillLinearGradient: new GradientParams(new Point(0, 0.6), new Point(0, 0.9), [
+                { color: appTheme.MutedRed + "99", offset: 0 },
+                { color: appTheme.MutedOrange + "99", offset: 1 },
+            ]),
+            fillLinearGradientY1: new GradientParams(new Point(0, 0.6), new Point(0, 0.9), [
+                { color: appTheme.MutedPurple + "99", offset: 0 },
+                { color: appTheme.MutedTeal + "99", offset: 1 },
+            ]),
             animation: new SweepAnimation({ duration: 800 }),
         })
     );

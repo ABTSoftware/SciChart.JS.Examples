@@ -1219,10 +1219,10 @@ Show external placement div</Notes>
         <TaskItem Id="747f6e55-7966-439e-b737-47553ec73132" Priority="" AssignedTo="">
           <Title>v3.4 show how to disable loader animation</Title>
           <AssociatedItemId></AssociatedItemId>
-          <Status>Not Started</Status>
+          <Status>Complete</Status>
           <CreatedOn>2024-07-17T09:47:12.8739993Z</CreatedOn>
           <CreatedBy>ABT-WORKHORSE\aburn</CreatedBy>
-          <ModifiedOn>2024-07-17T09:47:19.8281003Z</ModifiedOn>
+          <ModifiedOn>2024-09-02T08:52:28.6816942Z</ModifiedOn>
           <ModifiedBy>ABT-WORKHORSE\aburn</ModifiedBy>
           <Notes></Notes>
         </TaskItem>
@@ -2712,6 +2712,23 @@ Show external placement div</Notes>
                 </TocNode>
               </ChildNodes>
             </TocNode>
+            <TocNode Name="" Id="3a2e8829-ee80-477f-aeb2-cc3d9ef88cfe" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
+              <CaptionTemplate m="2024-09-03T10:16:58.4342592Z">Chart Synchronization APIs</CaptionTemplate>
+              <ChildNodes>
+                <TocNode Name="" Id="0bb7c752-5743-41e7-9c41-51a5a8283719" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>bcb56c9b-b9fc-42f0-b77b-aff0ab46329a</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+                <TocNode Name="" Id="0401185a-e5f7-4cef-a837-7f7f2786e39b" IconIndex="-1" IsNew="true" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="PROJECTITEM">
+                  <CaptionTemplate />
+                  <ChildNodes />
+                  <TargetItemId>66e23bde-c039-4449-8f21-23af1366b165</TargetItemId>
+                  <TargetItemBookmark></TargetItemBookmark>
+                </TocNode>
+              </ChildNodes>
+            </TocNode>
             <TocNode Name="" Id="cd73663e-ef65-4123-afc8-4935f5bdcb93" IconIndex="-1" IsNew="false" Target="" DependsOnItemTypeName="" DependsOnItemTypeFilter="" DependsOnMinimumCount="0" DependsOnStillProcessChildNodes="false" BuildFlags="" NodeType="NOLINK">
               <CaptionTemplate m="2021-10-08T11:02:19.1771964Z">Accessibility</CaptionTemplate>
               <ChildNodes>
@@ -2983,13 +3000,13 @@ Show external placement div</Notes>
         <Caption m="2020-08-03T15:26:57.7868646Z">SciChart.js User Manual</Caption>
         <ChildTopicCategories />
         <Topics>
-          <Topic Id="d9186051-eaa4-42af-847b-342df3b8df30" Status="New Topic" CreatedOn="2016-06-20T20:37:35.1758693Z" ModifiedOn="2023-03-11T08:52:27.9284691Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="SciChart_JS_User_Manual" BuildFlags="">
+          <Topic Id="d9186051-eaa4-42af-847b-342df3b8df30" Status="New Topic" CreatedOn="2016-06-20T20:37:35.1758693Z" ModifiedOn="2024-09-03T17:20:33.1038214Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="SciChart_JS_User_Manual" BuildFlags="">
             <Title m="2020-11-25T18:23:56.9147101Z">SciChart.js JavaScript Charts User Manual</Title>
             <ContentsTitle m="2023-01-07T13:39:44.8341092Z">SciChart.js JavaScript Charts User Manual</ContentsTitle>
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BODYTEXT">
-                <Content m="2023-03-11T08:52:27.9284691Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                <Content m="2024-09-03T17:20:33.1029271Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;Are you new to SciChart? Check out our most popular pages to get started below:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="2247b20c-4be1-42cb-ad24-125310703f67"&gt;SciChart.js Vanilla JavaScript Tutorials&lt;/A&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
@@ -3000,6 +3017,7 @@ Show external placement div</Notes>
 &lt;LI&gt;&lt;A href="fac601dc-5435-4c51-abec-1c267f55f193"&gt;Tooltips&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="06b6036b-fbc1-41e4-905a-52ec73295788"&gt;Annotations and Markers&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="5760011e-fce8-440b-bdb5-470621e85012"&gt;Styling and Themeing&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="bcb56c9b-b9fc-42f0-b77b-aff0ab46329a"&gt;Chart Synchronization APIs&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="01b31f4f-bced-419a-a232-e11ae17a7255"&gt;3D charts Basics&lt;/A&gt;&amp;nbsp; &lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;
 &lt;H1&gt;What is SciChart.js?&lt;/H1&gt;
@@ -3028,13 +3046,13 @@ Show external placement div</Notes>
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="010455fd-1703-4f00-aca3-05411237612c" Status="New Topic" CreatedOn="2020-08-03T15:27:12.2159991Z" ModifiedOn="2023-03-11T08:52:27.9370255Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Minimum-Browser-Requirements" BuildFlags="">
+          <Topic Id="010455fd-1703-4f00-aca3-05411237612c" Status="New Topic" CreatedOn="2020-08-03T15:27:12.2159991Z" ModifiedOn="2024-09-03T17:20:33.111567Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Minimum-Browser-Requirements" BuildFlags="">
             <Title m="2020-11-25T18:23:00.9055152Z">Minimum Browser Requirements</Title>
             <ContentsTitle m="2023-01-07T13:39:47.2087838Z">Minimum Browser Requirements</ContentsTitle>
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2023-03-11T08:52:27.9370255Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                <Content m="2024-09-03T17:20:33.111567Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;Are you new to SciChart? Check out our most popular pages to get started below:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="2247b20c-4be1-42cb-ad24-125310703f67"&gt;SciChart.js Vanilla JavaScript Tutorials&lt;/A&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
@@ -3045,6 +3063,7 @@ Show external placement div</Notes>
 &lt;LI&gt;&lt;A href="fac601dc-5435-4c51-abec-1c267f55f193"&gt;Tooltips&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="06b6036b-fbc1-41e4-905a-52ec73295788"&gt;Annotations and Markers&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="5760011e-fce8-440b-bdb5-470621e85012"&gt;Styling and Themeing&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="bcb56c9b-b9fc-42f0-b77b-aff0ab46329a"&gt;Chart Synchronization APIs&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="01b31f4f-bced-419a-a232-e11ae17a7255"&gt;3D charts Basics&lt;/A&gt;&amp;nbsp; &lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;SciChart.js is a cutting-edge next-generation JavaScript Chart Library. As a result, we are using the latest technologies to draw our fast, real-time and interactive JavaScript charts.&lt;/P&gt;
 &lt;P&gt;Minimum requirement for deployment of an application with SciChart.js is &lt;STRONG&gt;your browser must support WebAssembly (wasm) and WebGL 1 (preferably WebGL 2).&lt;/STRONG&gt;&lt;/P&gt;
@@ -3101,13 +3120,13 @@ Show external placement div</Notes>
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="2af91ecd-b2a9-4699-9b71-53204a53b31a" Status="New Topic" CreatedOn="2016-06-20T20:50:38.5400924Z" ModifiedOn="2023-03-11T08:52:27.9405814Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Online-Resources-and-Help" BuildFlags="">
+          <Topic Id="2af91ecd-b2a9-4699-9b71-53204a53b31a" Status="New Topic" CreatedOn="2016-06-20T20:50:38.5400924Z" ModifiedOn="2024-09-03T17:20:33.1165295Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Online-Resources-and-Help" BuildFlags="">
             <Title m="2023-01-10T21:56:35.9778359Z">Online Resources and Help</Title>
             <ContentsTitle />
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2023-03-11T08:52:27.9405814Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                <Content m="2024-09-03T17:20:33.1165295Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;Are you new to SciChart? Check out our most popular pages to get started below:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="2247b20c-4be1-42cb-ad24-125310703f67"&gt;SciChart.js Vanilla JavaScript Tutorials&lt;/A&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
@@ -3118,6 +3137,7 @@ Show external placement div</Notes>
 &lt;LI&gt;&lt;A href="fac601dc-5435-4c51-abec-1c267f55f193"&gt;Tooltips&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="06b6036b-fbc1-41e4-905a-52ec73295788"&gt;Annotations and Markers&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="5760011e-fce8-440b-bdb5-470621e85012"&gt;Styling and Themeing&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="bcb56c9b-b9fc-42f0-b77b-aff0ab46329a"&gt;Chart Synchronization APIs&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="01b31f4f-bced-419a-a232-e11ae17a7255"&gt;3D charts Basics&lt;/A&gt;&amp;nbsp; &lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Online Resources &amp;amp; Help&lt;/H2&gt;
 &lt;P&gt;There are several online reosurces to help you get the best out of SciChart Android. These can be found at the following locations:&lt;/P&gt;
@@ -3140,13 +3160,13 @@ Show external placement div</Notes>
             <PropertyDefinitionValues />
             <ExcludedOtherFiles />
           </Topic>
-          <Topic Id="09079101-6ba2-4cdb-9fe3-0fb603ff0486" Status="New Topic" CreatedOn="2016-06-20T21:10:43.7177795Z" ModifiedOn="2023-03-11T08:52:27.9445776Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Licensing SciChart.js" BuildFlags="">
+          <Topic Id="09079101-6ba2-4cdb-9fe3-0fb603ff0486" Status="New Topic" CreatedOn="2016-06-20T21:10:43.7177795Z" ModifiedOn="2024-09-03T17:20:33.1209138Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Licensing SciChart.js" BuildFlags="">
             <Title />
             <ContentsTitle m="2020-10-12T10:15:57.1777442Z">Licensing SciChart.js</ContentsTitle>
             <Notes></Notes>
             <TopicSections>
               <TopicSection Name="BodyText">
-                <Content m="2023-03-11T08:52:27.9445776Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                <Content m="2024-09-03T17:20:33.1209138Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;Are you new to SciChart? Check out our most popular pages to get started below:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="2247b20c-4be1-42cb-ad24-125310703f67"&gt;SciChart.js Vanilla JavaScript Tutorials&lt;/A&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
@@ -3157,6 +3177,7 @@ Show external placement div</Notes>
 &lt;LI&gt;&lt;A href="fac601dc-5435-4c51-abec-1c267f55f193"&gt;Tooltips&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="06b6036b-fbc1-41e4-905a-52ec73295788"&gt;Annotations and Markers&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="5760011e-fce8-440b-bdb5-470621e85012"&gt;Styling and Themeing&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="bcb56c9b-b9fc-42f0-b77b-aff0ab46329a"&gt;Chart Synchronization APIs&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="01b31f4f-bced-419a-a232-e11ae17a7255"&gt;3D charts Basics&lt;/A&gt;&amp;nbsp; &lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H1&gt;SciChart.js Licensing&lt;/H1&gt;
 &lt;P&gt;We have a walkthrough guide showing how to get started with a Trial License, or apply a purchased license for SciChart.js at&amp;nbsp;&lt;A href="https://www.scichart.com/licensing-scichart-js" target=_blank&gt;www.scichart.com/licensing-scichart-js&lt;/A&gt;&lt;/P&gt;
@@ -3823,13 +3844,13 @@ Show external placement div</Notes>
             <Caption m="2020-08-03T14:52:46.5340233Z">The SciChart JS Examples Suite</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="481993d4-64bd-4388-bb27-dba9b5784df7" Status="New Topic" CreatedOn="2016-06-20T20:37:35.3395416Z" ModifiedOn="2023-12-22T13:18:42.8904644Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The_SciChart_Js_Examples_Suite" BuildFlags="">
+              <Topic Id="481993d4-64bd-4388-bb27-dba9b5784df7" Status="New Topic" CreatedOn="2016-06-20T20:37:35.3395416Z" ModifiedOn="2024-09-03T17:20:33.1264213Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="The_SciChart_Js_Examples_Suite" BuildFlags="">
                 <Title m="2020-08-03T16:14:43.2635733Z">The SciChart.js Examples Suite</Title>
                 <ContentsTitle m="2020-08-03T16:43:01.3896299Z">The SciChart.js Examples Suite</ContentsTitle>
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BODYTEXT">
-                    <Content m="2023-12-22T13:18:42.8758203Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-09-03T17:20:33.1264213Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;Are you new to SciChart? Check out our most popular pages to get started below:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="2247b20c-4be1-42cb-ad24-125310703f67"&gt;SciChart.js Vanilla JavaScript Tutorials&lt;/A&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
@@ -3840,6 +3861,7 @@ Show external placement div</Notes>
 &lt;LI&gt;&lt;A href="fac601dc-5435-4c51-abec-1c267f55f193"&gt;Tooltips&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="06b6036b-fbc1-41e4-905a-52ec73295788"&gt;Annotations and Markers&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="5760011e-fce8-440b-bdb5-470621e85012"&gt;Styling and Themeing&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="bcb56c9b-b9fc-42f0-b77b-aff0ab46329a"&gt;Chart Synchronization APIs&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="01b31f4f-bced-419a-a232-e11ae17a7255"&gt;3D charts Basics&lt;/A&gt;&amp;nbsp; &lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;To make it easier to start using SciChart.js in your project, we prepared a bunch of examples demonstrating different features and their usage. These are called “SciChart.js Examples Suite” or SciChart demo.&lt;/P&gt;
 &lt;P&gt;We have two places you can view the SciChart Demo online.&lt;/P&gt;
@@ -3889,14 +3911,14 @@ Show external placement div</Notes>
 &lt;H2&gt;How to add SciChart.Browser.js to your project&lt;/H2&gt;
 &lt;OL&gt;
 &lt;LI&gt;Choose what version of SciChart you want to use. To find out which versions are available, head over to &lt;A href="https://www.npmjs.com/package/scichart" target=_blank&gt;npmjs.com/package/scichart&lt;/A&gt; and click on versions. For example, the&amp;nbsp;&lt;A href="https://www.npmjs.com/package/scichart" target=_blank&gt;latest version today is 2.1.2290&lt;/A&gt; 
-&lt;LI&gt;Add script pointing to a specific version into the head section of your html file. For instance to add version 2.1.2290 add this script: &lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Include SciChart.js Script&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;lt;script src="https://cdn.jsdelivr.net/npm/scichart@3.4.658/_wasm/scichart.browser.js" crossorigin="anonymous"&amp;gt;&amp;lt;/script&amp;gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
-&lt;LI&gt;Configure SciChart.js to load the wasm and data files from CDN &lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Configure SciChart.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// libraryVersion is a constant hard coded into the library. This ensures a match between wasm/data versions&lt;BR&gt;SciChart.SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.658${SciChart.libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.658${SciChart.libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;});&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/LI&gt;&lt;/OL&gt;
+&lt;LI&gt;Add script pointing to a specific version into the head section of your html file. For instance to add version 2.1.2290 add this script: &lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Include SciChart.js Script&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;lt;script src="https://cdn.jsdelivr.net/npm/scichart@3.4.662/_wasm/scichart.browser.js" crossorigin="anonymous"&amp;gt;&amp;lt;/script&amp;gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;LI&gt;Configure SciChart.js to load the wasm and data files from CDN &lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Configure SciChart.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;// libraryVersion is a constant hard coded into the library. This ensures a match between wasm/data versions&lt;BR&gt;SciChart.SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.662${SciChart.libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.662${SciChart.libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;});&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;/LI&gt;&lt;/OL&gt;
 &lt;P&gt;4. Next, add some series, axis and behaviours to the SciChartSurface (more on that below) &amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Caution Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;NOTE: Version numbers in the call to SciChartSurface.configure()&amp;nbsp;must be the same for the Script version, Wasm and Data file. SciChart will download and cache these files in your browser.&amp;nbsp;&lt;A href="https://www.npmjs.com/package/scichart" target=_blank&gt;Find the latest version of SciChart over at npmjs&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Worked Example using SciChart.browser.js&lt;/H2&gt;
 &lt;P&gt;We have a worked example over at&amp;nbsp;&lt;A href="https://github.com/ABTSoftware/SciChart.JS.Examples/tree/master/Sandbox/demo-browser-global-module" target=_blank&gt;Github&lt;/A&gt; of how to use this, but for the sake of ease let's include the code below.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;SciChart.js Example&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;HTML&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;BR&gt;&amp;lt;html lang="en"&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;head&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- Required meta tags --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta charset="utf-8" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta name="viewport" content="width=device-width, initial-scale=1" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- Include SciChart.js --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; src="https://cdn.jsdelivr.net/npm/scichart@3.4.658/_wasm/scichart.browser.js"&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; crossorigin="anonymous"&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;title&amp;gt;Hello, SciChart.js world!&amp;lt;/title&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;/head&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;body&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;h1&amp;gt;Hello, SciChart.js world!&amp;lt;/h1&amp;gt;&lt;/P&gt;
+&lt;P&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;BR&gt;&amp;lt;html lang="en"&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;head&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- Required meta tags --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta charset="utf-8" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta name="viewport" content="width=device-width, initial-scale=1" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- Include SciChart.js --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; src="https://cdn.jsdelivr.net/npm/scichart@3.4.662/_wasm/scichart.browser.js"&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; crossorigin="anonymous"&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;title&amp;gt;Hello, SciChart.js world!&amp;lt;/title&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;/head&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;body&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;h1&amp;gt;Hello, SciChart.js world!&amp;lt;/h1&amp;gt;&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- Create the Div to host the SciChartSurface --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;div id="scichart-root" style="width: 800px; height: 600px;"&amp;gt;&amp;lt;/div&amp;gt;&lt;/P&gt;
-&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- The JavaScript to create a SciChartSurface --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script&amp;gt;&lt;BR&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // In order to load data file from the CDN we need to set dataUrl&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.658${SciChart.libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.658${SciChart.libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; });&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Create a SciChartSurface inside the div&amp;nbsp;with id 'scichart-root'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmContext&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; } = await &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;SciChartSurface.create("scichart-root");&lt;BR&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Add an X and a Y Axis&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const xAxis = new &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;NumericAxis(wasmContext);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.xAxes.add(xAxis);&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- The JavaScript to create a SciChartSurface --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script&amp;gt;&lt;BR&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // In order to load data file from the CDN we need to set dataUrl&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.662${SciChart.libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.662${SciChart.libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; });&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Create a SciChartSurface inside the div&amp;nbsp;with id 'scichart-root'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmContext&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; } = await &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;SciChartSurface.create("scichart-root");&lt;BR&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Add an X and a Y Axis&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const xAxis = new &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;NumericAxis(wasmContext);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.xAxes.add(xAxis);&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const yAxis = new &lt;STRONG&gt;SciChart.&lt;/STRONG&gt;NumericAxis(wasmContext);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.yAxes.add(yAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; initSciChart();&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp; &amp;lt;/body&amp;gt;&lt;BR&gt;&amp;lt;/html&amp;gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;This results in the following output:&lt;/P&gt;
@@ -3943,9 +3965,9 @@ Show external placement div</Notes>
 &lt;P&gt;In this tutorial, we are going to add&amp;nbsp;some Line series onto the chart.&lt;/P&gt;
 &lt;P&gt;First, we will add a&amp;nbsp;&lt;A href="e280ed77-6cc5-49cd-84be-ecd143139ca6"&gt;FastLineRenderableSeries&lt;/A&gt; and add this to the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#renderableseries"&gt;SciChartSurface.renderableSeries&lt;/A&gt; collection.&lt;/P&gt;
 &lt;P&gt;Next,&amp;nbsp;we create an&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/xydataseries.html"&gt;XyDataSeries&lt;/A&gt; &lt;STRONG&gt;-&lt;/STRONG&gt; which&amp;nbsp;is&amp;nbsp;the type which stores the data, and can accept dynamic updates (real-time updates) and manipulation of data. We will assign the dataseries to the FastLineRenderableSeries.&lt;/P&gt;
-&lt;P&gt;Try the code below:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;index.html&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;HTML&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;lt;html lang="en-us"&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;head&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta charset="utf-8" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta content="text/html; charset=utf-8" http-equiv="Content-Type" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;title&amp;gt;SciChart.js Browser Bundle Tutorial 2&amp;lt;/title&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script src="&lt;A href="https://cdn.jsdelivr.net/npm/scichart@3.4.658/_wasm/scichart.browser.js"&gt;https://cdn.jsdelivr.net/npm/scichart@3.4.658/_wasm/scichart.browser.js&lt;/A&gt;" crossorigin="anonymous"&amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script async type="text/javascript" src="index.js"&amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;style&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; body { font-family: 'Arial'}&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/style&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/head&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;body&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;h1&amp;gt;Hello SciChart.js world!&amp;lt;/h1&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;p&amp;gt;In this example we add series &amp;amp;amp; data to a SciChart Chart using pure JS and a CDN&amp;lt;/p&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- the Div where the SciChartSurface will reside --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;div id="scichart-root" style="width: 800px; height: 600px;"&amp;gt;&amp;lt;/div&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/body&amp;gt;&lt;BR&gt;&amp;lt;/html&amp;gt;&lt;BR&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;Try the code below:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;index.html&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;HTML&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;&amp;lt;html lang="en-us"&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;head&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta charset="utf-8" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;meta content="text/html; charset=utf-8" http-equiv="Content-Type" /&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;title&amp;gt;SciChart.js Browser Bundle Tutorial 2&amp;lt;/title&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script src="&lt;A href="https://cdn.jsdelivr.net/npm/scichart@3.4.662/_wasm/scichart.browser.js"&gt;https://cdn.jsdelivr.net/npm/scichart@3.4.662/_wasm/scichart.browser.js&lt;/A&gt;" crossorigin="anonymous"&amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;script async type="text/javascript" src="index.js"&amp;gt;&amp;lt;/script&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;style&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; body { font-family: 'Arial'}&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/style&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/head&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;body&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;h1&amp;gt;Hello SciChart.js world!&amp;lt;/h1&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;p&amp;gt;In this example we add series &amp;amp;amp; data to a SciChart Chart using pure JS and a CDN&amp;lt;/p&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;!-- the Div where the SciChartSurface will reside --&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;div id="scichart-root" style="width: 800px; height: 600px;"&amp;gt;&amp;lt;/div&amp;gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;/body&amp;gt;&lt;BR&gt;&amp;lt;/html&amp;gt;&lt;BR&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;index.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
-&lt;P&gt;&lt;BR&gt;async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // LICENSING //&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Set your license code here. See &lt;A href="https://www.scichart.com/licensing-scichart-js/"&gt;https://www.scichart.com/licensing-scichart-js/&lt;/A&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // for instructions&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Load SciChart.js from CDN. Ensure version numbers match the script in index.html&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChart.SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.658${SciChart.libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.658${SciChart.libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; });&lt;/P&gt;
+&lt;P&gt;&lt;BR&gt;async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // LICENSING //&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Set your license code here. See &lt;A href="https://www.scichart.com/licensing-scichart-js/"&gt;https://www.scichart.com/licensing-scichart-js/&lt;/A&gt;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // for instructions&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Load SciChart.js from CDN. Ensure version numbers match the script in index.html&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChart.SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.662${SciChart.libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.662${SciChart.libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; });&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Create the SciChartSurface in the div 'scichart-root'&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // The SciChartSurface, and webassembly context 'wasmContext' are paired. This wasmContext&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // instance must be passed to other types that exist on the same surface.&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const {sciChartSurface, wasmContext} = await SciChart.SciChartSurface.create("scichart-root");&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Create an X,Y Axis and add to the chart&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const xAxis = new SciChart.NumericAxis(wasmContext);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; const yAxis = new SciChart.NumericAxis(wasmContext);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.xAxes.add(xAxis);&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; sciChartSurface.yAxes.add(yAxis);&lt;/P&gt;
 &lt;P&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Create 100 dataseries, each with 10k points&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; for (let seriesCount = 0; seriesCount &amp;lt; 100; seriesCount++) {&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; const xyDataSeries = new SciChart.XyDataSeries(wasmContext);&lt;/P&gt;
@@ -4678,13 +4700,13 @@ Show external placement div</Notes>
             <Caption m="2020-08-03T14:43:19.7581353Z">SciChart JS Basics</Caption>
             <ChildTopicCategories />
             <Topics>
-              <Topic Id="c66138c0-4f3e-48cb-9660-bb30cd6e2d13" Status="New Topic" CreatedOn="2016-08-04T06:56:56.504338Z" ModifiedOn="2023-03-11T08:52:27.9663585Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="SciChartSurface" BuildFlags="">
+              <Topic Id="c66138c0-4f3e-48cb-9660-bb30cd6e2d13" Status="New Topic" CreatedOn="2016-08-04T06:56:56.504338Z" ModifiedOn="2024-09-03T17:20:33.0947821Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="SciChartSurface" BuildFlags="">
                 <Title m="2019-02-11T16:46:17.3685252Z">The SciChartSurface Type</Title>
                 <ContentsTitle />
                 <Notes></Notes>
                 <TopicSections>
                   <TopicSection Name="BodyText">
-                    <Content m="2023-03-11T08:52:27.9663585Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+                    <Content m="2024-09-03T17:20:33.0947821Z">&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
 &lt;P&gt;Are you new to SciChart? Check out our most popular pages to get started below:&lt;/P&gt;
 &lt;UL&gt;
 &lt;LI&gt;&lt;A href="2247b20c-4be1-42cb-ad24-125310703f67"&gt;SciChart.js Vanilla JavaScript Tutorials&lt;/A&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
@@ -4695,6 +4717,7 @@ Show external placement div</Notes>
 &lt;LI&gt;&lt;A href="fac601dc-5435-4c51-abec-1c267f55f193"&gt;Tooltips&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="06b6036b-fbc1-41e4-905a-52ec73295788"&gt;Annotations and Markers&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="5760011e-fce8-440b-bdb5-470621e85012"&gt;Styling and Themeing&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="bcb56c9b-b9fc-42f0-b77b-aff0ab46329a"&gt;Chart Synchronization APIs&lt;/A&gt; 
 &lt;LI&gt;&lt;A href="01b31f4f-bced-419a-a232-e11ae17a7255"&gt;3D charts Basics&lt;/A&gt;&amp;nbsp; &lt;/LI&gt;&lt;/UL&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;The basics of the SciChartSurface Type&lt;/H2&gt;
 &lt;P&gt;The root 2D chart view is called the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html"&gt;SciChartSurface&lt;/A&gt;. This is the JavaScript chart&amp;nbsp;control you will be adding to your applications wherever you need a chart. You can add more than one SciChartSurface to an HTML page, you can configure them independently, and you can link them together.&lt;/P&gt;
@@ -4865,7 +4888,7 @@ Show external placement div</Notes>
 &lt;P&gt;The easiest way for SciChart.js to load WebAssembly and Data files are to load them from our CDN&amp;nbsp;(see &lt;A href="https://www.jsdelivr.com/package/npm/scichart" target=_blank&gt;jsdelivr.com/package/npm/scichart&lt;/A&gt;). This method is particularly useful in projects or frameworks that don't have a package manager or module bundler.&lt;/P&gt;
 &lt;P&gt;To do load SciChart's Wasm and Data file from CDN, call&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;SciChartSurface.configure()&lt;/A&gt; once before any SciChartSurface is shown:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Configure Wasm and Data File URLs&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;
 &lt;P&gt;import { SciChartSurface, libraryVersion } from "scichart";&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/P&gt;
-&lt;P&gt;// Load Wasm &amp;amp; Data files from URL&lt;BR&gt;// This URL can be anything, but for example purposes we are loading from JSDelivr CDN&lt;BR&gt;SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.658${libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.658${libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;// Load Wasm &amp;amp; Data files from URL&lt;BR&gt;// This URL can be anything, but for example purposes we are loading from JSDelivr CDN&lt;BR&gt;SciChartSurface.configure({&lt;BR&gt;&amp;nbsp;&amp;nbsp; dataUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.662${libraryVersion}/_wasm/scichart2d.data`,&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;wasmUrl: `https://cdn.jsdelivr.net/npm/scichart@3.4.662${libraryVersion}/_wasm/scichart2d.wasm`&lt;BR&gt;});&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;P&gt;We've packaged a helpful function that automatically loads the latest &amp;amp; correct version of SciChart's Wasm &amp;amp; Data files from CDN. To use this, instead of calling&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#configure" target=_blank&gt;SciChartSurface.configure()&lt;/A&gt;&amp;nbsp;passing in a URL, call &lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html#usewasmfromcdn" target=_blank&gt;SciChartSurface.useWasmFromCDN()&lt;/A&gt;.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Load Wasm from CDN&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JavaScript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";&lt;BR&gt;&lt;BR&gt;export async function initSciChart() {&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; // Call this once before any SciChartSurface is shown.&lt;BR&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp;// This&amp;nbsp;is equivalent to calling SciChartSurface.configure() with the CDN URL (JSDelivr)&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; SciChartSurface.useWasmFromCDN();&lt;BR&gt;}&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
 &lt;H2&gt;Loading Wasm for 3D Charts&lt;/H2&gt;
 &lt;P&gt;The process for loading Wasm files for 3D Charts is exactly the same, except you must configure SciChart.js to load scichart3d.wasm and scichart3d.data.&lt;/P&gt;
@@ -9982,6 +10005,40 @@ Show external placement div</Notes>
                 <PropertyDefinitionValues />
                 <ExcludedOtherFiles />
               </Topic>
+              <Topic Id="72295505-46d0-4b28-b14d-7afe2b323f30" Status="New Topic" CreatedOn="2024-09-02T16:15:26.5855993Z" ModifiedOn="2024-09-09T17:27:30.7317091Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="RenderDataTransform API" BuildFlags="">
+                <Title m="2024-09-02T16:15:49.2673963Z">RenderDataTransform API</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2024-09-09T17:27:30.7317091Z">&lt;P&gt;RenderDataTransforms allow you to transform your data immediately before it is drawn.&amp;nbsp; This means that the drawn data can differ from what is seen by rollover, cursors and legends.&amp;nbsp; Some examples of uses of RenderDataTransforms are:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;Interpolating the data.&amp;nbsp; SciChart uses this api internally to draw the spline series 
+&lt;LI&gt;Rendering points on the same series with different pointmarkers or line styles. 
+&lt;LI&gt;Adding points into the data to be able to draw a single line segment in multiple colors 
+&lt;LI&gt;Manipulating NaN values to add gaps to a series. &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Note Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;RenderDataTransforms have very different use cases from the&amp;nbsp;&lt;A href="681061b4-68ce-47a5-8b9c-920651d9dc6c"&gt;Filters Api&lt;/A&gt;.&amp;nbsp; Filters operate at the point you append or update data, so they change the data that is stored in the dataSeries.&amp;nbsp; RenderDataTransforms create a completely separate view of the data which is then used for drawing.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;In this documentation we are going to walk through some examples of RenderDataTransforms, but to understand them, we first need to understand some details of the SciChart render process and the difference between DataSeries and PointSeries.&amp;nbsp; The SciChart render function goes through roughly the following stages:&lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;Layout.&amp;nbsp; Here we calculate the size and position of the axes
+&lt;LI&gt;AutoRange.&amp;nbsp; If required, we measure the data range and update the visibleRange of the axes
+&lt;LI&gt;Prepare series data.&amp;nbsp; Here we convert from the DataSeries to a PointSeries.&amp;nbsp; A PointSeries has arrays of vectors like a DataSeries, but not other functionality.&amp;nbsp; The PointSeries may be just a wrapper&amp;nbsp;(&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/basepointserieswrapped.html" target=_blank&gt;basePointSeriesWrapped&lt;/A&gt;)&amp;nbsp;- pointing to the vectors in the dataSeries, or it may be the result of a resampling operation (&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/basepointseriesresampled.html" target=_blank&gt;basePointSeriesResampled&lt;/A&gt;), in which case it has completely separate sets of vectors.&amp;nbsp; This, along with an indexRange which indicates what part of the data should be drawn, is put together into&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/renderpassdata.html" target=_blank&gt;RenderPassData&lt;/A&gt;.
+&lt;LI&gt;Draw series. The renderPassData is passed to the draw method of each drawingProvider on the renderableSeries.&amp;nbsp; Lines and pointMarkers have separate drawingProviders.&amp;nbsp; This is where the renderDataTransform can come into play.&amp;nbsp; If the current drawingProvider is in the list on the transform, then the transform is run and the resulting renderPassData is given to the drawingProvider instead.&lt;/LI&gt;&lt;/OL&gt;
+&lt;P&gt;The point here is that the renderDataTransform only applies to drawing.&amp;nbsp; It does not change the dataSeries, and is not seen by hitTest or modifiers.&amp;nbsp; It can however be used by AutoRange if required.&amp;nbsp; To make all this efficient, there is a base class for renderDataTransforms which holds the result of the transform and only runs it if necessary.&lt;/P&gt;
+&lt;H2&gt;BaseRenderDataTransform&lt;/H2&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;H2&gt;Splitting Data to Multiple DrawingProviders&lt;/H2&gt;
+&lt;P&gt;This is a simplified version of the&amp;nbsp;&lt;A href="https://demo.scichart.com/react/multi-style-series" target=_blank&gt;Multi Style Series&lt;/A&gt; demo.&amp;nbsp; Below is the transform&amp;nbsp;which takes xy data and returns an xyyPointSeries with the unselected points in the yValues and selected points in the y1Values.&amp;nbsp; &lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\RenderDataTransforms\SimpleSplit\demo.ts&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;To use this, we set up a second drawingProvider which uses a different pointMarker and draws the y1Values of the pointSeries.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\RenderDataTransforms\SimpleSplit\demo.ts&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;The output looks like this&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/RenderDataTransforms/SimpleSplit/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;
+&lt;P&gt;&amp;nbsp;&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
             </Topics>
           </TopicCategory>
           <TopicCategory Id="6f709290-a0f5-4fd7-a944-9180795038df" AutoIndex="false">
@@ -14871,6 +14928,117 @@ Show external placement div</Notes>
               </Topic>
             </Topics>
           </TopicCategory>
+          <TopicCategory Id="e4006321-117e-4caf-9042-319932bf9178" AutoIndex="false">
+            <Caption m="2024-09-03T10:17:09.6123228Z">Chart Synchronization</Caption>
+            <ChildTopicCategories />
+            <Topics>
+              <Topic Id="bcb56c9b-b9fc-42f0-b77b-aff0ab46329a" Status="New Topic" CreatedOn="2024-09-03T10:19:22.3345349Z" ModifiedOn="2024-09-04T12:47:56.2921778Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Synchronizing Multiple Charts" BuildFlags="">
+                <Title m="2024-09-03T10:20:14.0041203Z">Synchronizing Multiple Charts</Title>
+                <ContentsTitle m="2024-09-03T10:20:17.0199375Z">Synchronizing Multiple Charts</ContentsTitle>
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2024-09-04T12:47:56.2921778Z">&lt;P&gt;SciChart.js features a rich set of APIs to synchronize multiple charts. With these APIs you can create dynamic dashboards and chart groups, for example:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;Group charts together with linked behaviours 
+&lt;LI&gt;Sync chart sizes and axis sizes across chart groups 
+&lt;LI&gt;Sync tooltips, zooming or panning across chart groups 
+&lt;LI&gt;Dynamically add or remove chart panes to groups &lt;/LI&gt;&lt;/UL&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt; 
+&lt;P&gt;The &lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;&lt;/A&gt;&lt;A href="https://demo.scichart.com/javascript/sync-multi-chart" target=_blank&gt;JavaScript Sync Multi Chart Chart Example&lt;/A&gt; can be found in the&amp;nbsp;&lt;A href="https://github.com/abtsoftware/scichart.js.examples" target=_blank&gt;SciChart.Js Examples Suite&lt;/A&gt;&amp;nbsp;on Github, or our live demo at&amp;nbsp;&lt;A href="https://demo.scichart.com/javascript-line-chart" target=_blank&gt;demo.scichart.com&lt;/A&gt;&lt;/P&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;How to create a Chart Group&lt;/H2&gt;
+&lt;P&gt;We've created an example showing how create a synchonrized chart group below. First we will start off with the codepen, then share the code and walk through how it works.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/SyncMultiCharts/VerticalGroup/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Zoom and Pan the above chart to get a feel for how synchronized charts work in a group!&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;First of all some HTML is required to create two vertical charts. For simplicity this has been included with inline styles showing how to layout the two charts.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;HTML&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;HTML&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\SyncMultiCharts\VerticalGroup\demo.html&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;After that, some code to initialize the two charts can look like this:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\SyncMultiCharts\VerticalGroup\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P style='BOX-SIZING: border-box; FONT-SIZE: 16px; FONT-FAMILY: Roboto, "Helvetica Neue", Helvetica, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(33,33,33); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 10px; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial'&gt;This code initializes a SciChartSurface, creates xAxis and yAxis and adds some data and a line series.&lt;/P&gt;
+&lt;P style='BOX-SIZING: border-box; FONT-SIZE: 16px; FONT-FAMILY: Roboto, "Helvetica Neue", Helvetica, sans-serif; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSFORM: none; FONT-WEIGHT: 400; COLOR: rgb(33,33,33); FONT-STYLE: normal; TEXT-ALIGN: left; ORPHANS: 2; WIDOWS: 2; MARGIN: 0px 0px 10px; LETTER-SPACING: normal; BACKGROUND-COLOR: rgb(255,255,255); TEXT-INDENT: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial'&gt;The function&lt;SPAN&gt;&amp;nbsp;&lt;/SPAN&gt;&lt;EM style="BOX-SIZING: border-box"&gt;createSciChartSurface&lt;/EM&gt;&lt;SPAN&gt;&amp;nbsp;&lt;/SPAN&gt;creates a single chart, so this is called twice passing in a different &amp;lt;div&amp;gt; ID in order to create the two vertical charts.&lt;/P&gt;
+&lt;H2&gt;Synchronizing Zooming, Panning and Tooltips on two charts&lt;/H2&gt;
+&lt;P&gt;To Synchronize the two charts, we have to carry out the following steps:&lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;Synchronize&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#visiblerange" target=_blank&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;xAxis.visibleRange&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt; on the two charts by using a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#visiblerangechanged" target=_blank&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;AxisCore.visibleRangeChanged&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt; callback 
+&lt;LI&gt;Synchronize chart widths using a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartverticalgroup.html" target=_blank&gt;&lt;U&gt;&lt;FONT color=#0066cc&gt;SciChartVerticalGroup&lt;/FONT&gt;&lt;/U&gt;&lt;/A&gt; 
+&lt;LI&gt;Finally, optionally synchronize chart modifiers (Cursor, Tooltips) using a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/chartmodifierbase2d.html#modifiergroup" target=_blank&gt;modifierGroup&lt;/A&gt; &lt;/LI&gt;&lt;/OL&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Javascript&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\SyncMultiCharts\VerticalGroup\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Some Notes on Chart Synchronization&lt;/H2&gt;
+&lt;P&gt;Adding a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/chartmodifierbase2d.html#modifiergroup" target=_blank&gt;modifierGroup&lt;/A&gt;&amp;nbsp;to specific chart modifiers will ensure that mouse events from one chart are passed to the other and vice versa. This will actually cause zooming, panning, mousewheel and tooltip/cursor behaviour to occur on all charts (when one chart is interacted with).&lt;/P&gt;
+&lt;P&gt;However, from an axis range point of view it is far more accurate to synchronize&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#visiblerange" target=_blank&gt;xAxis.visibleRange&lt;/A&gt; on the two charts by using a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#visiblerangechanged" target=_blank&gt;AxisCore.visibleRangeChanged&lt;/A&gt; callback. Mouse events are only accurate to a pixel and some inconsistencies can be built up with synchronized charts unless you also have the visibleRange synchronization.&lt;/P&gt;
+&lt;P&gt;Adding a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartverticalgroup.html" target=_blank&gt;SciChartVerticalGroup&lt;/A&gt;&amp;nbsp;ensures that the yAxis sizes on the two charts are exactly the same. This step is optional but in case of differing sizes of the axis it will give a more consistent look. For vertical chart groups you can use the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scicharthorizontalgroup.html" target=_blank&gt;SciChartHorizontalGroup&lt;/A&gt;&amp;nbsp;helper class.&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks>
+                  <TopicLink Id="c975e64a-e079-4a00-8183-c92a6de5bc63" CategoryId="" TopicLinkCategorySource="TargetItemCategory" Target="66e23bde-c039-4449-8f21-23af1366b165" BuildFlags="">
+                    <Title />
+                    <Category />
+                  </TopicLink>
+                </TopicLinks>
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="66e23bde-c039-4449-8f21-23af1366b165" Status="New Topic" CreatedOn="2024-09-03T15:10:28.6818246Z" ModifiedOn="2024-09-04T12:47:56.302303Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="SynchronizingVerticalCharts" BuildFlags="">
+                <Title m="2024-09-03T15:10:43.4337329Z">Synchronizing Vertical Charts</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2024-09-04T12:47:56.302303Z">&lt;P&gt;In SciChart.js v3.4, you can now synchronize Vertical Charts, enabling grouped zooming, panning, cursors and tooltips as well as synchronized axis sizes when charts are arranged vertically.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Before reading this topic, it's worth to familiarize yourself with&amp;nbsp;&lt;A href="e00ca150-579a-4496-98b9-70c83ca9a7bb"&gt;What is a Vertical Chart&lt;/A&gt; as well as the topic on Synchronizing Multiple Charts&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Recap on&amp;nbsp;Vertical Charts&lt;/H3&gt;
+&lt;P&gt;Vertical Charts are when a 2D cartesian chart is rotated 90 degrees, or transposed, so that series render from top to bottom as opposed to left to right.&lt;/P&gt;
+&lt;P&gt;In SciChart, vertical charts are implemented by setting the axis.axisAlignment, e.g.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Vertical Charts&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="block" name="Content"&gt;xAxis.axisAlignment = EAxisAlignment.Top; // or Bottom&lt;BR&gt;yAxis.axisAlignment = EAxisAlignemnt.Left; // or Right&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This transposes the entire chart including series rendering, tooltips and annotations and resulting in a vertical chart which renders top to bottom.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Read more about creating&amp;nbsp;&lt;A href="e00ca150-579a-4496-98b9-70c83ca9a7bb"&gt;Vertical Charts here&lt;/A&gt;.&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H3&gt;Recap on Synchronizing Multiple Charts&lt;/H3&gt;
+&lt;P&gt;In SciChart.js, multiple charts may be synchronized to ensure that zooming/panning operations, tooltips or cursors and even axis sizes are synchronized. This allows you to create multi chart pane applications, or&amp;nbsp;complex dashboards which zoom and pan or allow tooltips/cursors in unison.&lt;/P&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;The method to synchronize multiple charts involves several steps, which are laid out in the page&amp;nbsp;&lt;A href="bcb56c9b-b9fc-42f0-b77b-aff0ab46329a"&gt;Synchronizing Multiple Charts&lt;/A&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Creating a pair of Vertical Charts&lt;/H2&gt;
+&lt;P&gt;We've created an example showing how to sync vertical charts below. First we will start off with the codepen, then share the code and walk through how it works.&lt;/P&gt;&lt;innovasys:widget type="Content from Web Page" layout="block"&gt;&lt;innovasys:widgetproperty layout="inline" name="Uri"&gt;http://localhost:3000/SyncMultiCharts/HorizontalGroup/docembed&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="RootTagName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="ElementId"&gt;codepen-wrapper&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="ElementClassName"&gt;&lt;/innovasys:widgetproperty&gt;&lt;innovasys:widgetproperty layout="inline" name="CreateLocalImages"&gt;False&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;&lt;innovasys:widget type="Tip Box" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Zoom and Pan the above chart to get a feel for how synchronized vertical charts work in a group!&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;First of all some HTML is required to create two vertical charts. For simplicity this has been included with inline styles showing how to arrange the two divs vertically.&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;HTML&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;HTML&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\SyncMultiCharts\HorizontalGroup\demo.html&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;After that, some code to initialize the two charts can look like this:&lt;/P&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;Creating Vertical Charts&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\SyncMultiCharts\HorizontalGroup\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleA&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;P&gt;This code initializes a SciChartSurface, creates xAxis and yAxis in the configuration to allow a vertical chart, and adds some data and a line series.&lt;/P&gt;
+&lt;P&gt;The function &lt;EM&gt;createSciChartSurface&lt;/EM&gt; creates a single chart, so this is called twice passing in a different &amp;lt;div&amp;gt; ID in order to create the two vertical charts.&lt;/P&gt;
+&lt;H2&gt;Synchronizing Zooming, Panning and Tooltips on Vertical Charts&lt;/H2&gt;
+&lt;P&gt;To synchronize the two charts, we have to carry out the following steps:&lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;Synchronize&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#visiblerange" target=_blank&gt;xAxis.visibleRange&lt;/A&gt; on the two charts by using a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#visiblerangechanged" target=_blank&gt;AxisCore.visibleRangeChanged&lt;/A&gt; callback 
+&lt;LI&gt;Synchronize chart axis heights using a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scicharthorizontalgroup.html" target=_blank&gt;SciChartHorizontalGroup&lt;/A&gt; 
+&lt;LI&gt;Finally, optionally synchronize chart modifiers (Cursor, Tooltips) using a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/chartmodifierbase2d.html#modifiergroup" target=_blank&gt;modifierGroup&lt;/A&gt; &lt;/LI&gt;&lt;/OL&gt;&lt;innovasys:widget type="Colorized Example Code From File (Tab Style)" layout="block"&gt;&lt;innovasys:widgetproperty layout="block" name="Content"&gt;Type your example code here. It will be automatically colorized when you switch to Preview or build the help system.&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Title"&gt;SYNCHRONIZING VERTICAL CHARTS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="LanguageName"&gt;JS&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Filename"&gt;..\src\SyncMultiCharts\HorizontalGroup\demo.js&lt;/innovasys:widgetproperty&gt; &lt;innovasys:widgetproperty layout="inline" name="Region"&gt;ExampleB&lt;/innovasys:widgetproperty&gt;&lt;/innovasys:widget&gt;
+&lt;H2&gt;Some Notes on Chart Synchronization with Vertical Charts&lt;/H2&gt;
+&lt;P&gt;Adding a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/chartmodifierbase2d.html#modifiergroup" target=_blank&gt;modifierGroup&lt;/A&gt;&amp;nbsp;to specific chart modifiers will ensure that mouse events from one chart are passed to the other and vice versa. This will actually cause zooming, panning, mousewheel and tooltip/cursor behaviour to occur on all charts (when one chart is interacted with).&lt;/P&gt;
+&lt;P&gt;However, from an axis range point of view it is far more accurate to synchronize&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#visiblerange" target=_blank&gt;xAxis.visibleRange&lt;/A&gt; on the two charts by using a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/axisbase2d.html#visiblerangechanged" target=_blank&gt;AxisCore.visibleRangeChanged&lt;/A&gt; callback. Mouse events are only accurate to a pixel and some inconsistencies can be built up with synchronized charts unless you also have the visibleRange synchronization.&lt;/P&gt;
+&lt;P&gt;Adding a&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scicharthorizontalgroup.html" target=_blank&gt;SciChartHorizontalGroup&lt;/A&gt;&amp;nbsp;ensures that the yAxis sizes on the two charts are exactly the same. This step is optional but in case of differing sizes of the axis it will give a more consistent look. For horizontal chart groups you can use the&amp;nbsp;&lt;A href="https://www.scichart.com/documentation/js/current/typedoc/classes/scichartverticalgroup.html" target=_blank&gt;SciChartVerticalGroup&lt;/A&gt;&amp;nbsp;helper class.&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="029ec858-0fa8-481e-8f0f-316f6278b6b8" Status="New Topic" CreatedOn="2024-09-04T07:42:50.8421291Z" ModifiedOn="2024-09-04T07:43:21.1986638Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Dynamically_Add_Remove_Synchronized_Charts" BuildFlags="">
+                <Title m="2024-09-04T07:43:01.8273116Z">Dynamically Add/Remove Charts to Synchronization Groups</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2024-09-04T07:42:50.8421291Z">&lt;p&gt; &lt;/p&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+              <Topic Id="5d0d924c-f5b3-410d-a329-af673cc205ee" Status="New Topic" CreatedOn="2024-09-04T11:13:09.4030179Z" ModifiedOn="2024-09-04T11:13:33.8315608Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="ComplexChartSynchronization" BuildFlags="">
+                <Title m="2024-09-04T11:13:14.923658Z">Complex Chart Synchronization</Title>
+                <ContentsTitle />
+                <Notes></Notes>
+                <TopicSections>
+                  <TopicSection Name="BodyText">
+                    <Content m="2024-09-04T11:13:33.8315608Z">&lt;P&gt;TODO talk about the server dashboard example and how to sync charts of different sizes&lt;/P&gt;</Content>
+                  </TopicSection>
+                </TopicSections>
+                <TopicLinks />
+                <TopicKeywords />
+                <PropertyDefinitionValues />
+                <ExcludedOtherFiles />
+              </Topic>
+            </Topics>
+          </TopicCategory>
         </ChildTopicCategories>
         <Topics />
       </TopicCategory>
@@ -16360,7 +16528,7 @@ Show external placement div</Notes>
     <TopicEditorState>
       <Attributes>
         <Attribute key="dtscrollpos" valuetype="integer">0</Attribute>
-        <Attribute key="scrollPosition" valuetype="integer">2681</Attribute>
+        <Attribute key="scrollPosition" valuetype="integer">3333</Attribute>
       </Attributes>
     </TopicEditorState>
   </TopicsProjectPlugin>

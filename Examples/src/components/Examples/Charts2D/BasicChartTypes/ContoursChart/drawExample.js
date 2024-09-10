@@ -12,11 +12,9 @@ import {
     ZoomPanModifier,
 } from "scichart";
 import { appTheme } from "../../../theme";
-export const divElementId = "chart";
-export const divHeatmapLegend = "heatmapLegend";
-export const drawExample = async () => {
+export const drawExample = async (rootElement) => {
     // Create a SciChartSurface
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(divElementId, {
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
     // Create an X & Y Axis
@@ -73,8 +71,8 @@ export const drawExample = async () => {
     sciChartSurface.chartModifiers.add(new MouseWheelZoomModifier());
     return { sciChartSurface };
 };
-export const drawHeatmapLegend = async () => {
-    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(divHeatmapLegend, {
+export const drawHeatmapLegend = async (rootElement) => {
+    const { heatmapLegend, wasmContext } = await HeatmapLegend.create(rootElement, {
         theme: {
             ...appTheme.SciChartJsTheme,
             sciChartBackground: appTheme.DarkIndigo + "BB",
@@ -110,7 +108,7 @@ export const drawHeatmapLegend = async () => {
             ],
         },
     });
-    return heatmapLegend;
+    return { sciChartSurface: heatmapLegend.innerSciChartSurface.sciChartSurface };
 };
 // This function generates data for the heatmap with contours series example
 function generateExampleData(index, heatmapWidth, heatmapHeight, colorPaletteMax) {

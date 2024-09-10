@@ -116,9 +116,11 @@ import ServerTrafficDashboard from "../Examples/FeaturedApps/ShowCases/ServerTra
 import SyncMultiChart from "../Examples/Charts2D/MultiChart/SyncMultiChart";
 import EventMarkers from "../Examples/FeaturedApps/ShowCases/EventMarkers";
 import MultiplePointMarkers from "../Examples/Charts2D/StylingAndTheming/MultiStyleSeries";
+import LineSplittingThresholds from "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds";
 import UserAnnotatedStockChart from "../Examples/Charts2D/CreateStockCharts/UserAnnotatedStockChart";
 import PopulationPyramid from "../Examples/FeaturedApps/ShowCases/PopulationPyramid";
 import SmoothStackedMountainChart from "../Examples/Charts2D/BasicChartTypes/SmoothStackedMountainChart";
+import { lineSplittingThresholdsExampleInfo } from "../Examples/Charts2D/StylingAndTheming/LineSplittingThresholds/exampleInfo";
 
 export type TMenuItem = {
     item: {
@@ -261,6 +263,7 @@ export const MENU_ITEMS_2D: TMenuItem[] = [
             EXAMPLES_PAGES.chart2D_stylingAndTheming_DashedLineStyling,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_DataLabels,
             EXAMPLES_PAGES.chart2D_stylingAndTheming_MultiplePointMarkers,
+            EXAMPLES_PAGES.chart2D_stylingAndTheming_LineSplittingThresholds,
             EXAMPLES_PAGES.featuredApps_featureDemos_chartTitle,
         ],
     },
@@ -495,6 +498,8 @@ export const getExampleComponent = (exampleId: string): (() => JSX.Element) => {
             return UsePointMarkers;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_MultiplePointMarkers.id:
             return MultiplePointMarkers;
+        case EXAMPLES_PAGES.chart2D_stylingAndTheming_LineSplittingThresholds.id:
+            return LineSplittingThresholds;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_UsingThemeManager.id:
             return UsingThemeManager;
         case EXAMPLES_PAGES.chart2D_stylingAndTheming_CustomTheme.id:
