@@ -1,4 +1,10 @@
 
+
+<button 
+  [routerLink]="['/']"
+  class="custom-button">
+  Go to Home
+</button>
   <div id="chart"></div>
   <ng-container *ngIf="!html">
     <div class="chartCss">
@@ -76,4 +82,4 @@
 <ng-container *ngIf= "additinal=='featuredApps_showcases_realtimebigdata'">
     <app-realtime-big-data-showcase></app-realtime-big-data-showcase>
 </ng-container>
-
+<!-- <app-spline></app-spline> -->

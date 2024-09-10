@@ -12,8 +12,8 @@ import {MatCardModule } from '@angular/material/card';
 import {MatButtonModule } from '@angular/material/button';
 import {MatInputModule } from '@angular/material/input';
 import {MatSelectModule } from '@angular/material/select';
-import {AppLineChartComponent } from '../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/LineChart/angularLineApp';
-import {AppRealTimeMountainComponent} from '../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/angularrealTimeMountainapp';
+import {AppLineChartComponent } from '../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/LineChart/angular';
+import {AppRealTimeMountainComponent} from '../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/RealTimeMountainChart/angular';
 import {ChartComponent} from '../../../../Examples/src/components/Examples/Charts2D/AxisLabelCustomization/ImageLabels/angular';
 import {ChartExampleComponent} from '../../../../Examples/src/components/Examples/Charts2D/ChartAnnotations/AnnotationsAreEasy/angular';
 import {UsePointMarkers }  from '../../../../Examples/src/components/Examples/Charts2D/StylingAndTheming/UsePointMarkers/angular';
@@ -33,13 +33,12 @@ import {AudioAnalyzerComponent} from '../../../../Examples/src/components/Exampl
 import {VitalSignsMonitorComponent} from "../../../../Examples/src/components/Examples/FeaturedApps/MedicalCharts/VitalSignsMonitorDemo/angular"
 import {HeatmapChartComponent} from '../../../../Examples/src/components/Examples/Charts2D/BasicChartTypes/HeatmapChart/angular';
 import {Load500By500ChartComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/PerformanceDemos/Load500By500/angular';
-import {PointLine3DChartComponent} from '../../../../Examples/src/components/Examples/Charts3D/Basic3DChartTypes/PointLine3DChart/angular3D'
+import {PointLine3DChartComponent} from '../../../../Examples/src/components/Examples/Charts3D/Basic3DChartTypes/PointLine3DChart/angular'
 import {ReactiveFormsModule } from '@angular/forms';
 import {HeatmapInteractionsComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/HeatmapInteractions/angular';
 import {RealtimeBigDataShowcaseComponent} from '../../../../Examples/src/components/Examples/FeaturedApps/ShowCases/WebsocketBigData/angular'
 import {MatSliderModule} from '@angular/material/slider';
 import { MatRadioModule } from '@angular/material/radio';
-
 
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -69,7 +68,8 @@ import { MatRadioModule } from '@angular/material/radio';
     HeatmapChartComponent,
     Load500By500ChartComponent,
     PointLine3DChartComponent,
-    RealtimeBigDataShowcaseComponent
+    RealtimeBigDataShowcaseComponent,
+    
     
   ],
   imports: [
