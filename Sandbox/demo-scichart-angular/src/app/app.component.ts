@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ScichartAngularComponent } from 'scichart-angular';
 import { appTheme } from './theme';
 import {
   SciChartSurface,
@@ -69,11 +68,6 @@ export class AppComponent {
 
   constructor() {}
 
-  ngOnInit() {
-    // charts initialized on component initialization
-    this.drawExampleanimation('sciChartAnimation');
-    this.drawExampleAnimation3D('sciChartAnimation3D');
-  }
 
 
   drawExampleanimation = async (rootElement: string | HTMLDivElement) => {
@@ -262,8 +256,8 @@ export class AppComponent {
   
 
   ngOnDestroy() {
-    // Cleanup and dispose of resources when the component is destroyed
     if (this.sciChartSurface) {
+      console.log("this.sciChartSurface",this.sciChartSurface);
       this.sciChartSurface.delete();
     }
     if (this.sciChart3DSurface) {
