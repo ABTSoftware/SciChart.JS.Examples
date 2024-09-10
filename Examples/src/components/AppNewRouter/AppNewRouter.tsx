@@ -324,7 +324,7 @@ const AppNewRouter: FC<TProps> = (props) => {
                                     ))}
                                 </div>
                             </div> */}
-                            <DetailsCom />
+                            <DetailsCom currentExample={currentExample} />
                         </div>
                     </div>
                 </div>

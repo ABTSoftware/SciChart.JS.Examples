@@ -124,6 +124,12 @@ export type TExampleInfo = {
 
     documentationLinks: TDocumentationLink[];
     tips?: any;
+    customDescription?: any;
+    customDescription1?: any;
+    moreInfo?: any;
+    NewPoints?: { label: string }[];
+    Questions?: { label: string; tag: string }[];
+    NewLinks?: { url: string; label: string }[];
     description: TDescriptionTemplate;
     previewDescription?: any;
     subtitle: (frameworkName: string) => JSX.Element;

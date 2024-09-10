@@ -29,6 +29,66 @@ const documentationLinks: TDocumentationLink[] = [
     },
 ];
 
+const moreInfo = ` <p>
+                    The most popular <a href="#">chart type for traders</a> is the candlestick chart. Candlestick
+                    provides visual support for making decisions in the case of stocks, foreign exchange or commodities.
+                </p>
+                <p>
+                    Sometimes, in trading, you are not able to see the volume of data you require. With SciChart.js,
+                    there are fewer limitations – for instance, you can visualize a year’s worth of 1-minute OHLC bars
+                    in a Candlestick Chart, as opposed to a few days. We help you present even the most complex data
+                    sets in a way that’s easy to navigate and understand, all with high performance.
+                </p>
+                <p>
+                    Our candlestick graphs support interactive elements including animation, zooming and panning. Our
+                    boilerplates integrate easily with all your JavaScript frameworks, including Angular, Vue, Blazor,
+                    React, Electron and Next.js. Start creating more sophisticated financial charts to describe the
+                    price changes of a security or currency with SciChart.js. Ready to create your JavaScript
+                    Candlestick Chart?
+                </p>
+                <p>
+                    SciChart.js is the latest software to be added to our award-winning chart library portfolio. Our
+                    priority is to enable the creation of high-performance JavaScript charts for all your digital
+                    applications. To use locally, simply sign-up and follow the steps. Create complex, fast-rendering
+                    financial charts in just a few steps!
+                </p>`;
+const customDescription = ` SciChart.js ships with over 80 <a href="#">JavaScript Chart demos</a> which you can browse, view the source code and see related documentation. Build incredible complex dashboards with SciChart.js, our High Performance <a href="#">JavaScript Chart Library</a.`;
+const customDescription1 = `This <a href="#">JavaScript Chart</a> demo shows you how to create a JavaScript Candlestick Chart or
+                    Stock Chart using SciChart.js. SciChart.js supports Candlestick Charts with custom colors per bar
+                    and a Date X-Axis. Candlestick charts can be animated, dynamically updated for real trading apps or
+                    combined with other series types to draw technical indicators or shapes.
+               
+                    By signing up with SciChart.js, you’ll have access to over 80 chart examples, including customizable
+                    financial charts. Compared to other chart software vendors, our samples have more sophisticated
+                    features, all with simple to understand instructions and documentation. Your developers can also
+                    benefit from our responsive support team.`;
+const NewLinks = [
+    { url: "https://www.scichart.com/documentation/js/current/", label: "SciChart.js Documentation Home" },
+    {
+        url: "https://www.scichart.com/javascript-candlestick-chart",
+        label: "JavaScript Candlestick Chart Documentation",
+    },
+    { url: "https://www.scichart.com/javascript-tutorials", label: "SciChart.js Tutorials" },
+    {
+        url: "https://www.scichart.com/documentation/js/current/webframe.html#CommonRenderableSeriesProperties.html",
+        label: "Common RenderableSeries Properties",
+    },
+];
+
+const NewPoints = [
+    { label: "Start for free with our community edition." },
+    { label: " Access step-by-step code JavaScript Candlestick Chart samples to create charts with NPM and Webpack." },
+    { label: "Access over 80 chart examples and customizable features with our examples app." },
+    { label: "Get building your first charting app with our tutorials." },
+];
+
+const Questions = [
+    {
+        label: "Are your JavaScript Candlestick Charts responsive?",
+        tag: "Yes – all our JavaScript charts offer cross-browser and device compatibility. This means they will automatically appear in the right format no matter what browser or device your web application viewers are using.",
+    },
+];
+
 export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
     onWebsite: true,
     title: ExampleStrings.titleRealtimeJavaScriptChartDemo,
@@ -44,4 +104,10 @@ export const realtimePerformanceDemoExampleInfo: TExampleInfo = {
         `This demo showcases the incredible realtime performance of our ${frameworkName} charts by updating the series with millions of data-points!`,
     metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
     thumbnailImage: exampleImage,
+    customDescription,
+    customDescription1,
+    NewLinks,
+    moreInfo,
+    NewPoints,
+    Questions,
 };
