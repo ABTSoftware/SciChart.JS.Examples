@@ -5,6 +5,7 @@ const scichart_1 = SciChart;
 class ThresholdRenderDataTransform extends scichart_1.XyBaseRenderDataTransform {
   constructor(parentSeries, wasmContext, thresholds) {
     super(parentSeries, wasmContext, [parentSeries.drawingProviders[0]]);
+    // Using XyBaseRenderDataTransform here as we are converting to XyPointSeries
     this.thresholds = new scichart_1.ObservableArrayBase();
     this.thresholds.add(...thresholds);
     this.onThresholdsChanged = this.onThresholdsChanged.bind(this);
@@ -19,12 +20,6 @@ class ThresholdRenderDataTransform extends scichart_1.XyBaseRenderDataTransform 
   delete() {
     this.thresholds.collectionChanged.unsubscribeAll();
     super.delete();
-  }
-  createPointSeries() {
-    return new scichart_1.XyPointSeriesResampled(
-      this.wasmContext,
-      new scichart_1.NumberRange(0, 0)
-    );
   }
   runTransformInternal(renderPassData) {
     const numThresholds = this.thresholds.size();
@@ -76,8 +71,6 @@ class ThresholdRenderDataTransform extends scichart_1.XyBaseRenderDataTransform 
           yValues.push_back(t);
           // use original data index so metadata works
           indexes.push_back(i);
-          // potentially push additional data to extra vectors to identify threshold level
-          console.log(lastX, lastX, x, y, t, f, xNew);
           level--;
           if (level === 0) break;
         }
@@ -96,7 +89,6 @@ class ThresholdRenderDataTransform extends scichart_1.XyBaseRenderDataTransform 
           xValues.push_back(xNew);
           yValues.push_back(t);
           indexes.push_back(i);
-          console.log(lastX, lastX, x, y, t, f, xNew);
           level++;
           if (level === numThresholds) break;
         }
@@ -111,6 +103,8 @@ class ThresholdRenderDataTransform extends scichart_1.XyBaseRenderDataTransform 
     return this.pointSeries;
   }
 }
+// #endregion
+// #region ExampleB
 const colorNames = ["green", "blue", "yellow", "red"];
 const colors = colorNames.map((c) => (0, scichart_1.parseColorToUIntArgb)(c));
 class ThresholdPaletteProvider extends scichart_1.DefaultPaletteProvider {
@@ -130,12 +124,10 @@ class ThresholdPaletteProvider extends scichart_1.DefaultPaletteProvider {
       const threshold = this.thresholds[i];
       if (yValue <= threshold && this.lastY <= threshold) {
         this.lastY = yValue;
-        //console.log(index, yValue, i);
         return colors[i];
       }
     }
     this.lastY = yValue;
-    //console.log(index, yValue, this.thresholds.length);
     return colors[this.thresholds.length];
   }
 }
@@ -152,12 +144,19 @@ async function thresholds(divElementId) {
     growBy: new scichart_1.NumberRange(0.05, 0.05),
   });
   sciChartSurface.yAxes.add(yAxis);
+  // #region ExampleC
+  // Create a series
   const lineSeries = new scichart_1.FastLineRenderableSeries(wasmContext, {
     pointMarker: new scichart_1.EllipsePointMarker(wasmContext, {
-      stroke: "transparent",
+      stroke: "black",
+      strokeThickness: 0,
       fill: "black",
       width: 10,
       height: 10,
+    }),
+    dataSeries: new scichart_1.XyDataSeries(wasmContext, {
+      xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      yValues: [0, 1, 2, 3, 6, 4, 1, 1, 7, 5, 4],
     }),
     dataLabels: {
       style: {
@@ -169,26 +168,27 @@ async function thresholds(divElementId) {
     strokeThickness: 5,
   });
   sciChartSurface.renderableSeries.add(lineSeries);
+  // Set initial thresholds
   const thresholds = [1.5, 3, 5];
+  // Create and set the transform
   const transform = new ThresholdRenderDataTransform(
     lineSeries,
     wasmContext,
     thresholds
   );
   lineSeries.renderDataTransform = transform;
+  // Create and set the paletteProvider
   const paletteProvider = new ThresholdPaletteProvider(thresholds);
   lineSeries.paletteProvider = paletteProvider;
-  const dataSeries = new scichart_1.XyDataSeries(wasmContext, {
-    xValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    yValues: [0, 1, 2, 3, 6, 4, 1, 1, 7, 5, 4],
-  });
-  lineSeries.dataSeries = dataSeries;
+  // #endregion
+  // A function to create and add annotations to represent the thresholds
   const makeThresholdAnnotation = (i) => {
     const thresholdAnn = new scichart_1.HorizontalLineAnnotation({
       isEditable: true,
       stroke: colorNames[i + 1],
       y1: thresholds[i],
       showLabel: true,
+      strokeThickness: 3,
     });
     thresholdAnn.dragDelta.subscribe((args) => {
       if (
@@ -206,6 +206,7 @@ async function thresholds(divElementId) {
     });
     sciChartSurface.annotations.add(thresholdAnn);
   };
+  // Create an annotation per threshold
   for (let i = 0; i < thresholds.length; i++) {
     makeThresholdAnnotation(i);
   }

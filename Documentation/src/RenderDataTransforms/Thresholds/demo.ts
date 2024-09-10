@@ -43,6 +43,7 @@ class ThresholdRenderDataTransform extends XyBaseRenderDataTransform {
     wasmContext: TSciChart,
     thresholds: number[]
   ) {
+    // Apply to line drawing only
     super(parentSeries, wasmContext, [parentSeries.drawingProviders[0]]);
     this.thresholds.add(...thresholds);
     this.onThresholdsChanged = this.onThresholdsChanged.bind(this);
@@ -111,8 +112,6 @@ class ThresholdRenderDataTransform extends XyBaseRenderDataTransform {
           yValues.push_back(t);
           // use original data index so metadata works
           indexes.push_back(i);
-          // potentially push additional data to extra vectors to identify threshold level
-          console.log(lastX, lastX, x, y, t, f, xNew);
           level--;
           if (level === 0) break;
         }
@@ -131,7 +130,6 @@ class ThresholdRenderDataTransform extends XyBaseRenderDataTransform {
           xValues.push_back(xNew);
           yValues.push_back(t);
           indexes.push_back(i);
-          console.log(lastX, lastX, x, y, t, f, xNew);
           level++;
           if (level === numThresholds) break;
         }
@@ -181,12 +179,10 @@ class ThresholdPaletteProvider extends DefaultPaletteProvider {
       const threshold = this.thresholds[i];
       if (yValue <= threshold && this.lastY <= threshold) {
         this.lastY = yValue;
-        //console.log(index, yValue, i);
         return colors[i];
       }
     }
     this.lastY = yValue;
-    //console.log(index, yValue, this.thresholds.length);
     return colors[this.thresholds.length];
   }
 }
@@ -212,7 +208,8 @@ async function thresholds(divElementId: string) {
   // Create a series
   const lineSeries = new FastLineRenderableSeries(wasmContext, {
     pointMarker: new EllipsePointMarker(wasmContext, {
-      stroke: "transparent",
+      stroke: "black",
+      strokeThickness: 0,
       fill: "black",
       width: 10,
       height: 10,
@@ -244,6 +241,7 @@ async function thresholds(divElementId: string) {
   // Create and set the paletteProvider
   const paletteProvider = new ThresholdPaletteProvider(thresholds);
   lineSeries.paletteProvider = paletteProvider;
+  // #endregion
 
   // A function to create and add annotations to represent the thresholds
   const makeThresholdAnnotation = (i: number) => {
