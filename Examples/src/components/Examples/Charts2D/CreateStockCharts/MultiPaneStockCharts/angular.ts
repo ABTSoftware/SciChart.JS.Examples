@@ -1,4 +1,4 @@
-import { Component,AfterViewInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { SciChartSurface } from 'scichart';
 import { getChartsInitializationAPI } from './drawExample'; 
 
@@ -33,16 +33,12 @@ import { getChartsInitializationAPI } from './drawExample';
     </div>
   `
 })
-//drawOverview
-export class MultiPaneStockChartsComponent implements AfterViewInit {
+export class MultiPaneStockChartsComponent {
   private chartsInitializationAPI = getChartsInitializationAPI();
   mainChart?: SciChartSurface;
   macdChart?: SciChartSurface;
   rsiChart?: SciChartSurface;
 
-  ngAfterViewInit() {
-    this.configureCharts();
-  }
 
   async onChartInit(event: any, chartType: 'price' | 'macd' | 'rsi') {
     if (event?.sciChartSurface) {

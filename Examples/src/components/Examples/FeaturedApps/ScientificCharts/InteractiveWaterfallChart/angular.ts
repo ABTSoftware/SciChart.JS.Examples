@@ -16,7 +16,7 @@ import { getChartsInitializationAPI } from './drawExample';
   <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #1e1e1e;">
     <scichart-angular
       [initChart]="chartsInitializationAPI.initMainChart"
-      (onInit)="chartsInitializationAPI.configureAfterInit()"
+      (onInit)="onInit()"
       style="flex: 1; flex-basis: 50%;">
     </scichart-angular>
     <div style="display: flex; flex: 1; flex-basis: 50%;">
@@ -33,18 +33,12 @@ import { getChartsInitializationAPI } from './drawExample';
 </div>
 `,
 })
-export class InteractiveWaterfallChartComponent implements OnInit, AfterViewInit {
+export class InteractiveWaterfallChartComponent  {
     chartsInitializationAPI = getChartsInitializationAPI();
  
     async onInit() {
       this.chartsInitializationAPI.configureAfterInit();
       this.chartsInitializationAPI.initMainChart
     }
-    ngOnInit() {
-      this.chartsInitializationAPI.configureAfterInit()
-     }
-  
-    ngAfterViewInit(): void {
-        this.chartsInitializationAPI.configureAfterInit();
-      }
+
 }
