@@ -38,7 +38,6 @@ export class InteractiveWaterfallChartComponent  {
  
     async onInit() {
       this.chartsInitializationAPI.configureAfterInit();
-      this.chartsInitializationAPI.initMainChart
     }
 
 }

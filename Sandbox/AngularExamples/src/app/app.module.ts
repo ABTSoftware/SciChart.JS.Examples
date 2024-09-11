@@ -7,7 +7,7 @@ import { AngularChartComponent } from './components/angular-chart/angular-chart.
 import { HttpClientModule } from '@angular/common/http';
 import { ScichartAngularComponent } from 'scichart-angular';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import { FormsModule } from '@angular/forms';
+import {FormsModule } from '@angular/forms';
 import {MatCardModule } from '@angular/material/card';
 import {MatButtonModule } from '@angular/material/button';
 import {MatInputModule } from '@angular/material/input';
