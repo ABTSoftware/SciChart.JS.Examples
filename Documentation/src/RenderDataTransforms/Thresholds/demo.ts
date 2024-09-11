@@ -156,7 +156,7 @@ class ThresholdPaletteProvider extends DefaultPaletteProvider {
   lastY: number;
   public thresholds: number[];
 
-  public override get isRangeIndependant(): boolean {
+  public override get isRangeIndependant() {
     return true;
   }
 
